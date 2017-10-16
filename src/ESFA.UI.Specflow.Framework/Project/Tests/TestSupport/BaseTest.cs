@@ -44,6 +44,10 @@ namespace ESFA.UI.Specflow.Framework.Project.Tests.TestSupport
                     webDriver = new PhantomJSDriver();
                     break;
 
+                case "zapProxyChrome":
+                    InitialiseZapProxyChrome();
+                    break;
+
                 default:
                     throw new Exception("Driver name does not match OR this framework does not support the webDriver specified");
             }
@@ -105,6 +109,19 @@ namespace ESFA.UI.Specflow.Framework.Project.Tests.TestSupport
                     Console.WriteLine("Exception occurred while taking screenshot - " + exception);
                 }
             }            
+        }
+
+        private static void InitialiseZapProxyChrome()
+        {
+            const string PROXY = "localhost:8080";
+            var chromeOptions = new ChromeOptions();
+            var proxy = new Proxy();
+            proxy.HttpProxy = PROXY;
+            proxy.SslProxy = PROXY;
+            proxy.FtpProxy = PROXY;
+            chromeOptions.Proxy = proxy;
+
+            webDriver = new ChromeDriver(chromeOptions);
         }
     }
 }
