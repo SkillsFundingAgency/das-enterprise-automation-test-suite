@@ -1,3 +1,5 @@
+![Build Status](https://sfa-gov-uk.visualstudio.com/_apis/public/build/definitions/c39e0c0b-7aff-4606-b160-3566f3bbce23/715/badge)
+
 # DFE-STANDARDISED-TEST-AUTOMATION-FRAMEWORK
 
 This is a SpecFlow-Selenium functional testing framework created using Selenium WebDriver with NUnit and C# in SpecFlow BDD methodology and Page Object Pattern.
