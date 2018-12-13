@@ -2,13 +2,13 @@
 using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
 using System;
-using System.Threading;
 
 namespace ESFA.UI.Specflow.Framework.Project.Framework.Helpers
 {
     public class PageInteractionHelper
     {
         protected static IWebDriver webDriver;
+        private const int implicitWaitTimeInSeconds = 10;
 
         public static void SetDriver(IWebDriver webDriver)
         {
@@ -90,20 +90,19 @@ namespace ESFA.UI.Specflow.Framework.Project.Framework.Helpers
                 + "\n Found: " + actual);
         }
 
-        public static void WaitForPageToLoad(int implicitWaitTime = 10)
+        public static void WaitForPageToLoad(int implicitWaitTime = implicitWaitTimeInSeconds)
         {
-            Thread.Sleep(1000);
             var waitForDocumentReady = new WebDriverWait(webDriver, TimeSpan.FromSeconds(implicitWaitTime));
             waitForDocumentReady.Until((wdriver) => (webDriver as IJavaScriptExecutor).ExecuteScript("return document.readyState").Equals("complete"));
         }
 
         public static void WaitForElementToBePresent(By locator)
         {
-            WebDriverWait wait = new WebDriverWait(webDriver, TimeSpan.FromSeconds(10));
+            WebDriverWait wait = new WebDriverWait(webDriver, TimeSpan.FromSeconds(implicitWaitTimeInSeconds));
             wait.Until(ExpectedConditions.ElementExists(locator));
         }
 
-        public static void WaitForElementToBeDisplayed(By locator, int timeInSeconds = 10)
+        public static void WaitForElementToBeDisplayed(By locator, int timeInSeconds = implicitWaitTimeInSeconds)
         {
             WebDriverWait wait = new WebDriverWait(webDriver, TimeSpan.FromSeconds(timeInSeconds));
             wait.Until(ExpectedConditions.ElementIsVisible(locator));
@@ -181,7 +180,7 @@ namespace ESFA.UI.Specflow.Framework.Project.Framework.Helpers
 
         public static void TurnOnImplicitWaits()
         {
-            webDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
+            webDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(implicitWaitTimeInSeconds);
         }
 
         public static String GetText(By locator)
