@@ -5,7 +5,6 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.IE;
-using OpenQA.Selenium.PhantomJS;
 using TechTalk.SpecFlow;
 
 namespace ESFA.UI.Specflow.Framework.Project.Tests.TestSupport
@@ -15,18 +14,18 @@ namespace ESFA.UI.Specflow.Framework.Project.Tests.TestSupport
     {
         protected static IWebDriver webDriver;
 
-        [Before]
-        public static void SetUp()
+        [BeforeTestRun]
+        public static void SetUpWebDriver()
         {
             String browser = Configurator.GetConfiguratorInstance().GetBrowser();
-            switch(browser)
+            switch (browser)
             {
-                case "firefox" :
+                case "firefox":
                     webDriver = new FirefoxDriver();
                     webDriver.Manage().Window.Maximize();
                     break;
 
-                case "chrome" :
+                case "chrome":
                     webDriver = new ChromeDriver();
                     break;
 
@@ -40,40 +39,33 @@ namespace ESFA.UI.Specflow.Framework.Project.Tests.TestSupport
                 //    webDriver = new RemoteWebDriver(DesiredCapabilities.HtmlUnitWithJavaScript());
                 //    break;
 
-                case "phantomjs":
-                    webDriver = new PhantomJSDriver();
-                    break;
+                //case "phantomjs":
+                //    webDriver = new PhantomJSDriver();
+                //    break;
 
                 case "zapProxyChrome":
                     InitialiseZapProxyChrome();
                     break;
 
                 default:
-                    throw new Exception("Driver name does not match OR this framework does not support the webDriver specified");
+                    throw new Exception("Driver name - " + browser + " does not match OR this framework does not support the webDriver specified");
             }
-            
+
             webDriver.Manage().Window.Maximize();
             webDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
-            webDriver.Manage().Cookies.DeleteAllCookies();
             String currentWindow = webDriver.CurrentWindowHandle;
             webDriver.SwitchTo().Window(currentWindow);
+            webDriver.Manage().Cookies.DeleteAllCookies();
+        }
 
+        [Before]
+        public static void SetUpForEachTest()
+        {
+            webDriver.Manage().Cookies.DeleteAllCookies();
             PageInteractionHelper.SetDriver(webDriver);
         }
 
         [After]
-        public static void TearDown()
-        {
-            try
-            {
-                TakeScreenshotOnFailure();
-            }
-            finally
-            {
-                webDriver.Quit();
-            }
-        }
-
         public static void TakeScreenshotOnFailure()
         {
             if (ScenarioContext.Current.TestError != null)
@@ -109,6 +101,12 @@ namespace ESFA.UI.Specflow.Framework.Project.Tests.TestSupport
                     Console.WriteLine("Exception occurred while taking screenshot - " + exception);
                 }
             }            
+        }
+
+        [AfterTestRun]
+        public static void TearDown()
+        {
+            webDriver.Quit();
         }
 
         private static void InitialiseZapProxyChrome()
