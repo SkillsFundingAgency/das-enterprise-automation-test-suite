@@ -1,18 +1,18 @@
-﻿using System;
+﻿using Dapper;
+using System;
 using System.Data.SqlClient;
 
 namespace ESFA.UI.Specflow.Framework.Project.Framework.Helpers
 {
     public class SqlDatabaseConncetionHelper
     {
-        public static int ExecuteSqlCommand(String queryToExecute, String connectionString)
+        public static int ExecuteSqlCommand(String connectionString, String queryToExecute,object dynamicParameters = null)
         {
-            SqlConnection databaseConnection = new SqlConnection(connectionString);
-            databaseConnection.Open();
-            SqlCommand command = new SqlCommand(queryToExecute, databaseConnection);
-            int result = command.ExecuteNonQuery();
-            databaseConnection.Close();
-            return result;
+            using (var connection = new SqlConnection(connectionString))
+            {
+                var affectedRows = connection.Execute(queryToExecute, dynamicParameters);
+                return affectedRows;
+            }
         }
 
         public static SqlDataReader ReadDataFromDataBase(String queryToExecute, String connectionString)
