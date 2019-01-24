@@ -20,7 +20,7 @@ namespace ESFA.UI.Specflow.Framework.Project.Tests.Pages
         }
 
         private By searchField = By.Name("q");
-        private By searchButton = By.CssSelector(".search-submit");
+        private By searchButton = By.CssSelector(".gem-c-search__submit");
 
         internal SearchResultsPage EnterSearchTextAndSubmit(String searchText)
         {

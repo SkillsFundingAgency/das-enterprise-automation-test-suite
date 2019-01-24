@@ -33,7 +33,8 @@ namespace ESFA.UI.Specflow.Framework.Project.Tests.StepDefinitions
         [Then(@"I should be on DFE home page")]
         public void ShouldBeOnDfeHomePage()
         {
-            PageInteractionHelper.VerifyPageHeading(By.TagName("h1"), "Department\r\nfor Education");
+            DepartmentForEducationHomePage departmentForEducationHomePage = new DepartmentForEducationHomePage(webDriver);
+            departmentForEducationHomePage.IsPageHeadingMacthing();
         }
     }
 }

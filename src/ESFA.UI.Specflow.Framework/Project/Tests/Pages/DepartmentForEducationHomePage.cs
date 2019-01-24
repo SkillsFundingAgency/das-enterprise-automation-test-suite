@@ -7,7 +7,7 @@ namespace ESFA.UI.Specflow.Framework.Project.Tests.Pages
 {
     class DepartmentForEducationHomePage : BasePage
     {
-        private static String PAGE_TITLE = "Department\r\nfor Education";
+        private static String PAGE_TITLE = "";
 
         public DepartmentForEducationHomePage(IWebDriver webDriver) : base(webDriver)
         {
@@ -15,6 +15,11 @@ namespace ESFA.UI.Specflow.Framework.Project.Tests.Pages
         }
 
         protected override bool SelfVerify()
+        {
+            return PageInteractionHelper.VerifyPageHeading(this.GetPageHeading(), PAGE_TITLE);
+        }
+
+        internal bool IsPageHeadingMacthing()
         {
             return PageInteractionHelper.VerifyPageHeading(this.GetPageHeading(), PAGE_TITLE);
         }
