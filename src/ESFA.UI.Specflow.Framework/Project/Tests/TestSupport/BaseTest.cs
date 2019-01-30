@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using BoDi;
 using ESFA.UI.Specflow.Framework.Project.Framework.Helpers;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
@@ -12,17 +13,25 @@ namespace ESFA.UI.Specflow.Framework.Project.Tests.TestSupport
     [Binding]
     public class BaseTest
     {
-        protected static IWebDriver webDriver;
+        private IWebDriver webDriver;
+        private readonly IObjectContainer objectContainer;
+        private ScenarioContext currentScenario;
 
-        [BeforeTestRun]
-        public static void SetUpWebDriver()
+        public BaseTest(IObjectContainer _objectContainer, ScenarioContext _currentScenario)
         {
-            String browser = Configurator.GetConfiguratorInstance().GetBrowser();
-            switch (browser)
+            objectContainer = _objectContainer;
+            currentScenario = _currentScenario;
+        }
+
+       [Before]
+        public void SetUpWebDriver()
+        {
+            Configurator c = new Configurator();
+
+            switch (c.browser)
             {
                 case "firefox":
                     webDriver = new FirefoxDriver();
-                    webDriver.Manage().Window.Maximize();
                     break;
 
                 case "chrome":
@@ -31,7 +40,6 @@ namespace ESFA.UI.Specflow.Framework.Project.Tests.TestSupport
 
                 case "ie":
                     webDriver = new InternetExplorerDriver();
-                    webDriver.Manage().Window.Maximize();
                     break;
 
                 //--- This driver is not supported at this moment. This will be revisited in future ---
@@ -48,68 +56,32 @@ namespace ESFA.UI.Specflow.Framework.Project.Tests.TestSupport
                     break;
 
                 default:
-                    throw new Exception("Driver name - " + browser + " does not match OR this framework does not support the webDriver specified");
+                    throw new Exception("Driver name - " + c.browser + " does not match OR this framework does not support the webDriver specified");
             }
-
+            objectContainer.RegisterInstanceAs<IWebDriver>(webDriver);
             webDriver.Manage().Window.Maximize();
+            webDriver.Manage().Cookies.DeleteAllCookies();
+            webDriver.Url = c.baseUrl;
             webDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
             String currentWindow = webDriver.CurrentWindowHandle;
             webDriver.SwitchTo().Window(currentWindow);
-            webDriver.Manage().Cookies.DeleteAllCookies();
         }
 
-        [Before]
-        public static void SetUpForEachTest()
+       [After]
+        public void QuitDriver()
         {
-            webDriver.Manage().Cookies.DeleteAllCookies();
-            PageInteractionHelper.SetDriver(webDriver);
-        }
-
-        [After]
-        public static void TakeScreenshotOnFailure()
-        {
-            if (ScenarioContext.Current.TestError != null)
+            Exception error = currentScenario.TestError;
+            if (error != null)
             {
-                try
-                {
-                    DateTime dateTime = DateTime.Now;
-                    String featureTitle = FeatureContext.Current.FeatureInfo.Title;
-                    String scenarioTitle = ScenarioContext.Current.ScenarioInfo.Title;
-                    String failureImageName = dateTime.ToString("HH-mm-ss")
-                        + "_"
-                        + scenarioTitle
-                        + ".png";
-                    String screenshotsDirectory = AppDomain.CurrentDomain.BaseDirectory
-                        + "../../"
-                        + "\\Project\\Screenshots\\"
-                        + dateTime.ToString("dd-MM-yyyy")
-                        + "\\";
-                    if (!Directory.Exists(screenshotsDirectory))
-                    {
-                        Directory.CreateDirectory(screenshotsDirectory);
-                    }
-                
-                    ITakesScreenshot screenshotHandler = webDriver as ITakesScreenshot;
-                    Screenshot screenshot = screenshotHandler.GetScreenshot();
-                    String screenshotPath = Path.Combine(screenshotsDirectory, failureImageName);
-                    screenshot.SaveAsFile(screenshotPath, ScreenshotImageFormat.Png);
-                    Console.WriteLine(scenarioTitle
-                        + " -- Sceario failed and the screenshot is available at -- "
-                        + screenshotPath);
-                } catch (Exception exception)
-                {
-                    Console.WriteLine("Exception occurred while taking screenshot - " + exception);
-                }
-            }            
-        }
-
-        [AfterTestRun]
-        public static void TearDown()
-        {
+                Console.WriteLine("Error Message is " + currentScenario.TestError.Message);
+                Console.WriteLine("Screenshot is ");
+                FormCompletionHelper f = new FormCompletionHelper(webDriver);
+                f.TakeScreenshotOnFailure();
+            }
             webDriver.Quit();
         }
 
-        private static void InitialiseZapProxyChrome()
+        private void InitialiseZapProxyChrome()
         {
             const string PROXY = "localhost:8080";
             var chromeOptions = new ChromeOptions();

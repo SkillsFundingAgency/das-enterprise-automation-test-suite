@@ -16,12 +16,14 @@ namespace ESFA.UI.Specflow.Framework.Project.Tests.Pages
 
         protected override bool SelfVerify()
         {
-            return PageInteractionHelper.VerifyPageHeading(this.GetPageHeading(), PAGE_TITLE);
+            PageInteractionHelper p = new PageInteractionHelper(webDriver);
+            return p.VerifyPageHeading(this.GetPageHeading(), PAGE_TITLE);
         }
 
         internal bool IsPageHeadingMacthing()
         {
-            return PageInteractionHelper.VerifyPageHeading(this.GetPageHeading(), PAGE_TITLE);
+            PageInteractionHelper p = new PageInteractionHelper(webDriver);
+            return p.VerifyPageHeading(this.GetPageHeading(), PAGE_TITLE);
         }
     }
 }

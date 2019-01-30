@@ -1,4 +1,5 @@
 ﻿using System;
+using BoDi;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 
@@ -9,9 +10,9 @@ namespace ESFA.UI.Specflow.Framework.Project.Tests.TestSupport
         protected IWebDriver webDriver;
         private By pageHeading = By.CssSelector("h1");
 
-        public BasePage(IWebDriver webDriver)
+        public BasePage(IWebDriver _webDriver)
         {
-            this.webDriver = webDriver;
+            this.webDriver = _webDriver;
             PageFactory.InitElements(webDriver, this);
         }
 

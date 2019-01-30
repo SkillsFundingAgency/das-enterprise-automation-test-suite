@@ -16,14 +16,16 @@ namespace ESFA.UI.Specflow.Framework.Project.Tests.Pages
 
         protected override bool SelfVerify()
         {
-            return PageInteractionHelper.VerifyPageHeading(this.GetPageHeading(), PAGE_TITLE);
+            PageInteractionHelper p = new PageInteractionHelper(webDriver);
+            return p.VerifyPageHeading(this.GetPageHeading(), PAGE_TITLE);
         }
 
         private By dfeLink = By.LinkText("Department for Education");
 
         internal DepartmentForEducationHomePage ClickDfeLink()
         {
-            FormCompletionHelper.ClickElement(dfeLink);
+            FormCompletionHelper f = new FormCompletionHelper(webDriver);
+            f.ClickElement(dfeLink);
             return new DepartmentForEducationHomePage(webDriver);
         }
     }

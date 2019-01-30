@@ -1,4 +1,5 @@
 ﻿using System;
+using BoDi;
 using ESFA.UI.Specflow.Framework.Project.Framework.Helpers;
 using ESFA.UI.Specflow.Framework.Project.Tests.TestSupport;
 using OpenQA.Selenium;
@@ -16,7 +17,9 @@ namespace ESFA.UI.Specflow.Framework.Project.Tests.Pages
 
         protected override bool SelfVerify()
         {
-            return PageInteractionHelper.VerifyPageHeading(this.GetPageHeading(), PAGE_TITLE);
+            PageInteractionHelper p = new PageInteractionHelper(webDriver);
+
+            return p.VerifyPageHeading(this.GetPageHeading(), PAGE_TITLE);
         }
 
         private By searchField = By.Name("q");
@@ -24,8 +27,9 @@ namespace ESFA.UI.Specflow.Framework.Project.Tests.Pages
 
         internal SearchResultsPage EnterSearchTextAndSubmit(String searchText)
         {
-            FormCompletionHelper.EnterText(searchField, searchText);
-            FormCompletionHelper.ClickElement(searchButton);
+            FormCompletionHelper f = new FormCompletionHelper(webDriver);
+            f.EnterText(searchField, searchText);
+            f.ClickElement(searchButton);
             return new SearchResultsPage(webDriver);
         }
     }

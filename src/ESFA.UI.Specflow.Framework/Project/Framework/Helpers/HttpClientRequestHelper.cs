@@ -4,12 +4,19 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using OpenQA.Selenium;
 
 namespace ESFA.UI.Specflow.Framework.Project.Framework.Helpers
 {
-    class HttpClientRequestHelper
+    public class HttpClientRequestHelper
     {
+        protected IWebDriver webDriver;
         private static readonly HttpClient client = new HttpClient();
+
+        public HttpClientRequestHelper(IWebDriver _webDriver)
+        {
+            webDriver = _webDriver;
+        }
 
         public static async Task<String> ExecuteHttpPostRequest(String requestUri, String postData, String accessToken = "")
         {

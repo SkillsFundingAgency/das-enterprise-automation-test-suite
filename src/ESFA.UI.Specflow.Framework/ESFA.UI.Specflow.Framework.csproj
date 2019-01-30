@@ -71,6 +71,61 @@
     <Compile Include="Project\Framework\Helpers\PageInteractionHelper.cs" />
     <Compile Include="Project\Framework\Helpers\RandomDataGenerator.cs" />
     <Compile Include="Project\Framework\Helpers\SqlDatabaseConnectionHelper.cs" />
+    <Compile Include="Project\Tests\Features\Example1.feature.cs">
+      <DependentUpon>Example1.feature</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Project\Tests\Features\Example7.feature.cs">
+      <DependentUpon>Example7.feature</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Project\Tests\Features\Example8.feature.cs">
+      <DependentUpon>Example8.feature</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Project\Tests\Features\Example10.feature.cs">
+      <DependentUpon>Example10.feature</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Project\Tests\Features\Example12.feature.cs">
+      <DependentUpon>Example12.feature</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Project\Tests\Features\Example9.feature.cs">
+      <DependentUpon>Example9.feature</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Project\Tests\Features\Example11.feature.cs">
+      <DependentUpon>Example11.feature</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Project\Tests\Features\Example6.feature.cs">
+      <DependentUpon>Example6.feature</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Project\Tests\Features\Example5.feature.cs">
+      <DependentUpon>Example5.feature</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Project\Tests\Features\Example4.feature.cs">
+      <DependentUpon>Example4.feature</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Project\Tests\Features\Example3.feature.cs">
+      <DependentUpon>Example3.feature</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Project\Tests\Pages\DepartmentForEducationHomePage.cs" />
     <Compile Include="Project\Tests\Pages\SearchResultsPage.cs" />
     <Compile Include="Project\Tests\Pages\WelcomeToGovUkPage.cs" />
@@ -78,10 +133,10 @@
     <Compile Include="Project\Tests\TestSupport\BaseTest.cs" />
     <Compile Include="Project\Tests\TestSupport\Configurator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Project\Tests\Features\Example.feature.cs">
+    <Compile Include="Project\Tests\Features\Example2.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Example.feature</DependentUpon>
+      <DependentUpon>Example2.feature</DependentUpon>
     </Compile>
     <Compile Include="Project\Tests\StepDefinitions\ExampleSteps.cs" />
   </ItemGroup>
@@ -99,9 +154,53 @@
       <IsTransformFile>true</IsTransformFile>
     </None>
     <None Include="packages.config" />
-    <None Include="Project\Tests\Features\Example.feature">
+    <None Include="Project\Tests\Features\Example1.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>Example.feature.cs</LastGenOutput>
+      <LastGenOutput>Example1.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Project\Tests\Features\Example7.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>Example7.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Project\Tests\Features\Example8.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>Example8.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Project\Tests\Features\Example10.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>Example10.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Project\Tests\Features\Example12.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>Example12.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Project\Tests\Features\Example9.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>Example9.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Project\Tests\Features\Example11.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>Example11.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Project\Tests\Features\Example6.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>Example6.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Project\Tests\Features\Example5.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>Example5.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Project\Tests\Features\Example4.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>Example4.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Project\Tests\Features\Example3.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>Example3.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Project\Tests\Features\Example2.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>Example2.feature.cs</LastGenOutput>
     </None>
   </ItemGroup>
   <ItemGroup />
