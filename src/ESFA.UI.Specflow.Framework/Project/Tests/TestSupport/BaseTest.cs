@@ -1,6 +1,10 @@
 ﻿using System;
 using System.IO;
-using ESFA.UI.Specflow.Framework.Project.Framework.Helpers;
+using System.Reflection;
+using ESFA.UI.Specflow.Framework.Helpers;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
@@ -12,26 +16,53 @@ namespace ESFA.UI.Specflow.Framework.Project.Tests.TestSupport
     [Binding]
     public class BaseTest
     {
-        protected static IWebDriver webDriver;
-
-        [BeforeTestRun]
-        public static void SetUpWebDriver()
+        protected static IWebDriver WebDriver;
+        private static readonly string DriverPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+        
+        public static IServiceProvider InitializeContainer()
         {
-            String browser = Configurator.GetConfiguratorInstance().GetBrowser();
-            switch (browser)
+            var config = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json", true)
+                .AddJsonFile("appsettings.Development.json", true)
+                .AddEnvironmentVariables()
+                .Build();
+            
+            return new ServiceCollection()
+                .Configure<ConfigurationOptions>(config)
+                .AddSingleton(cfg => cfg.GetService<IOptions<ConfigurationOptions>>().Value)
+                .AddOptions()
+                .BuildServiceProvider();
+
+        }
+
+        [BeforeTestRun()]
+        public static void Setup(ConfigurationOptions options)
+        {
+            var provider = InitializeContainer();
+            var configuration = provider.GetService<IOptions<ConfigurationOptions>>().Value;
+            options.BaseUrl = configuration.BaseUrl;
+            options.Browser = configuration.Browser;
+        }
+
+        [BeforeScenario(Order = 0)]
+        public static void SetUpWebDriver(ConfigurationOptions options)
+        {
+            
+            switch (options.Browser)
             {
                 case "firefox":
-                    webDriver = new FirefoxDriver();
-                    webDriver.Manage().Window.Maximize();
+                    WebDriver = new FirefoxDriver(DriverPath);
+                    WebDriver.Manage().Window.Maximize();
                     break;
 
                 case "chrome":
-                    webDriver = new ChromeDriver();
+                    WebDriver = new ChromeDriver(DriverPath);
                     break;
 
                 case "ie":
-                    webDriver = new InternetExplorerDriver();
-                    webDriver.Manage().Window.Maximize();
+                    WebDriver = new InternetExplorerDriver(DriverPath);
+                    WebDriver.Manage().Window.Maximize();
                     break;
 
                 //--- This driver is not supported at this moment. This will be revisited in future ---
@@ -48,21 +79,28 @@ namespace ESFA.UI.Specflow.Framework.Project.Tests.TestSupport
                     break;
 
                 default:
-                    throw new Exception("Driver name - " + browser + " does not match OR this framework does not support the webDriver specified");
+                    throw new Exception("Driver name - " + options.Browser + " does not match OR this framework does not support the webDriver specified");
             }
 
-            webDriver.Manage().Window.Maximize();
-            webDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
-            String currentWindow = webDriver.CurrentWindowHandle;
-            webDriver.SwitchTo().Window(currentWindow);
-            webDriver.Manage().Cookies.DeleteAllCookies();
+            WebDriver.Manage().Window.Maximize();
+            WebDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
+            var currentWindow = WebDriver.CurrentWindowHandle;
+            WebDriver.SwitchTo().Window(currentWindow);
+            WebDriver.Manage().Cookies.DeleteAllCookies();
         }
 
-        [Before]
+        [BeforeScenario(Order = 1)]
         public static void SetUpForEachTest()
         {
-            webDriver.Manage().Cookies.DeleteAllCookies();
-            PageInteractionHelper.SetDriver(webDriver);
+            WebDriver.Manage().Cookies.DeleteAllCookies();
+            PageInteractionHelper.SetDriver(WebDriver);
+        }
+
+        [AfterScenario()]
+        public static void DisposeOnTestRun()
+        {
+            WebDriver.Quit();
+            WebDriver.Dispose();
         }
 
         [After]
@@ -89,7 +127,7 @@ namespace ESFA.UI.Specflow.Framework.Project.Tests.TestSupport
                         Directory.CreateDirectory(screenshotsDirectory);
                     }
                 
-                    ITakesScreenshot screenshotHandler = webDriver as ITakesScreenshot;
+                    ITakesScreenshot screenshotHandler = WebDriver as ITakesScreenshot;
                     Screenshot screenshot = screenshotHandler.GetScreenshot();
                     String screenshotPath = Path.Combine(screenshotsDirectory, failureImageName);
                     screenshot.SaveAsFile(screenshotPath, ScreenshotImageFormat.Png);
@@ -106,7 +144,7 @@ namespace ESFA.UI.Specflow.Framework.Project.Tests.TestSupport
         [AfterTestRun]
         public static void TearDown()
         {
-            webDriver.Quit();
+            
         }
 
         private static void InitialiseZapProxyChrome()
@@ -119,7 +157,7 @@ namespace ESFA.UI.Specflow.Framework.Project.Tests.TestSupport
             proxy.FtpProxy = PROXY;
             chromeOptions.Proxy = proxy;
 
-            webDriver = new ChromeDriver(chromeOptions);
+            WebDriver = new ChromeDriver(DriverPath,chromeOptions);
         }
     }
 }

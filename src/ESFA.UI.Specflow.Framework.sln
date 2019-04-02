@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.27130.2027
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ESFA.UI.Specflow.Framework", "ESFA.UI.Specflow.Framework\ESFA.UI.Specflow.Framework.csproj", "{AFFF6638-BD32-41D3-8CB6-9D10139575D5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ESFA.UI.Specflow.Framework.Helpers", "ESFA.UI.Specflow.Framework.Helpers\ESFA.UI.Specflow.Framework.Helpers.csproj", "{707EC22F-0EA2-415E-ABDB-6A101A4922E5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{AFFF6638-BD32-41D3-8CB6-9D10139575D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AFFF6638-BD32-41D3-8CB6-9D10139575D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AFFF6638-BD32-41D3-8CB6-9D10139575D5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{707EC22F-0EA2-415E-ABDB-6A101A4922E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{707EC22F-0EA2-415E-ABDB-6A101A4922E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{707EC22F-0EA2-415E-ABDB-6A101A4922E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{707EC22F-0EA2-415E-ABDB-6A101A4922E5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
