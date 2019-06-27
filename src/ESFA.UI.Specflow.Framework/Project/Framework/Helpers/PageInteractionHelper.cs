@@ -1,7 +1,7 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
-using OpenQA.Selenium.Support.UI;
 using System;
+using OpenQA.Selenium.Support.UI;
 
 namespace ESFA.UI.Specflow.Framework.Project.Framework.Helpers
 {
@@ -99,19 +99,19 @@ namespace ESFA.UI.Specflow.Framework.Project.Framework.Helpers
         public static void WaitForElementToBePresent(By locator)
         {
             WebDriverWait wait = new WebDriverWait(webDriver, TimeSpan.FromSeconds(implicitWaitTimeInSeconds));
-            wait.Until(ExpectedConditions.ElementExists(locator));
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(locator));
         }
 
         public static void WaitForElementToBeDisplayed(By locator, int timeInSeconds = implicitWaitTimeInSeconds)
         {
             WebDriverWait wait = new WebDriverWait(webDriver, TimeSpan.FromSeconds(timeInSeconds));
-            wait.Until(ExpectedConditions.ElementIsVisible(locator));
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(locator));
         }
 
         public static void WaitForElementToBeClickable(By locator)
         {
             WebDriverWait webDriverWait = new WebDriverWait(webDriver, TimeSpan.FromSeconds(10));
-            IWebElement element = webDriverWait.Until(ExpectedConditions.ElementToBeClickable(locator));
+            IWebElement element = webDriverWait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementToBeClickable(locator));
         }
 
         public static Boolean IsElementPresent(By locator)
