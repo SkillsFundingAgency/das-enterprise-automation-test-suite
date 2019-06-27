@@ -12,6 +12,15 @@ namespace ESFA.UI.Specflow.Framework.Project.Tests.TestSupport
     [Binding]
     public class BaseTest
     {
+        private ScenarioContext _scenarioContext;
+        private FeatureContext _featureContext;
+
+        public BaseTest(ScenarioContext scenarioContext, FeatureContext featureContext)
+        {
+            _scenarioContext = scenarioContext;
+            _featureContext = featureContext;
+        }
+
         protected static IWebDriver webDriver;
 
         [BeforeTestRun]
@@ -66,15 +75,15 @@ namespace ESFA.UI.Specflow.Framework.Project.Tests.TestSupport
         }
 
         [After]
-        public static void TakeScreenshotOnFailure()
+        public void TakeScreenshotOnFailure()
         {
-            if (ScenarioContext.Current.TestError != null)
+            if (_scenarioContext.TestError != null)
             {
                 try
                 {
                     DateTime dateTime = DateTime.Now;
-                    String featureTitle = FeatureContext.Current.FeatureInfo.Title;
-                    String scenarioTitle = ScenarioContext.Current.ScenarioInfo.Title;
+                    String featureTitle = _featureContext.FeatureInfo.Title;
+                    String scenarioTitle = _scenarioContext.ScenarioInfo.Title;
                     String failureImageName = dateTime.ToString("HH-mm-ss")
                         + "_"
                         + scenarioTitle

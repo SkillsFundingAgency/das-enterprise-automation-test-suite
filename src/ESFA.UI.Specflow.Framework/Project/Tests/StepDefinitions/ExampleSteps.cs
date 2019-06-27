@@ -2,7 +2,6 @@
 using ESFA.UI.Specflow.Framework.Project.Framework.Helpers;
 using ESFA.UI.Specflow.Framework.Project.Tests.Pages;
 using ESFA.UI.Specflow.Framework.Project.Tests.TestSupport;
-using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 
 namespace ESFA.UI.Specflow.Framework.Project.Tests.StepDefinitions
@@ -10,6 +9,10 @@ namespace ESFA.UI.Specflow.Framework.Project.Tests.StepDefinitions
     [Binding]
     public class ExampleSteps : BaseTest
     {
+        public ExampleSteps(ScenarioContext scenarioContext, FeatureContext featureContext) : base (scenarioContext, featureContext)
+        {
+        }
+
         [Given(@"I navigate to GOV.UK home page")]
         public void NavigateToGovUkHomePage()
         {
