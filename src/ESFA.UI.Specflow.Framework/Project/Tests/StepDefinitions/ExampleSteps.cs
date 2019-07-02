@@ -1,17 +1,21 @@
-﻿using ESFA.UI.Specflow.Framework.Project.Tests.Pages;
+﻿using BoDi;
+using ESFA.UI.Specflow.Framework.Project.Tests.Pages;
 using ESFA.UI.Specflow.Framework.Project.Tests.TestSupport;
+using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 
 namespace ESFA.UI.Specflow.Framework.Project.Tests.StepDefinitions
 {
     [Binding]
-    public class ExampleSteps : BaseTest
+    public class ExampleSteps
     {
         private readonly ConfigurationOptions _configuration;
+        private readonly IWebDriver WebDriver;
 
-        public ExampleSteps(ConfigurationOptions options)
+        public ExampleSteps(ObjectContainer objectContainer)
         {
-            _configuration = options;
+            _configuration = objectContainer.Resolve<ConfigurationOptions>();
+            WebDriver = objectContainer.Resolve<IWebDriver>();
         }
 
         [Given(@"I navigate to GOV.UK home page")]

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Reflection;
+using BoDi;
 using ESFA.UI.Specflow.Framework.Helpers;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -16,7 +17,14 @@ namespace ESFA.UI.Specflow.Framework.Project.Tests.TestSupport
     [Binding]
     public class BaseTest
     {
-        protected static IWebDriver WebDriver;
+        private IObjectContainer _objectContainer;
+
+        public BaseTest(ObjectContainer objectContainer)
+        {
+            _objectContainer = objectContainer;
+        }
+
+        private IWebDriver WebDriver;
         private static readonly string DriverPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
         
         public static IServiceProvider InitializeContainer()
@@ -36,19 +44,19 @@ namespace ESFA.UI.Specflow.Framework.Project.Tests.TestSupport
 
         }
 
-        [BeforeTestRun()]
-        public static void Setup(ConfigurationOptions options)
+        [BeforeScenario(Order = 0)]
+        public void Setup()
         {
             var provider = InitializeContainer();
             var configuration = provider.GetService<IOptions<ConfigurationOptions>>().Value;
-            options.BaseUrl = configuration.BaseUrl;
-            options.Browser = configuration.Browser;
+            _objectContainer.RegisterInstanceAs(configuration);
         }
 
-        [BeforeScenario(Order = 0)]
-        public static void SetUpWebDriver(ConfigurationOptions options)
+        [BeforeScenario(Order = 1)]
+        public void SetUpWebDriver()
         {
-            
+            var options = _objectContainer.Resolve<ConfigurationOptions>();
+
             switch (options.Browser)
             {
                 case "firefox":
@@ -65,15 +73,6 @@ namespace ESFA.UI.Specflow.Framework.Project.Tests.TestSupport
                     WebDriver.Manage().Window.Maximize();
                     break;
 
-                //--- This driver is not supported at this moment. This will be revisited in future ---
-                //case "htmlunit" :
-                //    webDriver = new RemoteWebDriver(DesiredCapabilities.HtmlUnitWithJavaScript());
-                //    break;
-
-                //case "phantomjs":
-                //    webDriver = new PhantomJSDriver();
-                //    break;
-
                 case "zapProxyChrome":
                     InitialiseZapProxyChrome();
                     break;
@@ -87,24 +86,26 @@ namespace ESFA.UI.Specflow.Framework.Project.Tests.TestSupport
             var currentWindow = WebDriver.CurrentWindowHandle;
             WebDriver.SwitchTo().Window(currentWindow);
             WebDriver.Manage().Cookies.DeleteAllCookies();
+
+            _objectContainer.RegisterInstanceAs(WebDriver);
         }
 
-        [BeforeScenario(Order = 1)]
-        public static void SetUpForEachTest()
+        [BeforeScenario(Order = 2)]
+        public void SetUpForEachTest()
         {
             WebDriver.Manage().Cookies.DeleteAllCookies();
             PageInteractionHelper.SetDriver(WebDriver);
         }
 
         [AfterScenario()]
-        public static void DisposeOnTestRun()
+        public void DisposeOnTestRun()
         {
             WebDriver.Quit();
             WebDriver.Dispose();
         }
 
         [After]
-        public static void TakeScreenshotOnFailure()
+        public void TakeScreenshotOnFailure()
         {
             if (ScenarioContext.Current.TestError != null)
             {
@@ -147,7 +148,7 @@ namespace ESFA.UI.Specflow.Framework.Project.Tests.TestSupport
             
         }
 
-        private static void InitialiseZapProxyChrome()
+        private void InitialiseZapProxyChrome()
         {
             const string PROXY = "localhost:8080";
             var chromeOptions = new ChromeOptions();
