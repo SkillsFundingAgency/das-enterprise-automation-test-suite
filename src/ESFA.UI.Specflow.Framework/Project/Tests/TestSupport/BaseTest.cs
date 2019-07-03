@@ -156,10 +156,12 @@ namespace ESFA.UI.Specflow.Framework.Project.Tests.TestSupport
         {
             const string PROXY = "localhost:8080";
             var chromeOptions = new ChromeOptions();
-            var proxy = new Proxy();
-            proxy.HttpProxy = PROXY;
-            proxy.SslProxy = PROXY;
-            proxy.FtpProxy = PROXY;
+            var proxy = new Proxy
+            {
+                HttpProxy = PROXY,
+                SslProxy = PROXY,
+                FtpProxy = PROXY
+            };
             chromeOptions.Proxy = proxy;
 
             WebDriver = new ChromeDriver(DriverPath,chromeOptions);
