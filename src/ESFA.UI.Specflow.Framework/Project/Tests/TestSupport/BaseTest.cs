@@ -18,10 +18,14 @@ namespace ESFA.UI.Specflow.Framework.Project.Tests.TestSupport
     public class BaseTest
     {
         private IObjectContainer _objectContainer;
+        private ScenarioContext _scenarioContext;
+        private FeatureContext _featureContext;
 
-        public BaseTest(ObjectContainer objectContainer)
+        public BaseTest(ObjectContainer objectContainer, ScenarioContext scenarioContext, FeatureContext featureContext)
         {
             _objectContainer = objectContainer;
+            _scenarioContext = scenarioContext;
+            _featureContext = featureContext;
         }
 
         private IWebDriver WebDriver;
@@ -107,13 +111,13 @@ namespace ESFA.UI.Specflow.Framework.Project.Tests.TestSupport
         [After]
         public void TakeScreenshotOnFailure()
         {
-            if (ScenarioContext.Current.TestError != null)
+            if (_scenarioContext.TestError != null)
             {
                 try
                 {
                     DateTime dateTime = DateTime.Now;
-                    String featureTitle = FeatureContext.Current.FeatureInfo.Title;
-                    String scenarioTitle = ScenarioContext.Current.ScenarioInfo.Title;
+                    String featureTitle = _featureContext.FeatureInfo.Title;
+                    String scenarioTitle = _scenarioContext.ScenarioInfo.Title;
                     String failureImageName = dateTime.ToString("HH-mm-ss")
                         + "_"
                         + scenarioTitle
