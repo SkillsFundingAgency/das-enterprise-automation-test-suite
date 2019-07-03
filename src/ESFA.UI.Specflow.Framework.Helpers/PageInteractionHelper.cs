@@ -99,19 +99,19 @@ namespace ESFA.UI.Specflow.Framework.Helpers
         public static void WaitForElementToBePresent(By locator)
         {
             var wait = new WebDriverWait(WebDriver, TimeSpan.FromSeconds(ImplicitWaitTimeInSeconds));
-            wait.Until(ExpectedConditions.ElementExists(locator));
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(locator));
         }
 
         public static void WaitForElementToBeDisplayed(By locator, int timeInSeconds = ImplicitWaitTimeInSeconds)
         {
             var wait = new WebDriverWait(WebDriver, TimeSpan.FromSeconds(timeInSeconds));
-            wait.Until(ExpectedConditions.ElementIsVisible(locator));
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(locator));
         }
 
         public static void WaitForElementToBeClickable(By locator)
         {
             var webDriverWait = new WebDriverWait(WebDriver, TimeSpan.FromSeconds(10));
-            var element = webDriverWait.Until(ExpectedConditions.ElementToBeClickable(locator));
+            var element = webDriverWait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementToBeClickable(locator));
         }
 
         public static bool IsElementPresent(By locator)
