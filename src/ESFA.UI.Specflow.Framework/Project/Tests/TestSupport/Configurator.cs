@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Configuration;
 
 namespace ESFA.UI.Specflow.Framework.Project.Tests.TestSupport
 {
@@ -12,8 +11,8 @@ namespace ESFA.UI.Specflow.Framework.Project.Tests.TestSupport
 
         private Configurator()
         {
-            browser = ConfigurationManager.AppSettings["Browser"];
-            baseUrl = ConfigurationManager.AppSettings["BaseUrl"];
+            browser = "chrome";//ConfigurationManager.AppSettings["Browser"];
+            baseUrl = "https://www.gov.uk/";// ConfigurationManager.AppSettings["BaseUrl"];
         }
 
         public static Configurator GetConfiguratorInstance()

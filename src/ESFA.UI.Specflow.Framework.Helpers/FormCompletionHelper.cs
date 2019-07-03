@@ -1,10 +1,9 @@
-﻿using System;
+﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
 using System.Collections.Generic;
 using System.Linq;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Support.UI;
 
-namespace ESFA.UI.Specflow.Framework.Project.Framework.Helpers
+namespace ESFA.UI.Specflow.Framework.Helpers
 {
     public class FormCompletionHelper : PageInteractionHelper
     {
@@ -15,19 +14,19 @@ namespace ESFA.UI.Specflow.Framework.Project.Framework.Helpers
 
         public static void ClickElement(By locator)
         {
-            webDriver.FindElement(locator).Click();
+            WebDriver.FindElement(locator).Click();
         }
 
-        public static void EnterText(IWebElement element, String text)
+        public static void EnterText(IWebElement element, string text)
         {
             element.Clear();
             element.SendKeys(text);
         }
 
-        public static void EnterText(By locator, String text)
+        public static void EnterText(By locator, string text)
         {
-            webDriver.FindElement(locator).Clear();
-            webDriver.FindElement(locator).SendKeys(text);
+            WebDriver.FindElement(locator).Clear();
+            WebDriver.FindElement(locator).SendKeys(text);
         }
 
         public static void EnterText(IWebElement element, int value)
@@ -36,13 +35,13 @@ namespace ESFA.UI.Specflow.Framework.Project.Framework.Helpers
             element.SendKeys(value.ToString());
         }
 
-        public static void SelectFromDropDownByValue(IWebElement element, String value)
+        public static void SelectFromDropDownByValue(IWebElement element, string value)
         {
             var selectElement = new SelectElement(element);
             selectElement.SelectByValue(value);
         }
 
-        public static void SelectFromDropDownByText(IWebElement element, String text)
+        public static void SelectFromDropDownByText(IWebElement element, string text)
         {
             var selectElement = new SelectElement(element);
             selectElement.SelectByText(text);
@@ -56,9 +55,9 @@ namespace ESFA.UI.Specflow.Framework.Project.Framework.Helpers
             }
         }
 
-        public static void SelectRadioOptionByForAttribute(By locator, String forAttribute)
+        public static void SelectRadioOptionByForAttribute(By locator, string forAttribute)
         {
-            IList<IWebElement> radios = webDriver.FindElements(locator);
+            IList<IWebElement> radios = WebDriver.FindElements(locator);
             var radioToSelect = radios.FirstOrDefault(radio => radio.GetAttribute("for") == forAttribute);
 
             if (radioToSelect != null)
