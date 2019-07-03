@@ -1,6 +1,5 @@
 ﻿using System;
 using OpenQA.Selenium;
-using SeleniumExtras.PageObjects;
 
 namespace ESFA.UI.Specflow.Framework.Project.Tests.TestSupport
 {
@@ -12,7 +11,6 @@ namespace ESFA.UI.Specflow.Framework.Project.Tests.TestSupport
         public BasePage(IWebDriver webDriver)
         {
             this.webDriver = webDriver;
-            PageFactory.InitElements(webDriver, this);
         }
 
         protected abstract Boolean SelfVerify();
