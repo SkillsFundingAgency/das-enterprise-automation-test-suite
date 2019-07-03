@@ -57,10 +57,8 @@ namespace ESFA.UI.Specflow.Framework.Project.Tests.TestSupport
         }
 
         [BeforeScenario(Order = 1)]
-        public void SetUpWebDriver()
+        public void SetUpWebDriver(ConfigurationOptions options)
         {
-            var options = _objectContainer.Resolve<ConfigurationOptions>();
-
             switch (options.Browser)
             {
                 case "firefox":
