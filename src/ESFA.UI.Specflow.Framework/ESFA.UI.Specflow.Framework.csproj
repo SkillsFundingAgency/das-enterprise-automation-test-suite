@@ -23,12 +23,12 @@
     <PackageReference Include="Selenium.WebDriver.GeckoDriver" Version="0.24.0" />
     <PackageReference Include="Selenium.WebDriver.IEDriver" Version="3.141.5" />
     <PackageReference Include="Selenium.WebDriver.PhantomJS" Version="1.0.0" />
-    <PackageReference Include="SpecFlow" Version="3.0.188" />
-    <PackageReference Include="SpecFlow.NUnit" Version="3.0.188" />
-    <PackageReference Include="SpecFlow.Tools.MsBuild.Generation" Version="3.0.188" />
+    <PackageReference Include="SpecFlow" Version="3.0.225" />
+    <PackageReference Include="SpecFlow.NUnit" Version="3.0.225" />
+    <PackageReference Include="SpecFlow.Tools.MsBuild.Generation" Version="3.0.225" />
     <PackageReference Include="System.Data.SqlClient" Version="4.6.0" />
   </ItemGroup>
-
+  
   <ItemGroup>
     <Folder Include="Properties\" />
   </ItemGroup>
@@ -38,6 +38,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="NUnitConfiguration.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
     <Compile Update="Project\Tests\Features\Example.feature.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>

@@ -1,5 +1,9 @@
 {
   "language": {
     "feature": "en-GB"
+  },
+  "Parallelizable": "ParallelScope.Fixtures",
+  "unitTestProvider": {
+    "name": "NUnit"
   }
 }
