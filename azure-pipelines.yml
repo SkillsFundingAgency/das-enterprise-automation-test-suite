@@ -50,10 +50,10 @@ steps:
   inputs:
     Contents: |
      azure\**
-    TargetFolder: '$(build.artifactstagingdirectory)/publish'
+    TargetFolder: '$(build.artifactstagingdirectory)'
     OverWrite: true
 
 - task: PublishBuildArtifacts@1
   displayName: 'Publish Artifact'
   inputs:
-    PathtoPublish: '$(build.artifactstagingdirectory)/publish'
+    PathtoPublish: '$(build.artifactstagingdirectory)'
