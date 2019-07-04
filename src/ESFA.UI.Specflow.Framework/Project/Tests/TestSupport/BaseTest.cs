@@ -17,17 +17,6 @@ namespace ESFA.UI.Specflow.Framework.Project.Tests.TestSupport
     [Binding]
     public class BaseTest
     {
-        private IObjectContainer _objectContainer;
-        private ScenarioContext _scenarioContext;
-        private FeatureContext _featureContext;
-
-        public BaseTest(ObjectContainer objectContainer, ScenarioContext scenarioContext, FeatureContext featureContext)
-        {
-            _objectContainer = objectContainer;
-            _scenarioContext = scenarioContext;
-            _featureContext = featureContext;
-        }
-
         private IWebDriver WebDriver;
         private static readonly string DriverPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
         
@@ -43,21 +32,23 @@ namespace ESFA.UI.Specflow.Framework.Project.Tests.TestSupport
             return new ServiceCollection()
                 .Configure<ConfigurationOptions>(config)
                 .AddSingleton(cfg => cfg.GetService<IOptions<ConfigurationOptions>>().Value)
+                .AddSingleton(typeof(ScenarioContext))
+                .AddSingleton(typeof(FeatureContext))
                 .AddOptions()
                 .BuildServiceProvider();
 
         }
 
         [BeforeScenario(Order = 0)]
-        public void Setup()
+        public void Setup(ScenarioContext scenarioContext)
         {
             var provider = InitializeContainer();
             var configuration = provider.GetService<IOptions<ConfigurationOptions>>().Value;
-            _objectContainer.RegisterInstanceAs(configuration);
+            scenarioContext.ScenarioContainer.RegisterInstanceAs(configuration);
         }
 
         [BeforeScenario(Order = 1)]
-        public void SetUpWebDriver(ConfigurationOptions options)
+        public void SetUpWebDriver(ScenarioContext scenarioContext, ConfigurationOptions options)
         {
             switch (options.Browser)
             {
@@ -89,7 +80,7 @@ namespace ESFA.UI.Specflow.Framework.Project.Tests.TestSupport
             WebDriver.SwitchTo().Window(currentWindow);
             WebDriver.Manage().Cookies.DeleteAllCookies();
 
-            _objectContainer.RegisterInstanceAs(WebDriver);
+            scenarioContext.ScenarioContainer.RegisterInstanceAs(WebDriver);
         }
 
         [BeforeScenario(Order = 2)]
@@ -99,23 +90,18 @@ namespace ESFA.UI.Specflow.Framework.Project.Tests.TestSupport
             PageInteractionHelper.SetDriver(WebDriver);
         }
 
-        [AfterScenario()]
-        public void DisposeOnTestRun()
+        [AfterScenario(Order = 1)]
+        public void TakeScreenshotOnFailure(ScenarioContext scenarioContext, FeatureContext featureContext)
         {
-            WebDriver.Quit();
-            WebDriver.Dispose();
-        }
+            String featureTitle = featureContext.FeatureInfo.Title;
+            String scenarioTitle = scenarioContext.ScenarioInfo.Title;
 
-        [After]
-        public void TakeScreenshotOnFailure()
-        {
-            if (_scenarioContext.TestError != null)
+            if (scenarioContext.TestError != null)
             {
                 try
                 {
                     DateTime dateTime = DateTime.Now;
-                    String featureTitle = _featureContext.FeatureInfo.Title;
-                    String scenarioTitle = _scenarioContext.ScenarioInfo.Title;
+                    
                     String failureImageName = dateTime.ToString("HH-mm-ss")
                         + "_"
                         + scenarioTitle
@@ -134,14 +120,20 @@ namespace ESFA.UI.Specflow.Framework.Project.Tests.TestSupport
                     Screenshot screenshot = screenshotHandler.GetScreenshot();
                     String screenshotPath = Path.Combine(screenshotsDirectory, failureImageName);
                     screenshot.SaveAsFile(screenshotPath, ScreenshotImageFormat.Png);
-                    Console.WriteLine(scenarioTitle
-                        + " -- Sceario failed and the screenshot is available at -- "
-                        + screenshotPath);
-                } catch (Exception exception)
+                    Console.WriteLine($"{scenarioTitle} -- Scenario under {featureTitle} feature failed and the screenshot is available at -- {screenshotPath}");
+                }
+                catch (Exception exception)
                 {
                     Console.WriteLine("Exception occurred while taking screenshot - " + exception);
                 }
             }            
+        }
+
+        [AfterScenario(Order = 2)]
+        public void DisposeOnTestRun()
+        {
+            WebDriver.Quit();
+            WebDriver.Dispose();
         }
 
         [AfterTestRun]
