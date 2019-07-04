@@ -19,11 +19,11 @@ namespace ESFA.UI.Specflow.Framework.Project.Tests.Pages
             return PageInteractionHelper.VerifyPageHeading(this.GetPageHeading(), PAGE_TITLE);
         }
 
-        private By dfeLink = By.LinkText("Department for Education");
+        private By dfeLink(string searchText) => By.LinkText(searchText);
 
-        internal DepartmentForEducationHomePage ClickDfeLink()
+        internal DepartmentForEducationHomePage ClickDfeLink(string searchText)
         {
-            FormCompletionHelper.ClickElement(dfeLink);
+            FormCompletionHelper.ClickElement(dfeLink(searchText));
             return new DepartmentForEducationHomePage(webDriver);
         }
     }

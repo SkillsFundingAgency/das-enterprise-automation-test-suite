@@ -4,8 +4,26 @@
 	So that I can see all department services and information 
 
 	@regression
-	Scenario: User navigate to DFE home page from GOV.UK page
+	Scenario Outline: User navigate to DFE home page from GOV.UK page
 		Given I navigate to GOV.UK home page
-		When I search for Department for Education
-		And I click on DFE link
+		When I search for <SearchLink>
+		And I click on <SearchLink> link
 		Then I should be on DFE home page
+
+		Examples: 
+		| SearchLink               |
+		| Ministry of Defence      |
+		| Department for Education |
+
+
+	@regression
+	Scenario Outline: User navigate to MoD home page from GOV.UK page
+		Given I navigate to GOV.UK home page
+		When I search for <SearchLink>
+		And I click on <SearchLink> link
+		Then I should be on DFE home page
+
+		Examples: 
+		| SearchLink               |
+		| Ministry of Defence      |
+		| Department for Education |

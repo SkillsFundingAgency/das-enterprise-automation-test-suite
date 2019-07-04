@@ -30,11 +30,11 @@ namespace ESFA.UI.Specflow.Framework.Project.Tests.StepDefinitions
             welcomeToGovUkPage.EnterSearchTextAndSubmit(searchText);
         }
 
-        [When(@"I click on DFE link")]
-        public void ClickOnDfeLink()
+        [When(@"I click on (.*) link")]
+        public void ClickOnDfeLink(string searchText)
         {
             var searchResultsPage = new SearchResultsPage(_webDriver);
-            searchResultsPage.ClickDfeLink();
+            searchResultsPage.ClickDfeLink(searchText);
         }
 
         [Then(@"I should be on DFE home page")]
