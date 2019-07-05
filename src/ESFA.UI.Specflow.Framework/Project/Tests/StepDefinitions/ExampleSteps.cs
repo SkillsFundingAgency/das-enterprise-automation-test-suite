@@ -20,6 +20,7 @@ namespace ESFA.UI.Specflow.Framework.Project.Tests.StepDefinitions
         public void NavigateToGovUkHomePage()
         {
             var url = _configuration.BaseUrl;
+            NUnit.Framework.TestContext.Progress.WriteLine("Naivgating to Gov.uk home page");
             _webDriver.Url = url; 
         }
 
@@ -27,6 +28,7 @@ namespace ESFA.UI.Specflow.Framework.Project.Tests.StepDefinitions
         public void SearchForText(string searchText)
         {
             var welcomeToGovUkPage = new WelcomeToGovUkPage(_webDriver);
+            NUnit.Framework.TestContext.Progress.WriteLine($"Searching for {searchText}");
             welcomeToGovUkPage.EnterSearchTextAndSubmit(searchText);
         }
 
@@ -34,6 +36,7 @@ namespace ESFA.UI.Specflow.Framework.Project.Tests.StepDefinitions
         public void ClickOnDfeLink(string searchText)
         {
             var searchResultsPage = new SearchResultsPage(_webDriver);
+            NUnit.Framework.TestContext.Progress.WriteLine($"Naivgating to {searchText} page");
             searchResultsPage.ClickDfeLink(searchText);
         }
 
@@ -41,6 +44,7 @@ namespace ESFA.UI.Specflow.Framework.Project.Tests.StepDefinitions
         public void ShouldBeOnDfeHomePage()
         {
             var departmentForEducationHomePage = new DepartmentForEducationHomePage(_webDriver);
+            NUnit.Framework.TestContext.Progress.WriteLine($"Verifying Page title");
             departmentForEducationHomePage.IsPageHeadingMacthing();
         }
     }
