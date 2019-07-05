@@ -26,22 +26,22 @@ steps:
     updateAssemblyInfo: true
 
 - task: DotNetCoreCLI@2
-  displayName: Restore
+  displayName: dotnet restore
   inputs:
     command: restore
     projects: 'src/**/*.csproj'
     noCache: true
 
 - task: DotNetCoreCLI@2
-  displayName: Build
+  displayName: dotnet build
   inputs:
     projects: 'src/**/*.csproj'
     arguments: '--configuration $(buildConfiguration) --no-restore'
     
 - task: DotNetCoreCLI@2
-  displayName: 'Package'
-  task: 'pack'
+  displayName: 'dotnet pack'
   inputs:
+    command: 'pack'
     projects: 'src/**/*.csproj'
     arguments: '--configuration $(buildConfiguration) --no-restore'
     
@@ -50,10 +50,10 @@ steps:
   inputs:
     Contents: |
      azure\**
-    TargetFolder: '$(build.artifactstagingdirectory)/publish'
+    TargetFolder: '$(build.artifactstagingdirectory)'
     OverWrite: true
 
 - task: PublishBuildArtifacts@1
   displayName: 'Publish Artifact'
   inputs:
-    PathtoPublish: '$(build.artifactstagingdirectory)/publish'
+    PathtoPublish: '$(build.artifactstagingdirectory)'
