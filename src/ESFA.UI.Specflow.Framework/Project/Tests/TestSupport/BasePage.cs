@@ -1,23 +1,24 @@
 ﻿using System;
 using OpenQA.Selenium;
+using TechTalk.SpecFlow;
 
 namespace ESFA.UI.Specflow.Framework.Project.Tests.TestSupport
 {
     public abstract class BasePage
     {
-        protected IWebDriver webDriver;
+        private readonly IWebDriver _webDriver;
         private By pageHeading = By.CssSelector("h1");
 
-        public BasePage(IWebDriver webDriver)
+        public BasePage(ScenarioContext scenarioContext)
         {
-            this.webDriver = webDriver;
+            _webDriver = scenarioContext.Get<IWebDriver>();
         }
 
         protected abstract Boolean SelfVerify();
 
         protected String GetPageHeading()
         {
-            return webDriver.FindElement(pageHeading).Text;
+            return _webDriver.FindElement(pageHeading).Text;
         }
     }
 }

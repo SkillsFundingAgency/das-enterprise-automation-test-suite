@@ -1,7 +1,6 @@
 ﻿using System;
 using System.IO;
 using System.Reflection;
-using BoDi;
 using ESFA.UI.Specflow.Framework.Helpers;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -17,10 +16,19 @@ namespace ESFA.UI.Specflow.Framework.Project.Tests.TestSupport
     [Binding]
     public class BaseTest
     {
+        private readonly ScenarioContext _scenarioContext;
+        private readonly FeatureContext _featureContext;
+
+        public BaseTest(ScenarioContext scenarioContext, FeatureContext featureContext)
+        {
+            _scenarioContext = scenarioContext;
+            _featureContext = featureContext;
+        }
+
         private IWebDriver WebDriver;
         private static readonly string DriverPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
         
-        public static IServiceProvider InitializeContainer()
+        public IServiceProvider InitializeContainer()
         {
             var config = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
@@ -32,24 +40,24 @@ namespace ESFA.UI.Specflow.Framework.Project.Tests.TestSupport
             return new ServiceCollection()
                 .Configure<ConfigurationOptions>(config)
                 .AddSingleton(cfg => cfg.GetService<IOptions<ConfigurationOptions>>().Value)
-                .AddSingleton(typeof(ScenarioContext))
-                .AddSingleton(typeof(FeatureContext))
                 .AddOptions()
                 .BuildServiceProvider();
 
         }
 
         [BeforeScenario(Order = 0)]
-        public void Setup(ScenarioContext scenarioContext)
+        public void Setup()
         {
             var provider = InitializeContainer();
             var configuration = provider.GetService<IOptions<ConfigurationOptions>>().Value;
-            scenarioContext.ScenarioContainer.RegisterInstanceAs(configuration);
+            _scenarioContext.Set(configuration);
         }
 
         [BeforeScenario(Order = 1)]
-        public void SetUpWebDriver(ScenarioContext scenarioContext, ConfigurationOptions options)
+        public void SetUpWebDriver()
         {
+            var options = _scenarioContext.Get<ConfigurationOptions>();
+
             switch (options.Browser)
             {
                 case "firefox":
@@ -80,23 +88,25 @@ namespace ESFA.UI.Specflow.Framework.Project.Tests.TestSupport
             WebDriver.SwitchTo().Window(currentWindow);
             WebDriver.Manage().Cookies.DeleteAllCookies();
 
-            scenarioContext.ScenarioContainer.RegisterInstanceAs(WebDriver);
+            _scenarioContext.Set(WebDriver);
         }
 
         [BeforeScenario(Order = 2)]
         public void SetUpForEachTest()
         {
-            WebDriver.Manage().Cookies.DeleteAllCookies();
-            PageInteractionHelper.SetDriver(WebDriver);
+            var WebDriver = _scenarioContext.Get<IWebDriver>();
+            _scenarioContext.Set(new PageInteractionHelper(WebDriver));
+            _scenarioContext.Set(new FormCompletionHelper(WebDriver));
         }
 
         [AfterScenario(Order = 1)]
-        public void TakeScreenshotOnFailure(ScenarioContext scenarioContext, FeatureContext featureContext)
+        public void TakeScreenshotOnFailure()
         {
-            String featureTitle = featureContext.FeatureInfo.Title;
-            String scenarioTitle = scenarioContext.ScenarioInfo.Title;
+            var WebDriver = _scenarioContext.Get<IWebDriver>();
+            String featureTitle = _featureContext.FeatureInfo.Title;
+            String scenarioTitle = _scenarioContext.ScenarioInfo.Title;
 
-            if (scenarioContext.TestError != null)
+            if (_scenarioContext.TestError != null)
             {
                 try
                 {
@@ -132,18 +142,14 @@ namespace ESFA.UI.Specflow.Framework.Project.Tests.TestSupport
         [AfterScenario(Order = 2)]
         public void DisposeOnTestRun()
         {
-            WebDriver.Quit();
-            WebDriver.Dispose();
-        }
-
-        [AfterTestRun]
-        public static void TearDown()
-        {
-            
+            var WebDriver = _scenarioContext.Get<IWebDriver>();
+            WebDriver?.Quit();
+            WebDriver?.Dispose();
         }
 
         private void InitialiseZapProxyChrome()
         {
+
             const string PROXY = "localhost:8080";
             var chromeOptions = new ChromeOptions();
             var proxy = new Proxy

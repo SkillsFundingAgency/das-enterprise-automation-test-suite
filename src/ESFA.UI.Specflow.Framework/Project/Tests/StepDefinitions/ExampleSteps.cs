@@ -8,12 +8,14 @@ namespace ESFA.UI.Specflow.Framework.Project.Tests.StepDefinitions
     public class ExampleSteps
     {
         private readonly ConfigurationOptions _configuration;
+        private readonly ScenarioContext _scenarioContext;
         private readonly IWebDriver _webDriver;
 
-        public ExampleSteps(IWebDriver webDriver, ConfigurationOptions configuration)
+        public ExampleSteps(ScenarioContext scenarioContext)
         {
-            _configuration = configuration;
-            _webDriver = webDriver;
+            _scenarioContext = scenarioContext;
+            _webDriver = scenarioContext.Get<IWebDriver>();
+            _configuration = scenarioContext.Get<ConfigurationOptions>();
         }
 
         [Given(@"I navigate to GOV.UK home page")]
@@ -27,7 +29,7 @@ namespace ESFA.UI.Specflow.Framework.Project.Tests.StepDefinitions
         [When(@"I search for (.*)")]
         public void SearchForText(string searchText)
         {
-            var welcomeToGovUkPage = new WelcomeToGovUkPage(_webDriver);
+            var welcomeToGovUkPage = new WelcomeToGovUkPage(_scenarioContext);
             NUnit.Framework.TestContext.Progress.WriteLine($"Searching for {searchText}");
             welcomeToGovUkPage.EnterSearchTextAndSubmit(searchText);
         }
@@ -35,7 +37,7 @@ namespace ESFA.UI.Specflow.Framework.Project.Tests.StepDefinitions
         [When(@"I click on (.*) link")]
         public void ClickOnDfeLink(string searchText)
         {
-            var searchResultsPage = new SearchResultsPage(_webDriver);
+            var searchResultsPage = new SearchResultsPage(_scenarioContext);
             NUnit.Framework.TestContext.Progress.WriteLine($"Naivgating to {searchText} page");
             searchResultsPage.ClickDfeLink(searchText);
         }
@@ -43,7 +45,7 @@ namespace ESFA.UI.Specflow.Framework.Project.Tests.StepDefinitions
         [Then(@"I should be on DFE home page")]
         public void ShouldBeOnDfeHomePage()
         {
-            var departmentForEducationHomePage = new DepartmentForEducationHomePage(_webDriver);
+            var departmentForEducationHomePage = new DepartmentForEducationHomePage(_scenarioContext);
             NUnit.Framework.TestContext.Progress.WriteLine($"Verifying Page title");
             departmentForEducationHomePage.IsPageHeadingMacthing();
         }

@@ -1,7 +1,7 @@
 ﻿using System;
 using ESFA.UI.Specflow.Framework.Helpers;
 using ESFA.UI.Specflow.Framework.Project.Tests.TestSupport;
-using OpenQA.Selenium;
+using TechTalk.SpecFlow;
 
 namespace ESFA.UI.Specflow.Framework.Project.Tests.Pages
 {
@@ -9,19 +9,22 @@ namespace ESFA.UI.Specflow.Framework.Project.Tests.Pages
     {
         private static String PAGE_TITLE = "";
 
-        public DepartmentForEducationHomePage(IWebDriver webDriver) : base(webDriver)
+        private PageInteractionHelper pageInteractionHelper;
+
+        public DepartmentForEducationHomePage(ScenarioContext scenarioContext) : base(scenarioContext)
         {
+            pageInteractionHelper = scenarioContext.Get<PageInteractionHelper>();
             SelfVerify();
         }
 
         protected override bool SelfVerify()
         {
-            return PageInteractionHelper.VerifyPageHeading(this.GetPageHeading(), PAGE_TITLE);
+            return pageInteractionHelper.VerifyPageHeading(this.GetPageHeading(), PAGE_TITLE);
         }
 
         internal bool IsPageHeadingMacthing()
         {
-            return PageInteractionHelper.VerifyPageHeading(this.GetPageHeading(), PAGE_TITLE);
+            return pageInteractionHelper.VerifyPageHeading(this.GetPageHeading(), PAGE_TITLE);
         }
     }
 }

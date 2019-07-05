@@ -2,6 +2,7 @@
 using ESFA.UI.Specflow.Framework.Helpers;
 using ESFA.UI.Specflow.Framework.Project.Tests.TestSupport;
 using OpenQA.Selenium;
+using TechTalk.SpecFlow;
 
 namespace ESFA.UI.Specflow.Framework.Project.Tests.Pages
 {
@@ -9,14 +10,21 @@ namespace ESFA.UI.Specflow.Framework.Project.Tests.Pages
     {
         private static String PAGE_TITLE = "Welcome to GOV.UK";
 
-        public WelcomeToGovUkPage(IWebDriver webDriver) : base(webDriver)
+        private readonly PageInteractionHelper _pageInteractionHelper;
+        private readonly FormCompletionHelper _formCompletionHelper;
+        private readonly ScenarioContext _scenarioContext;
+
+        public WelcomeToGovUkPage(ScenarioContext scenarioContext) : base(scenarioContext)
         {
+            _scenarioContext = scenarioContext;
+            _pageInteractionHelper = scenarioContext.Get<PageInteractionHelper>();
+            _formCompletionHelper = scenarioContext.Get<FormCompletionHelper>();
             SelfVerify();
         }
 
         protected override bool SelfVerify()
         {
-            return PageInteractionHelper.VerifyPageHeading(this.GetPageHeading(), PAGE_TITLE);
+            return _pageInteractionHelper.VerifyPageHeading(this.GetPageHeading(), PAGE_TITLE);
         }
 
         private By searchField = By.Name("q");
@@ -24,9 +32,9 @@ namespace ESFA.UI.Specflow.Framework.Project.Tests.Pages
 
         internal SearchResultsPage EnterSearchTextAndSubmit(String searchText)
         {
-            FormCompletionHelper.EnterText(searchField, searchText);
-            FormCompletionHelper.ClickElement(searchButton);
-            return new SearchResultsPage(webDriver);
+            _formCompletionHelper.EnterText(searchField, searchText);
+            _formCompletionHelper.ClickElement(searchButton);
+            return new SearchResultsPage(_scenarioContext);
         }
     }
 }
