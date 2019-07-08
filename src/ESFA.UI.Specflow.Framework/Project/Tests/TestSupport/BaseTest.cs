@@ -13,16 +13,15 @@ using TechTalk.SpecFlow;
 
 namespace ESFA.UI.Specflow.Framework.Project.Tests.TestSupport
 {
-    [Binding]
-    public class BaseTest
-    {
-        private readonly ScenarioContext _scenarioContext;
-        private readonly FeatureContext _featureContext;
 
-        public BaseTest(ScenarioContext scenarioContext, FeatureContext featureContext)
+    [Binding]
+    public class BaseTest 
+    {
+        private readonly ScenarioContext _context;
+
+        public BaseTest(ScenarioContext context)
         {
-            _scenarioContext = scenarioContext;
-            _featureContext = featureContext;
+            _context = context;
         }
 
         private IWebDriver WebDriver;
@@ -50,13 +49,13 @@ namespace ESFA.UI.Specflow.Framework.Project.Tests.TestSupport
         {
             var provider = InitializeContainer();
             var configuration = provider.GetService<IOptions<ConfigurationOptions>>().Value;
-            _scenarioContext.Set(configuration);
+            _context.Set(configuration);
         }
 
         [BeforeScenario(Order = 1)]
         public void SetUpWebDriver()
         {
-            var options = _scenarioContext.Get<ConfigurationOptions>();
+            var options = _context.Get<ConfigurationOptions>();
 
             switch (options.Browser)
             {
@@ -88,25 +87,25 @@ namespace ESFA.UI.Specflow.Framework.Project.Tests.TestSupport
             WebDriver.SwitchTo().Window(currentWindow);
             WebDriver.Manage().Cookies.DeleteAllCookies();
 
-            _scenarioContext.Set(WebDriver);
+            _context.Set(WebDriver, "webdriver");
         }
 
         [BeforeScenario(Order = 2)]
         public void SetUpForEachTest()
         {
-            var WebDriver = _scenarioContext.Get<IWebDriver>();
-            _scenarioContext.Set(new PageInteractionHelper(WebDriver));
-            _scenarioContext.Set(new FormCompletionHelper(WebDriver));
+            var WebDriver = _context.Get<IWebDriver>("webdriver");
+            NUnit.Framework.TestContext.Progress.WriteLine($"Webdriver Instance form context {WebDriver.Title}");
+            _context.Set(new PageInteractionHelper(WebDriver));
+            _context.Set(new FormCompletionHelper(WebDriver));
         }
 
         [AfterScenario(Order = 1)]
         public void TakeScreenshotOnFailure()
         {
-            var WebDriver = _scenarioContext.Get<IWebDriver>();
-            String featureTitle = _featureContext.FeatureInfo.Title;
-            String scenarioTitle = _scenarioContext.ScenarioInfo.Title;
+            var WebDriver = _context.Get<IWebDriver>("webdriver");
+            String scenarioTitle = _context.ScenarioInfo.Title;
 
-            if (_scenarioContext.TestError != null)
+            if (_context.TestError != null)
             {
                 try
                 {
@@ -130,7 +129,7 @@ namespace ESFA.UI.Specflow.Framework.Project.Tests.TestSupport
                     Screenshot screenshot = screenshotHandler.GetScreenshot();
                     String screenshotPath = Path.Combine(screenshotsDirectory, failureImageName);
                     screenshot.SaveAsFile(screenshotPath, ScreenshotImageFormat.Png);
-                    Console.WriteLine($"{scenarioTitle} -- Scenario under {featureTitle} feature failed and the screenshot is available at -- {screenshotPath}");
+                    Console.WriteLine($"{scenarioTitle} -- Scenario under feature failed and the screenshot is available at -- {screenshotPath}");
                 }
                 catch (Exception exception)
                 {
@@ -142,7 +141,7 @@ namespace ESFA.UI.Specflow.Framework.Project.Tests.TestSupport
         [AfterScenario(Order = 2)]
         public void DisposeOnTestRun()
         {
-            var WebDriver = _scenarioContext.Get<IWebDriver>();
+            var WebDriver = _context.Get<IWebDriver>("webdriver");
             WebDriver?.Quit();
             WebDriver?.Dispose();
         }

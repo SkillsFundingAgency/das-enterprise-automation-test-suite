@@ -11,9 +11,9 @@ namespace ESFA.UI.Specflow.Framework.Project.Tests.Pages
 
         private PageInteractionHelper pageInteractionHelper;
 
-        public DepartmentForEducationHomePage(ScenarioContext scenarioContext) : base(scenarioContext)
+        public DepartmentForEducationHomePage(ScenarioContext context) : base(context)
         {
-            pageInteractionHelper = scenarioContext.Get<PageInteractionHelper>();
+            pageInteractionHelper = context.Get<PageInteractionHelper>();
             SelfVerify();
         }
 

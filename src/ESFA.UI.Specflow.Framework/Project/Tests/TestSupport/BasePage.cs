@@ -9,9 +9,9 @@ namespace ESFA.UI.Specflow.Framework.Project.Tests.TestSupport
         private readonly IWebDriver _webDriver;
         private By pageHeading = By.CssSelector("h1");
 
-        public BasePage(ScenarioContext scenarioContext)
+        public BasePage(ScenarioContext context)
         {
-            _webDriver = scenarioContext.Get<IWebDriver>();
+            _webDriver = context.Get<IWebDriver>("webdriver");
         }
 
         protected abstract Boolean SelfVerify();

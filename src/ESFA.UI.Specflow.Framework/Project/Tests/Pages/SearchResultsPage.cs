@@ -12,13 +12,13 @@ namespace ESFA.UI.Specflow.Framework.Project.Tests.Pages
 
         private readonly PageInteractionHelper _pageInteractionHelper;
         private readonly FormCompletionHelper _formCompletionHelper;
-        private readonly ScenarioContext _scenarioContext;
+        private readonly ScenarioContext _context;
 
-        public SearchResultsPage(ScenarioContext scenarioContext) : base(scenarioContext)
+        public SearchResultsPage(ScenarioContext context) : base(context)
         {
-            _scenarioContext = scenarioContext;
-            _pageInteractionHelper = scenarioContext.Get<PageInteractionHelper>();
-            _formCompletionHelper = scenarioContext.Get<FormCompletionHelper>();
+            _context = context;
+            _pageInteractionHelper = context.Get<PageInteractionHelper>();
+            _formCompletionHelper = context.Get<FormCompletionHelper>();
             SelfVerify();
         }
 
@@ -32,7 +32,7 @@ namespace ESFA.UI.Specflow.Framework.Project.Tests.Pages
         internal DepartmentForEducationHomePage ClickDfeLink(string searchText)
         {
             _formCompletionHelper.ClickElement(dfeLink(searchText));
-            return new DepartmentForEducationHomePage(_scenarioContext);
+            return new DepartmentForEducationHomePage(_context);
         }
     }
 }

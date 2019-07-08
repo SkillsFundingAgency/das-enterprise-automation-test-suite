@@ -14,11 +14,11 @@ namespace ESFA.UI.Specflow.Framework.Project.Tests.Pages
         private readonly FormCompletionHelper _formCompletionHelper;
         private readonly ScenarioContext _scenarioContext;
 
-        public WelcomeToGovUkPage(ScenarioContext scenarioContext) : base(scenarioContext)
+        public WelcomeToGovUkPage(ScenarioContext context) : base(context)
         {
-            _scenarioContext = scenarioContext;
-            _pageInteractionHelper = scenarioContext.Get<PageInteractionHelper>();
-            _formCompletionHelper = scenarioContext.Get<FormCompletionHelper>();
+            _scenarioContext = context;
+            _pageInteractionHelper = context.Get<PageInteractionHelper>();
+            _formCompletionHelper = context.Get<FormCompletionHelper>();
             SelfVerify();
         }
 
