@@ -47,8 +47,8 @@ namespace ESFA.UI.Specflow.Framework.Project.Tests.TestSupport
         [BeforeScenario(Order = 0)]
         public void Setup()
         {
-            var provider = InitializeContainer();
-            var configuration = provider.GetService<IOptions<ConfigurationOptions>>().Value;
+            //var provider = InitializeContainer();
+            var configuration = new ConfigurationOptions { BaseUrl = "https://www.gov.uk/", Browser = "chrome" };
             _context.Set(configuration);
         }
 
