@@ -27,28 +27,21 @@ namespace ESFA.UI.Specflow.Framework.Project.Tests.TestSupport
         private IWebDriver WebDriver;
         private static readonly string DriverPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
         
-        public IServiceProvider InitializeContainer()
+        public static IConfigurationRoot InitializeConfig()
         {
-            var config = new ConfigurationBuilder()
+            return new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile("appsettings.json", true)
                 .AddJsonFile("appsettings.Development.json", true)
                 .AddEnvironmentVariables()
                 .Build();
-            
-            return new ServiceCollection()
-                .Configure<ConfigurationOptions>(config)
-                .AddSingleton(cfg => cfg.GetService<IOptions<ConfigurationOptions>>().Value)
-                .AddOptions()
-                .BuildServiceProvider();
-
         }
 
         [BeforeScenario(Order = 0)]
         public void Setup()
         {
-            //var provider = InitializeContainer();
-            var configuration = new ConfigurationOptions { BaseUrl = "https://www.gov.uk/", Browser = "chrome" };
+            var config = InitializeConfig();
+            var configuration = new ConfigurationOptions { BaseUrl = config.GetSection("BaseUrl").Value, Browser = config.GetSection("Browser").Value };
             _context.Set(configuration);
         }
 
