@@ -3,8 +3,6 @@ using System.IO;
 using System.Reflection;
 using ESFA.UI.Specflow.Framework.Helpers;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Options;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
