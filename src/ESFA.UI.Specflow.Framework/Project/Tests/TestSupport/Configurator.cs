@@ -1,37 +1,43 @@
-﻿//using System;
+﻿using Microsoft.Extensions.Configuration;
+using System;
+using System.IO;
 
-//namespace ESFA.UI.Specflow.Framework.Project.Tests.TestSupport
-//{
-//    public class Configurator
-//    {
-//        private static Configurator configuratorInstance = null;
+namespace ESFA.UI.Specflow.Framework.Project.Tests.TestSupport
+{
+    public static class Configurator
+    {
+        private readonly static IConfigurationRoot _config;
 
-//        private String browser;
-//        private String baseUrl;
+        static Configurator()
+        {
+            _config = InitializeConfig();
+        }
 
-//        private Configurator()
-//        {
-//            browser = "chrome";//ConfigurationManager.AppSettings["Browser"];
-//            baseUrl = "https://www.gov.uk/";// ConfigurationManager.AppSettings["BaseUrl"];
-//        }
+        public static string GetBrowser()
+        {
+            return _config.GetSection(nameof(JsonConfig.Browser)).Value;
+        }
 
-//        public static Configurator GetConfiguratorInstance()
-//        {
-//            if (configuratorInstance == null)
-//            {
-//                configuratorInstance = new Configurator();
-//            }
-//            return configuratorInstance;
-//        }
+        public static string GetBaseUrl()
+        {
+            return _config.GetSection(nameof(JsonConfig.BaseUrl)).Value;
+        }
 
-//        public String GetBrowser()
-//        {
-//            return browser;
-//        }
+        private static IConfigurationRoot InitializeConfig()
+        {
+            return new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json", true)
+                .AddJsonFile("appsettings.Development.json", true)
+                .AddEnvironmentVariables()
+                .Build();
+        }
 
-//        public String GetBaseUrl()
-//        {
-//            return baseUrl;
-//        }
-//    }
-//}
+        internal static class JsonConfig
+        {
+            internal static string BaseUrl;
+
+            internal static string Browser;
+        }
+    }   
+}

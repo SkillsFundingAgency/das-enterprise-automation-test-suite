@@ -15,31 +15,21 @@ namespace ESFA.UI.Specflow.Framework.Project.Tests.TestSupport
     [Binding]
     public class BaseTest 
     {
+        private IWebDriver WebDriver;
+
+        private static readonly string DriverPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+
         private readonly ScenarioContext _context;
 
         public BaseTest(ScenarioContext context)
         {
             _context = context;
         }
-
-        private IWebDriver WebDriver;
-        private static readonly string DriverPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
         
-        public static IConfigurationRoot InitializeConfig()
-        {
-            return new ConfigurationBuilder()
-                .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("appsettings.json", true)
-                .AddJsonFile("appsettings.Development.json", true)
-                .AddEnvironmentVariables()
-                .Build();
-        }
-
         [BeforeScenario(Order = 0)]
         public void Setup()
         {
-            var config = InitializeConfig();
-            var configuration = new ConfigurationOptions { BaseUrl = config.GetSection("BaseUrl").Value, Browser = config.GetSection("Browser").Value };
+            var configuration = new ConfigurationOptions { BaseUrl = Configurator.GetBaseUrl(), Browser = Configurator.GetBrowser() };
             _context.Set(configuration);
         }
 
