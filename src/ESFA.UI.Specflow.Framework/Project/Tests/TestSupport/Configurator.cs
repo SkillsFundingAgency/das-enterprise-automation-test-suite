@@ -1,5 +1,4 @@
 ﻿using Microsoft.Extensions.Configuration;
-using System;
 using System.IO;
 
 namespace ESFA.UI.Specflow.Framework.Project.Tests.TestSupport
