@@ -2,6 +2,9 @@
   "language": {
     "feature": "en-GB"
   },
+  "bindingCulture": {
+    "name": "en-GB"
+  },
   "stepAssemblies": [
     {
       "assembly": "ESFA.UI.Specflow.Framework"
