@@ -1,8 +1,18 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="..\NUnitConfigurator.cs" Link="NUnitConfigurator.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="..\specflow.json" Link="specflow.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.2.0" />
@@ -24,6 +34,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="NUnitConfigurator.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
     <Compile Update="Project\Tests\Features\Example.feature.cs">
       <Visible>true</Visible>
       <DependentUpon>%(Filename)</DependentUpon>
@@ -46,9 +59,6 @@
     <None Update="Project\Tests\Features\Example1.feature">
       <Visible>$(UsingMicrosoftNETSdk)</Visible>
       <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
-    </None>
-    <None Update="specflow.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
 
