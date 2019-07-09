@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using BoDi;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
 using System;
@@ -7,15 +8,15 @@ namespace ESFA.UI.Specflow.Framework.Helpers
 {
     public class PageInteractionHelper
     {
-        protected static IWebDriver WebDriver;
+        protected IWebDriver WebDriver;
         private const int ImplicitWaitTimeInSeconds = 10;
 
-        public static void SetDriver(IWebDriver webDriver)
+        public PageInteractionHelper(IWebDriver webDriver)
         {
             WebDriver = webDriver;
         }
 
-        public static bool VerifyPageHeading(string actual, string expected)
+        public bool VerifyPageHeading(string actual, string expected)
         {
             if (actual.Contains(expected))
             {
@@ -27,7 +28,7 @@ namespace ESFA.UI.Specflow.Framework.Helpers
                 + "\n Found: " + actual + " page");
         }
 
-        public static bool VerifyPageHeading(By locator, string expected)
+        public bool VerifyPageHeading(By locator, string expected)
         {
             var actual = WebDriver.FindElement(locator).Text;
             if (actual.Contains(expected))
@@ -40,7 +41,7 @@ namespace ESFA.UI.Specflow.Framework.Helpers
                 + "\n Found: " + actual + " page");
         }
 
-        public static bool VerifyPageHeading(string actual, string expected1, string expected2)
+        public bool VerifyPageHeading(string actual, string expected1, string expected2)
         {
             if (actual.Contains(expected1) || actual.Contains(expected2))
             {
@@ -52,7 +53,7 @@ namespace ESFA.UI.Specflow.Framework.Helpers
                 + "\n Found: " + actual + " page");
         }
 
-        public static bool VerifyText(String actual, string expected)
+        public bool VerifyText(String actual, string expected)
         {
             if (actual.Contains(expected))
             {
@@ -64,7 +65,7 @@ namespace ESFA.UI.Specflow.Framework.Helpers
                 + "\n Found: " + actual);
         }
 
-        public static bool VerifyText(By locator, string expected)
+        public bool VerifyText(By locator, string expected)
         {
             var actual = WebDriver.FindElement(locator).Text;
             if (actual.Contains(expected))
@@ -77,7 +78,7 @@ namespace ESFA.UI.Specflow.Framework.Helpers
                 + "\n Found: " + actual);
         }
 
-        public static Boolean VerifyValueAttributeOfAnElement(By locator, string expected)
+        public Boolean VerifyValueAttributeOfAnElement(By locator, string expected)
         {
             var actual = WebDriver.FindElement(locator).GetAttribute("value");
             if (actual.Contains(expected))
@@ -90,31 +91,31 @@ namespace ESFA.UI.Specflow.Framework.Helpers
                 + "\n Found: " + actual);
         }
 
-        public static void WaitForPageToLoad(int implicitWaitTime = ImplicitWaitTimeInSeconds)
+        public void WaitForPageToLoad(int implicitWaitTime = ImplicitWaitTimeInSeconds)
         {
             var waitForDocumentReady = new WebDriverWait(WebDriver, TimeSpan.FromSeconds(implicitWaitTime));
             waitForDocumentReady.Until(driver => ((IJavaScriptExecutor) WebDriver).ExecuteScript("return document.readyState").Equals("complete"));
         }
 
-        public static void WaitForElementToBePresent(By locator)
+        public void WaitForElementToBePresent(By locator)
         {
             var wait = new WebDriverWait(WebDriver, TimeSpan.FromSeconds(ImplicitWaitTimeInSeconds));
-            wait.Until(ExpectedConditions.ElementExists(locator));
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(locator));
         }
 
-        public static void WaitForElementToBeDisplayed(By locator, int timeInSeconds = ImplicitWaitTimeInSeconds)
+        public void WaitForElementToBeDisplayed(By locator, int timeInSeconds = ImplicitWaitTimeInSeconds)
         {
             var wait = new WebDriverWait(WebDriver, TimeSpan.FromSeconds(timeInSeconds));
-            wait.Until(ExpectedConditions.ElementIsVisible(locator));
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(locator));
         }
 
-        public static void WaitForElementToBeClickable(By locator)
+        public void WaitForElementToBeClickable(By locator)
         {
             var webDriverWait = new WebDriverWait(WebDriver, TimeSpan.FromSeconds(10));
-            var element = webDriverWait.Until(ExpectedConditions.ElementToBeClickable(locator));
+            webDriverWait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementToBeClickable(locator));
         }
 
-        public static bool IsElementPresent(By locator)
+        public bool IsElementPresent(By locator)
         {
             TurnOffImplicitWaits();
             try
@@ -132,7 +133,7 @@ namespace ESFA.UI.Specflow.Framework.Helpers
             }
         }
 
-        public static bool IsElementDisplayed(By locator)
+        public bool IsElementDisplayed(By locator)
         {
             TurnOffImplicitWaits();
             try
@@ -149,41 +150,41 @@ namespace ESFA.UI.Specflow.Framework.Helpers
             }
         }
 
-        public static void FocusTheElement(By locator)
+        public void FocusTheElement(By locator)
         {
             IWebElement webElement = WebDriver.FindElement(locator);
             new Actions(WebDriver).MoveToElement(webElement).Perform();
             WaitForElementToBeDisplayed(locator);
         }
 
-        public static void FocusTheElement(IWebElement element)
+        public void FocusTheElement(IWebElement element)
         {
             new Actions(WebDriver).MoveToElement(element).Perform();
         }
 
-        public static void UnFocusTheElement(By locator)
+        public void UnFocusTheElement(By locator)
         {
             var webElement = WebDriver.FindElement(locator);
             new Actions(WebDriver).MoveToElement(webElement).Perform();
             WaitForElementToBeDisplayed(locator);
         }
 
-        public static void UnFocusTheElement(IWebElement element)
+        public void UnFocusTheElement(IWebElement element)
         {
             new Actions(WebDriver).MoveToElement(element).Perform();
         }
 
-        public static void TurnOffImplicitWaits()
+        public void TurnOffImplicitWaits()
         {
             WebDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromMilliseconds(500);
         }
 
-        public static void TurnOnImplicitWaits()
+        public void TurnOnImplicitWaits()
         {
             WebDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(ImplicitWaitTimeInSeconds);
         }
 
-        public static string GetText(By locator)
+        public string GetText(By locator)
         {
             var webElement = WebDriver.FindElement(locator);
             return webElement.Text;

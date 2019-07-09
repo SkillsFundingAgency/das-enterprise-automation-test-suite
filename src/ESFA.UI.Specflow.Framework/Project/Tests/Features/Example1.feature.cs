@@ -18,20 +18,20 @@ namespace ESFA.UI.Specflow.Framework.Project.Tests.Features
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.0.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("Example feature")]
-    public partial class ExampleFeatureFeature
+    [NUnit.Framework.DescriptionAttribute("Example1")]
+    public partial class Example1Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "Example.feature"
+#line 1 "Example1.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Example feature", "\tAs a user\r\n\tI want to be able to navigate to DFE home page\r\n\tSo that I can see a" +
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Example1", "\tAs a user\r\n\tI want to be able to navigate to DFE home page\r\n\tSo that I can see a" +
                     "ll department services and information ", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
@@ -71,13 +71,12 @@ namespace ESFA.UI.Specflow.Framework.Project.Tests.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("User navigate to DFE home page from GOV.UK page")]
+        [NUnit.Framework.DescriptionAttribute("User navigate to MoD home page from GOV.UK page")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.TestCaseAttribute("Ministry of Defence", null)]
         [NUnit.Framework.TestCaseAttribute("Department for Education", null)]
-        [NUnit.Framework.TestCaseAttribute("Universal Credit", null)]
-        [NUnit.Framework.TestCaseAttribute("Corporation Tax", null)]
-        public virtual void UserNavigateToDFEHomePageFromGOV_UKPage(string searchLink, string[] exampleTags)
+        [NUnit.Framework.TestCaseAttribute("Income Tax", null)]
+        public virtual void UserNavigateToMoDHomePageFromGOV_UKPage(string searchLink, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "regression"};
@@ -85,17 +84,17 @@ namespace ESFA.UI.Specflow.Framework.Project.Tests.Features
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
             }
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User navigate to DFE home page from GOV.UK page", null, @__tags);
-#line 7
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User navigate to MoD home page from GOV.UK page", null, @__tags);
+#line 8
  this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 8
-  testRunner.Given("I navigate to GOV.UK home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 9
-  testRunner.When(string.Format("I search for {0}", searchLink), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+  testRunner.Given("I navigate to GOV.UK home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 10
-  testRunner.And(string.Format("I click on {0} link", searchLink), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.When(string.Format("I search for {0}", searchLink), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 11
+  testRunner.And(string.Format("I click on {0} link", searchLink), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 12
   testRunner.Then("I should be on DFE home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();

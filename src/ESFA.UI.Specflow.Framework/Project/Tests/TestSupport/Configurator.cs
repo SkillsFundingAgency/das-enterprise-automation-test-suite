@@ -1,37 +1,42 @@
-﻿using System;
+﻿using Microsoft.Extensions.Configuration;
+using System.IO;
 
 namespace ESFA.UI.Specflow.Framework.Project.Tests.TestSupport
 {
-    public class Configurator
+    public static class Configurator
     {
-        private static Configurator configuratorInstance = null;
+        private readonly static IConfigurationRoot _config;
 
-        private String browser;
-        private String baseUrl;
-
-        private Configurator()
+        static Configurator()
         {
-            browser = "chrome";//ConfigurationManager.AppSettings["Browser"];
-            baseUrl = "https://www.gov.uk/";// ConfigurationManager.AppSettings["BaseUrl"];
+            _config = InitializeConfig();
         }
 
-        public static Configurator GetConfiguratorInstance()
+        public static string GetBrowser()
         {
-            if (configuratorInstance == null)
-            {
-                configuratorInstance = new Configurator();
-            }
-            return configuratorInstance;
+            return _config.GetSection(nameof(JsonConfig.Browser)).Value;
         }
 
-        public String GetBrowser()
+        public static string GetBaseUrl()
         {
-            return browser;
+            return _config.GetSection(nameof(JsonConfig.BaseUrl)).Value;
         }
 
-        public String GetBaseUrl()
+        private static IConfigurationRoot InitializeConfig()
         {
-            return baseUrl;
+            return new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json", true)
+                .AddJsonFile("appsettings.Development.json", true)
+                .AddEnvironmentVariables()
+                .Build();
         }
-    }
+
+        internal static class JsonConfig
+        {
+            internal static string BaseUrl;
+
+            internal static string Browser;
+        }
+    }   
 }

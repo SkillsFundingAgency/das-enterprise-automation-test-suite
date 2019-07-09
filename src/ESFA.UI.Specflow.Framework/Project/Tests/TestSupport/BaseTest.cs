@@ -1,11 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Reflection;
-using BoDi;
 using ESFA.UI.Specflow.Framework.Helpers;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Options;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
@@ -14,48 +10,32 @@ using TechTalk.SpecFlow;
 
 namespace ESFA.UI.Specflow.Framework.Project.Tests.TestSupport
 {
+
     [Binding]
-    public class BaseTest
+    public class BaseTest 
     {
-        private IObjectContainer _objectContainer;
-
-        public BaseTest(ObjectContainer objectContainer)
-        {
-            _objectContainer = objectContainer;
-        }
-
         private IWebDriver WebDriver;
+
         private static readonly string DriverPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-        
-        public static IServiceProvider InitializeContainer()
+
+        private readonly ScenarioContext _context;
+
+        public BaseTest(ScenarioContext context)
         {
-            var config = new ConfigurationBuilder()
-                .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("appsettings.json", true)
-                .AddJsonFile("appsettings.Development.json", true)
-                .AddEnvironmentVariables()
-                .Build();
-            
-            return new ServiceCollection()
-                .Configure<ConfigurationOptions>(config)
-                .AddSingleton(cfg => cfg.GetService<IOptions<ConfigurationOptions>>().Value)
-                .AddOptions()
-                .BuildServiceProvider();
-
+            _context = context;
         }
-
+        
         [BeforeScenario(Order = 0)]
         public void Setup()
         {
-            var provider = InitializeContainer();
-            var configuration = provider.GetService<IOptions<ConfigurationOptions>>().Value;
-            _objectContainer.RegisterInstanceAs(configuration);
+            var configuration = new ConfigurationOptions { BaseUrl = Configurator.GetBaseUrl(), Browser = Configurator.GetBrowser() };
+            _context.Set(configuration);
         }
 
         [BeforeScenario(Order = 1)]
         public void SetUpWebDriver()
         {
-            var options = _objectContainer.Resolve<ConfigurationOptions>();
+            var options = _context.Get<ConfigurationOptions>();
 
             switch (options.Browser)
             {
@@ -87,33 +67,30 @@ namespace ESFA.UI.Specflow.Framework.Project.Tests.TestSupport
             WebDriver.SwitchTo().Window(currentWindow);
             WebDriver.Manage().Cookies.DeleteAllCookies();
 
-            _objectContainer.RegisterInstanceAs(WebDriver);
+            _context.Set(WebDriver, "webdriver");
         }
 
         [BeforeScenario(Order = 2)]
         public void SetUpForEachTest()
         {
-            WebDriver.Manage().Cookies.DeleteAllCookies();
-            PageInteractionHelper.SetDriver(WebDriver);
+            var WebDriver = _context.Get<IWebDriver>("webdriver");
+            NUnit.Framework.TestContext.Progress.WriteLine($"Webdriver Instance form context {WebDriver.Title}");
+            _context.Set(new PageInteractionHelper(WebDriver));
+            _context.Set(new FormCompletionHelper(WebDriver));
         }
 
-        [AfterScenario()]
-        public void DisposeOnTestRun()
-        {
-            WebDriver.Quit();
-            WebDriver.Dispose();
-        }
-
-        [After]
+        [AfterScenario(Order = 1)]
         public void TakeScreenshotOnFailure()
         {
-            if (ScenarioContext.Current.TestError != null)
+            var WebDriver = _context.Get<IWebDriver>("webdriver");
+            String scenarioTitle = _context.ScenarioInfo.Title;
+
+            if (_context.TestError != null)
             {
                 try
                 {
                     DateTime dateTime = DateTime.Now;
-                    String featureTitle = FeatureContext.Current.FeatureInfo.Title;
-                    String scenarioTitle = ScenarioContext.Current.ScenarioInfo.Title;
+                    
                     String failureImageName = dateTime.ToString("HH-mm-ss")
                         + "_"
                         + scenarioTitle
@@ -132,30 +109,34 @@ namespace ESFA.UI.Specflow.Framework.Project.Tests.TestSupport
                     Screenshot screenshot = screenshotHandler.GetScreenshot();
                     String screenshotPath = Path.Combine(screenshotsDirectory, failureImageName);
                     screenshot.SaveAsFile(screenshotPath, ScreenshotImageFormat.Png);
-                    Console.WriteLine(scenarioTitle
-                        + " -- Sceario failed and the screenshot is available at -- "
-                        + screenshotPath);
-                } catch (Exception exception)
+                    Console.WriteLine($"{scenarioTitle} -- Scenario under feature failed and the screenshot is available at -- {screenshotPath}");
+                }
+                catch (Exception exception)
                 {
                     Console.WriteLine("Exception occurred while taking screenshot - " + exception);
                 }
             }            
         }
 
-        [AfterTestRun]
-        public static void TearDown()
+        [AfterScenario(Order = 2)]
+        public void DisposeOnTestRun()
         {
-            
+            var WebDriver = _context.Get<IWebDriver>("webdriver");
+            WebDriver?.Quit();
+            WebDriver?.Dispose();
         }
 
         private void InitialiseZapProxyChrome()
         {
+
             const string PROXY = "localhost:8080";
             var chromeOptions = new ChromeOptions();
-            var proxy = new Proxy();
-            proxy.HttpProxy = PROXY;
-            proxy.SslProxy = PROXY;
-            proxy.FtpProxy = PROXY;
+            var proxy = new Proxy
+            {
+                HttpProxy = PROXY,
+                SslProxy = PROXY,
+                FtpProxy = PROXY
+            };
             chromeOptions.Proxy = proxy;
 
             WebDriver = new ChromeDriver(DriverPath,chromeOptions);
