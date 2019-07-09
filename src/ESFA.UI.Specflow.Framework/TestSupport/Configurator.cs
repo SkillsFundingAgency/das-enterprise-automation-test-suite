@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using System.IO;
 
-namespace ESFA.UI.Specflow.Framework.Project.Tests.TestSupport
+namespace ESFA.UI.Specflow.Framework.TestSupport
 {
     public static class Configurator
     {
@@ -30,13 +30,6 @@ namespace ESFA.UI.Specflow.Framework.Project.Tests.TestSupport
                 .AddJsonFile("appsettings.Development.json", true)
                 .AddEnvironmentVariables()
                 .Build();
-        }
-
-        internal static class JsonConfig
-        {
-            internal static string BaseUrl;
-
-            internal static string Browser;
         }
     }   
 }

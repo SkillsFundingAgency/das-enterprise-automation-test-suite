@@ -1,0 +1,10 @@
+{
+  "language": {
+    "feature": "en-GB"
+  },
+  "stepAssemblies": [
+    {
+      "assembly": "ESFA.UI.Specflow.Framework"
+    }
+  ]
+}
