@@ -1,9 +1,9 @@
 {
-  "language": {
+  "bindingCulture": {
     "feature": "en-GB"
   },
-  "bindingCulture": {
-    "name": "en-GB"
+  "language": {
+    "feature": "en-GB"
   },
   "stepAssemblies": [
     {
