@@ -8,7 +8,7 @@ using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.IE;
 using TechTalk.SpecFlow;
 
-namespace ESFA.UI.Specflow.Framework.Project.Tests.TestSupport
+namespace ESFA.UI.Specflow.Framework.TestSupport
 {
 
     [Binding]
@@ -43,7 +43,7 @@ namespace ESFA.UI.Specflow.Framework.Project.Tests.TestSupport
         [BeforeScenario(Order = 1)]
         public void SetUpWebDriver()
         {
-            var options = _context.Get<ConfigurationOptions>();
+            var options = _context.Get<JsonConfig>();
 
             switch (options.Browser)
             {
@@ -158,7 +158,7 @@ namespace ESFA.UI.Specflow.Framework.Project.Tests.TestSupport
             };
             chromeOptions.Proxy = proxy;
 
-            WebDriver = new ChromeDriver(DriverPath,chromeOptions);
+            WebDriver = new ChromeDriver(DriverPath, chromeOptions);
         }
     }
 }

@@ -2,7 +2,7 @@
 using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 
-namespace ESFA.UI.Specflow.Framework.Project.Tests.TestSupport
+namespace ESFA.UI.Specflow.Framework.TestSupport
 {
     public abstract class BasePage
     {

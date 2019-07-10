@@ -3,7 +3,7 @@ using System;
 using System.Collections.Specialized;
 using System.IO;
 
-namespace ESFA.UI.Specflow.Framework.Project.Tests.TestSupport
+namespace ESFA.UI.Specflow.Framework.TestSupport
 {
     public static class Configurator
     {
