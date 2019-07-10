@@ -24,6 +24,10 @@ Once the solution is imported and built, open Test Explorer window (Test->Window
 2. Failed/Passed/NotRun Tests
 3. Select a particular scenario to Run/Debug
 
+## Running Tests from Command Prompt:
+
+c:\>dotnet test C:\SFA\DFE-Standardised-Test-Automation-Framework\src\ESFA.UI.Specflow.TestProject\ESFA.UI.Specflow.TestProject.csproj --filter "TestCategory=regression|TestCategory=anotherregression"
+
 ## Framework:
 
 ### Multiple Environments:
