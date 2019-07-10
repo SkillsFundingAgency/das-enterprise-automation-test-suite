@@ -28,7 +28,15 @@ namespace ESFA.UI.Specflow.Framework.Project.Tests.TestSupport
         [BeforeScenario(Order = 0)]
         public void Setup()
         {
-            var configuration = new ConfigurationOptions { BaseUrl = Configurator.GetBaseUrl(), Browser = Configurator.GetBrowser() };
+            var configuration = new ConfigurationOptions { BaseUrl = Configurator.GetBaseUrl(), Browser = Configurator.GetBrowser(),
+                BrowserstackServer = Configurator.GetBrowserstackServerName(),
+                BrowserstackUsername = Configurator.GetBrowserstackUsername(),
+                BrowserstackPassword = Configurator.GetBrowserstackPassword(),
+                BrowserstackBrowser = Configurator.GetBrowserstackBrowser(),
+                BrowserstackOs = Configurator.GetBrowserstackOs(),
+                BrowserstackOsversion = Configurator.GetBrowserstackOsversion(),
+                Resolution = Configurator.GetResolution()
+            };
             _context.Set(configuration);
         }
 
@@ -56,7 +64,18 @@ namespace ESFA.UI.Specflow.Framework.Project.Tests.TestSupport
                 case "zapProxyChrome":
                     InitialiseZapProxyChrome();
                     break;
-
+                case "Browserstack":
+                    BrowserStackService.BrowserstackUsername = Configurator.GetBrowserstackUsername();
+                    BrowserStackService.Browser = Configurator.GetBrowserstackBrowser();
+                    BrowserStackService.BrowserstackPassword = Configurator.GetBrowserstackPassword();
+                    BrowserStackService.BrowserstackBrowserVersion = Configurator.GetBrowserstackbrowserVersion();
+                    BrowserStackService.BrowserstackOs= Configurator.GetBrowserstackOs();
+                    BrowserStackService.BrowserstackOsversion = Configurator.GetBrowserstackOsversion();
+                    BrowserStackService.BrowserstackProjectName = Configurator.GetBrowserstackProject();
+                    BrowserStackService.Resolution = Configurator.GetResolution();
+                    BrowserStackService.BrowserstackServerName = Configurator.GetBrowserstackServerName();
+                    WebDriver = BrowserStackService.Init();
+                    break;
                 default:
                     throw new Exception("Driver name - " + options.Browser + " does not match OR this framework does not support the webDriver specified");
             }
