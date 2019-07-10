@@ -31,7 +31,7 @@ namespace ESFA.UI.Specflow.TestProject.Project.Tests.Features
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Example feature", "\tAs a user\r\n\tI want to be able to navigate to DFE home page\r\n\tSo that I can see a" +
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Example feature", "\tAs a user\r\n\tI want to be able to navigate to DFE home page\r\n\tSo that I can see a" +
                     "ll department services and information ", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
@@ -72,20 +72,13 @@ namespace ESFA.UI.Specflow.TestProject.Project.Tests.Features
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("User navigate to DFE home page from GOV.UK page")]
-        [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.TestCaseAttribute("Ministry of Defence", null)]
         [NUnit.Framework.TestCaseAttribute("Department for Education", null)]
         [NUnit.Framework.TestCaseAttribute("Universal Credit", null)]
         [NUnit.Framework.TestCaseAttribute("Corporation Tax", null)]
         public virtual void UserNavigateToDFEHomePageFromGOV_UKPage(string searchLink, string[] exampleTags)
         {
-            string[] @__tags = new string[] {
-                    "regression"};
-            if ((exampleTags != null))
-            {
-                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
-            }
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User navigate to DFE home page from GOV.UK page", null, @__tags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User navigate to DFE home page from GOV.UK page", null, exampleTags);
 #line 7
  this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
