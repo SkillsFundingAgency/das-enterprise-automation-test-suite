@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace ESFA.UI.Specflow.Framework.Project.Tests.Features
+namespace ESFA.UI.Specflow.TestProject.Project.Tests.Features
 {
     using TechTalk.SpecFlow;
     

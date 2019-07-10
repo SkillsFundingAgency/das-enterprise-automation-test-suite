@@ -1,13 +1,14 @@
 ﻿using ESFA.UI.Specflow.Framework.Project.Tests.Pages;
 using OpenQA.Selenium;
 using TechTalk.SpecFlow;
+using TestContext = NUnit.Framework.TestContext;
 
 namespace ESFA.UI.Specflow.Framework.Project.Tests.StepDefinitions
 {
     [Binding]
     public class ExampleSteps 
     {
-        private readonly ConfigurationOptions _configuration;
+        private readonly JsonConfig _configuration;
         private readonly ScenarioContext _context;
         private readonly IWebDriver _webDriver;
 
@@ -15,14 +16,14 @@ namespace ESFA.UI.Specflow.Framework.Project.Tests.StepDefinitions
         {
             _context = context;
             _webDriver = context.Get<IWebDriver>("webdriver");
-            _configuration = context.Get<ConfigurationOptions>();
+            _configuration = context.Get<JsonConfig>();
         }
 
         [Given(@"I navigate to GOV.UK home page")]
         public void NavigateToGovUkHomePage()
         {
             var url = _configuration.BaseUrl;
-            NUnit.Framework.TestContext.Progress.WriteLine("Naivgating to Gov.uk home page");
+            TestContext.Progress.WriteLine("Naivgating to Gov.uk home page");
             _webDriver.Url = url; 
         }
 
@@ -30,7 +31,7 @@ namespace ESFA.UI.Specflow.Framework.Project.Tests.StepDefinitions
         public void SearchForText(string searchText)
         {
             var welcomeToGovUkPage = new WelcomeToGovUkPage(_context);
-            NUnit.Framework.TestContext.Progress.WriteLine($"Searching for {searchText}");
+            TestContext.Progress.WriteLine($"Searching for {searchText}");
             welcomeToGovUkPage.EnterSearchTextAndSubmit(searchText);
         }
 
@@ -38,7 +39,7 @@ namespace ESFA.UI.Specflow.Framework.Project.Tests.StepDefinitions
         public void ClickOnDfeLink(string searchText)
         {
             var searchResultsPage = new SearchResultsPage(_context);
-            NUnit.Framework.TestContext.Progress.WriteLine($"Naivgating to {searchText} page");
+            TestContext.Progress.WriteLine($"Naivgating to {searchText} page");
             searchResultsPage.ClickDfeLink(searchText);
         }
 
@@ -46,7 +47,7 @@ namespace ESFA.UI.Specflow.Framework.Project.Tests.StepDefinitions
         public void ShouldBeOnDfeHomePage()
         {
             var departmentForEducationHomePage = new DepartmentForEducationHomePage(_context);
-            NUnit.Framework.TestContext.Progress.WriteLine($"Verifying Page title");
+            TestContext.Progress.WriteLine($"Verifying Page title");
             departmentForEducationHomePage.IsPageHeadingMacthing();
         }
     }
