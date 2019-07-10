@@ -2,6 +2,7 @@
 using System.IO;
 using System.Reflection;
 using ESFA.UI.Specflow.Framework.Helpers;
+using ESFA.UI.Specflow.Framework.Project.Tests.TestSupport;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
@@ -28,7 +29,8 @@ namespace ESFA.UI.Specflow.Framework.TestSupport
         [BeforeScenario(Order = 0)]
         public void Setup()
         {
-            var configuration = new ConfigurationOptions { BaseUrl = Configurator.GetBaseUrl(), Browser = Configurator.GetBrowser(),
+            var configuration = new JsonConfig
+            { BaseUrl = Configurator.GetBaseUrl(), Browser = Configurator.GetBrowser(),
                 BrowserstackServer = Configurator.GetBrowserstackServerName(),
                 BrowserstackUsername = Configurator.GetBrowserstackUsername(),
                 BrowserstackPassword = Configurator.GetBrowserstackPassword(),
