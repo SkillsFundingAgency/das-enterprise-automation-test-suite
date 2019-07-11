@@ -25,7 +25,7 @@ Once the solution is imported and built, open Test Explorer window (Test->Window
 3. Select a particular scenario to Run/Debug
 
 ## Switching from Local to Browserstack :
-To change to browserstack from local running, change the Browser value to Browserstack in the BaseTest class and add the following values in the appsettings.Development.json file
+To change to browserstack from local running, change the Browser value to Browserstack in the appsettings.Development.json file and additionally add the following values in the appsettings.Development.json:
   "Browser": "browserstack",
   "BaseUrl": "https://www.gov.uk/",
   "Optional": <true/false>,
