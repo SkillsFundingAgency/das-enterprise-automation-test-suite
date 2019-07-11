@@ -47,13 +47,13 @@ namespace ESFA.UI.Specflow.Framework.TestSupport
 
         public static string GetBrowserstackOs()
         {
-            return _config.GetSection(nameof(JsonConfig.Os)).Value;
+            return _config.GetSection(nameof(JsonConfig.BrowserstackOs)).Value;
 
         }
 
         public static string GetBrowserstackProject()
         {
-            return _config.GetSection(nameof(JsonConfig.BrowserstackProjectName)).Value;
+            return _config.GetSection(nameof(JsonConfig.BrowserstackProject)).Value;
         }
 
         public static string GetResolution()
@@ -62,16 +62,16 @@ namespace ESFA.UI.Specflow.Framework.TestSupport
 
         }
 
-        public static string GetBrowserstackbrowserVersion()
-        {
-            return _config.GetSection(nameof(JsonConfig.BrowserstackBrowserVersion)).Value;
-        }
+        //public static string GetBrowserstackbrowserVersion()
+        //{
+        //    return _config.GetSection(nameof(JsonConfig.BrowserstackBrowserVersion)).Value;
+        //}
 
         public static string GetBrowserstackOsversion()
         {
-            return _config.GetSection(nameof(JsonConfig.OsVersion)).Value;
+            return _config.GetSection(nameof(JsonConfig.BrowserstackOsversion)).Value;
         }
-       
+
         private static IConfigurationRoot InitializeConfig()
         {
             return new ConfigurationBuilder()
@@ -83,29 +83,6 @@ namespace ESFA.UI.Specflow.Framework.TestSupport
         }
 
     
-        internal static class JsonConfig
-        {
-            internal static string BaseUrl;
-
-            internal static string Browser;
-
-            internal static string BrowserstackUsername;
-
-            internal static string BrowserstackPassword;
-
-            internal static string BrowserstackBrowser;
-
-            internal static string BrowserstackServerName;
-
-            internal static string BrowserstackProjectName;
-
-            internal static string Os;
-
-            internal static string OsVersion;
-
-            internal static string BrowserstackBrowserVersion;
-
-            internal static string Resolution;
-        }
+       
     }
 }

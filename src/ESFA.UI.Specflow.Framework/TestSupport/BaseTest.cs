@@ -31,7 +31,7 @@ namespace ESFA.UI.Specflow.Framework.TestSupport
         {
             var configuration = new JsonConfig
             { BaseUrl = Configurator.GetBaseUrl(), Browser = Configurator.GetBrowser(),
-                BrowserstackServer = Configurator.GetBrowserstackServerName(),
+                BrowserstackServerName = Configurator.GetBrowserstackServerName(),
                 BrowserstackUsername = Configurator.GetBrowserstackUsername(),
                 BrowserstackPassword = Configurator.GetBrowserstackPassword(),
                 BrowserstackBrowser = Configurator.GetBrowserstackBrowser(),
@@ -66,16 +66,16 @@ namespace ESFA.UI.Specflow.Framework.TestSupport
                 case "zapProxyChrome":
                     InitialiseZapProxyChrome();
                     break;
-                case "Browserstack":
-                    BrowserStackService.BrowserstackUsername = Configurator.GetBrowserstackUsername();
-                    BrowserStackService.Browser = Configurator.GetBrowserstackBrowser();
-                    BrowserStackService.BrowserstackPassword = Configurator.GetBrowserstackPassword();
-                    BrowserStackService.BrowserstackBrowserVersion = Configurator.GetBrowserstackbrowserVersion();
-                    BrowserStackService.BrowserstackOs= Configurator.GetBrowserstackOs();
-                    BrowserStackService.BrowserstackOsversion = Configurator.GetBrowserstackOsversion();
-                    BrowserStackService.BrowserstackProjectName = Configurator.GetBrowserstackProject();
-                    BrowserStackService.Resolution = Configurator.GetResolution();
-                    BrowserStackService.BrowserstackServerName = Configurator.GetBrowserstackServerName();
+                case "browserstack":
+                    BrowserStackService.BrowserstackUsername = options.BrowserstackUsername;
+                    BrowserStackService.Browser = options.Browser;
+                    BrowserStackService.BrowserstackPassword = options.BrowserstackPassword;
+                    BrowserStackService.BrowserstackBrowserVersion = options.BrowserstackVersion;
+                    BrowserStackService.BrowserstackOs = options.BrowserstackOs;
+                    BrowserStackService.BrowserstackOsversion = options.BrowserstackOsversion;
+                    BrowserStackService.BrowserstackProjectName = options.BrowserstackProject;
+                    BrowserStackService.Resolution = options.Resolution;
+                    BrowserStackService.BrowserstackServerName = options.BrowserstackServerName;
                     WebDriver = BrowserStackService.Init();
                     break;
                 default:

@@ -13,7 +13,7 @@ namespace ESFA.UI.Specflow.Framework
         public string BrowserstackPassword { get; set; }
         public string BrowserstackBrowser { get; set; }
 
-        public string BrowserstackServer { get; set; }
+        public string BrowserstackServerName{ get; set; }
 
         public string BrowserstackProject { get; set; }
 
