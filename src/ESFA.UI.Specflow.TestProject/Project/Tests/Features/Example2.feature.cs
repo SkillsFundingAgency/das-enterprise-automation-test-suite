@@ -18,21 +18,21 @@ namespace ESFA.UI.Specflow.TestProject.Project.Tests.Features
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.0.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("Example1")]
-    public partial class Example1Feature
+    [NUnit.Framework.DescriptionAttribute("Example2")]
+    public partial class Example2Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "Example1.feature"
+#line 1 "Example2.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Example1", "\tAs a user\r\n\tI want to be able to navigate to DFE home page\r\n\tSo that I can see a" +
-                    "ll department services and information ", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Example2", "As a user\r\nI want to be able to navigate to DFE home page\r\nSo that I can see all " +
+                    "department services and information ", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -71,32 +71,31 @@ namespace ESFA.UI.Specflow.TestProject.Project.Tests.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("User navigate to MoD home page from GOV.UK page")]
-        [NUnit.Framework.CategoryAttribute("regression")]
+        [NUnit.Framework.DescriptionAttribute("User navigate to IT home page from GOV.UK page")]
+        [NUnit.Framework.CategoryAttribute("anotherregression")]
         [NUnit.Framework.TestCaseAttribute("Ministry of Defence", null)]
         [NUnit.Framework.TestCaseAttribute("Department for Education", null)]
         [NUnit.Framework.TestCaseAttribute("Income Tax", null)]
-        [NUnit.Framework.TestCaseAttribute("VAT", null)]
-        public virtual void UserNavigateToMoDHomePageFromGOV_UKPage(string searchLink, string[] exampleTags)
+        public virtual void UserNavigateToITHomePageFromGOV_UKPage(string searchLink, string[] exampleTags)
         {
             string[] @__tags = new string[] {
-                    "regression"};
+                    "anotherregression"};
             if ((exampleTags != null))
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
             }
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User navigate to MoD home page from GOV.UK page", null, @__tags);
-#line 8
- this.ScenarioInitialize(scenarioInfo);
-            this.ScenarioStart();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User navigate to IT home page from GOV.UK page", null, @__tags);
 #line 9
-  testRunner.Given("I navigate to GOV.UK home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+this.ScenarioInitialize(scenarioInfo);
+            this.ScenarioStart();
 #line 10
-  testRunner.When(string.Format("I search for {0}", searchLink), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+testRunner.Given("I navigate to GOV.UK home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 11
-  testRunner.And(string.Format("I click on {0} link", searchLink), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.When(string.Format("I search for {0}", searchLink), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 12
-  testRunner.Then("I should be on DFE home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+testRunner.And(string.Format("I click on {0} link", searchLink), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 13
+testRunner.Then("I should be on DFE home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

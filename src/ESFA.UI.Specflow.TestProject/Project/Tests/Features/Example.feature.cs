@@ -72,20 +72,13 @@ namespace ESFA.UI.Specflow.TestProject.Project.Tests.Features
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("User navigate to DFE home page from GOV.UK page")]
-        [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.TestCaseAttribute("Ministry of Defence", null)]
         [NUnit.Framework.TestCaseAttribute("Department for Education", null)]
         [NUnit.Framework.TestCaseAttribute("Universal Credit", null)]
         [NUnit.Framework.TestCaseAttribute("Corporation Tax", null)]
         public virtual void UserNavigateToDFEHomePageFromGOV_UKPage(string searchLink, string[] exampleTags)
         {
-            string[] @__tags = new string[] {
-                    "regression"};
-            if ((exampleTags != null))
-            {
-                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
-            }
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User navigate to DFE home page from GOV.UK page", null, @__tags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User navigate to DFE home page from GOV.UK page", null, exampleTags);
 #line 7
  this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
