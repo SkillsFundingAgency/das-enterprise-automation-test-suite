@@ -62,10 +62,10 @@ namespace ESFA.UI.Specflow.Framework.TestSupport
 
         }
 
-        //public static string GetBrowserstackbrowserVersion()
-        //{
-        //    return _config.GetSection(nameof(JsonConfig.BrowserstackBrowserVersion)).Value;
-        //}
+        public static string GetBrowserstackbrowserVersion()
+        {
+            return _config.GetSection(nameof(JsonConfig.BrowserstackBrowserVersion)).Value;
+        }
 
         public static string GetBrowserstackOsversion()
         {

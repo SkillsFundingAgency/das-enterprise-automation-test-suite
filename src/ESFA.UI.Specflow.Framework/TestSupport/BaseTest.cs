@@ -7,6 +7,7 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.IE;
+using OpenQA.Selenium.Remote;
 using TechTalk.SpecFlow;
 
 namespace ESFA.UI.Specflow.Framework.TestSupport
@@ -36,14 +37,16 @@ namespace ESFA.UI.Specflow.Framework.TestSupport
                 BrowserstackPassword = Configurator.GetBrowserstackPassword(),
                 BrowserstackBrowser = Configurator.GetBrowserstackBrowser(),
                 BrowserstackOs = Configurator.GetBrowserstackOs(),
+                BrowserstackBrowserVersion = Configurator.GetBrowserstackbrowserVersion(),
                 BrowserstackOsversion = Configurator.GetBrowserstackOsversion(),
                 Resolution = Configurator.GetResolution()
             };
             _context.Set(configuration);
         }
 
+
         [BeforeScenario(Order = 1)]
-        public void SetUpWebDriver()
+        public void SetUpWebDriver(JsonConfig config)
         {
             var options = _context.Get<JsonConfig>();
 
@@ -67,16 +70,18 @@ namespace ESFA.UI.Specflow.Framework.TestSupport
                     InitialiseZapProxyChrome();
                     break;
                 case "browserstack":
-                    BrowserStackService.BrowserstackUsername = options.BrowserstackUsername;
-                    BrowserStackService.Browser = options.Browser;
-                    BrowserStackService.BrowserstackPassword = options.BrowserstackPassword;
-                    BrowserStackService.BrowserstackBrowserVersion = options.BrowserstackVersion;
-                    BrowserStackService.BrowserstackOs = options.BrowserstackOs;
-                    BrowserStackService.BrowserstackOsversion = options.BrowserstackOsversion;
-                    BrowserStackService.BrowserstackProjectName = options.BrowserstackProject;
-                    BrowserStackService.Resolution = options.Resolution;
-                    BrowserStackService.BrowserstackServerName = options.BrowserstackServerName;
-                    WebDriver = BrowserStackService.Init();
+                    config.BrowserstackUsername = options.BrowserstackUsername;
+                    config.Browser = options.Browser;
+                    config.BrowserstackPassword = options.BrowserstackPassword;
+                    config.BrowserstackBrowser = options.BrowserstackBrowser;
+                    config.BrowserstackBrowserVersion = options.BrowserstackBrowserVersion;
+                    config.BrowserstackOs = options.BrowserstackOs;
+                    config.BrowserstackOsversion = options.BrowserstackOsversion;
+                    config.BrowserstackProject = options.BrowserstackProject;
+                    config.Resolution = options.Resolution;
+                    config.BrowserstackServerName = options.BrowserstackServerName;
+                    config.TestName = options.TestName;
+                    WebDriver = BrowserStackService.Init(config);
                     break;
                 default:
                     throw new Exception("Driver name - " + options.Browser + " does not match OR this framework does not support the webDriver specified");
@@ -89,6 +94,7 @@ namespace ESFA.UI.Specflow.Framework.TestSupport
             WebDriver.Manage().Cookies.DeleteAllCookies();
 
             _context.Set(WebDriver, "webdriver");
+        
         }
 
         [BeforeScenario(Order = 2)]
@@ -101,11 +107,21 @@ namespace ESFA.UI.Specflow.Framework.TestSupport
         }
 
         [AfterScenario(Order = 1)]
-        public void TakeScreenshotOnFailure()
+       
+        public void TakeScreenshotOnFailure(JsonConfig config)
         {
+           
             var WebDriver = _context.Get<IWebDriver>("webdriver");
-            String scenarioTitle = _context.ScenarioInfo.Title;
 
+            String scenarioTitle = _context.ScenarioInfo.Title;
+            if (config.Browser == "browserstack")
+            {
+                RemoteWebDriver rDriver = BrowserStackService.Init(config) as RemoteWebDriver;
+                if (_context.TestError != null)
+                {
+                    TestFailures.MarkBrowsertackTestAsFailed(rDriver, " Remote test failed");
+                }
+            }
             if (_context.TestError != null)
             {
                 try

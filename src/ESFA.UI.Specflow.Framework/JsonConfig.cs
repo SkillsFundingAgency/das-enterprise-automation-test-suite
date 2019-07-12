@@ -21,7 +21,8 @@ namespace ESFA.UI.Specflow.Framework
 
         public string BrowserstackOsversion { get; set; }
 
-        public string BrowserstackVersion { get; set; }
+        public string BrowserstackBrowserVersion { get; set; }
         public string Resolution { get; set; }
+        public object TestName { get; internal set; }
     }
 }
