@@ -38,6 +38,10 @@ To change to browserstack from local running, change the Browser value to Browse
   "OsVersion": "<operating system version>",
   "BrowserstackBrowserVersion": "<browserstack browser version>",
   "Resolution": "<resolution>"
+=======
+## Running Tests from Command Prompt:
+
+c:\>dotnet test C:\SFA\DFE-Standardised-Test-Automation-Framework\src\ESFA.UI.Specflow.TestProject\ESFA.UI.Specflow.TestProject.csproj --filter "TestCategory=regression|TestCategory=anotherregression"
 
 ## Framework:
 
