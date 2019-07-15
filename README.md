@@ -13,6 +13,17 @@ All other dependencies (ex: Selenium, drivers etc) are packaged within the solut
 
 Note: This framework is built with all standard libraries and ready to write new tests, an example test is also provided for reference. However solution, project & namespace must be renamed before writing tests.
 
+## How to use User secrets
+1. Navigate to "%APPDATA%/Microsoft" Create Directory "UserSecrets" if you dont find it.
+2. Open your .csproj file and look for node UserSecretsId (ex `<UserSecretsId`>TestProjectSecrets`</UserSecretsId`>) 
+3. Create folder "TestProjectSecrets" under "%APPDATA%/Microsoft/UserSecrets"
+4. Create a file "secrets.json" and replace only those values you want to keep it as secrets (do not copy the full json from appsettings.json)
+5. Collapse settings like this, since you probably only need to override a few settings
+```json
+{
+     "AppSettings:ConnectionString": "http://localhost:9000?user=arvinthseran&password=1234"
+}
+```
 ## Automated SpecFlow Tests:
 Acceptance Tests must be written in Feature files (Project/Tests/Features/) using standard Gherkin language using Given, When, Then format with an associated step definition for each test step. Test steps in the scenarios explains the business conditions/behaviour and the associated step definition defines how the individual scenario steps should be automated.
 
@@ -25,20 +36,12 @@ Once the solution is imported and built, open Test Explorer window (Test->Window
 3. Select a particular scenario to Run/Debug
 
 ## Switching from Local to Browserstack :
-To change to browserstack from local running, change the Browser value to Browserstack in the appsettings.Development.json file and additionally add the following values in the appsettings.Development.json:
-  "Browser": "browserstack",
-  "BaseUrl": "https://www.gov.uk/",
-  "Optional": <true/false>,
-  "BrowserstackServername": "hub-cloud.browserstack.com",
-  "BrowserstackUsername": "<browserstack username>",
-  "BrowserstackPassword": "<browserstack password>",
-  "BrowserstackBrowser": "<browserstack browser>",
-  "BrowserstackProjectName": "<browserstack project name>",
-  "Os": "<operating system>",
-  "OsVersion": "<operating system version>",
-  "BrowserstackBrowserVersion": "<browserstack browser version>",
-  "Resolution": "<resolution>"
-=======
+To change to browserstack from local, change the Browser value to "browserstack" in the appsettings.json file
+```json
+{
+  "Browser": "browserstack"
+}
+```
 ## Running Tests from Command Prompt:
 
 c:\>dotnet test C:\SFA\DFE-Standardised-Test-Automation-Framework\src\ESFA.UI.Specflow.TestProject\ESFA.UI.Specflow.TestProject.csproj --filter "TestCategory=regression|TestCategory=anotherregression"

@@ -4,15 +4,10 @@ using System;
 using System.IO;
 using System.Text;
 using System.Net;
-using System.Collections.Specialized;
-using System.Drawing;
-using NUnit.Framework;
 using TechTalk.SpecFlow;
 
 namespace ESFA.UI.Specflow.Framework.TestSupport
 {
-   
-
     public class TestFailures
     {
 

@@ -78,6 +78,7 @@ namespace ESFA.UI.Specflow.Framework.TestSupport
                 .AddJsonFile("appsettings.json", true)
                 .AddJsonFile("appsettings.Development.json", true)
                 .AddEnvironmentVariables()
+                .AddUserSecrets("TestProjectSecrets")
                 .Build();
         }
 
