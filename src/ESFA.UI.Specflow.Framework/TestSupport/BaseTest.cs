@@ -46,7 +46,7 @@ namespace ESFA.UI.Specflow.Framework.TestSupport
 
 
         [BeforeScenario(Order = 1)]
-        public void SetUpWebDriver(JsonConfig config)
+        public void SetUpWebDriver()
         {
             var options = _context.Get<JsonConfig>();
 
@@ -97,7 +97,7 @@ namespace ESFA.UI.Specflow.Framework.TestSupport
 
         [AfterScenario(Order = 1)]
 
-        public void TakeScreenshotOnFailure(JsonConfig config)
+        public void TakeScreenshotOnFailure()
         {
             String scenarioTitle = _context.ScenarioInfo.Title;
             var options = _context.Get<JsonConfig>();

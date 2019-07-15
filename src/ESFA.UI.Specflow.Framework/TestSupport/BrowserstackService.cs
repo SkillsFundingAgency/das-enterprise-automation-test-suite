@@ -1,26 +1,17 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Remote;
 using System;
-using System.IO;
-using System.Text;
-using System.Net;
-using System.Collections.Specialized;
-using NUnit.Framework;
 using OpenQA.Selenium.Chrome;
 
 namespace ESFA.UI.Specflow.Framework.Project.Tests.TestSupport
 {
     public class BrowserStackService
     {
-        
-           
-
         private static readonly string _buildDateTime;
 
         static BrowserStackService()
         {
             _buildDateTime = DateTime.Now.ToString("ddMMMyyyy HH:mm").ToUpper();
-            
         }
 
         private static void CheckBrowserStackLogin(JsonConfig options)
@@ -33,8 +24,10 @@ namespace ESFA.UI.Specflow.Framework.Project.Tests.TestSupport
         {
             CheckBrowserStackLogin(options);
 
-            var chromeOption = new ChromeOptions();
-            chromeOption.AcceptInsecureCertificates = true;
+            var chromeOption = new ChromeOptions
+            {
+                AcceptInsecureCertificates = true
+            };
             chromeOption.AddAdditionalCapability("browser", options.BrowserstackBrowser, true);
             chromeOption.AddAdditionalCapability("browser_version", options.BrowserstackBrowserVersion,true);
             chromeOption.AddAdditionalCapability("os", options.BrowserstackOs, true);
@@ -47,7 +40,5 @@ namespace ESFA.UI.Specflow.Framework.Project.Tests.TestSupport
             chromeOption.AddAdditionalCapability("name", options.TestName, true);
             return new RemoteWebDriver(new Uri($"http://{options.BrowserstackServerName}/wd/hub/"), chromeOption);
         }
-
-        
     }
 }
