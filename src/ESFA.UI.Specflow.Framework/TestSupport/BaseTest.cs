@@ -70,18 +70,7 @@ namespace ESFA.UI.Specflow.Framework.TestSupport
                     InitialiseZapProxyChrome();
                     break;
                 case "browserstack":
-                    config.BrowserstackUsername = options.BrowserstackUsername;
-                    config.Browser = options.Browser;
-                    config.BrowserstackPassword = options.BrowserstackPassword;
-                    config.BrowserstackBrowser = options.BrowserstackBrowser;
-                    config.BrowserstackBrowserVersion = options.BrowserstackBrowserVersion;
-                    config.BrowserstackOs = options.BrowserstackOs;
-                    config.BrowserstackOsversion = options.BrowserstackOsversion;
-                    config.BrowserstackProject = options.BrowserstackProject;
-                    config.Resolution = options.Resolution;
-                    config.BrowserstackServerName = options.BrowserstackServerName;
-                    config.TestName = options.TestName;
-                    WebDriver = BrowserStackService.Init(config);
+                    WebDriver = BrowserStackService.Init(options);
                     break;
                 default:
                     throw new Exception("Driver name - " + options.Browser + " does not match OR this framework does not support the webDriver specified");
@@ -107,52 +96,51 @@ namespace ESFA.UI.Specflow.Framework.TestSupport
         }
 
         [AfterScenario(Order = 1)]
-       
+
         public void TakeScreenshotOnFailure(JsonConfig config)
         {
-           
-            var WebDriver = _context.Get<IWebDriver>("webdriver");
-
             String scenarioTitle = _context.ScenarioInfo.Title;
-            if (config.Browser == "browserstack")
+            var options = _context.Get<JsonConfig>();
+            if (_context.TestError != null & options.Browser=="browserstack" )
             {
-                RemoteWebDriver rDriver = BrowserStackService.Init(config) as RemoteWebDriver;
+                RemoteWebDriver webDriver = _context.Get<RemoteWebDriver>("webdriver");
+                TestFailures.MarkBrowsertackTestAsFailed(webDriver, options, _context, "Remote test failed" );
+            }
+            
+            else
+            {
                 if (_context.TestError != null)
                 {
-                    TestFailures.MarkBrowsertackTestAsFailed(rDriver, " Remote test failed");
+                    try
+                    {
+                        DateTime dateTime = DateTime.Now;
+
+                        String failureImageName = dateTime.ToString("HH-mm-ss")
+                            + "_"
+                            + scenarioTitle
+                            + ".png";
+                        String screenshotsDirectory = AppDomain.CurrentDomain.BaseDirectory
+                            + "../../"
+                            + "\\Project\\Screenshots\\"
+                            + dateTime.ToString("dd-MM-yyyy")
+                            + "\\";
+                        if (!Directory.Exists(screenshotsDirectory))
+                        {
+                            Directory.CreateDirectory(screenshotsDirectory);
+                        }
+
+                        ITakesScreenshot screenshotHandler = WebDriver as ITakesScreenshot;
+                        Screenshot screenshot = screenshotHandler.GetScreenshot();
+                        String screenshotPath = Path.Combine(screenshotsDirectory, failureImageName);
+                        screenshot.SaveAsFile(screenshotPath, ScreenshotImageFormat.Png);
+                        Console.WriteLine($"{scenarioTitle} -- Scenario under feature failed and the screenshot is available at -- {screenshotPath}");
+                    }
+                    catch (Exception exception)
+                    {
+                        Console.WriteLine("Exception occurred while taking screenshot - " + exception);
+                    }
                 }
             }
-            if (_context.TestError != null)
-            {
-                try
-                {
-                    DateTime dateTime = DateTime.Now;
-                    
-                    String failureImageName = dateTime.ToString("HH-mm-ss")
-                        + "_"
-                        + scenarioTitle
-                        + ".png";
-                    String screenshotsDirectory = AppDomain.CurrentDomain.BaseDirectory
-                        + "../../"
-                        + "\\Project\\Screenshots\\"
-                        + dateTime.ToString("dd-MM-yyyy")
-                        + "\\";
-                    if (!Directory.Exists(screenshotsDirectory))
-                    {
-                        Directory.CreateDirectory(screenshotsDirectory);
-                    }
-                
-                    ITakesScreenshot screenshotHandler = WebDriver as ITakesScreenshot;
-                    Screenshot screenshot = screenshotHandler.GetScreenshot();
-                    String screenshotPath = Path.Combine(screenshotsDirectory, failureImageName);
-                    screenshot.SaveAsFile(screenshotPath, ScreenshotImageFormat.Png);
-                    Console.WriteLine($"{scenarioTitle} -- Scenario under feature failed and the screenshot is available at -- {screenshotPath}");
-                }
-                catch (Exception exception)
-                {
-                    Console.WriteLine("Exception occurred while taking screenshot - " + exception);
-                }
-            }            
         }
 
         [AfterScenario(Order = 2)]

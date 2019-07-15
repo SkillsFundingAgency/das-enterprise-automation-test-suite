@@ -59,7 +59,6 @@ namespace ESFA.UI.Specflow.Framework.TestSupport
         public static string GetResolution()
         {
             return _config.GetSection(nameof(JsonConfig.Resolution)).Value;
-
         }
 
         public static string GetBrowserstackbrowserVersion()

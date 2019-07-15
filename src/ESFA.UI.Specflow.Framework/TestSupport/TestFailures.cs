@@ -5,22 +5,46 @@ using System.IO;
 using System.Text;
 using System.Net;
 using System.Collections.Specialized;
+using System.Drawing;
 using NUnit.Framework;
+using TechTalk.SpecFlow;
 
 namespace ESFA.UI.Specflow.Framework.TestSupport
 {
    
 
-    class TestFailures
+    public class TestFailures
     {
-        public static NameValueCollection Settings { get; set; }
 
-        public static void MarkBrowsertackTestAsFailed(RemoteWebDriver driver, string exceptionMessage)
+        private readonly ScenarioContext _context;
+
+        public TestFailures(ScenarioContext context)
         {
-          //  CheckBrowserStackSettings();
+            _context = context;
+        }
 
-            string reqString = "{\"status\":\"failed\", \"reason\":\"" + exceptionMessage + "\"}";
-
+        public static void MarkBrowsertackTestAsFailed(RemoteWebDriver driver, JsonConfig options, ScenarioContext _context, string message)
+        {
+            String scenarioTitle = _context.ScenarioInfo.Title;
+            DateTime dateTime = DateTime.Now;
+            String failureImageName = dateTime.ToString("HH-mm-ss")
+                + "_"
+                + scenarioTitle
+                + ".png";
+            String screenshotsDirectory = AppDomain.CurrentDomain.BaseDirectory
+                + "../../"
+                + "\\Project\\Screenshots\\"
+                + dateTime.ToString("dd-MM-yyyy")
+                + "\\";
+            if (!Directory.Exists(screenshotsDirectory))
+            {
+                Directory.CreateDirectory(screenshotsDirectory);
+            }
+            Screenshot ss = ((ITakesScreenshot)driver).GetScreenshot();
+            String screenshotPath = Path.Combine(screenshotsDirectory, failureImageName);
+            ss.SaveAsFile(screenshotPath, ScreenshotImageFormat.Png);
+            Console.WriteLine($"{scenarioTitle} -- Scenario under feature failed and the screenshot is available at -- {screenshotPath}");
+            string reqString = "{\"status\":\"failed\", \"reason\":\"" + message + "\"}";
             byte[] requestData = Encoding.UTF8.GetBytes(reqString);
             var sessionId = driver.SessionId.ToString();
             Uri myUri = new Uri(string.Format("https://www.browserstack.com/automate/sessions/" + sessionId + ".json"));
@@ -30,21 +54,17 @@ namespace ESFA.UI.Specflow.Framework.TestSupport
             myWebRequest.Method = "PUT";
             myWebRequest.ContentLength = requestData.Length;
             using (Stream st = myWebRequest.GetRequestStream()) st.Write(requestData, 0, requestData.Length);
-
-            var myNetworkCredential = new NetworkCredential(Settings["BrowserstackUsername"], Settings["BrowserstackPassword"]);
+            var myNetworkCredential = new NetworkCredential(options.BrowserstackUsername, options.BrowserstackPassword);
             var myCredentialCache = new CredentialCache();
             myCredentialCache.Add(myUri, "Basic", myNetworkCredential);
             myHttpWebRequest.PreAuthenticate = true;
             myHttpWebRequest.Credentials = myCredentialCache;
-
             WebResponse myWebResponse = myWebRequest.GetResponse();
             Stream responseStream = myWebResponse.GetResponseStream();
             StreamReader myStreamReader = new StreamReader(responseStream, Encoding.Default);
-
             string pageContent = myStreamReader.ReadToEnd();
             Console.Write(pageContent);
             responseStream.Close();
-
             myWebResponse.Close();
         }
     }
