@@ -15,10 +15,16 @@ Note: This framework is built with all standard libraries and ready to write new
 
 ## How to use User secrets
 1. Navigate to "%APPDATA%/Microsoft" Create Directory "UserSecrets" if you dont find it.
-2. Open your .csproj file in VS and look for node UserSecretsId (ex `<UserSecretsId`>TestProjectSecrets`</UserSecretsId`>") 
-3. Create folder "TestProjectSecrets" under "%APPDATA%/Microsoft/UserSecrets" if you dont find it
+2. Open your .csproj file and look for node UserSecretsId (ex `<UserSecretsId`>TestProjectSecrets`</UserSecretsId`>) 
+3. Create folder "TestProjectSecrets" under "%APPDATA%/Microsoft/UserSecrets"
 4. Create a file "secrets.json" and replace only those values you want to keep it as secrets (do not copy the full json from appsettings.json)
-
+5. Collapse settings like this, since you probably only need to override a few settings
+```json
+{
+     "AppSettings:ConnectionString": "http://localhost:9000?user=arvinthseran&password=1234"
+}
+```
+	
 ## Automated SpecFlow Tests:
 Acceptance Tests must be written in Feature files (Project/Tests/Features/) using standard Gherkin language using Given, When, Then format with an associated step definition for each test step. Test steps in the scenarios explains the business conditions/behaviour and the associated step definition defines how the individual scenario steps should be automated.
 
