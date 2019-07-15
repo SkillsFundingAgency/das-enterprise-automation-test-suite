@@ -2,10 +2,12 @@
 using System.IO;
 using System.Reflection;
 using ESFA.UI.Specflow.Framework.Helpers;
+using ESFA.UI.Specflow.Framework.Project.Tests.TestSupport;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.IE;
+using OpenQA.Selenium.Remote;
 using TechTalk.SpecFlow;
 
 namespace ESFA.UI.Specflow.Framework.TestSupport
@@ -28,9 +30,20 @@ namespace ESFA.UI.Specflow.Framework.TestSupport
         [BeforeScenario(Order = 0)]
         public void Setup()
         {
-            var configuration = new JsonConfig { BaseUrl = Configurator.GetBaseUrl(), Browser = Configurator.GetBrowser() };
+            var configuration = new JsonConfig
+            { BaseUrl = Configurator.GetBaseUrl(), Browser = Configurator.GetBrowser(),
+                BrowserstackServerName = Configurator.GetBrowserstackServerName(),
+                BrowserstackUsername = Configurator.GetBrowserstackUsername(),
+                BrowserstackPassword = Configurator.GetBrowserstackPassword(),
+                BrowserstackBrowser = Configurator.GetBrowserstackBrowser(),
+                BrowserstackOs = Configurator.GetBrowserstackOs(),
+                BrowserstackBrowserVersion = Configurator.GetBrowserstackbrowserVersion(),
+                BrowserstackOsversion = Configurator.GetBrowserstackOsversion(),
+                Resolution = Configurator.GetResolution()
+            };
             _context.Set(configuration);
         }
+
 
         [BeforeScenario(Order = 1)]
         public void SetUpWebDriver()
@@ -56,7 +69,9 @@ namespace ESFA.UI.Specflow.Framework.TestSupport
                 case "zapProxyChrome":
                     InitialiseZapProxyChrome();
                     break;
-
+                case "browserstack":
+                    WebDriver = BrowserStackService.Init(options);
+                    break;
                 default:
                     throw new Exception("Driver name - " + options.Browser + " does not match OR this framework does not support the webDriver specified");
             }
@@ -68,6 +83,7 @@ namespace ESFA.UI.Specflow.Framework.TestSupport
             WebDriver.Manage().Cookies.DeleteAllCookies();
 
             _context.Set(WebDriver, "webdriver");
+        
         }
 
         [BeforeScenario(Order = 2)]
@@ -80,42 +96,51 @@ namespace ESFA.UI.Specflow.Framework.TestSupport
         }
 
         [AfterScenario(Order = 1)]
+
         public void TakeScreenshotOnFailure()
         {
-            var WebDriver = _context.Get<IWebDriver>("webdriver");
             String scenarioTitle = _context.ScenarioInfo.Title;
-
-            if (_context.TestError != null)
+            var options = _context.Get<JsonConfig>();
+            if (_context.TestError != null & options.Browser=="browserstack" )
             {
-                try
+                RemoteWebDriver webDriver = _context.Get<RemoteWebDriver>("webdriver");
+                TestFailures.MarkBrowsertackTestAsFailed(webDriver, options, _context, "Remote test failed" );
+            }
+            
+            else
+            {
+                if (_context.TestError != null)
                 {
-                    DateTime dateTime = DateTime.Now;
-                    
-                    String failureImageName = dateTime.ToString("HH-mm-ss")
-                        + "_"
-                        + scenarioTitle
-                        + ".png";
-                    String screenshotsDirectory = AppDomain.CurrentDomain.BaseDirectory
-                        + "../../"
-                        + "\\Project\\Screenshots\\"
-                        + dateTime.ToString("dd-MM-yyyy")
-                        + "\\";
-                    if (!Directory.Exists(screenshotsDirectory))
+                    try
                     {
-                        Directory.CreateDirectory(screenshotsDirectory);
+                        DateTime dateTime = DateTime.Now;
+
+                        String failureImageName = dateTime.ToString("HH-mm-ss")
+                            + "_"
+                            + scenarioTitle
+                            + ".png";
+                        String screenshotsDirectory = AppDomain.CurrentDomain.BaseDirectory
+                            + "../../"
+                            + "\\Project\\Screenshots\\"
+                            + dateTime.ToString("dd-MM-yyyy")
+                            + "\\";
+                        if (!Directory.Exists(screenshotsDirectory))
+                        {
+                            Directory.CreateDirectory(screenshotsDirectory);
+                        }
+
+                        ITakesScreenshot screenshotHandler = WebDriver as ITakesScreenshot;
+                        Screenshot screenshot = screenshotHandler.GetScreenshot();
+                        String screenshotPath = Path.Combine(screenshotsDirectory, failureImageName);
+                        screenshot.SaveAsFile(screenshotPath, ScreenshotImageFormat.Png);
+                        Console.WriteLine($"{scenarioTitle} -- Scenario under feature failed and the screenshot is available at -- {screenshotPath}");
                     }
-                
-                    ITakesScreenshot screenshotHandler = WebDriver as ITakesScreenshot;
-                    Screenshot screenshot = screenshotHandler.GetScreenshot();
-                    String screenshotPath = Path.Combine(screenshotsDirectory, failureImageName);
-                    screenshot.SaveAsFile(screenshotPath, ScreenshotImageFormat.Png);
-                    Console.WriteLine($"{scenarioTitle} -- Scenario under feature failed and the screenshot is available at -- {screenshotPath}");
+                    catch (Exception exception)
+                    {
+                        Console.WriteLine("Exception occurred while taking screenshot - " + exception);
+                    }
                 }
-                catch (Exception exception)
-                {
-                    Console.WriteLine("Exception occurred while taking screenshot - " + exception);
-                }
-            }            
+            }
         }
 
         [AfterScenario(Order = 2)]
