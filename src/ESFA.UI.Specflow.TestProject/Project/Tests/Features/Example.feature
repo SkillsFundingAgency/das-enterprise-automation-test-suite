@@ -7,7 +7,7 @@
 	Scenario Outline: User navigate to DFE home page from GOV.UK page
 		Given I navigate to GOV.UK home page
 		When I search for <SearchLink>
-		And I click on <SearchLink> link
+		And I click the same link
 		Then I should be on DFE home page
 
 		Examples: 
