@@ -13,6 +13,12 @@ All other dependencies (ex: Selenium, drivers etc) are packaged within the solut
 
 Note: This framework is built with all standard libraries and ready to write new tests, an example test is also provided for reference. However solution, project & namespace must be renamed before writing tests.
 
+## How to use User secrets
+1. Navigate to "%APPDATA%/Microsoft" Create Directory "UserSecrets" if you dont find it.
+2. Open your .csproj file in VS and look for node UserSecretsId (ex <UserSecretsId>TestProjectSecrets</UserSecretsId>) 
+3. Create folder "TestProjectSecrets" under "%APPDATA%/Microsoft/UserSecrets" if you dont find it
+4. Create a file "secrets.json" and replace only those values you want to keep it as secrets (do not copy the full json from appsettings.json)
+
 ## Automated SpecFlow Tests:
 Acceptance Tests must be written in Feature files (Project/Tests/Features/) using standard Gherkin language using Given, When, Then format with an associated step definition for each test step. Test steps in the scenarios explains the business conditions/behaviour and the associated step definition defines how the individual scenario steps should be automated.
 
