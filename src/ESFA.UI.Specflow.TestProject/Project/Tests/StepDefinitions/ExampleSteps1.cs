@@ -9,22 +9,21 @@ namespace ESFA.UI.Specflow.TestProject.Project.Tests.StepDefinitions
     public class ExampleSteps1
     {
         private readonly ScenarioContext _context;
-        private readonly ObjectContext _objecContext;
+        private readonly ObjectContext _objectContext;
 
-        public ExampleSteps1(ScenarioContext context, ObjectContext objecContext)
+        public ExampleSteps1(ScenarioContext context)
         {
             _context = context;
-            _objecContext = objecContext;
+            _objectContext = context.Get<ObjectContext>();
         }
 
         [When(@"I click the same link")]
         public void WhenIClickTheSameLink()
         {
             var searchResultsPage = new SearchResultsPage(_context);
-            var searchText = _objecContext.Get("searchText");
+            var searchText = _objectContext.Get("searchText");
             TestContext.Progress.WriteLine($"Naivgating to {searchText} page");
             searchResultsPage.ClickDfeLink(searchText);
         }
-
     }
 }
