@@ -27,7 +27,7 @@ namespace ESFA.UI.Specflow.Framework.TestSupport
 
         public T Get<T>(string key)
         {
-            return _objects.TryGetValue(key, out var value) ? (T)value : default;
+            return _objects.TryGetValue(key, out var value) ? (T)value : default(T);
         }
 
         public IEnumerable<T> GetAll<T>()
