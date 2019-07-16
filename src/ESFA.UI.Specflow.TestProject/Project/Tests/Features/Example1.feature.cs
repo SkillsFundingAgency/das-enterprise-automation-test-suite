@@ -99,28 +99,6 @@ namespace ESFA.UI.Specflow.TestProject.Project.Tests.Features
 #line hidden
             this.ScenarioCleanup();
         }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("User navigate to VAT home page from GOV.UK page")]
-        [NUnit.Framework.CategoryAttribute("regression")]
-        public virtual void UserNavigateToVATHomePageFromGOV_UKPage()
-        {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User navigate to VAT home page from GOV.UK page", null, new string[] {
-                        "regression"});
-#line 23
- this.ScenarioInitialize(scenarioInfo);
-            this.ScenarioStart();
-#line 24
-  testRunner.Given("I navigate to GOV.UK home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 25
-  testRunner.When("I search for VAT", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 26
-  testRunner.When("I click on VAT link", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 27
-  testRunner.Then("I should be on DFE home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-            this.ScenarioCleanup();
-        }
     }
 }
 #pragma warning restore

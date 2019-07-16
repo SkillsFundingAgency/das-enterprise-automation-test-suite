@@ -1,4 +1,4 @@
-﻿Feature: Example feature
+﻿Feature: Example
 	As a user
 	I want to be able to navigate to DFE home page
 	So that I can see all department services and information 
