@@ -7,7 +7,7 @@
   },
   "stepAssemblies": [
     {
-      "assembly": "ESFA.UI.Specflow.Framework"
+      "assembly": "SFA.DAS.UI.Framework"
     }
   ]
 }
