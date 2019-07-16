@@ -76,7 +76,6 @@ namespace ESFA.UI.Specflow.TestProject.Project.Tests.Features
         [NUnit.Framework.TestCaseAttribute("Ministry of Defence", null)]
         [NUnit.Framework.TestCaseAttribute("Department for Education", null)]
         [NUnit.Framework.TestCaseAttribute("Income Tax", null)]
-        [NUnit.Framework.TestCaseAttribute("VAT", null)]
         public virtual void UserNavigateToMoDHomePageFromGOV_UKPage(string searchLink, string[] exampleTags)
         {
             string[] @__tags = new string[] {
@@ -94,7 +93,7 @@ namespace ESFA.UI.Specflow.TestProject.Project.Tests.Features
 #line 10
   testRunner.When(string.Format("I search for {0}", searchLink), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 11
-  testRunner.And(string.Format("I click on {0} link", searchLink), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("I click the same link", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 12
   testRunner.Then("I should be on DFE home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden

@@ -95,6 +95,8 @@ testRunner.When(string.Format("I search for {0}", searchLink), ((string)(null)),
 #line 12
 testRunner.And(string.Format("I click on {0} link", searchLink), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 13
+testRunner.And("I click the same link", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 14
 testRunner.Then("I should be on DFE home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();

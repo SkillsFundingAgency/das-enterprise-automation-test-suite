@@ -95,6 +95,12 @@ namespace ESFA.UI.Specflow.Framework.TestSupport
             _context.Set(new FormCompletionHelper(WebDriver));
         }
 
+        [BeforeScenario(Order = 3)]
+        public void SetObjectContext(ObjectContext objectContext)
+        {
+            _context.Set(objectContext);
+        }
+
         [AfterScenario(Order = 1)]
 
         public void TakeScreenshotOnFailure()

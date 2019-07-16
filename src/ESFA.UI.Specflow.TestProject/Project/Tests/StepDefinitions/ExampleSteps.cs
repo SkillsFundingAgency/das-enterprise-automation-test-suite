@@ -1,5 +1,5 @@
 ﻿using ESFA.UI.Specflow.Framework.Project.Tests.Pages;
-using NUnit.Framework;
+using ESFA.UI.Specflow.Framework.TestSupport;
 using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 using TestContext = NUnit.Framework.TestContext;
@@ -11,6 +11,7 @@ namespace ESFA.UI.Specflow.Framework.Project.Tests.StepDefinitions
     {
         private readonly JsonConfig _configuration;
         private readonly ScenarioContext _context;
+        private readonly ObjectContext _objectContext;
         private readonly IWebDriver _webDriver;
 
         public ExampleSteps(ScenarioContext context)
@@ -18,6 +19,7 @@ namespace ESFA.UI.Specflow.Framework.Project.Tests.StepDefinitions
             _context = context;
             _webDriver = context.Get<IWebDriver>("webdriver");
             _configuration = context.Get<JsonConfig>();
+            _objectContext = context.Get<ObjectContext>();
         }
 
         [Given(@"I navigate to GOV.UK home page")]
@@ -33,6 +35,7 @@ namespace ESFA.UI.Specflow.Framework.Project.Tests.StepDefinitions
         {
             var welcomeToGovUkPage = new WelcomeToGovUkPage(_context);
             TestContext.Progress.WriteLine($"Searching for {searchText}");
+            _objectContext.Set("searchText", searchText);
             welcomeToGovUkPage.EnterSearchTextAndSubmit(searchText);
         }
 
