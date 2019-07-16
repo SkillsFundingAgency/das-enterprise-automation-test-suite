@@ -1,6 +1,4 @@
 ﻿using Microsoft.Extensions.Configuration;
-using System;
-using System.Collections.Specialized;
 using System.IO;
 
 namespace SFA.DAS.UI.Framework.TestSupport
@@ -81,8 +79,5 @@ namespace SFA.DAS.UI.Framework.TestSupport
                 .AddUserSecrets("TestProjectSecrets")
                 .Build();
         }
-
-    
-       
     }
 }

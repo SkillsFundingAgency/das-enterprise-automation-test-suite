@@ -1,47 +1,20 @@
-﻿using OpenQA.Selenium;
-using OpenQA.Selenium.Remote;
+﻿using OpenQA.Selenium.Remote;
 using System;
 using System.IO;
 using System.Text;
 using System.Net;
-using TechTalk.SpecFlow;
 
 namespace SFA.DAS.UI.Framework.TestSupport
 {
-    public class TestFailures
+    public class BrowserStackTearDown
     {
-
-        private readonly ScenarioContext _context;
-
-        public TestFailures(ScenarioContext context)
+        public static void MarkTestAsFailed(RemoteWebDriver webDriver, JsonConfig options, string scenarioTitle, string message)
         {
-            _context = context;
-        }
+            ScreenshotHelper.TakeScreenShot(webDriver, scenarioTitle);
 
-        public static void MarkBrowsertackTestAsFailed(RemoteWebDriver driver, JsonConfig options, ScenarioContext _context, string message)
-        {
-            String scenarioTitle = _context.ScenarioInfo.Title;
-            DateTime dateTime = DateTime.Now;
-            String failureImageName = dateTime.ToString("HH-mm-ss")
-                + "_"
-                + scenarioTitle
-                + ".png";
-            String screenshotsDirectory = AppDomain.CurrentDomain.BaseDirectory
-                + "../../"
-                + "\\Project\\Screenshots\\"
-                + dateTime.ToString("dd-MM-yyyy")
-                + "\\";
-            if (!Directory.Exists(screenshotsDirectory))
-            {
-                Directory.CreateDirectory(screenshotsDirectory);
-            }
-            Screenshot ss = ((ITakesScreenshot)driver).GetScreenshot();
-            String screenshotPath = Path.Combine(screenshotsDirectory, failureImageName);
-            ss.SaveAsFile(screenshotPath, ScreenshotImageFormat.Png);
-            Console.WriteLine($"{scenarioTitle} -- Scenario under feature failed and the screenshot is available at -- {screenshotPath}");
             string reqString = "{\"status\":\"failed\", \"reason\":\"" + message + "\"}";
             byte[] requestData = Encoding.UTF8.GetBytes(reqString);
-            var sessionId = driver.SessionId.ToString();
+            var sessionId = webDriver.SessionId.ToString();
             Uri myUri = new Uri(string.Format("https://www.browserstack.com/automate/sessions/" + sessionId + ".json"));
             WebRequest myWebRequest = HttpWebRequest.Create(myUri);
             HttpWebRequest myHttpWebRequest = (HttpWebRequest)myWebRequest;
