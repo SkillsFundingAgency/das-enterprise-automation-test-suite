@@ -2,7 +2,7 @@
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.UI.Framework.TestSupport.BeforeScenario
+namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
 {
     [Binding]
     public class HelpersSetup

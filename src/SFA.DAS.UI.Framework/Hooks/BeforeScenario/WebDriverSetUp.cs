@@ -6,9 +6,10 @@ using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.IE;
 using SFA.DAS.UI.Framework.Project.Tests.TestSupport;
+using SFA.DAS.UI.Framework.TestSupport;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.UI.Framework.TestSupport.BeforeScenario
+namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
 {
     [Binding]
     public class WebDriverSetup

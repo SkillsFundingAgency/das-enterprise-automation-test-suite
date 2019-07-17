@@ -1,8 +1,9 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Remote;
+using SFA.DAS.UI.Framework.TestSupport;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.UI.Framework.TestSupport.AfterScenario
+namespace SFA.DAS.UI.Framework.Hooks.AfterScenario
 {
     [Binding]
     public class ScreenshotTeardown

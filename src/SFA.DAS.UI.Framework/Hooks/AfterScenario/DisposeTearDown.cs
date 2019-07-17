@@ -1,7 +1,7 @@
 ﻿using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.UI.Framework.TestSupport.AfterScenario
+namespace SFA.DAS.UI.Framework.Hooks.AfterScenario
 {
     [Binding]
     public class DisposeTeardown
