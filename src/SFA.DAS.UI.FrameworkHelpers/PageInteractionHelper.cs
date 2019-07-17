@@ -77,7 +77,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
                 + "\n Found: " + actual);
         }
 
-        public Boolean VerifyValueAttributeOfAnElement(By locator, string expected)
+        public bool VerifyValueAttributeOfAnElement(By locator, string expected)
         {
             var actual = WebDriver.FindElement(locator).GetAttribute("value");
             if (actual.Contains(expected))

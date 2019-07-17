@@ -19,7 +19,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         public void ClickElement(By locator)
         {
-            WebDriver.FindElement(locator).Click();
+            ClickElement(WebDriver.FindElement(locator));
         }
 
         public void EnterText(IWebElement element, string text)
@@ -30,26 +30,22 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         public void EnterText(By locator, string text)
         {
-            WebDriver.FindElement(locator).Clear();
-            WebDriver.FindElement(locator).SendKeys(text);
+            EnterText(WebDriver.FindElement(locator), text);
         }
 
         public void EnterText(IWebElement element, int value)
         {
-            element.Clear();
-            element.SendKeys(value.ToString());
+            EnterText(element, value.ToString());
         }
 
         public void SelectFromDropDownByValue(IWebElement element, string value)
         {
-            var selectElement = new SelectElement(element);
-            selectElement.SelectByValue(value);
+            SelectElement(element).SelectByValue(value);
         }
 
         public void SelectFromDropDownByText(IWebElement element, string text)
         {
-            var selectElement = new SelectElement(element);
-            selectElement.SelectByText(text);
+            SelectElement(element).SelectByText(text);
         }
 
         public void SelectCheckBox(IWebElement element)
@@ -67,6 +63,11 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
             if (radioToSelect != null)
                 ClickElement(radioToSelect);
+        }
+
+        private SelectElement SelectElement(IWebElement element)
+        {
+            return new SelectElement(element);
         }
     }
 }
