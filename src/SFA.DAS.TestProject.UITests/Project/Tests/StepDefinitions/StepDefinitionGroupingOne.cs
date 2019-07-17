@@ -1,20 +1,23 @@
 ﻿using SFA.DAS.TestProject.UITests.Project.Tests.Pages;
 using SFA.DAS.UI.Framework.TestSupport;
 using OpenQA.Selenium;
+using SFA.DAS.UI.Framework;
 using TechTalk.SpecFlow;
 using TestContext = NUnit.Framework.TestContext;
 
-namespace SFA.DAS.UI.Framework.Project.Tests.StepDefinitions
+namespace SFA.DAS.TestProject.UITests.Project.Tests.StepDefinitions
 {
     [Binding]
-    public class ExampleSteps 
+    public class StepDefinitionGroupingOne
     {
+        #region Private Variables
         private readonly JsonConfig _configuration;
         private readonly ScenarioContext _context;
         private readonly ObjectContext _objectContext;
         private readonly IWebDriver _webDriver;
+#endregion
 
-        public ExampleSteps(ScenarioContext context)
+        public StepDefinitionGroupingOne(ScenarioContext context)
         {
             _context = context;
             _webDriver = context.Get<IWebDriver>("webdriver");
@@ -26,33 +29,33 @@ namespace SFA.DAS.UI.Framework.Project.Tests.StepDefinitions
         public void NavigateToGovUkHomePage()
         {
             var url = _configuration.BaseUrl;
-            TestContext.Progress.WriteLine("Naivgating to Gov.uk home page");
+            TestContext.Progress.WriteLine("Navigating to Gov.uk home page");
             _webDriver.Url = url; 
         }
 
         [When(@"I search for (.*)")]
         public void SearchForText(string searchText)
         {
-            var welcomeToGovUkPage = new WelcomeToGovUkPage(_context);
+            var welcomePage = new WelcomePage(_context);
             TestContext.Progress.WriteLine($"Searching for {searchText}");
             _objectContext.Set("searchText", searchText);
-            welcomeToGovUkPage.EnterSearchTextAndSubmit(searchText);
+            welcomePage.EnterSearchTextAndSubmit(searchText);
         }
 
         [When(@"I click on (.*) link")]
         public void ClickOnDfeLink(string searchText)
         {
             var searchResultsPage = new SearchResultsPage(_context);
-            TestContext.Progress.WriteLine($"Naivgating to {searchText} page");
-            searchResultsPage.ClickDfeLink(searchText);
+            TestContext.Progress.WriteLine($"Navigating to {searchText} page");
+            searchResultsPage.OpenDesiredPage(searchText);
         }
 
         [Then(@"I should be on DFE home page")]
         public void ShouldBeOnDfeHomePage()
         {
-            var departmentForEducationHomePage = new DepartmentForEducationHomePage(_context);
+            var homePage = new HomePage(_context);
             TestContext.Progress.WriteLine($"Verifying Page title");
-            departmentForEducationHomePage.IsPageHeadingMacthing();
+            homePage.IsPageMatching();
         }
     }
 }

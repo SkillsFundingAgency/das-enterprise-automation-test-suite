@@ -6,12 +6,14 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.TestProject.UITests.Project.Tests.StepDefinitions
 {
     [Binding]
-    public class ExampleSteps1
-    {
+    public class StepDefinitionGroupingTwo
+    { 
+        #region Private Variables
         private readonly ScenarioContext _context;
         private readonly ObjectContext _objectContext;
+        #endregion
 
-        public ExampleSteps1(ScenarioContext context)
+        public StepDefinitionGroupingTwo(ScenarioContext context)
         {
             _context = context;
             _objectContext = context.Get<ObjectContext>();
@@ -22,8 +24,8 @@ namespace SFA.DAS.TestProject.UITests.Project.Tests.StepDefinitions
         {
             var searchResultsPage = new SearchResultsPage(_context);
             var searchText = _objectContext.Get("searchText");
-            TestContext.Progress.WriteLine($"Naivgating to {searchText} page");
-            searchResultsPage.ClickDfeLink(searchText);
+            TestContext.Progress.WriteLine($"Navigating to {searchText} page");
+            searchResultsPage.OpenDesiredPage(searchText);
         }
     }
 }

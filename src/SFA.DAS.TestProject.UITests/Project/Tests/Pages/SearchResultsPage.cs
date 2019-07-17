@@ -4,35 +4,40 @@ using SFA.DAS.UI.Framework.TestSupport;
 using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 
+
 namespace SFA.DAS.TestProject.UITests.Project.Tests.Pages
 {
-    public class SearchResultsPage : BasePage
+    public sealed class SearchResultsPage : BasePage
     {
-        private static String PAGE_TITLE = "";
+        private const string PageTitle = "";
 
+        #region Helpers and Context
         private readonly PageInteractionHelper _pageInteractionHelper;
         private readonly FormCompletionHelper _formCompletionHelper;
         private readonly ScenarioContext _context;
+        #endregion
+
+        #region Page Object Elements
+        private By DfeUrl(string searchText) => By.LinkText(searchText);
+#endregion 
 
         public SearchResultsPage(ScenarioContext context) : base(context)
         {
             _context = context;
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
-            SelfVerify();
+            VerifyPage();
         }
 
-        protected override bool SelfVerify()
+        protected override bool VerifyPage()
         {
-            return _pageInteractionHelper.VerifyPageHeading(this.GetPageHeading(), PAGE_TITLE);
+            return _pageInteractionHelper.VerifyPage(this.GetPageHeading(), PageTitle);
         }
 
-        private By dfeLink(string searchText) => By.LinkText(searchText);
-
-        internal DepartmentForEducationHomePage ClickDfeLink(string searchText)
+        internal HomePage OpenDesiredPage(string searchText)
         {
-            _formCompletionHelper.ClickElement(dfeLink(searchText));
-            return new DepartmentForEducationHomePage(_context);
+            _formCompletionHelper.ClickElement(DfeUrl(searchText));
+            return new HomePage(_context);
         }
     }
 }
