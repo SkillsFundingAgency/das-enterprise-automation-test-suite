@@ -44,7 +44,9 @@ To change to browserstack from local, change the Browser value to "browserstack"
 ```
 ## Running Tests from Command Prompt:
 
+```
 c:\>dotnet test C:\SFA\DFE-Standardised-Test-Automation-Framework\src\ESFA.UI.Specflow.TestProject\ESFA.UI.Specflow.TestProject.csproj --filter "TestCategory=regression|TestCategory=anotherregression"
+```
 
 ## Framework:
 
@@ -86,3 +88,11 @@ Note: Tests can be executed on different browsers using BrowserStack
 4. Create your data set
 5. Tests must be independent from other tests
 6. Don't use static user/data, create a user/data for every test and delete the user/data after the test is completed
+
+## Parallel Test Execution Limitations:
+
+This framework supports Feature Level parallelization (tests under different feature file will run in parallel) not Scenario Level parallelization (tests under same feature file will not execute in parallel.
+
+Note : referenced from https://github.com/techtalk/SpecFlow/issues/1599, https://github.com/techtalk/SpecFlow/issues/1535
+
+
