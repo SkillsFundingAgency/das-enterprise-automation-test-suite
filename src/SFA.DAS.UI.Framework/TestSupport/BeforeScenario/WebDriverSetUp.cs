@@ -32,26 +32,26 @@ namespace SFA.DAS.UI.Framework.TestSupport.BeforeScenario
             
             switch (true)
             {
-                case bool _ when CompareTo(browser, "firefox"):
+                case bool _ when browser.IsFirefox():
                     WebDriver = new FirefoxDriver(DriverPath);
                     WebDriver.Manage().Window.Maximize();
                     break;
 
-                case bool _ when CompareTo(browser, "chrome"):
+                case bool _ when browser.IsChrome():
                     WebDriver = new ChromeDriver(DriverPath);
                     break;
 
-                case bool _ when CompareTo(browser, "ie"):
+                case bool _ when browser.IsIe():
                     WebDriver = new InternetExplorerDriver(DriverPath);
                     WebDriver.Manage().Window.Maximize();
                     break;
 
-                case bool _ when CompareTo(browser, "zapProxyChrome"):
+                case bool _ when browser.IsZap():
                     InitialiseZapProxyChrome();
                     break;
 
-                case bool _ when CompareTo(browser, "browserstack"):
-                    WebDriver = BrowserStackSetUp.Init(options);
+                case bool _ when browser.IsCloudExecution():
+                    WebDriver = BrowserStackSetUp.Init(options.BrowserStackSetting);
                     break;
 
                 default:
@@ -65,11 +65,6 @@ namespace SFA.DAS.UI.Framework.TestSupport.BeforeScenario
             WebDriver.Manage().Cookies.DeleteAllCookies();
 
             _context.Set(WebDriver, "webdriver");
-        }
-
-        public static bool CompareTo(string strA, string strB)
-        {
-            return string.Compare(strA, strB, true) == 0;
         }
 
         private void InitialiseZapProxyChrome()
@@ -86,6 +81,5 @@ namespace SFA.DAS.UI.Framework.TestSupport.BeforeScenario
 
             WebDriver = new ChromeDriver(DriverPath, chromeOptions);
         }
-
     }
 }

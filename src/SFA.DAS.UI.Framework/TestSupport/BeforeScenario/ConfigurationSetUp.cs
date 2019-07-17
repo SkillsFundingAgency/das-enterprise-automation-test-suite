@@ -16,15 +16,10 @@ namespace SFA.DAS.UI.Framework.TestSupport.BeforeScenario
         public void SetUpConfiguration()
         {
             var configuration = new JsonConfig
-            { BaseUrl = Configurator.GetBaseUrl(), Browser = Configurator.GetBrowser(),
-                BrowserstackServerName = Configurator.GetBrowserstackServerName(),
-                BrowserstackUsername = Configurator.GetBrowserstackUsername(),
-                BrowserstackPassword = Configurator.GetBrowserstackPassword(),
-                BrowserstackBrowser = Configurator.GetBrowserstackBrowser(),
-                BrowserstackOs = Configurator.GetBrowserstackOs(),
-                BrowserstackBrowserVersion = Configurator.GetBrowserstackbrowserVersion(),
-                BrowserstackOsversion = Configurator.GetBrowserstackOsversion(),
-                Resolution = Configurator.GetResolution()
+            {
+                BaseUrl = Configurator.GetBaseUrl(),
+                Browser = Configurator.GetBrowser(),
+                BrowserStackSetting = Configurator.GetBrowserStackSetting()
             };
             _context.Set(configuration);
         }

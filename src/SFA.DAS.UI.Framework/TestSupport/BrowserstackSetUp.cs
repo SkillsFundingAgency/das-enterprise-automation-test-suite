@@ -14,13 +14,13 @@ namespace SFA.DAS.UI.Framework.Project.Tests.TestSupport
             _buildDateTime = DateTime.Now.ToString("ddMMMyyyy HH:mm").ToUpper();
         }
 
-        private static void CheckBrowserStackLogin(JsonConfig options)
+        private static void CheckBrowserStackLogin(BrowserStackSetting options)
         {
-            if (options.BrowserstackUsername == null || options.BrowserstackPassword == null)
+            if (options.User == null || options.Key == null)
                 throw new Exception("Please enter browserstack credentials");
         }
 
-        public static IWebDriver Init(JsonConfig options)
+        public static IWebDriver Init(BrowserStackSetting options)
         {
             CheckBrowserStackLogin(options);
 
@@ -28,18 +28,20 @@ namespace SFA.DAS.UI.Framework.Project.Tests.TestSupport
             {
                 AcceptInsecureCertificates = true
             };
-            AddAdditionalCapability(chromeOption, "browser", options.BrowserstackBrowser);
-            AddAdditionalCapability(chromeOption, "browser_version", options.BrowserstackBrowserVersion);
-            AddAdditionalCapability(chromeOption, "os", options.BrowserstackOs);
-            AddAdditionalCapability(chromeOption, "os_version", options.BrowserstackOsversion);
+            AddAdditionalCapability(chromeOption, "browser", options.Browser);
+            AddAdditionalCapability(chromeOption, "browser_version", options.BrowserVersion);
+            AddAdditionalCapability(chromeOption, "os", options.Os);
+            AddAdditionalCapability(chromeOption, "os_version", options.Osversion);
             AddAdditionalCapability(chromeOption, "resolution", options.Resolution);
-            AddAdditionalCapability(chromeOption, "browserstack.user", options.BrowserstackUsername);
-            AddAdditionalCapability(chromeOption, "browserstack.key", options.BrowserstackPassword);
-            AddAdditionalCapability(chromeOption, "project", options.BrowserstackProject);
+            AddAdditionalCapability(chromeOption, "browserstack.user", options.User);
+            AddAdditionalCapability(chromeOption, "browserstack.key", options.Key);
+            AddAdditionalCapability(chromeOption, "build", $"{options.Build}_{_buildDateTime}");
+            AddAdditionalCapability(chromeOption, "project", options.Project);
             AddAdditionalCapability(chromeOption, "browserstack.debug", "true");
             AddAdditionalCapability(chromeOption, "name", options.TestName);
+            AddAdditionalCapability(chromeOption, "browserstack.networkLogs", options.EnableNetworkLogs);
 
-            return new RemoteWebDriver(new Uri($"http://{options.BrowserstackServerName}/wd/hub/"), chromeOption);
+            return new RemoteWebDriver(new Uri(options.ServerName), chromeOption);
         }
 
         private static void AddAdditionalCapability(ChromeOptions chromeOptions, string capabilityName, object capabilityValue)
