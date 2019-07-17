@@ -18,20 +18,20 @@ namespace SFA.DAS.TestProject.UITests.Project.Tests.Features
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.0.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("Example2")]
-    public partial class Example2Feature
+    [NUnit.Framework.DescriptionAttribute("SampleFeatureThree")]
+    public partial class SampleFeatureThreeFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "Example2.feature"
+#line 1 "SampleFeatureThree.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Example2", "As a user\r\nI want to be able to navigate to DFE home page\r\nSo that I can see all " +
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "SampleFeatureThree", "As a user\r\nI want to be able to navigate to DFE home page\r\nSo that I can see all " +
                     "department services and information ", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
@@ -71,12 +71,12 @@ namespace SFA.DAS.TestProject.UITests.Project.Tests.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("User navigate to IT home page from GOV.UK page")]
+        [NUnit.Framework.DescriptionAttribute("User navigates to IT home page from GOV.UK page")]
         [NUnit.Framework.CategoryAttribute("anotherregression")]
         [NUnit.Framework.TestCaseAttribute("Ministry of Defence", null)]
         [NUnit.Framework.TestCaseAttribute("Department for Education", null)]
         [NUnit.Framework.TestCaseAttribute("Income Tax", null)]
-        public virtual void UserNavigateToITHomePageFromGOV_UKPage(string searchLink, string[] exampleTags)
+        public virtual void UserNavigatesToITHomePageFromGOV_UKPage(string searchLink, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "anotherregression"};
@@ -84,7 +84,7 @@ namespace SFA.DAS.TestProject.UITests.Project.Tests.Features
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
             }
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User navigate to IT home page from GOV.UK page", null, @__tags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User navigates to IT home page from GOV.UK page", null, @__tags);
 #line 9
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();

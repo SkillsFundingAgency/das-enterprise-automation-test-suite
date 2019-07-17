@@ -1,4 +1,4 @@
-﻿Feature: Example2
+﻿Feature: SampleFeatureThree
 
 As a user
 I want to be able to navigate to DFE home page
@@ -6,7 +6,7 @@ So that I can see all department services and information
 
 	
 @anotherregression
-Scenario Outline: User navigate to IT home page from GOV.UK page
+Scenario Outline: User navigates to IT home page from GOV.UK page
 Given I navigate to GOV.UK home page
 When I search for <SearchLink>
 And I click on <SearchLink> link
