@@ -41,6 +41,4 @@
     </None>
   </ItemGroup>
 
-  <ProjectExtensions><VisualStudio><UserProperties appsettings_1testproject_1browserstack_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>
-
 </Project>
