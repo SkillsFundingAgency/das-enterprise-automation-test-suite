@@ -6,7 +6,7 @@ using System.Net;
 
 namespace SFA.DAS.UI.Framework.TestSupport
 {
-    public class BrowserStackTearDown
+    public class BrowserStackTeardown
     {
         public static void MarkTestAsFailed(RemoteWebDriver webDriver, BrowserStackSetting options, string scenarioTitle, string message)
         {

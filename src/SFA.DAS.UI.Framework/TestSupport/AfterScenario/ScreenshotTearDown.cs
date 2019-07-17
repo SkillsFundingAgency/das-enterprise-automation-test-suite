@@ -5,11 +5,11 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.UI.Framework.TestSupport.AfterScenario
 {
     [Binding]
-    public class ScreenshotTearDown
+    public class ScreenshotTeardown
     {
         private readonly ScenarioContext _context;
 
-        public ScreenshotTearDown(ScenarioContext context)
+        public ScreenshotTeardown(ScenarioContext context)
         {
             _context = context;
         }
@@ -26,7 +26,7 @@ namespace SFA.DAS.UI.Framework.TestSupport.AfterScenario
                 {
                     case bool _ when options.Browser.IsCloudExecution():
                         RemoteWebDriver remoteWebDriver = _context.Get<RemoteWebDriver>("webdriver");
-                        BrowserStackTearDown.MarkTestAsFailed(remoteWebDriver, options.BrowserStackSetting, scenarioTitle, "Remote test failed");
+                        BrowserStackTeardown.MarkTestAsFailed(remoteWebDriver, options.BrowserStackSetting, scenarioTitle, "Remote test failed");
                         break;
                     default:
                         var webDriver = _context.Get<IWebDriver>("webdriver");

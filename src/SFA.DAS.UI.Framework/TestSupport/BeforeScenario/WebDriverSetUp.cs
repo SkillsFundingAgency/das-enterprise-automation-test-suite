@@ -11,7 +11,7 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.UI.Framework.TestSupport.BeforeScenario
 {
     [Binding]
-    public class WebDriverSetUp
+    public class WebDriverSetup
     {
         private static readonly string DriverPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
 
@@ -19,13 +19,13 @@ namespace SFA.DAS.UI.Framework.TestSupport.BeforeScenario
 
         private readonly ScenarioContext _context;
 
-        public WebDriverSetUp(ScenarioContext context)
+        public WebDriverSetup(ScenarioContext context)
         {
             _context = context;
         }
 
         [BeforeScenario(Order = 11)]
-        public void SetUpWebDriver()
+        public void SetupWebDriver()
         {
             var options = _context.Get<JsonConfig>();
             var browser = options.Browser;
@@ -52,7 +52,7 @@ namespace SFA.DAS.UI.Framework.TestSupport.BeforeScenario
 
                 case bool _ when browser.IsCloudExecution():
                     options.BrowserStackSetting.Name = _context.ScenarioInfo.Title;
-                    WebDriver = BrowserStackSetUp.Init(options.BrowserStackSetting);
+                    WebDriver = BrowserStackSetup.Init(options.BrowserStackSetting);
                     break;
 
                 default:

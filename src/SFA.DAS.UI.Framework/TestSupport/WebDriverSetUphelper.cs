@@ -1,6 +1,6 @@
 ﻿namespace SFA.DAS.UI.Framework.TestSupport
 {
-    public static class WebDriverSetUphelper
+    public static class WebDriverSetupHelper
     {
         public static bool IsCloudExecution(this string browser)
         {

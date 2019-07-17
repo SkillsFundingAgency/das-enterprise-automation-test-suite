@@ -5,11 +5,11 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.UI.Framework.TestSupport.BeforeScenario
 {
     [Binding]
-    public class HelpersSetUp
+    public class HelpersSetup
     {
         private readonly ScenarioContext _context;
 
-        public HelpersSetUp(ScenarioContext context)
+        public HelpersSetup(ScenarioContext context)
         {
             _context = context;
         }

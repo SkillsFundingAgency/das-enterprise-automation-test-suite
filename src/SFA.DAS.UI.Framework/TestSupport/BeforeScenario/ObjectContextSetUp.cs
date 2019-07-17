@@ -3,11 +3,11 @@
 namespace SFA.DAS.UI.Framework.TestSupport.BeforeScenario
 {
     [Binding]
-    public class ObjectContextSetUp
+    public class ObjectContextSetup
     {
         private readonly ScenarioContext _context;
 
-        public ObjectContextSetUp(ScenarioContext context)
+        public ObjectContextSetup(ScenarioContext context)
         {
             _context = context;
         }

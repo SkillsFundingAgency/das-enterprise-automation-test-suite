@@ -4,11 +4,11 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.UI.Framework.TestSupport.AfterScenario
 {
     [Binding]
-    public class DisposeTearDown
+    public class DisposeTeardown
     {
         private readonly ScenarioContext _context;
 
-        public DisposeTearDown(ScenarioContext context)
+        public DisposeTeardown(ScenarioContext context)
         {
             _context = context;
         }

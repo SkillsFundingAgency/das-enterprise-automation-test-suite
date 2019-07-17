@@ -5,11 +5,11 @@ using OpenQA.Selenium.Chrome;
 
 namespace SFA.DAS.UI.Framework.Project.Tests.TestSupport
 {
-    public class BrowserStackSetUp
+    public class BrowserStackSetup
     {
         private static readonly string _buildDateTime;
 
-        static BrowserStackSetUp()
+        static BrowserStackSetup()
         {
             _buildDateTime = DateTime.Now.ToString("ddMMMyyyy HH:mm:ss").ToUpper();
         }
