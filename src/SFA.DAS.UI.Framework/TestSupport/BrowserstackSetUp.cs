@@ -11,7 +11,7 @@ namespace SFA.DAS.UI.Framework.Project.Tests.TestSupport
 
         static BrowserStackSetUp()
         {
-            _buildDateTime = DateTime.Now.ToString("ddMMMyyyy HH:mm").ToUpper();
+            _buildDateTime = DateTime.Now.ToString("ddMMMyyyy HH:mm:ss").ToUpper();
         }
 
         private static void CheckBrowserStackLogin(BrowserStackSetting options)
@@ -38,7 +38,7 @@ namespace SFA.DAS.UI.Framework.Project.Tests.TestSupport
             AddAdditionalCapability(chromeOption, "build", $"{options.Build}_{_buildDateTime}");
             AddAdditionalCapability(chromeOption, "project", options.Project);
             AddAdditionalCapability(chromeOption, "browserstack.debug", "true");
-            AddAdditionalCapability(chromeOption, "name", options.TestName);
+            AddAdditionalCapability(chromeOption, "name", options.Name);
             AddAdditionalCapability(chromeOption, "browserstack.networkLogs", options.EnableNetworkLogs);
 
             return new RemoteWebDriver(new Uri(options.ServerName), chromeOption);

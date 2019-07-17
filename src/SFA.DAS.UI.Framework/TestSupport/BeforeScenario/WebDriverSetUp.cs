@@ -51,6 +51,7 @@ namespace SFA.DAS.UI.Framework.TestSupport.BeforeScenario
                     break;
 
                 case bool _ when browser.IsCloudExecution():
+                    options.BrowserStackSetting.Name = _context.ScenarioInfo.Title;
                     WebDriver = BrowserStackSetUp.Init(options.BrowserStackSetting);
                     break;
 

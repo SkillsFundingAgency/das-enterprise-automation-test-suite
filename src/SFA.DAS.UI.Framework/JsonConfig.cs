@@ -32,7 +32,7 @@
 
         public string Resolution { get; set; }
 
-        public string TestName { get; set; }
+        public string Name { get; internal set; }
 
         public bool EnableNetworkLogs { get; set; }
     }
