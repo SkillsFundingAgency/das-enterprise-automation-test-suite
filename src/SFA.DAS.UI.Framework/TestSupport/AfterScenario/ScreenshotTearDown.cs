@@ -5,11 +5,11 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.UI.Framework.TestSupport.AfterScenario
 {
     [Binding]
-    public class ScreenshotSetUp
+    public class ScreenshotTearDown
     {
         private readonly ScenarioContext _context;
 
-        public ScreenshotSetUp(ScenarioContext context)
+        public ScreenshotTearDown(ScenarioContext context)
         {
             _context = context;
         }
