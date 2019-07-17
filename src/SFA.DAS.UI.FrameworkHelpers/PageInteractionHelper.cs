@@ -15,7 +15,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
             WebDriver = webDriver;
         }
 
-        public bool VerifyPageHeading(string actual, string expected)
+        public bool VerifyPage(string actual, string expected)
         {
             if (actual.Contains(expected))
             {
@@ -27,7 +27,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
                 + "\n Found: " + actual + " page");
         }
 
-        public bool VerifyPageHeading(By locator, string expected)
+        public bool VerifyPage(By locator, string expected)
         {
             var actual = WebDriver.FindElement(locator).Text;
             if (actual.Contains(expected))
@@ -40,7 +40,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
                 + "\n Found: " + actual + " page");
         }
 
-        public bool VerifyPageHeading(string actual, string expected1, string expected2)
+        public bool VerifyPage(string actual, string expected1, string expected2)
         {
             if (actual.Contains(expected1) || actual.Contains(expected2))
             {

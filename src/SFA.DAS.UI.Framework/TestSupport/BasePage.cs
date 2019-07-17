@@ -14,7 +14,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
             _webDriver = context.Get<IWebDriver>("webdriver");
         }
 
-        protected abstract Boolean SelfVerify();
+        protected abstract Boolean VerifyPage();
 
         protected String GetPageHeading()
         {
