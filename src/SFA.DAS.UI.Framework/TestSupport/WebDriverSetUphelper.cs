@@ -1,4 +1,7 @@
-﻿namespace SFA.DAS.UI.Framework.TestSupport
+﻿using OpenQA.Selenium;
+using TechTalk.SpecFlow;
+
+namespace SFA.DAS.UI.Framework.TestSupport
 {
     public static class WebDriverSetupHelper
     {
@@ -26,5 +29,16 @@
         {
             return browser.CompareToIgnoreCase("chrome") || browser.CompareToIgnoreCase("googlechrome") || browser.CompareToIgnoreCase("local");
         }
+
+        public static void SetWebDriver(this ScenarioContext context, IWebDriver webDriver)
+        {
+            context.Set(webDriver, "webdriver");
+        }
+
+        public static IWebDriver GetWebDriver(this ScenarioContext context)
+        {
+            return context.Get<IWebDriver>("webdriver");
+        }
     }
 }
+

@@ -3,6 +3,7 @@
     public class JsonConfig
     {
         public string BaseUrl { get; set; }
+
         public string Browser { get; set; }
 
         public BrowserStackSetting BrowserStackSetting { get; set; }

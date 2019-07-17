@@ -26,11 +26,11 @@ namespace SFA.DAS.UI.Framework.Hooks.AfterScenario
                 switch (true)
                 {
                     case bool _ when options.Browser.IsCloudExecution():
-                        RemoteWebDriver remoteWebDriver = _context.Get<RemoteWebDriver>("webdriver");
+                        RemoteWebDriver remoteWebDriver = (RemoteWebDriver)_context.GetWebDriver();
                         BrowserStackTeardown.MarkTestAsFailed(remoteWebDriver, options.BrowserStackSetting, scenarioTitle, "Remote test failed");
                         break;
                     default:
-                        var webDriver = _context.Get<IWebDriver>("webdriver");
+                        var webDriver = _context.GetWebDriver();
                         ScreenshotHelper.TakeScreenShot(webDriver, scenarioTitle);
                         break;
                 }

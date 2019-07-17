@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.UI.Framework.TestSupport;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.UI.Framework.Hooks.AfterScenario
@@ -16,7 +17,7 @@ namespace SFA.DAS.UI.Framework.Hooks.AfterScenario
         [AfterScenario(Order = 12)]
         public void DisposeOnTestRun()
         {
-            var WebDriver = _context.Get<IWebDriver>("webdriver");
+            var WebDriver = _context.GetWebDriver();
             WebDriver?.Quit();
             WebDriver?.Dispose();
         }

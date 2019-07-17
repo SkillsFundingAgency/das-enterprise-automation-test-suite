@@ -66,7 +66,7 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
             WebDriver.SwitchTo().Window(currentWindow);
             WebDriver.Manage().Cookies.DeleteAllCookies();
 
-            _context.Set(WebDriver, "webdriver");
+            _context.SetWebDriver(WebDriver);
         }
 
         private void InitialiseZapProxyChrome()
