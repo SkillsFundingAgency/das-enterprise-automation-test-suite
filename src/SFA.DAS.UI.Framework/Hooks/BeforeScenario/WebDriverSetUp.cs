@@ -28,7 +28,7 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
         [BeforeScenario(Order = 11)]
         public void SetupWebDriver()
         {
-            var options = _context.Get<JsonConfig>();
+            var options = _context.Get<FrameworkConfig>();
             var browser = options.Browser;
             
             switch (true)
@@ -54,7 +54,7 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
                 case bool _ when browser.IsChromeHeadless():
                     var chromeOptions = new ChromeOptions();
                     chromeOptions.AddArgument("--headless");
-                    WebDriver = new ChromeDriver(DriverPath,chromeOptions);
+                    WebDriver = new ChromeDriver(DriverPath, chromeOptions);
                     break;
                
 

@@ -20,7 +20,7 @@ namespace SFA.DAS.UI.Framework.Hooks.AfterScenario
         public void TakeScreenshotOnFailure()
         {
             var scenarioTitle = _context.ScenarioInfo.Title;
-            var options = _context.Get<JsonConfig>();
+            var options = _context.Get<FrameworkConfig>();
             if (_context.TestError != null)
             {
                 switch (true)

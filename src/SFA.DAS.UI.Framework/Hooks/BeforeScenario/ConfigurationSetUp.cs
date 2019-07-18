@@ -16,7 +16,7 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
         [BeforeScenario(Order = 10)]
         public void SetUpConfiguration()
         {
-            var configuration = new JsonConfig
+            var configuration = new FrameworkConfig
             {
                 BaseUrl = Configurator.GetBaseUrl(),
                 Browser = Configurator.GetBrowser(),

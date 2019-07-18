@@ -1,6 +1,6 @@
 ﻿namespace SFA.DAS.UI.Framework
 {
-    public class JsonConfig
+    public class FrameworkConfig
     {
         public string BaseUrl { get; set; }
 

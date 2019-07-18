@@ -14,12 +14,12 @@ namespace SFA.DAS.UI.Framework.TestSupport
 
         public static string GetBrowser()
         {
-            return _config.GetSection(nameof(JsonConfig.Browser)).Value;
+            return _config.GetSection(nameof(FrameworkConfig.Browser)).Value;
         }
 
         public static string GetBaseUrl()
         {
-            return _config.GetSection(nameof(JsonConfig.BaseUrl)).Value;
+            return _config.GetSection(nameof(FrameworkConfig.BaseUrl)).Value;
         }
 
         public static BrowserStackSetting GetBrowserStackSetting()
