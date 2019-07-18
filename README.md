@@ -67,11 +67,12 @@ The framework is designed to execute the tests on multiple environments.
 3. Tests can be executed on multiple environments by replacing the default values provided in App.Config using Configuration Manager and transforming the data
 
 ### Supported Browsers: The framework can currently work on the following browsers
-1. Chrome
-2. Firefox
-3. PhantomJs (Headless browser)
+1. Chrome - use "chrome", "googlechrome" or "local" as values for the Browser in appsettings
+2. Firefox - use "firefox" or "mozillafirefox" as values for the Browser in appsettings
+3. Internet Explorer - use "ie" or "internetexplorer" as values for the Browser in appsettings
+3. Chrome Headless - use "headlessbrowser" or "headless" as values for the Browser in appsettings
 
-Note: Tests can be executed on different browsers using BrowserStack
+Note: Tests can be executed on different browsers using BrowserStack. Tests can also be run in headless mode using the Chrome headless browser.
 
 ### Standards/Rules:
 1. The framework is designed using Page Object Model
