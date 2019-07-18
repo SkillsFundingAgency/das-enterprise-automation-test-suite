@@ -30,6 +30,11 @@ namespace SFA.DAS.UI.Framework.TestSupport
             return browser.CompareToIgnoreCase("chrome") || browser.CompareToIgnoreCase("googlechrome") || browser.CompareToIgnoreCase("local");
         }
 
+        public static bool IsChromeHeadless(this string browser)
+        {
+            return browser.CompareToIgnoreCase("chromeheadless") || browser.CompareToIgnoreCase("headlessbrowser") || browser.CompareToIgnoreCase("headless");
+        }
+
         public static void SetWebDriver(this ScenarioContext context, IWebDriver webDriver)
         {
             context.Set(webDriver, "webdriver");

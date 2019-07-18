@@ -51,6 +51,13 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
                     InitialiseZapProxyChrome();
                     break;
 
+                case bool _ when browser.IsChromeHeadless():
+                    var chromeOptions = new ChromeOptions();
+                    chromeOptions.AddArgument("--headless");
+                    WebDriver = new ChromeDriver(DriverPath,chromeOptions);
+                    break;
+               
+
                 case bool _ when browser.IsCloudExecution():
                     options.BrowserStackSetting.Name = _context.ScenarioInfo.Title;
                     WebDriver = BrowserStackSetup.Init(options.BrowserStackSetting);
