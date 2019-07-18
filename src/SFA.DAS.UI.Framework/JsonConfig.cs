@@ -1,28 +1,40 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace SFA.DAS.UI.Framework
+﻿namespace SFA.DAS.UI.Framework
 {
     public class JsonConfig
     {
         public string BaseUrl { get; set; }
+
         public string Browser { get; set; }
-        public string BrowserstackUsername { get; set; }
 
-        public string BrowserstackPassword { get; set; }
-        public string BrowserstackBrowser { get; set; }
+        public BrowserStackSetting BrowserStackSetting { get; set; }
+    }
 
-        public string BrowserstackServerName{ get; set; }
+    public class BrowserStackSetting
+    {
+        public string User { get; set; }
 
-        public string BrowserstackProject { get; set; }
+        public string Key { get; set; }
 
-        public string BrowserstackOs { get; set; }
+        public string Browser { get; set; }
 
-        public string BrowserstackOsversion { get; set; }
+        public string ServerName => "http://hub-cloud.browserstack.com/wd/hub/";
 
-        public string BrowserstackBrowserVersion { get; set; }
+        public string AutomateSessions => "https://www.browserstack.com/automate/sessions/";
+
+        public string Build { get; set; }
+
+        public string Project { get; set; }
+
+        public string Os { get; set; }
+
+        public string Osversion { get; set; }
+
+        public string BrowserVersion { get; set; }
+
         public string Resolution { get; set; }
-        public object TestName { get; internal set; }
+
+        public string Name { get; internal set; }
+
+        public bool EnableNetworkLogs { get; set; }
     }
 }

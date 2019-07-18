@@ -31,7 +31,7 @@ namespace SFA.DAS.TestProject.UITests.Project.Tests.Pages
 
         protected override bool VerifyPage()
         {
-            return _pageInteractionHelper.VerifyPage(this.GetPageHeading(), PageTitle);
+            return _pageInteractionHelper.VerifyPage(GetPageHeading(), PageTitle);
         }
 
         internal HomePage OpenDesiredPage(string searchText)

@@ -7,16 +7,16 @@ namespace SFA.DAS.UI.Framework.TestSupport
     public abstract class BasePage
     {
         private readonly IWebDriver _webDriver;
-        private By pageHeading = By.CssSelector("h1");
+        private readonly By pageHeading = By.CssSelector("h1");
 
         public BasePage(ScenarioContext context)
         {
-            _webDriver = context.Get<IWebDriver>("webdriver");
+            _webDriver = context.GetWebDriver();
         }
 
-        protected abstract Boolean VerifyPage();
+        protected abstract bool VerifyPage();
 
-        protected String GetPageHeading()
+        protected string GetPageHeading()
         {
             return _webDriver.FindElement(pageHeading).Text;
         }

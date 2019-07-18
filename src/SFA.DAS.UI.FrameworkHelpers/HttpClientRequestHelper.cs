@@ -11,14 +11,18 @@ namespace SFA.DAS.UI.FrameworkHelpers
     {
         private static readonly HttpClient Client = new HttpClient();
 
+        private const string MediaType = "application/json";
+
+        private const string AuthScheme = "Bearer";
+
         public static async Task<string> ExecuteHttpPostRequest(string requestUri, string postData, string accessToken = "")
         {
             var requestMessage = new HttpRequestMessage(HttpMethod.Post, requestUri)
             {
-                Content = new StringContent(postData, Encoding.UTF8, "application/json")
+                Content = new StringContent(postData, Encoding.UTF8, MediaType)
             };
 
-            Client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
+            Client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(AuthScheme, accessToken);
 
             var postRequestResponse = await Client.SendAsync(requestMessage);
             var content = await postRequestResponse.Content.ReadAsStringAsync();
@@ -29,7 +33,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
         public static async Task<string> ExecuteHttpGetRequest(string requestUri, string accessToken = "")
         {
             var requestMessage = new HttpRequestMessage(HttpMethod.Get, requestUri);
-            Client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
+            Client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(AuthScheme, accessToken);
             var getRequestResponse = await Client.SendAsync(requestMessage);
             var content = await getRequestResponse.Content.ReadAsStringAsync();
             getRequestResponse.EnsureSuccessStatusCode();
@@ -40,10 +44,10 @@ namespace SFA.DAS.UI.FrameworkHelpers
         {
             var requestMessage = new HttpRequestMessage(HttpMethod.Put, requestUri)
             {
-                Content = new StringContent(putData, Encoding.UTF8, "application/json")
+                Content = new StringContent(putData, Encoding.UTF8, MediaType)
             };
 
-            Client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
+            Client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(AuthScheme, accessToken);
 
             var putRequestResponse = await Client.SendAsync(requestMessage);
             var content = await putRequestResponse.Content.ReadAsStringAsync();
@@ -62,10 +66,10 @@ namespace SFA.DAS.UI.FrameworkHelpers
             {
                 requestMessage = new HttpRequestMessage(HttpMethod.Delete, requestUri)
                 {
-                    Content = new StringContent(deleteData, Encoding.UTF8, "application/json")
+                    Content = new StringContent(deleteData, Encoding.UTF8, MediaType)
                 };
 
-                Client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
+                Client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(AuthScheme, accessToken);
                 var deleteRequestResponse = await Client.SendAsync(requestMessage);
                 deleteRequestResponse.EnsureSuccessStatusCode();
             }
@@ -75,10 +79,10 @@ namespace SFA.DAS.UI.FrameworkHelpers
         {
             HttpRequestMessage requestMessage = new HttpRequestMessage(new HttpMethod("PATCH"), requestUri)
             {
-                Content = new StringContent(patchData, Encoding.UTF8, "application/json")
+                Content = new StringContent(patchData, Encoding.UTF8, MediaType)
             };
 
-            Client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
+            Client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(AuthScheme, accessToken);
 
             HttpResponseMessage patchRequestResponse = await Client.SendAsync(requestMessage);
             String content = await patchRequestResponse.Content.ReadAsStringAsync();
