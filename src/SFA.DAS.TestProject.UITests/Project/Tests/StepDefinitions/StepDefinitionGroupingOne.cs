@@ -15,12 +15,12 @@ namespace SFA.DAS.TestProject.UITests.Project.Tests.StepDefinitions
         private readonly ScenarioContext _context;
         private readonly ObjectContext _objectContext;
         private readonly IWebDriver _webDriver;
-#endregion
+        #endregion
 
         public StepDefinitionGroupingOne(ScenarioContext context)
         {
             _context = context;
-            _webDriver = context.Get<IWebDriver>("webdriver");
+            _webDriver = context.GetWebDriver();
             _configuration = context.Get<JsonConfig>();
             _objectContext = context.Get<ObjectContext>();
         }

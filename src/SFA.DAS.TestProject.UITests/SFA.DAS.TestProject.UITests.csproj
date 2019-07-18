@@ -35,4 +35,10 @@
     </Compile>
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="appsettings.TestProject.BrowserStack.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
