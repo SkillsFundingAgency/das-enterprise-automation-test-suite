@@ -5,11 +5,13 @@ using System.Linq;
 
 namespace SFA.DAS.UI.FrameworkHelpers
 {
-    public class FormCompletionHelper : PageInteractionHelper
+    public class FormCompletionHelper 
     {
-        public FormCompletionHelper(IWebDriver webDriver) :base(webDriver)
-        {
+        private readonly IWebDriver _webDriver;
 
+        public FormCompletionHelper(IWebDriver webDriver)
+        {
+            _webDriver = webDriver;
         }
 
         public void ClickElement(IWebElement element)
@@ -19,7 +21,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         public void ClickElement(By locator)
         {
-            ClickElement(WebDriver.FindElement(locator));
+            ClickElement(_webDriver.FindElement(locator));
         }
 
         public void EnterText(IWebElement element, string text)
@@ -30,12 +32,22 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         public void EnterText(By locator, string text)
         {
-            EnterText(WebDriver.FindElement(locator), text);
+            EnterText(_webDriver.FindElement(locator), text);
         }
 
         public void EnterText(IWebElement element, int value)
         {
             EnterText(element, value.ToString());
+        }
+
+        public void SelectFromDropDownByValue(By @by, string value)
+        {
+            SelectFromDropDownByValue(_webDriver.FindElement(by), value);
+        }
+
+        public void SelectFromDropDownByText(By @by, string text)
+        {
+            SelectFromDropDownByText(_webDriver.FindElement(by), text);
         }
 
         public void SelectFromDropDownByValue(IWebElement element, string value)
@@ -58,7 +70,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         public void SelectRadioOptionByForAttribute(By locator, string forAttribute)
         {
-            IList<IWebElement> radios = WebDriver.FindElements(locator);
+            IList<IWebElement> radios = _webDriver.FindElements(locator);
             var radioToSelect = radios.FirstOrDefault(radio => radio.GetAttribute("for") == forAttribute);
 
             if (radioToSelect != null)
