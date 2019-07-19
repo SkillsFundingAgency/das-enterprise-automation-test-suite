@@ -17,6 +17,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
         #region Helpers
         private readonly PageInteractionHelper _pageInteractionHelper;
         private readonly FormCompletionHelper _formCompletionHelper;
+        private readonly FormCompletionCampaignsHelper _formCompletionCampaignsHelper;
         #endregion
 
         #region Page Object Elements
@@ -30,6 +31,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
         {
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
+            _formCompletionCampaignsHelper = context.Get<FormCompletionCampaignsHelper>();
             VerifyPage();
         }
 
@@ -45,7 +47,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
 
         internal void selectAValidInterest(String interestValue)
         {
-            _formCompletionHelper.SelectFromDropDownByText(_selectInterestDropDown, interestValue);
+            _formCompletionCampaignsHelper.SelectFromDropDownByText(_selectInterestDropDown, interestValue);
         }
 
         internal void enterPostCode(String postCode)
@@ -55,7 +57,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
 
         internal void selectMiles(String noOfMiles)
         {
-            _formCompletionHelper.SelectFromDropDownByText(_selectMilesDropDown, noOfMiles);
+            _formCompletionCampaignsHelper.SelectFromDropDownByText(_selectMilesDropDown, noOfMiles);
         }
 
         internal void clickOnSearchButton()

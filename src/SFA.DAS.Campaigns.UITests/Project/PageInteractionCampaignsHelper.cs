@@ -6,12 +6,11 @@ using System.Linq;
 
 namespace SFA.DAS.Campaigns.UITests
 {
-    public class PageInteractionHelper
+    public class PageInteractionCampaignsHelper
     {
         protected IWebDriver WebDriver;
-        private const int ImplicitWaitTimeInSeconds = 10;
-
-        public PageInteractionHelper(IWebDriver webDriver)
+        
+        public PageInteractionCampaignsHelper(IWebDriver webDriver)
         {
             WebDriver = webDriver;
         }

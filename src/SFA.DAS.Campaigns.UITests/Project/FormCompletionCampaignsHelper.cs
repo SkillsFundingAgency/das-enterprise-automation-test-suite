@@ -1,13 +1,14 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
+using SFA.DAS.UI.FrameworkHelpers;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace SFA.DAS.Campaigns.UITests
 {
-    public class FormCompletionHelper : PageInteractionHelper
+    public class FormCompletionCampaignsHelper : PageInteractionHelper
     {
-        public FormCompletionHelper(IWebDriver webDriver) :base(webDriver)
+        public FormCompletionCampaignsHelper(IWebDriver webDriver) :base(webDriver)
         {
 
         }
