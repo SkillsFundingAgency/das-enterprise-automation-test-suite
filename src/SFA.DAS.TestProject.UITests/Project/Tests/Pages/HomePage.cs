@@ -5,7 +5,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.TestProject.UITests.Project.Tests.Pages
 {
-    internal sealed class HomePage : BasePage
+    internal sealed class HomePage : BasePage, IVerifyPage
     {
         #region Constants
         private const string PageTitle = "";
@@ -22,12 +22,12 @@ namespace SFA.DAS.TestProject.UITests.Project.Tests.Pages
         
         }
 
-        protected override bool VerifyPage()
+        internal bool IsPageMatching()
         {
             return _pageInteractionHelper.VerifyPage(this.GetPageHeading(), PageTitle);
         }
 
-        internal bool IsPageMatching()
+        public bool VerifyPage()
         {
             return _pageInteractionHelper.VerifyPage(this.GetPageHeading(), PageTitle);
         }

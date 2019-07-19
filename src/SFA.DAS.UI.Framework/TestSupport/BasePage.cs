@@ -14,8 +14,6 @@ namespace SFA.DAS.UI.Framework.TestSupport
             _webDriver = context.GetWebDriver();
         }
 
-        protected abstract bool VerifyPage();
-
         protected string GetPageHeading()
         {
             return _webDriver.FindElement(pageHeading).Text;
