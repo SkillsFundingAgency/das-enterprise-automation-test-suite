@@ -18,13 +18,13 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Organizations.Compan
 
         internal bool IsPagePresented()
         {
-            return pageInteractionHelper.VerifyPageHeading(this.GetPageHeading(), PageTitle);
+            return _pageInteractionHelper.VerifyPageHeading(this.GetPageHeading(), PageTitle);
         }
 
         internal SignInGovernmentPage Continue()
         {
             _formCompletionHelper.ClickElement(_agreeAndContinueButton);
-            return new SignInGovernmentPage(WebBrowserDriver);
+            return new SignInGovernmentPage(context);
         }
     }
 }

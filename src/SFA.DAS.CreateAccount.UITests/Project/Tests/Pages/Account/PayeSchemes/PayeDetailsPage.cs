@@ -28,14 +28,14 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.PayeSchemes
         {
             _formCompletionHelper.SelectRadioButton(_confirmRemovingRadioButton);
             _formCompletionHelper.ClickElement(_continueButton);
-            return new PayeSchemePage(WebBrowserDriver);
+            return new PayeSchemePage(context);
         }
 
         internal PayeSchemePage DiscardRemoving()
         {
             _formCompletionHelper.SelectRadioButton(_discardRemovindRadioButton);
             _formCompletionHelper.ClickElement(_continueButton);
-            return new PayeSchemePage(WebBrowserDriver);
+            return new PayeSchemePage(context);
         }
     }
 }

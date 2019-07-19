@@ -25,7 +25,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Apprentices
         public ConfirmTrainingProviderPage Continue()
         {
             _formCompletionHelper.ClickElement(_continueButton);
-            return new ConfirmTrainingProviderPage(WebBrowserDriver);
+            return new ConfirmTrainingProviderPage(context);
         }
     }
 }

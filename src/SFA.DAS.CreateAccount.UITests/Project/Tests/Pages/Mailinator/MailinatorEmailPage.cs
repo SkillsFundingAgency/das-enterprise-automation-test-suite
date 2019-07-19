@@ -17,7 +17,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Mailinator
 
         public string GetAccessCode()
         {
-            pageInteractionHelper.SwitchToFrame(_emailBodyFrame);
+            _pageInteractionHelper.SwitchToFrame(_emailBodyFrame);
             return _formCompletionHelper.GetText(_accessCodeText);
         }
 

@@ -21,7 +21,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Homepage
 
         public bool IsPagePresented()
         {
-            return pageInteractionHelper.VerifyPageHeading(this.GetPageHeading(), PageTitle);
+            return _pageInteractionHelper.VerifyPageHeading(this.GetPageHeading(), PageTitle);
         }
 
         public void SelectYesAddMyPAYESchemeDetailsNowRadioButton()

@@ -19,7 +19,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Settings
 
         internal bool IsPagePresented()
         {
-            return pageInteractionHelper.GetText(_pageHeader) == "Your accounts";
+            return _pageInteractionHelper.GetText(_pageHeader) == "Your accounts";
         }
 
         internal EmployerAccountHomepage OpenAccount()
@@ -27,13 +27,13 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Settings
             var openButtons = WebBrowserDriver
                 .FindElements(By.XPath(".//a[contains (text(), \'Open\')]"));
             openButtons.First().Click();
-            return new EmployerAccountHomepage(WebBrowserDriver);
+            return new EmployerAccountHomepage(context);
         }
 
         internal InvitationsPage OpenInvitationsPage()
         {
             _formCompletionHelper.ClickElement(_invitationsButton);
-            return new InvitationsPage(WebBrowserDriver);
+            return new InvitationsPage(context);
         }
     }
 }

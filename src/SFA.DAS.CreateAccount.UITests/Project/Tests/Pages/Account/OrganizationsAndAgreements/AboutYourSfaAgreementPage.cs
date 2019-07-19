@@ -24,7 +24,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Organization
         public AcceptTheAgreementPage Continue()
         {
             _formCompletionHelper.ClickElement(_continueButton);
-            return new AcceptTheAgreementPage(WebBrowserDriver);
+            return new AcceptTheAgreementPage(context);
         }
     }
 }

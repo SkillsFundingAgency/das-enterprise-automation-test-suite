@@ -77,7 +77,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account
         internal Homepage.Homepage Close()
         {
             _formCompletionHelper.ClickAndWaitForInvisibilityOfAnElement(_closeButton, By.CssSelector(closebtncss));
-            return new Homepage.Homepage(WebBrowserDriver);
+            return new Homepage.Homepage(context);
         }
 
         internal WizardPage SelectStep(int stepNumber, bool answer)
@@ -148,7 +148,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account
         {
             _completeButton.WaitForElementToBeVisibleExtension();
             _completeButton.Click();
-            return new Homepage.Homepage(WebBrowserDriver);
+            return new Homepage.Homepage(context);
         }
 
         private IWebElement GetStep(int stepNumber)

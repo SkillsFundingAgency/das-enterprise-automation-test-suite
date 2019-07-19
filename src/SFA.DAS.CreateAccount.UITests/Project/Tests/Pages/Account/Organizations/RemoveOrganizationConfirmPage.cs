@@ -19,14 +19,14 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Organization
 
         public bool IsPagePresented()
         {
-            return pageInteractionHelper.VerifyPageHeading(this.GetPageHeading(), PageTitle);
+            return _pageInteractionHelper.VerifyPageHeading(this.GetPageHeading(), PageTitle);
         }
 
         public YourOrganizationsBasePage SelectYesRadiobuttonAndContinue()
         {
             _formCompletionHelper.ClickElementExecutingJavaScript(_yesRadiobutton);
             _formCompletionHelper.ClickElement(_continueButton);
-            return new YourOrganizationsBasePage(WebBrowserDriver);
+            return new YourOrganizationsBasePage(context);
         }
     }
 }

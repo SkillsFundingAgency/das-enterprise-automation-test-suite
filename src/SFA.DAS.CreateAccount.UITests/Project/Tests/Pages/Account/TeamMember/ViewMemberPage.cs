@@ -45,7 +45,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.TeamMember
         {
             _formCompletionHelper.ClickElement(_removeMemberButton);
             _formCompletionHelper.ClickElement(_confirmTheMemberRemovalButton);
-            return new YourTeamPage(WebBrowserDriver);
+            return new YourTeamPage(context);
         }
     }
 }

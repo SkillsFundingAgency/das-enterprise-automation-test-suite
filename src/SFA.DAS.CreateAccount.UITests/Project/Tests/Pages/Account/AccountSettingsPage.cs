@@ -37,7 +37,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account
 
         internal bool IsPagePresented()
         {
-            return pageInteractionHelper.IsElementDisplayed(_settingsLink);
+            return _pageInteractionHelper.IsElementDisplayed(_settingsLink);
         }
 
         internal AccountSettingsPage ClickChangeLevyAccountLink()
@@ -49,18 +49,18 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account
         internal ChangeEmailPage ChangeEmail()
         {
             _formCompletionHelper.ClickElement(ChangeEmailLink);
-            return new ChangeEmailPage(WebBrowserDriver);
+            return new ChangeEmailPage(context);
         }
 
         internal ChangePasswordPage ChangePassword()
         {
             _formCompletionHelper.ClickElement(ChangePasswordLink);
-            return new ChangePasswordPage(WebBrowserDriver);
+            return new ChangePasswordPage(context);
         }
 
         internal string AccountName()
         {
-            return pageInteractionHelper.GetText(_settingsLink);
+            return _pageInteractionHelper.GetText(_settingsLink);
         }
 
         internal AccountSettingsPage ClickSettingsLink()
@@ -77,7 +77,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account
         internal RenameAccountPage RenameAccount()
         {
             _formCompletionHelper.ClickElement(RenameAccountLink);
-            return new RenameAccountPage(WebBrowserDriver);
+            return new RenameAccountPage(context);
         }
 
         internal void ClickYourAccountsLink()

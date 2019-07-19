@@ -25,7 +25,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Apprentices
         public CohortsLandingPage Continue()
         {
             _formCompletionHelper.ClickElement(_continueButton);
-            return new CohortsLandingPage(WebBrowserDriver);
+            return new CohortsLandingPage(context);
         }
     }
 }

@@ -22,17 +22,17 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account
 
         public bool IsPagePresented()
         {
-            return pageInteractionHelper.VerifyPageHeading(this.GetPageHeading(), PageTitle);
+            return _pageInteractionHelper.VerifyPageHeading(this.GetPageHeading(), PageTitle);
         }
 
         public void IsAdditionalTitleTextPresented()
         {
-            Assert.True(pageInteractionHelper.GetText(_additionalTitleText).Contains(AdditionalTitleText));
+            Assert.True(_pageInteractionHelper.GetText(_additionalTitleText).Contains(AdditionalTitleText));
         }
 
         public string GetAllActivityText()
         {
-            return pageInteractionHelper.GetTextFromElementsGroup(_activityPageText);
+            return _pageInteractionHelper.GetTextFromElementsGroup(_activityPageText);
         }
     }
 }

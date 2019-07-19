@@ -27,13 +27,13 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Organization
         public OrganizationAddressPage Continue()
         {
             _formCompletionHelper.ClickElement(_continueButton);
-            return new OrganizationAddressPage(WebBrowserDriver);
+            return new OrganizationAddressPage(context);
         }
 
         public FindOrganizationAddressPage ContinueWithFindOrganizationAddress()
         {
             _formCompletionHelper.ClickElement(_continueButton);
-            return new FindOrganizationAddressPage(WebBrowserDriver);
+            return new FindOrganizationAddressPage(context);
         }
 
         internal string[] GetErrors()

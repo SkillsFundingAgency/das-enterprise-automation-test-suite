@@ -53,7 +53,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Homepage
         public SignInPage UnlockAccount()
         {
             _unlockAccountButton.Click();
-            return new SignInPage(WebBrowserDriver);
+            return new SignInPage(context);
         }
 
         internal string[] GetErrors()

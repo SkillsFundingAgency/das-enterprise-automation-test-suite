@@ -19,7 +19,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Organization
         public OrganizationAddressPage EnterManually()
         {
             _formCompletionHelper.ClickElement(_enterManuallyButton);
-            return new OrganizationAddressPage(WebBrowserDriver);
+            return new OrganizationAddressPage(context);
         }
     }
 }

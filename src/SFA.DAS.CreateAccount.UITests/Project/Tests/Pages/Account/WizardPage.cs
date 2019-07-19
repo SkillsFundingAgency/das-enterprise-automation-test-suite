@@ -61,13 +61,13 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account
 
         internal bool IsPagePresented()
         {
-            return pageInteractionHelper.IsElementDisplayed(_title);
+            return _pageInteractionHelper.IsElementDisplayed(_title);
         }
 
         internal EmployerAccountHomepage Close()
         {
             _formCompletionHelper.ClickElement(_topRightCloseOption);
-            return new EmployerAccountHomepage(WebBrowserDriver);
+            return new EmployerAccountHomepage(context);
         }
 
         internal WizardPage SelectStep(int stepNumber, bool answer)
@@ -95,7 +95,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account
         internal bool VerifyStepCompletionMessage(string stepCompletionMessage)
         {
             var _stepCompletionMessageDisplayed = By.XPath("//li[@class = 'todo-list--item complete']//p[contains(text(), '" + stepCompletionMessage + "')]");
-            return pageInteractionHelper.IsElementDisplayed(_stepCompletionMessageDisplayed);
+            return _pageInteractionHelper.IsElementDisplayed(_stepCompletionMessageDisplayed);
         }
 
         internal WizardPage OpenStep1AddPayeSchemesPage()
@@ -160,22 +160,22 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account
 
         public string GetTextFromStep1YesOptionText()
         {
-            return pageInteractionHelper.GetText(_step1YesOptionText);
+            return _pageInteractionHelper.GetText(_step1YesOptionText);
         }
 
         public bool IsStep2AddOrganisationsNowLinkDisplayed()
         {
-            return pageInteractionHelper.IsElementDisplayed(_step2AddOrganisationsNowLink);
+            return _pageInteractionHelper.IsElementDisplayed(_step2AddOrganisationsNowLink);
         }
 
         public bool IsStep3InviteColleaguesFromMyOrganisationNowLinkDisplayed()
         {
-            return pageInteractionHelper.IsElementDisplayed(_step3InviteColleaguesFromMyOrganisationNowLink);
+            return _pageInteractionHelper.IsElementDisplayed(_step3InviteColleaguesFromMyOrganisationNowLink);
         }
 
         public string GetTextFromStep4YesOptionText()
         {
-            return pageInteractionHelper.GetText(_step4YesOptionText);
+            return _pageInteractionHelper.GetText(_step4YesOptionText);
         }
     }
 }

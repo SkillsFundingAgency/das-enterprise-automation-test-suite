@@ -26,7 +26,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Organizations.Compan
 
         public bool IsPagePresented()
         {
-            return pageInteractionHelper.VerifyPageHeading(this.GetPageHeading(), PageTitle);
+            return _pageInteractionHelper.VerifyPageHeading(this.GetPageHeading(), PageTitle);
         }
 
         internal string GetSchemeFromDetails()
@@ -54,28 +54,28 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Organizations.Compan
 
         internal string GetOrganizationDetails()
         {
-            return pageInteractionHelper.GetText(_orgName);
+            return _pageInteractionHelper.GetText(_orgName);
         }
 
         internal string GetCharityNumber()
         {
-            return pageInteractionHelper.GetText(_charityNumber);
+            return _pageInteractionHelper.GetText(_charityNumber);
         }
 
         internal string GetCharityAddress()
         {
-            return pageInteractionHelper.GetText(_charityAddress);
+            return _pageInteractionHelper.GetText(_charityAddress);
         }
 
         internal string GetPayeScheme()
         {
-            return pageInteractionHelper.GetText(payeNumber);
+            return _pageInteractionHelper.GetText(payeNumber);
         }
 
         internal LegalAgreementPage Continue()
         {
             _formCompletionHelper.ClickElement(_confirmSchemeButtonId);
-            return new LegalAgreementPage(WebBrowserDriver);
+            return new LegalAgreementPage(context);
         }
 
         private string MapOrganizationDetailsKey(string key)

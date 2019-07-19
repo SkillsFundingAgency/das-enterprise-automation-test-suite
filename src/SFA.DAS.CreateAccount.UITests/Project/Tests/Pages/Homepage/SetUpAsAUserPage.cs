@@ -34,12 +34,12 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Homepage
 
         internal bool IsPagePresented()
         {
-            return pageInteractionHelper.GetText(PageHeader) == "Set up as a user";
+            return _pageInteractionHelper.GetText(PageHeader) == "Set up as a user";
         }
 
         internal bool IsSignInLinkPresent()
         {
-            return pageInteractionHelper.IsElementDisplayed(_signInLink);
+            return _pageInteractionHelper.IsElementDisplayed(_signInLink);
         }
 
         internal void ClickOnSignInLink()
@@ -49,7 +49,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Homepage
 
         internal bool IsTermsAndConditionsLinkPresent()
         {
-            return pageInteractionHelper.IsElementDisplayed(_termsAndConditionsLink);
+            return _pageInteractionHelper.IsElementDisplayed(_termsAndConditionsLink);
         }
 
         internal void ClickOnTermsAndConditionsLink()
@@ -68,7 +68,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Homepage
         {
             CompleteForm(firstName, lastName, email, passWord);
             SubmitForm();
-            return new ConfirmYourIdentityPage(WebBrowserDriver);
+            return new ConfirmYourIdentityPage(context);
         }
 
         internal SetUpAsAUserPage SubmitIncompleteForm()
@@ -98,32 +98,32 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Homepage
 
         internal string GetFirstNameRequiredInBox()
         {
-            return pageInteractionHelper.GetText(FirstNameErrorInBox);
+            return _pageInteractionHelper.GetText(FirstNameErrorInBox);
         }
 
         internal string GetLastNameRequiredInBox()
         {
-            return pageInteractionHelper.GetText(LastNameErrorInBox);
+            return _pageInteractionHelper.GetText(LastNameErrorInBox);
         }
 
         internal string GetEmailRequiredInBox()
         {
-            return pageInteractionHelper.GetText(EmailErrorInBox);
+            return _pageInteractionHelper.GetText(EmailErrorInBox);
         }
 
         internal string GetPasswordRequiredInBox()
         {
-            return pageInteractionHelper.GetText(PasswordErrorInBox);
+            return _pageInteractionHelper.GetText(PasswordErrorInBox);
         }
 
         internal string GetPasswordValidationMessage()
         {
-            return pageInteractionHelper.GetText(PasswordValidationErrorField);
+            return _pageInteractionHelper.GetText(PasswordValidationErrorField);
         }
 
         internal string GetPasswordRetryRequiredInBox()
         {
-            return pageInteractionHelper.GetText(PasswordCnfErrorInBox);
+            return _pageInteractionHelper.GetText(PasswordCnfErrorInBox);
         }
 
         internal string[] GetErrors()

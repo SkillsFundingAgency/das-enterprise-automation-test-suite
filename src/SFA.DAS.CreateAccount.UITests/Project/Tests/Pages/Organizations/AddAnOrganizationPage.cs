@@ -32,14 +32,14 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Organizations
 
         internal bool IsPagePresented()
         {
-            return pageInteractionHelper.IsElementDisplayed(_continueButton);
+            return _pageInteractionHelper.IsElementDisplayed(_continueButton);
         }
 
         internal UsingYourGovtGatewayDetailsPage SetByCompaniesHouseNumber(string number)
         {
             _formCompletionHelper.EnterText(_companiesNumberInput, number);
             _formCompletionHelper.ClickElement(_continueButton);
-            return new UsingYourGovtGatewayDetailsPage(WebBrowserDriver);
+            return new UsingYourGovtGatewayDetailsPage(context);
         }
 
         internal AddAnOrganizationPage SetByPublicSector(string organizationName)
@@ -54,26 +54,26 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Organizations
             _formCompletionHelper.SelectRadioButton(_registeredCharityRadioBtn);
             _formCompletionHelper.EnterText(_charityNumberInput, number);
             _formCompletionHelper.ClickElement(_continueButton);
-            return new UsingYourGovtGatewayDetailsPage(WebBrowserDriver);
+            return new UsingYourGovtGatewayDetailsPage(context);
         }
 
         internal EnterOrganizationNamePage SetByOtherOrganization()
         {
             _formCompletionHelper.SelectRadioButton(_otherRadioBtn);
             _formCompletionHelper.ClickElement(_continueButton);
-            return new EnterOrganizationNamePage(WebBrowserDriver);
+            return new EnterOrganizationNamePage(context);
         }
 
         internal FindOrganizationAddressPage ContinueWithExistingOrganization()
         {
             _formCompletionHelper.ClickElement(_continueButton);
-            return new FindOrganizationAddressPage(WebBrowserDriver);
+            return new FindOrganizationAddressPage(context);
         }
 
         internal PublicSectorSearchPage ContinueWithNonExistingOrganization()
         {
             _formCompletionHelper.ClickElement(_continueButton);
-            return new PublicSectorSearchPage(WebBrowserDriver);
+            return new PublicSectorSearchPage(context);
         }
 
         internal string[] GetErrors()

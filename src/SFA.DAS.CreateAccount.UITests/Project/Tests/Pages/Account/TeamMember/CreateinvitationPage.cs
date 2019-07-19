@@ -22,7 +22,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.TeamMember
 
         internal bool IsPagePresented()
         {
-            return pageInteractionHelper.IsElementDisplayed(_emailInput);
+            return _pageInteractionHelper.IsElementDisplayed(_emailInput);
         }
 
         internal CreateInvitationPage InputEmail(string email)
@@ -58,7 +58,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.TeamMember
         internal YourTeamPage Submit()
         {
             _formCompletionHelper.ClickElement(_submitButton);
-            return new YourTeamPage(WebBrowserDriver);
+            return new YourTeamPage(context);
         }
     }
 }

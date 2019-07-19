@@ -23,25 +23,25 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Organizations.Charit
         private By orgName = By.XPath("//tbody/tr[1]/td");
         internal string GetOrganizationInfo()
         {
-            return pageInteractionHelper.GetText(orgName);
+            return _pageInteractionHelper.GetText(orgName);
         }
 
         private By charityAddress = By.XPath("//tbody/tr[2]/td");
         internal string GetCharityAddress()
         {
-            return pageInteractionHelper.GetText(charityAddress);
+            return _pageInteractionHelper.GetText(charityAddress);
         }
 
         private By charityNumber = By.XPath("//tbody/tr[3]/td");
         internal string GetCharityNumber()
         {
-            return pageInteractionHelper.GetText(charityNumber);
+            return _pageInteractionHelper.GetText(charityNumber);
         }
 
         private By payeNumber = By.XPath("//tbody/tr[4]/td");
         internal string GetPayeScheme()
         {
-            return pageInteractionHelper.GetText(payeNumber);
+            return _pageInteractionHelper.GetText(payeNumber);
         }
     }
 }

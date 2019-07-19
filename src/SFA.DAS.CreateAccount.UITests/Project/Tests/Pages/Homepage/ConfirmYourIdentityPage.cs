@@ -29,13 +29,13 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Homepage
         internal AccountSettingsPage ValidAccesCode(string validAccesCode)
         {
             EnterValidAccessCode(validAccesCode);
-            return new AccountSettingsPage(WebBrowserDriver);
+            return new AccountSettingsPage(context);
         }
 
         internal SiteHomepage MoveBack()
         {
             _formCompletionHelper.ClickElement(_backButton);
-            return new SiteHomepage(WebBrowserDriver);
+            return new SiteHomepage(context);
         }
 
         internal ConfirmYourIdentityPage InvalidAccesCode(string invalidAccesCode)
@@ -46,7 +46,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Homepage
 
         internal bool IsPagePresented()
         {
-            return pageInteractionHelper.GetText(PageHeader) == "Confirm your identity";
+            return _pageInteractionHelper.GetText(PageHeader) == "Confirm your identity";
         }
 
         private void EnterValidAccessCode(string validAccesCode)
@@ -68,32 +68,32 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Homepage
 
         internal string GetInvalidCodeErrorInField()
         {
-            return pageInteractionHelper.GetText(InvalidCodeErrorInField);
+            return _pageInteractionHelper.GetText(InvalidCodeErrorInField);
         }
 
         internal string GetInvalidCoderrorInBox()
         {
-            return pageInteractionHelper.GetText(InvalidCoderrorInBox);
+            return _pageInteractionHelper.GetText(InvalidCoderrorInBox);
         }
 
         internal string GetHeaderText()
         {
-            return pageInteractionHelper.GetText(_headerText);
+            return _pageInteractionHelper.GetText(_headerText);
         }
 
         internal string GetAdditionalHeaderText()
         {
-            return pageInteractionHelper.GetText(_additionalHeaderText);
+            return _pageInteractionHelper.GetText(_additionalHeaderText);
         }
 
         internal string GetHeaderErrorMessage()
         {
-            return pageInteractionHelper.GetText(_headerErrorMessage);
+            return _pageInteractionHelper.GetText(_headerErrorMessage);
         }
 
         internal string GetTextBoxErrorMessage()
         {
-            return pageInteractionHelper.GetText(_textboxErrorMessage);
+            return _pageInteractionHelper.GetText(_textboxErrorMessage);
         }
     }
 }

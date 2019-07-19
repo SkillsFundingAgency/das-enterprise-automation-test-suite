@@ -21,7 +21,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Settings
 
         public bool IsPagePresented()
         {
-            return pageInteractionHelper.VerifyPageHeading(this.GetPageHeading(), PageTitle);
+            return _pageInteractionHelper.VerifyPageHeading(this.GetPageHeading(), PageTitle);
         }
 
         internal ChangeEmailPage InputEmail(string email)
@@ -39,7 +39,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Settings
         internal ConfirmUpdatedEmailPage Continue()
         {
             _formCompletionHelper.ClickElement(ContinueButton);
-            return new ConfirmUpdatedEmailPage(WebBrowserDriver);
+            return new ConfirmUpdatedEmailPage(context);
         }
 
         internal string[] GetErrors()

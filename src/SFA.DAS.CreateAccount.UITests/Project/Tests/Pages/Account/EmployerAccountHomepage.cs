@@ -47,25 +47,25 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account
         internal YourTeamPage OpenYourTeamPage()
         {
             _formCompletionHelper.ClickElement(_yourTeamButton);
-            return new YourTeamPage(WebBrowserDriver);
+            return new YourTeamPage(context);
         }
 
         internal PayeSchemePage OpenPayeSchemesPage()
         {
             _formCompletionHelper.ClickElement(_payeSchemesPage);
-            return new PayeSchemePage(WebBrowserDriver);
+            return new PayeSchemePage(context);
         }
 
         internal YourOrganizationsBasePage OpenOrganizationsBasePage()
         {
             _formCompletionHelper.ClickElement(_yourOrganizationsButton);
-            return new YourOrganizationsBasePage(WebBrowserDriver);
+            return new YourOrganizationsBasePage(context);
         }
 
         internal OrganizationsAndAgreementsBasePage OpenOrganizationsAndAgreementsBasePage()
         {
             _formCompletionHelper.ClickElement(_yourOrganizationsAndAgreementsPage);
-            return new OrganizationsAndAgreementsBasePage(WebBrowserDriver);
+            return new OrganizationsAndAgreementsBasePage(context);
         }
 
         internal string GetNotification()
@@ -81,19 +81,19 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account
         internal ApprenticesBasePage OpenApprenticesPage()
         {
             _formCompletionHelper.ClickElement(_apprenticesPage);
-            return new ApprenticesBasePage(WebBrowserDriver);
+            return new ApprenticesBasePage(context);
         }
 
         internal FinanceBasePage OpenFinancePage()
         {
             _formCompletionHelper.ClickElement(_financePage);
-            return new FinanceBasePage(WebBrowserDriver);
+            return new FinanceBasePage(context);
         }
 
         internal RecruitmentPage OpenRecruitmentPage()
         {
             _formCompletionHelper.ClickElement(_RecruitmentPage);
-            return new RecruitmentPage(WebBrowserDriver);
+            return new RecruitmentPage(context);
         }
 
         internal bool IsMoreLinkPresent()

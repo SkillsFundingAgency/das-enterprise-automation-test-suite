@@ -56,7 +56,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Organizations.Public
         internal SummaryPayePage ContinueAndMoveToConfirmPage()
         {
             _formCompletionHelper.ClickElement(_continueButton);
-            return new SummaryPayePage(WebBrowserDriver);
+            return new SummaryPayePage(context);
         }
 
         internal void ClickContinueWithoutEnteringData()
@@ -67,7 +67,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Organizations.Public
         internal ConfirmOrganizationDataPage ContinueAndMoveToConfirmOrganizationDataPage()
         {
             _formCompletionHelper.ClickElement(_continueButton);
-            return new ConfirmOrganizationDataPage(WebBrowserDriver);
+            return new ConfirmOrganizationDataPage(context);
         }
 
         internal string[] GetErrors()

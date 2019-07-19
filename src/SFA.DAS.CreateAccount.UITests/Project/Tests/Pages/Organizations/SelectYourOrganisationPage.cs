@@ -45,7 +45,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Organizations
         internal EnterOrganizationNamePage OpenEnterYourDetailsManually()
         {
             _formCompletionHelper.ClickElement(_enterYourDetailsManuallyLink);
-            return new EnterOrganizationNamePage(WebBrowserDriver);
+            return new EnterOrganizationNamePage(context);
         }
 
         internal SelectYourOrganisationPage NextPage()
@@ -69,18 +69,18 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Organizations
         internal SummaryPayePage SelectFirstResultWithConfirm()
         {
             _formCompletionHelper.ClickElement(_firstResultButton);
-            return new SummaryPayePage(WebBrowserDriver);
+            return new SummaryPayePage(context);
         }
 
         internal FindOrganizationAddressPage SelectFirstResultWithFindAddressPage()
         {
             _formCompletionHelper.ClickElement(_firstResultButton);
-            return new FindOrganizationAddressPage(WebBrowserDriver);
+            return new FindOrganizationAddressPage(context);
         }
 
         internal string OrganisationIsAdded()
         {
-            return pageInteractionHelper.GetText(errorText);
+            return _pageInteractionHelper.GetText(errorText);
         }
     }
 }

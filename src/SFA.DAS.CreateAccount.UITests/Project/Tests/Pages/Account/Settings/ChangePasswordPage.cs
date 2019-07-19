@@ -22,7 +22,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Settings
 
         public bool IsPagePresented()
         {
-            return pageInteractionHelper.VerifyPageHeading(this.GetPageHeading(), PageTitle);
+            return _pageInteractionHelper.VerifyPageHeading(this.GetPageHeading(), PageTitle);
         }
 
         internal ChangePasswordPage SetCurrentPassword(string password)
@@ -46,7 +46,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Settings
         internal AccountSettingsPage Continue()
         {
             _formCompletionHelper.ClickElement(_continueButton);
-            return new AccountSettingsPage(WebBrowserDriver);
+            return new AccountSettingsPage(context);
         }
 
         internal string[] GetErrors()

@@ -25,7 +25,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Apprentices
         public AgreementNotSignedPage Continue()
         {
             _formCompletionHelper.ClickElement(_continueButton);
-            return new AgreementNotSignedPage(WebBrowserDriver);
+            return new AgreementNotSignedPage(context);
         }
     }
 }

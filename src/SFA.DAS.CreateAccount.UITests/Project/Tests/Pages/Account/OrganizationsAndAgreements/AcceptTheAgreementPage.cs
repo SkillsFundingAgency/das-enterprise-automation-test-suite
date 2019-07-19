@@ -27,7 +27,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Organization
         {
             var elements = WebBrowserDriver.FindElements(By.XPath(".//*[@class=\"agreement-contents\"]//p"));
             var target = elements.Last();
-            var action = new Actions(WebBrowserDriver);
+            var action = new Actions(context);
             action.MoveToElement(target);
             action.Perform();
         }
@@ -35,7 +35,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Organization
         public OrganizationsAndAgreementsBasePage AcceptAndFinish()
         {
             _formCompletionHelper.ClickElement(_acceptAndFinish);
-            return new OrganizationsAndAgreementsBasePage(WebBrowserDriver);
+            return new OrganizationsAndAgreementsBasePage(context);
         }
     }
 }

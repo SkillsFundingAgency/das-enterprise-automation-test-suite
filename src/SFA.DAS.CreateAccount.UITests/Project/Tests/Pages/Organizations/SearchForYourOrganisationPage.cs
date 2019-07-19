@@ -32,7 +32,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Organizations
 
         internal bool IsPagePresented()
         {
-            return pageInteractionHelper.IsElementDisplayed(searchInput);
+            return _pageInteractionHelper.IsElementDisplayed(searchInput);
         }
 
         internal SearchForYourOrganisationPage SetOrganisationName(string name)
@@ -44,7 +44,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Organizations
         internal SelectYourOrganisationPage Continue()
         {
             _formCompletionHelper.ClickElement(_searchButton);
-            return new SelectYourOrganisationPage(WebBrowserDriver);
+            return new SelectYourOrganisationPage(context);
         }
     }
 }

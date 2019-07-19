@@ -21,19 +21,19 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Homepage
 
         internal bool IsPagePresented()
         {
-            return pageInteractionHelper.VerifyPageHeading(this.GetPageHeading(), PageTitle);
+            return _pageInteractionHelper.VerifyPageHeading(this.GetPageHeading(), PageTitle);
         }
 
         internal SetUpAsAUserPage ClickCreateAccountButton()
         {
             _formCompletionHelper.ClickElement(_createAccountButton);
-            return new SetUpAsAUserPage(WebBrowserDriver);
+            return new SetUpAsAUserPage(context);
         }
 
         public SignInPage ClickSignInLink()
         {
             _formCompletionHelper.ClickElement(_signInLink);
-            return new SignInPage(WebBrowserDriver);
+            return new SignInPage(context);
         }
 
         public string GetSingInInfoText()

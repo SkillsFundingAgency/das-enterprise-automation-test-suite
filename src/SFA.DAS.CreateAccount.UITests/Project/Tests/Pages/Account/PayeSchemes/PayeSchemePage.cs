@@ -23,13 +23,13 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.PayeSchemes
 
         internal bool IsPagePresented()
         {
-            return pageInteractionHelper.GetText(_pageHeader) == "PAYE schemes";
+            return _pageInteractionHelper.GetText(_pageHeader) == "PAYE schemes";
         }
 
         internal UsingYourGovtGatewayDetailsPage AddScheme()
         {
             _formCompletionHelper.ClickElement(_addSchemeButton);
-            return new UsingYourGovtGatewayDetailsPage(WebBrowserDriver);
+            return new UsingYourGovtGatewayDetailsPage(context);
         }
 
         internal PayeSchemePage AcceptScheme()
@@ -57,7 +57,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.PayeSchemes
 
             detailsLink.Click();
 
-            return new PayeDetailsPage(WebBrowserDriver);
+            return new PayeDetailsPage(context);
         }
 
         internal string GetNotification()

@@ -28,7 +28,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account
 
         private bool AreTasksPresented()
         {
-            return pageInteractionHelper.IsElementDisplayed(tasksTab);
+            return _pageInteractionHelper.IsElementDisplayed(tasksTab);
         }
 
         internal IEnumerable<string> ListofTasks()
@@ -47,7 +47,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account
         {
             var webelement = WebBrowserDriver.FindElements(_tasksListLinkText).Single(x => x.Text == "View agreements");
             _formCompletionHelper.ClickElement(webelement);
-            return new AboutYourSfaAgreementPage(WebBrowserDriver);
+            return new AboutYourSfaAgreementPage(context);
         }
 
         public void ClickOnActivityTab()
@@ -62,12 +62,12 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account
 
         public string GetActivityPaneTabText()
         {
-            return pageInteractionHelper.GetTextFromElementsGroup(_activityPaneTabData);
+            return _pageInteractionHelper.GetTextFromElementsGroup(_activityPaneTabData);
         }
 
         public int GetActivitiesCount()
         {
-            return pageInteractionHelper.GetCountOfElementsGroup(_activityPaneTabData);
+            return _pageInteractionHelper.GetCountOfElementsGroup(_activityPaneTabData);
         }
 
         public bool IsSeeAllActivityLinkPresent()

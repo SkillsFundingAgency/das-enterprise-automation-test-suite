@@ -32,7 +32,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Settings
         internal AccountSettingsPage Continue()
         {
             _formCompletionHelper.ClickElement(ContinueButton);
-            return new AccountSettingsPage(WebBrowserDriver);
+            return new AccountSettingsPage(context);
         }
     }
 }

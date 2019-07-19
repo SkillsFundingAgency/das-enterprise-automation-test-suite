@@ -29,7 +29,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Homepage
         internal ResetCodeAndPassPage Continue()
         {
             _formCompletionHelper.ClickElement(_getResetCodeButton);
-            return new ResetCodeAndPassPage(WebBrowserDriver);
+            return new ResetCodeAndPassPage(context);
         }
 
         internal string[] GetErrors()

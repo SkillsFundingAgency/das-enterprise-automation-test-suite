@@ -25,7 +25,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Apprentices
         public StartAddingApprenticesPage Continue()
         {
             _formCompletionHelper.ClickElement(_continueButton);
-            return new StartAddingApprenticesPage(WebBrowserDriver);
+            return new StartAddingApprenticesPage(context);
         }
     }
 }

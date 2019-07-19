@@ -32,7 +32,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Homepage
         internal AccountSettingsPage ValidLogin(string userName, string passWord)
         {
             EnterCredentials(userName, passWord);
-            return new AccountSettingsPage(WebBrowserDriver);
+            return new AccountSettingsPage(context);
         }
 
         internal SignInPage InvalidLogin(string invalidUser, string invalidPassword)
@@ -50,23 +50,23 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Homepage
         internal SetUpAsAUserPage ClickCreateAccount()
         {
             _formCompletionHelper.ClickElement(CreateAccLink);
-            return new SetUpAsAUserPage(WebBrowserDriver);
+            return new SetUpAsAUserPage(context);
         }
 
         internal ForgottenCredentialsPage ClickForgottenYourPassword()
         {
             _formCompletionHelper.ClickElement(ForgottenPasswordLink);
-            return new ForgottenCredentialsPage(WebBrowserDriver);
+            return new ForgottenCredentialsPage(context);
         }
 
         internal string GetNotificationMessage()
         {
-            return pageInteractionHelper.GetText(_notificationMessage);
+            return _pageInteractionHelper.GetText(_notificationMessage);
         }
 
         internal string GetNotificationHeader()
         {
-            return pageInteractionHelper.GetText(_notificationHeader);
+            return _pageInteractionHelper.GetText(_notificationHeader);
         }
 
         private void EnterCredentials(string userName, string passWord)

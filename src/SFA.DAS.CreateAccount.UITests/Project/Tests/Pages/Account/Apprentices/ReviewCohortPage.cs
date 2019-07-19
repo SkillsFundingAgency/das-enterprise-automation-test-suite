@@ -25,13 +25,13 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Apprentices
         public CohortUntilPage SaveAndContinue()
         {
             _formCompletionHelper.ClickElement(_saveAndContinue);
-            return new CohortUntilPage(WebBrowserDriver);
+            return new CohortUntilPage(context);
         }
 
         public AddApperentieceFillFormPage AddAnApperentice()
         {
             _formCompletionHelper.ClickElement(_addApperenticeButton);
-            return new AddApperentieceFillFormPage(WebBrowserDriver);
+            return new AddApperentieceFillFormPage(context);
         }
     }
 }

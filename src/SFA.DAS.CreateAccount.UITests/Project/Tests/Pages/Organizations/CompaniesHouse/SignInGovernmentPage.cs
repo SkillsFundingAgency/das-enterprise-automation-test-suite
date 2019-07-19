@@ -20,7 +20,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Organizations.Compan
 
         internal bool IsPagePresented()
         {
-            return pageInteractionHelper.IsElementDisplayed(_userIdInput);
+            return _pageInteractionHelper.IsElementDisplayed(_userIdInput);
         }
 
         internal SignInGovernmentPage InputUserId(string userId)
@@ -38,7 +38,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Organizations.Compan
         internal GrantAuthorityPage SignIn()
         {
             _formCompletionHelper.ClickElement(_signInButton);
-            return new GrantAuthorityPage(WebBrowserDriver);
+            return new GrantAuthorityPage(context);
         }
         internal void SignInWithInvalidDetails()
         {
@@ -47,12 +47,12 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Organizations.Compan
 
         internal string GetUserId()
         {
-            return pageInteractionHelper.GetText(_userIdInput);
+            return _pageInteractionHelper.GetText(_userIdInput);
         }
 
         internal string GetPassword()
         {
-            return pageInteractionHelper.GetText(_passwordInput);
+            return _pageInteractionHelper.GetText(_passwordInput);
         }
     }
 }

@@ -17,7 +17,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account
         
         internal bool IsPagePresented()
         {
-            return pageInteractionHelper.IsElementDisplayed(_acceptButton);
+            return _pageInteractionHelper.IsElementDisplayed(_acceptButton);
         }
 
         public void AcceptTheLastInvitation()

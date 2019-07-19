@@ -21,7 +21,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Organizations.Public
         {
             var link = WebBrowserDriver.FindElement(By.XPath(".//ol[@class=\"search-results\"]/li[1]//button"));
             _formCompletionHelper.ClickElement(link);
-            return new FindOrganizationAddressPage(WebBrowserDriver);
+            return new FindOrganizationAddressPage(context);
         }
 
         public string GetFirstOrganizationName()
@@ -34,7 +34,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Organizations.Public
         public EnterOrganizationNamePage SetOrganizationManually()
         {
             _formCompletionHelper.ClickElement(_addManuallyButton);
-            return new EnterOrganizationNamePage(WebBrowserDriver);
+            return new EnterOrganizationNamePage(context);
         }
     }
 }
