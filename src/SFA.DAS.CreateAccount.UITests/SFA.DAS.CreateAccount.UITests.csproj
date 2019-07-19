@@ -24,12 +24,17 @@
 
   <ItemGroup>
     <Folder Include="Project\Tests\Features\" />
-    <Folder Include="Project\Tests\StepDefinitions\" />
     <Folder Include="Project\Tests\Pages\" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\SFA.DAS.UI.Framework\SFA.DAS.UI.Framework.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="appsettings.Development.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

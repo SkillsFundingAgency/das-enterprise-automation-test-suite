@@ -1,0 +1,38 @@
+﻿using SFA.DAS.CreateAccount.UITests.Project.Framework.Helpers;
+using SFA.DAS.UI.Framework.TestSupport;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Support.PageObjects;
+
+namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Organizations.CompaniesHouse
+{
+    public class GrantAuthorityPage : BasePage
+    {
+        [FindsBy(How = How.CssSelector, Using = "h1")] private IWebElement _pageHeader;
+
+        public GrantAuthorityPage(IWebDriver WebBrowserDriver) : base(WebBrowserDriver)
+        {
+        }
+
+        internal bool CheckCompaniesHouseNumberFromSummary(string number)
+        {
+            var results = WebBrowserDriver.FindElements(By.XPath($".//dd[contains (text(), \'{number}\')]"));
+            return results.Count == 1;
+        }
+
+        internal bool IsSchemeInUse()
+        {
+            var pageHeaderText = _pageHeader.Text;
+            return pageHeaderText == "PAYE scheme already in use";
+        }
+
+        internal void UseDifferentDetailsButton()
+        {
+            var pageHeaderText = _pageHeader.Text;
+            if (pageHeaderText != "PAYE scheme already in use")
+                return;
+            var useDifferentDetailsButton =
+                WebBrowserDriver.FindElement(By.XPath(".//a[contains (text(), \'Use different details\')]"));
+            useDifferentDetailsButton.Click();
+        }
+    }
+}

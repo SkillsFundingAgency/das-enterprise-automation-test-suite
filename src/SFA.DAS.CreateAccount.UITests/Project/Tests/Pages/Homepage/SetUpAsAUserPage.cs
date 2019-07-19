@@ -1,0 +1,134 @@
+﻿using System.Linq;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Support.PageObjects;
+using SFA.DAS.UI.Framework.TestSupport;
+
+namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Homepage
+{
+    public class SetUpAsAUserPage : BasePage
+    {
+        [FindsBy(How = How.ClassName, Using = "error-summary")] private IWebElement ErrorBox { get; set; }
+        [FindsBy(How = How.ClassName, Using = "heading-xlarge")] private IWebElement PageHeader { get; set; }
+        [FindsBy(How = How.Id, Using = "FirstName")] private IWebElement FirstName { get; set; }
+        [FindsBy(How = How.XPath, Using = ".//a[contains (text(), \'Enter first name\')]")] private IWebElement FirstNameErrorInBox { get; set; }
+        [FindsBy(How = How.Id, Using = "LastName")] private IWebElement LastName { get; set; }
+        [FindsBy(How = How.XPath, Using = ".//a[contains (text(), \'Enter last name\')]")] private IWebElement LastNameErrorInBox { get; set; }
+        [FindsBy(How = How.Id, Using = "Email")] private IWebElement Email { get; set; }
+        [FindsBy(How = How.XPath, Using = ".//a[contains (text(), \'Enter a valid email address\')]")] private IWebElement EmailErrorInBox { get; set; }
+        [FindsBy(How = How.Id, Using = "Password")] private IWebElement Password { get; set; }
+        [FindsBy(How = How.XPath, Using = ".//a[contains (text(), \'Enter password\')]")] private IWebElement PasswordErrorInBox { get; set; }
+        [FindsBy(How = How.XPath, Using = ".//span[contains (text(), \'Password requires\')]")] private IWebElement PasswordValidationErrorField { get; set; }
+        [FindsBy(How = How.Id, Using = "ConfirmPassword")] private IWebElement PasswordConfirm { get; set; }
+        [FindsBy(How = How.XPath, Using = ".//a[contains (text(), \'Re-type password\')]")] private IWebElement PasswordCnfErrorInBox { get; set; }
+        [FindsBy(How = How.Id, Using = "button-register")] private IWebElement SetMeUp { get; set; }
+        private By _signInLink = By.XPath("//a[contains(text(), 'sign in')]");
+        private By _termsAndConditionsLink = By.XPath("//a[contains(text(),'terms and conditions')]");
+
+        public SetUpAsAUserPage(IWebDriver WebBrowserDriver) : base(WebBrowserDriver)
+        {
+            IsPagePresented();
+        }
+
+        internal bool IsPagePresented()
+        {
+            return pageInteractionHelper.GetText(WebBrowserDriver, PageHeader) == "Set up as a user";
+        }
+
+        internal bool IsSignInLinkPresent()
+        {
+            return pageInteractionHelper.IsElementDisplayed(WebBrowserDriver, _signInLink);
+        }
+
+        internal void ClickOnSignInLink()
+        {
+            formCompletionHelper.ClickElement(WebBrowserDriver, _signInLink);
+        }
+
+        internal bool IsTermsAndConditionsLinkPresent()
+        {
+            return pageInteractionHelper.IsElementDisplayed(WebBrowserDriver, _termsAndConditionsLink);
+        }
+
+        internal void ClickOnTermsAndConditionsLink()
+        {
+            formCompletionHelper.ClickElement(WebBrowserDriver, _termsAndConditionsLink);
+        }
+
+        internal SetUpAsAUserPage SubmitInvalidForm(string firstName, string lastName, string email, string passWord)
+        {
+            CompleteForm(firstName, lastName, email, passWord);
+            SubmitForm();
+            return this;
+        }
+
+        internal ConfirmYourIdentityPage SubmitValidForm(string firstName, string lastName, string email, string passWord, string ReEnterPassword)
+        {
+            CompleteForm(firstName, lastName, email, passWord);
+            SubmitForm();
+            return new ConfirmYourIdentityPage(WebBrowserDriver);
+        }
+
+        internal SetUpAsAUserPage SubmitIncompleteForm()
+        {
+            SubmitForm();
+            return this;
+        }
+
+        private void CompleteForm(string firstName, string lastName, string email, string passWord)
+        {
+            formCompletionHelper.EnterText(WebBrowserDriver, FirstName, firstName);
+            LastName.SendKeys(lastName);
+            Email.SendKeys(email);
+            Password.SendKeys(passWord);
+            PasswordConfirm.SendKeys(passWord);
+        }
+
+        private void SubmitForm()
+        {
+            formCompletionHelper.ClickElement(WebBrowserDriver, SetMeUp);
+        }
+
+        internal bool IsTheErrorBoxDisplayed()
+        {
+            return ErrorBox.Displayed;
+        }
+
+        internal string GetFirstNameRequiredInBox()
+        {
+            return pageInteractionHelper.GetText(WebBrowserDriver, FirstNameErrorInBox);
+        }
+
+        internal string GetLastNameRequiredInBox()
+        {
+            return pageInteractionHelper.GetText(WebBrowserDriver, LastNameErrorInBox);
+        }
+
+        internal string GetEmailRequiredInBox()
+        {
+            return pageInteractionHelper.GetText(WebBrowserDriver, EmailErrorInBox);
+        }
+
+        internal string GetPasswordRequiredInBox()
+        {
+            return pageInteractionHelper.GetText(WebBrowserDriver, PasswordErrorInBox);
+        }
+
+        internal string GetPasswordValidationMessage()
+        {
+            return pageInteractionHelper.GetText(WebBrowserDriver, PasswordValidationErrorField);
+        }
+
+        internal string GetPasswordRetryRequiredInBox()
+        {
+            return pageInteractionHelper.GetText(WebBrowserDriver, PasswordCnfErrorInBox);
+        }
+
+        internal string[] GetErrors()
+        {
+            return WebBrowserDriver
+                .FindElements(By.XPath(".//*[@class=\"error-summary-list\"]//li"))
+                .Select((element) => element.Text)
+                .ToArray();
+        }
+    }
+}
