@@ -20,12 +20,12 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.TeamMember
 
         internal bool IsPagePresented()
         {
-            return pageInteractionHelper.GetText(WebBrowserDriver, _pageHeader) == "Your team";
+            return pageInteractionHelper.GetText(_pageHeader) == "Your team";
         }
 
         internal CreateInvitationPage OpenInviteMemberPage()
         {
-            formCompletionHelper.ClickElement(WebBrowserDriver, _inviteMemterButton);
+            formCompletionHelper.ClickElement(_inviteMemterButton);
             return new CreateInvitationPage(WebBrowserDriver);
         }
 
@@ -46,7 +46,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.TeamMember
         internal ViewMemberPage ViewLastMember()
         {
             var elements = WebBrowserDriver.FindElements(By.XPath(".//a[contains (text(), \'View\')]"));
-            formCompletionHelper.ClickElement(WebBrowserDriver, elements.Last());
+            formCompletionHelper.ClickElement(elements.Last());
             return new ViewMemberPage(WebBrowserDriver);
         }
     }

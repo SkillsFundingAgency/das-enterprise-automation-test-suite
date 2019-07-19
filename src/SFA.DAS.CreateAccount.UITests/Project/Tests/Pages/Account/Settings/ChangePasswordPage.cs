@@ -24,25 +24,25 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Settings
 
         internal ChangePasswordPage SetCurrentPassword(string password)
         {
-            formCompletionHelper.EnterText(WebBrowserDriver, _currentPasswordInput, password);
+            formCompletionHelper.EnterText(_currentPasswordInput, password);
             return this;
         }
 
         internal ChangePasswordPage SetNewPassword(string password)
         {
-            formCompletionHelper.EnterText(WebBrowserDriver, _newPasswordInput, password);
+            formCompletionHelper.EnterText(_newPasswordInput, password);
             return this;
         }
 
         internal ChangePasswordPage ConfirmPassword(string password)
         {
-            formCompletionHelper.EnterText(WebBrowserDriver, _confirmPasswordInput, password);
+            formCompletionHelper.EnterText(_confirmPasswordInput, password);
             return this;
         }
 
         internal AccountSettingsPage Continue()
         {
-            formCompletionHelper.ClickElement(WebBrowserDriver, _continueButton);
+            formCompletionHelper.ClickElement(_continueButton);
             return new AccountSettingsPage(WebBrowserDriver);
         }
 

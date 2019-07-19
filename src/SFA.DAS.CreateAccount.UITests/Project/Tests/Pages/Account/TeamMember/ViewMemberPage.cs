@@ -19,29 +19,29 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.TeamMember
 
         internal void ResendInvitation()
         {
-            formCompletionHelper.ClickElement(WebBrowserDriver, _resendButton);
+            formCompletionHelper.ClickElement(_resendButton);
         }
 
         internal ViewMemberPage CancelInvitation()
         {
-            formCompletionHelper.ClickElement(WebBrowserDriver, _cancelInvitation);
+            formCompletionHelper.ClickElement(_cancelInvitation);
             return this;
         }
 
         internal void ConfirmCancellation()
         {
-            formCompletionHelper.ClickElement(WebBrowserDriver, _confirmCancellation);
+            formCompletionHelper.ClickElement(_confirmCancellation);
         }
 
         internal void ForbidCancellation()
         {
-            formCompletionHelper.ClickElement(WebBrowserDriver, _forbidCancellation);
+            formCompletionHelper.ClickElement(_forbidCancellation);
         }
 
         internal YourTeamPage RemoveMember()
         {
-            formCompletionHelper.ClickElement(WebBrowserDriver, _removeMemberButton);
-            formCompletionHelper.ClickElement(WebBrowserDriver, _confirmTheMemberRemovalButton);
+            formCompletionHelper.ClickElement(_removeMemberButton);
+            formCompletionHelper.ClickElement(_confirmTheMemberRemovalButton);
             return new YourTeamPage(WebBrowserDriver);
         }
     }

@@ -22,7 +22,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Organization
 
         internal EnterOrganizationNamePage AddNewOrganization()
         {
-            formCompletionHelper.ClickElement(WebBrowserDriver, _addNewOrganizationButton);
+            formCompletionHelper.ClickElement(_addNewOrganizationButton);
             return new EnterOrganizationNamePage(WebBrowserDriver);
         }
 
@@ -43,13 +43,13 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Organization
 
         internal RemoveOrganizationPage ClickRemoveOrgLink()
         {
-            formCompletionHelper.ClickElement(WebBrowserDriver, _removeAnOrgLink);
+            formCompletionHelper.ClickElement(_removeAnOrgLink);
             return new RemoveOrganizationPage(WebBrowserDriver);
         }
 
         public string GetOrgRemovedHeaderMessage()
         {
-            return pageInteractionHelper.GetText(WebBrowserDriver, _orgRemovedMessage);
+            return pageInteractionHelper.GetText(_orgRemovedMessage);
         }
     }
 }

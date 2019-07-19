@@ -23,7 +23,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Organization
         {
             var elements =
                 WebBrowserDriver.FindElements(By.XPath("//td[@data-label=\"Action\"]//a"));
-            formCompletionHelper.ClickElement(WebBrowserDriver, elements.Last());
+            formCompletionHelper.ClickElement(elements.Last());
         }
 
         public string GetNotification()

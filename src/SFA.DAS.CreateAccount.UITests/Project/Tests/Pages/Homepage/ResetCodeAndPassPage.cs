@@ -20,25 +20,25 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Homepage
 
         internal ResetCodeAndPassPage SetCode(string code)
         {
-            formCompletionHelper.EnterText(WebBrowserDriver, _resetCodeInput, code);
+            formCompletionHelper.EnterText(_resetCodeInput, code);
             return this;
         }
 
         internal ResetCodeAndPassPage SetNewPassword(string password)
         {
-            formCompletionHelper.EnterText(WebBrowserDriver, _newPasswordInput, password);
+            formCompletionHelper.EnterText(_newPasswordInput, password);
             return this;
         }
 
         internal ResetCodeAndPassPage ConfirmPassword(string password)
         {
-            formCompletionHelper.EnterText(WebBrowserDriver, _confirmPasswordInput, password);
+            formCompletionHelper.EnterText(_confirmPasswordInput, password);
             return this;
         }
 
         internal AccountSettingsPage Continue()
         {
-            formCompletionHelper.ClickElement(WebBrowserDriver, _continueButton);
+            formCompletionHelper.ClickElement(_continueButton);
             return new AccountSettingsPage(WebBrowserDriver);
         }
 

@@ -20,18 +20,18 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.PayeSchemes
 
         internal bool IsPagePresented()
         {
-            return pageInteractionHelper.GetText(WebBrowserDriver, _pageHeader) == "PAYE schemes";
+            return pageInteractionHelper.GetText(_pageHeader) == "PAYE schemes";
         }
 
         internal UsingYourGovtGatewayDetailsPage AddScheme()
         {
-            formCompletionHelper.ClickElement(WebBrowserDriver, _addSchemeButton);
+            formCompletionHelper.ClickElement(_addSchemeButton);
             return new UsingYourGovtGatewayDetailsPage(WebBrowserDriver);
         }
 
         internal PayeSchemePage AcceptScheme()
         {
-            formCompletionHelper.ClickElement(WebBrowserDriver, _acceptSchemeAddition);
+            formCompletionHelper.ClickElement(_acceptSchemeAddition);
             if (this.WebBrowserDriver.EmployerAccountHomepage().IsMoreLinkPresent())
                 this.WebBrowserDriver.EmployerAccountHomepage().ClickMoreLink();
             this.WebBrowserDriver.EmployerAccountHomepage().OpenPayeSchemesPage();

@@ -13,17 +13,17 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Mailinator
 
         public string GetEmailSubject()
         {
-            return formCompletionHelper.GetText(WebBrowserDriver, _emailSubjectField);
+            return formCompletionHelper.GetText(_emailSubjectField);
         }
 
         public void ClickOnEmailToOpenIt()
         {
-            formCompletionHelper.ClickElement(WebBrowserDriver, _emailSubjectField);
+            formCompletionHelper.ClickElement(_emailSubjectField);
         }
 
         public bool IsEmailPresent()
         {
-            return formCompletionHelper.IsElementDisplayed(WebBrowserDriver, _emailSubjectField);
+            return formCompletionHelper.IsElementDisplayed(_emailSubjectField);
         }
     }
 }

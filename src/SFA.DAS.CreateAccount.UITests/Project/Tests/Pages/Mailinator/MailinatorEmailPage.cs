@@ -14,13 +14,13 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Mailinator
 
         public string GetAccessCode()
         {
-            pageInteractionHelper.SwitchToFrame(WebBrowserDriver, _emailBodyFrame);
-            return formCompletionHelper.GetText(WebBrowserDriver, _accessCodeText);
+            pageInteractionHelper.SwitchToFrame(_emailBodyFrame);
+            return formCompletionHelper.GetText(_accessCodeText);
         }
 
         public bool IsEmailBodyFramePresent()
         {
-            return formCompletionHelper.IsElementDisplayed(WebBrowserDriver, _emailBodyFrame);
+            return formCompletionHelper.IsElementDisplayed(_emailBodyFrame);
         }
     }
 }

@@ -29,40 +29,40 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account
 
         internal void ClickSignOut()
         {
-            formCompletionHelper.ClickElement(WebBrowserDriver, _signOutBtn);
+            formCompletionHelper.ClickElement(_signOutBtn);
         }
 
         internal bool IsPagePresented()
         {
-            return pageInteractionHelper.IsElementDisplayed(WebBrowserDriver, _settingsLink);
+            return pageInteractionHelper.IsElementDisplayed(_settingsLink);
         }
 
         internal AccountSettingsPage ClickChangeLevyAccountLink()
         {
-            formCompletionHelper.ClickElement(WebBrowserDriver, ChangeLevyAccountLink);
+            formCompletionHelper.ClickElement(ChangeLevyAccountLink);
             return this;
         }
 
         internal ChangeEmailPage ChangeEmail()
         {
-            formCompletionHelper.ClickElement(WebBrowserDriver, ChangeEmailLink);
+            formCompletionHelper.ClickElement(ChangeEmailLink);
             return new ChangeEmailPage(WebBrowserDriver);
         }
 
         internal ChangePasswordPage ChangePassword()
         {
-            formCompletionHelper.ClickElement(WebBrowserDriver, ChangePasswordLink);
+            formCompletionHelper.ClickElement(ChangePasswordLink);
             return new ChangePasswordPage(WebBrowserDriver);
         }
 
         internal string AccountName()
         {
-            return pageInteractionHelper.GetText(WebBrowserDriver, _settingsLink);
+            return pageInteractionHelper.GetText(_settingsLink);
         }
 
         internal AccountSettingsPage ClickSettingsLink()
         {
-            formCompletionHelper.ClickElement(WebBrowserDriver, _settingsLink);
+            formCompletionHelper.ClickElement(_settingsLink);
             return this;
         }
 
@@ -73,38 +73,38 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account
 
         internal RenameAccountPage RenameAccount()
         {
-            formCompletionHelper.ClickElement(WebBrowserDriver, RenameAccountLink);
+            formCompletionHelper.ClickElement(RenameAccountLink);
             return new RenameAccountPage(WebBrowserDriver);
         }
 
         internal void ClickYourAccountsLink()
         {
-            formCompletionHelper.ClickElement(WebBrowserDriver, _settingsLink);
-            formCompletionHelper.ClickElement(WebBrowserDriver, _yourAccountLink);
+            formCompletionHelper.ClickElement(_settingsLink);
+            formCompletionHelper.ClickElement(_yourAccountLink);
         }
 
         internal void ClickRenameAccountLink()
         {
-            formCompletionHelper.ClickElement(WebBrowserDriver, _settingsLink);
-            formCompletionHelper.ClickElement(WebBrowserDriver, RenameAccountLink);
+            formCompletionHelper.ClickElement(_settingsLink);
+            formCompletionHelper.ClickElement(RenameAccountLink);
         }
 
         internal void ClickChangeYourPasswordLink()
         {
-            formCompletionHelper.ClickElement(WebBrowserDriver, _settingsLink);
-            formCompletionHelper.ClickElement(WebBrowserDriver, ChangePasswordLink);
+            formCompletionHelper.ClickElement(_settingsLink);
+            formCompletionHelper.ClickElement(ChangePasswordLink);
         }
 
         internal void ClickChangeYourEmailAddressLink()
         {
-            formCompletionHelper.ClickElement(WebBrowserDriver, _settingsLink);
-            formCompletionHelper.ClickElement(WebBrowserDriver, ChangeEmailLink);
+            formCompletionHelper.ClickElement(_settingsLink);
+            formCompletionHelper.ClickElement(ChangeEmailLink);
         }
 
         internal void ClickNotificationSettingsLink()
         {
-            formCompletionHelper.ClickElement(WebBrowserDriver, _settingsLink);
-            formCompletionHelper.ClickElement(WebBrowserDriver, _notificationSettingsLink);
+            formCompletionHelper.ClickElement(_settingsLink);
+            formCompletionHelper.ClickElement(_notificationSettingsLink);
         }
     }
 }

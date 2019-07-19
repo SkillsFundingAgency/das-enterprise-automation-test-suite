@@ -14,12 +14,12 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account
         
         internal bool IsPagePresented()
         {
-            return pageInteractionHelper.IsElementDisplayed(WebBrowserDriver, _acceptButton);
+            return pageInteractionHelper.IsElementDisplayed(_acceptButton);
         }
 
         public void AcceptTheLastInvitation()
         {
-            formCompletionHelper.ClickElement(WebBrowserDriver, _acceptButton);
+            formCompletionHelper.ClickElement(_acceptButton);
         }
     }
 }

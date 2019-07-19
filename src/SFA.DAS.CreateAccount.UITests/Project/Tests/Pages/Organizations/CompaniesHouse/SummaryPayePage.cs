@@ -51,27 +51,27 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Organizations.Compan
 
         internal string GetOrganizationDetails()
         {
-            return pageInteractionHelper.GetText(WebBrowserDriver, _orgName);
+            return pageInteractionHelper.GetText(_orgName);
         }
 
         internal string GetCharityNumber()
         {
-            return pageInteractionHelper.GetText(WebBrowserDriver, _charityNumber);
+            return pageInteractionHelper.GetText(_charityNumber);
         }
 
         internal string GetCharityAddress()
         {
-            return pageInteractionHelper.GetText(WebBrowserDriver, _charityAddress);
+            return pageInteractionHelper.GetText(_charityAddress);
         }
 
         internal string GetPayeScheme()
         {
-            return pageInteractionHelper.GetText(WebBrowserDriver, payeNumber);
+            return pageInteractionHelper.GetText(payeNumber);
         }
 
         internal LegalAgreementPage Continue()
         {
-            formCompletionHelper.ClickElement(WebBrowserDriver, _confirmSchemeButtonId);
+            formCompletionHelper.ClickElement(_confirmSchemeButtonId);
             return new LegalAgreementPage(WebBrowserDriver);
         }
 
@@ -88,12 +88,12 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Organizations.Compan
 
         public void ClickChangeOrgLink()
         {
-            formCompletionHelper.ClickElement(WebBrowserDriver, _changeOrgLink);
+            formCompletionHelper.ClickElement(_changeOrgLink);
         }
 
         public void ClickChangePAYELink()
         {
-            formCompletionHelper.ClickElement(WebBrowserDriver, _changePAYELink);
+            formCompletionHelper.ClickElement(_changePAYELink);
         }
     }
 }

@@ -19,13 +19,13 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Homepage
 
         internal ForgottenCredentialsPage SetEmail(string email)
         {
-            formCompletionHelper.EnterText(WebBrowserDriver, _changeEmailInput, email);
+            formCompletionHelper.EnterText(_changeEmailInput, email);
             return this;
         }
 
         internal ResetCodeAndPassPage Continue()
         {
-            formCompletionHelper.ClickElement(WebBrowserDriver, _getResetCodeButton);
+            formCompletionHelper.ClickElement(_getResetCodeButton);
             return new ResetCodeAndPassPage(WebBrowserDriver);
         }
 

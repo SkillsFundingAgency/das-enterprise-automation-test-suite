@@ -22,48 +22,48 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Organizations.Public
 
         internal OrganizationAddressPage SetFirstAddressLine(string addressLine)
         {
-            formCompletionHelper.EnterText(WebBrowserDriver, _firstAddressInput, addressLine);
+            formCompletionHelper.EnterText(_firstAddressInput, addressLine);
             return this;
         }
 
         internal OrganizationAddressPage SetSecondAddressLine(string addressLine)
         {
-            formCompletionHelper.EnterText(WebBrowserDriver, _secondAddressInput, addressLine);
+            formCompletionHelper.EnterText(_secondAddressInput, addressLine);
             return this;
         }
 
         internal OrganizationAddressPage SetTownOrCity(string townOrCity)
         {
-            formCompletionHelper.EnterText(WebBrowserDriver, _townOrCityInput, townOrCity);
+            formCompletionHelper.EnterText(_townOrCityInput, townOrCity);
             return this;
         }
 
         internal OrganizationAddressPage SetCountry(string country)
         {
-            formCompletionHelper.EnterText(WebBrowserDriver, _countryInput, country);
+            formCompletionHelper.EnterText(_countryInput, country);
             return this;
         }
 
         internal OrganizationAddressPage SetPostcode(string postcode)
         {
-            formCompletionHelper.EnterText(WebBrowserDriver, _postcodeInput, postcode);
+            formCompletionHelper.EnterText(_postcodeInput, postcode);
             return this;
         }
 
         internal SummaryPayePage ContinueAndMoveToConfirmPage()
         {
-            formCompletionHelper.ClickElement(WebBrowserDriver, _continueButton);
+            formCompletionHelper.ClickElement(_continueButton);
             return new SummaryPayePage(WebBrowserDriver);
         }
 
         internal void ClickContinueWithoutEnteringData()
         {
-            formCompletionHelper.ClickElement(WebBrowserDriver, _continueButton);
+            formCompletionHelper.ClickElement(_continueButton);
         }
 
         internal ConfirmOrganizationDataPage ContinueAndMoveToConfirmOrganizationDataPage()
         {
-            formCompletionHelper.ClickElement(WebBrowserDriver, _continueButton);
+            formCompletionHelper.ClickElement(_continueButton);
             return new ConfirmOrganizationDataPage(WebBrowserDriver);
         }
 

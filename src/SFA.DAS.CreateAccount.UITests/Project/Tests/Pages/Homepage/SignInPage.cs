@@ -46,24 +46,24 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Homepage
 
         internal SetUpAsAUserPage ClickCreateAccount()
         {
-            formCompletionHelper.ClickElement(WebBrowserDriver, CreateAccLink);
+            formCompletionHelper.ClickElement(CreateAccLink);
             return new SetUpAsAUserPage(WebBrowserDriver);
         }
 
         internal ForgottenCredentialsPage ClickForgottenYourPassword()
         {
-            formCompletionHelper.ClickElement(WebBrowserDriver, ForgottenPasswordLink);
+            formCompletionHelper.ClickElement(ForgottenPasswordLink);
             return new ForgottenCredentialsPage(WebBrowserDriver);
         }
 
         internal string GetNotificationMessage()
         {
-            return pageInteractionHelper.GetText(WebBrowserDriver, _notificationMessage);
+            return pageInteractionHelper.GetText(_notificationMessage);
         }
 
         internal string GetNotificationHeader()
         {
-            return pageInteractionHelper.GetText(WebBrowserDriver, _notificationHeader);
+            return pageInteractionHelper.GetText(_notificationHeader);
         }
 
         private void EnterCredentials(string userName, string passWord)
@@ -75,37 +75,37 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Homepage
 
         private void EnterUserName(string userName)
         {
-            formCompletionHelper.EnterText(WebBrowserDriver, EmailAddress, userName);
+            formCompletionHelper.EnterText(EmailAddress, userName);
         }
 
         private void EnterPassWord(string passWord)
         {
-            formCompletionHelper.EnterText(WebBrowserDriver, Password, passWord);
+            formCompletionHelper.EnterText(Password, passWord);
         }
 
         private void ClickLoginButton()
         {
-            formCompletionHelper.ClickElement(WebBrowserDriver, LoginBtn);
+            formCompletionHelper.ClickElement(LoginBtn);
         }
 
         public string GetEmailAddressErrorMessage()
         {
-            return formCompletionHelper.GetText(WebBrowserDriver, _emailAddressErrorMessage);
+            return formCompletionHelper.GetText(_emailAddressErrorMessage);
         }
 
         public string GetPasswordErrorMessage()
         {
-            return formCompletionHelper.GetText(WebBrowserDriver, _passwordErrorMessage);
+            return formCompletionHelper.GetText(_passwordErrorMessage);
         }
 
         public string GetHeaderEmailAddressErrorMessage()
         {
-            return formCompletionHelper.GetText(WebBrowserDriver, _headerEmailErrorMessage);
+            return formCompletionHelper.GetText(_headerEmailErrorMessage);
         }
 
         public string GetHeaderPasswordErrorMessage()
         {
-            return formCompletionHelper.GetText(WebBrowserDriver, _headerPasswordErrorMessage);
+            return formCompletionHelper.GetText(_headerPasswordErrorMessage);
         }
     }
 }

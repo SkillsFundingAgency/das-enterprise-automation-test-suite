@@ -18,7 +18,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Finance
 
         internal bool IsPagePresented()
         {
-            return pageInteractionHelper.IsElementDisplayed(WebBrowserDriver, _currentFunds);
+            return pageInteractionHelper.IsElementDisplayed(_currentFunds);
         }
 
         public string GetCurrentFunds()
@@ -28,24 +28,24 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Finance
 
         public TransactionBasePage OpenViewTransactions()
         {
-            formCompletionHelper.ClickElement(WebBrowserDriver, _lnkViewtransactions);
+            formCompletionHelper.ClickElement(_lnkViewtransactions);
             return new TransactionBasePage(WebBrowserDriver);
         }
 
         public DownloadTransactionsPage OpenDownloadTransactions()
         {
-            formCompletionHelper.ClickElement(WebBrowserDriver, _lnkDownloadtransactions);
+            formCompletionHelper.ClickElement(_lnkDownloadtransactions);
             return new DownloadTransactionsPage(WebBrowserDriver);
         }
         public TransfersPage OpenManageTransfers()
         {
-            formCompletionHelper.ClickElement(WebBrowserDriver, _lnkManagetransfers);
+            formCompletionHelper.ClickElement(_lnkManagetransfers);
             return new TransfersPage(WebBrowserDriver);
         }
 
         public FundingProjectionPage OpenFundingProjection()
         {
-            formCompletionHelper.ClickElement(WebBrowserDriver, _lnkFundingProjection);
+            formCompletionHelper.ClickElement(_lnkFundingProjection);
             return new FundingProjectionPage(WebBrowserDriver);
         }
     }

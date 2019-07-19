@@ -31,27 +31,27 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Homepage
 
         internal bool IsPagePresented()
         {
-            return pageInteractionHelper.GetText(WebBrowserDriver, PageHeader) == "Set up as a user";
+            return pageInteractionHelper.GetText(PageHeader) == "Set up as a user";
         }
 
         internal bool IsSignInLinkPresent()
         {
-            return pageInteractionHelper.IsElementDisplayed(WebBrowserDriver, _signInLink);
+            return pageInteractionHelper.IsElementDisplayed(_signInLink);
         }
 
         internal void ClickOnSignInLink()
         {
-            formCompletionHelper.ClickElement(WebBrowserDriver, _signInLink);
+            formCompletionHelper.ClickElement(_signInLink);
         }
 
         internal bool IsTermsAndConditionsLinkPresent()
         {
-            return pageInteractionHelper.IsElementDisplayed(WebBrowserDriver, _termsAndConditionsLink);
+            return pageInteractionHelper.IsElementDisplayed(_termsAndConditionsLink);
         }
 
         internal void ClickOnTermsAndConditionsLink()
         {
-            formCompletionHelper.ClickElement(WebBrowserDriver, _termsAndConditionsLink);
+            formCompletionHelper.ClickElement(_termsAndConditionsLink);
         }
 
         internal SetUpAsAUserPage SubmitInvalidForm(string firstName, string lastName, string email, string passWord)
@@ -76,7 +76,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Homepage
 
         private void CompleteForm(string firstName, string lastName, string email, string passWord)
         {
-            formCompletionHelper.EnterText(WebBrowserDriver, FirstName, firstName);
+            formCompletionHelper.EnterText(FirstName, firstName);
             LastName.SendKeys(lastName);
             Email.SendKeys(email);
             Password.SendKeys(passWord);
@@ -85,7 +85,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Homepage
 
         private void SubmitForm()
         {
-            formCompletionHelper.ClickElement(WebBrowserDriver, SetMeUp);
+            formCompletionHelper.ClickElement(SetMeUp);
         }
 
         internal bool IsTheErrorBoxDisplayed()
@@ -95,32 +95,32 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Homepage
 
         internal string GetFirstNameRequiredInBox()
         {
-            return pageInteractionHelper.GetText(WebBrowserDriver, FirstNameErrorInBox);
+            return pageInteractionHelper.GetText(FirstNameErrorInBox);
         }
 
         internal string GetLastNameRequiredInBox()
         {
-            return pageInteractionHelper.GetText(WebBrowserDriver, LastNameErrorInBox);
+            return pageInteractionHelper.GetText(LastNameErrorInBox);
         }
 
         internal string GetEmailRequiredInBox()
         {
-            return pageInteractionHelper.GetText(WebBrowserDriver, EmailErrorInBox);
+            return pageInteractionHelper.GetText(EmailErrorInBox);
         }
 
         internal string GetPasswordRequiredInBox()
         {
-            return pageInteractionHelper.GetText(WebBrowserDriver, PasswordErrorInBox);
+            return pageInteractionHelper.GetText(PasswordErrorInBox);
         }
 
         internal string GetPasswordValidationMessage()
         {
-            return pageInteractionHelper.GetText(WebBrowserDriver, PasswordValidationErrorField);
+            return pageInteractionHelper.GetText(PasswordValidationErrorField);
         }
 
         internal string GetPasswordRetryRequiredInBox()
         {
-            return pageInteractionHelper.GetText(WebBrowserDriver, PasswordCnfErrorInBox);
+            return pageInteractionHelper.GetText(PasswordCnfErrorInBox);
         }
 
         internal string[] GetErrors()

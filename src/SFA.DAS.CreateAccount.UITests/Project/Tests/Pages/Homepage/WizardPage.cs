@@ -73,14 +73,14 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account
 
         internal Homepage.Homepage Close()
         {
-            formCompletionHelper.ClickAndWaitForInvisibilityOfAnElement(WebBrowserDriver, _closeButton, By.CssSelector(closebtncss));
+            formCompletionHelper.ClickAndWaitForInvisibilityOfAnElement(_closeButton, By.CssSelector(closebtncss));
             return new Homepage.Homepage(WebBrowserDriver);
         }
 
         internal WizardPage SelectStep(int stepNumber, bool answer)
         {
             var element = this.GetStepRadioButton(stepNumber, answer);
-            this.formCompletionHelper.SelectRadioButton(WebBrowserDriver, element);
+            this.formCompletionHelper.SelectRadioButton(element);
             return this;
         }
 

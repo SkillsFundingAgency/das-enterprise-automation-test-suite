@@ -21,8 +21,8 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Organization
 
         public YourOrganizationsBasePage SelectYesRadiobuttonAndContinue()
         {
-            formCompletionHelper.ClickElementExecutingJavaScript(WebBrowserDriver, _yesRadiobutton);
-            formCompletionHelper.ClickElement(WebBrowserDriver, _continueButton);
+            formCompletionHelper.ClickElementExecutingJavaScript(_yesRadiobutton);
+            formCompletionHelper.ClickElement(_continueButton);
             return new YourOrganizationsBasePage(WebBrowserDriver);
         }
     }

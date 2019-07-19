@@ -31,7 +31,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Homepage
 
         internal SiteHomepage MoveBack()
         {
-            formCompletionHelper.ClickElement(WebBrowserDriver, _backButton);
+            formCompletionHelper.ClickElement(_backButton);
             return new SiteHomepage(WebBrowserDriver);
         }
 
@@ -43,54 +43,54 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Homepage
 
         internal bool IsPagePresented()
         {
-            return pageInteractionHelper.GetText(WebBrowserDriver, PageHeader) == "Confirm your identity";
+            return pageInteractionHelper.GetText(PageHeader) == "Confirm your identity";
         }
 
         private void EnterValidAccessCode(string validAccesCode)
         {
-            formCompletionHelper.EnterText(WebBrowserDriver, EnterCodeField, validAccesCode);
+            formCompletionHelper.EnterText(EnterCodeField, validAccesCode);
             ClickContinue();
         }
 
         public void EnterInvalidAccessCode(string invalidAccesCode)
         {
-            formCompletionHelper.EnterText(WebBrowserDriver, EnterCodeField, invalidAccesCode);
+            formCompletionHelper.EnterText(EnterCodeField, invalidAccesCode);
             ClickContinue();
         }
 
         public void ClickContinue()
         {
-            formCompletionHelper.ClickElement(WebBrowserDriver, ConfirmIdentityContinueBtn);
+            formCompletionHelper.ClickElement(ConfirmIdentityContinueBtn);
         }
 
         internal string GetInvalidCodeErrorInField()
         {
-            return pageInteractionHelper.GetText(WebBrowserDriver, InvalidCodeErrorInField);
+            return pageInteractionHelper.GetText(InvalidCodeErrorInField);
         }
 
         internal string GetInvalidCoderrorInBox()
         {
-            return pageInteractionHelper.GetText(WebBrowserDriver, InvalidCoderrorInBox);
+            return pageInteractionHelper.GetText(InvalidCoderrorInBox);
         }
 
         internal string GetHeaderText()
         {
-            return pageInteractionHelper.GetText(WebBrowserDriver, _headerText);
+            return pageInteractionHelper.GetText(_headerText);
         }
 
         internal string GetAdditionalHeaderText()
         {
-            return pageInteractionHelper.GetText(WebBrowserDriver, _additionalHeaderText);
+            return pageInteractionHelper.GetText(_additionalHeaderText);
         }
 
         internal string GetHeaderErrorMessage()
         {
-            return pageInteractionHelper.GetText(WebBrowserDriver, _headerErrorMessage);
+            return pageInteractionHelper.GetText(_headerErrorMessage);
         }
 
         internal string GetTextBoxErrorMessage()
         {
-            return pageInteractionHelper.GetText(WebBrowserDriver, _textboxErrorMessage);
+            return pageInteractionHelper.GetText(_textboxErrorMessage);
         }
     }
 }

@@ -29,16 +29,16 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Apprentices
 
         public AddApperentieceFillFormPage FillUserName(string firstName, string lastName)
         {
-            formCompletionHelper.EnterText(WebBrowserDriver, _firstNameInput, firstName);
-            formCompletionHelper.EnterText(WebBrowserDriver, _lastNameInput, lastName);
+            formCompletionHelper.EnterText(_firstNameInput, firstName);
+            formCompletionHelper.EnterText(_lastNameInput, lastName);
             return this;
         }
 
         public AddApperentieceFillFormPage FillBirthDay(string day, string month, string year)
         {
-            formCompletionHelper.EnterText(WebBrowserDriver, _birthDayDayInput, day);
-            formCompletionHelper.EnterText(WebBrowserDriver, _birthDayMonthInput, month);
-            formCompletionHelper.EnterText(WebBrowserDriver, _birthDayYearInput, year);
+            formCompletionHelper.EnterText(_birthDayDayInput, day);
+            formCompletionHelper.EnterText(_birthDayMonthInput, month);
+            formCompletionHelper.EnterText(_birthDayYearInput, year);
             return this;
         }
 
@@ -51,27 +51,27 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Apprentices
 
         public AddApperentieceFillFormPage FillStartDate(string month, string year)
         {
-            formCompletionHelper.EnterText(WebBrowserDriver, _startDateMonthInput, month);
-            formCompletionHelper.EnterText(WebBrowserDriver, _startDateYearInput, year);
+            formCompletionHelper.EnterText(_startDateMonthInput, month);
+            formCompletionHelper.EnterText(_startDateYearInput, year);
             return this;
         }
 
         public AddApperentieceFillFormPage FillEndDate(string month, string year)
         {
-            formCompletionHelper.EnterText(WebBrowserDriver, _endDateMonthInput, month);
-            formCompletionHelper.EnterText(WebBrowserDriver, _endDateYearthInput, year);
+            formCompletionHelper.EnterText(_endDateMonthInput, month);
+            formCompletionHelper.EnterText(_endDateYearthInput, year);
             return this;
         }
 
         public AddApperentieceFillFormPage FillCost(string cost)
         {
-            formCompletionHelper.EnterText(WebBrowserDriver, _costInput, cost);
+            formCompletionHelper.EnterText(_costInput, cost);
             return this;
         }
 
         public void Add()
         {
-            formCompletionHelper.ClickElement(WebBrowserDriver, _addButton);
+            formCompletionHelper.ClickElement(_addButton);
         }
     }
 }

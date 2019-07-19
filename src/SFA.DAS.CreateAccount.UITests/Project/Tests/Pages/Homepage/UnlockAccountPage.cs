@@ -23,7 +23,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Homepage
             set
             {
                 _emailInput.Clear();
-                formCompletionHelper.EnterText(WebBrowserDriver, _emailInput, value ?? "");
+                formCompletionHelper.EnterText(_emailInput, value ?? "");
             }
         }
 
@@ -33,7 +33,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Homepage
             set
             {
                 _unlockCodeInput.Clear();
-                formCompletionHelper.EnterText(WebBrowserDriver, _unlockCodeInput, value ?? "");
+                formCompletionHelper.EnterText(_unlockCodeInput, value ?? "");
             }
         }
 

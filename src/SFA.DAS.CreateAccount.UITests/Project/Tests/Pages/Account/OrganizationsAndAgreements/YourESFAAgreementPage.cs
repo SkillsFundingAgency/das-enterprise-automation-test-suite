@@ -19,12 +19,12 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Organization
 
         public bool IsUpdateDetailsLinkPresent()
         {
-            return formCompletionHelper.IsElementDisplayed(WebBrowserDriver, _updateTheseDetailsLink);
+            return formCompletionHelper.IsElementDisplayed(_updateTheseDetailsLink);
         }
 
         public void ClickUpdateDetailsLink()
         {
-            formCompletionHelper.ClickElement(WebBrowserDriver, _updateTheseDetailsLink);
+            formCompletionHelper.ClickElement(_updateTheseDetailsLink);
         }
     }
 }

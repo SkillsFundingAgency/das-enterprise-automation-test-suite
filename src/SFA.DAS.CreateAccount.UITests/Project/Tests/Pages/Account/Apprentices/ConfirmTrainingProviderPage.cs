@@ -15,13 +15,13 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Apprentices
 
         public ConfirmTrainingProviderPage Confirm()
         {
-            formCompletionHelper.SelectRadioButton(WebBrowserDriver, _confirmationTrueCheckbox);
+            formCompletionHelper.SelectRadioButton(_confirmationTrueCheckbox);
             return this;
         }
 
         public StartAddingApprenticesPage Continue()
         {
-            formCompletionHelper.ClickElement(WebBrowserDriver, _continueButton);
+            formCompletionHelper.ClickElement(_continueButton);
             return new StartAddingApprenticesPage(WebBrowserDriver);
         }
     }

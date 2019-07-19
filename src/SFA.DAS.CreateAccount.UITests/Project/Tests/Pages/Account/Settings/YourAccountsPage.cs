@@ -16,7 +16,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Settings
 
         internal bool IsPagePresented()
         {
-            return pageInteractionHelper.GetText(WebBrowserDriver, _pageHeader) == "Your accounts";
+            return pageInteractionHelper.GetText(_pageHeader) == "Your accounts";
         }
 
         internal EmployerAccountHomepage OpenAccount()
@@ -29,7 +29,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Settings
 
         internal InvitationsPage OpenInvitationsPage()
         {
-            formCompletionHelper.ClickElement(WebBrowserDriver, _invitationsButton);
+            formCompletionHelper.ClickElement(_invitationsButton);
             return new InvitationsPage(WebBrowserDriver);
         }
     }

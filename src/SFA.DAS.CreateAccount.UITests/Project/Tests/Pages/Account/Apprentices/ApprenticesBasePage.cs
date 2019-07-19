@@ -15,18 +15,18 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Apprentices
 
         internal bool IsPagePresented()
         {
-            return pageInteractionHelper.IsElementDisplayed(WebBrowserDriver, _addAnApprenticeLink);
+            return pageInteractionHelper.IsElementDisplayed(_addAnApprenticeLink);
         }
 
         public AddApprenticePage AddApprentice()
         {
-            formCompletionHelper.ClickElement(WebBrowserDriver, _addAnApprenticeLink);
+            formCompletionHelper.ClickElement(_addAnApprenticeLink);
             return new AddApprenticePage(WebBrowserDriver);
         }
 
         public CohortPage OpenCohortPage()
         {
-            formCompletionHelper.ClickElement(WebBrowserDriver, _yourCohortLink);
+            formCompletionHelper.ClickElement(_yourCohortLink);
             return new CohortPage(WebBrowserDriver);
         }
     }

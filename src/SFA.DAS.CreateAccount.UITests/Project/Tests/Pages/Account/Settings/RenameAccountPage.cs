@@ -29,13 +29,13 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Settings
 
         internal RenameAccountPage SetNewName(string newName)
         {
-            formCompletionHelper.EnterText(WebBrowserDriver, _newNameInput, newName);
+            formCompletionHelper.EnterText(_newNameInput, newName);
             return this;
         }
 
         internal void SaveAndContinue()
         {
-            formCompletionHelper.ClickElement(WebBrowserDriver, _saveAndContinueButton);
+            formCompletionHelper.ClickElement(_saveAndContinueButton);
         }
 
         internal string[] GetErrors()

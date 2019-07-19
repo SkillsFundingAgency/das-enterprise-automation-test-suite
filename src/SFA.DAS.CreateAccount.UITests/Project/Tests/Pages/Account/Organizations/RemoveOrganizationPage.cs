@@ -21,7 +21,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Organization
 
         public RemoveOrganizationConfirmPage ClickSecondOrgInTheList()
         {
-            formCompletionHelper.ClickElement(WebBrowserDriver, _secondOrgInTheList);
+            formCompletionHelper.ClickElement(_secondOrgInTheList);
             return new RemoveOrganizationConfirmPage(WebBrowserDriver);
         }
     }

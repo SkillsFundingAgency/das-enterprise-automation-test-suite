@@ -24,24 +24,24 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account
 
         internal bool IsPagePresented()
         {
-            return pageInteractionHelper.GetText(WebBrowserDriver, _pageHeader) == "Enter your Companies House number";
+            return pageInteractionHelper.GetText(_pageHeader) == "Enter your Companies House number";
         }
 
         internal SelectEmployerPage InputCompanyNumber(string number)
         {
-            formCompletionHelper.EnterText(WebBrowserDriver, _companyHouseNumberInput, number);
+            formCompletionHelper.EnterText(_companyHouseNumberInput, number);
             return this;
         }
 
         internal SelectEmployerPage Submit()
         {
-            formCompletionHelper.ClickElement(WebBrowserDriver, _submitButton);
+            formCompletionHelper.ClickElement(_submitButton);
             return this;
         }
 
         internal EmployerAccountHomepage ConfirmScheme()
         {
-            formCompletionHelper.ClickElement(WebBrowserDriver, _confirmSchemeButton);
+            formCompletionHelper.ClickElement(_confirmSchemeButton);
             return new EmployerAccountHomepage(WebBrowserDriver);
         }
 
@@ -62,7 +62,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account
 
         internal SignInGovernmentPage AgreeAndContinue()
         {
-            formCompletionHelper.ClickElement(WebBrowserDriver, _agreeAndContinueButton);
+            formCompletionHelper.ClickElement(_agreeAndContinueButton);
             return new SignInGovernmentPage(WebBrowserDriver);
         }
 

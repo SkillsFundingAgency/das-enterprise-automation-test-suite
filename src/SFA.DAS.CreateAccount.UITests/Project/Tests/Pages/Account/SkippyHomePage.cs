@@ -20,7 +20,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account
 
         public void ClickOnAddYourPAYESchemeLink()
         {
-            formCompletionHelper.ClickElement(WebBrowserDriver, _addYourPAYELink);
+            formCompletionHelper.ClickElement(_addYourPAYELink);
         }
     }
 }

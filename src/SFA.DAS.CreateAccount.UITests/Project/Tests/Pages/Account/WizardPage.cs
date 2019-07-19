@@ -58,26 +58,26 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account
 
         internal bool IsPagePresented()
         {
-            return pageInteractionHelper.IsElementDisplayed(WebBrowserDriver, _title);
+            return pageInteractionHelper.IsElementDisplayed(_title);
         }
 
         internal EmployerAccountHomepage Close()
         {
-            formCompletionHelper.ClickElement(WebBrowserDriver, _topRightCloseOption);
+            formCompletionHelper.ClickElement(_topRightCloseOption);
             return new EmployerAccountHomepage(WebBrowserDriver);
         }
 
         internal WizardPage SelectStep(int stepNumber, bool answer)
         {
             var element = this.GetStepRadioButton(stepNumber, answer);
-            this.formCompletionHelper.SelectRadioButton(WebBrowserDriver, element);
+            this.formCompletionHelper.SelectRadioButton(element);
             return this;
         }
 
         internal WizardPage ClickStepReview(int stepNumber)
         {
             var element = this.GetStepReviewButton(stepNumber);
-            formCompletionHelper.ClickElement(WebBrowserDriver, element);
+            formCompletionHelper.ClickElement(element);
             return this;
         }
 
@@ -92,30 +92,30 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account
         internal bool VerifyStepCompletionMessage(string stepCompletionMessage)
         {
             var _stepCompletionMessageDisplayed = By.XPath("//li[@class = 'todo-list--item complete']//p[contains(text(), '" + stepCompletionMessage + "')]");
-            return pageInteractionHelper.IsElementDisplayed(WebBrowserDriver, _stepCompletionMessageDisplayed);
+            return pageInteractionHelper.IsElementDisplayed(_stepCompletionMessageDisplayed);
         }
 
         internal WizardPage OpenStep1AddPayeSchemesPage()
         {
-            formCompletionHelper.ClickElement(WebBrowserDriver, _step1AddPayeSchemesNowLink);
+            formCompletionHelper.ClickElement(_step1AddPayeSchemesNowLink);
             return this;
         }
 
         internal WizardPage OpenStep2AddOrganisationsPage()
         {
-            formCompletionHelper.ClickElement(WebBrowserDriver, _step2AddOrganisationsNowLink);
+            formCompletionHelper.ClickElement(_step2AddOrganisationsNowLink);
             return this;
         }
 
         internal WizardPage OpenStep3AddMembersPage()
         {
-            formCompletionHelper.ClickElement(WebBrowserDriver, _step3InviteColleaguesFromMyOrganisationNowLink);
+            formCompletionHelper.ClickElement(_step3InviteColleaguesFromMyOrganisationNowLink);
             return this;
         }
 
         internal WizardPage OpenStep4AddMembersPage()
         {
-            formCompletionHelper.ClickElement(WebBrowserDriver, _step4ViewAgreementsNowLink);
+            formCompletionHelper.ClickElement(_step4ViewAgreementsNowLink);
             return this;
         }
 
@@ -157,22 +157,22 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account
 
         public string GetTextFromStep1YesOptionText()
         {
-            return pageInteractionHelper.GetText(WebBrowserDriver, _step1YesOptionText);
+            return pageInteractionHelper.GetText(_step1YesOptionText);
         }
 
         public bool IsStep2AddOrganisationsNowLinkDisplayed()
         {
-            return pageInteractionHelper.IsElementDisplayed(WebBrowserDriver, _step2AddOrganisationsNowLink);
+            return pageInteractionHelper.IsElementDisplayed(_step2AddOrganisationsNowLink);
         }
 
         public bool IsStep3InviteColleaguesFromMyOrganisationNowLinkDisplayed()
         {
-            return pageInteractionHelper.IsElementDisplayed(WebBrowserDriver, _step3InviteColleaguesFromMyOrganisationNowLink);
+            return pageInteractionHelper.IsElementDisplayed(_step3InviteColleaguesFromMyOrganisationNowLink);
         }
 
         public string GetTextFromStep4YesOptionText()
         {
-            return pageInteractionHelper.GetText(WebBrowserDriver, _step4YesOptionText);
+            return pageInteractionHelper.GetText(_step4YesOptionText);
         }
     }
 }

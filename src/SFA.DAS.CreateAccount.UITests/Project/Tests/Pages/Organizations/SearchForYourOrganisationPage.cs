@@ -26,18 +26,18 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Organizations
 
         internal bool IsPagePresented()
         {
-            return pageInteractionHelper.IsElementDisplayed(WebBrowserDriver, searchInput);
+            return pageInteractionHelper.IsElementDisplayed(searchInput);
         }
 
         internal SearchForYourOrganisationPage SetOrganisationName(string name)
         {
-            formCompletionHelper.EnterText(WebBrowserDriver, searchInput, name);
+            formCompletionHelper.EnterText(searchInput, name);
             return this;
         }
 
         internal SelectYourOrganisationPage Continue()
         {
-            formCompletionHelper.ClickElement(WebBrowserDriver, _searchButton);
+            formCompletionHelper.ClickElement(_searchButton);
             return new SelectYourOrganisationPage(WebBrowserDriver);
         }
     }

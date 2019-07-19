@@ -23,19 +23,19 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Homepage
 
         internal SetUpAsAUserPage ClickCreateAccountButton()
         {
-            formCompletionHelper.ClickElement(WebBrowserDriver, _createAccountButton);
+            formCompletionHelper.ClickElement(_createAccountButton);
             return new SetUpAsAUserPage(WebBrowserDriver);
         }
 
         public SignInPage ClickSignInLink()
         {
-            formCompletionHelper.ClickElement(WebBrowserDriver, _signInLink);
+            formCompletionHelper.ClickElement(_signInLink);
             return new SignInPage(WebBrowserDriver);
         }
 
         public string GetSingInInfoText()
         {
-            return formCompletionHelper.GetText(WebBrowserDriver, _directSignInInfoText);
+            return formCompletionHelper.GetText(_directSignInInfoText);
         }
     }
 }

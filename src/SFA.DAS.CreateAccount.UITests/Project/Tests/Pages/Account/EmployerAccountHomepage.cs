@@ -37,31 +37,31 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account
 
         internal EmployerAccountHomepage OpenHomePage()
         {
-            formCompletionHelper.ClickElement(WebBrowserDriver, _homeButton);
+            formCompletionHelper.ClickElement(_homeButton);
             return this;
         }
 
         internal YourTeamPage OpenYourTeamPage()
         {
-            formCompletionHelper.ClickElement(WebBrowserDriver, _yourTeamButton);
+            formCompletionHelper.ClickElement(_yourTeamButton);
             return new YourTeamPage(WebBrowserDriver);
         }
 
         internal PayeSchemePage OpenPayeSchemesPage()
         {
-            formCompletionHelper.ClickElement(WebBrowserDriver, _payeSchemesPage);
+            formCompletionHelper.ClickElement(_payeSchemesPage);
             return new PayeSchemePage(WebBrowserDriver);
         }
 
         internal YourOrganizationsBasePage OpenOrganizationsBasePage()
         {
-            formCompletionHelper.ClickElement(WebBrowserDriver, _yourOrganizationsButton);
+            formCompletionHelper.ClickElement(_yourOrganizationsButton);
             return new YourOrganizationsBasePage(WebBrowserDriver);
         }
 
         internal OrganizationsAndAgreementsBasePage OpenOrganizationsAndAgreementsBasePage()
         {
-            formCompletionHelper.ClickElement(WebBrowserDriver, _yourOrganizationsAndAgreementsPage);
+            formCompletionHelper.ClickElement(_yourOrganizationsAndAgreementsPage);
             return new OrganizationsAndAgreementsBasePage(WebBrowserDriver);
         }
 
@@ -77,19 +77,19 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account
 
         internal ApprenticesBasePage OpenApprenticesPage()
         {
-            formCompletionHelper.ClickElement(WebBrowserDriver, _apprenticesPage);
+            formCompletionHelper.ClickElement(_apprenticesPage);
             return new ApprenticesBasePage(WebBrowserDriver);
         }
 
         internal FinanceBasePage OpenFinancePage()
         {
-            formCompletionHelper.ClickElement(WebBrowserDriver, _financePage);
+            formCompletionHelper.ClickElement(_financePage);
             return new FinanceBasePage(WebBrowserDriver);
         }
 
         internal RecruitmentPage OpenRecruitmentPage()
         {
-            formCompletionHelper.ClickElement(WebBrowserDriver, _RecruitmentPage);
+            formCompletionHelper.ClickElement(_RecruitmentPage);
             return new RecruitmentPage(WebBrowserDriver);
         }
 
@@ -108,7 +108,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account
 
         internal void ClickMoreLink()
         {
-            formCompletionHelper.ClickElement(WebBrowserDriver, _moreLink);
+            formCompletionHelper.ClickElement(_moreLink);
         }
     }
 }

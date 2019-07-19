@@ -16,7 +16,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Organizations.Compan
 
         internal EmployerAccountHomepage Continue()
         {
-            formCompletionHelper.ClickElement(WebBrowserDriver, _continuebtn);
+            formCompletionHelper.ClickElement(_continuebtn);
             return new EmployerAccountHomepage(WebBrowserDriver);
         }
     }

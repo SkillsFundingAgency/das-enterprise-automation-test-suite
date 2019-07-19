@@ -15,13 +15,13 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Apprentices
 
         public ChooseTrainingOrgPage PickFirstOrganization()
         {
-            formCompletionHelper.SelectRadioButton(WebBrowserDriver, _firstOrganizationButton);
+            formCompletionHelper.SelectRadioButton(_firstOrganizationButton);
             return this;
         }
 
         public AgreementNotSignedPage Continue()
         {
-            formCompletionHelper.ClickElement(WebBrowserDriver, _continueButton);
+            formCompletionHelper.ClickElement(_continueButton);
             return new AgreementNotSignedPage(WebBrowserDriver);
         }
     }

@@ -29,47 +29,47 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Organizations
 
         internal bool IsPagePresented()
         {
-            return pageInteractionHelper.IsElementDisplayed(WebBrowserDriver, _continueButton);
+            return pageInteractionHelper.IsElementDisplayed(_continueButton);
         }
 
         internal UsingYourGovtGatewayDetailsPage SetByCompaniesHouseNumber(string number)
         {
-            formCompletionHelper.EnterText(WebBrowserDriver, _companiesNumberInput, number);
-            formCompletionHelper.ClickElement(WebBrowserDriver, _continueButton);
+            formCompletionHelper.EnterText(_companiesNumberInput, number);
+            formCompletionHelper.ClickElement(_continueButton);
             return new UsingYourGovtGatewayDetailsPage(WebBrowserDriver);
         }
 
         internal AddAnOrganizationPage SetByPublicSector(string organizationName)
         {
-            formCompletionHelper.SelectRadioButton(WebBrowserDriver, _publicSectorOrganizationRadioBtn);
-            formCompletionHelper.EnterText(WebBrowserDriver, _publicOrganizationNameInput, organizationName);
+            formCompletionHelper.SelectRadioButton(_publicSectorOrganizationRadioBtn);
+            formCompletionHelper.EnterText(_publicOrganizationNameInput, organizationName);
             return this;
         }
 
         internal UsingYourGovtGatewayDetailsPage SetByCharityNumber(string number)
         {
-            formCompletionHelper.SelectRadioButton(WebBrowserDriver, _registeredCharityRadioBtn);
-            formCompletionHelper.EnterText(WebBrowserDriver, _charityNumberInput, number);
-            formCompletionHelper.ClickElement(WebBrowserDriver, _continueButton);
+            formCompletionHelper.SelectRadioButton(_registeredCharityRadioBtn);
+            formCompletionHelper.EnterText(_charityNumberInput, number);
+            formCompletionHelper.ClickElement(_continueButton);
             return new UsingYourGovtGatewayDetailsPage(WebBrowserDriver);
         }
 
         internal EnterOrganizationNamePage SetByOtherOrganization()
         {
-            formCompletionHelper.SelectRadioButton(WebBrowserDriver, _otherRadioBtn);
-            formCompletionHelper.ClickElement(WebBrowserDriver, _continueButton);
+            formCompletionHelper.SelectRadioButton(_otherRadioBtn);
+            formCompletionHelper.ClickElement(_continueButton);
             return new EnterOrganizationNamePage(WebBrowserDriver);
         }
 
         internal FindOrganizationAddressPage ContinueWithExistingOrganization()
         {
-            formCompletionHelper.ClickElement(WebBrowserDriver, _continueButton);
+            formCompletionHelper.ClickElement(_continueButton);
             return new FindOrganizationAddressPage(WebBrowserDriver);
         }
 
         internal PublicSectorSearchPage ContinueWithNonExistingOrganization()
         {
-            formCompletionHelper.ClickElement(WebBrowserDriver, _continueButton);
+            formCompletionHelper.ClickElement(_continueButton);
             return new PublicSectorSearchPage(WebBrowserDriver);
         }
 

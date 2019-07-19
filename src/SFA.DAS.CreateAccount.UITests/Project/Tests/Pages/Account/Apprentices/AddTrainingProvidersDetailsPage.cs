@@ -15,13 +15,13 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Apprentices
 
         public AddTrainingProvidersDetailsPage SetProviderId(string id)
         {
-            formCompletionHelper.EnterText(WebBrowserDriver, _providerIdInput, id);
+            formCompletionHelper.EnterText(_providerIdInput, id);
             return this;
         }
 
         public ConfirmTrainingProviderPage Continue()
         {
-            formCompletionHelper.ClickElement(WebBrowserDriver, _continueButton);
+            formCompletionHelper.ClickElement(_continueButton);
             return new ConfirmTrainingProviderPage(WebBrowserDriver);
         }
     }

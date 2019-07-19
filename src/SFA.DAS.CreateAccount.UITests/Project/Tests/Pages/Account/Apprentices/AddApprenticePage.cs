@@ -15,7 +15,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Apprentices
 
         public ChooseTrainingOrgPage Start()
         {
-            formCompletionHelper.ClickElement(WebBrowserDriver, _startButton);
+            formCompletionHelper.ClickElement(_startButton);
             return new ChooseTrainingOrgPage(WebBrowserDriver);
         }
     }

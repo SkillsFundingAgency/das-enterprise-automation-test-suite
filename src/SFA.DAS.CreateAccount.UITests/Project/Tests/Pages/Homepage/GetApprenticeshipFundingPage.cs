@@ -23,17 +23,17 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Homepage
 
         public void SelectYesAddMyPAYESchemeDetailsNowRadioButton()
         {
-            formCompletionHelper.ClickElement(WebBrowserDriver, _yesRadioOption);
+            formCompletionHelper.ClickElement(_yesRadioOption);
         }
 
         public void SelectNoIWillDoThisLaterRadioButton()
         {
-            formCompletionHelper.ClickElement(WebBrowserDriver, _noRadioOption);
+            formCompletionHelper.ClickElement(_noRadioOption);
         }
 
         public void ClickContinueButton()
         {
-            formCompletionHelper.ClickElement(WebBrowserDriver, _continueButton);
+            formCompletionHelper.ClickElement(_continueButton);
         }
     }
 }

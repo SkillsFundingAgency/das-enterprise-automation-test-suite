@@ -15,13 +15,13 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Apprentices
 
         public CohortUntilPage DontSendOption()
         {
-            formCompletionHelper.SelectRadioButton(WebBrowserDriver, _dontSendProviderCheckbox);
+            formCompletionHelper.SelectRadioButton(_dontSendProviderCheckbox);
             return this;
         }
 
         public CohortsLandingPage Continue()
         {
-            formCompletionHelper.ClickElement(WebBrowserDriver, _continueButton);
+            formCompletionHelper.ClickElement(_continueButton);
             return new CohortsLandingPage(WebBrowserDriver);
         }
     }

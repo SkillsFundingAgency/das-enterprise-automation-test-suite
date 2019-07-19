@@ -24,12 +24,12 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account
 
         public void IsAdditionalTitleTextPresented()
         {
-            Assert.True(pageInteractionHelper.GetText(WebBrowserDriver, _additionalTitleText).Contains(AdditionalTitleText));
+            Assert.True(pageInteractionHelper.GetText(_additionalTitleText).Contains(AdditionalTitleText));
         }
 
         public string GetAllActivityText()
         {
-            return pageInteractionHelper.GetTextFromElementsGroup(WebBrowserDriver, _activityPageText);
+            return pageInteractionHelper.GetTextFromElementsGroup(_activityPageText);
         }
     }
 }

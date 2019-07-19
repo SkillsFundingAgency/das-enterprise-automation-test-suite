@@ -21,7 +21,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account
 
         internal void ClickContinue()
         {
-            formCompletionHelper.ClickElement(WebBrowserDriver, _continueBtn);
+            formCompletionHelper.ClickElement(_continueBtn);
         }
     }
 }

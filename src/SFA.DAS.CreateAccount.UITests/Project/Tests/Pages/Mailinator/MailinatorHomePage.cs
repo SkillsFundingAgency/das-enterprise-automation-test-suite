@@ -14,12 +14,12 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Mailinator
 
         public void EnterTextIntoEmailTextBox(string email)
         {
-            formCompletionHelper.EnterText(WebBrowserDriver, _emailTextBox, email);
+            formCompletionHelper.EnterText(_emailTextBox, email);
         }
 
         public void ClickOnGoButton()
         {
-            formCompletionHelper.ClickElement(WebBrowserDriver, _goButton);
+            formCompletionHelper.ClickElement(_goButton);
         }
     }
 }

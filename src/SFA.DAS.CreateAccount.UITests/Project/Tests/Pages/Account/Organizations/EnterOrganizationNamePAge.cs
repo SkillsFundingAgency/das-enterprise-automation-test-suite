@@ -17,19 +17,19 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Organization
 
         public EnterOrganizationNamePage SetName(string name)
         {
-            formCompletionHelper.EnterText(WebBrowserDriver, _nameInput, name);
+            formCompletionHelper.EnterText(_nameInput, name);
             return this;
         }
 
         public OrganizationAddressPage Continue()
         {
-            formCompletionHelper.ClickElement(WebBrowserDriver, _continueButton);
+            formCompletionHelper.ClickElement(_continueButton);
             return new OrganizationAddressPage(WebBrowserDriver);
         }
 
         public FindOrganizationAddressPage ContinueWithFindOrganizationAddress()
         {
-            formCompletionHelper.ClickElement(WebBrowserDriver, _continueButton);
+            formCompletionHelper.ClickElement(_continueButton);
             return new FindOrganizationAddressPage(WebBrowserDriver);
         }
 

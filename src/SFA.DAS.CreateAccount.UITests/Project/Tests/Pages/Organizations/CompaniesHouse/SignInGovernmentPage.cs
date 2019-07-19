@@ -17,39 +17,39 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Organizations.Compan
 
         internal bool IsPagePresented()
         {
-            return pageInteractionHelper.IsElementDisplayed(WebBrowserDriver, _userIdInput);
+            return pageInteractionHelper.IsElementDisplayed(_userIdInput);
         }
 
         internal SignInGovernmentPage InputUserId(string userId)
         {
-            formCompletionHelper.EnterText(WebBrowserDriver, _userIdInput, userId);
+            formCompletionHelper.EnterText(_userIdInput, userId);
             return this;
         }
 
         internal SignInGovernmentPage InputPassword(string password)
         {
-            formCompletionHelper.EnterText(WebBrowserDriver, _passwordInput, password);
+            formCompletionHelper.EnterText(_passwordInput, password);
             return this;
         }
 
         internal GrantAuthorityPage SignIn()
         {
-            formCompletionHelper.ClickElement(WebBrowserDriver, _signInButton);
+            formCompletionHelper.ClickElement(_signInButton);
             return new GrantAuthorityPage(WebBrowserDriver);
         }
         internal void SignInWithInvalidDetails()
         {
-            formCompletionHelper.ClickElement(WebBrowserDriver, _signInButton);
+            formCompletionHelper.ClickElement(_signInButton);
         }
 
         internal string GetUserId()
         {
-            return pageInteractionHelper.GetText(WebBrowserDriver, _userIdInput);
+            return pageInteractionHelper.GetText(_userIdInput);
         }
 
         internal string GetPassword()
         {
-            return pageInteractionHelper.GetText(WebBrowserDriver, _passwordInput);
+            return pageInteractionHelper.GetText(_passwordInput);
         }
     }
 }

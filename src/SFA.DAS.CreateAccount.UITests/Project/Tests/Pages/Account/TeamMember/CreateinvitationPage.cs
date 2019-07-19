@@ -19,42 +19,42 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.TeamMember
 
         internal bool IsPagePresented()
         {
-            return pageInteractionHelper.IsElementDisplayed(WebBrowserDriver, _emailInput);
+            return pageInteractionHelper.IsElementDisplayed(_emailInput);
         }
 
         internal CreateInvitationPage InputEmail(string email)
         {
-            formCompletionHelper.EnterText(WebBrowserDriver, _emailInput, email);
+            formCompletionHelper.EnterText(_emailInput, email);
             return this;
         }
 
         internal CreateInvitationPage InputMemberName(string name)
         {
-            formCompletionHelper.EnterText(WebBrowserDriver, _nameInput, name);
+            formCompletionHelper.EnterText(_nameInput, name);
             return this;
         }
 
         internal CreateInvitationPage SetMemberAsViewer()
         {
-            formCompletionHelper.SelectRadioButton(WebBrowserDriver, _asViewerRadioButton);
+            formCompletionHelper.SelectRadioButton(_asViewerRadioButton);
             return this;
         }
 
         internal CreateInvitationPage SetMemberAsApprentices()
         {
-            formCompletionHelper.SelectRadioButton(WebBrowserDriver, _asApprenticesAndViewerRadioButton);
+            formCompletionHelper.SelectRadioButton(_asApprenticesAndViewerRadioButton);
             return this;
         }
 
         internal CreateInvitationPage SetMemberAsManaging()
         {
-            formCompletionHelper.SelectRadioButton(WebBrowserDriver, _asManagingRadioButton);
+            formCompletionHelper.SelectRadioButton(_asManagingRadioButton);
             return this;
         }
 
         internal YourTeamPage Submit()
         {
-            formCompletionHelper.ClickElement(WebBrowserDriver, _submitButton);
+            formCompletionHelper.ClickElement(_submitButton);
             return new YourTeamPage(WebBrowserDriver);
         }
     }

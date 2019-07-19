@@ -16,19 +16,19 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Settings
 
         internal ConfirmUpdatedEmailPage InputSecurityCode(string code)
         {
-            formCompletionHelper.EnterText(WebBrowserDriver, SecurityCodeInput, code);
+            formCompletionHelper.EnterText(SecurityCodeInput, code);
             return this;
         }
 
         internal ConfirmUpdatedEmailPage InputPassword(string password)
         {
-            formCompletionHelper.EnterText(WebBrowserDriver, PasswordInput, password);
+            formCompletionHelper.EnterText(PasswordInput, password);
             return this;
         }
 
         internal AccountSettingsPage Continue()
         {
-            formCompletionHelper.ClickElement(WebBrowserDriver, ContinueButton);
+            formCompletionHelper.ClickElement(ContinueButton);
             return new AccountSettingsPage(WebBrowserDriver);
         }
     }

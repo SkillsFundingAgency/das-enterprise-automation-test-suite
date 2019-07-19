@@ -17,21 +17,21 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.PayeSchemes
 
         internal PayeDetailsPage ClickOnRemoveScheme()
         {
-            formCompletionHelper.ClickElement(WebBrowserDriver, _removeSchemeButton);
+            formCompletionHelper.ClickElement(_removeSchemeButton);
             return this;
         }
 
         internal PayeSchemePage ConfirmRemoving()
         {
-            formCompletionHelper.SelectRadioButton(WebBrowserDriver, _confirmRemovingRadioButton);
-            formCompletionHelper.ClickElement(WebBrowserDriver, _continueButton);
+            formCompletionHelper.SelectRadioButton(_confirmRemovingRadioButton);
+            formCompletionHelper.ClickElement(_continueButton);
             return new PayeSchemePage(WebBrowserDriver);
         }
 
         internal PayeSchemePage DiscardRemoving()
         {
-            formCompletionHelper.SelectRadioButton(WebBrowserDriver, _discardRemovindRadioButton);
-            formCompletionHelper.ClickElement(WebBrowserDriver, _continueButton);
+            formCompletionHelper.SelectRadioButton(_discardRemovindRadioButton);
+            formCompletionHelper.ClickElement(_continueButton);
             return new PayeSchemePage(WebBrowserDriver);
         }
     }

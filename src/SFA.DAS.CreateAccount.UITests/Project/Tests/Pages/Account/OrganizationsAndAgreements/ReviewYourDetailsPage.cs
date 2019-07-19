@@ -23,19 +23,19 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Organization
 
         public bool CheckMessageDisplayed(string expectedMessage)
         {
-            return (pageInteractionHelper.GetText(WebBrowserDriver, _getMessageDisplayed).Contains(expectedMessage));
+            return (pageInteractionHelper.GetText(_getMessageDisplayed).Contains(expectedMessage));
         }
 
         public void SelectGoToOrgsRadioButtionAndContinue()
         {
-            formCompletionHelper.ClickElementExecutingJavaScript(WebBrowserDriver, _goToOrgsPageRadioButton);
-            formCompletionHelper.ClickElement(WebBrowserDriver, _continueButton);
+            formCompletionHelper.ClickElementExecutingJavaScript(_goToOrgsPageRadioButton);
+            formCompletionHelper.ClickElement(_continueButton);
         }
 
         public void SelectUpdateDetailsRadioButtionAndContinue()
         {
-            formCompletionHelper.ClickElement(WebBrowserDriver, _updateDetailsRadioButton);
-            formCompletionHelper.ClickElement(WebBrowserDriver, _continueButton);
+            formCompletionHelper.ClickElement(_updateDetailsRadioButton);
+            formCompletionHelper.ClickElement(_continueButton);
         }
     }
 }

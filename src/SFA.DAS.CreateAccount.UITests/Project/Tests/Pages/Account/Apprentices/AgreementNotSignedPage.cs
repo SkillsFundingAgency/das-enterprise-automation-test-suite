@@ -14,7 +14,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Apprentices
 
         public AddTrainingProvidersDetailsPage ContinueAnyway()
         {
-            formCompletionHelper.ClickElement(WebBrowserDriver, _continueAnywayButton);
+            formCompletionHelper.ClickElement(_continueAnywayButton);
             return new AddTrainingProvidersDetailsPage(WebBrowserDriver);
         }
     }

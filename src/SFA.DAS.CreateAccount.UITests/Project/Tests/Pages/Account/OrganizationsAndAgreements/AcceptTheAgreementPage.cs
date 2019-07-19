@@ -31,7 +31,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Organization
 
         public OrganizationsAndAgreementsBasePage AcceptAndFinish()
         {
-            formCompletionHelper.ClickElement(WebBrowserDriver, _acceptAndFinish);
+            formCompletionHelper.ClickElement(_acceptAndFinish);
             return new OrganizationsAndAgreementsBasePage(WebBrowserDriver);
         }
     }

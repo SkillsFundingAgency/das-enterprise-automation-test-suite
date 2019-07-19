@@ -20,7 +20,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Organizations.Compan
 
         internal SignInGovernmentPage Continue()
         {
-            formCompletionHelper.ClickElement(WebBrowserDriver, _agreeAndContinueButton);
+            formCompletionHelper.ClickElement(_agreeAndContinueButton);
             return new SignInGovernmentPage(WebBrowserDriver);
         }
     }

@@ -23,19 +23,19 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Settings
 
         internal ChangeEmailPage InputEmail(string email)
         {
-            formCompletionHelper.EnterText(WebBrowserDriver, NewEmailInput, email);
+            formCompletionHelper.EnterText(NewEmailInput, email);
             return this;
         }
 
         internal ChangeEmailPage ConfirmEmail(string email)
         {
-            formCompletionHelper.EnterText(WebBrowserDriver, ConfirmEmailInput, email);
+            formCompletionHelper.EnterText(ConfirmEmailInput, email);
             return this;
         }
 
         internal ConfirmUpdatedEmailPage Continue()
         {
-            formCompletionHelper.ClickElement(WebBrowserDriver, ContinueButton);
+            formCompletionHelper.ClickElement(ContinueButton);
             return new ConfirmUpdatedEmailPage(WebBrowserDriver);
         }
 

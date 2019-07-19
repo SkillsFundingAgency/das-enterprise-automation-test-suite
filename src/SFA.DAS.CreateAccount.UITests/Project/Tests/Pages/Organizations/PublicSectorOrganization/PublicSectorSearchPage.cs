@@ -17,20 +17,20 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Organizations.Public
         public FindOrganizationAddressPage PickFirstOrganization()
         {
             var link = WebBrowserDriver.FindElement(By.XPath(".//ol[@class=\"search-results\"]/li[1]//button"));
-            formCompletionHelper.ClickElement(WebBrowserDriver, link);
+            formCompletionHelper.ClickElement(link);
             return new FindOrganizationAddressPage(WebBrowserDriver);
         }
 
         public string GetFirstOrganizationName()
         {
             var link = WebBrowserDriver.FindElement(By.XPath(".//ol[@class=\"search-results\"]/li[1]"));
-            formCompletionHelper.ClickElement(WebBrowserDriver, link);
+            formCompletionHelper.ClickElement(link);
             return link.Text;
         }
 
         public EnterOrganizationNamePage SetOrganizationManually()
         {
-            formCompletionHelper.ClickElement(WebBrowserDriver, _addManuallyButton);
+            formCompletionHelper.ClickElement(_addManuallyButton);
             return new EnterOrganizationNamePage(WebBrowserDriver);
         }
     }

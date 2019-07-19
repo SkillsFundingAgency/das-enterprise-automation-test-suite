@@ -15,26 +15,26 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Organization
 
         internal LegalAgreementPage Confirm()
         {
-            formCompletionHelper.ClickElement(WebBrowserDriver, _confirmButton);
+            formCompletionHelper.ClickElement(_confirmButton);
             return new LegalAgreementPage(WebBrowserDriver);
         }
 
         private By orgName = By.XPath("//tbody/tr[1]/td");
         internal string GetOrganizationInfo()
         {
-            return pageInteractionHelper.GetText(WebBrowserDriver, orgName);
+            return pageInteractionHelper.GetText(orgName);
         }
 
         private By charityNumber = By.XPath("//tbody/tr[3]/td");
         internal string GetCharityNumber()
         {
-            return pageInteractionHelper.GetText(WebBrowserDriver, charityNumber);
+            return pageInteractionHelper.GetText(charityNumber);
         }
 
         private By charityAddress = By.XPath("//tbody/tr[2]/td");
         internal string GetCharityAddress()
         {
-            return pageInteractionHelper.GetText(WebBrowserDriver, charityAddress);
+            return pageInteractionHelper.GetText(charityAddress);
         }
 
     }
