@@ -19,6 +19,7 @@ namespace SFA.DAS.TestProject.UITests.Project.Tests.Pages
         {
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             VerifyPage();
+        
         }
 
         protected override bool VerifyPage()

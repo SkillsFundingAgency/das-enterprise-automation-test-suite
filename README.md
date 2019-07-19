@@ -35,13 +35,23 @@ Once the solution is imported and built, open Test Explorer window (Test->Window
 2. Failed/Passed/NotRun Tests
 3. Select a particular scenario to Run/Debug
 
-## Switching from Local to Browserstack :
-To change to browserstack from local, change the Browser value to "browserstack" in the appsettings.json file
+## To Execute tests in Local :
+1. To execute tests in your local, change the Browser value to "local" (will execute in chrome) or "chrome" or "googlechrome",  "firefox" or "mozillafirefox", "ie" or "internetexplorer".
+2. To execute tests through Zap Proxy, change the Browser value to "zapProxyChrome"
+```json
+{
+  "Browser": "chrome"
+}
+```
+
+## To Execute tests in Browserstack / Cloud :
+To execute tests in BrowserStack, change the Browser value to "browserstack" or "cloud" in your project appsettings file (you can add the node if node does not exists)
 ```json
 {
   "Browser": "browserstack"
 }
 ```
+
 ## Running Tests from Command Prompt:
 
 ```
@@ -57,11 +67,12 @@ The framework is designed to execute the tests on multiple environments.
 3. Tests can be executed on multiple environments by replacing the default values provided in App.Config using Configuration Manager and transforming the data
 
 ### Supported Browsers: The framework can currently work on the following browsers
-1. Chrome
-2. Firefox
-3. PhantomJs (Headless browser)
+1. Chrome - use "chrome", "googlechrome" or "local" as values for the Browser in appsettings
+2. Firefox - use "firefox" or "mozillafirefox" as values for the Browser in appsettings
+3. Internet Explorer - use "ie" or "internetexplorer" as values for the Browser in appsettings
+3. Chrome Headless - use "headlessbrowser" or "headless" as values for the Browser in appsettings
 
-Note: Tests can be executed on different browsers using BrowserStack
+Note: Tests can be executed on different browsers using BrowserStack. Tests can also be run in headless mode using the Chrome headless browser.
 
 ### Standards/Rules:
 1. The framework is designed using Page Object Model
