@@ -14,8 +14,11 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.TeamMember
         [FindsBy(How = How.CssSelector, Using = ".success-summary p")]
         private IWebElement _notificationMessage;
 
-        public YourTeamPage(IWebDriver WebBrowserDriver) : base(WebBrowserDriver)
+        public YourTeamPage(ScenarioContext context) : base(context)
         {
+            _context = context;
+            _pageInteractionHelper = context.Get<PageInteractionHelper>();
+            _formCompletionHelper = context.Get<FormCompletionHelper>();
         }
 
         internal bool IsPagePresented()
@@ -25,7 +28,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.TeamMember
 
         internal CreateInvitationPage OpenInviteMemberPage()
         {
-            formCompletionHelper.ClickElement(_inviteMemterButton);
+            _formCompletionHelper.ClickElement(_inviteMemterButton);
             return new CreateInvitationPage(WebBrowserDriver);
         }
 
@@ -46,7 +49,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.TeamMember
         internal ViewMemberPage ViewLastMember()
         {
             var elements = WebBrowserDriver.FindElements(By.XPath(".//a[contains (text(), \'View\')]"));
-            formCompletionHelper.ClickElement(elements.Last());
+            _formCompletionHelper.ClickElement(elements.Last());
             return new ViewMemberPage(WebBrowserDriver);
         }
     }

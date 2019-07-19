@@ -11,8 +11,11 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Homepage
         private By _noRadioOption = By.XPath("//*[@id='do-you-want-to-add-paye-scheme-form']/fieldset/label[2]");
         private By _continueButton = By.XPath("//*[contains(@id,'submit-confirm-who-you-are-button')]");
 
-        public GetApprenticeshipFundingPage(IWebDriver WebBrowserDriver) : base(WebBrowserDriver)
+        public GetApprenticeshipFundingPage(ScenarioContext context) : base(context)
         {
+            _context = context;
+            _pageInteractionHelper = context.Get<PageInteractionHelper>();
+            _formCompletionHelper = context.Get<FormCompletionHelper>();
             IsPagePresented();
         }
 
@@ -23,17 +26,17 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Homepage
 
         public void SelectYesAddMyPAYESchemeDetailsNowRadioButton()
         {
-            formCompletionHelper.ClickElement(_yesRadioOption);
+            _formCompletionHelper.ClickElement(_yesRadioOption);
         }
 
         public void SelectNoIWillDoThisLaterRadioButton()
         {
-            formCompletionHelper.ClickElement(_noRadioOption);
+            _formCompletionHelper.ClickElement(_noRadioOption);
         }
 
         public void ClickContinueButton()
         {
-            formCompletionHelper.ClickElement(_continueButton);
+            _formCompletionHelper.ClickElement(_continueButton);
         }
     }
 }

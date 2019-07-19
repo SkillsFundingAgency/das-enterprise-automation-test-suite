@@ -10,8 +10,11 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Organization
         private By _continueButton = By.XPath("//button[@type=\'submit\']");
         private By _getMessageDisplayed = By.XPath("(//p)[3]");
 
-        public DetailsUpdatedPage(IWebDriver WebBrowserDriver) : base(WebBrowserDriver)
+        public DetailsUpdatedPage(ScenarioContext context) : base(context)
         {
+            _context = context;
+            _pageInteractionHelper = context.Get<PageInteractionHelper>();
+            _formCompletionHelper = context.Get<FormCompletionHelper>();
             IsPagePresented();
         }
 
@@ -27,8 +30,8 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Organization
 
         public void SelectGoToOrgsRadioButtionAndContinue()
         {
-            formCompletionHelper.ClickElementExecutingJavaScript(_goToOrgsPageRadioButton);
-            formCompletionHelper.ClickElement(_continueButton);
+            _formCompletionHelper.ClickElementExecutingJavaScript(_goToOrgsPageRadioButton);
+            _formCompletionHelper.ClickElement(_continueButton);
         }
     }
 }

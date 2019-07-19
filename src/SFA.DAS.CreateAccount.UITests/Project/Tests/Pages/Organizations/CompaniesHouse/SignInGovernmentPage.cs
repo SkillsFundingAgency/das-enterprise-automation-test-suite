@@ -11,8 +11,11 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Organizations.Compan
         [FindsBy(How = How.Id, Using = "password")] private IWebElement _passwordInput;
         [FindsBy(How = How.XPath, Using = ".//input[@value=\"Sign in\"]")] private IWebElement _signInButton;
 
-        public SignInGovernmentPage(IWebDriver WebBrowserDriver) : base(WebBrowserDriver)
+        public SignInGovernmentPage(ScenarioContext context) : base(context)
         {
+            _context = context;
+            _pageInteractionHelper = context.Get<PageInteractionHelper>();
+            _formCompletionHelper = context.Get<FormCompletionHelper>();
         }
 
         internal bool IsPagePresented()
@@ -22,24 +25,24 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Organizations.Compan
 
         internal SignInGovernmentPage InputUserId(string userId)
         {
-            formCompletionHelper.EnterText(_userIdInput, userId);
+            _formCompletionHelper.EnterText(_userIdInput, userId);
             return this;
         }
 
         internal SignInGovernmentPage InputPassword(string password)
         {
-            formCompletionHelper.EnterText(_passwordInput, password);
+            _formCompletionHelper.EnterText(_passwordInput, password);
             return this;
         }
 
         internal GrantAuthorityPage SignIn()
         {
-            formCompletionHelper.ClickElement(_signInButton);
+            _formCompletionHelper.ClickElement(_signInButton);
             return new GrantAuthorityPage(WebBrowserDriver);
         }
         internal void SignInWithInvalidDetails()
         {
-            formCompletionHelper.ClickElement(_signInButton);
+            _formCompletionHelper.ClickElement(_signInButton);
         }
 
         internal string GetUserId()

@@ -16,8 +16,11 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Organizations.Compan
         private By _changePAYELink = By.XPath("(//a[contains(text(),'Change')])[4]");
         private By payeNumber = By.XPath("//tbody/tr[4]/td");
 
-        public SummaryPayePage(IWebDriver WebBrowserDriver) : base(WebBrowserDriver)
+        public SummaryPayePage(ScenarioContext context) : base(context)
         {
+            _context = context;
+            _pageInteractionHelper = context.Get<PageInteractionHelper>();
+            _formCompletionHelper = context.Get<FormCompletionHelper>();
             IsPagePresented();
         }
 
@@ -71,7 +74,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Organizations.Compan
 
         internal LegalAgreementPage Continue()
         {
-            formCompletionHelper.ClickElement(_confirmSchemeButtonId);
+            _formCompletionHelper.ClickElement(_confirmSchemeButtonId);
             return new LegalAgreementPage(WebBrowserDriver);
         }
 
@@ -88,12 +91,12 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Organizations.Compan
 
         public void ClickChangeOrgLink()
         {
-            formCompletionHelper.ClickElement(_changeOrgLink);
+            _formCompletionHelper.ClickElement(_changeOrgLink);
         }
 
         public void ClickChangePAYELink()
         {
-            formCompletionHelper.ClickElement(_changePAYELink);
+            _formCompletionHelper.ClickElement(_changePAYELink);
         }
     }
 }

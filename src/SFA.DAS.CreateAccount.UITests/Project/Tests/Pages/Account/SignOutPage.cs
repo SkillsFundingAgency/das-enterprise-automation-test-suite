@@ -9,8 +9,11 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account
         private const string PageTitle = "You've logged out";
         private By _continueBtn = By.XPath("//a[contains (text(), \'Continue\')]");
 
-        public SignOutPage(IWebDriver WebBrowserDriver) : base(WebBrowserDriver)
+        public SignOutPage(ScenarioContext context) : base(context)
         {
+            _context = context;
+            _pageInteractionHelper = context.Get<PageInteractionHelper>();
+            _formCompletionHelper = context.Get<FormCompletionHelper>();
             IsPagePresented();
         }
 
@@ -21,7 +24,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account
 
         internal void ClickContinue()
         {
-            formCompletionHelper.ClickElement(_continueBtn);
+            _formCompletionHelper.ClickElement(_continueBtn);
         }
     }
 }

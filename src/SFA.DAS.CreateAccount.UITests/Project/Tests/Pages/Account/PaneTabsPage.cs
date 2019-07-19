@@ -19,8 +19,11 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account
         private By _seeAllAcivityLink = By.XPath("//a[contains(text(),'See all activity')]");
         private By _activityPaneTabData = By.XPath("//div[@class=\'item-description\']");
 
-        public PaneTabsPage(IWebDriver WebBrowserDriver) : base(WebBrowserDriver)
+        public PaneTabsPage(ScenarioContext context) : base(context)
         {
+            _context = context;
+            _pageInteractionHelper = context.Get<PageInteractionHelper>();
+            _formCompletionHelper = context.Get<FormCompletionHelper>();
         }
 
         private bool AreTasksPresented()
@@ -43,18 +46,18 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account
         internal AboutYourSfaAgreementPage OpenViewAgreementsLink()
         {
             var webelement = WebBrowserDriver.FindElements(_tasksListLinkText).Single(x => x.Text == "View agreements");
-            formCompletionHelper.ClickElement(webelement);
+            _formCompletionHelper.ClickElement(webelement);
             return new AboutYourSfaAgreementPage(WebBrowserDriver);
         }
 
         public void ClickOnActivityTab()
         {
-            formCompletionHelper.ClickElement(WebBrowserDriver,_acivityTab);
+            _formCompletionHelper.ClickElement(WebBrowserDriver,_acivityTab);
         }
 
         public void ClickOnSeeAllActivityLink()
         {
-            formCompletionHelper.ClickElement(_seeAllAcivityLink);
+            _formCompletionHelper.ClickElement(_seeAllAcivityLink);
         }
 
         public string GetActivityPaneTabText()
@@ -69,7 +72,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account
 
         public bool IsSeeAllActivityLinkPresent()
         {
-            return formCompletionHelper.IsElementDisplayed(_seeAllAcivityLink);
+            return _formCompletionHelper.IsElementDisplayed(_seeAllAcivityLink);
         }
     }
 }

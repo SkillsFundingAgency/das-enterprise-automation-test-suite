@@ -13,8 +13,11 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Settings
         [FindsBy(How = How.XPath, Using = ".//button[@type=\"submit\"]")] private IWebElement _continueButton;
         private const string PageTitle = "Change your password";
 
-        public ChangePasswordPage(IWebDriver WebBrowserDriver) : base(WebBrowserDriver)
+        public ChangePasswordPage(ScenarioContext context) : base(context)
         {
+            _context = context;
+            _pageInteractionHelper = context.Get<PageInteractionHelper>();
+            _formCompletionHelper = context.Get<FormCompletionHelper>();
         }
 
         public bool IsPagePresented()
@@ -24,25 +27,25 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Settings
 
         internal ChangePasswordPage SetCurrentPassword(string password)
         {
-            formCompletionHelper.EnterText(_currentPasswordInput, password);
+            _formCompletionHelper.EnterText(_currentPasswordInput, password);
             return this;
         }
 
         internal ChangePasswordPage SetNewPassword(string password)
         {
-            formCompletionHelper.EnterText(_newPasswordInput, password);
+            _formCompletionHelper.EnterText(_newPasswordInput, password);
             return this;
         }
 
         internal ChangePasswordPage ConfirmPassword(string password)
         {
-            formCompletionHelper.EnterText(_confirmPasswordInput, password);
+            _formCompletionHelper.EnterText(_confirmPasswordInput, password);
             return this;
         }
 
         internal AccountSettingsPage Continue()
         {
-            formCompletionHelper.ClickElement(_continueButton);
+            _formCompletionHelper.ClickElement(_continueButton);
             return new AccountSettingsPage(WebBrowserDriver);
         }
 

@@ -10,13 +10,16 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Organizations.Compan
         private const string continuebtnid = "continue";
         [FindsBy(How = How.Id, Using = continuebtnid)] private IWebElement _continuebtn;
 
-        public LegalAgreementPage(IWebDriver WebBrowserDriver) : base(WebBrowserDriver)
+        public LegalAgreementPage(ScenarioContext context) : base(context)
         {
+            _context = context;
+            _pageInteractionHelper = context.Get<PageInteractionHelper>();
+            _formCompletionHelper = context.Get<FormCompletionHelper>();
         }
 
         internal EmployerAccountHomepage Continue()
         {
-            formCompletionHelper.ClickElement(_continuebtn);
+            _formCompletionHelper.ClickElement(_continuebtn);
             return new EmployerAccountHomepage(WebBrowserDriver);
         }
     }

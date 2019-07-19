@@ -8,18 +8,21 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Mailinator
         private By _emailTextBox = By.XPath("//input[contains(@id, 'inboxfield')]");
         private By _goButton = By.XPath("//button[contains(@class, 'btn btn-default')]");
 
-        public MailinatorHomePage(IWebDriver WebBrowserDriver) : base(WebBrowserDriver)
+        public MailinatorHomePage(ScenarioContext context) : base(context)
         {
+            _context = context;
+            _pageInteractionHelper = context.Get<PageInteractionHelper>();
+            _formCompletionHelper = context.Get<FormCompletionHelper>();
         }
 
         public void EnterTextIntoEmailTextBox(string email)
         {
-            formCompletionHelper.EnterText(_emailTextBox, email);
+            _formCompletionHelper.EnterText(_emailTextBox, email);
         }
 
         public void ClickOnGoButton()
         {
-            formCompletionHelper.ClickElement(_goButton);
+            _formCompletionHelper.ClickElement(_goButton);
         }
     }
 }

@@ -9,8 +9,11 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Organization
         private By _continueButton = By.XPath("//button");
         private By _yesRadiobutton = By.XPath("//label[@class='block-label selection-button-radio']/child::input[@value='2']");
 
-        public RemoveOrganizationConfirmPage(IWebDriver WebBrowserDriver) : base(WebBrowserDriver)
+        public RemoveOrganizationConfirmPage(ScenarioContext context) : base(context)
         {
+            _context = context;
+            _pageInteractionHelper = context.Get<PageInteractionHelper>();
+            _formCompletionHelper = context.Get<FormCompletionHelper>();
             IsPagePresented();
         }
 
@@ -21,8 +24,8 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Organization
 
         public YourOrganizationsBasePage SelectYesRadiobuttonAndContinue()
         {
-            formCompletionHelper.ClickElementExecutingJavaScript(_yesRadiobutton);
-            formCompletionHelper.ClickElement(_continueButton);
+            _formCompletionHelper.ClickElementExecutingJavaScript(_yesRadiobutton);
+            _formCompletionHelper.ClickElement(_continueButton);
             return new YourOrganizationsBasePage(WebBrowserDriver);
         }
     }

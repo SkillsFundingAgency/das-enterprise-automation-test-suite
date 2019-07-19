@@ -8,8 +8,11 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account
     {
         [FindsBy(How = How.Id, Using = "invitationId")] private IWebElement _acceptButton;
 
-        public InvitationsPage(IWebDriver WebBrowserDriver) : base(WebBrowserDriver)
+        public InvitationsPage(ScenarioContext context) : base(context)
         {
+            _context = context;
+            _pageInteractionHelper = context.Get<PageInteractionHelper>();
+            _formCompletionHelper = context.Get<FormCompletionHelper>();
         }
         
         internal bool IsPagePresented()
@@ -19,7 +22,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account
 
         public void AcceptTheLastInvitation()
         {
-            formCompletionHelper.ClickElement(_acceptButton);
+            _formCompletionHelper.ClickElement(_acceptButton);
         }
     }
 }

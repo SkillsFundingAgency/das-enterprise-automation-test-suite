@@ -7,8 +7,11 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Settings
     {
         private const string PageTitle = "Notification Settings";
 
-        public NotificationSettingsPage(IWebDriver WebBrowserDriver) : base(WebBrowserDriver)
+        public NotificationSettingsPage(ScenarioContext context) : base(context)
         {
+            _context = context;
+            _pageInteractionHelper = context.Get<PageInteractionHelper>();
+            _formCompletionHelper = context.Get<FormCompletionHelper>();
             IsPagePresented();
         }
 

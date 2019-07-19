@@ -9,8 +9,11 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Finance
     {
         [FindsBy(How = How.CssSelector, Using = "h1.heading-xlarge")] private IWebElement _pageheadings;
 
-        public DownloadTransactionsPage(IWebDriver WebBrowserDriver) : base(WebBrowserDriver)
+        public DownloadTransactionsPage(ScenarioContext context) : base(context)
         {
+            _context = context;
+            _pageInteractionHelper = context.Get<PageInteractionHelper>();
+            _formCompletionHelper = context.Get<FormCompletionHelper>();
         }
 
         public bool IsPagePresented()

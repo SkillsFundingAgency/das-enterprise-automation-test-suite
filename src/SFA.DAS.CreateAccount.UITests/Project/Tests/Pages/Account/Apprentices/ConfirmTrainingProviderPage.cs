@@ -9,19 +9,22 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Apprentices
         [FindsBy(How = How.XPath, Using = ".//label[@for=\"Confirmation-True\"]")] private IWebElement _confirmationTrueCheckbox;
         [FindsBy(How = How.XPath, Using = ".//*[@type=\"submit\"]")] private IWebElement _continueButton;
 
-        public ConfirmTrainingProviderPage(IWebDriver WebBrowserDriver) : base(WebBrowserDriver)
+        public ConfirmTrainingProviderPage(ScenarioContext context) : base(context)
         {
+            _context = context;
+            _pageInteractionHelper = context.Get<PageInteractionHelper>();
+            _formCompletionHelper = context.Get<FormCompletionHelper>();
         }
 
         public ConfirmTrainingProviderPage Confirm()
         {
-            formCompletionHelper.SelectRadioButton(_confirmationTrueCheckbox);
+            _formCompletionHelper.SelectRadioButton(_confirmationTrueCheckbox);
             return this;
         }
 
         public StartAddingApprenticesPage Continue()
         {
-            formCompletionHelper.ClickElement(_continueButton);
+            _formCompletionHelper.ClickElement(_continueButton);
             return new StartAddingApprenticesPage(WebBrowserDriver);
         }
     }

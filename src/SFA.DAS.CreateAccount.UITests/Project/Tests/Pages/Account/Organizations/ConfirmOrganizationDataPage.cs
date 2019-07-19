@@ -9,13 +9,16 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Organization
     {
         [FindsBy(How = How.XPath, Using = ".//*[@type=\"submit\"]")] private IWebElement _confirmButton;
 
-        public ConfirmOrganizationDataPage(IWebDriver WebBrowserDriver) : base(WebBrowserDriver)
+        public ConfirmOrganizationDataPage(ScenarioContext context) : base(context)
         {
+            _context = context;
+            _pageInteractionHelper = context.Get<PageInteractionHelper>();
+            _formCompletionHelper = context.Get<FormCompletionHelper>();
         }
 
         internal LegalAgreementPage Confirm()
         {
-            formCompletionHelper.ClickElement(_confirmButton);
+            _formCompletionHelper.ClickElement(_confirmButton);
             return new LegalAgreementPage(WebBrowserDriver);
         }
 

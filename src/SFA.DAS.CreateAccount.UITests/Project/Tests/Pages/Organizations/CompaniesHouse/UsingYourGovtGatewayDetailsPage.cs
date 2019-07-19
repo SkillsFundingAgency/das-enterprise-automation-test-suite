@@ -8,8 +8,11 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Organizations.Compan
         private const string PageTitle = "Using your Government Gateway details";
         private By _agreeAndContinueButton = By.XPath("//*[contains(@id, 'agree_and_continue')]");
 
-        public UsingYourGovtGatewayDetailsPage(IWebDriver WebBrowserDriver) : base(WebBrowserDriver)
+        public UsingYourGovtGatewayDetailsPage(ScenarioContext context) : base(context)
         {
+            _context = context;
+            _pageInteractionHelper = context.Get<PageInteractionHelper>();
+            _formCompletionHelper = context.Get<FormCompletionHelper>();
             IsPagePresented();
         }
 
@@ -20,7 +23,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Organizations.Compan
 
         internal SignInGovernmentPage Continue()
         {
-            formCompletionHelper.ClickElement(_agreeAndContinueButton);
+            _formCompletionHelper.ClickElement(_agreeAndContinueButton);
             return new SignInGovernmentPage(WebBrowserDriver);
         }
     }

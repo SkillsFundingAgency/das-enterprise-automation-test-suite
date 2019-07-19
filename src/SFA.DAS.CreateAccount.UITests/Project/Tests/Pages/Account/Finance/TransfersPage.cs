@@ -11,8 +11,11 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Finance
         [FindsBy(How = How.CssSelector, Using = "dl.transfer-funds")]
         internal IWebElement _transferAllowance;
 
-        public TransfersPage(IWebDriver WebBrowserDriver) : base(WebBrowserDriver)
+        public TransfersPage(ScenarioContext context) : base(context)
         {
+            _context = context;
+            _pageInteractionHelper = context.Get<PageInteractionHelper>();
+            _formCompletionHelper = context.Get<FormCompletionHelper>();
         }
 
         public bool IsPagePresented()

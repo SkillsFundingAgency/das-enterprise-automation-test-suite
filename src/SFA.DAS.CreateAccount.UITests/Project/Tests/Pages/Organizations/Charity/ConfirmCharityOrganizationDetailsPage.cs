@@ -7,12 +7,17 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Organizations.Charit
 {
     internal class ConfirmCharityOrganizationDetailsPage : BasePage
     {
-        public ConfirmCharityOrganizationDetailsPage(IWebDriver WebBrowserDriver) : base(WebBrowserDriver) { }
         [FindsBy(How = How.XPath, Using = ".//input[@value=\"Yes, continue\"]")] private IWebElement _continueButton;
+        public ConfirmCharityOrganizationDetailsPage(ScenarioContext context) : base(context)
+        {
+            _context = context;
+            _pageInteractionHelper = context.Get<PageInteractionHelper>();
+            _formCompletionHelper = context.Get<FormCompletionHelper>();
+        }
 
         public void Continue()
         {
-            formCompletionHelper.ClickElement(_continueButton);
+            _formCompletionHelper.ClickElement(_continueButton);
         }
 
         private By orgName = By.XPath("//tbody/tr[1]/td");

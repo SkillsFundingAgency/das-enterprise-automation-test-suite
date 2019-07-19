@@ -12,8 +12,11 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Settings
         [FindsBy(How = How.XPath, Using = ".//button[@type=\"submit\"]")] private IWebElement ContinueButton;
         private const string PageTitle = "Change your email address";
 
-        public ChangeEmailPage(IWebDriver WebBrowserDriver) : base(WebBrowserDriver)
+        public ChangeEmailPage(ScenarioContext context) : base(context)
         {
+            _context = context;
+            _pageInteractionHelper = context.Get<PageInteractionHelper>();
+            _formCompletionHelper = context.Get<FormCompletionHelper>();
         }
 
         public bool IsPagePresented()
@@ -23,19 +26,19 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Settings
 
         internal ChangeEmailPage InputEmail(string email)
         {
-            formCompletionHelper.EnterText(NewEmailInput, email);
+            _formCompletionHelper.EnterText(NewEmailInput, email);
             return this;
         }
 
         internal ChangeEmailPage ConfirmEmail(string email)
         {
-            formCompletionHelper.EnterText(ConfirmEmailInput, email);
+            _formCompletionHelper.EnterText(ConfirmEmailInput, email);
             return this;
         }
 
         internal ConfirmUpdatedEmailPage Continue()
         {
-            formCompletionHelper.ClickElement(ContinueButton);
+            _formCompletionHelper.ClickElement(ContinueButton);
             return new ConfirmUpdatedEmailPage(WebBrowserDriver);
         }
 

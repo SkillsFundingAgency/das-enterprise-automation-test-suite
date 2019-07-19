@@ -11,8 +11,11 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Organization
         [FindsBy(How = How.XPath, Using = ".//*[@class=\"agreement-title\"]//h1")] private IWebElement _pageHeader;
         [FindsBy(How = How.XPath, Using = ".//input[@type=\"submit\"]")] private IWebElement _acceptAndFinish;
 
-        public AcceptTheAgreementPage(IWebDriver WebBrowserDriver) : base(WebBrowserDriver)
+        public AcceptTheAgreementPage(ScenarioContext context) : base(context)
         {
+            _context = context;
+            _pageInteractionHelper = context.Get<PageInteractionHelper>();
+            _formCompletionHelper = context.Get<FormCompletionHelper>();
         }
 
         public bool IsPagePresented()
@@ -31,7 +34,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Organization
 
         public OrganizationsAndAgreementsBasePage AcceptAndFinish()
         {
-            formCompletionHelper.ClickElement(_acceptAndFinish);
+            _formCompletionHelper.ClickElement(_acceptAndFinish);
             return new OrganizationsAndAgreementsBasePage(WebBrowserDriver);
         }
     }

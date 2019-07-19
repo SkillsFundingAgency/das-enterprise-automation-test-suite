@@ -18,8 +18,11 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account
         [FindsBy(How = How.ClassName, Using = "error-summary-wrapper")] private IWebElement _errorForm;
         [FindsBy(How = How.Id, Using = agreeandcontinueid)] private IWebElement _agreeAndContinueButton;
 
-        public SelectEmployerPage(IWebDriver WebBrowserDriver) : base(WebBrowserDriver)
+        public SelectEmployerPage(ScenarioContext context) : base(context)
         {
+            _context = context;
+            _pageInteractionHelper = context.Get<PageInteractionHelper>();
+            _formCompletionHelper = context.Get<FormCompletionHelper>();
         }
 
         internal bool IsPagePresented()
@@ -29,19 +32,19 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account
 
         internal SelectEmployerPage InputCompanyNumber(string number)
         {
-            formCompletionHelper.EnterText(_companyHouseNumberInput, number);
+            _formCompletionHelper.EnterText(_companyHouseNumberInput, number);
             return this;
         }
 
         internal SelectEmployerPage Submit()
         {
-            formCompletionHelper.ClickElement(_submitButton);
+            _formCompletionHelper.ClickElement(_submitButton);
             return this;
         }
 
         internal EmployerAccountHomepage ConfirmScheme()
         {
-            formCompletionHelper.ClickElement(_confirmSchemeButton);
+            _formCompletionHelper.ClickElement(_confirmSchemeButton);
             return new EmployerAccountHomepage(WebBrowserDriver);
         }
 
@@ -62,7 +65,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account
 
         internal SignInGovernmentPage AgreeAndContinue()
         {
-            formCompletionHelper.ClickElement(_agreeAndContinueButton);
+            _formCompletionHelper.ClickElement(_agreeAndContinueButton);
             return new SignInGovernmentPage(WebBrowserDriver);
         }
 

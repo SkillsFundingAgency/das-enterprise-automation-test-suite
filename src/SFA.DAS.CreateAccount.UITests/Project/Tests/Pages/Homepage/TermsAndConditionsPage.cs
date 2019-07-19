@@ -7,8 +7,11 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Homepage
     {
         private const string PageTitle = "Terms and conditions";
 
-        public TermsAndConditionsPage(IWebDriver WebBrowserDriver) : base(WebBrowserDriver)
+        public TermsAndConditionsPage(ScenarioContext context) : base(context)
         {
+            _context = context;
+            _pageInteractionHelper = context.Get<PageInteractionHelper>();
+            _formCompletionHelper = context.Get<FormCompletionHelper>();
             IsPagePresented();
         }
 

@@ -1,6 +1,9 @@
 ﻿using SFA.DAS.UI.Framework.TestSupport;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
+using SFA.DAS.UI.FrameworkHelpers;
+using SFA.DAS.UI.Framework.TestSupport;
+using TechTalk.SpecFlow;
 
 namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Organizations
 {
@@ -10,7 +13,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Organizations
         [FindsBy(How = How.Id, Using = searchInputId)]
         protected IWebElement searchInput;
 
-        public EnterOrganisationDetails(IWebDriver WebBrowserDriver) : base(WebBrowserDriver)
+        public EnterOrganisationDetails(ScenarioContext context) : base(context)
         {
         }
     }
@@ -20,8 +23,11 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Organizations
         private const string searchButtoncss = "form > [type=\"submit\"]";
         [FindsBy(How = How.CssSelector, Using = searchButtoncss)] private IWebElement _searchButton;
 
-        public SearchForYourOrganisationPage(IWebDriver WebBrowserDriver) : base(WebBrowserDriver)
+        public SearchForYourOrganisationPage(ScenarioContext context) : base(context)
         {
+            _context = context;
+            _pageInteractionHelper = context.Get<PageInteractionHelper>();
+            _formCompletionHelper = context.Get<FormCompletionHelper>();
         }
 
         internal bool IsPagePresented()
@@ -31,13 +37,13 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Organizations
 
         internal SearchForYourOrganisationPage SetOrganisationName(string name)
         {
-            formCompletionHelper.EnterText(searchInput, name);
+            _formCompletionHelper.EnterText(searchInput, name);
             return this;
         }
 
         internal SelectYourOrganisationPage Continue()
         {
-            formCompletionHelper.ClickElement(_searchButton);
+            _formCompletionHelper.ClickElement(_searchButton);
             return new SelectYourOrganisationPage(WebBrowserDriver);
         }
     }

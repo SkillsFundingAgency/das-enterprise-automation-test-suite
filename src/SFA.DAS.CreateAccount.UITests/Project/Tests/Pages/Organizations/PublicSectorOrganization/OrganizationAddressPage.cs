@@ -16,54 +16,57 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Organizations.Public
         [FindsBy(How = How.Id, Using = "Postcode")] private IWebElement _postcodeInput;
         [FindsBy(How = How.XPath, Using = ".//*[@type=\"submit\"]")] private IWebElement _continueButton;
 
-        public OrganizationAddressPage(IWebDriver WebBrowserDriver) : base(WebBrowserDriver)
+        public OrganizationAddressPage(ScenarioContext context) : base(context)
         {
+            _context = context;
+            _pageInteractionHelper = context.Get<PageInteractionHelper>();
+            _formCompletionHelper = context.Get<FormCompletionHelper>();
         }
 
         internal OrganizationAddressPage SetFirstAddressLine(string addressLine)
         {
-            formCompletionHelper.EnterText(_firstAddressInput, addressLine);
+            _formCompletionHelper.EnterText(_firstAddressInput, addressLine);
             return this;
         }
 
         internal OrganizationAddressPage SetSecondAddressLine(string addressLine)
         {
-            formCompletionHelper.EnterText(_secondAddressInput, addressLine);
+            _formCompletionHelper.EnterText(_secondAddressInput, addressLine);
             return this;
         }
 
         internal OrganizationAddressPage SetTownOrCity(string townOrCity)
         {
-            formCompletionHelper.EnterText(_townOrCityInput, townOrCity);
+            _formCompletionHelper.EnterText(_townOrCityInput, townOrCity);
             return this;
         }
 
         internal OrganizationAddressPage SetCountry(string country)
         {
-            formCompletionHelper.EnterText(_countryInput, country);
+            _formCompletionHelper.EnterText(_countryInput, country);
             return this;
         }
 
         internal OrganizationAddressPage SetPostcode(string postcode)
         {
-            formCompletionHelper.EnterText(_postcodeInput, postcode);
+            _formCompletionHelper.EnterText(_postcodeInput, postcode);
             return this;
         }
 
         internal SummaryPayePage ContinueAndMoveToConfirmPage()
         {
-            formCompletionHelper.ClickElement(_continueButton);
+            _formCompletionHelper.ClickElement(_continueButton);
             return new SummaryPayePage(WebBrowserDriver);
         }
 
         internal void ClickContinueWithoutEnteringData()
         {
-            formCompletionHelper.ClickElement(_continueButton);
+            _formCompletionHelper.ClickElement(_continueButton);
         }
 
         internal ConfirmOrganizationDataPage ContinueAndMoveToConfirmOrganizationDataPage()
         {
-            formCompletionHelper.ClickElement(_continueButton);
+            _formCompletionHelper.ClickElement(_continueButton);
             return new ConfirmOrganizationDataPage(WebBrowserDriver);
         }
 

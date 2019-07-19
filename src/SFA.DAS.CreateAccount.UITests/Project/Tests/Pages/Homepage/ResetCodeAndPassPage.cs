@@ -14,31 +14,34 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Homepage
         [FindsBy(How = How.Id, Using = "ConfirmPassword")] private IWebElement _confirmPasswordInput;
         [FindsBy(How = How.XPath, Using = ".//button[@type=\"submit\"]")] private IWebElement _continueButton;
 
-        public ResetCodeAndPassPage(IWebDriver WebBrowserDriver) : base(WebBrowserDriver)
+        public ResetCodeAndPassPage(ScenarioContext context) : base(context)
         {
+            _context = context;
+            _pageInteractionHelper = context.Get<PageInteractionHelper>();
+            _formCompletionHelper = context.Get<FormCompletionHelper>();
         }
 
         internal ResetCodeAndPassPage SetCode(string code)
         {
-            formCompletionHelper.EnterText(_resetCodeInput, code);
+            _formCompletionHelper.EnterText(_resetCodeInput, code);
             return this;
         }
 
         internal ResetCodeAndPassPage SetNewPassword(string password)
         {
-            formCompletionHelper.EnterText(_newPasswordInput, password);
+            _formCompletionHelper.EnterText(_newPasswordInput, password);
             return this;
         }
 
         internal ResetCodeAndPassPage ConfirmPassword(string password)
         {
-            formCompletionHelper.EnterText(_confirmPasswordInput, password);
+            _formCompletionHelper.EnterText(_confirmPasswordInput, password);
             return this;
         }
 
         internal AccountSettingsPage Continue()
         {
-            formCompletionHelper.ClickElement(_continueButton);
+            _formCompletionHelper.ClickElement(_continueButton);
             return new AccountSettingsPage(WebBrowserDriver);
         }
 

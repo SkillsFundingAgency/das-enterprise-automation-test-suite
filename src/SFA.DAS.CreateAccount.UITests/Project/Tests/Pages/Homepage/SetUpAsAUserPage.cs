@@ -24,8 +24,11 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Homepage
         private By _signInLink = By.XPath("//a[contains(text(), 'sign in')]");
         private By _termsAndConditionsLink = By.XPath("//a[contains(text(),'terms and conditions')]");
 
-        public SetUpAsAUserPage(IWebDriver WebBrowserDriver) : base(WebBrowserDriver)
+        public SetUpAsAUserPage(ScenarioContext context) : base(context)
         {
+            _context = context;
+            _pageInteractionHelper = context.Get<PageInteractionHelper>();
+            _formCompletionHelper = context.Get<FormCompletionHelper>();
             IsPagePresented();
         }
 
@@ -41,7 +44,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Homepage
 
         internal void ClickOnSignInLink()
         {
-            formCompletionHelper.ClickElement(_signInLink);
+            _formCompletionHelper.ClickElement(_signInLink);
         }
 
         internal bool IsTermsAndConditionsLinkPresent()
@@ -51,7 +54,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Homepage
 
         internal void ClickOnTermsAndConditionsLink()
         {
-            formCompletionHelper.ClickElement(_termsAndConditionsLink);
+            _formCompletionHelper.ClickElement(_termsAndConditionsLink);
         }
 
         internal SetUpAsAUserPage SubmitInvalidForm(string firstName, string lastName, string email, string passWord)
@@ -76,7 +79,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Homepage
 
         private void CompleteForm(string firstName, string lastName, string email, string passWord)
         {
-            formCompletionHelper.EnterText(FirstName, firstName);
+            _formCompletionHelper.EnterText(FirstName, firstName);
             LastName.SendKeys(lastName);
             Email.SendKeys(email);
             Password.SendKeys(passWord);
@@ -85,7 +88,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Homepage
 
         private void SubmitForm()
         {
-            formCompletionHelper.ClickElement(SetMeUp);
+            _formCompletionHelper.ClickElement(SetMeUp);
         }
 
         internal bool IsTheErrorBoxDisplayed()

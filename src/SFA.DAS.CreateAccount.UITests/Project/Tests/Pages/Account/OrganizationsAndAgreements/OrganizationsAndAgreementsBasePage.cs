@@ -10,8 +10,11 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Organization
         [FindsBy(How = How.XPath, Using = ".//h1[@class=\"heading-xlarge\"]")] private IWebElement _pageHeader;
         [FindsBy(How = How.XPath, Using = "(//td[@data-label=\"Action\"]//a)[1]")] private IWebElement _signOrViewAgreementLink;
 
-        public OrganizationsAndAgreementsBasePage(IWebDriver WebBrowserDriver) : base(WebBrowserDriver)
+        public OrganizationsAndAgreementsBasePage(ScenarioContext context) : base(context)
         {
+            _context = context;
+            _pageInteractionHelper = context.Get<PageInteractionHelper>();
+            _formCompletionHelper = context.Get<FormCompletionHelper>();
         }
 
         public bool IsPagePresented()
@@ -23,7 +26,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Organization
         {
             var elements =
                 WebBrowserDriver.FindElements(By.XPath("//td[@data-label=\"Action\"]//a"));
-            formCompletionHelper.ClickElement(elements.Last());
+            _formCompletionHelper.ClickElement(elements.Last());
         }
 
         public string GetNotification()
@@ -49,7 +52,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Organization
 
         public void ClickSignOrViewAgreementLink()
         {
-            formCompletionHelper.ClickElement(WebBrowserDriver,_signOrViewAgreementLink);
+            _formCompletionHelper.ClickElement(WebBrowserDriver,_signOrViewAgreementLink);
         }
     }
 }

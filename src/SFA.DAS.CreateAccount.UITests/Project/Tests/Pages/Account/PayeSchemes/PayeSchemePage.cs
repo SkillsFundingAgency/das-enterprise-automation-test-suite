@@ -14,8 +14,11 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.PayeSchemes
         [FindsBy(How = How.XPath, Using = ".//*[@class=\"success-summary\"]//h1")] private IWebElement _notificationElement;
         [FindsBy(How = How.XPath, Using = ".//h1[@class=\"heading-xlarge\"]")] private IWebElement _pageHeader;
 
-        public PayeSchemePage(IWebDriver WebBrowserDriver) : base(WebBrowserDriver)
+        public PayeSchemePage(ScenarioContext context) : base(context)
         {
+            _context = context;
+            _pageInteractionHelper = context.Get<PageInteractionHelper>();
+            _formCompletionHelper = context.Get<FormCompletionHelper>();
         }
 
         internal bool IsPagePresented()
@@ -25,13 +28,13 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.PayeSchemes
 
         internal UsingYourGovtGatewayDetailsPage AddScheme()
         {
-            formCompletionHelper.ClickElement(_addSchemeButton);
+            _formCompletionHelper.ClickElement(_addSchemeButton);
             return new UsingYourGovtGatewayDetailsPage(WebBrowserDriver);
         }
 
         internal PayeSchemePage AcceptScheme()
         {
-            formCompletionHelper.ClickElement(_acceptSchemeAddition);
+            _formCompletionHelper.ClickElement(_acceptSchemeAddition);
             if (this.WebBrowserDriver.EmployerAccountHomepage().IsMoreLinkPresent())
                 this.WebBrowserDriver.EmployerAccountHomepage().ClickMoreLink();
             this.WebBrowserDriver.EmployerAccountHomepage().OpenPayeSchemesPage();

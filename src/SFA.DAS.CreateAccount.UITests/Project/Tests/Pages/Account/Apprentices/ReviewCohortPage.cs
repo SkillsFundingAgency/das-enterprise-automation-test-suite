@@ -10,8 +10,11 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Apprentices
         [FindsBy(How = How.XPath, Using = ".//a[contains(text(), \'Save and continue\')]")] private IWebElement _saveAndContinue;
         [FindsBy(How = How.XPath, Using = ".//a[contains(text(), \'Add an apprentice\')]")] private IWebElement _addApperenticeButton;
 
-        public ReviewCohortPage(IWebDriver WebBrowserDriver) : base(WebBrowserDriver)
+        public ReviewCohortPage(ScenarioContext context) : base(context)
         {
+            _context = context;
+            _pageInteractionHelper = context.Get<PageInteractionHelper>();
+            _formCompletionHelper = context.Get<FormCompletionHelper>();
         }
 
         public string GetTotalCost()
@@ -21,13 +24,13 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Apprentices
 
         public CohortUntilPage SaveAndContinue()
         {
-            formCompletionHelper.ClickElement(_saveAndContinue);
+            _formCompletionHelper.ClickElement(_saveAndContinue);
             return new CohortUntilPage(WebBrowserDriver);
         }
 
         public AddApperentieceFillFormPage AddAnApperentice()
         {
-            formCompletionHelper.ClickElement(_addApperenticeButton);
+            _formCompletionHelper.ClickElement(_addApperenticeButton);
             return new AddApperentieceFillFormPage(WebBrowserDriver);
         }
     }

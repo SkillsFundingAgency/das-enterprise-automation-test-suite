@@ -9,19 +9,22 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Apprentices
         [FindsBy(How = How.XPath, Using = ".//label[@for=\"SaveStatus-Save\"]")] private IWebElement _dontSendProviderCheckbox;
         [FindsBy(How = How.XPath, Using = ".//*[@type=\"submit\"]")] private IWebElement _continueButton;
 
-        public CohortUntilPage(IWebDriver WebBrowserDriver) : base(WebBrowserDriver)
+        public CohortUntilPage(ScenarioContext context) : base(context)
         {
+            _context = context;
+            _pageInteractionHelper = context.Get<PageInteractionHelper>();
+            _formCompletionHelper = context.Get<FormCompletionHelper>();
         }
 
         public CohortUntilPage DontSendOption()
         {
-            formCompletionHelper.SelectRadioButton(_dontSendProviderCheckbox);
+            _formCompletionHelper.SelectRadioButton(_dontSendProviderCheckbox);
             return this;
         }
 
         public CohortsLandingPage Continue()
         {
-            formCompletionHelper.ClickElement(_continueButton);
+            _formCompletionHelper.ClickElement(_continueButton);
             return new CohortsLandingPage(WebBrowserDriver);
         }
     }

@@ -11,25 +11,28 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Organization
         [FindsBy(How = How.Id, Using = "Name")] private IWebElement _nameInput;
         [FindsBy(How = How.Id, Using = "accept")] private IWebElement _continueButton;
 
-        public EnterOrganizationNamePage(IWebDriver WebBrowserDriver) : base(WebBrowserDriver)
+        public EnterOrganizationNamePage(ScenarioContext context) : base(context)
         {
+            _context = context;
+            _pageInteractionHelper = context.Get<PageInteractionHelper>();
+            _formCompletionHelper = context.Get<FormCompletionHelper>();
         }
 
         public EnterOrganizationNamePage SetName(string name)
         {
-            formCompletionHelper.EnterText(_nameInput, name);
+            _formCompletionHelper.EnterText(_nameInput, name);
             return this;
         }
 
         public OrganizationAddressPage Continue()
         {
-            formCompletionHelper.ClickElement(_continueButton);
+            _formCompletionHelper.ClickElement(_continueButton);
             return new OrganizationAddressPage(WebBrowserDriver);
         }
 
         public FindOrganizationAddressPage ContinueWithFindOrganizationAddress()
         {
-            formCompletionHelper.ClickElement(_continueButton);
+            _formCompletionHelper.ClickElement(_continueButton);
             return new FindOrganizationAddressPage(WebBrowserDriver);
         }
 

@@ -9,8 +9,11 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Organization
         [FindsBy(How = How.XPath, Using = ".//*[@id=\"content\"]//h1[@class=\"heading-xlarge\"]")] private IWebElement _pageHeader;
         [FindsBy(How = How.XPath, Using = ".//input[@type=\"submit\"]")] private IWebElement _continueButton;
 
-        public AboutYourSfaAgreementPage(IWebDriver WebBrowserDriver) : base(WebBrowserDriver)
+        public AboutYourSfaAgreementPage(ScenarioContext context) : base(context)
         {
+            _context = context;
+            _pageInteractionHelper = context.Get<PageInteractionHelper>();
+            _formCompletionHelper = context.Get<FormCompletionHelper>();
         }
 
         public bool IsPagePresented()
@@ -20,7 +23,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Organization
 
         public AcceptTheAgreementPage Continue()
         {
-            formCompletionHelper.ClickElement(_continueButton);
+            _formCompletionHelper.ClickElement(_continueButton);
             return new AcceptTheAgreementPage(WebBrowserDriver);
         }
     }

@@ -10,8 +10,11 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Organization
         private By _removeAnOrgLink = By.XPath("//a[contains(text(), 'Remove an organisation from your account')]");
         private By _orgRemovedMessage = By.XPath("//h1");
 
-        public YourOrganizationsBasePage(IWebDriver WebBrowserDriver) : base(WebBrowserDriver)
+        public YourOrganizationsBasePage(ScenarioContext context) : base(context)
         {
+            _context = context;
+            _pageInteractionHelper = context.Get<PageInteractionHelper>();
+            _formCompletionHelper = context.Get<FormCompletionHelper>();
         }
 
         internal string[] GetOrganizationNames()
@@ -22,7 +25,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Organization
 
         internal EnterOrganizationNamePage AddNewOrganization()
         {
-            formCompletionHelper.ClickElement(_addNewOrganizationButton);
+            _formCompletionHelper.ClickElement(_addNewOrganizationButton);
             return new EnterOrganizationNamePage(WebBrowserDriver);
         }
 
@@ -43,7 +46,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Organization
 
         internal RemoveOrganizationPage ClickRemoveOrgLink()
         {
-            formCompletionHelper.ClickElement(_removeAnOrgLink);
+            _formCompletionHelper.ClickElement(_removeAnOrgLink);
             return new RemoveOrganizationPage(WebBrowserDriver);
         }
 

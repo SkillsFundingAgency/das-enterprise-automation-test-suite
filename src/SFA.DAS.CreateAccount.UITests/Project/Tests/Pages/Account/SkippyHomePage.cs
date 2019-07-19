@@ -8,8 +8,11 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account
         private const string PageTitle = "Your employer account";
         private By _addYourPAYELink = By.XPath("//a[contains(text(),'Add your PAYE scheme')]");
 
-        public SkippyHomePage(IWebDriver WebBrowserDriver) : base(WebBrowserDriver)
+        public SkippyHomePage(ScenarioContext context) : base(context)
         {
+            _context = context;
+            _pageInteractionHelper = context.Get<PageInteractionHelper>();
+            _formCompletionHelper = context.Get<FormCompletionHelper>();
             IsPagePresented();
         }
 
@@ -20,7 +23,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account
 
         public void ClickOnAddYourPAYESchemeLink()
         {
-            formCompletionHelper.ClickElement(_addYourPAYELink);
+            _formCompletionHelper.ClickElement(_addYourPAYELink);
         }
     }
 }

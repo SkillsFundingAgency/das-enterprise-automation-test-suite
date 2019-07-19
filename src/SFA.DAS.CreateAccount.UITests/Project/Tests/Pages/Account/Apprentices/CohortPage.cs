@@ -8,8 +8,11 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Apprentices
     {
         private By _cohortRequest => By.CssSelector("div.grid-row div span");
 
-        public CohortPage(IWebDriver WebBrowserDriver) : base(WebBrowserDriver)
+        public CohortPage(ScenarioContext context) : base(context)
         {
+            _context = context;
+            _pageInteractionHelper = context.Get<PageInteractionHelper>();
+            _formCompletionHelper = context.Get<FormCompletionHelper>();
         }
 
         internal bool AreThereAnyActiveCohort()

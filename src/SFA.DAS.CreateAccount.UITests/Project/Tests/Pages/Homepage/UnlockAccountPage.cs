@@ -13,8 +13,11 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Homepage
         [FindsBy(How = How.Id, Using = "UnlockCode")] private IWebElement _unlockCodeInput;
         [FindsBy(How = How.XPath, Using = ".//*[@type=\"submit\"]")] private IWebElement _unlockAccountButton;
 
-        public UnlockAccountPage(IWebDriver WebBrowserDriver) : base(WebBrowserDriver)
+        public UnlockAccountPage(ScenarioContext context) : base(context)
         {
+            _context = context;
+            _pageInteractionHelper = context.Get<PageInteractionHelper>();
+            _formCompletionHelper = context.Get<FormCompletionHelper>();
         }
 
         public string Email
@@ -23,7 +26,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Homepage
             set
             {
                 _emailInput.Clear();
-                formCompletionHelper.EnterText(_emailInput, value ?? "");
+                _formCompletionHelper.EnterText(_emailInput, value ?? "");
             }
         }
 
@@ -33,7 +36,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Homepage
             set
             {
                 _unlockCodeInput.Clear();
-                formCompletionHelper.EnterText(_unlockCodeInput, value ?? "");
+                _formCompletionHelper.EnterText(_unlockCodeInput, value ?? "");
             }
         }
 

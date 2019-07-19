@@ -57,8 +57,11 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account
         private IWebElement _step4ViewAgreementsButton;
         [FindsBy(How = How.CssSelector, Using = "#confirmation a")]
         private IWebElement _completeButton;
-        public WizardPage(IWebDriver WebBrowserDriver) : base(WebBrowserDriver)
+        public WizardPage(ScenarioContext context) : base(context)
         {
+            _context = context;
+            _pageInteractionHelper = context.Get<PageInteractionHelper>();
+            _formCompletionHelper = context.Get<FormCompletionHelper>();
         }
 
         internal bool IsPagePresented()
@@ -73,14 +76,14 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account
 
         internal Homepage.Homepage Close()
         {
-            formCompletionHelper.ClickAndWaitForInvisibilityOfAnElement(_closeButton, By.CssSelector(closebtncss));
+            _formCompletionHelper.ClickAndWaitForInvisibilityOfAnElement(_closeButton, By.CssSelector(closebtncss));
             return new Homepage.Homepage(WebBrowserDriver);
         }
 
         internal WizardPage SelectStep(int stepNumber, bool answer)
         {
             var element = this.GetStepRadioButton(stepNumber, answer);
-            this.formCompletionHelper.SelectRadioButton(element);
+            this._formCompletionHelper.SelectRadioButton(element);
             return this;
         }
 

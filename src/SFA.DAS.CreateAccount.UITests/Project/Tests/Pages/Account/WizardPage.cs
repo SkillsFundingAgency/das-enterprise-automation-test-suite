@@ -52,8 +52,11 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account
         private By _step4ViewAgreementsNowLink = By.XPath("//div[contains(@id, 'guide-wizard-step-agreements')]/a[contains(text(), 'View agreements now')]");
         private By _step4YesOptionText = By.XPath("//div[contains(@id, 'guide-wizard-step-agreements')]");
 
-        public WizardPage(IWebDriver WebBrowserDriver) : base(WebBrowserDriver)
+        public WizardPage(ScenarioContext context) : base(context)
         {
+            _context = context;
+            _pageInteractionHelper = context.Get<PageInteractionHelper>();
+            _formCompletionHelper = context.Get<FormCompletionHelper>();
         }
 
         internal bool IsPagePresented()
@@ -63,21 +66,21 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account
 
         internal EmployerAccountHomepage Close()
         {
-            formCompletionHelper.ClickElement(_topRightCloseOption);
+            _formCompletionHelper.ClickElement(_topRightCloseOption);
             return new EmployerAccountHomepage(WebBrowserDriver);
         }
 
         internal WizardPage SelectStep(int stepNumber, bool answer)
         {
             var element = this.GetStepRadioButton(stepNumber, answer);
-            this.formCompletionHelper.SelectRadioButton(element);
+            this._formCompletionHelper.SelectRadioButton(element);
             return this;
         }
 
         internal WizardPage ClickStepReview(int stepNumber)
         {
             var element = this.GetStepReviewButton(stepNumber);
-            formCompletionHelper.ClickElement(element);
+            _formCompletionHelper.ClickElement(element);
             return this;
         }
 
@@ -97,25 +100,25 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account
 
         internal WizardPage OpenStep1AddPayeSchemesPage()
         {
-            formCompletionHelper.ClickElement(_step1AddPayeSchemesNowLink);
+            _formCompletionHelper.ClickElement(_step1AddPayeSchemesNowLink);
             return this;
         }
 
         internal WizardPage OpenStep2AddOrganisationsPage()
         {
-            formCompletionHelper.ClickElement(_step2AddOrganisationsNowLink);
+            _formCompletionHelper.ClickElement(_step2AddOrganisationsNowLink);
             return this;
         }
 
         internal WizardPage OpenStep3AddMembersPage()
         {
-            formCompletionHelper.ClickElement(_step3InviteColleaguesFromMyOrganisationNowLink);
+            _formCompletionHelper.ClickElement(_step3InviteColleaguesFromMyOrganisationNowLink);
             return this;
         }
 
         internal WizardPage OpenStep4AddMembersPage()
         {
-            formCompletionHelper.ClickElement(_step4ViewAgreementsNowLink);
+            _formCompletionHelper.ClickElement(_step4ViewAgreementsNowLink);
             return this;
         }
 

@@ -23,13 +23,16 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account
         private By _settingsLink = By.XPath("//a[contains (text(), \'Settings\')]");
         private By _acivityTab = By.XPath("//a[contains(text(),\'Activity\')]");
 
-        public AccountSettingsPage(IWebDriver WebBrowserDriver) : base(WebBrowserDriver)
+        public AccountSettingsPage(ScenarioContext context) : base(context)
         {
+            _context = context;
+            _pageInteractionHelper = context.Get<PageInteractionHelper>();
+            _formCompletionHelper = context.Get<FormCompletionHelper>();
         }
 
         internal void ClickSignOut()
         {
-            formCompletionHelper.ClickElement(_signOutBtn);
+            _formCompletionHelper.ClickElement(_signOutBtn);
         }
 
         internal bool IsPagePresented()
@@ -39,19 +42,19 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account
 
         internal AccountSettingsPage ClickChangeLevyAccountLink()
         {
-            formCompletionHelper.ClickElement(ChangeLevyAccountLink);
+            _formCompletionHelper.ClickElement(ChangeLevyAccountLink);
             return this;
         }
 
         internal ChangeEmailPage ChangeEmail()
         {
-            formCompletionHelper.ClickElement(ChangeEmailLink);
+            _formCompletionHelper.ClickElement(ChangeEmailLink);
             return new ChangeEmailPage(WebBrowserDriver);
         }
 
         internal ChangePasswordPage ChangePassword()
         {
-            formCompletionHelper.ClickElement(ChangePasswordLink);
+            _formCompletionHelper.ClickElement(ChangePasswordLink);
             return new ChangePasswordPage(WebBrowserDriver);
         }
 
@@ -62,7 +65,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account
 
         internal AccountSettingsPage ClickSettingsLink()
         {
-            formCompletionHelper.ClickElement(_settingsLink);
+            _formCompletionHelper.ClickElement(_settingsLink);
             return this;
         }
 
@@ -73,38 +76,38 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account
 
         internal RenameAccountPage RenameAccount()
         {
-            formCompletionHelper.ClickElement(RenameAccountLink);
+            _formCompletionHelper.ClickElement(RenameAccountLink);
             return new RenameAccountPage(WebBrowserDriver);
         }
 
         internal void ClickYourAccountsLink()
         {
-            formCompletionHelper.ClickElement(_settingsLink);
-            formCompletionHelper.ClickElement(_yourAccountLink);
+            _formCompletionHelper.ClickElement(_settingsLink);
+            _formCompletionHelper.ClickElement(_yourAccountLink);
         }
 
         internal void ClickRenameAccountLink()
         {
-            formCompletionHelper.ClickElement(_settingsLink);
-            formCompletionHelper.ClickElement(RenameAccountLink);
+            _formCompletionHelper.ClickElement(_settingsLink);
+            _formCompletionHelper.ClickElement(RenameAccountLink);
         }
 
         internal void ClickChangeYourPasswordLink()
         {
-            formCompletionHelper.ClickElement(_settingsLink);
-            formCompletionHelper.ClickElement(ChangePasswordLink);
+            _formCompletionHelper.ClickElement(_settingsLink);
+            _formCompletionHelper.ClickElement(ChangePasswordLink);
         }
 
         internal void ClickChangeYourEmailAddressLink()
         {
-            formCompletionHelper.ClickElement(_settingsLink);
-            formCompletionHelper.ClickElement(ChangeEmailLink);
+            _formCompletionHelper.ClickElement(_settingsLink);
+            _formCompletionHelper.ClickElement(ChangeEmailLink);
         }
 
         internal void ClickNotificationSettingsLink()
         {
-            formCompletionHelper.ClickElement(_settingsLink);
-            formCompletionHelper.ClickElement(_notificationSettingsLink);
+            _formCompletionHelper.ClickElement(_settingsLink);
+            _formCompletionHelper.ClickElement(_notificationSettingsLink);
         }
     }
 }

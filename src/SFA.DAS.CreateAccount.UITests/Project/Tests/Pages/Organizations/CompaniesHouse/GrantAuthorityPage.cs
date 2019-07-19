@@ -9,8 +9,11 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Organizations.Compan
     {
         [FindsBy(How = How.CssSelector, Using = "h1")] private IWebElement _pageHeader;
 
-        public GrantAuthorityPage(IWebDriver WebBrowserDriver) : base(WebBrowserDriver)
+        public GrantAuthorityPage(ScenarioContext context) : base(context)
         {
+            _context = context;
+            _pageInteractionHelper = context.Get<PageInteractionHelper>();
+            _formCompletionHelper = context.Get<FormCompletionHelper>();
         }
 
         internal bool CheckCompaniesHouseNumberFromSummary(string number)

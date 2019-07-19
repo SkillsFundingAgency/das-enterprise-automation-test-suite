@@ -9,13 +9,16 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Organization
     {
         [FindsBy(How = How.XPath, Using = ".//a[contains (text(), \'Enter address manually\')]")] private IWebElement _enterManuallyButton;
 
-        public FindOrganizationAddressPage(IWebDriver WebBrowserDriver) : base(WebBrowserDriver)
+        public FindOrganizationAddressPage(ScenarioContext context) : base(context)
         {
+            _context = context;
+            _pageInteractionHelper = context.Get<PageInteractionHelper>();
+            _formCompletionHelper = context.Get<FormCompletionHelper>();
         }
 
         public OrganizationAddressPage EnterManually()
         {
-            formCompletionHelper.ClickElement(_enterManuallyButton);
+            _formCompletionHelper.ClickElement(_enterManuallyButton);
             return new OrganizationAddressPage(WebBrowserDriver);
         }
     }

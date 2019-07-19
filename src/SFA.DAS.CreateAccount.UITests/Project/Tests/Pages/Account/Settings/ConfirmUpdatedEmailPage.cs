@@ -10,25 +10,28 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Settings
         [FindsBy(How = How.Id, Using = "Password")] private IWebElement PasswordInput;
         [FindsBy(How = How.XPath, Using = ".//button[@type=\"submit\"]")] private IWebElement ContinueButton;
 
-        public ConfirmUpdatedEmailPage(IWebDriver WebBrowserDriver) : base(WebBrowserDriver)
+        public ConfirmUpdatedEmailPage(ScenarioContext context) : base(context)
         {
+            _context = context;
+            _pageInteractionHelper = context.Get<PageInteractionHelper>();
+            _formCompletionHelper = context.Get<FormCompletionHelper>();
         }
 
         internal ConfirmUpdatedEmailPage InputSecurityCode(string code)
         {
-            formCompletionHelper.EnterText(SecurityCodeInput, code);
+            _formCompletionHelper.EnterText(SecurityCodeInput, code);
             return this;
         }
 
         internal ConfirmUpdatedEmailPage InputPassword(string password)
         {
-            formCompletionHelper.EnterText(PasswordInput, password);
+            _formCompletionHelper.EnterText(PasswordInput, password);
             return this;
         }
 
         internal AccountSettingsPage Continue()
         {
-            formCompletionHelper.ClickElement(ContinueButton);
+            _formCompletionHelper.ClickElement(ContinueButton);
             return new AccountSettingsPage(WebBrowserDriver);
         }
     }

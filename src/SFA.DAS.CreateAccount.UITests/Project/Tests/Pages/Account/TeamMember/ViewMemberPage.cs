@@ -13,35 +13,38 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.TeamMember
         [FindsBy(How = How.Id, Using = "delete_user")] private IWebElement _removeMemberButton;
         [FindsBy(How = How.Id, Using = "remove_team_member")] private IWebElement _confirmTheMemberRemovalButton;
 
-        public ViewMemberPage(IWebDriver WebBrowserDriver) : base(WebBrowserDriver)
+        public ViewMemberPage(ScenarioContext context) : base(context)
         {
+            _context = context;
+            _pageInteractionHelper = context.Get<PageInteractionHelper>();
+            _formCompletionHelper = context.Get<FormCompletionHelper>();
         }
 
         internal void ResendInvitation()
         {
-            formCompletionHelper.ClickElement(_resendButton);
+            _formCompletionHelper.ClickElement(_resendButton);
         }
 
         internal ViewMemberPage CancelInvitation()
         {
-            formCompletionHelper.ClickElement(_cancelInvitation);
+            _formCompletionHelper.ClickElement(_cancelInvitation);
             return this;
         }
 
         internal void ConfirmCancellation()
         {
-            formCompletionHelper.ClickElement(_confirmCancellation);
+            _formCompletionHelper.ClickElement(_confirmCancellation);
         }
 
         internal void ForbidCancellation()
         {
-            formCompletionHelper.ClickElement(_forbidCancellation);
+            _formCompletionHelper.ClickElement(_forbidCancellation);
         }
 
         internal YourTeamPage RemoveMember()
         {
-            formCompletionHelper.ClickElement(_removeMemberButton);
-            formCompletionHelper.ClickElement(_confirmTheMemberRemovalButton);
+            _formCompletionHelper.ClickElement(_removeMemberButton);
+            _formCompletionHelper.ClickElement(_confirmTheMemberRemovalButton);
             return new YourTeamPage(WebBrowserDriver);
         }
     }

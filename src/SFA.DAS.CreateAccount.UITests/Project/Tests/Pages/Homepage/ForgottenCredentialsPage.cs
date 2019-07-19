@@ -13,19 +13,22 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Homepage
         [FindsBy(How = How.Id, Using = "forgottenpassword-button")]
         private IWebElement _getResetCodeButton;
 
-        public ForgottenCredentialsPage(IWebDriver WebBrowserDriver) : base(WebBrowserDriver)
+        public ForgottenCredentialsPage(ScenarioContext context) : base(context)
         {
+            _context = context;
+            _pageInteractionHelper = context.Get<PageInteractionHelper>();
+            _formCompletionHelper = context.Get<FormCompletionHelper>();
         }
 
         internal ForgottenCredentialsPage SetEmail(string email)
         {
-            formCompletionHelper.EnterText(_changeEmailInput, email);
+            _formCompletionHelper.EnterText(_changeEmailInput, email);
             return this;
         }
 
         internal ResetCodeAndPassPage Continue()
         {
-            formCompletionHelper.ClickElement(_getResetCodeButton);
+            _formCompletionHelper.ClickElement(_getResetCodeButton);
             return new ResetCodeAndPassPage(WebBrowserDriver);
         }
 

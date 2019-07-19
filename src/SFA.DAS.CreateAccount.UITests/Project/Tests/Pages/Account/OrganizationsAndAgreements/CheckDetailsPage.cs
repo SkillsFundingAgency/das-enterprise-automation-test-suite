@@ -8,8 +8,11 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Organization
         private const string PageTitle = "Check details";
         private By _continueButton = By.XPath("//input[contains(@value, 'continue')]");
 
-        public CheckDetailsPage(IWebDriver WebBrowserDriver) : base(WebBrowserDriver)
+        public CheckDetailsPage(ScenarioContext context) : base(context)
         {
+            _context = context;
+            _pageInteractionHelper = context.Get<PageInteractionHelper>();
+            _formCompletionHelper = context.Get<FormCompletionHelper>();
             IsPagePresented();
         }
 
@@ -20,7 +23,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Organization
 
         public void ClickOnContinueButton()
         {
-            formCompletionHelper.ClickElement(_continueButton);
+            _formCompletionHelper.ClickElement(_continueButton);
         }
     }
 }

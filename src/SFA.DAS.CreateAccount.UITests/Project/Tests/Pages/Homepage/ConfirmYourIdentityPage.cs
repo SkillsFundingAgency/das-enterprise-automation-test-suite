@@ -19,8 +19,11 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Homepage
         private By _headerErrorMessage = By.XPath("//ul[contains(@class, 'error-summary-list')]/li/a");
         private By _textboxErrorMessage = By.XPath("//span[contains(@class, 'error-message')]");
 
-        public ConfirmYourIdentityPage(IWebDriver WebBrowserDriver) : base(WebBrowserDriver)
+        public ConfirmYourIdentityPage(ScenarioContext context) : base(context)
         {
+            _context = context;
+            _pageInteractionHelper = context.Get<PageInteractionHelper>();
+            _formCompletionHelper = context.Get<FormCompletionHelper>();
         }
 
         internal AccountSettingsPage ValidAccesCode(string validAccesCode)
@@ -31,7 +34,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Homepage
 
         internal SiteHomepage MoveBack()
         {
-            formCompletionHelper.ClickElement(_backButton);
+            _formCompletionHelper.ClickElement(_backButton);
             return new SiteHomepage(WebBrowserDriver);
         }
 
@@ -48,19 +51,19 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Homepage
 
         private void EnterValidAccessCode(string validAccesCode)
         {
-            formCompletionHelper.EnterText(EnterCodeField, validAccesCode);
+            _formCompletionHelper.EnterText(EnterCodeField, validAccesCode);
             ClickContinue();
         }
 
         public void EnterInvalidAccessCode(string invalidAccesCode)
         {
-            formCompletionHelper.EnterText(EnterCodeField, invalidAccesCode);
+            _formCompletionHelper.EnterText(EnterCodeField, invalidAccesCode);
             ClickContinue();
         }
 
         public void ClickContinue()
         {
-            formCompletionHelper.ClickElement(ConfirmIdentityContinueBtn);
+            _formCompletionHelper.ClickElement(ConfirmIdentityContinueBtn);
         }
 
         internal string GetInvalidCodeErrorInField()

@@ -11,8 +11,11 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account
         private By _additionalTitleText = By.XPath("//p[@class=\'lede\']");
         private By _activityPageText = By.XPath("//p[@class=\'activity\']");
 
-        public ActivityPage(IWebDriver WebBrowserDriver) : base(WebBrowserDriver)
+        public ActivityPage(ScenarioContext context) : base(context)
         {
+            _context = context;
+            _pageInteractionHelper = context.Get<PageInteractionHelper>();
+            _formCompletionHelper = context.Get<FormCompletionHelper>();
             IsPagePresented();
             IsAdditionalTitleTextPresented();
         }

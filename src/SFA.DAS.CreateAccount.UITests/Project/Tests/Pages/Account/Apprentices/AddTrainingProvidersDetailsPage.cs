@@ -9,19 +9,22 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Apprentices
         [FindsBy(How = How.Id, Using = "ProviderId")] private IWebElement _providerIdInput;
         [FindsBy(How = How.XPath, Using = ".//*[@type=\"submit\"]")] private IWebElement _continueButton;
 
-        public AddTrainingProvidersDetailsPage(IWebDriver WebBrowserDriver) : base(WebBrowserDriver)
+        public AddTrainingProvidersDetailsPage(ScenarioContext context) : base(context)
         {
+            _context = context;
+            _pageInteractionHelper = context.Get<PageInteractionHelper>();
+            _formCompletionHelper = context.Get<FormCompletionHelper>();
         }
 
         public AddTrainingProvidersDetailsPage SetProviderId(string id)
         {
-            formCompletionHelper.EnterText(_providerIdInput, id);
+            _formCompletionHelper.EnterText(_providerIdInput, id);
             return this;
         }
 
         public ConfirmTrainingProviderPage Continue()
         {
-            formCompletionHelper.ClickElement(_continueButton);
+            _formCompletionHelper.ClickElement(_continueButton);
             return new ConfirmTrainingProviderPage(WebBrowserDriver);
         }
     }

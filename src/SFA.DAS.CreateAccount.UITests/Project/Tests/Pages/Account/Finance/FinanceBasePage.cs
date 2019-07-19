@@ -12,8 +12,11 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Finance
         [FindsBy(How = How.XPath, Using = " //a[contains(text(),'Transfers')]")] private IWebElement _lnkManagetransfers;
         [FindsBy(How = How.XPath, Using = " //a[contains(text(),'Funding projection')]")] private IWebElement _lnkFundingProjection;
 
-        public FinanceBasePage(IWebDriver WebBrowserDriver) : base(WebBrowserDriver)
+        public FinanceBasePage(ScenarioContext context) : base(context)
         {
+            _context = context;
+            _pageInteractionHelper = context.Get<PageInteractionHelper>();
+            _formCompletionHelper = context.Get<FormCompletionHelper>();
         }
 
         internal bool IsPagePresented()
@@ -28,24 +31,24 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Finance
 
         public TransactionBasePage OpenViewTransactions()
         {
-            formCompletionHelper.ClickElement(_lnkViewtransactions);
+            _formCompletionHelper.ClickElement(_lnkViewtransactions);
             return new TransactionBasePage(WebBrowserDriver);
         }
 
         public DownloadTransactionsPage OpenDownloadTransactions()
         {
-            formCompletionHelper.ClickElement(_lnkDownloadtransactions);
+            _formCompletionHelper.ClickElement(_lnkDownloadtransactions);
             return new DownloadTransactionsPage(WebBrowserDriver);
         }
         public TransfersPage OpenManageTransfers()
         {
-            formCompletionHelper.ClickElement(_lnkManagetransfers);
+            _formCompletionHelper.ClickElement(_lnkManagetransfers);
             return new TransfersPage(WebBrowserDriver);
         }
 
         public FundingProjectionPage OpenFundingProjection()
         {
-            formCompletionHelper.ClickElement(_lnkFundingProjection);
+            _formCompletionHelper.ClickElement(_lnkFundingProjection);
             return new FundingProjectionPage(WebBrowserDriver);
         }
     }

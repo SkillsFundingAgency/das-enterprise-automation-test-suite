@@ -10,8 +10,11 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Settings
         [FindsBy(How = How.ClassName, Using = "heading-xlarge")] private IWebElement _pageHeader;
         [FindsBy(How = How.XPath, Using = ".//a[contains (text(), \'View Invitations\')]")] private IWebElement _invitationsButton;
 
-        public YourAccountsPage(IWebDriver WebBrowserDriver) : base(WebBrowserDriver)
+        public YourAccountsPage(ScenarioContext context) : base(context)
         {
+            _context = context;
+            _pageInteractionHelper = context.Get<PageInteractionHelper>();
+            _formCompletionHelper = context.Get<FormCompletionHelper>();
         }
 
         internal bool IsPagePresented()
@@ -29,7 +32,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Settings
 
         internal InvitationsPage OpenInvitationsPage()
         {
-            formCompletionHelper.ClickElement(_invitationsButton);
+            _formCompletionHelper.ClickElement(_invitationsButton);
             return new InvitationsPage(WebBrowserDriver);
         }
     }

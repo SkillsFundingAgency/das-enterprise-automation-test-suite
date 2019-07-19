@@ -22,8 +22,11 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Homepage
         private By _headerEmailErrorMessage = By.XPath("(//ul[contains(@class,\'error-summary-list\')]/li)[1]");
         private By _headerPasswordErrorMessage = By.XPath("(//ul[contains(@class,\'error-summary-list\')]/li)[2]");
 
-        public SignInPage(IWebDriver WebBrowserDriver) : base(WebBrowserDriver)
+        public SignInPage(ScenarioContext context) : base(context)
         {
+            _context = context;
+            _pageInteractionHelper = context.Get<PageInteractionHelper>();
+            _formCompletionHelper = context.Get<FormCompletionHelper>();
         }
 
         internal AccountSettingsPage ValidLogin(string userName, string passWord)
@@ -46,13 +49,13 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Homepage
 
         internal SetUpAsAUserPage ClickCreateAccount()
         {
-            formCompletionHelper.ClickElement(CreateAccLink);
+            _formCompletionHelper.ClickElement(CreateAccLink);
             return new SetUpAsAUserPage(WebBrowserDriver);
         }
 
         internal ForgottenCredentialsPage ClickForgottenYourPassword()
         {
-            formCompletionHelper.ClickElement(ForgottenPasswordLink);
+            _formCompletionHelper.ClickElement(ForgottenPasswordLink);
             return new ForgottenCredentialsPage(WebBrowserDriver);
         }
 
@@ -75,37 +78,37 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Homepage
 
         private void EnterUserName(string userName)
         {
-            formCompletionHelper.EnterText(EmailAddress, userName);
+            _formCompletionHelper.EnterText(EmailAddress, userName);
         }
 
         private void EnterPassWord(string passWord)
         {
-            formCompletionHelper.EnterText(Password, passWord);
+            _formCompletionHelper.EnterText(Password, passWord);
         }
 
         private void ClickLoginButton()
         {
-            formCompletionHelper.ClickElement(LoginBtn);
+            _formCompletionHelper.ClickElement(LoginBtn);
         }
 
         public string GetEmailAddressErrorMessage()
         {
-            return formCompletionHelper.GetText(_emailAddressErrorMessage);
+            return _formCompletionHelper.GetText(_emailAddressErrorMessage);
         }
 
         public string GetPasswordErrorMessage()
         {
-            return formCompletionHelper.GetText(_passwordErrorMessage);
+            return _formCompletionHelper.GetText(_passwordErrorMessage);
         }
 
         public string GetHeaderEmailAddressErrorMessage()
         {
-            return formCompletionHelper.GetText(_headerEmailErrorMessage);
+            return _formCompletionHelper.GetText(_headerEmailErrorMessage);
         }
 
         public string GetHeaderPasswordErrorMessage()
         {
-            return formCompletionHelper.GetText(_headerPasswordErrorMessage);
+            return _formCompletionHelper.GetText(_headerPasswordErrorMessage);
         }
     }
 }

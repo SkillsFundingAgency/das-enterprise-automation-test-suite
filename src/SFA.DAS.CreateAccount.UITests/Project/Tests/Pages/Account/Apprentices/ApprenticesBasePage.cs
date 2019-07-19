@@ -9,8 +9,11 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Apprentices
         [FindsBy(How = How.XPath, Using = ".//a[contains(text(), \'Add an apprentice\')]")] private IWebElement _addAnApprenticeLink;
         [FindsBy(How = How.XPath, Using = ".//a[contains(text(), \'Your cohorts\')]")] private IWebElement _yourCohortLink;
 
-        public ApprenticesBasePage(IWebDriver WebBrowserDriver) : base(WebBrowserDriver)
+        public ApprenticesBasePage(ScenarioContext context) : base(context)
         {
+            _context = context;
+            _pageInteractionHelper = context.Get<PageInteractionHelper>();
+            _formCompletionHelper = context.Get<FormCompletionHelper>();
         }
 
         internal bool IsPagePresented()
@@ -20,13 +23,13 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Apprentices
 
         public AddApprenticePage AddApprentice()
         {
-            formCompletionHelper.ClickElement(_addAnApprenticeLink);
+            _formCompletionHelper.ClickElement(_addAnApprenticeLink);
             return new AddApprenticePage(WebBrowserDriver);
         }
 
         public CohortPage OpenCohortPage()
         {
-            formCompletionHelper.ClickElement(_yourCohortLink);
+            _formCompletionHelper.ClickElement(_yourCohortLink);
             return new CohortPage(WebBrowserDriver);
         }
     }

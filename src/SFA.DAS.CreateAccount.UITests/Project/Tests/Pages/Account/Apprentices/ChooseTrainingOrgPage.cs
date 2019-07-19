@@ -9,19 +9,22 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Apprentices
         [FindsBy(How = How.XPath, Using = ".//fieldset//label[1]")] private IWebElement _firstOrganizationButton;
         [FindsBy(How = How.XPath, Using = ".//*[@type=\"submit\"]")] private IWebElement _continueButton;
 
-        public ChooseTrainingOrgPage(IWebDriver WebBrowserDriver) : base(WebBrowserDriver)
+        public ChooseTrainingOrgPage(ScenarioContext context) : base(context)
         {
+            _context = context;
+            _pageInteractionHelper = context.Get<PageInteractionHelper>();
+            _formCompletionHelper = context.Get<FormCompletionHelper>();
         }
 
         public ChooseTrainingOrgPage PickFirstOrganization()
         {
-            formCompletionHelper.SelectRadioButton(_firstOrganizationButton);
+            _formCompletionHelper.SelectRadioButton(_firstOrganizationButton);
             return this;
         }
 
         public AgreementNotSignedPage Continue()
         {
-            formCompletionHelper.ClickElement(_continueButton);
+            _formCompletionHelper.ClickElement(_continueButton);
             return new AgreementNotSignedPage(WebBrowserDriver);
         }
     }

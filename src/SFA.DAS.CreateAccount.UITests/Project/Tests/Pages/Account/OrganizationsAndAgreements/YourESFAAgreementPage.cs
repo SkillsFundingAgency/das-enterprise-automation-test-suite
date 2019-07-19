@@ -8,8 +8,11 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Organization
         private const string PageTitle = "Your ESFA agreement";
         private By _updateTheseDetailsLink = By.XPath("//a[contains(text(),\'Update these details\')]");
 
-        public YourESFAAgreementPage(IWebDriver WebBrowserDriver) : base(WebBrowserDriver)
+        public YourESFAAgreementPage(ScenarioContext context) : base(context)
         {
+            _context = context;
+            _pageInteractionHelper = context.Get<PageInteractionHelper>();
+            _formCompletionHelper = context.Get<FormCompletionHelper>();
         }
 
         public bool IsPagePresented()
@@ -19,12 +22,12 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Organization
 
         public bool IsUpdateDetailsLinkPresent()
         {
-            return formCompletionHelper.IsElementDisplayed(_updateTheseDetailsLink);
+            return _formCompletionHelper.IsElementDisplayed(_updateTheseDetailsLink);
         }
 
         public void ClickUpdateDetailsLink()
         {
-            formCompletionHelper.ClickElement(_updateTheseDetailsLink);
+            _formCompletionHelper.ClickElement(_updateTheseDetailsLink);
         }
     }
 }

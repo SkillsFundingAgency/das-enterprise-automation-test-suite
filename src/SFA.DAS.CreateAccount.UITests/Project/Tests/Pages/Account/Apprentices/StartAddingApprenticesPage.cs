@@ -9,19 +9,22 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Apprentices
         [FindsBy(How = How.XPath, Using = ".//label[@for=\"SelectedRoute-Employer\"]")] private IWebElement _willAddApprenticesCheckbox;
         [FindsBy(How = How.XPath, Using = ".//*[@type=\"submit\"]")] private IWebElement _continueButton;
 
-        public StartAddingApprenticesPage(IWebDriver WebBrowserDriver) : base(WebBrowserDriver)
+        public StartAddingApprenticesPage(ScenarioContext context) : base(context)
         {
+            _context = context;
+            _pageInteractionHelper = context.Get<PageInteractionHelper>();
+            _formCompletionHelper = context.Get<FormCompletionHelper>();
         }
 
         public StartAddingApprenticesPage AddingApprentices()
         {
-            formCompletionHelper.SelectRadioButton(_willAddApprenticesCheckbox);
+            _formCompletionHelper.SelectRadioButton(_willAddApprenticesCheckbox);
             return this;
         }
 
         public ReviewCohortPage Continue()
         {
-            formCompletionHelper.ClickElement(_continueButton);
+            _formCompletionHelper.ClickElement(_continueButton);
             return new ReviewCohortPage(WebBrowserDriver);
         }
     }

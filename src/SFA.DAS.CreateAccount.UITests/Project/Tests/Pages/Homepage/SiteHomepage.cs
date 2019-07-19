@@ -11,8 +11,11 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Homepage
         private By _directSignInInfoText = By.XPath("(//p)[2]");
         private By _signInLink = By.XPath("//a[text()='sign in']");
 
-        public SiteHomepage(IWebDriver WebBrowserDriver) : base(WebBrowserDriver)
+        public SiteHomepage(ScenarioContext context) : base(context)
         {
+            _context = context;
+            _pageInteractionHelper = context.Get<PageInteractionHelper>();
+            _formCompletionHelper = context.Get<FormCompletionHelper>();
             IsPagePresented();
         }
 
@@ -23,19 +26,19 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Homepage
 
         internal SetUpAsAUserPage ClickCreateAccountButton()
         {
-            formCompletionHelper.ClickElement(_createAccountButton);
+            _formCompletionHelper.ClickElement(_createAccountButton);
             return new SetUpAsAUserPage(WebBrowserDriver);
         }
 
         public SignInPage ClickSignInLink()
         {
-            formCompletionHelper.ClickElement(_signInLink);
+            _formCompletionHelper.ClickElement(_signInLink);
             return new SignInPage(WebBrowserDriver);
         }
 
         public string GetSingInInfoText()
         {
-            return formCompletionHelper.GetText(_directSignInInfoText);
+            return _formCompletionHelper.GetText(_directSignInInfoText);
         }
     }
 }

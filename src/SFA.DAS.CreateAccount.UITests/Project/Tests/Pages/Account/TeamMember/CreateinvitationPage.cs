@@ -13,8 +13,11 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.TeamMember
         [FindsBy(How = How.CssSelector, Using = "[for=\"radio2\"]")] private IWebElement _asApprenticesAndViewerRadioButton;
         [FindsBy(How = How.CssSelector, Using = "[for=\"radio3\"]")] private IWebElement _asManagingRadioButton;
 
-        public CreateInvitationPage(IWebDriver WebBrowserDriver) : base(WebBrowserDriver)
+        public CreateInvitationPage(ScenarioContext context) : base(context)
         {
+            _context = context;
+            _pageInteractionHelper = context.Get<PageInteractionHelper>();
+            _formCompletionHelper = context.Get<FormCompletionHelper>();
         }
 
         internal bool IsPagePresented()
@@ -24,37 +27,37 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.TeamMember
 
         internal CreateInvitationPage InputEmail(string email)
         {
-            formCompletionHelper.EnterText(_emailInput, email);
+            _formCompletionHelper.EnterText(_emailInput, email);
             return this;
         }
 
         internal CreateInvitationPage InputMemberName(string name)
         {
-            formCompletionHelper.EnterText(_nameInput, name);
+            _formCompletionHelper.EnterText(_nameInput, name);
             return this;
         }
 
         internal CreateInvitationPage SetMemberAsViewer()
         {
-            formCompletionHelper.SelectRadioButton(_asViewerRadioButton);
+            _formCompletionHelper.SelectRadioButton(_asViewerRadioButton);
             return this;
         }
 
         internal CreateInvitationPage SetMemberAsApprentices()
         {
-            formCompletionHelper.SelectRadioButton(_asApprenticesAndViewerRadioButton);
+            _formCompletionHelper.SelectRadioButton(_asApprenticesAndViewerRadioButton);
             return this;
         }
 
         internal CreateInvitationPage SetMemberAsManaging()
         {
-            formCompletionHelper.SelectRadioButton(_asManagingRadioButton);
+            _formCompletionHelper.SelectRadioButton(_asManagingRadioButton);
             return this;
         }
 
         internal YourTeamPage Submit()
         {
-            formCompletionHelper.ClickElement(_submitButton);
+            _formCompletionHelper.ClickElement(_submitButton);
             return new YourTeamPage(WebBrowserDriver);
         }
     }

@@ -13,8 +13,11 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Settings
         [FindsBy(How = How.XPath, Using = ".//a[contains (text(), \'Cancel\')]")] private IWebElement _cancelButton;
         private const string PageTitle = "Rename account";
 
-        public RenameAccountPage(IWebDriver WebBrowserDriver) : base(WebBrowserDriver)
+        public RenameAccountPage(ScenarioContext context) : base(context)
         {
+            _context = context;
+            _pageInteractionHelper = context.Get<PageInteractionHelper>();
+            _formCompletionHelper = context.Get<FormCompletionHelper>();
         }
 
         public bool IsPagePresented()
@@ -29,13 +32,13 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Settings
 
         internal RenameAccountPage SetNewName(string newName)
         {
-            formCompletionHelper.EnterText(_newNameInput, newName);
+            _formCompletionHelper.EnterText(_newNameInput, newName);
             return this;
         }
 
         internal void SaveAndContinue()
         {
-            formCompletionHelper.ClickElement(_saveAndContinueButton);
+            _formCompletionHelper.ClickElement(_saveAndContinueButton);
         }
 
         internal string[] GetErrors()

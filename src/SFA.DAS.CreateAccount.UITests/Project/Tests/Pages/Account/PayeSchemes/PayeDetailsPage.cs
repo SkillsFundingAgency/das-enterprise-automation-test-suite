@@ -11,27 +11,30 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.PayeSchemes
         [FindsBy(How = How.XPath, Using = ".//*[@id=\"confirm\"]//label[2]")] private IWebElement _discardRemovindRadioButton;
         [FindsBy(How = How.XPath, Using = ".//button[@type=\"submit\"]")] private IWebElement _continueButton;
 
-        public PayeDetailsPage(IWebDriver WebBrowserDriver) : base(WebBrowserDriver)
+        public PayeDetailsPage(ScenarioContext context) : base(context)
         {
+            _context = context;
+            _pageInteractionHelper = context.Get<PageInteractionHelper>();
+            _formCompletionHelper = context.Get<FormCompletionHelper>();
         }
 
         internal PayeDetailsPage ClickOnRemoveScheme()
         {
-            formCompletionHelper.ClickElement(_removeSchemeButton);
+            _formCompletionHelper.ClickElement(_removeSchemeButton);
             return this;
         }
 
         internal PayeSchemePage ConfirmRemoving()
         {
-            formCompletionHelper.SelectRadioButton(_confirmRemovingRadioButton);
-            formCompletionHelper.ClickElement(_continueButton);
+            _formCompletionHelper.SelectRadioButton(_confirmRemovingRadioButton);
+            _formCompletionHelper.ClickElement(_continueButton);
             return new PayeSchemePage(WebBrowserDriver);
         }
 
         internal PayeSchemePage DiscardRemoving()
         {
-            formCompletionHelper.SelectRadioButton(_discardRemovindRadioButton);
-            formCompletionHelper.ClickElement(_continueButton);
+            _formCompletionHelper.SelectRadioButton(_discardRemovindRadioButton);
+            _formCompletionHelper.ClickElement(_continueButton);
             return new PayeSchemePage(WebBrowserDriver);
         }
     }

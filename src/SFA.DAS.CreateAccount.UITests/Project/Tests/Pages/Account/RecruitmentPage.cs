@@ -8,8 +8,11 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account
     {
         string PageTitle = "You must pay the apprenticeship levy to post vacancies on Recruitment";
 
-        public RecruitmentPage(IWebDriver WebBrowserDriver) : base(WebBrowserDriver)
+        public RecruitmentPage(ScenarioContext context) : base(context)
         {
+            _context = context;
+            _pageInteractionHelper = context.Get<PageInteractionHelper>();
+            _formCompletionHelper = context.Get<FormCompletionHelper>();
             IsPagePresented();
         }
 

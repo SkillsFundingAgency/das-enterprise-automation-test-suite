@@ -4,11 +4,20 @@ using SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Organizations;
 using SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Organizations.CompaniesHouse;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
+using SFA.DAS.UI.FrameworkHelpers;
+using SFA.DAS.UI.Framework.TestSupport;
+using TechTalk.SpecFlow;
 
 namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Organizations
 {
     class SelectYourOrganisationPage : EnterOrganisationDetails
     {
+        #region Helpers and Context
+        private readonly PageInteractionHelper _pageInteractionHelper;
+        private readonly FormCompletionHelper _formCompletionHelper;
+        private readonly ScenarioContext _context;
+        #endregion
+
         private const string ResultsNumberRegex = "\\d+(?= results found)";
         private const string resultListcss = ".results-list";
         [FindsBy(How = How.CssSelector, Using = resultListcss)]
@@ -26,25 +35,28 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Organizations
         private IWebElement _previousPageButton;
         private By errorText = By.XPath("(//section[@class=\'results-list\']//p)[1]");
 
-        public SelectYourOrganisationPage(IWebDriver WebBrowserDriver) : base(WebBrowserDriver)
+        public SelectYourOrganisationPage(ScenarioContext context) : base(context)
         {
+            _context = context;
+            _pageInteractionHelper = context.Get<PageInteractionHelper>();
+            _formCompletionHelper = context.Get<FormCompletionHelper>();
         }
 
         internal EnterOrganizationNamePage OpenEnterYourDetailsManually()
         {
-            formCompletionHelper.ClickElement(_enterYourDetailsManuallyLink);
+            _formCompletionHelper.ClickElement(_enterYourDetailsManuallyLink);
             return new EnterOrganizationNamePage(WebBrowserDriver);
         }
 
         internal SelectYourOrganisationPage NextPage()
         {
-            formCompletionHelper.ClickElement(_nextPageButton);
+            _formCompletionHelper.ClickElement(_nextPageButton);
             return this;
         }
 
         internal SelectYourOrganisationPage PreviousPage()
         {
-            formCompletionHelper.ClickElement(_previousPageButton);
+            _formCompletionHelper.ClickElement(_previousPageButton);
             return this;
         }
 
@@ -56,13 +68,13 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Organizations
 
         internal SummaryPayePage SelectFirstResultWithConfirm()
         {
-            formCompletionHelper.ClickElement(_firstResultButton);
+            _formCompletionHelper.ClickElement(_firstResultButton);
             return new SummaryPayePage(WebBrowserDriver);
         }
 
         internal FindOrganizationAddressPage SelectFirstResultWithFindAddressPage()
         {
-            formCompletionHelper.ClickElement(_firstResultButton);
+            _formCompletionHelper.ClickElement(_firstResultButton);
             return new FindOrganizationAddressPage(WebBrowserDriver);
         }
 

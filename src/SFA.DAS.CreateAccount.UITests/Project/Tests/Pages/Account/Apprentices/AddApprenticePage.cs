@@ -9,13 +9,16 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Apprentices
     {
         [FindsBy(How = How.XPath, Using = ".//a[contains(text(), \'Start now\')]")] private IWebElement _startButton;
 
-        public AddApprenticePage(IWebDriver WebBrowserDriver) : base(WebBrowserDriver)
+        public AddApprenticePage(ScenarioContext context) : base(context)
         {
+            _context = context;
+            _pageInteractionHelper = context.Get<PageInteractionHelper>();
+            _formCompletionHelper = context.Get<FormCompletionHelper>();
         }
 
         public ChooseTrainingOrgPage Start()
         {
-            formCompletionHelper.ClickElement(_startButton);
+            _formCompletionHelper.ClickElement(_startButton);
             return new ChooseTrainingOrgPage(WebBrowserDriver);
         }
     }

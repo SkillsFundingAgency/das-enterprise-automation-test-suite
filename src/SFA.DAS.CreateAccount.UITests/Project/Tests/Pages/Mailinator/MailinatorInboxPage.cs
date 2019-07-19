@@ -7,23 +7,26 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Mailinator
     {
         private By _emailSubjectField = By.XPath("//td[contains(text(),'Access code: apprenticeship service')]");
 
-        public MailinatorInboxPage(IWebDriver WebBrowserDriver) : base(WebBrowserDriver)
+        public MailinatorInboxPage(ScenarioContext context) : base(context)
         {
+            _context = context;
+            _pageInteractionHelper = context.Get<PageInteractionHelper>();
+            _formCompletionHelper = context.Get<FormCompletionHelper>();
         }
 
         public string GetEmailSubject()
         {
-            return formCompletionHelper.GetText(_emailSubjectField);
+            return _formCompletionHelper.GetText(_emailSubjectField);
         }
 
         public void ClickOnEmailToOpenIt()
         {
-            formCompletionHelper.ClickElement(_emailSubjectField);
+            _formCompletionHelper.ClickElement(_emailSubjectField);
         }
 
         public bool IsEmailPresent()
         {
-            return formCompletionHelper.IsElementDisplayed(_emailSubjectField);
+            return _formCompletionHelper.IsElementDisplayed(_emailSubjectField);
         }
     }
 }
