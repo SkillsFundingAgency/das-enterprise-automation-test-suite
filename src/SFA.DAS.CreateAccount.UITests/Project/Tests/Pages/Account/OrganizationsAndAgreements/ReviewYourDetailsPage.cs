@@ -5,6 +5,12 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Organization
 {
     class ReviewYourDetailsPage : BasePage
     {
+        #region Helpers and Context
+        private readonly PageInteractionHelper _pageInteractionHelper;
+        private readonly FormCompletionHelper _formCompletionHelper;
+        private readonly ScenarioContext _context;
+        #endregion
+
         private const string PageTitle = "Review your details";
         private By _goToOrgsPageRadioButton = By.XPath("//div[@class=\'multiple-choice\']/child::input[@value=\'dashboard\']");
         private By _updateDetailsRadioButton = By.XPath("(//div[@class=\'multiple-choice\'])[1]");

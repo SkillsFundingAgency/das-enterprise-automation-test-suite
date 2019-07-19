@@ -9,6 +9,12 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account
 {
     public class PaneTabsPage : BasePage
     {
+        #region Helpers and Context
+        private readonly PageInteractionHelper _pageInteractionHelper;
+        private readonly FormCompletionHelper _formCompletionHelper;
+        private readonly ScenarioContext _context;
+        #endregion
+
         protected const string tasksTabid = "tab-tasks";
         [FindsBy(How = How.Id, Using = tasksTabid)] protected IWebElement tasksTab;
         protected const string activitiesTabid = "tab-activity";
@@ -47,7 +53,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account
         {
             var webelement = WebBrowserDriver.FindElements(_tasksListLinkText).Single(x => x.Text == "View agreements");
             _formCompletionHelper.ClickElement(webelement);
-            return new AboutYourSfaAgreementPage(context);
+            return new AboutYourSfaAgreementPage(_context);
         }
 
         public void ClickOnActivityTab()

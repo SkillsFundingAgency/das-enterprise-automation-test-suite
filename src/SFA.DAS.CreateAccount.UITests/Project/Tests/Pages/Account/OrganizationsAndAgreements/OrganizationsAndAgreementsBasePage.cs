@@ -7,6 +7,12 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Organization
 {
     internal class OrganizationsAndAgreementsBasePage : BasePage
     {
+        #region Helpers and Context
+        private readonly PageInteractionHelper _pageInteractionHelper;
+        private readonly FormCompletionHelper _formCompletionHelper;
+        private readonly ScenarioContext _context;
+        #endregion
+
         [FindsBy(How = How.XPath, Using = ".//h1[@class=\"heading-xlarge\"]")] private IWebElement _pageHeader;
         [FindsBy(How = How.XPath, Using = "(//td[@data-label=\"Action\"]//a)[1]")] private IWebElement _signOrViewAgreementLink;
 

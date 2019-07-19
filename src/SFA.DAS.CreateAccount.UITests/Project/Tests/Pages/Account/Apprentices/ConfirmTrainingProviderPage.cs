@@ -6,6 +6,12 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Apprentices
 {
     class ConfirmTrainingProviderPage : BasePage
     {
+        #region Helpers and Context
+        private readonly PageInteractionHelper _pageInteractionHelper;
+        private readonly FormCompletionHelper _formCompletionHelper;
+        private readonly ScenarioContext _context;
+        #endregion
+
         [FindsBy(How = How.XPath, Using = ".//label[@for=\"Confirmation-True\"]")] private IWebElement _confirmationTrueCheckbox;
         [FindsBy(How = How.XPath, Using = ".//*[@type=\"submit\"]")] private IWebElement _continueButton;
 
@@ -25,7 +31,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Apprentices
         public StartAddingApprenticesPage Continue()
         {
             _formCompletionHelper.ClickElement(_continueButton);
-            return new StartAddingApprenticesPage(context);
+            return new StartAddingApprenticesPage(_context);
         }
     }
 }

@@ -3,11 +3,20 @@ using SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Organizations.PublicSect
 using SFA.DAS.UI.Framework.TestSupport;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
+using SFA.DAS.UI.FrameworkHelpers;
+using SFA.DAS.UI.Framework.TestSupport;
+using TechTalk.SpecFlow;
 
 namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Organizations
 {
     internal class EnterOrganizationNamePage : BasePage
     {
+        #region Helpers and Context
+        private readonly PageInteractionHelper _pageInteractionHelper;
+        private readonly FormCompletionHelper _formCompletionHelper;
+        private readonly ScenarioContext _context;
+        #endregion
+
         [FindsBy(How = How.Id, Using = "Name")] private IWebElement _nameInput;
         [FindsBy(How = How.Id, Using = "accept")] private IWebElement _continueButton;
 
@@ -27,13 +36,13 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Organization
         public OrganizationAddressPage Continue()
         {
             _formCompletionHelper.ClickElement(_continueButton);
-            return new OrganizationAddressPage(context);
+            return new OrganizationAddressPage(_context);
         }
 
         public FindOrganizationAddressPage ContinueWithFindOrganizationAddress()
         {
             _formCompletionHelper.ClickElement(_continueButton);
-            return new FindOrganizationAddressPage(context);
+            return new FindOrganizationAddressPage(_context);
         }
 
         internal string[] GetErrors()

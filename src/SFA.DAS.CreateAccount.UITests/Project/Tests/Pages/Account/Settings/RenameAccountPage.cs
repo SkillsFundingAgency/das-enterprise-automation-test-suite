@@ -7,6 +7,12 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Settings
 {
     public class RenameAccountPage : BasePage
     {
+        #region Helpers and Context
+        private readonly PageInteractionHelper _pageInteractionHelper;
+        private readonly FormCompletionHelper _formCompletionHelper;
+        private readonly ScenarioContext _context;
+        #endregion
+
         [FindsBy(How = How.XPath, Using = ".//*[@class=\"form-group\"]/dl/dd")] private IWebElement _currentNameLabel;
         [FindsBy(How = How.Id, Using = "NewName")] private IWebElement _newNameInput;
         [FindsBy(How = How.Id, Using = "accept")] private IWebElement _saveAndContinueButton;

@@ -7,6 +7,12 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Organizations.Compan
 {
     public class LegalAgreementPage : BasePage
     {
+        #region Helpers and Context
+        private readonly PageInteractionHelper _pageInteractionHelper;
+        private readonly FormCompletionHelper _formCompletionHelper;
+        private readonly ScenarioContext _context;
+        #endregion
+
         private const string continuebtnid = "continue";
         [FindsBy(How = How.Id, Using = continuebtnid)] private IWebElement _continuebtn;
 
@@ -20,7 +26,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Organizations.Compan
         internal EmployerAccountHomepage Continue()
         {
             _formCompletionHelper.ClickElement(_continuebtn);
-            return new EmployerAccountHomepage(context);
+            return new EmployerAccountHomepage(_context);
         }
     }
 }

@@ -8,6 +8,12 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account
 {
     class WizardPage : BasePage
     {
+        #region Helpers and Context
+        private readonly PageInteractionHelper _pageInteractionHelper;
+        private readonly FormCompletionHelper _formCompletionHelper;
+        private readonly ScenarioContext _context;
+        #endregion
+
         [FindsBy(How = How.XPath, Using = "//*[@id=\"welcome\"]/h1")]
         private IWebElement _title;
         [FindsBy(How = How.XPath, Using = "//*[@id=\"welcome\"]/p")]
@@ -77,7 +83,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account
         internal Homepage.Homepage Close()
         {
             _formCompletionHelper.ClickAndWaitForInvisibilityOfAnElement(_closeButton, By.CssSelector(closebtncss));
-            return new Homepage.Homepage(context);
+            return new Homepage.Homepage(_context);
         }
 
         internal WizardPage SelectStep(int stepNumber, bool answer)
@@ -148,7 +154,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account
         {
             _completeButton.WaitForElementToBeVisibleExtension();
             _completeButton.Click();
-            return new Homepage.Homepage(context);
+            return new Homepage.Homepage(_context);
         }
 
         private IWebElement GetStep(int stepNumber)

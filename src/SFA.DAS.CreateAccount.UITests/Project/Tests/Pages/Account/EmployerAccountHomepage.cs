@@ -12,6 +12,12 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account
 {
     public class EmployerAccountHomepage : PaneTabsPage
     {
+        #region Helpers and Context
+        private readonly PageInteractionHelper _pageInteractionHelper;
+        private readonly FormCompletionHelper _formCompletionHelper;
+        private readonly ScenarioContext _context;
+        #endregion
+
         [FindsBy(How = How.Id, Using = "global-nav-links")] private IWebElement _menuNavbar;
         [FindsBy(How = How.XPath, Using = ".//a[contains (text(), \'Home\')]")] private IWebElement _homeButton;
         [FindsBy(How = How.XPath, Using = ".//a[contains (text(), \'Your team\')]")] private IWebElement _yourTeamButton;
@@ -47,25 +53,25 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account
         internal YourTeamPage OpenYourTeamPage()
         {
             _formCompletionHelper.ClickElement(_yourTeamButton);
-            return new YourTeamPage(context);
+            return new YourTeamPage(_context);
         }
 
         internal PayeSchemePage OpenPayeSchemesPage()
         {
             _formCompletionHelper.ClickElement(_payeSchemesPage);
-            return new PayeSchemePage(context);
+            return new PayeSchemePage(_context);
         }
 
         internal YourOrganizationsBasePage OpenOrganizationsBasePage()
         {
             _formCompletionHelper.ClickElement(_yourOrganizationsButton);
-            return new YourOrganizationsBasePage(context);
+            return new YourOrganizationsBasePage(_context);
         }
 
         internal OrganizationsAndAgreementsBasePage OpenOrganizationsAndAgreementsBasePage()
         {
             _formCompletionHelper.ClickElement(_yourOrganizationsAndAgreementsPage);
-            return new OrganizationsAndAgreementsBasePage(context);
+            return new OrganizationsAndAgreementsBasePage(_context);
         }
 
         internal string GetNotification()
@@ -81,19 +87,19 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account
         internal ApprenticesBasePage OpenApprenticesPage()
         {
             _formCompletionHelper.ClickElement(_apprenticesPage);
-            return new ApprenticesBasePage(context);
+            return new ApprenticesBasePage(_context);
         }
 
         internal FinanceBasePage OpenFinancePage()
         {
             _formCompletionHelper.ClickElement(_financePage);
-            return new FinanceBasePage(context);
+            return new FinanceBasePage(_context);
         }
 
         internal RecruitmentPage OpenRecruitmentPage()
         {
             _formCompletionHelper.ClickElement(_RecruitmentPage);
-            return new RecruitmentPage(context);
+            return new RecruitmentPage(_context);
         }
 
         internal bool IsMoreLinkPresent()

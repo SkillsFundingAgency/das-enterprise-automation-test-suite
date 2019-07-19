@@ -6,6 +6,12 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Homepage
 {
     public class SiteHomepage : BasePage
     {
+        #region Helpers and Context
+        private readonly PageInteractionHelper _pageInteractionHelper;
+        private readonly FormCompletionHelper _formCompletionHelper;
+        private readonly ScenarioContext _context;
+        #endregion
+
         private const string PageTitle = "Create an account to manage apprenticeships";
         private By _createAccountButton = By.Id("service-start");
         private By _directSignInInfoText = By.XPath("(//p)[2]");
@@ -27,13 +33,13 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Homepage
         internal SetUpAsAUserPage ClickCreateAccountButton()
         {
             _formCompletionHelper.ClickElement(_createAccountButton);
-            return new SetUpAsAUserPage(context);
+            return new SetUpAsAUserPage(_context);
         }
 
         public SignInPage ClickSignInLink()
         {
             _formCompletionHelper.ClickElement(_signInLink);
-            return new SignInPage(context);
+            return new SignInPage(_context);
         }
 
         public string GetSingInInfoText()

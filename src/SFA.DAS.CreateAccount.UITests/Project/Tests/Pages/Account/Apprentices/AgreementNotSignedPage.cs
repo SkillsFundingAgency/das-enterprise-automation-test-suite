@@ -6,6 +6,12 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Apprentices
 {
     class AgreementNotSignedPage : BasePage
     {
+        #region Helpers and Context
+        private readonly PageInteractionHelper _pageInteractionHelper;
+        private readonly FormCompletionHelper _formCompletionHelper;
+        private readonly ScenarioContext _context;
+        #endregion
+
         [FindsBy(How = How.XPath, Using = ".//a[contains(text(), \'Continue anyway\')]")] private IWebElement _continueAnywayButton;
 
         public AgreementNotSignedPage(ScenarioContext context) : base(context)
@@ -18,7 +24,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Apprentices
         public AddTrainingProvidersDetailsPage ContinueAnyway()
         {
             _formCompletionHelper.ClickElement(_continueAnywayButton);
-            return new AddTrainingProvidersDetailsPage(context);
+            return new AddTrainingProvidersDetailsPage(_context);
         }
     }
 }

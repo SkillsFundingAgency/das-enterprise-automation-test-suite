@@ -9,6 +9,12 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account
 {
     public class SelectEmployerPage : BasePage
     {
+        #region Helpers and Context
+        private readonly PageInteractionHelper _pageInteractionHelper;
+        private readonly FormCompletionHelper _formCompletionHelper;
+        private readonly ScenarioContext _context;
+        #endregion
+
         private const string confirmSchemeButtonid = "continue";
         private const string agreeandcontinueid = "agree_and_continue";
         [FindsBy(How = How.ClassName, Using = "heading-xlarge")] private IWebElement _pageHeader;
@@ -45,7 +51,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account
         internal EmployerAccountHomepage ConfirmScheme()
         {
             _formCompletionHelper.ClickElement(_confirmSchemeButton);
-            return new EmployerAccountHomepage(context);
+            return new EmployerAccountHomepage(_context);
         }
 
         internal bool IsErrorsExist()
@@ -66,7 +72,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account
         internal SignInGovernmentPage AgreeAndContinue()
         {
             _formCompletionHelper.ClickElement(_agreeAndContinueButton);
-            return new SignInGovernmentPage(context);
+            return new SignInGovernmentPage(_context);
         }
 
         private ICollection<IWebElement> GetErrorMessagesFragments()

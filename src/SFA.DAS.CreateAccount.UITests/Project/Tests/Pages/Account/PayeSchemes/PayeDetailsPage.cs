@@ -6,6 +6,12 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.PayeSchemes
 {
     public class PayeDetailsPage : BasePage
     {
+        #region Helpers and Context
+        private readonly PageInteractionHelper _pageInteractionHelper;
+        private readonly FormCompletionHelper _formCompletionHelper;
+        private readonly ScenarioContext _context;
+        #endregion
+
         [FindsBy(How = How.XPath, Using = ".//a[contains (text(), \"Remove PAYE scheme\")]")] private IWebElement _removeSchemeButton;
         [FindsBy(How = How.XPath, Using = ".//*[@id=\"confirm\"]//label[1]")] private IWebElement _confirmRemovingRadioButton;
         [FindsBy(How = How.XPath, Using = ".//*[@id=\"confirm\"]//label[2]")] private IWebElement _discardRemovindRadioButton;
@@ -28,14 +34,14 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.PayeSchemes
         {
             _formCompletionHelper.SelectRadioButton(_confirmRemovingRadioButton);
             _formCompletionHelper.ClickElement(_continueButton);
-            return new PayeSchemePage(context);
+            return new PayeSchemePage(_context);
         }
 
         internal PayeSchemePage DiscardRemoving()
         {
             _formCompletionHelper.SelectRadioButton(_discardRemovindRadioButton);
             _formCompletionHelper.ClickElement(_continueButton);
-            return new PayeSchemePage(context);
+            return new PayeSchemePage(_context);
         }
     }
 }

@@ -7,6 +7,12 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Organization
 {
     internal class FindOrganizationAddressPage : BasePage
     {
+        #region Helpers and Context
+        private readonly PageInteractionHelper _pageInteractionHelper;
+        private readonly FormCompletionHelper _formCompletionHelper;
+        private readonly ScenarioContext _context;
+        #endregion
+
         [FindsBy(How = How.XPath, Using = ".//a[contains (text(), \'Enter address manually\')]")] private IWebElement _enterManuallyButton;
 
         public FindOrganizationAddressPage(ScenarioContext context) : base(context)
@@ -19,7 +25,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Organization
         public OrganizationAddressPage EnterManually()
         {
             _formCompletionHelper.ClickElement(_enterManuallyButton);
-            return new OrganizationAddressPage(context);
+            return new OrganizationAddressPage(_context);
         }
     }
 }

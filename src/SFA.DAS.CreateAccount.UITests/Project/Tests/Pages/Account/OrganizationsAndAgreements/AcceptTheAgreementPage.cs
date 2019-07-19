@@ -8,6 +8,12 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Organization
 {
     internal class AcceptTheAgreementPage : BasePage
     {
+        #region Helpers and Context
+        private readonly PageInteractionHelper _pageInteractionHelper;
+        private readonly FormCompletionHelper _formCompletionHelper;
+        private readonly ScenarioContext _context;
+        #endregion
+
         [FindsBy(How = How.XPath, Using = ".//*[@class=\"agreement-title\"]//h1")] private IWebElement _pageHeader;
         [FindsBy(How = How.XPath, Using = ".//input[@type=\"submit\"]")] private IWebElement _acceptAndFinish;
 
@@ -27,7 +33,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Organization
         {
             var elements = WebBrowserDriver.FindElements(By.XPath(".//*[@class=\"agreement-contents\"]//p"));
             var target = elements.Last();
-            var action = new Actions(context);
+            var action = new Actions(_context);
             action.MoveToElement(target);
             action.Perform();
         }
@@ -35,7 +41,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Organization
         public OrganizationsAndAgreementsBasePage AcceptAndFinish()
         {
             _formCompletionHelper.ClickElement(_acceptAndFinish);
-            return new OrganizationsAndAgreementsBasePage(context);
+            return new OrganizationsAndAgreementsBasePage(_context);
         }
     }
 }

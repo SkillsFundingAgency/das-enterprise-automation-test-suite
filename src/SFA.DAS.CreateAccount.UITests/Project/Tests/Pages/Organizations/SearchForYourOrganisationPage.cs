@@ -20,6 +20,12 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Organizations
 
     public class SearchForYourOrganisationPage : EnterOrganisationDetails
     {
+        #region Helpers and Context
+        private readonly PageInteractionHelper _pageInteractionHelper;
+        private readonly FormCompletionHelper _formCompletionHelper;
+        private readonly ScenarioContext _context;
+        #endregion
+
         private const string searchButtoncss = "form > [type=\"submit\"]";
         [FindsBy(How = How.CssSelector, Using = searchButtoncss)] private IWebElement _searchButton;
 
@@ -44,7 +50,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Organizations
         internal SelectYourOrganisationPage Continue()
         {
             _formCompletionHelper.ClickElement(_searchButton);
-            return new SelectYourOrganisationPage(context);
+            return new SelectYourOrganisationPage(_context);
         }
     }
 }

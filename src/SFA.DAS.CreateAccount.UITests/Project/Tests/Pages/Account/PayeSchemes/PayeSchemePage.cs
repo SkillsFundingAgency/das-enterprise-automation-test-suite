@@ -9,6 +9,12 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.PayeSchemes
 {
     public class PayeSchemePage : BasePage
     {
+        #region Helpers and Context
+        private readonly PageInteractionHelper _pageInteractionHelper;
+        private readonly FormCompletionHelper _formCompletionHelper;
+        private readonly ScenarioContext _context;
+        #endregion
+
         [FindsBy(How = How.Id, Using = "addNewPaye")] private IWebElement _addSchemeButton;
         [FindsBy(How = How.Id, Using = "accept")] private IWebElement _acceptSchemeAddition;
         [FindsBy(How = How.XPath, Using = ".//*[@class=\"success-summary\"]//h1")] private IWebElement _notificationElement;
@@ -29,7 +35,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.PayeSchemes
         internal UsingYourGovtGatewayDetailsPage AddScheme()
         {
             _formCompletionHelper.ClickElement(_addSchemeButton);
-            return new UsingYourGovtGatewayDetailsPage(context);
+            return new UsingYourGovtGatewayDetailsPage(_context);
         }
 
         internal PayeSchemePage AcceptScheme()
@@ -57,7 +63,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.PayeSchemes
 
             detailsLink.Click();
 
-            return new PayeDetailsPage(context);
+            return new PayeDetailsPage(_context);
         }
 
         internal string GetNotification()

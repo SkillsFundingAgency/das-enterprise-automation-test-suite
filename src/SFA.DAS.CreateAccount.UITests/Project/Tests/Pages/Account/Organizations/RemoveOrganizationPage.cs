@@ -6,6 +6,12 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Organization
 {
     public class RemoveOrganizationPage : BasePage
     {
+        #region Helpers and Context
+        private readonly PageInteractionHelper _pageInteractionHelper;
+        private readonly FormCompletionHelper _formCompletionHelper;
+        private readonly ScenarioContext _context;
+        #endregion
+
         private By _secondOrgInTheList = By.XPath("(//a[contains (text(), 'Remove ')])[2]");
         public RemoveOrganizationPage(ScenarioContext context) : base(context)
         {
@@ -25,7 +31,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Organization
         public RemoveOrganizationConfirmPage ClickSecondOrgInTheList()
         {
             _formCompletionHelper.ClickElement(_secondOrgInTheList);
-            return new RemoveOrganizationConfirmPage(context);
+            return new RemoveOrganizationConfirmPage(_context);
         }
     }
 }

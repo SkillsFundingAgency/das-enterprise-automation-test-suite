@@ -6,6 +6,12 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.TeamMember
 {
     public class CreateInvitationPage : BasePage
     {
+        #region Helpers and Context
+        private readonly PageInteractionHelper _pageInteractionHelper;
+        private readonly FormCompletionHelper _formCompletionHelper;
+        private readonly ScenarioContext _context;
+        #endregion
+
         [FindsBy(How = How.Id, Using = "Email")] private IWebElement _emailInput;
         [FindsBy(How = How.Id, Using = "Name")] private IWebElement _nameInput;
         [FindsBy(How = How.Id, Using = "send_invitation")] private IWebElement _submitButton;
@@ -58,7 +64,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.TeamMember
         internal YourTeamPage Submit()
         {
             _formCompletionHelper.ClickElement(_submitButton);
-            return new YourTeamPage(context);
+            return new YourTeamPage(_context);
         }
     }
 }

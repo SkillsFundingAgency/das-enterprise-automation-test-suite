@@ -7,6 +7,12 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Organizations.Charit
 {
     internal class ConfirmCharityOrganizationDetailsPage : BasePage
     {
+        #region Helpers and Context
+        private readonly PageInteractionHelper _pageInteractionHelper;
+        private readonly FormCompletionHelper _formCompletionHelper;
+        private readonly ScenarioContext _context;
+        #endregion
+
         [FindsBy(How = How.XPath, Using = ".//input[@value=\"Yes, continue\"]")] private IWebElement _continueButton;
         public ConfirmCharityOrganizationDetailsPage(ScenarioContext context) : base(context)
         {

@@ -6,6 +6,12 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Apprentices
 {
     class ReviewCohortPage : BasePage
     {
+        #region Helpers and Context
+        private readonly PageInteractionHelper _pageInteractionHelper;
+        private readonly FormCompletionHelper _formCompletionHelper;
+        private readonly ScenarioContext _context;
+        #endregion
+
         [FindsBy(How = How.XPath, Using = ".//*[@class=\"column-one-third total-cost\"]//h2")] private IWebElement _totalCost;
         [FindsBy(How = How.XPath, Using = ".//a[contains(text(), \'Save and continue\')]")] private IWebElement _saveAndContinue;
         [FindsBy(How = How.XPath, Using = ".//a[contains(text(), \'Add an apprentice\')]")] private IWebElement _addApperenticeButton;
@@ -25,13 +31,13 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Apprentices
         public CohortUntilPage SaveAndContinue()
         {
             _formCompletionHelper.ClickElement(_saveAndContinue);
-            return new CohortUntilPage(context);
+            return new CohortUntilPage(_context);
         }
 
         public AddApperentieceFillFormPage AddAnApperentice()
         {
             _formCompletionHelper.ClickElement(_addApperenticeButton);
-            return new AddApperentieceFillFormPage(context);
+            return new AddApperentieceFillFormPage(_context);
         }
     }
 }

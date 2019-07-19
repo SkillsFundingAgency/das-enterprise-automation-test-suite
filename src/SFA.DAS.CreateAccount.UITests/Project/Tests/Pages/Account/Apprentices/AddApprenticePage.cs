@@ -7,6 +7,12 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Apprentices
 {
     class AddApprenticePage : BasePage
     {
+        #region Helpers and Context
+        private readonly PageInteractionHelper _pageInteractionHelper;
+        private readonly FormCompletionHelper _formCompletionHelper;
+        private readonly ScenarioContext _context;
+        #endregion
+
         [FindsBy(How = How.XPath, Using = ".//a[contains(text(), \'Start now\')]")] private IWebElement _startButton;
 
         public AddApprenticePage(ScenarioContext context) : base(context)
@@ -19,7 +25,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Apprentices
         public ChooseTrainingOrgPage Start()
         {
             _formCompletionHelper.ClickElement(_startButton);
-            return new ChooseTrainingOrgPage(context);
+            return new ChooseTrainingOrgPage(_context);
         }
     }
 }

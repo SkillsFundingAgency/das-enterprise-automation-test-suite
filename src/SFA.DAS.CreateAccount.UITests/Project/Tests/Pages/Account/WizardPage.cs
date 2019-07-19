@@ -8,6 +8,12 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account
 {
     class WizardPage : BasePage
     {
+        #region Helpers and Context
+        private readonly PageInteractionHelper _pageInteractionHelper;
+        private readonly FormCompletionHelper _formCompletionHelper;
+        private readonly ScenarioContext _context;
+        #endregion
+
         [FindsBy(How = How.CssSelector, Using = "#welcome .todo-list--item:nth-child(1)")]
         private IWebElement _step1;
         [FindsBy(How = How.CssSelector, Using = "#welcome .todo-list--item.complete:nth-child(1) a")]
@@ -67,7 +73,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account
         internal EmployerAccountHomepage Close()
         {
             _formCompletionHelper.ClickElement(_topRightCloseOption);
-            return new EmployerAccountHomepage(context);
+            return new EmployerAccountHomepage(_context);
         }
 
         internal WizardPage SelectStep(int stepNumber, bool answer)

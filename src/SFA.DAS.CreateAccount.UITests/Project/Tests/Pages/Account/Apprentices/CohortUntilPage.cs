@@ -6,6 +6,12 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Apprentices
 {
     class CohortUntilPage : BasePage
     {
+        #region Helpers and Context
+        private readonly PageInteractionHelper _pageInteractionHelper;
+        private readonly FormCompletionHelper _formCompletionHelper;
+        private readonly ScenarioContext _context;
+        #endregion
+
         [FindsBy(How = How.XPath, Using = ".//label[@for=\"SaveStatus-Save\"]")] private IWebElement _dontSendProviderCheckbox;
         [FindsBy(How = How.XPath, Using = ".//*[@type=\"submit\"]")] private IWebElement _continueButton;
 
@@ -25,7 +31,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Apprentices
         public CohortsLandingPage Continue()
         {
             _formCompletionHelper.ClickElement(_continueButton);
-            return new CohortsLandingPage(context);
+            return new CohortsLandingPage(_context);
         }
     }
 }

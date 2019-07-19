@@ -6,6 +6,12 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Apprentices
 {
     class ChooseTrainingOrgPage : BasePage
     {
+        #region Helpers and Context
+        private readonly PageInteractionHelper _pageInteractionHelper;
+        private readonly FormCompletionHelper _formCompletionHelper;
+        private readonly ScenarioContext _context;
+        #endregion
+
         [FindsBy(How = How.XPath, Using = ".//fieldset//label[1]")] private IWebElement _firstOrganizationButton;
         [FindsBy(How = How.XPath, Using = ".//*[@type=\"submit\"]")] private IWebElement _continueButton;
 
@@ -25,7 +31,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Apprentices
         public AgreementNotSignedPage Continue()
         {
             _formCompletionHelper.ClickElement(_continueButton);
-            return new AgreementNotSignedPage(context);
+            return new AgreementNotSignedPage(_context);
         }
     }
 }

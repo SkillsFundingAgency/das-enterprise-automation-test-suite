@@ -5,6 +5,12 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account
 {
     class SkippyHomePage : BasePage
     {
+        #region Helpers and Context
+        private readonly PageInteractionHelper _pageInteractionHelper;
+        private readonly FormCompletionHelper _formCompletionHelper;
+        private readonly ScenarioContext _context;
+        #endregion
+
         private const string PageTitle = "Your employer account";
         private By _addYourPAYELink = By.XPath("//a[contains(text(),'Add your PAYE scheme')]");
 

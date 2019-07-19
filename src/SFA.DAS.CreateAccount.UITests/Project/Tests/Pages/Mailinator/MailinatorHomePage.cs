@@ -5,6 +5,12 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Mailinator
 {
     class MailinatorHomePage : BasePage
     {
+        #region Helpers and Context
+        private readonly PageInteractionHelper _pageInteractionHelper;
+        private readonly FormCompletionHelper _formCompletionHelper;
+        private readonly ScenarioContext _context;
+        #endregion
+
         private By _emailTextBox = By.XPath("//input[contains(@id, 'inboxfield')]");
         private By _goButton = By.XPath("//button[contains(@class, 'btn btn-default')]");
 

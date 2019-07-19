@@ -6,6 +6,12 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Organization
 {
     internal class AboutYourSfaAgreementPage : BasePage
     {
+        #region Helpers and Context
+        private readonly PageInteractionHelper _pageInteractionHelper;
+        private readonly FormCompletionHelper _formCompletionHelper;
+        private readonly ScenarioContext _context;
+        #endregion
+
         [FindsBy(How = How.XPath, Using = ".//*[@id=\"content\"]//h1[@class=\"heading-xlarge\"]")] private IWebElement _pageHeader;
         [FindsBy(How = How.XPath, Using = ".//input[@type=\"submit\"]")] private IWebElement _continueButton;
 
@@ -24,7 +30,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Organization
         public AcceptTheAgreementPage Continue()
         {
             _formCompletionHelper.ClickElement(_continueButton);
-            return new AcceptTheAgreementPage(context);
+            return new AcceptTheAgreementPage(_context);
         }
     }
 }

@@ -7,6 +7,12 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Settings
 {
     public class ChangePasswordPage : BasePage
     {
+        #region Helpers and Context
+        private readonly PageInteractionHelper _pageInteractionHelper;
+        private readonly FormCompletionHelper _formCompletionHelper;
+        private readonly ScenarioContext _context;
+        #endregion
+
         [FindsBy(How = How.Id, Using = "CurrentPassword")] private IWebElement _currentPasswordInput;
         [FindsBy(How = How.Id, Using = "NewPassword")] private IWebElement _newPasswordInput;
         [FindsBy(How = How.Id, Using = "ConfirmPassword")] private IWebElement _confirmPasswordInput;
@@ -46,7 +52,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Settings
         internal AccountSettingsPage Continue()
         {
             _formCompletionHelper.ClickElement(_continueButton);
-            return new AccountSettingsPage(context);
+            return new AccountSettingsPage(_context);
         }
 
         internal string[] GetErrors()

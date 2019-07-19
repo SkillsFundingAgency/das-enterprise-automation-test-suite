@@ -5,6 +5,12 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Homepage
 {
     class TermsAndConditionsPage : BasePage
     {
+        #region Helpers and Context
+        private readonly PageInteractionHelper _pageInteractionHelper;
+        private readonly FormCompletionHelper _formCompletionHelper;
+        private readonly ScenarioContext _context;
+        #endregion
+
         private const string PageTitle = "Terms and conditions";
 
         public TermsAndConditionsPage(ScenarioContext context) : base(context)

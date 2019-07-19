@@ -7,6 +7,12 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Organization
 {
     internal class ConfirmOrganizationDataPage : BasePage
     {
+        #region Helpers and Context
+        private readonly PageInteractionHelper _pageInteractionHelper;
+        private readonly FormCompletionHelper _formCompletionHelper;
+        private readonly ScenarioContext _context;
+        #endregion
+
         [FindsBy(How = How.XPath, Using = ".//*[@type=\"submit\"]")] private IWebElement _confirmButton;
 
         public ConfirmOrganizationDataPage(ScenarioContext context) : base(context)
@@ -19,7 +25,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Organization
         internal LegalAgreementPage Confirm()
         {
             _formCompletionHelper.ClickElement(_confirmButton);
-            return new LegalAgreementPage(context);
+            return new LegalAgreementPage(_context);
         }
 
         private By orgName = By.XPath("//tbody/tr[1]/td");

@@ -6,6 +6,12 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Organizations.Compan
 {
     public class SignInGovernmentPage : BasePage
     {
+        #region Helpers and Context
+        private readonly PageInteractionHelper _pageInteractionHelper;
+        private readonly FormCompletionHelper _formCompletionHelper;
+        private readonly ScenarioContext _context;
+        #endregion
+
         private const string userid = "userId";
         [FindsBy(How = How.Id, Using = userid)] private IWebElement _userIdInput;
         [FindsBy(How = How.Id, Using = "password")] private IWebElement _passwordInput;
@@ -38,7 +44,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Organizations.Compan
         internal GrantAuthorityPage SignIn()
         {
             _formCompletionHelper.ClickElement(_signInButton);
-            return new GrantAuthorityPage(context);
+            return new GrantAuthorityPage(_context);
         }
         internal void SignInWithInvalidDetails()
         {

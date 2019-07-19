@@ -7,6 +7,12 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Homepage
 {
     public class UnlockAccountPage : BasePage
     {
+        #region Helpers and Context
+        private readonly PageInteractionHelper _pageInteractionHelper;
+        private readonly FormCompletionHelper _formCompletionHelper;
+        private readonly ScenarioContext _context;
+        #endregion
+
         [FindsBy(How = How.XPath, Using = ".//*[@class=\"grid-row\"]//h1")] private IWebElement _notificationHeader;
         [FindsBy(How = How.XPath, Using = ".//*[@class=\"grid-row\"]//p")] private IWebElement _notificationMessage;
         [FindsBy(How = How.Id, Using = "Email")] private IWebElement _emailInput;
@@ -53,7 +59,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Homepage
         public SignInPage UnlockAccount()
         {
             _unlockAccountButton.Click();
-            return new SignInPage(context);
+            return new SignInPage(_context);
         }
 
         internal string[] GetErrors()

@@ -9,6 +9,12 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Organizations.Public
 {
     internal class OrganizationAddressPage : BasePage
     {
+        #region Helpers and Context
+        private readonly PageInteractionHelper _pageInteractionHelper;
+        private readonly FormCompletionHelper _formCompletionHelper;
+        private readonly ScenarioContext _context;
+        #endregion
+
         [FindsBy(How = How.Id, Using = "AddressFirstLine")] private IWebElement _firstAddressInput;
         [FindsBy(How = How.Id, Using = "AddressSecondLine")] private IWebElement _secondAddressInput;
         [FindsBy(How = How.Id, Using = "TownOrCity")] private IWebElement _townOrCityInput;
@@ -56,7 +62,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Organizations.Public
         internal SummaryPayePage ContinueAndMoveToConfirmPage()
         {
             _formCompletionHelper.ClickElement(_continueButton);
-            return new SummaryPayePage(context);
+            return new SummaryPayePage(_context);
         }
 
         internal void ClickContinueWithoutEnteringData()
@@ -67,7 +73,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Organizations.Public
         internal ConfirmOrganizationDataPage ContinueAndMoveToConfirmOrganizationDataPage()
         {
             _formCompletionHelper.ClickElement(_continueButton);
-            return new ConfirmOrganizationDataPage(context);
+            return new ConfirmOrganizationDataPage(_context);
         }
 
         internal string[] GetErrors()

@@ -7,6 +7,12 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account
 {
     public class AccountSettingsPage : BasePage
     {
+        #region Helpers and Context
+        private readonly PageInteractionHelper _pageInteractionHelper;
+        private readonly FormCompletionHelper _formCompletionHelper;
+        private readonly ScenarioContext _context;
+        #endregion
+
         [FindsBy(How = How.XPath, Using = ".//a[contains (text(), \'Switch account\')]")]
         private IWebElement ChangeLevyAccountLink;
         [FindsBy(How = How.XPath, Using = ".//a[contains (text(), \'Rename account\')]")]
@@ -49,13 +55,13 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account
         internal ChangeEmailPage ChangeEmail()
         {
             _formCompletionHelper.ClickElement(ChangeEmailLink);
-            return new ChangeEmailPage(context);
+            return new ChangeEmailPage(_context);
         }
 
         internal ChangePasswordPage ChangePassword()
         {
             _formCompletionHelper.ClickElement(ChangePasswordLink);
-            return new ChangePasswordPage(context);
+            return new ChangePasswordPage(_context);
         }
 
         internal string AccountName()
@@ -77,7 +83,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account
         internal RenameAccountPage RenameAccount()
         {
             _formCompletionHelper.ClickElement(RenameAccountLink);
-            return new RenameAccountPage(context);
+            return new RenameAccountPage(_context);
         }
 
         internal void ClickYourAccountsLink()

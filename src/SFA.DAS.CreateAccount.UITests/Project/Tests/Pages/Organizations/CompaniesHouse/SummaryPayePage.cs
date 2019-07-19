@@ -7,6 +7,12 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Organizations.Compan
 {
     public class SummaryPayePage: BasePage
     {
+        #region Helpers and Context
+        private readonly PageInteractionHelper _pageInteractionHelper;
+        private readonly FormCompletionHelper _formCompletionHelper;
+        private readonly ScenarioContext _context;
+        #endregion
+
         private const string PageTitle = "Check details";
         private By _orgName = By.XPath("//tbody/tr[1]/td");
         private By _charityNumber = By.XPath("//tbody/tr[3]/td");
@@ -75,7 +81,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Organizations.Compan
         internal LegalAgreementPage Continue()
         {
             _formCompletionHelper.ClickElement(_confirmSchemeButtonId);
-            return new LegalAgreementPage(context);
+            return new LegalAgreementPage(_context);
         }
 
         private string MapOrganizationDetailsKey(string key)

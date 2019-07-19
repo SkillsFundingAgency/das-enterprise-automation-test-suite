@@ -9,6 +9,12 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Homepage
 {
     public class ResetCodeAndPassPage : BasePage
     {
+        #region Helpers and Context
+        private readonly PageInteractionHelper _pageInteractionHelper;
+        private readonly FormCompletionHelper _formCompletionHelper;
+        private readonly ScenarioContext _context;
+        #endregion
+
         [FindsBy(How = How.Id, Using = "PasswordResetCode")] private IWebElement _resetCodeInput;
         [FindsBy(How = How.Id, Using = "Password")] private IWebElement _newPasswordInput;
         [FindsBy(How = How.Id, Using = "ConfirmPassword")] private IWebElement _confirmPasswordInput;
@@ -42,7 +48,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Homepage
         internal AccountSettingsPage Continue()
         {
             _formCompletionHelper.ClickElement(_continueButton);
-            return new AccountSettingsPage(context);
+            return new AccountSettingsPage(_context);
         }
 
         internal string[] GetErrors()

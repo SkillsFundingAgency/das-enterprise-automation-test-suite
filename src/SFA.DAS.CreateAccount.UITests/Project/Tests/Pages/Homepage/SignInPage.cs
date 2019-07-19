@@ -7,6 +7,12 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Homepage
 {
     public class SignInPage : BasePage
     {
+        #region Helpers and Context
+        private readonly PageInteractionHelper _pageInteractionHelper;
+        private readonly FormCompletionHelper _formCompletionHelper;
+        private readonly ScenarioContext _context;
+        #endregion
+
         private const string passwordelementid = "Password";
         private const string createanaccountLinktext = "create an account";
         private const string forgottenPasswordLinkXPath = ".//a[contains (text(), \'Forgotten your password\')]";
@@ -32,7 +38,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Homepage
         internal AccountSettingsPage ValidLogin(string userName, string passWord)
         {
             EnterCredentials(userName, passWord);
-            return new AccountSettingsPage(context);
+            return new AccountSettingsPage(_context);
         }
 
         internal SignInPage InvalidLogin(string invalidUser, string invalidPassword)
@@ -50,13 +56,13 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Homepage
         internal SetUpAsAUserPage ClickCreateAccount()
         {
             _formCompletionHelper.ClickElement(CreateAccLink);
-            return new SetUpAsAUserPage(context);
+            return new SetUpAsAUserPage(_context);
         }
 
         internal ForgottenCredentialsPage ClickForgottenYourPassword()
         {
             _formCompletionHelper.ClickElement(ForgottenPasswordLink);
-            return new ForgottenCredentialsPage(context);
+            return new ForgottenCredentialsPage(_context);
         }
 
         internal string GetNotificationMessage()

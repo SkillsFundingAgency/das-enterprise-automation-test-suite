@@ -6,6 +6,12 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Apprentices
 {
     class AddTrainingProvidersDetailsPage : BasePage
     {
+        #region Helpers and Context
+        private readonly PageInteractionHelper _pageInteractionHelper;
+        private readonly FormCompletionHelper _formCompletionHelper;
+        private readonly ScenarioContext _context;
+        #endregion
+
         [FindsBy(How = How.Id, Using = "ProviderId")] private IWebElement _providerIdInput;
         [FindsBy(How = How.XPath, Using = ".//*[@type=\"submit\"]")] private IWebElement _continueButton;
 
@@ -25,7 +31,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Apprentices
         public ConfirmTrainingProviderPage Continue()
         {
             _formCompletionHelper.ClickElement(_continueButton);
-            return new ConfirmTrainingProviderPage(context);
+            return new ConfirmTrainingProviderPage(_context);
         }
     }
 }

@@ -7,6 +7,11 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Homepage
 {
     public class ConfirmYourIdentityPage : BasePage
     {
+        #region Helpers and Context
+        private readonly PageInteractionHelper _pageInteractionHelper;
+        private readonly FormCompletionHelper _formCompletionHelper;
+        private readonly ScenarioContext _context;
+        #endregion
         [FindsBy(How = How.Id, Using = "AccessCode")] private IWebElement EnterCodeField { get; set; }
         [FindsBy(How = How.ClassName, Using = "heading-xlarge")] private IWebElement PageHeader { get; set; }
         [FindsBy(How = How.XPath, Using = ".//*[@type=\"submit\"]")] private IWebElement ConfirmIdentityContinueBtn { get; set; }
@@ -29,13 +34,13 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Homepage
         internal AccountSettingsPage ValidAccesCode(string validAccesCode)
         {
             EnterValidAccessCode(validAccesCode);
-            return new AccountSettingsPage(context);
+            return new AccountSettingsPage(_context);
         }
 
         internal SiteHomepage MoveBack()
         {
             _formCompletionHelper.ClickElement(_backButton);
-            return new SiteHomepage(context);
+            return new SiteHomepage(_context);
         }
 
         internal ConfirmYourIdentityPage InvalidAccesCode(string invalidAccesCode)

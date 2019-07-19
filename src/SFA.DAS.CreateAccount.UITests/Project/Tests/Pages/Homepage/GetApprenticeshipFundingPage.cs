@@ -6,6 +6,12 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Homepage
 {
     class GetApprenticeshipFundingPage : BasePage
     {
+        #region Helpers and Context
+        private readonly PageInteractionHelper _pageInteractionHelper;
+        private readonly FormCompletionHelper _formCompletionHelper;
+        private readonly ScenarioContext _context;
+        #endregion
+
         private const string PageTitle = "Get apprenticeship funding";
         private By _yesRadioOption = By.XPath("//*[@id='do-you-want-to-add-paye-scheme-form']/fieldset/label[1]");
         private By _noRadioOption = By.XPath("//*[@id='do-you-want-to-add-paye-scheme-form']/fieldset/label[2]");

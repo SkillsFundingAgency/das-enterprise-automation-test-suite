@@ -5,6 +5,12 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Mailinator
 {
     class MailinatorEmailPage : BasePage
     {
+        #region Helpers and Context
+        private readonly PageInteractionHelper _pageInteractionHelper;
+        private readonly FormCompletionHelper _formCompletionHelper;
+        private readonly ScenarioContext _context;
+        #endregion
+
         private By _accessCodeText = By.XPath("//h2[contains(text(), 'ABC123')]");
         private By _emailBodyFrame = By.XPath("//iframe[contains(@id, 'msg_body')]");
 

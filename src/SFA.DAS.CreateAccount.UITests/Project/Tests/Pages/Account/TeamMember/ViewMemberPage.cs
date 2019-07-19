@@ -6,6 +6,12 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.TeamMember
 {
     public class ViewMemberPage : BasePage
     {
+        #region Helpers and Context
+        private readonly PageInteractionHelper _pageInteractionHelper;
+        private readonly FormCompletionHelper _formCompletionHelper;
+        private readonly ScenarioContext _context;
+        #endregion
+
         [FindsBy(How = How.Id, Using = "resend_invitation")] private IWebElement _resendButton;
         [FindsBy(How = How.Id, Using = "cancel_invitation")] private IWebElement _confirmCancellation;
         [FindsBy(How = How.XPath, Using = ".//a[contains (text(), \'Cancel Invitation\')]")] private IWebElement _cancelInvitation;
@@ -45,7 +51,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.TeamMember
         {
             _formCompletionHelper.ClickElement(_removeMemberButton);
             _formCompletionHelper.ClickElement(_confirmTheMemberRemovalButton);
-            return new YourTeamPage(context);
+            return new YourTeamPage(_context);
         }
     }
 }

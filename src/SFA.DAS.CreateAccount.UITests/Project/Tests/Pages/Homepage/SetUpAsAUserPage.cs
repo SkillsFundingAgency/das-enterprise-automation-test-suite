@@ -7,6 +7,12 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Homepage
 {
     public class SetUpAsAUserPage : BasePage
     {
+        #region Helpers and Context
+        private readonly PageInteractionHelper _pageInteractionHelper;
+        private readonly FormCompletionHelper _formCompletionHelper;
+        private readonly ScenarioContext _context;
+        #endregion
+
         [FindsBy(How = How.ClassName, Using = "error-summary")] private IWebElement ErrorBox { get; set; }
         [FindsBy(How = How.ClassName, Using = "heading-xlarge")] private IWebElement PageHeader { get; set; }
         [FindsBy(How = How.Id, Using = "FirstName")] private IWebElement FirstName { get; set; }
@@ -68,7 +74,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Homepage
         {
             CompleteForm(firstName, lastName, email, passWord);
             SubmitForm();
-            return new ConfirmYourIdentityPage(context);
+            return new ConfirmYourIdentityPage(_context);
         }
 
         internal SetUpAsAUserPage SubmitIncompleteForm()

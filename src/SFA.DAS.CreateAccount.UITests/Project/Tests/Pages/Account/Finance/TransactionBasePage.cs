@@ -8,6 +8,12 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Finance
 {
     public class TransactionBasePage : BasePage
     {
+        #region Helpers and Context
+        private readonly PageInteractionHelper _pageInteractionHelper;
+        private readonly FormCompletionHelper _formCompletionHelper;
+        private readonly ScenarioContext _context;
+        #endregion
+
         [FindsBy(How = How.CssSelector, Using = "h1.heading-xlarge")] private IWebElement _pageheadings;
 
         public TransactionBasePage(ScenarioContext context) : base(context)

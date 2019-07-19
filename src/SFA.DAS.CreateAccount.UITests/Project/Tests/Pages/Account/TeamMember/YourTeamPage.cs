@@ -7,6 +7,12 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.TeamMember
 {
     public class YourTeamPage : BasePage
     {
+        #region Helpers and Context
+        private readonly PageInteractionHelper _pageInteractionHelper;
+        private readonly FormCompletionHelper _formCompletionHelper;
+        private readonly ScenarioContext _context;
+        #endregion
+
         [FindsBy(How = How.ClassName, Using = "heading-xlarge")]
         private IWebElement _pageHeader;
         [FindsBy(How = How.Id, Using = "addNewUser")]
@@ -29,7 +35,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.TeamMember
         internal CreateInvitationPage OpenInviteMemberPage()
         {
             _formCompletionHelper.ClickElement(_inviteMemterButton);
-            return new CreateInvitationPage(context);
+            return new CreateInvitationPage(_context);
         }
 
         internal string GetNotification()
@@ -50,7 +56,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.TeamMember
         {
             var elements = WebBrowserDriver.FindElements(By.XPath(".//a[contains (text(), \'View\')]"));
             _formCompletionHelper.ClickElement(elements.Last());
-            return new ViewMemberPage(context);
+            return new ViewMemberPage(_context);
         }
     }
 }

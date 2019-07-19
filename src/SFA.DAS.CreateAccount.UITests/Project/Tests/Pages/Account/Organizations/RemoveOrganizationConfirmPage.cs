@@ -5,6 +5,12 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Organization
 {
     public class RemoveOrganizationConfirmPage : BasePage
     {
+        #region Helpers and Context
+        private readonly PageInteractionHelper _pageInteractionHelper;
+        private readonly FormCompletionHelper _formCompletionHelper;
+        private readonly ScenarioContext _context;
+        #endregion
+
         private const string PageTitle = "Remove organisation";
         private By _continueButton = By.XPath("//button");
         private By _yesRadiobutton = By.XPath("//label[@class='block-label selection-button-radio']/child::input[@value='2']");
@@ -26,7 +32,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Organization
         {
             _formCompletionHelper.ClickElementExecutingJavaScript(_yesRadiobutton);
             _formCompletionHelper.ClickElement(_continueButton);
-            return new YourOrganizationsBasePage(context);
+            return new YourOrganizationsBasePage(_context);
         }
     }
 }

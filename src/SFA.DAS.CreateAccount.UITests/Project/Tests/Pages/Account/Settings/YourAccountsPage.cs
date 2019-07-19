@@ -7,6 +7,12 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Settings
 {
     public class YourAccountsPage : BasePage
     {
+        #region Helpers and Context
+        private readonly PageInteractionHelper _pageInteractionHelper;
+        private readonly FormCompletionHelper _formCompletionHelper;
+        private readonly ScenarioContext _context;
+        #endregion
+
         [FindsBy(How = How.ClassName, Using = "heading-xlarge")] private IWebElement _pageHeader;
         [FindsBy(How = How.XPath, Using = ".//a[contains (text(), \'View Invitations\')]")] private IWebElement _invitationsButton;
 
@@ -27,13 +33,13 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Settings
             var openButtons = WebBrowserDriver
                 .FindElements(By.XPath(".//a[contains (text(), \'Open\')]"));
             openButtons.First().Click();
-            return new EmployerAccountHomepage(context);
+            return new EmployerAccountHomepage(_context);
         }
 
         internal InvitationsPage OpenInvitationsPage()
         {
             _formCompletionHelper.ClickElement(_invitationsButton);
-            return new InvitationsPage(context);
+            return new InvitationsPage(_context);
         }
     }
 }

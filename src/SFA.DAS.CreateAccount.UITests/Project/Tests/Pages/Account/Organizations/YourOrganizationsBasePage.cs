@@ -6,6 +6,12 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Organization
 {
     public class YourOrganizationsBasePage : BasePage
     {
+        #region Helpers and Context
+        private readonly PageInteractionHelper _pageInteractionHelper;
+        private readonly FormCompletionHelper _formCompletionHelper;
+        private readonly ScenarioContext _context;
+        #endregion
+
         private By _addNewOrganizationButton = By.Id("addNewOrg");
         private By _removeAnOrgLink = By.XPath("//a[contains(text(), 'Remove an organisation from your account')]");
         private By _orgRemovedMessage = By.XPath("//h1");
@@ -26,7 +32,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Organization
         internal EnterOrganizationNamePage AddNewOrganization()
         {
             _formCompletionHelper.ClickElement(_addNewOrganizationButton);
-            return new EnterOrganizationNamePage(context);
+            return new EnterOrganizationNamePage(_context);
         }
 
         internal string GetNotification()
@@ -47,7 +53,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Organization
         internal RemoveOrganizationPage ClickRemoveOrgLink()
         {
             _formCompletionHelper.ClickElement(_removeAnOrgLink);
-            return new RemoveOrganizationPage(context);
+            return new RemoveOrganizationPage(_context);
         }
 
         public string GetOrgRemovedHeaderMessage()

@@ -6,6 +6,12 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Apprentices
 {
     class ApprenticesBasePage : BasePage
     {
+        #region Helpers and Context
+        private readonly PageInteractionHelper _pageInteractionHelper;
+        private readonly FormCompletionHelper _formCompletionHelper;
+        private readonly ScenarioContext _context;
+        #endregion
+
         [FindsBy(How = How.XPath, Using = ".//a[contains(text(), \'Add an apprentice\')]")] private IWebElement _addAnApprenticeLink;
         [FindsBy(How = How.XPath, Using = ".//a[contains(text(), \'Your cohorts\')]")] private IWebElement _yourCohortLink;
 
@@ -24,13 +30,13 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Apprentices
         public AddApprenticePage AddApprentice()
         {
             _formCompletionHelper.ClickElement(_addAnApprenticeLink);
-            return new AddApprenticePage(context);
+            return new AddApprenticePage(_context);
         }
 
         public CohortPage OpenCohortPage()
         {
             _formCompletionHelper.ClickElement(_yourCohortLink);
-            return new CohortPage(context);
+            return new CohortPage(_context);
         }
     }
 }

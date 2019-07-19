@@ -10,6 +10,12 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Organizations
 {
     public class AddAnOrganizationPage : BasePage
     {
+        #region Helpers and Context
+        private readonly PageInteractionHelper _pageInteractionHelper;
+        private readonly FormCompletionHelper _formCompletionHelper;
+        private readonly ScenarioContext _context;
+        #endregion
+
         [FindsBy(How = How.XPath, Using = ".//form/section[1]")]
         private IWebElement _сompaniesHouseNumerRadioBtn;
         [FindsBy(How = How.XPath, Using = ".//form/section[2]")]
@@ -39,7 +45,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Organizations
         {
             _formCompletionHelper.EnterText(_companiesNumberInput, number);
             _formCompletionHelper.ClickElement(_continueButton);
-            return new UsingYourGovtGatewayDetailsPage(context);
+            return new UsingYourGovtGatewayDetailsPage(_context);
         }
 
         internal AddAnOrganizationPage SetByPublicSector(string organizationName)
@@ -54,26 +60,26 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Organizations
             _formCompletionHelper.SelectRadioButton(_registeredCharityRadioBtn);
             _formCompletionHelper.EnterText(_charityNumberInput, number);
             _formCompletionHelper.ClickElement(_continueButton);
-            return new UsingYourGovtGatewayDetailsPage(context);
+            return new UsingYourGovtGatewayDetailsPage(_context);
         }
 
         internal EnterOrganizationNamePage SetByOtherOrganization()
         {
             _formCompletionHelper.SelectRadioButton(_otherRadioBtn);
             _formCompletionHelper.ClickElement(_continueButton);
-            return new EnterOrganizationNamePage(context);
+            return new EnterOrganizationNamePage(_context);
         }
 
         internal FindOrganizationAddressPage ContinueWithExistingOrganization()
         {
             _formCompletionHelper.ClickElement(_continueButton);
-            return new FindOrganizationAddressPage(context);
+            return new FindOrganizationAddressPage(_context);
         }
 
         internal PublicSectorSearchPage ContinueWithNonExistingOrganization()
         {
             _formCompletionHelper.ClickElement(_continueButton);
-            return new PublicSectorSearchPage(context);
+            return new PublicSectorSearchPage(_context);
         }
 
         internal string[] GetErrors()

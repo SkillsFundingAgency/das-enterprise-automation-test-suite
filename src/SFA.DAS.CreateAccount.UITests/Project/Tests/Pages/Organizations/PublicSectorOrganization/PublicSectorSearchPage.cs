@@ -8,6 +8,12 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Organizations.Public
 {
     internal class PublicSectorSearchPage : BasePage
     {
+        #region Helpers and Context
+        private readonly PageInteractionHelper _pageInteractionHelper;
+        private readonly FormCompletionHelper _formCompletionHelper;
+        private readonly ScenarioContext _context;
+        #endregion
+
         [FindsBy(How = How.XPath, Using = ".//a[contains (text(), \'add it manually here\')]")] private IWebElement _addManuallyButton;
 
         public PublicSectorSearchPage(ScenarioContext context) : base(context)
@@ -21,7 +27,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Organizations.Public
         {
             var link = WebBrowserDriver.FindElement(By.XPath(".//ol[@class=\"search-results\"]/li[1]//button"));
             _formCompletionHelper.ClickElement(link);
-            return new FindOrganizationAddressPage(context);
+            return new FindOrganizationAddressPage(_context);
         }
 
         public string GetFirstOrganizationName()
@@ -34,7 +40,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Organizations.Public
         public EnterOrganizationNamePage SetOrganizationManually()
         {
             _formCompletionHelper.ClickElement(_addManuallyButton);
-            return new EnterOrganizationNamePage(context);
+            return new EnterOrganizationNamePage(_context);
         }
     }
 }
