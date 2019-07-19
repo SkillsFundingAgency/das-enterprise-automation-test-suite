@@ -1,4 +1,7 @@
-﻿using SFA.DAS.CreateAccount.UITests.Project.Framework.Helpers;
+﻿using OpenQA.Selenium;
+using SFA.DAS.UI.FrameworkHelpers;
+using SFA.DAS.UI.Framework.TestSupport;
+using TechTalk.SpecFlow;
 using SFA.DAS.UI.Framework.TestSupport;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
