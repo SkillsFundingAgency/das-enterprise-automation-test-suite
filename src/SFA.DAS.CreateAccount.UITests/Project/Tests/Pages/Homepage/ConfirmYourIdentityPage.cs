@@ -2,6 +2,8 @@
 using OpenQA.Selenium.Support.PageObjects;
 using SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account;
 using SFA.DAS.UI.Framework.TestSupport;
+using SFA.DAS.UI.FrameworkHelpers;
+using TechTalk.SpecFlow;
 
 namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Homepage
 {

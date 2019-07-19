@@ -1,6 +1,8 @@
 ﻿using System.Linq;
 using SFA.DAS.UI.Framework.TestSupport;
 using OpenQA.Selenium;
+using SFA.DAS.UI.FrameworkHelpers;
+using TechTalk.SpecFlow;
 
 namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Apprentices
 {
