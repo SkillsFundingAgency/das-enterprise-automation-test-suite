@@ -14,20 +14,23 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Organization
         private readonly ScenarioContext _context;
         #endregion
 
-        private By _addNewOrganizationButton = By.Id("addNewOrg");
-        private By _removeAnOrgLink = By.XPath("//a[contains(text(), 'Remove an organisation from your account')]");
-        private By _orgRemovedMessage = By.XPath("//h1");
+        private readonly By _addNewOrganizationButton = By.Id("addNewOrg");
+        private readonly By _removeAnOrgLink = By.XPath("//a[contains(text(), 'Remove an organisation from your account')]");
+        private readonly By _orgRemovedMessage = By.XPath("//h1");
+
+        private readonly IWebDriver _webDriver;
 
         public YourOrganizationsBasePage(ScenarioContext context) : base(context)
         {
             _context = context;
+            _webDriver = context.GetWebDriver();
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
         }
 
         internal string[] GetOrganizationNames()
         {
-            var elements = WebBrowserDriver.FindElements(By.XPath(".//table/tbody/tr/td"));
+            var elements = _webDriver.FindElements(By.XPath(".//table/tbody/tr/td"));
             return elements.Select(element => element.Text).ToArray();
         }
 
@@ -40,13 +43,13 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Organization
         internal string GetNotification()
         {
             var notificationElement =
-                WebBrowserDriver.FindElement(By.ClassName("success-summary"));
+                _webDriver.FindElement(By.ClassName("success-summary"));
             return notificationElement.Text;
         }
 
         internal string[] GetErrors()
         {
-            return WebBrowserDriver
+            return _webDriver
                .FindElements(By.CssSelector(".error-summary-list li"))
                .Select((element) => element.Text)
                .ToArray();

@@ -18,9 +18,11 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Settings
         [FindsBy(How = How.ClassName, Using = "heading-xlarge")] private IWebElement _pageHeader;
         [FindsBy(How = How.XPath, Using = ".//a[contains (text(), \'View Invitations\')]")] private IWebElement _invitationsButton;
 
+        private readonly IWebDriver _webdriver;
         public YourAccountsPage(ScenarioContext context) : base(context)
         {
             _context = context;
+            _webdriver = context.GetWebDriver();
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
         }
@@ -32,7 +34,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Settings
 
         internal EmployerAccountHomepage OpenAccount()
         {
-            var openButtons = WebBrowserDriver
+            var openButtons = _webdriver
                 .FindElements(By.XPath(".//a[contains (text(), \'Open\')]"));
             openButtons.First().Click();
             return new EmployerAccountHomepage(_context);

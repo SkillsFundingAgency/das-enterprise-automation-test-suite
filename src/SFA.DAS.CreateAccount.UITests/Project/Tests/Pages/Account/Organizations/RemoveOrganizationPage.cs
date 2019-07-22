@@ -14,17 +14,20 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Organization
         private readonly ScenarioContext _context;
         #endregion
 
+        private readonly IWebDriver _webDriver;
+
         private By _secondOrgInTheList = By.XPath("(//a[contains (text(), 'Remove ')])[2]");
         public RemoveOrganizationPage(ScenarioContext context) : base(context)
         {
             _context = context;
+            _webDriver = context.GetWebDriver();
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
         }
 
         public string[] GetOrganizationsInfo()
         {
-            var elements = WebBrowserDriver.FindElements(By.XPath(".//tr/td[2]"));
+            var elements = _webDriver.FindElements(By.XPath(".//tr/td[2]"));
             return elements
                 .Select((element) => element.Text)
                 .ToArray();

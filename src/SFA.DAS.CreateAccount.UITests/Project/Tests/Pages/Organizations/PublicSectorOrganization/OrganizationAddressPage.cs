@@ -24,9 +24,12 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Organizations.Public
         [FindsBy(How = How.Id, Using = "Postcode")] private IWebElement _postcodeInput;
         [FindsBy(How = How.XPath, Using = ".//*[@type=\"submit\"]")] private IWebElement _continueButton;
 
+        private readonly IWebDriver _webdriver;
+
         public OrganizationAddressPage(ScenarioContext context) : base(context)
         {
             _context = context;
+            _webdriver = context.GetWebDriver();
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
         }
@@ -80,7 +83,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Organizations.Public
 
         internal string[] GetErrors()
         {
-            return WebBrowserDriver
+            return _webdriver
                 .FindElements(By.XPath(".//*[@class=\"error-summary\"]//li"))
                 .Select((element) => element.Text)
                 .ToArray();

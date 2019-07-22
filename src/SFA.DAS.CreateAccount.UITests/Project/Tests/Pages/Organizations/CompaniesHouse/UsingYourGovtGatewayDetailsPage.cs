@@ -26,7 +26,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Organizations.Compan
 
         internal bool IsPagePresented()
         {
-            return _pageInteractionHelper.VerifyPageHeading(this.GetPageHeading(), PageTitle);
+            return _pageInteractionHelper.VerifyPage(GetPageHeading(), PageTitle);
         }
 
         internal SignInGovernmentPage Continue()

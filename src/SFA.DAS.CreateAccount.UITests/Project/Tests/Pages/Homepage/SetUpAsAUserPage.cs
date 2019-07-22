@@ -32,9 +32,12 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Homepage
         private By _signInLink = By.XPath("//a[contains(text(), 'sign in')]");
         private By _termsAndConditionsLink = By.XPath("//a[contains(text(),'terms and conditions')]");
 
+        private readonly IWebDriver _webdriver;
+
         public SetUpAsAUserPage(ScenarioContext context) : base(context)
         {
             _context = context;
+            _webdriver = context.GetWebDriver();
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
             IsPagePresented();
@@ -136,7 +139,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Homepage
 
         internal string[] GetErrors()
         {
-            return WebBrowserDriver
+            return _webdriver
                 .FindElements(By.XPath(".//*[@class=\"error-summary-list\"]//li"))
                 .Select((element) => element.Text)
                 .ToArray();

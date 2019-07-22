@@ -20,16 +20,19 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Settings
         [FindsBy(How = How.XPath, Using = ".//button[@type=\"submit\"]")] private IWebElement ContinueButton;
         private const string PageTitle = "Change your email address";
 
+        private readonly IWebDriver _webdriver;
+
         public ChangeEmailPage(ScenarioContext context) : base(context)
         {
             _context = context;
+            _webdriver = context.GetWebDriver();
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
         }
 
         public bool IsPagePresented()
         {
-            return _pageInteractionHelper.VerifyPageHeading(this.GetPageHeading(), PageTitle);
+            return _pageInteractionHelper.VerifyPage(GetPageHeading(), PageTitle);
         }
 
         internal ChangeEmailPage InputEmail(string email)
@@ -52,7 +55,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Settings
 
         internal string[] GetErrors()
         {
-            return WebBrowserDriver
+            return _webdriver
                 .FindElements(By.XPath(".//*[@class=\"error-summary\"]//ul//li"))
                 .Select((element) => element.Text)
                 .ToArray();

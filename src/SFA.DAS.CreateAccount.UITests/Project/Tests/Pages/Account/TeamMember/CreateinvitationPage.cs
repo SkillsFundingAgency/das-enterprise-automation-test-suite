@@ -14,12 +14,12 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.TeamMember
         private readonly ScenarioContext _context;
         #endregion
 
-        [FindsBy(How = How.Id, Using = "Email")] private IWebElement _emailInput;
-        [FindsBy(How = How.Id, Using = "Name")] private IWebElement _nameInput;
-        [FindsBy(How = How.Id, Using = "send_invitation")] private IWebElement _submitButton;
-        [FindsBy(How = How.CssSelector, Using = "[for=\"radio1\"]")] private IWebElement _asViewerRadioButton;
-        [FindsBy(How = How.CssSelector, Using = "[for=\"radio2\"]")] private IWebElement _asApprenticesAndViewerRadioButton;
-        [FindsBy(How = How.CssSelector, Using = "[for=\"radio3\"]")] private IWebElement _asManagingRadioButton;
+        private readonly By _emailInput = By.Id("Email");
+        private readonly By _nameInput = By.Id("Name");
+        private readonly By _submitButton = By.Id("send_invitation");
+        private readonly By _asViewerRadioButton = By.CssSelector("[for=\"radio1\"]");
+        private readonly By _asApprenticesAndViewerRadioButton = By.CssSelector("[for=\"radio2\"]");
+        private readonly By _asManagingRadioButton = By.CssSelector("[for=\"radio3\"]");
 
         public CreateInvitationPage(ScenarioContext context) : base(context)
         {

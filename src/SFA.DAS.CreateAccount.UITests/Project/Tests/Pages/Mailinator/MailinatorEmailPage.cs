@@ -26,12 +26,12 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Mailinator
         public string GetAccessCode()
         {
             _pageInteractionHelper.SwitchToFrame(_emailBodyFrame);
-            return _formCompletionHelper.GetText(_accessCodeText);
+            return _pageInteractionHelper.GetText(_accessCodeText);
         }
 
         public bool IsEmailBodyFramePresent()
         {
-            return _formCompletionHelper.IsElementDisplayed(_emailBodyFrame);
+            return _pageInteractionHelper.IsElementDisplayed(_emailBodyFrame);
         }
     }
 }

@@ -2,6 +2,7 @@
 using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
 using System;
+using System.Collections.Generic;
 
 namespace SFA.DAS.UI.FrameworkHelpers
 {
@@ -96,6 +97,21 @@ namespace SFA.DAS.UI.FrameworkHelpers
             waitForDocumentReady.Until(driver => ((IJavaScriptExecutor) _webDriver).ExecuteScript("return document.readyState").Equals("complete"));
         }
 
+        public string GetTextFromElementsGroup(By locator)
+        {
+            string text = null;
+            IList<IWebElement> webElementGroup = _webDriver.FindElements(locator);
+
+            foreach (IWebElement webElement in webElementGroup)
+                text += GetText(webElement);
+
+            return text;
+        }
+        public int GetCountOfElementsGroup(By locator)
+        {
+            return _webDriver.FindElements(locator).Count;
+        }
+
         public void WaitForElementToBePresent(By locator)
         {
             var wait = new WebDriverWait(_webDriver, TimeSpan.FromSeconds(ImplicitWaitTimeInSeconds));
@@ -181,6 +197,12 @@ namespace SFA.DAS.UI.FrameworkHelpers
         public void TurnOnImplicitWaits()
         {
             _webDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(ImplicitWaitTimeInSeconds);
+        }
+
+        public void SwitchToFrame(By locator)
+        {
+            var wait = new WebDriverWait(_webDriver, TimeSpan.FromSeconds(15));
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.FrameToBeAvailableAndSwitchToIt(locator));
         }
 
         public string GetText(By locator) => GetText(_webDriver.FindElement(locator));

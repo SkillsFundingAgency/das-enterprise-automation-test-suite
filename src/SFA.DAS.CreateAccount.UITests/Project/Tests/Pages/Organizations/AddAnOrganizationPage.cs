@@ -29,11 +29,14 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Organizations
         [FindsBy(How = How.Id, Using = "CompaniesHouseNumber")] private IWebElement _companiesNumberInput;
         [FindsBy(How = How.Id, Using = "PublicBodyName")] private IWebElement _publicOrganizationNameInput;
         [FindsBy(How = How.Id, Using = "CharityRegistrationNumber")] private IWebElement _charityNumberInput;
-        [FindsBy(How = How.Id, Using = "addOrganisation")] private IWebElement _continueButton;
+
+        private readonly By _continueButton = By.Id("addOrganisation");
+        private readonly IWebDriver _webdriver;
 
         public AddAnOrganizationPage(ScenarioContext context) : base(context)
         {
             _context = context;
+            _webdriver = context.GetWebDriver();
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
         }
@@ -86,7 +89,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Organizations
 
         internal string[] GetErrors()
         {
-            return WebBrowserDriver
+            return _webdriver
                 .FindElements(By.XPath(".//ul[@class=\"error-summary-list\"]//a"))
                 .Select((element) => element.Text)
                 .ToArray();

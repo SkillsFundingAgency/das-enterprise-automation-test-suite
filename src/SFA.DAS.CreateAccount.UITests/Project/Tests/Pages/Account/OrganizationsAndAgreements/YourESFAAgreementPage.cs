@@ -25,12 +25,12 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Organization
 
         public bool IsPagePresented()
         {
-            return _pageInteractionHelper.VerifyPageHeading(this.GetPageHeading(), PageTitle);
+            return _pageInteractionHelper.VerifyPage(GetPageHeading(), PageTitle);
         }
 
         public bool IsUpdateDetailsLinkPresent()
         {
-            return _formCompletionHelper.IsElementDisplayed(_updateTheseDetailsLink);
+            return _pageInteractionHelper.IsElementDisplayed(_updateTheseDetailsLink);
         }
 
         public void ClickUpdateDetailsLink()

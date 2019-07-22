@@ -21,10 +21,11 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.TeamMember
         private IWebElement _inviteMemterButton;
         [FindsBy(How = How.CssSelector, Using = ".success-summary p")]
         private IWebElement _notificationMessage;
-
+        private readonly IWebDriver _webdriver;
         public YourTeamPage(ScenarioContext context) : base(context)
         {
             _context = context;
+            _webdriver = context.GetWebDriver();
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
         }
@@ -48,7 +49,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.TeamMember
         internal string[] GetMembersEmails()
         {
             var elements =
-                WebBrowserDriver.FindElements(By.ClassName("responsive-detail"));
+                _webdriver.FindElements(By.ClassName("responsive-detail"));
             return elements
                 .Select((element) => element.Text)
                 .ToArray();
@@ -56,7 +57,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.TeamMember
 
         internal ViewMemberPage ViewLastMember()
         {
-            var elements = WebBrowserDriver.FindElements(By.XPath(".//a[contains (text(), \'View\')]"));
+            var elements = _webdriver.FindElements(By.XPath(".//a[contains (text(), \'View\')]"));
             _formCompletionHelper.ClickElement(elements.Last());
             return new ViewMemberPage(_context);
         }

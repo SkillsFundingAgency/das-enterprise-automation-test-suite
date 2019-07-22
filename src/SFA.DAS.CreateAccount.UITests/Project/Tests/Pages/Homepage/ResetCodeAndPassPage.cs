@@ -20,10 +20,12 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Homepage
         [FindsBy(How = How.Id, Using = "Password")] private IWebElement _newPasswordInput;
         [FindsBy(How = How.Id, Using = "ConfirmPassword")] private IWebElement _confirmPasswordInput;
         [FindsBy(How = How.XPath, Using = ".//button[@type=\"submit\"]")] private IWebElement _continueButton;
+        private readonly IWebDriver _webdriver;
 
         public ResetCodeAndPassPage(ScenarioContext context) : base(context)
         {
             _context = context;
+            _webdriver = context.GetWebDriver();
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
         }
@@ -54,7 +56,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Homepage
 
         internal string[] GetErrors()
         {
-            return WebBrowserDriver
+            return _webdriver
                 .FindElements(By.XPath(".//*[@class=\"error-summary\"]//ul//li"))
                 .Select((element) => element.Text)
                 .ToArray();

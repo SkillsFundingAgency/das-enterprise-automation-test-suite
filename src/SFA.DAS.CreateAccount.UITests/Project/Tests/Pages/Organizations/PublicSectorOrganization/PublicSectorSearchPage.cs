@@ -1,5 +1,4 @@
-﻿using SFA.DAS.CreateAccount.UITests.Project.Framework.Helpers;
-using SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Organizations;
+﻿using SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Organizations;
 using SFA.DAS.UI.Framework.TestSupport;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
@@ -16,6 +15,8 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Organizations.Public
         private readonly ScenarioContext _context;
         #endregion
 
+        private readonly IWebDriver _webDriver;
+
         [FindsBy(How = How.XPath, Using = ".//a[contains (text(), \'add it manually here\')]")] private IWebElement _addManuallyButton;
 
         public PublicSectorSearchPage(ScenarioContext context) : base(context)
@@ -23,18 +24,19 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Organizations.Public
             _context = context;
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
+            _webDriver = _context.GetWebDriver();
         }
 
         public FindOrganizationAddressPage PickFirstOrganization()
         {
-            var link = WebBrowserDriver.FindElement(By.XPath(".//ol[@class=\"search-results\"]/li[1]//button"));
+            var link = _webDriver.FindElement(By.XPath(".//ol[@class=\"search-results\"]/li[1]//button"));
             _formCompletionHelper.ClickElement(link);
             return new FindOrganizationAddressPage(_context);
         }
 
         public string GetFirstOrganizationName()
         {
-            var link = WebBrowserDriver.FindElement(By.XPath(".//ol[@class=\"search-results\"]/li[1]"));
+            var link = _webDriver.FindElement(By.XPath(".//ol[@class=\"search-results\"]/li[1]"));
             _formCompletionHelper.ClickElement(link);
             return link.Text;
         }

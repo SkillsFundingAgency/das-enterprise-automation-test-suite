@@ -10,6 +10,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Organization
         #region Helpers and Context
         private readonly PageInteractionHelper _pageInteractionHelper;
         private readonly FormCompletionHelper _formCompletionHelper;
+        private readonly JavaScriptHelper _javaScriptHelper;
         private readonly ScenarioContext _context;
         #endregion
 
@@ -23,12 +24,13 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Organization
             _context = context;
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
+            _javaScriptHelper = context.Get<JavaScriptHelper>();
             IsPagePresented();
         }
 
         public bool IsPagePresented()
         {
-            return _pageInteractionHelper.VerifyPageHeading(this.GetPageHeading(), PageTitle);
+            return _pageInteractionHelper.VerifyPage(GetPageHeading(), PageTitle);
         }
 
         public bool CheckMessageDisplayed(string expectedMessage)
@@ -38,7 +40,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Organization
 
         public void SelectGoToOrgsRadioButtionAndContinue()
         {
-            _formCompletionHelper.ClickElementExecutingJavaScript(_goToOrgsPageRadioButton);
+            _javaScriptHelper.ClickElement(_goToOrgsPageRadioButton);
             _formCompletionHelper.ClickElement(_continueButton);
         }
     }

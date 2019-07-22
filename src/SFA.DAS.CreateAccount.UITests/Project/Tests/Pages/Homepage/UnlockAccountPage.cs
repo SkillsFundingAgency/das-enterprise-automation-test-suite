@@ -21,9 +21,12 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Homepage
         [FindsBy(How = How.Id, Using = "UnlockCode")] private IWebElement _unlockCodeInput;
         [FindsBy(How = How.XPath, Using = ".//*[@type=\"submit\"]")] private IWebElement _unlockAccountButton;
 
+        private readonly IWebDriver _webdriver;
+
         public UnlockAccountPage(ScenarioContext context) : base(context)
         {
             _context = context;
+            _webdriver = context.GetWebDriver();
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
         }
@@ -66,7 +69,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Homepage
 
         internal string[] GetErrors()
         {
-            return WebBrowserDriver
+            return _webdriver
                 .FindElements(By.XPath(".//*[@class=\"error-summary\"]//ul//li"))
                 .Select((element) => element.Text)
                 .ToArray();

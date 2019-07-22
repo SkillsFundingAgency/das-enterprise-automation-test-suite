@@ -16,16 +16,19 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Apprentices
 
         private By _cohortRequest => By.CssSelector("div.grid-row div span");
 
+        private readonly IWebDriver _webdriver;
+
         public CohortPage(ScenarioContext context) : base(context)
         {
             _context = context;
+            _webdriver = context.GetWebDriver();
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
         }
 
         internal bool AreThereAnyActiveCohort()
         {
-            return WebBrowserDriver.FindElements(_cohortRequest).ToList().All(activecohortcount => activecohortcount.Text == "0");
+            return _webdriver.FindElements(_cohortRequest).ToList().All(activecohortcount => activecohortcount.Text == "0");
         }
     }
 }

@@ -1,6 +1,5 @@
 ﻿using SFA.DAS.UI.Framework.TestSupport;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Support.PageObjects;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
@@ -14,8 +13,8 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Apprentices
         private readonly ScenarioContext _context;
         #endregion
 
-        [FindsBy(How = How.XPath, Using = ".//a[contains(text(), \'Add an apprentice\')]")] private IWebElement _addAnApprenticeLink;
-        [FindsBy(How = How.XPath, Using = ".//a[contains(text(), \'Your cohorts\')]")] private IWebElement _yourCohortLink;
+        private readonly By _addAnApprenticeLink = By.XPath(".//a[contains(text(), \'Add an apprentice\')]");
+        private readonly By _yourCohortLink =  By.XPath(".//a[contains(text(), \'Your cohorts\')]");
 
         public ApprenticesBasePage(ScenarioContext context) : base(context)
         {

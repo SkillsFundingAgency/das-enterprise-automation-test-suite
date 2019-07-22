@@ -14,6 +14,16 @@ namespace SFA.DAS.UI.FrameworkHelpers
             _webDriver = webDriver;
         }
 
+        public void SelectRadioButton(IWebElement element)
+        {
+            ClickElement(element);
+        }
+
+        public void SelectRadioButton(By locator)
+        {
+            SelectRadioButton(_webDriver.FindElement(locator));
+        }
+
         public void ClickElement(IWebElement element)
         {
             element.Click();

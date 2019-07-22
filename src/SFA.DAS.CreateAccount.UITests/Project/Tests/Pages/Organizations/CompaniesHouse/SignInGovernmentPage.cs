@@ -14,10 +14,9 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Organizations.Compan
         private readonly ScenarioContext _context;
         #endregion
 
-        private const string userid = "userId";
-        [FindsBy(How = How.Id, Using = userid)] private IWebElement _userIdInput;
-        [FindsBy(How = How.Id, Using = "password")] private IWebElement _passwordInput;
-        [FindsBy(How = How.XPath, Using = ".//input[@value=\"Sign in\"]")] private IWebElement _signInButton;
+        private readonly By _userIdInput = By.Id("userId");
+        private readonly By _passwordInput = By.Id("password");
+        private readonly By _signInButton = By.XPath(".//input[@value=\"Sign in\"]");
 
         public SignInGovernmentPage(ScenarioContext context) : base(context)
         {

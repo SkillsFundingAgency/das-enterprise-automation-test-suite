@@ -19,9 +19,12 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Organization
         [FindsBy(How = How.Id, Using = "Name")] private IWebElement _nameInput;
         [FindsBy(How = How.Id, Using = "accept")] private IWebElement _continueButton;
 
+        private readonly IWebDriver _webdriver;
+
         public EnterOrganizationNamePage(ScenarioContext context) : base(context)
         {
             _context = context;
+            _webdriver = context.GetWebDriver();
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
         }
@@ -46,7 +49,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Organization
 
         internal string[] GetErrors()
         {
-            return WebBrowserDriver
+            return _webdriver
                 .FindElements(By.XPath(".//*[@class=\"error-summary\"]//li"))
                 .Select((element) => element.Text)
                 .ToArray();

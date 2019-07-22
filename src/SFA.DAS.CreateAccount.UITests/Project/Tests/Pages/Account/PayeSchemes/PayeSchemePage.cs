@@ -21,9 +21,12 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.PayeSchemes
         [FindsBy(How = How.XPath, Using = ".//*[@class=\"success-summary\"]//h1")] private IWebElement _notificationElement;
         [FindsBy(How = How.XPath, Using = ".//h1[@class=\"heading-xlarge\"]")] private IWebElement _pageHeader;
 
+        private readonly IWebDriver _webdriver;
+
         public PayeSchemePage(ScenarioContext context) : base(context)
         {
             _context = context;
+            _webdriver = context.GetWebDriver();
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
         }
@@ -42,15 +45,15 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.PayeSchemes
         internal PayeSchemePage AcceptScheme()
         {
             _formCompletionHelper.ClickElement(_acceptSchemeAddition);
-            if (this.WebBrowserDriver.EmployerAccountHomepage().IsMoreLinkPresent())
-                this.WebBrowserDriver.EmployerAccountHomepage().ClickMoreLink();
-            this.WebBrowserDriver.EmployerAccountHomepage().OpenPayeSchemesPage();
+            if (_context.EmployerAccountHomepage().IsMoreLinkPresent())
+                _context.EmployerAccountHomepage().ClickMoreLink();
+            _context.EmployerAccountHomepage().OpenPayeSchemesPage();
             return this;
         }
 
         internal string[] GetAvailableSchemas()
         {
-            return WebBrowserDriver
+            return _webdriver
                 .FindElements(By.XPath(".//table//tbody//tr//td[1]"))
                 .Select((element) => element.Text)
                 .ToArray();
@@ -58,9 +61,9 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.PayeSchemes
 
         internal PayeDetailsPage OpenPayeDetails(string scheme)
         {
-            var rowtoSelect = WebBrowserDriver.FindElements(By.CssSelector("table tr")).ToList().FindIndex(x => x.Text.ContainsCompareCaseInsensitive(scheme));
+            var rowtoSelect = _webdriver.FindElements(By.CssSelector("table tr")).ToList().FindIndex(x => x.Text.ContainsCompareCaseInsensitive(scheme));
 
-            var detailsLink = WebBrowserDriver.FindElements(By.CssSelector("table tr a")).ToList()[rowtoSelect - 1];
+            var detailsLink = _webdriver.FindElements(By.CssSelector("table tr a")).ToList()[rowtoSelect - 1];
 
             detailsLink.Click();
 

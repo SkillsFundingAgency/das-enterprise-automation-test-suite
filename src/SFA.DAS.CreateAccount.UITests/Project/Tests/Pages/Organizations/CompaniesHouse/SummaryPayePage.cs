@@ -16,17 +16,20 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Organizations.Compan
         #endregion
 
         private const string PageTitle = "Check details";
-        private By _orgName = By.XPath("//tbody/tr[1]/td");
-        private By _charityNumber = By.XPath("//tbody/tr[3]/td");
-        private By _charityAddress = By.XPath("//tbody/tr[2]/td");
-        private By _confirmSchemeButtonId = By.Id("continue");
-        private By _changeOrgLink = By.XPath("(//a[contains(text(),'Change')])[3]");
-        private By _changePAYELink = By.XPath("(//a[contains(text(),'Change')])[4]");
-        private By payeNumber = By.XPath("//tbody/tr[4]/td");
+        private readonly By _orgName = By.XPath("//tbody/tr[1]/td");
+        private readonly By _charityNumber = By.XPath("//tbody/tr[3]/td");
+        private readonly By _charityAddress = By.XPath("//tbody/tr[2]/td");
+        private readonly By _confirmSchemeButtonId = By.Id("continue");
+        private readonly By _changeOrgLink = By.XPath("(//a[contains(text(),'Change')])[3]");
+        private readonly By _changePAYELink = By.XPath("(//a[contains(text(),'Change')])[4]");
+        private readonly By payeNumber = By.XPath("//tbody/tr[4]/td");
+
+        private readonly IWebDriver _webdriver;
 
         public SummaryPayePage(ScenarioContext context) : base(context)
         {
             _context = context;
+            _webdriver = context.GetWebDriver();
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
             IsPagePresented();
@@ -34,7 +37,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Organizations.Compan
 
         public bool IsPagePresented()
         {
-            return _pageInteractionHelper.VerifyPageHeading(this.GetPageHeading(), PageTitle);
+            return _pageInteractionHelper.VerifyPage(GetPageHeading(), PageTitle);
         }
 
         internal string GetSchemeFromDetails()
@@ -42,11 +45,11 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Organizations.Compan
             // This method serves two journies to fetch the PayeScheme name
 
             // 1. Below fetch get picked up for Account creation journey
-            var elementsForConfirmCase = WebBrowserDriver
+            var elementsForConfirmCase = _webdriver
                 .FindElements(By.XPath(".//tbody//tr[4]//td"));
 
             // 2. Below fetch get picked up from the header while adding additional PAYE to an existing account journey
-            var elementsForAddCase = WebBrowserDriver
+            var elementsForAddCase = _webdriver
                 .FindElements(By.ClassName("heading-xlarge"));
 
             var resultElement = elementsForConfirmCase.Count != 0 ? elementsForConfirmCase.First() : elementsForAddCase.First();

@@ -101,22 +101,22 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Homepage
 
         public string GetEmailAddressErrorMessage()
         {
-            return _formCompletionHelper.GetText(_emailAddressErrorMessage);
+            return _pageInteractionHelper.GetText(_emailAddressErrorMessage);
         }
 
         public string GetPasswordErrorMessage()
         {
-            return _formCompletionHelper.GetText(_passwordErrorMessage);
+            return _pageInteractionHelper.GetText(_passwordErrorMessage);
         }
 
         public string GetHeaderEmailAddressErrorMessage()
         {
-            return _formCompletionHelper.GetText(_headerEmailErrorMessage);
+            return _pageInteractionHelper.GetText(_headerEmailErrorMessage);
         }
 
         public string GetHeaderPasswordErrorMessage()
         {
-            return _formCompletionHelper.GetText(_headerPasswordErrorMessage);
+            return _pageInteractionHelper.GetText(_headerPasswordErrorMessage);
         }
     }
 }

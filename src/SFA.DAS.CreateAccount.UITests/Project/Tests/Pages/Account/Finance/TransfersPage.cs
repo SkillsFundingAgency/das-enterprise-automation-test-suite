@@ -27,7 +27,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Finance
 
         public bool IsPagePresented()
         {
-            return _pageInteractionHelper.VerifyPageHeading(this.GetPageHeading(), PageTitle);
+            return _pageInteractionHelper.VerifyPage(GetPageHeading(), PageTitle);
         }
 
         public bool IsTransferAllowanceDisplayed()

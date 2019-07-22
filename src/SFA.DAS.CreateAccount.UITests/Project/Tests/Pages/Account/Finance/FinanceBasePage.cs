@@ -1,6 +1,5 @@
 ﻿using SFA.DAS.UI.Framework.TestSupport;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Support.PageObjects;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
@@ -14,11 +13,11 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Finance
         private readonly ScenarioContext _context;
         #endregion
 
-        [FindsBy(How = How.CssSelector, Using = ".data dl dd")] private IWebElement _currentFunds;
-        [FindsBy(How = How.LinkText, Using = "View transactions")] private IWebElement _lnkViewtransactions;
-        [FindsBy(How = How.LinkText, Using = "Download transactions")] private IWebElement _lnkDownloadtransactions;
-        [FindsBy(How = How.XPath, Using = " //a[contains(text(),'Transfers')]")] private IWebElement _lnkManagetransfers;
-        [FindsBy(How = How.XPath, Using = " //a[contains(text(),'Funding projection')]")] private IWebElement _lnkFundingProjection;
+        private readonly By _currentFunds = By.CssSelector(".data dl dd");
+        private readonly By _lnkViewtransactions = By.LinkText("View transactions");
+        private readonly By _lnkDownloadtransactions = By.LinkText("Download transactions");
+        private readonly By _lnkManagetransfers = By.XPath(" //a[contains(text(),'Transfers')]");
+        private readonly By _lnkFundingProjection = By.XPath(" //a[contains(text(),'Funding projection')]");
 
         public FinanceBasePage(ScenarioContext context) : base(context)
         {
@@ -34,7 +33,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Finance
 
         public string GetCurrentFunds()
         {
-            return _currentFunds.Text;
+            return _pageInteractionHelper.GetText(_currentFunds);
         }
 
         public TransactionBasePage OpenViewTransactions()

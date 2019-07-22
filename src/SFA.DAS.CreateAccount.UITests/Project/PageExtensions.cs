@@ -1,5 +1,17 @@
-﻿using OpenQA.Selenium;
-using SFA.DAS.CreateAccount.UITests.Project.Tests.Pages;
+﻿using SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account;
+using SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Apprentices;
+using SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Finance;
+using SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Organizations;
+using SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.OrganizationsAndAgreements;
+using SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.PayeSchemes;
+using SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Settings;
+using SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.TeamMember;
+using SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Homepage;
+using SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Mailinator;
+using SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Organizations;
+using SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Organizations.Charity;
+using SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Organizations.CompaniesHouse;
+using SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Organizations.PublicSectorOrganization;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.CreateAccount.UITests.Project

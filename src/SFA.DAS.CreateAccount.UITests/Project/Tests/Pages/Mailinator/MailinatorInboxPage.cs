@@ -24,7 +24,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Mailinator
 
         public string GetEmailSubject()
         {
-            return _formCompletionHelper.GetText(_emailSubjectField);
+            return _pageInteractionHelper.GetText(_emailSubjectField);
         }
 
         public void ClickOnEmailToOpenIt()
@@ -34,7 +34,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Mailinator
 
         public bool IsEmailPresent()
         {
-            return _formCompletionHelper.IsElementDisplayed(_emailSubjectField);
+            return _pageInteractionHelper.IsElementDisplayed(_emailSubjectField);
         }
     }
 }

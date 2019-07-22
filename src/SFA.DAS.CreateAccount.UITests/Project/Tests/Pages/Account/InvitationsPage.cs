@@ -14,7 +14,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account
         private readonly ScenarioContext _context;
         #endregion
 
-        [FindsBy(How = How.Id, Using = "invitationId")] private IWebElement _acceptButton;
+        private readonly By _acceptButton = By.Id("invitationId");
 
         public InvitationsPage(ScenarioContext context) : base(context)
         {

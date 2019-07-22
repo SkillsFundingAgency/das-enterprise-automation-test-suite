@@ -26,9 +26,12 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account
         [FindsBy(How = How.ClassName, Using = "error-summary-wrapper")] private IWebElement _errorForm;
         [FindsBy(How = How.Id, Using = agreeandcontinueid)] private IWebElement _agreeAndContinueButton;
 
+        private readonly IWebDriver _webdriver;
+
         public SelectEmployerPage(ScenarioContext context) : base(context)
         {
             _context = context;
+            _webdriver = context.GetWebDriver();
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
         }
@@ -79,7 +82,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account
 
         private ICollection<IWebElement> GetErrorMessagesFragments()
         {
-            return WebBrowserDriver.FindElements(By.XPath(".//ul[@class=\"error-summary-list\"]//a"));
+            return _webdriver.FindElements(By.XPath(".//ul[@class=\"error-summary-list\"]//a"));
         }
     }
 }

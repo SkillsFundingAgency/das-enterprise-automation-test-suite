@@ -29,7 +29,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Homepage
 
         internal bool IsPagePresented()
         {
-            return _pageInteractionHelper.VerifyPageHeading(this.GetPageHeading(), PageTitle);
+            return _pageInteractionHelper.VerifyPage(GetPageHeading(), PageTitle);
         }
 
         internal SetUpAsAUserPage ClickCreateAccountButton()
@@ -46,7 +46,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Homepage
 
         public string GetSingInInfoText()
         {
-            return _formCompletionHelper.GetText(_directSignInInfoText);
+            return _pageInteractionHelper.GetText(_directSignInInfoText);
         }
     }
 }

@@ -18,9 +18,12 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Organization
         [FindsBy(How = How.XPath, Using = ".//h1[@class=\"heading-xlarge\"]")] private IWebElement _pageHeader;
         [FindsBy(How = How.XPath, Using = "(//td[@data-label=\"Action\"]//a)[1]")] private IWebElement _signOrViewAgreementLink;
 
+        private readonly IWebDriver _webdriver;
+
         public OrganizationsAndAgreementsBasePage(ScenarioContext context) : base(context)
         {
             _context = context;
+            _webdriver = context.GetWebDriver();
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
         }
@@ -33,13 +36,13 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Organization
         public void SignAgreementForLastOrganizationFromList()
         {
             var elements =
-                WebBrowserDriver.FindElements(By.XPath("//td[@data-label=\"Action\"]//a"));
+                _webdriver.FindElements(By.XPath("//td[@data-label=\"Action\"]//a"));
             _formCompletionHelper.ClickElement(elements.Last());
         }
 
         public string GetNotification()
         {
-            var elements = WebBrowserDriver.FindElements(By.XPath(".//h1[@class=\"bold-large\"]"));
+            var elements = _webdriver.FindElements(By.XPath(".//h1[@class=\"bold-large\"]"));
             var element = elements.LastOrDefault();
             return element == null ? "" : element.Text;
         }
@@ -47,20 +50,20 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.Organization
         public string GetActionColumnStatusOfLastOrganization()
         {
             var elements =
-                WebBrowserDriver.FindElements(By.XPath("//td[@data-label=\"Action\"]//a"));
+                _webdriver.FindElements(By.XPath("//td[@data-label=\"Action\"]//a"));
             return elements.Last().Text;
         }
 
         public string GetAgreementStatusOfLastOrganization()
         {
             var elements =
-                WebBrowserDriver.FindElements(By.XPath(".//table[@class=\"organisations\"]//tr//td[2]//span"));
+                _webdriver.FindElements(By.XPath(".//table[@class=\"organisations\"]//tr//td[2]//span"));
             return elements.Last().Text;
         }
 
         public void ClickSignOrViewAgreementLink()
         {
-            _formCompletionHelper.ClickElement(WebBrowserDriver,_signOrViewAgreementLink);
+            _formCompletionHelper.ClickElement(_signOrViewAgreementLink);
         }
     }
 }

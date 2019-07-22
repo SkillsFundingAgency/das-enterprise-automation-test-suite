@@ -2,7 +2,6 @@
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 using SFA.DAS.UI.FrameworkHelpers;
-using SFA.DAS.UI.Framework.TestSupport;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Organizations
@@ -10,8 +9,8 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Organizations
     public class EnterOrganisationDetails : BasePage
     {
         protected const string searchInputId = "searchTerm";
-        [FindsBy(How = How.Id, Using = searchInputId)]
-        protected IWebElement searchInput;
+
+        protected readonly By searchInput = By.Id(searchInputId);
 
         public EnterOrganisationDetails(ScenarioContext context) : base(context)
         {
