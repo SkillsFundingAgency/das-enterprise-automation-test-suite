@@ -68,7 +68,7 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
             }
 
             WebDriver.Manage().Window.Maximize();
-            WebDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
+            WebDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(options.TimeOut.PageNavigation);
             var currentWindow = WebDriver.CurrentWindowHandle;
             WebDriver.SwitchTo().Window(currentWindow);
             WebDriver.Manage().Cookies.DeleteAllCookies();
