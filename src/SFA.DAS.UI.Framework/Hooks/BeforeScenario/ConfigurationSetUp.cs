@@ -22,7 +22,10 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
                 Browser = Configurator.GetBrowser(),
                 BrowserStackSetting = Configurator.GetBrowserStackSetting()
             };
+
             _context.Set(configuration);
+
+            _context.SetConfigurationRoot(Configurator.config);
         }
     }
 }

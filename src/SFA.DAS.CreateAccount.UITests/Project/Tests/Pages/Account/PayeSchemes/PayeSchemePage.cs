@@ -5,6 +5,7 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
+using SFA.DAS.CreateAccount.UITests.Project.Helpers;
 
 namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account.PayeSchemes
 {

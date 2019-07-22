@@ -3,28 +3,28 @@ using System.IO;
 
 namespace SFA.DAS.UI.Framework.TestSupport
 {
-    public static class Configurator
+    internal static class Configurator
     {
-        private readonly static IConfigurationRoot _config;
+        internal readonly static IConfigurationRoot config;
 
         static Configurator()
         {
-            _config = InitializeConfig();
-}
-
-        public static string GetBrowser()
-        {
-            return _config.GetSection(nameof(FrameworkConfig.Browser)).Value;
+            config = InitializeConfig();
         }
 
-        public static string GetBaseUrl()
+        internal static string GetBrowser()
         {
-            return _config.GetSection(nameof(FrameworkConfig.BaseUrl)).Value;
+            return config.GetSection(nameof(FrameworkConfig.Browser)).Value;
         }
 
-        public static BrowserStackSetting GetBrowserStackSetting()
+        internal static string GetBaseUrl()
         {
-            return _config.GetSection(nameof(BrowserStackSetting)).Get<BrowserStackSetting>();
+            return config.GetSection(nameof(FrameworkConfig.BaseUrl)).Value;
+        }
+
+        internal static BrowserStackSetting GetBrowserStackSetting()
+        {
+            return config.GetSection(nameof(BrowserStackSetting)).Get<BrowserStackSetting>();
         }
 
         private static IConfigurationRoot InitializeConfig()

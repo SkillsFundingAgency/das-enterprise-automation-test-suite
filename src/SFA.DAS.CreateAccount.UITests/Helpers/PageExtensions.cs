@@ -14,7 +14,7 @@ using SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Organizations.CompaniesH
 using SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Organizations.PublicSectorOrganization;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.CreateAccount.UITests.Project
+namespace SFA.DAS.CreateAccount.UITests.Project.Helpers
 {
     internal static class PageExtensions
     {
