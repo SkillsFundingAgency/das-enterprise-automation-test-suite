@@ -5,13 +5,16 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using TechTalk.SpecFlow;
+using TestContext = NUnit.Framework.TestContext;
 
 namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
 {
     internal sealed class FireItUpHomePage : BasePage
     {
         #region Constants
-        private const string PageTitle = "";
+        private const string ExpectedPageTitle = "";
+        private const string ExpectedApprenticesHeaderSupportText = "Blaze your own trail and become an apprentice";
+        private const string ExpectedEmployersHeaderSupportText = "Fire up your business with an apprentice";
         #endregion
 
         #region Helpers
@@ -23,6 +26,8 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
         private readonly By _apprenticeMenu = By.XPath("//a[@id='link-nav-apprentice']");
         private readonly By _cookieButton = By.XPath("//a[@id='link-cookie-accept']");
         private readonly By _findAnApprenticeLink = By.XPath("//a[@id='link-nav-app-step-2']");
+        private readonly By _ApprenticesHeaderSupportText = By.XPath("(//div[@class='launcher__content']/child::p)[1]");
+        private readonly By _EmployersHeaderSupportText = By.XPath("(//div[@class='launcher__content']/child::p)[2]");
         #endregion
 
         public FireItUpHomePage(ScenarioContext context) : base(context)
@@ -34,17 +39,32 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
 
         protected override bool VerifyPage()
         {
-            return _pageInteractionHelper.VerifyPage(this.GetPageHeading(), PageTitle);
+            TestContext.Progress.WriteLine("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& "+ this.GetPageHeading());
+            TestContext.Progress.WriteLine("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& " + ExpectedPageTitle);
+            TestContext.Progress.WriteLine("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& " + _pageInteractionHelper.VerifyPage(this.GetPageHeading(), ExpectedPageTitle));
+
+            return _pageInteractionHelper.VerifyPage(this.GetPageHeading(), ExpectedPageTitle);
         }
 
         internal bool IsPageMatching()
         {
-            return _pageInteractionHelper.VerifyPage(this.GetPageHeading(), PageTitle);
+            return _pageInteractionHelper.VerifyPage(this.GetPageHeading(), ExpectedPageTitle);
         }
 
         internal void clickOnCookieContinueButton()
         {
             _formCompletionHelper.ClickElement(_cookieButton);
+        }
+
+        internal void verifyApprenticesHeaderSupportText()
+        {
+            Console.WriteLine("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& " + ExpectedApprenticesHeaderSupportText);
+            _formCompletionHelper.VerifyPage(_ApprenticesHeaderSupportText, ExpectedApprenticesHeaderSupportText);
+        }
+
+        internal void verifyEmployersHeaderSupportText()
+        {
+            _formCompletionHelper.VerifyPage(_EmployersHeaderSupportText, ExpectedEmployersHeaderSupportText);
         }
 
         internal void launchApprenticeMenu()

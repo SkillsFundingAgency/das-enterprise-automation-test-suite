@@ -13,6 +13,7 @@
 		Then I select miles <NoOfMiles>
 		Then I click on Serach button
 		When I click on first search result
+		Then I can see the Apprentice Summary page
 
 		Examples: 
 		| SelectInterest                | Postcode | NoOfMiles |

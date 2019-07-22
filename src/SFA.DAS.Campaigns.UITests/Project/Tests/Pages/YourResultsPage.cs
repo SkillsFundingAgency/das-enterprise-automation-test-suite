@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using TechTalk.SpecFlow;
+using TestContext = NUnit.Framework.TestContext;
 
 namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
 {
@@ -12,19 +13,19 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
     {
         #region Constants
         private const string PageTitle = "";
-        private const String expectedHeaderWhenNoResultsFound = "NO MATCHING RESULTS...";
-        private const String expectedHeaderWhenResultsFound = "YOUR RESULTS...";
+        private const String ExpectedHeaderWhenNoResultsFound = "NO MATCHING RESULTS...";
+        private const String ExpectedHeaderWhenResultsFound = "YOUR RESULTS...";
         #endregion
 
         #region Helpers
         private readonly PageInteractionHelper _pageInteractionHelper;
         private readonly FormCompletionHelper _formCompletionHelper;
+        private readonly PageInteractionCampaignsHelper _pageInteractionCampaignsHelper;
         #endregion
 
         #region Page Object Elements
-        private readonly By _headerWhenResultsFound = By.XPath("//h1[@class='heading-l']");
+        private readonly By _resultsHeader = By.XPath("//h1[@class='heading-l']");
         private readonly By _firstSearchResult = By.XPath("//ol[@id='vacancy-search-results']/li[1]/h2/a");
-        private readonly By _headerWhenNoResultsFound = By.XPath("//h1[@class='heading-l']");
         private readonly By _postCodeBox = By.XPath("//input[@id='Postcode']");
         private readonly By _updateResultsButton = By.XPath("//input[@id='button-faa-update-results']");
         #endregion
@@ -33,6 +34,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
         {
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
+            _pageInteractionCampaignsHelper = context.Get<PageInteractionCampaignsHelper>();
             VerifyPage();
         }
 
@@ -46,12 +48,22 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
             return _pageInteractionHelper.VerifyPage(this.GetPageHeading(), PageTitle);
         }
 
+        internal void verifyResultsPageHeader()
+        {
+            string actualResultsHeader = _pageInteractionHelper.GetText(_resultsHeader);
+            TestContext.Progress.WriteLine("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& " + actualResultsHeader);
+            TestContext.Progress.WriteLine("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& " + ExpectedHeaderWhenResultsFound);
+            TestContext.Progress.WriteLine("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& " + _pageInteractionHelper.VerifyPage(actualResultsHeader, ExpectedHeaderWhenResultsFound, ExpectedHeaderWhenNoResultsFound));
+
+            _pageInteractionHelper.VerifyPage(actualResultsHeader, ExpectedHeaderWhenResultsFound, ExpectedHeaderWhenNoResultsFound);
+        }
+
         internal void clickOnFirstSearchResult()
         {
             _formCompletionHelper.WaitForPageToLoad(10);
             _formCompletionHelper.ClickElement(_firstSearchResult);
             System.Threading.Thread.Sleep(10000);
-            //_pageInteractionHelper.switchToANewTab();
+            _pageInteractionCampaignsHelper.switchToANewTab();
 
             /*bool resultsStatus = _pageInteractionHelper.VerifyText(_headerWhenResultsFound, expectedHeaderWhenResultsFound);
             if (resultsStatus)

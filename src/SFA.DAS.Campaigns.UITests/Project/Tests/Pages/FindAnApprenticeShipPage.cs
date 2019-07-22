@@ -11,7 +11,8 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
     internal sealed class FindAnApprenticeShipPage : BasePage
     {
         #region Constants
-        private const string PageTitle = "";
+        private const string PageTitle = "FIND AN APPRENTICESHIP";
+        //private const string Expected
         #endregion
 
         #region Helpers

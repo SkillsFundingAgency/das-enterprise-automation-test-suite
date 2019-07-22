@@ -93,6 +93,8 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Features
   testRunner.Then("I click on Serach button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 15
   testRunner.When("I click on first search result", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 16
+  testRunner.Then("I can see the Apprentice Summary page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
