@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 using SFA.DAS.UI.Framework.TestSupport;
@@ -16,7 +17,6 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Homepage
         #endregion
 
         [FindsBy(How = How.ClassName, Using = "error-summary")] private IWebElement ErrorBox { get; set; }
-        [FindsBy(How = How.ClassName, Using = "heading-xlarge")] private IWebElement PageHeader { get; set; }
         [FindsBy(How = How.Id, Using = "FirstName")] private IWebElement FirstName { get; set; }
         [FindsBy(How = How.XPath, Using = ".//a[contains (text(), \'Enter first name\')]")] private IWebElement FirstNameErrorInBox { get; set; }
         [FindsBy(How = How.Id, Using = "LastName")] private IWebElement LastName { get; set; }
@@ -29,10 +29,13 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Homepage
         [FindsBy(How = How.Id, Using = "ConfirmPassword")] private IWebElement PasswordConfirm { get; set; }
         [FindsBy(How = How.XPath, Using = ".//a[contains (text(), \'Re-type password\')]")] private IWebElement PasswordCnfErrorInBox { get; set; }
         [FindsBy(How = How.Id, Using = "button-register")] private IWebElement SetMeUp { get; set; }
-        private By _signInLink = By.XPath("//a[contains(text(), 'sign in')]");
-        private By _termsAndConditionsLink = By.XPath("//a[contains(text(),'terms and conditions')]");
+        private readonly By _signInLink = By.XPath("//a[contains(text(), 'sign in')]");
+        private readonly By _termsAndConditionsLink = By.XPath("//a[contains(text(),'terms and conditions')]");
 
         private readonly IWebDriver _webdriver;
+
+
+        protected override By PageHeader => By.ClassName("heading-xlarge");
 
         public SetUpAsAUserPage(ScenarioContext context) : base(context)
         {
@@ -40,12 +43,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Homepage
             _webdriver = context.GetWebDriver();
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
-            IsPagePresented();
-        }
-
-        internal bool IsPagePresented()
-        {
-            return _pageInteractionHelper.GetText(PageHeader) == "Set up as a user";
+            IsPagePresented("Set up as a user");
         }
 
         internal bool IsSignInLinkPresent()
