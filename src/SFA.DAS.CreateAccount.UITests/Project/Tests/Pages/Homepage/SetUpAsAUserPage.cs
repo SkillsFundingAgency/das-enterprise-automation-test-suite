@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Support.PageObjects;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
@@ -16,26 +15,38 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Homepage
         private readonly ScenarioContext _context;
         #endregion
 
-        [FindsBy(How = How.ClassName, Using = "error-summary")] private IWebElement ErrorBox { get; set; }
-        [FindsBy(How = How.Id, Using = "FirstName")] private IWebElement FirstName { get; set; }
-        [FindsBy(How = How.XPath, Using = ".//a[contains (text(), \'Enter first name\')]")] private IWebElement FirstNameErrorInBox { get; set; }
-        [FindsBy(How = How.Id, Using = "LastName")] private IWebElement LastName { get; set; }
-        [FindsBy(How = How.XPath, Using = ".//a[contains (text(), \'Enter last name\')]")] private IWebElement LastNameErrorInBox { get; set; }
-        [FindsBy(How = How.Id, Using = "Email")] private IWebElement Email { get; set; }
-        [FindsBy(How = How.XPath, Using = ".//a[contains (text(), \'Enter a valid email address\')]")] private IWebElement EmailErrorInBox { get; set; }
-        [FindsBy(How = How.Id, Using = "Password")] private IWebElement Password { get; set; }
-        [FindsBy(How = How.XPath, Using = ".//a[contains (text(), \'Enter password\')]")] private IWebElement PasswordErrorInBox { get; set; }
-        [FindsBy(How = How.XPath, Using = ".//span[contains (text(), \'Password requires\')]")] private IWebElement PasswordValidationErrorField { get; set; }
-        [FindsBy(How = How.Id, Using = "ConfirmPassword")] private IWebElement PasswordConfirm { get; set; }
-        [FindsBy(How = How.XPath, Using = ".//a[contains (text(), \'Re-type password\')]")] private IWebElement PasswordCnfErrorInBox { get; set; }
-        [FindsBy(How = How.Id, Using = "button-register")] private IWebElement SetMeUp { get; set; }
-        private readonly By _signInLink = By.XPath("//a[contains(text(), 'sign in')]");
-        private readonly By _termsAndConditionsLink = By.XPath("//a[contains(text(),'terms and conditions')]");
+        private By ErrorBox => By.ClassName("error-summary");
+
+        private By FirstNameErrorInBox => By.XPath(".//a[contains (text(), \'Enter first name\')]");
+
+        private By LastName => By.Id("LastName");
+
+        private By LastNameErrorInBox => By.XPath(".//a[contains (text(), \'Enter last name\')]");
+
+        private By Email => By.Id("Email");
+        private By EmailErrorInBox => By.XPath(".//a[contains (text(), \'Enter a valid email address\')]");
+
+        private By Password => By.Id("Password");
+
+        private By PasswordErrorInBox => By.XPath(".//a[contains (text(), \'Enter password\')]");
+
+        private By PasswordValidationErrorField => By.XPath(".//span[contains (text(), \'Password requires\')]");
+
+        private By PasswordConfirm => By.Id("ConfirmPassword");
+        private By PasswordCnfErrorInBox => By.XPath(".//a[contains (text(), \'Re-type password\')]");
+
+        private By SetMeUp => By.Id("button-register");
+
+        private By _signInLink => By.XPath("//a[contains(text(), 'sign in')]");
+
+        private By _termsAndConditionsLink => By.XPath("//a[contains(text(),'terms and conditions')]");
 
         private readonly IWebDriver _webdriver;
 
 
         protected override By PageHeader => By.ClassName("heading-xlarge");
+
+        private By FirstName => By.Id("FirstName");
 
         public SetUpAsAUserPage(ScenarioContext context) : base(context)
         {
@@ -89,10 +100,10 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Homepage
         private void CompleteForm(string firstName, string lastName, string email, string passWord)
         {
             _formCompletionHelper.EnterText(FirstName, firstName);
-            LastName.SendKeys(lastName);
-            Email.SendKeys(email);
-            Password.SendKeys(passWord);
-            PasswordConfirm.SendKeys(passWord);
+            _formCompletionHelper.EnterText(LastName, lastName);
+            _formCompletionHelper.EnterText(Email, email);
+            _formCompletionHelper.EnterText(Password, passWord);
+            _formCompletionHelper.EnterText(PasswordConfirm, passWord);
         }
 
         private void SubmitForm()
@@ -102,7 +113,7 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Homepage
 
         internal bool IsTheErrorBoxDisplayed()
         {
-            return ErrorBox.Displayed;
+            return _pageInteractionHelper.IsElementDisplayed(ErrorBox);
         }
 
         internal string GetFirstNameRequiredInBox()

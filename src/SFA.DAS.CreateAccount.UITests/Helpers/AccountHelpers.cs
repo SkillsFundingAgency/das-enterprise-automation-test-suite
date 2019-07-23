@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using OpenQA.Selenium;
 using SFA.DAS.CreateAccount.Helpers;
 using SFA.DAS.UI.FrameworkHelpers;
@@ -13,10 +11,13 @@ namespace SFA.DAS.CreateAccount.UITests.Helpers
         private readonly ScenarioContext _context;
         private readonly CreateAccountConfig _config;
 
+        private readonly Random random;
+
         public AccountHelpers(ScenarioContext context)
         {
             _context = context;
             _config = context.Get<CreateAccountConfig>();
+            random = new Random();
         }
 
         public SqlDatabaseConncetionHelper sqlDatabaseConnectionHelper = new SqlDatabaseConncetionHelper();
@@ -27,7 +28,7 @@ namespace SFA.DAS.CreateAccount.UITests.Helpers
             //if (EnvConfigurator.GetEnvConfigInstance().ExecutionEnvironment.Equals("Local"))
             //    return $"MA_Test_LocalRun{System.DateTime.Now.ToString("ddMMMyyyy_HHmmss")}@mailinator.com";
             //else
-                return $"MA_Test_{System.DateTime.Now.ToString("ddMMMyyyy_HHmmss")}@mailinator.com";
+            return $"MA_Test_{random.Next(100, 999)}_{System.DateTime.Now.ToString("ddMMMyyyy_HHmmss")}@mailinator.com";
         }
 
         public string CreateAnUserAccount(IWebDriver WebBrowserDriver, bool signOut = false, string predefinedEmail = null, bool unactivated = false)

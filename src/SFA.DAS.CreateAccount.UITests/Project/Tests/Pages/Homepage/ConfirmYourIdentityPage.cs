@@ -14,9 +14,9 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Homepage
         private readonly FormCompletionHelper _formCompletionHelper;
         private readonly ScenarioContext _context;
         #endregion
-        [FindsBy(How = How.Id, Using = "AccessCode")] private IWebElement EnterCodeField { get; set; }
-        [FindsBy(How = How.ClassName, Using = "heading-xlarge")] private IWebElement PageHeader { get; set; }
-        [FindsBy(How = How.XPath, Using = ".//*[@type=\"submit\"]")] private IWebElement ConfirmIdentityContinueBtn { get; set; }
+        private By EnterCodeField => By.Id("AccessCode");
+
+        private By ConfirmIdentityContinueBtn => By.XPath(".//*[@type=\"submit\"]");
         [FindsBy(How = How.XPath, Using = ".//*[@id=\'content\']/form/button")] private IWebElement RequestAnotherEmailLink { get; set; }
         [FindsBy(How = How.XPath, Using = "//a[contains(@class, 'danger')]")] private IWebElement InvalidCoderrorInBox { get; set; }
         [FindsBy(How = How.Id, Using = "invalidMessage")] private IWebElement InvalidCodeErrorInField { get; set; }
@@ -25,6 +25,8 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Homepage
         private By _additionalHeaderText = By.XPath("(//p)[2]");
         private By _headerErrorMessage = By.XPath("//ul[contains(@class, 'error-summary-list')]/li/a");
         private By _textboxErrorMessage = By.XPath("//span[contains(@class, 'error-message')]");
+
+        protected override By PageHeader => By.ClassName("heading-xlarge");
 
         public ConfirmYourIdentityPage(ScenarioContext context) : base(context)
         {

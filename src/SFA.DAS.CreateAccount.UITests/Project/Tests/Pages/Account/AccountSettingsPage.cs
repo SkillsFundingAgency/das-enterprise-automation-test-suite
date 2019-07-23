@@ -15,21 +15,25 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account
         private readonly ScenarioContext _context;
         #endregion
 
-        [FindsBy(How = How.XPath, Using = ".//a[contains (text(), \'Switch account\')]")]
-        private IWebElement ChangeLevyAccountLink;
-        [FindsBy(How = How.XPath, Using = ".//a[contains (text(), \'Rename account\')]")]
-        private IWebElement RenameAccountLink;
-        [FindsBy(How = How.XPath, Using = ".//a[contains (text(), \'Change your email address\')]")]
-        private IWebElement ChangeEmailLink;
-        [FindsBy(How = How.XPath, Using = ".//a[contains (text(), \'Change your password\')]")]
-        private IWebElement ChangePasswordLink;
-        [FindsBy(How = How.CssSelector, Using = ".success-summary p")]
-        private IWebElement NotificationBox;
-        private By _yourAccountLink = By.XPath("//a[contains (text(), \'Your accounts\')]");
-        private By _notificationSettingsLink = By.XPath("//a[contains (text(), \'Notification settings\')]");
-        private By _signOutBtn = By.XPath("//a[contains (text(), \'Sign out\')]");
-        private By _settingsLink = By.XPath("//a[contains (text(), \'Settings\')]");
-        private By _acivityTab = By.XPath("//a[contains(text(),\'Activity\')]");
+        private By ChangeLevyAccountLink => By.XPath(".//a[contains (text(), \'Switch account\')]");
+
+        private By RenameAccountLink => By.XPath(".//a[contains (text(), \'Rename account\')]");
+
+        private By ChangeEmailLink => By.XPath(".//a[contains (text(), \'Change your email address\')]");
+
+        private By ChangePasswordLink => By.XPath(".//a[contains (text(), \'Change your password\')]");
+
+        private By NotificationBox => By.CssSelector(".success-summary p");
+
+        private By YourAccountLink => By.XPath("//a[contains (text(), \'Your accounts\')]");
+
+        private By NotificationSettingsLink => By.XPath("//a[contains (text(), \'Notification settings\')]");
+
+        private By SignOutBtn => By.XPath("//a[contains (text(), \'Sign out\')]");
+
+        private By SettingsLink => By.XPath("//a[contains (text(), \'Settings\')]");
+
+        private By AcivityTab => By.XPath("//a[contains(text(),\'Activity\')]");
 
         public AccountSettingsPage(ScenarioContext context) : base(context)
         {
@@ -40,12 +44,12 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account
 
         internal void ClickSignOut()
         {
-            _formCompletionHelper.ClickElement(_signOutBtn);
+            _formCompletionHelper.ClickElement(SignOutBtn);
         }
 
         internal bool IsPagePresented()
         {
-            return _pageInteractionHelper.IsElementDisplayed(_settingsLink);
+            return _pageInteractionHelper.IsElementDisplayed(SettingsLink);
         }
 
         internal AccountSettingsPage ClickChangeLevyAccountLink()
@@ -68,18 +72,18 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account
 
         internal string AccountName()
         {
-            return _pageInteractionHelper.GetText(_settingsLink);
+            return _pageInteractionHelper.GetText(SettingsLink);
         }
 
         internal AccountSettingsPage ClickSettingsLink()
         {
-            _formCompletionHelper.ClickElement(_settingsLink);
+            _formCompletionHelper.ClickElement(SettingsLink);
             return this;
         }
 
         internal string GetNotification()
         {
-            return NotificationBox.Text;
+            return _pageInteractionHelper.GetText(NotificationBox);
         }
 
         internal RenameAccountPage RenameAccount()
@@ -90,32 +94,32 @@ namespace SFA.DAS.CreateAccount.UITests.Project.Tests.Pages.Account
 
         internal void ClickYourAccountsLink()
         {
-            _formCompletionHelper.ClickElement(_settingsLink);
-            _formCompletionHelper.ClickElement(_yourAccountLink);
+            _formCompletionHelper.ClickElement(SettingsLink);
+            _formCompletionHelper.ClickElement(YourAccountLink);
         }
 
         internal void ClickRenameAccountLink()
         {
-            _formCompletionHelper.ClickElement(_settingsLink);
+            _formCompletionHelper.ClickElement(SettingsLink);
             _formCompletionHelper.ClickElement(RenameAccountLink);
         }
 
         internal void ClickChangeYourPasswordLink()
         {
-            _formCompletionHelper.ClickElement(_settingsLink);
+            _formCompletionHelper.ClickElement(SettingsLink);
             _formCompletionHelper.ClickElement(ChangePasswordLink);
         }
 
         internal void ClickChangeYourEmailAddressLink()
         {
-            _formCompletionHelper.ClickElement(_settingsLink);
+            _formCompletionHelper.ClickElement(SettingsLink);
             _formCompletionHelper.ClickElement(ChangeEmailLink);
         }
 
         internal void ClickNotificationSettingsLink()
         {
-            _formCompletionHelper.ClickElement(_settingsLink);
-            _formCompletionHelper.ClickElement(_notificationSettingsLink);
+            _formCompletionHelper.ClickElement(SettingsLink);
+            _formCompletionHelper.ClickElement(NotificationSettingsLink);
         }
     }
 }
