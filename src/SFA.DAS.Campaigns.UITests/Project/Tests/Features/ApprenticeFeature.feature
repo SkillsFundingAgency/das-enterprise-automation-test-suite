@@ -17,21 +17,7 @@
 
 		Examples: 
 		| SelectInterest                | Postcode | NoOfMiles |
-		| Engineering and manufacturing | CV11DD   | 40 miles  |
-
-	Scenario Outline: Application should show a proper error message for any invalid postcode
-		Given I navigate to Fire It Up home page
-		When I launch the Find An Apprentice page
-		Then I select a valid <SelectInterest>
-		Then I enter an invalid <Postcode>
-		Then I click on Serach button
-		Then I can verify the error message for invalid postcode
-
-		Examples: 
-		| SelectInterest                | Postcode |
-		| Engineering and manufacturing | 123456   |
-		| Care services					| AS$$TT55 |
-		| Care services					|		   |
+		| Engineering and manufacturing | CV11DD   | 40 miles  | 
 
 
 	Scenario Outline: User can see a valid message when no apprentice results found
@@ -46,6 +32,27 @@
 		Examples: 
 		| SelectInterest                | Postcode | NoOfMiles |
 		| Engineering and manufacturing | SW1V 3LP | 5 miles   |
+
+
+	Scenario Outline: Application should show default value for Miles DropDown and valid error messages for invalid postcode and interest selection
+		Given I navigate to Fire It Up home page
+		When I launch the Find An Apprentice page
+		Then I click on Serach button
+		Then I can verify the error message for not selecting any interest
+		Then I select a valid <SelectInterest>
+		Then I verify the default value of miles dropdown
+		Then I enter an invalid <Postcode>
+		Then I click on Serach button
+		Then I can verify the error message for invalid postcode
+
+		Examples: 
+		| SelectInterest                | Postcode |
+		| Engineering and manufacturing | 123456   |
+		| Care services					| AS$$TT55 |
+		| Care services					|		   |
+
+
+
 
 
 

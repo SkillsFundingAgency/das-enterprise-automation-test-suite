@@ -24,12 +24,13 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
             _webDriver = context.Get<IWebDriver>("webdriver");
             _configuration = context.Get<JsonConfig>();
             _objectContext = context.Get<ObjectContext>();
+            findAnApprenticeShipPage = new FindAnApprenticeShipPage(_context);
         }
 
         [Then(@"I select a valid (.*)")]
         public void selectAValidOptionFromInterestDropdown(string interestValue)
         {
-            findAnApprenticeShipPage = new FindAnApprenticeShipPage(_context);
+            //findAnApprenticeShipPage = new FindAnApprenticeShipPage(_context);
             findAnApprenticeShipPage.selectAValidInterest(interestValue);
         }
 
@@ -48,6 +49,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
         [Then(@"I click on Serach button")]
         public void clickOnSearchButton()
         {
+            //findAnApprenticeShipPage = new FindAnApprenticeShipPage(_context);
             findAnApprenticeShipPage.clickOnSearchButton();
             TestContext.Progress.WriteLine("Navigating to Serach Results page");
         }
@@ -63,6 +65,21 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
         {
             findAnApprenticeShipPage.verifyInvalidPostcodeMessage();
         }
+
+        [Then(@"I can verify the error message for not selecting any interest")]
+        public void verifyTheMessageForNotSelectingInterest()
+        {
+            findAnApprenticeShipPage.verifyTheMessageForNonSelectionOfInterest();
+        }
+
+
+        [Then(@"I verify the default value of miles dropdown")]
+        public void verifyTheDefaultValueOfMilesDropDown()
+        {
+            findAnApprenticeShipPage.verifyDefaultValueFromMilesDropDown();
+        }
+
+
 
     }
 }

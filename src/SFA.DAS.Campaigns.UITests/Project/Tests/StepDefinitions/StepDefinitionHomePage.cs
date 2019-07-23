@@ -24,6 +24,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
             _webDriver = context.Get<IWebDriver>("webdriver");
             _configuration = context.Get<JsonConfig>();
             _objectContext = context.Get<ObjectContext>();
+            //fireItUpHomePage = new FireItUpHomePage(_context);
         }
 
         [Given(@"I navigate to Fire It Up home page")]

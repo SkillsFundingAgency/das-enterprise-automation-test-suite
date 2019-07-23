@@ -14,6 +14,8 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
         private const string PageTitle = "FIND AN APPRENTICESHIP";
         private const string InvalidPostCodeMessage = "You must enter a full and valid postcode";
         private const string EmptyPostCodeMessage = "The Postcode field is required.";
+        private const string MessageForInvalidInterestSelection = "The interest field is required.";
+        private const string DefaultValueFromMilesDropDown = "5 miles";
         private string PostcodeFromTestScnario = "";
         #endregion
 
@@ -28,7 +30,9 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
         private readonly By _postCodeBox = By.XPath("//div[@class='grid-column-two-thirds']//input[@id='Postcode']");
         private readonly By _selectMilesDropDown = By.XPath("//div[@class='grid-column-two-thirds']//select[@id='Distance']");
         private readonly By _searchButton = By.XPath("//button[@class='button button-apprentice']");
-        private readonly By _invalidPostcodeMessage = By.XPath("//span[@id='Postcode-error']");
+        private readonly By _messageForInvalidPostcode = By.XPath("//span[@id='Postcode-error']");
+        private readonly By _messageForInvalidInterestSelection = By.XPath("//span[@id='Route-error']");
+        private readonly By _defaultValueFromInterestDropDown = By.XPath("//div[@class='grid-column-two-thirds']//select[@id='Distance']/option[@selected='selected']");
         #endregion
 
         public FindAnApprenticeShipPage(ScenarioContext context) : base(context)
@@ -78,15 +82,27 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
         {
             if (PostcodeFromTestScnario.Length > 0)
             {
-                _pageInteractionHelper.WaitForElementToBeDisplayed(_invalidPostcodeMessage);
-                _pageInteractionHelper.VerifyText(_invalidPostcodeMessage, InvalidPostCodeMessage);
+                _pageInteractionHelper.WaitForElementToBeDisplayed(_messageForInvalidPostcode);
+                _pageInteractionHelper.VerifyText(_messageForInvalidPostcode, InvalidPostCodeMessage);
             }
             else
             {
-                _pageInteractionHelper.WaitForElementToBeDisplayed(_invalidPostcodeMessage);
-                _pageInteractionHelper.VerifyText(_invalidPostcodeMessage, EmptyPostCodeMessage);
+                _pageInteractionHelper.WaitForElementToBeDisplayed(_messageForInvalidPostcode);
+                _pageInteractionHelper.VerifyText(_messageForInvalidPostcode, EmptyPostCodeMessage);
 
             }
+        }
+
+        internal void verifyTheMessageForNonSelectionOfInterest()
+        {
+            _pageInteractionHelper.WaitForElementToBeDisplayed(_messageForInvalidInterestSelection);
+            _pageInteractionHelper.VerifyText(_messageForInvalidInterestSelection, MessageForInvalidInterestSelection);
+        }
+
+        internal void verifyDefaultValueFromMilesDropDown()
+        {
+            _pageInteractionHelper.WaitForElementToBePresent(_defaultValueFromInterestDropDown);
+            _pageInteractionHelper.VerifyText(_defaultValueFromInterestDropDown,DefaultValueFromMilesDropDown);
         }
 
     }

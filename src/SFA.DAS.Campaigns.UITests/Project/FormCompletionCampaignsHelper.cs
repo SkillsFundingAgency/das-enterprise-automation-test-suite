@@ -1,6 +1,7 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using SFA.DAS.UI.FrameworkHelpers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 

@@ -24,12 +24,13 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
             _webDriver = context.Get<IWebDriver>("webdriver");
             _configuration = context.Get<JsonConfig>();
             _objectContext = context.Get<ObjectContext>();
+            yourResultsPage = new YourResultsPage(_context);
         }
 
         [When(@"I click on first search result")]
         public void clickOnFirstSearchResult()
         {
-            yourResultsPage = new YourResultsPage(_context);
+            //yourResultsPage = new YourResultsPage(_context);
             yourResultsPage.verifyResultsPageHeader();
             TestContext.Progress.WriteLine("Navigating to Apprenticeship Summary page");
             yourResultsPage.clickOnAnySerachResult();
@@ -38,7 +39,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
         [Then(@"I can verify the content of no matching results page")]
         public void verifyContentInNoMatchingResultsPage()
         {
-            yourResultsPage = new YourResultsPage(_context);
+            //yourResultsPage = new YourResultsPage(_context);
             yourResultsPage.verifyResultsPageHeader();
             yourResultsPage.verifyTheNoMatchResultsPageContent();
         }

@@ -24,12 +24,13 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
             _webDriver = context.Get<IWebDriver>("webdriver");
             _configuration = context.Get<JsonConfig>();
             _objectContext = context.Get<ObjectContext>();
+            apprenticeshipSummaryPage = new ApprenticeshipSummaryPage(_context);
         }
 
         [Then(@"I can see the Apprentice Summary page")]
         public void iCanSeeApprenticeshipSummaryPage()
         {
-            apprenticeshipSummaryPage = new ApprenticeshipSummaryPage(_context);
+            //apprenticeshipSummaryPage = new ApprenticeshipSummaryPage(_context);
             apprenticeshipSummaryPage.verifyApprenticeSummaryPageHeader();
             apprenticeshipSummaryPage.clickObSignInToApplyButton();
         }
