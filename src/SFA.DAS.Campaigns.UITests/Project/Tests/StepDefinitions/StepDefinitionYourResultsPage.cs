@@ -34,5 +34,13 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
             TestContext.Progress.WriteLine("Navigating to Apprenticeship Summary page");
             yourResultsPage.clickOnAnySerachResult();
         }
+
+        [Then(@"I can verify the content of no matching results page")]
+        public void verifyContentInNoMatchingResultsPage()
+        {
+            yourResultsPage = new YourResultsPage(_context);
+            yourResultsPage.verifyResultsPageHeader();
+            yourResultsPage.verifyTheNoMatchResultsPageContent();
+        }
     }
 }

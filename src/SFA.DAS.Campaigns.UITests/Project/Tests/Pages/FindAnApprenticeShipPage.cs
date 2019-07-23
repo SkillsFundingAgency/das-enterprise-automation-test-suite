@@ -13,6 +13,8 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
         #region Constants
         private const string PageTitle = "FIND AN APPRENTICESHIP";
         private const string InvalidPostCodeMessage = "You must enter a full and valid postcode";
+        private const string EmptyPostCodeMessage = "The Postcode field is required.";
+        private string PostcodeFromTestScnario = "";
         #endregion
 
         #region Helpers
@@ -49,27 +51,42 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
 
         internal void selectAValidInterest(String interestValue)
         {
+            _pageInteractionHelper.WaitForElementToBeDisplayed(_selectInterestDropDown);
             _formCompletionCampaignsHelper.SelectFromDropDownByText(_selectInterestDropDown, interestValue);
         }
 
         internal void enterPostCode(String postCode)
         {
+            PostcodeFromTestScnario = postCode;
+            _pageInteractionHelper.WaitForElementToBeDisplayed(_postCodeBox);
             _formCompletionHelper.EnterText(_postCodeBox, postCode);
         }
 
         internal void selectMiles(String noOfMiles)
         {
+            _pageInteractionHelper.WaitForElementToBeDisplayed(_selectMilesDropDown);
             _formCompletionCampaignsHelper.SelectFromDropDownByText(_selectMilesDropDown, noOfMiles);
         }
 
         internal void clickOnSearchButton()
         {
+            _pageInteractionHelper.WaitForElementToBeClickable(_searchButton);
             _formCompletionHelper.ClickElement(_searchButton);
         }
 
         internal void verifyInvalidPostcodeMessage()
         {
-            _pageInteractionHelper.VerifyPage(_invalidPostcodeMessage, InvalidPostCodeMessage);
+            if (PostcodeFromTestScnario.Length > 0)
+            {
+                _pageInteractionHelper.WaitForElementToBeDisplayed(_invalidPostcodeMessage);
+                _pageInteractionHelper.VerifyText(_invalidPostcodeMessage, InvalidPostCodeMessage);
+            }
+            else
+            {
+                _pageInteractionHelper.WaitForElementToBeDisplayed(_invalidPostcodeMessage);
+                _pageInteractionHelper.VerifyText(_invalidPostcodeMessage, EmptyPostCodeMessage);
+
+            }
         }
 
     }

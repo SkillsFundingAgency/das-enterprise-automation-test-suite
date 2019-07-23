@@ -51,26 +51,31 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
 
         internal void clickOnCookieContinueButton()
         {
+            _pageInteractionHelper.WaitForElementToBeDisplayed(_cookieButton);
             _formCompletionHelper.ClickElement(_cookieButton);
         }
 
         internal void verifyApprenticesHeaderSupportText()
         {
+            _pageInteractionHelper.WaitForElementToBeDisplayed(_ApprenticesHeaderSupportText);
             _formCompletionHelper.VerifyPage(_ApprenticesHeaderSupportText, ExpectedApprenticesHeaderSupportText);
         }
 
         internal void verifyEmployersHeaderSupportText()
         {
+            _pageInteractionHelper.WaitForElementToBeDisplayed(_EmployersHeaderSupportText);
             _formCompletionHelper.VerifyPage(_EmployersHeaderSupportText, ExpectedEmployersHeaderSupportText);
         }
 
         internal void launchApprenticeMenu()
         {
+            _pageInteractionHelper.WaitForElementToBeDisplayed(_apprenticeMenu);
             _pageInteractionHelper.FocusTheElement(_apprenticeMenu);
         }
 
         internal void clickOnFindAnApprenticeLink()
         {
+            _pageInteractionHelper.WaitForElementToBeClickable(_findAnApprenticeLink);
             _formCompletionHelper.ClickElement(_findAnApprenticeLink);
         }
 

@@ -103,24 +103,52 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Features
         [NUnit.Framework.DescriptionAttribute("Application should show a proper error message for any invalid postcode")]
         [NUnit.Framework.TestCaseAttribute("Engineering and manufacturing", "123456", null)]
         [NUnit.Framework.TestCaseAttribute("Care services", "AS$$TT55", null)]
+        [NUnit.Framework.TestCaseAttribute("Care services", "", null)]
         public virtual void ApplicationShouldShowAProperErrorMessageForAnyInvalidPostcode(string selectInterest, string postcode, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Application should show a proper error message for any invalid postcode", null, exampleTags);
-#line 23
+#line 22
  this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 24
+#line 23
   testRunner.Given("I navigate to Fire It Up home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 25
+#line 24
   testRunner.When("I launch the Find An Apprentice page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 26
+#line 25
   testRunner.Then(string.Format("I select a valid {0}", selectInterest), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 27
+#line 26
   testRunner.Then(string.Format("I enter an invalid {0}", postcode), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 28
+#line 27
   testRunner.Then("I click on Serach button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 29
+#line 28
   testRunner.Then("I can verify the error message for invalid postcode", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("User can see a valid message when no apprentice results found")]
+        [NUnit.Framework.TestCaseAttribute("Engineering and manufacturing", "SW1V 3LP", "5 miles", null)]
+        public virtual void UserCanSeeAValidMessageWhenNoApprenticeResultsFound(string selectInterest, string postcode, string noOfMiles, string[] exampleTags)
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User can see a valid message when no apprentice results found", null, exampleTags);
+#line 37
+ this.ScenarioInitialize(scenarioInfo);
+            this.ScenarioStart();
+#line 38
+  testRunner.Given("I navigate to Fire It Up home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 39
+  testRunner.When("I launch the Find An Apprentice page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 40
+  testRunner.Then(string.Format("I select a valid {0}", selectInterest), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 41
+  testRunner.Then(string.Format("I enter a valid {0}", postcode), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 42
+  testRunner.Then(string.Format("I select miles {0}", noOfMiles), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 43
+  testRunner.Then("I click on Serach button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 44
+  testRunner.Then("I can verify the content of no matching results page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

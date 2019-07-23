@@ -44,11 +44,13 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
 
         internal void verifyApprenticeSummaryPageHeader()
         {
+            _pageInteractionHelper.WaitForElementToBeDisplayed(_apprenticeshipSummaryHeader);
             _pageInteractionHelper.VerifyPage(_apprenticeshipSummaryHeader, ExpectedApprenticeshipSummaryHeader);
         }
 
         internal void clickObSignInToApplyButton()
         {
+            _pageInteractionHelper.WaitForElementToBeClickable(_signInToApplyButton);
             _formCompletionHelper.ClickElement(_signInToApplyButton);
         }
 
