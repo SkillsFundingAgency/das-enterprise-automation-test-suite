@@ -2,6 +2,7 @@
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using TechTalk.SpecFlow;
@@ -21,6 +22,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
         private readonly PageInteractionHelper _pageInteractionHelper;
         private readonly FormCompletionHelper _formCompletionHelper;
         private readonly PageInteractionCampaignsHelper _pageInteractionCampaignsHelper;
+        private ArrayList postCodeList = new ArrayList();
         #endregion
 
         #region Page Object Elements
@@ -51,35 +53,51 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
         internal void verifyResultsPageHeader()
         {
             string actualResultsHeader = _pageInteractionHelper.GetText(_resultsHeader);
-            TestContext.Progress.WriteLine("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& " + actualResultsHeader);
-            TestContext.Progress.WriteLine("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& " + ExpectedHeaderWhenResultsFound);
-            TestContext.Progress.WriteLine("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& " + _pageInteractionHelper.VerifyPage(actualResultsHeader, ExpectedHeaderWhenResultsFound, ExpectedHeaderWhenNoResultsFound));
-
             _pageInteractionHelper.VerifyPage(actualResultsHeader, ExpectedHeaderWhenResultsFound, ExpectedHeaderWhenNoResultsFound);
+        }
+
+        internal void clickOnAnySerachResult()
+        {
+            postCodeList.Add("SW1V 3LP");
+            postCodeList.Add("M1 4WB");
+            postCodeList.Add("G1 1YU");
+            postCodeList.Add("EH2 4AD");
+            postCodeList.Add("NN1 1SR");
+            postCodeList.Add("CV1 4AH");
+            postCodeList.Add("BS1 3LE");
+            postCodeList.Add("SN1 1LF");
+            postCodeList.Add("YO1 7DT");
+            postCodeList.Add("LS1 4AG");
+            postCodeList.Add("TW3 3JW");
+
+            for (int i=0; i < postCodeList.Count; i++)
+            {
+                if(_pageInteractionHelper.GetText(_resultsHeader).Contains(ExpectedHeaderWhenResultsFound))
+                {
+                    clickOnFirstSearchResult();
+                    Console.WriteLine(" Results found in "+i+" th time");
+                    break;
+                }
+                else
+                {
+                    enterPostCode((string)postCodeList[i]);
+                    clickOnUpdateResultsButton();
+                }
+            }
         }
 
         internal void clickOnFirstSearchResult()
         {
             _formCompletionHelper.WaitForPageToLoad(10);
             _formCompletionHelper.ClickElement(_firstSearchResult);
-            System.Threading.Thread.Sleep(10000);
+            System.Threading.Thread.Sleep(5000);
             _pageInteractionCampaignsHelper.switchToANewTab();
-
-            /*bool resultsStatus = _pageInteractionHelper.VerifyText(_headerWhenResultsFound, expectedHeaderWhenResultsFound);
-            if (resultsStatus)
-            {
-                _formCompletionHelper.ClickElement(_firstSearchResult);
-            }
-            else
-            {
-                enterPostCode();
-                clickOnUpdateResultsButton();
-            }*/
         }
 
-        internal void enterPostCode()
+        internal void enterPostCode(string postcode)
         {
-            _formCompletionHelper.EnterText(_postCodeBox,"TW33JW");
+            _formCompletionHelper.EnterText(_postCodeBox,postcode);
+
         }
 
         internal void clickOnUpdateResultsButton()

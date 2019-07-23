@@ -98,6 +98,32 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Features
 #line hidden
             this.ScenarioCleanup();
         }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Application should show a proper error message for any invalid postcode")]
+        [NUnit.Framework.TestCaseAttribute("Engineering and manufacturing", "123456", null)]
+        [NUnit.Framework.TestCaseAttribute("Care services", "AS$$TT55", null)]
+        public virtual void ApplicationShouldShowAProperErrorMessageForAnyInvalidPostcode(string selectInterest, string postcode, string[] exampleTags)
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Application should show a proper error message for any invalid postcode", null, exampleTags);
+#line 23
+ this.ScenarioInitialize(scenarioInfo);
+            this.ScenarioStart();
+#line 24
+  testRunner.Given("I navigate to Fire It Up home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 25
+  testRunner.When("I launch the Find An Apprentice page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 26
+  testRunner.Then(string.Format("I select a valid {0}", selectInterest), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 27
+  testRunner.Then(string.Format("I enter an invalid {0}", postcode), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 28
+  testRunner.Then("I click on Serach button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 29
+  testRunner.Then("I can verify the error message for invalid postcode", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
     }
 }
 #pragma warning restore

@@ -15,9 +15,6 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
         private readonly ScenarioContext _context;
         private readonly ObjectContext _objectContext;
         private readonly IWebDriver _webDriver;
-        private FireItUpHomePage fireItUpHomePage;
-        private FindAnApprenticeShipPage findAnApprenticeShipPage;
-        private YourResultsPage yourResultsPage;
         private ApprenticeshipSummaryPage apprenticeshipSummaryPage;
         #endregion
 
@@ -33,6 +30,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
         public void iCanSeeApprenticeshipSummaryPage()
         {
             apprenticeshipSummaryPage = new ApprenticeshipSummaryPage(_context);
+            apprenticeshipSummaryPage.verifyApprenticeSummaryPageHeader();
             apprenticeshipSummaryPage.clickObSignInToApplyButton();
         }
     }

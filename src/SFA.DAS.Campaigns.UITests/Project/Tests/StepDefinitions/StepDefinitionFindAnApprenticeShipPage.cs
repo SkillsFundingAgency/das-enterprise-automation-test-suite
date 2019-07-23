@@ -15,10 +15,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
         private readonly ScenarioContext _context;
         private readonly ObjectContext _objectContext;
         private readonly IWebDriver _webDriver;
-        private FireItUpHomePage fireItUpHomePage;
         private FindAnApprenticeShipPage findAnApprenticeShipPage;
-        private YourResultsPage yourResultsPage;
-        private ApprenticeshipSummaryPage apprenticeshipSummaryPage;
         #endregion
 
         public StepDefinitionFindAnApprenticeShipPage(ScenarioContext context)
@@ -52,6 +49,19 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
         public void clickOnSearchButton()
         {
             findAnApprenticeShipPage.clickOnSearchButton();
+            TestContext.Progress.WriteLine("Navigating to Serach Results page");
+        }
+
+        [Then(@"I enter an invalid (.*)")]
+        public void enterAnInvalidPostcode(string postCode)
+        {
+            findAnApprenticeShipPage.enterPostCode(postCode);
+        }
+
+        [Then(@"I can verify the error message for invalid postcode")]
+        public void verifyTheInvalidPostcodeMessage()
+        {
+            findAnApprenticeShipPage.verifyInvalidPostcodeMessage();
         }
 
     }

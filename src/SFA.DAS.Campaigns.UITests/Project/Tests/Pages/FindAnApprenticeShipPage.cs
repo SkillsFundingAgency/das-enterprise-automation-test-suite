@@ -12,7 +12,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
     {
         #region Constants
         private const string PageTitle = "FIND AN APPRENTICESHIP";
-        //private const string Expected
+        private const string InvalidPostCodeMessage = "You must enter a full and valid postcode";
         #endregion
 
         #region Helpers
@@ -26,6 +26,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
         private readonly By _postCodeBox = By.XPath("//div[@class='grid-column-two-thirds']//input[@id='Postcode']");
         private readonly By _selectMilesDropDown = By.XPath("//div[@class='grid-column-two-thirds']//select[@id='Distance']");
         private readonly By _searchButton = By.XPath("//button[@class='button button-apprentice']");
+        private readonly By _invalidPostcodeMessage = By.XPath("//span[@id='Postcode-error']");
         #endregion
 
         public FindAnApprenticeShipPage(ScenarioContext context) : base(context)
@@ -64,6 +65,11 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
         internal void clickOnSearchButton()
         {
             _formCompletionHelper.ClickElement(_searchButton);
+        }
+
+        internal void verifyInvalidPostcodeMessage()
+        {
+            _pageInteractionHelper.VerifyPage(_invalidPostcodeMessage, InvalidPostCodeMessage);
         }
 
     }

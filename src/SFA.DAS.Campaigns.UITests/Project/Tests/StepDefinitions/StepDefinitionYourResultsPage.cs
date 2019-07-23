@@ -15,10 +15,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
         private readonly ScenarioContext _context;
         private readonly ObjectContext _objectContext;
         private readonly IWebDriver _webDriver;
-        private FireItUpHomePage fireItUpHomePage;
-        private FindAnApprenticeShipPage findAnApprenticeShipPage;
         private YourResultsPage yourResultsPage;
-        private ApprenticeshipSummaryPage apprenticeshipSummaryPage;
         #endregion
 
         public StepDefinitionYourResultsPage(ScenarioContext context)
@@ -33,7 +30,9 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
         public void clickOnFirstSearchResult()
         {
             yourResultsPage = new YourResultsPage(_context);
-            yourResultsPage.clickOnFirstSearchResult();
+            yourResultsPage.verifyResultsPageHeader();
+            TestContext.Progress.WriteLine("Navigating to Apprenticeship Summary page");
+            yourResultsPage.clickOnAnySerachResult();
         }
     }
 }

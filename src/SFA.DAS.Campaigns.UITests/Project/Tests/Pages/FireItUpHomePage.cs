@@ -13,13 +13,15 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
     {
         #region Constants
         private const string ExpectedPageTitle = "";
-        private const string ExpectedApprenticesHeaderSupportText = "Blaze your own trail and become an apprentice";
-        private const string ExpectedEmployersHeaderSupportText = "Fire up your business with an apprentice";
+        private const string ExpectedApprenticesHeaderSupportText = "BLAZE YOUR OWN TRAIL AND BECOME AN APPRENTICE";
+        private const string ExpectedEmployersHeaderSupportText = "FIRE UP YOUR BUSINESS WITH AN APPRENTICE";
+
         #endregion
 
         #region Helpers
         private readonly PageInteractionHelper _pageInteractionHelper;
         private readonly FormCompletionHelper _formCompletionHelper;
+        //private readonly MainNavigationHelper mainNavigationHelper;
         #endregion
 
         #region Page Object Elements
@@ -27,7 +29,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
         private readonly By _cookieButton = By.XPath("//a[@id='link-cookie-accept']");
         private readonly By _findAnApprenticeLink = By.XPath("//a[@id='link-nav-app-step-2']");
         private readonly By _ApprenticesHeaderSupportText = By.XPath("(//div[@class='launcher__content']/child::p)[1]");
-        private readonly By _EmployersHeaderSupportText = By.XPath("(//div[@class='launcher__content']/child::p)[2]");
+        private readonly By _EmployersHeaderSupportText = By.XPath("(//div[@class='launcher__content']/child::p)[4]");
         #endregion
 
         public FireItUpHomePage(ScenarioContext context) : base(context)
@@ -39,10 +41,6 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
 
         protected override bool VerifyPage()
         {
-            TestContext.Progress.WriteLine("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& "+ this.GetPageHeading());
-            TestContext.Progress.WriteLine("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& " + ExpectedPageTitle);
-            TestContext.Progress.WriteLine("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& " + _pageInteractionHelper.VerifyPage(this.GetPageHeading(), ExpectedPageTitle));
-
             return _pageInteractionHelper.VerifyPage(this.GetPageHeading(), ExpectedPageTitle);
         }
 
@@ -58,7 +56,6 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
 
         internal void verifyApprenticesHeaderSupportText()
         {
-            Console.WriteLine("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& " + ExpectedApprenticesHeaderSupportText);
             _formCompletionHelper.VerifyPage(_ApprenticesHeaderSupportText, ExpectedApprenticesHeaderSupportText);
         }
 

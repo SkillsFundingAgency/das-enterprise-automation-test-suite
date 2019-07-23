@@ -16,9 +16,6 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
         private readonly ObjectContext _objectContext;
         private readonly IWebDriver _webDriver;
         private FireItUpHomePage fireItUpHomePage;
-        private FindAnApprenticeShipPage findAnApprenticeShipPage;
-        private YourResultsPage yourResultsPage;
-        private ApprenticeshipSummaryPage apprenticeshipSummaryPage;
         #endregion
 
         public StepDefinitionHomePage(ScenarioContext context)
@@ -38,49 +35,17 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
 
             fireItUpHomePage = new FireItUpHomePage(_context);
             fireItUpHomePage.clickOnCookieContinueButton();
+            fireItUpHomePage.verifyApprenticesHeaderSupportText();
+            fireItUpHomePage.verifyEmployersHeaderSupportText();
         }
 
         [When(@"I launch the Find An Apprentice page")]
         public void launchFindAnApprenticePage()
         {
             fireItUpHomePage.launchApprenticeMenu();
+            TestContext.Progress.WriteLine("Navigating to Find An Apprenticeship page");
             fireItUpHomePage.clickOnFindAnApprenticeLink();
         }
 
-
-/*        [Then(@"I select a valid (.*)")]
-        public void selectAValidOptionFromInterestDropdown(string interestValue)
-        {
-            findAnApprenticeShipPage = new FindAnApprenticeShipPage(_context);
-            findAnApprenticeShipPage.selectAValidInterest(interestValue);
-        }
-
-        [Then(@"I enter a valid (.*)")]
-        public void enterAValidPostcode(string postCode)
-        {
-            findAnApprenticeShipPage.enterPostCode(postCode);
-        }
-
-        [Then(@"I select miles (.*)")]
-        public void selectNoOfMilesFromMilesDropdown(string noOfMiles)
-        {
-            findAnApprenticeShipPage.selectMiles(noOfMiles);
-        }
-
-        [Then(@"I click on Serach button")]
-        public void clickOnSearchButton()
-        {
-            findAnApprenticeShipPage.clickOnSearchButton();
-        } */
-
-/*        [When(@"I click on first search result")]
-        public void clickOnFirstSearchResult()
-        {
-            yourResultsPage = new YourResultsPage(_context);
-            yourResultsPage.clickOnFirstSearchResult();
-            //yourResultsPage.enterPostCode();
-            apprenticeshipSummaryPage = new ApprenticeshipSummaryPage(_context);
-            apprenticeshipSummaryPage.clickObSignInToApplyButton();
-        }*/
     }
 }

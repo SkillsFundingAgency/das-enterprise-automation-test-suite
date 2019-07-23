@@ -12,7 +12,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
     {
         #region Constants
         private const string PageTitle = "";
-        private const String ExpectedApprenticeshipSummaryHeader = "Apprenticeship summary";
+        private const string ExpectedApprenticeshipSummaryHeader = "Apprenticeship summary";
         #endregion
 
         #region Helpers
@@ -42,7 +42,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
             return _pageInteractionHelper.VerifyPage(this.GetPageHeading(), PageTitle);
         }
 
-        internal void verifyResultsPageHeader()
+        internal void verifyApprenticeSummaryPageHeader()
         {
             _pageInteractionHelper.VerifyPage(_apprenticeshipSummaryHeader, ExpectedApprenticeshipSummaryHeader);
         }
