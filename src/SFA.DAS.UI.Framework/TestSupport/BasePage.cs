@@ -13,7 +13,9 @@ namespace SFA.DAS.UI.Framework.TestSupport
         private readonly ScenarioContext _context;
         #endregion
 
-        protected virtual By PageHeader => By.CssSelector("h1");
+        protected virtual By PageHeader => By.CssSelector(".heading-xlarge");
+
+        protected abstract string PageTitle { get; }
 
         public BasePage(ScenarioContext context)
         {
@@ -22,14 +24,14 @@ namespace SFA.DAS.UI.Framework.TestSupport
             _formCompletionHelper = context.Get<FormCompletionHelper>();
         }
 
-        protected string GetPageHeading()
+        protected bool VerifyPage()
         {
-            return _pageInteractionHelper.GetText(PageHeader);
+            return _pageInteractionHelper.VerifyPage(GetPageHeading(), PageTitle);
         }
 
-        protected bool VerifyPage(string expected)
+        private string GetPageHeading()
         {
-            return _pageInteractionHelper.VerifyPage(GetPageHeading(), expected);
+            return _pageInteractionHelper.GetText(PageHeader);
         }
     }
 }
