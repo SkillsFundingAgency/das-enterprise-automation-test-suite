@@ -10,18 +10,4 @@ namespace SFA.DAS.UI.Framework.TestSupport
             return context.GetConfigurationRoot().GetSection(typeof(T).Name).Get<T>();
         }
     }
-
-    public static class GenericConfigurationHelper
-    {
-        public static void SetConfigurationRoot(this ScenarioContext context, IConfigurationRoot configurationRoot)
-        {
-            context.Set(configurationRoot, "root");
-        }
-
-        public static IConfigurationRoot GetConfigurationRoot(this ScenarioContext context)
-        {
-            return context.Get<IConfigurationRoot>("root");
-        }
-    }
-
 }
