@@ -13,7 +13,7 @@ variables:
   buildConfiguration: 'release'
 
 pool:
-  name: 'DAS - Continuous Integration'
+  name: 'Continuous Integration 02 - SSD - 160ACU'
 
 steps:
 - task: gittools.gitversion-preview.gitversion-task.GitVersion@5
