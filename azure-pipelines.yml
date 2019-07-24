@@ -41,14 +41,12 @@ steps:
     projects: 'src/**/*.csproj'
     arguments: '--configuration $(buildConfiguration) --no-restore'
 
-- task: DotNetCoreCLI@2
-  displayName: 'dotnet publish'
+- task: CopyFiles@2
+  displayName: 'Copy test files'
   inputs:
-    command: publish
-    publishWebProjects: false
-    zipAfterPublish: false
-    projects: 'src/SFA.DAS.TestProject.UITests/SFA.DAS.TestProject.UITests.csproj'
-    arguments: '--configuration $(buildConfiguration) --output $(build.artifactstagingdirectory)/publish --no-restore --no-build'
+    contents: |
+      src/SFA.DAS.TestProject.UITests/bin/$(buildConfiguration)/**
+    targetFolder: '$(build.artifactstagingdirectory)/tests'
 
 - task: PublishBuildArtifacts@1
   displayName: 'Publish Artifact'
