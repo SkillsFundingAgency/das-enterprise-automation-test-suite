@@ -5,7 +5,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.TestProject.UITests.Project.Tests.Pages
 {
-    public sealed class WelcomePage : BasePage, IVerifyPage
+    public sealed class WelcomePage : BasePage
     {
         #region constants
         private const string PageTitle = "Welcome to GOV.UK";
@@ -27,12 +27,7 @@ namespace SFA.DAS.TestProject.UITests.Project.Tests.Pages
             _scenarioContext = context;
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
-            VerifyPage();
-        }
-
-        public bool VerifyPage()
-        {
-            return _pageInteractionHelper.VerifyPage(this.GetPageHeading(), PageTitle);
+            VerifyPage(PageTitle);
         }
 
         internal SearchResultsPage EnterSearchTextAndSubmit(string searchText)

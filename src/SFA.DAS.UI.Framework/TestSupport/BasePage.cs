@@ -27,9 +27,9 @@ namespace SFA.DAS.UI.Framework.TestSupport
             return _pageInteractionHelper.GetText(PageHeader);
         }
 
-        protected bool IsPagePresented(string expected)
+        protected bool VerifyPage(string expected)
         {
-            return GetPageHeading() == expected;
+            return _pageInteractionHelper.VerifyPage(GetPageHeading(), expected);
         }
     }
 }

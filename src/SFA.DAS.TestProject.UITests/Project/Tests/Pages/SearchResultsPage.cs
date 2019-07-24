@@ -7,7 +7,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.TestProject.UITests.Project.Tests.Pages
 {
-    public sealed class SearchResultsPage : BasePage, IVerifyPage
+    public sealed class SearchResultsPage : BasePage
     {
         private const string PageTitle = "";
 
@@ -27,11 +27,6 @@ namespace SFA.DAS.TestProject.UITests.Project.Tests.Pages
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
             VerifyPage();
-        }
-
-        public bool VerifyPage()
-        {
-            return _pageInteractionHelper.VerifyPage(GetPageHeading(), PageTitle);
         }
 
         internal HomePage OpenDesiredPage(string searchText)
