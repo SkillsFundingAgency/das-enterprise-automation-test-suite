@@ -23,7 +23,7 @@ namespace SFA.DAS.PocProject.UITests.Project.Tests.Pages
         public Confirmpage(ScenarioContext context) : base(context)
         {
             _context = context;
-            _config = context.Get<ProjectSpecificConfig>();
+            _config = context.GetConfigSection<ProjectSpecificConfig>();
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
             VerifyPage();
@@ -33,8 +33,9 @@ namespace SFA.DAS.PocProject.UITests.Project.Tests.Pages
 
         public GetApprenticeshipFunding ContinueToGetApprenticeshipFunding()
         {
-            return EnterAccessCode()
+            EnterAccessCode()
                    .Continue();
+            return new GetApprenticeshipFunding(_context);
         }
 
         private Confirmpage EnterAccessCode()
@@ -43,10 +44,10 @@ namespace SFA.DAS.PocProject.UITests.Project.Tests.Pages
             return this;
         }
 
-        private GetApprenticeshipFunding Continue()
+        private Confirmpage Continue()
         {
             _formCompletionHelper.ClickElement(ContinueButton);
-            return new GetApprenticeshipFunding(_context);
+            return this;
         }
     }
 }

@@ -42,7 +42,7 @@ namespace SFA.DAS.PocProject.UITests.Project.Tests.Pages
         public RegisterPage(ScenarioContext context) : base(context)
         {
             _context = context;
-            _config = context.Get<ProjectSpecificConfig>();
+            _config = context.GetConfigSection<ProjectSpecificConfig>();
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
             VerifyPage();
@@ -51,14 +51,15 @@ namespace SFA.DAS.PocProject.UITests.Project.Tests.Pages
 
         protected override string PageTitle => "Set up as a user";
 
-        public void Register()
+        public Confirmpage Register()
         {
-            EnterFirstName().
+                EnterFirstName().
                 EnterlastName().
                 EnterEmail().
                 EnterPassword().
                 EnterPasswordConfirm().
                 SetmeUp();
+            return new Confirmpage(_context);
         }
 
         private RegisterPage EnterFirstName()
@@ -91,9 +92,10 @@ namespace SFA.DAS.PocProject.UITests.Project.Tests.Pages
             return this;
         }
 
-        private void SetmeUp()
+        private RegisterPage SetmeUp()
         {
             _formCompletionHelper.ClickElement(SetMeUpButton);
+            return this;
         }
     }
 }

@@ -36,6 +36,11 @@ namespace SFA.DAS.PocProject.UITests.Project.Tests.Pages
             _config = context.Get<ProjectSpecificConfig>();
             VerifyPage();
         }
+        public RegisterPage CreateAnAccount()
+        {
+            _formCompletionHelper.ClickElement(CreateAnAccountLink);
+            return new RegisterPage(_context);
+        }
 
         public void Login()
         {
@@ -59,12 +64,6 @@ namespace SFA.DAS.PocProject.UITests.Project.Tests.Pages
         private void SignIn()
         {
             _formCompletionHelper.ClickElement(SignInButton);
-        }
-
-        private RegisterPage CreateAnAccount()
-        {
-            _formCompletionHelper.ClickElement(CreateAnAccountLink);
-            return new RegisterPage(_context);
         }
 
         private void ForgottenYourPassword()
