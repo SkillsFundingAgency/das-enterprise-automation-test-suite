@@ -1,12 +1,19 @@
 ﻿namespace SFA.DAS.UI.Framework
 {
-    public class JsonConfig
+    public class FrameworkConfig
     {
         public string BaseUrl { get; set; }
 
         public string Browser { get; set; }
 
+        public TimeOut TimeOut { get; set; }
+
         public BrowserStackSetting BrowserStackSetting { get; set; }
+    }
+
+    public class TimeOut
+    {
+        public int PageNavigation { get; set; }
     }
 
     public class BrowserStackSetting
