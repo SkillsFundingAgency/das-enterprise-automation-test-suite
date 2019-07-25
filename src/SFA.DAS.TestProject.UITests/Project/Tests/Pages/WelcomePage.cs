@@ -25,7 +25,7 @@ namespace SFA.DAS.TestProject.UITests.Project.Tests.Pages
             _scenarioContext = context;
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
-            VerifyPage(PageTitle);
+            VerifyPage();
         }
 
         internal SearchResultsPage EnterSearchTextAndSubmit(string searchText)

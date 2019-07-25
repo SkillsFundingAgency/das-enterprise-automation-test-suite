@@ -16,11 +16,7 @@ namespace SFA.DAS.TestProject.UITests.Project.Tests.Pages
         public HomePage(ScenarioContext context) : base(context)
         {
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
-        }
-
-        internal bool IsPageMatching()
-        {
-            return VerifyPage(PageTitle);
+            VerifyPage();
         }
     }
 }
