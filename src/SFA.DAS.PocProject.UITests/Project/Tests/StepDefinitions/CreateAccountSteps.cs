@@ -28,5 +28,13 @@ namespace SFA.DAS.PocProject.UITests.Project.Tests.StepDefinitions
         {
            getApprenticeshipFunding.DoNotAddPaye();
         }
+
+        [Then(@"I add paye details")]
+        public void ThenIAddPayeDetails()
+        {
+            getApprenticeshipFunding
+                .AddPaye()
+                .SignInTo();
+        }
     }
 }
