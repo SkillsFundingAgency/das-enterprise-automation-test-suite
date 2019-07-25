@@ -25,6 +25,12 @@
     <PackageReference Include="SpecFlow.Tools.MsBuild.Generation" Version="3.0.225" />
   </ItemGroup>
 
+  <PropertyGroup>
+    <PublishChromeDriver>true</PublishChromeDriver>
+    <PublishIEDriver>true</PublishIEDriver>
+    <PublishGeckoDriver>true</PublishGeckoDriver>
+  </PropertyGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\SFA.DAS.UI.Framework\SFA.DAS.UI.Framework.csproj" />
   </ItemGroup>
