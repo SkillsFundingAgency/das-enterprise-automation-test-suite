@@ -29,7 +29,7 @@ namespace SFA.DAS.TestProject.UITests.Project.Tests.Pages
             _formCompletionHelper = context.Get<FormCompletionHelper>();
             VerifyPage(PageTitle);
         }
-
+        
         internal SearchResultsPage EnterSearchTextAndSubmit(string searchText)
         {
             _formCompletionHelper.EnterText(_searchField, searchText);
