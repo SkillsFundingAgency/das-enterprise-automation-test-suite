@@ -106,4 +106,9 @@ This framework supports Feature Level parallelization (tests under different fea
 
 Note : referenced from https://github.com/techtalk/SpecFlow/issues/1599, https://github.com/techtalk/SpecFlow/issues/1535
 
+## No of Threads in parallel test execution
+If LevelOfParallelism is not specified, workers defaults to the number of processors on the machine, or 2, whichever is greater.
+1. You can specify no of threads to use in the parameter : ``[assembly: LevelOfParallelism(2)]``
+2. You can specify 0 to exeute tests in sequential order : ``[assembly: LevelOfParallelism(0)]``
+
 
