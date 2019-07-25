@@ -13,23 +13,16 @@ namespace SFA.DAS.TestProject.UITests.Project.Tests.Pages
 
         #region Helpers
         private readonly PageInteractionHelper _pageInteractionHelper;
-#endregion
+        #endregion
 
         public HomePage(ScenarioContext context) : base(context)
         {
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
-            VerifyPage();
-        
-        }
-
-        protected override bool VerifyPage()
-        {
-            return _pageInteractionHelper.VerifyPage(this.GetPageHeading(), PageTitle);
         }
 
         internal bool IsPageMatching()
         {
-            return _pageInteractionHelper.VerifyPage(this.GetPageHeading(), PageTitle);
+            return VerifyPage(PageTitle);
         }
     }
 }
