@@ -43,6 +43,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
                 .AddEnvironmentVariables()
                 .AddUserSecrets("BrowserStackSecrets")
                 .AddUserSecrets("TestProjectSecrets")
+                .AddUserSecrets("MongoDbSecrets")
                 .Build();
         }
     }
