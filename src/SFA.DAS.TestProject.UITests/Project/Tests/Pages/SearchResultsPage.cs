@@ -9,8 +9,6 @@ namespace SFA.DAS.TestProject.UITests.Project.Tests.Pages
 {
     public sealed class SearchResultsPage : BasePage
     {
-        private const string PageTitle = "";
-
         #region Helpers and Context
         private readonly PageInteractionHelper _pageInteractionHelper;
         private readonly FormCompletionHelper _formCompletionHelper;
@@ -19,7 +17,9 @@ namespace SFA.DAS.TestProject.UITests.Project.Tests.Pages
 
         #region Page Object Elements
         private By DfeUrl(string searchText) => By.LinkText(searchText);
-#endregion 
+        #endregion
+
+        protected override string PageTitle => "";
 
         public SearchResultsPage(ScenarioContext context) : base(context)
         {
