@@ -34,7 +34,9 @@ namespace SFA.DAS.PocProject.UITests.Project
         {
             var mongoDbConfig = _context.GetConfigSection<MongoDbConfig>();
 
-            var helper = new RegisterHelper();
+            var projectspecificConfig = _context.GetConfigSection<ProjectSpecificConfig>();
+
+            var helper = new DataHelper(projectspecificConfig.TwoDigitProjectCode);
             _context.Set(helper);
 
             var mongoDbDataHelper = new MongoDbDataHelper(helper);
@@ -59,6 +61,16 @@ namespace SFA.DAS.PocProject.UITests.Project
         public void AddPayeDetails()
         {
             _mongoDbHelper.AsyncCreateData().Wait();
+            TestContext.Progress.WriteLine($"Gateway User Created, EmpRef: {_objectContext.GetGatewayPaye()}");
+        }
+
+        [AfterScenario(Order = 23)]
+        [Scope(Tag = "addpayedetails")]
+        public void DeletePayeDetails()
+        {
+            var results = _mongoDbHelper.AsyncDeleteData();
+            results.Wait();
+            TestContext.Progress.WriteLine($"Gateway User Deleted, EmpRef: {_objectContext.GetGatewayPaye()}");
         }
     }
 }

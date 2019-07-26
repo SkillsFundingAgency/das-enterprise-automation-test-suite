@@ -1,11 +1,7 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Driver;
-using SFA.DAS.UI.Framework.TestSupport;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
-using TechTalk.SpecFlow;
 
 namespace SFA.DAS.PocProject.UITests.Project.Helpers
 {
@@ -24,20 +20,27 @@ namespace SFA.DAS.PocProject.UITests.Project.Helpers
         {
             await AsyncCreateGatewayUserData();
         }
+
+        public async Task AsyncDeleteData()
+        {
+            await AsyncDeleteGatewayUserData();
+        }
+
+        private async Task AsyncDeleteGatewayUserData()
+        {
+            var filter = Builders<BsonDocument>.Filter.Eq("gatewayID", _helper.GatewayId);
+
+            await GetGatewayUsersCollection<BsonDocument>().DeleteOneAsync(filter);
+        }
         
         private async Task AsyncCreateGatewayUserData()
         {
             BsonDocument[] data = CreateGatewayUserData();
 
-            var client = new MongoClient(_config.Uri);
-            var db = client.GetDatabase(_config.Database);
-
-            var gatewayUsers = db.GetCollection<BsonDocument>("gateway_users");
-
-            await gatewayUsers.InsertManyAsync(data);
+            await GetGatewayUsersCollection<BsonDocument>().InsertManyAsync(data);
         }
 
-        internal BsonDocument[] CreateGatewayUserData()
+        private BsonDocument[] CreateGatewayUserData()
         {
             BsonDocument addUser = new BsonDocument
             {
@@ -50,27 +53,13 @@ namespace SFA.DAS.PocProject.UITests.Project.Helpers
 
             return new BsonDocument[] { addUser };
         }
-    }
 
-
-    public class MongoDbDataHelper
-    {
-        private readonly RegisterHelper _registerHelper;
-
-        private int _nextNumber;
-
-        public MongoDbDataHelper(RegisterHelper registerHelper)
+        private IMongoCollection<T> GetGatewayUsersCollection<T>()
         {
-            _registerHelper = registerHelper;
-            _nextNumber = _registerHelper.NextNumber;
+            var client = new MongoClient(_config.Uri);
+            var db = client.GetDatabase(_config.Database);
+
+            return db.GetCollection<T>("gateway_users");
         }
-
-        public string GatewayId => _registerHelper.RandomUserName;
-
-        public string GatewayPassword => "password";
-
-        public string EmpRef => $"{_nextNumber}/AS{_nextNumber}01";
-
-        public string Name => $"End To End Scenario for {GatewayId}";
     }
 }

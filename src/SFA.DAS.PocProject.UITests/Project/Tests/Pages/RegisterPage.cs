@@ -19,8 +19,8 @@ namespace SFA.DAS.PocProject.UITests.Project.Tests.Pages
         private readonly ProjectSpecificConfig _config;
         #endregion
 
-        private const string FirstName = "DAS";
         private const string LastName = "Auto_Tester";
+
         private By SignInLink => By.LinkText("sign in");
 
         private By FirstNameInput => By.Id("FirstName");
@@ -37,7 +37,7 @@ namespace SFA.DAS.PocProject.UITests.Project.Tests.Pages
 
         private By SetMeUpButton => By.Id("button-register");
 
-        private readonly RegisterHelper _helper;
+        private readonly DataHelper _helper;
 
         public RegisterPage(ScenarioContext context) : base(context)
         {
@@ -46,7 +46,7 @@ namespace SFA.DAS.PocProject.UITests.Project.Tests.Pages
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
             VerifyPage();
-            _helper = context.Get<RegisterHelper>();
+            _helper = context.Get<DataHelper>();
         }
 
         protected override string PageTitle => "Set up as a user";
@@ -64,7 +64,7 @@ namespace SFA.DAS.PocProject.UITests.Project.Tests.Pages
 
         private RegisterPage EnterFirstName()
         {
-            _formCompletionHelper.EnterText(FirstNameInput, FirstName);
+            _formCompletionHelper.EnterText(FirstNameInput, _config.TwoDigitProjectCode);
             return this;
         }
 

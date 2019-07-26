@@ -24,7 +24,8 @@ namespace SFA.DAS.PocProject.UITests.Project.Tests.Pages
 
         public OrganistionSearchPage(ScenarioContext context) : base(context)
         {
-            _config = context.Get<ProjectSpecificConfig>();
+            _context = context;
+            _config = context.GetConfigSection<ProjectSpecificConfig>();
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
             VerifyPage();

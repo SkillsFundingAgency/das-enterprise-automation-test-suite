@@ -20,6 +20,7 @@ namespace SFA.DAS.PocProject.UITests.Project.Tests.Pages
 
         public GatewayInformPage(ScenarioContext context) : base(context)
         {
+            _context = context;
             _formCompletionHelper = context.Get<FormCompletionHelper>();
             VerifyPage();
         }

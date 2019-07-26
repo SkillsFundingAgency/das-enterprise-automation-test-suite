@@ -25,11 +25,12 @@ namespace SFA.DAS.PocProject.UITests.Project.Tests.Pages
 
         public GGSignInPage(ScenarioContext context) : base(context)
         {
-            _config = context.Get<ProjectSpecificConfig>();
+            _context = context;
+            _config = context.GetConfigSection<ProjectSpecificConfig>();
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
             _gatewayid = context.Get<ObjectContext>().GetGatewayId();
-            _gatewayid = context.Get<ObjectContext>().GetGatewayPassword();
+            _gatewaypassword = context.Get<ObjectContext>().GetGatewayPassword();
             VerifyPage();
         }
         protected override string PageTitle => "Sign in";
