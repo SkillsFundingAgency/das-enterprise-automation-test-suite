@@ -46,7 +46,9 @@ namespace SFA.DAS.PocProject.UITests.Project.Tests.StepDefinitions
         [Then(@"I can land in the User Home page")]
         public void ThenICanLandInTheUserHomePage()
         {
-            var accountid = organistionSearchPage.SearchForAnOrganisation()
+            var accountid = organistionSearchPage
+                .SearchForAnOrganisation()
+                .SelectYourOrganisation()
                 .TheseDetailsAreCorrect()
                 .GoToHomePage()
                 .AccountID();

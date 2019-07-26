@@ -33,11 +33,11 @@ namespace SFA.DAS.PocProject.UITests.Project.Tests.Pages
 
         protected override string PageTitle => "Search for your organisation";
 
-        public CheckYourDetailspage SearchForAnOrganisation()
+        public SelectYourOrganisationPage SearchForAnOrganisation()
         {
             EnterOrganisationName()
                 .Search();
-                return new CheckYourDetailspage(_context);
+                return new SelectYourOrganisationPage(_context);
         }
 
 

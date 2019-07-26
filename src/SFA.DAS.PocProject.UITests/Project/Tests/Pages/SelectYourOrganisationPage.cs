@@ -1,6 +1,7 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
+using System.Linq;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -17,11 +18,14 @@ namespace SFA.DAS.PocProject.UITests.Project.Tests.Pages
         private readonly ProjectSpecificConfig _config;
         #endregion
 
-        private By SearchLinkUrl(string searchText) => By.LinkText(searchText);
+        private readonly IWebDriver _webDriver;
+
+        private IWebElement SearchLinkUrl(string searchText) => _webDriver.FindElements(By.CssSelector("button.link-button")).ToList().First(x => x.GetAttribute("innerText") == searchText);
 
         public SelectYourOrganisationPage(ScenarioContext context): base(context)
         {
             _context = context;
+            _webDriver = context.GetWebDriver();
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
             _config = context.GetConfigSection<ProjectSpecificConfig>();
@@ -30,11 +34,10 @@ namespace SFA.DAS.PocProject.UITests.Project.Tests.Pages
 
         protected override string PageTitle => "Select your organisation";
 
-        public CheckYourDetailspage OpenSearchLink()
+        public CheckYourDetailspage SelectYourOrganisation()
         {
-            _formCompletionHelper.ClickElement(SearchLinkUrl(_config.OrganisationName));
+            _formCompletionHelper.ClickElement(SearchLinkUrl(_config.OrganisationName.ToUpper()));
             return new CheckYourDetailspage(_context);
         }
-
     }
 }
