@@ -42,7 +42,7 @@ namespace SFA.DAS.PocProject.UITests.Project.Tests.Pages
 
         private OrganistionSearchPage EnterOrganisationName()
         {
-            _formCompletionHelper.EnterText(SearchInput, "ESFA");
+            _formCompletionHelper.EnterText(SearchInput, _config.OrganisationName);
             return this;
         }
 

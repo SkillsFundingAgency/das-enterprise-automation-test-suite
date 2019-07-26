@@ -31,11 +31,11 @@ namespace SFA.DAS.PocProject.UITests.Project.Tests.Pages
 
         protected override string PageTitle => "Get apprenticeship funding";
 
-        public GGSignInPage AddPaye()
+        public GatewayInformPage AddPaye()
         {
             SelectAddPaye().
                 Continue();
-            return new GGSignInPage(_context);
+            return new GatewayInformPage(_context);
         }
 
         public MyAccountWithOutPAYE DoNotAddPaye()

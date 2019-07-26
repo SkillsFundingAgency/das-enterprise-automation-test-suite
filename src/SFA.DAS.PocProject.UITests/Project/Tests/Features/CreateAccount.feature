@@ -10,4 +10,5 @@ Then I do not add paye details
 @addpayedetails
 Scenario: Create user Account with PAYE Details
 Given I create an Account 
-Then I add paye details
+When I add paye details
+Then I can land in the User Home page

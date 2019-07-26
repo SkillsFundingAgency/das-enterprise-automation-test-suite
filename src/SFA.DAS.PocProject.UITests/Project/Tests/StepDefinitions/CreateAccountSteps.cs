@@ -1,4 +1,6 @@
-﻿using SFA.DAS.PocProject.UITests.Project.Tests.Pages;
+﻿using NUnit.Framework;
+using SFA.DAS.PocProject.UITests.Project.Tests.Pages;
+using SFA.DAS.UI.Framework.TestSupport;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.PocProject.UITests.Project.Tests.StepDefinitions
@@ -6,12 +8,15 @@ namespace SFA.DAS.PocProject.UITests.Project.Tests.StepDefinitions
     [Binding]
     public class CreateAccountSteps
     {
-        private ScenarioContext _context;
+        private readonly ScenarioContext _context;
         private GetApprenticeshipFunding getApprenticeshipFunding;
+        private OrganistionSearchPage organistionSearchPage;
+        private readonly ObjectContext _objectContext;
 
         public CreateAccountSteps(ScenarioContext context)
         {
             _context = context;
+            _objectContext = _context.Get<ObjectContext>();
         }
 
         [Given(@"I create an Account")]
@@ -29,12 +34,25 @@ namespace SFA.DAS.PocProject.UITests.Project.Tests.StepDefinitions
            getApprenticeshipFunding.DoNotAddPaye();
         }
 
-        [Then(@"I add paye details")]
+        [When(@"I add paye details")]
         public void ThenIAddPayeDetails()
         {
-            getApprenticeshipFunding
+            organistionSearchPage = getApprenticeshipFunding
                 .AddPaye()
+                .ContinueToGGSignIn()
                 .SignInTo();
+        }
+
+        [Then(@"I can land in the User Home page")]
+        public void ThenICanLandInTheUserHomePage()
+        {
+            var accountid = organistionSearchPage.SearchForAnOrganisation()
+                .TheseDetailsAreCorrect()
+                .GoToHomePage()
+                .AccountID();
+            TestContext.Progress.WriteLine($"Account Id : {accountid}");
+
+            _objectContext.SetAccountId(accountid);
         }
     }
 }

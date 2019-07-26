@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.PocProject.UITests.Project.Helpers;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
@@ -12,6 +13,8 @@ namespace SFA.DAS.PocProject.UITests.Project.Tests.Pages
         private readonly FormCompletionHelper _formCompletionHelper;
         private readonly ScenarioContext _context;
         private readonly ProjectSpecificConfig _config;
+        private readonly string _gatewayid;
+        private readonly string _gatewaypassword;
         #endregion
 
         private By UserIdInput => By.Id("userId");
@@ -25,6 +28,8 @@ namespace SFA.DAS.PocProject.UITests.Project.Tests.Pages
             _config = context.Get<ProjectSpecificConfig>();
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
+            _gatewayid = context.Get<ObjectContext>().GetGatewayId();
+            _gatewayid = context.Get<ObjectContext>().GetGatewayPassword();
             VerifyPage();
         }
         protected override string PageTitle => "Sign in";
@@ -41,13 +46,13 @@ namespace SFA.DAS.PocProject.UITests.Project.Tests.Pages
 
         private GGSignInPage EnterUserID()
         {
-            _formCompletionHelper.EnterText(UserIdInput, _config.GGUserId);
+            _formCompletionHelper.EnterText(UserIdInput, _gatewayid);
             return this;
         }
 
         private GGSignInPage EnterUserPassword()
         {
-            _formCompletionHelper.EnterText(PassowrdInput, _config.GGUserpassword);
+            _formCompletionHelper.EnterText(PassowrdInput, _gatewaypassword);
             return this;
         }
 

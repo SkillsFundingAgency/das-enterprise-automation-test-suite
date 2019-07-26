@@ -46,7 +46,7 @@ namespace SFA.DAS.PocProject.UITests.Project.Tests.Pages
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
             VerifyPage();
-            _helper = new RegisterHelper();
+            _helper = context.Get<RegisterHelper>();
         }
 
         protected override string PageTitle => "Set up as a user";
@@ -76,7 +76,7 @@ namespace SFA.DAS.PocProject.UITests.Project.Tests.Pages
 
         private RegisterPage EnterEmail()
         {
-            _formCompletionHelper.EnterText(EmailInput, _helper.GenerateRandEmail());
+            _formCompletionHelper.EnterText(EmailInput, _helper.RandomEmail);
             return this;
         }
 
