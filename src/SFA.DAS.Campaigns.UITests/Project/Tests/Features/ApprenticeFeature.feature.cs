@@ -72,7 +72,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Features
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("User can find an apprentice from Apprenticeships home page")]
-        [NUnit.Framework.TestCaseAttribute("Engineering and manufacturing", "CV11DD", "40 miles", null)]
+        [NUnit.Framework.TestCaseAttribute("Engineering and manufacturing", "SW1V 3LP", "5 miles", null)]
         public virtual void UserCanFindAnApprenticeFromApprenticeshipsHomePage(string selectInterest, string postcode, string noOfMiles, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User can find an apprentice from Apprenticeships home page", null, exampleTags);
@@ -157,6 +157,28 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Features
   testRunner.Then("I click on Serach button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 46
   testRunner.Then("I can verify the error message for invalid postcode", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Check all the links and content of YOUR APPRENTICESHIP screen")]
+        public virtual void CheckAllTheLinksAndContentOfYOURAPPRENTICESHIPScreen()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Check all the links and content of YOUR APPRENTICESHIP screen", null, ((string[])(null)));
+#line 54
+ this.ScenarioInitialize(scenarioInfo);
+            this.ScenarioStart();
+#line 55
+  testRunner.Given("I navigate to Fire It Up home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 56
+  testRunner.When("I launch the Your Apprenticeship page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 57
+  testRunner.Then("I verify the content under What to bring, and other useful info section", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 58
+  testRunner.Then("I verify the content under Meet your new team section", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 59
+  testRunner.Then("I verify the content under What comes after my apprenticeship section", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

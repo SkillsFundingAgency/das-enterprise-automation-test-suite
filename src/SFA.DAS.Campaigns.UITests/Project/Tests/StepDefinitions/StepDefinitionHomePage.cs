@@ -48,5 +48,15 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
             fireItUpHomePage.clickOnFindAnApprenticeLink();
         }
 
+        [When(@"I launch the Your Apprenticeship page")]
+        public void launchYourApprenticeshipPage()
+        {
+            fireItUpHomePage.launchApprenticeMenu();
+            TestContext.Progress.WriteLine("Navigating to Your Apprenticeship page");
+            fireItUpHomePage.clickOnYourApprenticeshipLink();
+        }
+
+        
+
     }
 }

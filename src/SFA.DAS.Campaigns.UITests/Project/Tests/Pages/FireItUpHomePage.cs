@@ -30,6 +30,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
         private readonly By _findAnApprenticeLink = By.XPath("//a[@id='link-nav-app-step-2']");
         private readonly By _ApprenticesHeaderSupportText = By.XPath("(//div[@class='launcher__content']/child::p)[1]");
         private readonly By _EmployersHeaderSupportText = By.XPath("(//div[@class='launcher__content']/child::p)[4]");
+        private readonly By _yourApprenticeshipLink = By.XPath("//a[@id='link-nav-app-step-5']");
         #endregion
 
         public FireItUpHomePage(ScenarioContext context) : base(context)
@@ -77,6 +78,12 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
         {
             _pageInteractionHelper.WaitForElementToBeClickable(_findAnApprenticeLink);
             _formCompletionHelper.ClickElement(_findAnApprenticeLink);
+        }
+
+        internal void clickOnYourApprenticeshipLink()
+        {
+            _pageInteractionHelper.WaitForElementToBeClickable(_yourApprenticeshipLink);
+            _formCompletionHelper.ClickElement(_yourApprenticeshipLink);
         }
 
     }

@@ -34,7 +34,10 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
         private readonly By _updateResultsButton = By.XPath("//input[@id='button-faa-update-results']");
         private readonly By _noMatchResultParagraphOne = By.XPath("//div[@class='search-results']/p[1]");
         private readonly By _noMatchResultParagraphTwo = By.XPath("//div[@class='search-results']/p[2]");
-
+        private readonly By _vacancyTitle = By.XPath("//ol[@id='vacancy-search-results']/li[1]/ul/li[1]");
+        private readonly By _vacancyDescription = By.XPath("//ol[@id='vacancy-search-results']/li[1]/p");
+        private readonly By _employerName = By.XPath("//ol[@id='vacancy-search-results']/li[1]/div/div[1]/dl/dd[1]");
+        private readonly By _possibleClosingDate = By.XPath("//ol[@id='vacancy-search-results']/li[1]/div/div[1]/dl/dd[4]/span");
         #endregion
 
         public YourResultsPage(ScenarioContext context) : base(context)
@@ -81,6 +84,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
                 _pageInteractionHelper.WaitForElementToBeDisplayed(_resultsHeader);
                 if (_pageInteractionHelper.GetText(_resultsHeader).Contains(ExpectedHeaderWhenResultsFound))
                 {
+                    extractApprenticeDetailsFromResultsPage();
                     clickOnFirstSearchResult();
                     Console.WriteLine(" Results found in "+i+" th time");
                     break;
@@ -150,6 +154,14 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
             _pageInteractionHelper.VerifyText(_noMatchResultParagraphOne, ExpectedParagraphOneText);
             _pageInteractionHelper.WaitForElementToBeDisplayed(_noMatchResultParagraphTwo);
             _pageInteractionHelper.VerifyText(_noMatchResultParagraphTwo, ExpectedParagraphTwoText);
+        }
+
+        internal void extractApprenticeDetailsFromResultsPage()
+        {
+            PageInteractionCampaignsHelper.expectedVacancyTitle = _pageInteractionHelper.GetText(_vacancyTitle);
+            PageInteractionCampaignsHelper.expectedVacancyDescription = _pageInteractionHelper.GetText(_vacancyDescription);
+            PageInteractionCampaignsHelper.expectedEmployerName = _pageInteractionHelper.GetText(_employerName);
+            //PageInteractionCampaignsHelper.expectedPossibleClosingDate = _pageInteractionHelper.GetText(_possibleClosingDate);
         }
 
     }

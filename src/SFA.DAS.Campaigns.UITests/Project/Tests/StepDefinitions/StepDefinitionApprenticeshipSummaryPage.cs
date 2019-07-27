@@ -32,7 +32,8 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
         {
             //apprenticeshipSummaryPage = new ApprenticeshipSummaryPage(_context);
             apprenticeshipSummaryPage.verifyApprenticeSummaryPageHeader();
-            apprenticeshipSummaryPage.clickObSignInToApplyButton();
+            //apprenticeshipSummaryPage.clickObSignInToApplyButton();
+            apprenticeshipSummaryPage.verifyApprenticeDetailsOfResultsPageAgainstSummaryPage();
         }
     }
 }

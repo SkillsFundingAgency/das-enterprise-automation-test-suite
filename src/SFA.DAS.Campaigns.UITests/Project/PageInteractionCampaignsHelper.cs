@@ -9,7 +9,11 @@ namespace SFA.DAS.Campaigns.UITests
     public class PageInteractionCampaignsHelper
     {
         protected IWebDriver WebDriver;
-        
+        public static string expectedVacancyTitle = "";
+        internal static string expectedVacancyDescription = "";
+        internal static string expectedEmployerName = "";
+        internal static string expectedPossibleClosingDate = "";
+
         public PageInteractionCampaignsHelper(IWebDriver webDriver)
         {
             WebDriver = webDriver;

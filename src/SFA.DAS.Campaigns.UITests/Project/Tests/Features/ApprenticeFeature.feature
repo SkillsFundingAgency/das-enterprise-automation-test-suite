@@ -17,7 +17,7 @@
 
 		Examples: 
 		| SelectInterest                | Postcode | NoOfMiles |
-		| Engineering and manufacturing | CV11DD   | 40 miles  | 
+		| Engineering and manufacturing | SW1V 3LP | 5 miles   |
 
 
 	Scenario Outline: User can see a valid message when no apprentice results found
@@ -50,6 +50,15 @@
 		| Engineering and manufacturing | 123456   |
 		| Care services					| AS$$TT55 |
 		| Care services					|		   |
+
+	Scenario: Check all the links and content of YOUR APPRENTICESHIP screen
+		Given I navigate to Fire It Up home page
+		When I launch the Your Apprenticeship page
+		Then I verify the content under What to bring, and other useful info section
+		Then I verify the content under Meet your new team section
+		Then I verify the content under What comes after my apprenticeship section
+
+
 
 
 
