@@ -19,6 +19,7 @@ namespace SFA.DAS.PocProject.UITests.Project
         private readonly IWebDriver _webDriver;
         private MongoDbHelper _mongoDbHelper;
         private readonly ObjectContext _objectContext;
+        private DataHelper _dataHelper;
 
         public Hooks(ScenarioContext context)
         {
@@ -28,18 +29,29 @@ namespace SFA.DAS.PocProject.UITests.Project
             _objectContext = context.Get<ObjectContext>();
         }
 
+        [BeforeScenario(Order = 21)]
+        public void Navigate()
+        {
+            var url = _config.BaseUrl;
+            _webDriver.Navigate().GoToUrl(url);
+        }
+
         [BeforeScenario(Order = 22)]
+        public void SetUpDataHelpers()
+        {
+            var projectspecificConfig = _context.GetConfigSection<ProjectSpecificConfig>();
+
+            _dataHelper = new DataHelper(projectspecificConfig.TwoDigitProjectCode);
+            _context.Set(_dataHelper);
+        }
+
+        [BeforeScenario(Order = 23)]
         [Scope(Tag = "addpayedetails")]
-        public void SetUpPojectHelpers()
+        public void SetUpMongoDbHelpers()
         {
             var mongoDbConfig = _context.GetConfigSection<MongoDbConfig>();
 
-            var projectspecificConfig = _context.GetConfigSection<ProjectSpecificConfig>();
-
-            var helper = new DataHelper(projectspecificConfig.TwoDigitProjectCode);
-            _context.Set(helper);
-
-            var mongoDbDataHelper = new MongoDbDataHelper(helper);
+            var mongoDbDataHelper = new MongoDbDataHelper(_dataHelper);
             _context.Set(mongoDbDataHelper);
 
             TestContext.Progress.WriteLine($"Gateway Id : {mongoDbDataHelper.GatewayId}");
@@ -49,14 +61,7 @@ namespace SFA.DAS.PocProject.UITests.Project
             _mongoDbHelper = new MongoDbHelper(mongoDbConfig, mongoDbDataHelper);
         }
 
-        [BeforeScenario(Order = 21)]
-        public void Navigate()
-        {
-            var url = _config.BaseUrl;
-            _webDriver.Navigate().GoToUrl(url);
-        }
-        
-        [BeforeScenario(Order = 23)]
+        [BeforeScenario(Order = 24)]
         [Scope(Tag = "addpayedetails")]
         public void AddPayeDetails()
         {
@@ -64,7 +69,7 @@ namespace SFA.DAS.PocProject.UITests.Project
             TestContext.Progress.WriteLine($"Gateway User Created, EmpRef: {_objectContext.GetGatewayPaye()}");
         }
 
-        [AfterScenario(Order = 23)]
+        [AfterScenario(Order = 21)]
         [Scope(Tag = "addpayedetails")]
         public void DeletePayeDetails()
         {
