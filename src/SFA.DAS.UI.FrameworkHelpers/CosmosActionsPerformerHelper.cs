@@ -7,9 +7,9 @@ using SFA.DAS.CosmosDb;
 
 namespace SFA.DAS.UI.FrameworkHelpers
 {
-    public class InClassName
+    public class CosmoDbInfo
     {
-        public InClassName(string url, string authKey, string dbName, string collectionName, string recordName, bool isPartitionKey, string partitionKey = "partitionKey")
+        public CosmoDbInfo(string url, string authKey, string dbName, string collectionName, string recordName, bool isPartitionKey, string partitionKey = "partitionKey")
         {
             Url = url;
             AuthKey = authKey;
@@ -34,7 +34,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         public static void RemoveDoc(string url, string authKey, string dbName, string collectionName, string recordName, string partitionKey, bool isPartitionKey = true)
         {
-            var tuple = QueryDb(new InClassName(url, authKey, dbName, collectionName, recordName, isPartitionKey = true, partitionKey));
+            var tuple = QueryDb(new CosmoDbInfo(url, authKey, dbName, collectionName, recordName, isPartitionKey = true, partitionKey));
             var docs = tuple.Item1;
             var requestOptions = tuple.Item2;
             var db = tuple.Item3;
@@ -44,7 +44,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         public static void AddNewDoc(string url, string authKey, string dbName, string collectionName, string currentDocName, string newDocName, string guid)
         {
-            var tuple = QueryDb(new InClassName(url, authKey, dbName, collectionName, currentDocName, false));
+            var tuple = QueryDb(new CosmoDbInfo(url, authKey, dbName, collectionName, currentDocName, false));
             var docs = tuple.Item1;
             var requestOptions = tuple.Item2;
             var db = tuple.Item3;
@@ -55,7 +55,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         public static void ModifyDoc(string url, string authKey, string dbName, string collectionName, string currentDocName, string newDocName, string guid)
         {
-            var tuple = QueryDb(new InClassName(url, authKey, dbName, collectionName, currentDocName, false));
+            var tuple = QueryDb(new CosmoDbInfo(url, authKey, dbName, collectionName, currentDocName, false));
             var docs = tuple.Item1;
             var requestOptions = tuple.Item2;
             var db = tuple.Item3;
@@ -88,15 +88,15 @@ namespace SFA.DAS.UI.FrameworkHelpers
         }
 
 
-        private static Tuple<IQueryable<Aple>, RequestOptions, DocumentRepository<Aple>> QueryDb(InClassName inClassName)
+        private static Tuple<IQueryable<Aple>, RequestOptions, DocumentRepository<Aple>> QueryDb(CosmoDbInfo cosmoDbInfo)
         {
-            var db = PermissionsDocumentRepository(inClassName.Url, inClassName.AuthKey, inClassName.DbName, inClassName.CollectionName);
+            var db = PermissionsDocumentRepository(cosmoDbInfo.Url, cosmoDbInfo.AuthKey, cosmoDbInfo.DbName, cosmoDbInfo.CollectionName);
             var option = new FeedOptions { EnableCrossPartitionQuery = true };
-            var docs = db.CreateQuery(option).Select(x => x).Where(x => x.Name == inClassName.RecordName);
+            var docs = db.CreateQuery(option).Select(x => x).Where(x => x.Name == cosmoDbInfo.RecordName);
             var requestOptions = new RequestOptions();
-            if (inClassName.IsPartitionKey)
+            if (cosmoDbInfo.IsPartitionKey)
             {
-                requestOptions.PartitionKey = new PartitionKey(inClassName.PartitionKey);
+                requestOptions.PartitionKey = new PartitionKey(cosmoDbInfo.PartitionKey);
             }
             return Tuple.Create(docs, requestOptions, db);
         }
