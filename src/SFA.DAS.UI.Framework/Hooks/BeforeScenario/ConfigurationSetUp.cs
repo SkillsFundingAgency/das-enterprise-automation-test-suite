@@ -20,7 +20,7 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
             {
                 BaseUrl = Configurator.GetBaseUrl(),
                 Browser = Configurator.GetBrowser(),
-                TimeOutSetting = Configurator.GetTimeOut(),
+                TimeOutConfig = Configurator.GetTimeOut(),
                 BrowserStackSetting = Configurator.GetBrowserStackSetting()
             };
 

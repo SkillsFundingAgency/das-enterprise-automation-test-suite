@@ -8,7 +8,7 @@ namespace SFA.DAS.UI.Framework
 
         public string Browser { get; set; }
 
-        public TimeOutConfig TimeOutSetting { get; set; }
+        public TimeOutConfig TimeOutConfig { get; set; }
 
         public BrowserStackSetting BrowserStackSetting { get; set; }
     }
