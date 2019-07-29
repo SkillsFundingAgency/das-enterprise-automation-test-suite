@@ -7,7 +7,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.TestProject.UITests.Project.Tests.Pages
 {
-    public sealed class SearchResultsPage : BasePage
+    public sealed class SearchResultsPage : TestProjectBasePage
     {
         #region Helpers and Context
         private readonly PageInteractionHelper _pageInteractionHelper;
