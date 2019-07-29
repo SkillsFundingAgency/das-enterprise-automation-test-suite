@@ -91,6 +91,8 @@ Note: Tests can be executed on different browsers using BrowserStack. Tests can 
 3. RandomDataHelper - Helps creating random data to use
 4. HttpClientRequestHelper - Helps making some HTTP requests (POST, PUT, GET, DELETE, PATCH)
 5. SqlDatabaseConnectionHelper - Helps connecting to the SQL Database to read and write the data from Database
+6. CosmosActionPerformerHelper - Helps connecting to Cosmos DB to read and write the data
+7. CosmosConnectionHelper - Provides assistance to CosmosActionPerformerHelper by creating DocumentClient and DocumentRepository
 
 ## Some selenium best practices:
 1. Use PageObject pattern
