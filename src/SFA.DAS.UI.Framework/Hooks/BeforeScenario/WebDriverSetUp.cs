@@ -28,7 +28,7 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
         [BeforeScenario(Order = 11)]
         public void SetupWebDriver()
         {
-            var options = _context.Get<JsonConfig>();
+            var options = _context.Get<FrameworkConfig>();
             var browser = options.Browser;
             
             switch (true)
@@ -54,7 +54,7 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
                 case bool _ when browser.IsChromeHeadless():
                     var chromeOptions = new ChromeOptions();
                     chromeOptions.AddArgument("--headless");
-                    WebDriver = new ChromeDriver(DriverPath,chromeOptions);
+                    WebDriver = new ChromeDriver(DriverPath, chromeOptions);
                     break;
                
 
@@ -68,7 +68,7 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
             }
 
             WebDriver.Manage().Window.Maximize();
-            WebDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
+            WebDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(options.TimeOut.PageNavigation);
             var currentWindow = WebDriver.CurrentWindowHandle;
             WebDriver.SwitchTo().Window(currentWindow);
             WebDriver.Manage().Cookies.DeleteAllCookies();

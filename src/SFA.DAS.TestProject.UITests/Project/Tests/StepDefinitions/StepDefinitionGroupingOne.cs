@@ -11,7 +11,7 @@ namespace SFA.DAS.TestProject.UITests.Project.Tests.StepDefinitions
     public class StepDefinitionGroupingOne
     {
         #region Private Variables
-        private readonly JsonConfig _configuration;
+        private readonly FrameworkConfig _configuration;
         private readonly ScenarioContext _context;
         private readonly ObjectContext _objectContext;
         private readonly IWebDriver _webDriver;
@@ -21,7 +21,7 @@ namespace SFA.DAS.TestProject.UITests.Project.Tests.StepDefinitions
         {
             _context = context;
             _webDriver = context.GetWebDriver();
-            _configuration = context.Get<JsonConfig>();
+            _configuration = context.Get<FrameworkConfig>();
             _objectContext = context.Get<ObjectContext>();
         }
 

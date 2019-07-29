@@ -21,6 +21,7 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
             var WebDriver = _context.GetWebDriver();
             _context.Set(new PageInteractionHelper(WebDriver));
             _context.Set(new FormCompletionHelper(WebDriver));
+            _context.Set(new JavaScriptHelper(WebDriver));
         }
     }
 }
