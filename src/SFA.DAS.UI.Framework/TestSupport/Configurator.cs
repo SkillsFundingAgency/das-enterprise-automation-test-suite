@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Configuration;
+using SFA.DAS.UI.FrameworkHelpers;
 using System.IO;
 
 namespace SFA.DAS.UI.Framework.TestSupport
@@ -22,9 +23,9 @@ namespace SFA.DAS.UI.Framework.TestSupport
             return config.GetSection(nameof(FrameworkConfig.BaseUrl)).Value;
         }
 
-        internal static TimeOut GetTimeOut()
+        internal static TimeOutConfig GetTimeOut()
         {
-            return config.GetSection(nameof(TimeOut)).Get<TimeOut>();
+            return config.GetSection(nameof(TimeOutConfig)).Get<TimeOutConfig>();
         }
 
         internal static BrowserStackSetting GetBrowserStackSetting()

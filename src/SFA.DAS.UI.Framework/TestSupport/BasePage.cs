@@ -26,12 +26,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
 
         protected bool VerifyPage()
         {
-            return _pageInteractionHelper.VerifyPage(GetPageHeading(), PageTitle);
-        }
-
-        private string GetPageHeading()
-        {
-            return _pageInteractionHelper.GetText(PageHeader);
+            return _pageInteractionHelper.VerifyPage(PageHeader, PageTitle);
         }
     }
 }
