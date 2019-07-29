@@ -7,20 +7,47 @@ using SFA.DAS.CosmosDb;
 
 namespace SFA.DAS.UI.FrameworkHelpers
 {
+    public class InClassName
+    {
+        public InClassName(string url, string authKey, string dbName, string collectionName, string recordName, bool isPartitionKey, string partitionKey = "partitionKey")
+        {
+            Url = url;
+            AuthKey = authKey;
+            DbName = dbName;
+            CollectionName = collectionName;
+            RecordName = recordName;
+            IsPartitionKey = isPartitionKey;
+            PartitionKey = partitionKey;
+        }
+
+        public string Url { get; private set; }
+        public string AuthKey { get; private set; }
+        public string DbName { get; private set; }
+        public string CollectionName { get; private set; }
+        public string RecordName { get; private set; }
+        public bool IsPartitionKey { get; private set; }
+        public string PartitionKey { get; private set; }
+    }
+
     public class CosmosActionsPerformerHelper
     {
 
         public static void RemoveDoc(string url, string authKey, string dbName, string collectionName, string recordName, string partitionKey, bool isPartitionKey = true)
         {
-            var db = QueryDb(url, authKey, dbName, collectionName, recordName, out var docs, out var requestOptions,isPartitionKey = true, partitionKey);
+            var tuple = QueryDb(new InClassName(url, authKey, dbName, collectionName, recordName, isPartitionKey = true, partitionKey));
+            var docs = tuple.Item1;
+            var requestOptions = tuple.Item2;
+            var db = tuple.Item3;
             RemoveDoc(docs, db, requestOptions);
         }
 
 
         public static void AddNewDoc(string url, string authKey, string dbName, string collectionName, string currentDocName, string newDocName, string guid)
         {
-
-            var db = QueryDb(url, authKey, dbName, collectionName, currentDocName, out var docs, out var requestOptions, false);
+            var tuple = QueryDb(new InClassName(url, authKey, dbName, collectionName, currentDocName, false));
+            var docs = tuple.Item1;
+            var requestOptions = tuple.Item2;
+            var db = tuple.Item3;
             var addAple = AddAple(newDocName, guid);
             AddDoc(docs, db, addAple, requestOptions);
 
@@ -28,7 +55,10 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         public static void ModifyDoc(string url, string authKey, string dbName, string collectionName, string currentDocName, string newDocName, string guid)
         {
-            var db = QueryDb(url, authKey, dbName, collectionName, currentDocName, out var docs, out var requestOptions, false);
+            var tuple = QueryDb(new InClassName(url, authKey, dbName, collectionName, currentDocName, false));
+            var docs = tuple.Item1;
+            var requestOptions = tuple.Item2;
+            var db = tuple.Item3;
             var addAple = AddAple(newDocName, guid);
             UpdateDoc(docs, db, addAple, requestOptions);
         }
@@ -58,18 +88,17 @@ namespace SFA.DAS.UI.FrameworkHelpers
         }
 
 
-        private static DocumentRepository<Aple> QueryDb(string url, string authKey, string dbName, string collectionName, string recordName,
-            out IQueryable<Aple> docs, out RequestOptions requestOptions, bool isPartitionKey, string partitionKey = "partitionKey")
+        private static Tuple<IQueryable<Aple>, RequestOptions, DocumentRepository<Aple>> QueryDb(InClassName inClassName)
         {
-            var db = PermissionsDocumentRepository(url, authKey, dbName, collectionName);
+            var db = PermissionsDocumentRepository(inClassName.Url, inClassName.AuthKey, inClassName.DbName, inClassName.CollectionName);
             var option = new FeedOptions { EnableCrossPartitionQuery = true };
-            docs = db.CreateQuery(option).Select(x => x).Where(x => x.Name == recordName);
-            requestOptions = new RequestOptions();
-            if (isPartitionKey)
+            var docs = db.CreateQuery(option).Select(x => x).Where(x => x.Name == inClassName.RecordName);
+            var requestOptions = new RequestOptions();
+            if (inClassName.IsPartitionKey)
             {
-                requestOptions.PartitionKey = new PartitionKey(partitionKey);
+                requestOptions.PartitionKey = new PartitionKey(inClassName.PartitionKey);
             }
-            return db;
+            return Tuple.Create(docs, requestOptions, db);
         }
 
 
