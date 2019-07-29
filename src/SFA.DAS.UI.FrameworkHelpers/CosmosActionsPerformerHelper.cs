@@ -10,9 +10,9 @@ namespace SFA.DAS.UI.FrameworkHelpers
     public class CosmosActionsPerformerHelper
     {
 
-        public static void RemoveDoc(string url, string authKey, string dbName, string collectionName, string name, bool partitionKey = true)
+        public static void RemoveDoc(string url, string authKey, string dbName, string collectionName, string recordName, string partitionKey, bool isPartitionKey = true)
         {
-            var db = QueryDb(url, authKey, dbName, collectionName, name, out var docs, out var requestOptions, partitionKey = true);
+            var db = QueryDb(url, authKey, dbName, collectionName, recordName, out var docs, out var requestOptions,isPartitionKey = true, partitionKey);
             RemoveDoc(docs, db, requestOptions);
         }
 
@@ -58,16 +58,16 @@ namespace SFA.DAS.UI.FrameworkHelpers
         }
 
 
-        private static DocumentRepository<Aple> QueryDb(string url, string authKey, string dbName, string collectionName, string name,
-            out IQueryable<Aple> docs, out RequestOptions requestOptions, bool partitionKey)
+        private static DocumentRepository<Aple> QueryDb(string url, string authKey, string dbName, string collectionName, string recordName,
+            out IQueryable<Aple> docs, out RequestOptions requestOptions, bool isPartitionKey, string partitionKey = "partitionKey")
         {
             var db = PermissionsDocumentRepository(url, authKey, dbName, collectionName);
             var option = new FeedOptions { EnableCrossPartitionQuery = true };
-            docs = db.CreateQuery(option).Select(x => x).Where(x => x.Name == name);
+            docs = db.CreateQuery(option).Select(x => x).Where(x => x.Name == recordName);
             requestOptions = new RequestOptions();
-            if (partitionKey)
+            if (isPartitionKey)
             {
-                requestOptions.PartitionKey = new PartitionKey(name);
+                requestOptions.PartitionKey = new PartitionKey(partitionKey);
             }
             return db;
         }
