@@ -11,7 +11,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
     internal sealed class FindAnApprenticeShipPage : BasePage
     {
         #region Constants
-        private const string PageTitle = "FIND AN APPRENTICESHIP";
+        private const string ExpectedPageTitle = "FIND AN APPRENTICESHIP";
         private const string InvalidPostCodeMessage = "You must enter a full and valid postcode";
         private const string EmptyPostCodeMessage = "The Postcode field is required.";
         private const string MessageForInvalidInterestSelection = "The interest field is required.";
@@ -26,12 +26,13 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
         #endregion
 
         #region Page Object Elements
+        private readonly By _pageTitle = By.ClassName("heading-xl hero-heading__heading");
         private readonly By _selectInterestDropDown = By.XPath("//div[@class='grid-column-two-thirds']//select[@id='Route']");
         private readonly By _postCodeBox = By.XPath("//div[@class='grid-column-two-thirds']//input[@id='Postcode']");
         private readonly By _selectMilesDropDown = By.XPath("//div[@class='grid-column-two-thirds']//select[@id='Distance']");
         private readonly By _searchButton = By.XPath("//button[@class='button button-apprentice']");
-        private readonly By _messageForInvalidPostcode = By.XPath("//span[@id='Postcode-error']");
-        private readonly By _messageForInvalidInterestSelection = By.XPath("//span[@id='Route-error']");
+        private readonly By _messageForInvalidPostcode = By.Id("Postcode-error");
+        private readonly By _messageForInvalidInterestSelection = By.Id("Route-error");
         private readonly By _defaultValueFromInterestDropDown = By.XPath("//div[@class='grid-column-two-thirds']//select[@id='Distance']/option[@selected='selected']");
         #endregion
 
@@ -40,21 +41,21 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
             _formCompletionCampaignsHelper = context.Get<FormCompletionCampaignsHelper>();
-            VerifyPage();
         }
 
         protected override bool VerifyPage()
         {
-            return _pageInteractionHelper.VerifyPage(this.GetPageHeading(), PageTitle);
+            return _pageInteractionHelper.VerifyPage(_formCompletionHelper.GetText(_pageTitle), ExpectedPageTitle);
         }
 
-        internal bool IsPageMatching()
+        internal void verifyPageTitle()
         {
-            return _pageInteractionHelper.VerifyPage(this.GetPageHeading(), PageTitle);
+            _formCompletionHelper.VerifyText(_pageTitle,ExpectedPageTitle);
         }
 
         internal void selectAValidInterest(String interestValue)
         {
+            //test
             _pageInteractionHelper.WaitForElementToBeDisplayed(_selectInterestDropDown);
             _formCompletionCampaignsHelper.SelectFromDropDownByText(_selectInterestDropDown, interestValue);
         }

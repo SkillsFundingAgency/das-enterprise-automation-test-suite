@@ -45,8 +45,5 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
             yourApprenticeshipPage.verifyContentUnderWhatComesAfterMyApprenticeshipSection();
         }
 
-        
-
-
     }
 }

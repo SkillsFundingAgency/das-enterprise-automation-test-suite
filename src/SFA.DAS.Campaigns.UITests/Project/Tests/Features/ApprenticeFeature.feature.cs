@@ -76,24 +76,24 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Features
         public virtual void UserCanFindAnApprenticeFromApprenticeshipsHomePage(string selectInterest, string postcode, string noOfMiles, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User can find an apprentice from Apprenticeships home page", null, exampleTags);
-#line 8
+#line 7
  this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 9
+#line 8
   testRunner.Given("I navigate to Fire It Up home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 10
+#line 9
   testRunner.When("I launch the Find An Apprentice page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 11
+#line 10
   testRunner.Then(string.Format("I select a valid {0}", selectInterest), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 12
+#line 11
   testRunner.Then(string.Format("I enter a valid {0}", postcode), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 13
+#line 12
   testRunner.Then(string.Format("I select miles {0}", noOfMiles), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 14
+#line 13
   testRunner.Then("I click on Serach button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 15
+#line 14
   testRunner.When("I click on first search result", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 16
+#line 15
   testRunner.Then("I can see the Apprentice Summary page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -105,22 +105,22 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Features
         public virtual void UserCanSeeAValidMessageWhenNoApprenticeResultsFound(string selectInterest, string postcode, string noOfMiles, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User can see a valid message when no apprentice results found", null, exampleTags);
-#line 23
+#line 21
  this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 24
+#line 22
   testRunner.Given("I navigate to Fire It Up home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 25
+#line 23
   testRunner.When("I launch the Find An Apprentice page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 26
+#line 24
   testRunner.Then(string.Format("I select a valid {0}", selectInterest), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 27
+#line 25
   testRunner.Then(string.Format("I enter a valid {0}", postcode), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 28
+#line 26
   testRunner.Then(string.Format("I select miles {0}", noOfMiles), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 29
+#line 27
   testRunner.Then("I click on Serach button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 30
+#line 28
   testRunner.Then("I can verify the content of no matching results page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -136,26 +136,26 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Features
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Application should show default value for Miles DropDown and valid error messages" +
                     " for invalid postcode and interest selection", null, exampleTags);
-#line 37
+#line 35
  this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 38
+#line 36
   testRunner.Given("I navigate to Fire It Up home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 39
+#line 37
   testRunner.When("I launch the Find An Apprentice page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 40
+#line 38
   testRunner.Then("I click on Serach button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 41
+#line 39
   testRunner.Then("I can verify the error message for not selecting any interest", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 42
+#line 40
   testRunner.Then(string.Format("I select a valid {0}", selectInterest), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 43
+#line 41
   testRunner.Then("I verify the default value of miles dropdown", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 44
+#line 42
   testRunner.Then(string.Format("I enter an invalid {0}", postcode), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 45
+#line 43
   testRunner.Then("I click on Serach button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 46
+#line 44
   testRunner.Then("I can verify the error message for invalid postcode", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -166,18 +166,18 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Features
         public virtual void CheckAllTheLinksAndContentOfYOURAPPRENTICESHIPScreen()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Check all the links and content of YOUR APPRENTICESHIP screen", null, ((string[])(null)));
-#line 54
+#line 53
  this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 55
+#line 54
   testRunner.Given("I navigate to Fire It Up home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 56
+#line 55
   testRunner.When("I launch the Your Apprenticeship page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 57
+#line 56
   testRunner.Then("I verify the content under What to bring, and other useful info section", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 58
+#line 57
   testRunner.Then("I verify the content under Meet your new team section", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 59
+#line 58
   testRunner.Then("I verify the content under What comes after my apprenticeship section", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();

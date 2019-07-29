@@ -13,7 +13,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
     internal sealed class YourApprenticeshipPage : BasePage
     {
         #region Constants
-        private const string ExpectedPageTitle = "";
+        private const string ExpectedPageTitle = "YOUR APPRENTICESHIP";
         private const string ExpectedWhatToBringHeader = "WHAT TO BRING, AND OTHER USEFUL INFO";
         private const string ExpectedWhatToBringParagraph1 = "Your employer will be in touch beforehand to let you know your working hours, and when they’d like you to start on your first day. If however, you already work at the place where you're going to start your apprenticeship, then you can ask your employer directly.";
         private const string ExpectedWhatToBringParagraph2 = "At this point you could also ask some of the following:";
@@ -27,13 +27,14 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
         #region Helpers
         private readonly PageInteractionHelper _pageInteractionHelper;
         private readonly FormCompletionHelper _formCompletionHelper;
-        //private readonly MainNavigationHelper mainNavigationHelper;
         private ArrayList actualQuestionsList = new ArrayList();
         private ArrayList expectedQuestionsList = new ArrayList();
 
         #endregion
 
         #region Page Object Elements
+        //private readonly By _pageTitle = By.XPath("//h1[@class='heading-xl hero-heading__heading']");
+        private readonly By _pageTitle = By.ClassName("heading-xl hero-heading__heading");
         private readonly By _whatToBringLink = By.XPath("//ul[@class='list list--arrows']/li[1]/a");
         private readonly By _meetYourNewTeamLink = By.XPath("//ul[@class='list list--arrows']/li[2]/a");
         private readonly By _whatComesAfterMyApprenticeshipLink = By.XPath("//ul[@class='list list--arrows']/li[3]/a");
@@ -52,17 +53,16 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
         {
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
-            VerifyPage();
         }
 
         protected override bool VerifyPage()
         {
-            return _pageInteractionHelper.VerifyPage(this.GetPageHeading(), ExpectedPageTitle);
+            return _pageInteractionHelper.VerifyPage(_formCompletionHelper.GetText(_pageTitle), ExpectedPageTitle);
         }
 
-        internal bool IsPageMatching()
+        internal void verifyPageTitle()
         {
-            return _pageInteractionHelper.VerifyPage(this.GetPageHeading(), ExpectedPageTitle);
+            _formCompletionHelper.VerifyText(_pageTitle, ExpectedPageTitle);
         }
 
         internal void verifyConetntUnderWhatToBringSection()

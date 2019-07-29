@@ -24,7 +24,6 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
             _webDriver = context.Get<IWebDriver>("webdriver");
             _configuration = context.Get<JsonConfig>();
             _objectContext = context.Get<ObjectContext>();
-            //fireItUpHomePage = new FireItUpHomePage(_context);
         }
 
         [Given(@"I navigate to Fire It Up home page")]
@@ -36,6 +35,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
 
             fireItUpHomePage = new FireItUpHomePage(_context);
             fireItUpHomePage.clickOnCookieContinueButton();
+            // fireItUpHomePage.verifyPageTitle(); // Currently we have a bug in Campaings Page Header. Once that is resolved,we will uncomment this method
             fireItUpHomePage.verifyApprenticesHeaderSupportText();
             fireItUpHomePage.verifyEmployersHeaderSupportText();
         }

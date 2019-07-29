@@ -30,7 +30,6 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
         [Then(@"I select a valid (.*)")]
         public void selectAValidOptionFromInterestDropdown(string interestValue)
         {
-            //findAnApprenticeShipPage = new FindAnApprenticeShipPage(_context);
             findAnApprenticeShipPage.selectAValidInterest(interestValue);
         }
 
@@ -49,7 +48,6 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
         [Then(@"I click on Serach button")]
         public void clickOnSearchButton()
         {
-            //findAnApprenticeShipPage = new FindAnApprenticeShipPage(_context);
             findAnApprenticeShipPage.clickOnSearchButton();
             TestContext.Progress.WriteLine("Navigating to Serach Results page");
         }

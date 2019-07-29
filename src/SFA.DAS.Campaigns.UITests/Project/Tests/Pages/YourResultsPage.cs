@@ -13,7 +13,6 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
     internal sealed class YourResultsPage : BasePage
     {
         #region Constants
-        private const string PageTitle = "";
         private const string ExpectedHeaderWhenNoResultsFound = "NO MATCHING RESULTS...";
         private const string ExpectedHeaderWhenResultsFound = "YOUR RESULTS...";
         private const string ExpectedParagraphOneText = "Try expanding your search location or changing your area of interest.";
@@ -28,10 +27,10 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
         #endregion
 
         #region Page Object Elements
-        private readonly By _resultsHeader = By.XPath("//h1[@class='heading-l']");
+        private readonly By _resultsHeader = By.ClassName("heading-l");
         private readonly By _firstSearchResult = By.XPath("//ol[@id='vacancy-search-results']/li[1]/h2/a");
-        private readonly By _postCodeBox = By.XPath("//input[@id='Postcode']");
-        private readonly By _updateResultsButton = By.XPath("//input[@id='button-faa-update-results']");
+        private readonly By _postCodeBox = By.Id("Postcode");
+        private readonly By _updateResultsButton = By.Id("button-faa-update-results");
         private readonly By _noMatchResultParagraphOne = By.XPath("//div[@class='search-results']/p[1]");
         private readonly By _noMatchResultParagraphTwo = By.XPath("//div[@class='search-results']/p[2]");
         private readonly By _vacancyTitle = By.XPath("//ol[@id='vacancy-search-results']/li[1]/ul/li[1]");
@@ -45,17 +44,11 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
             _pageInteractionCampaignsHelper = context.Get<PageInteractionCampaignsHelper>();
-            VerifyPage();
         }
 
         protected override bool VerifyPage()
         {
-            return _pageInteractionHelper.VerifyPage(this.GetPageHeading(), PageTitle);
-        }
-
-        internal bool IsPageMatching()
-        {
-            return _pageInteractionHelper.VerifyPage(this.GetPageHeading(), PageTitle);
+            return _pageInteractionHelper.VerifyPage(_pageInteractionHelper.GetText(_resultsHeader), ExpectedHeaderWhenResultsFound, ExpectedHeaderWhenNoResultsFound);
         }
 
         internal void verifyResultsPageHeader()

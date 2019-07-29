@@ -12,7 +12,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
     internal sealed class FireItUpHomePage : BasePage
     {
         #region Constants
-        private const string ExpectedPageTitle = "";
+        private const string ExpectedPageTitle = "FIRE \n IT UP";
         private const string ExpectedApprenticesHeaderSupportText = "BLAZE YOUR OWN TRAIL AND BECOME AN APPRENTICE";
         private const string ExpectedEmployersHeaderSupportText = "FIRE UP YOUR BUSINESS WITH AN APPRENTICE";
 
@@ -21,31 +21,26 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
         #region Helpers
         private readonly PageInteractionHelper _pageInteractionHelper;
         private readonly FormCompletionHelper _formCompletionHelper;
-        //private readonly MainNavigationHelper mainNavigationHelper;
         #endregion
 
         #region Page Object Elements
-        private readonly By _apprenticeMenu = By.XPath("//a[@id='link-nav-apprentice']");
-        private readonly By _cookieButton = By.XPath("//a[@id='link-cookie-accept']");
-        private readonly By _findAnApprenticeLink = By.XPath("//a[@id='link-nav-app-step-2']");
+        private readonly By _pageTitle = By.ClassName("homepage-title");
+        private readonly By _apprenticeMenu = By.Id("link-nav-apprentice");
+        private readonly By _cookieButton = By.Id("link-cookie-accept");
+        private readonly By _findAnApprenticeLink = By.Id("link-nav-app-step-2");
         private readonly By _ApprenticesHeaderSupportText = By.XPath("(//div[@class='launcher__content']/child::p)[1]");
         private readonly By _EmployersHeaderSupportText = By.XPath("(//div[@class='launcher__content']/child::p)[4]");
-        private readonly By _yourApprenticeshipLink = By.XPath("//a[@id='link-nav-app-step-5']");
+        private readonly By _yourApprenticeshipLink = By.Id("link-nav-app-step-5");
+
         #endregion
 
         public FireItUpHomePage(ScenarioContext context) : base(context)
         {
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
-            VerifyPage();
         }
 
         protected override bool VerifyPage()
-        {
-            return _pageInteractionHelper.VerifyPage(this.GetPageHeading(), ExpectedPageTitle);
-        }
-
-        internal bool IsPageMatching()
         {
             return _pageInteractionHelper.VerifyPage(this.GetPageHeading(), ExpectedPageTitle);
         }
@@ -54,6 +49,12 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
         {
             _pageInteractionHelper.WaitForElementToBeDisplayed(_cookieButton);
             _formCompletionHelper.ClickElement(_cookieButton);
+        }
+
+        internal void verifyPageTitle()
+        {
+            _pageInteractionHelper.WaitForElementToBeDisplayed(_pageTitle);
+            _formCompletionHelper.VerifyText(_pageTitle, ExpectedPageTitle);
         }
 
         internal void verifyApprenticesHeaderSupportText()
