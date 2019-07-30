@@ -1,6 +1,5 @@
 ﻿using System;
 using System.IO;
-using System.Reflection;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
@@ -14,7 +13,7 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
     [Binding]
     public class WebDriverSetup
     {
-        private static readonly string DriverPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+        private readonly string DriverPath;
 
         private IWebDriver WebDriver;
 
@@ -22,6 +21,7 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
 
         public WebDriverSetup(ScenarioContext context)
         {
+            DriverPath = Directory.GetCurrentDirectory();
             _context = context;
         }
 
