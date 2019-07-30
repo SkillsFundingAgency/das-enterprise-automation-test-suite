@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
-    <PackageId>SFA.DAS.UI.DotNet.Framework</PackageId>
+    <PackageId>SFA.DAS.UI.Framework</PackageId>
     <Title>SFA DAS Specflow UI framework</Title>
     <Configurations>Debug;Release;Development</Configurations>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
