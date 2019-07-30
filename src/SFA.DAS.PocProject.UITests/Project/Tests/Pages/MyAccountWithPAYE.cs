@@ -5,7 +5,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.PocProject.UITests.Project.Tests.Pages
 {
-    public class MyAccountWithPAYE :BasePage
+    public class MyAccountWithPaye : BasePage
     {
         #region Helpers and Context
         private readonly PageInteractionHelper _pageInteractionHelper;
@@ -15,7 +15,7 @@ namespace SFA.DAS.PocProject.UITests.Project.Tests.Pages
 
         private By CloseIconLink => By.CssSelector(".link-with-icon");
 
-        public MyAccountWithPAYE(ScenarioContext context): base(context)
+        public MyAccountWithPaye(ScenarioContext context): base(context)
         {
             _context = context;
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
@@ -31,7 +31,7 @@ namespace SFA.DAS.PocProject.UITests.Project.Tests.Pages
             return new HomePage(_context);
         }
 
-        private MyAccountWithPAYE CloseLink()
+        private MyAccountWithPaye CloseLink()
         {
             _formCompletionHelper.ClickElement(CloseIconLink);
             return this;

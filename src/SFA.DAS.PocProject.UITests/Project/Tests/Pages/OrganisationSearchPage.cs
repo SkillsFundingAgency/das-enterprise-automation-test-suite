@@ -8,7 +8,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.PocProject.UITests.Project.Tests.Pages
 {
-    public class OrganistionSearchPage : BasePage
+    public class OrganisationSearchPage : BasePage
     {
         #region Helpers and Context
         private readonly PageInteractionHelper _pageInteractionHelper;
@@ -22,7 +22,7 @@ namespace SFA.DAS.PocProject.UITests.Project.Tests.Pages
         private By SearchButton => By.CssSelector("input.button");
 
 
-        public OrganistionSearchPage(ScenarioContext context) : base(context)
+        public OrganisationSearchPage(ScenarioContext context) : base(context)
         {
             _context = context;
             _config = context.GetConfigSection<ProjectSpecificConfig>();
@@ -41,13 +41,13 @@ namespace SFA.DAS.PocProject.UITests.Project.Tests.Pages
         }
 
 
-        private OrganistionSearchPage EnterOrganisationName()
+        private OrganisationSearchPage EnterOrganisationName()
         {
             _formCompletionHelper.EnterText(SearchInput, _config.OrganisationName);
             return this;
         }
 
-        private OrganistionSearchPage Search()
+        private OrganisationSearchPage Search()
         {
             _formCompletionHelper.ClickElement(SearchButton);
             return this;

@@ -4,10 +4,10 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.PocProject.UITests.Project.Tests.Pages
 {
-    public class MyAccountWithOutPAYE : BasePage
+    public class MyAccountWithOutPaye : BasePage
     {
 
-        public MyAccountWithOutPAYE(ScenarioContext context) : base(context)
+        public MyAccountWithOutPaye(ScenarioContext context) : base(context)
         {
             VerifyPage();
         }

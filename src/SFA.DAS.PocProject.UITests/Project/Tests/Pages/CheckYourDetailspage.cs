@@ -5,7 +5,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.PocProject.UITests.Project.Tests.Pages
 {
-    public class CheckYourDetailspage : BasePage
+    public class CheckYourDetailsPage : BasePage
     {
         #region Helpers and Context
         private readonly PageInteractionHelper _pageInteractionHelper;
@@ -19,7 +19,7 @@ namespace SFA.DAS.PocProject.UITests.Project.Tests.Pages
 
         private By ContinueButton => By.Id("continue");
 
-        public CheckYourDetailspage(ScenarioContext context) : base(context)
+        public CheckYourDetailsPage(ScenarioContext context) : base(context)
         {
             _context = context;
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
@@ -29,10 +29,10 @@ namespace SFA.DAS.PocProject.UITests.Project.Tests.Pages
 
         protected override string PageTitle => "Check your details";
 
-        public MyAccountWithPAYE TheseDetailsAreCorrect()
+        public MyAccountWithPaye TheseDetailsAreCorrect()
         {
             _formCompletionHelper.ClickElement(ContinueButton);
-            return new MyAccountWithPAYE(_context);
+            return new MyAccountWithPaye(_context);
         }
     }
 }

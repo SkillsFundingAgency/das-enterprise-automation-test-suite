@@ -10,7 +10,7 @@ namespace SFA.DAS.PocProject.UITests.Project.Tests.StepDefinitions
     {
         private readonly ScenarioContext _context;
         private GetApprenticeshipFunding getApprenticeshipFunding;
-        private OrganistionSearchPage organistionSearchPage;
+        private OrganisationSearchPage organistionSearchPage;
         private readonly ObjectContext _objectContext;
 
         public CreateAccountSteps(ScenarioContext context)

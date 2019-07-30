@@ -6,7 +6,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.PocProject.UITests.Project.Tests.Pages
 {
-    public class GGSignInPage : BasePage
+    public class GgSignInPage : BasePage
     {
         #region Helpers and Context
         private readonly PageInteractionHelper _pageInteractionHelper;
@@ -19,11 +19,11 @@ namespace SFA.DAS.PocProject.UITests.Project.Tests.Pages
 
         private By UserIdInput => By.Id("userId");
 
-        private By PassowrdInput => By.Id("password");
+        private By PasswordInput => By.Id("password");
 
         private By SignInButton => By.CssSelector("input.button");
 
-        public GGSignInPage(ScenarioContext context) : base(context)
+        public GgSignInPage(ScenarioContext context) : base(context)
         {
             _context = context;
             _config = context.GetConfigSection<ProjectSpecificConfig>();
@@ -37,27 +37,27 @@ namespace SFA.DAS.PocProject.UITests.Project.Tests.Pages
 
         protected override By PageHeader => By.CssSelector(".content__body h1");
 
-        public OrganistionSearchPage SignInTo()
+        public OrganisationSearchPage SignInTo()
         {
             EnterUserID().
                 EnterUserPassword().
                 SignIn();
-            return new OrganistionSearchPage(_context);
+            return new OrganisationSearchPage(_context);
         }
 
-        private GGSignInPage EnterUserID()
+        private GgSignInPage EnterUserID()
         {
             _formCompletionHelper.EnterText(UserIdInput, _gatewayid);
             return this;
         }
 
-        private GGSignInPage EnterUserPassword()
+        private GgSignInPage EnterUserPassword()
         {
-            _formCompletionHelper.EnterText(PassowrdInput, _gatewaypassword);
+            _formCompletionHelper.EnterText(PasswordInput, _gatewaypassword);
             return this;
         }
 
-        private GGSignInPage SignIn()
+        private GgSignInPage SignIn()
         {
             _formCompletionHelper.ClickElement(SignInButton);
             return this;

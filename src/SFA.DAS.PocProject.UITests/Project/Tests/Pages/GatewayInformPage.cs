@@ -27,10 +27,10 @@ namespace SFA.DAS.PocProject.UITests.Project.Tests.Pages
 
         protected override string PageTitle => "Using your Government Gateway details";
 
-        public GGSignInPage ContinueToGGSignIn()
+        public GgSignInPage ContinueToGGSignIn()
         {
             Continue();
-            return new GGSignInPage(_context);
+            return new GgSignInPage(_context);
         }
 
         private GatewayInformPage Continue()

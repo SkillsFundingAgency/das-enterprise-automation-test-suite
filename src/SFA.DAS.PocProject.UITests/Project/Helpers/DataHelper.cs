@@ -12,8 +12,8 @@ namespace SFA.DAS.PocProject.UITests.Project.Helpers
             dateTime = DateTime.Now;
             EmpRefDigits = dateTime.ToString("fffff");
             NextNumber = NextNumberGenerator.GetNextCount();
-            RandomUserName = GenerateRandUserName();
-            RandomEmail = GenerateRandEmail();
+            RandomUserName = GenerateRandomUserName();
+            RandomEmail = GenerateRandomEmail();
         }
 
         public string TwoDigitProjectCode { get; }
@@ -26,17 +26,13 @@ namespace SFA.DAS.PocProject.UITests.Project.Helpers
 
         public string RandomUserName { get; }
 
-        private string GenerateRandEmail()
+        private string GenerateRandomEmail()
         {
             return $"{RandomUserName}@mailinator.com";
         }
         
-        private string GenerateRandUserName()
+        private string GenerateRandomUserName()
         {
-            //ToDo : refactor based on environements
-            //if (EnvConfigurator.GetEnvConfigInstance().ExecutionEnvironment.Equals("Local"))
-            //    return $"MA_Test_LocalRun{System.DateTime.Now.ToString("ddMMMyyyy_HHmmss")}@mailinator.com";
-            //else
             return $"{TwoDigitProjectCode}_Test_{NextNumber}_{dateTime.ToString("ddMMMyyyy_HHmmss")}{EmpRefDigits}";
         }
     }

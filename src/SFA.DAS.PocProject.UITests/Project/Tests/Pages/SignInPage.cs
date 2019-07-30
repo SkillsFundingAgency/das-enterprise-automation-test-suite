@@ -44,12 +44,12 @@ namespace SFA.DAS.PocProject.UITests.Project.Tests.Pages
 
         public void Login()
         {
-            EnterEamilAddress().
+            EnterEmailAddress().
             EnterPassword().
             SignIn();
         }
 
-        private SignInPage EnterEamilAddress()
+        private SignInPage EnterEmailAddress()
         {
             _formCompletionHelper.EnterText(EmailAddressInput, _config.AccountUserName);
             return this;

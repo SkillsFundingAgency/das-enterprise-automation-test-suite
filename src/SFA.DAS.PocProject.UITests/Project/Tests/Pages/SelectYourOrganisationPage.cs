@@ -34,10 +34,10 @@ namespace SFA.DAS.PocProject.UITests.Project.Tests.Pages
 
         protected override string PageTitle => "Select your organisation";
 
-        public CheckYourDetailspage SelectYourOrganisation()
+        public CheckYourDetailsPage SelectYourOrganisation()
         {
             _formCompletionHelper.ClickElement(SearchLinkUrl(_config.OrganisationName.ToUpper()));
-            return new CheckYourDetailspage(_context);
+            return new CheckYourDetailsPage(_context);
         }
     }
 }

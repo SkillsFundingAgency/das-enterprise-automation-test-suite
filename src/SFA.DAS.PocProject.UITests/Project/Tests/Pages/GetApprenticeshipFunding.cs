@@ -38,11 +38,11 @@ namespace SFA.DAS.PocProject.UITests.Project.Tests.Pages
             return new GatewayInformPage(_context);
         }
 
-        public MyAccountWithOutPAYE DoNotAddPaye()
+        public MyAccountWithOutPaye DoNotAddPaye()
         {
             SelectDoNotAddPaye().
                 Continue();
-            return new MyAccountWithOutPAYE(_context);
+            return new MyAccountWithOutPaye(_context);
         }
 
         private GetApprenticeshipFunding SelectAddPaye()

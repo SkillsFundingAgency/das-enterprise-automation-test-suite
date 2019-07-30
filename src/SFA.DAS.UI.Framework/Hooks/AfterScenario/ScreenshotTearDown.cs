@@ -1,5 +1,4 @@
-﻿using OpenQA.Selenium;
-using OpenQA.Selenium.Remote;
+﻿using OpenQA.Selenium.Remote;
 using SFA.DAS.UI.Framework.TestSupport;
 using TechTalk.SpecFlow;
 

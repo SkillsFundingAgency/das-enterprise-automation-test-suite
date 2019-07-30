@@ -5,7 +5,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.PocProject.UITests.Project.Tests.Pages
 {
-    public class Confirmpage : BasePage
+    public class ConfirmPage : BasePage
     {
         #region Helpers and Context
         private readonly PageInteractionHelper _pageInteractionHelper;
@@ -20,7 +20,7 @@ namespace SFA.DAS.PocProject.UITests.Project.Tests.Pages
 
         private By RequestAnotheEmailLink => By.CssSelector("input.link-button");
 
-        public Confirmpage(ScenarioContext context) : base(context)
+        public ConfirmPage(ScenarioContext context) : base(context)
         {
             _context = context;
             _config = context.GetConfigSection<ProjectSpecificConfig>();
@@ -38,13 +38,13 @@ namespace SFA.DAS.PocProject.UITests.Project.Tests.Pages
             return new GetApprenticeshipFunding(_context);
         }
 
-        private Confirmpage EnterAccessCode()
+        private ConfirmPage EnterAccessCode()
         {
             _formCompletionHelper.EnterText(AccessCodeInput, _config.ConfirmCode);
             return this;
         }
 
-        private Confirmpage Continue()
+        private ConfirmPage Continue()
         {
             _formCompletionHelper.ClickElement(ContinueButton);
             return this;
