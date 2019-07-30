@@ -1,4 +1,6 @@
-﻿namespace SFA.DAS.UI.Framework
+﻿using SFA.DAS.UI.FrameworkHelpers;
+
+namespace SFA.DAS.UI.Framework
 {
     public class FrameworkConfig
     {
@@ -6,14 +8,9 @@
 
         public string Browser { get; set; }
 
-        public TimeOut TimeOut { get; set; }
+        public TimeOutConfig TimeOutConfig { get; set; }
 
         public BrowserStackSetting BrowserStackSetting { get; set; }
-    }
-
-    public class TimeOut
-    {
-        public int PageNavigation { get; set; }
     }
 
     public class BrowserStackSetting

@@ -1,13 +1,11 @@
-﻿using System;
-using SFA.DAS.UI.FrameworkHelpers;
+﻿using OpenQA.Selenium;
 using SFA.DAS.UI.Framework.TestSupport;
-using OpenQA.Selenium;
+using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
-
-namespace SFA.DAS.TestProject.UITests.Project.Tests.Pages
+namespace SFA.DAS.PocProject.UITests.Project.Tests.Pages
 {
-    public sealed class SearchResultsPage : TestProjectBasePage
+    public class MyAccountWithPaye : BasePage
     {
         #region Helpers and Context
         private readonly PageInteractionHelper _pageInteractionHelper;
@@ -15,13 +13,9 @@ namespace SFA.DAS.TestProject.UITests.Project.Tests.Pages
         private readonly ScenarioContext _context;
         #endregion
 
-        #region Page Object Elements
-        private By DfeUrl(string searchText) => By.LinkText(searchText);
-        #endregion
+        private By CloseIconLink => By.CssSelector(".link-with-icon");
 
-        protected override string PageTitle => "";
-
-        public SearchResultsPage(ScenarioContext context) : base(context)
+        public MyAccountWithPaye(ScenarioContext context): base(context)
         {
             _context = context;
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
@@ -29,10 +23,18 @@ namespace SFA.DAS.TestProject.UITests.Project.Tests.Pages
             VerifyPage();
         }
 
-        internal HomePage OpenDesiredPage(string searchText)
+        protected override string PageTitle => "welcome to your new digital account";
+
+        public HomePage GoToHomePage()
         {
-            _formCompletionHelper.ClickElement(DfeUrl(searchText));
+            CloseLink();
             return new HomePage(_context);
+        }
+
+        private MyAccountWithPaye CloseLink()
+        {
+            _formCompletionHelper.ClickElement(CloseIconLink);
+            return this;
         }
     }
 }

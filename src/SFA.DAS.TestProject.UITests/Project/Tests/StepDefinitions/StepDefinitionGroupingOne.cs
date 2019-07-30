@@ -53,9 +53,8 @@ namespace SFA.DAS.TestProject.UITests.Project.Tests.StepDefinitions
         [Then(@"I should be on DFE home page")]
         public void ShouldBeOnDfeHomePage()
         {
-            var homePage = new HomePage(_context);
             TestContext.Progress.WriteLine($"Verifying Page title");
-            homePage.IsPageMatching();
+            new HomePage(_context);
         }
     }
 }
