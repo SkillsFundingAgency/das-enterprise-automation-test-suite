@@ -2,7 +2,21 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
+    <PackageId>SFA.DAS.UI.DotNet.Framework</PackageId>
+    <Title>SFA DAS Specflow UI framework</Title>
     <Configurations>Debug;Release;Development</Configurations>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>1.0.0</Version>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <Authors>arvinthseran_2019; Imran Ali</Authors>
+    <Company>SFA.DAS</Company>
+    <Description>A generic repository wrapper for Specflow UI Framework integrated with donet core</Description>
+    <PackageProjectUrl>https://accounts.manage-apprenticeships.service.gov.uk/service/index</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/SkillsFundingAgency/DFE-Standardised-Test-Automation-Framework</RepositoryUrl>
+    <PackageLicenseUrl>http://opensource.org/licenses/MS-PL</PackageLicenseUrl>
+    <NeutralLanguage>en</NeutralLanguage>
+    <PackageTags>specflow bdd gherkin borwserstack</PackageTags>
+    <RepositoryType>git</RepositoryType>
   </PropertyGroup>
 
   <ItemGroup>
