@@ -86,11 +86,15 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
 
         private string FindDriverService(string executableName)
         {
-            TestContext.Progress.WriteLine($"DriverPath : {DriverPath}");
+            TestContext.Progress.WriteLine($"DriverPath : {DriverPath}, Executable Name : {executableName}");
 
             FileInfo[] file = Directory.GetParent(DriverPath).GetFiles(executableName, SearchOption.AllDirectories);
 
-            return file.Length != 0 ? file[0].DirectoryName : DriverPath;
+            var info = file.Length != 0 ? file[0].DirectoryName : DriverPath;
+
+            TestContext.Progress.WriteLine($"Driver Service should be available under: {info}");
+
+            return info;
         }
 
         private void InitialiseZapProxyChrome()
