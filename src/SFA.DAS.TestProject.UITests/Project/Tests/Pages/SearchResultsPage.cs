@@ -19,9 +19,22 @@ namespace SFA.DAS.TestProject.UITests.Project.Tests.Pages
         #region Page Object Elements
 
         private By DfeUrlLinks => By.CssSelector(".gem-c-document-list__item a");
+        
         private IWebElement FindDfeUrlElement(string searchText)
         {
-            return _webDriver.FindElements(DfeUrlLinks).ToList().First(x => x.Text == searchText);
+            By DfeNextPageLink() => By.CssSelector(".gem-c-pagination__item gem-c-pagination__item--next a");
+
+            int pagenumber = 0;
+            IWebElement link = null;
+            do
+            {
+                pagenumber++;
+                link = _webDriver.FindElements(DfeUrlLinks).ToList().FirstOrDefault(x => x.Text == searchText);
+                if (link != null) break;
+                _formCompletionHelper.ClickElement(DfeNextPageLink());
+            } while (pagenumber <= 10 || link == null);
+
+            return link;
         }
         #endregion
 
