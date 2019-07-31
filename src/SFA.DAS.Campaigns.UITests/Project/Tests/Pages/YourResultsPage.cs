@@ -44,6 +44,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
             _pageInteractionCampaignsHelper = context.Get<PageInteractionCampaignsHelper>();
+            VerifyPage();
         }
 
         protected override bool VerifyPage()
@@ -154,7 +155,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
             PageInteractionCampaignsHelper.expectedVacancyTitle = _pageInteractionHelper.GetText(_vacancyTitle);
             PageInteractionCampaignsHelper.expectedVacancyDescription = _pageInteractionHelper.GetText(_vacancyDescription);
             PageInteractionCampaignsHelper.expectedEmployerName = _pageInteractionHelper.GetText(_employerName);
-            //PageInteractionCampaignsHelper.expectedPossibleClosingDate = _pageInteractionHelper.GetText(_possibleClosingDate);
+            PageInteractionCampaignsHelper.expectedPossibleClosingDate = _pageInteractionHelper.GetText(_possibleClosingDate);
         }
 
     }

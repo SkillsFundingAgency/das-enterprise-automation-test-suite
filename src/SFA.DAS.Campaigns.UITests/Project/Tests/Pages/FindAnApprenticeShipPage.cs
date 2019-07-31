@@ -26,7 +26,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
         #endregion
 
         #region Page Object Elements
-        private readonly By _pageTitle = By.ClassName("heading-xl hero-heading__heading");
+        private readonly By _pageTitle = By.XPath("//h1[@class='heading-xl hero-heading__heading']");
         private readonly By _selectInterestDropDown = By.XPath("//div[@class='grid-column-two-thirds']//select[@id='Route']");
         private readonly By _postCodeBox = By.XPath("//div[@class='grid-column-two-thirds']//input[@id='Postcode']");
         private readonly By _selectMilesDropDown = By.XPath("//div[@class='grid-column-two-thirds']//select[@id='Distance']");
@@ -41,16 +41,12 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
             _formCompletionCampaignsHelper = context.Get<FormCompletionCampaignsHelper>();
+            VerifyPage();
         }
 
         protected override bool VerifyPage()
         {
-            return _pageInteractionHelper.VerifyPage(_formCompletionHelper.GetText(_pageTitle), ExpectedPageTitle);
-        }
-
-        internal void verifyPageTitle()
-        {
-            _formCompletionHelper.VerifyText(_pageTitle,ExpectedPageTitle);
+            return _pageInteractionHelper.VerifyPage(_pageTitle, ExpectedPageTitle);
         }
 
         internal void selectAValidInterest(String interestValue)

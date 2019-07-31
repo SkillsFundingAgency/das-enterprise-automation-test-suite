@@ -72,10 +72,9 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Features
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("User can find an apprentice from Apprenticeships home page")]
-        [NUnit.Framework.TestCaseAttribute("Engineering and manufacturing", "SW1V 3LP", "5 miles", null)]
-        public virtual void UserCanFindAnApprenticeFromApprenticeshipsHomePage(string selectInterest, string postcode, string noOfMiles, string[] exampleTags)
+        public virtual void UserCanFindAnApprenticeFromApprenticeshipsHomePage()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User can find an apprentice from Apprenticeships home page", null, exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User can find an apprentice from Apprenticeships home page", null, ((string[])(null)));
 #line 7
  this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
@@ -84,11 +83,11 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Features
 #line 9
   testRunner.When("I launch the Find An Apprentice page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 10
-  testRunner.Then(string.Format("I select a valid {0}", selectInterest), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+  testRunner.Then("I select a valid Engineering and manufacturing", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 11
-  testRunner.Then(string.Format("I enter a valid {0}", postcode), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+  testRunner.Then("I enter a valid CV1 1DD", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 12
-  testRunner.Then(string.Format("I select miles {0}", noOfMiles), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+  testRunner.Then("I select miles 40 miles", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 13
   testRunner.Then("I click on Serach button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 14
@@ -101,26 +100,25 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Features
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("User can see a valid message when no apprentice results found")]
-        [NUnit.Framework.TestCaseAttribute("Engineering and manufacturing", "SW1V 3LP", "5 miles", null)]
-        public virtual void UserCanSeeAValidMessageWhenNoApprenticeResultsFound(string selectInterest, string postcode, string noOfMiles, string[] exampleTags)
+        public virtual void UserCanSeeAValidMessageWhenNoApprenticeResultsFound()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User can see a valid message when no apprentice results found", null, exampleTags);
-#line 21
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User can see a valid message when no apprentice results found", null, ((string[])(null)));
+#line 19
  this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 22
+#line 20
   testRunner.Given("I navigate to Fire It Up home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 23
+#line 21
   testRunner.When("I launch the Find An Apprentice page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 22
+  testRunner.Then("I select a valid Engineering and manufacturing", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 23
+  testRunner.Then("I enter a valid SW1V 3LP", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 24
-  testRunner.Then(string.Format("I select a valid {0}", selectInterest), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+  testRunner.Then("I select miles 5 miles", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 25
-  testRunner.Then(string.Format("I enter a valid {0}", postcode), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 26
-  testRunner.Then(string.Format("I select miles {0}", noOfMiles), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 27
   testRunner.Then("I click on Serach button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 28
+#line 26
   testRunner.Then("I can verify the content of no matching results page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -136,26 +134,26 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Features
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Application should show default value for Miles DropDown and valid error messages" +
                     " for invalid postcode and interest selection", null, exampleTags);
-#line 35
+#line 29
  this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 36
+#line 30
   testRunner.Given("I navigate to Fire It Up home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 37
+#line 31
   testRunner.When("I launch the Find An Apprentice page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 38
+#line 32
   testRunner.Then("I click on Serach button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 39
+#line 33
   testRunner.Then("I can verify the error message for not selecting any interest", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 40
+#line 34
   testRunner.Then(string.Format("I select a valid {0}", selectInterest), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 41
+#line 35
   testRunner.Then("I verify the default value of miles dropdown", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 42
+#line 36
   testRunner.Then(string.Format("I enter an invalid {0}", postcode), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 43
+#line 37
   testRunner.Then("I click on Serach button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 44
+#line 38
   testRunner.Then("I can verify the error message for invalid postcode", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -166,18 +164,18 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Features
         public virtual void CheckAllTheLinksAndContentOfYOURAPPRENTICESHIPScreen()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Check all the links and content of YOUR APPRENTICESHIP screen", null, ((string[])(null)));
-#line 53
+#line 47
  this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 54
+#line 48
   testRunner.Given("I navigate to Fire It Up home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 55
+#line 49
   testRunner.When("I launch the Your Apprenticeship page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 56
+#line 50
   testRunner.Then("I verify the content under What to bring, and other useful info section", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 57
+#line 51
   testRunner.Then("I verify the content under Meet your new team section", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 58
+#line 52
   testRunner.Then("I verify the content under What comes after my apprenticeship section", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();

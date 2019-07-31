@@ -30,9 +30,8 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
         [Then(@"I can see the Apprentice Summary page")]
         public void iCanSeeApprenticeshipSummaryPage()
         {
-            apprenticeshipSummaryPage.verifyApprenticeSummaryPageHeader();
             apprenticeshipSummaryPage.verifyApprenticeDetailsOfResultsPageAgainstSummaryPage();
-            //apprenticeshipSummaryPage.clickObSignInToApplyButton();
+            apprenticeshipSummaryPage.clickObSignInToApplyButton();
         }
     }
 }

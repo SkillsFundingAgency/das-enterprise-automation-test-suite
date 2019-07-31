@@ -22,19 +22,26 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
         private const string ExpectedWhatComesAfterMyApprenticeshipHeader = "WHAT COMES AFTER MY APPRENTICESHIP?";
         private const string ExpectedWhatComesAfterMyApprenticeshipParagraph1 = "Apprenticeships are designed to make you ‘job-ready’ in the role you're training for. Once your apprenticeship is up and running, and you’re gaining more experience and learning new skills, you can start to plan for the next step.";
         private const string ExpectedWhatComesAfterMyApprenticeshipParagraph2 = "Most apprentices stay on in employment or further training after their apprenticeship. It’s always worth discussing your future career with your current employer, as well as doing some research yourself.";
+        private const string ExpectedQuestion1 = "what you will need to bring - notebook/pens/ID";
+        private const string ExpectedQuestion2 = "what time you need to arrive";
+        private const string ExpectedQuestion3 = "how your should dress - suit or jeans";
+        private const string ExpectedQuestion4 = "how much money you will need to bring for lunch etc";
+        private const string ExpectedQuestion5 = "who you should ask for when you arrive";
+        private const string ExpectedQuestion6 = "where to get the bus/train or park your car";
+        //private const string ExpectedQuestion6 = "£";
         #endregion
 
         #region Helpers
         private readonly PageInteractionHelper _pageInteractionHelper;
         private readonly FormCompletionHelper _formCompletionHelper;
+        private readonly PageInteractionCampaignsHelper _pageInteractionCampaignsHelper;
         private ArrayList actualQuestionsList = new ArrayList();
         private ArrayList expectedQuestionsList = new ArrayList();
 
         #endregion
 
         #region Page Object Elements
-        //private readonly By _pageTitle = By.XPath("//h1[@class='heading-xl hero-heading__heading']");
-        private readonly By _pageTitle = By.ClassName("heading-xl hero-heading__heading");
+        private readonly By _pageTitle = By.XPath("//h1[@class='heading-xl hero-heading__heading']");
         private readonly By _whatToBringLink = By.XPath("//ul[@class='list list--arrows']/li[1]/a");
         private readonly By _meetYourNewTeamLink = By.XPath("//ul[@class='list list--arrows']/li[2]/a");
         private readonly By _whatComesAfterMyApprenticeshipLink = By.XPath("//ul[@class='list list--arrows']/li[3]/a");
@@ -53,26 +60,24 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
         {
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
+            _pageInteractionCampaignsHelper = context.Get<PageInteractionCampaignsHelper>();
+            VerifyPage();
+
         }
 
         protected override bool VerifyPage()
         {
-            return _pageInteractionHelper.VerifyPage(_formCompletionHelper.GetText(_pageTitle), ExpectedPageTitle);
-        }
-
-        internal void verifyPageTitle()
-        {
-            _formCompletionHelper.VerifyText(_pageTitle, ExpectedPageTitle);
+            return _pageInteractionHelper.VerifyPage(_pageTitle, ExpectedPageTitle);
         }
 
         internal void verifyConetntUnderWhatToBringSection()
         {
-            expectedQuestionsList.Add("what you will need to bring - notebook/pens/ID");
-            expectedQuestionsList.Add("what time you need to arrive");
-            expectedQuestionsList.Add("how your should dress - suit or jeans");
-            expectedQuestionsList.Add("how much money you will need to bring for lunch etc");
-            expectedQuestionsList.Add("who you should ask for when you arrive");
-            expectedQuestionsList.Add("where to get the bus/train or park your car");
+            expectedQuestionsList.Add(ExpectedQuestion1);
+            expectedQuestionsList.Add(ExpectedQuestion2);
+            expectedQuestionsList.Add(ExpectedQuestion3);
+            expectedQuestionsList.Add(ExpectedQuestion4);
+            expectedQuestionsList.Add(ExpectedQuestion5);
+            expectedQuestionsList.Add(ExpectedQuestion6);
 
             _pageInteractionHelper.WaitForElementToBeDisplayed(_whatToBringLink);
             _formCompletionHelper.ClickElement(_whatToBringLink);
@@ -80,6 +85,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
             string actualWhatToBringHeader = _pageInteractionHelper.GetText(_whatToBringHeader);
             string actualWhatToBringParagraph1 = _pageInteractionHelper.GetText(_whatToBringParagraph1);
             string actualWhatToBringParagraph2 = _pageInteractionHelper.GetText(_whatToBringParagraph2);
+
             for (int i=1; i<=6; i++)
             {
                 actualQuestionsList.Add(_pageInteractionHelper.GetText(By.XPath("//div[@class='page']/ul[1]/li[" + i + "]")));
@@ -88,7 +94,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
             _pageInteractionHelper.VerifyText(actualWhatToBringHeader, ExpectedWhatToBringHeader);
             _pageInteractionHelper.VerifyText(actualWhatToBringParagraph1, ExpectedWhatToBringParagraph1);
             _pageInteractionHelper.VerifyText(actualWhatToBringParagraph2, ExpectedWhatToBringParagraph2);
-            Console.WriteLine("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& "+actualQuestionsList.Equals(expectedQuestionsList));
+            _pageInteractionCampaignsHelper.compareContentOfTwoArraylists(actualQuestionsList, expectedQuestionsList);
         }
 
         internal void verifyContentUnderMeetYourNewTeamSection()

@@ -3,6 +3,7 @@ using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Text;
 using TechTalk.SpecFlow;
 
@@ -32,17 +33,12 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
         {
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
+            VerifyPage();
         }
 
         protected override bool VerifyPage()
         {
-            return _pageInteractionHelper.VerifyPage(_formCompletionHelper.GetText(_apprenticeshipSummaryHeader), ExpectedPageTitle);
-        }
-
-        internal void verifyApprenticeSummaryPageHeader()
-        {
-            _pageInteractionHelper.WaitForElementToBeDisplayed(_apprenticeshipSummaryHeader);
-            _pageInteractionHelper.VerifyPage(_apprenticeshipSummaryHeader, ExpectedPageTitle);
+            return _pageInteractionHelper.VerifyPage(_apprenticeshipSummaryHeader, ExpectedPageTitle);
         }
 
         internal void clickObSignInToApplyButton()
@@ -56,7 +52,12 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
             _pageInteractionHelper.VerifyText(_pageInteractionHelper.GetText(_vacancyTitle), PageInteractionCampaignsHelper.expectedVacancyTitle);
             _pageInteractionHelper.VerifyText(_pageInteractionHelper.GetText(_vacancyDescription),PageInteractionCampaignsHelper.expectedVacancyDescription);
             _pageInteractionHelper.VerifyText(_pageInteractionHelper.GetText(_employerName),PageInteractionCampaignsHelper.expectedEmployerName);
-            //_pageInteractionHelper.VerifyText(_pageInteractionHelper.GetText(_possibleClosingDate),PageInteractionCampaignsHelper.expectedPossibleClosingDate);
+
+            string dateFromResultsPage = _pageInteractionHelper.GetText(_possibleClosingDate);
+            DateTime convertedDate = Convert.ToDateTime(dateFromResultsPage);
+            string formattedDate = convertedDate.ToShortDateString();
+
+            _pageInteractionHelper.VerifyText(formattedDate, PageInteractionCampaignsHelper.expectedPossibleClosingDate);
 
         }
 
