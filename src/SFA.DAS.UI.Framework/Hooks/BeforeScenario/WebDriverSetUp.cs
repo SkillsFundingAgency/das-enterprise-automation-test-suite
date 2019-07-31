@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Reflection;
+using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
@@ -85,6 +86,8 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
 
         private string FindDriverService(string executableName)
         {
+            TestContext.Progress.WriteLine($"DriverPath : {DriverPath}");
+
             FileInfo[] file = Directory.GetParent(DriverPath).GetFiles(executableName, SearchOption.AllDirectories);
 
             return file.Length != 0 ? file[0].DirectoryName : DriverPath;
