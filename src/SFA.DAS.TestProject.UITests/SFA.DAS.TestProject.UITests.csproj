@@ -22,7 +22,6 @@
     <PackageReference Include="Selenium.WebDriver.ChromeDriver" Version="75.0.3770.140" />
     <PackageReference Include="Selenium.WebDriver.GeckoDriver" Version="0.24.0" />
     <PackageReference Include="Selenium.WebDriver.IEDriver" Version="3.141.59" />
-    <PackageReference Include="SFA.DAS.UI.Framework" Version="1.0.2" />
     <PackageReference Include="SpecFlow.Tools.MsBuild.Generation" Version="3.0.225" />
   </ItemGroup>
 
@@ -33,15 +32,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\SFA.DAS.UI.Framework\SFA.DAS.UI.Framework.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Update="NUnitConfigurator.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="appsettings.BrowserStack.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Update="appsettings.Development.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

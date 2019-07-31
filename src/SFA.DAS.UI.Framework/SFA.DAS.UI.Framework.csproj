@@ -8,7 +8,7 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageVersion>1.0.2</PackageVersion>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <Authors>arvinthseran_2019; Imran Ali</Authors>
+    <Authors>arvinthseran; Imran Ali</Authors>
     <Company>SFA.DAS</Company>
     <Description>A generic repository wrapper for Specflow UI Framework integrated with donet core</Description>
     <PackageProjectUrl>https://accounts.manage-apprenticeships.service.gov.uk/service/index</PackageProjectUrl>
