@@ -26,20 +26,20 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SFA.DAS.UI.Framework\SFA.DAS.UI.Framework.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Update="appsettings.Development.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    <None Update="appsettings.Project.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="appsettings.TestProject.BrowserStack.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    <None Update="appsettings.Project.BrowserStack.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Project\Tests\Features\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SFA.DAS.UI.Framework\SFA.DAS.UI.Framework.csproj" />
   </ItemGroup>
 
 </Project>

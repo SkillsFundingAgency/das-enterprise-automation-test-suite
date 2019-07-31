@@ -42,11 +42,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="appsettings.Development.json">
+    <None Update="appsettings.Project.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="appsettings.TestProject.BrowserStack.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    <None Update="appsettings.Project.BrowserStack.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
 

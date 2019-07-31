@@ -14,7 +14,7 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
     [Binding]
     public class WebDriverSetup
     {
-        private static readonly string DriverPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+        private readonly string DriverPath;
 
         private IWebDriver WebDriver;
 
@@ -22,6 +22,7 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
 
         public WebDriverSetup(ScenarioContext context)
         {
+            DriverPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
             _context = context;
         }
 

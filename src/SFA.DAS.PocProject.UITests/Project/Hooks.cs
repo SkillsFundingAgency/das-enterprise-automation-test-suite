@@ -16,6 +16,7 @@ namespace SFA.DAS.PocProject.UITests.Project
     {
         private readonly ScenarioContext _context;
         private readonly FrameworkConfig _config;
+        private readonly MongoDbConfig _mongoDbConfig;
         private readonly IWebDriver _webDriver;
         private MongoDbHelper _mongoDbHelper;
         private readonly ObjectContext _objectContext;
@@ -26,6 +27,7 @@ namespace SFA.DAS.PocProject.UITests.Project
             _context = context;
             _webDriver = context.GetWebDriver();
             _config = context.Get<FrameworkConfig>();
+            _mongoDbConfig = _context.GetConfigSection<MongoDbConfig>();
             _objectContext = context.Get<ObjectContext>();
         }
 
@@ -49,22 +51,20 @@ namespace SFA.DAS.PocProject.UITests.Project
         [Scope(Tag = "addpayedetails")]
         public void SetUpMongoDbHelpers()
         {
-            var mongoDbConfig = _context.GetConfigSection<MongoDbConfig>();
-
             var mongoDbDataHelper = new MongoDbDataHelper(_dataHelper);
-            _context.Set(mongoDbDataHelper);
 
             TestContext.Progress.WriteLine($"Gateway Id : {mongoDbDataHelper.GatewayId}");
 
             _objectContext.SetGatewayCreds(mongoDbDataHelper.GatewayId, mongoDbDataHelper.GatewayPassword, mongoDbDataHelper.EmpRef);
 
-            _mongoDbHelper = new MongoDbHelper(mongoDbConfig, mongoDbDataHelper);
+            _mongoDbHelper = new MongoDbHelper(_mongoDbConfig, mongoDbDataHelper);
         }
 
         [BeforeScenario(Order = 24)]
         [Scope(Tag = "addpayedetails")]
         public void AddPayeDetails()
         {
+            TestContext.Progress.WriteLine($"Connecting to MongoDb Database : {_mongoDbConfig.Database}");
             _mongoDbHelper.AsyncCreateData().Wait();
             TestContext.Progress.WriteLine($"Gateway User Created, EmpRef: {_objectContext.GetGatewayPaye()}");
         }
