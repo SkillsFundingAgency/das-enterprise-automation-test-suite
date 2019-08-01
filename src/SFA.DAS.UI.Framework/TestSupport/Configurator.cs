@@ -36,15 +36,17 @@ namespace SFA.DAS.UI.Framework.TestSupport
 
         private static IConfigurationRoot InitializeConfig()
         {
+            var envName = GetEnvironmentName();
+
             return ConfigurationBuilder()
             .AddJsonFile("appsettings.json", true)
             .AddJsonFile("appsettings.BrowserStack.json", true)
             .AddJsonFile("appsettings.Project.json", true)
             .AddJsonFile("appsettings.Project.BrowserStack.json", true)
-            .AddJsonFile($"appsettings.{GetEnvironmentName()}.json", true)
+            .AddJsonFile($"appsettings.{envName}.json", true)
             .AddEnvironmentVariables()
             .AddUserSecrets("BrowserStackSecrets")
-            .AddUserSecrets("ProjectSecrets")
+            .AddUserSecrets($"{envName}Secrets")
             .AddUserSecrets("MongoDbSecrets")
             .Build();
         }
@@ -56,6 +58,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
                 .Build()
                 .GetSection("Hosting:Environment").Value;
         }
+
         private static IConfigurationBuilder ConfigurationBuilder()
         {
             return new ConfigurationBuilder()
