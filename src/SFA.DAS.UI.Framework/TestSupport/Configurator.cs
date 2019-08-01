@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using SFA.DAS.UI.FrameworkHelpers;
+using System;
 using System.IO;
 
 namespace SFA.DAS.UI.Framework.TestSupport
@@ -35,17 +36,30 @@ namespace SFA.DAS.UI.Framework.TestSupport
 
         private static IConfigurationRoot InitializeConfig()
         {
+            return ConfigurationBuilder()
+            .AddJsonFile("appsettings.json", true)
+            .AddJsonFile("appsettings.BrowserStack.json", true)
+            .AddJsonFile("appsettings.Project.json", true)
+            .AddJsonFile("appsettings.Project.BrowserStack.json", true)
+            .AddJsonFile($"appsettings.{GetEnvironmentName()}.json", true)
+            .AddEnvironmentVariables()
+            .AddUserSecrets("BrowserStackSecrets")
+            .AddUserSecrets("ProjectSecrets")
+            .AddUserSecrets("MongoDbSecrets")
+            .Build();
+        }
+
+        private static string GetEnvironmentName()
+        {
+            return ConfigurationBuilder()
+                .AddJsonFile("appsettings.Environment.json", true)
+                .Build()
+                .GetSection("Hosting:Environment").Value;
+        }
+        private static IConfigurationBuilder ConfigurationBuilder()
+        {
             return new ConfigurationBuilder()
-                .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("appsettings.json", true)
-                .AddJsonFile("appsettings.BrowserStack.json", true)
-                .AddJsonFile("appsettings.Project.json", true)
-                .AddJsonFile("appsettings.Project.BrowserStack.json",true)
-                .AddEnvironmentVariables()
-                .AddUserSecrets("BrowserStackSecrets")
-                .AddUserSecrets("ProjectSecrets")
-                .AddUserSecrets("MongoDbSecrets")
-                .Build();
+                    .SetBasePath(Directory.GetCurrentDirectory());
         }
     }
 }
