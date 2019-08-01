@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Reflection;
+using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
@@ -20,6 +21,12 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
 
         private readonly ScenarioContext _context;
 
+        private const string ChromeDriverServiceName = "chromedriver.exe";
+
+        private const string FirefoxDriverServiceName = "geckodriver.exe";
+
+        private const string InternetExplorerDriverServiceName = "IEDriverServer.exe";
+
         public WebDriverSetup(ScenarioContext context)
         {
             DriverPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
@@ -35,16 +42,16 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
             switch (true)
             {
                 case bool _ when browser.IsFirefox():
-                    WebDriver = new FirefoxDriver(DriverPath);
+                    WebDriver = new FirefoxDriver(FindDriverService(FirefoxDriverServiceName));
                     WebDriver.Manage().Window.Maximize();
                     break;
 
                 case bool _ when browser.IsChrome():
-                    WebDriver = new ChromeDriver(DriverPath);
+                    WebDriver = new ChromeDriver(FindDriverService(ChromeDriverServiceName));
                     break;
 
                 case bool _ when browser.IsIe():
-                    WebDriver = new InternetExplorerDriver(DriverPath);
+                    WebDriver = new InternetExplorerDriver(FindDriverService("InternetExplorerDriverServiceName"));
                     WebDriver.Manage().Window.Maximize();
                     break;
 
@@ -55,7 +62,7 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
                 case bool _ when browser.IsChromeHeadless():
                     var chromeOptions = new ChromeOptions();
                     chromeOptions.AddArgument("--headless");
-                    WebDriver = new ChromeDriver(DriverPath, chromeOptions);
+                    WebDriver = new ChromeDriver(FindDriverService(ChromeDriverServiceName), chromeOptions);
                     break;
                
 
@@ -77,6 +84,19 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
             _context.SetWebDriver(WebDriver);
         }
 
+        private string FindDriverService(string executableName)
+        {
+            TestContext.Progress.WriteLine($"DriverPath : {DriverPath}, Executable Name : {executableName}");
+
+            FileInfo[] file = Directory.GetParent(DriverPath).GetFiles(executableName, SearchOption.AllDirectories);
+
+            var info = file.Length != 0 ? file[0].DirectoryName : DriverPath;
+
+            TestContext.Progress.WriteLine($"Driver Service should be available under: {info}");
+
+            return info;
+        }
+
         private void InitialiseZapProxyChrome()
         {
             const string PROXY = "localhost:8080";
@@ -89,7 +109,7 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
             };
             chromeOptions.Proxy = proxy;
 
-            WebDriver = new ChromeDriver(DriverPath, chromeOptions);
+            WebDriver = new ChromeDriver(FindDriverService(ChromeDriverServiceName), chromeOptions);
         }
     }
 }

@@ -8,10 +8,8 @@ namespace SFA.DAS.PocProject.UITests.Project.Tests.Pages
     public class GatewayInformPage : BasePage
     {
         #region Helpers and Context
-        private readonly PageInteractionHelper _pageInteractionHelper;
         private readonly FormCompletionHelper _formCompletionHelper;
         private readonly ScenarioContext _context;
-        private readonly ProjectSpecificConfig _config;
         #endregion
 
         private By ContinueButton => By.Id("agree_and_continue");
