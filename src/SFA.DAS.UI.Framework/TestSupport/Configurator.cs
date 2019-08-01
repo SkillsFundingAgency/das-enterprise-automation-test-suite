@@ -13,8 +13,8 @@ namespace SFA.DAS.UI.Framework.TestSupport
 
         static Configurator()
         {
-            _config = InitializeConfig();
             _hostingConfig = InitializeHostingConfig();
+            _config = InitializeConfig();
         }
 
         internal static IConfigurationRoot GetConfig()
@@ -56,10 +56,10 @@ namespace SFA.DAS.UI.Framework.TestSupport
             .AddJsonFile("appsettings.BrowserStack.json", true)
             .AddJsonFile("appsettings.Project.json", true)
             .AddJsonFile("appsettings.Project.BrowserStack.json", true)
-            .AddJsonFile($"appsettings.{host.EnvironmentName}.json", true)
+            .AddJsonFile($"appsettings.{host?.EnvironmentName}.json", true)
             .AddEnvironmentVariables()
             .AddUserSecrets("BrowserStackSecrets")
-            .AddUserSecrets($"{host.ProjectName}_{host.EnvironmentName}_Secrets")
+            .AddUserSecrets($"{host?.ProjectName}_{host?.EnvironmentName}_Secrets")
             .AddUserSecrets("MongoDbSecrets")
             .Build();
         }

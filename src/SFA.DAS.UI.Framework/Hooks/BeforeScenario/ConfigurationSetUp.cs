@@ -28,6 +28,8 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
             _context.Set(configuration);
 
             _context.SetConfigurationRoot(Configurator.GetConfig());
+
+
         }
     }
 }
