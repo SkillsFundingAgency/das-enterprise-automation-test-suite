@@ -31,6 +31,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
         private readonly By _ApprenticesHeaderSupportText = By.XPath("(//div[@class='launcher__content']/child::p)[1]");
         private readonly By _EmployersHeaderSupportText = By.XPath("(//div[@class='launcher__content']/child::p)[4]");
         private readonly By _yourApprenticeshipLink = By.Id("link-nav-app-step-5");
+        private readonly By _assessmentAndCertificationLink = By.Id("link-nav-app-step-6");
 
         #endregion
 
@@ -82,6 +83,12 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
         {
             _pageInteractionHelper.WaitForElementToBeClickable(_yourApprenticeshipLink);
             _formCompletionHelper.ClickElement(_yourApprenticeshipLink);
+        }
+
+        internal void clickOnAssessmentAndCertificationLink()
+        {
+            _pageInteractionHelper.WaitForElementToBeClickable(_assessmentAndCertificationLink);
+            _formCompletionHelper.ClickElement(_assessmentAndCertificationLink);
         }
 
     }

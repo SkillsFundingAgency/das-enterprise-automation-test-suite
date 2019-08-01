@@ -55,7 +55,15 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
             fireItUpHomePage.clickOnYourApprenticeshipLink();
         }
 
-        
+        [When(@"I launch the Assessment And Certification page")]
+        public void launchAssessmentAndCertificationPage()
+        {
+            fireItUpHomePage.launchApprenticeMenu();
+            TestContext.Progress.WriteLine("Navigating to Assessment And Certification page");
+            fireItUpHomePage.clickOnAssessmentAndCertificationLink();
+        }
+
+
 
     }
 }
