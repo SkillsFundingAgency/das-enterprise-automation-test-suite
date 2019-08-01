@@ -20,13 +20,14 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
             {
                 BaseUrl = Configurator.GetBaseUrl(),
                 Browser = Configurator.GetBrowser(),
+                HostingConfig = Configurator.GetHostingConfig(),
                 TimeOutConfig = Configurator.GetTimeOut(),
                 BrowserStackSetting = Configurator.GetBrowserStackSetting()
             };
 
             _context.Set(configuration);
 
-            _context.SetConfigurationRoot(Configurator.config);
+            _context.SetConfigurationRoot(Configurator.GetConfig());
         }
     }
 }
