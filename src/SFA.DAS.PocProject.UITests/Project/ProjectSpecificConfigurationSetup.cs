@@ -1,4 +1,5 @@
 ﻿using SFA.DAS.UI.Framework.TestSupport;
+using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.PocProject.UITests.Project
@@ -7,22 +8,26 @@ namespace SFA.DAS.PocProject.UITests.Project
     public class ProjectSpecificConfigurationSetup
     {
         private readonly ScenarioContext _context;
-        private readonly ProjectConfig _config;
         private readonly ObjectContext _objectContext;
+        private readonly IConfigSection _configSection;
 
         public ProjectSpecificConfigurationSetup(ScenarioContext context)
         {
             _context = context;
-            var configsectionHelper = context.Get<IConfigSection>();
-            _config = configsectionHelper.GetConfigSection<ProjectConfig>();
+            _configSection = context.Get<IConfigSection>();
             _objectContext = context.Get<ObjectContext>();
         }
 
         [BeforeScenario(Order = 2)]
         public void SetUpProjectSpecificConfiguration()
         {
-            _context.SetProjectConfig(_config);
-            _objectContext.SetBrowser(_config.PP_Browser);
+            var config = _configSection.GetConfigSection<ProjectConfig>();
+            _context.SetProjectConfig(config);
+
+            var mongoDbconfig = _configSection.GetConfigSection<MongoDbConfig>();
+            _context.SetMongoDbConfig(mongoDbconfig);
+
+            _objectContext.SetBrowser(config.PP_Browser);
         }
     }
 }

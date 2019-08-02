@@ -14,7 +14,7 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
         public ConfigurationSetup(ScenarioContext context)
         {
             _context = context;
-            _configSection = new ConfigSectionHelper(Configurator.GetConfig());
+            _configSection = new ConfigSection(Configurator.GetConfig());
         }
         
         [BeforeScenario(Order = 1)]

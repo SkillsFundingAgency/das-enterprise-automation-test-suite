@@ -24,9 +24,6 @@ namespace SFA.DAS.TestProject.UITests.Project
             var config = _configSection.GetConfigSection<ProjectConfig>();
             _context.SetProjectConfig(config);
 
-            var mongoDbconfig = _configSection.GetConfigSection<MongoDbConfig>();
-            _context.SetMongoDbConfig(mongoDbconfig);
-
             _objectContext.SetBrowser(config.TP_Browser);
         }
     }

@@ -3,11 +3,11 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.UI.Framework.TestSupport
 {
-    public class ConfigSectionHelper : IConfigSection
+    public class ConfigSection : IConfigSection
     {
         private readonly IConfigurationRoot _configurationRoot;
 
-        public ConfigSectionHelper(IConfigurationRoot configurationRoot)
+        public ConfigSection(IConfigurationRoot configurationRoot)
         {
             _configurationRoot = configurationRoot;
         }
