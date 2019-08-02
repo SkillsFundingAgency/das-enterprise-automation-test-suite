@@ -100,7 +100,8 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
         internal void verifyContentUnderMeetYourNewTeamSection()
         {
             _pageInteractionHelper.WaitForElementToBeDisplayed(_meetYourNewTeamLink);
-            //_formCompletionHelper.ClickElement(_meetYourNewTeamLink);
+            _pageInteractionHelper.FocusTheElement(_meetYourNewTeamLink);
+            _formCompletionHelper.ClickElement(_meetYourNewTeamLink);
             string actualMeetYourNewTeamHeader = _pageInteractionHelper.GetText(_meetYourNewTeamHeader);
             string actualMeetYourNewTeamParagraph1 = _pageInteractionHelper.GetText(_meetYourNewTeamParagraph1);
             _pageInteractionHelper.VerifyText(actualMeetYourNewTeamHeader, ExpectedMeetYourNewTeamHeader);
@@ -110,6 +111,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
         internal void verifyContentUnderWhatComesAfterMyApprenticeshipSection()
         {
             _pageInteractionHelper.WaitForElementToBeDisplayed(_whatComesAfterMyApprenticeshipLink);
+            _pageInteractionHelper.FocusTheElement(_whatComesAfterMyApprenticeshipLink);
             //_formCompletionHelper.ClickElement(_whatComesAfterMyApprenticeshipLink);
             string actualWhatComesAfterMyApprenticeshipHeader = _pageInteractionHelper.GetText(_whatComesAfterMyApprenticeshipHeader);
             string actualWhatComesAfterMyApprenticeshipParagraph1 = _pageInteractionHelper.GetText(_whatComesAfterMyApprenticeshipParagraph1);

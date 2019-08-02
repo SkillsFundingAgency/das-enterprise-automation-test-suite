@@ -32,6 +32,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
         private readonly By _EmployersHeaderSupportText = By.XPath("(//div[@class='launcher__content']/child::p)[4]");
         private readonly By _yourApprenticeshipLink = By.Id("link-nav-app-step-5");
         private readonly By _assessmentAndCertificationLink = By.Id("link-nav-app-step-6");
+        private readonly By _inetrviewLink = By.Id("link-nav-app-step-4");
 
         #endregion
 
@@ -89,6 +90,12 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
         {
             _pageInteractionHelper.WaitForElementToBeClickable(_assessmentAndCertificationLink);
             _formCompletionHelper.ClickElement(_assessmentAndCertificationLink);
+        }
+
+        internal void clickOnInterviewLink()
+        {
+            _pageInteractionHelper.WaitForElementToBeClickable(_inetrviewLink);
+            _formCompletionHelper.ClickElement(_inetrviewLink);
         }
 
     }
