@@ -35,6 +35,8 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
             switch (true)
             {
                 case bool _ when browser.IsFirefox():
+
+
                     WebDriver = new FirefoxDriver(DriverPath);
                     WebDriver.Manage().Window.Maximize();
                     break;

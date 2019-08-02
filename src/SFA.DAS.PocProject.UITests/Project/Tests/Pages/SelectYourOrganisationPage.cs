@@ -5,6 +5,7 @@ using System.Linq;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using SFA.DAS.UI.Framework;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.PocProject.UITests.Project.Tests.Pages
@@ -15,7 +16,7 @@ namespace SFA.DAS.PocProject.UITests.Project.Tests.Pages
         private readonly PageInteractionHelper _pageInteractionHelper;
         private readonly FormCompletionHelper _formCompletionHelper;
         private readonly ScenarioContext _context;
-        private readonly ProjectSpecificConfig _config;
+        private readonly PayeAccountDetails _config;
         #endregion
 
         private readonly IWebDriver _webDriver;
@@ -28,7 +29,7 @@ namespace SFA.DAS.PocProject.UITests.Project.Tests.Pages
             _webDriver = context.GetWebDriver();
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
-            _config = context.GetConfigSection<ProjectSpecificConfig>();
+            _config = context.GetConfigSection<PayeAccountDetails>();
             VerifyPage();
         }
 

@@ -1,34 +1,33 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
-using SFA.DAS.PocProject.UITests.Project.Helpers;
-using SFA.DAS.UI.Framework;
+using SFA.DAS.PocProject.UITests.Project;
 using SFA.DAS.UI.Framework.TestSupport;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
+using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.PocProject.UITests.Project
+namespace SFA.DAS.UI.Framework
 {
     [Binding]
-    public class Hooks          
+    public class MongoDbSetupHooks
     {
         private readonly ScenarioContext _context;
         private readonly FrameworkConfig _config;
-        private readonly MongoDbConfig _mongoDbConfig;
         private readonly IWebDriver _webDriver;
         private MongoDbHelper _mongoDbHelper;
+        private readonly MongoDbConfig _mongoDbConfig;
+        private readonly PayeAccountDetails _payeAccountDetails;
         private readonly ObjectContext _objectContext;
         private DataHelper _dataHelper;
 
-        public Hooks(ScenarioContext context)
+        public MongoDbSetupHooks(ScenarioContext context)
         {
             _context = context;
             _webDriver = context.GetWebDriver();
             _config = context.Get<FrameworkConfig>();
             _mongoDbConfig = _context.GetConfigSection<MongoDbConfig>();
             _objectContext = context.Get<ObjectContext>();
+            _payeAccountDetails = _context.GetConfigSection<PayeAccountDetails>();
+
         }
 
         [BeforeScenario(Order = 21)]
@@ -41,9 +40,7 @@ namespace SFA.DAS.PocProject.UITests.Project
         [BeforeScenario(Order = 22)]
         public void SetUpDataHelpers()
         {
-            var projectspecificConfig = _context.GetConfigSection<ProjectSpecificConfig>();
-
-            _dataHelper = new DataHelper(projectspecificConfig.TwoDigitProjectCode);
+            _dataHelper = new DataHelper(_payeAccountDetails.TwoDigitProjectCode);
             _context.Set(_dataHelper);
         }
 
@@ -52,11 +49,8 @@ namespace SFA.DAS.PocProject.UITests.Project
         public void SetUpMongoDbHelpers()
         {
             var mongoDbDataHelper = new MongoDbDataHelper(_dataHelper);
-
             TestContext.Progress.WriteLine($"Gateway Id : {mongoDbDataHelper.GatewayId}");
-
             _objectContext.SetGatewayCreds(mongoDbDataHelper.GatewayId, mongoDbDataHelper.GatewayPassword, mongoDbDataHelper.EmpRef);
-
             _mongoDbHelper = new MongoDbHelper(_mongoDbConfig, mongoDbDataHelper);
         }
 
@@ -64,7 +58,6 @@ namespace SFA.DAS.PocProject.UITests.Project
         [Scope(Tag = "addpayedetails")]
         public void AddPayeDetails()
         {
-            TestContext.Progress.WriteLine($"Connecting to MongoDb Database : {_mongoDbConfig.Database}");
             _mongoDbHelper.AsyncCreateData().Wait();
             TestContext.Progress.WriteLine($"Gateway User Created, EmpRef: {_objectContext.GetGatewayPaye()}");
         }

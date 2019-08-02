@@ -1,5 +1,5 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.PocProject.UITests.Project.Helpers;
+using SFA.DAS.UI.Framework;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
@@ -12,7 +12,7 @@ namespace SFA.DAS.PocProject.UITests.Project.Tests.Pages
         private readonly PageInteractionHelper _pageInteractionHelper;
         private readonly FormCompletionHelper _formCompletionHelper;
         private readonly ScenarioContext _context;
-        private readonly ProjectSpecificConfig _config;
+        private readonly PayeAccountDetails _config;
         private readonly string _gatewayid;
         private readonly string _gatewaypassword;
         #endregion
@@ -26,7 +26,7 @@ namespace SFA.DAS.PocProject.UITests.Project.Tests.Pages
         public GgSignInPage(ScenarioContext context) : base(context)
         {
             _context = context;
-            _config = context.GetConfigSection<ProjectSpecificConfig>();
+            _config = context.GetConfigSection<PayeAccountDetails>();
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
             _gatewayid = context.Get<ObjectContext>().GetGatewayId();

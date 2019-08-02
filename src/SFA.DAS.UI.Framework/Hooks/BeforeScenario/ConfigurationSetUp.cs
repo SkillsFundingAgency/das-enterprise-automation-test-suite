@@ -12,7 +12,7 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
         {
             _context = context;
         }
-        
+
         [BeforeScenario(Order = 10)]
         public void SetUpConfiguration()
         {
@@ -21,7 +21,8 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
                 BaseUrl = Configurator.GetBaseUrl(),
                 Browser = Configurator.GetBrowser(),
                 TimeOutConfig = Configurator.GetTimeOut(),
-                BrowserStackSetting = Configurator.GetBrowserStackSetting()
+                BrowserStackSetting = Configurator.GetBrowserStackSetting(),
+                PayeAccountDetails = Configurator.GetPayeAccountDetails()
             };
 
             _context.Set(configuration);

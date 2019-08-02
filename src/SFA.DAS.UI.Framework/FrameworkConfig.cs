@@ -11,6 +11,8 @@ namespace SFA.DAS.UI.Framework
         public TimeOutConfig TimeOutConfig { get; set; }
 
         public BrowserStackSetting BrowserStackSetting { get; set; }
+
+        public PayeAccountDetails PayeAccountDetails { get; set; }
     }
 
     public class BrowserStackSetting
@@ -40,5 +42,19 @@ namespace SFA.DAS.UI.Framework
         public string Name { get; internal set; }
 
         public bool EnableNetworkLogs { get; set; }
+    }
+
+    public class PayeAccountDetails
+
+    {
+        public string AccountUserName { get; set; }
+
+        public string AccountPassword { get; set; }
+
+        public string ConfirmCode { get; set; }
+
+        public string TwoDigitProjectCode { get; set; }
+
+        public string OrganisationName { get; set; }
     }
 }

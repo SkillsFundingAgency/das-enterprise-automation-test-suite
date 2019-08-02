@@ -3,7 +3,8 @@ using MongoDB.Driver;
 using System;
 using System.Threading.Tasks;
 
-namespace SFA.DAS.PocProject.UITests.Project.Helpers
+
+namespace SFA.DAS.UI.FrameworkHelpers
 {
     public class MongoDbHelper
     {
@@ -32,7 +33,7 @@ namespace SFA.DAS.PocProject.UITests.Project.Helpers
 
             await GetGatewayUsersCollection<BsonDocument>().DeleteOneAsync(filter);
         }
-        
+
         private async Task AsyncCreateGatewayUserData()
         {
             BsonDocument[] data = CreateGatewayUserData();

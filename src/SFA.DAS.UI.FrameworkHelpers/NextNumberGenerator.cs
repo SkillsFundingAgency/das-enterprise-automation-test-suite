@@ -1,4 +1,4 @@
-﻿namespace SFA.DAS.PocProject.UITests.Project.Helpers
+﻿namespace SFA.DAS.UI.FrameworkHelpers
 {
     public static class NextNumberGenerator
     {

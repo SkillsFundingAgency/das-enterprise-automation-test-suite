@@ -33,14 +33,18 @@ namespace SFA.DAS.UI.Framework.TestSupport
             return config.GetSection(nameof(BrowserStackSetting)).Get<BrowserStackSetting>();
         }
 
+        internal static PayeAccountDetails GetPayeAccountDetails()
+        {
+            return config.GetSection(nameof(PayeAccountDetails)).Get<PayeAccountDetails>();
+        }
         private static IConfigurationRoot InitializeConfig()
         {
             return new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile("appsettings.json", true)
                 .AddJsonFile("appsettings.BrowserStack.json", true)
-                .AddJsonFile("appsettings.Project.json", true)
-                .AddJsonFile("appsettings.Project.BrowserStack.json",true)
+                .AddJsonFile("appsettings.Development.json", true)
+                .AddJsonFile("appsettings.TestProject.BrowserStack.json", true)
                 .AddEnvironmentVariables()
                 .AddUserSecrets("BrowserStackSecrets")
                 .AddUserSecrets("TestProjectSecrets")

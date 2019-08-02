@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.UI.Framework;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
@@ -11,7 +12,7 @@ namespace SFA.DAS.PocProject.UITests.Project.Tests.Pages
         private readonly PageInteractionHelper _pageInteractionHelper;
         private readonly FormCompletionHelper _formCompletionHelper;
         private readonly ScenarioContext _context;
-        private readonly ProjectSpecificConfig _config;
+        private readonly PayeAccountDetails _config;
         #endregion
 
         private By AccountId => By.CssSelector(".heading-secondary");
@@ -19,7 +20,7 @@ namespace SFA.DAS.PocProject.UITests.Project.Tests.Pages
         public HomePage(ScenarioContext context): base(context)
         {
             _context = context;
-            _config = context.GetConfigSection<ProjectSpecificConfig>();
+            _config = context.GetConfigSection<PayeAccountDetails>();
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
             VerifyPage();

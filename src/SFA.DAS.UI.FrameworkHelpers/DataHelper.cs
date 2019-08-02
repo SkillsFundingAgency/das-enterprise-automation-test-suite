@@ -1,6 +1,7 @@
 ﻿using System;
 
-namespace SFA.DAS.PocProject.UITests.Project.Helpers
+
+namespace SFA.DAS.UI.FrameworkHelpers
 {
     public class DataHelper
     {
@@ -30,7 +31,7 @@ namespace SFA.DAS.PocProject.UITests.Project.Helpers
         {
             return $"{RandomUserName}@mailinator.com";
         }
-        
+
         private string GenerateRandomUserName()
         {
             return $"{TwoDigitProjectCode}_Test_{NextNumber}_{dateTime.ToString("ddMMMyyyy_HHmmss")}{EmpRefDigits}";
