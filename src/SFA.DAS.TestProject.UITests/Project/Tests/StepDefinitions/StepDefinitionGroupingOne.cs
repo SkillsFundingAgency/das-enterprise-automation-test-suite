@@ -1,7 +1,6 @@
 ﻿using SFA.DAS.TestProject.UITests.Project.Tests.Pages;
 using SFA.DAS.UI.Framework.TestSupport;
 using OpenQA.Selenium;
-using SFA.DAS.UI.Framework;
 using TechTalk.SpecFlow;
 using TestContext = NUnit.Framework.TestContext;
 
@@ -11,7 +10,7 @@ namespace SFA.DAS.TestProject.UITests.Project.Tests.StepDefinitions
     public class StepDefinitionGroupingOne
     {
         #region Private Variables
-        private readonly FrameworkConfig _configuration;
+        private readonly ProjectConfig _configuration;
         private readonly ScenarioContext _context;
         private readonly ObjectContext _objectContext;
         private readonly IWebDriver _webDriver;
@@ -21,14 +20,14 @@ namespace SFA.DAS.TestProject.UITests.Project.Tests.StepDefinitions
         {
             _context = context;
             _webDriver = context.GetWebDriver();
-            _configuration = context.Get<FrameworkConfig>();
+            _configuration = context.GetProjectConfig<ProjectConfig>();
             _objectContext = context.Get<ObjectContext>();
         }
 
         [Given(@"I navigate to GOV.UK home page")]
         public void NavigateToGovUkHomePage()
         {
-            var url = _configuration.BaseUrl;
+            var url = _configuration.TP_BaseUrl;
             TestContext.Progress.WriteLine("Navigating to Gov.uk home page");
             _webDriver.Url = url; 
         }

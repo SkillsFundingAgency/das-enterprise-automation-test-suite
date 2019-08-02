@@ -1,5 +1,4 @@
-﻿using OpenQA.Selenium;
-using SFA.DAS.UI.Framework.TestSupport;
+﻿using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
@@ -17,7 +16,7 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
             _config = context.Get<FrameworkConfig>();
         }
 
-        [BeforeScenario(Order = 12)]
+        [BeforeScenario(Order = 4)]
         public void SetUpHelpers()
         {
             var WebDriver = _context.GetWebDriver();

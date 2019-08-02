@@ -11,7 +11,7 @@ namespace SFA.DAS.PocProject.UITests.Project.Tests.Pages
         private readonly PageInteractionHelper _pageInteractionHelper;
         private readonly FormCompletionHelper _formCompletionHelper;
         private readonly ScenarioContext _context;
-        private readonly ProjectSpecificConfig _config;
+        private readonly ProjectConfig _config;
         #endregion
 
         private By AccessCodeInput => By.Id("AccessCode");
@@ -23,7 +23,7 @@ namespace SFA.DAS.PocProject.UITests.Project.Tests.Pages
         public ConfirmPage(ScenarioContext context) : base(context)
         {
             _context = context;
-            _config = context.GetConfigSection<ProjectSpecificConfig>();
+            _config = context.GetProjectConfig<ProjectConfig>();
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
             VerifyPage();
@@ -40,7 +40,7 @@ namespace SFA.DAS.PocProject.UITests.Project.Tests.Pages
 
         private ConfirmPage EnterAccessCode()
         {
-            _formCompletionHelper.EnterText(AccessCodeInput, _config.ConfirmCode);
+            _formCompletionHelper.EnterText(AccessCodeInput, _config.PP_ConfirmCode);
             return this;
         }
 

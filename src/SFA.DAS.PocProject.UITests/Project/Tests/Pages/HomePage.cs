@@ -11,7 +11,7 @@ namespace SFA.DAS.PocProject.UITests.Project.Tests.Pages
         private readonly PageInteractionHelper _pageInteractionHelper;
         private readonly FormCompletionHelper _formCompletionHelper;
         private readonly ScenarioContext _context;
-        private readonly ProjectSpecificConfig _config;
+        private readonly ProjectConfig _config;
         #endregion
 
         private By AccountId => By.CssSelector(".heading-secondary");
@@ -19,13 +19,13 @@ namespace SFA.DAS.PocProject.UITests.Project.Tests.Pages
         public HomePage(ScenarioContext context): base(context)
         {
             _context = context;
-            _config = context.GetConfigSection<ProjectSpecificConfig>();
+            _config = context.GetProjectConfig<ProjectConfig>();
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
             VerifyPage();
         }
 
-        protected override string PageTitle => _config.OrganisationName.ToUpper();
+        protected override string PageTitle => _config.PP_OrganisationName.ToUpper();
 
         public string AccountID()
         {

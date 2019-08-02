@@ -1,4 +1,4 @@
-﻿namespace SFA.DAS.PocProject.UITests.Project
+﻿namespace SFA.DAS.UI.FrameworkHelpers
 {
     public class MongoDbConfig
     {

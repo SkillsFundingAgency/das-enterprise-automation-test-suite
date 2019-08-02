@@ -1,5 +1,6 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Driver;
+using SFA.DAS.UI.FrameworkHelpers;
 using System;
 using System.Threading.Tasks;
 
@@ -7,12 +8,12 @@ namespace SFA.DAS.PocProject.UITests.Project.Helpers
 {
     public class MongoDbHelper
     {
-        private readonly MongoDbConfig _config;
+        private readonly MongoDbConnectionHelper _connectionHelper;
         private readonly MongoDbDataHelper _helper;
 
-        public MongoDbHelper(MongoDbConfig config, MongoDbDataHelper helper)
+        public MongoDbHelper(MongoDbConnectionHelper connectionHelper, MongoDbDataHelper helper)
         {
-            _config = config;
+            _connectionHelper = connectionHelper;
             _helper = helper;
         }
 
@@ -30,14 +31,14 @@ namespace SFA.DAS.PocProject.UITests.Project.Helpers
         {
             var filter = Builders<BsonDocument>.Filter.Eq("gatewayID", _helper.GatewayId);
 
-            await GetGatewayUsersCollection<BsonDocument>().DeleteOneAsync(filter);
+            await _connectionHelper.AsyncDeleteGatewayUserData("gateway_users", filter);
         }
         
         private async Task AsyncCreateGatewayUserData()
         {
             BsonDocument[] data = CreateGatewayUserData();
 
-            await GetGatewayUsersCollection<BsonDocument>().InsertManyAsync(data);
+            await _connectionHelper.AsyncCreateGatewayUserData("gateway_users", data);
         }
 
         private BsonDocument[] CreateGatewayUserData()
@@ -52,14 +53,6 @@ namespace SFA.DAS.PocProject.UITests.Project.Helpers
             };
 
             return new BsonDocument[] { addUser };
-        }
-
-        private IMongoCollection<T> GetGatewayUsersCollection<T>()
-        {
-            var client = new MongoClient(_config.Uri);
-            var db = client.GetDatabase(_config.Database);
-
-            return db.GetCollection<T>("gateway_users");
         }
     }
 }
