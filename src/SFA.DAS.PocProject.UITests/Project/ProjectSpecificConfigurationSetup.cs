@@ -7,20 +7,21 @@ namespace SFA.DAS.PocProject.UITests.Project
     public class ProjectSpecificConfigurationSetup
     {
         private readonly ScenarioContext _context;
-        private readonly ProjectSpecificConfig _config;
+        private readonly ProjectConfig _config;
         private readonly ObjectContext _objectContext;
 
         public ProjectSpecificConfigurationSetup(ScenarioContext context)
         {
             _context = context;
-            _config = context.GetConfigSection<ProjectSpecificConfig>();
+            var configsectionHelper = context.Get<IConfigSection>();
+            _config = configsectionHelper.GetConfigSection<ProjectConfig>();
             _objectContext = context.Get<ObjectContext>();
         }
 
         [BeforeScenario(Order = 2)]
         public void SetUpProjectSpecificConfiguration()
         {
-            _context.SetProjectSpecificConfig(_config);
+            _context.SetProjectConfig(_config);
             _objectContext.SetBrowser(_config.PP_Browser);
         }
     }

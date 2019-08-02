@@ -11,7 +11,7 @@ namespace SFA.DAS.PocProject.UITests.Project.Tests.Pages
         private readonly PageInteractionHelper _pageInteractionHelper;
         private readonly FormCompletionHelper _formCompletionHelper;
         private readonly ScenarioContext _context;
-        private readonly ProjectSpecificConfig _config;
+        private readonly ProjectConfig _config;
         #endregion
 
         private By CreateAnAccountLink => By.LinkText("create an account");
@@ -33,7 +33,7 @@ namespace SFA.DAS.PocProject.UITests.Project.Tests.Pages
             _context = context;
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
-            _config = context.GetProjectSpecificConfig<ProjectSpecificConfig>();
+            _config = context.GetProjectConfig<ProjectConfig>();
             VerifyPage();
         }
         public RegisterPage CreateAnAccount()

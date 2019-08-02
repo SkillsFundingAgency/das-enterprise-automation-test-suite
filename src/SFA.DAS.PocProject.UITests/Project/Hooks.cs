@@ -11,7 +11,7 @@ namespace SFA.DAS.PocProject.UITests.Project
     public class Hooks          
     {
         private readonly ScenarioContext _context;
-        private readonly ProjectSpecificConfig _config;
+        private readonly ProjectConfig _config;
         private readonly MongoDbConfig _mongoDbConfig;
         private readonly IWebDriver _webDriver;
         private MongoDbHelper _mongoDbHelper;
@@ -23,8 +23,8 @@ namespace SFA.DAS.PocProject.UITests.Project
         {
             _context = context;
             _webDriver = context.GetWebDriver();
-            _config = context.GetProjectSpecificConfig<ProjectSpecificConfig>();
-            _mongoDbConfig = _context.GetConfigSection<MongoDbConfig>();
+            _config = context.GetProjectConfig<ProjectConfig>();
+            _mongoDbConfig = _context.GetMongoDbConfig();
             _objectContext = context.Get<ObjectContext>();
         }
 

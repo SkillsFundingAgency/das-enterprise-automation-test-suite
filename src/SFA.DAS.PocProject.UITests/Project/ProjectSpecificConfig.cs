@@ -1,6 +1,6 @@
 ﻿namespace SFA.DAS.PocProject.UITests.Project
 {
-    public class ProjectSpecificConfig
+    public class ProjectConfig
     {
         public string TwoDigitProjectCode { get; set; }
 

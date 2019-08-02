@@ -16,7 +16,7 @@ namespace SFA.DAS.PocProject.UITests.Project.Tests.Pages
         private readonly PageInteractionHelper _pageInteractionHelper;
         private readonly FormCompletionHelper _formCompletionHelper;
         private readonly ScenarioContext _context;
-        private readonly ProjectSpecificConfig _config;
+        private readonly ProjectConfig _config;
         #endregion
 
         private const string LastName = "Auto_Tester";
@@ -42,7 +42,7 @@ namespace SFA.DAS.PocProject.UITests.Project.Tests.Pages
         public RegisterPage(ScenarioContext context) : base(context)
         {
             _context = context;
-            _config = context.GetProjectSpecificConfig<ProjectSpecificConfig>();
+            _config = context.GetProjectConfig<ProjectConfig>();
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
             VerifyPage();

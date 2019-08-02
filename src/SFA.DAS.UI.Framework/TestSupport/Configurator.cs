@@ -1,6 +1,4 @@
 ﻿using Microsoft.Extensions.Configuration;
-using SFA.DAS.UI.FrameworkHelpers;
-using System;
 using System.IO;
 
 namespace SFA.DAS.UI.Framework.TestSupport
@@ -22,17 +20,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
             return _config;
         }
 
-        internal static TimeOutConfig GetTimeOut()
-        {
-            return _config.GetSection(nameof(TimeOutConfig)).Get<TimeOutConfig>();
-        }
-
-        internal static BrowserStackSetting GetBrowserStackSetting()
-        {
-            return _config.GetSection(nameof(BrowserStackSetting)).Get<BrowserStackSetting>();
-        }
-
-        internal static HostingConfig GetHostingConfig()
+        private static HostingConfig GetHostingConfig()
         {
             return _hostingConfig.GetSection(nameof(HostingConfig)).Get<HostingConfig>();
         }
