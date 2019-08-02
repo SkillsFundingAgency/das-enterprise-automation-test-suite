@@ -13,13 +13,11 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
             _context = context;
         }
         
-        [BeforeScenario(Order = 10)]
+        [BeforeScenario(Order = 1)]
         public void SetUpConfiguration()
         {
             var configuration = new FrameworkConfig
             {
-                BaseUrl = Configurator.GetBaseUrl(),
-                Browser = Configurator.GetBrowser(),
                 HostingConfig = Configurator.GetHostingConfig(),
                 TimeOutConfig = Configurator.GetTimeOut(),
                 BrowserStackSetting = Configurator.GetBrowserStackSetting()
@@ -28,8 +26,6 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
             _context.Set(configuration);
 
             _context.SetConfigurationRoot(Configurator.GetConfig());
-
-
         }
     }
 }

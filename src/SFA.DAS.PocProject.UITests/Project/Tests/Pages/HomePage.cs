@@ -25,7 +25,7 @@ namespace SFA.DAS.PocProject.UITests.Project.Tests.Pages
             VerifyPage();
         }
 
-        protected override string PageTitle => _config.OrganisationName.ToUpper();
+        protected override string PageTitle => _config.PP_OrganisationName.ToUpper();
 
         public string AccountID()
         {

@@ -4,10 +4,6 @@ namespace SFA.DAS.UI.Framework
 {
     public class FrameworkConfig
     {
-        public string BaseUrl { get; set; }
-
-        public string Browser { get; set; }
-
         public HostingConfig HostingConfig { get; set; }
 
         public TimeOutConfig TimeOutConfig { get; set; }

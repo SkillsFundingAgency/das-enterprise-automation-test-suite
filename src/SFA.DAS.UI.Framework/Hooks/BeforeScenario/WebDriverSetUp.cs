@@ -21,6 +21,8 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
 
         private readonly ScenarioContext _context;
 
+        private readonly ObjectContext _objectContext;
+
         private const string ChromeDriverServiceName = "chromedriver.exe";
 
         private const string FirefoxDriverServiceName = "geckodriver.exe";
@@ -31,13 +33,14 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
         {
             DriverPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
             _context = context;
+            _objectContext = context.Get<ObjectContext>();
         }
 
-        [BeforeScenario(Order = 11)]
+        [BeforeScenario(Order = 3)]
         public void SetupWebDriver()
         {
             var options = _context.Get<FrameworkConfig>();
-            var browser = options.Browser;
+            var browser = _objectContext.GetBrowser();
             
             switch (true)
             {
@@ -51,7 +54,7 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
                     break;
 
                 case bool _ when browser.IsIe():
-                    WebDriver = new InternetExplorerDriver(FindDriverService("InternetExplorerDriverServiceName"));
+                    WebDriver = new InternetExplorerDriver(FindDriverService(InternetExplorerDriverServiceName));
                     WebDriver.Manage().Window.Maximize();
                     break;
 

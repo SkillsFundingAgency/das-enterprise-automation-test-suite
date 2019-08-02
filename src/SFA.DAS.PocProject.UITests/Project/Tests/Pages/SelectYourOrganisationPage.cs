@@ -36,7 +36,7 @@ namespace SFA.DAS.PocProject.UITests.Project.Tests.Pages
 
         public CheckYourDetailsPage SelectYourOrganisation()
         {
-            _formCompletionHelper.ClickElement(SearchLinkUrl(_config.OrganisationName.ToUpper()));
+            _formCompletionHelper.ClickElement(SearchLinkUrl(_config.PP_OrganisationName.ToUpper()));
             return new CheckYourDetailsPage(_context);
         }
     }

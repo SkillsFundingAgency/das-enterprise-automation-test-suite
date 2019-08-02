@@ -40,7 +40,7 @@ namespace SFA.DAS.PocProject.UITests.Project.Tests.Pages
 
         private ConfirmPage EnterAccessCode()
         {
-            _formCompletionHelper.EnterText(AccessCodeInput, _config.ConfirmCode);
+            _formCompletionHelper.EnterText(AccessCodeInput, _config.PP_ConfirmCode);
             return this;
         }
 

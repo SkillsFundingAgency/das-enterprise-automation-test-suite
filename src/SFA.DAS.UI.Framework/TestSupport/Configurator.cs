@@ -22,16 +22,6 @@ namespace SFA.DAS.UI.Framework.TestSupport
             return _config;
         }
 
-        internal static string GetBrowser()
-        {
-            return _config.GetSection(nameof(FrameworkConfig.Browser)).Value;
-        }
-
-        internal static string GetBaseUrl()
-        {
-            return _config.GetSection(nameof(FrameworkConfig.BaseUrl)).Value;
-        }
-
         internal static TimeOutConfig GetTimeOut()
         {
             return _config.GetSection(nameof(TimeOutConfig)).Get<TimeOutConfig>();

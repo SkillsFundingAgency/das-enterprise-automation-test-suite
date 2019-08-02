@@ -1,12 +1,8 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
 using SFA.DAS.PocProject.UITests.Project.Helpers;
-using SFA.DAS.UI.Framework;
 using SFA.DAS.UI.Framework.TestSupport;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
+using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.PocProject.UITests.Project
@@ -15,10 +11,11 @@ namespace SFA.DAS.PocProject.UITests.Project
     public class Hooks          
     {
         private readonly ScenarioContext _context;
-        private readonly FrameworkConfig _config;
+        private readonly ProjectSpecificConfig _config;
         private readonly MongoDbConfig _mongoDbConfig;
         private readonly IWebDriver _webDriver;
         private MongoDbHelper _mongoDbHelper;
+        private MongoDbConnectionHelper _mongodbConnectionHelper;
         private readonly ObjectContext _objectContext;
         private DataHelper _dataHelper;
 
@@ -26,7 +23,7 @@ namespace SFA.DAS.PocProject.UITests.Project
         {
             _context = context;
             _webDriver = context.GetWebDriver();
-            _config = context.Get<FrameworkConfig>();
+            _config = context.GetConfigSection<ProjectSpecificConfig>();
             _mongoDbConfig = _context.GetConfigSection<MongoDbConfig>();
             _objectContext = context.Get<ObjectContext>();
         }
@@ -34,16 +31,14 @@ namespace SFA.DAS.PocProject.UITests.Project
         [BeforeScenario(Order = 21)]
         public void Navigate()
         {
-            var url = _config.BaseUrl;
+            var url = _config.PP_BaseUrl;
             _webDriver.Navigate().GoToUrl(url);
         }
 
         [BeforeScenario(Order = 22)]
         public void SetUpDataHelpers()
         {
-            var projectspecificConfig = _context.GetConfigSection<ProjectSpecificConfig>();
-
-            _dataHelper = new DataHelper(projectspecificConfig.TwoDigitProjectCode);
+            _dataHelper = new DataHelper(_config.TwoDigitProjectCode);
             _context.Set(_dataHelper);
         }
 
@@ -57,7 +52,9 @@ namespace SFA.DAS.PocProject.UITests.Project
 
             _objectContext.SetGatewayCreds(mongoDbDataHelper.GatewayId, mongoDbDataHelper.GatewayPassword, mongoDbDataHelper.EmpRef);
 
-            _mongoDbHelper = new MongoDbHelper(_mongoDbConfig, mongoDbDataHelper);
+            _mongodbConnectionHelper = new MongoDbConnectionHelper(_mongoDbConfig);
+
+            _mongoDbHelper = new MongoDbHelper(_mongodbConnectionHelper, mongoDbDataHelper);
         }
 
         [BeforeScenario(Order = 24)]

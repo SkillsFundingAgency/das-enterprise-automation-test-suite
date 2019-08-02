@@ -51,13 +51,13 @@ namespace SFA.DAS.PocProject.UITests.Project.Tests.Pages
 
         private SignInPage EnterEmailAddress()
         {
-            _formCompletionHelper.EnterText(EmailAddressInput, _config.AccountUserName);
+            _formCompletionHelper.EnterText(EmailAddressInput, _config.PP_AccountUserName);
             return this;
         }
 
         private SignInPage EnterPassword()
         {
-            _formCompletionHelper.EnterText(PasswordInput, _config.AccountPassword);
+            _formCompletionHelper.EnterText(PasswordInput, _config.PP_AccountPassword);
             return this;
         }
 

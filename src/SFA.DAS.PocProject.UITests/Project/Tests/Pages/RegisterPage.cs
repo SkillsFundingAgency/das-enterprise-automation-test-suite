@@ -82,13 +82,13 @@ namespace SFA.DAS.PocProject.UITests.Project.Tests.Pages
 
         private RegisterPage EnterPassword()
         {
-            _formCompletionHelper.EnterText(PasswordInput, _config.AccountPassword);
+            _formCompletionHelper.EnterText(PasswordInput, _config.PP_AccountPassword);
             return this;
         }
 
         private RegisterPage EnterPasswordConfirm()
         {
-            _formCompletionHelper.EnterText(PasswordConfirmInput, _config.AccountPassword);
+            _formCompletionHelper.EnterText(PasswordConfirmInput, _config.PP_AccountPassword);
             return this;
         }
 

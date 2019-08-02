@@ -2,14 +2,18 @@
 {
     public class ProjectSpecificConfig
     {
-        public string AccountUserName { get; set; }
-
-        public string AccountPassword { get; set; }
-
-        public string ConfirmCode { get; set; }
-
         public string TwoDigitProjectCode { get; set; }
 
-        public string OrganisationName { get; set; }
+        public string PP_AccountUserName { get; set; }
+
+        public string PP_AccountPassword { get; set; }
+
+        public string PP_Browser { get; set; }
+
+        public string PP_BaseUrl { get; set; }
+
+        public string PP_ConfirmCode { get; set; }
+
+        public string PP_OrganisationName { get; set; }
     }
 }
