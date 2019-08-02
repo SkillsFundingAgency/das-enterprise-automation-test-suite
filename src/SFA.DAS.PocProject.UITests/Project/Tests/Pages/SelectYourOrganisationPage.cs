@@ -28,7 +28,7 @@ namespace SFA.DAS.PocProject.UITests.Project.Tests.Pages
             _webDriver = context.GetWebDriver();
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
-            _config = context.GetConfigSection<ProjectSpecificConfig>();
+            _config = context.GetProjectSpecificConfig<ProjectSpecificConfig>();
             VerifyPage();
         }
 

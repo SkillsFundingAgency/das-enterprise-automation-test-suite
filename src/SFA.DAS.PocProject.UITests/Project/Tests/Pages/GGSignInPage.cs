@@ -26,7 +26,7 @@ namespace SFA.DAS.PocProject.UITests.Project.Tests.Pages
         public GgSignInPage(ScenarioContext context) : base(context)
         {
             _context = context;
-            _config = context.GetConfigSection<ProjectSpecificConfig>();
+            _config = context.GetProjectSpecificConfig<ProjectSpecificConfig>();
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
             _gatewayid = context.Get<ObjectContext>().GetGatewayId();

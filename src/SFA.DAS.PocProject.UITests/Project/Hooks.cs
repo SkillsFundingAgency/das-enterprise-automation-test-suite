@@ -23,7 +23,7 @@ namespace SFA.DAS.PocProject.UITests.Project
         {
             _context = context;
             _webDriver = context.GetWebDriver();
-            _config = context.GetConfigSection<ProjectSpecificConfig>();
+            _config = context.GetProjectSpecificConfig<ProjectSpecificConfig>();
             _mongoDbConfig = _context.GetConfigSection<MongoDbConfig>();
             _objectContext = context.Get<ObjectContext>();
         }

@@ -33,7 +33,7 @@ namespace SFA.DAS.PocProject.UITests.Project.Tests.Pages
             _context = context;
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
-            _config = context.GetConfigSection<ProjectSpecificConfig>();
+            _config = context.GetProjectSpecificConfig<ProjectSpecificConfig>();
             VerifyPage();
         }
         public RegisterPage CreateAnAccount()

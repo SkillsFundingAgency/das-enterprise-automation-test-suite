@@ -1,7 +1,4 @@
-﻿using OpenQA.Selenium;
-using TechTalk.SpecFlow;
-
-namespace SFA.DAS.UI.Framework.TestSupport
+﻿namespace SFA.DAS.UI.Framework.TestSupport
 {
     public static class WebDriverSetupHelper
     {
@@ -33,16 +30,6 @@ namespace SFA.DAS.UI.Framework.TestSupport
         public static bool IsChromeHeadless(this string browser)
         {
             return browser.CompareToIgnoreCase("chromeheadless") || browser.CompareToIgnoreCase("headlessbrowser") || browser.CompareToIgnoreCase("headless");
-        }
-
-        public static void SetWebDriver(this ScenarioContext context, IWebDriver webDriver)
-        {
-            context.Set(webDriver, "webdriver");
-        }
-
-        public static IWebDriver GetWebDriver(this ScenarioContext context)
-        {
-            return context.Get<IWebDriver>("webdriver");
         }
     }
 }
