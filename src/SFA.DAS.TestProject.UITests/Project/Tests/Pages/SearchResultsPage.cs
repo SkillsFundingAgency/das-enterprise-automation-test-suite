@@ -22,7 +22,7 @@ namespace SFA.DAS.TestProject.UITests.Project.Tests.Pages
         
         private IWebElement FindDfeUrlElement(string searchText)
         {
-            By DfeNextPageLink() => By.CssSelector(".gem-c-pagination__item gem-c-pagination__item--next a");
+            By DfeNextPageLink() => By.CssSelector(".gem-c-pagination__item--next a");
 
             int pagenumber = 0;
             IWebElement link = null;
