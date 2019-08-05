@@ -4,8 +4,46 @@
     {
         public string TwoDigitProjectCode { get; set; }
 
-        public string TP_Browser { get; set; }
+        public string AP_EmployerAppUrl { get; set; }
 
-        public string TP_BaseUrl { get; set; }
+        public string AP_ProviderAppUrl { get; set; }
+
+        public string AP_ProviderPermissionsAppUrl { get; set; }
+
+        public string AP_ProviderAppNoDraftsUrl { get; set; }
+
+        public string AP_ProviderNoDraftCohortsLoginId { get; set; }
+
+        public string AP_ProviderNoDraftCohortsPassword { get; set; }
+
+        public string AP_EmployerConfirmIdentityCode { get; set; }
+
+        public string AP_ProviderLoginId { get; set; }
+
+        public string AP_ProviderLoginIdForPermissionTests { get; set; }
+
+        public string AP_ProviderLoginPassword { get; set; }
+
+        public string AP_SupportConsoleUrl { get; set; }
+
+        public string AP_CommitmentsDbConnectionString { get; set; }
+
+        public string AP_AccountsDbConnectionString { get; set; }
+
+        public string AP_FinanceDbConnectionString { get; set; }
+
+        public string AP_PermissionsDbConnectionString { get; set; }
+
+        public string AP_PrelDBCosmosUri{ get; set; }
+
+        public string AP_PrelDBAuthKey{ get; set; }
+
+        public string AP_PrelDBDatabaseName{ get; set; }
+
+        public string AP_PrelDBCollectionName{ get; set; }
+
+        public string AP_Browser { get; set; }
+
+        public string AP_BaseUrl { get; set; }
     }
 }
