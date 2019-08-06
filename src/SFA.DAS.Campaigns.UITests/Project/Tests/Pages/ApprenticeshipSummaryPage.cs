@@ -49,14 +49,17 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
 
         internal void verifyApprenticeDetailsOfResultsPageAgainstSummaryPage()
         {
+            _pageInteractionHelper.FocusTheElement(_vacancyTitle);
             _pageInteractionHelper.VerifyText(_pageInteractionHelper.GetText(_vacancyTitle), PageInteractionCampaignsHelper.expectedVacancyTitle);
+            _pageInteractionHelper.FocusTheElement(_vacancyDescription);
             _pageInteractionHelper.VerifyText(_pageInteractionHelper.GetText(_vacancyDescription),PageInteractionCampaignsHelper.expectedVacancyDescription);
+            _pageInteractionHelper.FocusTheElement(_employerName);
             _pageInteractionHelper.VerifyText(_pageInteractionHelper.GetText(_employerName),PageInteractionCampaignsHelper.expectedEmployerName);
 
+            _pageInteractionHelper.FocusTheElement(_possibleClosingDate);
             string dateFromResultsPage = _pageInteractionHelper.GetText(_possibleClosingDate);
             DateTime convertedDate = Convert.ToDateTime(dateFromResultsPage);
             string formattedDate = convertedDate.ToShortDateString();
-
             _pageInteractionHelper.VerifyText(formattedDate, PageInteractionCampaignsHelper.expectedPossibleClosingDate);
 
         }

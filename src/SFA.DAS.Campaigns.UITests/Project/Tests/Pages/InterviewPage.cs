@@ -43,11 +43,15 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
         private const string ExpectedAskThemQuestionsTooParagraph1 = "This is your apprenticeship too, so make sure you show enthusiasm and prepare a few questions to ask your new potential employer.";
         private const string ExpectedAskThemQuestionsTooParagraph2 = "If you’re the successful candidate, you’ll be offered the apprenticeship by the employer.";
         private const string ExpectedAskThemQuestionsTooParagraph3 = "For more information on preparing for an interview there's a detailed guide on the National Careers Service website.";
+        private const string hyperLink1 = "https://www.findapprenticeship.service.gov.uk/apprenticeshipsearch";
+        private const string hyperLink2 = "https://nationalcareersservice.direct.gov.uk/get-a-job/interview-advice";
         #endregion
 
         #region Helpers
         private readonly PageInteractionHelper _pageInteractionHelper;
         private readonly FormCompletionHelper _formCompletionHelper;
+        private readonly PageInteractionCampaignsHelper _pageInteractionCampaignsHelper;
+        private IList<string> hyperLinkList = new List<string>(); 
         #endregion
 
         #region Page Object Elements
@@ -84,6 +88,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
         private readonly By _askThemQuestionsTooParagraph1 = By.XPath("//div[@class='page']/p[16]");
         private readonly By _askThemQuestionsTooParagraph2 = By.XPath("//div[@class='page']/p[17]");
         private readonly By _askThemQuestionsTooParagraph3 = By.XPath("//div[@class='page']/p[18]");
+        private readonly By _anchorElement = By.TagName("a");
 
         #endregion
 
@@ -91,6 +96,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
         {
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
+            _pageInteractionCampaignsHelper = context.Get<PageInteractionCampaignsHelper>();
             VerifyPage();
         }
 
@@ -166,7 +172,6 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
             string actualAskThemQuestionsTooParagraph1 = _pageInteractionHelper.GetText(_askThemQuestionsTooParagraph1);
             string actualAskThemQuestionsTooParagraph2 = _pageInteractionHelper.GetText(_askThemQuestionsTooParagraph2);
             string actualAskThemQuestionsTooParagraph3 = _pageInteractionHelper.GetText(_askThemQuestionsTooParagraph3);
-
 
             _pageInteractionHelper.VerifyText(actualDayOfTheInterviewHeader, ExpectedDayOfTheInterviewHeader);
             _pageInteractionHelper.VerifyText(actualWhatToWearSubHeader1, ExpectedWhatToWearSubHeader1);

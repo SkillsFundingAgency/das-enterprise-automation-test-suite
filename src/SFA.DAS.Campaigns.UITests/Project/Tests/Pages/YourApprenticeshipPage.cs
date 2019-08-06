@@ -35,8 +35,8 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
         private readonly PageInteractionHelper _pageInteractionHelper;
         private readonly FormCompletionHelper _formCompletionHelper;
         private readonly PageInteractionCampaignsHelper _pageInteractionCampaignsHelper;
-        private ArrayList actualQuestionsList = new ArrayList();
-        private ArrayList expectedQuestionsList = new ArrayList();
+        private IList<string> actualQuestionsList = new List<string>();
+        private IList<string> expectedQuestionsList = new List<string>();
 
         #endregion
 
@@ -81,7 +81,6 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
 
             _pageInteractionHelper.WaitForElementToBeDisplayed(_whatToBringLink);
             _formCompletionHelper.ClickElement(_whatToBringLink);
-            System.Threading.Thread.Sleep(5000);
             string actualWhatToBringHeader = _pageInteractionHelper.GetText(_whatToBringHeader);
             string actualWhatToBringParagraph1 = _pageInteractionHelper.GetText(_whatToBringParagraph1);
             string actualWhatToBringParagraph2 = _pageInteractionHelper.GetText(_whatToBringParagraph2);
@@ -101,7 +100,6 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
         {
             _pageInteractionHelper.WaitForElementToBeDisplayed(_meetYourNewTeamLink);
             _pageInteractionHelper.FocusTheElement(_meetYourNewTeamLink);
-            _formCompletionHelper.ClickElement(_meetYourNewTeamLink);
             string actualMeetYourNewTeamHeader = _pageInteractionHelper.GetText(_meetYourNewTeamHeader);
             string actualMeetYourNewTeamParagraph1 = _pageInteractionHelper.GetText(_meetYourNewTeamParagraph1);
             _pageInteractionHelper.VerifyText(actualMeetYourNewTeamHeader, ExpectedMeetYourNewTeamHeader);
@@ -112,7 +110,6 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
         {
             _pageInteractionHelper.WaitForElementToBeDisplayed(_whatComesAfterMyApprenticeshipLink);
             _pageInteractionHelper.FocusTheElement(_whatComesAfterMyApprenticeshipLink);
-            //_formCompletionHelper.ClickElement(_whatComesAfterMyApprenticeshipLink);
             string actualWhatComesAfterMyApprenticeshipHeader = _pageInteractionHelper.GetText(_whatComesAfterMyApprenticeshipHeader);
             string actualWhatComesAfterMyApprenticeshipParagraph1 = _pageInteractionHelper.GetText(_whatComesAfterMyApprenticeshipParagraph1);
             string actualWhatComesAfterMyApprenticeshipParagraph2 = _pageInteractionHelper.GetText(_whatComesAfterMyApprenticeshipParagraph2);

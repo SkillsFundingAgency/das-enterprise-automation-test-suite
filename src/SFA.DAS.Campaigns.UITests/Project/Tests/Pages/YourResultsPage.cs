@@ -49,6 +49,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
 
         protected override bool VerifyPage()
         {
+            _pageInteractionHelper.FocusTheElement(_resultsHeader);
             return _pageInteractionHelper.VerifyPage(_pageInteractionHelper.GetText(_resultsHeader), ExpectedHeaderWhenResultsFound, ExpectedHeaderWhenNoResultsFound);
         }
 
@@ -95,6 +96,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
         {
             _formCompletionHelper.WaitForPageToLoad(10);
             _pageInteractionHelper.WaitForElementToBeDisplayed(_firstSearchResult);
+            _pageInteractionHelper.FocusTheElement(_firstSearchResult);
             _formCompletionHelper.ClickElement(_firstSearchResult);
             _pageInteractionCampaignsHelper.switchToANewTab();
         }
@@ -147,6 +149,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
             _pageInteractionHelper.WaitForElementToBeDisplayed(_noMatchResultParagraphOne);
             _pageInteractionHelper.VerifyText(_noMatchResultParagraphOne, ExpectedParagraphOneText);
             _pageInteractionHelper.WaitForElementToBeDisplayed(_noMatchResultParagraphTwo);
+            _pageInteractionHelper.FocusTheElement(_noMatchResultParagraphTwo);
             _pageInteractionHelper.VerifyText(_noMatchResultParagraphTwo, ExpectedParagraphTwoText);
         }
 

@@ -3,7 +3,11 @@ using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
 
 namespace SFA.DAS.Campaigns.UITests
 {
@@ -25,7 +29,7 @@ namespace SFA.DAS.Campaigns.UITests
             WebDriver.SwitchTo().Window(WebDriver.WindowHandles.Last());
         }
 
-        public bool compareContentOfTwoArraylists(ArrayList actualArrayList, ArrayList expectedArrayList)
+        public bool compareContentOfTwoArraylists(IList<string> actualArrayList, IList<string> expectedArrayList)
         {
             if (actualArrayList.Count == expectedArrayList.Count)
             {

@@ -59,12 +59,14 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
         internal void verifyApprenticesHeaderSupportText()
         {
             _pageInteractionHelper.WaitForElementToBeDisplayed(_ApprenticesHeaderSupportText);
+            _pageInteractionHelper.FocusTheElement(_ApprenticesHeaderSupportText);
             _formCompletionHelper.VerifyPage(_ApprenticesHeaderSupportText, ExpectedApprenticesHeaderSupportText);
         }
 
         internal void verifyEmployersHeaderSupportText()
         {
             _pageInteractionHelper.WaitForElementToBeDisplayed(_EmployersHeaderSupportText);
+            _pageInteractionHelper.FocusTheElement(_EmployersHeaderSupportText);
             _formCompletionHelper.VerifyPage(_EmployersHeaderSupportText, ExpectedEmployersHeaderSupportText);
         }
 
