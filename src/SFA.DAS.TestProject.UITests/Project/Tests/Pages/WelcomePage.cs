@@ -5,12 +5,8 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.TestProject.UITests.Project.Tests.Pages
 {
-    public sealed class WelcomePage : BasePage
+    public sealed class WelcomePage : TestProjectBasePage
     {
-        #region constants
-        private const string PageTitle = "Welcome to GOV.UK";
-        #endregion
-
         #region Context and Helpers
         private readonly PageInteractionHelper _pageInteractionHelper;
         private readonly FormCompletionHelper _formCompletionHelper;
@@ -20,16 +16,18 @@ namespace SFA.DAS.TestProject.UITests.Project.Tests.Pages
         #region Page Object Elements
         private readonly By _searchField = By.Name("q");
         private readonly By _searchButton = By.CssSelector(".gem-c-search__submit");
-#endregion
+        #endregion
+
+        protected override string PageTitle => "";
 
         public WelcomePage(ScenarioContext context) : base(context)
         {
             _scenarioContext = context;
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
-            VerifyPage(PageTitle);
+            VerifyPage();
         }
-
+        
         internal SearchResultsPage EnterSearchTextAndSubmit(string searchText)
         {
             _formCompletionHelper.EnterText(_searchField, searchText);

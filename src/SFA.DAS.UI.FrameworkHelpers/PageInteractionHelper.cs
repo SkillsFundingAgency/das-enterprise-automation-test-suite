@@ -3,42 +3,62 @@ using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
+using Polly;
+using NUnit.Framework;
 
 namespace SFA.DAS.UI.FrameworkHelpers
 {
     public class PageInteractionHelper
     {
         private readonly IWebDriver _webDriver;
-        private const int ImplicitWaitTimeInSeconds = 10;
+        private readonly TimeOutConfig _timeOutConfig;
 
-        public PageInteractionHelper(IWebDriver webDriver)
+        public PageInteractionHelper(IWebDriver webDriver, TimeOutConfig timeOutConfig)
         {
             _webDriver = webDriver;
+            _timeOutConfig = timeOutConfig;
         }
 
-        public bool VerifyPage(string actual, string expected)
+        private static TimeSpan[] TimeOut => new[] 
         {
-            if (actual.Contains(expected))
-            {
-                return true;
-            }
+            TimeSpan.FromSeconds(1),
+            TimeSpan.FromSeconds(2),
+            TimeSpan.FromSeconds(3)
+        };
 
-            throw new Exception("Page verification failed:"
-                + "\n Expected: " + expected + " page"
-                + "\n Found: " + actual + " page");
+        private bool RetryOnException(Func<bool> func)
+        {
+            return Policy
+                 .Handle<Exception>((x) => x.Message.Contains("verification failed"))
+                 .WaitAndRetry(TimeOut, (exception, timeSpan, retryCount, context) =>
+                 {
+                     TestContext.Progress.WriteLine($"Retry Count : {retryCount}, Exception : {exception.Message}");
+                 })
+                 .Execute(() =>
+                 {
+                     using (var testcontext = new NUnit.Framework.Internal.TestExecutionContext.IsolatedContext())
+                     {
+                         return func();
+                     }
+                 });
         }
 
         public bool VerifyPage(By locator, string expected)
         {
-            var actual = _webDriver.FindElement(locator).Text;
-            if (actual.Contains(expected))
+            bool func()
             {
-                return true;
-            }
+                var actual = GetText(locator);
+                if (actual.Contains(expected))
+                {
+                    return true;
+                }
 
-            throw new Exception("Page verification failed:"
-                + "\n Expected: " + expected + " page"
-                + "\n Found: " + actual + " page");
+                throw new Exception("Page verification failed:"
+                    + "\n Expected: " + expected + " page"
+                    + "\n Found: " + actual + " page");
+            }
+            
+            return RetryOnException(func);
         }
 
         public bool VerifyPage(string actual, string expected1, string expected2)
@@ -91,9 +111,9 @@ namespace SFA.DAS.UI.FrameworkHelpers
                 + "\n Found: " + actual);
         }
 
-        public void WaitForPageToLoad(int implicitWaitTime = ImplicitWaitTimeInSeconds)
+        public void WaitForPageToLoad()
         {
-            var waitForDocumentReady = new WebDriverWait(_webDriver, TimeSpan.FromSeconds(implicitWaitTime));
+            var waitForDocumentReady = new WebDriverWait(_webDriver, TimeSpan.FromSeconds(_timeOutConfig.PageNavigation));
             waitForDocumentReady.Until(driver => ((IJavaScriptExecutor) _webDriver).ExecuteScript("return document.readyState").Equals("complete"));
         }
 
@@ -114,19 +134,19 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         public void WaitForElementToBePresent(By locator)
         {
-            var wait = new WebDriverWait(_webDriver, TimeSpan.FromSeconds(ImplicitWaitTimeInSeconds));
+            var wait = new WebDriverWait(_webDriver, TimeSpan.FromSeconds(_timeOutConfig.ImplicitWait));
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(locator));
         }
 
-        public void WaitForElementToBeDisplayed(By locator, int timeInSeconds = ImplicitWaitTimeInSeconds)
+        public void WaitForElementToBeDisplayed(By locator)
         {
-            var wait = new WebDriverWait(_webDriver, TimeSpan.FromSeconds(timeInSeconds));
+            var wait = new WebDriverWait(_webDriver, TimeSpan.FromSeconds(_timeOutConfig.ImplicitWait));
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(locator));
         }
 
         public void WaitForElementToBeClickable(By locator)
         {
-            var webDriverWait = new WebDriverWait(_webDriver, TimeSpan.FromSeconds(10));
+            var webDriverWait = new WebDriverWait(_webDriver, TimeSpan.FromSeconds(_timeOutConfig.ImplicitWait));
             webDriverWait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementToBeClickable(locator));
         }
 
@@ -196,7 +216,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         public void TurnOnImplicitWaits()
         {
-            _webDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(ImplicitWaitTimeInSeconds);
+            _webDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(_timeOutConfig.ImplicitWait);
         }
 
         public void SwitchToFrame(By locator)

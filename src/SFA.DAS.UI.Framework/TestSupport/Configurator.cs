@@ -5,45 +5,54 @@ namespace SFA.DAS.UI.Framework.TestSupport
 {
     internal static class Configurator
     {
-        internal readonly static IConfigurationRoot config;
+        private readonly static IConfigurationRoot _config;
+
+        private readonly static IConfigurationRoot _hostingConfig;
 
         static Configurator()
         {
-            config = InitializeConfig();
+            _hostingConfig = InitializeHostingConfig();
+            _config = InitializeConfig();
         }
 
-        internal static string GetBrowser()
+        internal static IConfigurationRoot GetConfig()
         {
-            return config.GetSection(nameof(FrameworkConfig.Browser)).Value;
+            return _config;
         }
 
-        internal static string GetBaseUrl()
+        private static HostingConfig GetHostingConfig()
         {
-            return config.GetSection(nameof(FrameworkConfig.BaseUrl)).Value;
-        }
-
-        internal static TimeOut GetTimeOut()
-        {
-            return config.GetSection(nameof(TimeOut)).Get<TimeOut>();
-        }
-
-        internal static BrowserStackSetting GetBrowserStackSetting()
-        {
-            return config.GetSection(nameof(BrowserStackSetting)).Get<BrowserStackSetting>();
+            return _hostingConfig.GetSection(nameof(HostingConfig)).Get<HostingConfig>();
         }
 
         private static IConfigurationRoot InitializeConfig()
         {
-            return new ConfigurationBuilder()
-                .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("appsettings.json", true)
-                .AddJsonFile("appsettings.BrowserStack.json", true)
-                .AddJsonFile("appsettings.Development.json", true)
-                .AddJsonFile("appsettings.TestProject.BrowserStack.json", true)
-                .AddEnvironmentVariables()
-                .AddUserSecrets("BrowserStackSecrets")
-                .AddUserSecrets("TestProjectSecrets")
+            var host = GetHostingConfig();
+
+            return ConfigurationBuilder()
+            .AddJsonFile("appsettings.json", true)
+            .AddJsonFile("appsettings.BrowserStack.json", true)
+            .AddJsonFile("appsettings.Project.json", true)
+            .AddJsonFile("appsettings.Project.BrowserStack.json", true)
+            .AddJsonFile($"appsettings.{host?.EnvironmentName}.json", true)
+            .AddEnvironmentVariables()
+            .AddUserSecrets("BrowserStackSecrets")
+            .AddUserSecrets($"{host?.ProjectName}_{host?.EnvironmentName}_Secrets")
+            .AddUserSecrets("MongoDbSecrets")
+            .Build();
+        }
+
+        private static IConfigurationRoot InitializeHostingConfig()
+        {
+            return ConfigurationBuilder()
+                .AddJsonFile("appsettings.Environment.json", true)
                 .Build();
+        }
+
+        private static IConfigurationBuilder ConfigurationBuilder()
+        {
+            return new ConfigurationBuilder()
+                    .SetBasePath(Directory.GetCurrentDirectory());
         }
     }
 }

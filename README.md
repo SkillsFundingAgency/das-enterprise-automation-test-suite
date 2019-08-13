@@ -15,10 +15,9 @@ Note: This framework is built with all standard libraries and ready to write new
 
 ## How to use User secrets
 1. Navigate to "%APPDATA%/Microsoft" Create Directory "UserSecrets" if you dont find it.
-2. Open your .csproj file and look for node UserSecretsId (ex `<UserSecretsId`>TestProjectSecrets`</UserSecretsId`>) 
-3. Create folder "TestProjectSecrets" under "%APPDATA%/Microsoft/UserSecrets"
-4. Create a file "secrets.json" and replace only those values you want to keep it as secrets (do not copy the full json from appsettings.json)
-5. Collapse settings like this, since you probably only need to override a few settings
+2. Create folder "ProjectSecrets" under "%APPDATA%/Microsoft/UserSecrets"
+3. Create a file "secrets.json" and replace only those values you want to keep it as secrets (do not copy the full json from appsettings.json)
+4. Collapse settings like this, since you probably only need to override a few settings
 ```json
 {
      "AppSettings:ConnectionString": "http://localhost:9000?user=arvinthseran&password=1234"
@@ -45,7 +44,7 @@ Once the solution is imported and built, open Test Explorer window (Test->Window
 ```
 
 ## To Execute tests in Browserstack / Cloud :
-To execute tests in BrowserStack, change the Browser value to "browserstack" or "cloud" in your project appsettings file (you can add the node if node does not exists)
+To execute tests in BrowserStack, change the Browser value to "browserstack" or "cloud" in ``appsettings.Project.json`` your project specific appsettings file (you can add the node if node does not exists)
 ```json
 {
   "Browser": "browserstack"
@@ -55,8 +54,11 @@ To execute tests in BrowserStack, change the Browser value to "browserstack" or 
 ## Running Tests from Command Prompt:
 
 ```
-c:\>dotnet test C:\SFA\DFE-Standardised-Test-Automation-Framework\src\ESFA.UI.Specflow.TestProject\ESFA.UI.Specflow.TestProject.csproj --filter "TestCategory=regression|TestCategory=anotherregression"
+c:\> dotnet test C:\SFA\DFE-Standardised-Test-Automation-Framework\src\ESFA.UI.Specflow.TestProject\ESFA.UI.Specflow.TestProject.csproj --filter "TestCategory=regression|TestCategory=anotherregression"
+
+c:\> dotnet vstest C:\SFA\DFE-Standardised-Test-Automation-Framework\src\SFA.DAS.PocProject.UITests\SFA.DAS.PocProject.UITests.dll /TestCaseFilter:"TestCategory=regression|FullyQualifiedName=Namespace.ClassName.MethodName"
 ```
+
 
 ## Framework:
 
@@ -91,6 +93,8 @@ Note: Tests can be executed on different browsers using BrowserStack. Tests can 
 3. RandomDataHelper - Helps creating random data to use
 4. HttpClientRequestHelper - Helps making some HTTP requests (POST, PUT, GET, DELETE, PATCH)
 5. SqlDatabaseConnectionHelper - Helps connecting to the SQL Database to read and write the data from Database
+6. CosmosActionPerformerHelper - Helps connecting to Cosmos DB to read and write the data
+7. CosmosConnectionHelper - Provides assistance to CosmosActionPerformerHelper by creating DocumentClient and DocumentRepository
 
 ## Some selenium best practices:
 1. Use PageObject pattern
@@ -102,9 +106,13 @@ Note: Tests can be executed on different browsers using BrowserStack. Tests can 
 
 ## Parallel Test Execution Limitations:
 
-This framework supports Feature Level parallelization (tests under different feature file will run in parallel) not Scenario Level parallelization (tests under same feature file will not execute in parallel.
+This framework supports Feature Level parallelization (tests under different feature file will run in parallel) not Scenario Level parallelization (tests under same feature file will not execute in parallel).
 
 Note : referenced from https://github.com/techtalk/SpecFlow/issues/1599, https://github.com/techtalk/SpecFlow/issues/1535
+
+## Parallel Test Execution in Azure DevOps:
+
+By default up to all available cores on the machine may be used, we can use /Parallel argument to restrict the no of tests to be executed in parellel 
 
 ## No of Threads in parallel test execution
 If LevelOfParallelism is not specified, workers defaults to the number of processors on the machine, or 2, whichever is greater.

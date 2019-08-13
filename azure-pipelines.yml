@@ -47,7 +47,7 @@ steps:
     command: publish
     publishWebProjects: false
     zipAfterPublish: false
-    projects: 'src/SFA.DAS.TestProject.UITests/SFA.DAS.TestProject.UITests.csproj'
+    projects: 'src/**/*.UITests.csproj'
     arguments: '--configuration $(buildConfiguration) --output $(build.artifactstagingdirectory)/tests --no-restore --no-build'
 
 - task: PublishBuildArtifacts@1
