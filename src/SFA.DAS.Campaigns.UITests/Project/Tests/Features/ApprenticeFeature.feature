@@ -60,4 +60,13 @@
 		Then I verify the content under Before Your Interview section
 		Then I verify the content under Day Of The Interview section
 
+	Scenario: Check all the links and content of APPLICATION screen
+		Given I navigate to Fire It Up home page
+		When I launch the Application page
+		Then I verify the content under SO, YOU'VE FOUND THE APPRENTICESHIP section
+		Then I verify the content under APPLY FOR THE JOB section
+		Then I verify the content under WAIT FOR THE APPLICATIONS section
+		Then I verify the content under IF YOU’RE ON THE SHORTLIST section
+		Then I verify the content under TRAINING PROVIDERS section
+
 

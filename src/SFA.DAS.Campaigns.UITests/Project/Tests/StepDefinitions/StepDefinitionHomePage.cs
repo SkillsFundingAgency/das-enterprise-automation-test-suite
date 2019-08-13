@@ -67,8 +67,16 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
         public void launchInterviewPage()
         {
             fireItUpHomePage.launchApprenticeMenu();
-            TestContext.Progress.WriteLine("Navigating to Assessment And Certification page");
+            TestContext.Progress.WriteLine("Navigating to Interview page");
             fireItUpHomePage.clickOnInterviewLink();
+        }
+
+        [When(@"I launch the Application page")]
+        public void launchApplicationPage()
+        {
+            fireItUpHomePage.launchApprenticeMenu();
+            TestContext.Progress.WriteLine("Navigating to Application page");
+            fireItUpHomePage.clickOnApplicationLink();
         }
 
     }
