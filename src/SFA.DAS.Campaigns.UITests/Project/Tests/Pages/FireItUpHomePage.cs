@@ -34,6 +34,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
         private readonly By _assessmentAndCertificationLink = By.Id("link-nav-app-step-6");
         private readonly By _inetrviewLink = By.Id("link-nav-app-step-4");
         private readonly By _applicationLink = By.Id("link-nav-app-step-3");
+        private readonly By _whatIsAnApprenticeshipLink = By.Id("link-nav-app-step-1");
 
         #endregion
 
@@ -105,6 +106,12 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
         {
             _pageInteractionHelper.WaitForElementToBeClickable(_applicationLink);
             _formCompletionHelper.ClickElement(_applicationLink);
+        }
+
+        internal void clickOnWhatIsAnApprenticeshipLink()
+        {
+            _pageInteractionHelper.WaitForElementToBeClickable(_whatIsAnApprenticeshipLink);
+            _formCompletionHelper.ClickElement(_whatIsAnApprenticeshipLink);
         }
 
     }

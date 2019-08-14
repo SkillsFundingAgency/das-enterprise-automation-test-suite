@@ -28,7 +28,6 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
         private const string ExpectedQuestion4 = "how much money you will need to bring for lunch etc";
         private const string ExpectedQuestion5 = "who you should ask for when you arrive";
         private const string ExpectedQuestion6 = "where to get the bus/train or park your car";
-        //private const string ExpectedQuestion6 = "£";
         #endregion
 
         #region Helpers

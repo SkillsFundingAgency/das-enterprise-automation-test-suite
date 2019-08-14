@@ -69,4 +69,9 @@
 		Then I verify the content under IF YOU’RE ON THE SHORTLIST section
 		Then I verify the content under TRAINING PROVIDERS section
 
+	Scenario: Check all the links and content of WAHT IS AN APPRENTICESHIP screen
+		Given I navigate to Fire It Up home page
+		When I launch the What Is An Apprenticeship page
+		Then I verify the content under WHAT IS AN APPRENTICESHIP section
+		Then I verify the content under WHAT ARE THE DIFFERENT TYPES OF APPRENTICESHIPS section
 
