@@ -28,5 +28,11 @@ namespace SFA.DAS.UI.Framework.TestSupport
         {
             return _pageInteractionHelper.VerifyPage(PageHeader, PageTitle);
         }
+
+        protected bool VerifyPage(Action beforeAction)
+        {
+            return _pageInteractionHelper.VerifyPage(PageHeader, PageTitle, beforeAction);
+        }
+
     }
 }

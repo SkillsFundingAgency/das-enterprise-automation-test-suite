@@ -16,13 +16,15 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         private By AccountId => By.CssSelector(".heading-secondary");
 
+        private By GlobalNavLink => By.CssSelector("#global-nav-links li a");
+
         public HomePage(ScenarioContext context): base(context)
         {
             _context = context;
             _config = context.GetProjectConfig<ProjectConfig>();
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
-            VerifyPage();
+            VerifyPage(ClickHomeLink);
         }
 
         protected override string PageTitle => _config.RE_OrganisationName.ToUpper();
@@ -30,6 +32,12 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         public string AccountID()
         {
             return _pageInteractionHelper.GetText(AccountId);
+        }
+
+        private void ClickHomeLink()
+        {
+            var link = _pageInteractionHelper.GetLink(GlobalNavLink, "Home");
+            _formCompletionHelper.ClickElement(link);
         }
     }
 }

@@ -18,14 +18,11 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         private readonly ProjectConfig _config;
         #endregion
 
-        private readonly IWebDriver _webDriver;
+        private By OrganisationLink() => By.CssSelector("button.link-button");
 
-        private IWebElement SearchLinkUrl(string searchText) => _webDriver.FindElements(By.CssSelector("button.link-button")).ToList().First(x => x.GetAttribute("innerText") == searchText);
-
-        public SelectYourOrganisationPage(ScenarioContext context): base(context)
+        public SelectYourOrganisationPage(ScenarioContext context) : base(context)
         {
             _context = context;
-            _webDriver = context.GetWebDriver();
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
             _config = context.GetProjectConfig<ProjectConfig>();
@@ -39,5 +36,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             _formCompletionHelper.ClickElement(SearchLinkUrl(_config.RE_OrganisationName.ToUpper()));
             return new CheckYourDetailsPage(_context);
         }
+
+        private IWebElement SearchLinkUrl(string searchText) => _pageInteractionHelper.GetLink(OrganisationLink(), searchText);
     }
 }

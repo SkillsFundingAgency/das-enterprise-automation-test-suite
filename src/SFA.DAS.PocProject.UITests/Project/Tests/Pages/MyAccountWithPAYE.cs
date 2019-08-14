@@ -15,6 +15,8 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         private By CloseIconLink => By.CssSelector(".link-with-icon");
 
+        private By AgreementButton => By.CssSelector("#agreement-about");
+
         public MyAccountWithPaye(ScenarioContext context): base(context)
         {
             _context = context;
@@ -27,6 +29,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         public HomePage GoToHomePage()
         {
+            Agreement();
             CloseLink();
             return new HomePage(_context);
         }
@@ -34,6 +37,11 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         private MyAccountWithPaye CloseLink()
         {
             _formCompletionHelper.ClickElement(CloseIconLink);
+            return this;
+        }
+        private MyAccountWithPaye Agreement()
+        {
+            _formCompletionHelper.ClickElement(AgreementButton);
             return this;
         }
     }
