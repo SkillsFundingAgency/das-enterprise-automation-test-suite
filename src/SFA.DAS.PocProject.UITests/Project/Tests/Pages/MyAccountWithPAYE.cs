@@ -39,6 +39,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             _formCompletionHelper.ClickElement(CloseIconLink);
             return this;
         }
+
         private MyAccountWithPaye Agreement()
         {
             _formCompletionHelper.ClickElement(AgreementButton);
