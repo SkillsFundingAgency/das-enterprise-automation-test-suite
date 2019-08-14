@@ -1,5 +1,5 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.PocProject.UITests.Project.Helpers;
+using SFA.DAS.Registration.UITests.Project.Helpers;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using System;
@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Text;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.PocProject.UITests.Project.Tests.Pages
+namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 {
     public class RegisterPage : BasePage
     {
@@ -82,13 +82,13 @@ namespace SFA.DAS.PocProject.UITests.Project.Tests.Pages
 
         private RegisterPage EnterPassword()
         {
-            _formCompletionHelper.EnterText(PasswordInput, _config.PP_AccountPassword);
+            _formCompletionHelper.EnterText(PasswordInput, _config.RE_AccountPassword);
             return this;
         }
 
         private RegisterPage EnterPasswordConfirm()
         {
-            _formCompletionHelper.EnterText(PasswordConfirmInput, _config.PP_AccountPassword);
+            _formCompletionHelper.EnterText(PasswordConfirmInput, _config.RE_AccountPassword);
             return this;
         }
 

@@ -2,7 +2,7 @@
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.PocProject.UITests.Project
+namespace SFA.DAS.Registration.UITests.Project
 {
     [Binding]
     public class ProjectSpecificConfigurationSetup
@@ -27,7 +27,7 @@ namespace SFA.DAS.PocProject.UITests.Project
             var mongoDbconfig = _configSection.GetConfigSection<MongoDbConfig>();
             _context.SetMongoDbConfig(mongoDbconfig);
 
-            _objectContext.SetBrowser(config.PP_Browser);
+            _objectContext.SetBrowser(config.RE_Browser);
         }
     }
 }

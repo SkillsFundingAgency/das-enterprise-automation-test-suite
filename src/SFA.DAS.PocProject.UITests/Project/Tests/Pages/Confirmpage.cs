@@ -3,7 +3,7 @@ using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.PocProject.UITests.Project.Tests.Pages
+namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 {
     public class ConfirmPage : BasePage
     {
@@ -40,7 +40,7 @@ namespace SFA.DAS.PocProject.UITests.Project.Tests.Pages
 
         private ConfirmPage EnterAccessCode()
         {
-            _formCompletionHelper.EnterText(AccessCodeInput, _config.PP_ConfirmCode);
+            _formCompletionHelper.EnterText(AccessCodeInput, _config.RE_ConfirmCode);
             return this;
         }
 

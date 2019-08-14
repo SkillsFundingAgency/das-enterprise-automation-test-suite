@@ -4,7 +4,7 @@ using SFA.DAS.UI.FrameworkHelpers;
 using System;
 using System.Threading.Tasks;
 
-namespace SFA.DAS.PocProject.UITests.Project.Helpers
+namespace SFA.DAS.Registration.UITests.Project.Helpers
 {
     public class MongoDbHelper
     {

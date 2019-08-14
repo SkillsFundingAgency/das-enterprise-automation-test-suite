@@ -1,9 +1,9 @@
 ﻿using NUnit.Framework;
-using SFA.DAS.PocProject.UITests.Project.Tests.Pages;
+using SFA.DAS.Registration.UITests.Project.Tests.Pages;
 using SFA.DAS.UI.Framework.TestSupport;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.PocProject.UITests.Project.Tests.StepDefinitions
+namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
 {
     [Binding]
     public class CreateAccountSteps

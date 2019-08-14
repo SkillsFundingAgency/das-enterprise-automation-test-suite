@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Text;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.PocProject.UITests.Project.Tests.Pages
+namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 {
     public class SelectYourOrganisationPage : BasePage
     {
@@ -36,7 +36,7 @@ namespace SFA.DAS.PocProject.UITests.Project.Tests.Pages
 
         public CheckYourDetailsPage SelectYourOrganisation()
         {
-            _formCompletionHelper.ClickElement(SearchLinkUrl(_config.PP_OrganisationName.ToUpper()));
+            _formCompletionHelper.ClickElement(SearchLinkUrl(_config.RE_OrganisationName.ToUpper()));
             return new CheckYourDetailsPage(_context);
         }
     }

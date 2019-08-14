@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Text;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.PocProject.UITests.Project.Tests.Pages
+namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 {
     public class OrganisationSearchPage : BasePage
     {
@@ -43,7 +43,7 @@ namespace SFA.DAS.PocProject.UITests.Project.Tests.Pages
 
         private OrganisationSearchPage EnterOrganisationName()
         {
-            _formCompletionHelper.EnterText(SearchInput, _config.PP_OrganisationName);
+            _formCompletionHelper.EnterText(SearchInput, _config.RE_OrganisationName);
             return this;
         }
 

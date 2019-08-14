@@ -3,7 +3,7 @@ using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.PocProject.UITests.Project.Tests.Pages
+namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 {
     public class SignInPage : BasePage
     {
@@ -51,13 +51,13 @@ namespace SFA.DAS.PocProject.UITests.Project.Tests.Pages
 
         private SignInPage EnterEmailAddress()
         {
-            _formCompletionHelper.EnterText(EmailAddressInput, _config.PP_AccountUserName);
+            _formCompletionHelper.EnterText(EmailAddressInput, _config.RE_AccountUserName);
             return this;
         }
 
         private SignInPage EnterPassword()
         {
-            _formCompletionHelper.EnterText(PasswordInput, _config.PP_AccountPassword);
+            _formCompletionHelper.EnterText(PasswordInput, _config.RE_AccountPassword);
             return this;
         }
 

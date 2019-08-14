@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Text;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.PocProject.UITests.Project.Tests.Pages
+namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 {
     public class IndexPage : BasePage
     {

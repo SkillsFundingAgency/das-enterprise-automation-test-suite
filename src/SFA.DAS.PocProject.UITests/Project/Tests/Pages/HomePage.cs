@@ -3,7 +3,7 @@ using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.PocProject.UITests.Project.Tests.Pages
+namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 {
     public class HomePage : BasePage
     {
@@ -25,7 +25,7 @@ namespace SFA.DAS.PocProject.UITests.Project.Tests.Pages
             VerifyPage();
         }
 
-        protected override string PageTitle => _config.PP_OrganisationName.ToUpper();
+        protected override string PageTitle => _config.RE_OrganisationName.ToUpper();
 
         public string AccountID()
         {

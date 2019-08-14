@@ -1,11 +1,11 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
-using SFA.DAS.PocProject.UITests.Project.Helpers;
+using SFA.DAS.Registration.UITests.Project.Helpers;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.PocProject.UITests.Project
+namespace SFA.DAS.Registration.UITests.Project
 {
     [Binding]
     public class Hooks          
@@ -31,7 +31,7 @@ namespace SFA.DAS.PocProject.UITests.Project
         [BeforeScenario(Order = 21)]
         public void Navigate()
         {
-            var url = _config.PP_BaseUrl;
+            var url = _config.RE_BaseUrl;
             _webDriver.Navigate().GoToUrl(url);
         }
 

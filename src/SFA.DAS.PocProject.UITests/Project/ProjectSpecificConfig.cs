@@ -1,19 +1,19 @@
-﻿namespace SFA.DAS.PocProject.UITests.Project
+﻿namespace SFA.DAS.Registration.UITests.Project
 {
     public class ProjectConfig
     {
         public string TwoDigitProjectCode { get; set; }
 
-        public string PP_AccountUserName { get; set; }
+        public string RE_AccountUserName { get; set; }
 
-        public string PP_AccountPassword { get; set; }
+        public string RE_AccountPassword { get; set; }
 
-        public string PP_Browser { get; set; }
+        public string RE_Browser { get; set; }
 
-        public string PP_BaseUrl { get; set; }
+        public string RE_BaseUrl { get; set; }
 
-        public string PP_ConfirmCode { get; set; }
+        public string RE_ConfirmCode { get; set; }
 
-        public string PP_OrganisationName { get; set; }
+        public string RE_OrganisationName { get; set; }
     }
 }

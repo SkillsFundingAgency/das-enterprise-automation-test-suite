@@ -1,6 +1,6 @@
 ﻿using SFA.DAS.UI.Framework.TestSupport;
 
-namespace SFA.DAS.PocProject.UITests.Project
+namespace SFA.DAS.Registration.UITests.Project
 {
     public static class ObjectContextExtension
     {
