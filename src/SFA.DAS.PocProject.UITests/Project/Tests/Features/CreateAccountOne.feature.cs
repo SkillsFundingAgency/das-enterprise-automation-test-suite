@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.PocProject.UITests.Project.Tests.Features
+namespace SFA.DAS.Registration.UITests.Project.Tests.Features
 {
     using TechTalk.SpecFlow;
     
