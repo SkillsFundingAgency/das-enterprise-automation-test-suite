@@ -8,9 +8,10 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
     public abstract class MyAccountWithPaye : BasePage
     {
         #region Helpers and Context
-        private readonly PageInteractionHelper _pageInteractionHelper;
-        private readonly FormCompletionHelper _formCompletionHelper;
+        protected readonly PageInteractionHelper pageInteractionHelper;
+        protected readonly FormCompletionHelper formCompletionHelper;
         private readonly ScenarioContext _context;
+        protected readonly ProjectConfig config;
         #endregion
 
         protected bool navigate;
@@ -22,8 +23,9 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         public MyAccountWithPaye(ScenarioContext context) : base(context)
         {
             _context = context;
-            _pageInteractionHelper = context.Get<PageInteractionHelper>();
-            _formCompletionHelper = context.Get<FormCompletionHelper>();
+            config = context.GetProjectConfig<ProjectConfig>();
+            pageInteractionHelper = context.Get<PageInteractionHelper>();
+            formCompletionHelper = context.Get<FormCompletionHelper>();
             bool func() => navigate ? VerifyPage(Navigate) : VerifyPage();
             func();
         }
@@ -50,8 +52,8 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         protected void Navigate()
         {
-            var link = _pageInteractionHelper.GetLink(GlobalNavLink, Linktext);
-            _formCompletionHelper.ClickElement(link);
+            var link = pageInteractionHelper.GetLink(GlobalNavLink, Linktext);
+            formCompletionHelper.ClickElement(link);
         }
     }
 }
