@@ -3,6 +3,7 @@ using OpenQA.Selenium;
 using SFA.DAS.Registration.UITests.Project.Helpers;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
+using System.Linq;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Registration.UITests.Project
@@ -38,7 +39,8 @@ namespace SFA.DAS.Registration.UITests.Project
         [BeforeScenario(Order = 22)]
         public void SetUpDataHelpers()
         {
-            _dataHelper = new DataHelper(_config.TwoDigitProjectCode);
+            var domainName = _context.ScenarioInfo.Tags.Contains("eoiaccount") ? "eoi.com" : "gmail.com";
+            _dataHelper = new DataHelper(_config.TwoDigitProjectCode, domainName);
             _context.Set(_dataHelper);
         }
 

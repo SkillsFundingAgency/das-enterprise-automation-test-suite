@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+using SFA.DAS.Registration.UITests.Project.Helpers;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages;
 using SFA.DAS.UI.Framework.TestSupport;
 using TechTalk.SpecFlow;
@@ -30,6 +31,13 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
                 .ContinueToGetApprenticeshipFunding();
         }
 
+        [Given(@"I create an eoi user account")]
+        public void GivenICreateAnEoiUserAccount()
+        {
+
+        }
+
+
         [Then(@"I do not add paye details")]
         public void WhenIDoNotAddPayeDetails()
         {
@@ -51,9 +59,18 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             aboutYourAgreementPage = organistionSearchPage
                 .SearchForAnOrganisation()
                 .SelectYourOrganisation()
-                .TheseDetailsAreCorrect();
+                .ContinueToAboutYourAgreementPage();
         }
 
+        [When(@"eoi organisation details")]
+        public void WhenEoiOrganisationDetails()
+        {
+            organistionSearchPage
+                .SearchForAnOrganisation()
+                .SelectYourOrganisation()
+                .ContinueToEoiAboutYourAgreementPage()
+                .EoiAgreement();
+        }
 
         [When(@"I sign the agreement")]
         public void WhenISignTheAgreement()

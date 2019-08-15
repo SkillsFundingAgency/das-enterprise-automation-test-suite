@@ -6,14 +6,14 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
     {
         private readonly DateTime dateTime;
 
-        public DataHelper(string code)
+        public DataHelper(string code, string domainName)
         {
             TwoDigitProjectCode = code;
             dateTime = DateTime.Now;
             EmpRefDigits = dateTime.ToString("fffff");
             NextNumber = NextNumberGenerator.GetNextCount();
             RandomUserName = GenerateRandomUserName();
-            RandomEmail = GenerateRandomEmail();
+            RandomEmail = GenerateRandomEmail(domainName);
         }
 
         public string TwoDigitProjectCode { get; }
@@ -26,9 +26,9 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
 
         public string RandomUserName { get; }
 
-        private string GenerateRandomEmail()
+        private string GenerateRandomEmail(string domainName)
         {
-            return $"{RandomUserName}@mailinator.com";
+            return $"{RandomUserName}@{domainName}";
         }
         
         private string GenerateRandomUserName()
