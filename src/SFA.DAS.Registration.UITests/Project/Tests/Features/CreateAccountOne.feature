@@ -3,7 +3,8 @@
 A short summary of the feature
 
 @addpayedetails
-Scenario: Create user Account with PAYE Details One
+Scenario: Create user Account with PAYE Details will land in the Agreement Page
 Given I create an Account 
 When I add paye details
-Then I can land in the User Home page
+And organisation details
+Then I will land in the Organisation Agreement page

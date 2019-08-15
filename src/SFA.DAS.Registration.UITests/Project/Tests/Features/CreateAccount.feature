@@ -11,4 +11,5 @@ Then I do not add paye details
 Scenario: Create user Account with PAYE Details
 Given I create an Account 
 When I add paye details
+And organisation details
 Then I can land in the User Home page

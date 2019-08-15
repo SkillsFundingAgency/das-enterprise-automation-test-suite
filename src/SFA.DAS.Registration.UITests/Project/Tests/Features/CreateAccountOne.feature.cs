@@ -70,11 +70,11 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Create user Account with PAYE Details One")]
+        [NUnit.Framework.DescriptionAttribute("Create user Account with PAYE Details will land in the Agreement Page")]
         [NUnit.Framework.CategoryAttribute("addpayedetails")]
-        public virtual void CreateUserAccountWithPAYEDetailsOne()
+        public virtual void CreateUserAccountWithPAYEDetailsWillLandInTheAgreementPage()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Create user Account with PAYE Details One", null, new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Create user Account with PAYE Details will land in the Agreement Page", null, new string[] {
                         "addpayedetails"});
 #line 6
 this.ScenarioInitialize(scenarioInfo);
@@ -84,7 +84,9 @@ testRunner.Given("I create an Account", ((string)(null)), ((TechTalk.SpecFlow.Ta
 #line 8
 testRunner.When("I add paye details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 9
-testRunner.Then("I can land in the User Home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+testRunner.And("organisation details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 10
+testRunner.Then("I will land in the Organisation Agreement page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
