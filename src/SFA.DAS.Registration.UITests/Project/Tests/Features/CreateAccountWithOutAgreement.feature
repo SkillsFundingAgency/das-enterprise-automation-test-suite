@@ -3,7 +3,7 @@
 A short summary of the feature
 
 @addpayedetails
-Scenario: Create user Account with PAYE Details Three
+Scenario: Create user Account with PAYE Details And Do Not Sign Agreement
 Given I create an Account 
 When I add paye details
 And organisation details

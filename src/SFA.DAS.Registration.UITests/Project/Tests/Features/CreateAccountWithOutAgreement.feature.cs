@@ -70,11 +70,11 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Create user Account with PAYE Details Three")]
+        [NUnit.Framework.DescriptionAttribute("Create user Account with PAYE Details And Do Not Sign Agreement")]
         [NUnit.Framework.CategoryAttribute("addpayedetails")]
-        public virtual void CreateUserAccountWithPAYEDetailsThree()
+        public virtual void CreateUserAccountWithPAYEDetailsAndDoNotSignAgreement()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Create user Account with PAYE Details Three", null, new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Create user Account with PAYE Details And Do Not Sign Agreement", null, new string[] {
                         "addpayedetails"});
 #line 6
 this.ScenarioInitialize(scenarioInfo);
