@@ -5,7 +5,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 {
-    public class MyAccountWithPaye : BasePage
+    public abstract class MyAccountWithPaye : BasePage
     {
         #region Helpers and Context
         private readonly PageInteractionHelper _pageInteractionHelper;
@@ -13,37 +13,45 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         private readonly ScenarioContext _context;
         #endregion
 
-        private By CloseIconLink => By.CssSelector(".link-with-icon");
+        protected bool navigate;
 
-        private By AgreementButton => By.CssSelector("#agreement-about");
+        protected By GlobalNavLink => By.CssSelector("#global-nav-links li a");
 
-        public MyAccountWithPaye(ScenarioContext context): base(context)
+        protected abstract string Linktext { get; }
+
+        public MyAccountWithPaye(ScenarioContext context) : base(context)
         {
             _context = context;
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
-            VerifyPage();
+            bool func() => navigate ? VerifyPage(Navigate) : VerifyPage();
+            func();
         }
-
-        protected override string PageTitle => "welcome to your new digital account";
 
         public HomePage GoToHomePage()
         {
-            Agreement();
-            CloseLink();
+            return new HomePage(_context, true);
+        }
+
+        public HomePage HomePage()
+        {
             return new HomePage(_context);
         }
 
-        private MyAccountWithPaye CloseLink()
+        public AboutYourAgreementPage AboutYourAgreementPage()
         {
-            _formCompletionHelper.ClickElement(CloseIconLink);
-            return this;
+            return new AboutYourAgreementPage(_context);
         }
 
-        private MyAccountWithPaye Agreement()
+        public AboutYourAgreementPage GoToAboutYourAgreementPage()
         {
-            _formCompletionHelper.ClickElement(AgreementButton);
-            return this;
+            return new AboutYourAgreementPage(_context, true);
+        }
+
+        protected void Navigate()
+        {
+            var link = _pageInteractionHelper.GetLink(GlobalNavLink, Linktext);
+            _formCompletionHelper.ClickElement(link);
         }
     }
 }

@@ -11,6 +11,8 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         private readonly ScenarioContext _context;
         private GetApprenticeshipFunding getApprenticeshipFunding;
         private OrganisationSearchPage organistionSearchPage;
+        private AboutYourAgreementPage aboutYourAgreementPage;
+        private HomePage homePage;
         private readonly ObjectContext _objectContext;
 
         public CreateAccountSteps(ScenarioContext context)
@@ -43,17 +45,58 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
                 .SignInTo();
         }
 
+        [When(@"organisation details")]
+        public void WhenOrganisationDetails()
+        {
+            aboutYourAgreementPage = organistionSearchPage
+                .SearchForAnOrganisation()
+                .SelectYourOrganisation()
+                .TheseDetailsAreCorrect();
+        }
+
+
+        [When(@"I sign the agreement")]
+        public void WhenISignTheAgreement()
+        {
+            homePage = aboutYourAgreementPage
+                .Agreement()
+                .SignAgreement();
+        }
+
+        [When(@"I do not sign the agreement")]
+        public void WhenIDoNotSignTheAgreement()
+        {
+            homePage = aboutYourAgreementPage
+                .Agreement()
+                .DoNotSignAgreement();
+        }
+
+        [Then(@"I will land in the Organisation Agreement page")]
+        public void ThenIWillLandInTheOrganisationAgreementPage()
+        {
+            aboutYourAgreementPage
+                .AboutYourAgreementPage();
+        }
+
         [Then(@"I can land in the User Home page")]
         public void ThenICanLandInTheUserHomePage()
         {
-            var accountid = organistionSearchPage
-                .SearchForAnOrganisation()
-                .SelectYourOrganisation()
-                .TheseDetailsAreCorrect()
+            var accountid = aboutYourAgreementPage
                 .GoToHomePage()
                 .AccountID();
-            TestContext.Progress.WriteLine($"Account Id : {accountid}");
 
+            SetAccountId(accountid);
+        }
+
+        [Then(@"sucess message is displayed")]
+        public void ThenSucessMessageIsDisplayed()
+        {
+            homePage.VerifySucessSummary();
+        }
+
+        private void SetAccountId(string accountid)
+        {
+            TestContext.Progress.WriteLine($"Account Id : {accountid}");
             _objectContext.SetAccountId(accountid);
         }
     }

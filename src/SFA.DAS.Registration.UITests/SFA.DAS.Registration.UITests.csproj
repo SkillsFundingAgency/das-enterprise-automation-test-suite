@@ -38,10 +38,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Project\Tests\Features\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\SFA.DAS.UI.Framework\SFA.DAS.UI.Framework.csproj" />
   </ItemGroup>
 

@@ -5,7 +5,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 {
-    public class HomePage : BasePage
+    public class HomePage : MyAccountWithPaye
     {
         #region Helpers and Context
         private readonly PageInteractionHelper _pageInteractionHelper;
@@ -16,7 +16,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         private By AccountId => By.CssSelector(".heading-secondary");
 
-        private By GlobalNavLink => By.CssSelector("#global-nav-links li a");
+        private By SucessSummary => By.CssSelector(".success-summary");
 
         public HomePage(ScenarioContext context): base(context)
         {
@@ -24,20 +24,24 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             _config = context.GetProjectConfig<ProjectConfig>();
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
-            VerifyPage(ClickHomeLink);
+        }
+        public HomePage(ScenarioContext context, bool navigate) : this(context)
+        {
+            this.navigate = navigate;
         }
 
         protected override string PageTitle => _config.RE_OrganisationName.ToUpper();
 
+        protected override string Linktext => "Home";
+
+        public void VerifySucessSummary()
+        {
+            _pageInteractionHelper.VerifyText(SucessSummary, "All agreements signed");
+        }
+
         public string AccountID()
         {
             return _pageInteractionHelper.GetText(AccountId);
-        }
-
-        private void ClickHomeLink()
-        {
-            var link = _pageInteractionHelper.GetLink(GlobalNavLink, "Home");
-            _formCompletionHelper.ClickElement(link);
         }
     }
 }

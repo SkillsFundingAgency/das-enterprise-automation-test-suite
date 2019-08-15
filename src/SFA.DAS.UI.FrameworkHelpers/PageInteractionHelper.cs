@@ -89,15 +89,8 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         public bool VerifyText(By locator, string expected)
         {
-            var actual = _webDriver.FindElement(locator).Text;
-            if (actual.Contains(expected))
-            {
-                return true;
-            }
-
-            throw new Exception("Text verification failed: "
-                + "\n Expected: " + expected
-                + "\n Found: " + actual);
+            var actual = GetText(locator);
+            return VerifyText(actual, expected);
         }
 
         public bool VerifyValueAttributeOfAnElement(By locator, string expected)

@@ -29,10 +29,10 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         protected override string PageTitle => "Check your details";
 
-        public MyAccountWithPaye TheseDetailsAreCorrect()
+        public AboutYourAgreementPage TheseDetailsAreCorrect()
         {
             _formCompletionHelper.ClickElement(ContinueButton);
-            return new MyAccountWithPaye(_context);
+            return new AboutYourAgreementPage(_context);
         }
     }
 }
