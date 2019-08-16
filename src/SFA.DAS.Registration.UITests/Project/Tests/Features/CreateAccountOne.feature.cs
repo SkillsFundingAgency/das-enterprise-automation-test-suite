@@ -70,11 +70,11 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Create user Account with PAYE Details will land in the Agreement Page")]
+        [NUnit.Framework.DescriptionAttribute("Create Non Levy Account with PAYE Details will land in the Agreement Page")]
         [NUnit.Framework.CategoryAttribute("addpayedetails")]
-        public virtual void CreateUserAccountWithPAYEDetailsWillLandInTheAgreementPage()
+        public virtual void CreateNonLevyAccountWithPAYEDetailsWillLandInTheAgreementPage()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Create user Account with PAYE Details will land in the Agreement Page", null, new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Create Non Levy Account with PAYE Details will land in the Agreement Page", null, new string[] {
                         "addpayedetails"});
 #line 6
 this.ScenarioInitialize(scenarioInfo);
