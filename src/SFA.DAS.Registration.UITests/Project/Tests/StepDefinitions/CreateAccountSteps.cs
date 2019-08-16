@@ -13,6 +13,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         private GetApprenticeshipFunding getApprenticeshipFunding;
         private OrganisationSearchPage organistionSearchPage;
         private AboutYourAgreementPage aboutYourAgreementPage;
+        private EoiAboutYourAgreementPage eoiAboutYourAgreementPage;
         private HomePage homePage;
         private readonly ObjectContext _objectContext;
 
@@ -30,13 +31,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
                 .Register()
                 .ContinueToGetApprenticeshipFunding();
         }
-
-        [Given(@"I create an eoi user account")]
-        public void GivenICreateAnEoiUserAccount()
-        {
-
-        }
-
 
         [Then(@"I do not add paye details")]
         public void WhenIDoNotAddPayeDetails()
@@ -65,11 +59,10 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         [When(@"eoi organisation details")]
         public void WhenEoiOrganisationDetails()
         {
-            organistionSearchPage
+            eoiAboutYourAgreementPage = organistionSearchPage
                 .SearchForAnOrganisation()
                 .SelectYourOrganisation()
-                .ContinueToEoiAboutYourAgreementPage()
-                .EoiAgreement();
+                .ContinueToEoiAboutYourAgreementPage();
         }
 
         [When(@"I sign the agreement")]
@@ -87,6 +80,15 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
                 .Agreement()
                 .DoNotSignAgreement();
         }
+
+        [When(@"I do not sign the eoi agreement")]
+        public void WhenIDoNotSignTheEoiAgreement()
+        {
+            homePage = eoiAboutYourAgreementPage
+                .EoiAgreement()
+                .DoNotSignAgreement();
+        }
+
 
         [Then(@"I will land in the Organisation Agreement page")]
         public void ThenIWillLandInTheOrganisationAgreementPage()
