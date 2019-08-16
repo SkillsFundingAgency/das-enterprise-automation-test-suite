@@ -35,6 +35,11 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             return new HomePage(_context, true);
         }
 
+        public HomePage GoToHomePageUsingUrl()
+        {
+            return new HomePage(_context, true);
+        }
+
         public HomePage HomePage()
         {
             return new HomePage(_context);
