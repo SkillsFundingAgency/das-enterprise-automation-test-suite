@@ -1,4 +1,5 @@
-﻿using MongoDB.Driver;
+﻿using MongoDB.Bson;
+using MongoDB.Driver;
 using System.Threading.Tasks;
 
 namespace SFA.DAS.UI.FrameworkHelpers
@@ -12,17 +13,17 @@ namespace SFA.DAS.UI.FrameworkHelpers
             _config = config;
         }
 
-        public async Task AsyncDeleteGatewayUserData<T>(string collectionName, FilterDefinition<T> filter)
+        public async Task AsyncDeleteData<T>(string collectionName, FilterDefinition<T> filter)
         {
-            await GetGatewayUsersCollection<T>(collectionName).DeleteOneAsync(filter);
+            await GetCollection<T>(collectionName).DeleteOneAsync(filter);
         }
 
-        public async Task AsyncCreateGatewayUserData<T>(string collectionName, T[] data)
+        public async Task AsyncCreateData<T>(string collectionName, T[] data)
         {
-            await GetGatewayUsersCollection<T>(collectionName).InsertManyAsync(data);
+            await GetCollection<T>(collectionName).InsertManyAsync(data);
         }
 
-        private IMongoCollection<T> GetGatewayUsersCollection<T>(string collectionName)
+        private IMongoCollection<T> GetCollection<T>(string collectionName)
         {
             var db = GetMongoDatabase();
             return db.GetCollection<T>(collectionName);

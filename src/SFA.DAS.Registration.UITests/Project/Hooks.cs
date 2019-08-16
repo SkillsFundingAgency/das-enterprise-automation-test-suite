@@ -50,13 +50,19 @@ namespace SFA.DAS.Registration.UITests.Project
         {
             var mongoDbDataHelper = new MongoDbDataHelper(_dataHelper);
 
+            _context.Set(mongoDbDataHelper);
+
             TestContext.Progress.WriteLine($"Gateway Id : {mongoDbDataHelper.GatewayId}");
 
             _objectContext.SetGatewayCreds(mongoDbDataHelper.GatewayId, mongoDbDataHelper.GatewayPassword, mongoDbDataHelper.EmpRef);
 
             _mongodbConnectionHelper = new MongoDbConnectionHelper(_mongoDbConfig);
 
-            _mongoDbHelper = new MongoDbHelper(_mongodbConnectionHelper, mongoDbDataHelper);
+            _context.Set(_mongodbConnectionHelper);
+
+            _mongoDbHelper = new MongoDbHelper(_mongodbConnectionHelper, new GatewayUserDataGenerator(mongoDbDataHelper));
+
+            _context.Set(_mongoDbHelper, typeof(GatewayUserDataGenerator).FullName);
         }
 
         [BeforeScenario(Order = 24)]
@@ -72,8 +78,15 @@ namespace SFA.DAS.Registration.UITests.Project
         [Scope(Tag = "addpayedetails")]
         public void DeletePayeDetails()
         {
-            var results = _mongoDbHelper.AsyncDeleteData();
-            results.Wait();
+            if (_context.TryGetValue(typeof(DeclarationsDataGenerator).FullName, out MongoDbHelper mongoDbHelper))
+            {
+                var deleteDeclarationsResults = mongoDbHelper.AsyncDeleteData();
+                deleteDeclarationsResults.Wait();
+                TestContext.Progress.WriteLine($"Declarations Deleted for, EmpRef: {_objectContext.GetGatewayPaye()}");
+            }
+
+            var deletegatewayUserResults = _mongoDbHelper.AsyncDeleteData();
+            deletegatewayUserResults.Wait();
             TestContext.Progress.WriteLine($"Gateway User Deleted, EmpRef: {_objectContext.GetGatewayPaye()}");
         }
     }
