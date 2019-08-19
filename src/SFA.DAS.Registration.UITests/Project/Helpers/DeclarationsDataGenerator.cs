@@ -1,20 +1,58 @@
 ﻿using MongoDB.Bson;
-using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
 
 namespace SFA.DAS.Registration.UITests.Project.Helpers
 {
-    public class DeclarationsDataGenerator : IMongoDbDataGenerator
+
+    public class EnglishFractionDataGenerator : EmpRefFilterDefinition, IMongoDbDataGenerator
+    {
+        private readonly MongoDbDataHelper _helper;
+        private readonly decimal _fraction;
+        private readonly DateTime _calculatedAt;
+
+        public EnglishFractionDataGenerator(MongoDbDataHelper helper, Decimal fraction, DateTime calculatedAt) : base(helper)
+        {
+            _helper = helper;
+            _fraction = fraction;
+            _calculatedAt = calculatedAt;
+        }
+
+        public string CollectionName() => "fractions";
+
+        public BsonDocument[] Data()
+        {
+            BsonDocument value = new BsonDocument
+            {
+                {"region", "England" },
+                {"value", _fraction }
+            };
+
+            BsonArray fractionCalculations = new BsonArray
+            {
+                new BsonDocument
+                {
+                    { "calculatedAt", _calculatedAt },
+                    { "fractions", new BsonArray { value } }
+                }
+            };
+
+            BsonDocument fractions = new BsonDocument
+            {
+                { "empref", _helper.EmpRef },
+                { "fractionCalculations", fractionCalculations }
+            };
+
+            return new BsonDocument[] { fractions };
+        }
+    }
+
+    public class DeclarationsDataGenerator : EmpRefFilterDefinition, IMongoDbDataGenerator
     {
         private readonly MongoDbDataHelper _helper;
         private readonly List<dynamic> _declarations;
 
-        public DeclarationsDataGenerator()
-        {
-        }
-
-        public DeclarationsDataGenerator(MongoDbDataHelper helper, List<dynamic> declaration)
+        public DeclarationsDataGenerator(MongoDbDataHelper helper, List<dynamic> declaration) : base(helper)
         {
             _helper = helper;
             _declarations = declaration;
@@ -27,7 +65,7 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
 
         public BsonDocument[] Data()
         {
-            List<BsonDocument> bsonElements = new List<BsonDocument>();
+            BsonArray declarations = new BsonArray();
 
             foreach (var declaration in _declarations)
             {
@@ -38,28 +76,23 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
                 };
 
                 var submissionDate = (declaration.SubmissionDate as DateTime?)?.ToString("yyyy-MM-dd");
-                BsonDocument declarations = new BsonDocument
+
+                declarations.Add(new BsonDocument
                 {
                     { "id", DateTime.Now.ToString("HHmmssfffff") },
                     { "submissionTime", $"{submissionDate}T12:00:00.000" },
                     { "payrollPeriod" ,payrollperiod },
-                    {"levyDueYTD", declaration.LevyDueYTD },
-                    {"levyAllowanceForFullYear", declaration.LevyAllowanceForFullYear  }
-                };
-
-                bsonElements.Add(new BsonDocument
-                {
-                    { "empref",_helper.EmpRef},
-                    {"declarations", declarations}
+                    { "levyDueYTD", declaration.LevyDueYTD },
+                    { "levyAllowanceForFullYear", declaration.LevyAllowanceForFullYear  }
                 });
             }
+            BsonDocument levydeclaration  = new BsonDocument
+            {
+                { "empref",_helper.EmpRef},
+                { "declarations", declarations}
+            };
 
-            return bsonElements.ToArray();
-        }
-
-        public FilterDefinition<BsonDocument> FilterDefinition()
-        {
-            return Builders<BsonDocument>.Filter.Eq("empref", _helper.EmpRef);
+            return new BsonDocument[] { levydeclaration };
         }
     }
 }

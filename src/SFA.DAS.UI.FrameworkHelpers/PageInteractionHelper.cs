@@ -224,6 +224,8 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         public string GetText(IWebElement webElement) => webElement.Text;
 
+        public string GetUrl() => _webDriver.Url;
+
         public IWebElement GetLink(By by, string linkText) => _webDriver.FindElements(by).ToList().First(x => x.GetAttribute("innerText") == linkText);
     }
 }

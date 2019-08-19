@@ -18,10 +18,10 @@ Then I will land in the User Home page
 
 
 @addpayedetails
-Scenario: Create Levy Account with PAYE Details
-Given the following Levy Declarations
+Scenario: Create Levy Account
+Given the following levy declarations with english fraction of 1.00 calculated at 2019-04-15
 | Year  | Month | LevyDueYTD | LevyAllowanceForFullYear | SubmissionDate |
-| 17-18 | 1     | 45000000   | 60000                    | 2017-05-15     |
+| 19-20 | 3     | 45000000   | 60000                    | 2019-05-15     |
 Given I create an Account 
 When I add paye details
 And organisation details

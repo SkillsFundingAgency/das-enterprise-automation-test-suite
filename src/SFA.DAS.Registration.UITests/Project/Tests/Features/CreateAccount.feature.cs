@@ -110,11 +110,11 @@ testRunner.Then("I will land in the User Home page", ((string)(null)), ((TechTal
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Create Levy Account with PAYE Details")]
+        [NUnit.Framework.DescriptionAttribute("Create Levy Account")]
         [NUnit.Framework.CategoryAttribute("addpayedetails")]
-        public virtual void CreateLevyAccountWithPAYEDetails()
+        public virtual void CreateLevyAccount()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Create Levy Account with PAYE Details", null, new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Create Levy Account", null, new string[] {
                         "addpayedetails"});
 #line 21
 this.ScenarioInitialize(scenarioInfo);
@@ -127,13 +127,14 @@ this.ScenarioInitialize(scenarioInfo);
                         "LevyAllowanceForFullYear",
                         "SubmissionDate"});
             table1.AddRow(new string[] {
-                        "17-18",
-                        "1",
+                        "19-20",
+                        "3",
                         "45000000",
                         "60000",
-                        "2017-05-15"});
+                        "2019-05-15"});
 #line 22
-testRunner.Given("the following Levy Declarations", ((string)(null)), table1, "Given ");
+testRunner.Given("the following levy declarations with english fraction of 1.00 calculated at 2019-" +
+                    "04-15", ((string)(null)), table1, "Given ");
 #line 25
 testRunner.Given("I create an Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 26

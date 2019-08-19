@@ -1,6 +1,7 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
+using System.Text.RegularExpressions;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
@@ -35,7 +36,11 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         public string AccountID()
         {
-            return pageInteractionHelper.GetText(AccountId);
+            var url = pageInteractionHelper.GetUrl();
+
+            Match match = Regex.Match(url, @"^\/[A-Z0-9]{6}\/$");
+
+            return match.Success ? match.Value : url;
         }
     }
 }

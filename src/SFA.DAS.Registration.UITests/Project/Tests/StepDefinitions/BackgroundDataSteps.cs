@@ -30,8 +30,8 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             _mongoDbDataHelper = _context.Get<MongoDbDataHelper>();
         }
 
-        [Given(@"the following Levy Declarations")]
-        public void GivenTheFollowingLevyDeclarations(Table table)
+        [Given(@"the following levy declarations with english fraction of (.*) calculated at (.*)")]
+        public void GivenTheFollowingLevyDeclarationsWithEnglishFractionOfCalculatedAt(Decimal fraction, DateTime calculatedAt, Table table)
         {
             var set = table.CreateDynamicSet().ToList();
 
@@ -39,9 +39,23 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
 
             mongoDbHelper.AsyncCreateData().Wait();
 
+            TestContext.Progress.WriteLine($"Declarations Created for, EmpRef: {_objectContext.GetGatewayPaye()}");
+
             _context.Set(mongoDbHelper, typeof(DeclarationsDataGenerator).FullName);
 
-            TestContext.Progress.WriteLine($"Declarations Created for, EmpRef: {_objectContext.GetGatewayPaye()}");
+            EnglishFraction(fraction, calculatedAt);
+        }
+
+
+        public void EnglishFraction(Decimal fraction, DateTime calculatedAt)
+        {
+            var mongoDbHelper = new MongoDbHelper(_mongodbConnectionHelper, new EnglishFractionDataGenerator(_mongoDbDataHelper, fraction, calculatedAt));
+
+            mongoDbHelper.AsyncCreateData().Wait();
+
+            TestContext.Progress.WriteLine($"English fraction Created for, EmpRef: {_objectContext.GetGatewayPaye()}");
+
+            _context.Set(mongoDbHelper, typeof(EnglishFractionDataGenerator).FullName);
         }
     }
 }
