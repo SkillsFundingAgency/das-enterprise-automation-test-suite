@@ -51,7 +51,6 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
 
         internal void selectAValidInterest(String interestValue)
         {
-            //test
             _pageInteractionHelper.WaitForElementToBeDisplayed(_selectInterestDropDown);
             _formCompletionCampaignsHelper.SelectFromDropDownByText(_selectInterestDropDown, interestValue);
         }

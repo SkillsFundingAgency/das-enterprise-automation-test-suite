@@ -75,3 +75,13 @@
 		Then I verify the content under WHAT IS AN APPRENTICESHIP section
 		Then I verify the content under WHAT ARE THE DIFFERENT TYPES OF APPRENTICESHIPS section
 
+	Scenario: User can find an apprentice via MY INTERESTS page
+		Given I navigate to Fire It Up home page
+		When I launch the My Interests page
+		Then I verify all the industry names on the My Interests page
+		When I click on the industry name ENGINEERING AND MANUFACTURING
+		Then I can enter a valid post code CV1 1DD
+		And I can select miles as 40 miles
+		And I can click on search button
+		When I click on first search result
+		Then I can see the Apprentice Summary page

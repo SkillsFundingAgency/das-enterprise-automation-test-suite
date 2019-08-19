@@ -53,5 +53,18 @@ namespace SFA.DAS.Campaigns.UITests
             + "\n Actual array list size is : " + actualArrayList.Count
             + "\n Expected array list size is : " + expectedArrayList.Count);
         }
+
+        public string GetText(string property)
+        {
+            var webElement = WebDriver.FindElement(By.XPath(property));
+            return webElement.Text;
+        }
+
+        public void FocusTheElement(string strXPath)
+        {
+            IWebElement webElement = WebDriver.FindElement(By.XPath(strXPath));
+            IJavaScriptExecutor je = (IJavaScriptExecutor)WebDriver;
+            je.ExecuteScript("arguments[0].scrollIntoView(false);", webElement);
+        }
     }
 }

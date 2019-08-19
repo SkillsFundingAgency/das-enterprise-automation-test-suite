@@ -43,15 +43,12 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
         private const string ExpectedAskThemQuestionsTooParagraph1 = "This is your apprenticeship too, so make sure you show enthusiasm and prepare a few questions to ask your new potential employer.";
         private const string ExpectedAskThemQuestionsTooParagraph2 = "If you’re the successful candidate, you’ll be offered the apprenticeship by the employer.";
         private const string ExpectedAskThemQuestionsTooParagraph3 = "For more information on preparing for an interview there's a detailed guide on the National Careers Service website.";
-        private const string hyperLink1 = "https://www.findapprenticeship.service.gov.uk/apprenticeshipsearch";
-        private const string hyperLink2 = "https://nationalcareersservice.direct.gov.uk/get-a-job/interview-advice";
         #endregion
 
         #region Helpers
         private readonly PageInteractionHelper _pageInteractionHelper;
         private readonly FormCompletionHelper _formCompletionHelper;
         private readonly PageInteractionCampaignsHelper _pageInteractionCampaignsHelper;
-        private IList<string> hyperLinkList = new List<string>(); 
         #endregion
 
         #region Page Object Elements
@@ -88,8 +85,6 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
         private readonly By _askThemQuestionsTooParagraph1 = By.XPath("//div[@class='page']/p[16]");
         private readonly By _askThemQuestionsTooParagraph2 = By.XPath("//div[@class='page']/p[17]");
         private readonly By _askThemQuestionsTooParagraph3 = By.XPath("//div[@class='page']/p[18]");
-        private readonly By _anchorElement = By.TagName("a");
-
         #endregion
 
         public InterviewPage(ScenarioContext context) : base(context)
@@ -134,7 +129,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
         {
             _pageInteractionHelper.WaitForElementToBeDisplayed(_beforeYourInterviewLink);
             _pageInteractionHelper.FocusTheElement(_beforeYourInterviewLink);
-            //_formCompletionHelper.ClickElement(_beforeYourInterviewLink);
+
             string actualBeforeYourInterviewHeader = _pageInteractionHelper.GetText(_beforeYourInterviewHeader);
             string actualCheckWhereAndWhenSubHeader1 = _pageInteractionHelper.GetText(_checkWhereAndWhenSubHeader1);
             string actualCheckWhereAndWhenParagraph1 = _pageInteractionHelper.GetText(_checkWhereAndWhenParagraph1);
@@ -159,6 +154,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
             _pageInteractionHelper.WaitForElementToBeDisplayed(_dayOfTheInterviewLink);
             _pageInteractionHelper.FocusTheElement(_dayOfTheInterviewLink);
             _formCompletionHelper.ClickElement(_dayOfTheInterviewLink);
+
             string actualDayOfTheInterviewHeader = _pageInteractionHelper.GetText(_dayOfTheInterviewHeader);
             string actualWhatToWearSubHeader1 = _pageInteractionHelper.GetText(_whatToWearSubHeader1);
             string actualWhatToWearParagraph1 = _pageInteractionHelper.GetText(_whatToWearParagraph1);

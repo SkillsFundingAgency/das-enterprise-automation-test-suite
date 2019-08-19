@@ -29,15 +29,12 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
         private const string ExpectedTrainingProvidersHeader = "TRAINING PROVIDERS";
         private const string ExpectedTrainingProvidersParagraph1 = "Your employer will find a training provider that is best suited to deliver the training for your apprenticeship. Some training providers also offer support to help you apply for an apprenticeship.";
         private const string ExpectedTrainingProvidersParagraph2 = "Your teacher or careers adviser can help you find out about training providers and how to get in touch. There are also other local organisations that can help you find out more, like a job centre or other community programmes.";
-        private const string hyperLink1 = "https://www.findapprenticeship.service.gov.uk/apprenticeshipsearch";
-        private const string hyperLink2 = "https://nationalcareers.service.gov.uk/get-a-job/cv-sections";
         #endregion
 
         #region Helpers
         private readonly PageInteractionHelper _pageInteractionHelper;
         private readonly FormCompletionHelper _formCompletionHelper;
         private readonly PageInteractionCampaignsHelper _pageInteractionCampaignsHelper;
-        private IList<string> hyperLinkList = new List<string>(); 
         #endregion
 
         #region Page Object Elements
@@ -57,7 +54,6 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
         private readonly By _trainingProvidersHeader = By.XPath("//div[@class='page']/h3[4]");
         private readonly By _trainingProvidersParagraph1 = By.XPath("//div[@class='page']/p[9]");
         private readonly By _trainingProvidersParagraph2 = By.XPath("//div[@class='page']/p[10]");
-        private readonly By _anchorElement = By.TagName("a");
         #endregion
 
         public ApplicationPage(ScenarioContext context) : base(context)

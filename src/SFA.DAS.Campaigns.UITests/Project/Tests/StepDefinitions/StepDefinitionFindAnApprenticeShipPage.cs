@@ -76,8 +76,5 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
         {
             findAnApprenticeShipPage.verifyDefaultValueFromMilesDropDown();
         }
-
-
-
     }
 }

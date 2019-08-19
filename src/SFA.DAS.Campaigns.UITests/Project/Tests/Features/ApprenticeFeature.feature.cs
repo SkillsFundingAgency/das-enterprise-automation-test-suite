@@ -269,6 +269,36 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Features
 #line hidden
             this.ScenarioCleanup();
         }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("User can find an apprentice via MY INTERESTS page")]
+        public virtual void UserCanFindAnApprenticeViaMYINTERESTSPage()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User can find an apprentice via MY INTERESTS page", null, ((string[])(null)));
+#line 78
+ this.ScenarioInitialize(scenarioInfo);
+            this.ScenarioStart();
+#line 79
+  testRunner.Given("I navigate to Fire It Up home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 80
+  testRunner.When("I launch the My Interests page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 81
+  testRunner.Then("I verify all the industry names on the My Interests page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 82
+  testRunner.When("I click on the industry name ENGINEERING AND MANUFACTURING", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 83
+  testRunner.Then("I can enter a valid post code CV1 1DD", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 84
+  testRunner.And("I can select miles as 40 miles", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 85
+  testRunner.And("I can click on search button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 86
+  testRunner.When("I click on first search result", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 87
+  testRunner.Then("I can see the Apprentice Summary page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
     }
 }
 #pragma warning restore

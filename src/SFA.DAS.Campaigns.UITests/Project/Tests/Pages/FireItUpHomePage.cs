@@ -15,7 +15,6 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
         private const string ExpectedPageTitle = "FIRE \n IT UP";
         private const string ExpectedApprenticesHeaderSupportText = "BLAZE YOUR OWN TRAIL AND BECOME AN APPRENTICE";
         private const string ExpectedEmployersHeaderSupportText = "FIRE UP YOUR BUSINESS WITH AN APPRENTICE";
-
         #endregion
 
         #region Helpers
@@ -35,6 +34,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
         private readonly By _inetrviewLink = By.Id("link-nav-app-step-4");
         private readonly By _applicationLink = By.Id("link-nav-app-step-3");
         private readonly By _whatIsAnApprenticeshipLink = By.Id("link-nav-app-step-1");
+        private readonly By _myinterestsLink = By.Id("link-nav-app-interests");
 
         #endregion
 
@@ -112,6 +112,12 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
         {
             _pageInteractionHelper.WaitForElementToBeClickable(_whatIsAnApprenticeshipLink);
             _formCompletionHelper.ClickElement(_whatIsAnApprenticeshipLink);
+        }
+
+        internal void clickOnMyInterestsLink()
+        {
+            _pageInteractionHelper.WaitForElementToBeClickable(_myinterestsLink);
+            _formCompletionHelper.ClickElement(_myinterestsLink);
         }
 
     }

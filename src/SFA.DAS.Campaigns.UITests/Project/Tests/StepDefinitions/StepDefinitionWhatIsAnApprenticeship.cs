@@ -39,23 +39,5 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
             whatIsAnApprenticeshipPage.verifyContentUnderDifferentTypesOfApprenticeshipsSection();
         }
 
-        //[Then(@"I verify the content under WAIT FOR THE APPLICATIONS section")]
-        //public void verifyWaitForTheApplicationSection()
-        //{
-        //    applicationPage.verifyContentUnderWaitForTheApplicationSection();
-        //}
-
-        //[Then(@"I verify the content under IF YOU’RE ON THE SHORTLIST section")]
-        //public void verifyIfYouAreOnTheShortlistSection()
-        //{
-        //    applicationPage.verifyContentUnderIfYouAreOnTheShortlistSection();
-        //}
-
-        //[Then(@"I verify the content under TRAINING PROVIDERS section")]
-        //public void verifyTrainingProvidersSection()
-        //{
-        //    applicationPage.verifyContentUnderTrainingProvidersSection();
-        //}
-
     }
 }

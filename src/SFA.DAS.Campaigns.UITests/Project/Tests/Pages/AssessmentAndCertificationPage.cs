@@ -72,6 +72,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
             _pageInteractionHelper.WaitForElementToBeDisplayed(_completeYourApprenticeshipLink);
             _pageInteractionHelper.FocusTheElement(_completeYourApprenticeshipLink);
             _formCompletionHelper.ClickElement(_completeYourApprenticeshipLink);
+
             string actualCompleteYourApprenticeshipHeader = _pageInteractionHelper.GetText(_completeYourApprenticeshipHeader);
             string actualCompleteYourApprenticeshipParagraph1 = _pageInteractionHelper.GetText(_completeYourApprenticeshipParagraph1);
             string actualCompleteYourApprenticeshipParagraph2 = _pageInteractionHelper.GetText(_completeYourApprenticeshipParagraph2);

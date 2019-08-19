@@ -30,18 +30,12 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
         private const string ExpectedDifferentTypesOfApprenticeshipsParagraph2 = "All apprenticeships make sure you're ‘job ready’ for the role you have trained for.";
         private const string ExpectedDifferentTypesOfApprenticeshipsParagraph3 = "Apprentices earn a salary right from day one of their employment and training.";
         private const string ExpectedDifferentTypesOfApprenticeshipsParagraph4 = "If you think you need better skills and need more work experience so that you're ready to apply for your chosen apprenticeship - you could consider doing a traineeship.";
-        private const string hyperLink1 = "https://www.apprenticeships.scot/";
-        private const string hyperLink2 = "https://gov.wales/apprenticeships-skills-and-training";
-        private const string hyperLink3 = "https://www.nidirect.gov.uk/campaigns/apprenticeships";
-        private const string hyperLink4 = "https://www.nidirect.gov.uk/campaigns/apprenticeships";
-        private const string hyperLink5 = "https://www.gov.uk/find-traineeship";
         #endregion
 
         #region Helpers
         private readonly PageInteractionHelper _pageInteractionHelper;
         private readonly FormCompletionHelper _formCompletionHelper;
         private readonly PageInteractionCampaignsHelper _pageInteractionCampaignsHelper;
-        private IList<string> hyperLinkList = new List<string>();
         private IList<string> actualWhenYouAreApprenticeBPList = new List<string>();
         private IList<string> expectedWhenYouAreApprenticeBPList = new List<string>();
         #endregion
@@ -62,7 +56,6 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
         private readonly By _differentTypesOfApprenticeshipsParagraph2 = By.XPath("//div[@class='page']/p[10]");
         private readonly By _differentTypesOfApprenticeshipsParagraph3 = By.XPath("//div[@class='page']/p[11]");
         private readonly By _differentTypesOfApprenticeshipsParagraph4 = By.XPath("//div[@class='page']/p[12]");
-        private readonly By _anchorElement = By.TagName("a");
         #endregion
 
         public WhatIsAnApprenticeshipPage(ScenarioContext context) : base(context)

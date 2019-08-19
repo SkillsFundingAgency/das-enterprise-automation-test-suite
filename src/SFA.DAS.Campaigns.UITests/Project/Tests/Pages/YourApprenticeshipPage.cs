@@ -80,6 +80,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
 
             _pageInteractionHelper.WaitForElementToBeDisplayed(_whatToBringLink);
             _formCompletionHelper.ClickElement(_whatToBringLink);
+
             string actualWhatToBringHeader = _pageInteractionHelper.GetText(_whatToBringHeader);
             string actualWhatToBringParagraph1 = _pageInteractionHelper.GetText(_whatToBringParagraph1);
             string actualWhatToBringParagraph2 = _pageInteractionHelper.GetText(_whatToBringParagraph2);

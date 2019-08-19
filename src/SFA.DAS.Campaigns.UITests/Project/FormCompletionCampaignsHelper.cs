@@ -27,5 +27,10 @@ namespace SFA.DAS.Campaigns.UITests
             var selectElement = new SelectElement(element);
             selectElement.SelectByText(text);
         }
+
+        public void ClickElement(string property)
+        {
+            WebDriver.FindElement(By.XPath(property)).Click();
+        }
     }
 }
