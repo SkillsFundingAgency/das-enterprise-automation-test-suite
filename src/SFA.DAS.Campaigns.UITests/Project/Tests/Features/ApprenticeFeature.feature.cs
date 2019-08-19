@@ -299,6 +299,28 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Features
 #line hidden
             this.ScenarioCleanup();
         }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("User can find an apprentice via WHAT ARE THE BENEFITS FOR ME page")]
+        public virtual void UserCanFindAnApprenticeViaWHATARETHEBENEFITSFORMEPage()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User can find an apprentice via WHAT ARE THE BENEFITS FOR ME page", null, ((string[])(null)));
+#line 89
+ this.ScenarioInitialize(scenarioInfo);
+            this.ScenarioStart();
+#line 90
+  testRunner.Given("I navigate to Fire It Up home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 91
+  testRunner.When("I launch the What Are The Benefits For Me page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 92
+  testRunner.Then("I verify the content under WHAT ARE MY FUTURE PROSPECTS section", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 93
+  testRunner.And("I verify the content under HOW MUCH CAN YOU EARN section", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 94
+  testRunner.And("I verify the content under WHAT WILL MY APPRENTICESHIP COST ME section", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            this.ScenarioCleanup();
+        }
     }
 }
 #pragma warning restore

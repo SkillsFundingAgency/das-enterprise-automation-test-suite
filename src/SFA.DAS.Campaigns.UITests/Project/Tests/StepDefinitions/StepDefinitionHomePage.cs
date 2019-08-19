@@ -94,7 +94,17 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
             TestContext.Progress.WriteLine("Navigating to My Interests page");
             fireItUpHomePage.clickOnMyInterestsLink();
         }
+
+        [When(@"I launch the What Are The Benefits For Me page")]
+        public void launchtheWhatAreTheBenefitsForMePage()
+        {
+            fireItUpHomePage.launchApprenticeMenu();
+            TestContext.Progress.WriteLine("Navigating to What Are The Benefits For Me page");
+            fireItUpHomePage.clickOnWhatAreTheBenefitsForMeLink();
+        }
         
+
+
 
     }
 }
