@@ -38,9 +38,9 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         {
             var url = pageInteractionHelper.GetUrl();
 
-            Match match = Regex.Match(url, @"^\/[A-Z0-9]{6}\/$");
+            Match match = Regex.Match(url, @"\/[A-Z0-9]{6}\/");
 
-            return match.Success ? match.Value : url;
+            return match.Success ? Regex.Replace(match.Value,@"\/",string.Empty) : url;
         }
     }
 }

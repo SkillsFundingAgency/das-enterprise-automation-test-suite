@@ -8,14 +8,14 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
     public class EnglishFractionDataGenerator : EmpRefFilterDefinition, IMongoDbDataGenerator
     {
         private readonly MongoDbDataHelper _helper;
-        private readonly decimal _fraction;
-        private readonly DateTime _calculatedAt;
+        private readonly string _fraction;
+        private readonly string _calculatedAt;
 
-        public EnglishFractionDataGenerator(MongoDbDataHelper helper, Decimal fraction, DateTime calculatedAt) : base(helper)
+        public EnglishFractionDataGenerator(MongoDbDataHelper helper, decimal fraction, DateTime calculatedAt) : base(helper)
         {
             _helper = helper;
-            _fraction = fraction;
-            _calculatedAt = calculatedAt;
+            _fraction = fraction.ToString();
+            _calculatedAt = calculatedAt.ToString("yyyy-MM-dd");
         }
 
         public string CollectionName() => "fractions";
@@ -77,9 +77,11 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
 
                 var submissionDate = (declaration.SubmissionDate as DateTime?)?.ToString("yyyy-MM-dd");
 
+                var id = (DateTime.Now.ToString("HHmmssfffff"));
+
                 declarations.Add(new BsonDocument
                 {
-                    { "id", DateTime.Now.ToString("HHmmssfffff") },
+                    { "id", id },
                     { "submissionTime", $"{submissionDate}T12:00:00.000" },
                     { "payrollPeriod" ,payrollperiod },
                     { "levyDueYTD", declaration.LevyDueYTD },

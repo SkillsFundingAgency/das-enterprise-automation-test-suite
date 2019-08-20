@@ -30,8 +30,18 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             _mongoDbDataHelper = _context.Get<MongoDbDataHelper>();
         }
 
+
+        [Given(@"I have levy declarations for past (.*) months")]
+        public void GivenIHaveLevyDeclarationsForPastMonths(int p0)
+        {
+            throw new PendingStepException();
+        }
+
+
+
+
         [Given(@"the following levy declarations with english fraction of (.*) calculated at (.*)")]
-        public void GivenTheFollowingLevyDeclarationsWithEnglishFractionOfCalculatedAt(Decimal fraction, DateTime calculatedAt, Table table)
+        public void GivenTheFollowingLevyDeclarationsWithEnglishFractionOfCalculatedAt(decimal fraction, DateTime calculatedAt, Table table)
         {
             var set = table.CreateDynamicSet().ToList();
 
@@ -47,7 +57,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         }
 
 
-        public void EnglishFraction(Decimal fraction, DateTime calculatedAt)
+        public void EnglishFraction(decimal fraction, DateTime calculatedAt)
         {
             var mongoDbHelper = new MongoDbHelper(_mongodbConnectionHelper, new EnglishFractionDataGenerator(_mongoDbDataHelper, fraction, calculatedAt));
 
