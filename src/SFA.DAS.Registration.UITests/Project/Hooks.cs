@@ -1,6 +1,7 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
 using SFA.DAS.Registration.UITests.Project.Helpers;
+using SFA.DAS.Registration.UITests.Project.Helpers.MongoDb;
 using SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions;
 using SFA.DAS.UI.Framework.TestSupport;
 using System.Linq;
@@ -56,8 +57,8 @@ namespace SFA.DAS.Registration.UITests.Project
             _empRef = _objectContext.GetGatewayPaye();
         }
 
-        //[AfterScenario(Order = 21)]
-        //[Scope(Tag = "addpayedetails")]
+        [AfterScenario(Order = 21)]
+        [Scope(Tag = "addpayedetails")]
         public void DeletePayeDetails()
         {
             if (_context.TryGetValue(typeof(DeclarationsDataGenerator).FullName, out MongoDbHelper levyDecMongoDbHelper))

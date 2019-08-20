@@ -1,7 +1,5 @@
 ﻿Feature: CreateLevyAccount
 
-A short summary of the feature
-
 
 @addpayedetails
 Scenario: Create Levy Account
@@ -15,10 +13,4 @@ When I add paye details
 And organisation details
 When I do not sign the agreement
 Then I will land in the User Home page
-
-
-
-@addpayedetails
-Scenario: Create Levy Account For Approvals
-Given I have levy declarations for past 3 months
 

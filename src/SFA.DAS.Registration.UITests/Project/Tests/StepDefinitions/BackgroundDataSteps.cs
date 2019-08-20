@@ -20,16 +20,19 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             _levyDeclarationHelper = new MongoDbDataGenerator(_context);
         }
 
-        [Given(@"I have levy declarations for past (.*) months")]
-        public void GivenIHaveLevyDeclarationsForPastMonths(int p0)
+        [Given(@"I have levy declarations")]
+        public void GivenIHaveLevyDeclarations()
         {
-            throw new PendingStepException();
+            var table = new Table("Year", "Month", "LevyDueYTD", "LevyAllowanceForFullYear", "SubmissionDate");
+            table.AddRow("19-20", "1", "62000", "80000", "2019-05-15");
+            _levyDeclarationHelper.AddLevyDeclarations(1.00m, new DateTime(2019, 01, 15), table);
         }
+
 
         [Given(@"the following levy declarations with english fraction of (.*) calculated at (.*)")]
         public void GivenTheFollowingLevyDeclarationsWithEnglishFractionOfCalculatedAt(decimal fraction, DateTime calculatedAt, Table table)
         {
-            new MongoDbDataGenerator(_context).AddLevyDeclarations(fraction, calculatedAt, table);
+            _levyDeclarationHelper.AddLevyDeclarations(fraction, calculatedAt, table);
         }
     }
 }

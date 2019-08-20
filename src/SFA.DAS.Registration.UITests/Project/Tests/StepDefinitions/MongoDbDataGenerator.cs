@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using SFA.DAS.Registration.UITests.Project.Helpers;
+using SFA.DAS.Registration.UITests.Project.Helpers.MongoDb;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using System;
@@ -13,17 +14,17 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
     {
         private readonly ScenarioContext _context;
 
+        private readonly ObjectContext _objectContext;
+
         private readonly MongoDbConnectionHelper _mongodbConnectionHelper;
 
         private readonly MongoDbDataHelper _mongoDbDataHelper;
 
-        private readonly ObjectContext _objectContext;
+        private readonly string _gatewayId;
 
-        private readonly DataHelper _dataHelper;
+        private readonly string _empRef;
 
-        private string _empRef;
-
-        private readonly MongoDbConfig _mongoDbConfig;
+        private readonly string _mongoDbDatabase;
 
         private MongoDbHelper _addGatewayUserData;
 
@@ -33,24 +34,25 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         {
             _context = context;
             _objectContext = _context.Get<ObjectContext>();
-            _mongoDbConfig = _context.GetMongoDbConfig();
-            _dataHelper = _context.Get<DataHelper>();
-            _mongodbConnectionHelper = new MongoDbConnectionHelper(_mongoDbConfig);
-            _mongoDbDataHelper = new MongoDbDataHelper(_dataHelper);
+            var mongoDbConfig = _context.GetMongoDbConfig();
+            var dataHelper = _context.Get<DataHelper>();
+            _mongodbConnectionHelper = new MongoDbConnectionHelper(mongoDbConfig);
+            _mongoDbDataHelper = new MongoDbDataHelper(dataHelper);
+            _gatewayId = _mongoDbDataHelper.GatewayId;
+            _empRef = _mongoDbDataHelper.EmpRef;
+            _mongoDbDatabase = mongoDbConfig.Database;
         }
 
         public void AddGatewayUsers()
         {
             _objectContext.SetGatewayCreds(_mongoDbDataHelper.GatewayId, _mongoDbDataHelper.GatewayPassword, _mongoDbDataHelper.EmpRef);
 
-            _empRef = _objectContext.GetGatewayPaye();
-
             _addGatewayUserData = new MongoDbHelper(_mongodbConnectionHelper, new GatewayUserDataGenerator(_mongoDbDataHelper));
 
-            TestContext.Progress.WriteLine($"Connecting to MongoDb Database : {_mongoDbConfig.Database}");
+            TestContext.Progress.WriteLine($"Connecting to MongoDb Database : {_mongoDbDatabase}");
 
             _addGatewayUserData.AsyncCreateData().Wait();
-            TestContext.Progress.WriteLine($"Gateway Id Created : {_objectContext.GetGatewayId()}");
+            TestContext.Progress.WriteLine($"Gateway Id Created : {_gatewayId}");
             TestContext.Progress.WriteLine($"Gateway User Created, EmpRef: {_empRef}");
 
             _addempRefLinksData = new MongoDbHelper(_mongodbConnectionHelper, new EmpRefLinksDataGenerator(_mongoDbDataHelper));
@@ -59,12 +61,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
 
             _context.Set(_addGatewayUserData, typeof(GatewayUserDataGenerator).FullName);
             _context.Set(_addempRefLinksData, typeof(EmpRefLinksDataGenerator).FullName);
-
-        }
-
-        public void AddLevyDeclarations(int noOfMonths)
-        {
-
         }
 
         public void AddLevyDeclarations(decimal fraction, DateTime calculatedAt, Table table)
@@ -75,7 +71,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
 
             mongoDbHelper.AsyncCreateData().Wait();
 
-            TestContext.Progress.WriteLine($"Declarations Created for, EmpRef: {_objectContext.GetGatewayPaye()}");
+            TestContext.Progress.WriteLine($"Declarations Created for, EmpRef: {_empRef}");
 
             _context.Set(mongoDbHelper, typeof(DeclarationsDataGenerator).FullName);
 
@@ -88,7 +84,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
 
             mongoDbHelper.AsyncCreateData().Wait();
 
-            TestContext.Progress.WriteLine($"English fraction Created for, EmpRef: {_objectContext.GetGatewayPaye()}");
+            TestContext.Progress.WriteLine($"English fraction Created for, EmpRef: {_empRef}");
 
             _context.Set(mongoDbHelper, typeof(EnglishFractionDataGenerator).FullName);
         }

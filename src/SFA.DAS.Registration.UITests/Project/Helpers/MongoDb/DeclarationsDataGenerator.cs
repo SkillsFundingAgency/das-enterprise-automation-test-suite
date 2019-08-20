@@ -2,59 +2,14 @@
 using System;
 using System.Collections.Generic;
 
-namespace SFA.DAS.Registration.UITests.Project.Helpers
+namespace SFA.DAS.Registration.UITests.Project.Helpers.MongoDb
 {
-
-    public class EnglishFractionDataGenerator : EmpRefFilterDefinition, IMongoDbDataGenerator
-    {
-        private readonly MongoDbDataHelper _helper;
-        private readonly string _fraction;
-        private readonly string _calculatedAt;
-
-        public EnglishFractionDataGenerator(MongoDbDataHelper helper, decimal fraction, DateTime calculatedAt) : base(helper)
-        {
-            _helper = helper;
-            _fraction = fraction.ToString();
-            _calculatedAt = calculatedAt.ToString("yyyy-MM-dd");
-        }
-
-        public string CollectionName() => "fractions";
-
-        public BsonDocument[] Data()
-        {
-            BsonDocument value = new BsonDocument
-            {
-                {"region", "England" },
-                {"value", _fraction }
-            };
-
-            BsonArray fractionCalculations = new BsonArray
-            {
-                new BsonDocument
-                {
-                    { "calculatedAt", _calculatedAt },
-                    { "fractions", new BsonArray { value } }
-                }
-            };
-
-            BsonDocument fractions = new BsonDocument
-            {
-                { "empref", _helper.EmpRef },
-                { "fractionCalculations", fractionCalculations }
-            };
-
-            return new BsonDocument[] { fractions };
-        }
-    }
-
     public class DeclarationsDataGenerator : EmpRefFilterDefinition, IMongoDbDataGenerator
     {
-        private readonly MongoDbDataHelper _helper;
         private readonly List<dynamic> _declarations;
 
         public DeclarationsDataGenerator(MongoDbDataHelper helper, List<dynamic> declaration) : base(helper)
         {
-            _helper = helper;
             _declarations = declaration;
         }
 
@@ -90,7 +45,7 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
             }
             BsonDocument levydeclaration  = new BsonDocument
             {
-                { "empref",_helper.EmpRef},
+                { "empref",mongoDbDatahelper.EmpRef},
                 { "declarations", declarations}
             };
 

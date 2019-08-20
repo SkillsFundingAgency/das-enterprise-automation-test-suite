@@ -2,18 +2,15 @@
 using MongoDB.Driver;
 using System.Text.RegularExpressions;
 
-namespace SFA.DAS.Registration.UITests.Project.Helpers
+namespace SFA.DAS.Registration.UITests.Project.Helpers.MongoDb
 {
     public class EmpRefLinksDataGenerator : EmpRefFilterDefinition, IMongoDbDataGenerator
     {
-        private readonly MongoDbDataHelper _helper;
-
         private readonly string _empRefLink;
 
         public EmpRefLinksDataGenerator(MongoDbDataHelper helper) : base(helper)
         {
-            _helper = helper;
-            _empRefLink = Regex.Replace(_helper.EmpRef, "/", "%2");
+            _empRefLink = Regex.Replace(mongoDbDatahelper.EmpRef, "/", "%2");
         }
 
         public string CollectionName() => "emprefs";
@@ -35,14 +32,14 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
                 { "employment-check" ,empCheckHref }
             };
 
-            BsonDocument scenarioName = new BsonDocument { { "nameLine1", _helper.Name } };
+            BsonDocument scenarioName = new BsonDocument { { "nameLine1", mongoDbDatahelper.Name } };
 
             BsonDocument name = new BsonDocument { { "name", scenarioName } };
 
             BsonDocument empRefLinks = new BsonDocument
             {
                 {"_links" , links },
-                {"empref", _helper.EmpRef },
+                {"empref", mongoDbDatahelper.EmpRef },
                 {"employer", name}
             };
 

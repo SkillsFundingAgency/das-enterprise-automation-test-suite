@@ -1,20 +1,20 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Driver;
 
-namespace SFA.DAS.Registration.UITests.Project.Helpers
+namespace SFA.DAS.Registration.UITests.Project.Helpers.MongoDb
 {
     public abstract class EmpRefFilterDefinition
     {
-        private readonly MongoDbDataHelper _helper;
+        protected readonly MongoDbDataHelper mongoDbDatahelper;
 
         public EmpRefFilterDefinition(MongoDbDataHelper helper)
         {
-            _helper = helper;
+            mongoDbDatahelper = helper;
         }
 
         public FilterDefinition<BsonDocument> FilterDefinition()
         {
-            return Builders<BsonDocument>.Filter.Eq("empref", _helper.EmpRef);
+            return Builders<BsonDocument>.Filter.Eq("empref", mongoDbDatahelper.EmpRef);
         }
     }
 }
