@@ -77,7 +77,7 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
 
                 var submissionDate = (declaration.SubmissionDate as DateTime?)?.ToString("yyyy-MM-dd");
 
-                var id = (DateTime.Now.ToString("HHmmssfffff"));
+                long.TryParse(DateTime.Now.ToString("yssfffffff"), out long id);
 
                 declarations.Add(new BsonDocument
                 {

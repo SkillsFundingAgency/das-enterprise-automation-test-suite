@@ -69,9 +69,16 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features
             testRunner.CollectScenarioErrors();
         }
         
-        public virtual void FeatureBackground()
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Create Levy Account")]
+        [NUnit.Framework.CategoryAttribute("addpayedetails")]
+        public virtual void CreateLevyAccount()
         {
-#line 5
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Create Levy Account", null, new string[] {
+                        "addpayedetails"});
+#line 7
+this.ScenarioInitialize(scenarioInfo);
+            this.ScenarioStart();
 #line hidden
             TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
                         "Year",
@@ -97,33 +104,18 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features
                         "48000",
                         "60000",
                         "2019-05-15"});
-#line 6
+#line 8
 testRunner.Given("the following levy declarations with english fraction of 1.00 calculated at 2019-" +
                     "01-15", ((string)(null)), table1, "Given ");
-#line hidden
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Create Levy Account")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
-        public virtual void CreateLevyAccount()
-        {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Create Levy Account", null, new string[] {
-                        "addpayedetails"});
-#line 15
-this.ScenarioInitialize(scenarioInfo);
-            this.ScenarioStart();
-#line 5
-this.FeatureBackground();
-#line 16
+#line 13
 testRunner.Given("I create an Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 17
+#line 14
 testRunner.When("I add paye details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 18
+#line 15
 testRunner.And("organisation details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 19
+#line 16
 testRunner.When("I do not sign the agreement", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 20
+#line 17
 testRunner.Then("I will land in the User Home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -136,15 +128,11 @@ testRunner.Then("I will land in the User Home page", ((string)(null)), ((TechTal
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Create Levy Account For Approvals", null, new string[] {
                         "addpayedetails"});
-#line 25
+#line 22
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 5
-this.FeatureBackground();
-#line 26
-testRunner.Given("I create a New Levy Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 27
-testRunner.Given("I login to an existing Levy Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 23
+testRunner.Given("I have levy declarations for past 3 months", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
             this.ScenarioCleanup();
         }
