@@ -88,7 +88,7 @@ testRunner.And("organisation details", ((string)(null)), ((TechTalk.SpecFlow.Tab
 #line 10
 testRunner.And("I do not sign the agreement", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 11
-testRunner.Then("I can land in the User Home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+testRunner.Then("I will land in the User Home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
