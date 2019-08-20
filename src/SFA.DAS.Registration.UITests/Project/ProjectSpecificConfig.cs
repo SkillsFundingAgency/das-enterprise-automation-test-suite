@@ -4,8 +4,6 @@
     {
         public string TwoDigitProjectCode { get; set; }
 
-        public string RE_AccountUserName { get; set; }
-
         public string RE_AccountPassword { get; set; }
 
         public string RE_Browser { get; set; }
@@ -15,5 +13,24 @@
         public string RE_ConfirmCode { get; set; }
 
         public string RE_OrganisationName { get; set; }
+    }
+
+    public abstract class LoginUser
+    {
+        public string Username { get; set; }
+
+        public string Password { get; set; }
+    }
+
+    public class LevyUser : LoginUser
+    {   
+    }
+
+    public class NonLevyUser : LoginUser
+    {
+    }
+
+    public class EoiUser : LoginUser
+    {
     }
 }
