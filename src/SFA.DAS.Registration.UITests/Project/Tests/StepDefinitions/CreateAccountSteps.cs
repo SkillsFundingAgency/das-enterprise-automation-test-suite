@@ -100,7 +100,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         [Then(@"I will land in the User Home page")]
         public void ThenIWillLandInTheUserHomePage()
         {
-            var accountid = aboutYourAgreementPage
+            var accountid = new HomePage(_context)
                 .HomePage()
                 .AccountID();
 
