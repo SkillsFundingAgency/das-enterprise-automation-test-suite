@@ -6,13 +6,12 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 {
     public class MyAccountWithOutPaye : BasePage
     {
+        protected override string PageTitle => "MY ACCOUNT";
 
         public MyAccountWithOutPaye(ScenarioContext context) : base(context)
         {
             VerifyPage();
         }
-
-        protected override string PageTitle => "MY ACCOUNT";
 
         protected override By PageHeader => By.CssSelector(".das-account__account-name");
     }

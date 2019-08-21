@@ -11,6 +11,8 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 {
     public class SelectYourOrganisationPage : BasePage
     {
+        protected override string PageTitle => "Select your organisation";
+
         #region Helpers and Context
         private readonly PageInteractionHelper _pageInteractionHelper;
         private readonly FormCompletionHelper _formCompletionHelper;
@@ -28,9 +30,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             _config = context.GetProjectConfig<ProjectConfig>();
             VerifyPage();
         }
-
-        protected override string PageTitle => "Select your organisation";
-
         public CheckYourDetailsPage SelectYourOrganisation()
         {
             _formCompletionHelper.ClickElement(SearchLinkUrl(_config.RE_OrganisationName.ToUpper()));
