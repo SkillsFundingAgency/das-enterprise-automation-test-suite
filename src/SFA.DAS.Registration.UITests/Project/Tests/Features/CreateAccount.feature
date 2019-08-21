@@ -15,4 +15,3 @@ When I add paye details
 And organisation details
 When I do not sign the agreement
 Then I will land in the User Home page
-

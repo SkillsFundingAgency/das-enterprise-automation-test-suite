@@ -78,7 +78,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 6
-testRunner.Given("the User login using existing levy account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+testRunner.Given("the Employer login using existing levy account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 7
 testRunner.Then("I will land in the User Home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
@@ -94,7 +94,7 @@ testRunner.Then("I will land in the User Home page", ((string)(null)), ((TechTal
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 11
-testRunner.Given("the User login using existing non levy account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+testRunner.Given("the Employer login using existing non levy account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 12
 testRunner.Then("I will land in the User Home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
@@ -110,7 +110,7 @@ testRunner.Then("I will land in the User Home page", ((string)(null)), ((TechTal
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 16
-testRunner.Given("the User login using existing eoi account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+testRunner.Given("the Employer login using existing eoi account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 17
 testRunner.Then("I will land in the User Home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden

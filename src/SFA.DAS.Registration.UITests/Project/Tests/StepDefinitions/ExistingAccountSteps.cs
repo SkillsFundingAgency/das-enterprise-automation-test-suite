@@ -16,8 +16,8 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             _context = context;
         }
 
-        [Given(@"the User login using existing levy account")]
-        public void GivenTheUserLoginUsingExistingLevyAccount()
+        [Given(@"the Employer login using existing levy account")]
+        public void GivenTheEmployerLoginUsingExistingLevyAccount()
         {
             var levyUser = _context.GetUser<LevyUser>();
             new IndexPage(_context)
@@ -25,8 +25,8 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
                 .Login(levyUser);
         }
 
-        [Given(@"the User login using existing non levy account")]
-        public void GivenTheUserLoginUsingExistingNonLevyAccount()
+        [Given(@"the Employer login using existing non levy account")]
+        public void GivenTheEmployerLoginUsingExistingNonLevyAccount()
         {
             var nonlevyUser = _context.GetUser<NonLevyUser>();
             new IndexPage(_context)
@@ -34,8 +34,8 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
                 .Login(nonlevyUser);
         }
 
-        [Given(@"the User login using existing eoi account")]
-        public void GivenTheUserLoginUsingExistingEoiAccount()
+        [Given(@"the Employer login using existing eoi account")]
+        public void GivenTheEmployerLoginUsingExistingEoiAccount()
         {
             var eoiUser = _context.GetUser<EoiUser>();
             new IndexPage(_context)
