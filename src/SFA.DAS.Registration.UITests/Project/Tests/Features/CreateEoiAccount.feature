@@ -7,6 +7,6 @@ A short summary of the feature
 Scenario: Create EOI Account with PAYE Details 
 	Given I create an Account 
 	When I add paye details
-	And eoi organisation details
+	And add eoi organisation details
 	And I do not sign the eoi agreement 
 

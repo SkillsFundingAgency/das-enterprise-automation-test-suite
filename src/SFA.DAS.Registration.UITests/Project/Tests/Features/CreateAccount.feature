@@ -12,5 +12,5 @@ Scenario: Create Account without PAYE details
 Scenario: Create Non Levy Account with PAYE Details
 	Given I create an Account 
 	When I add paye details
-	And organisation details
-	Then I will land in the User Home page
+	And add organisation details
+	Then I can land in the User Home page
