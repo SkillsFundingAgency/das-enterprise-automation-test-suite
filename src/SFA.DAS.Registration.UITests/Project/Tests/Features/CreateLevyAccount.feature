@@ -10,7 +10,7 @@ Given the following levy declarations with english fraction of 1.00 calculated a
 | 19-20 | 3     | 48000      | 60000                    | 2019-05-15     |
 Given I create an Account 
 When I add paye details
-And organisation details
+And add organisation details
 When I do not sign the agreement
 Then I will land in the User Home page
 
