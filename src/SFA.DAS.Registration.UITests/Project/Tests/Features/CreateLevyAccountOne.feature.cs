@@ -86,7 +86,7 @@ testRunner.Given("I create an Account", ((string)(null)), ((TechTalk.SpecFlow.Ta
 #line 7
 testRunner.When("I add paye details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 8
-testRunner.And("organisation details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.And("add organisation details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 9
 testRunner.When("I do not sign the agreement", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 10
