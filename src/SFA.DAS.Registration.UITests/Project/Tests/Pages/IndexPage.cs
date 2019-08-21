@@ -10,6 +10,8 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 {
     public class IndexPage : BasePage
     {
+        protected override string PageTitle => "Create an account to manage apprenticeships";
+
         #region Helpers and Context
         private readonly PageInteractionHelper _pageInteractionHelper;
         private readonly FormCompletionHelper _formCompletionHelper;
@@ -19,8 +21,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         private By SigninLink => By.LinkText("sign in");
 
         private By CreateAccountLink => By.Id("service-start");
-
-        protected override string PageTitle => "Create an account to manage apprenticeships";
 
         public IndexPage(ScenarioContext context) : base(context)
         {

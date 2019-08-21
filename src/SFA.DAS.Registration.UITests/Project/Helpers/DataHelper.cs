@@ -4,13 +4,13 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
 {
     public class DataHelper
     {
-        private readonly DateTime dateTime;
+        private readonly DateTime _dateTime;
 
         public DataHelper(string code, string domainName)
         {
             TwoDigitProjectCode = code;
-            dateTime = DateTime.Now;
-            EmpRefDigits = dateTime.ToString("fffff");
+            _dateTime = DateTime.Now;
+            EmpRefDigits = _dateTime.ToString("fffff");
             NextNumber = NextNumberGenerator.GetNextCount();
             RandomUserName = GenerateRandomUserName();
             RandomEmail = GenerateRandomEmail(domainName);
@@ -33,7 +33,7 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
         
         private string GenerateRandomUserName()
         {
-            return $"{TwoDigitProjectCode}_Test_{NextNumber}_{dateTime.ToString("ddMMMyyyy_HHmmss")}{EmpRefDigits}";
+            return $"{TwoDigitProjectCode}_Test_{NextNumber}_{_dateTime.ToString("ddMMMyyyy_HHmmss")}{EmpRefDigits}";
         }
     }
 }

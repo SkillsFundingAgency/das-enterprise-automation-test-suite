@@ -7,6 +7,8 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 {
     public class SignInPage : BasePage
     {
+        protected override string PageTitle => "Sign in";
+
         #region Helpers and Context
         private readonly PageInteractionHelper _pageInteractionHelper;
         private readonly FormCompletionHelper _formCompletionHelper;
@@ -25,8 +27,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         private By ForgottenYourPasswordLink => By.LinkText("Forgotten your password?");
 
         private By BackLink => By.CssSelector(".link-back");
-
-        protected override string PageTitle => "Sign in";
 
         public SignInPage(ScenarioContext context) : base(context)
         {

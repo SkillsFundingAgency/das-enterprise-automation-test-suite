@@ -7,6 +7,8 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 {
     public class GetApprenticeshipFunding : BasePage
     {
+        protected override string PageTitle => "Get apprenticeship funding";
+
         #region Helpers and Context
         private readonly PageInteractionHelper _pageInteractionHelper;
         private readonly FormCompletionHelper _formCompletionHelper;
@@ -28,8 +30,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             _formCompletionHelper = context.Get<FormCompletionHelper>();
             VerifyPage();
         }
-
-        protected override string PageTitle => "Get apprenticeship funding";
 
         public GatewayInformPage AddPaye()
         {

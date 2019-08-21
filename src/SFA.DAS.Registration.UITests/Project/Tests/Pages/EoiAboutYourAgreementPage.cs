@@ -7,6 +7,8 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 {
     public class EoiAboutYourAgreementPage : BasePage
     {
+        protected override string PageTitle => "About this document";
+
         #region Helpers and Context
         private readonly PageInteractionHelper _pageInteractionHelper;
         private readonly FormCompletionHelper _formCompletionHelper;
@@ -14,8 +16,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         #endregion
 
         private By ContinueButton => By.CssSelector("input.button");
-
-        protected override string PageTitle => "About this document";
 
         public EoiAboutYourAgreementPage(ScenarioContext context) : base(context)
         {
@@ -25,10 +25,16 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             VerifyPage();
         }
 
-        public EoiSignAgreementPage EoiAgreement()
+        public EoiSignAgreementPage ContinueWithEoiAgreement()
+        {
+            EoiAgreement();
+            return new EoiSignAgreementPage(_context);
+        }
+
+        private EoiAboutYourAgreementPage EoiAgreement()
         {
             _formCompletionHelper.ClickElement(ContinueButton);
-            return new EoiSignAgreementPage(_context);
+            return this;
         }
     }
 }

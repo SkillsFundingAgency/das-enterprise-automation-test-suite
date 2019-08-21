@@ -10,6 +10,8 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 {
     public class OrganisationSearchPage : BasePage
     {
+        protected override string PageTitle => "Search for your organisation";
+
         #region Helpers and Context
         private readonly PageInteractionHelper _pageInteractionHelper;
         private readonly FormCompletionHelper _formCompletionHelper;
@@ -30,8 +32,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             _formCompletionHelper = context.Get<FormCompletionHelper>();
             VerifyPage();
         }
-
-        protected override string PageTitle => "Search for your organisation";
 
         public SelectYourOrganisationPage SearchForAnOrganisation()
         {

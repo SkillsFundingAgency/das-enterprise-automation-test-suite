@@ -8,6 +8,8 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 {
     public class GgSignInPage : BasePage
     {
+        protected override string PageTitle => "Sign in";
+
         #region Helpers and Context
         private readonly PageInteractionHelper _pageInteractionHelper;
         private readonly FormCompletionHelper _formCompletionHelper;
@@ -33,8 +35,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             _gatewaypassword = context.Get<ObjectContext>().GetGatewayPassword();
             VerifyPage();
         }
-        protected override string PageTitle => "Sign in";
-
         protected override By PageHeader => By.CssSelector(".content__body h1");
 
         public OrganisationSearchPage SignInTo()
