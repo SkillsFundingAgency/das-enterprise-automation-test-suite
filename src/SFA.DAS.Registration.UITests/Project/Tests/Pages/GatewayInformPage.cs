@@ -7,6 +7,8 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 {
     public class GatewayInformPage : BasePage
     {
+        protected override string PageTitle => "Using your Government Gateway details";
+
         #region Helpers and Context
         private readonly FormCompletionHelper _formCompletionHelper;
         private readonly ScenarioContext _context;
@@ -22,8 +24,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             _formCompletionHelper = context.Get<FormCompletionHelper>();
             VerifyPage();
         }
-
-        protected override string PageTitle => "Using your Government Gateway details";
 
         public GgSignInPage ContinueToGGSignIn()
         {

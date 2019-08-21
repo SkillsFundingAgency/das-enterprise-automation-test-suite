@@ -11,6 +11,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 {
     public class RegisterPage : BasePage
     {
+        protected override string PageTitle => "Set up as a user";
 
         #region Helpers and Context
         private readonly PageInteractionHelper _pageInteractionHelper;
@@ -48,8 +49,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             VerifyPage();
             _helper = context.Get<DataHelper>();
         }
-
-        protected override string PageTitle => "Set up as a user";
 
         public ConfirmPage Register()
         {

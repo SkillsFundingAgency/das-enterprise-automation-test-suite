@@ -7,11 +7,13 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 {
     public class HomePage : MyAccountWithPaye
     {
+        protected override string PageTitle => config.RE_OrganisationName.ToUpper();
+
         #region Helpers and Context
         private readonly ScenarioContext _context;
         #endregion
 
-        private By AccountId => By.CssSelector(".heading-secondary");
+        private By PublicAccountId => By.CssSelector(".heading-secondary");
 
         private By SucessSummary => By.CssSelector(".success-summary");
 
@@ -19,12 +21,11 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         {
             _context = context;
         }
+
         public HomePage(ScenarioContext context, bool navigate) : this(context)
         {
             this.navigate = navigate;
         }
-
-        protected override string PageTitle => config.RE_OrganisationName.ToUpper();
 
         protected override string Linktext => "Home";
 
@@ -35,7 +36,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         public string AccountID()
         {
-            return pageInteractionHelper.GetText(AccountId);
+            return pageInteractionHelper.GetText(PublicAccountId);
         }
     }
 }

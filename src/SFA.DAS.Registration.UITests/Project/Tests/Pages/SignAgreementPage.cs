@@ -7,6 +7,8 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 {
     public class SignAgreementPage : BasePage
     {
+        protected override string PageTitle => _config.RE_OrganisationName.ToUpper();
+
         #region Helpers and Context
         private readonly PageInteractionHelper _pageInteractionHelper;
         private readonly FormCompletionHelper _formCompletionHelper;
@@ -34,6 +36,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             Sign();
             return new HomePage(_context);
         }
+
         public HomePage DoNotSignAgreement()
         {
             DoNotSign();
@@ -54,7 +57,5 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             _formCompletionHelper.ClickElement(by);
             _formCompletionHelper.ClickElement(ContinueButton);
         }
-
-        protected override string PageTitle => _config.RE_OrganisationName.ToUpper();
     }
 }

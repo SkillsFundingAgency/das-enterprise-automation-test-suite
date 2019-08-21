@@ -24,7 +24,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         }
 
         [Given(@"I create an Account")]
-        public void GivenICreateAnAccount()
+        public void CreateAnAccount()
         {
             getApprenticeshipFunding = new IndexPage(_context)
                 .CreateAccount()
@@ -33,13 +33,13 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         }
 
         [Then(@"I do not add paye details")]
-        public void WhenIDoNotAddPayeDetails()
+        public void DoNotAddPayeDetails()
         {
            getApprenticeshipFunding.DoNotAddPaye();
         }
 
         [When(@"I add paye details")]
-        public void ThenIAddPayeDetails()
+        public void AddPayeDetails()
         {
             organistionSearchPage = getApprenticeshipFunding
                 .AddPaye()
@@ -47,8 +47,8 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
                 .SignInTo();
         }
 
-        [When(@"organisation details")]
-        public void WhenOrganisationDetails()
+        [When(@"add organisation details")]
+        public void AddOrganisationDetails()
         {
             aboutYourAgreementPage = organistionSearchPage
                 .SearchForAnOrganisation()
@@ -56,8 +56,8 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
                 .ContinueToAboutYourAgreementPage();
         }
 
-        [When(@"eoi organisation details")]
-        public void WhenEoiOrganisationDetails()
+        [When(@"add eoi organisation details")]
+        public void AddEoiOrganisationDetails()
         {
             eoiAboutYourAgreementPage = organistionSearchPage
                 .SearchForAnOrganisation()
@@ -66,39 +66,38 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         }
 
         [When(@"I sign the agreement")]
-        public void WhenISignTheAgreement()
+        public void SignTheAgreement()
         {
             homePage = aboutYourAgreementPage
-                .Agreement()
+                .ContinueWithAgreement()
                 .SignAgreement();
         }
 
         [When(@"I do not sign the agreement")]
-        public void WhenIDoNotSignTheAgreement()
+        public void DoNotSignTheAgreement()
         {
             homePage = aboutYourAgreementPage
-                .Agreement()
+                .ContinueWithAgreement()
                 .DoNotSignAgreement();
         }
 
         [When(@"I do not sign the eoi agreement")]
-        public void WhenIDoNotSignTheEoiAgreement()
+        public void DoNotSignTheEoiAgreement()
         {
             homePage = eoiAboutYourAgreementPage
-                .EoiAgreement()
+                .ContinueWithEoiAgreement()
                 .DoNotSignAgreement();
         }
 
-
         [Then(@"I will land in the Organisation Agreement page")]
-        public void ThenIWillLandInTheOrganisationAgreementPage()
+        public void LandInTheOrganisationAgreementPage()
         {
             aboutYourAgreementPage
                 .AboutYourAgreementPage();
         }
 
         [Then(@"I can land in the User Home page")]
-        public void ThenICanLandInTheUserHomePage()
+        public void CanLandInTheUserHomePage()
         {
             var accountid = aboutYourAgreementPage
                 .GoToHomePage()
@@ -108,7 +107,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         }
 
         [Then(@"sucess message is displayed")]
-        public void ThenSucessMessageIsDisplayed()
+        public void SucessMessageIsDisplayed()
         {
             homePage.VerifySucessSummary();
         }
