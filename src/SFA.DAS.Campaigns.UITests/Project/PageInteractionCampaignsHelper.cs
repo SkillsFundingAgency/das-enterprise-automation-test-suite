@@ -66,5 +66,19 @@ namespace SFA.DAS.Campaigns.UITests
             IJavaScriptExecutor je = (IJavaScriptExecutor)WebDriver;
             je.ExecuteScript("arguments[0].scrollIntoView(false);", webElement);
         }
+
+        public void navigateToAnyVideoUrl(By byLocator)
+        {
+            var webElement = WebDriver.FindElement(byLocator);
+            string videoUrl = webElement.GetAttribute("data-videourl");
+            WebDriver.Navigate().GoToUrl(videoUrl);
+            //System.Threading.Thread.Sleep(3000);
+        }
+
+        public void navigateBack()
+        {
+            WebDriver.Navigate().Back();
+            //System.Threading.Thread.Sleep(3000);
+        }
     }
 }

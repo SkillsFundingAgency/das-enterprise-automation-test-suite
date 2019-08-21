@@ -36,6 +36,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
         private readonly By _whatIsAnApprenticeshipLink = By.Id("link-nav-app-step-1");
         private readonly By _myinterestsLink = By.Id("link-nav-app-interests");
         private readonly By _whatAreTheBenefitsForMeLink = By.Id("link-nav-app-benefits");
+        private readonly By _realStoriesLink = By.Id("link-nav-app-real-stories");
 
         #endregion
 
@@ -125,6 +126,12 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
         {
             _pageInteractionHelper.WaitForElementToBeClickable(_whatAreTheBenefitsForMeLink);
             _formCompletionHelper.ClickElement(_whatAreTheBenefitsForMeLink);
+        }
+
+        internal void clickOnRealStoriesLink()
+        {
+            _pageInteractionHelper.WaitForElementToBeClickable(_realStoriesLink);
+            _formCompletionHelper.ClickElement(_realStoriesLink);
         }
 
     }

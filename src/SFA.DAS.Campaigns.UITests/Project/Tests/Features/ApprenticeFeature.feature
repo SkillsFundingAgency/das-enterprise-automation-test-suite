@@ -86,9 +86,15 @@
 		When I click on first search result
 		Then I can see the Apprentice Summary page
 
-	Scenario: User can find an apprentice via WHAT ARE THE BENEFITS FOR ME page
+	Scenario: Check all the links and content of WHAT ARE THE BENEFITS FOR ME page
 		Given I navigate to Fire It Up home page
 		When I launch the What Are The Benefits For Me page
 		Then I verify the content under WHAT ARE MY FUTURE PROSPECTS section
 		And I verify the content under HOW MUCH CAN YOU EARN section
 		And I verify the content under WHAT WILL MY APPRENTICESHIP COST ME section
+
+	Scenario: Check all the links and content of REAL STORIES page
+		Given I navigate to Fire It Up home page
+		When I launch the Real Stories page
+		Then I verify the content under Real Stories header
+		And I can play the first video on the screen

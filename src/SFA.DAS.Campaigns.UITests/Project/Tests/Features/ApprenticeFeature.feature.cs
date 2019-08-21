@@ -301,10 +301,10 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("User can find an apprentice via WHAT ARE THE BENEFITS FOR ME page")]
-        public virtual void UserCanFindAnApprenticeViaWHATARETHEBENEFITSFORMEPage()
+        [NUnit.Framework.DescriptionAttribute("Check all the links and content of WHAT ARE THE BENEFITS FOR ME page")]
+        public virtual void CheckAllTheLinksAndContentOfWHATARETHEBENEFITSFORMEPage()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User can find an apprentice via WHAT ARE THE BENEFITS FOR ME page", null, ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Check all the links and content of WHAT ARE THE BENEFITS FOR ME page", null, ((string[])(null)));
 #line 89
  this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
@@ -318,6 +318,26 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Features
   testRunner.And("I verify the content under HOW MUCH CAN YOU EARN section", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 94
   testRunner.And("I verify the content under WHAT WILL MY APPRENTICESHIP COST ME section", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Check all the links and content of REAL STORIES page")]
+        public virtual void CheckAllTheLinksAndContentOfREALSTORIESPage()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Check all the links and content of REAL STORIES page", null, ((string[])(null)));
+#line 96
+ this.ScenarioInitialize(scenarioInfo);
+            this.ScenarioStart();
+#line 97
+  testRunner.Given("I navigate to Fire It Up home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 98
+  testRunner.When("I launch the Real Stories page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 99
+  testRunner.Then("I verify the content under Real Stories header", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 100
+  testRunner.And("I can play the first video on the screen", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }

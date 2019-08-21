@@ -96,15 +96,20 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
         }
 
         [When(@"I launch the What Are The Benefits For Me page")]
-        public void launchtheWhatAreTheBenefitsForMePage()
+        public void launchWhatAreTheBenefitsForMePage()
         {
             fireItUpHomePage.launchApprenticeMenu();
             TestContext.Progress.WriteLine("Navigating to What Are The Benefits For Me page");
             fireItUpHomePage.clickOnWhatAreTheBenefitsForMeLink();
         }
-        
 
-
+        [When(@"I launch the Real Stories page")]
+        public void launchRealStoriesPage()
+        {
+            fireItUpHomePage.launchApprenticeMenu();
+            TestContext.Progress.WriteLine("Navigating to Real Stories page");
+            fireItUpHomePage.clickOnRealStoriesLink();
+        }
 
     }
 }
