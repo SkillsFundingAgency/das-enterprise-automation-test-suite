@@ -6,7 +6,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 {
-    public class HomePage : MyAccountWithPaye
+    public class HomePage : InterimBasePage
     {
         protected override string PageTitle => config.RE_OrganisationName.ToUpper();
 
@@ -23,7 +23,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             _context = context;
         }
 
-        public HomePage(ScenarioContext context, bool navigate) : this(context)
+        internal HomePage(ScenarioContext context, bool navigate) : this(context)
         {
             this.navigate = navigate;
         }

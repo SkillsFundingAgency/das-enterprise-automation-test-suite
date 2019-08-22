@@ -28,8 +28,6 @@
 
   <ItemGroup>
     <Folder Include="Project\Tests\Features\" />
-    <Folder Include="Project\Tests\StepDefinitions\" />
-    <Folder Include="Project\Tests\Pages\" />
   </ItemGroup>
 
   <ItemGroup>

@@ -33,6 +33,5 @@ namespace SFA.DAS.UI.FrameworkHelpers
             var client = new MongoClient(_config.Uri);
             return client.GetDatabase(_config.Database);
         }
-
     }
 }

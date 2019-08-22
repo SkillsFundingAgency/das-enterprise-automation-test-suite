@@ -39,6 +39,4 @@ namespace SFA.DAS.Registration.UITests.Project
             _objectContext.ReplaceBrowser(config.RE_Browser);
         }
     }
-
-
 }
