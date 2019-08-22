@@ -28,33 +28,33 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
         }
 
         [Then(@"I verify the content under SO, YOU'VE FOUND THE APPRENTICESHIP section")]
-        public void verifySoYouHaveFoundTheApprenticeshipSection()
+        public void VerifySoYouHaveFoundTheApprenticeshipSection()
         {
-            applicationPage.verifyContentUnderSoYouHaveFoundTheApprenticeshipSection();
+            applicationPage.VerifyContentUnderSoYouHaveFoundTheApprenticeshipSection();
         }
 
         [Then(@"I verify the content under APPLY FOR THE JOB section")]
-        public void verifyApplyForTheJobSection()
+        public void VerifyApplyForTheJobSection()
         {
-            applicationPage.verifyContentUnderApplyForTheJobSection();
+            applicationPage.VerifyContentUnderApplyForTheJobSection();
         }
 
         [Then(@"I verify the content under WAIT FOR THE APPLICATIONS section")]
-        public void verifyWaitForTheApplicationSection()
+        public void VerifyWaitForTheApplicationSection()
         {
-            applicationPage.verifyContentUnderWaitForTheApplicationSection();
+            applicationPage.VerifyContentUnderWaitForTheApplicationSection();
         }
 
         [Then(@"I verify the content under IF YOU’RE ON THE SHORTLIST section")]
-        public void verifyIfYouAreOnTheShortlistSection()
+        public void VerifyIfYouAreOnTheShortlistSection()
         {
-            applicationPage.verifyContentUnderIfYouAreOnTheShortlistSection();
+            applicationPage.VerifyContentUnderIfYouAreOnTheShortlistSection();
         }
 
         [Then(@"I verify the content under TRAINING PROVIDERS section")]
-        public void verifyTrainingProvidersSection()
+        public void VerifyTrainingProvidersSection()
         {
-            applicationPage.verifyContentUnderTrainingProvidersSection();
+            applicationPage.VerifyContentUnderTrainingProvidersSection();
         }
 
     }

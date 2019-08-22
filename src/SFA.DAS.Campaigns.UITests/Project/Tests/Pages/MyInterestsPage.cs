@@ -222,7 +222,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
                 string industryNameXpath = "(//div[@class='grid-column-full-width-one-quarter']/a//h2)[" + i + "]";
                 if (requiredIndustryName.Contains(_pageInteractionCampaignsHelper.GetText(industryNameXpath)))
                 {
-                    _pageInteractionCampaignsHelper.FocusTheElement(industryNameXpath);
+                    _pageInteractionCampaignsHelper.ScrollToReachTheRequiredElement(industryNameXpath);
                     _formCompletionCampaignsHelper.ClickElement(industryNameXpath);
                     break;
                 }

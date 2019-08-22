@@ -28,21 +28,21 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
         }
 
         [Then(@"I verify the content under The Interview Process section")]
-        public void verifyTheInterveiwProcessSection()
+        public void VerifyTheInterveiwProcessSection()
         {
-            interviewPage.verifyContentUnderInterviewSection();
+            interviewPage.VerifyContentUnderInterviewSection();
         }
 
         [Then(@"I verify the content under Before Your Interview section")]
-        public void verifyBeforeYourInterviewSection()
+        public void VerifyBeforeYourInterviewSection()
         {
-            interviewPage.verifyContentUnderBeforeYourInterviewSection();
+            interviewPage.VerifyContentUnderBeforeYourInterviewSection();
         }
 
         [Then(@"I verify the content under Day Of The Interview section")]
-        public void verifyDayOfTheInterviewSection()
+        public void VerifyDayOfTheInterviewSection()
         {
-            interviewPage.verifyContentUnderDayOfTheInterviewSection();
+            interviewPage.VerifyContentUnderDayOfTheInterviewSection();
         }
 
     }

@@ -28,15 +28,15 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
         }
 
         [Then(@"I verify the content under Real Stories header")]
-        public void verifyContentUnderRealStoriesHeader()
+        public void VerifyContentUnderRealStoriesHeader()
         {
-            realStoriesPage.verifyContentUnderRealStoriesHeader();
+            realStoriesPage.VerifyContentUnderRealStoriesHeader();
         }
 
         [Then(@"I can play the first video on the screen")]
-        public void playTheFirstVideo()
+        public void PlayTheFirstVideo()
         {
-            realStoriesPage.playTheFirstVideo();
+            realStoriesPage.PlayTheFirstVideo();
         }
     }
 }

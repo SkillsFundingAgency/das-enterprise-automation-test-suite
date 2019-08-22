@@ -28,53 +28,53 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
         }
 
         [Then(@"I select a valid (.*)")]
-        public void selectAValidOptionFromInterestDropdown(string interestValue)
+        public void SelectAValidOptionFromInterestDropdown(string interestValue)
         {
-            findAnApprenticeShipPage.selectAValidInterest(interestValue);
+            findAnApprenticeShipPage.SelectAValidInterest(interestValue);
         }
 
         [Then(@"I enter a valid (.*)")]
-        public void enterAValidPostcode(string postCode)
+        public void EnterAValidPostcode(string postCode)
         {
-            findAnApprenticeShipPage.enterPostCode(postCode);
+            findAnApprenticeShipPage.EnterPostCode(postCode);
         }
 
         [Then(@"I select miles (.*)")]
-        public void selectNoOfMilesFromMilesDropdown(string noOfMiles)
+        public void SelectNoOfMilesFromMilesDropdown(string noOfMiles)
         {
-            findAnApprenticeShipPage.selectMiles(noOfMiles);
+            findAnApprenticeShipPage.SelectMiles(noOfMiles);
         }
 
         [Then(@"I click on Serach button")]
-        public void clickOnSearchButton()
+        public void ClickOnSearchButton()
         {
-            findAnApprenticeShipPage.clickOnSearchButton();
+            findAnApprenticeShipPage.ClickOnSearchButton();
             TestContext.Progress.WriteLine("Navigating to Serach Results page");
         }
 
         [Then(@"I enter an invalid (.*)")]
-        public void enterAnInvalidPostcode(string postCode)
+        public void EnterAnInvalidPostcode(string postCode)
         {
-            findAnApprenticeShipPage.enterPostCode(postCode);
+            findAnApprenticeShipPage.EnterPostCode(postCode);
         }
 
         [Then(@"I can verify the error message for invalid postcode")]
-        public void verifyTheInvalidPostcodeMessage()
+        public void VerifyTheInvalidPostcodeMessage()
         {
-            findAnApprenticeShipPage.verifyInvalidPostcodeMessage();
+            findAnApprenticeShipPage.VerifyInvalidPostcodeMessage();
         }
 
         [Then(@"I can verify the error message for not selecting any interest")]
-        public void verifyTheMessageForNotSelectingInterest()
+        public void VerifyTheMessageForNotSelectingInterest()
         {
-            findAnApprenticeShipPage.verifyTheMessageForNonSelectionOfInterest();
+            findAnApprenticeShipPage.VerifyTheMessageForNonSelectionOfInterest();
         }
 
 
         [Then(@"I verify the default value of miles dropdown")]
-        public void verifyTheDefaultValueOfMilesDropDown()
+        public void VerifyTheDefaultValueOfMilesDropDown()
         {
-            findAnApprenticeShipPage.verifyDefaultValueFromMilesDropDown();
+            findAnApprenticeShipPage.VerifyDefaultValueFromMilesDropDown();
         }
     }
 }

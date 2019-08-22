@@ -28,15 +28,15 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
         }
 
         [Then(@"I verify the content under WHAT IS AN APPRENTICESHIP section")]
-        public void verifySoYouHaveFoundTheApprenticeshipSection()
+        public void VerifySoYouHaveFoundTheApprenticeshipSection()
         {
-            whatIsAnApprenticeshipPage.verifyContentUnderWhatIsAnApprenticeshipSection();
+            whatIsAnApprenticeshipPage.VerifyContentUnderWhatIsAnApprenticeshipSection();
         }
 
         [Then(@"I verify the content under WHAT ARE THE DIFFERENT TYPES OF APPRENTICESHIPS section")]
-        public void verifyDIFFERENTTYPESOFAPPRENTICESHIPSSection()
+        public void VerifyDIFFERENTTYPESOFAPPRENTICESHIPSSection()
         {
-            whatIsAnApprenticeshipPage.verifyContentUnderDifferentTypesOfApprenticeshipsSection();
+            whatIsAnApprenticeshipPage.VerifyContentUnderDifferentTypesOfApprenticeshipsSection();
         }
 
     }

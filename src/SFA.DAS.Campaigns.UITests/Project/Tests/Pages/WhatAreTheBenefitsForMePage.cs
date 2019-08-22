@@ -71,7 +71,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
             return _pageInteractionHelper.VerifyPage(_pageTitle, ExpectedPageTitle);
         }
 
-        internal void verifyContentUnderWhatAreMyFutureProspects()
+        internal void VerifyContentUnderWhatAreMyFutureProspects()
         {
             expectedWhatAreMyFutureProspectsParagraph2BPList.Add(ExpectedWhatAreMyFutureProspectsParagraph2BP1);
             expectedWhatAreMyFutureProspectsParagraph2BPList.Add(ExpectedWhatAreMyFutureProspectsParagraph2BP2);
@@ -96,10 +96,10 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
             _pageInteractionHelper.VerifyText(actualWhatAreMyFutureProspectsHeader, ExpectedWhatAreMyFutureProspectsHeader);
             _pageInteractionHelper.VerifyText(actualWhatAreMyFutureProspectsParagraph1, ExpectedWhatAreMyFutureProspectsParagraph1);
             _pageInteractionHelper.VerifyText(actualWhatAreMyFutureProspectsParagraph2, ExpectedWhatAreMyFutureProspectsParagraph2);
-            _pageInteractionCampaignsHelper.compareContentOfTwoArraylists(actualWhatAreMyFutureProspectsParagraph2BPList, expectedWhatAreMyFutureProspectsParagraph2BPList);
+            _pageInteractionCampaignsHelper.CompareContentOfAnyTwoLists(actualWhatAreMyFutureProspectsParagraph2BPList, expectedWhatAreMyFutureProspectsParagraph2BPList);
         }
 
-        internal void verifyContentUnderHowMuchCanYouEarnSection()
+        internal void VerifyContentUnderHowMuchCanYouEarnSection()
         {
             _pageInteractionHelper.WaitForElementToBeDisplayed(_howMuchCanYouEarnLink);
             _pageInteractionHelper.FocusTheElement(_howMuchCanYouEarnLink);
@@ -115,7 +115,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
             _pageInteractionHelper.VerifyText(actualHowMuchCanYouEarnParagraph3, ExpectedHowMuchCanYouEarnParagraph3);
         }
 
-        internal void verifyContentUnderWhatWillMyApprenticeshipCostMeSection()
+        internal void VerifyContentUnderWhatWillMyApprenticeshipCostMeSection()
         {
             _pageInteractionHelper.WaitForElementToBeDisplayed(_whatWillMyApprenticeshipCostMeLink);
             _pageInteractionHelper.FocusTheElement(_whatWillMyApprenticeshipCostMeLink);

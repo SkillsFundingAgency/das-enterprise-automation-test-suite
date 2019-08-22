@@ -100,7 +100,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
             return _pageInteractionHelper.VerifyPage(_pageTitle, ExpectedPageTitle);
         }
 
-        internal void verifyContentUnderInterviewSection()
+        internal void VerifyContentUnderInterviewSection()
         {
             _pageInteractionHelper.WaitForElementToBeDisplayed(_theInterviewProcessLink);
             _formCompletionHelper.ClickElement(_theInterviewProcessLink);
@@ -125,7 +125,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
 
         }
 
-        internal void verifyContentUnderBeforeYourInterviewSection()
+        internal void VerifyContentUnderBeforeYourInterviewSection()
         {
             _pageInteractionHelper.WaitForElementToBeDisplayed(_beforeYourInterviewLink);
             _pageInteractionHelper.FocusTheElement(_beforeYourInterviewLink);
@@ -149,7 +149,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
             _pageInteractionHelper.VerifyText(actualPracticeParagraph2, ExpectedPracticeParagraph2);
         }
 
-        internal void verifyContentUnderDayOfTheInterviewSection()
+        internal void VerifyContentUnderDayOfTheInterviewSection()
         {
             _pageInteractionHelper.WaitForElementToBeDisplayed(_dayOfTheInterviewLink);
             _pageInteractionHelper.FocusTheElement(_dayOfTheInterviewLink);

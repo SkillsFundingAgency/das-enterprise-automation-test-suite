@@ -48,15 +48,15 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
             return _pageInteractionHelper.VerifyPage(_pageTitle, ExpectedPageTitle);
         }
 
-        internal void verifyContentUnderRealStoriesHeader()
+        internal void VerifyContentUnderRealStoriesHeader()
         {
             string actualRealStoriesDescription = _pageInteractionHelper.GetText(_realStoriesDescription);
             _pageInteractionHelper.VerifyText(actualRealStoriesDescription, ExpectedRealStoriesDescription);
         }
 
-        internal void playTheFirstVideo()
+        internal void PlayTheFirstVideo()
         {
-           _pageInteractionCampaignsHelper.navigateToAnyVideoUrl(_video1Url);
+           _pageInteractionCampaignsHelper.NavigateToAnyUrl(_video1Url);
             _formCompletionHelper.ClickElement(_video1PlayButton);
             _formCompletionHelper.ClickElement(_playOrPauseButton);
             _formCompletionHelper.ClickElement(_soundIcon);
@@ -66,7 +66,8 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
             _formCompletionHelper.ClickElement(_fullScreenIcon);
             _formCompletionHelper.ClickElement(_fullScreenIcon);
             _formCompletionHelper.ClickElement(_playOrPauseButton);
-            _pageInteractionCampaignsHelper.navigateBack();
+            System.Threading.Thread.Sleep(3000);
+            _pageInteractionCampaignsHelper.NavigateBack();
         }
 
     }

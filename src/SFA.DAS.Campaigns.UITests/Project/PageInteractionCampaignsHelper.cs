@@ -24,12 +24,12 @@ namespace SFA.DAS.Campaigns.UITests
             WebDriver = webDriver;
         }
 
-        public void switchToANewTab()
+        public void SwitchToANewTab()
         {
             WebDriver.SwitchTo().Window(WebDriver.WindowHandles.Last());
         }
 
-        public bool compareContentOfTwoArraylists(IList<string> actualArrayList, IList<string> expectedArrayList)
+        public bool CompareContentOfAnyTwoLists(IList<string> actualArrayList, IList<string> expectedArrayList)
         {
             if (actualArrayList.Count == expectedArrayList.Count)
             {
@@ -60,25 +60,23 @@ namespace SFA.DAS.Campaigns.UITests
             return webElement.Text;
         }
 
-        public void FocusTheElement(string strXPath)
+        public void ScrollToReachTheRequiredElement(string strXPath)
         {
             IWebElement webElement = WebDriver.FindElement(By.XPath(strXPath));
             IJavaScriptExecutor je = (IJavaScriptExecutor)WebDriver;
             je.ExecuteScript("arguments[0].scrollIntoView(false);", webElement);
         }
 
-        public void navigateToAnyVideoUrl(By byLocator)
+        public void NavigateToAnyUrl(By byLocator)
         {
             var webElement = WebDriver.FindElement(byLocator);
             string videoUrl = webElement.GetAttribute("data-videourl");
             WebDriver.Navigate().GoToUrl(videoUrl);
-            //System.Threading.Thread.Sleep(3000);
         }
 
-        public void navigateBack()
+        public void NavigateBack()
         {
             WebDriver.Navigate().Back();
-            //System.Threading.Thread.Sleep(3000);
         }
     }
 }

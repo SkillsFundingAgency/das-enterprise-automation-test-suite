@@ -71,7 +71,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
             return _pageInteractionHelper.VerifyPage(_pageTitle, ExpectedPageTitle);
         }
 
-        internal void verifyContentUnderWhatIsAnApprenticeshipSection()
+        internal void VerifyContentUnderWhatIsAnApprenticeshipSection()
         {
             expectedWhenYouAreApprenticeBPList.Add(ExpectedWhenYouAreApprenticeBP1);
             expectedWhenYouAreApprenticeBPList.Add(ExpectedWhenYouAreApprenticeBP2);
@@ -95,7 +95,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
             _pageInteractionHelper.VerifyText(actualWhatIsAnApprenticeshipParagraph2, ExpectedWhatIsAnApprenticeshipParagraph2);
             _pageInteractionHelper.VerifyText(actualWhatIsAnApprenticeshipParagraph3, ExpectedWhatIsAnApprenticeshipParagraph3);
             _pageInteractionHelper.VerifyText(actualWhatIsAnApprenticeshipParagraph4, ExpectedWhatIsAnApprenticeshipParagraph4);
-            _pageInteractionCampaignsHelper.compareContentOfTwoArraylists(actualWhenYouAreApprenticeBPList, expectedWhenYouAreApprenticeBPList);
+            _pageInteractionCampaignsHelper.CompareContentOfAnyTwoLists(actualWhenYouAreApprenticeBPList, expectedWhenYouAreApprenticeBPList);
             _pageInteractionHelper.VerifyText(actualWhatIsAnApprenticeshipParagraph5, ExpectedWhatIsAnApprenticeshipParagraph5);
             _pageInteractionHelper.VerifyText(actualWhatIsAnApprenticeshipParagraph6, ExpectedWhatIsAnApprenticeshipParagraph6);
             _pageInteractionHelper.VerifyText(actualWhatIsAnApprenticeshipParagraph7, ExpectedWhatIsAnApprenticeshipParagraph7);
@@ -103,7 +103,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
         }
 
 
-        internal void verifyContentUnderDifferentTypesOfApprenticeshipsSection()
+        internal void VerifyContentUnderDifferentTypesOfApprenticeshipsSection()
         {
             _pageInteractionHelper.WaitForElementToBeDisplayed(_differentTypesOfApprebticeshipsLink);
             _formCompletionHelper.ClickElement(_differentTypesOfApprebticeshipsLink);

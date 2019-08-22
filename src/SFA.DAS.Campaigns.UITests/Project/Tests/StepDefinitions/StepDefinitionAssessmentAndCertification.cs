@@ -28,15 +28,15 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
         }
 
         [Then(@"I verify the content under Get assured and get your certificate section")]
-        public void verifyContentUnderWhatToBringSection()
+        public void VerifyContentUnderWhatToBringSection()
         {
-            assessmentAndCertificationPage.verifyContentUnderGetAssessedAndGetYourCertificateSection();
+            assessmentAndCertificationPage.VerifyContentUnderGetAssessedAndGetYourCertificateSection();
         }
 
         [Then(@"I verify the content under Complete your apprenticeship section")]
-        public void verifyCompleteYourAppremnticeshiSection()
+        public void VerifyCompleteYourAppremnticeshiSection()
         {
-            assessmentAndCertificationPage.verifyContentUnderCompleteYourApprenticeshipSection();
+            assessmentAndCertificationPage.VerifyContentUnderCompleteYourApprenticeshipSection();
         }
 
     }

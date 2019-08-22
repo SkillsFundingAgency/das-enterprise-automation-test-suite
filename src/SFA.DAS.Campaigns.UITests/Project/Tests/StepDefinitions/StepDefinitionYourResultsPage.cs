@@ -28,18 +28,18 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
         }
 
         [When(@"I click on first search result")]
-        public void clickOnFirstSearchResult()
+        public void ClickOnFirstSearchResult()
         {
-            yourResultsPage.verifyResultsPageHeader();
+            yourResultsPage.VerifyResultsPageHeader();
             TestContext.Progress.WriteLine("Navigating to Apprenticeship Summary page");
-            yourResultsPage.clickOnAnySerachResult();
+            yourResultsPage.ClickOnAnySerachResult();
         }
 
         [Then(@"I can verify the content of no matching results page")]
-        public void verifyContentInNoMatchingResultsPage()
+        public void VerifyContentInNoMatchingResultsPage()
         {
-            yourResultsPage.verifyResultsPageHeader();
-            yourResultsPage.verifyTheNoMatchResultsPageContent();
+            yourResultsPage.VerifyResultsPageHeader();
+            yourResultsPage.VerifyTheNoMatchResultsPageContent();
         }
 
     }

@@ -53,7 +53,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
             return _pageInteractionHelper.VerifyPage(_pageTitle, ExpectedPageTitle);
         }
 
-        internal void verifyContentUnderGetAssessedAndGetYourCertificateSection()
+        internal void VerifyContentUnderGetAssessedAndGetYourCertificateSection()
         {
             _pageInteractionHelper.WaitForElementToBeDisplayed(_getAssessedAndGetYourCertificateLink);
             _formCompletionHelper.ClickElement(_getAssessedAndGetYourCertificateLink);
@@ -67,7 +67,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
             _pageInteractionHelper.VerifyText(actualGetAssessedAndGetYourCertificateParagraph2, ExpectedGetAssessedAndGetYourCertificateParagraph2);
         }
 
-        internal void verifyContentUnderCompleteYourApprenticeshipSection()
+        internal void VerifyContentUnderCompleteYourApprenticeshipSection()
         {
             _pageInteractionHelper.WaitForElementToBeDisplayed(_completeYourApprenticeshipLink);
             _pageInteractionHelper.FocusTheElement(_completeYourApprenticeshipLink);

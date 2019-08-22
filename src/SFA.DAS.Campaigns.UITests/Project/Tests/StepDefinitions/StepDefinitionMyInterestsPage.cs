@@ -29,34 +29,34 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
         }
 
         [Then(@"I verify all the industry names on the My Interests page")]
-        public void verifySoYouHaveFoundTheApprenticeshipSection()
+        public void VerifySoYouHaveFoundTheApprenticeshipSection()
         {
             myInterestsPage.verifyContentUnderWhatIsAnApprenticeshipSection();
         }
 
         [When(@"I click on the industry name (.*)")]
-        public void clickOnTheRequiredIndustryName(string requiredIndustryName)
+        public void ClickOnTheRequiredIndustryName(string requiredIndustryName)
         {
             myInterestsPage.selectAnyRequiredIndustry(requiredIndustryName);
         }
 
         [Then(@"I can enter a valid post code (.*)")]
-        public void enterPostcode(string postcode)
+        public void EnterPostcode(string postcode)
         {
             findAnApprenticeShipViaMyInterestsPage = new FindAnApprenticeShipViaMyInterestsPage(_context);
-            findAnApprenticeShipViaMyInterestsPage.enterPostCode(postcode);
+            findAnApprenticeShipViaMyInterestsPage.EnterPostCode(postcode);
         }
 
         [Then(@"I can select miles as (.*)")]
-        public void selectMiles(string noOfMiles)
+        public void SelectMiles(string noOfMiles)
         {
-            findAnApprenticeShipViaMyInterestsPage.selectMiles(noOfMiles);
+            findAnApprenticeShipViaMyInterestsPage.SelectMiles(noOfMiles);
         }
 
         [Then(@"I can click on search button")]
-        public void clickOnSearchButton()
+        public void ClickOnSearchButton()
         {
-            findAnApprenticeShipViaMyInterestsPage.clickOnSearchButton();
+            findAnApprenticeShipViaMyInterestsPage.ClickOnSearchButton();
         }
 
     }

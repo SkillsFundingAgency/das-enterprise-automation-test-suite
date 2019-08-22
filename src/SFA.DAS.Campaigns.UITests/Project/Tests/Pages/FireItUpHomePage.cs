@@ -54,81 +54,81 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
             return _pageInteractionHelper.VerifyPage(_pageTitle, ExpectedPageTitle);
         }
 
-        internal void clickOnCookieContinueButton()
+        internal void ClickOnCookieContinueButton()
         {
             _pageInteractionHelper.WaitForElementToBeDisplayed(_cookieButton);
             _formCompletionHelper.ClickElement(_cookieButton);
         }
 
-        internal void verifyApprenticesHeaderSupportText()
+        internal void VerifyApprenticesHeaderSupportText()
         {
             _pageInteractionHelper.WaitForElementToBeDisplayed(_ApprenticesHeaderSupportText);
             _pageInteractionHelper.FocusTheElement(_ApprenticesHeaderSupportText);
             _formCompletionHelper.VerifyPage(_ApprenticesHeaderSupportText, ExpectedApprenticesHeaderSupportText);
         }
 
-        internal void verifyEmployersHeaderSupportText()
+        internal void VerifyEmployersHeaderSupportText()
         {
             _pageInteractionHelper.WaitForElementToBeDisplayed(_EmployersHeaderSupportText);
             _pageInteractionHelper.FocusTheElement(_EmployersHeaderSupportText);
             _formCompletionHelper.VerifyPage(_EmployersHeaderSupportText, ExpectedEmployersHeaderSupportText);
         }
 
-        internal void launchApprenticeMenu()
+        internal void LaunchApprenticeMenu()
         {
             _pageInteractionHelper.WaitForElementToBeDisplayed(_apprenticeMenu);
             _pageInteractionHelper.FocusTheElement(_apprenticeMenu);
         }
 
-        internal void clickOnFindAnApprenticeLink()
+        internal void ClickOnFindAnApprenticeLink()
         {
             _pageInteractionHelper.WaitForElementToBeClickable(_findAnApprenticeLink);
             _formCompletionHelper.ClickElement(_findAnApprenticeLink);
         }
 
-        internal void clickOnYourApprenticeshipLink()
+        internal void ClickOnYourApprenticeshipLink()
         {
             _pageInteractionHelper.WaitForElementToBeClickable(_yourApprenticeshipLink);
             _formCompletionHelper.ClickElement(_yourApprenticeshipLink);
         }
 
-        internal void clickOnAssessmentAndCertificationLink()
+        internal void ClickOnAssessmentAndCertificationLink()
         {
             _pageInteractionHelper.WaitForElementToBeClickable(_assessmentAndCertificationLink);
             _formCompletionHelper.ClickElement(_assessmentAndCertificationLink);
         }
 
-        internal void clickOnInterviewLink()
+        internal void ClickOnInterviewLink()
         {
             _pageInteractionHelper.WaitForElementToBeClickable(_inetrviewLink);
             _formCompletionHelper.ClickElement(_inetrviewLink);
         }
 
-        internal void clickOnApplicationLink()
+        internal void ClickOnApplicationLink()
         {
             _pageInteractionHelper.WaitForElementToBeClickable(_applicationLink);
             _formCompletionHelper.ClickElement(_applicationLink);
         }
 
-        internal void clickOnWhatIsAnApprenticeshipLink()
+        internal void ClickOnWhatIsAnApprenticeshipLink()
         {
             _pageInteractionHelper.WaitForElementToBeClickable(_whatIsAnApprenticeshipLink);
             _formCompletionHelper.ClickElement(_whatIsAnApprenticeshipLink);
         }
 
-        internal void clickOnMyInterestsLink()
+        internal void ClickOnMyInterestsLink()
         {
             _pageInteractionHelper.WaitForElementToBeClickable(_myinterestsLink);
             _formCompletionHelper.ClickElement(_myinterestsLink);
         }
 
-        internal void clickOnWhatAreTheBenefitsForMeLink()
+        internal void ClickOnWhatAreTheBenefitsForMeLink()
         {
             _pageInteractionHelper.WaitForElementToBeClickable(_whatAreTheBenefitsForMeLink);
             _formCompletionHelper.ClickElement(_whatAreTheBenefitsForMeLink);
         }
 
-        internal void clickOnRealStoriesLink()
+        internal void ClickOnRealStoriesLink()
         {
             _pageInteractionHelper.WaitForElementToBeClickable(_realStoriesLink);
             _formCompletionHelper.ClickElement(_realStoriesLink);

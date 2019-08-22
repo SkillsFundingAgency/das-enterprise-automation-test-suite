@@ -34,81 +34,81 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
             _webDriver.Url = url;
 
             fireItUpHomePage = new FireItUpHomePage(_context);
-            fireItUpHomePage.clickOnCookieContinueButton();
-            fireItUpHomePage.verifyApprenticesHeaderSupportText();
-            fireItUpHomePage.verifyEmployersHeaderSupportText();
+            fireItUpHomePage.ClickOnCookieContinueButton();
+            fireItUpHomePage.VerifyApprenticesHeaderSupportText();
+            fireItUpHomePage.VerifyEmployersHeaderSupportText();
         }
 
         [When(@"I launch the Find An Apprentice page")]
-        public void launchFindAnApprenticePage()
+        public void LaunchFindAnApprenticePage()
         {
-            fireItUpHomePage.launchApprenticeMenu();
+            fireItUpHomePage.LaunchApprenticeMenu();
             TestContext.Progress.WriteLine("Navigating to Find An Apprenticeship page");
-            fireItUpHomePage.clickOnFindAnApprenticeLink();
+            fireItUpHomePage.ClickOnFindAnApprenticeLink();
         }
 
         [When(@"I launch the Your Apprenticeship page")]
-        public void launchYourApprenticeshipPage()
+        public void LaunchYourApprenticeshipPage()
         {
-            fireItUpHomePage.launchApprenticeMenu();
+            fireItUpHomePage.LaunchApprenticeMenu();
             TestContext.Progress.WriteLine("Navigating to Your Apprenticeship page");
-            fireItUpHomePage.clickOnYourApprenticeshipLink();
+            fireItUpHomePage.ClickOnYourApprenticeshipLink();
         }
 
         [When(@"I launch the Assessment And Certification page")]
-        public void launchAssessmentAndCertificationPage()
+        public void LaunchAssessmentAndCertificationPage()
         {
-            fireItUpHomePage.launchApprenticeMenu();
+            fireItUpHomePage.LaunchApprenticeMenu();
             TestContext.Progress.WriteLine("Navigating to Assessment And Certification page");
-            fireItUpHomePage.clickOnAssessmentAndCertificationLink();
+            fireItUpHomePage.ClickOnAssessmentAndCertificationLink();
         }
 
         [When(@"I launch the Interview page")]
-        public void launchInterviewPage()
+        public void LaunchInterviewPage()
         {
-            fireItUpHomePage.launchApprenticeMenu();
+            fireItUpHomePage.LaunchApprenticeMenu();
             TestContext.Progress.WriteLine("Navigating to Interview page");
-            fireItUpHomePage.clickOnInterviewLink();
+            fireItUpHomePage.ClickOnInterviewLink();
         }
 
         [When(@"I launch the Application page")]
-        public void launchApplicationPage()
+        public void LaunchApplicationPage()
         {
-            fireItUpHomePage.launchApprenticeMenu();
+            fireItUpHomePage.LaunchApprenticeMenu();
             TestContext.Progress.WriteLine("Navigating to Application page");
-            fireItUpHomePage.clickOnApplicationLink();
+            fireItUpHomePage.ClickOnApplicationLink();
         }
 
         [When(@"I launch the What Is An Apprenticeship page")]
-        public void launchWhatIsAnApprenticeshipPage()
+        public void LaunchWhatIsAnApprenticeshipPage()
         {
-            fireItUpHomePage.launchApprenticeMenu();
+            fireItUpHomePage.LaunchApprenticeMenu();
             TestContext.Progress.WriteLine("Navigating to What Is An Apprenticeship page");
-            fireItUpHomePage.clickOnWhatIsAnApprenticeshipLink();
+            fireItUpHomePage.ClickOnWhatIsAnApprenticeshipLink();
         }
 
         [When(@"I launch the My Interests page")]
-        public void launchMyInterestsPage()
+        public void LaunchMyInterestsPage()
         {
-            fireItUpHomePage.launchApprenticeMenu();
+            fireItUpHomePage.LaunchApprenticeMenu();
             TestContext.Progress.WriteLine("Navigating to My Interests page");
-            fireItUpHomePage.clickOnMyInterestsLink();
+            fireItUpHomePage.ClickOnMyInterestsLink();
         }
 
         [When(@"I launch the What Are The Benefits For Me page")]
-        public void launchWhatAreTheBenefitsForMePage()
+        public void LaunchWhatAreTheBenefitsForMePage()
         {
-            fireItUpHomePage.launchApprenticeMenu();
+            fireItUpHomePage.LaunchApprenticeMenu();
             TestContext.Progress.WriteLine("Navigating to What Are The Benefits For Me page");
-            fireItUpHomePage.clickOnWhatAreTheBenefitsForMeLink();
+            fireItUpHomePage.ClickOnWhatAreTheBenefitsForMeLink();
         }
 
         [When(@"I launch the Real Stories page")]
-        public void launchRealStoriesPage()
+        public void LaunchRealStoriesPage()
         {
-            fireItUpHomePage.launchApprenticeMenu();
+            fireItUpHomePage.LaunchApprenticeMenu();
             TestContext.Progress.WriteLine("Navigating to Real Stories page");
-            fireItUpHomePage.clickOnRealStoriesLink();
+            fireItUpHomePage.ClickOnRealStoriesLink();
         }
 
     }

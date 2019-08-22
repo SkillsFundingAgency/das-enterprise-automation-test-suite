@@ -69,7 +69,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
             return _pageInteractionHelper.VerifyPage(_pageTitle, ExpectedPageTitle);
         }
 
-        internal void verifyContentUnderSoYouHaveFoundTheApprenticeshipSection()
+        internal void VerifyContentUnderSoYouHaveFoundTheApprenticeshipSection()
         {
             string actualSoYouHaveFoundTheApprenticeshipHeader = _pageInteractionHelper.GetText(_soYouHaveFoundTheApprenticeshipHeader);
             string actualSoYouHaveFoundTheApprenticeshipParagraph1 = _pageInteractionHelper.GetText(_soYouHaveFoundTheApprenticeshipParagraph1);
@@ -82,7 +82,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
             _pageInteractionHelper.VerifyText(actualSoYouHaveFoundTheApprenticeshipParagraph3, ExpectedSoYouHaveFoundTheApprenticeshipSectionParagraph3);
         }
 
-        internal void verifyContentUnderApplyForTheJobSection()
+        internal void VerifyContentUnderApplyForTheJobSection()
         {
             string actualApplyForTheJobHeader = _pageInteractionHelper.GetText(_applyForTheJobHeader);
             string actualApplyForTheJobParagraph1 = _pageInteractionHelper.GetText(_applyForTheJobParagraph1);
@@ -91,7 +91,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
             _pageInteractionHelper.VerifyText(actualApplyForTheJobParagraph1, ExpectedAppliyForTheJobParagraph1);
         }
 
-        internal void verifyContentUnderWaitForTheApplicationSection()
+        internal void VerifyContentUnderWaitForTheApplicationSection()
         {
             string actualWaitForTheApplicationHeader = _pageInteractionHelper.GetText(_waitForTheApplicationHeader);
             string actualWaitForTheApplicationParagraph1 = _pageInteractionHelper.GetText(_waitForTheApplicationParagraph1);
@@ -104,7 +104,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
             _pageInteractionHelper.VerifyText(actualWaitForTheApplicationParagraph3, ExpectedWaitForTheApplicationsParagraph3);
         }
 
-        internal void verifyContentUnderIfYouAreOnTheShortlistSection()
+        internal void VerifyContentUnderIfYouAreOnTheShortlistSection()
         {
             string actualIfYouAreOnTheShortlistHeader = _pageInteractionHelper.GetText(_ifYouAreOnTheShortlistHeader);
             string actualIfYouAreOnTheShortlistParagraph1 = _pageInteractionHelper.GetText(_ifYouAreOnTheShortlistParagraph1);
@@ -113,7 +113,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
             _pageInteractionHelper.VerifyText(actualIfYouAreOnTheShortlistParagraph1, ExpectedIfYouAreOnTheShortlistParagraph1);
         }
 
-        internal void verifyContentUnderTrainingProvidersSection()
+        internal void VerifyContentUnderTrainingProvidersSection()
         {
             string actualTrainingProvidersHeader = _pageInteractionHelper.GetText(_trainingProvidersHeader);
             string actualTrainingProvidersParagraph1 = _pageInteractionHelper.GetText(_trainingProvidersParagraph1);

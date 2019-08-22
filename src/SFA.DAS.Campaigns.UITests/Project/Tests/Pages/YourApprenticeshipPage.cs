@@ -69,7 +69,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
             return _pageInteractionHelper.VerifyPage(_pageTitle, ExpectedPageTitle);
         }
 
-        internal void verifyConetntUnderWhatToBringSection()
+        internal void VerifyConetntUnderWhatToBringSection()
         {
             expectedQuestionsList.Add(ExpectedQuestion1);
             expectedQuestionsList.Add(ExpectedQuestion2);
@@ -93,10 +93,10 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
             _pageInteractionHelper.VerifyText(actualWhatToBringHeader, ExpectedWhatToBringHeader);
             _pageInteractionHelper.VerifyText(actualWhatToBringParagraph1, ExpectedWhatToBringParagraph1);
             _pageInteractionHelper.VerifyText(actualWhatToBringParagraph2, ExpectedWhatToBringParagraph2);
-            _pageInteractionCampaignsHelper.compareContentOfTwoArraylists(actualQuestionsList, expectedQuestionsList);
+            _pageInteractionCampaignsHelper.CompareContentOfAnyTwoLists(actualQuestionsList, expectedQuestionsList);
         }
 
-        internal void verifyContentUnderMeetYourNewTeamSection()
+        internal void VerifyContentUnderMeetYourNewTeamSection()
         {
             _pageInteractionHelper.WaitForElementToBeDisplayed(_meetYourNewTeamLink);
             _pageInteractionHelper.FocusTheElement(_meetYourNewTeamLink);
@@ -106,7 +106,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
             _pageInteractionHelper.VerifyText(actualMeetYourNewTeamParagraph1, ExpectedMeetYourNewTeamParagraph1);
         }
 
-        internal void verifyContentUnderWhatComesAfterMyApprenticeshipSection()
+        internal void VerifyContentUnderWhatComesAfterMyApprenticeshipSection()
         {
             _pageInteractionHelper.WaitForElementToBeDisplayed(_whatComesAfterMyApprenticeshipLink);
             _pageInteractionHelper.FocusTheElement(_whatComesAfterMyApprenticeshipLink);

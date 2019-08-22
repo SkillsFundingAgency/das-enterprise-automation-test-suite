@@ -53,14 +53,14 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
             return _pageInteractionHelper.VerifyPage(_pageInteractionHelper.GetText(_resultsHeader), ExpectedHeaderWhenResultsFound, ExpectedHeaderWhenNoResultsFound);
         }
 
-        internal void verifyResultsPageHeader()
+        internal void VerifyResultsPageHeader()
         {
             _pageInteractionHelper.WaitForElementToBeDisplayed(_resultsHeader);
             string actualResultsHeader = _pageInteractionHelper.GetText(_resultsHeader);
             _pageInteractionHelper.VerifyPage(actualResultsHeader, ExpectedHeaderWhenResultsFound, ExpectedHeaderWhenNoResultsFound);
         }
 
-        internal void clickOnAnySerachResult()
+        internal void ClickOnAnySerachResult()
         {
             postCodeList.Add("SW1V 3LP");
             postCodeList.Add("M1 4WB");
@@ -79,42 +79,42 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
                 _pageInteractionHelper.WaitForElementToBeDisplayed(_resultsHeader);
                 if (_pageInteractionHelper.GetText(_resultsHeader).Contains(ExpectedHeaderWhenResultsFound))
                 {
-                    extractApprenticeDetailsFromResultsPage();
-                    clickOnFirstSearchResult();
+                    ExtractApprenticeDetailsFromResultsPage();
+                    ClickOnFirstSearchResult();
                     Console.WriteLine(" Results found in "+i+" th time");
                     break;
                 }
                 else
                 {
-                    enterPostCode((string)postCodeList[i]);
-                    clickOnUpdateResultsButton();
+                    EnterPostCode((string)postCodeList[i]);
+                    ClickOnUpdateResultsButton();
                 }
             }
         }
 
-        internal void clickOnFirstSearchResult()
+        internal void ClickOnFirstSearchResult()
         {
             _formCompletionHelper.WaitForPageToLoad(10);
             _pageInteractionHelper.WaitForElementToBeDisplayed(_firstSearchResult);
             _pageInteractionHelper.FocusTheElement(_firstSearchResult);
             _formCompletionHelper.ClickElement(_firstSearchResult);
-            _pageInteractionCampaignsHelper.switchToANewTab();
+            _pageInteractionCampaignsHelper.SwitchToANewTab();
         }
 
-        internal void enterPostCode(string postcode)
+        internal void EnterPostCode(string postcode)
         {
             _pageInteractionHelper.WaitForElementToBeDisplayed(_postCodeBox);
             _formCompletionHelper.EnterText(_postCodeBox,postcode);
 
         }
 
-        internal void clickOnUpdateResultsButton()
+        internal void ClickOnUpdateResultsButton()
         {
             _pageInteractionHelper.WaitForElementToBeClickable(_updateResultsButton);
             _formCompletionHelper.ClickElement(_updateResultsButton);
         }
 
-        internal void findNoMatchingResultsPage()
+        internal void FindNoMatchingResultsPage()
         {
             postCodeList.Add("SW1V3LP");
             postCodeList.Add("M14WB");
@@ -133,18 +133,18 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
                 _pageInteractionHelper.WaitForElementToBeDisplayed(_resultsHeader);
                 if (_pageInteractionHelper.GetText(_resultsHeader).Contains(ExpectedHeaderWhenNoResultsFound))
                 {
-                    verifyTheNoMatchResultsPageContent();
+                    VerifyTheNoMatchResultsPageContent();
                     break;
                 }
                 else
                 {
-                    enterPostCode((string)postCodeList[i]);
-                    clickOnUpdateResultsButton();
+                    EnterPostCode((string)postCodeList[i]);
+                    ClickOnUpdateResultsButton();
                 }
             }
         }
 
-        internal void verifyTheNoMatchResultsPageContent()
+        internal void VerifyTheNoMatchResultsPageContent()
         {
             _pageInteractionHelper.WaitForElementToBeDisplayed(_noMatchResultParagraphOne);
             _pageInteractionHelper.VerifyText(_noMatchResultParagraphOne, ExpectedParagraphOneText);
@@ -153,7 +153,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
             _pageInteractionHelper.VerifyText(_noMatchResultParagraphTwo, ExpectedParagraphTwoText);
         }
 
-        internal void extractApprenticeDetailsFromResultsPage()
+        internal void ExtractApprenticeDetailsFromResultsPage()
         {
             PageInteractionCampaignsHelper.expectedVacancyTitle = _pageInteractionHelper.GetText(_vacancyTitle);
             PageInteractionCampaignsHelper.expectedVacancyDescription = _pageInteractionHelper.GetText(_vacancyDescription);

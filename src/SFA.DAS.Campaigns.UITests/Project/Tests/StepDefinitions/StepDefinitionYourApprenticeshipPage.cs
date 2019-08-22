@@ -28,21 +28,21 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
         }
 
         [Then(@"I verify the content under What to bring, and other useful info section")]
-        public void verifyContentUnderWhatToBringSection()
+        public void VerifyContentUnderWhatToBringSection()
         {
-            yourApprenticeshipPage.verifyConetntUnderWhatToBringSection();
+            yourApprenticeshipPage.VerifyConetntUnderWhatToBringSection();
         }
 
         [Then(@"I verify the content under Meet your new team section")]
-        public void verifyContentUnderMeetYourNewTeamSection()
+        public void VerifyContentUnderMeetYourNewTeamSection()
         {
-            yourApprenticeshipPage.verifyContentUnderMeetYourNewTeamSection();
+            yourApprenticeshipPage.VerifyContentUnderMeetYourNewTeamSection();
         }
 
         [Then(@"I verify the content under What comes after my apprenticeship section")]
-        public void verifyContentUnderWhatComesAfterMyApprenticeshipSection()
+        public void VerifyContentUnderWhatComesAfterMyApprenticeshipSection()
         {
-            yourApprenticeshipPage.verifyContentUnderWhatComesAfterMyApprenticeshipSection();
+            yourApprenticeshipPage.VerifyContentUnderWhatComesAfterMyApprenticeshipSection();
         }
 
     }
