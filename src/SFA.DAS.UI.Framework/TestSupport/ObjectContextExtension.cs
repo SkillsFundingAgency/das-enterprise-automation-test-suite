@@ -2,7 +2,6 @@
 {
     public static class ObjectContextExtension
     {
-
         #region Constants
         private const string BrowserKey = "browser";
         #endregion
@@ -12,9 +11,9 @@
             return objectContext.Get(BrowserKey);
         }
 
-        public static void SetBrowser(this ObjectContext objectContext, string browser)
+        public static void UpdateBrowser(this ObjectContext objectContext, string browser)
         {
-            objectContext.Set(BrowserKey, browser);
+            objectContext.Update(BrowserKey, browser);
         }
     }
 }
