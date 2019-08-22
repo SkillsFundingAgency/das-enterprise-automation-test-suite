@@ -36,7 +36,7 @@ namespace SFA.DAS.Registration.UITests.Project
             var mongoDbconfig = _configSection.GetConfigSection<MongoDbConfig>();
             _context.SetMongoDbConfig(mongoDbconfig);
 
-            _objectContext.UpdateBrowser(config.RE_Browser);
+            _objectContext.ReplaceBrowser(config.RE_Browser);
         }
     }
 

@@ -11,9 +11,9 @@
             return objectContext.Get(BrowserKey);
         }
 
-        public static void UpdateBrowser(this ObjectContext objectContext, string browser)
+        public static void ReplaceBrowser(this ObjectContext objectContext, string browser)
         {
-            objectContext.Update(BrowserKey, browser);
+            objectContext.Replace(BrowserKey, browser);
         }
     }
 }

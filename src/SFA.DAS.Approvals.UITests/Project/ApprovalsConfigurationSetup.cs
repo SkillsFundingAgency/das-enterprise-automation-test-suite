@@ -24,7 +24,7 @@ namespace SFA.DAS.Approvals.UITests.Project
             var config = _configSection.GetConfigSection<ProjectConfig>();
             _context.SetProjectConfig(config);
 
-            _objectContext.UpdateBrowser(config.AP_Browser);
+            _objectContext.ReplaceBrowser(config.AP_Browser);
         }
     }
 }
