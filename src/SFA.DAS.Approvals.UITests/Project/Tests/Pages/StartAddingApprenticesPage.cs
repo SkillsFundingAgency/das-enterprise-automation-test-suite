@@ -7,19 +7,19 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages
 {
     public class StartAddingApprenticesPage : BasePage
     {
-        protected override string PageTitle => "Confirm training provider";
+        protected override string PageTitle => "Start adding apprentices";
 
         #region Helpers and Context
         private readonly PageInteractionHelper _pageInteractionHelper;
         private readonly FormCompletionHelper _formCompletionHelper;
         private readonly ScenarioContext _context;
-        private readonly ProjectConfig _config;
+        private readonly ApprovalsConfig _config;
         #endregion
 
         public StartAddingApprenticesPage(ScenarioContext context) : base(context)
         {
             _context = context;
-            _config = context.GetProjectConfig<ProjectConfig>();
+            _config = context.GetApprovalsConfig<ApprovalsConfig>();
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
             VerifyPage();

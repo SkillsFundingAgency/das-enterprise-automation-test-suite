@@ -1,9 +1,7 @@
 ﻿namespace SFA.DAS.Approvals.UITests.Project
 {
-    public class ProjectConfig
+    public class ApprovalsConfig
     {
-        public string TwoDigitProjectCode { get; set; }
-
         public string AP_EmployerAppUrl { get; set; }
 
         public string AP_ProviderAppUrl { get; set; }
@@ -41,7 +39,5 @@
         public string AP_PrelDBDatabaseName{ get; set; }
 
         public string AP_PrelDBCollectionName{ get; set; }
-
-        public string AP_Browser { get; set; }
     }
 }

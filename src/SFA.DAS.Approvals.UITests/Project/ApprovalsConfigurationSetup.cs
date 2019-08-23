@@ -21,10 +21,8 @@ namespace SFA.DAS.Approvals.UITests.Project
         [BeforeScenario(Order = 2)]
         public void SetUpApprovalsConfiguration()
         {
-            var config = _configSection.GetConfigSection<ProjectConfig>();
-            _context.SetProjectConfig(config);
-
-            _objectContext.ReplaceBrowser(config.AP_Browser);
+            var config = _configSection.GetConfigSection<ApprovalsConfig>();
+            _context.SetApprovalsConfig(config);
         }
     }
 }
