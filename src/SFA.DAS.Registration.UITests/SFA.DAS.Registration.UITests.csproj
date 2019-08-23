@@ -22,6 +22,7 @@
     <PackageReference Include="MongoDB.Driver" Version="2.8.1" />
     <PackageReference Include="NUnit3TestAdapter" Version="3.13.0" />
     <PackageReference Include="Selenium.WebDriver.ChromeDriver" Version="75.0.3770.140" />
+    <PackageReference Include="SpecFlow.Assist.Dynamic" Version="1.4.1" />
     <PackageReference Include="SpecFlow.Tools.MsBuild.Generation" Version="3.0.225" />
   </ItemGroup>
 

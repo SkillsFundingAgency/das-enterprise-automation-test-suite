@@ -96,11 +96,11 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
                 .AboutYourAgreementPage();
         }
 
-        [Then(@"I can land in the User Home page")]
-        public void CanLandInTheUserHomePage()
+        [Then(@"I will land in the User Home page")]
+        public void ThenIWillLandInTheUserHomePage()
         {
             var accountid = aboutYourAgreementPage
-                .GoToHomePage()
+                .HomePage()
                 .AccountID();
 
             SetAccountId(accountid);

@@ -1,4 +1,4 @@
-﻿namespace SFA.DAS.Registration.UITests.Project.Helpers
+﻿namespace SFA.DAS.Registration.UITests.Project.Helpers.MongoDb
 {
     public class MongoDbDataHelper
     {
