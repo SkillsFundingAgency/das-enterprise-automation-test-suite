@@ -17,7 +17,7 @@
   <ItemGroup>
     <PackageReference Include="NUnit3TestAdapter" Version="3.14.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.2.0" />
-    <PackageReference Include="Selenium.WebDriver.ChromeDriver" Version="76.0.3809.6801" />
+    <PackageReference Include="Selenium.WebDriver.ChromeDriver" Version="76.0.3809.12600" />
     <PackageReference Include="SpecFlow.Tools.MsBuild.Generation" Version="3.0.225" />
   </ItemGroup>
 
