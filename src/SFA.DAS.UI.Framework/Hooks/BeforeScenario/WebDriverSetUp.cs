@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using NUnit.Framework;
@@ -50,7 +51,8 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
                     break;
 
                 case bool _ when browser.IsChrome():
-                    WebDriver = new ChromeDriver(FindDriverService(ChromeDriverServiceName));
+                    
+                    WebDriver = new ChromeDriver(FindDriverService(ChromeDriverServiceName), AddArguments(new List<string>() { "no-sandbox" }));
                     break;
 
                 case bool _ when browser.IsIe():
@@ -63,9 +65,7 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
                     break;
 
                 case bool _ when browser.IsChromeHeadless():
-                    var chromeOptions = new ChromeOptions();
-                    chromeOptions.AddArgument("--headless");
-                    WebDriver = new ChromeDriver(FindDriverService(ChromeDriverServiceName), chromeOptions);
+                    WebDriver = new ChromeDriver(FindDriverService(ChromeDriverServiceName), AddArguments(new List<string>() { "--headless" }));
                     break;
                
 
@@ -113,6 +113,12 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
             chromeOptions.Proxy = proxy;
 
             WebDriver = new ChromeDriver(FindDriverService(ChromeDriverServiceName), chromeOptions);
+        }
+        private ChromeOptions AddArguments(List<string> arguments)
+        {
+            var chromeOptions = new ChromeOptions();
+            arguments.ForEach((x) => chromeOptions.AddArgument(x));
+            return chromeOptions;
         }
     }
 }
