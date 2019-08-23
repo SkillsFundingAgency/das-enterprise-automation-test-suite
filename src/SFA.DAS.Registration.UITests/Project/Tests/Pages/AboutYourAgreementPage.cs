@@ -15,15 +15,9 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         protected override string Linktext => "Your organisations and agreements";
 
-
-        public AboutYourAgreementPage(ScenarioContext context) : base(context)
+        public AboutYourAgreementPage(ScenarioContext context, bool navigate = false) : base(context, navigate)
         {
             _context = context;
-        }
-
-        public AboutYourAgreementPage(ScenarioContext context, bool navigate) : this(context)
-        {
-            this.navigate = navigate;
         }
 
         public SignAgreementPage ContinueWithAgreement()

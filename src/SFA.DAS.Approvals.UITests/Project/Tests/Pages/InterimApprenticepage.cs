@@ -3,13 +3,13 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages
 {
-    public abstract class InterimApprenitcepage : InterimBasePage
+    public abstract class InterimApprenticepage : InterimBasePage
     {
         #region Helpers and Context
         private readonly ScenarioContext _context;
         #endregion
 
-        public InterimApprenitcepage(ScenarioContext context) : base(context)
+        public InterimApprenticepage(ScenarioContext context, bool navigate) : base(context, navigate)
         {
             _context = context;
         }

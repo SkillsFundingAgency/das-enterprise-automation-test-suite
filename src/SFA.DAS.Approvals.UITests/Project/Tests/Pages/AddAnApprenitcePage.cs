@@ -16,7 +16,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages
         private readonly ProjectConfig _config;
         #endregion
 
-        private By startNoWButton = By.CssSelector(".button-start");
+        private By StartNowButton = By.CssSelector(".button-start");
 
         public AddAnApprenitcePage(ScenarioContext context) : base(context)
         {
@@ -29,7 +29,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages
 
         public AddTrainingProviderDetailsPage StartNow()
         {
-            _formCompletionHelper.ClickElement(startNoWButton);
+            _formCompletionHelper.ClickElement(StartNowButton);
             return new AddTrainingProviderDetailsPage(_context);
         }
     }

@@ -43,7 +43,5 @@
         public string AP_PrelDBCollectionName{ get; set; }
 
         public string AP_Browser { get; set; }
-
-        public string AP_BaseUrl { get; set; }
     }
 }

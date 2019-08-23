@@ -17,9 +17,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         protected abstract string Linktext { get; }
 
-        protected bool navigate;
-
-        public Navigate(ScenarioContext context) : base(context)
+        public Navigate(ScenarioContext context, bool navigate) : base(context)
         {
             config = context.GetProjectConfig<ProjectConfig>();
             pageInteractionHelper = context.Get<PageInteractionHelper>();
@@ -27,6 +25,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             bool func() => navigate ? VerifyPage(NavigateTo) : VerifyPage();
             func();
         }
+
         protected void NavigateTo()
         {
             var link = pageInteractionHelper.GetLink(GlobalNavLink, Linktext);

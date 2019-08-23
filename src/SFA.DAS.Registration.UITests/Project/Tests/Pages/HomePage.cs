@@ -18,14 +18,10 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         private By SucessSummary => By.CssSelector(".success-summary");
 
-        public HomePage(ScenarioContext context): base(context)
+        
+        internal HomePage(ScenarioContext context, bool navigate = false) : base(context, navigate)
         {
             _context = context;
-        }
-
-        internal HomePage(ScenarioContext context, bool navigate) : this(context)
-        {
-            this.navigate = navigate;
         }
 
         protected override string Linktext => "Home";

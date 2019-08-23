@@ -8,9 +8,9 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         private readonly ScenarioContext _context;
         #endregion
 
-        public InterimBasePage(ScenarioContext context) : base(context)
+        public InterimBasePage(ScenarioContext context, bool navigate) : base(context, navigate)
         {
-
+            _context = context;
         }
 
         public HomePage GoToHomePage()

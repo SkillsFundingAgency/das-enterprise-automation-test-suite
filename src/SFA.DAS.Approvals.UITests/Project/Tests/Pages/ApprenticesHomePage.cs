@@ -7,7 +7,7 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages
 {
 
-    public class ApprenticesHomePage : InterimApprenitcepage
+    public class ApprenticesHomePage : InterimApprenticepage
     {
         protected override string PageTitle => "Apprentices";
 
@@ -21,14 +21,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages
 
         protected override string Linktext => "Apprentices";
 
-        public ApprenticesHomePage(ScenarioContext context) : base(context)
+        internal ApprenticesHomePage(ScenarioContext context, bool navigate = false) : base(context, navigate)
         {
             _context = context;
-        }
-
-        internal ApprenticesHomePage(ScenarioContext context, bool navigate) : this(context)
-        {
-            this.navigate = navigate;
         }
 
         internal AddAnApprenitcePage AddAnApprentice()
