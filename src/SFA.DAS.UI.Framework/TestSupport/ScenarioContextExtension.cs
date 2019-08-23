@@ -7,7 +7,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
     public static class ScenarioContextExtension
     {
         #region Constants
-        private const string ProjectConfigKey = "projectspecificconfig";
+        private const string ProjectConfigKey = "projectconfig";
         private const string MongoDbConfigKey = "mongodbconfig";
         private const string WebDriverKey = "webdriver";
         #endregion

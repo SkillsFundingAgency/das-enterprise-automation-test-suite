@@ -15,9 +15,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{FC4EA9
 		specflow.json = specflow.json
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.PocProject.UITests", "SFA.DAS.PocProject.UITests\SFA.DAS.PocProject.UITests.csproj", "{F25CA55A-58D3-4E7D-AD87-E71623DE14DE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.Registration.UITests", "SFA.DAS.Registration.UITests\SFA.DAS.Registration.UITests.csproj", "{F25CA55A-58D3-4E7D-AD87-E71623DE14DE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SFA.DAS.Approvals.UITests", "SFA.DAS.Approvals.UITests\SFA.DAS.Approvals.UITests.csproj", "{B286BCD8-7CEB-40BC-8FEB-4359734AA891}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.Approvals.UITests", "SFA.DAS.Approvals.UITests\SFA.DAS.Approvals.UITests.csproj", "{B286BCD8-7CEB-40BC-8FEB-4359734AA891}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

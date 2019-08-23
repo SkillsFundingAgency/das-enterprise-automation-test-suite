@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using Polly;
 using NUnit.Framework;
+using System.Linq;
 
 namespace SFA.DAS.UI.FrameworkHelpers
 {
@@ -26,7 +27,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
             TimeSpan.FromSeconds(3)
         };
 
-        private bool RetryOnException(Func<bool> func)
+        private bool RetryOnException(Func<bool> func, Action beforeAction = null)
         {
             return Policy
                  .Handle<Exception>((x) => x.Message.Contains("verification failed"))
@@ -38,12 +39,13 @@ namespace SFA.DAS.UI.FrameworkHelpers
                  {
                      using (var testcontext = new NUnit.Framework.Internal.TestExecutionContext.IsolatedContext())
                      {
+                         beforeAction?.Invoke();
                          return func();
                      }
                  });
         }
 
-        public bool VerifyPage(By locator, string expected)
+        public bool VerifyPage(By locator, string expected, Action beforeAction = null)
         {
             bool func()
             {
@@ -58,7 +60,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
                     + "\n Found: " + actual + " page");
             }
             
-            return RetryOnException(func);
+            return RetryOnException(func, beforeAction);
         }
 
         public bool VerifyPage(string actual, string expected1, string expected2)
@@ -87,15 +89,8 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         public bool VerifyText(By locator, string expected)
         {
-            var actual = _webDriver.FindElement(locator).Text;
-            if (actual.Contains(expected))
-            {
-                return true;
-            }
-
-            throw new Exception("Text verification failed: "
-                + "\n Expected: " + expected
-                + "\n Found: " + actual);
+            var actual = GetText(locator);
+            return VerifyText(actual, expected);
         }
 
         public bool VerifyValueAttributeOfAnElement(By locator, string expected)
@@ -228,5 +223,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
         public string GetText(By locator) => GetText(_webDriver.FindElement(locator));
 
         public string GetText(IWebElement webElement) => webElement.Text;
+
+        public IWebElement GetLink(By by, string linkText) => _webDriver.FindElements(by).ToList().First(x => x.GetAttribute("innerText") == linkText);
     }
 }
