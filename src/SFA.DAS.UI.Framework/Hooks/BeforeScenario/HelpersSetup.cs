@@ -23,6 +23,7 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
             _context.Set(new PageInteractionHelper(WebDriver, _config.TimeOutConfig));
             _context.Set(new FormCompletionHelper(WebDriver));
             _context.Set(new JavaScriptHelper(WebDriver));
+            _context.Set(new RandomDataGenerator());
         }
     }
 }

@@ -60,14 +60,4 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages
         }
 
     }
-
-    public class MessageForYourTrainingProviderPage
-    {
-        private ScenarioContext _context;
-
-        public MessageForYourTrainingProviderPage(ScenarioContext context)
-        {
-            _context = context;
-        }
-    }
 }

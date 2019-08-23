@@ -15,6 +15,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages
         private readonly FormCompletionHelper _formCompletionHelper;
         private readonly ScenarioContext _context;
         private readonly ProjectConfig _config;
+        private readonly ApprovalsDataHelper _dataHelper;
         #endregion
 
         private By ukprnField => By.Id("ProviderId");
@@ -25,6 +26,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages
         {
             _context = context;
             _config = context.GetProjectConfig<ProjectConfig>();
+            _dataHelper = context.Get<ApprovalsDataHelper>();
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
             VerifyPage();
@@ -38,7 +40,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages
 
         private AddTrainingProviderDetailsPage EnterUkprn()
         {
-            _formCompletionHelper.EnterText(ukprnField, Constants.ProviderUkPrn);
+            _formCompletionHelper.EnterText(ukprnField, _dataHelper.ProviderUkPrn);
             return this;
         }
 

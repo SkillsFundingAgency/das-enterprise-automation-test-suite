@@ -32,8 +32,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
             for (int i = 0; i < numberOfApprentices; i++)
             {
-                employerReviewYourCohortPage.SelectAddAnApprentice();
-                    //.SubmitValidApprenticeDetails(RunTimeVariables.isTransferTest);
+                employerReviewYourCohortPage.SelectAddAnApprentice()
+                    .SubmitValidApprenticeDetails();
             }
         }
 

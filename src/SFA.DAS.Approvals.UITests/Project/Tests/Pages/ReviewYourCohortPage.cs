@@ -38,14 +38,4 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages
             return new AddApprenticeDetailsPage(_context);
         }
     }
-
-    public class AddApprenticeDetailsPage
-    {
-        private ScenarioContext _context;
-
-        public AddApprenticeDetailsPage(ScenarioContext context)
-        {
-            _context = context;
-        }
-    }
 }
