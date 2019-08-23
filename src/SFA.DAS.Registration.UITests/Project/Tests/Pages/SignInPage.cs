@@ -42,22 +42,23 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             return new RegisterPage(_context);
         }
 
-        public void Login()
+        public HomePage Login(LoginUser loginUser)
         {
-            EnterEmailAddress().
-            EnterPassword().
-            SignIn();
+             EnterEmailAddress(loginUser.Username)
+            .EnterPassword(loginUser.Password)
+            .SignIn();
+            return new HomePage(_context);
         }
 
-        private SignInPage EnterEmailAddress()
+        private SignInPage EnterEmailAddress(string username)
         {
-            _formCompletionHelper.EnterText(EmailAddressInput, _config.RE_AccountUserName);
+            _formCompletionHelper.EnterText(EmailAddressInput, username);
             return this;
         }
 
-        private SignInPage EnterPassword()
+        private SignInPage EnterPassword(string password)
         {
-            _formCompletionHelper.EnterText(PasswordInput, _config.RE_AccountPassword);
+            _formCompletionHelper.EnterText(PasswordInput, password);
             return this;
         }
 

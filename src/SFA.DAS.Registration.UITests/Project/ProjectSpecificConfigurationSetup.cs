@@ -24,10 +24,21 @@ namespace SFA.DAS.Registration.UITests.Project
             var config = _configSection.GetConfigSection<ProjectConfig>();
             _context.SetProjectConfig(config);
 
+            var levyUser = _configSection.GetConfigSection<LevyUser>();
+            _context.SetUser(levyUser);
+
+            var nonLevyUser = _configSection.GetConfigSection<NonLevyUser>();
+            _context.SetUser(nonLevyUser);
+
+            var eoiUser = _configSection.GetConfigSection<EoiUser>();
+            _context.SetUser(eoiUser);
+
             var mongoDbconfig = _configSection.GetConfigSection<MongoDbConfig>();
             _context.SetMongoDbConfig(mongoDbconfig);
 
             _objectContext.SetBrowser(config.RE_Browser);
         }
     }
+
+
 }

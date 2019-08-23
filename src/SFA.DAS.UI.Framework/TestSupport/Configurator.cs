@@ -20,24 +20,20 @@ namespace SFA.DAS.UI.Framework.TestSupport
             return _config;
         }
 
-        private static HostingConfig GetHostingConfig()
-        {
-            return _hostingConfig.GetSection(nameof(HostingConfig)).Get<HostingConfig>();
-        }
-
         private static IConfigurationRoot InitializeConfig()
         {
-            var host = GetHostingConfig();
+            var EnvironmentName = _hostingConfig.GetSection("Release_EnvironmentName").Value;
+            var ProjectName = _hostingConfig.GetSection("ProjectName").Value;
 
             return ConfigurationBuilder()
             .AddJsonFile("appsettings.json", true)
             .AddJsonFile("appsettings.BrowserStack.json", true)
             .AddJsonFile("appsettings.Project.json", true)
             .AddJsonFile("appsettings.Project.BrowserStack.json", true)
-            .AddJsonFile($"appsettings.{host?.EnvironmentName}.json", true)
+            .AddJsonFile($"appsettings.{EnvironmentName}.json", true)
             .AddEnvironmentVariables()
             .AddUserSecrets("BrowserStackSecrets")
-            .AddUserSecrets($"{host?.ProjectName}_{host?.EnvironmentName}_Secrets")
+            .AddUserSecrets($"{ProjectName}_{EnvironmentName}_Secrets")
             .AddUserSecrets("MongoDbSecrets")
             .Build();
         }

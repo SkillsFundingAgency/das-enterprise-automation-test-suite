@@ -24,7 +24,6 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
 
             var configuration = new FrameworkConfig
             {
-                HostingConfig = _configSection.GetConfigSection<HostingConfig>(),
                 TimeOutConfig = _configSection.GetConfigSection<TimeOutConfig>(),
                 BrowserStackSetting = _configSection.GetConfigSection<BrowserStackSetting>()
             };
