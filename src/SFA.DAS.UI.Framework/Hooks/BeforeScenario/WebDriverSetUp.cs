@@ -37,6 +37,7 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
             _objectContext = context.Get<ObjectContext>();
         }
 
+
         [BeforeScenario(Order = 3)]
         public void SetupWebDriver()
         {
@@ -51,8 +52,8 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
                     break;
 
                 case bool _ when browser.IsChrome():
-                    
-                    WebDriver = new ChromeDriver(FindDriverService(ChromeDriverServiceName), AddArguments(new List<string>() { "no-sandbox" }));
+
+                    WebDriver = ChromeDriver(new List<string>());
                     break;
 
                 case bool _ when browser.IsIe():
@@ -65,7 +66,7 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
                     break;
 
                 case bool _ when browser.IsChromeHeadless():
-                    WebDriver = new ChromeDriver(FindDriverService(ChromeDriverServiceName), AddArguments(new List<string>() { "--headless" }));
+                    WebDriver = ChromeDriver(new List<string>() { "--headless" });
                     break;
                
 
@@ -114,6 +115,15 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
 
             WebDriver = new ChromeDriver(FindDriverService(ChromeDriverServiceName), chromeOptions);
         }
+
+        private ChromeDriver ChromeDriver(List<string> arguments)
+        {
+            arguments.Add("no-sandbox");
+            return new ChromeDriver(FindDriverService(ChromeDriverServiceName),
+                                                 AddArguments(arguments),
+                                                 TimeSpan.FromMinutes(4));
+        }
+
         private ChromeOptions AddArguments(List<string> arguments)
         {
             var chromeOptions = new ChromeOptions();
