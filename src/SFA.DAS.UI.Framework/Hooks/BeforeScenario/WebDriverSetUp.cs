@@ -24,6 +24,8 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
 
         private readonly ObjectContext _objectContext;
 
+        private readonly FrameworkConfig _frameworkConfig;
+
         private const string ChromeDriverServiceName = "chromedriver.exe";
 
         private const string FirefoxDriverServiceName = "geckodriver.exe";
@@ -35,13 +37,13 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
             DriverPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
             _context = context;
             _objectContext = context.Get<ObjectContext>();
+            _frameworkConfig = context.Get<FrameworkConfig>();
         }
 
 
         [BeforeScenario(Order = 3)]
         public void SetupWebDriver()
         {
-            var options = _context.Get<FrameworkConfig>();
             var browser = _objectContext.GetBrowser();
             
             switch (true)
@@ -71,8 +73,8 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
                
 
                 case bool _ when browser.IsCloudExecution():
-                    options.BrowserStackSetting.Name = _context.ScenarioInfo.Title;
-                    WebDriver = BrowserStackSetup.Init(options.BrowserStackSetting);
+                    _frameworkConfig.BrowserStackSetting.Name = _context.ScenarioInfo.Title;
+                    WebDriver = BrowserStackSetup.Init(_frameworkConfig.BrowserStackSetting);
                     break;
 
                 default:
@@ -80,7 +82,7 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
             }
 
             WebDriver.Manage().Window.Maximize();
-            WebDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(options.TimeOutConfig.PageNavigation);
+            WebDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(_frameworkConfig.TimeOutConfig.PageNavigation);
             var currentWindow = WebDriver.CurrentWindowHandle;
             WebDriver.SwitchTo().Window(currentWindow);
             WebDriver.Manage().Cookies.DeleteAllCookies();
@@ -121,7 +123,7 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
             arguments.Add("no-sandbox");
             return new ChromeDriver(FindDriverService(ChromeDriverServiceName),
                                                  AddArguments(arguments),
-                                                 TimeSpan.FromMinutes(4));
+                                                 TimeSpan.FromMinutes(_frameworkConfig.TimeOutConfig.CommandTimeout));
         }
 
         private ChromeOptions AddArguments(List<string> arguments)
