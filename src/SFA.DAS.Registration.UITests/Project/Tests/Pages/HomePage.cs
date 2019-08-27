@@ -1,7 +1,6 @@
-﻿using OpenQA.Selenium;
+﻿using SFA.DAS.UI.FrameworkHelpers;
+using OpenQA.Selenium;
 using SFA.DAS.UI.Framework.TestSupport;
-using SFA.DAS.UI.FrameworkHelpers;
-using System.Text.RegularExpressions;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
@@ -12,6 +11,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
+        private readonly RegexHelper _regexHelper;
         #endregion
 
         private By PublicAccountId => By.CssSelector(".heading-secondary");
@@ -22,6 +22,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         internal HomePage(ScenarioContext context, bool navigate = false) : base(context, navigate)
         {
             _context = context;
+            _regexHelper = context.Get<RegexHelper>();
         }
 
         protected override string Linktext => "Home";
@@ -33,11 +34,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         public string AccountID()
         {
-            var url = pageInteractionHelper.GetUrl();
-
-            Match match = Regex.Match(url, @"\/[A-Z0-9]{6}\/");
-
-            return match.Success ? Regex.Replace(match.Value,@"\/",string.Empty) : url;
+            return _regexHelper.GetAccountId(pageInteractionHelper.GetUrl());
         }
     }
 }

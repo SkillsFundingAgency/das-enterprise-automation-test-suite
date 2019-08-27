@@ -1,4 +1,5 @@
-﻿using SFA.DAS.Approvals.UITests.Project.Tests.Pages;
+﻿using NUnit.Framework;
+using SFA.DAS.Approvals.UITests.Project.Tests.Pages;
 using SFA.DAS.UI.Framework.TestSupport;
 using System;
 using System.Collections.Generic;
@@ -47,8 +48,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
             _objectContext.SetCohortReference(cohortReference);
 
+            TestContext.Progress.WriteLine($"Cohort Reference: {cohortReference}");
         }
-
     }
-
 }
