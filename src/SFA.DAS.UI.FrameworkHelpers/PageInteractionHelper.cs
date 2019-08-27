@@ -3,42 +3,10 @@ using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
-using Polly;
-using NUnit.Framework;
 using System.Linq;
-using System.Net;
 
 namespace SFA.DAS.UI.FrameworkHelpers
 {
-    public class RetryHelper
-    {
-        internal bool RetryOnException(Func<bool> func, Action beforeAction = null)
-        {
-            return Policy
-                 .Handle<Exception>((x) => x.Message.Contains("verification failed"))
-                 .WaitAndRetry(TimeOut, (exception, timeSpan, retryCount, context) =>
-                 {
-                     TestContext.Progress.WriteLine($"Retry Count : {retryCount}, Exception : {exception.Message}");
-                 })
-                 .Execute(() =>
-                 {
-                     using (var testcontext = new NUnit.Framework.Internal.TestExecutionContext.IsolatedContext())
-                     {
-                         beforeAction?.Invoke();
-                         return func();
-                     }
-                 });
-        }
-        private static TimeSpan[] TimeOut => new[]
-        {
-            TimeSpan.FromSeconds(1),
-            TimeSpan.FromSeconds(2),
-            TimeSpan.FromSeconds(3)
-        };
-
-    }
-
-
     public class PageInteractionHelper
     {
         private readonly IWebDriver _webDriver;
