@@ -37,5 +37,15 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages
             _formCompletionHelper.ClickElement(AddAnApprenticeButton);
             return new AddApprenticeDetailsPage(_context);
         }
+
+        internal string ApprenticeTotalCost()
+        {
+            return _pageInteractionHelper.GetText(TotalCost);
+        }
+        internal ChooseAnOptionPage SaveAndContinue()
+        {
+            _formCompletionHelper.ClickElement(SaveAndContinueButton);
+            return new ChooseAnOptionPage(_context);
+        }
     }
 }
