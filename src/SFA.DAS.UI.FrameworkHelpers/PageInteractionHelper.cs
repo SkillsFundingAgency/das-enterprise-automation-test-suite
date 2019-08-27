@@ -10,30 +10,12 @@ using System.Net;
 
 namespace SFA.DAS.UI.FrameworkHelpers
 {
-    public class PageInteractionHelper
+    public class RetryHelper
     {
-        private readonly IWebDriver _webDriver;
-        private readonly WebDriverWaitHelper _webDriverWaitHelper;
-
-        public PageInteractionHelper(IWebDriver webDriver, WebDriverWaitHelper webDriverWaitHelper)
-        {
-            _webDriver = webDriver;
-            _webDriverWaitHelper = webDriverWaitHelper;
-        }
-
-        private static TimeSpan[] TimeOut => new[] 
-        {
-            TimeSpan.FromSeconds(1),
-            TimeSpan.FromSeconds(2),
-            TimeSpan.FromSeconds(3)
-        };
-
-        private bool RetryOnException(Func<bool> func, Action beforeAction = null)
+        internal bool RetryOnException(Func<bool> func, Action beforeAction = null)
         {
             return Policy
                  .Handle<Exception>((x) => x.Message.Contains("verification failed"))
-                 .Or<WebDriverException>()
-                 .Or<WebException>()
                  .WaitAndRetry(TimeOut, (exception, timeSpan, retryCount, context) =>
                  {
                      TestContext.Progress.WriteLine($"Retry Count : {retryCount}, Exception : {exception.Message}");
@@ -46,6 +28,28 @@ namespace SFA.DAS.UI.FrameworkHelpers
                          return func();
                      }
                  });
+        }
+        private static TimeSpan[] TimeOut => new[]
+        {
+            TimeSpan.FromSeconds(1),
+            TimeSpan.FromSeconds(2),
+            TimeSpan.FromSeconds(3)
+        };
+
+    }
+
+
+    public class PageInteractionHelper
+    {
+        private readonly IWebDriver _webDriver;
+        private readonly WebDriverWaitHelper _webDriverWaitHelper;
+        private readonly RetryHelper _retryHelper;
+
+        public PageInteractionHelper(IWebDriver webDriver, WebDriverWaitHelper webDriverWaitHelper, RetryHelper retryHelper)
+        {
+            _webDriver = webDriver;
+            _webDriverWaitHelper = webDriverWaitHelper;
+            _retryHelper = retryHelper;
         }
 
         public bool VerifyPage(By locator, string expected, Action beforeAction = null)
@@ -63,7 +67,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
                     + "\n Found: " + actual + " page");
             }
             
-            return RetryOnException(func, beforeAction);
+            return _retryHelper.RetryOnException(func, beforeAction);
         }
 
         public bool VerifyPage(string actual, string expected1, string expected2)

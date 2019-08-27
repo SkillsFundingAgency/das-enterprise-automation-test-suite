@@ -33,6 +33,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         public void ClickElement(By locator)
         {
+            _webDriverWaitHelper.WaitForElementToBeClickable(locator);
             ClickElement(_webDriver.FindElement(locator));
         }
 

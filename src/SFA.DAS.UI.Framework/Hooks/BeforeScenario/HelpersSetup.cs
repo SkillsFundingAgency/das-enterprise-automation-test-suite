@@ -21,7 +21,8 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
         {
             var WebDriver = _context.GetWebDriver();
             var webDriverwaitHelper = new WebDriverWaitHelper(WebDriver, _config.TimeOutConfig);
-            _context.Set(new PageInteractionHelper(WebDriver, webDriverwaitHelper));
+            var retryHelper = new RetryHelper();
+            _context.Set(new PageInteractionHelper(WebDriver, webDriverwaitHelper, retryHelper));
             _context.Set(new FormCompletionHelper(WebDriver, webDriverwaitHelper));
             _context.Set(new JavaScriptHelper(WebDriver));
             _context.Set(new RandomDataGenerator());
