@@ -176,8 +176,17 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         public string GetRowData(By tableIdentifier, string rowIdentifier)
         {
-            var rows = _webDriver.FindElement(tableIdentifier).FindElements(By.CssSelector("tr")).ToList();
-            return rows.Where(x => x.FindElements(By.CssSelector("td")).Any(y => y?.Text == rowIdentifier)).SingleOrDefault()?.Text;
+            return GetRows(tableIdentifier).Where(x => x.FindElements(By.CssSelector("td")).Any(y => y?.Text == rowIdentifier)).SingleOrDefault()?.Text;
+        }
+
+        public List<IWebElement> GetRows(By tableIdentifier)
+        {
+            return _webDriver.FindElement(tableIdentifier).FindElements(By.CssSelector("tr")).ToList();
+        }
+
+        public List<IWebElement> FindElements(By locator)
+        {
+            return _webDriver.FindElements(locator).ToList();
         }
 
     }

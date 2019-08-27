@@ -19,12 +19,14 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
         [BeforeScenario(Order = 4)]
         public void SetUpHelpers()
         {
-            var WebDriver = _context.GetWebDriver();
-            var webDriverwaitHelper = new WebDriverWaitHelper(WebDriver, _config.TimeOutConfig);
+            var webDriver = _context.GetWebDriver();
+            var webDriverwaitHelper = new WebDriverWaitHelper(webDriver, _config.TimeOutConfig);
             var retryHelper = new RetryHelper();
-            _context.Set(new PageInteractionHelper(WebDriver, webDriverwaitHelper, retryHelper));
-            _context.Set(new FormCompletionHelper(WebDriver, webDriverwaitHelper));
-            _context.Set(new JavaScriptHelper(WebDriver));
+            _context.Set(new PageInteractionHelper(webDriver, webDriverwaitHelper, retryHelper));
+            var formCompletionHelper = new FormCompletionHelper(webDriver, webDriverwaitHelper);
+            _context.Set(formCompletionHelper);
+            _context.Set(new TableRowHelper(webDriver, formCompletionHelper));
+            _context.Set(new JavaScriptHelper(webDriver));
             _context.Set(new RandomDataGenerator());
             _context.Set(new RegexHelper());
         }
