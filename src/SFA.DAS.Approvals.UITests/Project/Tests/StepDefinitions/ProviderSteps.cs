@@ -24,10 +24,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _objectContext = _context.Get<ObjectContext>();
             _webDriver = context.GetWebDriver();
         }
-
         [When(@"the provider adds Ulns and approves the cohorts")]
-        public void WhenTheProviderAddsUlnsAndApprovesTheCohorts()
+        public void TheProviderAddsUlnsAndApprovesTheCohorts()
         {
+
             ((IJavaScriptExecutor)_webDriver).ExecuteScript($"window.open('{_config.AP_ProviderAppUrl}','_blank');");
 
             var providerReviewYourCohortPage = new ProviderIndexPage(_context)
