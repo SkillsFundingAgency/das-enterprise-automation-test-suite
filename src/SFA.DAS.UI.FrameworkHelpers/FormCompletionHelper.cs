@@ -8,10 +8,12 @@ namespace SFA.DAS.UI.FrameworkHelpers
     public class FormCompletionHelper 
     {
         private readonly IWebDriver _webDriver;
+        private readonly WebDriverWaitHelper _webDriverWaitHelper;
 
-        public FormCompletionHelper(IWebDriver webDriver)
+        public FormCompletionHelper(IWebDriver webDriver, WebDriverWaitHelper webDriverWaitHelper )
         {
             _webDriver = webDriver;
+            _webDriverWaitHelper = webDriverWaitHelper;
         }
 
         public void SelectRadioButton(IWebElement element)

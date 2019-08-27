@@ -6,18 +6,19 @@ using System.Collections.Generic;
 using Polly;
 using NUnit.Framework;
 using System.Linq;
+using System.Net;
 
 namespace SFA.DAS.UI.FrameworkHelpers
 {
     public class PageInteractionHelper
     {
         private readonly IWebDriver _webDriver;
-        private readonly TimeOutConfig _timeOutConfig;
+        private readonly WebDriverWaitHelper _webDriverWaitHelper;
 
-        public PageInteractionHelper(IWebDriver webDriver, TimeOutConfig timeOutConfig)
+        public PageInteractionHelper(IWebDriver webDriver, WebDriverWaitHelper webDriverWaitHelper)
         {
             _webDriver = webDriver;
-            _timeOutConfig = timeOutConfig;
+            _webDriverWaitHelper = webDriverWaitHelper;
         }
 
         private static TimeSpan[] TimeOut => new[] 
@@ -31,6 +32,8 @@ namespace SFA.DAS.UI.FrameworkHelpers
         {
             return Policy
                  .Handle<Exception>((x) => x.Message.Contains("verification failed"))
+                 .Or<WebDriverException>()
+                 .Or<WebException>()
                  .WaitAndRetry(TimeOut, (exception, timeSpan, retryCount, context) =>
                  {
                      TestContext.Progress.WriteLine($"Retry Count : {retryCount}, Exception : {exception.Message}");
@@ -106,12 +109,6 @@ namespace SFA.DAS.UI.FrameworkHelpers
                 + "\n Found: " + actual);
         }
 
-        public void WaitForPageToLoad()
-        {
-            var waitForDocumentReady = new WebDriverWait(_webDriver, TimeSpan.FromSeconds(_timeOutConfig.PageNavigation));
-            waitForDocumentReady.Until(driver => ((IJavaScriptExecutor) _webDriver).ExecuteScript("return document.readyState").Equals("complete"));
-        }
-
         public string GetTextFromElementsGroup(By locator)
         {
             string text = null;
@@ -125,24 +122,6 @@ namespace SFA.DAS.UI.FrameworkHelpers
         public int GetCountOfElementsGroup(By locator)
         {
             return _webDriver.FindElements(locator).Count;
-        }
-
-        public void WaitForElementToBePresent(By locator)
-        {
-            var wait = new WebDriverWait(_webDriver, TimeSpan.FromSeconds(_timeOutConfig.ImplicitWait));
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(locator));
-        }
-
-        public void WaitForElementToBeDisplayed(By locator)
-        {
-            var wait = new WebDriverWait(_webDriver, TimeSpan.FromSeconds(_timeOutConfig.ImplicitWait));
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(locator));
-        }
-
-        public void WaitForElementToBeClickable(By locator)
-        {
-            var webDriverWait = new WebDriverWait(_webDriver, TimeSpan.FromSeconds(_timeOutConfig.ImplicitWait));
-            webDriverWait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementToBeClickable(locator));
         }
 
         public bool IsElementPresent(By locator)
@@ -159,7 +138,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
             }
             finally
             {
-                TurnOnImplicitWaits();
+                _webDriverWaitHelper.TurnOnImplicitWaits();
             }
         }
 
@@ -176,7 +155,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
             }
             finally
             {
-                TurnOnImplicitWaits();
+                _webDriverWaitHelper.TurnOnImplicitWaits();
             }
         }
 
@@ -184,7 +163,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
         {
             IWebElement webElement = _webDriver.FindElement(locator);
             new Actions(_webDriver).MoveToElement(webElement).Perform();
-            WaitForElementToBeDisplayed(locator);
+            _webDriverWaitHelper.WaitForElementToBeDisplayed(locator);
         }
 
         public void FocusTheElement(IWebElement element)
@@ -196,7 +175,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
         {
             var webElement = _webDriver.FindElement(locator);
             new Actions(_webDriver).MoveToElement(webElement).Perform();
-            WaitForElementToBeDisplayed(locator);
+            _webDriverWaitHelper.WaitForElementToBeDisplayed(locator);
         }
 
         public void UnFocusTheElement(IWebElement element)
@@ -207,11 +186,6 @@ namespace SFA.DAS.UI.FrameworkHelpers
         public void TurnOffImplicitWaits()
         {
             _webDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromMilliseconds(500);
-        }
-
-        public void TurnOnImplicitWaits()
-        {
-            _webDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(_timeOutConfig.ImplicitWait);
         }
 
         public void SwitchToFrame(By locator)

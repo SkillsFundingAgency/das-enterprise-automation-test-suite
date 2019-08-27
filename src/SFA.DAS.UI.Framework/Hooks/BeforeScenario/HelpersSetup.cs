@@ -20,8 +20,9 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
         public void SetUpHelpers()
         {
             var WebDriver = _context.GetWebDriver();
-            _context.Set(new PageInteractionHelper(WebDriver, _config.TimeOutConfig));
-            _context.Set(new FormCompletionHelper(WebDriver));
+            var webDriverwaitHelper = new WebDriverWaitHelper(WebDriver, _config.TimeOutConfig);
+            _context.Set(new PageInteractionHelper(WebDriver, webDriverwaitHelper));
+            _context.Set(new FormCompletionHelper(WebDriver, webDriverwaitHelper));
             _context.Set(new JavaScriptHelper(WebDriver));
             _context.Set(new RandomDataGenerator());
         }
