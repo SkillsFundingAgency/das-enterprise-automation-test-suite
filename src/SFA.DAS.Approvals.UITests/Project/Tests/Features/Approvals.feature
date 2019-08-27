@@ -18,7 +18,7 @@ And Provider edits all apprentices and enters Ulns
 And Provider approves the cohort
 Then I should be on request-approved page
 
-@addpayedetails
+#@addpayedetails
 Scenario: Employer sends an approved cohort then provider approves the cohort
 #Given I have levy declarations
 #Given the User creates Employer account and sign an agreement

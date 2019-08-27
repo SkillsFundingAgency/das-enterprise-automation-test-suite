@@ -35,7 +35,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                 employerReviewYourCohortPage.SelectAddAnApprentice()
                     .SubmitValidApprenticeDetails();
             }
+
+            var apprenticeTotalCost = employerReviewYourCohortPage.ApprenticeTotalCost();
+
+            _objectContext.SetApprenticeTotalCost(apprenticeTotalCost);
+
         }
 
     }
+
 }

@@ -108,11 +108,9 @@ testRunner.Then("I should be on request-approved page", ((string)(null)), ((Tech
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Employer sends an approved cohort then provider approves the cohort")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
         public virtual void EmployerSendsAnApprovedCohortThenProviderApprovesTheCohort()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Employer sends an approved cohort then provider approves the cohort", null, new string[] {
-                        "addpayedetails"});
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Employer sends an approved cohort then provider approves the cohort", null, ((string[])(null)));
 #line 22
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
