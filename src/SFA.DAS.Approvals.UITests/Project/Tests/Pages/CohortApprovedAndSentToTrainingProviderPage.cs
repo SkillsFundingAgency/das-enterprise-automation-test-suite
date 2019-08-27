@@ -6,9 +6,9 @@ using OpenQA.Selenium;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages
 {
-    public class MessageForYourTrainingProviderPage : BasePage
+    public class CohortApprovedAndSentToTrainingProviderPage : BasePage
     {
-        protected override string PageTitle => "Message for your training provider";
+        protected override string PageTitle => "Cohort approved and sent to training provider";
 
         #region Helpers and Context
         private readonly PageInteractionHelper _pageInteractionHelper;
@@ -16,26 +16,26 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages
         private readonly ScenarioContext _context;
         private readonly ApprovalsConfig _config;
         private readonly ApprovalsDataHelper _dataHelper;
+        private readonly RegexHelper _regexHelper;
         #endregion
 
-        private By MessageBox => By.Id("Message");
-        private By SendButton => By.CssSelector(".button");
+        private By Instructions => By.CssSelector(".instructionSent tbody");
 
-        public MessageForYourTrainingProviderPage(ScenarioContext context) : base(context)
+        public CohortApprovedAndSentToTrainingProviderPage(ScenarioContext context) : base(context)
         {
             _context = context;
             _config = context.GetApprovalsConfig<ApprovalsConfig>();
             _dataHelper = context.Get<ApprovalsDataHelper>();
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
+            _regexHelper = context.Get<RegexHelper>();
             VerifyPage();
         }
 
-        public CohortApprovedAndSentToTrainingProviderPage SendInstructionsToProviderForAnApprovedCohort()
+        internal string CohortReference()
         {
-            _formCompletionHelper.EnterText(MessageBox, _dataHelper.MessageToProvider);
-            _formCompletionHelper.ClickElement(SendButton);
-            return new CohortApprovedAndSentToTrainingProviderPage(_context);
+            var reference = _pageInteractionHelper.GetRowData(Instructions, "Cohort reference");
+            return _regexHelper.GetCohortReference(reference);
         }
     }
 }
