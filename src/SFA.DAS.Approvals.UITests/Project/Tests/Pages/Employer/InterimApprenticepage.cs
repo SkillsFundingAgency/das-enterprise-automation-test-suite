@@ -1,7 +1,7 @@
 ﻿using SFA.DAS.Registration.UITests.Project.Tests.Pages;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages
+namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
     public abstract class InterimApprenticepage : InterimBasePage
     {

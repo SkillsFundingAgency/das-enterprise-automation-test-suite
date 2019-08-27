@@ -1,5 +1,5 @@
 ﻿using NUnit.Framework;
-using SFA.DAS.Approvals.UITests.Project.Tests.Pages;
+using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
 using SFA.DAS.UI.Framework.TestSupport;
 using System;
 using System.Collections.Generic;

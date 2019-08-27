@@ -3,11 +3,11 @@ using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages
+namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
-    public class ChooseAnOptionPage : BasePage
+    public class AddAnApprenitcePage : BasePage
     {
-        protected override string PageTitle => "Choose an option";
+        protected override string PageTitle => "Add an apprentice";
 
         #region Helpers and Context
         private readonly PageInteractionHelper _pageInteractionHelper;
@@ -16,10 +16,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages
         private readonly ApprovalsConfig _config;
         #endregion
 
-        private By CohortApproveOptions => By.CssSelector(".selection-button-radio");
-        private By ContinueButton => By.Id("paymentPlan");
+        private By StartNowButton = By.CssSelector(".button-start");
 
-        public ChooseAnOptionPage(ScenarioContext context) : base(context)
+        public AddAnApprenitcePage(ScenarioContext context) : base(context)
         {
             _context = context;
             _config = context.GetApprovalsConfig<ApprovalsConfig>();
@@ -28,11 +27,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages
             VerifyPage();
         }
 
-        internal MessageForYourTrainingProviderPage SubmitApproveAndSendToTrainingProvider()
+        public AddTrainingProviderDetailsPage StartNow()
         {
-            _formCompletionHelper.SelectRadioOptionByForAttribute(CohortApproveOptions, "SaveStatus-ApproveAndSend");
-            _formCompletionHelper.ClickElement(ContinueButton);
-            return new MessageForYourTrainingProviderPage(_context);
+            _formCompletionHelper.ClickElement(StartNowButton);
+            return new AddTrainingProviderDetailsPage(_context);
         }
     }
 }
+

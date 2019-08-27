@@ -4,7 +4,7 @@ using TechTalk.SpecFlow;
 using SFA.DAS.Approvals.UITests.Project.Helpers;
 using OpenQA.Selenium;
 
-namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages
+namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
     public class CohortApprovedAndSentToTrainingProviderPage : BasePage
     {
