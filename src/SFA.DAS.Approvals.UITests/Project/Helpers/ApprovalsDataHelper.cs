@@ -22,6 +22,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers
             CourseEndDate = GetCourseEndDate();
             TrainingPrice = "1" + _randomDataGenerator.GenerateRandomNumber(3);
             EmployerReference = _randomDataGenerator.GenerateRandomAlphanumericString(10);
+            MessageToProvider = _randomDataGenerator.GenerateRandomAlphanumericString(20);
         }
 
         public string ProviderUkPrn => "10005310";
@@ -49,6 +50,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers
         public string TrainingPrice { get; }
 
         public string EmployerReference { get; }
+
+        public string MessageToProvider { get; }
 
         public int RandomNumber { get; }
 
