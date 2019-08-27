@@ -1,4 +1,5 @@
-﻿using SFA.DAS.Registration.UITests.Project.Tests.Pages;
+﻿using NUnit.Framework;
+using SFA.DAS.Registration.UITests.Project.Tests.Pages;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -20,6 +21,9 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         public void GivenTheEmployerLoginUsingExistingLevyAccount()
         {
             var levyUser = _context.GetUser<LevyUser>();
+
+            ReportUsername(levyUser.Username);
+
             new IndexPage(_context)
                 .SignIn()
                 .Login(levyUser);
@@ -29,6 +33,9 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         public void GivenTheEmployerLoginUsingExistingNonLevyAccount()
         {
             var nonlevyUser = _context.GetUser<NonLevyUser>();
+
+            ReportUsername(nonlevyUser.Username);
+            
             new IndexPage(_context)
                 .SignIn()
                 .Login(nonlevyUser);
@@ -38,9 +45,17 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         public void GivenTheEmployerLoginUsingExistingEoiAccount()
         {
             var eoiUser = _context.GetUser<EoiUser>();
+
+            ReportUsername(eoiUser.Username);
+
             new IndexPage(_context)
                 .SignIn()
                 .Login(eoiUser);
+        }
+
+        private void ReportUsername(string username)
+        {
+            TestContext.Progress.WriteLine($"Email : {username}");
         }
     }
 }

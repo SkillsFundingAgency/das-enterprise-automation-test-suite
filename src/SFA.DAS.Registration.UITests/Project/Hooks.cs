@@ -42,8 +42,6 @@ namespace SFA.DAS.Registration.UITests.Project
             _dataHelper = new DataHelper(_config.TwoDigitProjectCode, domainName);
 
             _context.Set(_dataHelper);
-
-            TestContext.Progress.WriteLine($"Email : {_dataHelper.RandomEmail}");
         }
 
         [BeforeScenario(Order = 23)]

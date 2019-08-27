@@ -16,16 +16,20 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         private EoiAboutYourAgreementPage eoiAboutYourAgreementPage;
         private HomePage homePage;
         private readonly ObjectContext _objectContext;
+        private readonly DataHelper _dataHelper;
 
         public CreateAccountSteps(ScenarioContext context)
         {
             _context = context;
             _objectContext = _context.Get<ObjectContext>();
+            _dataHelper = context.Get<DataHelper>();
         }
 
         [Given(@"I create an Account")]
         public void CreateAnAccount()
         {
+            TestContext.Progress.WriteLine($"Email : {_dataHelper.RandomEmail}");
+
             getApprenticeshipFunding = new IndexPage(_context)
                 .CreateAccount()
                 .Register()
