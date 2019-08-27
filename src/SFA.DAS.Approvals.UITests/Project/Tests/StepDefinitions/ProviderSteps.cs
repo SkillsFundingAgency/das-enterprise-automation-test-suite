@@ -5,6 +5,7 @@ using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
 using SFA.DAS.UI.Framework.TestSupport;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using TechTalk.SpecFlow;
 
@@ -29,7 +30,17 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Then(@"the provider adds Ulns and approves the cohorts")]
         public void TheProviderAddsUlnsAndApprovesTheCohorts()
         {
+            _objectContext.SetCohortReference("MLLDJ4");
+
+            var handle = _webDriver.CurrentWindowHandle;
+
             ((IJavaScriptExecutor)_webDriver).ExecuteScript($"window.open('{_config.AP_ProviderAppUrl}','_blank');");
+
+            var handles = _webDriver.WindowHandles;
+
+            var newWindow = handles.FirstOrDefault(x => x != handle);
+
+            _webDriver.SwitchTo().Window(newWindow);
 
             var providerReviewYourCohortPage = new ProviderIndexPage(_context)
                 .StartNow()
