@@ -10,6 +10,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 {
+    [Binding]
     public class ProviderSteps
     {
         private readonly ScenarioContext _context;

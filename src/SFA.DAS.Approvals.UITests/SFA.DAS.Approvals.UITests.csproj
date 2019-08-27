@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <SpecFlowObsoleteCodeBehindFiles Remove="Project\Tests\Features\Approvals - Copy.feature.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Include="..\NUnitConfigurator.cs" Link="NUnitConfigurator.cs" />
   </ItemGroup>
 
@@ -27,7 +31,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Project\Tests\Features\" />
+    <Compile Update="Project\Tests\Features\ApprovalsExistingUsers.feature.cs">
+      <DependentUpon>ApprovalsExistingUsers.feature</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
@@ -40,6 +46,13 @@
     <None Update="appsettings.Project.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <SpecFlowFeatureFiles Update="Project\Tests\Features\ApprovalsExistingUsers.feature">
+      <Visible>$(UsingMicrosoftNETSdk)</Visible>
+      <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
+    </SpecFlowFeatureFiles>
   </ItemGroup>
 
 </Project>

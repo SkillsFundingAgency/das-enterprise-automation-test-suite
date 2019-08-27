@@ -18,20 +18,20 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.0.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("Approvals")]
-    public partial class ApprovalsFeature
+    [NUnit.Framework.DescriptionAttribute("ApprovalsExistingUsers")]
+    public partial class ApprovalsExistingUsersFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "Approvals.feature"
+#line 1 "ApprovalsExistingUsers.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Approvals", "A short summary of the feature", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "ApprovalsExistingUsers", "A short summary of the feature", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -70,22 +70,18 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Create Employer send an approved cohort then provider approves the cohort")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
-        public virtual void CreateEmployerSendAnApprovedCohortThenProviderApprovesTheCohort()
+        [NUnit.Framework.DescriptionAttribute("Employer sends an approved cohort then provider approves the cohort")]
+        public virtual void EmployerSendsAnApprovedCohortThenProviderApprovesTheCohort()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Create Employer send an approved cohort then provider approves the cohort", null, new string[] {
-                        "addpayedetails"});
-#line 7
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Employer sends an approved cohort then provider approves the cohort", null, ((string[])(null)));
+#line 6
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
+#line 7
+testRunner.Given("the Employer login using existing levy account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 8
-testRunner.Given("I have levy declarations", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 9
-testRunner.Given("the User creates Employer account and sign an agreement", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 10
 testRunner.When("the Employer approves 2 cohort and sends to provider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 11
+#line 9
 testRunner.Then("the provider adds Ulns and approves the cohorts", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
