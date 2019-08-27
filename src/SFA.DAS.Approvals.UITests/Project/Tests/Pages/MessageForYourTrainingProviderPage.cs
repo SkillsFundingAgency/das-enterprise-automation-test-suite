@@ -51,7 +51,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages
         private readonly ApprovalsDataHelper _dataHelper;
         #endregion
 
-        private By Instructions => By.CssSelector(".instructionSent table");
+        private By Instructions => By.CssSelector(".instructionSent tbody");
 
         public CohortApprovedAndSentToTrainingProviderPage(ScenarioContext context) : base(context)
         {
@@ -65,7 +65,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages
 
         internal string CohortReference()
         {
-            return null;
+            return _pageInteractionHelper.GetRowData(Instructions, "Cohort reference");
         }
 
     }

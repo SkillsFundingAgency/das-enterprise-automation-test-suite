@@ -40,6 +40,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
             _objectContext.SetApprenticeTotalCost(apprenticeTotalCost);
 
+            var cohortReference = employerReviewYourCohortPage.SaveAndContinue()
+                .SubmitApproveAndSendToTrainingProvider()
+                .SendInstructionsToProviderForAnApprovedCohort()
+                .CohortReference();
+
+            _objectContext.SetCohortReference(cohortReference);
+
         }
 
     }

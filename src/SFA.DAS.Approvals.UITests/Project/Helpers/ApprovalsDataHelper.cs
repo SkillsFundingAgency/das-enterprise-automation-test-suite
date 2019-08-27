@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 
 namespace SFA.DAS.Approvals.UITests.Project.Helpers
@@ -8,9 +9,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers
     public class ApprovalsDataHelper
     {
         private readonly RandomDataGenerator _randomDataGenerator;
+        private readonly ObjectContext _objectContext;
 
-        public ApprovalsDataHelper(RandomDataGenerator randomDataGenerator)
+        public ApprovalsDataHelper(ObjectContext objectContext, RandomDataGenerator randomDataGenerator)
         {
+            _objectContext = objectContext;
             _randomDataGenerator = randomDataGenerator;
             RandomNumber = _randomDataGenerator.GenerateRandomNumberBetweenTwoValues(1, 10);
             ApprenticeFirstname = _randomDataGenerator.GenerateRandomAlphabeticString(10);
@@ -22,7 +25,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers
             CourseEndDate = GetCourseEndDate();
             TrainingPrice = "1" + _randomDataGenerator.GenerateRandomNumber(3);
             EmployerReference = _randomDataGenerator.GenerateRandomAlphanumericString(10);
-            MessageToProvider = _randomDataGenerator.GenerateRandomAlphanumericString(20);
         }
 
         public string ProviderUkPrn => "10005310";
@@ -51,7 +53,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers
 
         public string EmployerReference { get; }
 
-        public string MessageToProvider { get; }
+        public string MessageToProvider => $"Apprentice Total Cost {_objectContext.GetApprenticeTotalCost()}, {_randomDataGenerator.GenerateRandomAlphanumericString(20)}";
 
         public int RandomNumber { get; }
 

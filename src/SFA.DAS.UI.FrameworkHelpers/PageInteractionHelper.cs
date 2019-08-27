@@ -206,9 +206,10 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         public IWebElement GetLink(By by, string linkText) => _webDriver.FindElements(by).ToList().First(x => x.GetAttribute("innerText") == linkText);
 
-        public string GetCellData(By tableIdentifier, string rowIdentifier)
+        public string GetRowData(By tableIdentifier, string rowIdentifier)
         {
-            return null;
+            var rows = _webDriver.FindElement(tableIdentifier).FindElements(By.CssSelector("tr")).ToList();
+            return rows.Where(x => x.FindElements(By.CssSelector("td")).Any(y => y?.Text == rowIdentifier)).SingleOrDefault()?.Text;
         }
 
     }
