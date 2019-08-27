@@ -16,6 +16,8 @@
 
         public string AP_EmployerConfirmIdentityCode { get; set; }
 
+        public string AP_ProviderUkprn { get; set; }
+
         public string AP_ProviderLoginId { get; set; }
 
         public string AP_ProviderLoginIdForPermissionTests { get; set; }

@@ -27,8 +27,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers
             EmployerReference = _randomDataGenerator.GenerateRandomAlphanumericString(10);
         }
 
-        public string ProviderUkPrn => "10005310";
-
         public string ApprenticeFirstname { get; }
 
         public string ApprenticeLastname { get; }
@@ -56,6 +54,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers
         public string MessageToProvider => $"Apprentice Total Cost {_objectContext.GetApprenticeTotalCost()}, {_randomDataGenerator.GenerateRandomAlphanumericString(20)}";
 
         public int RandomNumber { get; }
+
+        public string Uln => _randomDataGenerator.GenerateRandomUln();
 
         private DateTime GenerateCourseStartDate()
         {
