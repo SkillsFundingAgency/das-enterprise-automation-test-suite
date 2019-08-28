@@ -8,6 +8,14 @@
 
   <ItemGroup>
     <SpecFlowObsoleteCodeBehindFiles Remove="Project\Tests\Features\Approvals - Copy.feature.cs" />
+    <SpecFlowObsoleteCodeBehindFiles Remove="Project\Tests\Features\ApprovalsExistingUsers - Copy.feature.cs" />
+    <SpecFlowObsoleteCodeBehindFiles Remove="Project\Tests\Features\ApprovalsExistingUsersDuplicate - Copy (2).feature.cs" />
+    <SpecFlowObsoleteCodeBehindFiles Remove="Project\Tests\Features\ApprovalsExistingUsersDuplicate - Copy (3).feature.cs" />
+    <SpecFlowObsoleteCodeBehindFiles Remove="Project\Tests\Features\ApprovalsExistingUsersDuplicate - Copy (4).feature.cs" />
+    <SpecFlowObsoleteCodeBehindFiles Remove="Project\Tests\Features\ApprovalsExistingUsersDuplicate - Copy (5).feature.cs" />
+    <SpecFlowObsoleteCodeBehindFiles Remove="Project\Tests\Features\ApprovalsExistingUsersDuplicate - Copy (6).feature.cs" />
+    <SpecFlowObsoleteCodeBehindFiles Remove="Project\Tests\Features\ApprovalsExistingUsersDuplicate - Copy (7).feature.cs" />
+    <SpecFlowObsoleteCodeBehindFiles Remove="Project\Tests\Features\ApprovalsExistingUsersDuplicate - Copy.feature.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -31,6 +39,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Project\Tests\Features\ApprovalsExistingUsersDuplicate.feature.cs">
+      <DependentUpon>ApprovalsExistingUsersDuplicate.feature</DependentUpon>
+    </Compile>
     <Compile Update="Project\Tests\Features\ApprovalsExistingUsers.feature.cs">
       <DependentUpon>ApprovalsExistingUsers.feature</DependentUpon>
     </Compile>
@@ -49,6 +60,38 @@
   </ItemGroup>
 
   <ItemGroup>
+    <SpecFlowFeatureFiles Update="Project\Tests\Features\ApprovalsExistingUsersDuplicateTwo.feature">
+      <Visible>$(UsingMicrosoftNETSdk)</Visible>
+      <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
+    </SpecFlowFeatureFiles>
+    <SpecFlowFeatureFiles Update="Project\Tests\Features\ApprovalsExistingUsersDuplicateThree.feature">
+      <Visible>$(UsingMicrosoftNETSdk)</Visible>
+      <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
+    </SpecFlowFeatureFiles>
+    <SpecFlowFeatureFiles Update="Project\Tests\Features\ApprovalsExistingUsersDuplicateFour.feature">
+      <Visible>$(UsingMicrosoftNETSdk)</Visible>
+      <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
+    </SpecFlowFeatureFiles>
+    <SpecFlowFeatureFiles Update="Project\Tests\Features\ApprovalsExistingUsersDuplicateFive.feature">
+      <Visible>$(UsingMicrosoftNETSdk)</Visible>
+      <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
+    </SpecFlowFeatureFiles>
+    <SpecFlowFeatureFiles Update="Project\Tests\Features\ApprovalsExistingUsersDuplicateSix.feature">
+      <Visible>$(UsingMicrosoftNETSdk)</Visible>
+      <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
+    </SpecFlowFeatureFiles>
+    <SpecFlowFeatureFiles Update="Project\Tests\Features\ApprovalsExistingUsersDuplicateSeven.feature">
+      <Visible>$(UsingMicrosoftNETSdk)</Visible>
+      <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
+    </SpecFlowFeatureFiles>
+    <SpecFlowFeatureFiles Update="Project\Tests\Features\ApprovalsExistingUsersDuplicateOne.feature">
+      <Visible>$(UsingMicrosoftNETSdk)</Visible>
+      <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
+    </SpecFlowFeatureFiles>
+    <SpecFlowFeatureFiles Update="Project\Tests\Features\ApprovalsExistingUsersDuplicate.feature">
+      <Visible>$(UsingMicrosoftNETSdk)</Visible>
+      <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
+    </SpecFlowFeatureFiles>
     <SpecFlowFeatureFiles Update="Project\Tests\Features\ApprovalsExistingUsers.feature">
       <Visible>$(UsingMicrosoftNETSdk)</Visible>
       <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
