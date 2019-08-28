@@ -19,6 +19,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
         {
             return Policy
                  .Handle<Exception>((x) => x.Message.Contains("verification failed"))
+                 .Or<WebDriverException>()
                  .WaitAndRetry(TimeOut, (exception, timeSpan, retryCount, context) =>
                  {
                      TestContext.Progress.WriteLine($"Retry Count : {retryCount}, Exception : {exception.Message}");
@@ -42,12 +43,18 @@ namespace SFA.DAS.UI.FrameworkHelpers
                  {
                      TestContext.Progress.WriteLine($"Retry Count : {retryCount}, Exception : {exception.Message}");
 
-                     if (retryCount >= 1)
+                     switch (true)
                      {
-                         var x = ResizeWindow();
-                         //var x = ScrollIntoView(element);
-                         beforeAction = x.beforeAction;
-                         afterAction = x.afterAction;
+                         case bool _ when retryCount == 1:
+                             var x = ResizeWindow();
+                             beforeAction = x.beforeAction;
+                             afterAction = x.afterAction;
+                             break;
+                         case bool _ when retryCount >= 2:
+                             var y = ScrollIntoView(element);
+                             beforeAction = y.beforeAction;
+                             afterAction = y.afterAction;
+                             break;
                      }
                  })
                  .Execute(() =>
