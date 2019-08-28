@@ -8,13 +8,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 {
     public class ProviderHomePage : InterimProviderBasePage
     {
-        protected override string PageTitle => _config.AP_ProviderUkprn;
+        protected override string PageTitle => config.AP_ProviderUkprn;
 
         #region Helpers and Context
         private readonly PageInteractionHelper _pageInteractionHelper;
         private readonly FormCompletionHelper _formCompletionHelper;
         private readonly ScenarioContext _context;
-        private readonly ApprovalsConfig _config;
         private readonly ApprovalsDataHelper _dataHelper;
         #endregion
 
@@ -22,7 +21,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         public ProviderHomePage(ScenarioContext context, bool navigate = false) : base(context, navigate)
         {
             _context = context;
-            _config = context.GetApprovalsConfig<ApprovalsConfig>();
             _dataHelper = context.Get<ApprovalsDataHelper>();
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();

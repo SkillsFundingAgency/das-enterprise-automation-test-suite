@@ -10,7 +10,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         #region Helpers and Context
         protected readonly PageInteractionHelper pageInteractionHelper;
         protected readonly FormCompletionHelper formCompletionHelper;
-        protected readonly ProjectConfig config;
         #endregion
 
         protected By GlobalNavLink => By.CssSelector("#global-nav-links li a");
@@ -19,17 +18,18 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         public Navigate(ScenarioContext context, bool navigate) : base(context)
         {
-            config = context.GetProjectConfig<ProjectConfig>();
             pageInteractionHelper = context.Get<PageInteractionHelper>();
             formCompletionHelper = context.Get<FormCompletionHelper>();
-            bool func() => navigate ? VerifyPage(NavigateTo) : VerifyPage();
-            func();
+            NavigateTo(navigate);
         }
 
-        protected void NavigateTo()
+        protected void NavigateTo(bool navigate)
         {
-            var link = pageInteractionHelper.GetLink(GlobalNavLink, Linktext);
-            formCompletionHelper.ClickElement(link);
+            if (navigate)
+            {
+                var link = pageInteractionHelper.GetLink(GlobalNavLink, Linktext);
+                formCompletionHelper.ClickElement(link);
+            }
         }
     }
 }

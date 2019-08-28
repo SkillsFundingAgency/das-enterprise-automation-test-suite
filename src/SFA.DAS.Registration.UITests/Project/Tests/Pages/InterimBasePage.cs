@@ -1,4 +1,5 @@
 ﻿using TechTalk.SpecFlow;
+using SFA.DAS.UI.Framework.TestSupport;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 {
@@ -6,11 +7,14 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
     {
         #region Helpers and Context
         private readonly ScenarioContext _context;
+        protected readonly ProjectConfig config;
         #endregion
 
         public InterimBasePage(ScenarioContext context, bool navigate) : base(context, navigate)
         {
             _context = context;
+            config = context.GetProjectConfig<ProjectConfig>();
+            VerifyPage();
         }
 
         public HomePage GoToHomePage()

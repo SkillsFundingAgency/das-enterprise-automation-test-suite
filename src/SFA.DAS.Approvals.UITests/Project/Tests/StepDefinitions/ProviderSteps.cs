@@ -30,8 +30,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Then(@"the provider adds Ulns and approves the cohorts")]
         public void TheProviderAddsUlnsAndApprovesTheCohorts()
         {
-            _objectContext.SetCohortReference("MLLDJ4");
-
             var handle = _webDriver.CurrentWindowHandle;
 
             ((IJavaScriptExecutor)_webDriver).ExecuteScript($"window.open('{_config.AP_ProviderAppUrl}','_blank');");

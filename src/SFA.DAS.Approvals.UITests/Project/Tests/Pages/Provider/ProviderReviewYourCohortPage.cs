@@ -18,7 +18,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private readonly ObjectContext _objectContext;
         #endregion
 
-        private By TotalApprentices => By.CssSelector("tbody tr");
+        private By TotalApprentices => By.CssSelector(".providerList tbody tr");
 
         private By ApprenticeUlnField => By.CssSelector("tbody tr td:nth-of-type(2)");
 
@@ -40,7 +40,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         public int TotalNoOfApprentices()
         {
-            return _pageInteractionHelper.GetRows(TotalApprentices).Count;
+            return _pageInteractionHelper.FindElements(TotalApprentices).Count;
         }
 
         public List<IWebElement> ApprenticeUlns()

@@ -10,6 +10,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
     {
         protected override string PageTitle => "Edit apprentice details";
 
+        protected override By PageHeader => By.CssSelector(".govuk-heading-xl");
+
         #region Helpers and Context
         private readonly PageInteractionHelper _pageInteractionHelper;
         private readonly FormCompletionHelper _formCompletionHelper;
