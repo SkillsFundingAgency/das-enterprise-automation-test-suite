@@ -44,8 +44,8 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
                      if (retryCount >= 1)
                      {
-                         //var x = ResizeWindow();
-                         var x = ScrollIntoView(element);
+                         var x = ResizeWindow();
+                         //var x = ScrollIntoView(element);
                          beforeAction = x.beforeAction;
                          afterAction = x.afterAction;
                      }
