@@ -27,7 +27,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
             yourResultsPage = new YourResultsPage(_context);
         }
 
-        [When(@"I click on first search result")]
+        [Then(@"I click on first search result")]
         public void ClickOnFirstSearchResult()
         {
             yourResultsPage.VerifyResultsPageHeader();

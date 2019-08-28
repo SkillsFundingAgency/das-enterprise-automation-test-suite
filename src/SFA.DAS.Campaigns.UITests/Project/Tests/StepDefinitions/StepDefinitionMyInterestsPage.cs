@@ -40,20 +40,20 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
             myInterestsPage.selectAnyRequiredIndustry(requiredIndustryName);
         }
 
-        [Then(@"I can enter a valid post code (.*)")]
+        [When(@"I can enter a valid post code (.*)")]
         public void EnterPostcode(string postcode)
         {
             findAnApprenticeShipViaMyInterestsPage = new FindAnApprenticeShipViaMyInterestsPage(_context);
             findAnApprenticeShipViaMyInterestsPage.EnterPostCode(postcode);
         }
 
-        [Then(@"I can select miles as (.*)")]
+        [When(@"I can select miles as (.*)")]
         public void SelectMiles(string noOfMiles)
         {
             findAnApprenticeShipViaMyInterestsPage.SelectMiles(noOfMiles);
         }
 
-        [Then(@"I can click on search button")]
+        [When(@"I can click on search button")]
         public void ClickOnSearchButton()
         {
             findAnApprenticeShipViaMyInterestsPage.ClickOnSearchButton();

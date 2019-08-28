@@ -39,7 +39,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
             fireItUpHomePage.VerifyEmployersHeaderSupportText();
         }
 
-        [When(@"I launch the Find An Apprentice page")]
+        [Given(@"I launch the Find An Apprentice page")]
         public void LaunchFindAnApprenticePage()
         {
             fireItUpHomePage.LaunchApprenticeMenu();
@@ -47,7 +47,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
             fireItUpHomePage.ClickOnFindAnApprenticeLink();
         }
 
-        [When(@"I launch the Your Apprenticeship page")]
+        [Given(@"I launch the Your Apprenticeship page")]
         public void LaunchYourApprenticeshipPage()
         {
             fireItUpHomePage.LaunchApprenticeMenu();
@@ -55,7 +55,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
             fireItUpHomePage.ClickOnYourApprenticeshipLink();
         }
 
-        [When(@"I launch the Assessment And Certification page")]
+        [Given(@"I launch the Assessment And Certification page")]
         public void LaunchAssessmentAndCertificationPage()
         {
             fireItUpHomePage.LaunchApprenticeMenu();
@@ -63,7 +63,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
             fireItUpHomePage.ClickOnAssessmentAndCertificationLink();
         }
 
-        [When(@"I launch the Interview page")]
+        [Given(@"I launch the Interview page")]
         public void LaunchInterviewPage()
         {
             fireItUpHomePage.LaunchApprenticeMenu();
@@ -71,7 +71,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
             fireItUpHomePage.ClickOnInterviewLink();
         }
 
-        [When(@"I launch the Application page")]
+        [Given(@"I launch the Application page")]
         public void LaunchApplicationPage()
         {
             fireItUpHomePage.LaunchApprenticeMenu();
@@ -79,7 +79,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
             fireItUpHomePage.ClickOnApplicationLink();
         }
 
-        [When(@"I launch the What Is An Apprenticeship page")]
+        [Given(@"I launch the What Is An Apprenticeship page")]
         public void LaunchWhatIsAnApprenticeshipPage()
         {
             fireItUpHomePage.LaunchApprenticeMenu();
@@ -87,7 +87,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
             fireItUpHomePage.ClickOnWhatIsAnApprenticeshipLink();
         }
 
-        [When(@"I launch the My Interests page")]
+        [Given(@"I launch the My Interests page")]
         public void LaunchMyInterestsPage()
         {
             fireItUpHomePage.LaunchApprenticeMenu();
@@ -95,7 +95,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
             fireItUpHomePage.ClickOnMyInterestsLink();
         }
 
-        [When(@"I launch the What Are The Benefits For Me page")]
+        [Given(@"I launch the What Are The Benefits For Me page")]
         public void LaunchWhatAreTheBenefitsForMePage()
         {
             fireItUpHomePage.LaunchApprenticeMenu();
@@ -103,7 +103,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
             fireItUpHomePage.ClickOnWhatAreTheBenefitsForMeLink();
         }
 
-        [When(@"I launch the Real Stories page")]
+        [Given(@"I launch the Real Stories page")]
         public void LaunchRealStoriesPage()
         {
             fireItUpHomePage.LaunchApprenticeMenu();

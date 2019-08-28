@@ -27,7 +27,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
             apprenticeshipSummaryPage = new ApprenticeshipSummaryPage(_context);
         }
 
-        [Then(@"I can see the Apprentice Summary page")]
+        [Then(@"I can verify Apprentice Details Of Results Page Against Apprentice Details of Summary page")]
         public void ICanSeeApprenticeshipSummaryPage()
         {
             apprenticeshipSummaryPage.VerifyApprenticeDetailsOfResultsPageAgainstSummaryPage();

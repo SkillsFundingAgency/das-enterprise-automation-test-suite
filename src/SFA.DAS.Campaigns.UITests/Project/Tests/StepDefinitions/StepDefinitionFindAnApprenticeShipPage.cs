@@ -27,32 +27,32 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
             findAnApprenticeShipPage = new FindAnApprenticeShipPage(_context);
         }
 
-        [Then(@"I select a valid (.*)")]
+        [When(@"I select a valid (.*)")]
         public void SelectAValidOptionFromInterestDropdown(string interestValue)
         {
             findAnApprenticeShipPage.SelectAValidInterest(interestValue);
         }
 
-        [Then(@"I enter a valid (.*)")]
+        [When(@"I enter a valid (.*)")]
         public void EnterAValidPostcode(string postCode)
         {
             findAnApprenticeShipPage.EnterPostCode(postCode);
         }
 
-        [Then(@"I select miles (.*)")]
+        [When(@"I select miles (.*)")]
         public void SelectNoOfMilesFromMilesDropdown(string noOfMiles)
         {
             findAnApprenticeShipPage.SelectMiles(noOfMiles);
         }
 
-        [Then(@"I click on Serach button")]
+        [When(@"I click on Serach button")]
         public void ClickOnSearchButton()
         {
             findAnApprenticeShipPage.ClickOnSearchButton();
             TestContext.Progress.WriteLine("Navigating to Serach Results page");
         }
 
-        [Then(@"I enter an invalid (.*)")]
+        [When(@"I enter an invalid (.*)")]
         public void EnterAnInvalidPostcode(string postCode)
         {
             findAnApprenticeShipPage.EnterPostCode(postCode);
