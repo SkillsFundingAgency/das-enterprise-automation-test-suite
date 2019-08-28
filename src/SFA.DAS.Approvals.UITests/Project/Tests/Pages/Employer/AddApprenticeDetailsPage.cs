@@ -44,7 +44,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             VerifyPage();
         }
 
-        internal ReviewYourCohortPage SubmitValidApprenticeDetails()
+        public ReviewYourCohortPage SubmitValidApprenticeDetails()
         {
             _formCompletionHelper.EnterText(FirstNameField, _dataHelper.ApprenticeFirstname);
             _formCompletionHelper.EnterText(LastNameField, _dataHelper.ApprenticeLastname);

@@ -18,12 +18,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             VerifyPage();
         }
 
-        internal ProviderHomePage GoToProvideHomePage()
+        public ProviderHomePage GoToProvideHomePage()
         {
             return new ProviderHomePage(_context, true);
         }
 
-        internal ProviderYourCohortsPage GoToProviderYourCohortsPage()
+        public ProviderYourCohortsPage GoToProviderYourCohortsPage()
         { 
             return new ProviderYourCohortsPage(_context, true);
         }

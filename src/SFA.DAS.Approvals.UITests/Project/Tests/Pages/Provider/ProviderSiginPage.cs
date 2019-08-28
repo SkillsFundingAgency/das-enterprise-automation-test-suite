@@ -31,7 +31,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private By PasswordField => By.Id("password");
         private By SignInButton => By.XPath("//button[@value='Log in']");
 
-        internal ProviderHomePage SubmitValidLoginDetails()
+        public ProviderHomePage SubmitValidLoginDetails()
         {
             EnterEmailAddress()
             .EnterPassword()

@@ -1,6 +1,4 @@
-﻿using NUnit.Framework;
-using OpenQA.Selenium;
-using SFA.DAS.Approvals.UITests.Project.Tests.Pages;
+﻿using OpenQA.Selenium;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
 using SFA.DAS.UI.Framework.TestSupport;
 using System;

@@ -1,6 +1,5 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.Approvals.UITests.Project.Helpers;
-using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
@@ -17,6 +16,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private readonly ApprovalsDataHelper _dataHelper;
         #endregion
 
+        protected override By PageHeader => By.CssSelector("#content .grey-text");
+
+        protected override string Linktext => "Home";
 
         public ProviderHomePage(ScenarioContext context, bool navigate = false) : base(context, navigate)
         {
@@ -25,9 +27,5 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
         }
-
-        protected override By PageHeader => By.CssSelector("#content .grey-text");
-
-        protected override string Linktext => "Home";
     }
 }

@@ -21,12 +21,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         protected override string Linktext => "Apprentices";
 
-        internal ApprenticesHomePage(ScenarioContext context, bool navigate = false) : base(context, navigate)
+        public ApprenticesHomePage(ScenarioContext context, bool navigate = false) : base(context, navigate)
         {
             _context = context;
         }
 
-        internal AddAnApprenitcePage AddAnApprentice()
+        public AddAnApprenitcePage AddAnApprentice()
         {
             formCompletionHelper.ClickElement(AddAnApprenticeLink);
             return new AddAnApprenitcePage(_context);

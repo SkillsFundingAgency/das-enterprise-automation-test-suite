@@ -32,17 +32,18 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             VerifyPage();
         }
 
-        internal AddApprenticeDetailsPage SelectAddAnApprentice()
+        public AddApprenticeDetailsPage SelectAddAnApprentice()
         {
             _formCompletionHelper.ClickElement(AddAnApprenticeButton);
             return new AddApprenticeDetailsPage(_context);
         }
 
-        internal string ApprenticeTotalCost()
+        public string ApprenticeTotalCost()
         {
             return _pageInteractionHelper.GetText(TotalCost);
         }
-        internal ChooseAnOptionPage SaveAndContinue()
+
+        public ChooseAnOptionPage SaveAndContinue()
         {
             _formCompletionHelper.ClickElement(SaveAndContinueButton);
             return new ChooseAnOptionPage(_context);

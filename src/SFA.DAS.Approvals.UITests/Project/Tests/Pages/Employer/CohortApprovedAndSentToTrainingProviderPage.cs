@@ -32,7 +32,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             VerifyPage();
         }
 
-        internal string CohortReference()
+        public string CohortReference()
         {
             var reference = _pageInteractionHelper.GetRowData(Instructions, "Cohort reference");
             return _regexHelper.GetCohortReference(reference);

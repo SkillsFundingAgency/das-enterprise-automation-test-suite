@@ -28,7 +28,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             VerifyPage();
         }
 
-        internal MessageForYourTrainingProviderPage SubmitApproveAndSendToTrainingProvider()
+        public MessageForYourTrainingProviderPage SubmitApproveAndSendToTrainingProvider()
         {
             _formCompletionHelper.SelectRadioOptionByForAttribute(CohortApproveOptions, "SaveStatus-ApproveAndSend");
             _formCompletionHelper.ClickElement(ContinueButton);

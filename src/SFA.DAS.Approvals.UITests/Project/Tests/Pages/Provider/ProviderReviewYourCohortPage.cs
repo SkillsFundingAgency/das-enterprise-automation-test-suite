@@ -47,7 +47,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         {
             return _pageInteractionHelper.FindElements(ApprenticeUlnField);
         }
-        internal ProviderEditApprenticeDetailsPage SelectEditApprentice(int apprenticeNumber = 0)
+
+        public ProviderEditApprenticeDetailsPage SelectEditApprentice(int apprenticeNumber = 0)
         {
             IList<IWebElement> editApprenticeLinks = _pageInteractionHelper.FindElements(EditApprenticeLink);
             _formCompletionHelper.ClickElement(editApprenticeLinks[apprenticeNumber]);

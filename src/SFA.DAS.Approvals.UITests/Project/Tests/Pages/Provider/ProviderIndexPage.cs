@@ -31,7 +31,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             VerifyPage();
         }
 
-        internal ProviderSiginPage StartNow()
+        public ProviderSiginPage StartNow()
         {
             _formCompletionHelper.ClickElement(StartNowButton);
             if (_pageInteractionHelper.IsElementDisplayed(PireanPreprodButton))
