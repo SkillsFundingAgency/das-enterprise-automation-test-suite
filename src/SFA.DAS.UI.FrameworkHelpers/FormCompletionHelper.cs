@@ -1,5 +1,6 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -9,11 +10,13 @@ namespace SFA.DAS.UI.FrameworkHelpers
     {
         private readonly IWebDriver _webDriver;
         private readonly WebDriverWaitHelper _webDriverWaitHelper;
+        private readonly RetryHelper _retryHelper;
 
-        public FormCompletionHelper(IWebDriver webDriver, WebDriverWaitHelper webDriverWaitHelper )
+        public FormCompletionHelper(IWebDriver webDriver, WebDriverWaitHelper webDriverWaitHelper, RetryHelper retryHelper)
         {
             _webDriver = webDriver;
             _webDriverWaitHelper = webDriverWaitHelper;
+            _retryHelper = retryHelper;
         }
 
         public void SelectRadioButton(IWebElement element)
@@ -28,7 +31,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         public void ClickElement(IWebElement element)
         {
-            element.Click();
+            _retryHelper.RetryOnElementClickInterceptedException(element);
         }
 
         public void ClickElement(By locator)

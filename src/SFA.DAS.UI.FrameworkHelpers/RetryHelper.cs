@@ -1,11 +1,20 @@
 ﻿using System;
 using Polly;
 using NUnit.Framework;
+using OpenQA.Selenium;
+using System.Drawing;
 
 namespace SFA.DAS.UI.FrameworkHelpers
 {
     public class RetryHelper
     {
+        private readonly IWebDriver _webDriver;
+
+        public RetryHelper(IWebDriver webDriver )
+        {
+            _webDriver = webDriver;
+        }
+
         internal bool RetryOnException(Func<bool> func, Action beforeAction = null)
         {
             return Policy
@@ -23,11 +32,56 @@ namespace SFA.DAS.UI.FrameworkHelpers
                      }
                  });
         }
+
+        internal void RetryOnElementClickInterceptedException(IWebElement element)
+        {
+            Action beforeAction = null, afterAction = null;
+            Policy
+                 .Handle<ElementClickInterceptedException>()
+                 .WaitAndRetry(TimeOut, (exception, timeSpan, retryCount, context) =>
+                 {
+                     TestContext.Progress.WriteLine($"Retry Count : {retryCount}, Exception : {exception.Message}");
+
+                     if (retryCount >= 1)
+                     {
+                         //var x = ResizeWindow();
+                         var x = ScrollIntoView(element);
+                         beforeAction = x.beforeAction;
+                         afterAction = x.afterAction;
+                     }
+                 })
+                 .Execute(() =>
+                 {
+                     using (var testcontext = new NUnit.Framework.Internal.TestExecutionContext.IsolatedContext())
+                     {
+                         beforeAction?.Invoke();
+                         element.Click();
+                         afterAction?.Invoke();
+                     }
+                 });
+        }
+
         private static TimeSpan[] TimeOut => new[]
         {
             TimeSpan.FromSeconds(1),
             TimeSpan.FromSeconds(2),
             TimeSpan.FromSeconds(3)
         };
+
+        private (Action beforeAction, Action afterAction) ResizeWindow()
+        {
+            var currentSize = _webDriver.Manage().Window.Size;
+            void beforeAction() => _webDriver.Manage().Window.Size = new Size(1920, 1080);
+            void afterAction() => _webDriver.Manage().Window.Size = currentSize;
+
+            return (beforeAction, afterAction);
+        }
+
+        private (Action beforeAction, Action afterAction) ScrollIntoView(IWebElement element)
+        {
+            void beforeAction() => ((IJavaScriptExecutor)_webDriver).ExecuteScript("arguments[0].scrollIntoView(false);", element);
+
+            return (beforeAction, null);
+        }
     }
 }
