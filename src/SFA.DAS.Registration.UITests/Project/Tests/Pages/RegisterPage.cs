@@ -38,7 +38,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         private By SetMeUpButton => By.Id("button-register");
 
-        private readonly DataHelper _helper;
+        private readonly RegistrationDatahelpers _helper;
 
         public RegisterPage(ScenarioContext context) : base(context)
         {
@@ -47,7 +47,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
             VerifyPage();
-            _helper = context.Get<DataHelper>();
+            _helper = context.Get<RegistrationDatahelpers>();
         }
 
         public ConfirmPage Register()

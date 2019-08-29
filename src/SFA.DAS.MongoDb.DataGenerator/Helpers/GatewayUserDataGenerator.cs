@@ -1,7 +1,7 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Driver;
 
-namespace SFA.DAS.Registration.UITests.Project.Helpers.MongoDb
+namespace SFA.DAS.MongoDb.DataGenerator.Helpers
 {
     public class GatewayUserDataGenerator : EmpRefFilterDefinition, IMongoDbDataGenerator
     {

@@ -1,4 +1,4 @@
-﻿namespace SFA.DAS.Registration.UITests.Project.Helpers
+﻿namespace SFA.DAS.MongoDb.DataGenerator.Helpers
 {
     public static class NextNumberGenerator
     {

@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace SFA.DAS.Registration.UITests.Project.Helpers.MongoDb
+namespace SFA.DAS.MongoDb.DataGenerator.Helpers
 {
     public class DeclarationsDataGenerator : EmpRefFilterDefinition, IMongoDbDataGenerator
     {
