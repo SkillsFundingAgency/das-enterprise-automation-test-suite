@@ -24,6 +24,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
         {
             bool func()
             {
+                _webDriverWaitHelper.WaitForPageToLoad();
                 var actual = GetText(locator);
                 if (actual.Contains(expected))
                 {

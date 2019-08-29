@@ -1,6 +1,6 @@
 ﻿using OpenQA.Selenium;
-using OpenQA.Selenium.Support.UI;
 using System;
+using SeleniumExtras.WaitHelpers;
 
 namespace SFA.DAS.UI.FrameworkHelpers
 {
@@ -8,40 +8,29 @@ namespace SFA.DAS.UI.FrameworkHelpers
     {
         private readonly IWebDriver _webDriver;
         private readonly TimeOutConfig _timeOutConfig;
+        private readonly OpenQA.Selenium.Support.UI.WebDriverWait _implicitWait;
+        private readonly OpenQA.Selenium.Support.UI.WebDriverWait _pagenavigationWait;
 
         public WebDriverWaitHelper(IWebDriver webDriver, TimeOutConfig timeOutConfig)
         {
             _webDriver = webDriver;
             _timeOutConfig = timeOutConfig;
+            _implicitWait = WebDriverWait(timeOutConfig.ImplicitWait);
+            _pagenavigationWait = WebDriverWait(timeOutConfig.PageNavigation);
         }
 
-        public void WaitForElementToBePresent(By locator)
-        {
-            var wait = new WebDriverWait(_webDriver, TimeSpan.FromSeconds(_timeOutConfig.ImplicitWait));
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(locator));
-        }
+        internal void WaitForElementToBePresent(By locator) => _implicitWait.Until(ExpectedConditions.ElementExists(locator));
 
-        public void WaitForElementToBeDisplayed(By locator)
-        {
-            var wait = new WebDriverWait(_webDriver, TimeSpan.FromSeconds(_timeOutConfig.ImplicitWait));
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(locator));
-        }
+        internal void WaitForElementToBeDisplayed(By locator) => _implicitWait.Until(ExpectedConditions.ElementIsVisible(locator));
 
-        public void WaitForElementToBeClickable(By locator)
-        {
-            var webDriverWait = new WebDriverWait(_webDriver, TimeSpan.FromSeconds(_timeOutConfig.ImplicitWait));
-            webDriverWait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementToBeClickable(locator));
-        }
-        public void WaitForPageToLoad()
-        {
-            var waitForDocumentReady = new WebDriverWait(_webDriver, TimeSpan.FromSeconds(_timeOutConfig.PageNavigation));
-            waitForDocumentReady.Until(driver => ((IJavaScriptExecutor)_webDriver).ExecuteScript("return document.readyState").Equals("complete"));
-        }
+        internal void WaitForElementToBeClickable(By locator) => _implicitWait.Until(ExpectedConditions.ElementToBeClickable(locator));
 
-        public void TurnOnImplicitWaits()
-        {
-            _webDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(_timeOutConfig.ImplicitWait);
-        }
+        internal void WaitForPageToLoad() => _pagenavigationWait.Until(driver => IsDocumentReady(driver));
 
+        internal void TurnOnImplicitWaits() => _webDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(_timeOutConfig.ImplicitWait);
+
+        private bool IsDocumentReady(IWebDriver driver) => ((IJavaScriptExecutor)driver).ExecuteScript("return document.readyState").Equals("complete");
+
+        private OpenQA.Selenium.Support.UI.WebDriverWait WebDriverWait(int timespan) => new OpenQA.Selenium.Support.UI.WebDriverWait(_webDriver, TimeSpan.FromSeconds(timespan));
     }
 }
