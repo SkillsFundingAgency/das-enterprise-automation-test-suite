@@ -21,7 +21,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private By ContinueToApprovalButton => By.ClassName("finishEditingBtn");
         private By EditApprenticeLink => By.LinkText("Edit");
         private By DeleteCohortbutton => By.ClassName("delete-button");
-        private By TotalCost => By.CssSelector("h2.short.bold-xlarge");
+        private By TotalCost => By.CssSelector(".dynamic-cost-display .bold-xlarge");
+        private By Apprentices => By.CssSelector(".all-apps .bold-xlarge");
 
         public ReviewYourCohortPage(ScenarioContext context) : base(context)
         {
@@ -41,6 +42,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         public string ApprenticeTotalCost()
         {
             return _pageInteractionHelper.GetText(TotalCost);
+        }
+
+        public string NoOfApprentice()
+        {
+            return _pageInteractionHelper.GetText(Apprentices);
         }
 
         public ChooseAnOptionPage SaveAndContinue()

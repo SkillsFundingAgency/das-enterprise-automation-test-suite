@@ -77,9 +77,8 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         private (Action beforeAction, Action afterAction) ResizeWindow()
         {
-            var currentSize = _webDriver.Manage().Window.Size;
             void beforeAction() => _webDriver.Manage().Window.Size = new Size(1920, 1080);
-            void afterAction() => _webDriver.Manage().Window.Size = currentSize;
+            void afterAction() => _webDriver.Manage().Window.Maximize();
 
             return (beforeAction, afterAction);
         }
