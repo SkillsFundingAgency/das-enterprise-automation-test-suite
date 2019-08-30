@@ -9,5 +9,8 @@
     {
       "assembly": "SFA.DAS.UI.Framework"
     }
-  ]
+  ],
+  "generator": {
+    "allowRowTests" : false
+  }
 }

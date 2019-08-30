@@ -13,8 +13,7 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
             _context = context;
         }
 
-        [BeforeScenario(Order = 13)]
+        [BeforeScenario(Order = 0)]
         public void SetObjectContext(ObjectContext objectContext) => _context.Set(objectContext);
-
     }
 }

@@ -1,24 +1,32 @@
 ﻿using System;
 using OpenQA.Selenium;
+using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.UI.Framework.TestSupport
 {
     public abstract class BasePage
     {
-        private readonly IWebDriver _webDriver;
-        private readonly By pageHeading = By.CssSelector("h1");
+        #region Helpers and Context
+        private readonly PageInteractionHelper _pageInteractionHelper;
+        private readonly FormCompletionHelper _formCompletionHelper;
+        private readonly ScenarioContext _context;
+        #endregion
+
+        protected virtual By PageHeader => By.CssSelector(".heading-xlarge");
+
+        protected abstract string PageTitle { get; }
 
         public BasePage(ScenarioContext context)
         {
-            _webDriver = context.GetWebDriver();
+            _context = context;
+            _pageInteractionHelper = context.Get<PageInteractionHelper>();
+            _formCompletionHelper = context.Get<FormCompletionHelper>();
         }
 
-        protected abstract bool VerifyPage();
-
-        protected string GetPageHeading()
+        protected bool VerifyPage()
         {
-            return _webDriver.FindElement(pageHeading).Text;
+            return _pageInteractionHelper.VerifyPage(PageHeader, PageTitle);
         }
     }
 }

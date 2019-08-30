@@ -2,7 +2,6 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
-    <UserSecretsId>TestProjectSecrets</UserSecretsId>
   </PropertyGroup>
   
   <ItemGroup>
@@ -19,11 +18,17 @@
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.2.0" />
     <PackageReference Include="NUnit3TestAdapter" Version="3.13.0" />
     <PackageReference Include="Selenium.Firefox.WebDriver" Version="0.24.0" />
-    <PackageReference Include="Selenium.WebDriver.ChromeDriver" Version="75.0.3770.90" />
+    <PackageReference Include="Selenium.WebDriver.ChromeDriver" Version="75.0.3770.140" />
     <PackageReference Include="Selenium.WebDriver.GeckoDriver" Version="0.24.0" />
     <PackageReference Include="Selenium.WebDriver.IEDriver" Version="3.141.59" />
     <PackageReference Include="SpecFlow.Tools.MsBuild.Generation" Version="3.0.225" />
   </ItemGroup>
+
+  <PropertyGroup>
+    <PublishChromeDriver>true</PublishChromeDriver>
+    <PublishIEDriver>true</PublishIEDriver>
+    <PublishGeckoDriver>true</PublishGeckoDriver>
+  </PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\SFA.DAS.UI.Framework\SFA.DAS.UI.Framework.csproj" />
@@ -36,8 +41,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="appsettings.TestProject.BrowserStack.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    <None Update="appsettings.Project.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="appsettings.Project.BrowserStack.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
 

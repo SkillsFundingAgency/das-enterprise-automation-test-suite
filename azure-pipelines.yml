@@ -11,16 +11,12 @@ workspace:
 
 variables:
   buildConfiguration: 'release'
-  buildPlatform: 'anycpu'
 
 pool:
   name: 'Continuous Integration 02 - SSD - 160ACU'
-  demands: 
-  - msbuild
-  - visualstudio
 
 steps:
-- task: gittools.gitversion.gitversion-task.GitVersion@3
+- task: gittools.gitversion-preview.gitversion-task.GitVersion@5
   displayName: GitVersion
   inputs:
     updateAssemblyInfo: true
@@ -44,14 +40,15 @@ steps:
     command: 'pack'
     projects: 'src/**/*.csproj'
     arguments: '--configuration $(buildConfiguration) --no-restore'
-    
-- task: CopyFiles@2
-  displayName: 'Copy Files to: $(build.artifactstagingdirectory)'
+
+- task: DotNetCoreCLI@2
+  displayName: 'dotnet publish'
   inputs:
-    Contents: |
-     azure\**
-    TargetFolder: '$(build.artifactstagingdirectory)'
-    OverWrite: true
+    command: publish
+    publishWebProjects: false
+    zipAfterPublish: false
+    projects: 'src/**/*.UITests.csproj'
+    arguments: '--configuration $(buildConfiguration) --output $(build.artifactstagingdirectory)/tests --no-restore --no-build'
 
 - task: PublishBuildArtifacts@1
   displayName: 'Publish Artifact'

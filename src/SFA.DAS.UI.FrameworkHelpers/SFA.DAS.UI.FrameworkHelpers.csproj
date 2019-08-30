@@ -2,15 +2,32 @@
 
   <PropertyGroup>
     <TargetFrameworks>netcoreapp2.2;netstandard2.0</TargetFrameworks>
-
-    
+      <PackageId>SFA.DAS.UI.FrameworkHelpers</PackageId>
+      <Title>Specflow DotNet Core UI framework helpers</Title>
+      <Configurations>Debug;Release;Development</Configurations>
+      <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+      <PackageVersion>1.0.2</PackageVersion>
+      <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+      <Authors>arvinthseran; Imran Ali</Authors>
+      <Company>SFA.DAS</Company>
+      <Description>A generic helpers wrapper for Specflow UI Framework integrated with donet core</Description>
+      <PackageProjectUrl>https://accounts.manage-apprenticeships.service.gov.uk/service/index</PackageProjectUrl>
+      <RepositoryUrl>https://github.com/SkillsFundingAgency/DFE-Standardised-Test-Automation-Framework/tree/master/src/SFA.DAS.UI.FrameworkHelpers</RepositoryUrl>
+      <PackageLicenseUrl>http://opensource.org/licenses/MS-PL</PackageLicenseUrl>
+      <NeutralLanguage>en</NeutralLanguage>
+      <PackageTags>cosmosdb webdriver</PackageTags>
+      <RepositoryType>git</RepositoryType>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Dapper" Version="1.60.6" />
     <PackageReference Include="DotNetSeleniumExtras.WaitHelpers" Version="3.11.0" />
+    <PackageReference Include="MongoDB.Driver" Version="2.8.1" />
+    <PackageReference Include="NUnit" Version="3.12.0" />
+    <PackageReference Include="Polly" Version="7.1.0" />
     <PackageReference Include="Selenium.Support" Version="3.141.0" />
     <PackageReference Include="Selenium.WebDriver" Version="3.141.0" />
+    <PackageReference Include="SFA.DAS.CosmosDb" Version="1.0.47" />
     <PackageReference Include="SpecFlow" Version="3.0.225" />
     <PackageReference Include="System.Data.SqlClient" Version="4.6.1" />
   </ItemGroup>
