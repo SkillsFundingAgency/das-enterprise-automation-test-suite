@@ -47,6 +47,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         {
             organistionSearchPage = getApprenticeshipFunding
                 .AddPaye()
+                .SelectGovermentGateway()
                 .ContinueToGGSignIn()
                 .SignInTo();
         }
