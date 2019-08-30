@@ -31,11 +31,11 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             VerifyPage();
         }
 
-        public GatewayInformPage AddPaye()
+        public WaysToAddPayePage AddPaye()
         {
             SelectAddPaye().
                 Continue();
-            return new GatewayInformPage(_context);
+            return new WaysToAddPayePage(_context);
         }
 
         public MyAccountWithOutPaye DoNotAddPaye()
@@ -48,7 +48,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         private GetApprenticeshipFunding SelectAddPaye()
         {
             _formCompletionHelper.ClickElement(AddPayeRadioButton);
-            return new GetApprenticeshipFunding(_context);
+            return this;
         }
 
         private GetApprenticeshipFunding SelectDoNotAddPaye()

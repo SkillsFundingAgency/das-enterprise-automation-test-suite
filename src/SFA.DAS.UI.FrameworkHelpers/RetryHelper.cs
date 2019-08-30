@@ -3,6 +3,7 @@ using Polly;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using System.Drawing;
+using OpenQA.Selenium.Interactions;
 
 namespace SFA.DAS.UI.FrameworkHelpers
 {
@@ -34,8 +35,9 @@ namespace SFA.DAS.UI.FrameworkHelpers
                  });
         }
 
-        internal void RetryOnElementClickInterceptedException(IWebElement element)
+        internal void RetryOnElementClickInterceptedException(IWebElement element, bool useAction)
         {
+
             Action beforeAction = null, afterAction = null;
             Policy
                  .Handle<ElementClickInterceptedException>()
@@ -62,10 +64,22 @@ namespace SFA.DAS.UI.FrameworkHelpers
                      using (var testcontext = new NUnit.Framework.Internal.TestExecutionContext.IsolatedContext())
                      {
                          beforeAction?.Invoke();
-                         element.Click();
+                         ClickEvent(useAction, element).Invoke();
                          afterAction?.Invoke();
                      }
                  });
+        }
+
+        private Action ClickEvent(bool x, IWebElement element)
+        {
+            if (x)
+            {
+                return () => new Actions(_webDriver).MoveToElement(element).Click(element).Perform();
+            }
+            else
+            {
+                return () => element.Click();
+            }
         }
 
         private static TimeSpan[] TimeOut => new[]
@@ -77,9 +91,8 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         private (Action beforeAction, Action afterAction) ResizeWindow()
         {
-            var currentSize = _webDriver.Manage().Window.Size;
             void beforeAction() => _webDriver.Manage().Window.Size = new Size(1920, 1080);
-            void afterAction() => _webDriver.Manage().Window.Size = currentSize;
+            void afterAction() => _webDriver.Manage().Window.Maximize();
 
             return (beforeAction, afterAction);
         }
