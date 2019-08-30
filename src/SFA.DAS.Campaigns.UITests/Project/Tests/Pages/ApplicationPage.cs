@@ -12,8 +12,10 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
 {
     internal sealed class ApplicationPage : BasePage
     {
+        protected override string PageTitle => "APPLICATION";
+        protected override By PageHeader => _pageTitle;
+
         #region Constants
-        private const string ExpectedPageTitle = "APPLICATION";
         private const string ExpectedSoYouHaveFoundTheApprenticeshipSectionHeader = "SO, YOU'VE FOUND THE APPRENTICESHIP YOU'D LIKE TO APPLY FOR?";
         private const string ExpectedSoYouHaveFoundTheApprenticeshipSectionParagraph1 = "Once you've searched and found the right apprenticeship for you, you can get on with the application process.";
         private const string ExpectedSoYouHaveFoundTheApprenticeshipSectionParagraph2 = "If you haven't found your ideal apprenticeship yet, you can search for the latest apprenticeship vacancies by job title or employer, or just browse to see what’s available in your area.";
@@ -54,6 +56,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
         private readonly By _trainingProvidersHeader = By.XPath("//div[@class='page']/h3[4]");
         private readonly By _trainingProvidersParagraph1 = By.XPath("//div[@class='page']/p[9]");
         private readonly By _trainingProvidersParagraph2 = By.XPath("//div[@class='page']/p[10]");
+
         #endregion
 
         public ApplicationPage(ScenarioContext context) : base(context)
@@ -61,12 +64,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
             _pageInteractionCampaignsHelper = context.Get<PageInteractionCampaignsHelper>();
-            VerifyPage();
-        }
-
-        protected override bool VerifyPage()
-        {
-            return _pageInteractionHelper.VerifyPage(_pageTitle, ExpectedPageTitle);
+            base.VerifyPage();
         }
 
         internal void VerifyContentUnderSoYouHaveFoundTheApprenticeshipSection()

@@ -11,7 +11,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
     public class StepDefinitionApprenticeshipSummaryPage
     {
         #region Private Variables
-        private readonly JsonConfig _configuration;
+        private readonly CampaignsConfig _configuration;
         private readonly ScenarioContext _context;
         private readonly ObjectContext _objectContext;
         private readonly IWebDriver _webDriver;
@@ -22,7 +22,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
         {
             _context = context;
             _webDriver = context.Get<IWebDriver>("webdriver");
-            _configuration = context.Get<JsonConfig>();
+            _configuration = context.Get<CampaignsConfig>();
             _objectContext = context.Get<ObjectContext>();
             apprenticeshipSummaryPage = new ApprenticeshipSummaryPage(_context);
         }

@@ -12,8 +12,9 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
 {
     internal sealed class AssessmentAndCertificationPage : BasePage
     {
+        protected override string PageTitle => "ASSESSMENT AND CERTIFICATION";
+        protected override By PageHeader => _pageTitle;
         #region Constants
-        private const string ExpectedPageTitle = "ASSESSMENT AND CERTIFICATION";
         private const string ExpectedGetAssessedAndGetYourCertificateHeader = "GET ASSESSED AND GET YOUR CERTIFICATE";
         private const string ExpectedGetAssessedAndGetYourCertificateParagraph1 = "You will be assessed at some stage during your apprenticeship, to make sure you have achieved the knowledge, skills and behaviours required. Increasingly, many apprenticeships now include an end-point assessment, which will test you at the end of the apprenticeship to make sure you are fully competent in your apprenticeship occupation.";
         private const string ExpectedGetAssessedAndGetYourCertificateParagraph2 = "Your employer and training provider should give you plenty of guidance as to what’s expected, and when your assessment will happen.";
@@ -45,12 +46,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
         {
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
-            VerifyPage();
-        }
-
-        protected override bool VerifyPage()
-        {
-            return _pageInteractionHelper.VerifyPage(_pageTitle, ExpectedPageTitle);
+            base.VerifyPage();
         }
 
         internal void VerifyContentUnderGetAssessedAndGetYourCertificateSection()

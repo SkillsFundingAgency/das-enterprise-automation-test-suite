@@ -12,8 +12,9 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
 {
     internal sealed class WhatIsAnApprenticeshipPage : BasePage
     {
+        protected override string PageTitle => "WHAT IS AN APPRENTICESHIP?";
+        protected override By PageHeader => _pageTitle;
         #region Constants
-        private const string ExpectedPageTitle = "WHAT IS AN APPRENTICESHIP?";
         private const string ExpectedWhatIsAnApprenticeshipParagraph1 = "It’s a real job, with hands-on experience, a salary and the chance to train while you work. You’re treated just like all the other employees, with a contract of employment and holiday leave.";
         private const string ExpectedWhatIsAnApprenticeshipParagraph2 = "If you’re 16 or over, you can become an apprentice as long as you spend at least 50% of your working hours in England - for the duration of the apprenticeship and you are not in full-time education.";
         private const string ExpectedWhatIsAnApprenticeshipParagraph3 = "If you live in Scotland, Wales, or Northern Ireland, check out your apprenticeship options.";
@@ -63,12 +64,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
             _pageInteractionCampaignsHelper = context.Get<PageInteractionCampaignsHelper>();
-            VerifyPage();
-        }
-
-        protected override bool VerifyPage()
-        {
-            return _pageInteractionHelper.VerifyPage(_pageTitle, ExpectedPageTitle);
+            base.VerifyPage();
         }
 
         internal void VerifyContentUnderWhatIsAnApprenticeshipSection()

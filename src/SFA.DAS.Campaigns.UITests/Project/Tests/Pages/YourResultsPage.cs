@@ -12,6 +12,8 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
 {
     internal sealed class YourResultsPage : BasePage
     {
+        protected override string PageTitle => "NO MATCHING RESULTS...";
+
         #region Constants
         private const string ExpectedHeaderWhenNoResultsFound = "NO MATCHING RESULTS...";
         private const string ExpectedHeaderWhenResultsFound = "YOUR RESULTS...";
@@ -44,13 +46,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
             _pageInteractionCampaignsHelper = context.Get<PageInteractionCampaignsHelper>();
-            VerifyPage();
-        }
-
-        protected override bool VerifyPage()
-        {
-            _pageInteractionHelper.FocusTheElement(_resultsHeader);
-            return _pageInteractionHelper.VerifyPage(_pageInteractionHelper.GetText(_resultsHeader), ExpectedHeaderWhenResultsFound, ExpectedHeaderWhenNoResultsFound);
+            base.VerifyPage();
         }
 
         internal void VerifyResultsPageHeader()
@@ -94,7 +90,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
 
         internal void ClickOnFirstSearchResult()
         {
-            _formCompletionHelper.WaitForPageToLoad(10);
+            _pageInteractionHelper.WaitForPageToLoad();
             _pageInteractionHelper.WaitForElementToBeDisplayed(_firstSearchResult);
             _pageInteractionHelper.FocusTheElement(_firstSearchResult);
             _formCompletionHelper.ClickElement(_firstSearchResult);

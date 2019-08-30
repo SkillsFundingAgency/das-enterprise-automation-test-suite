@@ -12,8 +12,10 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
 {
     internal sealed class MyInterestsPage : BasePage
     {
+        protected override string PageTitle => "MY INTERESTS";
+        protected override By PageHeader => _pageTitle;
+
         #region Constants
-        private const string ExpectedPageTitle = "MY INTERESTS";
         private const string ExpectedIndustry1Name = "AGRICULTURE, ENVIRONMENT AND ANIMAL CARE";
         private const string ExpectedIndustry1Description = "Want to work outside, work with animals or do you just feel passionate about working for the environment? Here you go.";
         private const string ExpectedIndustry2Name = "BUSINESS AND ADMINISTRATION";
@@ -51,7 +53,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
         private readonly PageInteractionHelper _pageInteractionHelper;
         private readonly FormCompletionHelper _formCompletionHelper;
         private readonly PageInteractionCampaignsHelper _pageInteractionCampaignsHelper;
-        private readonly FormCompletionCampaignsHelper _formCompletionCampaignsHelper;
+
         #endregion
 
         #region Page Object Elements
@@ -94,13 +96,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
             _pageInteractionCampaignsHelper = context.Get<PageInteractionCampaignsHelper>();
-            _formCompletionCampaignsHelper = context.Get<FormCompletionCampaignsHelper>();
-            VerifyPage();
-        }
-
-        protected override bool VerifyPage()
-        {
-            return _pageInteractionHelper.VerifyPage(_pageTitle, ExpectedPageTitle);
+            base.VerifyPage();
         }
 
         internal void verifyContentUnderWhatIsAnApprenticeshipSection()
@@ -223,7 +219,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
                 if (requiredIndustryName.Contains(_pageInteractionCampaignsHelper.GetText(industryNameXpath)))
                 {
                     _pageInteractionCampaignsHelper.ScrollToReachTheRequiredElement(industryNameXpath);
-                    _formCompletionCampaignsHelper.ClickElement(industryNameXpath);
+                    _formCompletionHelper.ClickElement(By.XPath(industryNameXpath));
                     break;
                 }
             }

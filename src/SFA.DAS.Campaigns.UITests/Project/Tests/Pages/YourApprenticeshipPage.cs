@@ -12,8 +12,9 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
 {
     internal sealed class YourApprenticeshipPage : BasePage
     {
+        protected override string PageTitle => "YOUR APPRENTICESHIP";
+        protected override By PageHeader => _pageTitle;
         #region Constants
-        private const string ExpectedPageTitle = "YOUR APPRENTICESHIP";
         private const string ExpectedWhatToBringHeader = "WHAT TO BRING, AND OTHER USEFUL INFO";
         private const string ExpectedWhatToBringParagraph1 = "Your employer will be in touch beforehand to let you know your working hours, and when they’d like you to start on your first day. If however, you already work at the place where you're going to start your apprenticeship, then you can ask your employer directly.";
         private const string ExpectedWhatToBringParagraph2 = "At this point you could also ask some of the following:";
@@ -60,13 +61,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
             _pageInteractionCampaignsHelper = context.Get<PageInteractionCampaignsHelper>();
-            VerifyPage();
-
-        }
-
-        protected override bool VerifyPage()
-        {
-            return _pageInteractionHelper.VerifyPage(_pageTitle, ExpectedPageTitle);
+            base.VerifyPage();
         }
 
         internal void VerifyConetntUnderWhatToBringSection()

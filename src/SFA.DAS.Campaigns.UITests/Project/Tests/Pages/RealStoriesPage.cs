@@ -12,8 +12,10 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
 {
     internal sealed class RealStoriesPage : BasePage
     {
+        protected override string PageTitle => "REAL STORIES";
+        protected override By PageHeader => _pageTitle;
+
         #region Constants
-        private const string ExpectedPageTitle = "REAL STORIES";
         private const string ExpectedRealStoriesDescription = "Do you want to earn while you learn and get hands-on experience? Have a look at real stories and see how becoming an apprentice changed the following lives.";
         private const string ExpectedTotalTimeDurationForVideo1 = "1:02";
         #endregion
@@ -40,12 +42,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
             _pageInteractionCampaignsHelper = context.Get<PageInteractionCampaignsHelper>();
-            VerifyPage();
-        }
-
-        protected override bool VerifyPage()
-        {
-            return _pageInteractionHelper.VerifyPage(_pageTitle, ExpectedPageTitle);
+            base.VerifyPage();
         }
 
         internal void VerifyContentUnderRealStoriesHeader()

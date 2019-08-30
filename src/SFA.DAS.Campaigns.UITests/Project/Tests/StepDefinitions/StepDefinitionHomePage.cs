@@ -11,7 +11,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
     public class StepDefinitionHomePage
     {
         #region Private Variables
-        private readonly JsonConfig _configuration;
+        private readonly CampaignsConfig _configuration;
         private readonly ScenarioContext _context;
         private readonly ObjectContext _objectContext;
         private readonly IWebDriver _webDriver;
@@ -22,14 +22,14 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
         {
             _context = context;
             _webDriver = context.Get<IWebDriver>("webdriver");
-            _configuration = context.Get<JsonConfig>();
+            _configuration = context.GetProjectConfig<CampaignsConfig>();
             _objectContext = context.Get<ObjectContext>();
         }
 
         [Given(@"I navigate to Fire It Up home page")]
         public void NavigateToGovUkHomePage()
         {
-            var url = _configuration.BaseUrl;
+            var url = _configuration.CA_BaseUrl;
             TestContext.Progress.WriteLine("Navigating to Fire It Up home page");
             _webDriver.Url = url;
 

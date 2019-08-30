@@ -10,14 +10,15 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
 {
     internal sealed class FindAnApprenticeShipViaMyInterestsPage : BasePage
     {
+        protected override string PageTitle => "ENGINEERING AND MANUFACTURING";
+        protected override By PageHeader => _pageTitle;
         #region Constants
-        private const string ExpectedPageTitle = "ENGINEERING AND MANUFACTURING";
         #endregion
 
         #region Helpers
         private readonly PageInteractionHelper _pageInteractionHelper;
         private readonly FormCompletionHelper _formCompletionHelper;
-        private readonly FormCompletionCampaignsHelper _formCompletionCampaignsHelper;
+       // private readonly FormCompletionCampaignsHelper _formCompletionCampaignsHelper;
         #endregion
 
         #region Page Object Elements
@@ -31,13 +32,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
         {
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
-            _formCompletionCampaignsHelper = context.Get<FormCompletionCampaignsHelper>();
-            VerifyPage();
-        }
-
-        protected override bool VerifyPage()
-        {
-            return _pageInteractionHelper.VerifyPage(_pageTitle, ExpectedPageTitle);
+            base.VerifyPage();
         }
 
         internal void EnterPostCode(String postCode)
@@ -49,7 +44,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
         internal void SelectMiles(String noOfMiles)
         {
             _pageInteractionHelper.WaitForElementToBeDisplayed(_selectMilesDropDown);
-            _formCompletionCampaignsHelper.SelectFromDropDownByText(_selectMilesDropDown, noOfMiles);
+            _formCompletionHelper.SelectFromDropDownByText(_selectMilesDropDown, noOfMiles);
         }
 
         internal void ClickOnSearchButton()

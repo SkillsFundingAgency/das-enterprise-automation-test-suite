@@ -10,6 +10,8 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
 {
     internal sealed class FindAnApprenticeShipPage : BasePage
     {
+        protected override string PageTitle => "FIND AN APPRENTICESHIP";
+        protected override By PageHeader => _pageTitle;
         #region Constants
         private const string ExpectedPageTitle = "FIND AN APPRENTICESHIP";
         private const string InvalidPostCodeMessage = "You must enter a full and valid postcode";
@@ -22,7 +24,6 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
         #region Helpers
         private readonly PageInteractionHelper _pageInteractionHelper;
         private readonly FormCompletionHelper _formCompletionHelper;
-        private readonly FormCompletionCampaignsHelper _formCompletionCampaignsHelper;
         #endregion
 
         #region Page Object Elements
@@ -40,19 +41,13 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
         {
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
-            _formCompletionCampaignsHelper = context.Get<FormCompletionCampaignsHelper>();
-            VerifyPage();
-        }
-
-        protected override bool VerifyPage()
-        {
-            return _pageInteractionHelper.VerifyPage(_pageTitle, ExpectedPageTitle);
+            base.VerifyPage();
         }
 
         internal void SelectAValidInterest(String interestValue)
         {
             _pageInteractionHelper.WaitForElementToBeDisplayed(_selectInterestDropDown);
-            _formCompletionCampaignsHelper.SelectFromDropDownByText(_selectInterestDropDown, interestValue);
+            _formCompletionHelper.SelectFromDropDownByText(_selectInterestDropDown, interestValue);
         }
 
         internal void EnterPostCode(String postCode)
@@ -65,7 +60,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
         internal void SelectMiles(String noOfMiles)
         {
             _pageInteractionHelper.WaitForElementToBeDisplayed(_selectMilesDropDown);
-            _formCompletionCampaignsHelper.SelectFromDropDownByText(_selectMilesDropDown, noOfMiles);
+            _formCompletionHelper.SelectFromDropDownByText(_selectMilesDropDown, noOfMiles);
         }
 
         internal void ClickOnSearchButton()

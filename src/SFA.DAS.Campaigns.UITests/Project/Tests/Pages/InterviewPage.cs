@@ -12,8 +12,9 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
 {
     internal sealed class InterviewPage : BasePage
     {
+        protected override string PageTitle => "INTERVIEW";
+        protected override By PageHeader => _pageTitle;
         #region Constants
-        private const string ExpectedPageTitle = "INTERVIEW";
         private const string ExpectedTheInterviewProcessHeader = "THE INTERVIEW PROCESS";
         private const string ExpectedTheInterviewProcessParagraph1 = "Everyone goes through the interview process at some stage of their working life. When you apply for new jobs, you will almost always have an interview, whatever stage you're at in your career.";
         private const string ExpectedTheInterviewProcessParagraph2 = "If you want to upskill or are returning to the workplace after a break, you may already know how to prepare for an interview and what you're expected to take with you on your first day.";
@@ -92,12 +93,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
             _pageInteractionCampaignsHelper = context.Get<PageInteractionCampaignsHelper>();
-            VerifyPage();
-        }
-
-        protected override bool VerifyPage()
-        {
-            return _pageInteractionHelper.VerifyPage(_pageTitle, ExpectedPageTitle);
+            base.VerifyPage();
         }
 
         internal void VerifyContentUnderInterviewSection()

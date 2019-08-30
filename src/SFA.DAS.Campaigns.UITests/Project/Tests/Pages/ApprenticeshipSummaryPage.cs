@@ -11,8 +11,9 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
 {
     internal sealed class ApprenticeshipSummaryPage : BasePage
     {
+        protected override string PageTitle => "Apprenticeship summary";
+
         #region Constants
-        private const string ExpectedPageTitle = "Apprenticeship summary";
         #endregion
 
         #region Helpers
@@ -33,12 +34,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
         {
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
-            VerifyPage();
-        }
-
-        protected override bool VerifyPage()
-        {
-            return _pageInteractionHelper.VerifyPage(_apprenticeshipSummaryHeader, ExpectedPageTitle);
+            //base.VerifyPage();
         }
 
         internal void ClickObSignInToApplyButton()

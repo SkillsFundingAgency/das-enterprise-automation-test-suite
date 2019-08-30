@@ -12,8 +12,9 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
 {
     internal sealed class WhatAreTheBenefitsForMePage : BasePage
     {
+        protected override string PageTitle => "WHAT ARE THE BENEFITS FOR ME?";
+        protected override By PageHeader => _pageTitle;
         #region Constants
-        private const string ExpectedPageTitle = "WHAT ARE THE BENEFITS FOR ME?";
         private const string ExpectedWhatAreMyFutureProspectsHeader = "WHAT ARE MY FUTURE PROSPECTS ONCE I’VE SUCCESSFULLY FINISHED MY APPRENTICESHIP?";
         private const string ExpectedWhatAreMyFutureProspectsParagraph1 = "Once you’ve successfully finished, you have plenty of choices. You could apply for another apprenticeship or find a career that uses your new skills.";
         private const string ExpectedWhatAreMyFutureProspectsParagraph2 = "Some of the top reasons for becoming an apprentice:";
@@ -63,12 +64,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
             _pageInteractionCampaignsHelper = context.Get<PageInteractionCampaignsHelper>();
-            VerifyPage();
-        }
-
-        protected override bool VerifyPage()
-        {
-            return _pageInteractionHelper.VerifyPage(_pageTitle, ExpectedPageTitle);
+            base.VerifyPage();
         }
 
         internal void VerifyContentUnderWhatAreMyFutureProspects()

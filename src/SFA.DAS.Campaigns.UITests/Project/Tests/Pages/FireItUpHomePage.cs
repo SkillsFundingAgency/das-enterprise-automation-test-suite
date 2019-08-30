@@ -11,8 +11,9 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
 {
     internal sealed class FireItUpHomePage : BasePage
     {
+        protected override string PageTitle => "FIRE \n IT UP";
+
         #region Constants
-        private const string ExpectedPageTitle = "FIRE \n IT UP";
         private const string ExpectedApprenticesHeaderSupportText = "BLAZE YOUR OWN TRAIL AND BECOME AN APPRENTICE";
         private const string ExpectedEmployersHeaderSupportText = "FIRE UP YOUR BUSINESS WITH AN APPRENTICE";
         #endregion
@@ -38,20 +39,16 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
         private readonly By _whatAreTheBenefitsForMeLink = By.Id("link-nav-app-benefits");
         private readonly By _realStoriesLink = By.Id("link-nav-app-real-stories");
 
+
         #endregion
 
         public FireItUpHomePage(ScenarioContext context) : base(context)
         {
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
-            // VerifyPage(); // this verification is failing due a bug in the application. We will uncomment this in future
-
-        }
-
-        protected override bool VerifyPage()
-        {
             _pageInteractionHelper.WaitForElementToBeDisplayed(_pageTitle);
-            return _pageInteractionHelper.VerifyPage(_pageTitle, ExpectedPageTitle);
+            //base.VerifyPage(); // this verification is failing due a bug in the application. We will uncomment this in future
+
         }
 
         internal void ClickOnCookieContinueButton()
@@ -64,14 +61,14 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
         {
             _pageInteractionHelper.WaitForElementToBeDisplayed(_ApprenticesHeaderSupportText);
             _pageInteractionHelper.FocusTheElement(_ApprenticesHeaderSupportText);
-            _formCompletionHelper.VerifyPage(_ApprenticesHeaderSupportText, ExpectedApprenticesHeaderSupportText);
+            _pageInteractionHelper.VerifyPage(_ApprenticesHeaderSupportText, ExpectedApprenticesHeaderSupportText);
         }
 
         internal void VerifyEmployersHeaderSupportText()
         {
             _pageInteractionHelper.WaitForElementToBeDisplayed(_EmployersHeaderSupportText);
             _pageInteractionHelper.FocusTheElement(_EmployersHeaderSupportText);
-            _formCompletionHelper.VerifyPage(_EmployersHeaderSupportText, ExpectedEmployersHeaderSupportText);
+            _pageInteractionHelper.VerifyPage(_EmployersHeaderSupportText, ExpectedEmployersHeaderSupportText);
         }
 
         internal void LaunchApprenticeMenu()
