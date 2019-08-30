@@ -34,5 +34,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             _formCompletionHelper.ClickElement(ContinueButton);
             return new MessageForYourTrainingProviderPage(_context);
         }
+
+        public MessageForYourTrainingProviderPage SubmitSendToTrainingProviderForReview()
+        {
+            _formCompletionHelper.SelectRadioOptionByForAttribute(CohortApproveOptions, "SaveStatus-AmendAndSend");
+            _formCompletionHelper.ClickElement(ContinueButton);
+            return new MessageForYourTrainingProviderPage(_context);
+        }
     }
 }

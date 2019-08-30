@@ -28,16 +28,27 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Then(@"the provider adds Ulns and approves the cohorts")]
         public void TheProviderAddsUlnsAndApprovesTheCohorts()
         {
-            var handle = _webDriver.CurrentWindowHandle;
+            OpenInNewtab(_config.AP_ProviderAppUrl);
 
-            ((IJavaScriptExecutor)_webDriver).ExecuteScript($"window.open('{_config.AP_ProviderAppUrl}','_blank');");
+            var providerReviewYourCohortPage = ReviewTheCohort();
 
-            var handles = _webDriver.WindowHandles;
+            ApproveTheCohort(providerReviewYourCohortPage);
+        }
 
-            var newWindow = handles.FirstOrDefault(x => x != handle);
+        [When(@"the provider adds Ulns and approves the cohorts and sends to employer")]
+        public void WhenTheProviderAddsUlnsAndApprovesTheCohortsAndSendsToEmployer()
+        {
+            OpenInNewtab(_config.AP_ProviderAppUrl);
 
-            _webDriver.SwitchTo().Window(newWindow);
+            var providerReviewYourCohortPage = ReviewTheCohort();
 
+            providerReviewYourCohortPage.SelectSaveAndContinue()
+                .SubmitApproveAndSendToEmployerForApproval()
+                .SendInstructionsToEmployerForAnApprovedCohort();
+        }
+
+        private ProviderReviewYourCohortPage ReviewTheCohort()
+        {
             var providerReviewYourCohortPage = new ProviderIndexPage(_context)
                 .StartNow()
                 .SubmitValidLoginDetails()
@@ -62,8 +73,27 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                     j++;
                 }
             }
+
+            return providerReviewYourCohortPage;
+        }
+
+        private void ApproveTheCohort(ProviderReviewYourCohortPage providerReviewYourCohortPage)
+        {
             providerReviewYourCohortPage.SelectContinueToApproval()
-                .SubmitApprove();
+                                        .SubmitApprove();
+        }
+
+        private void OpenInNewtab(string url)
+        {
+            var handle = _webDriver.CurrentWindowHandle;
+
+            ((IJavaScriptExecutor)_webDriver).ExecuteScript($"window.open('{url}','_blank');");
+
+            var handles = _webDriver.WindowHandles;
+
+            var newWindow = handles.FirstOrDefault(x => x != handle);
+
+            _webDriver.SwitchTo().Window(newWindow);
         }
     }
 }

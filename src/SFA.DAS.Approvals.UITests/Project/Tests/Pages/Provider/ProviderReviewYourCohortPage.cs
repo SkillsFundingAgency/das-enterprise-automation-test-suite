@@ -28,6 +28,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         private By ContinueToApprovalButton => By.ClassName("finishEditingBtn");
 
+        private By SaveAndContinueButton => By.ClassName("finishEditingBtn");
+
         public ProviderReviewYourCohortPage(ScenarioContext context) : base(context)
         {
             _context = context;
@@ -62,6 +64,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         public ProviderChooseAnOptionPage SelectContinueToApproval()
         {
             _formCompletionHelper.ClickElement(ContinueToApprovalButton);
+            return new ProviderChooseAnOptionPage(_context);
+        }
+
+        public ProviderChooseAnOptionPage SelectSaveAndContinue()
+        {
+            _formCompletionHelper.ClickElement(SaveAndContinueButton);
             return new ProviderChooseAnOptionPage(_context);
         }
     }

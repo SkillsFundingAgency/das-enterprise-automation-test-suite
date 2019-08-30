@@ -14,13 +14,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
     {
         private readonly ScenarioContext _context;
         private readonly ObjectContext _objectContext;
-        private readonly AssertHelper _assetHelper;
+        private readonly AddAnApprenticeHelper _addAnApprenticeHelper;
 
         public CreateCohortSteps(ScenarioContext context)
         {
             _context = context;
             _objectContext = _context.Get<ObjectContext>();
-            _assetHelper = _context.Get<AssertHelper>();
+            var assertHelper = _context.Get<AssertHelper>();
+            _addAnApprenticeHelper = new AddAnApprenticeHelper(assertHelper);
         }
 
         [When(@"the Employer approves (.*) cohort and sends to provider")]
@@ -38,7 +39,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
             for (int i = 1; i <= numberOfApprentices; i++)
             {
-                var x = AddAnApprentice(employerReviewYourCohortPage, i);
+                var x = _addAnApprenticeHelper.AddAnApprentice(employerReviewYourCohortPage, i);
                 noOfApprentice = x.noOfApprentice;
                 apprenticeTotalCost = x.apprenticeTotalCost;
             }
@@ -54,31 +55,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _objectContext.SetCohortReference(cohortReference);
 
             TestContext.Progress.WriteLine($"Cohort Reference: {cohortReference}");
-        }
-
-        private (string noOfApprentice, string apprenticeTotalCost) AddAnApprentice(ReviewYourCohortPage employerReviewYourCohortPage, int count)
-        {
-            string noOfApprentice = string.Empty, apprenticeTotalCost = string.Empty;
-
-            employerReviewYourCohortPage
-                .SelectAddAnApprentice()
-                .SubmitValidApprenticeDetails();
-
-            _assetHelper.RetryOnNUnitException(() => 
-            {
-                apprenticeTotalCost = employerReviewYourCohortPage.ApprenticeTotalCost();
-
-                Assert.AreNotEqual("£0", apprenticeTotalCost, "Apprentice cost is not added");
-            });
-
-            _assetHelper.RetryOnNUnitException(() =>
-            {
-                noOfApprentice = employerReviewYourCohortPage.NoOfApprentice();
-
-                Assert.AreEqual(count.ToString(), noOfApprentice, "Apprentice count is not added");
-            });
-
-            return (noOfApprentice, apprenticeTotalCost);
-        }
+        }   
     }
 }

@@ -98,6 +98,21 @@ namespace SFA.DAS.UI.FrameworkHelpers
                 ClickElement(radioToSelect);
         }
 
+        public void SelectRadioOptionByText(By locator, String text)
+        {
+            IList<IWebElement> radios = _webDriver.FindElements(locator);
+
+            for (int i = 0; i < radios.Count; i++)
+            {
+                String str = radios.ElementAt(i).Text;
+                if (str.Equals(text))
+                {
+                    radios.ElementAt(i).Click();
+                    return;
+                }
+            }
+        }
+
         private SelectElement SelectElement(IWebElement element)
         {
             return new SelectElement(element);
