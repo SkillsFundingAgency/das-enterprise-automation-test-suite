@@ -3,6 +3,7 @@ using Polly;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using System.Drawing;
+using OpenQA.Selenium.Interactions;
 
 namespace SFA.DAS.UI.FrameworkHelpers
 {
@@ -62,7 +63,10 @@ namespace SFA.DAS.UI.FrameworkHelpers
                      using (var testcontext = new NUnit.Framework.Internal.TestExecutionContext.IsolatedContext())
                      {
                          beforeAction?.Invoke();
-                         element.Click();
+                         new Actions(_webDriver)
+                         .MoveToElement(element)
+                         .Click(element)
+                         .Perform();
                          afterAction?.Invoke();
                      }
                  });
