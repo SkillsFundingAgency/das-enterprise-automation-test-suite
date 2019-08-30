@@ -35,7 +35,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         public AddApprenticeDetailsPage SelectAddAnApprentice()
         {
-            _formCompletionHelper.ClickElement(AddAnApprenticeButton);
+            _formCompletionHelper.ClickElement(AddAnApprenticeButton, true);
             return new AddApprenticeDetailsPage(_context);
         }
 
@@ -51,7 +51,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         public ChooseAnOptionPage SaveAndContinue()
         {
-            _formCompletionHelper.ClickElement(SaveAndContinueButton);
+            _formCompletionHelper.ClickElement(SaveAndContinueButton, true);
             return new ChooseAnOptionPage(_context);
         }
     }
