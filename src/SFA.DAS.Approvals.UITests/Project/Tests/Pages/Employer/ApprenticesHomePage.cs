@@ -1,12 +1,10 @@
 ﻿using OpenQA.Selenium;
-using System;
 using System.Collections.Generic;
 using System.Text;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
-
     public class ApprenticesHomePage : InterimApprenticepage
     {
         protected override string PageTitle => "Apprentices";
@@ -30,6 +28,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         {
             formCompletionHelper.ClickElement(AddAnApprenticeLink);
             return new AddAnApprenitcePage(_context);
+        }
+
+        public YourCohortRequestsPage ClickYourCohortsLink()
+        {
+            formCompletionHelper.ClickElement(YourCohortsLink);
+            return new YourCohortRequestsPage(_context);
         }
     }
 }

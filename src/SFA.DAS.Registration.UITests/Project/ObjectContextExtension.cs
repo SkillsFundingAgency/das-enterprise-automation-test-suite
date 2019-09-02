@@ -6,7 +6,15 @@ namespace SFA.DAS.Registration.UITests.Project
     {
         #region Constants
         private const string AccountIdKey = "accountid";
+        private const string LoginUsername = "loginusername";
+        private const string LoginPassword = "loginpassword";
         #endregion
+
+        public static void SetLoginCredentials(this ObjectContext objectContext, string loginusername, string loginpassword)
+        {
+            objectContext.Set(LoginUsername, loginusername);
+            objectContext.Set(LoginPassword, loginpassword);
+        }
 
         public static void SetAccountId(this ObjectContext objectContext, string accountid)
         {
@@ -16,6 +24,16 @@ namespace SFA.DAS.Registration.UITests.Project
         public static string GetAccountId(this ObjectContext objectContext)
         {
             return objectContext.Get(AccountIdKey);
+        }
+
+        public static string GetLoginUsername(this ObjectContext objectContext)
+        {
+            return objectContext.Get(LoginUsername);
+        }
+
+        public static string GetLoginPassword(this ObjectContext objectContext)
+        {
+            return objectContext.Get(LoginPassword);
         }
     }
 }

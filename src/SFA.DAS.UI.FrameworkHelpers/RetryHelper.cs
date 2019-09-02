@@ -70,9 +70,9 @@ namespace SFA.DAS.UI.FrameworkHelpers
                  });
         }
 
-        private Action ClickEvent(bool x, IWebElement element)
+        private Action ClickEvent(bool useAction, IWebElement element)
         {
-            if (x)
+            if (useAction)
             {
                 return () => new Actions(_webDriver).MoveToElement(element).Click(element).Perform();
             }

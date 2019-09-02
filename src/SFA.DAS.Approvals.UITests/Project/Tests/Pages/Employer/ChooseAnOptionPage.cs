@@ -30,16 +30,47 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         public MessageForYourTrainingProviderPage SubmitApproveAndSendToTrainingProvider()
         {
-            _formCompletionHelper.SelectRadioOptionByForAttribute(CohortApproveOptions, "SaveStatus-ApproveAndSend");
-            _formCompletionHelper.ClickElement(ContinueButton);
+            SelectCohortApproveOptions("SaveStatus-ApproveAndSend")
+            .Continue();
             return new MessageForYourTrainingProviderPage(_context);
         }
 
         public MessageForYourTrainingProviderPage SubmitSendToTrainingProviderForReview()
         {
-            _formCompletionHelper.SelectRadioOptionByForAttribute(CohortApproveOptions, "SaveStatus-AmendAndSend");
-            _formCompletionHelper.ClickElement(ContinueButton);
+            SelectCohortApproveOptions("SaveStatus-AmendAndSend")
+            .Continue();
             return new MessageForYourTrainingProviderPage(_context);
+        }
+
+        public CohortApprovedPage SubmitApprove()
+        {
+            SelectCohortApproveOptions("SaveStatus-Approve")
+            .Continue();
+            return new CohortApprovedPage(_context);
+        }
+
+        private ChooseAnOptionPage SelectCohortApproveOptions(string value)
+        {
+            _formCompletionHelper.SelectRadioOptionByForAttribute(CohortApproveOptions, value);
+            return this;
+        }
+
+        private ChooseAnOptionPage Continue()
+        {
+            _formCompletionHelper.ClickElement(ContinueButton);
+            return this;
+        }
+
+
+    }
+
+    public class CohortApprovedPage : BasePage
+    {
+        protected override string PageTitle => "Cohort approved";
+
+        public CohortApprovedPage(ScenarioContext context) : base(context)
+        {
+
         }
     }
 }

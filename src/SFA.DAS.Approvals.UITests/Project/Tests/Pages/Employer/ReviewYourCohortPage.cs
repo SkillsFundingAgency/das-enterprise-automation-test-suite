@@ -39,6 +39,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             return new AddApprenticeDetailsPage(_context);
         }
 
+        public ChooseAnOptionPage SelectContinueToApproval()
+        {
+            _formCompletionHelper.ClickElement(ContinueToApprovalButton);
+            return new ChooseAnOptionPage(_context);
+        }
+
         public string ApprenticeTotalCost()
         {
             return _pageInteractionHelper.GetText(TotalCost);
