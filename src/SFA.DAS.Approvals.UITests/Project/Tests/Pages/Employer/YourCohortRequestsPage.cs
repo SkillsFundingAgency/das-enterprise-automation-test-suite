@@ -40,37 +40,5 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             throw new Exception("No cohorts available for review");
         }
     }
-
-    public class CohortsForReviewPage : BasePage
-    {
-        protected override string PageTitle => "Your cohort requests";
-
-        #region Helpers and Context
-        private readonly PageInteractionHelper _pageInteractionHelper;
-        private readonly FormCompletionHelper _formCompletionHelper;
-        private readonly ScenarioContext _context;
-        private readonly ApprovalsConfig _config;
-        private readonly ObjectContext _objectContext;
-        private readonly TableRowHelper _tableRowHelper;
-        #endregion
-
-
-        public CohortsForReviewPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            _objectContext = context.Get<ObjectContext>();
-            _config = context.GetApprovalsConfig<ApprovalsConfig>();
-            _pageInteractionHelper = context.Get<PageInteractionHelper>();
-            _formCompletionHelper = context.Get<FormCompletionHelper>();
-            _tableRowHelper = context.Get<TableRowHelper>();
-            VerifyPage();
-        }
-
-        public ReviewYourCohortPage SelectViewCurrentCohortDetails()
-        {
-            _tableRowHelper.SelectRowFromTable("Details", _objectContext.GetCohortReference());
-            return new ReviewYourCohortPage(_context);
-        }
-    }
 }
 
