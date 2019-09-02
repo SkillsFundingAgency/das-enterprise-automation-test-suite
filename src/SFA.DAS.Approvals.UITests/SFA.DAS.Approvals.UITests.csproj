@@ -27,15 +27,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Project\Tests\Features\ApprovalsExistingUsersDuplicate.feature.cs">
-      <DependentUpon>ApprovalsExistingUsersDuplicate.feature</DependentUpon>
-    </Compile>
-    <Compile Update="Project\Tests\Features\ApprovalsExistingUsers.feature.cs">
-      <DependentUpon>ApprovalsExistingUsers.feature</DependentUpon>
-    </Compile>
-  </ItemGroup>
-
-  <ItemGroup>
     <None Update="appsettings.Environment.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
