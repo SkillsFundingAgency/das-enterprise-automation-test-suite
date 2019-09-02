@@ -52,11 +52,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             _tabHelper.OpenInNewtab(_projectConfig.RE_BaseUrl);
 
-            var loginUsername = _objectContext.GetLoginUsername();
-            var loginpassword = _objectContext.GetLoginPassword();
+            if (_loginHelper.IsIndexPageDisplayed())
+            {
+                var loginUsername = _objectContext.GetLoginUsername();
+                var loginpassword = _objectContext.GetLoginPassword();
 
-            _loginHelper.Login(new LoggedInUser { Username = loginUsername, Password = loginpassword });
-
+                _loginHelper.Login(new LoggedInUser { Username = loginUsername, Password = loginpassword });
+            }
+            
             var employerReviewYourCohortPage = new ApprenticesHomePage(_context, true)
                 .ClickYourCohortsLink()
                 .GoToCohortsReadyForReview()

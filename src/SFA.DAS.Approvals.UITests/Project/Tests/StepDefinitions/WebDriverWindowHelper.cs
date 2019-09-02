@@ -14,15 +14,15 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
         internal void OpenInNewtab(string url)
         {
-            var handle = _webDriver.CurrentWindowHandle;
+            var existingTabs = _webDriver.WindowHandles;
 
             ((IJavaScriptExecutor)_webDriver).ExecuteScript($"window.open('{url}','_blank');");
 
-            var handles = _webDriver.WindowHandles;
+            var newtabs = _webDriver.WindowHandles;
 
-            var newWindow = handles.FirstOrDefault(x => x != handle);
+            var newtab = newtabs.Except(existingTabs).Single();
 
-            _webDriver.SwitchTo().Window(newWindow);
+            _webDriver.SwitchTo().Window(newtab);
         }
     }
 }

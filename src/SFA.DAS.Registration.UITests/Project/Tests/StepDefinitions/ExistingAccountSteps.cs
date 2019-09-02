@@ -62,6 +62,12 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             _objectContext = context.Get<ObjectContext>();
         }
 
+        public bool IsIndexPageDisplayed()
+        {
+            return new CheckIndexPage(_context)
+                .IsIndexPageDisplayed();
+        }
+
         public HomePage Login(LoginUser loginUser)
         {
             return new IndexPage(_context)
