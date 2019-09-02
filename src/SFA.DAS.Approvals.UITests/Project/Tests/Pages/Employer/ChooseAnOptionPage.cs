@@ -60,17 +60,5 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             _formCompletionHelper.ClickElement(ContinueButton);
             return this;
         }
-
-
-    }
-
-    public class CohortApprovedPage : BasePage
-    {
-        protected override string PageTitle => "Cohort approved";
-
-        public CohortApprovedPage(ScenarioContext context) : base(context)
-        {
-
-        }
     }
 }
