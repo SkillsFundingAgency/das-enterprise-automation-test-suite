@@ -34,6 +34,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             VerifyPage();
         }
 
+        public ProviderMessageForEmployerPage SubmitSendToEmployerToReview()
+        {
+            _formCompletionHelper.SelectRadioOptionByForAttribute(CohortApproveOptions, "SaveStatus-AmendAndSend");
+            _formCompletionHelper.ClickElement(ContinueButton);
+            return new ProviderMessageForEmployerPage(_context);
+        }
+
         public ProviderCohortApprovedPage SubmitApprove()
         {
             _formCompletionHelper.SelectRadioOptionByForAttribute(CohortApproveOptions, "SaveStatus-Approve");

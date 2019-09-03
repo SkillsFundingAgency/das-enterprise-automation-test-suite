@@ -13,7 +13,6 @@ namespace SFA.DAS.Approvals.UITests.Project
     {
         private readonly ScenarioContext _context;
         private readonly ObjectContext _objectcontext;
-        private ApprovalsDataHelper _dataHelper;
 
         public Hooks(ScenarioContext context)
         {
@@ -22,11 +21,14 @@ namespace SFA.DAS.Approvals.UITests.Project
         }
 
         [BeforeScenario(Order = 22)]
-        public void SetUpDataHelpers()
+        public void SetUpHelpers()
         {
             var random = _context.Get<RandomDataGenerator>();
-            _dataHelper = new ApprovalsDataHelper(_objectcontext, random);
-            _context.Set(_dataHelper);
+            var dataHelper = new ApprovalsDataHelper(_objectcontext, random);
+            _context.Set(dataHelper);
+
+            var tabhelper = new TabHelper(_context.GetWebDriver());
+            _context.Set(tabhelper);
         }
     }
 }
