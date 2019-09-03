@@ -12,6 +12,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
     {
         protected override string PageTitle => "Add apprentice details";
 
+        protected override By PageHeader => By.CssSelector(".govuk-heading-xl");
+
         #region Helpers and Context
         private readonly PageInteractionHelper _pageInteractionHelper;
         private readonly FormCompletionHelper _formCompletionHelper;
@@ -36,7 +38,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private By TrainingCost => By.Id("Cost");
         private By EmployerReference => By.Id("Reference");
         private By AddButton => By.CssSelector(".govuk-button");
-
 
         public ProviderAddApprenticeDetailsPage(ScenarioContext context) : base(context)
         {
