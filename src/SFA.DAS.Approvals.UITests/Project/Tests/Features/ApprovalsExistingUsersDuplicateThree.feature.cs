@@ -70,19 +70,25 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Employer sends an approved cohort then provider approves the cohort")]
-        public virtual void EmployerSendsAnApprovedCohortThenProviderApprovesTheCohort()
+        [NUnit.Framework.DescriptionAttribute("Provider sends cohort to employer for review then employer approves then provider" +
+            " approves")]
+        public virtual void ProviderSendsCohortToEmployerForReviewThenEmployerApprovesThenProviderApproves()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Employer sends an approved cohort then provider approves the cohort", null, ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Provider sends cohort to employer for review then employer approves then provider" +
+                    " approves", null, ((string[])(null)));
 #line 6
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 7
 testRunner.Given("the Employer login using existing levy account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 8
-testRunner.When("the Employer approves 2 cohort and sends to provider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+testRunner.When("the Employer create a cohort and send to provider to add apprentices", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 9
-testRunner.Then("the provider adds Ulns and approves the cohorts", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+testRunner.And("the provider adds 2 apprentices and sends to employer to review", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 10
+testRunner.When("the Employer approves the cohort and sends to provider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 11
+testRunner.Then("the provider approves the cohorts", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
