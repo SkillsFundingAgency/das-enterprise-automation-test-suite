@@ -22,7 +22,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         {
             var levyUser = _context.GetUser<LevyUser>();
 
-            _loginHelper.SetLoginCredentials(levyUser);
+            _loginHelper.SetLoginCredentials(levyUser, true);
 
             _loginHelper.Login(levyUser);
         }
@@ -32,7 +32,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         {
             var nonlevyUser = _context.GetUser<NonLevyUser>();
 
-            _loginHelper.SetLoginCredentials(nonlevyUser);
+            _loginHelper.SetLoginCredentials(nonlevyUser, false);
 
             _loginHelper.Login(nonlevyUser);
         }
@@ -42,7 +42,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         {
             var eoiUser = _context.GetUser<EoiUser>();
 
-            _loginHelper.SetLoginCredentials(eoiUser);
+            _loginHelper.SetLoginCredentials(eoiUser, false);
 
             _loginHelper.Login(eoiUser);
         }

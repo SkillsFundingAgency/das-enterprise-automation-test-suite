@@ -29,9 +29,9 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
                 .Login(loginUser);
         }
 
-        internal void SetLoginCredentials(LoginUser loginUser)
+        internal void SetLoginCredentials(LoginUser loginUser, bool isLevy)
         {
-            _objectContext.SetLoginCredentials(loginUser.Username, loginUser.Password);
+            _objectContext.SetLoginCredentials(loginUser.Username, loginUser.Password, isLevy);
             TestContext.Progress.WriteLine($"Email : {loginUser.Username}");
         }
     }
