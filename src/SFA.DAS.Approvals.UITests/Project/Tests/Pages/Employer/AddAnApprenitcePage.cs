@@ -29,7 +29,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         public AddTrainingProviderDetailsPage StartNow()
         {
-            _formCompletionHelper.ClickElement(StartNowButton);
+            _formCompletionHelper.ClickElement(StartNowButton, true);
             return new AddTrainingProviderDetailsPage(_context);
         }
     }
