@@ -3,23 +3,33 @@ using SFA.DAS.Registration.UITests.Project.Tests.Pages;
 using SFA.DAS.UI.Framework.TestSupport;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
+namespace SFA.DAS.Registration.UITests.Project.Helpers
 {
-    public class LoginHelper
+    public class EmployerPortalLoginHelper : IReLoginHelper
     {
         private readonly ScenarioContext _context;
         private readonly ObjectContext _objectContext;
 
-        public LoginHelper(ScenarioContext context)
+        public EmployerPortalLoginHelper(ScenarioContext context)
         {
             _context = context;
             _objectContext = context.Get<ObjectContext>();
         }
 
-        public bool IsIndexPageDisplayed()
+        public bool IsSignInPageDisplayed()
         {
-            return new CheckIndexPage(_context)
+            return new CheckSignInPage(_context)
                 .IsIndexPageDisplayed();
+        }
+
+        public void ReLogin()
+        {
+            var loginCredentials = _objectContext.GetLoginCredentials();
+
+            var loginUser = new LoggedInUser { Username = loginCredentials.Username, Password = loginCredentials.Password };
+
+            new SignInPage(_context)
+                .Login(loginUser);
         }
 
         public HomePage Login(LoginUser loginUser)

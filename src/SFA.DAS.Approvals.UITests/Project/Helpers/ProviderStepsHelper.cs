@@ -10,12 +10,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers
         private readonly ScenarioContext _context;
         private readonly TabHelper _tabHelper;
         private readonly ApprovalsConfig _config;
+        private readonly ProviderPortalLoginHelper _loginHelper;
 
         public ProviderStepsHelper(ScenarioContext context)
         {
             _context = context;
             _tabHelper = new TabHelper(context.GetWebDriver());
             _config = context.GetApprovalsConfig<ApprovalsConfig>();
+            _loginHelper = new ProviderPortalLoginHelper(_context);
         }
 
         public ProviderReviewYourCohortPage AddApprentice(int numberOfApprentices)
@@ -35,9 +37,18 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers
         {
             _tabHelper.OpenInNewtab(_config.AP_ProviderAppUrl);
 
-            return new ProviderIndexPage(_context)
+            if (_loginHelper.IsSignInPageDisplayed())
+            {
+                _loginHelper.ReLogin();
+            }
+            else if (_loginHelper.IsIndexPageDisplayed())
+            {
+                new ProviderIndexPage(_context)
                     .StartNow()
-                    .SubmitValidLoginDetails()
+                    .SubmitValidLoginDetails();
+            }
+
+            return new ProviderHomePage(_context)
                     .GoToProviderYourCohortsPage()
                     .GoToCohortsToReviewPage()
                     .SelectViewCurrentCohortDetails();

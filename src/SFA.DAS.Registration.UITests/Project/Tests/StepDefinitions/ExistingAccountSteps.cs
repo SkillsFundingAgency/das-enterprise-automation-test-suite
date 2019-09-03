@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SFA.DAS.Registration.UITests.Project.Helpers;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using TechTalk.SpecFlow;
@@ -9,12 +10,12 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
     public class ExistingAccountSteps
     {
         private readonly ScenarioContext _context;
-        private readonly LoginHelper _loginHelper;
+        private readonly EmployerPortalLoginHelper _loginHelper;
 
         public ExistingAccountSteps(ScenarioContext context)
         {
             _context = context;
-            _loginHelper = new LoginHelper(context);
+            _loginHelper = new EmployerPortalLoginHelper(context);
         }
 
         [Given(@"the Employer login using existing levy account")]

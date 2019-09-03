@@ -1,7 +1,7 @@
 ﻿using NUnit.Framework;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
 using SFA.DAS.Registration.UITests.Project;
-using SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions;
+using SFA.DAS.Registration.UITests.Project.Helpers;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using System;
@@ -12,7 +12,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers
     internal class EmployerStepsHelper
     {
         private readonly AssertHelper _assertHelper;
-        private readonly LoginHelper _loginHelper;
+        private readonly EmployerPortalLoginHelper _loginHelper;
         private readonly TabHelper _tabHelper;
         private readonly ObjectContext _objectContext;
         private readonly ScenarioContext _context;
@@ -25,18 +25,16 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers
             _assertHelper = _context.Get<AssertHelper>();
             _projectConfig = _context.GetProjectConfig<ProjectConfig>();
             _tabHelper = _context.Get<TabHelper>();
-            _loginHelper = new LoginHelper(_context);
+            _loginHelper = new EmployerPortalLoginHelper(_context);
         }
 
         internal ReviewYourCohortPage EmployerReviewCohort()
         {
             _tabHelper.OpenInNewtab(_projectConfig.RE_BaseUrl);
 
-            if (_loginHelper.IsIndexPageDisplayed())
+            if (_loginHelper.IsSignInPageDisplayed())
             {
-                var loginCredentials = _objectContext.GetLoginCredentials();
-
-                _loginHelper.Login(new LoggedInUser { Username = loginCredentials.Username, Password = loginCredentials.Password });
+                _loginHelper.ReLogin();
             }
 
             var employerReviewYourCohortPage = new ApprenticesHomePage(_context, true)
