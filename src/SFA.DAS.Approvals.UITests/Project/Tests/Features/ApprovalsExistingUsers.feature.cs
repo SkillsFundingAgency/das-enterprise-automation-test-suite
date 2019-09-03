@@ -108,6 +108,26 @@ testRunner.Then("the Employer approves the cohorts", ((string)(null)), ((TechTal
 #line hidden
             this.ScenarioCleanup();
         }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Provider adds apprentices and approves then employer approves cohort")]
+        public virtual void ProviderAddsApprenticesAndApprovesThenEmployerApprovesCohort()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Provider adds apprentices and approves then employer approves cohort", null, ((string[])(null)));
+#line 17
+this.ScenarioInitialize(scenarioInfo);
+            this.ScenarioStart();
+#line 18
+testRunner.Given("the Employer login using existing levy account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 19
+testRunner.When("the Employer create a cohort and send to provider to add apprentices", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 20
+testRunner.And("the provider adds 2 apprentices approves them and sends to employer to approve", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 21
+testRunner.Then("the Employer approves the cohorts", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
     }
 }
 #pragma warning restore

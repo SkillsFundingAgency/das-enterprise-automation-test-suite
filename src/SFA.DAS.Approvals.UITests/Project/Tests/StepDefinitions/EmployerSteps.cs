@@ -32,10 +32,21 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _loginHelper = new LoginHelper(context);
         }
 
+        [When(@"the Employer create a cohort and send to provider to add apprentices")]
+        public void WhenTheEmployerCreateACohortAndSendToProviderToAddApprentices()
+        {
+            var cohortSentYourTrainingProviderPage = _addAnApprenticeHelper.EmployerCreateCohort(new ApprenticesHomePage(_context, true));
+
+            var cohortReference = cohortSentYourTrainingProviderPage.CohortReference();
+
+            _addAnApprenticeHelper.SetCohortReference(_objectContext, cohortReference);
+        }
+
+
         [When(@"the Employer adds (.*) cohort and sends to provider")]
         public void WhenTheEmployerAddsCohortAndSendsToProvider(int numberOfApprentices)
         {
-            var employerReviewYourCohortPage = _addAnApprenticeHelper.EmployerNavigateToAddAnApprentice(new ApprenticesHomePage(_context, true));
+            var employerReviewYourCohortPage = _addAnApprenticeHelper.EmployerAddApprentice(new ApprenticesHomePage(_context, true));
 
             employerReviewYourCohortPage = _addAnApprenticeHelper.AddApprentices(employerReviewYourCohortPage, numberOfApprentices, _objectContext);
 
@@ -54,10 +65,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
             if (_loginHelper.IsIndexPageDisplayed())
             {
-                var loginUsername = _objectContext.GetLoginUsername();
-                var loginpassword = _objectContext.GetLoginPassword();
+                var loginCredentials = _objectContext.GetLoginCredentials();
 
-                _loginHelper.Login(new LoggedInUser { Username = loginUsername, Password = loginpassword });
+                _loginHelper.Login(new LoggedInUser { Username = loginCredentials.Username, Password = loginCredentials.Password});
             }
             
             var employerReviewYourCohortPage = new ApprenticesHomePage(_context, true)

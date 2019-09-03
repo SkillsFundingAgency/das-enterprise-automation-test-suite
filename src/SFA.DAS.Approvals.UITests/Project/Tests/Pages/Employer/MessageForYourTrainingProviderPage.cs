@@ -31,17 +31,24 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             VerifyPage();
         }
 
+        public CohortSentYourTrainingProviderPage SendInstructionsToProviderForEmptyCohort()
+        {
+            Message()
+                .Send();
+            return new CohortSentYourTrainingProviderPage(_context);
+        }
+
         public CohortApprovedAndSentToTrainingProviderPage SendInstructionsToProviderForAnApprovedCohort()
         {
-            Message();
-            Send();
+            Message()
+            .Send();
             return new CohortApprovedAndSentToTrainingProviderPage(_context);
         }
 
         public CohortSentForReviewPage SendInstructionsToProviderForCohortToBeReviewed()
         {
-            Message();
-            Send();
+            Message()
+            .Send();
             return new CohortSentForReviewPage(_context);
         }
 

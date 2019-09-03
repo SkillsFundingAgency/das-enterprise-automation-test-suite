@@ -14,13 +14,16 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _assertHelper = assertHelper;
         }
 
-        internal ReviewYourCohortPage EmployerNavigateToAddAnApprentice(ApprenticesHomePage apprenticesHomePage)
+        internal CohortSentYourTrainingProviderPage EmployerCreateCohort(ApprenticesHomePage apprenticesHomePage)
         {
-            return apprenticesHomePage
-                .AddAnApprentice()
-                .StartNow()
-                .SubmitValidUkprn()
-                .ConfirmProviderDetailsAreCorrect()
+            return ConfirmProviderDetailsAreCorrect(apprenticesHomePage)
+               .EmployerSendsToProviderToAddApprentices()
+               .SendInstructionsToProviderForEmptyCohort();
+        }
+
+        internal ReviewYourCohortPage EmployerAddApprentice(ApprenticesHomePage apprenticesHomePage)
+        {
+          return ConfirmProviderDetailsAreCorrect(apprenticesHomePage)
                 .EmployerAddsApprentices();
         }
 
@@ -89,5 +92,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
             return noOfApprentice;
         }
+        private StartAddingApprenticesPage ConfirmProviderDetailsAreCorrect(ApprenticesHomePage apprenticesHomePage)
+        {
+            return apprenticesHomePage
+                .AddAnApprentice()
+                .StartNow()
+                .SubmitValidUkprn()
+                .ConfirmProviderDetailsAreCorrect();
+        }
+
     }
 }
