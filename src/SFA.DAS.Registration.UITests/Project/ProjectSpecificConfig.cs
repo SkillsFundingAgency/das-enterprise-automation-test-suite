@@ -36,6 +36,5 @@
 
     public class LoggedInUser : LoginUser
     {
-        public bool isLevy { get; set; }
     }
 }

@@ -19,7 +19,8 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         {
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
         }
-        public bool IsIndexPageDisplayed()
+
+        public bool IsPageDisplayed()
         {
             return _pageInteractionHelper.IsElementDisplayed(Identifier);
         }

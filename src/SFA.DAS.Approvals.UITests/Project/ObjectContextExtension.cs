@@ -12,12 +12,12 @@ namespace SFA.DAS.Approvals.UITests.Project
         #endregion
         internal static void SetNoOfApprentices(this ObjectContext objectContext, string value)
         {
-            objectContext.Set(NoOfApprentices, value);
+            objectContext.Replace(NoOfApprentices, value);
         }
 
         internal static void SetApprenticeTotalCost(this ObjectContext objectContext, string value)
         {
-            objectContext.Set(ApprenticeTotalCost, value);
+            objectContext.Replace(ApprenticeTotalCost, value);
         }
 
         internal static void SetCohortReference(this ObjectContext objectContext, string value)

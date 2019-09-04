@@ -1,6 +1,7 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.Approvals.UITests.Project.Helpers;
 using SFA.DAS.Registration.UITests.Project;
+using SFA.DAS.Registration.UITests.Project.Helpers;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using System;
@@ -21,6 +22,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private readonly ObjectContext _objectContext;
         private readonly ApprovalsConfig _config;
         private readonly ApprovalsDataHelper _dataHelper;
+        private readonly LoginCredentialsHelper _loginCredentialsHelper;
         #endregion
 
 
@@ -47,6 +49,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
             _dataHelper = context.Get<ApprovalsDataHelper>();
+            _loginCredentialsHelper = context.Get<LoginCredentialsHelper>();
             VerifyPage();
         }
 
@@ -62,7 +65,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             _formCompletionHelper.ClickElement(StartDateMonth);
             _formCompletionHelper.EnterText(StartDateMonth, _dataHelper.CourseStartDate.Month);
             _formCompletionHelper.EnterText(StartDateYear, _dataHelper.CourseStartDate.Year);
-            if (_objectContext.GetLoginCredentials().isLevy == false)
+            if (_loginCredentialsHelper.IsLevy == false)
             {
                 DateTime now = DateTime.Now;
                 _formCompletionHelper.EnterText(StartDateMonth, now.Month);

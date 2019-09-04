@@ -1,6 +1,4 @@
-﻿using NUnit.Framework;
-using SFA.DAS.Registration.UITests.Project.Tests.Pages;
-using SFA.DAS.UI.Framework.TestSupport;
+﻿using SFA.DAS.Registration.UITests.Project.Tests.Pages;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Registration.UITests.Project.Helpers
@@ -8,28 +6,26 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
     public class EmployerPortalLoginHelper : IReLoginHelper
     {
         private readonly ScenarioContext _context;
-        private readonly ObjectContext _objectContext;
+        private readonly LoginCredentialsHelper _loginCredentialsHelper;
 
         public EmployerPortalLoginHelper(ScenarioContext context)
         {
             _context = context;
-            _objectContext = context.Get<ObjectContext>();
+            _loginCredentialsHelper = context.Get<LoginCredentialsHelper>();
         }
 
         public bool IsSignInPageDisplayed()
         {
             return new CheckSignInPage(_context)
-                .IsIndexPageDisplayed();
+                .IsPageDisplayed();
         }
 
         public void ReLogin()
         {
-            var loginCredentials = _objectContext.GetLoginCredentials();
-
-            var loginUser = new LoggedInUser { Username = loginCredentials.Username, Password = loginCredentials.Password };
+            var loginCredentials = _loginCredentialsHelper.GetLoginCredentials();
 
             new SignInPage(_context)
-                .Login(loginUser);
+                .Login(loginCredentials);
         }
 
         public HomePage Login(LoginUser loginUser)
@@ -37,12 +33,6 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
             return new IndexPage(_context)
                 .SignIn()
                 .Login(loginUser);
-        }
-
-        internal void SetLoginCredentials(LoginUser loginUser, bool isLevy)
-        {
-            _objectContext.SetLoginCredentials(loginUser.Username, loginUser.Password, isLevy);
-            TestContext.Progress.WriteLine($"Email : {loginUser.Username}");
         }
     }
 }

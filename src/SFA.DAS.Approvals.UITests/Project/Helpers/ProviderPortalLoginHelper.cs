@@ -16,13 +16,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers
         public bool IsSignInPageDisplayed()
         {
             return new CheckProviderSignInPage(_context)
-                .IsIndexPageDisplayed();
+                .IsPageDisplayed();
         }
 
         public bool IsIndexPageDisplayed()
         {
             return new CheckProviderIndexPage(_context)
-                    .IsIndexPageDisplayed();
+                    .IsPageDisplayed();
         }
 
         public void ReLogin()
