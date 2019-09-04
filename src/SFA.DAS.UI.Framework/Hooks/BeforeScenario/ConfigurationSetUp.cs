@@ -1,4 +1,5 @@
-﻿using SFA.DAS.UI.Framework.TestSupport;
+﻿using Microsoft.Extensions.Configuration;
+using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
@@ -9,12 +10,15 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
     {
         private readonly ScenarioContext _context;
 
+        private readonly IConfigurationRoot _configurationRoot;
+
         private readonly IConfigSection _configSection;
 
         public ConfigurationSetup(ScenarioContext context)
         {
             _context = context;
-            _configSection = new ConfigSection(Configurator.GetConfig());
+            _configurationRoot = Configurator.GetConfig();
+            _configSection = new ConfigSection(_configurationRoot);
         }
         
         [BeforeScenario(Order = 1)]
@@ -25,10 +29,16 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
             var configuration = new FrameworkConfig
             {
                 TimeOutConfig = _configSection.GetConfigSection<TimeOutConfig>(),
-                BrowserStackSetting = _configSection.GetConfigSection<BrowserStackSetting>()
+                BrowserStackSetting = _configSection.GetConfigSection<BrowserStackSetting>(),
+                TakeEveryPageScreenShot = TestsExecutionInVsts()
             };
 
             _context.Set(configuration);
+        }
+
+        private bool TestsExecutionInVsts()
+        {
+            return !string.IsNullOrEmpty(_configurationRoot.GetAgentMachineName());
         }
     }
 }

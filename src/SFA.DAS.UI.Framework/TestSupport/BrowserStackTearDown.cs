@@ -10,7 +10,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
     {
         public static void MarkTestAsFailed(RemoteWebDriver webDriver, BrowserStackSetting options, string scenarioTitle, string message)
         {
-            ScreenshotHelper.TakeScreenShot(webDriver, scenarioTitle);
+            ScreenshotHelper.TakeScreenShot(webDriver, scenarioTitle, true);
 
             string reqString = "{\"status\":\"failed\", \"reason\":\"" + message + "\"}";
 

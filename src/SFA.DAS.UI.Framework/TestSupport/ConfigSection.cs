@@ -1,5 +1,4 @@
 ﻿using Microsoft.Extensions.Configuration;
-using TechTalk.SpecFlow;
 
 namespace SFA.DAS.UI.Framework.TestSupport
 {

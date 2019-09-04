@@ -20,6 +20,11 @@ namespace SFA.DAS.UI.Framework.TestSupport
             return _config;
         }
 
+        internal static string GetAgentMachineName(this IConfigurationRoot configurationRoot)
+        {
+            return configurationRoot.GetSection("AGENT_MACHINENAME")?.Value;
+        }
+
         private static IConfigurationRoot InitializeConfig()
         {
             var EnvironmentName = _hostingConfig.GetSection("Release_EnvironmentName").Value;
