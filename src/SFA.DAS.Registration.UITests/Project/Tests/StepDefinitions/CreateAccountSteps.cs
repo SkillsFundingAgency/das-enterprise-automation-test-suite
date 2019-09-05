@@ -16,13 +16,13 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         private EoiAboutYourAgreementPage eoiAboutYourAgreementPage;
         private HomePage homePage;
         private readonly ObjectContext _objectContext;
-        private readonly DataHelper _dataHelper;
+        private readonly RegistrationDatahelpers _dataHelper;
 
         public CreateAccountSteps(ScenarioContext context)
         {
             _context = context;
             _objectContext = _context.Get<ObjectContext>();
-            _dataHelper = context.Get<DataHelper>();
+            _dataHelper = context.Get<RegistrationDatahelpers>();
         }
 
         [Given(@"I create an Account")]

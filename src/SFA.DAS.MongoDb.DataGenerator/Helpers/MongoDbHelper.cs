@@ -5,7 +5,7 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace SFA.DAS.Registration.UITests.Project.Helpers.MongoDb
+namespace SFA.DAS.MongoDb.DataGenerator.Helpers
 {
     public class MongoDbHelper
     {

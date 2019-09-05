@@ -2,7 +2,7 @@
 using MongoDB.Driver;
 using System.Text.RegularExpressions;
 
-namespace SFA.DAS.Registration.UITests.Project.Helpers.MongoDb
+namespace SFA.DAS.MongoDb.DataGenerator.Helpers
 {
     public class EmpRefLinksDataGenerator : EmpRefFilterDefinition, IMongoDbDataGenerator
     {
