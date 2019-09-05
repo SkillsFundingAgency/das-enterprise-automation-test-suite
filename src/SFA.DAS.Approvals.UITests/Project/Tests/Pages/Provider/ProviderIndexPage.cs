@@ -8,6 +8,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 {
+
     public class ProviderIndexPage : BasePage
     {
         protected override string PageTitle => "Manage apprenticeships on behalf of employers";

@@ -19,7 +19,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private readonly ApprovalsDataHelper _datahelper;
         #endregion
 
-
         private By CohortApproveOptions => By.CssSelector(".selection-button-radio");
         private By ContinueButton => By.Id("paymentPlan");
 
@@ -34,18 +33,28 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             VerifyPage();
         }
 
+        public ProviderMessageForEmployerPage SubmitSendToEmployerToReview()
+        {
+            SelectOption("SaveStatus-AmendAndSend");
+            return new ProviderMessageForEmployerPage(_context);
+        }
+
         public ProviderCohortApprovedPage SubmitApprove()
         {
-            _formCompletionHelper.SelectRadioOptionByForAttribute(CohortApproveOptions, "SaveStatus-Approve");
-            _formCompletionHelper.ClickElement(ContinueButton);
+            SelectOption("SaveStatus-Approve");
             return new ProviderCohortApprovedPage(_context);
         }
 
         public ProviderMessageForEmployerPage SubmitApproveAndSendToEmployerForApproval()
         {
-            _formCompletionHelper.SelectRadioOptionByText(CohortApproveOptions, "Approve and send to employer for approval");
-            _formCompletionHelper.ClickElement(ContinueButton);
+            SelectOption("SaveStatus-ApproveAndSend");
             return new ProviderMessageForEmployerPage(_context);
+        }
+
+        private void SelectOption(string option)
+        {
+            _formCompletionHelper.SelectRadioOptionByForAttribute(CohortApproveOptions, option);
+            _formCompletionHelper.ClickElement(ContinueButton);
         }
     }
 }

@@ -17,6 +17,8 @@ namespace SFA.DAS.Registration.UITests.Project
         private readonly IWebDriver _webDriver;
         private readonly ObjectContext _objectContext;
         private string _empRef;
+        private RegistrationDatahelpers _registrationDatahelpers;
+        private LoginCredentialsHelper _loginCredentialsHelper;
 
         public Hooks(ScenarioContext context)
         {
@@ -42,7 +44,13 @@ namespace SFA.DAS.Registration.UITests.Project
 
             _context.Set(dataHelper);
 
-            _context.Set(new RegistrationDatahelpers(dataHelper.GatewayUsername, domainName));
+            _registrationDatahelpers = new RegistrationDatahelpers(dataHelper.GatewayUsername, _config.RE_AccountPassword, domainName);
+
+            _context.Set(_registrationDatahelpers);
+
+            _loginCredentialsHelper = new LoginCredentialsHelper(_objectContext);
+
+            _context.Set(_loginCredentialsHelper);
         }
 
         [BeforeScenario(Order = 23)]
@@ -54,6 +62,8 @@ namespace SFA.DAS.Registration.UITests.Project
             datagenerator.AddGatewayUsers();
 
             _empRef = _objectContext.GetGatewayPaye();
+
+            _loginCredentialsHelper.SetLoginCredentials(_registrationDatahelpers.RandomEmail, _registrationDatahelpers.Password);
         }
 
         [AfterScenario(Order = 21)]

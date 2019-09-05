@@ -1,7 +1,7 @@
 ﻿using OpenQA.Selenium;
 using System.Linq;
 
-namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
+namespace SFA.DAS.Approvals.UITests.Project.Helpers
 {
     internal class TabHelper
     {

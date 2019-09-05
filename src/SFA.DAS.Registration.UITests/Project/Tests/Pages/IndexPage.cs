@@ -8,28 +8,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 {
-    public class CheckIndexPage : BasePage
-    {
-        protected override string PageTitle { get; }
-
-        #region Helpers and Context
-        private readonly PageInteractionHelper _pageInteractionHelper;
-        #endregion
-
-        protected By SigninLink => By.LinkText("sign in");
-
-        public CheckIndexPage(ScenarioContext context) : base(context)
-        {
-            _pageInteractionHelper = context.Get<PageInteractionHelper>();
-        }
-
-        public bool IsIndexPageDisplayed()
-        {
-            return _pageInteractionHelper.IsElementDisplayed(SigninLink);
-        }
-    }
-
-    public class IndexPage : CheckIndexPage
+    public class IndexPage : BasePage
     {
         protected override string PageTitle => "Create an account to manage apprenticeships";
 
@@ -38,6 +17,8 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         private readonly FormCompletionHelper _formCompletionHelper;
         private readonly ScenarioContext _context;
         #endregion
+
+        private By SigninLink => By.LinkText("sign in");
 
         private By CreateAccountLink => By.Id("service-start");
 

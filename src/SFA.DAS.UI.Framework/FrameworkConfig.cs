@@ -7,5 +7,7 @@ namespace SFA.DAS.UI.Framework
         public TimeOutConfig TimeOutConfig { get; set; }
 
         public BrowserStackSetting BrowserStackSetting { get; set; }
+
+        public bool TakeEveryPageScreenShot { get; set; }
     }
 }

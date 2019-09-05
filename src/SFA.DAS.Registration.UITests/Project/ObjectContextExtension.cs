@@ -9,12 +9,12 @@ namespace SFA.DAS.Registration.UITests.Project
         private const string LoggedInUserKey = "loggedinuserkey";
         #endregion
 
-        public static void SetLoginCredentials(this ObjectContext objectContext, string loginusername, string loginpassword, bool isLevy)
+        internal static void SetLoginCredentials(this ObjectContext objectContext, string loginusername, string loginpassword)
         {
-            objectContext.Set(LoggedInUserKey, new LoggedInUser { Username = loginusername, Password = loginpassword, isLevy = isLevy });
+            objectContext.Set(LoggedInUserKey, new LoggedInUser { Username = loginusername, Password = loginpassword});
         }
 
-        public static void SetAccountId(this ObjectContext objectContext, string accountid)
+        internal static void SetAccountId(this ObjectContext objectContext, string accountid)
         {
             objectContext.Set(AccountIdKey, accountid);
         }
@@ -24,9 +24,9 @@ namespace SFA.DAS.Registration.UITests.Project
             return objectContext.Get(AccountIdKey);
         }
 
-        public static LoggedInUser GetLoginCredentials(this ObjectContext objectContext)
+        internal static LoginUser GetLoginCredentials(this ObjectContext objectContext)
         {
-            return objectContext.Get<LoggedInUser>(LoggedInUserKey);
+            return objectContext.Get<LoginUser>(LoggedInUserKey);
         }
     }
 }

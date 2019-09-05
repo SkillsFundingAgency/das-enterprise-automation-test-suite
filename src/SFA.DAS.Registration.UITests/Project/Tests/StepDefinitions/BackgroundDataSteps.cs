@@ -1,6 +1,5 @@
 ﻿using SFA.DAS.MongoDb.DataGenerator;
-using SFA.DAS.UI.Framework.TestSupport;
-using SFA.DAS.UI.FrameworkHelpers;
+using SFA.DAS.Registration.UITests.Project.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -13,10 +12,12 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
     {
         private readonly ScenarioContext _context;
         private readonly MongoDbDataGenerator _levyDeclarationHelper;
+        private readonly LoginCredentialsHelper _loginCredentialsHelper;
 
         public BackgroundDataSteps(ScenarioContext context)
         {
             _context = context;
+            _loginCredentialsHelper = context.Get<LoginCredentialsHelper>();
             _levyDeclarationHelper = new MongoDbDataGenerator(_context);
         }
 
@@ -26,6 +27,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             var table = new Table("Year", "Month", "LevyDueYTD", "LevyAllowanceForFullYear", "SubmissionDate");
             table.AddRow("19-20", "1", "62000", "80000", "2019-05-15");
             _levyDeclarationHelper.AddLevyDeclarations(1.00m, new DateTime(2019, 01, 15), table);
+            _loginCredentialsHelper.SetIsLevy();
         }
 
 
@@ -33,6 +35,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         public void GivenTheFollowingLevyDeclarationsWithEnglishFractionOfCalculatedAt(decimal fraction, DateTime calculatedAt, Table table)
         {
             _levyDeclarationHelper.AddLevyDeclarations(fraction, calculatedAt, table);
+            _loginCredentialsHelper.SetIsLevy();
         }
     }
 }

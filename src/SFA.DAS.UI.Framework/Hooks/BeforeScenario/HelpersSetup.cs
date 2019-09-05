@@ -30,6 +30,7 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
             _context.Set(new RandomDataGenerator());
             _context.Set(new RegexHelper());
             _context.Set(new AssertHelper());
+            _context.Set(new ScreenShotTitleGenerator(0));
         }
     }
 }

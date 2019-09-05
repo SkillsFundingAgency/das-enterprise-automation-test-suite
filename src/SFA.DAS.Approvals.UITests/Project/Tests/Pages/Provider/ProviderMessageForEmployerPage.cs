@@ -40,5 +40,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             _formCompletionHelper.ClickElement(SendButton);
             return new ProviderCohortApprovedAndSentToEmployerPage(_context);
         }
+        public  ProviderCohortSentForReviewPage SendInstructionsToEmployerForCohortToReview()
+        {
+            _formCompletionHelper.EnterText(MessageBox, _datahelper.MessageToEmployer);
+            _formCompletionHelper.ClickElement(SendButton);
+            return new ProviderCohortSentForReviewPage(_context);
+        }
     }
 }
