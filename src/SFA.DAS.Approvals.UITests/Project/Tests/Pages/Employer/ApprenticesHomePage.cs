@@ -1,11 +1,12 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.Registration.UITests.Project.Tests.Pages;
 using System.Collections.Generic;
 using System.Text;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
-    public class ApprenticesHomePage : InterimApprenticepage
+    public class ApprenticesHomePage : InterimBasePage
     {
         protected override string PageTitle => "Apprentices";
 

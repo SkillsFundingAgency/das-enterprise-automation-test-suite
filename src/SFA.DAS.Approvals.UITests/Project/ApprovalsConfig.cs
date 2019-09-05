@@ -34,12 +34,12 @@
 
         public string AP_PermissionsDbConnectionString { get; set; }
 
-        public string AP_PrelDBCosmosUri{ get; set; }
+        public string AP_PrelDbCosmosUri{ get; set; }
 
-        public string AP_PrelDBAuthKey{ get; set; }
+        public string AP_PrelDbAuthKey{ get; set; }
 
-        public string AP_PrelDBDatabaseName{ get; set; }
+        public string AP_PrelDbDatabaseName{ get; set; }
 
-        public string AP_PrelDBCollectionName{ get; set; }
+        public string AP_PrelDbCollectionName{ get; set; }
     }
 }

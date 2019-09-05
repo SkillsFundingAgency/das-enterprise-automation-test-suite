@@ -26,8 +26,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         private By EditApprenticeLink => By.LinkText("Edit");
 
-        private By PireanPreprodButton => By.XPath("//span[contains(text(),'Pirean Preprod')]");
-
         private By ContinueToApprovalButton => By.ClassName("finishEditingBtn");
 
         private By SaveAndContinueButton => By.ClassName("finishEditingBtn");
@@ -44,10 +42,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         internal ProviderAddApprenticeDetailsPage SelectAddAnApprentice()
         {
             _formCompletionHelper.ClickElement(AddAnApprenticeButton);
-            if (_pageInteractionHelper.IsElementDisplayed(PireanPreprodButton))
-            {
-                _formCompletionHelper.ClickElement(PireanPreprodButton);
-            }
             return new ProviderAddApprenticeDetailsPage(_context);
         }
 
@@ -65,10 +59,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         {
             IList<IWebElement> editApprenticeLinks = _pageInteractionHelper.FindElements(EditApprenticeLink);
             _formCompletionHelper.ClickElement(editApprenticeLinks[apprenticeNumber]);
-            if (_pageInteractionHelper.IsElementDisplayed(PireanPreprodButton))
-            {
-                _formCompletionHelper.ClickElement(PireanPreprodButton);
-            }
             return new ProviderEditApprenticeDetailsPage(_context);
         }
 
