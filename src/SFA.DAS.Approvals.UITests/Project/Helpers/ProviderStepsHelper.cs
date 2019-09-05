@@ -78,5 +78,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers
 
             return providerReviewYourCohortPage;
         }
+
+        public void Approve(ProviderReviewYourCohortPage providerReviewYourCohortPage)
+        {
+            providerReviewYourCohortPage.SelectContinueToApproval()
+                .SubmitApprove();
+        }
     }
 }

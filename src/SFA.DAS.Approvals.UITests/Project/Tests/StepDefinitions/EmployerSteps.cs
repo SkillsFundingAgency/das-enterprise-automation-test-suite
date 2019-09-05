@@ -21,10 +21,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             var employerReviewYourCohortPage = _employerStepsHelper.EmployerAddApprentice(numberOfApprentices);
 
-            var cohortReference = employerReviewYourCohortPage.SaveAndContinue()
-                .SubmitApproveAndSendToTrainingProvider()
-                .SendInstructionsToProviderForAnApprovedCohort()
-                .CohortReference();
+            var cohortReference = _employerStepsHelper.EmployerApproveAndSendToProvider(employerReviewYourCohortPage);
 
             _employerStepsHelper.SetCohortReference(cohortReference);
         }

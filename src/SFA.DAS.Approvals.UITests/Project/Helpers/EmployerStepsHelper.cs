@@ -61,6 +61,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers
             return AddApprentices(employerReviewYourCohortPage, numberOfApprentices);
         }
 
+        internal string EmployerApproveAndSendToProvider(ReviewYourCohortPage employerReviewYourCohortPage)
+        {
+            return employerReviewYourCohortPage.SaveAndContinue()
+                .SubmitApproveAndSendToTrainingProvider()
+                .SendInstructionsToProviderForAnApprovedCohort()
+                .CohortReference();
+        }
+
         internal void SetCohortReference(string cohortReference)
         {
             _objectContext.SetCohortReference(cohortReference);

@@ -34,18 +34,22 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
             var employerReviewYourCohortPage = _employerStepsHelper.EmployerAddApprentice(1);
 
-            var cohortReference = employerReviewYourCohortPage.SaveAndContinue()
-                .SubmitApproveAndSendToTrainingProvider()
-                .SendInstructionsToProviderForAnApprovedCohort()
-                .CohortReference();
+            var cohortReference = _employerStepsHelper.EmployerApproveAndSendToProvider(employerReviewYourCohortPage);
 
             _employerStepsHelper.SetCohortReference(cohortReference);
 
             var providerReviewYourCohortPage = _providerStepsHelper.EditApprentice();
 
-            providerReviewYourCohortPage.SelectContinueToApproval()
-                            .SubmitApprove();
+            _providerStepsHelper.Approve(providerReviewYourCohortPage);
+            
         }
+
+        [When(@"the Employer edits and confirm the changes after ILR match")]
+        public void WhenTheEmployerEditsAndConfirmTheChangesAfterILRMatch()
+        {
+            throw new PendingStepException();
+        }
+
 
     }
 }
