@@ -33,9 +33,28 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         public CohortApprovedAndSentToTrainingProviderPage SendInstructionsToProviderForAnApprovedCohort()
         {
-            _formCompletionHelper.EnterText(MessageBox, _dataHelper.MessageToProvider);
-            _formCompletionHelper.ClickElement(SendButton);
+            Message();
+            Send();
             return new CohortApprovedAndSentToTrainingProviderPage(_context);
+        }
+
+        public CohortSentForReviewPage SendInstructionsToProviderForCohortToBeReviewed()
+        {
+            Message();
+            Send();
+            return new CohortSentForReviewPage(_context);
+        }
+
+        private MessageForYourTrainingProviderPage Message()
+        {
+            _formCompletionHelper.EnterText(MessageBox, _dataHelper.MessageToProvider);
+            return this;
+        }
+
+        private MessageForYourTrainingProviderPage Send()
+        {
+            _formCompletionHelper.ClickElement(SendButton, true);
+            return this;
         }
     }
 }

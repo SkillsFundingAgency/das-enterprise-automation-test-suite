@@ -1,13 +1,14 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
+using System;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
-    public class AddAnApprenitcePage : BasePage
+    public class YourCohortRequestsPage : BasePage
     {
-        protected override string PageTitle => "Add an apprentice";
+        protected override string PageTitle => "Your cohort requests";
 
         #region Helpers and Context
         private readonly PageInteractionHelper _pageInteractionHelper;
@@ -16,9 +17,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private readonly ApprovalsConfig _config;
         #endregion
 
-        private By StartNowButton = By.CssSelector(".button-start");
+        private By NumberofCohortsForReview => By.CssSelector(".block-one .bold-xxlarge");
 
-        public AddAnApprenitcePage(ScenarioContext context) : base(context)
+        public YourCohortRequestsPage(ScenarioContext context) : base(context)
         {
             _context = context;
             _config = context.GetApprovalsConfig<ApprovalsConfig>();
@@ -27,10 +28,16 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             VerifyPage();
         }
 
-        public AddTrainingProviderDetailsPage StartNow()
+        public CohortsForReviewPage GoToCohortsReadyForReview()
         {
-            _formCompletionHelper.ClickElement(StartNowButton, true);
-            return new AddTrainingProviderDetailsPage(_context);
+            var employerReadyForReviewCohorts = Convert.ToInt32(_pageInteractionHelper.GetText(NumberofCohortsForReview));
+            if (employerReadyForReviewCohorts > 0)
+            {
+                _formCompletionHelper.ClickElement(NumberofCohortsForReview);
+                return new CohortsForReviewPage(_context);
+            }
+
+            throw new Exception("No cohorts available for review");
         }
     }
 }

@@ -6,9 +6,9 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 {
-    public class ProviderChooseAnOptionPage : BasePage
+    public class ProviderMessageForEmployerPage : BasePage
     {
-        protected override string PageTitle => "Choose an option";
+        protected override string PageTitle => "Message for employer";
 
         #region Helpers and Context
         private readonly PageInteractionHelper _pageInteractionHelper;
@@ -19,11 +19,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private readonly ApprovalsDataHelper _datahelper;
         #endregion
 
+        private By MessageBox => By.Id("Message");
+        private By SendButton => By.CssSelector(".button");
 
-        private By CohortApproveOptions => By.CssSelector(".selection-button-radio");
-        private By ContinueButton => By.Id("paymentPlan");
-
-        public ProviderChooseAnOptionPage(ScenarioContext context) : base(context)
+        public ProviderMessageForEmployerPage(ScenarioContext context) : base(context)
         {
             _context = context;
             _objectContext = context.Get<ObjectContext>();
@@ -34,18 +33,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             VerifyPage();
         }
 
-        public ProviderCohortApprovedPage SubmitApprove()
-        {
-            _formCompletionHelper.SelectRadioOptionByForAttribute(CohortApproveOptions, "SaveStatus-Approve");
-            _formCompletionHelper.ClickElement(ContinueButton);
-            return new ProviderCohortApprovedPage(_context);
-        }
 
-        public ProviderMessageForEmployerPage SubmitApproveAndSendToEmployerForApproval()
+        public ProviderCohortApprovedAndSentToEmployerPage SendInstructionsToEmployerForAnApprovedCohort()
         {
-            _formCompletionHelper.SelectRadioOptionByText(CohortApproveOptions, "Approve and send to employer for approval");
-            _formCompletionHelper.ClickElement(ContinueButton);
-            return new ProviderMessageForEmployerPage(_context);
+            _formCompletionHelper.EnterText(MessageBox, _datahelper.MessageToEmployer);
+            _formCompletionHelper.ClickElement(SendButton);
+            return new ProviderCohortApprovedAndSentToEmployerPage(_context);
         }
     }
 }

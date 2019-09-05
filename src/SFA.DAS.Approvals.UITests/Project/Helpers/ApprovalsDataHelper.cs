@@ -53,6 +53,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers
 
         public string MessageToProvider => $"Apprentice Total Cost {_objectContext.GetApprenticeTotalCost()}, {_randomDataGenerator.GenerateRandomAlphanumericString(20)}";
 
+        public string MessageToEmployer => $"Added ulns, {MessageToProvider}";
+
         public int RandomNumber { get; }
 
         public string Uln => _randomDataGenerator.GenerateRandomUln();

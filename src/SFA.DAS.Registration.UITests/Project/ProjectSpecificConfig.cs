@@ -33,4 +33,8 @@
     public class EoiUser : LoginUser
     {
     }
+
+    public class LoggedInUser : LoginUser
+    {
+    }
 }

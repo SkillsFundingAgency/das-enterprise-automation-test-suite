@@ -35,8 +35,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         public AddApprenticeDetailsPage SelectAddAnApprentice()
         {
-            _formCompletionHelper.ClickElement(AddAnApprenticeButton, true);
+            ClickElement(AddAnApprenticeButton);
             return new AddApprenticeDetailsPage(_context);
+        }
+
+        public ChooseAnOptionPage SelectContinueToApproval()
+        {
+            ClickElement(ContinueToApprovalButton);
+            return new ChooseAnOptionPage(_context);
         }
 
         public string ApprenticeTotalCost()
@@ -51,8 +57,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         public ChooseAnOptionPage SaveAndContinue()
         {
-            _formCompletionHelper.ClickElement(SaveAndContinueButton, true);
+            ClickElement(SaveAndContinueButton);
             return new ChooseAnOptionPage(_context);
+        }
+
+        private void ClickElement(By locator)
+        {
+            _formCompletionHelper.ClickElement(locator, true);
         }
     }
 }

@@ -14,30 +14,41 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
     {
         private readonly ScenarioContext _context;
         private readonly ObjectContext _objectContext;
-        private readonly IWebDriver _webDriver;
         private readonly ApprovalsConfig _config;
+        private readonly TabHelper _tabHelper;
 
         public ProviderSteps(ScenarioContext context)
         {
             _context = context;
             _config = context.GetApprovalsConfig<ApprovalsConfig>();
             _objectContext = _context.Get<ObjectContext>();
-            _webDriver = context.GetWebDriver();
+            _tabHelper = new TabHelper(context.GetWebDriver());
         }
 
         [Then(@"the provider adds Ulns and approves the cohorts")]
         public void TheProviderAddsUlnsAndApprovesTheCohorts()
         {
-            var handle = _webDriver.CurrentWindowHandle;
+            _tabHelper.OpenInNewtab(_config.AP_ProviderAppUrl);
 
-            ((IJavaScriptExecutor)_webDriver).ExecuteScript($"window.open('{_config.AP_ProviderAppUrl}','_blank');");
+            var providerReviewYourCohortPage = ReviewTheCohort();
 
-            var handles = _webDriver.WindowHandles;
+            ApproveTheCohort(providerReviewYourCohortPage);
+        }
 
-            var newWindow = handles.FirstOrDefault(x => x != handle);
+        [When(@"the provider adds Ulns and approves the cohorts and sends to employer")]
+        public void WhenTheProviderAddsUlnsAndApprovesTheCohortsAndSendsToEmployer()
+        {
+            _tabHelper.OpenInNewtab(_config.AP_ProviderAppUrl);
 
-            _webDriver.SwitchTo().Window(newWindow);
+            var providerReviewYourCohortPage = ReviewTheCohort();
 
+            providerReviewYourCohortPage.SelectSaveAndContinue()
+                .SubmitApproveAndSendToEmployerForApproval()
+                .SendInstructionsToEmployerForAnApprovedCohort();
+        }
+
+        private ProviderReviewYourCohortPage ReviewTheCohort()
+        {
             var providerReviewYourCohortPage = new ProviderIndexPage(_context)
                 .StartNow()
                 .SubmitValidLoginDetails()
@@ -62,8 +73,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                     j++;
                 }
             }
+
+            return providerReviewYourCohortPage;
+        }
+
+        private void ApproveTheCohort(ProviderReviewYourCohortPage providerReviewYourCohortPage)
+        {
             providerReviewYourCohortPage.SelectContinueToApproval()
-                .SubmitApprove();
+                                        .SubmitApprove();
         }
     }
 }

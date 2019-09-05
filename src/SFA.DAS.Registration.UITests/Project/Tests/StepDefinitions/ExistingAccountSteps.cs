@@ -1,6 +1,4 @@
-﻿using NUnit.Framework;
-using SFA.DAS.Registration.UITests.Project.Tests.Pages;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 using TechTalk.SpecFlow;
@@ -11,10 +9,12 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
     public class ExistingAccountSteps
     {
         private readonly ScenarioContext _context;
+        private readonly LoginHelper _loginHelper;
 
         public ExistingAccountSteps(ScenarioContext context)
         {
             _context = context;
+            _loginHelper = new LoginHelper(context);
         }
 
         [Given(@"the Employer login using existing levy account")]
@@ -22,11 +22,9 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         {
             var levyUser = _context.GetUser<LevyUser>();
 
-            ReportUsername(levyUser.Username);
+            _loginHelper.SetLoginCredentials(levyUser);
 
-            new IndexPage(_context)
-                .SignIn()
-                .Login(levyUser);
+            _loginHelper.Login(levyUser);
         }
 
         [Given(@"the Employer login using existing non levy account")]
@@ -34,11 +32,9 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         {
             var nonlevyUser = _context.GetUser<NonLevyUser>();
 
-            ReportUsername(nonlevyUser.Username);
-            
-            new IndexPage(_context)
-                .SignIn()
-                .Login(nonlevyUser);
+            _loginHelper.SetLoginCredentials(nonlevyUser);
+
+            _loginHelper.Login(nonlevyUser);
         }
 
         [Given(@"the Employer login using existing eoi account")]
@@ -46,16 +42,9 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         {
             var eoiUser = _context.GetUser<EoiUser>();
 
-            ReportUsername(eoiUser.Username);
+            _loginHelper.SetLoginCredentials(eoiUser);
 
-            new IndexPage(_context)
-                .SignIn()
-                .Login(eoiUser);
-        }
-
-        private void ReportUsername(string username)
-        {
-            TestContext.Progress.WriteLine($"Email : {username}");
+            _loginHelper.Login(eoiUser);
         }
     }
 }

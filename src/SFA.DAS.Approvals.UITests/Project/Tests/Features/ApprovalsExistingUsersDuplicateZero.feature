@@ -1,4 +1,4 @@
-﻿Feature: ApprovalsExistingUsersDuplicate
+﻿Feature: ApprovalsExistingUsersDuplicateZero
 
 A short summary of the feature
 
