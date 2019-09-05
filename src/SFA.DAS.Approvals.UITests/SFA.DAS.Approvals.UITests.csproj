@@ -7,6 +7,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <SpecFlowObsoleteCodeBehindFiles Remove="Project\Tests\Features\ExistingUserAccount - Copy (2).feature.cs" />
+    <SpecFlowObsoleteCodeBehindFiles Remove="Project\Tests\Features\ExistingUserAccount - Copy (3).feature.cs" />
+    <SpecFlowObsoleteCodeBehindFiles Remove="Project\Tests\Features\ExistingUserAccount - Copy.feature.cs" />
+    <SpecFlowObsoleteCodeBehindFiles Remove="Project\Tests\Features\NewUserAccountE2EJourneyOne - Copy (2).feature.cs" />
+    <SpecFlowObsoleteCodeBehindFiles Remove="Project\Tests\Features\NewUserAccountE2EJourneyOne - Copy (3).feature.cs" />
+    <SpecFlowObsoleteCodeBehindFiles Remove="Project\Tests\Features\NewUserAccountE2EJourneyOne - Copy.feature.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Include="..\NUnitConfigurator.cs" Link="NUnitConfigurator.cs" />
   </ItemGroup>
 
@@ -27,6 +36,27 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Project\Tests\Features\ExistingUserAccountE2EJourneyFour.feature.cs">
+      <DependentUpon>ExistingUserAccountE2EJourneyFour.feature</DependentUpon>
+    </Compile>
+    <Compile Update="Project\Tests\Features\ExistingUserAccountE2EJourneyThree.feature.cs">
+      <DependentUpon>ExistingUserAccountE2EJourneyThree.feature</DependentUpon>
+    </Compile>
+    <Compile Update="Project\Tests\Features\ExistingUserAccountE2EJourneyTwo.feature.cs">
+      <DependentUpon>ExistingUserAccountE2EJourneyTwo.feature</DependentUpon>
+    </Compile>
+    <Compile Update="Project\Tests\Features\NewUserAccountE2EJourneyFour.feature.cs">
+      <DependentUpon>NewUserAccountE2EJourneyFour.feature</DependentUpon>
+    </Compile>
+    <Compile Update="Project\Tests\Features\NewUserAccountE2EJourneyThree.feature.cs">
+      <DependentUpon>NewUserAccountE2EJourneyThree.feature</DependentUpon>
+    </Compile>
+    <Compile Update="Project\Tests\Features\NewUserAccountE2EJourneyTwo.feature.cs">
+      <DependentUpon>NewUserAccountE2EJourneyTwo.feature</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
     <None Update="appsettings.Environment.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -36,6 +66,33 @@
     <None Update="appsettings.Project.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <SpecFlowFeatureFiles Update="Project\Tests\Features\ExistingUserAccountE2EJourneyFour.feature">
+      <Visible>$(UsingMicrosoftNETSdk)</Visible>
+      <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
+    </SpecFlowFeatureFiles>
+    <SpecFlowFeatureFiles Update="Project\Tests\Features\ExistingUserAccountE2EJourneyThree.feature">
+      <Visible>$(UsingMicrosoftNETSdk)</Visible>
+      <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
+    </SpecFlowFeatureFiles>
+    <SpecFlowFeatureFiles Update="Project\Tests\Features\ExistingUserAccountE2EJourneyTwo.feature">
+      <Visible>$(UsingMicrosoftNETSdk)</Visible>
+      <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
+    </SpecFlowFeatureFiles>
+    <SpecFlowFeatureFiles Update="Project\Tests\Features\NewUserAccountE2EJourneyFour.feature">
+      <Visible>$(UsingMicrosoftNETSdk)</Visible>
+      <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
+    </SpecFlowFeatureFiles>
+    <SpecFlowFeatureFiles Update="Project\Tests\Features\NewUserAccountE2EJourneyThree.feature">
+      <Visible>$(UsingMicrosoftNETSdk)</Visible>
+      <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
+    </SpecFlowFeatureFiles>
+    <SpecFlowFeatureFiles Update="Project\Tests\Features\NewUserAccountE2EJourneyTwo.feature">
+      <Visible>$(UsingMicrosoftNETSdk)</Visible>
+      <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
+    </SpecFlowFeatureFiles>
   </ItemGroup>
 
 </Project>

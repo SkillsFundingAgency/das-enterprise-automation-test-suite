@@ -1,6 +1,7 @@
-﻿Feature: ApprovalsExistingUsersDuplicateFive
+﻿Feature: ExistingUserAccountE2EJourneyTwo
 
 A short summary of the feature
+
 
 
 Scenario: Employer sends cohort to provider for review then provider approves then employer approves		

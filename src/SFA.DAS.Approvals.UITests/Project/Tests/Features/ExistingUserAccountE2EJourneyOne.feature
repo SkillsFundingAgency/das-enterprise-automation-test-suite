@@ -1,4 +1,4 @@
-﻿Feature: ApprovalsExistingUsersDuplicateZero
+﻿Feature: ExistingUserAccountE2EJourneyOne
 
 A short summary of the feature
 

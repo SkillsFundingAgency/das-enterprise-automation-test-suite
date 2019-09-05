@@ -1,4 +1,4 @@
-﻿Feature: ApprovalsExistingUsersDuplicateThree
+﻿Feature: ExistingUserAccountE2EJourneyFour
 
 A short summary of the feature
 
@@ -9,4 +9,3 @@ When the Employer create a cohort and send to provider to add apprentices
 And the provider adds 2 apprentices and sends to employer to review
 When the Employer approves the cohort and sends to provider
 Then the provider approves the cohorts
-
