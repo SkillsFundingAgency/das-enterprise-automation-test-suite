@@ -34,7 +34,7 @@ namespace SFA.DAS.UI.Framework.Hooks.AfterScenario
                         break;
                     default:
                         var webDriver = _context.GetWebDriver();
-                        ScreenshotHelper.TakeScreenShot(webDriver, scenarioTitle);
+                        ScreenshotHelper.TakeScreenShot(webDriver, scenarioTitle, true);
                         break;
                 }
             }
