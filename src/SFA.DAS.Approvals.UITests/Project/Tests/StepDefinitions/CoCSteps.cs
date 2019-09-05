@@ -54,8 +54,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         public void WhenTheEmployerEditsAndConfirmTheChangesAfterILRMatch()
         {
             _dataHelper.Ulns.ForEach((x) => _commitmentsDataHelper.SetHasHadDataLockSuccessTrue(x));
+
+            _employerStepsHelper.GoToEmployerApprenticesHomePage()
+                .ClickManageYourApprenticesLink()
+                .SelectViewCurrentApprenticeDetails()
+                .ClickEditApprenticeDetailsLink()
+                .EditTheApprenticePostApprovalAfterIlrMatchAndSubmit()
+                .AcceptChangesAndSubmit();
         }
-
-
     }
 }

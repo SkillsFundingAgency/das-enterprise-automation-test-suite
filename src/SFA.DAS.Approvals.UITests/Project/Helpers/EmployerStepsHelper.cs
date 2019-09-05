@@ -28,7 +28,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers
             _loginHelper = new EmployerPortalLoginHelper(_context);
         }
 
-        internal ReviewYourCohortPage EmployerReviewCohort()
+        internal ApprenticesHomePage GoToEmployerApprenticesHomePage()
         {
             _tabHelper.OpenInNewtab(_projectConfig.RE_BaseUrl);
 
@@ -37,7 +37,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers
                 _loginHelper.ReLogin();
             }
 
-            var employerReviewYourCohortPage = new ApprenticesHomePage(_context, true)
+            return new ApprenticesHomePage(_context, true);
+        }
+
+        internal ReviewYourCohortPage EmployerReviewCohort()
+        {
+            var employerReviewYourCohortPage = GoToEmployerApprenticesHomePage()
                 .ClickYourCohortsLink()
                 .GoToCohortsReadyForReview()
                 .SelectViewCurrentCohortDetails();
