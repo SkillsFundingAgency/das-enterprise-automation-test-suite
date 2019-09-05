@@ -60,7 +60,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             _formCompletionHelper.EnterText(DateOfBirthDay, _dataHelper.DateOfBirthDay);
             _formCompletionHelper.EnterText(DateOfBirthMonth, _dataHelper.DateOfBirthMonth);
             _formCompletionHelper.EnterText(DateOfBirthYear, _dataHelper.DateOfBirthYear);
-            _formCompletionHelper.EnterText(Uln, _dataHelper.Uln);
+            _formCompletionHelper.EnterText(Uln, _dataHelper.Uln());
             _formCompletionHelper.SelectFromDropDownByValue(TrainingCourseContainer, _dataHelper.RandomCourse());
             _formCompletionHelper.ClickElement(StartDateMonth);
             _formCompletionHelper.EnterText(StartDateMonth, _dataHelper.CourseStartDate.Month);

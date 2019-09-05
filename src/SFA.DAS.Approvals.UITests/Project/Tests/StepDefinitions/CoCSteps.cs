@@ -19,9 +19,15 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
         private readonly ProviderStepsHelper _providerStepsHelper;
 
+        private readonly CommitmentsDataHelper _commitmentsDataHelper;
+
+        private readonly ApprovalsDataHelper _dataHelper;
+
         public CoCSteps(ScenarioContext context)
         {
             _context = context;
+            _commitmentsDataHelper = context.Get<CommitmentsDataHelper>();
+            _dataHelper = context.Get<ApprovalsDataHelper>();
             _stepsHelper = new ExistingAccountsStepsHelper(context);
             _employerStepsHelper = new EmployerStepsHelper(context);
             _providerStepsHelper = new ProviderStepsHelper(context);
@@ -47,7 +53,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [When(@"the Employer edits and confirm the changes after ILR match")]
         public void WhenTheEmployerEditsAndConfirmTheChangesAfterILRMatch()
         {
-            throw new PendingStepException();
+            _dataHelper.Ulns.ForEach((x) => _commitmentsDataHelper.SetHasHadDataLockSuccessTrue(x));
         }
 
 

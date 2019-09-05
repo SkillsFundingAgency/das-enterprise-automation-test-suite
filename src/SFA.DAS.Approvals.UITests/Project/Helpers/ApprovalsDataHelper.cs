@@ -10,6 +10,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers
     {
         private readonly RandomDataGenerator _randomDataGenerator;
         private readonly ObjectContext _objectContext;
+        
 
         public ApprovalsDataHelper(ObjectContext objectContext, RandomDataGenerator randomDataGenerator)
         {
@@ -25,6 +26,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers
             CourseEndDate = GetCourseEndDate();
             TrainingPrice = "1" + _randomDataGenerator.GenerateRandomNumber(3);
             EmployerReference = _randomDataGenerator.GenerateRandomAlphanumericString(10);
+            Ulns = new List<string>();
         }
 
         public string ApprenticeFirstname { get; }
@@ -57,7 +59,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers
 
         public int RandomNumber { get; }
 
-        public string Uln => _randomDataGenerator.GenerateRandomUln();
+        public List<string> Ulns { get; }
+
+        public string Uln()
+        {
+            var uln = _randomDataGenerator.GenerateRandomUln();
+            Ulns.Add(uln);
+            return uln;
+        }
 
         private DateTime GenerateCourseStartDate()
         {

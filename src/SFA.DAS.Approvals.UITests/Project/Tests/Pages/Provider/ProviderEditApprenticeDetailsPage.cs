@@ -38,7 +38,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         public ProviderReviewYourCohortPage EnterUlnAndSave()
         {
-            _formCompletionHelper.EnterText(Uln, _datahelper.Uln);
+            _formCompletionHelper.EnterText(Uln, _datahelper.Uln());
             _formCompletionHelper.ClickElement(SaveButton);
             return new ProviderReviewYourCohortPage(_context);
         }

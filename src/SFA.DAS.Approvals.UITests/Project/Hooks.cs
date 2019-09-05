@@ -29,6 +29,9 @@ namespace SFA.DAS.Approvals.UITests.Project
 
             var tabhelper = new TabHelper(_context.GetWebDriver());
             _context.Set(tabhelper);
+
+            var commitmentsDataHelper = new CommitmentsDataHelper(_context.GetApprovalsConfig<ApprovalsConfig>(), _context.Get<SqlDatabaseConncetionHelper>());
+            _context.Set(commitmentsDataHelper);
         }
     }
 }
