@@ -36,6 +36,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             _config = context.GetProjectConfig<ProjectConfig>();
             VerifyPage();
         }
+
         public RegisterPage CreateAnAccount()
         {
             _formCompletionHelper.ClickElement(CreateAnAccountLink);

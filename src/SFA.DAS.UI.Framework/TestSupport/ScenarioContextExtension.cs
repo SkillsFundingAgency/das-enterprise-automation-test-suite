@@ -8,38 +8,59 @@ namespace SFA.DAS.UI.Framework.TestSupport
     {
         #region Constants
         private const string ProjectConfigKey = "projectconfig";
+        private const string ApprovalsProjectConfigKey = "approvalsprojectconfig";
         private const string MongoDbConfigKey = "mongodbconfig";
         private const string WebDriverKey = "webdriver";
         #endregion
 
         public static void SetProjectConfig<T>(this ScenarioContext context, T value)
         {
-            context.Set(value, ProjectConfigKey);
+            Set(context, value, ProjectConfigKey);
+        }
+
+        public static void SetApprovalsConfig<T>(this ScenarioContext context, T value)
+        {
+            Set(context, value, ApprovalsProjectConfigKey);
         }
 
         public static T GetProjectConfig<T>(this ScenarioContext context)
         {
-            return context.Get<T>(ProjectConfigKey);
+            return Get<T>(context, ProjectConfigKey);
+        }
+
+        public static T GetApprovalsConfig<T>(this ScenarioContext context)
+        {
+            return Get<T>(context, ApprovalsProjectConfigKey);
         }
 
         public static void SetMongoDbConfig(this ScenarioContext context, MongoDbConfig value)
         {
-            context.Set(value, MongoDbConfigKey);
+            Set(context, value, MongoDbConfigKey);
         }
 
         public static MongoDbConfig GetMongoDbConfig(this ScenarioContext context)
         {
-            return context.Get<MongoDbConfig>(MongoDbConfigKey);
+            return Get<MongoDbConfig>(context, MongoDbConfigKey);
         }
 
         public static void SetWebDriver(this ScenarioContext context, IWebDriver webDriver)
         {
-            context.Set(webDriver, WebDriverKey);
+            Set(context, webDriver, WebDriverKey);
         }
 
         public static IWebDriver GetWebDriver(this ScenarioContext context)
         {
-            return context.Get<IWebDriver>(WebDriverKey);
+            return Get<IWebDriver>(context, WebDriverKey);
+        }
+
+        private static void Set<T>(ScenarioContext context, T value, string key)
+        {
+            context.Set(value, key);
+        }
+
+        public static T Get<T>(ScenarioContext context, string key)
+        {
+            return context.Get<T>(key);
         }
     }
 }

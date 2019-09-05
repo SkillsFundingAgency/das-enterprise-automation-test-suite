@@ -1,10 +1,19 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
 
     <IsPackable>false</IsPackable>
   </PropertyGroup>
+
+  <ItemGroup>
+    <SpecFlowObsoleteCodeBehindFiles Remove="Project\Tests\Features\ExistingUserAccount - Copy (2).feature.cs" />
+    <SpecFlowObsoleteCodeBehindFiles Remove="Project\Tests\Features\ExistingUserAccount - Copy (3).feature.cs" />
+    <SpecFlowObsoleteCodeBehindFiles Remove="Project\Tests\Features\ExistingUserAccount - Copy.feature.cs" />
+    <SpecFlowObsoleteCodeBehindFiles Remove="Project\Tests\Features\NewUserAccountE2EJourneyOne - Copy (2).feature.cs" />
+    <SpecFlowObsoleteCodeBehindFiles Remove="Project\Tests\Features\NewUserAccountE2EJourneyOne - Copy (3).feature.cs" />
+    <SpecFlowObsoleteCodeBehindFiles Remove="Project\Tests\Features\NewUserAccountE2EJourneyOne - Copy.feature.cs" />
+  </ItemGroup>
 
   <ItemGroup>
     <Compile Include="..\NUnitConfigurator.cs" Link="NUnitConfigurator.cs" />
@@ -15,20 +24,36 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="NUnit3TestAdapter" Version="3.11.0" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.9.0" />
-    <PackageReference Include="Selenium.WebDriver.ChromeDriver" Version="75.0.3770.140" />
+    <PackageReference Include="NUnit3TestAdapter" Version="3.14.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.2.0" />
+    <PackageReference Include="Selenium.WebDriver.ChromeDriver" Version="76.0.3809.12600" />
     <PackageReference Include="SpecFlow.Tools.MsBuild.Generation" Version="3.0.225" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\SFA.DAS.Registration.UITests\SFA.DAS.Registration.UITests.csproj" />
     <ProjectReference Include="..\SFA.DAS.UI.Framework\SFA.DAS.UI.Framework.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Project\Tests\Features\" />
-    <Folder Include="Project\Tests\StepDefinitions\" />
-    <Folder Include="Project\Tests\Pages\" />
+    <Compile Update="Project\Tests\Features\ExistingUserAccountE2EJourneyFour.feature.cs">
+      <DependentUpon>ExistingUserAccountE2EJourneyFour.feature</DependentUpon>
+    </Compile>
+    <Compile Update="Project\Tests\Features\ExistingUserAccountE2EJourneyThree.feature.cs">
+      <DependentUpon>ExistingUserAccountE2EJourneyThree.feature</DependentUpon>
+    </Compile>
+    <Compile Update="Project\Tests\Features\ExistingUserAccountE2EJourneyTwo.feature.cs">
+      <DependentUpon>ExistingUserAccountE2EJourneyTwo.feature</DependentUpon>
+    </Compile>
+    <Compile Update="Project\Tests\Features\NewUserAccountE2EJourneyFour.feature.cs">
+      <DependentUpon>NewUserAccountE2EJourneyFour.feature</DependentUpon>
+    </Compile>
+    <Compile Update="Project\Tests\Features\NewUserAccountE2EJourneyThree.feature.cs">
+      <DependentUpon>NewUserAccountE2EJourneyThree.feature</DependentUpon>
+    </Compile>
+    <Compile Update="Project\Tests\Features\NewUserAccountE2EJourneyTwo.feature.cs">
+      <DependentUpon>NewUserAccountE2EJourneyTwo.feature</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
@@ -41,6 +66,33 @@
     <None Update="appsettings.Project.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <SpecFlowFeatureFiles Update="Project\Tests\Features\ExistingUserAccountE2EJourneyFour.feature">
+      <Visible>$(UsingMicrosoftNETSdk)</Visible>
+      <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
+    </SpecFlowFeatureFiles>
+    <SpecFlowFeatureFiles Update="Project\Tests\Features\ExistingUserAccountE2EJourneyThree.feature">
+      <Visible>$(UsingMicrosoftNETSdk)</Visible>
+      <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
+    </SpecFlowFeatureFiles>
+    <SpecFlowFeatureFiles Update="Project\Tests\Features\ExistingUserAccountE2EJourneyTwo.feature">
+      <Visible>$(UsingMicrosoftNETSdk)</Visible>
+      <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
+    </SpecFlowFeatureFiles>
+    <SpecFlowFeatureFiles Update="Project\Tests\Features\NewUserAccountE2EJourneyFour.feature">
+      <Visible>$(UsingMicrosoftNETSdk)</Visible>
+      <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
+    </SpecFlowFeatureFiles>
+    <SpecFlowFeatureFiles Update="Project\Tests\Features\NewUserAccountE2EJourneyThree.feature">
+      <Visible>$(UsingMicrosoftNETSdk)</Visible>
+      <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
+    </SpecFlowFeatureFiles>
+    <SpecFlowFeatureFiles Update="Project\Tests\Features\NewUserAccountE2EJourneyTwo.feature">
+      <Visible>$(UsingMicrosoftNETSdk)</Visible>
+      <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
+    </SpecFlowFeatureFiles>
   </ItemGroup>
 
 </Project>

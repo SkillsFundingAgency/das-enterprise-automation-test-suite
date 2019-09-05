@@ -3,8 +3,6 @@ using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
-using Polly;
-using NUnit.Framework;
 using System.Linq;
 
 namespace SFA.DAS.UI.FrameworkHelpers
@@ -12,43 +10,21 @@ namespace SFA.DAS.UI.FrameworkHelpers
     public class PageInteractionHelper
     {
         private readonly IWebDriver _webDriver;
-        private readonly TimeOutConfig _timeOutConfig;
+        private readonly WebDriverWaitHelper _webDriverWaitHelper;
+        private readonly RetryHelper _retryHelper;
 
-        public PageInteractionHelper(IWebDriver webDriver, TimeOutConfig timeOutConfig)
+        public PageInteractionHelper(IWebDriver webDriver, WebDriverWaitHelper webDriverWaitHelper, RetryHelper retryHelper)
         {
             _webDriver = webDriver;
-            _timeOutConfig = timeOutConfig;
-        }
-
-        private static TimeSpan[] TimeOut => new[] 
-        {
-            TimeSpan.FromSeconds(1),
-            TimeSpan.FromSeconds(2),
-            TimeSpan.FromSeconds(3)
-        };
-
-        private bool RetryOnException(Func<bool> func, Action beforeAction = null)
-        {
-            return Policy
-                 .Handle<Exception>((x) => x.Message.Contains("verification failed"))
-                 .WaitAndRetry(TimeOut, (exception, timeSpan, retryCount, context) =>
-                 {
-                     TestContext.Progress.WriteLine($"Retry Count : {retryCount}, Exception : {exception.Message}");
-                 })
-                 .Execute(() =>
-                 {
-                     using (var testcontext = new NUnit.Framework.Internal.TestExecutionContext.IsolatedContext())
-                     {
-                         beforeAction?.Invoke();
-                         return func();
-                     }
-                 });
+            _webDriverWaitHelper = webDriverWaitHelper;
+            _retryHelper = retryHelper;
         }
 
         public bool VerifyPage(By locator, string expected, Action beforeAction = null)
         {
             bool func()
             {
+                _webDriverWaitHelper.WaitForPageToLoad();
                 var actual = GetText(locator);
                 if (actual.Contains(expected))
                 {
@@ -60,7 +36,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
                     + "\n Found: " + actual + " page");
             }
             
-            return RetryOnException(func, beforeAction);
+            return _retryHelper.RetryOnException(func, beforeAction);
         }
 
         public bool VerifyPage(string actual, string expected1, string expected2)
@@ -106,12 +82,6 @@ namespace SFA.DAS.UI.FrameworkHelpers
                 + "\n Found: " + actual);
         }
 
-        public void WaitForPageToLoad()
-        {
-            var waitForDocumentReady = new WebDriverWait(_webDriver, TimeSpan.FromSeconds(_timeOutConfig.PageNavigation));
-            waitForDocumentReady.Until(driver => ((IJavaScriptExecutor) _webDriver).ExecuteScript("return document.readyState").Equals("complete"));
-        }
-
         public string GetTextFromElementsGroup(By locator)
         {
             string text = null;
@@ -125,24 +95,6 @@ namespace SFA.DAS.UI.FrameworkHelpers
         public int GetCountOfElementsGroup(By locator)
         {
             return _webDriver.FindElements(locator).Count;
-        }
-
-        public void WaitForElementToBePresent(By locator)
-        {
-            var wait = new WebDriverWait(_webDriver, TimeSpan.FromSeconds(_timeOutConfig.ImplicitWait));
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(locator));
-        }
-
-        public void WaitForElementToBeDisplayed(By locator)
-        {
-            var wait = new WebDriverWait(_webDriver, TimeSpan.FromSeconds(_timeOutConfig.ImplicitWait));
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(locator));
-        }
-
-        public void WaitForElementToBeClickable(By locator)
-        {
-            var webDriverWait = new WebDriverWait(_webDriver, TimeSpan.FromSeconds(_timeOutConfig.ImplicitWait));
-            webDriverWait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementToBeClickable(locator));
         }
 
         public bool IsElementPresent(By locator)
@@ -159,7 +111,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
             }
             finally
             {
-                TurnOnImplicitWaits();
+                _webDriverWaitHelper.TurnOnImplicitWaits();
             }
         }
 
@@ -176,7 +128,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
             }
             finally
             {
-                TurnOnImplicitWaits();
+                _webDriverWaitHelper.TurnOnImplicitWaits();
             }
         }
 
@@ -184,7 +136,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
         {
             IWebElement webElement = _webDriver.FindElement(locator);
             new Actions(_webDriver).MoveToElement(webElement).Perform();
-            WaitForElementToBeDisplayed(locator);
+            _webDriverWaitHelper.WaitForElementToBeDisplayed(locator);
         }
 
         public void FocusTheElement(IWebElement element)
@@ -196,7 +148,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
         {
             var webElement = _webDriver.FindElement(locator);
             new Actions(_webDriver).MoveToElement(webElement).Perform();
-            WaitForElementToBeDisplayed(locator);
+            _webDriverWaitHelper.WaitForElementToBeDisplayed(locator);
         }
 
         public void UnFocusTheElement(IWebElement element)
@@ -207,11 +159,6 @@ namespace SFA.DAS.UI.FrameworkHelpers
         public void TurnOffImplicitWaits()
         {
             _webDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromMilliseconds(500);
-        }
-
-        public void TurnOnImplicitWaits()
-        {
-            _webDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(_timeOutConfig.ImplicitWait);
         }
 
         public void SwitchToFrame(By locator)
@@ -227,5 +174,21 @@ namespace SFA.DAS.UI.FrameworkHelpers
         public string GetUrl() => _webDriver.Url;
 
         public IWebElement GetLink(By by, string linkText) => _webDriver.FindElements(by).ToList().First(x => x.GetAttribute("innerText") == linkText);
+
+        public string GetRowData(By tableIdentifier, string rowIdentifier)
+        {
+            return GetRows(tableIdentifier).Where(x => x.FindElements(By.CssSelector("td")).Any(y => y?.Text == rowIdentifier)).SingleOrDefault()?.Text;
+        }
+
+        public List<IWebElement> GetRows(By tableIdentifier)
+        {
+            return _webDriver.FindElement(tableIdentifier).FindElements(By.CssSelector("tr")).ToList();
+        }
+
+        public List<IWebElement> FindElements(By locator)
+        {
+            return _webDriver.FindElements(locator).ToList();
+        }
+
     }
 }

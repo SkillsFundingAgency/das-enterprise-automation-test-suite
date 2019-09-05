@@ -1,8 +1,8 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
+using SFA.DAS.MongoDb.DataGenerator;
+using SFA.DAS.MongoDb.DataGenerator.Helpers;
 using SFA.DAS.Registration.UITests.Project.Helpers;
-using SFA.DAS.Registration.UITests.Project.Helpers.MongoDb;
-using SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions;
 using SFA.DAS.UI.Framework.TestSupport;
 using System.Linq;
 using TechTalk.SpecFlow;
@@ -16,8 +16,9 @@ namespace SFA.DAS.Registration.UITests.Project
         private readonly ProjectConfig _config;
         private readonly IWebDriver _webDriver;
         private readonly ObjectContext _objectContext;
-        private DataHelper _dataHelper;
         private string _empRef;
+        private RegistrationDatahelpers _registrationDatahelpers;
+        private LoginCredentialsHelper _loginCredentialsHelper;
 
         public Hooks(ScenarioContext context)
         {
@@ -39,11 +40,17 @@ namespace SFA.DAS.Registration.UITests.Project
         {
             var domainName = _context.ScenarioInfo.Tags.Contains("eoiaccount") ? "eoi.com" : "gmail.com";
 
-            _dataHelper = new DataHelper(_config.TwoDigitProjectCode, domainName);
+            var dataHelper = new DataHelper(_config.TwoDigitProjectCode);
 
-            _context.Set(_dataHelper);
+            _context.Set(dataHelper);
 
-            TestContext.Progress.WriteLine($"Email : {_dataHelper.RandomEmail}");
+            _registrationDatahelpers = new RegistrationDatahelpers(dataHelper.GatewayUsername, _config.RE_AccountPassword, domainName);
+
+            _context.Set(_registrationDatahelpers);
+
+            _loginCredentialsHelper = new LoginCredentialsHelper(_objectContext);
+
+            _context.Set(_loginCredentialsHelper);
         }
 
         [BeforeScenario(Order = 23)]
@@ -55,6 +62,8 @@ namespace SFA.DAS.Registration.UITests.Project
             datagenerator.AddGatewayUsers();
 
             _empRef = _objectContext.GetGatewayPaye();
+
+            _loginCredentialsHelper.SetLoginCredentials(_registrationDatahelpers.RandomEmail, _registrationDatahelpers.Password);
         }
 
         [AfterScenario(Order = 21)]

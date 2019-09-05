@@ -3,7 +3,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 {
-    public class AboutYourAgreementPage : MyAccountWithPaye
+    public class AboutYourAgreementPage : InterimBasePage
     {
         protected override string PageTitle => "About your agreement";
 
@@ -15,15 +15,9 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         protected override string Linktext => "Your organisations and agreements";
 
-
-        public AboutYourAgreementPage(ScenarioContext context) : base(context)
+        public AboutYourAgreementPage(ScenarioContext context, bool navigate = false) : base(context, navigate)
         {
             _context = context;
-        }
-
-        public AboutYourAgreementPage(ScenarioContext context, bool navigate) : this(context)
-        {
-            this.navigate = navigate;
         }
 
         public SignAgreementPage ContinueWithAgreement()

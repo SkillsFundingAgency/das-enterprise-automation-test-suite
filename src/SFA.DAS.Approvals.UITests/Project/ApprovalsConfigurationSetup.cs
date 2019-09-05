@@ -1,5 +1,4 @@
 ﻿using SFA.DAS.UI.Framework.TestSupport;
-using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project
@@ -21,10 +20,8 @@ namespace SFA.DAS.Approvals.UITests.Project
         [BeforeScenario(Order = 2)]
         public void SetUpApprovalsConfiguration()
         {
-            var config = _configSection.GetConfigSection<ProjectConfig>();
-            _context.SetProjectConfig(config);
-
-            _objectContext.SetBrowser(config.AP_Browser);
+            var config = _configSection.GetConfigSection<ApprovalsConfig>();
+            _context.SetApprovalsConfig(config);
         }
     }
 }

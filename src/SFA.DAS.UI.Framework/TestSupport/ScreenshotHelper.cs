@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using NUnit.Framework;
+using OpenQA.Selenium;
 using System;
 using System.IO;
 
@@ -6,7 +7,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
 {
     public class ScreenshotHelper
     {
-        public static void TakeScreenShot(IWebDriver webDriver, string scenarioTitle)
+        public static void TakeScreenShot(IWebDriver webDriver, string scenarioTitle, bool testFailed = false)
         {
             try
             {
@@ -30,11 +31,15 @@ namespace SFA.DAS.UI.Framework.TestSupport
                 Screenshot screenshot = screenshotHandler.GetScreenshot();
                 String screenshotPath = Path.Combine(screenshotsDirectory, failureImageName);
                 screenshot.SaveAsFile(screenshotPath, ScreenshotImageFormat.Png);
-                Console.WriteLine($"{scenarioTitle} -- Scenario under feature failed and the screenshot is available at -- {screenshotPath}");
+                TestContext.AddTestAttachment(screenshotPath, failureImageName);
+                if (testFailed)
+                {
+                    TestContext.Progress.WriteLine($"{scenarioTitle} -- Scenario under feature failed and the screenshot is available at -- {screenshotPath}");
+                }
             }
             catch (Exception exception)
             {
-                Console.WriteLine("Exception occurred while taking screenshot - " + exception);
+                TestContext.Progress.WriteLine("Exception occurred while taking screenshot - " + exception);
             }
         }
     }
