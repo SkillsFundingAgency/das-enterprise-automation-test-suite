@@ -5,7 +5,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
 {
     public class SqlDatabaseConncetionHelper
     {
-        public static int ExecuteSqlCommand(string connectionString, string queryToExecute, object dynamicParameters = null)
+        public int ExecuteSqlCommand(string connectionString, string queryToExecute, object dynamicParameters = null)
         {
             using (var connection = new SqlConnection(connectionString))
             {
@@ -14,7 +14,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
             }
         }
 
-        public static SqlDataReader ReadDataFromDataBase(string queryToExecute, string connectionString)
+        public SqlDataReader ReadDataFromDataBase(string queryToExecute, string connectionString)
         {
             using (var databaseConnection = new SqlConnection(connectionString))
             {
