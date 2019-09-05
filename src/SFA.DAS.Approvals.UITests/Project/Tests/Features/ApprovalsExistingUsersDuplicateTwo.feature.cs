@@ -70,12 +70,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Employer sends an approved cohort then provider approves the cohort Duplicate Two" +
-            "")]
-        public virtual void EmployerSendsAnApprovedCohortThenProviderApprovesTheCohortDuplicateTwo()
+        [NUnit.Framework.DescriptionAttribute("Employer sends an approved cohort then provider approves the cohort")]
+        public virtual void EmployerSendsAnApprovedCohortThenProviderApprovesTheCohort()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Employer sends an approved cohort then provider approves the cohort Duplicate Two" +
-                    "", null, ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Employer sends an approved cohort then provider approves the cohort", null, ((string[])(null)));
 #line 6
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();

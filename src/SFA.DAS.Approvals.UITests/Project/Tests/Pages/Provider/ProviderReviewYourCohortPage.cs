@@ -18,6 +18,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private readonly ObjectContext _objectContext;
         #endregion
 
+        private By AddAnApprenticeButton => By.ClassName("button-secondary");
+
         private By TotalApprentices => By.CssSelector(".providerList tbody tr");
 
         private By ApprenticeUlnField => By.CssSelector("tbody tr td:nth-of-type(2)");
@@ -38,6 +40,15 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             _formCompletionHelper = context.Get<FormCompletionHelper>();
             _tableRowHelper = context.Get<TableRowHelper>();
             VerifyPage();
+        }
+        internal ProviderAddApprenticeDetailsPage SelectAddAnApprentice()
+        {
+            _formCompletionHelper.ClickElement(AddAnApprenticeButton);
+            if (_pageInteractionHelper.IsElementDisplayed(PireanPreprodButton))
+            {
+                _formCompletionHelper.ClickElement(PireanPreprodButton);
+            }
+            return new ProviderAddApprenticeDetailsPage(_context);
         }
 
         public int TotalNoOfApprentices()

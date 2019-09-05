@@ -25,12 +25,22 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _tabHelper = new TabHelper(context.GetWebDriver());
         }
 
+        [When(@"the provider adds (.*) apprentices approves them and sends to employer to approve")]
+        public void WhenTheProviderAddsApprenticesApprovesThemAndSendsToEmployerToApprove(int numberOfApprentices)
+        {
+            var providerReviewYourCohortPage = AddApprentice(numberOfApprentices);
+
+            providerReviewYourCohortPage.SelectSaveAndContinue()
+                .SubmitApproveAndSendToEmployerForApproval()
+                .SendInstructionsToEmployerForAnApprovedCohort();
+
+        }
+
+
         [Then(@"the provider adds Ulns and approves the cohorts")]
         public void TheProviderAddsUlnsAndApprovesTheCohorts()
         {
-            _tabHelper.OpenInNewtab(_config.AP_ProviderAppUrl);
-
-            var providerReviewYourCohortPage = ReviewTheCohort();
+            var providerReviewYourCohortPage = EditApprentice();
 
             ApproveTheCohort(providerReviewYourCohortPage);
         }
@@ -38,23 +48,42 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [When(@"the provider adds Ulns and approves the cohorts and sends to employer")]
         public void WhenTheProviderAddsUlnsAndApprovesTheCohortsAndSendsToEmployer()
         {
-            _tabHelper.OpenInNewtab(_config.AP_ProviderAppUrl);
-
-            var providerReviewYourCohortPage = ReviewTheCohort();
+            var providerReviewYourCohortPage = EditApprentice();
 
             providerReviewYourCohortPage.SelectSaveAndContinue()
                 .SubmitApproveAndSendToEmployerForApproval()
                 .SendInstructionsToEmployerForAnApprovedCohort();
         }
 
-        private ProviderReviewYourCohortPage ReviewTheCohort()
+
+        private ProviderReviewYourCohortPage AddApprentice(int numberOfApprentices)
         {
-            var providerReviewYourCohortPage = new ProviderIndexPage(_context)
-                .StartNow()
-                .SubmitValidLoginDetails()
-                .GoToProviderYourCohortsPage()
-                .GoToCohortsToReviewPage()
-                .SelectViewCurrentCohortDetails();
+            var providerReviewYourCohortPage = CurrentCohortDetails();
+
+            for (int i = 0; i < numberOfApprentices; i++)
+            {
+                providerReviewYourCohortPage.SelectAddAnApprentice()
+                        .SubmitValidApprenticeDetails();
+            }
+
+            return providerReviewYourCohortPage;
+        }
+
+        private ProviderReviewYourCohortPage CurrentCohortDetails()
+        {
+            _tabHelper.OpenInNewtab(_config.AP_ProviderAppUrl);
+
+            return new ProviderIndexPage(_context)
+                    .StartNow()
+                    .SubmitValidLoginDetails()
+                    .GoToProviderYourCohortsPage()
+                    .GoToCohortsToReviewPage()
+                    .SelectViewCurrentCohortDetails();
+        }
+
+        private ProviderReviewYourCohortPage EditApprentice()
+        {
+            var providerReviewYourCohortPage = CurrentCohortDetails();
 
             var totalNoOfApprentices = providerReviewYourCohortPage.TotalNoOfApprentices();
 
