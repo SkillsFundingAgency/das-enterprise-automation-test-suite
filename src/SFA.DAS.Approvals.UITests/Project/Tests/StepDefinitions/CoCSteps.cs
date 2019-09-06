@@ -62,5 +62,16 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                 .EditTheApprenticePostApprovalAfterIlrMatchAndSubmit()
                 .AcceptChangesAndSubmit();
         }
+
+        [Then(@"the provider can review and approve the changes")]
+        public void ThenTheProviderCanReviewAndApproveTheChanges()
+        {
+            _providerStepsHelper.GoToProviderHomePage()
+                .GoToProviderManageYourApprenticePage()
+                .SelectViewCurrentApprenticeDetails()
+                .ClickReviewChanges()
+                .SelectApproveChangesAndSubmit();
+        }
+
     }
 }

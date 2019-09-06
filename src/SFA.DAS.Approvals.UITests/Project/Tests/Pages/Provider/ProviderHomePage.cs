@@ -20,12 +20,20 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         protected override string Linktext => "Home";
 
+        private By ProviderManageYourApprenticesLink => By.LinkText("Manage your apprentices");
+
         public ProviderHomePage(ScenarioContext context, bool navigate = false) : base(context, navigate)
         {
             _context = context;
             _dataHelper = context.Get<ApprovalsDataHelper>();
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
+        }
+
+        public ProviderManageYourApprenticesPage GoToProviderManageYourApprenticePage()
+        {
+            _formCompletionHelper.ClickElement(ProviderManageYourApprenticesLink);
+            return new ProviderManageYourApprenticesPage(_context);
         }
     }
 }

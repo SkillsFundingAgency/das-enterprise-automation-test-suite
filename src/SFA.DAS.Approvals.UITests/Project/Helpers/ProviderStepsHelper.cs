@@ -20,6 +20,23 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers
             _loginHelper = new ProviderPortalLoginHelper(_context);
         }
 
+        public ProviderHomePage GoToProviderHomePage()
+        {
+            _tabHelper.OpenInNewtab(_config.AP_ProviderAppUrl);
+
+            if (_loginHelper.IsSignInPageDisplayed())
+            {
+                _loginHelper.ReLogin();
+            }
+            else if (_loginHelper.IsIndexPageDisplayed())
+            {
+                return new ProviderIndexPage(_context)
+                    .StartNow()
+                    .SubmitValidLoginDetails();
+            }
+            return new ProviderHomePage(_context);
+        }
+
         public ProviderReviewYourCohortPage AddApprentice(int numberOfApprentices)
         {
             var providerReviewYourCohortPage = CurrentCohortDetails();
@@ -35,18 +52,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers
 
         public ProviderReviewYourCohortPage CurrentCohortDetails()
         {
-            _tabHelper.OpenInNewtab(_config.AP_ProviderAppUrl);
-
-            if (_loginHelper.IsSignInPageDisplayed())
-            {
-                _loginHelper.ReLogin();
-            }
-            else if (_loginHelper.IsIndexPageDisplayed())
-            {
-                new ProviderIndexPage(_context)
-                    .StartNow()
-                    .SubmitValidLoginDetails();
-            }
+            GoToProviderHomePage();
 
             return new ProviderHomePage(_context)
                     .GoToProviderYourCohortsPage()

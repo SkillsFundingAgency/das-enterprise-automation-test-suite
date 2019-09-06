@@ -32,6 +32,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers
 
         public string EmployerReference { get; }
 
+        public string ApprenticeEditedFullName => $"{ApprenticeEditedFirstname} {ApprenticeEditedLastname}";
+
         public string SetCurrentApprenticeEditedFirstname()
         {
             if ((_approvalsDataHelper.ApprenticeFirstname.Equals(ApprenticeEditedFirstname)))
