@@ -26,6 +26,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             _context = context;
             _dataHelper = context.Get<ApprovalsDataHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
+            _tableRowHelper = context.Get<TableRowHelper>();
             VerifyPage();
         }
 

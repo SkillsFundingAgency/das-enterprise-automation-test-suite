@@ -19,7 +19,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers
             RandomNumber = _randomDataGenerator.GenerateRandomNumberBetweenTwoValues(1, 10);
             ApprenticeFirstname = _randomDataGenerator.GenerateRandomAlphabeticString(10);
             ApprenticeLastname = _randomDataGenerator.GenerateRandomAlphabeticString(10);
-            ApprenticeFullName = $"{ApprenticeFirstname} {ApprenticeLastname}";
             DateOfBirthDay = _randomDataGenerator.GenerateRandomDateOfMonth();
             DateOfBirthMonth = _randomDataGenerator.GenerateRandomMonth();
             DateOfBirthYear = _randomDataGenerator.GenerateRandomDobYear();
@@ -30,15 +29,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers
             Ulns = new List<string>();
         }
 
-        public string ApprenticeFirstname { get; }
-
-        
+        public string ApprenticeFirstname { get; }      
 
         public string ApprenticeLastname { get; }
 
-        
-
-        public string ApprenticeFullName { get; }
+        public string ApprenticeFullName => $"{ApprenticeFirstname} {ApprenticeLastname}";
 
         public int DateOfBirthDay { get; }
 
