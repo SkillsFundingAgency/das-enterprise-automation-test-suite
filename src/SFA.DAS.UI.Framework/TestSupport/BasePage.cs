@@ -20,8 +20,6 @@ namespace SFA.DAS.UI.Framework.TestSupport
 
         protected abstract string PageTitle { get; }
 
-        private int counter;
-
         public BasePage(ScenarioContext context)
         {
             _context = context;

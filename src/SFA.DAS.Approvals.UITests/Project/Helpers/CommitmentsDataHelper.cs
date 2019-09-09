@@ -9,9 +9,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers
     {
         private readonly ApprovalsConfig _approvalsConfig;
 
-        private readonly SqlDatabaseConncetionHelper _sqlDatabase;
+        private readonly SqlDatabaseConnectionHelper _sqlDatabase;
 
-        public CommitmentsDataHelper(ApprovalsConfig approvalsConfig, SqlDatabaseConncetionHelper sqlDatabase)
+        public CommitmentsDataHelper(ApprovalsConfig approvalsConfig, SqlDatabaseConnectionHelper sqlDatabase)
         {
             _approvalsConfig = approvalsConfig;
             _sqlDatabase = sqlDatabase;

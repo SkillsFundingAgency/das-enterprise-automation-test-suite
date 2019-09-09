@@ -12,7 +12,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
-        private readonly ApprovalsDataHelper _dataHelper;
+        private readonly ApprenticeDataHelper _dataHelper;
         private readonly FormCompletionHelper _formCompletionHelper;
         #endregion
 
@@ -25,7 +25,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         public ApprenticeDetailsPage(ScenarioContext context) : base(context)
         {
             _context = context;
-            _dataHelper = context.Get<ApprovalsDataHelper>();
+            _dataHelper = context.Get<ApprenticeDataHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
             VerifyPage();
         }

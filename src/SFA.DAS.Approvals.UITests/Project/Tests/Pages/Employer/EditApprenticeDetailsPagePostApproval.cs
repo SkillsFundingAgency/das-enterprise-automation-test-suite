@@ -13,7 +13,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         #region Helpers and Context
         private readonly ScenarioContext _context;
         private readonly FormCompletionHelper _formCompletionHelper;
-        private readonly CocDataHelper _dataHelper;
+        private readonly EditedApprenticeDataHelper _dataHelper;
         #endregion
 
         private By firstNameField => By.Id("FirstName");
@@ -37,7 +37,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         {
             _context = context;
             _formCompletionHelper = context.Get<FormCompletionHelper>();
-            _dataHelper = context.Get<CocDataHelper>();
+            _dataHelper = context.Get<EditedApprenticeDataHelper>();
             VerifyPage();
         }
 

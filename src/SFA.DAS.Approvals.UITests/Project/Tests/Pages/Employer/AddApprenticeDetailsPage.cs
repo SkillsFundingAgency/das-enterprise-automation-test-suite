@@ -17,7 +17,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private readonly FormCompletionHelper _formCompletionHelper;
         private readonly ScenarioContext _context;
         private readonly ApprovalsConfig _config;
-        private readonly ApprovalsDataHelper _dataHelper;
+        private readonly ApprenticeDataHelper _dataHelper;
         #endregion
 
         private By FirstNameField => By.Id("FirstName");
@@ -38,7 +38,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         {
             _context = context;
             _config = context.GetApprovalsConfig<ApprovalsConfig>();
-            _dataHelper = context.Get<ApprovalsDataHelper>();
+            _dataHelper = context.Get<ApprenticeDataHelper>();
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
             VerifyPage();
@@ -51,7 +51,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             _formCompletionHelper.EnterText(DateOfBirthDay, _dataHelper.DateOfBirthDay);
             _formCompletionHelper.EnterText(DateOfBirthMonth, _dataHelper.DateOfBirthMonth);
             _formCompletionHelper.EnterText(DateOfBirthYear, _dataHelper.DateOfBirthYear);
-            _formCompletionHelper.SelectFromDropDownByValue(TrainingCourseContainer, _dataHelper.RandomCourse());
+            _formCompletionHelper.SelectFromDropDownByValue(TrainingCourseContainer, _dataHelper.Course);
             _formCompletionHelper.ClickElement(StartDateMonth);
             _formCompletionHelper.EnterText(StartDateMonth, _dataHelper.CourseStartDate.Month);
             _formCompletionHelper.EnterText(StartDateYear, _dataHelper.CourseStartDate.Year);

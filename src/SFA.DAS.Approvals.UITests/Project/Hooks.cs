@@ -24,14 +24,14 @@ namespace SFA.DAS.Approvals.UITests.Project
         public void SetUpHelpers()
         {
             var random = _context.Get<RandomDataGenerator>();
-            var datahelper = new ApprovalsDataHelper(_objectcontext, random);
+            var datahelper = new ApprenticeDataHelper(_objectcontext, random);
             _context.Set(datahelper);
 
-            _context.Set(new CocDataHelper(random, datahelper));
+            _context.Set(new EditedApprenticeDataHelper(random, datahelper));
 
             _context.Set(new TabHelper(_context.GetWebDriver()));
 
-            var commitmentsDataHelper = new CommitmentsDataHelper(_context.GetApprovalsConfig<ApprovalsConfig>(), _context.Get<SqlDatabaseConncetionHelper>());
+            var commitmentsDataHelper = new CommitmentsDataHelper(_context.GetApprovalsConfig<ApprovalsConfig>(), _context.Get<SqlDatabaseConnectionHelper>());
             _context.Set(commitmentsDataHelper);
         }
     }

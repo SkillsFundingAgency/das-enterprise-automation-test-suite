@@ -9,12 +9,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         protected override string PageTitle => _dataHelper.ApprenticeEditedFullName;
 
         #region Helpers and Context
-        private readonly CocDataHelper _dataHelper;
+        private readonly EditedApprenticeDataHelper _dataHelper;
         #endregion
 
         public EditedApprenticeDetailsPage(ScenarioContext context) : base(context)
         {
-            _dataHelper = context.Get<CocDataHelper>();
+            _dataHelper = context.Get<EditedApprenticeDataHelper>();
             VerifyPage();
         }
     }

@@ -3,12 +3,12 @@ using SFA.DAS.UI.FrameworkHelpers;
 
 namespace SFA.DAS.Approvals.UITests.Project.Helpers
 {
-    public class CocDataHelper
+    public class EditedApprenticeDataHelper
     {
         private readonly RandomDataGenerator _randomDataGenerator;
-        private readonly ApprovalsDataHelper _approvalsDataHelper;
+        private readonly ApprenticeDataHelper _approvalsDataHelper;
 
-        public CocDataHelper(RandomDataGenerator randomDataGenerator, ApprovalsDataHelper approvalsDataHelper)
+        public EditedApprenticeDataHelper(RandomDataGenerator randomDataGenerator, ApprenticeDataHelper approvalsDataHelper)
         {
             _approvalsDataHelper = approvalsDataHelper;
             _randomDataGenerator = randomDataGenerator;
@@ -21,10 +21,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers
             ProviederRefernce = _randomDataGenerator.GenerateRandomAlphanumericString(10);
         }
 
-        public string ApprenticeEditedFirstname { get ; private set; }
-
-        public string ApprenticeEditedLastname { get; private set; }
-
         public int DateOfBirthDay { get; }
 
         public int DateOfBirthMonth { get; }
@@ -34,6 +30,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers
         public string EmployerReference { get; }
 
         public string ProviederRefernce { get; }
+
+        public string Course { get; }
 
         public string ApprenticeEditedFullName => $"{ApprenticeEditedFirstname} {ApprenticeEditedLastname}";
 
@@ -48,11 +46,15 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers
 
         public String SetCurrentApprenticeEditedLastname()
         {
-            if ((_approvalsDataHelper.ApprenticeFirstname.Equals(ApprenticeEditedFirstname)))
+            if ((_approvalsDataHelper.ApprenticeLastname.Equals(ApprenticeEditedLastname)))
             {
                 ApprenticeEditedLastname = _randomDataGenerator.GenerateRandomAlphabeticString(12);
             }
             return ApprenticeEditedLastname;
         }
+
+        private string ApprenticeEditedFirstname { get; set; }
+
+        private string ApprenticeEditedLastname { get; set; }
     }
 }

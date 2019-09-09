@@ -14,7 +14,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private readonly PageInteractionHelper _pageInteractionHelper;
         private readonly FormCompletionHelper _formCompletionHelper;
         private readonly ScenarioContext _context;
-        private readonly CocDataHelper _dataHelper;
+        private readonly EditedApprenticeDataHelper _dataHelper;
         #endregion
 
 
@@ -38,7 +38,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         public ProviderEditApprenticePage(ScenarioContext context) : base(context)
         {
             _context = context;
-            _dataHelper = context.Get<CocDataHelper>();
+            _dataHelper = context.Get<EditedApprenticeDataHelper>();
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
             VerifyPage();

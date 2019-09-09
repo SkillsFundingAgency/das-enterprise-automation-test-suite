@@ -6,13 +6,13 @@ using SFA.DAS.UI.FrameworkHelpers;
 
 namespace SFA.DAS.Approvals.UITests.Project.Helpers
 {
-    public class ApprovalsDataHelper
+    public class ApprenticeDataHelper : RandomCourseHelper
     {
         private readonly RandomDataGenerator _randomDataGenerator;
         private readonly ObjectContext _objectContext;
         
 
-        public ApprovalsDataHelper(ObjectContext objectContext, RandomDataGenerator randomDataGenerator)
+        public ApprenticeDataHelper(ObjectContext objectContext, RandomDataGenerator randomDataGenerator)
         {
             _objectContext = objectContext;
             _randomDataGenerator = randomDataGenerator;
@@ -27,6 +27,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers
             TrainingPrice = "1" + _randomDataGenerator.GenerateRandomNumber(3);
             EmployerReference = _randomDataGenerator.GenerateRandomAlphanumericString(10);
             Ulns = new List<string>();
+            Course = RandomCourse();
         }
 
         public string ApprenticeFirstname { get; }      
@@ -40,10 +41,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers
         public int DateOfBirthMonth { get; }
 
         public int DateOfBirthYear { get; }
-
-        public string StandardCourseOption => "34";
-
-        public string FrameworkCourseOption => "454-3-1";
 
         public int CourseDurationInMonths => 15;
 
@@ -59,8 +56,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers
 
         public string MessageToEmployer => $"Added ulns, {MessageToProvider}";
 
-        public int RandomNumber { get; }
-
         public List<string> Ulns { get; private set; }
 
         public string Uln()
@@ -69,6 +64,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers
             Ulns.Add(uln);
             return uln;
         }
+
+        public string Course { get; }
 
         private DateTime GenerateCourseStartDate()
         {
@@ -96,11 +93,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers
         private DateTime GetCourseEndDate()
         {
             return CourseStartDate.AddMonths(CourseDurationInMonths);
-        }
-
-        public string RandomCourse()
-        {
-            return (RandomNumber % 2 == 0) ? StandardCourseOption : FrameworkCourseOption;
         }
     }
 }

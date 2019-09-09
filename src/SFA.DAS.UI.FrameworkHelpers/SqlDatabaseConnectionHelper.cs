@@ -3,7 +3,7 @@ using System.Data.SqlClient;
 
 namespace SFA.DAS.UI.FrameworkHelpers
 {
-    public class SqlDatabaseConncetionHelper
+    public class SqlDatabaseConnectionHelper
     {
         public int ExecuteSqlCommand(string connectionString, string queryToExecute, object dynamicParameters = null)
         {

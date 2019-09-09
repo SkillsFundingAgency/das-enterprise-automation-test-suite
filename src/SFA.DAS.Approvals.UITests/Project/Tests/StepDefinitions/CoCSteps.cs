@@ -21,13 +21,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
         private readonly CommitmentsDataHelper _commitmentsDataHelper;
 
-        private readonly ApprovalsDataHelper _dataHelper;
+        private readonly ApprenticeDataHelper _dataHelper;
 
         public CoCSteps(ScenarioContext context)
         {
             _context = context;
             _commitmentsDataHelper = context.Get<CommitmentsDataHelper>();
-            _dataHelper = context.Get<ApprovalsDataHelper>();
+            _dataHelper = context.Get<ApprenticeDataHelper>();
             _stepsHelper = new ExistingAccountsStepsHelper(context);
             _employerStepsHelper = new EmployerStepsHelper(context);
             _providerStepsHelper = new ProviderStepsHelper(context);
@@ -47,11 +47,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             var providerReviewYourCohortPage = _providerStepsHelper.EditApprentice();
 
             _providerStepsHelper.Approve(providerReviewYourCohortPage);
-            
         }
 
-        [When(@"the Employer edits and confirm the changes after ILR match")]
-        public void WhenTheEmployerEditsAndConfirmTheChangesAfterILRMatch()
+        [When(@"the Employer edits Dob and Reference and confirm the changes after ILR match")]
+        public void WhenTheEmployerEditsDobAndReferenceAndConfirmTheChangesAfterILRMatch()
         {
             SetHasHadDataLockSuccessTrue();
 
@@ -73,8 +72,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                 .SelectApproveChangesAndSubmit();
         }
 
-        [When(@"the provider edits and confirm the changes after ILR match")]
-        public void WhenTheProviderEditsAndConfirmTheChangesAfterILRMatch()
+        [When(@"the provider edits Dob and Reference and confirm the changes after ILR match")]
+        public void WhenTheProviderEditsDobAndReferenceAndConfirmTheChangesAfterILRMatch()
         {
             SetHasHadDataLockSuccessTrue();
 
@@ -85,6 +84,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                 .EditTheApprenticePostApprovalAfterIlrMatchAndSubmit()
                 .AcceptChangesAndSubmit();
         }
+
 
         [Then(@"the Employer can review and approve the changes")]
         public void ThenTheEmployerCanReviewAndApproveTheChanges()
@@ -100,7 +100,5 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             _dataHelper.Ulns.ForEach((x) => _commitmentsDataHelper.SetHasHadDataLockSuccessTrue(x));
         }
-
-
     }
 }
