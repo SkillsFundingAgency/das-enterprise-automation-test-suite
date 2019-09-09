@@ -35,6 +35,11 @@ namespace SFA.DAS.UI.Framework.TestSupport
             return _objects.Values.OfType<T>();
         }
 
+        public Dictionary<string, object> GetAll()
+        {
+            return _objects;
+        }
+
         #endregion
 
         #region Setters
