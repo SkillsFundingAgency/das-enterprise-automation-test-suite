@@ -3,7 +3,7 @@ using SFA.DAS.UI.FrameworkHelpers;
 
 namespace SFA.DAS.Approvals.UITests.Project.Helpers
 {
-    public class EditedApprenticeDataHelper
+    public class EditedApprenticeDataHelper : RandomCourseHelper
     {
         private readonly RandomDataGenerator _randomDataGenerator;
         private readonly ApprenticeDataHelper _approvalsDataHelper;
@@ -19,6 +19,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers
             DateOfBirthYear = _randomDataGenerator.GenerateRandomDobYear();
             EmployerReference = _randomDataGenerator.GenerateRandomAlphanumericString(10);
             ProviederRefernce = _randomDataGenerator.GenerateRandomAlphanumericString(10);
+            TrainingPrice = "2" + _randomDataGenerator.GenerateRandomNumber(3);
+            EditedCourse = RandomCourse();
         }
 
         public int DateOfBirthDay { get; }
@@ -31,7 +33,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers
 
         public string ProviederRefernce { get; }
 
-        public string Course { get; }
+        public string TrainingPrice { get; }
 
         public string ApprenticeEditedFullName => $"{ApprenticeEditedFirstname} {ApprenticeEditedLastname}";
 
@@ -53,8 +55,19 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers
             return ApprenticeEditedLastname;
         }
 
+        public string SetCurrentApprenticeEditedCourse()
+        {
+            if ((_approvalsDataHelper.Course.Equals(EditedCourse)))
+            {
+                EditedCourse = RandomCourse();
+            }
+            return EditedCourse;
+        }
+
         private string ApprenticeEditedFirstname { get; set; }
 
         private string ApprenticeEditedLastname { get; set; }
+
+        private string EditedCourse { get; set; }
     }
 }

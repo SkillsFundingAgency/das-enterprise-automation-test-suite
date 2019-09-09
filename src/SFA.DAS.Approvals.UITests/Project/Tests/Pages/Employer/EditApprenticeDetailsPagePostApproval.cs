@@ -16,21 +16,21 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private readonly EditedApprenticeDataHelper _dataHelper;
         #endregion
 
-        private By firstNameField => By.Id("FirstName");
-        private By lastNameField => By.Id("LastName");
-        private By dateOfBirthDay => By.Id("DateOfBirth_Day");
-        private By dateOfBirthMonth => By.Id("DateOfBirth_Month");
-        private By dateOfBirthYear => By.Id("DateOfBirth_Year");
-        private By trainingCourseContainer => By.Id("select2-TrainingCode-container");
-        private By standardCourseOption => By.CssSelector("#TrainingCode option[value='176']");
-        private By frameworkCourseOption => By.CssSelector("#TrainingCode option[value='454-2-1']");
-        private By startDateMonth => By.Id("StartDate_Month");
-        private By startDateYear => By.Id("StartDate_Year");
-        private By endDateMonth => By.Id("EndDate_Month");
-        private By endDateYear => By.Id("EndDate_Year");
-        private By trainingCost => By.Id("Cost");
-        private By employerReference => By.Id("EmployerRef");
-        private By updateDetailsButton => By.Id("submit-edit-app");
+        private By FirstNameField => By.Id("FirstName");
+        private By LastNameField => By.Id("LastName");
+        private By DateOfBirthDay => By.Id("DateOfBirth_Day");
+        private By DateOfBirthMonth => By.Id("DateOfBirth_Month");
+        private By DateOfBirthYear => By.Id("DateOfBirth_Year");
+        private By TrainingCourseContainer => By.Id("select2-TrainingCode-container");
+        private By StandardCourseOption => By.CssSelector("#TrainingCode option[value='176']");
+        private By FrameworkCourseOption => By.CssSelector("#TrainingCode option[value='454-2-1']");
+        private By StartDateMonth => By.Id("StartDate_Month");
+        private By StartDateYear => By.Id("StartDate_Year");
+        private By EndDateMonth => By.Id("EndDate_Month");
+        private By EndDateYear => By.Id("EndDate_Year");
+        private By TrainingCost => By.Id("Cost");
+        private By EmployerReference => By.Id("EmployerRef");
+        private By UpdateDetailsButton => By.Id("submit-edit-app");
 
 
         public EditApprenticeDetailsPagePostApproval(ScenarioContext context) : base(context)
@@ -41,21 +41,34 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             VerifyPage();
         }
 
-        public ConfirmChangesPage EditTheApprenticePostApprovalAfterIlrMatchAndSubmit()
+        public ConfirmChangesPage EditCostAndCourseAfterIlrMatch()
+        {
+            EditCostAndCourse();
+            _formCompletionHelper.ClickElement(UpdateDetailsButton);
+            return new ConfirmChangesPage(_context);
+        }
+
+        public ConfirmChangesPage EditNameDobAndReferenceAfterIlrMatch()
         {
             EditNameDobAndReference();
-            _formCompletionHelper.ClickElement(updateDetailsButton);
+            _formCompletionHelper.ClickElement(UpdateDetailsButton);
             return new ConfirmChangesPage(_context);
         }
 
         private void EditNameDobAndReference()
         {
-            _formCompletionHelper.EnterText(firstNameField, _dataHelper.SetCurrentApprenticeEditedFirstname());
-            _formCompletionHelper.EnterText(lastNameField, _dataHelper.SetCurrentApprenticeEditedLastname());
-            _formCompletionHelper.EnterText(dateOfBirthDay, _dataHelper.DateOfBirthDay);
-            _formCompletionHelper.EnterText(dateOfBirthMonth, _dataHelper.DateOfBirthMonth);
-            _formCompletionHelper.EnterText(dateOfBirthYear, _dataHelper.DateOfBirthYear);
-            _formCompletionHelper.EnterText(employerReference, _dataHelper.EmployerReference);
+            _formCompletionHelper.EnterText(FirstNameField, _dataHelper.SetCurrentApprenticeEditedFirstname());
+            _formCompletionHelper.EnterText(LastNameField, _dataHelper.SetCurrentApprenticeEditedLastname());
+            _formCompletionHelper.EnterText(DateOfBirthDay, _dataHelper.DateOfBirthDay);
+            _formCompletionHelper.EnterText(DateOfBirthMonth, _dataHelper.DateOfBirthMonth);
+            _formCompletionHelper.EnterText(DateOfBirthYear, _dataHelper.DateOfBirthYear);
+            _formCompletionHelper.EnterText(EmployerReference, _dataHelper.EmployerReference);
+        }
+
+        private void EditCostAndCourse()
+        {
+            _formCompletionHelper.EnterText(TrainingCost, "2" + _dataHelper.TrainingPrice);
+            _formCompletionHelper.SelectFromDropDownByValue(TrainingCourseContainer, _dataHelper.SetCurrentApprenticeEditedCourse());
         }
     }
 }

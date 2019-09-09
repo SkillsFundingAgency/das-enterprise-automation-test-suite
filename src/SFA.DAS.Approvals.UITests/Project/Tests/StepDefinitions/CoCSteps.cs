@@ -54,13 +54,21 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             SetHasHadDataLockSuccessTrue();
 
-            _employerStepsHelper.GoToEmployerApprenticesHomePage()
-                .ClickManageYourApprenticesLink()
-                .SelectViewCurrentApprenticeDetails()
-                .ClickEditApprenticeDetailsLink()
-                .EditTheApprenticePostApprovalAfterIlrMatchAndSubmit()
+            _employerStepsHelper.EditApprenticeDetailsPagePostApproval()
+                .EditNameDobAndReferenceAfterIlrMatch()
                 .AcceptChangesAndSubmit();
         }
+
+        [When(@"the Employer edits cost and course and confirm the changes after ILR match")]
+        public void WhenTheEmployerEditsCostAndCourseAndConfirmTheChangesAfterILRMatch()
+        {
+            SetHasHadDataLockSuccessTrue();
+
+            _employerStepsHelper.EditApprenticeDetailsPagePostApproval()
+               .EditCostAndCourseAfterIlrMatch()
+               .AcceptChangesAndSubmit();
+        }
+
 
         [Then(@"the provider can review and approve the changes")]
         public void ThenTheProviderCanReviewAndApproveTheChanges()
