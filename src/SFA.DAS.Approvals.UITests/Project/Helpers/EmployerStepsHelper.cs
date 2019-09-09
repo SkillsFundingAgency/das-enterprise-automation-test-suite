@@ -39,7 +39,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers
 
             return new ApprenticesHomePage(_context, true);
         }
-        internal EditApprenticeDetailsPagePostApproval EditApprenticeDetailsPagePostApproval()
+        internal EditApprenticePage EditApprenticeDetailsPagePostApproval()
         {
             return GoToEmployerApprenticesHomePage()
                 .ClickManageYourApprenticesLink()

@@ -30,10 +30,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             VerifyPage();
         }
 
-        public EditApprenticeDetailsPagePostApproval ClickEditApprenticeDetailsLink()
+        public EditApprenticePage ClickEditApprenticeDetailsLink()
         {
             _formCompletionHelper.ClickElement(EditApprenticeDetailsLink);
-            return new EditApprenticeDetailsPagePostApproval(_context);
+            return new EditApprenticePage(_context);
         }
 
         public ReviewChangesPage ClickReviewChanges()

@@ -55,22 +55,16 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             SetHasHadDataLockSuccessTrue();
 
             _employerStepsHelper.EditApprenticeDetailsPagePostApproval()
-                .EditNameDobAndReferenceAfterIlrMatch()
+                .EditApprenticeNameDobAndReference()
                 .AcceptChangesAndSubmit();
-        }
-
-        [When(@"the Employer edits cost and course and confirm the changes after ILR match")]
-        public void WhenTheEmployerEditsCostAndCourseAndConfirmTheChangesAfterILRMatch()
-        {
-            SetHasHadDataLockSuccessTrue();
-
-            EmployerChangeCostAndCourse();
         }
 
         [When(@"the Employer edits cost and course and confirm the changes before ILR match")]
         public void WhenTheEmployerEditsCostAndCourseAndConfirmTheChangesBeforeILRMatch()
         {
-            EmployerChangeCostAndCourse();
+            _employerStepsHelper.EditApprenticeDetailsPagePostApproval()
+                .EditCostAndCourse()
+                .AcceptChangesAndSubmit();
         }
 
         [Then(@"the provider can review and approve the changes")]
@@ -92,10 +86,20 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                 .GoToProviderManageYourApprenticePage()
                 .SelectViewCurrentApprenticeDetails()
                 .ClickEditApprenticeDetailsLink()
-                .EditTheApprenticePostApprovalAfterIlrMatchAndSubmit()
+                .EditApprenticeNameDobAndReference()
                 .AcceptChangesAndSubmit();
         }
 
+        [When(@"the provider edits cost and course and confirm the changes before ILR match")]
+        public void WhenTheProviderEditsCostAndCourseAndConfirmTheChangesBeforeILRMatch()
+        {
+            _providerStepsHelper.GoToProviderHomePage()
+                .GoToProviderManageYourApprenticePage()
+                .SelectViewCurrentApprenticeDetails()
+                .ClickEditApprenticeDetailsLink()
+                .EditCostAndCourse()
+                .AcceptChangesAndSubmit();
+        }
 
         [Then(@"the Employer can review and approve the changes")]
         public void ThenTheEmployerCanReviewAndApproveTheChanges()
@@ -110,12 +114,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         private void SetHasHadDataLockSuccessTrue()
         {
             _dataHelper.Ulns.ForEach((x) => _commitmentsDataHelper.SetHasHadDataLockSuccessTrue(x));
-        }
-        private void EmployerChangeCostAndCourse()
-        {
-            _employerStepsHelper.EditApprenticeDetailsPagePostApproval()
-               .EditCostAndCourse()
-               .AcceptChangesAndSubmit();
         }
     }
 }

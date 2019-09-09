@@ -18,7 +18,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers
             DateOfBirthMonth = _randomDataGenerator.GenerateRandomMonth();
             DateOfBirthYear = _randomDataGenerator.GenerateRandomDobYear();
             EmployerReference = _randomDataGenerator.GenerateRandomAlphanumericString(10);
-            ProviederRefernce = _randomDataGenerator.GenerateRandomAlphanumericString(10);
+            ProviderRefernce = _randomDataGenerator.GenerateRandomAlphanumericString(10);
             TrainingPrice = "2" + _randomDataGenerator.GenerateRandomNumber(3);
             EditedCourse = RandomCourse();
         }
@@ -31,7 +31,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers
 
         public string EmployerReference { get; }
 
-        public string ProviederRefernce { get; }
+        public string ProviderRefernce { get; }
 
         public string TrainingPrice { get; }
 
