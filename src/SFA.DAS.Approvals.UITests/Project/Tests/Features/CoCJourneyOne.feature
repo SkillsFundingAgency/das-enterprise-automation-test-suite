@@ -1,4 +1,4 @@
-﻿Feature: ExistingUserCoCJourneyOne
+﻿Feature: CoCJourneyOne
 
 A short summary of the feature
 
