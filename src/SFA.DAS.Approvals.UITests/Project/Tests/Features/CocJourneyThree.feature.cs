@@ -72,20 +72,44 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Employer requests changes to cost and course After ILR match and Provider approve" +
             "s")]
+        [NUnit.Framework.IgnoreAttribute("Ignored scenario")]
         [NUnit.Framework.CategoryAttribute("regression")]
         public virtual void EmployerRequestsChangesToCostAndCourseAfterILRMatchAndProviderApproves()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Employer requests changes to cost and course After ILR match and Provider approve" +
                     "s", null, new string[] {
-                        "regression"});
-#line 6
+                        "regression",
+                        "Ignore"});
+#line 8
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 7
-testRunner.Given("the Employer has approved apprentice", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 8
-testRunner.When("the Employer edits cost and course and confirm the changes after ILR match", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 9
+testRunner.Given("the Employer has approved apprentice", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 10
+testRunner.When("the Employer edits cost and course and confirm the changes after ILR match", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 11
+testRunner.Then("the provider can review and approve the changes", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Employer requests changes to cost and course Before ILR match and Provider approv" +
+            "es")]
+        [NUnit.Framework.CategoryAttribute("regression")]
+        public virtual void EmployerRequestsChangesToCostAndCourseBeforeILRMatchAndProviderApproves()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Employer requests changes to cost and course Before ILR match and Provider approv" +
+                    "es", null, new string[] {
+                        "regression"});
+#line 14
+this.ScenarioInitialize(scenarioInfo);
+            this.ScenarioStart();
+#line 15
+testRunner.Given("the Employer has approved apprentice", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 16
+testRunner.When("the Employer edits cost and course and confirm the changes before ILR match", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 17
 testRunner.Then("the provider can review and approve the changes", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();

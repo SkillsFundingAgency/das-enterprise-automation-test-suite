@@ -64,11 +64,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             SetHasHadDataLockSuccessTrue();
 
-            _employerStepsHelper.EditApprenticeDetailsPagePostApproval()
-               .EditCostAndCourseAfterIlrMatch()
-               .AcceptChangesAndSubmit();
+            EmployerChangeCostAndCourse();
         }
 
+        [When(@"the Employer edits cost and course and confirm the changes before ILR match")]
+        public void WhenTheEmployerEditsCostAndCourseAndConfirmTheChangesBeforeILRMatch()
+        {
+            EmployerChangeCostAndCourse();
+        }
 
         [Then(@"the provider can review and approve the changes")]
         public void ThenTheProviderCanReviewAndApproveTheChanges()
@@ -107,6 +110,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         private void SetHasHadDataLockSuccessTrue()
         {
             _dataHelper.Ulns.ForEach((x) => _commitmentsDataHelper.SetHasHadDataLockSuccessTrue(x));
+        }
+        private void EmployerChangeCostAndCourse()
+        {
+            _employerStepsHelper.EditApprenticeDetailsPagePostApproval()
+               .EditCostAndCourse()
+               .AcceptChangesAndSubmit();
         }
     }
 }

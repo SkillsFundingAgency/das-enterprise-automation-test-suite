@@ -70,11 +70,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Provider requests change of circumstance After ILR match and Employer approves")]
+        [NUnit.Framework.DescriptionAttribute("Provider requests change to dob and reference After ILR match and Employer approv" +
+            "es")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public virtual void ProviderRequestsChangeOfCircumstanceAfterILRMatchAndEmployerApproves()
+        public virtual void ProviderRequestsChangeToDobAndReferenceAfterILRMatchAndEmployerApproves()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Provider requests change of circumstance After ILR match and Employer approves", null, new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Provider requests change to dob and reference After ILR match and Employer approv" +
+                    "es", null, new string[] {
                         "regression"});
 #line 6
 this.ScenarioInitialize(scenarioInfo);
