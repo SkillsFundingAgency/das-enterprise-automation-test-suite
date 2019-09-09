@@ -52,9 +52,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers
 
         public ProviderReviewYourCohortPage CurrentCohortDetails()
         {
-            GoToProviderHomePage();
-
-            return new ProviderHomePage(_context)
+            return GoToProviderHomePage()
                     .GoToProviderYourCohortsPage()
                     .GoToCohortsToReviewPage()
                     .SelectViewCurrentCohortDetails();

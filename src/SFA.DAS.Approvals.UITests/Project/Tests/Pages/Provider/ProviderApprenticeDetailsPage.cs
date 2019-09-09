@@ -37,5 +37,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             _formCompletionHelper.ClickElement(ReviewChangesLink);
             return new ProviderReviewChangesPage(_context);
         }
+
+        public ProviderEditApprenticePage ClickEditApprenticeDetailsLink()
+        {
+            _formCompletionHelper.ClickElement(EditApprenticeDetailsLink);
+            return new ProviderEditApprenticePage(_context);
+        }
     }
 }

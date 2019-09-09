@@ -29,11 +29,17 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             _formCompletionHelper = context.Get<FormCompletionHelper>();
             VerifyPage();
         }
-        
-        internal EditApprenticeDetailsPagePostApproval ClickEditApprenticeDetailsLink()
+
+        public EditApprenticeDetailsPagePostApproval ClickEditApprenticeDetailsLink()
         {
             _formCompletionHelper.ClickElement(EditApprenticeDetailsLink);
             return new EditApprenticeDetailsPagePostApproval(_context);
+        }
+
+        public ReviewChangesPage ClickReviewChanges()
+        {
+            _formCompletionHelper.ClickElement(ReviewChangesLink);
+            return new ReviewChangesPage(_context);
         }
     }
 }

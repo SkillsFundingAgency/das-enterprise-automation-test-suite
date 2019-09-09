@@ -18,6 +18,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers
             DateOfBirthMonth = _randomDataGenerator.GenerateRandomMonth();
             DateOfBirthYear = _randomDataGenerator.GenerateRandomDobYear();
             EmployerReference = _randomDataGenerator.GenerateRandomAlphanumericString(10);
+            ProviederRefernce = _randomDataGenerator.GenerateRandomAlphanumericString(10);
         }
 
         public string ApprenticeEditedFirstname { get ; private set; }
@@ -31,6 +32,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers
         public int DateOfBirthYear { get; }
 
         public string EmployerReference { get; }
+
+        public string ProviederRefernce { get; }
 
         public string ApprenticeEditedFullName => $"{ApprenticeEditedFirstname} {ApprenticeEditedLastname}";
 

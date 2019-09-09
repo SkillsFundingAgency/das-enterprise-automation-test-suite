@@ -53,7 +53,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [When(@"the Employer edits and confirm the changes after ILR match")]
         public void WhenTheEmployerEditsAndConfirmTheChangesAfterILRMatch()
         {
-            _dataHelper.Ulns.ForEach((x) => _commitmentsDataHelper.SetHasHadDataLockSuccessTrue(x));
+            SetHasHadDataLockSuccessTrue();
 
             _employerStepsHelper.GoToEmployerApprenticesHomePage()
                 .ClickManageYourApprenticesLink()
@@ -72,6 +72,35 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                 .ClickReviewChanges()
                 .SelectApproveChangesAndSubmit();
         }
+
+        [When(@"the provider edits and confirm the changes after ILR match")]
+        public void WhenTheProviderEditsAndConfirmTheChangesAfterILRMatch()
+        {
+            SetHasHadDataLockSuccessTrue();
+
+            _providerStepsHelper.GoToProviderHomePage()
+                .GoToProviderManageYourApprenticePage()
+                .SelectViewCurrentApprenticeDetails()
+                .ClickEditApprenticeDetailsLink()
+                .EditTheApprenticePostApprovalAfterIlrMatchAndSubmit()
+                .AcceptChangesAndSubmit();
+        }
+
+        [Then(@"the Employer can review and approve the changes")]
+        public void ThenTheEmployerCanReviewAndApproveTheChanges()
+        {
+            _employerStepsHelper.GoToEmployerApprenticesHomePage()
+                .ClickManageYourApprenticesLink()
+                .SelectViewCurrentApprenticeDetails()
+                .ClickReviewChanges()
+                .SelectApproveChangesAndSubmit();
+        }
+
+        private void SetHasHadDataLockSuccessTrue()
+        {
+            _dataHelper.Ulns.ForEach((x) => _commitmentsDataHelper.SetHasHadDataLockSuccessTrue(x));
+        }
+
 
     }
 }
