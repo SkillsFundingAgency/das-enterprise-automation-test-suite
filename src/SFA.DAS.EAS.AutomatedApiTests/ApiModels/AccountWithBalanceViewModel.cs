@@ -1,4 +1,4 @@
-﻿namespace SFA.DAS.EAS.AutomatedApiTests.Models
+﻿namespace SFA.DAS.EAS.AutomatedApiTests.ApiModels
 {
     public class AccountWithBalanceViewModel
     {

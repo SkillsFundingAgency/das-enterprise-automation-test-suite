@@ -75,8 +75,8 @@ namespace SFA.DAS.EAS.AutomatedApiTests.Features
         
         public virtual void FeatureBackground()
         {
+#line 12
 #line 13
-#line 14
  testRunner.Given("I am authenticated with a token against the accounts Api", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
         }
@@ -86,63 +86,105 @@ namespace SFA.DAS.EAS.AutomatedApiTests.Features
             this.ScenarioTearDown();
         }
         
-        [Xunit.FactAttribute(DisplayName="Get All Accounts")]
+        [Xunit.FactAttribute(DisplayName="Get all accounts")]
         [Xunit.TraitAttribute("FeatureTitle", "AccountApiFeature")]
-        [Xunit.TraitAttribute("Description", "Get All Accounts")]
+        [Xunit.TraitAttribute("Description", "Get all accounts")]
         public virtual void GetAllAccounts()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get All Accounts", null, ((string[])(null)));
-#line 17
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get all accounts", null, ((string[])(null)));
+#line 16
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 13
+#line 12
 this.FeatureBackground();
-#line 18
+#line 17
  testRunner.When("I call the GetAccounts method", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 19
+#line 18
  testRunner.Then("I am returned a set of accounts", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
         
-        [Xunit.FactAttribute(DisplayName="Successfully retrieve an Account by hashed account id")]
+        [Xunit.FactAttribute(DisplayName="Get account by hashed account id")]
         [Xunit.TraitAttribute("FeatureTitle", "AccountApiFeature")]
-        [Xunit.TraitAttribute("Description", "Successfully retrieve an Account by hashed account id")]
-        public virtual void SuccessfullyRetrieveAnAccountByHashedAccountId()
+        [Xunit.TraitAttribute("Description", "Get account by hashed account id")]
+        public virtual void GetAccountByHashedAccountId()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Successfully retrieve an Account by hashed account id", null, ((string[])(null)));
-#line 22
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get account by hashed account id", null, ((string[])(null)));
+#line 21
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 13
+#line 12
 this.FeatureBackground();
-#line 23
+#line 22
  testRunner.Given("an account Id", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 24
+#line 23
  testRunner.When("I call the GetAccount method with a hashed account Id", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 25
+#line 24
  testRunner.Then("I am returned a single account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
         
-        [Xunit.FactAttribute(DisplayName="Get Account Users")]
+        [Xunit.FactAttribute(DisplayName="Get account users by hashed account id")]
         [Xunit.TraitAttribute("FeatureTitle", "AccountApiFeature")]
-        [Xunit.TraitAttribute("Description", "Get Account Users")]
-        public virtual void GetAccountUsers()
+        [Xunit.TraitAttribute("Description", "Get account users by hashed account id")]
+        public virtual void GetAccountUsersByHashedAccountId()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get Account Users", null, ((string[])(null)));
-#line 28
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get account users by hashed account id", null, ((string[])(null)));
+#line 27
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 13
+#line 12
 this.FeatureBackground();
-#line 29
+#line 28
  testRunner.Given("an account Id", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 30
+#line 29
  testRunner.When("I call the GetAccountsUsers method with a hashed account Id", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 31
+#line 30
  testRunner.Then("I am returned a set of users that belong to that account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [Xunit.FactAttribute(DisplayName="Get a PAYE Scheme by AccountId")]
+        [Xunit.TraitAttribute("FeatureTitle", "AccountApiFeature")]
+        [Xunit.TraitAttribute("Description", "Get a PAYE Scheme by AccountId")]
+        public virtual void GetAPAYESchemeByAccountId()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get a PAYE Scheme by AccountId", null, ((string[])(null)));
+#line 33
+this.ScenarioInitialize(scenarioInfo);
+            this.ScenarioStart();
+#line 12
+this.FeatureBackground();
+#line 34
+ testRunner.Given("an account Id", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 35
+ testRunner.When("I call the PayeSchemes method with a hashed account Id", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 36
+ testRunner.Then("I am returned a set of PayeSchemes that belong to that account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [Xunit.FactAttribute(DisplayName="Get Transfers Connections by AccountId")]
+        [Xunit.TraitAttribute("FeatureTitle", "AccountApiFeature")]
+        [Xunit.TraitAttribute("Description", "Get Transfers Connections by AccountId")]
+        public virtual void GetTransfersConnectionsByAccountId()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get Transfers Connections by AccountId", null, ((string[])(null)));
+#line 39
+this.ScenarioInitialize(scenarioInfo);
+            this.ScenarioStart();
+#line 12
+this.FeatureBackground();
+#line 40
+ testRunner.Given("an account Id", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 41
+ testRunner.When("I call the Transfers Connections method with a hashed account Id", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 42
+ testRunner.Then("I am returned a set of Transfers Connections that belong to that account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

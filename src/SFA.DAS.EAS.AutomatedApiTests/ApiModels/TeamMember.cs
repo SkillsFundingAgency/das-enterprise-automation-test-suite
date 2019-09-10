@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace SFA.DAS.EAS.AutomatedApiTests.Models
+namespace SFA.DAS.EAS.AutomatedApiTests.ApiModels
 {
     public class TeamMember
     {

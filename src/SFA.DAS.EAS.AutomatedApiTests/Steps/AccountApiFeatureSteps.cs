@@ -1,6 +1,6 @@
 ﻿using FluentAssertions;
+using SFA.DAS.EAS.AutomatedApiTests.ApiModels;
 using SFA.DAS.EAS.AutomatedApiTests.Helpers;
-using SFA.DAS.EAS.AutomatedApiTests.Models;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -92,5 +92,25 @@ namespace SFA.DAS.EAS.AutomatedApiTests.Steps
             results.Count.Should().Be(1);
             //results.Data[0].AccountHashId.Should().Be(ScenarioContext.Current["HashedAccountId"]);
         }
+
+        [When(@"I call the PayeSchemes method with a hashed account Id")]
+        public async Task WhenICallThePayeSchemesMethodWithAHashedAccountId()
+        {
+            var response = await accountClient.GetAsync($"api/accounts/{accountApiFeatureData.HashedAccountId}/payeschemes");
+
+            if (response.IsSuccessStatusCode)
+            {
+                var results = await response.Content.ReadAsAsync<ResourceList>();
+                accountApiFeatureData.PayeSchemesResourceList = results;
+            }
+        }
+
+        [Then(@"I am returned a set of PayeSchemes that belong to that account")]
+        public void ThenIAmReturnedASetOfPayeSchemesThatBelongToThatAccount()
+        {
+            //accountApiFeatureData.PayeSchemesResourceList;
+            //[{"Id":"222/ZZ00002","Href":"/api/accounts/JRML7V/payeschemes/222%252fZZ00002"}]
+        }
+
     }
 }
