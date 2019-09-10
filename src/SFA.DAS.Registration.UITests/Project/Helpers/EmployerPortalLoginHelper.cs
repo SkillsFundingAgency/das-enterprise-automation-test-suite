@@ -1,4 +1,5 @@
 ﻿using SFA.DAS.Registration.UITests.Project.Tests.Pages;
+using SFA.DAS.UI.Framework.TestSupport;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Registration.UITests.Project.Helpers
@@ -6,11 +7,13 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
     public class EmployerPortalLoginHelper : IReLoginHelper
     {
         private readonly ScenarioContext _context;
+        private readonly ObjectContext _objectContext;
         private readonly LoginCredentialsHelper _loginCredentialsHelper;
 
         public EmployerPortalLoginHelper(ScenarioContext context)
         {
             _context = context;
+            _objectContext = context.Get<ObjectContext>();
             _loginCredentialsHelper = context.Get<LoginCredentialsHelper>();
         }
 
@@ -30,9 +33,13 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
 
         public HomePage Login(LoginUser loginUser)
         {
-            return new IndexPage(_context)
+            var homePage = new IndexPage(_context)
                 .SignIn()
                 .Login(loginUser);
+
+            _objectContext.SetAccountId(homePage.AccountID());
+
+            return homePage;
         }
     }
 }

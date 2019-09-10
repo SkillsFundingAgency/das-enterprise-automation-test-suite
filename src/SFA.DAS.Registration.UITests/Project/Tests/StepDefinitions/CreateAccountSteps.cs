@@ -108,19 +108,13 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
                 .HomePage()
                 .AccountID();
 
-            SetAccountId(accountid);
+            _objectContext.SetAccountId(accountid);
         }
 
         [Then(@"sucess message is displayed")]
         public void SucessMessageIsDisplayed()
         {
             homePage.VerifySucessSummary();
-        }
-
-        private void SetAccountId(string accountid)
-        {
-            TestContext.Progress.WriteLine($"Account Id : {accountid}");
-            _objectContext.SetAccountId(accountid);
         }
     }
 }

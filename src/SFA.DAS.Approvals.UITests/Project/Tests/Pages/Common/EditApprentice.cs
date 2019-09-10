@@ -18,7 +18,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
         protected By DateOfBirthDay => By.Id("DateOfBirth_Day");
         protected By DateOfBirthMonth => By.Id("DateOfBirth_Month");
         protected By DateOfBirthYear => By.Id("DateOfBirth_Year");
-        protected By TrainingCourseContainer => By.Id("select2-TrainingCode-container");
+        protected By TrainingCourseContainer => By.Id("select2-container");
         protected By CourseOption(string courseid) => By.CssSelector($"#TrainingCode option[value='{courseid}']");
         protected By StartDateMonth => By.Id("StartDate_Month");
         protected By StartDateYear => By.Id("StartDate_Year");

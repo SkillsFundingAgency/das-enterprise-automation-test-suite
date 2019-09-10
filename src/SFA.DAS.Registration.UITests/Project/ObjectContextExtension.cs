@@ -11,12 +11,13 @@ namespace SFA.DAS.Registration.UITests.Project
 
         internal static void SetLoginCredentials(this ObjectContext objectContext, string loginusername, string loginpassword)
         {
+            objectContext.Set("LoggedInUser", loginusername);
             objectContext.Set(LoggedInUserKey, new LoggedInUser { Username = loginusername, Password = loginpassword});
         }
 
         internal static void SetAccountId(this ObjectContext objectContext, string accountid)
         {
-            objectContext.Set(AccountIdKey, accountid);
+            objectContext.Replace(AccountIdKey, accountid);
         }
 
         public static string GetAccountId(this ObjectContext objectContext)
