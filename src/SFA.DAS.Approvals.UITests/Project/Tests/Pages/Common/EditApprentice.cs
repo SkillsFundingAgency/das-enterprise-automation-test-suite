@@ -18,7 +18,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
         protected By DateOfBirthDay => By.Id("DateOfBirth_Day");
         protected By DateOfBirthMonth => By.Id("DateOfBirth_Month");
         protected By DateOfBirthYear => By.Id("DateOfBirth_Year");
-        protected By TrainingCourseContainer => By.Id("select2-container");
+        protected By TrainingCourseContainer => By.CssSelector(".select2-container");
         protected By CourseOption(string courseid) => By.CssSelector($"#TrainingCode option[value='{courseid}']");
         protected By StartDateMonth => By.Id("StartDate_Month");
         protected By StartDateYear => By.Id("StartDate_Year");
@@ -37,20 +37,20 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
             VerifyPage();
         }
 
-        public void EditCostAndCourse()
+        public void EditCostCourseAndReference(string reference)
         {
-            EditCost();
-            EditCourse();
-            _formCompletionHelper.ClickElement(UpdateDetailsButton);
+            EditCourse()
+            .EditCost()
+            .EditApprenticeNameDobAndReference(reference);
         }
 
         public void EditApprenticeNameDobAndReference(string reference)
         {
-            EditNameDobAndReference(reference);
-            _formCompletionHelper.ClickElement(UpdateDetailsButton);
+            EditNameDobAndReference(reference)
+            .Update();
         }
 
-        private void EditNameDobAndReference(string reference)
+        private EditApprentice EditNameDobAndReference(string reference)
         {
             _formCompletionHelper.EnterText(FirstNameField, _dataHelper.SetCurrentApprenticeEditedFirstname());
             _formCompletionHelper.EnterText(LastNameField, _dataHelper.SetCurrentApprenticeEditedLastname());
@@ -58,18 +58,26 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
             _formCompletionHelper.EnterText(DateOfBirthMonth, _dataHelper.DateOfBirthMonth);
             _formCompletionHelper.EnterText(DateOfBirthYear, _dataHelper.DateOfBirthYear);
             _formCompletionHelper.EnterText(Reference, reference);
+            return this;
         }
 
-        private void EditCost()
+        private EditApprentice EditCost()
         {
             _formCompletionHelper.EnterText(TrainingCost, "2" + _dataHelper.TrainingPrice);
-
+            return this;
         }
 
-        private void EditCourse()
+        private EditApprentice EditCourse()
         {
             _formCompletionHelper.ClickElement(TrainingCourseContainer);
             _formCompletionHelper.ClickElement(CourseOption(_dataHelper.SetCurrentApprenticeEditedCourse()));
+            _formCompletionHelper.ClickElement(StartDateMonth);
+            return this;
+        }
+
+        private void Update()
+        {
+            _formCompletionHelper.ClickElement(UpdateDetailsButton, true);
         }
     }
 }

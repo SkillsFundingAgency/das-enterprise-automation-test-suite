@@ -25,9 +25,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             VerifyPage();
         }
 
-        public new ProviderConfirmChangesPage EditCostAndCourse()
+        public new ProviderConfirmChangesPage EditCostCourseAndReference()
         {
-            base.EditCostAndCourse();
+            EditCostCourseAndReference(_dataHelper.ProviderRefernce);
             return ProviderConfirmChangesPage();
         }
 

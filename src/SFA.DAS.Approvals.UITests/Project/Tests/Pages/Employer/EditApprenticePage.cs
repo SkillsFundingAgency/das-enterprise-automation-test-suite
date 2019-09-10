@@ -19,7 +19,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         protected override By Reference => By.Id("EmployerRef");
         protected override By UpdateDetailsButton => By.Id("submit-edit-app");
 
-
         public EditApprenticePage(ScenarioContext context) : base(context)
         {
             _context = context;
@@ -27,9 +26,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             _dataHelper = context.Get<EditedApprenticeDataHelper>();
             VerifyPage();
         }
-        public new ConfirmChangesPage EditCostAndCourse()
+
+        public ConfirmChangesPage EditCostCourseAndReference()
         {
-            base.EditCostAndCourse();
+            EditCostCourseAndReference(_dataHelper.EmployerReference);
             return ConfirmChangesPage();
         }
 

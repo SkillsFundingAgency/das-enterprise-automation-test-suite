@@ -63,7 +63,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         public void WhenTheEmployerEditsCostAndCourseAndConfirmTheChangesBeforeILRMatch()
         {
             _employerStepsHelper.EditApprenticeDetailsPagePostApproval()
-                .EditCostAndCourse()
+                .EditCostCourseAndReference()
                 .AcceptChangesAndSubmit();
         }
 
@@ -97,7 +97,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                 .GoToProviderManageYourApprenticePage()
                 .SelectViewCurrentApprenticeDetails()
                 .ClickEditApprenticeDetailsLink()
-                .EditCostAndCourse()
+                .EditCostCourseAndReference()
                 .AcceptChangesAndSubmit();
         }
 
