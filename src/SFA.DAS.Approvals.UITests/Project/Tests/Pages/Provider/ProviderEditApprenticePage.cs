@@ -1,7 +1,6 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.Approvals.UITests.Project.Helpers;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common;
-using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
@@ -14,6 +13,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private readonly ScenarioContext _context;
         private readonly EditedApprenticeDataHelper _dataHelper;
         #endregion
+        protected override By TrainingCourseContainer => By.Id("CourseCode");
 
         protected override By Reference => By.Id("ProviderRef");
         protected override By UpdateDetailsButton => By.Id("submit-edit-details");
@@ -25,7 +25,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             VerifyPage();
         }
 
-        public new ProviderConfirmChangesPage EditCostCourseAndReference()
+        public ProviderConfirmChangesPage EditCostCourseAndReference()
         {
             EditCostCourseAndReference(_dataHelper.ProviderRefernce);
             return ProviderConfirmChangesPage();
@@ -35,6 +35,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         {
             EditApprenticeNameDobAndReference(_dataHelper.ProviderRefernce);
             return ProviderConfirmChangesPage();
+        }
+        protected override void SelectCourse()
+        {
+            formCompletionHelper.SelectFromDropDownByValue(TrainingCourseContainer, _dataHelper.SetCurrentApprenticeEditedCourse());
         }
 
         private ProviderConfirmChangesPage ProviderConfirmChangesPage()

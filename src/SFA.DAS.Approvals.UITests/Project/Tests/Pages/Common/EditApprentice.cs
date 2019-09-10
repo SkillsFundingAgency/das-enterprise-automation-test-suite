@@ -9,7 +9,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
     public abstract class EditApprentice : BasePage
     {
         #region Helpers and Context
-        private readonly FormCompletionHelper _formCompletionHelper;
+        protected readonly FormCompletionHelper formCompletionHelper;
         private readonly EditedApprenticeDataHelper _dataHelper;
         #endregion
 
@@ -17,14 +17,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
         protected By LastNameField => By.Id("LastName");
         protected By DateOfBirthDay => By.Id("DateOfBirth_Day");
         protected By DateOfBirthMonth => By.Id("DateOfBirth_Month");
-        protected By DateOfBirthYear => By.Id("DateOfBirth_Year");
-        protected By TrainingCourseContainer => By.CssSelector(".select2-container");
-        protected By CourseOption(string courseid) => By.CssSelector($"#TrainingCode option[value='{courseid}']");
+        protected By DateOfBirthYear => By.Id("DateOfBirth_Year");        
         protected By StartDateMonth => By.Id("StartDate_Month");
         protected By StartDateYear => By.Id("StartDate_Year");
         protected By EndDateMonth => By.Id("EndDate_Month");
         protected By EndDateYear => By.Id("EndDate_Year");
         protected By TrainingCost => By.Id("Cost");
+
+        protected abstract By TrainingCourseContainer { get; }
 
         protected abstract By Reference { get; }
 
@@ -32,10 +32,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
 
         public EditApprentice(ScenarioContext context) : base(context)
         {
-            _formCompletionHelper = context.Get<FormCompletionHelper>();
+            formCompletionHelper = context.Get<FormCompletionHelper>();
             _dataHelper = context.Get<EditedApprenticeDataHelper>();
             VerifyPage();
         }
+
+        protected abstract void SelectCourse();
 
         public void EditCostCourseAndReference(string reference)
         {
@@ -52,32 +54,32 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
 
         private EditApprentice EditNameDobAndReference(string reference)
         {
-            _formCompletionHelper.EnterText(FirstNameField, _dataHelper.SetCurrentApprenticeEditedFirstname());
-            _formCompletionHelper.EnterText(LastNameField, _dataHelper.SetCurrentApprenticeEditedLastname());
-            _formCompletionHelper.EnterText(DateOfBirthDay, _dataHelper.DateOfBirthDay);
-            _formCompletionHelper.EnterText(DateOfBirthMonth, _dataHelper.DateOfBirthMonth);
-            _formCompletionHelper.EnterText(DateOfBirthYear, _dataHelper.DateOfBirthYear);
-            _formCompletionHelper.EnterText(Reference, reference);
+            formCompletionHelper.EnterText(FirstNameField, _dataHelper.SetCurrentApprenticeEditedFirstname());
+            formCompletionHelper.EnterText(LastNameField, _dataHelper.SetCurrentApprenticeEditedLastname());
+            formCompletionHelper.EnterText(DateOfBirthDay, _dataHelper.DateOfBirthDay);
+            formCompletionHelper.EnterText(DateOfBirthMonth, _dataHelper.DateOfBirthMonth);
+            formCompletionHelper.EnterText(DateOfBirthYear, _dataHelper.DateOfBirthYear);
+            formCompletionHelper.EnterText(Reference, reference);
             return this;
         }
 
         private EditApprentice EditCost()
         {
-            _formCompletionHelper.EnterText(TrainingCost, "2" + _dataHelper.TrainingPrice);
+            formCompletionHelper.EnterText(TrainingCost, "2" + _dataHelper.TrainingPrice);
             return this;
         }
 
         private EditApprentice EditCourse()
         {
-            _formCompletionHelper.ClickElement(TrainingCourseContainer);
-            _formCompletionHelper.ClickElement(CourseOption(_dataHelper.SetCurrentApprenticeEditedCourse()));
-            _formCompletionHelper.ClickElement(StartDateMonth);
+            formCompletionHelper.ClickElement(TrainingCourseContainer);
+            SelectCourse();
+            formCompletionHelper.ClickElement(StartDateMonth);
             return this;
         }
 
         private void Update()
         {
-            _formCompletionHelper.ClickElement(UpdateDetailsButton, true);
+            formCompletionHelper.ClickElement(UpdateDetailsButton, true);
         }
     }
 }
