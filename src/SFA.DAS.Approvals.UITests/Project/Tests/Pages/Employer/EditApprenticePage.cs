@@ -15,8 +15,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         #endregion
         private By CourseOption(string courseid) => By.CssSelector($"#TrainingCode option[value='{courseid}']");
 
-        protected override By TrainingCourseContainer => By.CssSelector(".select2-container");
-
         protected override By Reference => By.Id("EmployerRef");
         protected override By UpdateDetailsButton => By.Id("submit-edit-app");
 

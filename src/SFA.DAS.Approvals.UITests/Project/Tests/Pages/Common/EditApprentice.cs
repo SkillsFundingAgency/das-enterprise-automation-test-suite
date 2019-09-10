@@ -23,8 +23,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
         protected By EndDateMonth => By.Id("EndDate_Month");
         protected By EndDateYear => By.Id("EndDate_Year");
         protected By TrainingCost => By.Id("Cost");
-
-        protected abstract By TrainingCourseContainer { get; }
+        protected By TrainingCourseContainer => By.CssSelector(".select2-container");
 
         protected abstract By Reference { get; }
 

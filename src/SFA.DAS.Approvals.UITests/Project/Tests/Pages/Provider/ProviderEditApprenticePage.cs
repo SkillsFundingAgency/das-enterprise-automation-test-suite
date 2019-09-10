@@ -13,7 +13,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private readonly ScenarioContext _context;
         private readonly EditedApprenticeDataHelper _dataHelper;
         #endregion
-        protected override By TrainingCourseContainer => By.Id("CourseCode");
+        protected By CourseCode => By.Id("CourseCode");
 
         protected override By Reference => By.Id("ProviderRef");
         protected override By UpdateDetailsButton => By.Id("submit-edit-details");
@@ -36,9 +36,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             EditApprenticeNameDobAndReference(_dataHelper.ProviderRefernce);
             return ProviderConfirmChangesPage();
         }
+
         protected override void SelectCourse()
         {
-            formCompletionHelper.SelectFromDropDownByValue(TrainingCourseContainer, _dataHelper.SetCurrentApprenticeEditedCourse());
+            formCompletionHelper.SelectFromDropDownByValue(CourseCode, _dataHelper.SetCurrentApprenticeEditedCourse());
         }
 
         private ProviderConfirmChangesPage ProviderConfirmChangesPage()
