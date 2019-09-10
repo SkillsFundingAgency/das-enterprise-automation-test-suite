@@ -11,7 +11,7 @@ Feature: AccountApiFeature
 
 Background:
 	Given I am authenticated with a token against the accounts Api
-
+	
 #//api/accounts
 Scenario: Get all accounts
 	When I call the GetAccounts method

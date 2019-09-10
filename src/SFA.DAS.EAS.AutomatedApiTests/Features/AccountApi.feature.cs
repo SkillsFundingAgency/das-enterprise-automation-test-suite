@@ -168,27 +168,6 @@ this.FeatureBackground();
             this.ScenarioCleanup();
         }
         
-        [Xunit.FactAttribute(DisplayName="Get Transfers Connections by AccountId")]
-        [Xunit.TraitAttribute("FeatureTitle", "AccountApiFeature")]
-        [Xunit.TraitAttribute("Description", "Get Transfers Connections by AccountId")]
-        public virtual void GetTransfersConnectionsByAccountId()
-        {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get Transfers Connections by AccountId", null, ((string[])(null)));
-#line 39
-this.ScenarioInitialize(scenarioInfo);
-            this.ScenarioStart();
-#line 12
-this.FeatureBackground();
-#line 40
- testRunner.Given("an account Id", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 41
- testRunner.When("I call the Transfers Connections method with a hashed account Id", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 42
- testRunner.Then("I am returned a set of Transfers Connections that belong to that account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-            this.ScenarioCleanup();
-        }
-        
         [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.0.0.0")]
         [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
         public class FixtureData : System.IDisposable
