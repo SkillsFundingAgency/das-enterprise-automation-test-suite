@@ -64,9 +64,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [When(@"the Employer edits cost and course and confirm the changes before ILR match")]
         public void WhenTheEmployerEditsCostAndCourseAndConfirmTheChangesBeforeILRMatch()
         {
-            _employerStepsHelper.EditApprenticeDetailsPagePostApproval()
-                .EditCostCourseAndReference()
-                .AcceptChangesAndSubmit();
+            EmployerEditsCostAndCourse();
+        }
+
+        [When(@"the Employer edits cost and course and confirm the changes after ILR match")]
+        public void WhenTheEmployerEditsCostAndCourseAndConfirmTheChangesAfterILRMatch()
+        {
+            SetHasHadDataLockSuccessTrue();
+            EmployerEditsCostAndCourse();
         }
 
         [Then(@"the provider can review and approve the changes")]
@@ -95,13 +100,16 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [When(@"the provider edits cost and course and confirm the changes before ILR match")]
         public void WhenTheProviderEditsCostAndCourseAndConfirmTheChangesBeforeILRMatch()
         {
-            _providerStepsHelper.GoToProviderHomePage()
-                .GoToProviderManageYourApprenticePage()
-                .SelectViewCurrentApprenticeDetails()
-                .ClickEditApprenticeDetailsLink()
-                .EditCostCourseAndReference()
-                .AcceptChangesAndSubmit();
+            ProviderEditsCostAndCourse();
         }
+
+        [When(@"the provider edits cost and course and confirm the changes after ILR match")]
+        public void WhenTheProviderEditsCostAndCourseAndConfirmTheChangesAfterILRMatch()
+        {
+            SetHasHadDataLockSuccessTrue();
+            ProviderEditsCostAndCourse();
+        }
+
 
         [Then(@"the Employer can review and approve the changes")]
         public void ThenTheEmployerCanReviewAndApproveTheChanges()
@@ -152,6 +160,23 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                 var proex = Assert.Throws(typeof(WebDriverTimeoutException), () => provideraction(), "Provider can edit cost and course after ILR match");
                 Assert.That(proex.InnerException, Is.TypeOf<NoSuchElementException>(), "Provider can edit cost and course after ILR match");
             });
+        }
+
+        private void EmployerEditsCostAndCourse()
+        {
+            _employerStepsHelper.EditApprenticeDetailsPagePostApproval()
+                    .EditCostCourseAndReference()
+                    .AcceptChangesAndSubmit();
+        }
+
+        private void ProviderEditsCostAndCourse()
+        {
+            _providerStepsHelper.GoToProviderHomePage()
+                 .GoToProviderManageYourApprenticePage()
+                 .SelectViewCurrentApprenticeDetails()
+                 .ClickEditApprenticeDetailsLink()
+                 .EditCostCourseAndReference()
+                 .AcceptChangesAndSubmit();
         }
 
         private void SetHasHadDataLockSuccessTrue()

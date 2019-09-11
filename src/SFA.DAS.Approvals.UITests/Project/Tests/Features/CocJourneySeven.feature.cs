@@ -18,20 +18,20 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.0.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("CocJourneyFive")]
-    public partial class CocJourneyFiveFeature
+    [NUnit.Framework.DescriptionAttribute("CocJourneySeven")]
+    public partial class CocJourneySevenFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "CocJourneyFive.feature"
+#line 1 "CocJourneySeven.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "CocJourneyFive", "A short summary of the feature", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "CocJourneySeven", "A short summary of the feature", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -70,25 +70,25 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Employer or Provider cannot make change to cost and course after ILR match on liv" +
-            "e Apprentice")]
+        [NUnit.Framework.DescriptionAttribute("Provider requests changes to cost and course After ILR match on waiting to start " +
+            "Apprentice and Employer approves")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("liveapprentice")]
-        public virtual void EmployerOrProviderCannotMakeChangeToCostAndCourseAfterILRMatchOnLiveApprentice()
+        [NUnit.Framework.CategoryAttribute("waitingtostartapprentice")]
+        public virtual void ProviderRequestsChangesToCostAndCourseAfterILRMatchOnWaitingToStartApprenticeAndEmployerApproves()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Employer or Provider cannot make change to cost and course after ILR match on liv" +
-                    "e Apprentice", null, new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Provider requests changes to cost and course After ILR match on waiting to start " +
+                    "Apprentice and Employer approves", null, new string[] {
                         "regression",
-                        "liveapprentice"});
+                        "waitingtostartapprentice"});
 #line 7
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 8
 testRunner.Given("the Employer has approved apprentice", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 9
-testRunner.Then("Employer cannot make changes to cost and course after ILR match", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+testRunner.When("the provider edits cost and course and confirm the changes after ILR match", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 10
-testRunner.And("provider cannot make changes to cost and course after ILR match", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.Then("the Employer can review and approve the changes", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
