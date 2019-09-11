@@ -135,8 +135,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
             Assert.Multiple(() =>
             {
-                Assert.Throws(typeof(WebDriverException), () => employeraction(), "Employer can edit cost and course after ILR match");
-                Assert.Throws(typeof(WebDriverException), () => provideraction(), "Provider can edit cost and course after ILR match");
+                var empex = Assert.Throws(typeof(WebDriverTimeoutException), () => employeraction(), "Employer can edit cost and course after ILR match");
+                Assert.That(empex.InnerException, Is.TypeOf<NoSuchElementException>(), "Employer can edit cost and course after ILR match");
+
+                var proex = Assert.Throws(typeof(WebDriverTimeoutException), () => provideraction(), "Provider can edit cost and course after ILR match");
+                Assert.That(proex.InnerException, Is.TypeOf<NoSuchElementException>(), "Provider can edit cost and course after ILR match");
             });
         }
 
