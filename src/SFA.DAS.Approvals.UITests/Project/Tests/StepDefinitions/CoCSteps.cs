@@ -1,4 +1,5 @@
-﻿using SFA.DAS.Approvals.UITests.Project.Helpers;
+﻿using NUnit.Framework;
+using SFA.DAS.Approvals.UITests.Project.Helpers;
 using SFA.DAS.Registration.UITests.Project;
 using SFA.DAS.Registration.UITests.Project.Helpers;
 using System;
@@ -109,6 +110,33 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                 .SelectViewCurrentApprenticeDetails()
                 .ClickReviewChanges()
                 .SelectApproveChangesAndSubmit();
+        }
+
+        [Then(@"Employer or Provider cannot make changes to cost and course after ILR match")]
+        public void ThenEmployerOrProviderCannotMakeChangesToCostAndCourseAfterILRMatch()
+        {
+            SetHasHadDataLockSuccessTrue();
+
+            void employeraction() {
+                _employerStepsHelper.EditApprenticeDetailsPagePostApproval()
+                 .EditCostCourseAndReference()
+                 .AcceptChangesAndSubmit(); };
+
+            void provideraction()
+            {
+                _providerStepsHelper.GoToProviderHomePage()
+                  .GoToProviderManageYourApprenticePage()
+                  .SelectViewCurrentApprenticeDetails()
+                  .ClickEditApprenticeDetailsLink()
+                  .EditCostCourseAndReference()
+                  .AcceptChangesAndSubmit();
+            };
+
+            Assert.Multiple(() =>
+            {
+                Assert.Throws<Exception>(() => employeraction(), "Employer can edit cost and course after ILR match");
+                Assert.Throws<Exception>(() => provideraction(), "Provider can edit cost and course after ILR match");
+            });
         }
 
         private void SetHasHadDataLockSuccessTrue()
