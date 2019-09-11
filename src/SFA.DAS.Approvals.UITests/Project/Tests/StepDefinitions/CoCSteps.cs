@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+using OpenQA.Selenium;
 using SFA.DAS.Approvals.UITests.Project.Helpers;
 using SFA.DAS.Registration.UITests.Project;
 using SFA.DAS.Registration.UITests.Project.Helpers;
@@ -134,8 +135,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
             Assert.Multiple(() =>
             {
-                Assert.Throws<Exception>(() => employeraction(), "Employer can edit cost and course after ILR match");
-                Assert.Throws<Exception>(() => provideraction(), "Provider can edit cost and course after ILR match");
+                Assert.Throws(typeof(WebDriverException), () => employeraction(), "Employer can edit cost and course after ILR match");
+                Assert.Throws(typeof(WebDriverException), () => provideraction(), "Provider can edit cost and course after ILR match");
             });
         }
 
