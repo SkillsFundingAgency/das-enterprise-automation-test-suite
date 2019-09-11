@@ -10,18 +10,21 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers
     {
         private readonly RandomDataGenerator _randomDataGenerator;
         private readonly ObjectContext _objectContext;
-        
+        private readonly DateTime _currentAcademicYearStartDate;
+        private readonly bool _isLiveApprentice;
 
-        public ApprenticeDataHelper(ObjectContext objectContext, RandomDataGenerator randomDataGenerator)
+        public ApprenticeDataHelper(ObjectContext objectContext, RandomDataGenerator randomDataGenerator, bool isLiveApprentice)
         {
             _objectContext = objectContext;
             _randomDataGenerator = randomDataGenerator;
+            _isLiveApprentice = isLiveApprentice;
             RandomNumber = _randomDataGenerator.GenerateRandomNumberBetweenTwoValues(1, 10);
             ApprenticeFirstname = _randomDataGenerator.GenerateRandomAlphabeticString(10);
             ApprenticeLastname = _randomDataGenerator.GenerateRandomAlphabeticString(10);
             DateOfBirthDay = _randomDataGenerator.GenerateRandomDateOfMonth();
             DateOfBirthMonth = _randomDataGenerator.GenerateRandomMonth();
             DateOfBirthYear = _randomDataGenerator.GenerateRandomDobYear();
+            _currentAcademicYearStartDate = GetCurrentAcademicYearStartDate();
             CourseStartDate = GenerateCourseStartDate();
             CourseEndDate = GetCourseEndDate();
             TrainingPrice = "1" + _randomDataGenerator.GenerateRandomNumber(3);
@@ -69,10 +72,25 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers
 
         private DateTime GenerateCourseStartDate()
         {
-            DateTime start = GetCurrentAcademicYearStartDate();
+            DateTime start = _currentAcademicYearStartDate;
             DateTime end = (RandomNumber % 2 == 0) ? GetNextAcademicYearEndDate() : DateTime.Now;
             int range = (end - start).Days;
-            return start.AddDays(new Random().Next(range));
+            var randomStartDate = start.AddDays(new Random().Next(range));
+            return _isLiveApprentice && randomStartDate.Date > DateTime.Now.Date ? _currentAcademicYearStartDate : randomStartDate;
+        }
+
+        private DateTime GetNextAcademicYearEndDate()
+        {
+            var date = _currentAcademicYearStartDate;
+            if ((date.Year).Equals(DateTime.Now.Year))
+                return new DateTime(date.Year + 1, 7, 31);
+            else
+                return new DateTime(date.Year + 2, 7, 31);
+        }
+
+        private DateTime GetCourseEndDate()
+        {
+            return CourseStartDate.AddMonths(CourseDurationInMonths);
         }
 
         private DateTime GetCurrentAcademicYearStartDate()
@@ -80,19 +98,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers
             var now = DateTime.Now;
             var cutoff = new DateTime(now.Year, 8, 1);
             return now >= cutoff ? cutoff : new DateTime(now.Year - 1, 8, 1);
-        }
-
-        private DateTime GetNextAcademicYearEndDate()
-        {
-            var date = GetCurrentAcademicYearStartDate();
-            if ((date.Year).Equals(DateTime.Now.Year))
-                return new DateTime(date.Year + 1, 7, 31);
-            else
-                return new DateTime(date.Year + 2, 7, 31);
-        }
-        private DateTime GetCourseEndDate()
-        {
-            return CourseStartDate.AddMonths(CourseDurationInMonths);
         }
     }
 }
