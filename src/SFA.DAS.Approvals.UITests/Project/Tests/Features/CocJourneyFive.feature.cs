@@ -82,7 +82,9 @@ this.ScenarioInitialize(scenarioInfo);
 #line 7
 testRunner.Given("the Employer has approved apprentice", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 8
-testRunner.Then("Employer or Provider cannot make changes to cost and course after ILR match", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+testRunner.Then("Employer cannot make changes to cost and course after ILR match", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 9
+testRunner.And("provider cannot make changes to cost and course after ILR match", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }

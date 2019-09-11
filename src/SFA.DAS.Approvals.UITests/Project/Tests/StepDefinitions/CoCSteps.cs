@@ -113,16 +113,27 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                 .SelectApproveChangesAndSubmit();
         }
 
-        [Then(@"Employer or Provider cannot make changes to cost and course after ILR match")]
-        public void ThenEmployerOrProviderCannotMakeChangesToCostAndCourseAfterILRMatch()
+        [Then(@"Employer cannot make changes to cost and course after ILR match")]
+        public void ThenEmployerCannotMakeChangesToCostAndCourseAfterILRMatch()
         {
-            SetHasHadDataLockSuccessTrue();
-
-            void employeraction() {
+            void employeraction()
+            {
+                SetHasHadDataLockSuccessTrue();
                 _employerStepsHelper.EditApprenticeDetailsPagePostApproval()
                  .EditCostCourseAndReference()
-                 .AcceptChangesAndSubmit(); };
+                 .AcceptChangesAndSubmit();
+            }
 
+            Assert.Multiple(() =>
+            {
+                var empex = Assert.Throws(typeof(WebDriverTimeoutException), () => employeraction(), "Employer can edit cost and course after ILR match");
+                Assert.That(empex.InnerException, Is.TypeOf<NoSuchElementException>(), "Employer can edit cost and course after ILR match");
+            });
+        }
+
+        [Then(@"provider cannot make changes to cost and course after ILR match")]
+        public void ThenProviderCannotMakeChangesToCostAndCourseAfterILRMatch()
+        {
             void provideraction()
             {
                 _providerStepsHelper.GoToProviderHomePage()
@@ -135,9 +146,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
             Assert.Multiple(() =>
             {
-                var empex = Assert.Throws(typeof(WebDriverTimeoutException), () => employeraction(), "Employer can edit cost and course after ILR match");
-                Assert.That(empex.InnerException, Is.TypeOf<NoSuchElementException>(), "Employer can edit cost and course after ILR match");
-
                 var proex = Assert.Throws(typeof(WebDriverTimeoutException), () => provideraction(), "Provider can edit cost and course after ILR match");
                 Assert.That(proex.InnerException, Is.TypeOf<NoSuchElementException>(), "Provider can edit cost and course after ILR match");
             });
