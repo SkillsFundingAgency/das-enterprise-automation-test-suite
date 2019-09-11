@@ -2,7 +2,7 @@
 
 A short summary of the feature
 
-
+@regression
 Scenario: Employer sends an approved cohort then provider approves the cohort
 Given the Employer login using existing levy account
 When the Employer approves 2 cohort and sends to provider

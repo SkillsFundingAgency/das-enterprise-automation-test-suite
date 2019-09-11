@@ -2,7 +2,7 @@
 
 A short summary of the feature
 
-
+@regression
 Scenario: Provider adds apprentices and approves then employer approves cohort
 Given the Employer login using existing levy account
 When the Employer create a cohort and send to provider to add apprentices

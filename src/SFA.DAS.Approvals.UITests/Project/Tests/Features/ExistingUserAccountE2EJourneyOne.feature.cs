@@ -71,9 +71,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Employer sends an approved cohort then provider approves the cohort")]
+        [NUnit.Framework.CategoryAttribute("regression")]
         public virtual void EmployerSendsAnApprovedCohortThenProviderApprovesTheCohort()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Employer sends an approved cohort then provider approves the cohort", null, ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Employer sends an approved cohort then provider approves the cohort", null, new string[] {
+                        "regression"});
 #line 6
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();

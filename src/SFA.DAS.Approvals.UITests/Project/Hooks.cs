@@ -3,6 +3,7 @@ using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using TechTalk.SpecFlow;
 
@@ -26,7 +27,9 @@ namespace SFA.DAS.Approvals.UITests.Project
         {
             var random = _context.Get<RandomDataGenerator>();
 
-            _datahelper = new ApprenticeDataHelper(_objectcontext, random);
+            var isLiveApprentice = _context.ScenarioInfo.Tags.Contains("liveapprentice");
+
+            _datahelper = new ApprenticeDataHelper(_objectcontext, random, isLiveApprentice);
 
             _context.Set(_datahelper);
 
