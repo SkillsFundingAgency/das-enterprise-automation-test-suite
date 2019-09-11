@@ -14,11 +14,15 @@ CREATE PROCEDURE #CreateAccount
 		@legalEntitySource TINYINT,
 		@payeRef NVARCHAR(16),
 		@payeName VARCHAR(500),
-		@PublicHashedId NVARCHAR(100)
+		@publicHashedId NVARCHAR(100),
+		@userFirstName NVARCHAR(100),
+		@userLastName NVARCHAR(100),
+		@userEmailAddress NVARCHAR(100)
+		
 	AS
 	BEGIN
 		DECLARE @userRef UNIQUEIDENTIFIER = NewId()
-		EXECUTE [employer_account].[UpsertUser] @userRef, 'EASAutomatedTests@AccountApi.com', 'Automated', 'TestAccount' 
+		EXECUTE [employer_account].[UpsertUser] @userRef, @userEmailAddress, @userFirstName, @userLastName 
 		DECLARE @userId BIGINT = (SELECT Id FROM [employer_account].[User] WHERE UserRef = @userRef)
 
 
@@ -53,7 +57,7 @@ CREATE PROCEDURE #CreateAccount
 				@accountLegalEntityId=@accountLegalEntityId OUTPUT,
 				@accountLegalEntityCreated=@accountLegalEntityCreated OUTPUT
 
-		EXEC [Employer_account].[UpdateAccountLegalEntity_SetPublicHashedId] @accountLegalEntityId=@accountLegalEntityId, @PublicHashedId=@PublicHashedId
+		EXEC [Employer_account].[UpdateAccountLegalEntity_SetPublicHashedId] @accountLegalEntityId=@accountLegalEntityId, @PublicHashedId=@publicHashedId
 		EXEC [employer_account].[SignEmployerAgreement] @employerAgreementId, @userId, 'Automated Test User', @now
 		EXEC [employer_account].[CreatePaye] @payeRef, 'accessToken', 'refreshToken', @payeName, null
 		EXEC [employer_account].[CreateAccountHistory] @accountId, @payeRef, @now

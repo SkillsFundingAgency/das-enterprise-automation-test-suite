@@ -98,8 +98,10 @@ this.ScenarioInitialize(scenarioInfo);
 #line 12
 this.FeatureBackground();
 #line 17
- testRunner.When("I call the GetAccounts method", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.Given("A seeded set of accounts", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 18
+ testRunner.When("I call the GetAccounts method", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 19
  testRunner.Then("I am returned a set of accounts", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -111,16 +113,16 @@ this.FeatureBackground();
         public virtual void GetAccountByHashedAccountId()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get account by hashed account id", null, ((string[])(null)));
-#line 21
+#line 22
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 12
 this.FeatureBackground();
-#line 22
- testRunner.Given("an account Id", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 23
- testRunner.When("I call the GetAccount method with a hashed account Id", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.Given("an account Id", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 24
+ testRunner.When("I call the GetAccount method with a hashed account Id", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 25
  testRunner.Then("I am returned a single account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -132,16 +134,16 @@ this.FeatureBackground();
         public virtual void GetAccountUsersByHashedAccountId()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get account users by hashed account id", null, ((string[])(null)));
-#line 27
+#line 28
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 12
 this.FeatureBackground();
-#line 28
- testRunner.Given("an account Id", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 29
- testRunner.When("I call the GetAccountsUsers method with a hashed account Id", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.Given("an account Id", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 30
+ testRunner.When("I call the GetAccountsUsers method with a hashed account Id", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 31
  testRunner.Then("I am returned a set of users that belong to that account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -153,16 +155,16 @@ this.FeatureBackground();
         public virtual void GetAPAYESchemeByAccountId()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get a PAYE Scheme by AccountId", null, ((string[])(null)));
-#line 33
+#line 34
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 12
 this.FeatureBackground();
-#line 34
- testRunner.Given("an account Id", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 35
- testRunner.When("I call the PayeSchemes method with a hashed account Id", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.Given("an account Id", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 36
+ testRunner.When("I call the PayeSchemes method with a hashed account Id", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 37
  testRunner.Then("I am returned a set of PayeSchemes that belong to that account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();

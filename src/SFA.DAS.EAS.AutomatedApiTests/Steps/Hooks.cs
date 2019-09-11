@@ -1,5 +1,6 @@
 ﻿using Microsoft.SqlServer.Management.Common;
 using Microsoft.SqlServer.Management.Smo;
+using SFA.DAS.EAS.AutomatedApiTests.Database;
 using SFA.DAS.EAS.AutomatedApiTests.Helpers;
 using SFA.DAS.EAS.AutomatedApiTests.Properties;
 using System;
@@ -17,15 +18,14 @@ namespace SFA.DAS.EAS.AutomatedApiTests.Steps
     {
         // For additional details on SpecFlow hooks see http://go.specflow.org/doc-hooks
 
-        private static string CreateAccount(string accountHashedId, string accountPublicHashedId, string legalEntityCode, string legalEntityName,
-             string legalEntityAddress, DateTime dateOfIncorporation, string legalEntityStatus, short legalEntitySource, string payeRef, string payeName, string publicHashId)
+        private static string CreateAccount(SeedAccount a)
         {
-            return $"EXECUTE #CreateAccount '{accountHashedId}', '{accountPublicHashedId}', '{legalEntityCode}', '{legalEntityName}', '{legalEntityAddress}', '{dateOfIncorporation.ToString("U")}', '{legalEntityStatus}', {legalEntitySource}, '{payeRef}', '{payeName}', '{publicHashId}'";
+            return $"EXECUTE #CreateAccount '{a.AccountHashedId}', '{a.AccountPublicHashedId}', '{a.LegalEntityCode}', '{a.LegalEntityName}', '{a.LegalEntityAddress}', '{a.DateOfIncorporation.ToString("U")}', '{a.LegalEntityStatus}', {a.LegalEntitySource}, '{a.PayeRef}', '{a.PayeName}', '{a.PublicHashId}', '{a.UserFirstName}', '{a.UserLastName}', '{a.UserEmailAddress}'";
         }
 
-        private static string ClearAccount(string accountHashedId, string legalEntityName)
+        private static string ClearAccount(string accountHashedId, string legalEntityName, string userEmailAddress)
         {
-            return $"EXECUTE #ClearSeededData '{accountHashedId}', '{legalEntityName}'";
+            return $"EXECUTE #ClearSeededData '{accountHashedId}', '{legalEntityName}', '{userEmailAddress}'";
         }
 
         [BeforeTestRun]
@@ -34,16 +34,17 @@ namespace SFA.DAS.EAS.AutomatedApiTests.Steps
             using (SqlConnection connection = new SqlConnection(ConfigurationHelper.Instance.Configuration["AccountsDbConnectionString"]))
             {
                 // Clear Existing Accounts
-                var clear = ClearAccount("JRML7V", "Tesco Plc");
-                var clearScript = string.Format(Resources.ClearSeededData, clear);
+                var clearSB = new StringBuilder();
+                SeedData.SeedAccounts.ForEach(s => clearSB.AppendLine(ClearAccount(s.AccountHashedId, s.LegalEntityName, s.UserEmailAddress)));
+                var clearScript = string.Format(Resources.ClearSeededData, clearSB.ToString());
 
                 var server = new Server(new ServerConnection(connection));
                 server.ConnectionContext.ExecuteNonQuery(clearScript);
 
                 // Seed the Database:
-                var add = CreateAccount("JRML7V", "LDMVWV", "00445790", "Tesco Plc", "Tesco House, Shire Park, Kestrel Way, Welwyn Garden City, AL7 1GA", new DateTime(1947, 11, 27), "active", 1, "222/ZZ00002", "NA", "AAA123");
-                var populatedSeedScript = string.Format(Resources.SeedScript, add);
-
+                var addSB = new StringBuilder();
+                SeedData.SeedAccounts.ForEach(s => addSB.AppendLine(CreateAccount(s)));
+                var populatedSeedScript = string.Format(Resources.SeedScript, addSB.ToString());
                 server.ConnectionContext.ExecuteNonQuery(populatedSeedScript);
             }
         }
@@ -54,8 +55,9 @@ namespace SFA.DAS.EAS.AutomatedApiTests.Steps
             using (SqlConnection connection = new SqlConnection(ConfigurationHelper.Instance.Configuration["AccountsDbConnectionString"]))
             {
                 // Clear Existing Accounts
-                var clear = ClearAccount("JRML7V", "Tesco Plc");
-                var clearScript = string.Format(Resources.ClearSeededData, clear);
+                var clearSB = new StringBuilder();
+                SeedData.SeedAccounts.ForEach(s => clearSB.AppendLine(ClearAccount(s.AccountHashedId, s.LegalEntityName, s.UserEmailAddress)));
+                var clearScript = string.Format(Resources.ClearSeededData, clearSB.ToString());
 
                 var server = new Server(new ServerConnection(connection));
                 server.ConnectionContext.ExecuteNonQuery(clearScript);

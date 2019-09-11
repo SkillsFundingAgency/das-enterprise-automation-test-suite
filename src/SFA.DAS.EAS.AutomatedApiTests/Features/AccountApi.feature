@@ -14,6 +14,7 @@ Background:
 	
 #//api/accounts
 Scenario: Get all accounts
+	Given A seeded set of accounts
 	When I call the GetAccounts method
 	Then I am returned a set of accounts
 

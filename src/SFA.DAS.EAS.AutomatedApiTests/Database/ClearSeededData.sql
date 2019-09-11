@@ -5,7 +5,8 @@ END
 GO
 CREATE PROCEDURE #ClearSeededData
 		@accountHashedId NVARCHAR(100),
-		@legalEntityName NVARCHAR(100)
+		@legalEntityName NVARCHAR(100),
+		@userEmailAddress NVARCHAR(100)
 	AS
 	BEGIN
 		IF (EXISTS (SELECT 1 FROM [employer_account].[Account] WHERE Name = @legalEntityName AND HashedId = @accountHashedId))
@@ -30,9 +31,9 @@ CREATE PROCEDURE #ClearSeededData
 			DELETE FROM [employer_account].Account where id = @existing_accountId
 		END
 
-		IF (EXISTS (SELECT 1 FROM [employer_account].[User] WHERE Email = 'EASAutomatedTests@AccountApi.com'))
+		IF (EXISTS (SELECT 1 FROM [employer_account].[User] WHERE Email = @userEmailAddress))
 		BEGIN
-			DELETE FROM [employer_account].[User] where Email = 'EASAutomatedTests@AccountApi.com'
+			DELETE FROM [employer_account].[User] where Email = @userEmailAddress
 		END
 	END
 GO
