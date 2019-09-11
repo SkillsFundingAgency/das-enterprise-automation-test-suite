@@ -116,9 +116,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Then(@"Employer cannot make changes to cost and course after ILR match")]
         public void ThenEmployerCannotMakeChangesToCostAndCourseAfterILRMatch()
         {
+            SetHasHadDataLockSuccessTrue();
+
             void employeraction()
-            {
-                SetHasHadDataLockSuccessTrue();
+            {    
                 _employerStepsHelper.EditApprenticeDetailsPagePostApproval()
                  .EditCostCourseAndReference()
                  .AcceptChangesAndSubmit();
@@ -134,6 +135,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Then(@"provider cannot make changes to cost and course after ILR match")]
         public void ThenProviderCannotMakeChangesToCostAndCourseAfterILRMatch()
         {
+            SetHasHadDataLockSuccessTrue();
+
             void provideraction()
             {
                 _providerStepsHelper.GoToProviderHomePage()

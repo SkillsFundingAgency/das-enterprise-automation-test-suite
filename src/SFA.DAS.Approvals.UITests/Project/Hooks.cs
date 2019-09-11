@@ -13,6 +13,7 @@ namespace SFA.DAS.Approvals.UITests.Project
     {
         private readonly ScenarioContext _context;
         private readonly ObjectContext _objectcontext;
+        private ApprenticeDataHelper _datahelper;
 
         public Hooks(ScenarioContext context)
         {
@@ -24,15 +25,23 @@ namespace SFA.DAS.Approvals.UITests.Project
         public void SetUpHelpers()
         {
             var random = _context.Get<RandomDataGenerator>();
-            var datahelper = new ApprenticeDataHelper(_objectcontext, random);
-            _context.Set(datahelper);
 
-            _context.Set(new EditedApprenticeDataHelper(random, datahelper));
+            _datahelper = new ApprenticeDataHelper(_objectcontext, random);
+
+            _context.Set(_datahelper);
+
+            _context.Set(new EditedApprenticeDataHelper(random, _datahelper));
 
             _context.Set(new TabHelper(_context.GetWebDriver()));
 
             var commitmentsDataHelper = new CommitmentsDataHelper(_context.GetApprovalsConfig<ApprovalsConfig>(), _context.Get<SqlDatabaseConnectionHelper>());
             _context.Set(commitmentsDataHelper);
+        }
+
+        [AfterScenario(Order = 9)]
+        public void AddUln()
+        {
+            _datahelper.Ulns.ForEach((x) => _objectcontext.Set($"Uln_{x}", x));
         }
     }
 }
