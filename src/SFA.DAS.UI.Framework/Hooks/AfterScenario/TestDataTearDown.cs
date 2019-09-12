@@ -47,8 +47,8 @@ namespace SFA.DAS.UI.Framework.Hooks.AfterScenario
                 using (var csv = new CsvWriter(writer))
                 {
                     csv.WriteRecords(records);
+                    writer?.Flush();
                 }
-                writer.Flush();
             }
             TestContext.AddTestAttachment(filePath, fileName);
         }
