@@ -1,0 +1,82 @@
+﻿using SFA.DAS.UI.FrameworkHelpers;
+using System;
+using System.Collections.Generic;
+
+namespace SFA.DAS.Approvals.UITests.Project.Helpers
+{
+    public class DlockDataHelper
+    {
+        private readonly ApprovalsConfig _approvalsConfig;
+
+        private readonly FileHelper _fileHelper;
+
+        private readonly ApprenticeDataHelper _dataHelper;
+        private readonly SqlDatabaseConnectionHelper _sqlDatabase;
+
+        private readonly string _connectionString;
+
+        public DlockDataHelper(ApprovalsConfig approvalsConfig, FileHelper filehelper, ApprenticeDataHelper dataHelper, SqlDatabaseConnectionHelper sqlDatabase)
+        {
+            _approvalsConfig = approvalsConfig;
+            _sqlDatabase = sqlDatabase;
+            _fileHelper = filehelper;
+            _dataHelper = dataHelper;
+            _connectionString = _approvalsConfig.AP_CommitmentsDbConnectionString;
+        }
+
+        public int GetDatalocksResolvedStatus(int apprenticeshipId)
+        {
+            string sqlQueryToGetDatalockResolvedStatus = $"SELECT IsResolved from [dbo].[DataLockStatus] WHERE ApprenticeshipId = '{apprenticeshipId}'";
+            List<object[]> responseData = _sqlDatabase.ReadDataFromDataBase(sqlQueryToGetDatalockResolvedStatus, _connectionString);
+            if (responseData.Count == 0)
+                throw new Exception("Unable to find the data lock resolved status:"
+                + "\n ApprenticeshipId: " + apprenticeshipId
+                + "\n SQL Query: " + sqlQueryToGetDatalockResolvedStatus);
+            else
+                return Convert.ToInt32(responseData[0][0]);
+        }
+
+        public void SubmitILRWithPriceMismatch()
+        {
+            SubmitILRMismatch("PriceDataLock");
+        }
+
+        public void SubmitILRWithCourseMismatch()
+        {
+            SubmitILRMismatch("CourseDataLock");
+        }
+
+        public void SubmitILRWithCourseAndPriceMismatch()
+        {
+            SubmitILRMismatch("CourseAndPriceDataLock");
+        }
+
+        private void SubmitILRMismatch(string type)
+        {
+            String sqlQueryFromFile = _fileHelper.GetSql(type);
+            String courseStartDate = Convert.ToString(_dataHelper.CourseStartDate.Year) + "-" + Convert.ToString(_dataHelper.CourseStartDate.Month) + "-01";
+            Dictionary<String, String> sqlParameters = new Dictionary<String, String>
+            {
+                { "@MaxDataLockEventId", Convert.ToString(GetMaxDataLockEventId()) },
+                { "@CurrentApprenticeshipId", Convert.ToString(_dataHelper.GetApprenticeshipIdForCurrentLearner()) },
+                { "@StartDate", courseStartDate },
+                { "@TrainingPrice", _dataHelper.TrainingPrice}
+            };
+            _sqlDatabase.ExecuteSqlCommand(
+                _connectionString,
+                sqlQueryFromFile,
+                sqlParameters);
+        }
+
+        private int GetMaxDataLockEventId()
+        {
+            String sqlQueryToGetMaxDataLockEventId = $"SELECT MAX(DataLockEventId) FROM [dbo].[DataLockStatus]";
+            List<object[]> responseData = _sqlDatabase.ReadDataFromDataBase(sqlQueryToGetMaxDataLockEventId, _connectionString);
+
+            if (responseData.Count == 0)
+                return 0;
+            else
+                return Convert.ToInt32(responseData[0][0]);
+        }
+    }
+}

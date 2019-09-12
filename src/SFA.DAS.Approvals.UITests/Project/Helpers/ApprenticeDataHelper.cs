@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
@@ -16,16 +17,18 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers
     public class ApprenticeDataHelper : RandomCourseHelper
     {
         private readonly RandomDataGenerator _randomDataGenerator;
+        private readonly CommitmentsDataHelper _commitmentsdataHelper;
         private readonly ObjectContext _objectContext;
         private readonly DateTime _currentAcademicYearStartDate;
         private readonly DateTime _nextAcademicYearStartDate;
         private readonly DateTime _nextAcademicYearEndDate;
         private readonly ApprenticeStatus _apprenticeStatus;
 
-        public ApprenticeDataHelper(ObjectContext objectContext, RandomDataGenerator randomDataGenerator, ApprenticeStatus apprenticeStatus)
+        public ApprenticeDataHelper(ObjectContext objectContext, RandomDataGenerator randomDataGenerator, CommitmentsDataHelper commitmentsdataHelper, ApprenticeStatus apprenticeStatus)
         {
             _objectContext = objectContext;
             _randomDataGenerator = randomDataGenerator;
+            _commitmentsdataHelper = commitmentsdataHelper;
             _apprenticeStatus = apprenticeStatus;
             RandomNumber = _randomDataGenerator.GenerateRandomNumberBetweenTwoValues(1, 10);
             ApprenticeFirstname = _randomDataGenerator.GenerateRandomAlphabeticString(10);
@@ -80,6 +83,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers
         }
 
         public string Course { get; }
+
+        public int GetApprenticeshipIdForCurrentLearner()
+        {
+                return _commitmentsdataHelper.GetApprenticeshipId(Ulns.Single());
+        }
 
         private DateTime GenerateCourseStartDate()
         {
