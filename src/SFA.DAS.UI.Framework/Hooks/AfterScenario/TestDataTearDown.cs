@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using TechTalk.SpecFlow;
 using NUnit.Framework;
 using System.IO;
+using CsvHelper.Configuration;
+using CsvHelper.Configuration.Attributes;
 
 namespace SFA.DAS.UI.Framework.Hooks.AfterScenario
 {
@@ -46,7 +48,7 @@ namespace SFA.DAS.UI.Framework.Hooks.AfterScenario
                 {
                     csv.WriteRecords(records);
                 }
-                writer.Close();
+                writer.Flush();
             }
             TestContext.AddTestAttachment(filePath, fileName);
         }
@@ -54,7 +56,10 @@ namespace SFA.DAS.UI.Framework.Hooks.AfterScenario
 
     public class TestData
     {
+        [Name("Key")]
         public string Key { get; set; }
+
+        [Name("Value")]
         public string Value { get; set; }
     }
 }
