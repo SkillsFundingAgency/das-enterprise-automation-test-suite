@@ -16,14 +16,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers
         {
             _objectContext = objectContext;
             _randomDataGenerator = randomDataGenerator;
-            _commitmentsdataHelper = commitmentsdataHelper;
-           
+            _commitmentsdataHelper = commitmentsdataHelper;         
             ApprenticeFirstname = _randomDataGenerator.GenerateRandomAlphabeticString(10);
             ApprenticeLastname = _randomDataGenerator.GenerateRandomAlphabeticString(10);
             DateOfBirthDay = _randomDataGenerator.GenerateRandomDateOfMonth();
             DateOfBirthMonth = _randomDataGenerator.GenerateRandomMonth();
             DateOfBirthYear = _randomDataGenerator.GenerateRandomDobYear();
- 
             TrainingPrice = "1" + _randomDataGenerator.GenerateRandomNumber(3);
             EmployerReference = _randomDataGenerator.GenerateRandomAlphanumericString(10);
             Ulns = new List<string>();
@@ -45,9 +43,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers
 
         public string EmployerReference { get; }
 
-        public string MessageToProvider => $"Apprentice Total Cost {_objectContext.GetApprenticeTotalCost()}, {_randomDataGenerator.GenerateRandomAlphanumericString(20)}";
+        public string MessageToProvider => $"Apprentice {ApprenticeFullName}, Total Cost {_objectContext.GetApprenticeTotalCost()}";
 
-        public string MessageToEmployer => $"Added ulns, {MessageToProvider}";
+        public string MessageToEmployer => $"Added {string.Join(",", Ulns)} ulns, {MessageToProvider}";
 
         public List<string> Ulns { get; private set; }
 

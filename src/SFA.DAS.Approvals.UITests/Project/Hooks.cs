@@ -44,7 +44,9 @@ namespace SFA.DAS.Approvals.UITests.Project
 
             var apprenticeCourseDataHelper = new ApprenticeCourseDataHelper(random, apprenticeStatus);
 
-            _context.Set(new EditedApprenticeDataHelper(random, _datahelper, apprenticeCourseDataHelper));
+            _context.Set(new EditedApprenticeDataHelper(random, _datahelper));
+
+            _context.Set(new EditedApprenticeCourseDataHelper(random, apprenticeCourseDataHelper));
 
             _context.Set(new TabHelper(_context.GetWebDriver()));
 

@@ -1,16 +1,13 @@
-﻿using System;
-using SFA.DAS.UI.FrameworkHelpers;
+﻿using SFA.DAS.UI.FrameworkHelpers;
 
 namespace SFA.DAS.Approvals.UITests.Project.Helpers
 {
-    public class EditedApprenticeDataHelper : RandomCourseHelper
+    public class EditedApprenticeDataHelper 
     {
         private readonly RandomDataGenerator _randomDataGenerator;
-        private readonly ApprenticeCourseDataHelper _apprenticeCourseDataHelper;
 
-        public EditedApprenticeDataHelper(RandomDataGenerator randomDataGenerator, ApprenticeDataHelper approvalsDataHelper, ApprenticeCourseDataHelper apprenticeCourseDataHelper)
+        public EditedApprenticeDataHelper(RandomDataGenerator randomDataGenerator, ApprenticeDataHelper approvalsDataHelper)
         {
-            _apprenticeCourseDataHelper = apprenticeCourseDataHelper;
             _randomDataGenerator = randomDataGenerator;
             ApprenticeEditedFirstname = approvalsDataHelper.ApprenticeFirstname;
             ApprenticeEditedLastname = approvalsDataHelper.ApprenticeLastname;
@@ -20,7 +17,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers
             EmployerReference = _randomDataGenerator.GenerateRandomAlphanumericString(10);
             ProviderRefernce = _randomDataGenerator.GenerateRandomAlphanumericString(10);
             TrainingPrice = "2" + _randomDataGenerator.GenerateRandomNumber(3);
-            EditedCourse = RandomCourse();
         }
 
         public int DateOfBirthDay { get; }
@@ -49,19 +45,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers
             return ApprenticeEditedLastname;
         }
 
-        public string SetCurrentApprenticeEditedCourse()
-        {
-            if ((_apprenticeCourseDataHelper.Course.Equals(EditedCourse)))
-            {
-                EditedCourse = RandomCourse();
-            }
-            return EditedCourse;
-        }
-
         private string ApprenticeEditedFirstname { get; set; }
 
         private string ApprenticeEditedLastname { get; set; }
 
-        private string EditedCourse { get; set; }
     }
 }

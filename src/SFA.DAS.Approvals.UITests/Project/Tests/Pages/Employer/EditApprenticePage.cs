@@ -12,6 +12,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         #region Helpers and Context
         private readonly ScenarioContext _context;
         private readonly EditedApprenticeDataHelper _dataHelper;
+        private readonly EditedApprenticeCourseDataHelper _coursedataHelper;
         #endregion
         private By CourseOption(string courseid) => By.CssSelector($"#TrainingCode option[value='{courseid}']");
 
@@ -22,6 +23,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         {
             _context = context;
             _dataHelper = context.Get<EditedApprenticeDataHelper>();
+            _coursedataHelper = context.Get<EditedApprenticeCourseDataHelper>();
             VerifyPage();
         }
 
@@ -38,7 +40,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         }
         protected override void SelectCourse()
         {
-            formCompletionHelper.ClickElement(CourseOption(_dataHelper.SetCurrentApprenticeEditedCourse()));
+            formCompletionHelper.ClickElement(CourseOption(_coursedataHelper.EditedCourse));
         }
 
         private ConfirmChangesPage ConfirmChangesPage()

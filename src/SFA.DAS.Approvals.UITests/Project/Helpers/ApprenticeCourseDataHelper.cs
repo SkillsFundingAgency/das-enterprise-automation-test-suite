@@ -22,10 +22,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers
         private const int acadamicYearStartDay = 1;
         private const int acadamicYearEndDay = 31;
 
-        public ApprenticeCourseDataHelper(RandomDataGenerator randomDataGenerator, ApprenticeStatus apprenticeStatus)
+        public ApprenticeCourseDataHelper(RandomDataGenerator randomDataGenerator, ApprenticeStatus apprenticeStatus) : base(randomDataGenerator)
         {
             _apprenticeStatus = apprenticeStatus;
-            RandomNumber = randomDataGenerator.GenerateRandomNumberBetweenTwoValues(1, 10);
             _currentAcademicYearStartDate = GetCurrentAcademicYearStartDate();
             _currentAcademicYearEndDate = GetAcademicYearEndDate(_currentAcademicYearStartDate);
             _nextAcademicYearStartDate = GetNextAcademicYearStartDate(_currentAcademicYearStartDate);
