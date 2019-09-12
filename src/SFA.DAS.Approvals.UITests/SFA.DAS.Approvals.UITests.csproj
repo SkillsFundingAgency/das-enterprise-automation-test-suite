@@ -36,22 +36,22 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Project\Tests\Features\ExistingUserAccountE2EJourneyFour.feature.cs">
+    <Compile Update="Project\Tests\Features\E2EJourneys\ExistingUserAccountE2EJourneyFour.feature.cs">
       <DependentUpon>ExistingUserAccountE2EJourneyFour.feature</DependentUpon>
     </Compile>
-    <Compile Update="Project\Tests\Features\ExistingUserAccountE2EJourneyThree.feature.cs">
+    <Compile Update="Project\Tests\Features\E2EJourneys\ExistingUserAccountE2EJourneyThree.feature.cs">
       <DependentUpon>ExistingUserAccountE2EJourneyThree.feature</DependentUpon>
     </Compile>
-    <Compile Update="Project\Tests\Features\ExistingUserAccountE2EJourneyTwo.feature.cs">
+    <Compile Update="Project\Tests\Features\E2EJourneys\ExistingUserAccountE2EJourneyTwo.feature.cs">
       <DependentUpon>ExistingUserAccountE2EJourneyTwo.feature</DependentUpon>
     </Compile>
-    <Compile Update="Project\Tests\Features\NewUserAccountE2EJourneyFour.feature.cs">
+    <Compile Update="Project\Tests\Features\E2EJourneys\NewUserAccountE2EJourneyFour.feature.cs">
       <DependentUpon>NewUserAccountE2EJourneyFour.feature</DependentUpon>
     </Compile>
-    <Compile Update="Project\Tests\Features\NewUserAccountE2EJourneyThree.feature.cs">
+    <Compile Update="Project\Tests\Features\E2EJourneys\NewUserAccountE2EJourneyThree.feature.cs">
       <DependentUpon>NewUserAccountE2EJourneyThree.feature</DependentUpon>
     </Compile>
-    <Compile Update="Project\Tests\Features\NewUserAccountE2EJourneyTwo.feature.cs">
+    <Compile Update="Project\Tests\Features\E2EJourneys\NewUserAccountE2EJourneyTwo.feature.cs">
       <DependentUpon>NewUserAccountE2EJourneyTwo.feature</DependentUpon>
     </Compile>
   </ItemGroup>
@@ -69,30 +69,34 @@
   </ItemGroup>
 
   <ItemGroup>
-    <SpecFlowFeatureFiles Update="Project\Tests\Features\ExistingUserAccountE2EJourneyFour.feature">
+    <SpecFlowFeatureFiles Update="Project\Tests\Features\E2EJourneys\ExistingUserAccountE2EJourneyFour.feature">
       <Visible>$(UsingMicrosoftNETSdk)</Visible>
       <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
     </SpecFlowFeatureFiles>
-    <SpecFlowFeatureFiles Update="Project\Tests\Features\ExistingUserAccountE2EJourneyThree.feature">
+    <SpecFlowFeatureFiles Update="Project\Tests\Features\E2EJourneys\ExistingUserAccountE2EJourneyThree.feature">
       <Visible>$(UsingMicrosoftNETSdk)</Visible>
       <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
     </SpecFlowFeatureFiles>
-    <SpecFlowFeatureFiles Update="Project\Tests\Features\ExistingUserAccountE2EJourneyTwo.feature">
+    <SpecFlowFeatureFiles Update="Project\Tests\Features\E2EJourneys\ExistingUserAccountE2EJourneyTwo.feature">
       <Visible>$(UsingMicrosoftNETSdk)</Visible>
       <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
     </SpecFlowFeatureFiles>
-    <SpecFlowFeatureFiles Update="Project\Tests\Features\NewUserAccountE2EJourneyFour.feature">
+    <SpecFlowFeatureFiles Update="Project\Tests\Features\E2EJourneys\NewUserAccountE2EJourneyFour.feature">
       <Visible>$(UsingMicrosoftNETSdk)</Visible>
       <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
     </SpecFlowFeatureFiles>
-    <SpecFlowFeatureFiles Update="Project\Tests\Features\NewUserAccountE2EJourneyThree.feature">
+    <SpecFlowFeatureFiles Update="Project\Tests\Features\E2EJourneys\NewUserAccountE2EJourneyThree.feature">
       <Visible>$(UsingMicrosoftNETSdk)</Visible>
       <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
     </SpecFlowFeatureFiles>
-    <SpecFlowFeatureFiles Update="Project\Tests\Features\NewUserAccountE2EJourneyTwo.feature">
+    <SpecFlowFeatureFiles Update="Project\Tests\Features\E2EJourneys\NewUserAccountE2EJourneyTwo.feature">
       <Visible>$(UsingMicrosoftNETSdk)</Visible>
       <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
     </SpecFlowFeatureFiles>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Project\Tests\Features\DLockJourneys\" />
   </ItemGroup>
 
 </Project>
