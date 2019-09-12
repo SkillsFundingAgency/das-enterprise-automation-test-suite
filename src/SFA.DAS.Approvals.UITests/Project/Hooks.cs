@@ -15,11 +15,15 @@ namespace SFA.DAS.Approvals.UITests.Project
         private readonly ScenarioContext _context;
         private readonly ObjectContext _objectcontext;
         private ApprenticeDataHelper _datahelper;
+        private readonly ApprovalsConfig _approvalsConfig;
+        private readonly SqlDatabaseConnectionHelper _sqlDatabaseConnectionHelper;
 
         public Hooks(ScenarioContext context)
         {
             _context = context;
             _objectcontext = context.Get<ObjectContext>();
+            _approvalsConfig = _context.GetApprovalsConfig<ApprovalsConfig>();
+            _sqlDatabaseConnectionHelper = _context.Get<SqlDatabaseConnectionHelper>();
         }
 
         [BeforeScenario(Order = 22)]
@@ -30,7 +34,10 @@ namespace SFA.DAS.Approvals.UITests.Project
             var apprenticeStatus = _context.ScenarioInfo.Tags.Contains("liveapprentice") ? ApprenticeStatus.Live :
                                    _context.ScenarioInfo.Tags.Contains("waitingtostartapprentice") ? ApprenticeStatus.WaitingToStart : ApprenticeStatus.Random;
 
-            _datahelper = new ApprenticeDataHelper(_objectcontext, random, apprenticeStatus);
+            var commitmentsdatahelper = new CommitmentsDataHelper(_approvalsConfig, _sqlDatabaseConnectionHelper);
+            _context.Set(commitmentsdatahelper);
+
+            _datahelper = new ApprenticeDataHelper(_objectcontext, random, commitmentsdatahelper, apprenticeStatus);
 
             _context.Set(_datahelper);
 
@@ -38,8 +45,8 @@ namespace SFA.DAS.Approvals.UITests.Project
 
             _context.Set(new TabHelper(_context.GetWebDriver()));
 
-            var commitmentsDataHelper = new CommitmentsDataHelper(_context.GetApprovalsConfig<ApprovalsConfig>(), _context.Get<SqlDatabaseConnectionHelper>());
-            _context.Set(commitmentsDataHelper);
+            _context.Set(new DlockDataHelper(_approvalsConfig, new FileHelper(), _datahelper, _sqlDatabaseConnectionHelper));
+
         }
 
         [AfterScenario(Order = 9)]

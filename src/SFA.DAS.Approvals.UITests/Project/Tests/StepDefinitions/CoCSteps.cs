@@ -110,15 +110,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             ProviderEditsCostAndCourse();
         }
 
-
         [Then(@"the Employer can review and approve the changes")]
         public void ThenTheEmployerCanReviewAndApproveTheChanges()
         {
-            _employerStepsHelper.GoToEmployerApprenticesHomePage()
-                .ClickManageYourApprenticesLink()
-                .SelectViewCurrentApprenticeDetails()
-                .ClickReviewChanges()
-                .SelectApproveChangesAndSubmit();
+            var apprenticeDetails = _employerStepsHelper.ViewCurrentApprenticeDetails();
+            _employerStepsHelper.ApproveChangesAndSubmit(apprenticeDetails);
         }
 
         [Then(@"Employer cannot make changes to cost and course after ILR match")]
