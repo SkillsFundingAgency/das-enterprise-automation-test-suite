@@ -35,24 +35,27 @@ namespace SFA.DAS.Approvals.UITests.Project
                                    _context.ScenarioInfo.Tags.Contains("waitingtostartapprentice") ? ApprenticeStatus.WaitingToStart : ApprenticeStatus.Random;
 
             var commitmentsdatahelper = new CommitmentsDataHelper(_approvalsConfig, _sqlDatabaseConnectionHelper);
+
             _context.Set(commitmentsdatahelper);
 
-            _datahelper = new ApprenticeDataHelper(_objectcontext, random, commitmentsdatahelper, apprenticeStatus);
+            _datahelper = new ApprenticeDataHelper(_objectcontext, random, commitmentsdatahelper);
 
             _context.Set(_datahelper);
 
-            _context.Set(new EditedApprenticeDataHelper(random, _datahelper));
+            var apprenticeCourseDataHelper = new ApprenticeCourseDataHelper(random, apprenticeStatus);
+
+            _context.Set(new EditedApprenticeDataHelper(random, _datahelper, apprenticeCourseDataHelper));
 
             _context.Set(new TabHelper(_context.GetWebDriver()));
 
-            _context.Set(new DlockDataHelper(_approvalsConfig, new FileHelper(), _datahelper, _sqlDatabaseConnectionHelper));
+            _context.Set(new DlockDataHelper(_approvalsConfig, new FileHelper(), _datahelper, apprenticeCourseDataHelper, _sqlDatabaseConnectionHelper));
 
         }
 
         [AfterScenario(Order = 9)]
         public void AddUln()
         {
-            _datahelper.Ulns.ForEach((x) => _objectcontext.Set($"Uln_{x}", x));
+            _datahelper?.Ulns.ForEach((x) => _objectcontext.Set($"Uln_{x}", x));
         }
     }
 }

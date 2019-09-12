@@ -6,11 +6,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers
     public class EditedApprenticeDataHelper : RandomCourseHelper
     {
         private readonly RandomDataGenerator _randomDataGenerator;
-        private readonly ApprenticeDataHelper _approvalsDataHelper;
+        private readonly ApprenticeCourseDataHelper _apprenticeCourseDataHelper;
 
-        public EditedApprenticeDataHelper(RandomDataGenerator randomDataGenerator, ApprenticeDataHelper approvalsDataHelper)
+        public EditedApprenticeDataHelper(RandomDataGenerator randomDataGenerator, ApprenticeDataHelper approvalsDataHelper, ApprenticeCourseDataHelper apprenticeCourseDataHelper)
         {
-            _approvalsDataHelper = approvalsDataHelper;
+            _apprenticeCourseDataHelper = apprenticeCourseDataHelper;
             _randomDataGenerator = randomDataGenerator;
             ApprenticeEditedFirstname = approvalsDataHelper.ApprenticeFirstname;
             ApprenticeEditedLastname = approvalsDataHelper.ApprenticeLastname;
@@ -51,7 +51,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers
 
         public string SetCurrentApprenticeEditedCourse()
         {
-            if ((_approvalsDataHelper.Course.Equals(EditedCourse)))
+            if ((_apprenticeCourseDataHelper.Course.Equals(EditedCourse)))
             {
                 EditedCourse = RandomCourse();
             }

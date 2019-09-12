@@ -11,16 +11,20 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers
         private readonly FileHelper _fileHelper;
 
         private readonly ApprenticeDataHelper _dataHelper;
+
+        private readonly ApprenticeCourseDataHelper _coursedataHelper;
+
         private readonly SqlDatabaseConnectionHelper _sqlDatabase;
 
         private readonly string _connectionString;
 
-        public DlockDataHelper(ApprovalsConfig approvalsConfig, FileHelper filehelper, ApprenticeDataHelper dataHelper, SqlDatabaseConnectionHelper sqlDatabase)
+        public DlockDataHelper(ApprovalsConfig approvalsConfig, FileHelper filehelper, ApprenticeDataHelper dataHelper, ApprenticeCourseDataHelper coursedataHelper, SqlDatabaseConnectionHelper sqlDatabase)
         {
             _approvalsConfig = approvalsConfig;
             _sqlDatabase = sqlDatabase;
             _fileHelper = filehelper;
             _dataHelper = dataHelper;
+            _coursedataHelper = coursedataHelper;
             _connectionString = _approvalsConfig.AP_CommitmentsDbConnectionString;
         }
 
@@ -54,7 +58,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers
         private void SubmitILRMismatch(string type)
         {
             String sqlQueryFromFile = _fileHelper.GetSql(type);
-            String courseStartDate = Convert.ToString(_dataHelper.CourseStartDate.Year) + "-" + Convert.ToString(_dataHelper.CourseStartDate.Month) + "-01";
+            String courseStartDate = Convert.ToString(_coursedataHelper.CourseStartDate.Year) + "-" + Convert.ToString(_coursedataHelper.CourseStartDate.Month) + "-01";
             Dictionary<String, String> sqlParameters = new Dictionary<String, String>
             {
                 { "@MaxDataLockEventId", Convert.ToString(GetMaxDataLockEventId()) },
