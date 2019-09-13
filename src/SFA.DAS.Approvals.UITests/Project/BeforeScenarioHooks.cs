@@ -10,7 +10,7 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.Approvals.UITests.Project
 {
     [Binding]
-    public class Hooks
+    public class BeforeScenarioHooks
     {
         private readonly ScenarioContext _context;
         private readonly ObjectContext _objectcontext;
@@ -18,12 +18,12 @@ namespace SFA.DAS.Approvals.UITests.Project
         private readonly ApprovalsConfig _approvalsConfig;
         private readonly SqlDatabaseConnectionHelper _sqlDatabaseConnectionHelper;
 
-        public Hooks(ScenarioContext context)
+        public BeforeScenarioHooks(ScenarioContext context)
         {
             _context = context;
             _objectcontext = context.Get<ObjectContext>();
-            _approvalsConfig = _context.GetApprovalsConfig<ApprovalsConfig>();
-            _sqlDatabaseConnectionHelper = _context.Get<SqlDatabaseConnectionHelper>();
+            _approvalsConfig = context.GetApprovalsConfig<ApprovalsConfig>();
+            _sqlDatabaseConnectionHelper = context.Get<SqlDatabaseConnectionHelper>();
         }
 
         [BeforeScenario(Order = 22)]
@@ -51,13 +51,6 @@ namespace SFA.DAS.Approvals.UITests.Project
             _context.Set(new TabHelper(_context.GetWebDriver()));
 
             _context.Set(new DlockDataHelper(_approvalsConfig, new FileHelper(), _datahelper, apprenticeCourseDataHelper, _sqlDatabaseConnectionHelper));
-
-        }
-
-        [AfterScenario(Order = 9)]
-        public void AddUln()
-        {
-            _datahelper?.Ulns.ForEach((x) => _objectcontext.Set($"Uln_{x}", x));
         }
     }
 }

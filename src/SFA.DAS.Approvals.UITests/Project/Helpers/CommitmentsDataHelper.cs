@@ -7,17 +7,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers
 {
     public class CommitmentsDataHelper
     {
-        private readonly ApprovalsConfig _approvalsConfig;
-
         private readonly SqlDatabaseConnectionHelper _sqlDatabase;
 
         private readonly string _connectionString;
 
         public CommitmentsDataHelper(ApprovalsConfig approvalsConfig, SqlDatabaseConnectionHelper sqlDatabase)
         {
-            _approvalsConfig = approvalsConfig;
             _sqlDatabase = sqlDatabase;
-            _connectionString = _approvalsConfig.AP_CommitmentsDbConnectionString;
+            _connectionString = approvalsConfig.AP_CommitmentsDbConnectionString;
         }
 
         public void SetHasHadDataLockSuccessTrue(String uln)

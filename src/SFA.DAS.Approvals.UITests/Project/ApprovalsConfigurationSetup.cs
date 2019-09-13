@@ -7,14 +7,12 @@ namespace SFA.DAS.Approvals.UITests.Project
     public class ApprovalsConfigurationSetup          
     {
         private readonly ScenarioContext _context;
-        private readonly ObjectContext _objectContext;
         private readonly IConfigSection _configSection;
 
         public ApprovalsConfigurationSetup(ScenarioContext context)
         {
             _context = context;
             _configSection = context.Get<IConfigSection>();
-            _objectContext = context.Get<ObjectContext>();
         }
 
         [BeforeScenario(Order = 2)]

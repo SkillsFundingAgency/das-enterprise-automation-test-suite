@@ -92,8 +92,8 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
                 var wb = WebDriver as RemoteWebDriver;
                 var cap = wb.Capabilities;
 
-                _objectContext.Set("browserName", cap["browserName"]);
-                _objectContext.Set("browserVersion", cap["browserVersion"]);
+                _objectContext.SetBrowserName(cap["browserName"]);
+                _objectContext.SetBrowserVersion(cap["browserVersion"]);
             }
 
             _context.SetWebDriver(WebDriver);

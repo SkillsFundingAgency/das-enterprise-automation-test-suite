@@ -25,6 +25,11 @@ namespace SFA.DAS.Approvals.UITests.Project
             objectContext.Set(CohortReference, value);
         }
 
+        internal static void SetUln(this ObjectContext objectContext, string value)
+        {
+            objectContext.Set($"Uln_{value}", value);
+        }
+
         internal static string GetApprenticeTotalCost(this ObjectContext objectContext)
         {
             return objectContext.Get(ApprenticeTotalCost);
@@ -39,6 +44,8 @@ namespace SFA.DAS.Approvals.UITests.Project
         {
             return objectContext.Get(CohortReference);
         }
+
+        
     }
 
 }
