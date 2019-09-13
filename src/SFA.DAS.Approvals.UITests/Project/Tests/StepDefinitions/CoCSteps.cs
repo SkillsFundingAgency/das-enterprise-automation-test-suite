@@ -51,6 +51,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _providerStepsHelper.Approve(providerReviewYourCohortPage);
         }
 
+        [Given(@"the datalock has been successful")]
+        public void GivenTheDatalockHasBeenSuccessful()
+        {
+            SetHasHadDataLockSuccessTrue();
+        }
+
         [When(@"the Employer edits Dob and Reference and confirm the changes after ILR match")]
         public void WhenTheEmployerEditsDobAndReferenceAndConfirmTheChangesAfterILRMatch()
         {
