@@ -7,6 +7,7 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.IE;
+using OpenQA.Selenium.Remote;
 using SFA.DAS.UI.Framework.Project.Tests.TestSupport;
 using SFA.DAS.UI.Framework.TestSupport;
 using TechTalk.SpecFlow;
@@ -86,6 +87,12 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
             var currentWindow = WebDriver.CurrentWindowHandle;
             WebDriver.SwitchTo().Window(currentWindow);
             WebDriver.Manage().Cookies.DeleteAllCookies();
+
+            var wb = WebDriver as RemoteWebDriver;
+            var cap = wb.Capabilities;
+
+            _objectContext.Set("browserName", cap["browserName"]);
+            _objectContext.Set("browserVersion", cap["browserVersion"]);
 
             _context.SetWebDriver(WebDriver);
         }
