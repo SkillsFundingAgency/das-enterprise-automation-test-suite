@@ -72,7 +72,6 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
                     WebDriver = ChromeDriver(new List<string>() { "--headless" });
                     break;
                
-
                 case bool _ when browser.IsCloudExecution():
                     _frameworkConfig.BrowserStackSetting.Name = _context.ScenarioInfo.Title;
                     WebDriver = BrowserStackSetup.Init(_frameworkConfig.BrowserStackSetting);
@@ -88,11 +87,14 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
             WebDriver.SwitchTo().Window(currentWindow);
             WebDriver.Manage().Cookies.DeleteAllCookies();
 
-            var wb = WebDriver as RemoteWebDriver;
-            var cap = wb.Capabilities;
+            if (!browser.IsCloudExecution())
+            {
+                var wb = WebDriver as RemoteWebDriver;
+                var cap = wb.Capabilities;
 
-            _objectContext.Set("browserName", cap["browserName"]);
-            _objectContext.Set("browserVersion", cap["browserVersion"]);
+                _objectContext.Set("browserName", cap["browserName"]);
+                _objectContext.Set("browserVersion", cap["browserVersion"]);
+            }
 
             _context.SetWebDriver(WebDriver);
         }
