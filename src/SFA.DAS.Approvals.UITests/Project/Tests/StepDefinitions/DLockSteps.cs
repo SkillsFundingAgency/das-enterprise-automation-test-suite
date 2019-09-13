@@ -23,20 +23,27 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _dataHelper = context.Get<ApprenticeDataHelper>();
             _providerStepsHelper = new ProviderStepsHelper(context);
             _employerStepsHelper = new EmployerStepsHelper(context);
-            
         }
 
         [When(@"the provider submit an ILR with price mismatch")]
         public void WhenTheProviderSubmitAnILRWithPriceMismatch()
         {
             _dlockDataHelper.SubmitILRWithPriceMismatch();
-            _providerStepsHelper.GoToProviderHomePage()
-                .GoToProviderManageYourApprenticePage()
-                .SelectViewCurrentApprenticeDetails()
-                .ClickViewIlrMismatchDetails()
-                .RequestEmployerTheseDetailsAreUpdatedToMatchTheILR()
-                .ConfirmRequestToFixILRMismatch()
-                .ConfirmChangeRequestPendingMessage();
+            ConfirmIlrismatch();
+        }
+        
+        [When(@"the provider submit an ILR with course mismatch")]
+        public void WhenTheProviderSubmitAnILRWithCourseMismatch()
+        {
+            _dlockDataHelper.SubmitILRWithCourseMismatch();
+            ConfirmIlrismatch();
+        }
+
+        [When(@"the provider submit an ILR with course price mismatch")]
+        public void WhenTheProviderSubmitAnILRWithCoursePriceMismatch()
+        {
+            _dlockDataHelper.SubmitILRWithCourseAndPriceMismatch();
+            ConfirmIlrismatch();
         }
 
         [Then(@"the Employer can approve the ILR mismatch changes")]
@@ -57,5 +64,16 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                 throw new Exception("ILR mismatch still exists and datalock is not resolved");
             }
         }
+        private void ConfirmIlrismatch()
+        {
+            _providerStepsHelper.GoToProviderHomePage()
+                .GoToProviderManageYourApprenticePage()
+                .SelectViewCurrentApprenticeDetails()
+                .ClickViewIlrMismatchDetails()
+                .RequestEmployerTheseDetailsAreUpdatedToMatchTheILR()
+                .ConfirmRequestToFixILRMismatch()
+                .ConfirmChangeRequestPendingMessage();
+        }
+
     }
 }

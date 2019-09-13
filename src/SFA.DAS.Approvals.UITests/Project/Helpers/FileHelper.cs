@@ -15,8 +15,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers
         public string GetSql(string source)
         {
             String sqlScriptFile = AppDomain.CurrentDomain.BaseDirectory
-                        + "\\Project\\Tests\\TestSupport\\SqlScripts"
-                        + "\\"
+                        + "\\Project\\Helpers\\SqlScripts\\"
                         + source
                         + ".sql";
             String sqlScript = System.IO.File.ReadAllText(sqlScriptFile);

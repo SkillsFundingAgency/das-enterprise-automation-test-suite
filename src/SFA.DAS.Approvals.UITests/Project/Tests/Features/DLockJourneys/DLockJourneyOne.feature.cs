@@ -88,6 +88,14 @@ testRunner.When("the provider submit an ILR with price mismatch", ((string)(null
 #line 10
 testRunner.Then("the Employer can approve the ILR mismatch changes", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 11
+testRunner.When("the provider submit an ILR with course mismatch", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 12
+testRunner.Then("the Employer can approve the ILR mismatch changes", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 13
+testRunner.When("the provider submit an ILR with course price mismatch", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 14
+testRunner.Then("the Employer can approve the ILR mismatch changes", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 15
 testRunner.And("the ILR should be matched and datalock is resolved", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();

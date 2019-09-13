@@ -61,7 +61,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers
             String courseStartDate = Convert.ToString(_coursedataHelper.CourseStartDate.Year) + "-" + Convert.ToString(_coursedataHelper.CourseStartDate.Month) + "-01";
             Dictionary<String, String> sqlParameters = new Dictionary<String, String>
             {
-                { "@MaxDataLockEventId", Convert.ToString(GetMaxDataLockEventId()) },
+                { "@MaxDataLockEventId", Convert.ToString(DataLockEventId.GetMaxDataLockEventId(_sqlDatabase,_connectionString)) },
                 { "@CurrentApprenticeshipId", Convert.ToString(_dataHelper.GetApprenticeshipIdForCurrentLearner()) },
                 { "@StartDate", courseStartDate },
                 { "@TrainingPrice", _dataHelper.TrainingPrice}
@@ -72,15 +72,23 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers
                 sqlParameters);
         }
 
-        private int GetMaxDataLockEventId()
+        private static class DataLockEventId
         {
-            String sqlQueryToGetMaxDataLockEventId = $"SELECT MAX(DataLockEventId) FROM [dbo].[DataLockStatus]";
-            List<object[]> responseData = _sqlDatabase.ReadDataFromDataBase(sqlQueryToGetMaxDataLockEventId, _connectionString);
+            static readonly object _object = new object();
 
-            if (responseData.Count == 0)
-                return 0;
-            else
-                return Convert.ToInt32(responseData[0][0]);
+            internal static int GetMaxDataLockEventId(SqlDatabaseConnectionHelper sqlDatabase, string connectionString)
+            {
+                String sqlQueryToGetMaxDataLockEventId = $"SELECT MAX(DataLockEventId) FROM [dbo].[DataLockStatus]";
+
+                lock (_object)
+                {
+                    List<object[]> responseData = sqlDatabase.ReadDataFromDataBase(sqlQueryToGetMaxDataLockEventId, connectionString);
+                    if (responseData.Count == 0)
+                        return 0;
+                    else
+                        return Convert.ToInt32(responseData[0][0]);
+                }
+            }
         }
     }
 }
