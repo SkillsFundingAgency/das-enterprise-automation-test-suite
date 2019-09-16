@@ -4,6 +4,7 @@ A short summary of the feature
 
 @regression
 @liveapprentice
+@dlockscenarios
 Scenario: Employer can stop the live apprentice after Datalocks and ILR match
 Given the Employer has approved apprentice
 And the datalock has been successful

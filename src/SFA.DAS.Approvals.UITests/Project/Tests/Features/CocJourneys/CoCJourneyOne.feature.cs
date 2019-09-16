@@ -73,19 +73,21 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.CocJourneys
         [NUnit.Framework.DescriptionAttribute("Employer requests change to dob and reference After ILR match and Provider approv" +
             "es")]
         [NUnit.Framework.CategoryAttribute("regression")]
+        [NUnit.Framework.CategoryAttribute("cocscenarios")]
         public virtual void EmployerRequestsChangeToDobAndReferenceAfterILRMatchAndProviderApproves()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Employer requests change to dob and reference After ILR match and Provider approv" +
                     "es", null, new string[] {
-                        "regression"});
-#line 6
+                        "regression",
+                        "cocscenarios"});
+#line 7
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 7
-testRunner.Given("the Employer has approved apprentice", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 8
-testRunner.When("the Employer edits Dob and Reference and confirm the changes after ILR match", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+testRunner.Given("the Employer has approved apprentice", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 9
+testRunner.When("the Employer edits Dob and Reference and confirm the changes after ILR match", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 10
 testRunner.Then("the provider can review and approve the changes", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();

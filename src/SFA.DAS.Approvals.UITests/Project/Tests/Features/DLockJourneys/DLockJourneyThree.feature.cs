@@ -73,23 +73,25 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.DLockJourneys
         [NUnit.Framework.DescriptionAttribute("Employer can stop the live apprentice after Datalocks and ILR match")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("liveapprentice")]
+        [NUnit.Framework.CategoryAttribute("dlockscenarios")]
         public virtual void EmployerCanStopTheLiveApprenticeAfterDatalocksAndILRMatch()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Employer can stop the live apprentice after Datalocks and ILR match", null, new string[] {
                         "regression",
-                        "liveapprentice"});
-#line 7
+                        "liveapprentice",
+                        "dlockscenarios"});
+#line 8
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 8
-testRunner.Given("the Employer has approved apprentice", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 9
-testRunner.And("the datalock has been successful", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.Given("the Employer has approved apprentice", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 10
-testRunner.When("the provider submit an ILR with course price mismatch", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+testRunner.And("the datalock has been successful", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 11
-testRunner.Then("the Employer can stop the live apprentice", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+testRunner.When("the provider submit an ILR with course price mismatch", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 12
+testRunner.Then("the Employer can stop the live apprentice", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 13
 testRunner.And("the ILR should be matched and datalock is resolved", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();

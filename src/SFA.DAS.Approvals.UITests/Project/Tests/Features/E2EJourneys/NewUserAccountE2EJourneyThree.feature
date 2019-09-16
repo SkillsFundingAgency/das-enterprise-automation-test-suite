@@ -4,6 +4,7 @@ A short summary of the feature
 
 
 @addpayedetails
+@e2escenarios
 Scenario: Create Employer Provider adds apprentices and approves then employer approves cohort
 Given I have levy declarations
 Given the User creates Employer account and sign an agreement

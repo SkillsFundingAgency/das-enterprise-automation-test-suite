@@ -3,6 +3,7 @@
 A short summary of the feature
 
 @regression
+@cocscenarios
 Scenario: Provider requests change to dob and reference After ILR match and Employer approves
 Given the Employer has approved apprentice
 When the provider edits Dob and Reference and confirm the changes after ILR match

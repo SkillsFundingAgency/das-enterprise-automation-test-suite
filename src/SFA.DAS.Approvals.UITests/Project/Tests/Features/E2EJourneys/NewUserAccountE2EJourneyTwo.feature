@@ -3,6 +3,7 @@
 A short summary of the feature
 
 @addpayedetails
+@e2escenarios
 Scenario: Create Employer send cohort to provider for review then provider approves then employer approves
 Given I have levy declarations
 Given the User creates Employer account and sign an agreement

@@ -74,20 +74,22 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.CocJourneys
             "Apprentice and Provider approves")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("waitingtostartapprentice")]
+        [NUnit.Framework.CategoryAttribute("cocscenarios")]
         public virtual void EmployerRequestsChangesToCostAndCourseAfterILRMatchOnWaitingToStartApprenticeAndProviderApproves()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Employer requests changes to cost and course After ILR match on waiting to start " +
                     "Apprentice and Provider approves", null, new string[] {
                         "regression",
-                        "waitingtostartapprentice"});
-#line 7
+                        "waitingtostartapprentice",
+                        "cocscenarios"});
+#line 8
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 8
-testRunner.Given("the Employer has approved apprentice", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 9
-testRunner.When("the Employer edits cost and course and confirm the changes after ILR match", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+testRunner.Given("the Employer has approved apprentice", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 10
+testRunner.When("the Employer edits cost and course and confirm the changes after ILR match", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 11
 testRunner.Then("the provider can review and approve the changes", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();

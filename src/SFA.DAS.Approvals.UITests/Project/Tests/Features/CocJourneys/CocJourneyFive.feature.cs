@@ -74,20 +74,22 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.CocJourneys
             "e Apprentice")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("liveapprentice")]
+        [NUnit.Framework.CategoryAttribute("cocscenarios")]
         public virtual void EmployerOrProviderCannotMakeChangeToCostAndCourseAfterILRMatchOnLiveApprentice()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Employer or Provider cannot make change to cost and course after ILR match on liv" +
                     "e Apprentice", null, new string[] {
                         "regression",
-                        "liveapprentice"});
-#line 7
+                        "liveapprentice",
+                        "cocscenarios"});
+#line 8
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 8
-testRunner.Given("the Employer has approved apprentice", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 9
-testRunner.Then("Employer cannot make changes to cost and course after ILR match", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+testRunner.Given("the Employer has approved apprentice", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 10
+testRunner.Then("Employer cannot make changes to cost and course after ILR match", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 11
 testRunner.And("provider cannot make changes to cost and course after ILR match", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
