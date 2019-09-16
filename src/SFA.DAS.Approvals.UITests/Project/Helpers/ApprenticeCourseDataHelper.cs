@@ -49,8 +49,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers
             int range = (end - start).Days;
             var randomStartDate = start.AddDays(new Random().Next(range));
             return (_apprenticeStatus == ApprenticeStatus.Live && randomStartDate.Date >= DateTime.Now.Date) ? _currentAcademicYearStartDate :
-                   (_apprenticeStatus == ApprenticeStatus.WaitingToStart && randomStartDate.Date <= DateTime.Now.Date) ? _nextAcademicYearStartDate.AddMonths(-5) :
+                   (_apprenticeStatus == ApprenticeStatus.WaitingToStart && randomStartDate.Date <= DateTime.Now.Date && IsThisMonth(randomStartDate)) ? _nextAcademicYearStartDate.AddMonths(-5) :
                 randomStartDate;
+        }
+
+        private bool IsThisMonth(DateTime dateTime)
+        {
+            return dateTime.Month == DateTime.Now.Month;
         }
 
         private DateTime GetCourseEndDate()
