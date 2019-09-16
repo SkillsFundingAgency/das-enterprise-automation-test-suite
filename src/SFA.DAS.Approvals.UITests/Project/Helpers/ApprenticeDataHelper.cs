@@ -17,14 +17,15 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers
             _objectContext = objectContext;
             _randomDataGenerator = randomDataGenerator;
             _commitmentsdataHelper = commitmentsdataHelper;         
-            ApprenticeFirstname = _randomDataGenerator.GenerateRandomAlphabeticString(10);
-            ApprenticeLastname = _randomDataGenerator.GenerateRandomAlphabeticString(10);
+            ApprenticeFirstname = $"F_{_randomDataGenerator.GenerateRandomAlphabeticString(10)}";
+            ApprenticeLastname = $"L_{_randomDataGenerator.GenerateRandomAlphabeticString(10)}";
             DateOfBirthDay = _randomDataGenerator.GenerateRandomDateOfMonth();
             DateOfBirthMonth = _randomDataGenerator.GenerateRandomMonth();
             DateOfBirthYear = _randomDataGenerator.GenerateRandomDobYear();
             TrainingPrice = "1" + _randomDataGenerator.GenerateRandomNumber(3);
             EmployerReference = _randomDataGenerator.GenerateRandomAlphanumericString(10);
             Ulns = new List<string>();
+            _apprenticeid = 0;
         }
 
         public string ApprenticeFirstname { get; }      
@@ -56,9 +57,18 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers
             return uln;
         }
 
-        public int GetApprenticeshipIdForCurrentLearner()
+        public int ApprenticeshipId()
         {
-                return _commitmentsdataHelper.GetApprenticeshipId(Ulns.Single());
+            return _apprenticeid == 0 ? GetApprenticeshipIdForCurrentLearner() : _apprenticeid;
+        }
+
+        private int _apprenticeid;
+
+        private int GetApprenticeshipIdForCurrentLearner()
+        {
+            _apprenticeid = _commitmentsdataHelper.GetApprenticeshipId(Ulns.Single());
+            _objectContext.SetApprenticeId(_apprenticeid);
+            return _apprenticeid;
         }
     }
 }

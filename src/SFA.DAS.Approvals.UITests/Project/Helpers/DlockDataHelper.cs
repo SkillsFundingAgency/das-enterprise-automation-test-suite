@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace SFA.DAS.Approvals.UITests.Project.Helpers
 {
-    public class DlockDataHelper
+    public partial class DlockDataHelper
     {
         private readonly ApprovalsConfig _approvalsConfig;
 
@@ -18,6 +18,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers
 
         private readonly string _connectionString;
 
+        private int _apprenticeshipId;
+
         public DlockDataHelper(ApprovalsConfig approvalsConfig, FileHelper filehelper, ApprenticeDataHelper dataHelper, ApprenticeCourseDataHelper coursedataHelper, SqlDatabaseConnectionHelper sqlDatabase)
         {
             _approvalsConfig = approvalsConfig;
@@ -28,13 +30,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers
             _connectionString = _approvalsConfig.AP_CommitmentsDbConnectionString;
         }
 
-        public int GetDatalocksResolvedStatus(int apprenticeshipId)
+        public int GetDatalocksResolvedStatus()
         {
-            string sqlQueryToGetDatalockResolvedStatus = $"SELECT IsResolved from [dbo].[DataLockStatus] WHERE ApprenticeshipId = '{apprenticeshipId}'";
+            string sqlQueryToGetDatalockResolvedStatus = $"SELECT IsResolved from [dbo].[DataLockStatus] WHERE ApprenticeshipId = '{_apprenticeshipId}'";
             List<object[]> responseData = _sqlDatabase.ReadDataFromDataBase(sqlQueryToGetDatalockResolvedStatus, _connectionString);
             if (responseData.Count == 0)
                 throw new Exception("Unable to find the data lock resolved status:"
-                + "\n ApprenticeshipId: " + apprenticeshipId
+                + "\n ApprenticeshipId: " + _apprenticeshipId
                 + "\n SQL Query: " + sqlQueryToGetDatalockResolvedStatus);
             else
                 return Convert.ToInt32(responseData[0][0]);
@@ -59,10 +61,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers
         {
             String sqlQueryFromFile = _fileHelper.GetSql(type);
             String courseStartDate = Convert.ToString(_coursedataHelper.CourseStartDate.Year) + "-" + Convert.ToString(_coursedataHelper.CourseStartDate.Month) + "-01";
+            _apprenticeshipId = _dataHelper.ApprenticeshipId();
             Dictionary<String, String> sqlParameters = new Dictionary<String, String>
             {
                 { "@MaxDataLockEventId", Convert.ToString(DataLockEventId.GetMaxDataLockEventId(_sqlDatabase,_connectionString)) },
-                { "@CurrentApprenticeshipId", Convert.ToString(_dataHelper.GetApprenticeshipIdForCurrentLearner()) },
+                { "@CurrentApprenticeshipId", Convert.ToString(_apprenticeshipId) },
                 { "@StartDate", courseStartDate },
                 { "@TrainingPrice", _dataHelper.TrainingPrice}
             };
@@ -70,25 +73,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers
                 _connectionString,
                 sqlQueryFromFile,
                 sqlParameters);
-        }
-
-        private static class DataLockEventId
-        {
-            static readonly object _object = new object();
-
-            internal static int GetMaxDataLockEventId(SqlDatabaseConnectionHelper sqlDatabase, string connectionString)
-            {
-                String sqlQueryToGetMaxDataLockEventId = $"SELECT MAX(DataLockEventId) FROM [dbo].[DataLockStatus]";
-
-                lock (_object)
-                {
-                    List<object[]> responseData = sqlDatabase.ReadDataFromDataBase(sqlQueryToGetMaxDataLockEventId, connectionString);
-                    if (responseData.Count == 0)
-                        return 0;
-                    else
-                        return Convert.ToInt32(responseData[0][0]);
-                }
-            }
         }
     }
 }

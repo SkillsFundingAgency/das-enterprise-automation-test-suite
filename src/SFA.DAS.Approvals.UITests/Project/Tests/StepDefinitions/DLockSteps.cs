@@ -54,16 +54,35 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             apprenticeDetails.VerifyIfChangeRequestWasApproved();
         }
 
+        [Then(@"the Employer can stop the live apprentice")]
+        public void ThenTheEmployerCanStopTheLiveApprentice()
+        {
+            _employerStepsHelper.ViewCurrentApprenticeDetails()
+                .ClickEditStatusLink()
+                .SelectStopAndContinueForAStartedApprentice()
+                .ChooseRandomStopMonthAndSubmit()
+                .SelectYesandConfirm();
+        }
+
+        [Then(@"the Employer can stop the waiting to apprentice")]
+        public void ThenTheEmployerCanStopTheWaitingToApprentice()
+        {
+            _employerStepsHelper.ViewCurrentApprenticeDetails()
+                .ClickEditStatusLink()
+                .SelectStopAndContinueForANonStartedApprentice()
+                .SelectYesandConfirm();
+        }
+
         [Then(@"the ILR should be matched and datalock is resolved")]
         public void ThenTheILRShouldBeMatchedAndDatalockIsResolved()
         {
-            int apprenticeId = _dataHelper.GetApprenticeshipIdForCurrentLearner();
-            int datalockStatus = _dlockDataHelper.GetDatalocksResolvedStatus(apprenticeId);
+            int datalockStatus = _dlockDataHelper.GetDatalocksResolvedStatus();
             if (datalockStatus == 0)
             {
                 throw new Exception("ILR mismatch still exists and datalock is not resolved");
             }
         }
+
         private void ConfirmIlrismatch()
         {
             _providerStepsHelper.GoToProviderHomePage()

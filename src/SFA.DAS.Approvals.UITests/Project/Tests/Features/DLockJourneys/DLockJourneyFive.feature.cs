@@ -18,20 +18,20 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.DLockJourneys
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.0.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("DLockJourneyTwo")]
-    public partial class DLockJourneyTwoFeature
+    [NUnit.Framework.DescriptionAttribute("DLockJourneyFive")]
+    public partial class DLockJourneyFiveFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "DLockJourneyTwo.feature"
+#line 1 "DLockJourneyFive.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "DLockJourneyTwo", "A short summary of the feature", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "DLockJourneyFive", "A short summary of the feature", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -70,12 +70,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.DLockJourneys
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Triaging and resolving mismatch Datalocks after ILR match")]
+        [NUnit.Framework.DescriptionAttribute("Employer can stop the waiting to start apprentice after Datalocks and ILR match")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("liveapprentice")]
-        public virtual void TriagingAndResolvingMismatchDatalocksAfterILRMatch()
+        public virtual void EmployerCanStopTheWaitingToStartApprenticeAfterDatalocksAndILRMatch()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Triaging and resolving mismatch Datalocks after ILR match", null, new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Employer can stop the waiting to start apprentice after Datalocks and ILR match", null, new string[] {
                         "regression",
                         "liveapprentice"});
 #line 7
@@ -86,9 +86,9 @@ testRunner.Given("the Employer has approved apprentice", ((string)(null)), ((Tec
 #line 9
 testRunner.And("the datalock has been successful", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 10
-testRunner.When("the provider submit an ILR with price mismatch", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+testRunner.When("the provider submit an ILR with course price mismatch", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 11
-testRunner.Then("the Employer can approve the ILR mismatch changes", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+testRunner.Then("the Employer can stop the waiting to apprentice", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 12
 testRunner.And("the ILR should be matched and datalock is resolved", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
