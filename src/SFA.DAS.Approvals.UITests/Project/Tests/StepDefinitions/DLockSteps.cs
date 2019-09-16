@@ -64,8 +64,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                 .SelectYesandConfirm();
         }
 
-        [Then(@"the Employer can stop the waiting to apprentice")]
-        public void ThenTheEmployerCanStopTheWaitingToApprentice()
+        [Then(@"the Employer can stop the waiting to start apprentice")]
+        public void ThenTheEmployerCanStopTheWaitingToStartApprentice()
         {
             _employerStepsHelper.ViewCurrentApprenticeDetails()
                 .ClickEditStatusLink()

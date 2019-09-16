@@ -90,7 +90,7 @@ testRunner.And("the datalock has been successful", ((string)(null)), ((TechTalk.
 #line 11
 testRunner.When("the provider submit an ILR with course price mismatch", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 12
-testRunner.Then("the Employer can stop the waiting to apprentice", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+testRunner.Then("the Employer can stop the waiting to start apprentice", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 13
 testRunner.And("the ILR should be matched and datalock is resolved", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden

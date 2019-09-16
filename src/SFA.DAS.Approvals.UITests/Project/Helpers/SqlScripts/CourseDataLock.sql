@@ -1,8 +1,8 @@
 ﻿DECLARE @DatalockEventId int = @MaxDataLockEventId + 1
 DECLARE @DataLockEventDatetime datetime = GETDATE()
-DECLARE @PriceEpisodeIdentifier nvarchar(25) = '454-3-1-01-01-2018'
+DECLARE @PriceEpisodeIdentifier nvarchar(25) = '454-20-1-01-01-2018'
 DECLARE @ApprenticeshipId int = @CurrentApprenticeshipId
-DECLARE @IlrTrainingCourseCode nvarchar(25) = '454-3-1'
+DECLARE @IlrTrainingCourseCode nvarchar(25) = '454-20-1'
 DECLARE @IlType int = 1
 DECLARE @IlrActualStartDate datetime = @StartDate
 DECLARE @IlrEffectiveFromDate datetime = @StartDate
