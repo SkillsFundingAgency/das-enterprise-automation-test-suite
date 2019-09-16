@@ -42,9 +42,11 @@ namespace SFA.DAS.Approvals.UITests.Project
 
             _context.Set(_datahelper);
 
+            _context.Set(new EditedApprenticeDataHelper(random, _datahelper));
+
             var apprenticeCourseDataHelper = new ApprenticeCourseDataHelper(random, apprenticeStatus);
 
-            _context.Set(new EditedApprenticeDataHelper(random, _datahelper));
+            _context.Set(apprenticeCourseDataHelper);
 
             _context.Set(new EditedApprenticeCourseDataHelper(random, apprenticeCourseDataHelper));
 
