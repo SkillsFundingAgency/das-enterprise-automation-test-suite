@@ -31,6 +31,7 @@ namespace SFA.DAS.EAS.AutomatedApiTests.Steps
             public AccountDetail Account { get; internal set; }
             public List<TeamMember> TeamMembers { get; internal set; }
             public ResourceList PayeSchemesResourceList { get; internal set; }
+            public long AccountId { get; internal set; }
         }
     }
 }

@@ -55,8 +55,8 @@ namespace SFA.DAS.EAS.AutomatedApiTests.Steps
             results.Data.Length.Should().BeGreaterOrEqualTo(accountApiFeatureData.SeedData.SeededAccounts.Count);
         }
 
-        [Given(@"an account Id")]
-        public void GivenAnAccountId()
+        [Given(@"a hashed account Id")]
+        public void GivenAHashedAccountId()
         {
             var seedAccount = SeedData.SeedAccounts.First();
             accountApiFeatureData.SeedData.SeedAccount = seedAccount;
@@ -72,6 +72,7 @@ namespace SFA.DAS.EAS.AutomatedApiTests.Steps
             {
                 var result = await response.Content.ReadAsAsync<AccountDetail>();
                 accountApiFeatureData.ApiResponseData.Account = result;
+                accountApiFeatureData.ApiResponseData.AccountId = result.AccountId;
             }
         }
 
@@ -118,6 +119,54 @@ namespace SFA.DAS.EAS.AutomatedApiTests.Steps
             user.Status.Should().Be(TeamMember.InvitationStatus.Accepted);
         }
 
+        [When(@"I call the internal GetAccount method with an accountId")]
+        public async Task WhenICallTheInternalGetAccountMethodWithAnAccountId()
+        {
+            var response = await accountClient.GetAsync($"api/accounts/internal/{accountApiFeatureData.ApiResponseData.AccountId}");
+
+            if (response.IsSuccessStatusCode)
+            {
+                var results = await response.Content.ReadAsStringAsync();
+                // This won't work because it requires a decoded hash value.
+            }
+        }
+
+
+        [When(@"I call the legal entities endpoint with a hashed account id")]
+        public async Task WhenICallTheLegalEntitiesEndpointWithAHashedAccountId()
+        {
+            var response = await accountClient.GetAsync($"api/accounts/{accountApiFeatureData.SeedData.HashedAccountId}/legalentities");
+
+            if (response.IsSuccessStatusCode)
+            {
+                // This won't work because it requires a decoded hash value.
+            }
+        }
+
+        [Then(@"I am returned the legal entities that belong to that account")]
+        public void ThenIAmReturnedTheLegalEntitiesThatBelongToThatAccount()
+        {
+            accountApiFeatureData.ApiResponseData.Account.Should().NotBeNull();
+        }
+
+        [When(@"I Call the agreements endpoint with an account id and legal entity id")]
+        public async Task WhenICallTheAgreementsEndpointWithAnAccountIdAndLegalEntityId()
+        {
+            //api/accounts/{HashedAccountId}/legalEntities/{hashedlegalEntityId}/agreements/{agreementId}
+            var response = await accountClient.GetAsync($"api/accounts/{accountApiFeatureData.SeedData.HashedAccountId}/legalentities/{accountApiFeatureData.SeedData.SeedAccount.PublicHashId}/agreements/");
+
+            if (response.IsSuccessStatusCode)
+            {
+                // This won't work because it requires a decoded hash value plus the agreement id from a separate call
+            }
+        }
+
+        [Then(@"I am returned the agreements for that set of data")]
+        public void ThenIAmReturnedTheAgreementsForThatSetOfData()
+        {
+            accountApiFeatureData.ApiResponseData.Account.Should().NotBeNull();
+        }        
+
         [When(@"I call the PayeSchemes method with a hashed account Id")]
         public async Task WhenICallThePayeSchemesMethodWithAHashedAccountId()
         {
@@ -125,9 +174,7 @@ namespace SFA.DAS.EAS.AutomatedApiTests.Steps
 
             if (response.IsSuccessStatusCode)
             {
-                var results = await response.Content.ReadAsStringAsync();
-                //var results = await response.Content.ReadAsAsync<ResourceList>();
-                //accountApiFeatureData.ApiResponseData.PayeSchemesResourceList = results;
+                // This won't work because it requires a decoded hash value. 
             }
         }
 
@@ -136,10 +183,26 @@ namespace SFA.DAS.EAS.AutomatedApiTests.Steps
         {
             var results = accountApiFeatureData.ApiResponseData.PayeSchemesResourceList;
             results.Should().NotBeNull();
-            var expectedAccount = accountApiFeatureData.SeedData.SeedAccount;
-            //accountApiFeatureData.PayeSchemesResourceList;
-            //[{"Id":"222/ZZ00002","Href":"/api/accounts/JRML7V/payeschemes/222%252fZZ00002"}]
         }
+
+        [When(@"I call the Transfers Connections method with a hashed account Id")]
+        public async Task WhenICallTheTransfersConnectionsMethodWithAHashedAccountId()
+        {
+            var response = await accountClient.GetAsync($"api/accounts/{accountApiFeatureData.SeedData.HashedAccountId}/transfers/connections");
+
+            if (response.IsSuccessStatusCode)
+            {
+                // This won't work because it requires a decoded hash value.
+            }
+        }
+
+        [Then(@"I am returned a set of Transfers Connections that belong to that account")]
+        public void ThenIAmReturnedASetOfTransfersConnectionsThatBelongToThatAccount()
+        {
+            var results = accountApiFeatureData.ApiResponseData.PayeSchemesResourceList;
+            results.Should().NotBeNull();
+        }
+
 
     }
 }
