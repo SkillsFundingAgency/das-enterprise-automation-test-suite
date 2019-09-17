@@ -6,11 +6,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers
     {
         private readonly RandomDataGenerator _randomDataGenerator;
 
-        public EditedApprenticeDataHelper(RandomDataGenerator randomDataGenerator, ApprenticeDataHelper approvalsDataHelper)
+        public EditedApprenticeDataHelper(RandomDataGenerator randomDataGenerator, ApprenticeDataHelper apprenticeDataHelper)
         {
             _randomDataGenerator = randomDataGenerator;
-            ApprenticeEditedFirstname = approvalsDataHelper.ApprenticeFirstname;
-            ApprenticeEditedLastname = approvalsDataHelper.ApprenticeLastname;
+            ApprenticeEditedFirstname = apprenticeDataHelper.ApprenticeFirstname;
+            ApprenticeEditedLastname = apprenticeDataHelper.ApprenticeLastname;
             DateOfBirthDay = _randomDataGenerator.GenerateRandomDateOfMonth();
             DateOfBirthMonth = _randomDataGenerator.GenerateRandomMonth();
             DateOfBirthYear = _randomDataGenerator.GenerateRandomDobYear();
