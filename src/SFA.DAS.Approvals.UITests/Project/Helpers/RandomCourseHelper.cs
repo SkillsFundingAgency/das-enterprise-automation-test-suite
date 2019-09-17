@@ -14,7 +14,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers
 
         private string StandardCourseOption => "34";
 
-        private string FrameworkCourseOption => "454-3-1";
+        private string FrameworkCourseOption => "455-3-1";
 
         protected string RandomCourse()
         {
