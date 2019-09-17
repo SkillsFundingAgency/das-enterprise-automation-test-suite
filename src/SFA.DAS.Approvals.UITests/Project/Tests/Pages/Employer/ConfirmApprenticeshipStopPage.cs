@@ -15,6 +15,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         #endregion
 
         private By ChangeTypeOptions => By.CssSelector(".selection-button-radio");
+
         private By ContinueButton => By.CssSelector(".button");
 
         public ConfirmApprenticeshipStopPage(ScenarioContext context) : base(context) 
@@ -24,12 +25,23 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             VerifyPage();
         }
 
-        internal ApprenticeDetailsPage SelectYesandConfirm()
+        public ApprenticeDetailsPage SelectYesandConfirm()
         {
-            _formCompletionHelper.SelectRadioOptionByForAttribute(ChangeTypeOptions, "ChangeConfirmed-True");
-            _formCompletionHelper.ClickElement(ContinueButton);
+            ConfirmChangesAndContinue();
             return new ApprenticeDetailsPage(_context);
         }
 
+        public ConfirmApprenticeshipStopPage SelectYesandConfirmForANonStartedApprentice()
+        {
+            ConfirmChangesAndContinue();
+            return new ConfirmApprenticeshipStopPage(_context);
+        }
+        
+        private ConfirmApprenticeshipStopPage ConfirmChangesAndContinue()
+        {
+            _formCompletionHelper.SelectRadioOptionByForAttribute(ChangeTypeOptions, "ChangeConfirmed-True");
+            _formCompletionHelper.ClickElement(ContinueButton);
+            return this;
+        }
     }
 }

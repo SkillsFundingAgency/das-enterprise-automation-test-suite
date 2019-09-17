@@ -70,13 +70,15 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.DLockJourneys
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Employer can stop the waiting to start apprentice after Datalocks and ILR match")]
+        [NUnit.Framework.DescriptionAttribute("Employer can not stop the waiting to start apprentice after Datalocks and ILR mat" +
+            "ch")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("waitingtostartapprentice")]
         [NUnit.Framework.CategoryAttribute("dlockscenarios")]
-        public virtual void EmployerCanStopTheWaitingToStartApprenticeAfterDatalocksAndILRMatch()
+        public virtual void EmployerCanNotStopTheWaitingToStartApprenticeAfterDatalocksAndILRMatch()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Employer can stop the waiting to start apprentice after Datalocks and ILR match", null, new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Employer can not stop the waiting to start apprentice after Datalocks and ILR mat" +
+                    "ch", null, new string[] {
                         "regression",
                         "waitingtostartapprentice",
                         "dlockscenarios"});
@@ -90,9 +92,7 @@ testRunner.And("the datalock has been successful", ((string)(null)), ((TechTalk.
 #line 11
 testRunner.When("the provider submit an ILR with course price mismatch", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 12
-testRunner.Then("the Employer can stop the waiting to start apprentice", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 13
-testRunner.And("the ILR should be matched and datalock is resolved", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.Then("the Employer can not stop the waiting to start apprentice", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

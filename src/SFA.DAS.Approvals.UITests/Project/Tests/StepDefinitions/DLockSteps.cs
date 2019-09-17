@@ -64,13 +64,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                 .SelectYesandConfirm();
         }
 
-        [Then(@"the Employer can stop the waiting to start apprentice")]
-        public void ThenTheEmployerCanStopTheWaitingToStartApprentice()
+        [Then(@"the Employer can not stop the waiting to start apprentice")]
+        public void ThenTheEmployerCanNotStopTheWaitingToStartApprentice()
         {
             _employerStepsHelper.ViewCurrentApprenticeDetails()
-                .ClickEditStatusLink()
-                .SelectStopAndContinueForANonStartedApprentice()
-                .SelectYesandConfirm();
+            .ClickEditStatusLink()
+            .SelectStopAndContinueForANonStartedApprentice()
+            .SelectYesandConfirmForANonStartedApprentice();
         }
 
         [Then(@"the ILR should be matched and datalock is resolved")]
