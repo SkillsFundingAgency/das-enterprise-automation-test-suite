@@ -48,14 +48,31 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers
             DateTime end = (RandomNumber % 2 == 0) ? _currentAcademicYearEndDate : DateTime.Now;
             int range = (end - start).Days;
             var randomStartDate = start.AddDays(new Random().Next(range));
-            return (_apprenticeStatus == ApprenticeStatus.Live && randomStartDate.Date >= DateTime.Now.Date) ? _currentAcademicYearStartDate :
-                   (_apprenticeStatus == ApprenticeStatus.WaitingToStart && randomStartDate.Date <= DateTime.Now.Date && IsThisMonth(randomStartDate)) ? _nextAcademicYearStartDate.AddMonths(-5) :
-                randomStartDate;
+            return _apprenticeStatus == ApprenticeStatus.Live ? GetLiveApprenticeStartDate(randomStartDate) :
+                   _apprenticeStatus == ApprenticeStatus.WaitingToStart ? GetWaitingToStartApprenticeStartDate(randomStartDate) : randomStartDate;
         }
 
-        private bool IsThisMonth(DateTime dateTime)
+        private DateTime GetLiveApprenticeStartDate(DateTime dateTime)
         {
-            return dateTime.Month == DateTime.Now.Month;
+            return dateTime.Date >= DateTime.Now.Date ? _currentAcademicYearStartDate : dateTime;
+        }
+
+        private DateTime GetWaitingToStartApprenticeStartDate(DateTime dateTime)
+        {
+            var now = DateTime.Now;
+            DateTime RandomStartDate()
+            {
+                var start = new DateTime(now.Year, now.Month + 1, now.Day);
+                int range = (_nextAcademicYearStartDate - start).Days - 1;
+                return start.AddDays(new Random().Next(range));
+            }
+            
+            return dateTime.Date <= now.Date ? RandomStartDate() : IsThisMonthAndYear(dateTime) ? RandomStartDate() : dateTime;
+        }
+
+        private bool IsThisMonthAndYear(DateTime dateTime)
+        {
+            return dateTime.Month == DateTime.Now.Month && dateTime.Year == DateTime.Now.Year;
         }
 
         private DateTime GetCourseEndDate()
