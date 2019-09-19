@@ -15,7 +15,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
     {
         private readonly ScenarioContext _context;
 
-        private readonly ExistingAccountsStepsHelper _stepsHelper;
+        private readonly EmployerPortalLoginHelper _loginHelper;
 
         private readonly EmployerStepsHelper _employerStepsHelper;
 
@@ -30,7 +30,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _context = context;
             _commitmentsDataHelper = context.Get<CommitmentsDataHelper>();
             _dataHelper = context.Get<ApprenticeDataHelper>();
-            _stepsHelper = new ExistingAccountsStepsHelper(context);
+            _loginHelper = new EmployerPortalLoginHelper(context);
             _employerStepsHelper = new EmployerStepsHelper(context);
             _providerStepsHelper = new ProviderStepsHelper(context);
         }
@@ -38,7 +38,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Given(@"the Employer has approved apprentice")]
         public void GivenTheEmployerHasApprovedApprentice()
         {
-            _stepsHelper.Login(_context.GetUser<LevyUser>(), true);
+            _loginHelper.Login(_context.GetUser<LevyUser>(), true);
 
             var employerReviewYourCohortPage = _employerStepsHelper.EmployerAddApprentice(1);
 

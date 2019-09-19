@@ -52,6 +52,8 @@ namespace SFA.DAS.Registration.UITests.Project
             _loginCredentialsHelper = new LoginCredentialsHelper(_objectContext);
 
             _context.Set(_loginCredentialsHelper);
+
+            _objectContext.SetOrganisationName(_config.RE_OrganisationName);
         }
 
         [BeforeScenario(Order = 23)]

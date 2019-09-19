@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text.RegularExpressions;
 
-namespace SFA.DAS.UI.Framework.TestSupport
+namespace SFA.DAS.UI.FrameworkHelpers
 {
     public static class StringExtension
     {

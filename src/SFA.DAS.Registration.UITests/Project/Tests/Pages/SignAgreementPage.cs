@@ -7,13 +7,12 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 {
     public class SignAgreementPage : BasePage
     {
-        protected override string PageTitle => _config.RE_OrganisationName.ToUpper();
+        protected override string PageTitle => _objectContext.GetOrganisationName();
 
         #region Helpers and Context
-        private readonly PageInteractionHelper _pageInteractionHelper;
         private readonly FormCompletionHelper _formCompletionHelper;
         private readonly ScenarioContext _context;
-        private readonly ProjectConfig _config;
+        private readonly ObjectContext _objectContext;
         #endregion
 
         private By WantToSignRadioButton => By.CssSelector("label[for=want-to-sign]");
@@ -25,8 +24,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         public SignAgreementPage(ScenarioContext context) : base(context)
         {
             _context = context;
-            _config = context.GetProjectConfig<ProjectConfig>();
-            _pageInteractionHelper = context.Get<PageInteractionHelper>();
+            _objectContext = context.Get<ObjectContext>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
             VerifyPage();
         }

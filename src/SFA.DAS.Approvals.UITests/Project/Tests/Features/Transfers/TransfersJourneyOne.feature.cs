@@ -73,25 +73,21 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.Transfers
         [NUnit.Framework.DescriptionAttribute("Creating Transfer Connection between Sending and Reveiving Employers")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("transfersscenarios")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
         public virtual void CreatingTransferConnectionBetweenSendingAndReveivingEmployers()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Creating Transfer Connection between Sending and Reveiving Employers", null, new string[] {
                         "regression",
-                        "transfersscenarios",
-                        "addpayedetails"});
+                        "transfersscenarios"});
 #line 8
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 9
-testRunner.Given("the Employer has sufficient levy declarations for transfers", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 10
-testRunner.Given("the User creates Employer account and sign an agreement", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 11
-testRunner.And("the User adds Receiver Employer account and sign an agreement", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.Given("the Employer login using existing transfers account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 12
-testRunner.When("the Employer connects to receiving employer", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+testRunner.And("the User adds Receiver Employer account and sign an agreement", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 13
+testRunner.When("the Employer connects to receiving employer", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 14
 testRunner.Then("A connection between sender and receiver is established successfully", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
