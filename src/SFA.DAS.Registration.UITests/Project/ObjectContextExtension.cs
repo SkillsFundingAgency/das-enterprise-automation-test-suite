@@ -8,6 +8,7 @@ namespace SFA.DAS.Registration.UITests.Project
         private const string AccountIdKey = "accountid";
         private const string LoggedInUserKey = "loggedinuserkey";
         private const string OrganisationNameKey = "organisationname";
+        private const string ReceiverAccountIdkey = "receiveraccountidkey";
         #endregion
 
         internal static void SetLoginCredentials(this ObjectContext objectContext, string loginusername, string loginpassword)
@@ -29,6 +30,16 @@ namespace SFA.DAS.Registration.UITests.Project
         public static void UpdateOrganisationName(this ObjectContext objectContext, string organisationName)
         {
             objectContext.Update(OrganisationNameKey, organisationName.ToUpper());
+        }
+
+        internal static void SetReceiverAccountId(this ObjectContext objectContext, string value)
+        {
+            objectContext.Set(ReceiverAccountIdkey, value);
+        }
+
+        public static string GetReceiverAccountId(this ObjectContext objectContext)
+        {
+            return objectContext.Get(ReceiverAccountIdkey);
         }
 
         public static string GetOrganisationName(this ObjectContext objectContext)

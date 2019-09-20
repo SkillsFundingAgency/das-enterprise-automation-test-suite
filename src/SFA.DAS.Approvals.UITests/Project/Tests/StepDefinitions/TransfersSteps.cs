@@ -24,7 +24,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         private readonly MultipleAccountsLoginHelper _loginHelper;
         private readonly ObjectContext _objectContext;
         private readonly DataHelper _dataHelper;
+        private readonly ApprovalsStepsHelper _approvalsStepsHelper;
         private HomePage _homePage;
+        private string _senderAccountId;
         private string _recieverAccountId;
 
         public TransfersSteps(ScenarioContext context)
@@ -37,11 +39,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _loginHelper = new MultipleAccountsLoginHelper(context);
             _objectContext = context.Get<ObjectContext>();
             _dataHelper = _objectContext.GetDataHelper();
+            _approvalsStepsHelper = new ApprovalsStepsHelper(context);
+            _senderAccountId = null;
             _recieverAccountId = null;
         }
 
-        [Given(@"the Employer has sufficient levy declarations for transfers")]
-        public void GivenTheEmployerHasSufficientLevyDeclarationsForTransfers()
+        [Given(@"We have a new Sender with sufficient levy funds and a new Receiver accounts setup")]
+        public void GivenWeHaveANewSenderWithSufficientLevyFundsAndANewReceiverAccountsSetup()
         {
             var table = new Table("Year", "Month", "LevyDueYTD", "LevyAllowanceForFullYear", "SubmissionDate");
             table.AddRow("18-19", "10", "72000", "99000", "2019-01-15");
@@ -49,44 +53,29 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             table.AddRow("18-19", "12", "92000", "99000", "2019-03-15");
             _mongoDbGenerator.AddLevyDeclarations(1.00m, new DateTime(2019, 01, 15), table);
             _loginCredentialsHelper.SetIsLevy();
-        }
 
-        [Given(@"the Employer login using existing transfers account")]
-        public void GivenTheEmployerLoginUsingExistingTransfersAccount()
-        {
-            _homePage = _loginHelper.Login(_context.GetUser<TransfersUser>(), true);
-        }
+            _homePage = _approvalsStepsHelper.CreatesEmployerAccountAndSignAnAgreement();
 
+            _senderAccountId = _objectContext.GetAccountId();
 
-        [Given(@"the User adds Receiver Employer account and sign an agreement")]
-        public void GivenTheUserAddsReceiverEmployerAccountAndSignAnAgreement()
-        {
             _objectContext.UpdateDataHelper(new DataHelper(_dataHelper.TwoDigitProjectCode));
 
             _mongoDbGenerator.AddGatewayUsers();
 
             _objectContext.UpdateOrganisationName(_transfersConfig.AP_ReceiverOrganisationName);
 
-            _homePage = _homePage.GoToYourAccountsPage()
-                .AddNewAccount()
-                .ContinueToGGSignIn()
-                .SignInTo()
-                .SearchForAnOrganisation()
-                .SelectYourOrganisation()
-                .ContinueToAboutYourAgreementPage()
-                .ContinueWithAgreement()
-                .SignAgreement();
+            _homePage = _approvalsStepsHelper.AddNewAccountAndSignAnAgreement(_homePage);
 
-            _recieverAccountId = _homePage.AccountId();
-            _objectContext.SetReceiverAccountId(_recieverAccountId);
-
-            _homePage.GoToYourAccountsPage()
-                .GoToHomePage(_projectConfig.RE_OrganisationName);
+            _recieverAccountId = _objectContext.GetReceiverAccountId();
         }
 
-        [When(@"the Employer connects to receiving employer")]
-        public void WhenTheEmployerConnectsToReceivingEmployer()
+        [When(@"Sender connects to Receiver")]
+        public void WhenSenderConnectsToReceiver()
         {
+            //Sender connects to receiver 
+            _homePage.GoToYourAccountsPage()
+              .GoToHomePage(_projectConfig.RE_OrganisationName);
+
             _homePage = new FinancePage(_context, true)
                 .OpenTransfers()
                 .ConnectWithReceivingEmployer()
@@ -95,6 +84,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                 .SendTransferConnectionRequest()
                 .GoToHomePage();
 
+            //Receiver accepts the conneciton
             _homePage.GoToYourAccountsPage()
                  .GoToHomePage(_transfersConfig.AP_ReceiverOrganisationName);
 
@@ -105,10 +95,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                 .GoToHomePage();
         }
 
-        [Then(@"A connection between sender and receiver is established successfully")]
-        public void ThenAConnectionBetweenSenderAndReceiverIsEstablishedSuccessfully()
+        [Then(@"A transfer connection is established successfully")]
+        public void ThenATransferConnectionIsEstablishedSuccessfully()
         {
-
             string sender = _projectConfig.RE_OrganisationName;
             string receiver = _transfersConfig.AP_ReceiverOrganisationName;
 
@@ -128,7 +117,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
             if (!senderAssertion)
                 if (!receiverAssertion)
-                    throw new Exception($"We don't have an approved transfers connection between {sender}({_objectContext.GetAccountId()}) and {receiver}({_recieverAccountId})");
+                    throw new Exception($"We don't have an approved transfers connection between {sender}({_senderAccountId}) and {receiver}({_recieverAccountId})");
+        }
+
+
+        [Given(@"the Employer login using existing transfers account")]
+        public void GivenTheEmployerLoginUsingExistingTransfersAccount()
+        {
+            _homePage = _loginHelper.Login(_context.GetUser<TransfersUser>(), true);
         }
     }
 }

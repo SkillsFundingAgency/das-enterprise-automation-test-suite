@@ -9,9 +9,7 @@ namespace SFA.DAS.Approvals.UITests.Project
         private const string ApprenticeTotalCost = "apprenticetotalcost";
         private const string CohortReference = "cohortreference";
         private const string ApprenticeId = "apprenticeid";
-        private const string ReceiverAccountIdkey = "receiveraccountidkey";
         
-
         #endregion
         internal static void SetNoOfApprentices(this ObjectContext objectContext, string value)
         {
@@ -36,16 +34,6 @@ namespace SFA.DAS.Approvals.UITests.Project
         internal static void SetUln(this ObjectContext objectContext, string value)
         {
             objectContext.Set($"Uln_{value}", value);
-        }
-
-        internal static void SetReceiverAccountId(this ObjectContext objectContext, string value)
-        {
-            objectContext.Set(ReceiverAccountIdkey, value);
-        }
-
-        internal static string GetReceiverAccountId(this ObjectContext objectContext)
-        {
-            return objectContext.Get(ReceiverAccountIdkey);
         }
 
         internal static string GetApprenticeTotalCost(this ObjectContext objectContext)

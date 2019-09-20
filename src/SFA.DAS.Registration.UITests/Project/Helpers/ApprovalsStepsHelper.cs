@@ -1,0 +1,59 @@
+﻿using System;
+using SFA.DAS.Registration.UITests.Project.Tests.Pages;
+using SFA.DAS.UI.Framework.TestSupport;
+using TechTalk.SpecFlow;
+
+namespace SFA.DAS.Registration.UITests.Project.Helpers
+{
+    public class ApprovalsStepsHelper
+    {
+        private readonly ScenarioContext _context;
+        private readonly ObjectContext _objectContext;
+
+        public ApprovalsStepsHelper(ScenarioContext context)
+        {
+            _context = context;
+            _objectContext = _context.Get<ObjectContext>();
+        }
+
+        public HomePage CreatesEmployerAccountAndSignAnAgreement()
+        {
+            var homePage = new IndexPage(_context)
+                 .CreateAccount()
+                 .Register()
+                 .ContinueToGetApprenticeshipFunding()
+                 .AddPaye()
+                 .SelectGovermentGateway()
+                 .ContinueToGGSignIn()
+                 .SignInTo()
+                 .SearchForAnOrganisation()
+                 .SelectYourOrganisation()
+                 .ContinueToAboutYourAgreementPage()
+                 .ContinueWithAgreement()
+                 .SignAgreement();
+
+            var accountid = homePage.AccountId();
+            _objectContext.SetAccountId(accountid);
+
+            return homePage;
+        }
+
+        public HomePage AddNewAccountAndSignAnAgreement(HomePage homePage)
+        {
+           homePage.GoToYourAccountsPage()
+                .AddNewAccount()
+                .ContinueToGGSignIn()
+                .SignInTo()
+                .SearchForAnOrganisation()
+                .SelectYourOrganisation()
+                .ContinueToAboutYourAgreementPage()
+                .ContinueWithAgreement()
+                .SignAgreement();
+
+            var accountid = homePage.AccountId();
+            _objectContext.SetReceiverAccountId(accountid);
+
+            return homePage;
+        }
+    }
+}
