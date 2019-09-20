@@ -10,10 +10,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         protected override string PageTitle => "Which employer are you connecting with?";
 
         #region Helpers and Context
-        private readonly PageInteractionHelper _pageInteractionHelper;
         private readonly FormCompletionHelper _formCompletionHelper;
         private readonly ScenarioContext _context;
-        private readonly ObjectContext _objectContext;
         private readonly TransfersConfig _transfersConfig;
         #endregion
 
@@ -23,7 +21,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         {
             _context = context;
             _formCompletionHelper = context.Get<FormCompletionHelper>();
-            _objectContext = context.Get<ObjectContext>();
             _transfersConfig = context.GetTransfersConfig<TransfersConfig>();
             VerifyPage();
         }

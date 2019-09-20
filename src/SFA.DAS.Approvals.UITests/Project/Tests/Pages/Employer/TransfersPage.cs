@@ -39,16 +39,15 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
                 return new ConnectWithReceivingEmployerPage(_context);
         }
 
-        public TransferConnectionRequestDetailsPage ViewTransferConnectionRequestDetails()
+        public TransferConnectionRequestDetailsPage ViewTransferConnectionRequestDetails(string sender)
         {
-            var sender = _objectContext.GetOrganisationName();
             List<IWebElement> transferRequestRows = _pageInteractionHelper.FindElements(YourTransferConnectionsRows);
             List<IWebElement> transferRequestDetailsLinks = _pageInteractionHelper.FindElements(DetailsLink);
             int i = 0;
 
             foreach (IWebElement transferRequestRow in transferRequestRows)
             {
-                if ((transferRequestRow.Text.ToUpper().Contains(sender)) && (transferRequestRow.Text.Contains("Pending")))
+                if ((transferRequestRow.Text.Contains($"{sender.ToUpper()} Pending")))
                 {
                     _formCompletionHelper.ClickElement(transferRequestDetailsLinks[i]);
                     return new TransferConnectionRequestDetailsPage(_context);

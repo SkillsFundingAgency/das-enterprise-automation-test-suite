@@ -17,9 +17,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
     public class TransfersSteps
     {
         private readonly ScenarioContext _context;
-        private readonly ProjectConfig _projectConfig;
-        private readonly TransfersConfig _transfersConfig;
-        private readonly LoginCredentialsHelper _loginCredentialsHelper;
         private readonly MultipleAccountsLoginHelper _loginHelper;
         private readonly ObjectContext _objectContext;
         private readonly DataHelper _dataHelper;
@@ -27,13 +24,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         private HomePage _homePage;
         private string _senderAccountId;
         private string _recieverAccountId;
+        private readonly string _sender;
+        private readonly string _receiver;
 
         public TransfersSteps(ScenarioContext context)
         {
             _context = context;
-            _projectConfig = context.GetProjectConfig<ProjectConfig>();
-            _transfersConfig = context.GetTransfersConfig<TransfersConfig>();
-            _loginCredentialsHelper = context.Get<LoginCredentialsHelper>();
+            _sender = context.GetProjectConfig<ProjectConfig>().RE_OrganisationName;
+            _receiver = context.GetTransfersConfig<TransfersConfig>().AP_ReceiverOrganisationName;
             _loginHelper = new MultipleAccountsLoginHelper(context);
             _objectContext = context.Get<ObjectContext>();
             _dataHelper = _objectContext.GetDataHelper();
@@ -53,7 +51,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
             new MongoDbDataGenerator(_context).AddGatewayUsers();
 
-            _objectContext.UpdateOrganisationName(_transfersConfig.AP_ReceiverOrganisationName);
+            _objectContext.UpdateOrganisationName(_receiver);
 
             _homePage = _approvalsStepsHelper.AddNewAccountAndSignAnAgreement(_homePage);
 
@@ -64,9 +62,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         public void WhenSenderConnectsToReceiver()
         {
             //Sender connects to receiver 
-            _objectContext.UpdateOrganisationName(_projectConfig.RE_OrganisationName);
+            _objectContext.UpdateOrganisationName(_sender);
             _homePage.GoToYourAccountsPage()
-              .GoToHomePage(_projectConfig.RE_OrganisationName);
+              .GoToHomePage(_sender);
 
             _homePage = new FinancePage(_context, true)
                 .OpenTransfers()
@@ -77,13 +75,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                 .GoToHomePage();
 
             //Receiver accepts the conneciton
-            _objectContext.UpdateOrganisationName(_transfersConfig.AP_ReceiverOrganisationName);
+            _objectContext.UpdateOrganisationName(_receiver);
             _homePage.GoToYourAccountsPage()
-                 .GoToHomePage(_transfersConfig.AP_ReceiverOrganisationName);
+                 .GoToHomePage(_receiver);
 
             _homePage = new FinancePage(_context, true)
                 .OpenTransfers()
-                .ViewTransferConnectionRequestDetails()
+                .ViewTransferConnectionRequestDetails(_sender)
                 .AcceptTransferConnectionRequest()
                 .GoToHomePage();
         }
@@ -91,28 +89,26 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Then(@"A transfer connection is established successfully")]
         public void ThenATransferConnectionIsEstablishedSuccessfully()
         {
-            string sender = _projectConfig.RE_OrganisationName;
-            string receiver = _transfersConfig.AP_ReceiverOrganisationName;
-
+            _objectContext.UpdateOrganisationName(_sender);
             _homePage.GoToYourAccountsPage()
-                .GoToHomePage(sender);
+                .GoToHomePage(_sender);
 
             bool senderAssertion = new FinancePage(_context, true)
                .OpenTransfers()
-               .CheckTransferConnectionStatus(receiver);
+               .CheckTransferConnectionStatus(_receiver);
 
+            _objectContext.UpdateOrganisationName(_receiver);
             _homePage.GoToYourAccountsPage()
-                .GoToHomePage(receiver);
+                .GoToHomePage(_receiver);
 
             bool receiverAssertion = new FinancePage(_context, true)
                .OpenTransfers()
-               .CheckTransferConnectionStatus(sender);
+               .CheckTransferConnectionStatus(_sender);
 
             if (!senderAssertion)
                 if (!receiverAssertion)
-                    throw new Exception($"We don't have an approved transfers connection between {sender}({_senderAccountId}) and {receiver}({_recieverAccountId})");
+                    throw new Exception($"We don't have an approved transfers connection between {_sender}({_senderAccountId}) and {_receiver}({_recieverAccountId})");
         }
-
 
         [Given(@"the Employer login using existing transfers account")]
         public void GivenTheEmployerLoginUsingExistingTransfersAccount()

@@ -14,7 +14,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private readonly FormCompletionHelper _formCompletionHelper;
         private readonly ScenarioContext _context;
         private readonly ObjectContext _objectContext;
-        private readonly ApprovalsConfig _config;
         #endregion
 
         private By DoYouWishToConnectToThisEmpoyerOptions => By.CssSelector(".selection-button-radio");
