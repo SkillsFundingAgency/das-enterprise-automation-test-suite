@@ -44,7 +44,7 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
 
             var homePage = Login(loginUser);
 
-            objectContext.SetAccountId(homePage.AccountID());
+            objectContext.SetAccountId(homePage.AccountId());
 
             return homePage;
         }

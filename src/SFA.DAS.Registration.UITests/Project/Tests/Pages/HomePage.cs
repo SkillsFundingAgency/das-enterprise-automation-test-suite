@@ -34,7 +34,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             pageInteractionHelper.VerifyText(SucessSummary, "All agreements signed");
         }
 
-        public string AccountID()
+        public string AccountId()
         {
             return _regexHelper.GetAccountId(pageInteractionHelper.GetUrl());
         }

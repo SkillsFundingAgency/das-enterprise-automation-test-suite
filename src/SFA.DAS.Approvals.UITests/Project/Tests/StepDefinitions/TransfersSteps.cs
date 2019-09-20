@@ -10,6 +10,7 @@ using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
 
+
 namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 {
     [Binding]
@@ -76,7 +77,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                 .ContinueWithAgreement()
                 .SignAgreement();
 
-            _recieverAccountId = _homePage.AccountID();
+            _recieverAccountId = _homePage.AccountId();
             _objectContext.SetReceiverAccountId(_recieverAccountId);
 
             _homePage.GoToYourAccountsPage()
@@ -102,14 +103,32 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                 .ViewTransferConnectionRequestDetails()
                 .AcceptTransferConnectionRequest()
                 .GoToHomePage();
-
         }
 
         [Then(@"A connection between sender and receiver is established successfully")]
         public void ThenAConnectionBetweenSenderAndReceiverIsEstablishedSuccessfully()
         {
-            throw new PendingStepException();
-        }
 
+            string sender = _projectConfig.RE_OrganisationName;
+            string receiver = _transfersConfig.AP_ReceiverOrganisationName;
+
+            _homePage.GoToYourAccountsPage()
+                .GoToHomePage(sender);
+
+            bool senderAssertion = new FinancePage(_context, true)
+               .OpenTransfers()
+               .CheckTransferConnectionStatus(receiver);
+
+            _homePage.GoToYourAccountsPage()
+                .GoToHomePage(receiver);
+
+            bool receiverAssertion = new FinancePage(_context, true)
+               .OpenTransfers()
+               .CheckTransferConnectionStatus(sender);
+
+            if (!senderAssertion)
+                if (!receiverAssertion)
+                    throw new Exception($"We don't have an approved transfers connection between {sender}({_objectContext.GetAccountId()}) and {receiver}({_recieverAccountId})");
+        }
     }
 }

@@ -17,7 +17,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private readonly FormCompletionHelper _formCompletionHelper;
         private readonly ScenarioContext _context;
         private readonly ObjectContext _objectContext;
-        private readonly ApprovalsConfig _config;
         #endregion
 
         private By ConnectToReceivingEmployer => By.LinkText("Connect to a receiving employer");
@@ -57,6 +56,24 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
                 i++;
             }
             throw new Exception("Could not find pending transfer request from " + sender);
+        }
+
+        public bool CheckTransferConnectionStatus(String Employer)
+        {
+            if (_pageInteractionHelper.IsElementDisplayed(YourTransferConnectionsRows))
+            {
+                IList<IWebElement> transferRequestRows = _pageInteractionHelper.FindElements(YourTransferConnectionsRows);
+
+                foreach (IWebElement transferRequestRow in transferRequestRows)
+                {
+                    if ((transferRequestRow.Text.ToUpper().Contains(Employer.ToUpper()))
+                        && (transferRequestRow.Text.Contains("Approved")))
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
         }
     }
 }

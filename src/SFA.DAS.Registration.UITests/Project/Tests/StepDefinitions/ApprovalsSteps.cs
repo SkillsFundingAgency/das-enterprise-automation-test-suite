@@ -22,7 +22,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         [Given(@"the User creates Employer account and sign an agreement")]
         public void GivenTheUserCreatesEmployerAccountAndSignAnAgreement()
         {
-             new IndexPage(_context)
+           var homePage =  new IndexPage(_context)
                 .CreateAccount()
                 .Register()
                 .ContinueToGetApprenticeshipFunding()
@@ -35,6 +35,9 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
                 .ContinueToAboutYourAgreementPage()
                 .ContinueWithAgreement()
                 .SignAgreement();
+
+            var accountid = homePage.AccountId();
+            _objectContext.SetAccountId(accountid);
         }
     }
 }
