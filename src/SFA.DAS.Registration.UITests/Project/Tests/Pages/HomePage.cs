@@ -13,7 +13,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         private readonly ScenarioContext _context;
         #endregion
 
-        private By PublicAccountId => By.CssSelector(".heading-secondary");
+        private By PublicAccountIdLocator => By.CssSelector(".heading-secondary");
 
         private By SucessSummary => By.CssSelector(".success-summary");
 
@@ -39,5 +39,9 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             return _regexHelper.GetAccountId(pageInteractionHelper.GetUrl());
         }
 
+        public string PublicAccountId()
+        {
+            return _regexHelper.GetPublicAccountId(pageInteractionHelper.GetText(PublicAccountIdLocator));
+        }
     }
 }

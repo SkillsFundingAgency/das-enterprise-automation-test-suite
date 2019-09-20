@@ -53,6 +53,9 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
             var accountid = homePage.AccountId();
             _objectContext.SetReceiverAccountId(accountid);
 
+            var publicAccountid = homePage.PublicAccountId();
+            _objectContext.SetReceiverPublicAccountId(publicAccountid);
+           
             return homePage;
         }
     }

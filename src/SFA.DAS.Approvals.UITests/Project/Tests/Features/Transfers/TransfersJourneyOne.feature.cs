@@ -70,57 +70,27 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.Transfers
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Creating Transfer Connection between Sender (Levy Employer) and Receiver (Levy|No" +
-            "n-Levy Employer) sample")]
+        [NUnit.Framework.DescriptionAttribute("Creating Transfer Connection between Sender and Receiver")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("transfersscenarios")]
         [NUnit.Framework.CategoryAttribute("addpayedetails")]
-        public virtual void CreatingTransferConnectionBetweenSenderLevyEmployerAndReceiverLevyNon_LevyEmployerSample()
+        [NUnit.Framework.CategoryAttribute("addtransferslevyfunds")]
+        public virtual void CreatingTransferConnectionBetweenSenderAndReceiver()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Creating Transfer Connection between Sender (Levy Employer) and Receiver (Levy|No" +
-                    "n-Levy Employer) sample", null, new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Creating Transfer Connection between Sender and Receiver", null, new string[] {
                         "regression",
                         "transfersscenarios",
-                        "addpayedetails"});
-#line 8
+                        "addpayedetails",
+                        "addtransferslevyfunds"});
+#line 9
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 10
-testRunner.Given("the Employer has sufficient levy declarations for transfers", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 11
-testRunner.Given("the User creates Employer account and sign an agreement", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 12
-testRunner.And("the User adds Receiver Employer account and sign an agreement", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 13
-testRunner.When("the Employer connects to receiving employer", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 14
-testRunner.Then("A connection between sender and receiver is established successfully", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-            this.ScenarioCleanup();
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Creating Transfer Connection between Sender (Levy Employer) and Receiver (Levy|No" +
-            "n-Levy Employer)")]
-        [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("transfersscenarios")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
-        public virtual void CreatingTransferConnectionBetweenSenderLevyEmployerAndReceiverLevyNon_LevyEmployer()
-        {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Creating Transfer Connection between Sender (Levy Employer) and Receiver (Levy|No" +
-                    "n-Levy Employer)", null, new string[] {
-                        "regression",
-                        "transfersscenarios",
-                        "addpayedetails"});
-#line 19
-this.ScenarioInitialize(scenarioInfo);
-            this.ScenarioStart();
-#line 20
 testRunner.Given("We have a new Sender with sufficient levy funds and a new Receiver accounts setup" +
                     "", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 21
+#line 11
 testRunner.When("Sender connects to Receiver", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 22
+#line 12
 testRunner.Then("A transfer connection is established successfully", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();

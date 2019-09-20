@@ -4,6 +4,7 @@ using SFA.DAS.MongoDb.DataGenerator;
 using SFA.DAS.MongoDb.DataGenerator.Helpers;
 using SFA.DAS.Registration.UITests.Project.Helpers;
 using SFA.DAS.UI.Framework.TestSupport;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using TechTalk.SpecFlow;
@@ -20,6 +21,7 @@ namespace SFA.DAS.Registration.UITests.Project
         private List<string> _empRefs;
         private RegistrationDatahelpers _registrationDatahelpers;
         private LoginCredentialsHelper _loginCredentialsHelper;
+        private MongoDbDataGenerator mongoDbDataGenerator;
 
         public Hooks(ScenarioContext context)
         {
@@ -60,11 +62,29 @@ namespace SFA.DAS.Registration.UITests.Project
         [Scope(Tag = "addpayedetails")]
         public void SetUpMongoDbHelpers()
         {
-            var datagenerator = new MongoDbDataGenerator(_context);
+            mongoDbDataGenerator = new MongoDbDataGenerator(_context);
 
-            datagenerator.AddGatewayUsers();
+            mongoDbDataGenerator.AddGatewayUsers();
 
             _loginCredentialsHelper.SetLoginCredentials(_registrationDatahelpers.RandomEmail, _registrationDatahelpers.Password);
+        }
+
+        [BeforeScenario(Order = 24)]
+        [Scope(Tag = "addtransferslevyfunds")]
+        public void AddTransfersLevyFunds()
+        {
+            var (fraction, calculatedAt, levyDeclarations) = LevyDeclarationDataHelper.TransferslevyFunds();
+            mongoDbDataGenerator.AddLevyDeclarations(fraction, calculatedAt, levyDeclarations);
+            _loginCredentialsHelper.SetIsLevy();
+        }
+
+        [BeforeScenario(Order = 25)]
+        [Scope(Tag = "addlevyfunds")]
+        public void AddLevyFunds()
+        {
+            var (fraction, calculatedAt, levyDeclarations) = LevyDeclarationDataHelper.LevyFunds();
+            mongoDbDataGenerator.AddLevyDeclarations(fraction, calculatedAt, levyDeclarations);
+            _loginCredentialsHelper.SetIsLevy();
         }
 
         [AfterScenario(Order = 21)]

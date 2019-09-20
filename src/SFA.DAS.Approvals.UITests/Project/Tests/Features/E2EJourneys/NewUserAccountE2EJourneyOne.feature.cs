@@ -72,17 +72,17 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.E2EJourneys
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Create Employer send an approved cohort then provider approves the cohort")]
         [NUnit.Framework.CategoryAttribute("addpayedetails")]
+        [NUnit.Framework.CategoryAttribute("addlevyfunds")]
         [NUnit.Framework.CategoryAttribute("e2escenarios")]
         public virtual void CreateEmployerSendAnApprovedCohortThenProviderApprovesTheCohort()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Create Employer send an approved cohort then provider approves the cohort", null, new string[] {
                         "addpayedetails",
+                        "addlevyfunds",
                         "e2escenarios"});
-#line 8
+#line 9
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 9
-testRunner.Given("I have levy declarations", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 10
 testRunner.Given("the User creates Employer account and sign an agreement", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 11

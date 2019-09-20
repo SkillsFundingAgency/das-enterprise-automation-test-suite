@@ -19,7 +19,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         private readonly ScenarioContext _context;
         private readonly ProjectConfig _projectConfig;
         private readonly TransfersConfig _transfersConfig;
-        private readonly MongoDbDataGenerator _mongoDbGenerator;
         private readonly LoginCredentialsHelper _loginCredentialsHelper;
         private readonly MultipleAccountsLoginHelper _loginHelper;
         private readonly ObjectContext _objectContext;
@@ -35,7 +34,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _projectConfig = context.GetProjectConfig<ProjectConfig>();
             _transfersConfig = context.GetTransfersConfig<TransfersConfig>();
             _loginCredentialsHelper = context.Get<LoginCredentialsHelper>();
-            _mongoDbGenerator = new MongoDbDataGenerator(_context);
             _loginHelper = new MultipleAccountsLoginHelper(context);
             _objectContext = context.Get<ObjectContext>();
             _dataHelper = _objectContext.GetDataHelper();
@@ -47,20 +45,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Given(@"We have a new Sender with sufficient levy funds and a new Receiver accounts setup")]
         public void GivenWeHaveANewSenderWithSufficientLevyFundsAndANewReceiverAccountsSetup()
         {
-            var table = new Table("Year", "Month", "LevyDueYTD", "LevyAllowanceForFullYear", "SubmissionDate");
-            table.AddRow("18-19", "10", "72000", "99000", "2019-01-15");
-            table.AddRow("18-19", "11", "82000", "99000", "2019-02-15");
-            table.AddRow("18-19", "12", "92000", "99000", "2019-03-15");
-            _mongoDbGenerator.AddLevyDeclarations(1.00m, new DateTime(2019, 01, 15), table);
-            _loginCredentialsHelper.SetIsLevy();
-
             _homePage = _approvalsStepsHelper.CreatesEmployerAccountAndSignAnAgreement();
 
             _senderAccountId = _objectContext.GetAccountId();
 
             _objectContext.UpdateDataHelper(new DataHelper(_dataHelper.TwoDigitProjectCode));
 
-            _mongoDbGenerator.AddGatewayUsers();
+            new MongoDbDataGenerator(_context).AddGatewayUsers();
 
             _objectContext.UpdateOrganisationName(_transfersConfig.AP_ReceiverOrganisationName);
 
@@ -73,6 +64,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         public void WhenSenderConnectsToReceiver()
         {
             //Sender connects to receiver 
+            _objectContext.UpdateOrganisationName(_projectConfig.RE_OrganisationName);
             _homePage.GoToYourAccountsPage()
               .GoToHomePage(_projectConfig.RE_OrganisationName);
 
@@ -80,11 +72,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                 .OpenTransfers()
                 .ConnectWithReceivingEmployer()
                 .ContinueToConnectWithReceiver()
-                .ConnectWithReceivingEmployer(_recieverAccountId)
+                .ConnectWithReceivingEmployer(_objectContext.GetPublicReceiverAccountId())
                 .SendTransferConnectionRequest()
                 .GoToHomePage();
 
             //Receiver accepts the conneciton
+            _objectContext.UpdateOrganisationName(_transfersConfig.AP_ReceiverOrganisationName);
             _homePage.GoToYourAccountsPage()
                  .GoToHomePage(_transfersConfig.AP_ReceiverOrganisationName);
 
