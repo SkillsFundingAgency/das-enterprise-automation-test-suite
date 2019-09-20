@@ -18,7 +18,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         [Given(@"the User creates Employer account and sign an agreement")]
         public void TheUserCreatesEmployerAccountAndSignAnAgreement()
         {
-            _stepsHelper.CreatesEmployerAccountAndSignAnAgreement();
+            _stepsHelper.CreatesAccountAndSignAnAgreement();
         }
     }
 }

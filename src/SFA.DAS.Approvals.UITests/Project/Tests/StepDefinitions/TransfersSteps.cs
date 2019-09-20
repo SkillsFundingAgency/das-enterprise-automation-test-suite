@@ -43,7 +43,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Given(@"We have a new Sender with sufficient levy funds and a new Receiver accounts setup")]
         public void GivenWeHaveANewSenderWithSufficientLevyFundsAndANewReceiverAccountsSetup()
         {
-            _homePage = _approvalsStepsHelper.CreatesEmployerAccountAndSignAnAgreement();
+            _homePage = _approvalsStepsHelper.CreatesAccountAndSignAnAgreement();
 
             _senderAccountId = _objectContext.GetAccountId();
 

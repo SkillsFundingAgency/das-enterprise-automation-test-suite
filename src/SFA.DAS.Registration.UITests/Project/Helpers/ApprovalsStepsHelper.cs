@@ -16,7 +16,7 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
             _objectContext = _context.Get<ObjectContext>();
         }
 
-        public HomePage CreatesEmployerAccountAndSignAnAgreement()
+        public HomePage CreatesAccountAndSignAnAgreement()
         {
             var homePage = new IndexPage(_context)
                  .CreateAccount()

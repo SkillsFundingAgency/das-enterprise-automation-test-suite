@@ -24,10 +24,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             VerifyPage();
         }
 
-        public WhichEmployerAreYouConnectingWith ContinueToConnectWithReceiver()
+        public WhichEmployerAreYouConnectingWithPage ContinueToConnectWithReceiver()
         {
             _formCompletionHelper.ClickElement(ContinueToConnect);
-            return new WhichEmployerAreYouConnectingWith(_context);
+            return new WhichEmployerAreYouConnectingWithPage(_context);
         }
     }
 }

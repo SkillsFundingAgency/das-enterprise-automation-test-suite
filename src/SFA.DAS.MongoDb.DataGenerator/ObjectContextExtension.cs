@@ -11,7 +11,7 @@ namespace SFA.DAS.MongoDb.DataGenerator
         private const string GatewayPasswordKey = "gatewaypassword";
         private const string PayeKey = "paye";
         private const string DataHelperKey = "datahelper";
-        private static string MongoDbDataHelperKey(string empRef) => $"datahelper_{empRef}";
+        private static string MongoDbDataHelperKey(string empRef) => $"mongodbdatahelper_{empRef}";
         #endregion
 
         public static void SetMongoDbDataHelper(this ObjectContext objectContext, MongoDbDataHelper dataHelper, string empRef)

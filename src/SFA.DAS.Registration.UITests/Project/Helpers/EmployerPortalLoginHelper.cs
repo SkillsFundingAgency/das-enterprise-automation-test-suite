@@ -49,22 +49,4 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
             return homePage;
         }
     }
-
-    public class MultipleAccountsLoginHelper : EmployerPortalLoginHelper
-    {
-        private readonly ScenarioContext _context;
-
-        public MultipleAccountsLoginHelper(ScenarioContext context) : base(context)
-        {
-            _context = context;
-        }
-
-        protected override HomePage Login(LoginUser loginUser)
-        {
-            return new IndexPage(_context)
-                .SignIn()
-                .MultipleAccountLogin(loginUser)
-                .GoToHomePage(objectContext.GetOrganisationName());
-        }
-    }
 }

@@ -5,7 +5,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
-    public class WhichEmployerAreYouConnectingWith : BasePage
+    public class WhichEmployerAreYouConnectingWithPage : BasePage
     {
         protected override string PageTitle => "Which employer are you connecting with?";
 
@@ -17,7 +17,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         private By ContinueButton => By.CssSelector(".button");
         private By ReceivingEmployer => By.Id("ReceiverAccountPublicHashedId");
-        public WhichEmployerAreYouConnectingWith(ScenarioContext context) : base(context)
+        public WhichEmployerAreYouConnectingWithPage(ScenarioContext context) : base(context)
         {
             _context = context;
             _formCompletionHelper = context.Get<FormCompletionHelper>();
