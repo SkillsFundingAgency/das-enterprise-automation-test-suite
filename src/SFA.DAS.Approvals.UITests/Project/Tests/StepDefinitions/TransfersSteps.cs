@@ -124,6 +124,18 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _employerStepsHelper.EmployerCreateCohortAndSendsToProvider(true);
         }
 
+        [Given(@"Receiver sends an approved cohort to the provider")]
+        public void GivenReceiverSendsAnApprovedCohortToTheProvider()
+        {
+            throw new PendingStepException();
+        }
+
+        [When(@"Provider approves the cohort")]
+        public void WhenProviderApprovesTheCohort()
+        {
+            throw new PendingStepException();
+        }
+
         [When(@"Provider adds an apprentices approves the cohort")]
         public void WhenProviderAddsAnApprenticesApprovesTheCohort()
         {
@@ -146,8 +158,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _employerStepsHelper.ApproveChangesAndSubmit();
         }
 
-        [Then(@"Verify the new live apprenticeship record is created")]
-        public void ThenVerifyTheNewLiveApprenticeshipRecordIsCreated()
+        [Then(@"Verify a new live apprenticeship record is created")]
+        public void ThenVerifyANewLiveApprenticeshipRecordIsCreated()
         {
             _objectContext.UpdateOrganisationName(_receiver);
 

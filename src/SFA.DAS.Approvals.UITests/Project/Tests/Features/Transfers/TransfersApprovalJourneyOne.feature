@@ -1,4 +1,4 @@
-﻿Feature: TransfersApprovalJourney
+﻿Feature: TransfersApprovalJourneyOne
 
 A short summary of the feature
 
@@ -11,5 +11,5 @@ Given Receiver sends a cohort to the provider for review and approval
 When Provider adds an apprentices approves the cohort
 When Receiver approves the cohort
 When Sender approves the cohort
-Then Verify the new live apprenticeship record is created
+Then Verify a new live apprenticeship record is created
 
