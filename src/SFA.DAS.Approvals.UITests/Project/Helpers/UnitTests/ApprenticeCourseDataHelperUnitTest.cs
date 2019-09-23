@@ -31,7 +31,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.UnitTests
         public void WaitingTostartApprentice(int i)
         {
             //Arrange 
-            var apprentice = new ApprenticeCourseDataHelper(new UI.FrameworkHelpers.RandomDataGenerator(), ApprenticeStatus.WaitingToStart);
+            var randomcourseHelper = new RandomCourseHelper(new UI.FrameworkHelpers.RandomDataGenerator(), false);
+            var apprentice = new ApprenticeCourseDataHelper(randomcourseHelper, ApprenticeStatus.WaitingToStart);
 
             //Assert
             Assert.IsTrue(apprentice.CourseStartDate > DateTime.Now.Date && (apprentice.CourseStartDate.Month != DateTime.Now.Month ? true : apprentice.CourseStartDate.Year != DateTime.Now.Year) && apprentice.CourseStartDate < new DateTime(2020, 7, 31));
@@ -62,7 +63,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.UnitTests
         public void LiveApprentice(int x)
         {
             //Arrange 
-            var apprentice = new ApprenticeCourseDataHelper(new UI.FrameworkHelpers.RandomDataGenerator(), ApprenticeStatus.Live);
+            var randomcourseHelper = new RandomCourseHelper(new UI.FrameworkHelpers.RandomDataGenerator(), false);
+            var apprentice = new ApprenticeCourseDataHelper(randomcourseHelper, ApprenticeStatus.Live);
 
             //Assert
             Assert.IsTrue(apprentice.CourseStartDate < DateTime.Now.Date);
