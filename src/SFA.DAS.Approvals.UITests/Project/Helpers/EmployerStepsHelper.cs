@@ -2,6 +2,7 @@
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
 using SFA.DAS.Registration.UITests.Project;
 using SFA.DAS.Registration.UITests.Project.Helpers;
+using SFA.DAS.Registration.UITests.Project.Tests.Pages;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using System;
@@ -28,6 +29,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers
             _loginHelper = new EmployerPortalLoginHelper(_context);
         }
 
+        internal ManageYourApprenticesPage GoToManageYourApprenticesPage()
+        {
+            return GoToEmployerApprenticesHomePage()
+                    .ClickManageYourApprenticesLink();
+        }
+
         internal ApprenticesHomePage GoToEmployerApprenticesHomePage()
         {
             _tabHelper.OpenInNewtab(_projectConfig.RE_BaseUrl);
@@ -37,7 +44,20 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers
                 _loginHelper.ReLogin();
             }
 
+            if (_loginHelper.IsYourAccountPageDisplayed())
+            {
+                new YourAccountsPage(_context)
+                    .GoToHomePage(_objectContext.GetOrganisationName());
+            }
+
             return new ApprenticesHomePage(_context, true);
+        }
+
+        internal void ApproveChangesAndSubmit()
+        {
+            var apprenticeDetails = ViewCurrentApprenticeDetails();
+
+            ApproveChangesAndSubmit(apprenticeDetails);
         }
 
         internal EditedApprenticeDetailsPage ApproveChangesAndSubmit(ApprenticeDetailsPage apprenticeDetailsPage)
@@ -49,8 +69,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers
 
         internal ApprenticeDetailsPage ViewCurrentApprenticeDetails()
         {
-            return GoToEmployerApprenticesHomePage()
-                    .ClickManageYourApprenticesLink()
+            return GoToManageYourApprenticesPage()
                     .SelectViewCurrentApprenticeDetails();
         }
 
@@ -134,18 +153,18 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers
             var addTrainingProviderDetailsPage = apprenticesHomePage
                 .AddAnApprentice()
                 .StartNowToAddTrainingProvider();
-            return ConfirmProviderDetails(addTrainingProviderDetailsPage);
+            return ConfirmProviderDetailsAreCorrect(addTrainingProviderDetailsPage);
         }
 
         private StartAddingApprenticesPage ConfirmProviderDetailsAreCorrect(ApprenticesHomePage apprenticesHomePage, bool isTransfersFunds)
         {
-            return isTransfersFunds == false ? ConfirmProviderDetailsAreCorrect(apprenticesHomePage) : ConfirmProviderDetails(apprenticesHomePage
+            return isTransfersFunds == false ? ConfirmProviderDetailsAreCorrect(apprenticesHomePage) : ConfirmProviderDetailsAreCorrect(apprenticesHomePage
                    .AddAnApprentice()
                    .StartNowToCreateApprenticeViaTransfersFunds()
                    .SelectYesIWantToUseTransferFunds());
         }
 
-        private StartAddingApprenticesPage ConfirmProviderDetails(AddTrainingProviderDetailsPage addTrainingProviderDetailsPage)
+        private StartAddingApprenticesPage ConfirmProviderDetailsAreCorrect(AddTrainingProviderDetailsPage addTrainingProviderDetailsPage)
         {
             return addTrainingProviderDetailsPage
                     .SubmitValidUkprn()

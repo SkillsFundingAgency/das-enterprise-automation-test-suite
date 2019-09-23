@@ -121,33 +121,42 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
             _homePage = _loginHelper.Login(_context.GetUser<TransfersUser>(), true);
 
-            //_employerStepsHelper.EmployerCreateCohortAndSendsToProvider(true);
+            _employerStepsHelper.EmployerCreateCohortAndSendsToProvider(true);
         }
 
         [When(@"Provider adds an apprentices approves the cohort")]
         public void WhenProviderAddsAnApprenticesApprovesTheCohort()
         {
-            _objectContext.SetCohortReference("MJD87D");
             _providerStepsHelper.AddApprenticeAndSendToEmployerForApproval(1);
         }
 
         [When(@"Receiver approves the cohort")]
         public void WhenReceiverApprovesTheCohort()
         {
-            //throw new PendingStepException();
+            _objectContext.UpdateOrganisationName(_receiver);
+
+            _employerStepsHelper.ApproveChangesAndSubmit();
         }
 
         [When(@"Sender approves the cohort")]
         public void WhenSenderApprovesTheCohort()
         {
-            //throw new PendingStepException();
+            _objectContext.UpdateOrganisationName(_sender);
+
+            _employerStepsHelper.ApproveChangesAndSubmit();
         }
 
         [Then(@"Verify the new live apprenticeship record is created")]
         public void ThenVerifyTheNewLiveApprenticeshipRecordIsCreated()
         {
-            //throw new PendingStepException();
-        }
+            _objectContext.UpdateOrganisationName(_receiver);
 
+            var manageYourApprenticePage = _employerStepsHelper.GoToManageYourApprenticesPage();
+
+            if (!(manageYourApprenticePage.CheckIfApprenticeExists()))
+            {
+                throw new Exception("Unable to find just approved Apprentices");
+            }
+        }
     }
 }
