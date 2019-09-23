@@ -19,9 +19,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [When(@"the Employer approves (\d) cohort and sends to provider")]
         public void TheEmployerApprovesCohortAndSendsToProvider(int numberOfApprentices)
         {
-            var employerReviewYourCohortPage = _employerStepsHelper.EmployerAddApprentice(numberOfApprentices);
-
-            var cohortReference = _employerStepsHelper.EmployerApproveAndSendToProvider(employerReviewYourCohortPage);
+            var cohortReference = _employerStepsHelper.EmployerApproveAndSendToProvider(numberOfApprentices);
 
             _employerStepsHelper.SetCohortReference(cohortReference);
         }

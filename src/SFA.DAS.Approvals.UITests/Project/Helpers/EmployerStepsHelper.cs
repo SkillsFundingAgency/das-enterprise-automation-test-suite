@@ -105,12 +105,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers
             return AddApprentices(employerReviewYourCohortPage, numberOfApprentices);
         }
 
-        internal string EmployerApproveAndSendToProvider(ReviewYourCohortPage employerReviewYourCohortPage)
+        internal string EmployerApproveAndSendToProvider(int numberOfApprentices)
         {
-            return employerReviewYourCohortPage.SaveAndContinue()
-                .SubmitApproveAndSendToTrainingProvider()
-                .SendInstructionsToProviderForAnApprovedCohort()
-                .CohortReference();
+            var ReviewYourCohortPage = EmployerAddApprentice(numberOfApprentices);
+
+            return EmployerApproveAndSendToProvider(ReviewYourCohortPage);
         }
 
         internal void SetCohortReference(string cohortReference)
@@ -205,6 +204,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers
             return ConfirmProviderDetailsAreCorrect(new ApprenticesHomePage(_context, true), isTransfersFunds)
                .EmployerSendsToProviderToAddApprentices()
                .SendInstructionsToProviderForEmptyCohort();
+        }
+
+        private string EmployerApproveAndSendToProvider(ReviewYourCohortPage employerReviewYourCohortPage)
+        {
+            return employerReviewYourCohortPage.SaveAndContinue()
+                .SubmitApproveAndSendToTrainingProvider()
+                .SendInstructionsToProviderForAnApprovedCohort()
+                .CohortReference();
         }
     }
 }

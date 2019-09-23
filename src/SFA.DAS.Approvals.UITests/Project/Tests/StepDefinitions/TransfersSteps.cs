@@ -117,9 +117,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Given(@"Receiver sends a cohort to the provider for review and approval")]
         public void GivenReceiverSendsACohortToTheProviderForReviewAndApproval()
         {
-            _objectContext.UpdateOrganisationName(_receiver);
-
-            _homePage = _loginHelper.Login(_context.GetUser<TransfersUser>(), true);
+            LoginAsReceiver();
 
             _employerStepsHelper.EmployerCreateCohortAndSendsToProvider(true);
         }
@@ -127,13 +125,17 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Given(@"Receiver sends an approved cohort to the provider")]
         public void GivenReceiverSendsAnApprovedCohortToTheProvider()
         {
-            throw new PendingStepException();
+            LoginAsReceiver();
+
+            var cohortReference = _employerStepsHelper.EmployerApproveAndSendToProvider(1);
+
+            _employerStepsHelper.SetCohortReference(cohortReference);
         }
 
         [When(@"Provider approves the cohort")]
         public void WhenProviderApprovesTheCohort()
         {
-            throw new PendingStepException();
+            _providerStepsHelper.Approve();
         }
 
         [When(@"Provider adds an apprentices approves the cohort")]
@@ -169,6 +171,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             {
                 throw new Exception("Unable to find just approved Apprentices");
             }
+        }
+
+        private void LoginAsReceiver()
+        {
+            _objectContext.UpdateOrganisationName(_receiver);
+
+            _homePage = _loginHelper.Login(_context.GetUser<TransfersUser>(), true);
         }
     }
 }
