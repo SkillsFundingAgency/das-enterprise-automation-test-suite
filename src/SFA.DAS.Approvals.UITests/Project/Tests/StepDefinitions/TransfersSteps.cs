@@ -121,13 +121,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
             _homePage = _loginHelper.Login(_context.GetUser<TransfersUser>(), true);
 
-            _employerStepsHelper.EmployerCreateCohortAndSendsToProvider();
+            //_employerStepsHelper.EmployerCreateCohortAndSendsToProvider(true);
         }
 
-        [When(@"Provider approves the cohort")]
-        public void WhenProviderApprovesTheCohort()
+        [When(@"Provider adds an apprentices approves the cohort")]
+        public void WhenProviderAddsAnApprenticesApprovesTheCohort()
         {
-            _providerStepsHelper.ApproveCohortDetails();
+            _objectContext.SetCohortReference("MJD87D");
+            _providerStepsHelper.AddApprenticeAndSendToEmployerForApproval(1);
         }
 
         [When(@"Receiver approves the cohort")]

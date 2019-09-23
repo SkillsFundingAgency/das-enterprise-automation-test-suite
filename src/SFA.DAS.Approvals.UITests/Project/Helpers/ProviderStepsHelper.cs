@@ -37,6 +37,15 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers
             return new ProviderHomePage(_context);
         }
 
+        public void AddApprenticeAndSendToEmployerForApproval(int numberOfApprentices)
+        {
+            var providerReviewYourCohortPage = AddApprentice(numberOfApprentices);
+
+            providerReviewYourCohortPage.SelectSaveAndContinue()
+                .SubmitApproveAndSendToEmployerForApproval()
+                .SendInstructionsToEmployerForAnApprovedCohort();
+        }
+
         public ProviderReviewYourCohortPage AddApprentice(int numberOfApprentices)
         {
             var providerReviewYourCohortPage = CurrentCohortDetails();
@@ -48,13 +57,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers
             }
 
             return providerReviewYourCohortPage;
-        }
-
-        public void ApproveCohortDetails()
-        {
-            CurrentCohortDetails()
-                .SelectContinueToApproval()
-                .SubmitApprove();
         }
 
         public ProviderReviewYourCohortPage CurrentCohortDetails()

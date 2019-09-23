@@ -5,9 +5,9 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
-    public class AddAnApprenitcePage : BasePage
+    public class DoYouWantToUseTransferFundsPage : BasePage
     {
-        protected override string PageTitle => "Add an apprentice";
+        protected override string PageTitle => "Do you want to use transfer funds to pay for this training?";
 
         #region Helpers and Context
         private readonly PageInteractionHelper _pageInteractionHelper;
@@ -16,9 +16,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private readonly ApprovalsConfig _config;
         #endregion
 
-        private By StartNowButton => By.CssSelector(".button-start");
 
-        public AddAnApprenitcePage(ScenarioContext context) : base(context)
+        public DoYouWantToUseTransferFundsPage(ScenarioContext context) : base(context)
         {
             _context = context;
             _config = context.GetApprovalsConfig<ApprovalsConfig>();
@@ -27,22 +26,16 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             VerifyPage();
         }
 
-        public AddTrainingProviderDetailsPage StartNowToAddTrainingProvider()
+        private By CohortFundingOptions => By.CssSelector(".selection-button-radio");
+        private By ContinueButton => By.Id("submit-transfer-connection");
+
+        internal AddTrainingProviderDetailsPage SelectYesIWantToUseTransferFunds()
         {
-            StartNow();
+            _formCompletionHelper.SelectRadioOptionByText(CohortFundingOptions, "Yes, I will use transfer funds from ESFA LTD");
+            _formCompletionHelper.ClickElement(ContinueButton);
             return new AddTrainingProviderDetailsPage(_context);
         }
 
-        public DoYouWantToUseTransferFundsPage StartNowToCreateApprenticeViaTransfersFunds()
-        {
-            StartNow();
-            return new DoYouWantToUseTransferFundsPage(_context);
-        }
-
-        private void StartNow()
-        {
-            _formCompletionHelper.ClickElement(StartNowButton, true);
-        }
     }
 }
 

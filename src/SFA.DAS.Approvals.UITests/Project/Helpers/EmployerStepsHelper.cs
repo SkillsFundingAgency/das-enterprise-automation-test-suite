@@ -72,9 +72,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers
             return employerReviewYourCohortPage;
         }
 
-        internal void EmployerCreateCohortAndSendsToProvider()
+        internal void EmployerCreateCohortAndSendsToProvider(bool isTransfersFunds)
         {
-            var cohortSentYourTrainingProviderPage = EmployerCreateCohort();
+            var cohortSentYourTrainingProviderPage = EmployerCreateCohort(isTransfersFunds);
             var cohortReference = cohortSentYourTrainingProviderPage.CohortReference();
             SetCohortReference(cohortReference);
         }
@@ -131,11 +131,25 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers
 
         private StartAddingApprenticesPage ConfirmProviderDetailsAreCorrect(ApprenticesHomePage apprenticesHomePage)
         {
-            return apprenticesHomePage
+            var addTrainingProviderDetailsPage = apprenticesHomePage
                 .AddAnApprentice()
-                .StartNow()
-                .SubmitValidUkprn()
-                .ConfirmProviderDetailsAreCorrect();
+                .StartNowToAddTrainingProvider();
+            return ConfirmProviderDetails(addTrainingProviderDetailsPage);
+        }
+
+        private StartAddingApprenticesPage ConfirmProviderDetailsAreCorrect(ApprenticesHomePage apprenticesHomePage, bool isTransfersFunds)
+        {
+            return isTransfersFunds == false ? ConfirmProviderDetailsAreCorrect(apprenticesHomePage) : ConfirmProviderDetails(apprenticesHomePage
+                   .AddAnApprentice()
+                   .StartNowToCreateApprenticeViaTransfersFunds()
+                   .SelectYesIWantToUseTransferFunds());
+        }
+
+        private StartAddingApprenticesPage ConfirmProviderDetails(AddTrainingProviderDetailsPage addTrainingProviderDetailsPage)
+        {
+            return addTrainingProviderDetailsPage
+                    .SubmitValidUkprn()
+                    .ConfirmProviderDetailsAreCorrect();
         }
 
         private ReviewYourCohortPage AddApprentices(ReviewYourCohortPage employerReviewYourCohortPage, int numberOfApprentices)
@@ -166,9 +180,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers
 
             return (noOfApprentice, apprenticeTotalCost);
         }
-        private CohortSentYourTrainingProviderPage EmployerCreateCohort()
+
+        private CohortSentYourTrainingProviderPage EmployerCreateCohort(bool isTransfersFunds)
         {
-            return ConfirmProviderDetailsAreCorrect(new ApprenticesHomePage(_context, true))
+            return ConfirmProviderDetailsAreCorrect(new ApprenticesHomePage(_context, true), isTransfersFunds)
                .EmployerSendsToProviderToAddApprentices()
                .SendInstructionsToProviderForEmptyCohort();
         }

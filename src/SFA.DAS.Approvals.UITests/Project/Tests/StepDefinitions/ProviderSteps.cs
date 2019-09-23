@@ -20,7 +20,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Then(@"the provider approves the cohorts")]
         public void ThenTheProviderApprovesTheCohorts()
         {
-            _providerStepsHelper.ApproveCohortDetails();
+            _providerStepsHelper.CurrentCohortDetails()
+                .SelectContinueToApproval()
+                .SubmitApprove();
         }
 
 
@@ -38,11 +40,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [When(@"the provider adds (.*) apprentices approves them and sends to employer to approve")]
         public void WhenTheProviderAddsApprenticesApprovesThemAndSendsToEmployerToApprove(int numberOfApprentices)
         {
-            var providerReviewYourCohortPage = _providerStepsHelper.AddApprentice(numberOfApprentices);
-
-            providerReviewYourCohortPage.SelectSaveAndContinue()
-                .SubmitApproveAndSendToEmployerForApproval()
-                .SendInstructionsToEmployerForAnApprovedCohort();
+            _providerStepsHelper.AddApprenticeAndSendToEmployerForApproval(numberOfApprentices);
         }
 
 

@@ -41,7 +41,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [When(@"the Employer create a cohort and send to provider to add apprentices")]
         public void WhenTheEmployerCreateACohortAndSendToProviderToAddApprentices()
         {
-            _employerStepsHelper.EmployerCreateCohortAndSendsToProvider();
+            _employerStepsHelper.EmployerCreateCohortAndSendsToProvider(false);
         }
 
         [When(@"the Employer adds (.*) cohort and sends to provider")]
