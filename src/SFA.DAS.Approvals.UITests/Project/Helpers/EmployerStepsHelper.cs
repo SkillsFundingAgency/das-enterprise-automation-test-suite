@@ -72,11 +72,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers
             return employerReviewYourCohortPage;
         }
 
-        internal CohortSentYourTrainingProviderPage EmployerCreateCohort()
+        internal void EmployerCreateCohortAndSendsToProvider()
         {
-            return ConfirmProviderDetailsAreCorrect(new ApprenticesHomePage(_context, true))
-               .EmployerSendsToProviderToAddApprentices()
-               .SendInstructionsToProviderForEmptyCohort();
+            var cohortSentYourTrainingProviderPage = EmployerCreateCohort();
+            var cohortReference = cohortSentYourTrainingProviderPage.CohortReference();
+            SetCohortReference(cohortReference);
         }
 
         internal ReviewYourCohortPage EmployerAddApprentice(int numberOfApprentices)
@@ -165,6 +165,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers
             string noOfApprentice = SetNoOfApprentice(employerReviewYourCohortPage, count);
 
             return (noOfApprentice, apprenticeTotalCost);
+        }
+        private CohortSentYourTrainingProviderPage EmployerCreateCohort()
+        {
+            return ConfirmProviderDetailsAreCorrect(new ApprenticesHomePage(_context, true))
+               .EmployerSendsToProviderToAddApprentices()
+               .SendInstructionsToProviderForEmptyCohort();
         }
     }
 }

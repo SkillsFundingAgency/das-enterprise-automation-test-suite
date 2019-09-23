@@ -9,7 +9,7 @@ using SFA.DAS.MongoDb.DataGenerator.Helpers;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
-
+using SFA.DAS.Approvals.UITests.Project.Helpers;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 {
@@ -21,6 +21,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         private readonly ObjectContext _objectContext;
         private readonly DataHelper _dataHelper;
         private readonly ApprovalsStepsHelper _approvalsStepsHelper;
+        private readonly EmployerStepsHelper _employerStepsHelper;
+        private readonly ProviderStepsHelper _providerStepsHelper;
         private HomePage _homePage;
         private string _senderAccountId;
         private string _recieverAccountId;
@@ -33,6 +35,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _sender = context.GetProjectConfig<ProjectConfig>().RE_OrganisationName;
             _receiver = context.GetTransfersConfig<TransfersConfig>().AP_ReceiverOrganisationName;
             _loginHelper = new MultipleAccountsLoginHelper(context);
+            _employerStepsHelper = new EmployerStepsHelper(context);
+            _providerStepsHelper = new ProviderStepsHelper(context);
             _objectContext = context.Get<ObjectContext>();
             _dataHelper = _objectContext.GetDataHelper();
             _approvalsStepsHelper = new ApprovalsStepsHelper(context);
@@ -110,10 +114,39 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                     throw new Exception($"We don't have an approved transfers connection between {_sender}({_senderAccountId}) and {_receiver}({_recieverAccountId})");
         }
 
-        [Given(@"the Employer login using existing transfers account")]
-        public void GivenTheEmployerLoginUsingExistingTransfersAccount()
+        [Given(@"Receiver sends a cohort to the provider for review and approval")]
+        public void GivenReceiverSendsACohortToTheProviderForReviewAndApproval()
         {
+            _objectContext.SetOrganisationName(_receiver);
+
             _homePage = _loginHelper.Login(_context.GetUser<TransfersUser>(), true);
+
+            _employerStepsHelper.EmployerCreateCohortAndSendsToProvider();
         }
+
+        [When(@"Provider approves the cohort")]
+        public void WhenProviderApprovesTheCohort()
+        {
+            _providerStepsHelper.ApproveCohortDetails();
+        }
+
+        [When(@"Receiver approves the cohort")]
+        public void WhenReceiverApprovesTheCohort()
+        {
+            throw new PendingStepException();
+        }
+
+        [When(@"Sender approves the cohort")]
+        public void WhenSenderApprovesTheCohort()
+        {
+            throw new PendingStepException();
+        }
+
+        [Then(@"Verify the new live apprenticeship record is created")]
+        public void ThenVerifyTheNewLiveApprenticeshipRecordIsCreated()
+        {
+            throw new PendingStepException();
+        }
+
     }
 }

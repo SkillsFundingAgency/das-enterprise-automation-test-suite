@@ -20,9 +20,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Then(@"the provider approves the cohorts")]
         public void ThenTheProviderApprovesTheCohorts()
         {
-            _providerStepsHelper.CurrentCohortDetails()
-                .SelectContinueToApproval()
-                .SubmitApprove();
+            _providerStepsHelper.ApproveCohortDetails();
         }
 
 
