@@ -16,6 +16,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private readonly PageInteractionHelper _pageInteractionHelper;
         private readonly FormCompletionHelper _formCompletionHelper;
         private readonly ScenarioContext _context;
+        private readonly TransfersConfig _transfersConfig;
         private readonly ObjectContext _objectContext;
         #endregion
 
@@ -27,6 +28,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         {
             _context = context;
             _objectContext = context.Get<ObjectContext>();
+            _transfersConfig = context.GetTransfersConfig<TransfersConfig>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             VerifyPage();
@@ -73,6 +75,29 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
                 }
             }
             return false;
+        }
+
+        internal TransferRequestDetailsPage OpenPendingCohortRequestAsFundingEmployer()
+        {
+            var receivingEmployer = _transfersConfig.AP_ReceiverOrganisationName;
+            var cohortTotalCost = _objectContext.GetApprenticeTotalCost();
+
+            IList<IWebElement> transferRequestRows = _pageInteractionHelper.FindElements(YourTransferConnectionsRows);
+            IList<IWebElement> transferRequestDetailsLinks = _pageInteractionHelper.FindElements(DetailsLink);
+            int i = 0;
+
+            foreach (IWebElement transferRequestRow in transferRequestRows)
+            {
+                if ((transferRequestRow.Text.ToUpper().Contains(receivingEmployer.ToUpper()))
+                    && ((transferRequestRow.Text.Contains("Pending"))
+                    && (transferRequestRow.Text.Contains(cohortTotalCost))))
+                {
+                    _formCompletionHelper.ClickElement(transferRequestDetailsLinks[i]);
+                    return new TransferRequestDetailsPage(_context);
+                }
+                i++;
+            }
+            throw new Exception("Unable to find Pending Cohort Request from " + receivingEmployer + " with total cost of the cohort: £" + cohortTotalCost);
         }
     }
 }

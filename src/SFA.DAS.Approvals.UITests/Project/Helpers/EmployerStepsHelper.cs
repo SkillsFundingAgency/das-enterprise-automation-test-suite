@@ -29,6 +29,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers
             _loginHelper = new EmployerPortalLoginHelper(_context);
         }
 
+        internal ReviewYourCohortPage OpenRejectedCohort()
+        {
+            return GoToEmployerApprenticesHomePage()
+              .ClickYourCohortsLink()
+              .GoToRejectedTransferRequests()
+              .OpenRejectedCohort();
+        }
+
         internal ManageYourApprenticesPage GoToManageYourApprenticesPage()
         {
             return GoToEmployerApprenticesHomePage()
@@ -53,11 +61,22 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers
             return new ApprenticesHomePage(_context, true);
         }
 
-        internal void ApproveChangesAndSubmit()
+        internal void RejectsTransfersRequest()
         {
-            var apprenticeDetails = ViewCurrentApprenticeDetails();
+            GoToEmployerApprenticesHomePage();
+            new FinancePage(_context, true)
+                .OpenTransfers()
+                .OpenPendingCohortRequestAsFundingEmployer()
+                .RejectTransferRequest();
+        }
 
-            ApproveChangesAndSubmit(apprenticeDetails);
+        internal void ApproveTransfersRequest()
+        {
+            GoToEmployerApprenticesHomePage();
+            new FinancePage(_context, true)
+                .OpenTransfers()
+                .OpenPendingCohortRequestAsFundingEmployer()
+                .ApproveTransferRequest();
         }
 
         internal EditedApprenticeDetailsPage ApproveChangesAndSubmit(ApprenticeDetailsPage apprenticeDetailsPage)

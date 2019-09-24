@@ -144,12 +144,36 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _providerStepsHelper.AddApprenticeAndSendToEmployerForApproval(1);
         }
 
+        [When(@"Receiver edits and sends an approved cohort to the provider")]
+        public void WhenReceiverEditsAndSendsAnApprovedCohortToTheProvider()
+        {
+            _objectContext.UpdateOrganisationName(_receiver);
+
+            _employerStepsHelper.OpenRejectedCohort()
+                .SelectEditApprentice()
+                .EditApprenticePreApprovalAndSubmit()
+                .SelectContinueToApproval()
+                .SubmitApproveAndSendToTrainingProvider()
+                .SendInstructionsToProviderForAnApprovedCohort();
+        }
+
+        [When(@"Receiver sends a cohort to the provider for review and approval")]
+        public void WhenReceiverSendsACohortToTheProviderForReviewAndApproval()
+        {
+            _objectContext.UpdateOrganisationName(_receiver);
+
+            _employerStepsHelper.OpenRejectedCohort()
+                .SelectContinueToApproval()
+                .SubmitSendToTrainingProviderForReview()
+                .SendInstructionsToProviderForCohortToBeReviewed();
+        }
+
         [When(@"Receiver approves the cohort")]
         public void WhenReceiverApprovesTheCohort()
         {
             _objectContext.UpdateOrganisationName(_receiver);
 
-            _employerStepsHelper.ApproveChangesAndSubmit();
+            _employerStepsHelper.ApproveTransfersRequest();
         }
 
         [When(@"Sender approves the cohort")]
@@ -157,8 +181,17 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             _objectContext.UpdateOrganisationName(_sender);
 
-            _employerStepsHelper.ApproveChangesAndSubmit();
+            _employerStepsHelper.ApproveTransfersRequest();
         }
+
+        [When(@"Sender rejects the cohort")]
+        public void WhenSenderRejectsTheCohort()
+        {
+            _objectContext.UpdateOrganisationName(_sender);
+
+            _employerStepsHelper.RejectsTransfersRequest();
+        }
+
 
         [Then(@"Verify a new live apprenticeship record is created")]
         public void ThenVerifyANewLiveApprenticeshipRecordIsCreated()

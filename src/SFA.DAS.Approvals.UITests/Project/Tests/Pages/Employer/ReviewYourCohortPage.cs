@@ -33,6 +33,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             VerifyPage();
         }
 
+        public EditTransfersApprenticeDetailsPage SelectEditApprentice(int apprenticeNumber = 0)
+        {
+            var editApprenticeLinks = _pageInteractionHelper.FindElements(EditApprenticeLink);
+            _formCompletionHelper.ClickElement(editApprenticeLinks[apprenticeNumber]);
+            return new EditTransfersApprenticeDetailsPage(_context);
+        }
+
         public AddApprenticeDetailsPage SelectAddAnApprentice()
         {
             ClickElement(AddAnApprenticeButton);
