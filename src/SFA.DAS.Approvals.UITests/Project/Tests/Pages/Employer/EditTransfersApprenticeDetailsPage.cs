@@ -14,9 +14,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private readonly EditedApprenticeDataHelper _dataHelper;
         #endregion
 
-
-        protected override By FirstNameField => By.Id("FirstName");
-        protected override By LastNameField => By.Id("LastName");
         protected override By DateOfBirthDay => By.Id("BirthDay");
         protected override By DateOfBirthMonth => By.Id("BirthMonth");
         protected override By DateOfBirthYear => By.Id("BirthYear");

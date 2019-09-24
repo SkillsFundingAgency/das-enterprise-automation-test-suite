@@ -189,7 +189,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             _objectContext.UpdateOrganisationName(_sender);
 
-            _employerStepsHelper.RejectsTransfersRequest();
+            _employerStepsHelper.RejectTransfersRequest();
         }
 
 

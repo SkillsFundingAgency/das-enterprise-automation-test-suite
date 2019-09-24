@@ -22,8 +22,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
         protected virtual By StartDateYear => By.Id("StartDate_Year");
         protected virtual By EndDateMonth => By.Id("EndDate_Month");
         protected virtual By EndDateYear => By.Id("EndDate_Year");
-        protected virtual By TrainingCost => By.Id("Cost");
-        protected virtual By TrainingCourseContainer => By.CssSelector(".select2-container");
 
         protected abstract By Reference { get; }
 

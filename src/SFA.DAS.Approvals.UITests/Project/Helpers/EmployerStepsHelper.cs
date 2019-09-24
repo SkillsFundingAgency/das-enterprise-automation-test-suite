@@ -61,7 +61,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers
             return new ApprenticesHomePage(_context, true);
         }
 
-        internal void RejectsTransfersRequest()
+        internal void RejectTransfersRequest()
         {
             GoToEmployerApprenticesHomePage();
             new FinancePage(_context, true)
