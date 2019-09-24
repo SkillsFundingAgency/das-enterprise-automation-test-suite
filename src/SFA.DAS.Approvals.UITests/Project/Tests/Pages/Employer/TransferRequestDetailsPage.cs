@@ -28,16 +28,18 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             VerifyPage();
         }
 
-        public void ApproveTransferRequest()
+        public TransferRequestApprovedPage ApproveTransferRequest()
         {
             _formCompletionHelper.SelectRadioOptionByForAttribute(ApprovalRadioButton, "ApprovalConfirmed-True");
             _formCompletionHelper.ClickElement(ContinueButton);
+            return new TransferRequestApprovedPage(_context);
         }
 
-        public void RejectTransferRequest()
+        public TransferRequestRejectedPage RejectTransferRequest()
         {
             _formCompletionHelper.SelectRadioOptionByForAttribute(ApprovalRadioButton, "ApprovalConfirmed-False");
             _formCompletionHelper.ClickElement(ContinueButton);
+            return new TransferRequestRejectedPage(_context);
         }
     }
 }
