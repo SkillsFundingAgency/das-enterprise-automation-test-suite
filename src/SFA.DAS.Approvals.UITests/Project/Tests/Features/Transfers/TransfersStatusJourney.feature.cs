@@ -73,21 +73,17 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.Transfers
         [NUnit.Framework.DescriptionAttribute("Verify transfer status when agreement is not signed")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("transfersscenarios")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
-        [NUnit.Framework.CategoryAttribute("addtransferslevyfunds")]
         public virtual void VerifyTransferStatusWhenAgreementIsNotSigned()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify transfer status when agreement is not signed", null, new string[] {
                         "regression",
-                        "transfersscenarios",
-                        "addpayedetails",
-                        "addtransferslevyfunds"});
-#line 10
+                        "transfersscenarios"});
+#line 8
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 11
+#line 9
 testRunner.Given("We have a Sender with sufficient levy funds without signing an agreement", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 12
+#line 10
 testRunner.Then("the sender transfer status is disabled", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -97,21 +93,17 @@ testRunner.Then("the sender transfer status is disabled", ((string)(null)), ((Te
         [NUnit.Framework.DescriptionAttribute("Verify transfer status when agreement is signed")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("transfersscenarios")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
-        [NUnit.Framework.CategoryAttribute("addtransferslevyfunds")]
         public virtual void VerifyTransferStatusWhenAgreementIsSigned()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify transfer status when agreement is signed", null, new string[] {
                         "regression",
-                        "transfersscenarios",
-                        "addpayedetails",
-                        "addtransferslevyfunds"});
-#line 19
+                        "transfersscenarios"});
+#line 15
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 20
+#line 16
 testRunner.Given("We have a Sender with sufficient levy funds", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 21
+#line 17
 testRunner.Then("the sender transfer status is enabled", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();

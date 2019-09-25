@@ -110,7 +110,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Then(@"the sender transfer status is (disabled|enabled)")]
         public void CheckTheSenderTransferStatus(string expectedtransferStatus)
         {
-            var actualtransferStatus = _homePage.GoToAboutYourAgreementPage().GetTransfersStatus();
+            var actualtransferStatus = _homePage.GoToYourOrganisationsAndAgreementsPage().GetTransfersStatus();
 
             Assert.IsTrue(actualtransferStatus.ContainsCompareCaseInsensitive(expectedtransferStatus), $"Expected {expectedtransferStatus}, Actual {actualtransferStatus}");
         }
