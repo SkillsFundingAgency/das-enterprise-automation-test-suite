@@ -13,6 +13,8 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         private By AgreementButton => By.CssSelector("input.button");
 
+        private By TransferStatus => By.ClassName("transfers-status");
+
         protected override string Linktext => "Your organisations and agreements";
 
         public AboutYourAgreementPage(ScenarioContext context, bool navigate = false) : base(context, navigate)
@@ -24,6 +26,11 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         {
             Agreement();
             return new SignAgreementPage(_context);
+        }
+
+        public string GetTransfersStatus()
+        {
+            return pageInteractionHelper.GetText(TransferStatus);
         }
 
         private AboutYourAgreementPage Agreement()

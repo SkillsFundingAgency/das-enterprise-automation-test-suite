@@ -10,6 +10,8 @@ using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
+using NUnit.Framework;
+using SFA.DAS.UI.FrameworkHelpers;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 {
@@ -42,6 +44,21 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _approvalsStepsHelper = new ApprovalsStepsHelper(context);
             _senderAccountId = null;
             _recieverAccountId = null;
+        }
+
+        [Given(@"We have a Sender with sufficient levy funds")]
+        public void GivenWeHaveASenderWithSufficientLevyFunds()
+        {
+            LoginAsSender();
+        }
+
+
+        [Given(@"We have a Sender with sufficient levy funds without signing an agreement")]
+        public void GivenWeHaveASenderWithSufficientLevyFundsWithoutSigningAnAgreement()
+        {
+            _objectContext.UpdateOrganisationName(_sender);
+
+            _homePage = _loginHelper.Login(_context.GetUser<AgreementNotSignedTransfersUser>(), true);
         }
 
         [Given(@"We have a new Sender with sufficient levy funds and a new Receiver accounts setup")]
@@ -89,6 +106,15 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                 .AcceptTransferConnectionRequest()
                 .GoToHomePage();
         }
+
+        [Then(@"the sender transfer status is (disabled|enabled)")]
+        public void CheckTheSenderTransferStatus(string expectedtransferStatus)
+        {
+            var actualtransferStatus = _homePage.GoToAboutYourAgreementPage().GetTransfersStatus();
+
+            Assert.IsTrue(actualtransferStatus.ContainsCompareCaseInsensitive(expectedtransferStatus), $"Expected {expectedtransferStatus}, Actual {actualtransferStatus}");
+        }
+
 
         [Then(@"A transfer connection is established successfully")]
         public void ThenATransferConnectionIsEstablishedSuccessfully()
@@ -209,7 +235,17 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         private void LoginAsReceiver()
         {
             _objectContext.UpdateOrganisationName(_receiver);
+            Login();
+        }
 
+        private void LoginAsSender()
+        {
+            _objectContext.UpdateOrganisationName(_sender);
+            Login();
+        }
+
+        private void Login()
+        {
             _homePage = _loginHelper.Login(_context.GetUser<TransfersUser>(), true);
         }
     }
