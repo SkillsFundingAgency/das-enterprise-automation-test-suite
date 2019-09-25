@@ -1,23 +1,28 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
 using SFA.DAS.UI.Framework.TestSupport;
+using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.Approvals.UITests.Project.Helpers
+namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 {
     public class ProviderStepsHelper
-    {
+    {      
         private readonly ScenarioContext _context;
+        private readonly ObjectContext _objectContext;
         private readonly TabHelper _tabHelper;
         private readonly ApprovalsConfig _config;
         private readonly ProviderPortalLoginHelper _loginHelper;
+        private readonly ReviewYourCohortStepsHelper _reviewYourCohortStepsHelper;
 
         public ProviderStepsHelper(ScenarioContext context)
         {
             _context = context;
+            _objectContext = _context.Get<ObjectContext>();
             _tabHelper = new TabHelper(context.GetWebDriver());
             _config = context.GetApprovalsConfig<ApprovalsConfig>();
             _loginHelper = new ProviderPortalLoginHelper(_context);
+            _reviewYourCohortStepsHelper = new ReviewYourCohortStepsHelper(_context.Get<AssertHelper>());
         }
 
         public ProviderHomePage GoToProviderHomePage()
@@ -55,6 +60,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers
                 providerReviewYourCohortPage.SelectAddAnApprentice()
                         .SubmitValidApprenticeDetails();
             }
+
+            _objectContext.SetNoOfApprentices(_reviewYourCohortStepsHelper.NoOfApprentice(providerReviewYourCohortPage, numberOfApprentices));
+            _objectContext.SetApprenticeTotalCost(_reviewYourCohortStepsHelper.ApprenticeTotalCost(providerReviewYourCohortPage));
 
             return providerReviewYourCohortPage;
         }

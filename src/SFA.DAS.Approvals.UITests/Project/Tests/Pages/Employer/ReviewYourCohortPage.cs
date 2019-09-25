@@ -1,11 +1,12 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
-    public class ReviewYourCohortPage : BasePage
+    public class ReviewYourCohortPage : ReviewYourCohort
     {
         protected override string PageTitle => "Review your cohort";
 
@@ -21,8 +22,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private By ContinueToApprovalButton => By.ClassName("finishEditingBtn");
         private By EditApprenticeLink => By.LinkText("Edit");
         private By DeleteCohortbutton => By.ClassName("delete-button");
-        private By TotalCost => By.CssSelector(".dynamic-cost-display .bold-xlarge");
-        private By Apprentices => By.CssSelector(".all-apps .bold-xlarge");
+        protected override By TotalApprentices => By.CssSelector("table tbody tr");
 
         public ReviewYourCohortPage(ScenarioContext context) : base(context)
         {
@@ -50,16 +50,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         {
             ClickElement(ContinueToApprovalButton);
             return new ChooseAnOptionPage(_context);
-        }
-
-        public string ApprenticeTotalCost()
-        {
-            return _pageInteractionHelper.GetText(TotalCost);
-        }
-
-        public string NoOfApprentice()
-        {
-            return _pageInteractionHelper.GetText(Apprentices);
         }
 
         public ChooseAnOptionPage SaveAndContinue()

@@ -41,6 +41,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             _tableRowHelper.SelectRowFromTable("View", _dataHelper.ApprenticeFullName);
             return new ApprenticeDetailsPage(_context);
         }
+
         private ManageYourApprenticesPage SearchForApprentice(string apprenticeName)
         {
             _formCompletionHelper.EnterText(ApprenticeSearchField, apprenticeName);

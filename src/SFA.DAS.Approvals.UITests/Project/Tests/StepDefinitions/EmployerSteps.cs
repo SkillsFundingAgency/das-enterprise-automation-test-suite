@@ -1,4 +1,5 @@
 ﻿using SFA.DAS.Approvals.UITests.Project.Helpers;
+using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -58,10 +59,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Then(@"the Employer approves the cohorts")]
         public void ThenTheEmployerApprovesTheCohorts()
         {
-            var employerReviewYourCohortPage = _employerStepsHelper.EmployerReviewCohort();
-
-            employerReviewYourCohortPage.SelectContinueToApproval()
-                .SubmitApprove();
+            _employerStepsHelper.Approve();
         }
     }
 }

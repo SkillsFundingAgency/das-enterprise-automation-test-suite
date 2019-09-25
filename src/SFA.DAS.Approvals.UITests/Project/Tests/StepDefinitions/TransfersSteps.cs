@@ -9,7 +9,7 @@ using SFA.DAS.MongoDb.DataGenerator.Helpers;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
-using SFA.DAS.Approvals.UITests.Project.Helpers;
+using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 {
@@ -173,7 +173,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             _objectContext.UpdateOrganisationName(_receiver);
 
-            _employerStepsHelper.ApproveTransfersRequest();
+            _employerStepsHelper.Approve();
         }
 
         [When(@"Sender approves the cohort")]
