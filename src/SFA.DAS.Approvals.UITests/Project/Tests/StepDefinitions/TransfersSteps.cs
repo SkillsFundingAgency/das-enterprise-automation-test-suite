@@ -153,7 +153,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             LoginAsReceiver();
 
-            var cohortReference = _employerStepsHelper.EmployerApproveAndSendToProvider(1);
+            var cohortReference = _employerStepsHelper.EmployerApproveAndSendToProvider(1, true);
 
             _employerStepsHelper.SetCohortReference(cohortReference);
         }
@@ -163,6 +163,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             _providerStepsHelper.Approve();
         }
+
+        [When(@"Provider approves the cohort and sends to recevier for approval")]
+        public void WhenProviderApprovesTheCohortAndSendsToRecevierForApproval()
+        {
+            _providerStepsHelper.ApprovesTheCohortsAndSendsToEmployer();
+        }
+
 
         [When(@"Provider adds an apprentices approves the cohort")]
         public void WhenProviderAddsAnApprenticesApprovesTheCohort()

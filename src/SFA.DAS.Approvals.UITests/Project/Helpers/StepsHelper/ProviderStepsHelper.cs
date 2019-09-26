@@ -106,5 +106,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                 .SelectContinueToApproval()
                 .SubmitApprove();
         }
+
+        public void ApprovesTheCohortsAndSendsToEmployer()
+        {
+            EditApprentice()
+                .SelectContinueToApproval()
+                .SubmitApproveAndSendToEmployerForApproval()
+                .SendInstructionsToEmployerForAnApprovedCohort();
+        }
     }
 }

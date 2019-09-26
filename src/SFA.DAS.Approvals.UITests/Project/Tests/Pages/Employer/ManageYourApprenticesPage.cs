@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using System.Linq;
+using OpenQA.Selenium;
 using SFA.DAS.Approvals.UITests.Project.Helpers;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
@@ -54,7 +55,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             if (isEdited)
                 SearchForApprentice(_editedApprenticeDataHelper.ApprenticeEditedFullName);
             else
-                SearchForApprentice(_dataHelper.ApprenticeFullName);
+                SearchForApprentice(_dataHelper.Ulns.Single());
 
             return _pageInteractionHelper.IsElementDisplayed(ApprenticesTable);
         }

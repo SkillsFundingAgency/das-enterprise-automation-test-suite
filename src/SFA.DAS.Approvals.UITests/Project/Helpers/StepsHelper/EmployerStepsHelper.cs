@@ -118,16 +118,16 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             SetCohortReference(cohortReference);
         }
 
-        internal ReviewYourCohortPage EmployerAddApprentice(int numberOfApprentices)
+        internal ReviewYourCohortPage EmployerAddApprentice(int numberOfApprentices, bool isTransfersFunds)
         {
-          var employerReviewYourCohortPage = ConfirmProviderDetailsAreCorrect(new ApprenticesHomePage(_context, true))
+          var employerReviewYourCohortPage = ConfirmProviderDetailsAreCorrect(new ApprenticesHomePage(_context, true), isTransfersFunds)
                 .EmployerAddsApprentices();
             return AddApprentices(employerReviewYourCohortPage, numberOfApprentices);
         }
 
-        internal string EmployerApproveAndSendToProvider(int numberOfApprentices)
+        internal string EmployerApproveAndSendToProvider(int numberOfApprentices, bool isTransfersFunds = false)
         {
-            var ReviewYourCohortPage = EmployerAddApprentice(numberOfApprentices);
+            var ReviewYourCohortPage = EmployerAddApprentice(numberOfApprentices, isTransfersFunds);
 
             return EmployerApproveAndSendToProvider(ReviewYourCohortPage);
         }

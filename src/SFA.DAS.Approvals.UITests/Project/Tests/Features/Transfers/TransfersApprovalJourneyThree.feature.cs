@@ -100,7 +100,7 @@ testRunner.And("Sender rejects the cohort", ((string)(null)), ((TechTalk.SpecFlo
 #line 16
 testRunner.When("Receiver sends a cohort to the provider for review and approval", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 17
-testRunner.And("Provider approves the cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.And("Provider approves the cohort and sends to recevier for approval", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 18
 testRunner.And("Receiver approves the cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 19
