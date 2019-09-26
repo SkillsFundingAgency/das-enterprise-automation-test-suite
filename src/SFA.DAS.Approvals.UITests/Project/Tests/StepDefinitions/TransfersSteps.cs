@@ -19,7 +19,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
     public class TransfersSteps
     {
         private readonly ScenarioContext _context;
-        private readonly MultipleAccountsLoginHelper _loginHelper;
+        private readonly MultipleAccountsLoginHelper _multipleAccountsLoginHelper;
+        private readonly EmployerPortalLoginHelper _employerPortalLoginHelper;
         private readonly ObjectContext _objectContext;
         private readonly DataHelper _dataHelper;
         private readonly ApprovalsStepsHelper _approvalsStepsHelper;
@@ -36,7 +37,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _context = context;
             _sender = context.GetProjectConfig<ProjectConfig>().RE_OrganisationName;
             _receiver = context.GetTransfersConfig<TransfersConfig>().AP_ReceiverOrganisationName;
-            _loginHelper = new MultipleAccountsLoginHelper(context);
+            _multipleAccountsLoginHelper = new MultipleAccountsLoginHelper(context);
+            _employerPortalLoginHelper = new EmployerPortalLoginHelper(context);
             _employerStepsHelper = new EmployerStepsHelper(context);
             _providerStepsHelper = new ProviderStepsHelper(context);
             _objectContext = context.Get<ObjectContext>();
@@ -52,13 +54,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             LoginAsSender();
         }
 
-
         [Given(@"We have a Sender with sufficient levy funds without signing an agreement")]
         public void GivenWeHaveASenderWithSufficientLevyFundsWithoutSigningAnAgreement()
         {
             _objectContext.UpdateOrganisationName(_sender);
 
-            _homePage = _loginHelper.Login(_context.GetUser<AgreementNotSignedTransfersUser>(), true);
+            _homePage = _employerPortalLoginHelper.Login(_context.GetUser<AgreementNotSignedTransfersUser>(), true);
         }
 
         [Given(@"We have a new Sender with sufficient levy funds and a new Receiver accounts setup")]
@@ -114,7 +115,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
             Assert.IsTrue(actualtransferStatus.ContainsCompareCaseInsensitive(expectedtransferStatus), $"Expected {expectedtransferStatus}, Actual {actualtransferStatus}");
         }
-
 
         [Then(@"A transfer connection is established successfully")]
         public void ThenATransferConnectionIsEstablishedSuccessfully()
@@ -246,7 +246,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
         private void Login()
         {
-            _homePage = _loginHelper.Login(_context.GetUser<TransfersUser>(), true);
+            _homePage = _multipleAccountsLoginHelper.Login(_context.GetUser<TransfersUser>(), true);
         }
     }
 }
