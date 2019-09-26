@@ -11,7 +11,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
         protected readonly PageInteractionHelper pageInteractionHelper;
         #endregion
 
-        protected abstract By TotalApprentices { get; }
+        protected virtual By TotalApprentices => By.CssSelector("table tbody tr");
 
         protected virtual By TotalCost => By.CssSelector(".dynamic-cost-display .bold-xlarge");
 

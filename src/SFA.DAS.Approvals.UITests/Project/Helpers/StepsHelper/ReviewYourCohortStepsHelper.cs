@@ -12,13 +12,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             _assertHelper = assertHelper;
         }
 
-        internal string ApprenticeTotalCost(ReviewYourCohort employerReviewYourCohortPage)
+        internal string ApprenticeTotalCost(ReviewYourCohort reviewYourCohortPage)
         {
             string apprenticeTotalCost = string.Empty;
 
             _assertHelper.RetryOnNUnitException(() =>
             {
-                apprenticeTotalCost = employerReviewYourCohortPage.ApprenticeTotalCost();
+                apprenticeTotalCost = reviewYourCohortPage.ApprenticeTotalCost();
 
                 Assert.AreNotEqual("£0", apprenticeTotalCost, "Apprentice cost is not added");
             });
@@ -26,13 +26,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             return apprenticeTotalCost;
         }
 
-        internal int NoOfApprentice(ReviewYourCohort employerReviewYourCohortPage, int count)
+        internal int NoOfApprentice(ReviewYourCohort reviewYourCohortPage, int count)
         {
             int noOfApprentice = 0;
 
             _assertHelper.RetryOnNUnitException(() =>
             {
-                noOfApprentice = employerReviewYourCohortPage.TotalNoOfApprentices();
+                noOfApprentice = reviewYourCohortPage.TotalNoOfApprentices();
 
                 Assert.AreEqual(count, noOfApprentice, "Apprentice count is not added");
             });

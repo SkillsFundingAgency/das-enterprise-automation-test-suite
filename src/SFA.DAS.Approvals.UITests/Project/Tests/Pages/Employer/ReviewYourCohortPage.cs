@@ -22,7 +22,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private By ContinueToApprovalButton => By.ClassName("finishEditingBtn");
         private By EditApprenticeLink => By.LinkText("Edit");
         private By DeleteCohortbutton => By.ClassName("delete-button");
-        protected override By TotalApprentices => By.CssSelector("table tbody tr");
 
         public ReviewYourCohortPage(ScenarioContext context) : base(context)
         {

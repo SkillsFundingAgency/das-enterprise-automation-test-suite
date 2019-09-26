@@ -27,8 +27,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         protected override By TotalApprentices => By.CssSelector(".providerList tbody tr");
 
-        protected override By TotalCost => throw new System.NotImplementedException();
-
         public ProviderReviewYourCohortPage(ScenarioContext context) : base(context)
         {
             _context = context;
