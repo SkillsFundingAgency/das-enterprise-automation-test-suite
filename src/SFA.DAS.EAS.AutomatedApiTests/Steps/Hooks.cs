@@ -4,11 +4,8 @@ using SFA.DAS.EAS.AutomatedApiTests.Database;
 using SFA.DAS.EAS.AutomatedApiTests.Helpers;
 using SFA.DAS.EAS.AutomatedApiTests.Properties;
 using System;
-using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EAS.AutomatedApiTests.Steps
@@ -28,6 +25,8 @@ namespace SFA.DAS.EAS.AutomatedApiTests.Steps
             return $"EXECUTE #ClearSeededData '{accountHashedId}', '{legalEntityName}', '{userEmailAddress}'";
         }
 
+        private static Guid CreatedUserId;
+
         [BeforeTestRun]
         public static void BeforeFeature()
         {
@@ -46,6 +45,15 @@ namespace SFA.DAS.EAS.AutomatedApiTests.Steps
                 SeedData.SeedAccounts.ForEach(s => addSB.AppendLine(CreateAccount(s)));
                 var populatedSeedScript = string.Format(Resources.SeedScript, addSB.ToString());
                 server.ConnectionContext.ExecuteNonQuery(populatedSeedScript);
+
+                // Seed the user account:
+                CreatedUserId = UserHelper.CreateUser(
+                    ConfigurationHelper.Instance.Configuration["UsersDbConnectionString"],
+                    ConfigurationHelper.Instance.Configuration["ProfilesDbConnectionString"],
+                    ConfigurationHelper.Instance.Configuration["TestUserUsername"],
+                    ConfigurationHelper.Instance.Configuration["TestUserEmail"],
+                    ConfigurationHelper.Instance.Configuration["TestUserPassword"]
+                );
             }
         }
 
@@ -61,6 +69,9 @@ namespace SFA.DAS.EAS.AutomatedApiTests.Steps
 
                 var server = new Server(new ServerConnection(connection));
                 server.ConnectionContext.ExecuteNonQuery(clearScript);
+
+                // Teardown the user account:
+                UserHelper.TeardownUser(CreatedUserId, ConfigurationHelper.Instance.Configuration["UsersDbConnectionString"]);
             }
         }
     }
