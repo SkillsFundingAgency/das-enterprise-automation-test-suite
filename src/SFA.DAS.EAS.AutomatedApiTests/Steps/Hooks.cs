@@ -25,7 +25,7 @@ namespace SFA.DAS.EAS.AutomatedApiTests.Steps
             return $"EXECUTE #ClearSeededData '{accountHashedId}', '{legalEntityName}', '{userEmailAddress}'";
         }
 
-        private static Guid CreatedUserId;
+        private static Guid _createdUserId;
 
         [BeforeTestRun]
         public static void BeforeFeature()
@@ -46,8 +46,11 @@ namespace SFA.DAS.EAS.AutomatedApiTests.Steps
                 var populatedSeedScript = string.Format(Resources.SeedScript, addSB.ToString());
                 server.ConnectionContext.ExecuteNonQuery(populatedSeedScript);
 
+                // Clear existing test user accounts (by e-mail)
+                UserHelper.ClearExistingTestUsers(ConfigurationHelper.Instance.Configuration["TestUserEmail"], ConfigurationHelper.Instance.Configuration["UsersDbConnectionString"]);
+
                 // Seed the user account:
-                CreatedUserId = UserHelper.CreateUser(
+                _createdUserId = UserHelper.CreateUser(
                     ConfigurationHelper.Instance.Configuration["UsersDbConnectionString"],
                     ConfigurationHelper.Instance.Configuration["ProfilesDbConnectionString"],
                     ConfigurationHelper.Instance.Configuration["TestUserUsername"],
@@ -71,7 +74,7 @@ namespace SFA.DAS.EAS.AutomatedApiTests.Steps
                 server.ConnectionContext.ExecuteNonQuery(clearScript);
 
                 // Teardown the user account:
-                UserHelper.TeardownUser(CreatedUserId, ConfigurationHelper.Instance.Configuration["UsersDbConnectionString"]);
+                UserHelper.TeardownUser(_createdUserId, ConfigurationHelper.Instance.Configuration["UsersDbConnectionString"]);
             }
         }
     }

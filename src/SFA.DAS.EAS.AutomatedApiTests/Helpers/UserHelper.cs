@@ -31,11 +31,19 @@ namespace SFA.DAS.EAS.AutomatedApiTests.Helpers
             }
         }
 
+        public static void ClearExistingTestUsers(string email, string usersConnectionString)
+        {
+            using (var connection = new SqlConnection(usersConnectionString))
+            {
+                DeleteUsersByEmail(connection, email);
+            }
+        }
+
         private static PasswordProfile GetFirstProfile(string profilesConnectionString)
         {
             using (var connection = new SqlConnection(profilesConnectionString))
             {
-                var resultset = connection.Query<PasswordProfile>("SELECT TOP 1 FROM PasswordProfile");
+                var resultset = connection.Query<PasswordProfile>("SELECT TOP 1 * FROM PasswordProfile");
                 return resultset.SingleOrDefault();
             }
         }
@@ -85,6 +93,15 @@ namespace SFA.DAS.EAS.AutomatedApiTests.Helpers
         private static void DeleteUser(SqlConnection connection, Guid userId)
         {
             connection.Execute("DeleteUser @Id", new {Id = userId});
+        }
+
+        private static void DeleteUsersByEmail(SqlConnection connection, string email)
+        {
+            var ids = connection.Query<string>("SELECT Id FROM [User] WHERE Email = @Email", new { Email = email });
+            foreach (var id in ids)
+            {
+                connection.Execute("DeleteUser @Id", new { Id = id });
+            }
         }
     }
 }
