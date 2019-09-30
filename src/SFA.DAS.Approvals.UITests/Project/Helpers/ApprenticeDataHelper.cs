@@ -1,33 +1,31 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 
 namespace SFA.DAS.Approvals.UITests.Project.Helpers
 {
-    public class ApprenticeDataHelper : RandomCourseHelper
+    public class ApprenticeDataHelper 
     {
         private readonly RandomDataGenerator _randomDataGenerator;
+        private readonly CommitmentsDataHelper _commitmentsdataHelper;
         private readonly ObjectContext _objectContext;
-        
 
-        public ApprenticeDataHelper(ObjectContext objectContext, RandomDataGenerator randomDataGenerator)
+        public ApprenticeDataHelper(ObjectContext objectContext, RandomDataGenerator randomDataGenerator, CommitmentsDataHelper commitmentsdataHelper)
         {
             _objectContext = objectContext;
             _randomDataGenerator = randomDataGenerator;
-            RandomNumber = _randomDataGenerator.GenerateRandomNumberBetweenTwoValues(1, 10);
-            ApprenticeFirstname = _randomDataGenerator.GenerateRandomAlphabeticString(10);
-            ApprenticeLastname = _randomDataGenerator.GenerateRandomAlphabeticString(10);
+            _commitmentsdataHelper = commitmentsdataHelper;         
+            ApprenticeFirstname = $"F_{_randomDataGenerator.GenerateRandomAlphabeticString(10)}";
+            ApprenticeLastname = $"L_{_randomDataGenerator.GenerateRandomAlphabeticString(10)}";
             DateOfBirthDay = _randomDataGenerator.GenerateRandomDateOfMonth();
             DateOfBirthMonth = _randomDataGenerator.GenerateRandomMonth();
             DateOfBirthYear = _randomDataGenerator.GenerateRandomDobYear();
-            CourseStartDate = GenerateCourseStartDate();
-            CourseEndDate = GetCourseEndDate();
             TrainingPrice = "1" + _randomDataGenerator.GenerateRandomNumber(3);
             EmployerReference = _randomDataGenerator.GenerateRandomAlphanumericString(10);
             Ulns = new List<string>();
-            Course = RandomCourse();
+            _apprenticeid = 0;
         }
 
         public string ApprenticeFirstname { get; }      
@@ -42,19 +40,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers
 
         public int DateOfBirthYear { get; }
 
-        public int CourseDurationInMonths => 15;
-
-        public DateTime CourseStartDate { get; }
-
-        public DateTime CourseEndDate { get; }
-
         public string TrainingPrice { get; }
 
         public string EmployerReference { get; }
 
-        public string MessageToProvider => $"Apprentice Total Cost {_objectContext.GetApprenticeTotalCost()}, {_randomDataGenerator.GenerateRandomAlphanumericString(20)}";
+        public string MessageToProvider => $"Apprentice {ApprenticeFullName}, Total Cost {_objectContext.GetApprenticeTotalCost()}";
 
-        public string MessageToEmployer => $"Added ulns, {MessageToProvider}";
+        public string MessageToEmployer => $"Added {string.Join(",", Ulns)} ulns, {MessageToProvider}";
 
         public List<string> Ulns { get; private set; }
 
@@ -65,34 +57,18 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers
             return uln;
         }
 
-        public string Course { get; }
-
-        private DateTime GenerateCourseStartDate()
+        public int ApprenticeshipId()
         {
-            DateTime start = GetCurrentAcademicYearStartDate();
-            DateTime end = (RandomNumber % 2 == 0) ? GetNextAcademicYearEndDate() : DateTime.Now;
-            int range = (end - start).Days;
-            return start.AddDays(new Random().Next(range));
+            return _apprenticeid == 0 ? GetApprenticeshipIdForCurrentLearner() : _apprenticeid;
         }
 
-        private DateTime GetCurrentAcademicYearStartDate()
-        {
-            var now = DateTime.Now;
-            var cutoff = new DateTime(now.Year, 8, 1);
-            return now >= cutoff ? cutoff : new DateTime(now.Year - 1, 8, 1);
-        }
+        private int _apprenticeid;
 
-        private DateTime GetNextAcademicYearEndDate()
+        private int GetApprenticeshipIdForCurrentLearner()
         {
-            var date = GetCurrentAcademicYearStartDate();
-            if ((date.Year).Equals(DateTime.Now.Year))
-                return new DateTime(date.Year + 1, 7, 31);
-            else
-                return new DateTime(date.Year + 2, 7, 31);
-        }
-        private DateTime GetCourseEndDate()
-        {
-            return CourseStartDate.AddMonths(CourseDurationInMonths);
+            _apprenticeid = _commitmentsdataHelper.GetApprenticeshipId(Ulns.Single());
+            _objectContext.SetApprenticeId(_apprenticeid);
+            return _apprenticeid;
         }
     }
 }

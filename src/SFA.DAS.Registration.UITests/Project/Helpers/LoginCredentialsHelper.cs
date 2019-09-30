@@ -27,7 +27,7 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
             Reportusername(username);
         }
 
-        internal void SetIsLevy()
+        public void SetIsLevy()
         {
             IsLevy = true;
         }

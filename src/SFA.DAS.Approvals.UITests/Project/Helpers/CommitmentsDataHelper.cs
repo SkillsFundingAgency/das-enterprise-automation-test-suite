@@ -7,14 +7,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers
 {
     public class CommitmentsDataHelper
     {
-        private readonly ApprovalsConfig _approvalsConfig;
-
         private readonly SqlDatabaseConnectionHelper _sqlDatabase;
+
+        private readonly string _connectionString;
 
         public CommitmentsDataHelper(ApprovalsConfig approvalsConfig, SqlDatabaseConnectionHelper sqlDatabase)
         {
-            _approvalsConfig = approvalsConfig;
             _sqlDatabase = sqlDatabase;
+            _connectionString = approvalsConfig.AP_CommitmentsDbConnectionString;
         }
 
         public void SetHasHadDataLockSuccessTrue(String uln)
@@ -25,7 +25,20 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers
             }
             string sqlQueryToSetDataLockSuccessStatus = $"UPDATE Apprenticeship SET HasHadDataLockSuccess = 1 WHERE ULN = '{uln}'";
 
-            _sqlDatabase.ExecuteSqlCommand(_approvalsConfig.AP_CommitmentsDbConnectionString, sqlQueryToSetDataLockSuccessStatus);
+            _sqlDatabase.ExecuteSqlCommand(_connectionString, sqlQueryToSetDataLockSuccessStatus);
+        }
+
+        public int GetApprenticeshipId(String uln)
+        {
+            String sqlQueryToGetApprenticeshipId = $"SELECT Id from [dbo].[Apprenticeship] WHERE ULN = '{uln}' AND PaymentStatus >= 1";
+            List<object[]> responseData = _sqlDatabase.ReadDataFromDataBase(sqlQueryToGetApprenticeshipId, _connectionString);
+
+            if (responseData.Count == 0)
+                throw new Exception("Unable to get apprenticeshipId:"
+                + "\n ULN: " + uln
+                + "\n SQL Query: " + sqlQueryToGetApprenticeshipId);
+            else
+                return Convert.ToInt32(responseData[0][0]);
         }
     }
 }

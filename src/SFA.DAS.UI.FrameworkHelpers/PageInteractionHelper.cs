@@ -173,7 +173,9 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         public string GetUrl() => _webDriver.Url;
 
-        public IWebElement GetLink(By by, string linkText) => _webDriver.FindElements(by).ToList().First(x => x.GetAttribute("innerText") == linkText);
+        public IWebElement GetLink(By by, string linkText) => GetLink(by, (x) => x == linkText);
+
+        public IWebElement GetLinkContains(By by, string linkText) => GetLink(by, (x) => x.ContainsCompareCaseInsensitive(linkText));
 
         public string GetRowData(By tableIdentifier, string rowIdentifier)
         {
@@ -190,5 +192,6 @@ namespace SFA.DAS.UI.FrameworkHelpers
             return _webDriver.FindElements(locator).ToList();
         }
 
+        public IWebElement GetLink(By by, Func<string, bool> func) => _webDriver.FindElements(by).ToList().First(x => func(x.GetAttribute("innerText")));
     }
 }

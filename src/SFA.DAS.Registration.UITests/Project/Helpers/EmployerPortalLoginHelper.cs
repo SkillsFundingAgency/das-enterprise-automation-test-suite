@@ -7,14 +7,14 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
     public class EmployerPortalLoginHelper : IReLoginHelper
     {
         private readonly ScenarioContext _context;
-        private readonly ObjectContext _objectContext;
-        private readonly LoginCredentialsHelper _loginCredentialsHelper;
+        protected readonly ObjectContext objectContext;
+        protected readonly LoginCredentialsHelper loginCredentialsHelper;
 
         public EmployerPortalLoginHelper(ScenarioContext context)
         {
             _context = context;
-            _objectContext = context.Get<ObjectContext>();
-            _loginCredentialsHelper = context.Get<LoginCredentialsHelper>();
+            objectContext = context.Get<ObjectContext>();
+            loginCredentialsHelper = context.Get<LoginCredentialsHelper>();
         }
 
         public bool IsSignInPageDisplayed()
@@ -23,21 +23,34 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
                 .IsPageDisplayed();
         }
 
+        public bool IsYourAccountPageDisplayed()
+        {
+            return new CheckYourAccountPage(_context)
+                .IsPageDisplayed();
+        }
+
         public void ReLogin()
         {
-            var loginCredentials = _loginCredentialsHelper.GetLoginCredentials();
+            var loginCredentials = loginCredentialsHelper.GetLoginCredentials();
 
             new SignInPage(_context)
                 .Login(loginCredentials);
         }
 
-        public HomePage Login(LoginUser loginUser)
+        protected virtual HomePage Login(LoginUser loginUser)
         {
-            var homePage = new IndexPage(_context)
-                .SignIn()
-                .Login(loginUser);
+            return new IndexPage(_context)
+                    .SignIn()
+                    .Login(loginUser);
+        }
 
-            _objectContext.SetAccountId(homePage.AccountID());
+        public HomePage Login(LoginUser loginUser, bool isLevy)
+        {
+            loginCredentialsHelper.SetLoginCredentials(loginUser, isLevy);
+
+            var homePage = Login(loginUser);
+
+            objectContext.SetAccountId(homePage.AccountId());
 
             return homePage;
         }

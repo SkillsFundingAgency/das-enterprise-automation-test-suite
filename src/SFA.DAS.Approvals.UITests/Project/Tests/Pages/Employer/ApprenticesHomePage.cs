@@ -36,6 +36,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             formCompletionHelper.ClickElement(YourCohortsLink);
             return new YourCohortRequestsPage(_context);
         }
+
         public ManageYourApprenticesPage ClickManageYourApprenticesLink()
         {
             formCompletionHelper.ClickElement(ManageYourApprenticesLink);

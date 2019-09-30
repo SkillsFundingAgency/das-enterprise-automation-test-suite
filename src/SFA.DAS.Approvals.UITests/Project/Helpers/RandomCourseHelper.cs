@@ -1,16 +1,33 @@
-﻿namespace SFA.DAS.Approvals.UITests.Project.Helpers
+﻿using SFA.DAS.UI.FrameworkHelpers;
+using System.Collections.Generic;
+
+namespace SFA.DAS.Approvals.UITests.Project.Helpers
 {
-    public abstract class RandomCourseHelper
+    public class RandomCourseHelper
     {
-        public int RandomNumber { get; protected set; }
+        public int RandomNumber { get; private set; }
 
-        private string StandardCourseOption => "34";
+        public List<string> AvailableCourses;
 
-        private string FrameworkCourseOption => "454-3-1";
-
-        protected string RandomCourse()
+        public RandomCourseHelper(RandomDataGenerator randomDataGenerator, bool isTransfersFunds)
         {
-            return (RandomNumber % 2 == 0) ? StandardCourseOption : FrameworkCourseOption;
+            AvailableCourses = isTransfersFunds ? TransferFundsCourses() : AllCourses();
+            RandomNumber = randomDataGenerator.GenerateRandomNumberBetweenTwoValues(1, 10);
         }
+
+        private string AbleSeafarerStandardCourseOption => "34";
+
+        private string SoftwareTesterStandardCourseOption => "91";
+
+        private string FrameworkCourseOption => "455-3-1";
+
+        public string RandomCourse()
+        {
+            return (RandomNumber % 2 == 0) ? AvailableCourses[0] : AvailableCourses[1];
+        }
+
+        private List<string> AllCourses() => new List<string> { AbleSeafarerStandardCourseOption, FrameworkCourseOption };
+
+        private List<string> TransferFundsCourses() => new List<string> { AbleSeafarerStandardCourseOption, SoftwareTesterStandardCourseOption };
     }
 }

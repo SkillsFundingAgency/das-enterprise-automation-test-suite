@@ -1,26 +1,30 @@
 ﻿using SFA.DAS.UI.FrameworkHelpers;
 using OpenQA.Selenium;
-using SFA.DAS.UI.Framework.TestSupport;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 {
     public class HomePage : InterimBasePage
     {
-        protected override string PageTitle => config.RE_OrganisationName.ToUpper();
+        protected override string PageTitle => objectContext.GetOrganisationName();
 
         #region Helpers and Context
         private readonly RegexHelper _regexHelper;
+        private readonly ScenarioContext _context;
         #endregion
 
-        private By PublicAccountId => By.CssSelector(".heading-secondary");
+        private By PublicAccountIdLocator => By.CssSelector(".heading-secondary");
 
         private By SucessSummary => By.CssSelector(".success-summary");
 
-        
-        internal HomePage(ScenarioContext context, bool navigate = false) : base(context, navigate)
+        internal HomePage(ScenarioContext context, bool navigate) : base(context, navigate)
         {
+            _context = context;
             _regexHelper = context.Get<RegexHelper>();
+        }
+
+        public HomePage(ScenarioContext context) : this(context, false)
+        {
         }
 
         protected override string Linktext => "Home";
@@ -30,9 +34,14 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             pageInteractionHelper.VerifyText(SucessSummary, "All agreements signed");
         }
 
-        public string AccountID()
+        public string AccountId()
         {
             return _regexHelper.GetAccountId(pageInteractionHelper.GetUrl());
+        }
+
+        public string PublicAccountId()
+        {
+            return _regexHelper.GetPublicAccountId(pageInteractionHelper.GetText(PublicAccountIdLocator));
         }
     }
 }

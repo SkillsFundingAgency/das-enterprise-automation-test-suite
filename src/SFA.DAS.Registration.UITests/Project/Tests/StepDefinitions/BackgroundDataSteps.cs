@@ -1,4 +1,5 @@
 ﻿using SFA.DAS.MongoDb.DataGenerator;
+using SFA.DAS.MongoDb.DataGenerator.Helpers;
 using SFA.DAS.Registration.UITests.Project.Helpers;
 using System;
 using System.Collections.Generic;
@@ -20,16 +21,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             _loginCredentialsHelper = context.Get<LoginCredentialsHelper>();
             _levyDeclarationHelper = new MongoDbDataGenerator(_context);
         }
-
-        [Given(@"I have levy declarations")]
-        public void GivenIHaveLevyDeclarations()
-        {
-            var table = new Table("Year", "Month", "LevyDueYTD", "LevyAllowanceForFullYear", "SubmissionDate");
-            table.AddRow("19-20", "1", "62000", "80000", "2019-05-15");
-            _levyDeclarationHelper.AddLevyDeclarations(1.00m, new DateTime(2019, 01, 15), table);
-            _loginCredentialsHelper.SetIsLevy();
-        }
-
 
         [Given(@"the following levy declarations with english fraction of (.*) calculated at (.*)")]
         public void GivenTheFollowingLevyDeclarationsWithEnglishFractionOfCalculatedAt(decimal fraction, DateTime calculatedAt, Table table)

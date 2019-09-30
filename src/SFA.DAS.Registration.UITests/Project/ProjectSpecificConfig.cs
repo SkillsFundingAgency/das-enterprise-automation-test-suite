@@ -22,19 +22,15 @@
         public string Password { get; set; }
     }
 
-    public class LevyUser : LoginUser
-    {   
-    }
+    public class AgreementNotSignedTransfersUser : LoginUser { }
 
-    public class NonLevyUser : LoginUser
-    {
-    }
+    public class TransfersUser : LoginUser { }
 
-    public class EoiUser : LoginUser
-    {
-    }
+    public class LevyUser : LoginUser { }
 
-    public class LoggedInUser : LoginUser
-    {
-    }
+    public class NonLevyUser : LoginUser { }
+
+    public class EoiUser : LoginUser { }
+
+    public class LoggedInUser : LoginUser { }
 }

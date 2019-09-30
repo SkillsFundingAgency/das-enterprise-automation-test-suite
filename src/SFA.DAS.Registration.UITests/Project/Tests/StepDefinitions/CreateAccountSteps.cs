@@ -106,7 +106,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         {
             var accountid = new HomePage(_context)
                 .HomePage()
-                .AccountID();
+                .AccountId();
 
             _objectContext.SetAccountId(accountid);
         }
