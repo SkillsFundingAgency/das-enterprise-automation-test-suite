@@ -32,11 +32,21 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             VerifyPage();
         }
 
-        public EditTransfersApprenticeDetailsPage SelectEditApprentice(int apprenticeNumber = 0)
+        public int TotalNoOfEditableApprentice()
         {
-            var editApprenticeLinks = _pageInteractionHelper.FindElements(EditApprenticeLink);
-            _formCompletionHelper.ClickElement(editApprenticeLinks[apprenticeNumber]);
+            return _pageInteractionHelper.FindElements(By.LinkText("Edit")).Count;
+        }
+
+        public EditTransfersApprenticeDetailsPage SelectEditTransfersApprentice(int apprenticeNumber = 0)
+        {
+            Edit(apprenticeNumber);
             return new EditTransfersApprenticeDetailsPage(_context);
+        }
+
+        public EditApprenticePage SelectEditApprentice(int apprenticeNumber = 0)
+        {
+            Edit(apprenticeNumber);
+            return new EditApprenticePage(_context);
         }
 
         public AddApprenticeDetailsPage SelectAddAnApprentice()
@@ -60,6 +70,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private void ClickElement(By locator)
         {
             _formCompletionHelper.ClickElement(locator, true);
+        }
+
+        private void Edit(int apprenticeNumber)
+        {
+            var editApprenticeLinks = _pageInteractionHelper.FindElements(EditApprenticeLink);
+            _formCompletionHelper.ClickElement(editApprenticeLinks[apprenticeNumber]);
         }
     }
 }

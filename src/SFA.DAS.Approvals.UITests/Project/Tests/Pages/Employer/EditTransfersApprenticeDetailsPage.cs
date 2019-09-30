@@ -5,7 +5,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
-    public class EditTransfersApprenticeDetailsPage : EditAppretinceNameDobAndReference
+    public class EditTransfersApprenticeDetailsPage : EditApprenticePreApproval
     {
         protected override string PageTitle => "Edit apprentice details";
 
@@ -32,12 +32,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         {
             _context = context;
             _dataHelper = context.Get<EditedApprenticeDataHelper>();
-        }
-
-        public ReviewYourCohortPage EditApprenticePreApprovalAndSubmit()
-        {
-            EditApprenticeNameDobAndReference(_dataHelper.EmployerReference);
-            return new ReviewYourCohortPage(_context);
         }
     }
 }

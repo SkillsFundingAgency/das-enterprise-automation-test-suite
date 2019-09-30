@@ -1,5 +1,6 @@
 ﻿using SFA.DAS.Approvals.UITests.Project.Helpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
+using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -11,10 +12,39 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
     public class EmployerSteps
     {
         private readonly EmployerStepsHelper _employerStepsHelper;
-        
+        private YourCohortRequestsPage _yourCohortRequestsPage;
+        private ReviewYourCohortPage _reviewYourCohortPage;
+
         public EmployerSteps(ScenarioContext context)
         {
             _employerStepsHelper = new EmployerStepsHelper(context);
+        }
+
+        [Given(@"Employer adds (\d) apprentices to current cohort")]
+        public void EmployerAddsApprenticesToCurrentCohort(int numberOfApprentices)
+        {
+            _reviewYourCohortPage = _employerStepsHelper.EmployerAddApprentice(numberOfApprentices, false);
+
+            _yourCohortRequestsPage = _reviewYourCohortPage.SaveAndContinue()
+                .SubmitSaveButDontSendToProvider();
+        }
+
+        [Then(@"Employer is able to view saved cohort from Draft")]
+        public void ThenEmployerIsAbleToViewSavedCohortFromDraft()
+        {
+            _yourCohortRequestsPage.GoToDraftCohorts()
+                .SelectViewCurrentCohortDetails();
+        }
+
+        [Then(@"Employer is able to edit all apprentices before approval")]
+        public void ThenEmployerIsAbleToEditAllApprenticesBeforeApproval()
+        {
+            int totalApprentices = _reviewYourCohortPage.TotalNoOfEditableApprentice();
+            for (int i = 0; i < totalApprentices; i++)
+            {
+                _reviewYourCohortPage = _reviewYourCohortPage.SelectEditApprentice(i)
+                    .EditApprenticePreApprovalAndSubmit();
+            }
         }
 
         [When(@"the Employer approves (\d) cohort and sends to provider")]
@@ -43,7 +73,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _employerStepsHelper.EmployerCreateCohortAndSendsToProvider(false);
         }
 
-        [When(@"the Employer adds (.*) cohort and sends to provider")]
+        [When(@"the Employer adds (\d) cohort and sends to provider")]
         public void WhenTheEmployerAddsCohortAndSendsToProvider(int numberOfApprentices)
         {
             var employerReviewYourCohortPage = _employerStepsHelper.EmployerAddApprentice(numberOfApprentices, false);
