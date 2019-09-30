@@ -43,5 +43,17 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             _formCompletionHelper.ClickElement(EditApprenticeDetailsLink);
             return new ProviderEditApprenticePage(_context);
         }
+
+        public ProviderDetailsOfILRDataMismatchPage ClickViewIlrMismatchDetails()
+        {
+            _formCompletionHelper.ClickElement(ViewIlrMismatchDetailsLink);
+            return new ProviderDetailsOfILRDataMismatchPage(_context);
+        }
+
+        public void ConfirmChangeRequestPendingMessage()
+        {
+            string confirmationMessgage = _pageInteractionHelper.GetText(ChangeRequestMessage);
+            _pageInteractionHelper.VerifyText(confirmationMessgage, "Change request");
+        }
     }
 }

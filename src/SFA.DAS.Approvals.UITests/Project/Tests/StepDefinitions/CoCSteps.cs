@@ -1,6 +1,7 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
 using SFA.DAS.Approvals.UITests.Project.Helpers;
+using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
 using SFA.DAS.Registration.UITests.Project;
 using SFA.DAS.Registration.UITests.Project.Helpers;
 using System;
@@ -15,7 +16,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
     {
         private readonly ScenarioContext _context;
 
-        private readonly ExistingAccountsStepsHelper _stepsHelper;
+        private readonly EmployerPortalLoginHelper _loginHelper;
 
         private readonly EmployerStepsHelper _employerStepsHelper;
 
@@ -30,7 +31,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _context = context;
             _commitmentsDataHelper = context.Get<CommitmentsDataHelper>();
             _dataHelper = context.Get<ApprenticeDataHelper>();
-            _stepsHelper = new ExistingAccountsStepsHelper(context);
+            _loginHelper = new EmployerPortalLoginHelper(context);
             _employerStepsHelper = new EmployerStepsHelper(context);
             _providerStepsHelper = new ProviderStepsHelper(context);
         }
@@ -38,17 +39,19 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Given(@"the Employer has approved apprentice")]
         public void GivenTheEmployerHasApprovedApprentice()
         {
-            _stepsHelper.Login(_context.GetUser<LevyUser>(), true);
+            _loginHelper.Login(_context.GetUser<LevyUser>(), true);
 
-            var employerReviewYourCohortPage = _employerStepsHelper.EmployerAddApprentice(1);
-
-            var cohortReference = _employerStepsHelper.EmployerApproveAndSendToProvider(employerReviewYourCohortPage);
+            var cohortReference = _employerStepsHelper.EmployerApproveAndSendToProvider(1);
 
             _employerStepsHelper.SetCohortReference(cohortReference);
 
-            var providerReviewYourCohortPage = _providerStepsHelper.EditApprentice();
+            _providerStepsHelper.Approve();
+        }
 
-            _providerStepsHelper.Approve(providerReviewYourCohortPage);
+        [Given(@"the datalock has been successful")]
+        public void GivenTheDatalockHasBeenSuccessful()
+        {
+            SetHasHadDataLockSuccessTrue();
         }
 
         [When(@"the Employer edits Dob and Reference and confirm the changes after ILR match")]
@@ -110,15 +113,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             ProviderEditsCostAndCourse();
         }
 
-
         [Then(@"the Employer can review and approve the changes")]
         public void ThenTheEmployerCanReviewAndApproveTheChanges()
         {
-            _employerStepsHelper.GoToEmployerApprenticesHomePage()
-                .ClickManageYourApprenticesLink()
-                .SelectViewCurrentApprenticeDetails()
-                .ClickReviewChanges()
-                .SelectApproveChangesAndSubmit();
+            var apprenticeDetails = _employerStepsHelper.ViewCurrentApprenticeDetails();
+            _employerStepsHelper.ApproveChangesAndSubmit(apprenticeDetails);
         }
 
         [Then(@"Employer cannot make changes to cost and course after ILR match")]

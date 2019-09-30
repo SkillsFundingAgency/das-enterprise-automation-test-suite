@@ -2,6 +2,7 @@
 using SFA.DAS.Approvals.UITests.Project.Helpers;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
+using System;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
@@ -14,6 +15,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private readonly ScenarioContext _context;
         private readonly ApprenticeDataHelper _dataHelper;
         private readonly FormCompletionHelper _formCompletionHelper;
+        private readonly PageInteractionHelper _pageInteractionHelper;
         #endregion
 
         private By ViewChangesLink => By.LinkText("View changes");
@@ -27,6 +29,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             _context = context;
             _dataHelper = context.Get<ApprenticeDataHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
+            _pageInteractionHelper = context.Get<PageInteractionHelper>();
             VerifyPage();
         }
 
@@ -40,6 +43,20 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         {
             _formCompletionHelper.ClickElement(ReviewChangesLink);
             return new ReviewChangesPage(_context);
+        }
+
+        public ChangeApprenticeStatusPage ClickEditStatusLink()
+        {
+            _formCompletionHelper.ClickElement(EditApprenticeStatusLink);
+            return new ChangeApprenticeStatusPage(_context);
+        }
+
+        public bool VerifyIfChangeRequestWasApproved()
+        {
+            if (_pageInteractionHelper.IsElementDisplayed(ViewChangesLink))
+                throw new Exception("Change request was not approved");
+            else
+                return true;
         }
     }
 }

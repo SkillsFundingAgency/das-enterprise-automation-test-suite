@@ -12,6 +12,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         #region Helpers and Context
         private readonly ScenarioContext _context;
         private readonly EditedApprenticeDataHelper _dataHelper;
+        private readonly EditedApprenticeCourseDataHelper _coursedataHelper;
         #endregion
         protected By CourseCode => By.Id("CourseCode");
 
@@ -22,6 +23,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         {
             _context = context;
             _dataHelper = context.Get<EditedApprenticeDataHelper>();
+            _coursedataHelper = context.Get<EditedApprenticeCourseDataHelper>();
             VerifyPage();
         }
 
@@ -39,7 +41,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         protected override void SelectCourse()
         {
-            formCompletionHelper.SelectFromDropDownByValue(CourseCode, _dataHelper.SetCurrentApprenticeEditedCourse());
+            formCompletionHelper.SelectFromDropDownByValue(CourseCode, _coursedataHelper.EditedCourse);
         }
 
         private ProviderConfirmChangesPage ProviderConfirmChangesPage()

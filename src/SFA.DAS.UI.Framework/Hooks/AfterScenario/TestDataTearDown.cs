@@ -3,9 +3,11 @@ using SFA.DAS.UI.Framework.TestSupport;
 using System;
 using System.Linq;
 using System.Collections.Generic;
-using System.IO;
 using TechTalk.SpecFlow;
 using NUnit.Framework;
+using System.IO;
+using CsvHelper.Configuration;
+using CsvHelper.Configuration.Attributes;
 
 namespace SFA.DAS.UI.Framework.Hooks.AfterScenario
 {
@@ -41,9 +43,12 @@ namespace SFA.DAS.UI.Framework.Hooks.AfterScenario
             testDatas.ToList().ForEach(x => records.Add(new TestData { Key = x.Key, Value = testDatas[x.Key].ToString() }));
 
             using (var writer = new StreamWriter(filePath))
-            using (var csv = new CsvWriter(writer))
             {
-                csv.WriteRecords(records);
+                using (var csv = new CsvWriter(writer))
+                {
+                    csv.WriteRecords(records);
+                    writer?.Flush();
+                }
             }
             TestContext.AddTestAttachment(filePath, fileName);
         }
@@ -51,7 +56,10 @@ namespace SFA.DAS.UI.Framework.Hooks.AfterScenario
 
     public class TestData
     {
+        [Name("Key")]
         public string Key { get; set; }
+
+        [Name("Value")]
         public string Value { get; set; }
     }
 }

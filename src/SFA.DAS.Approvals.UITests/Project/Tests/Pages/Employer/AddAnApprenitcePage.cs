@@ -16,7 +16,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private readonly ApprovalsConfig _config;
         #endregion
 
-        private By StartNowButton = By.CssSelector(".button-start");
+        private By StartNowButton => By.CssSelector(".button-start");
 
         public AddAnApprenitcePage(ScenarioContext context) : base(context)
         {
@@ -27,10 +27,21 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             VerifyPage();
         }
 
-        public AddTrainingProviderDetailsPage StartNow()
+        public AddTrainingProviderDetailsPage StartNowToAddTrainingProvider()
+        {
+            StartNow();
+            return new AddTrainingProviderDetailsPage(_context);
+        }
+
+        public DoYouWantToUseTransferFundsPage StartNowToCreateApprenticeViaTransfersFunds()
+        {
+            StartNow();
+            return new DoYouWantToUseTransferFundsPage(_context);
+        }
+
+        private void StartNow()
         {
             _formCompletionHelper.ClickElement(StartNowButton, true);
-            return new AddTrainingProviderDetailsPage(_context);
         }
     }
 }

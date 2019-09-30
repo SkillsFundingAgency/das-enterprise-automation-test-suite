@@ -18,6 +18,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         private readonly FormCompletionHelper _formCompletionHelper;
         private readonly ScenarioContext _context;
         private readonly ProjectConfig _config;
+        private readonly ObjectContext _objectContext;
         #endregion
 
         private By OrganisationLink() => By.CssSelector("button.link-button");
@@ -25,6 +26,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         public SelectYourOrganisationPage(ScenarioContext context) : base(context)
         {
             _context = context;
+            _objectContext = context.Get<ObjectContext>();
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
             _config = context.GetProjectConfig<ProjectConfig>();
@@ -32,7 +34,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         }
         public CheckYourDetailsPage SelectYourOrganisation()
         {
-            _formCompletionHelper.ClickElement(SearchLinkUrl(_config.RE_OrganisationName.ToUpper()));
+            _formCompletionHelper.ClickElement(SearchLinkUrl(_objectContext.GetOrganisationName()));
             return new CheckYourDetailsPage(_context);
         }
 
