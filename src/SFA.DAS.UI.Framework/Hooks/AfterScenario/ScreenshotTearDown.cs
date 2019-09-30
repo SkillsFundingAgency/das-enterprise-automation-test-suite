@@ -9,19 +9,21 @@ namespace SFA.DAS.UI.Framework.Hooks.AfterScenario
     {
         private readonly ScenarioContext _context;
         private readonly ObjectContext _objectContext;
-
+        private readonly string _directory;
+        private readonly string _scenarioTitle;
 
         public ScreenshotTeardown(ScenarioContext context)
         {
             _context = context;
             _objectContext = context.Get<ObjectContext>();
+            _directory = _objectContext.GetDirectory();
+            _scenarioTitle = _context.ScenarioInfo.Title;
         }
 
         [AfterScenario(Order = 11)]
 
         public void TakeScreenshotOnFailure()
         {
-            var scenarioTitle = _context.ScenarioInfo.Title;
             var options = _context.Get<FrameworkConfig>();
             var browser = _objectContext.GetBrowser();
             if (_context.TestError != null)
@@ -30,11 +32,11 @@ namespace SFA.DAS.UI.Framework.Hooks.AfterScenario
                 {
                     case bool _ when browser.IsCloudExecution():
                         RemoteWebDriver remoteWebDriver = (RemoteWebDriver)_context.GetWebDriver();
-                        BrowserStackTeardown.MarkTestAsFailed(remoteWebDriver, options.BrowserStackSetting, scenarioTitle, _context.TestError.Message);
+                        BrowserStackTeardown.MarkTestAsFailed(remoteWebDriver, options.BrowserStackSetting, _directory, _scenarioTitle, _context.TestError.Message);
                         break;
                     default:
                         var webDriver = _context.GetWebDriver();
-                        ScreenshotHelper.TakeScreenShot(webDriver, scenarioTitle, true);
+                        ScreenshotHelper.TakeScreenShot(webDriver, _directory, _scenarioTitle, true);
                         break;
                 }
             }

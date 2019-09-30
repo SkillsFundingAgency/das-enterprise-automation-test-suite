@@ -72,23 +72,17 @@ namespace SFA.DAS.TestProject.UITests.Project.Tests.Features
         
         public virtual void UserNavigatesToMoDHomePageFromGOV_UKPage(string searchLink, string[] exampleTags)
         {
-            string[] @__tags = new string[] {
-                    "regression"};
-            if ((exampleTags != null))
-            {
-                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
-            }
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User navigates to MoD home page from GOV.UK page", null, @__tags);
-#line 9
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User navigates to MoD home page from GOV.UK page", null, exampleTags);
+#line 8
  this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 10
+#line 9
   testRunner.Given("I navigate to GOV.UK home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 11
+#line 10
   testRunner.When(string.Format("I search for {0}", searchLink), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 12
+#line 11
   testRunner.And("I click the same link", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 13
+#line 12
   testRunner.Then("I should be on DFE home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -96,30 +90,27 @@ namespace SFA.DAS.TestProject.UITests.Project.Tests.Features
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("User navigates to MoD home page from GOV.UK page: Ministry of Defence")]
-        [NUnit.Framework.CategoryAttribute("regression")]
         public virtual void UserNavigatesToMoDHomePageFromGOV_UKPage_MinistryOfDefence()
         {
-#line 9
+#line 8
  this.UserNavigatesToMoDHomePageFromGOV_UKPage("Ministry of Defence", ((string[])(null)));
 #line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("User navigates to MoD home page from GOV.UK page: Department for Education")]
-        [NUnit.Framework.CategoryAttribute("regression")]
         public virtual void UserNavigatesToMoDHomePageFromGOV_UKPage_DepartmentForEducation()
         {
-#line 9
+#line 8
  this.UserNavigatesToMoDHomePageFromGOV_UKPage("Department for Education", ((string[])(null)));
 #line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("User navigates to MoD home page from GOV.UK page: Income Tax")]
-        [NUnit.Framework.CategoryAttribute("regression")]
         public virtual void UserNavigatesToMoDHomePageFromGOV_UKPage_IncomeTax()
         {
-#line 9
+#line 8
  this.UserNavigatesToMoDHomePageFromGOV_UKPage("Income Tax", ((string[])(null)));
 #line hidden
         }

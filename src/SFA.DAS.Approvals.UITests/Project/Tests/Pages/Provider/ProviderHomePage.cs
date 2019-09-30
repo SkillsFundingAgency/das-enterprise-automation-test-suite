@@ -13,19 +13,27 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private readonly PageInteractionHelper _pageInteractionHelper;
         private readonly FormCompletionHelper _formCompletionHelper;
         private readonly ScenarioContext _context;
-        private readonly ApprovalsDataHelper _dataHelper;
+        private readonly ApprenticeDataHelper _dataHelper;
         #endregion
 
         protected override By PageHeader => By.CssSelector("#content .grey-text");
 
         protected override string Linktext => "Home";
 
+        private By ProviderManageYourApprenticesLink => By.LinkText("Manage your apprentices");
+
         public ProviderHomePage(ScenarioContext context, bool navigate = false) : base(context, navigate)
         {
             _context = context;
-            _dataHelper = context.Get<ApprovalsDataHelper>();
+            _dataHelper = context.Get<ApprenticeDataHelper>();
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
+        }
+
+        public ProviderManageYourApprenticesPage GoToProviderManageYourApprenticePage()
+        {
+            _formCompletionHelper.ClickElement(ProviderManageYourApprenticesLink);
+            return new ProviderManageYourApprenticesPage(_context);
         }
     }
 }

@@ -17,7 +17,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private readonly FormCompletionHelper _formCompletionHelper;
         private readonly ScenarioContext _context;
         private readonly ApprovalsConfig _config;
-        private readonly ApprovalsDataHelper _dataHelper;
+        private readonly ApprenticeDataHelper _dataHelper;
+        private readonly ApprenticeCourseDataHelper _coursedataHelper;
         #endregion
 
         private By FirstNameField => By.Id("FirstName");
@@ -38,7 +39,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         {
             _context = context;
             _config = context.GetApprovalsConfig<ApprovalsConfig>();
-            _dataHelper = context.Get<ApprovalsDataHelper>();
+            _dataHelper = context.Get<ApprenticeDataHelper>();
+            _coursedataHelper = context.Get<ApprenticeCourseDataHelper>();
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
             VerifyPage();
@@ -51,12 +53,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             _formCompletionHelper.EnterText(DateOfBirthDay, _dataHelper.DateOfBirthDay);
             _formCompletionHelper.EnterText(DateOfBirthMonth, _dataHelper.DateOfBirthMonth);
             _formCompletionHelper.EnterText(DateOfBirthYear, _dataHelper.DateOfBirthYear);
-            _formCompletionHelper.SelectFromDropDownByValue(TrainingCourseContainer, _dataHelper.RandomCourse());
+            _formCompletionHelper.SelectFromDropDownByValue(TrainingCourseContainer, _coursedataHelper.Course);
             _formCompletionHelper.ClickElement(StartDateMonth);
-            _formCompletionHelper.EnterText(StartDateMonth, _dataHelper.CourseStartDate.Month);
-            _formCompletionHelper.EnterText(StartDateYear, _dataHelper.CourseStartDate.Year);
-            _formCompletionHelper.EnterText(EndDateMonth, _dataHelper.CourseEndDate.Month);
-            _formCompletionHelper.EnterText(EndDateYear, _dataHelper.CourseEndDate.Year);
+            _formCompletionHelper.EnterText(StartDateMonth, _coursedataHelper.CourseStartDate.Month);
+            _formCompletionHelper.EnterText(StartDateYear, _coursedataHelper.CourseStartDate.Year);
+            _formCompletionHelper.EnterText(EndDateMonth, _coursedataHelper.CourseEndDate.Month);
+            _formCompletionHelper.EnterText(EndDateYear, _coursedataHelper.CourseEndDate.Year);
             _formCompletionHelper.EnterText(TrainingCost, _dataHelper.TrainingPrice);
             _formCompletionHelper.EnterText(EmployerReference, _dataHelper.EmployerReference);
             _formCompletionHelper.ClickElement(SaveAndContinueButton);

@@ -9,6 +9,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
         #region Constants
         private const string ProjectConfigKey = "projectconfig";
         private const string ApprovalsProjectConfigKey = "approvalsprojectconfig";
+        private const string TransfersProjectConfigKey = "transfersprojectconfig";
         private const string MongoDbConfigKey = "mongodbconfig";
         private const string WebDriverKey = "webdriver";
         #endregion
@@ -23,6 +24,11 @@ namespace SFA.DAS.UI.Framework.TestSupport
             Set(context, value, ApprovalsProjectConfigKey);
         }
 
+        public static void SetTransfersConfig<T>(this ScenarioContext context, T value)
+        {
+            Set(context, value, TransfersProjectConfigKey);
+        }
+
         public static T GetProjectConfig<T>(this ScenarioContext context)
         {
             return Get<T>(context, ProjectConfigKey);
@@ -31,6 +37,11 @@ namespace SFA.DAS.UI.Framework.TestSupport
         public static T GetApprovalsConfig<T>(this ScenarioContext context)
         {
             return Get<T>(context, ApprovalsProjectConfigKey);
+        }
+
+        public static T GetTransfersConfig<T>(this ScenarioContext context)
+        {
+            return Get<T>(context, TransfersProjectConfigKey);
         }
 
         public static void SetMongoDbConfig(this ScenarioContext context, MongoDbConfig value)

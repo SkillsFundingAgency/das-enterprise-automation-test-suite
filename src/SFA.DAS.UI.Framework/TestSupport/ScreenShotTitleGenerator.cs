@@ -11,7 +11,7 @@
 
         public string GetNextCount()
         {
-            return (++count).ToString();
+            return (++count).ToString("D2");
         }
     }
 }

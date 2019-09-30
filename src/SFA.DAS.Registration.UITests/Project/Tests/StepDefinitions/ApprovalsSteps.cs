@@ -1,8 +1,4 @@
-﻿using SFA.DAS.Registration.UITests.Project.Tests.Pages;
-using SFA.DAS.UI.Framework.TestSupport;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using SFA.DAS.Registration.UITests.Project.Helpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
@@ -11,30 +7,18 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
     public class ApprovalsSteps
     {
         private readonly ScenarioContext _context;
-        private readonly ObjectContext _objectContext;
+        private readonly ApprovalsStepsHelper _stepsHelper;
 
         public ApprovalsSteps(ScenarioContext context)
         {
             _context = context;
-            _objectContext = _context.Get<ObjectContext>();
+           _stepsHelper = new ApprovalsStepsHelper(context);
         }
 
         [Given(@"the User creates Employer account and sign an agreement")]
-        public void GivenTheUserCreatesEmployerAccountAndSignAnAgreement()
+        public void TheUserCreatesEmployerAccountAndSignAnAgreement()
         {
-             new IndexPage(_context)
-                .CreateAccount()
-                .Register()
-                .ContinueToGetApprenticeshipFunding()
-                .AddPaye()
-                .SelectGovermentGateway()
-                .ContinueToGGSignIn()
-                .SignInTo()
-                .SearchForAnOrganisation()
-                .SelectYourOrganisation()
-                .ContinueToAboutYourAgreementPage()
-                .ContinueWithAgreement()
-                .SignAgreement();
+            _stepsHelper.CreatesAccountAndSignAnAgreement();
         }
     }
 }
