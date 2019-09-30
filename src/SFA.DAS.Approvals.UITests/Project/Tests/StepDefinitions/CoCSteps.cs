@@ -1,6 +1,7 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
 using SFA.DAS.Approvals.UITests.Project.Helpers;
+using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
 using SFA.DAS.Registration.UITests.Project;
 using SFA.DAS.Registration.UITests.Project.Helpers;
 using System;
@@ -40,15 +41,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             _loginHelper.Login(_context.GetUser<LevyUser>(), true);
 
-            var employerReviewYourCohortPage = _employerStepsHelper.EmployerAddApprentice(1);
-
-            var cohortReference = _employerStepsHelper.EmployerApproveAndSendToProvider(employerReviewYourCohortPage);
+            var cohortReference = _employerStepsHelper.EmployerApproveAndSendToProvider(1);
 
             _employerStepsHelper.SetCohortReference(cohortReference);
 
-            var providerReviewYourCohortPage = _providerStepsHelper.EditApprentice();
-
-            _providerStepsHelper.Approve(providerReviewYourCohortPage);
+            _providerStepsHelper.Approve();
         }
 
         [Given(@"the datalock has been successful")]

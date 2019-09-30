@@ -1,4 +1,4 @@
-﻿Feature: TransfersJourneyOne
+﻿Feature: TransfersConnectionJourney
 
 A short summary of the feature
 

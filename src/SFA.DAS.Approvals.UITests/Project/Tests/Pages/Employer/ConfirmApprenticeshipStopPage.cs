@@ -40,7 +40,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private ConfirmApprenticeshipStopPage ConfirmChangesAndContinue()
         {
             _formCompletionHelper.SelectRadioOptionByForAttribute(ChangeTypeOptions, "ChangeConfirmed-True");
-            _formCompletionHelper.ClickElement(ContinueButton);
+            _formCompletionHelper.ClickElement(ContinueButton, true);
             return this;
         }
     }

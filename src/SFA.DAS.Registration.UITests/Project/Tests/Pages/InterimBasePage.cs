@@ -49,6 +49,11 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             return new AboutYourAgreementPage(_context, true);
         }
 
+        public YourOrganisationsAndAgreementsPage GoToYourOrganisationsAndAgreementsPage()
+        {
+            return new YourOrganisationsAndAgreementsPage(_context, true);
+        }
+
         public YourAccountsPage GoToYourAccountsPage()
         {
             formCompletionHelper.ClickElement(SettingsLink);

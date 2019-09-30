@@ -23,6 +23,12 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
                 .IsPageDisplayed();
         }
 
+        public bool IsYourAccountPageDisplayed()
+        {
+            return new CheckYourAccountPage(_context)
+                .IsPageDisplayed();
+        }
+
         public void ReLogin()
         {
             var loginCredentials = loginCredentialsHelper.GetLoginCredentials();

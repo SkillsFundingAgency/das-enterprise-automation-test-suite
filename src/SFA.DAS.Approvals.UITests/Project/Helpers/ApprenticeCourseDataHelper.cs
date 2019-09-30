@@ -9,21 +9,24 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers
         WaitingToStart,
         Random
     }
-    public class ApprenticeCourseDataHelper : RandomCourseHelper
+
+    public class ApprenticeCourseDataHelper
     {
         private readonly DateTime _currentAcademicYearStartDate;
         private readonly DateTime _currentAcademicYearEndDate;
         private readonly DateTime _nextAcademicYearStartDate;
         private readonly DateTime _nextAcademicYearEndDate;
         private readonly ApprenticeStatus _apprenticeStatus;
+        private readonly RandomCourseHelper _randomCourseHelper;
 
         private const int acadamicYearStartMonth = 8;
         private const int acadamicYearEndMonth = 7;
         private const int acadamicYearStartDay = 1;
         private const int acadamicYearEndDay = 31;
 
-        public ApprenticeCourseDataHelper(RandomDataGenerator randomDataGenerator, ApprenticeStatus apprenticeStatus) : base(randomDataGenerator)
+        public ApprenticeCourseDataHelper(RandomCourseHelper randomCourseHelper, ApprenticeStatus apprenticeStatus)
         {
+            _randomCourseHelper = randomCourseHelper;
             _apprenticeStatus = apprenticeStatus;
             _currentAcademicYearStartDate = GetCurrentAcademicYearStartDate();
             _currentAcademicYearEndDate = GetAcademicYearEndDate(_currentAcademicYearStartDate);
@@ -31,7 +34,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers
             _nextAcademicYearEndDate = GetAcademicYearEndDate(_nextAcademicYearStartDate);
             CourseStartDate = GenerateCourseStartDate();
             CourseEndDate = GetCourseEndDate();
-            Course = RandomCourse();
+            Course = randomCourseHelper.RandomCourse();
         }
 
         public string Course { get; }
@@ -45,7 +48,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers
         private DateTime GenerateCourseStartDate()
         {
             DateTime start = _currentAcademicYearStartDate;
-            DateTime end = (RandomNumber % 2 == 0) ? _currentAcademicYearEndDate : DateTime.Now;
+            DateTime end = (_randomCourseHelper.RandomNumber % 2 == 0) ? _currentAcademicYearEndDate : DateTime.Now;
             int range = (end - start).Days;
             var randomStartDate = start.AddDays(new Random().Next(range));
             return _apprenticeStatus == ApprenticeStatus.Live ? GetLiveApprenticeStartDate(randomStartDate) :

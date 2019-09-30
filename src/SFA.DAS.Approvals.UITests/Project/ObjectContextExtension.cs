@@ -11,7 +11,7 @@ namespace SFA.DAS.Approvals.UITests.Project
         private const string ApprenticeId = "apprenticeid";
         
         #endregion
-        internal static void SetNoOfApprentices(this ObjectContext objectContext, string value)
+        internal static void SetNoOfApprentices(this ObjectContext objectContext, int value)
         {
             objectContext.Replace(NoOfApprentices, value);
         }

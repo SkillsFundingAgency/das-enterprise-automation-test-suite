@@ -53,9 +53,4 @@
     </None>
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Project\Tests\Features\DLockJourneys\" />
-    <Folder Include="Project\Tests\Features\Transfers\" />
-  </ItemGroup>
-
 </Project>
