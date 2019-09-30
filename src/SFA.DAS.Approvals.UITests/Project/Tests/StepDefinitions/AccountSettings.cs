@@ -22,8 +22,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         private ApprenticesHomePage _apprenticesHomePage;
         private NotificationSettingsPage _employerNotification;
 
-        private readonly ProviderPortalLoginHelper _providerLoginHelper;
-        private ProviderHomePage _providerHomePage;
+        private readonly ProviderStepsHelper _providerStepsHelper;
         private ProviderNotificationSettingsPage _providerNotification;
         
         
@@ -31,7 +30,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             _context = context;
             _loginHelper = new EmployerPortalLoginHelper(context);
-            _providerLoginHelper = new ProviderPortalLoginHelper(_context);
+            _providerStepsHelper = new ProviderStepsHelper(_context);
         }
 
         [Given(@"Employer navigates to Apprentices home page")]
@@ -91,9 +90,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Given(@"Provider navigates to notification settings page")]
         public void ProviderNavigatesToNotificationSettingsPage()
         {
-            _providerHomePage = _providerLoginHelper.Login();
-
-            _providerNotification = _providerHomePage.GoToProviderNotificationSettingsPage();
+            _providerNotification = _providerStepsHelper.GoToProviderHomePage()
+                .GoToProviderNotificationSettingsPage();
         }
 
         [Then(@"Provider is able to choose to receive notification emails")]
