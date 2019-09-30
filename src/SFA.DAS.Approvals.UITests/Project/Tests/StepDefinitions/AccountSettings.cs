@@ -17,14 +17,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
     public class AccountSettings
     {
         private readonly ScenarioContext _context;
-
         private readonly EmployerPortalLoginHelper _loginHelper;
         private ApprenticesHomePage _apprenticesHomePage;
         private NotificationSettingsPage _employerNotification;
-
         private readonly ProviderStepsHelper _providerStepsHelper;
         private ProviderNotificationSettingsPage _providerNotification;
-        
         
         public AccountSettings(ScenarioContext context)
         {
