@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+using SFA.DAS.Approvals.UITests.Project.Helpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
@@ -15,20 +16,22 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
     [Binding]
     public class AccountSettings
     {
-        private readonly ProviderStepsHelper _providerStepsHelper;
-        private readonly EmployerStepsHelper _employerStepsHelper;
-        private ApprenticesHomePage _apprenticesHomePage;
-        private ProviderNotificationSettingsPage _providerNotification;
-        private NotificationSettingsPage _employerNotification;
         private readonly ScenarioContext _context;
-        private readonly EmployerPortalLoginHelper _loginHelper;
 
+        private readonly EmployerPortalLoginHelper _loginHelper;
+        private ApprenticesHomePage _apprenticesHomePage;
+        private NotificationSettingsPage _employerNotification;
+
+        private readonly ProviderPortalLoginHelper _providerLoginHelper;
+        private ProviderHomePage _providerHomePage;
+        private ProviderNotificationSettingsPage _providerNotification;
+        
+        
         public AccountSettings(ScenarioContext context)
         {
             _context = context;
-            _providerStepsHelper = new ProviderStepsHelper(context);
-            _employerStepsHelper = new EmployerStepsHelper(context);
             _loginHelper = new EmployerPortalLoginHelper(context);
+            _providerLoginHelper = new ProviderPortalLoginHelper(_context);
         }
 
         [Given(@"Employer navigates to Apprentices home page")]
@@ -88,8 +91,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Given(@"Provider navigates to notification settings page")]
         public void ProviderNavigatesToNotificationSettingsPage()
         {
-            _providerNotification = _providerStepsHelper.GoToProviderHomePage()
-                                    .GoToProviderNotificationSettingsPage();
+            _providerHomePage = _providerLoginHelper.Login();
+
+            _providerNotification = _providerHomePage.GoToProviderNotificationSettingsPage();
         }
 
         [Then(@"Provider is able to choose to receive notification emails")]

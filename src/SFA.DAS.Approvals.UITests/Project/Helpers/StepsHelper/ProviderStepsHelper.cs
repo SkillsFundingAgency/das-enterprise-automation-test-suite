@@ -35,9 +35,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             }
             else if (_loginHelper.IsIndexPageDisplayed())
             {
-                return new ProviderIndexPage(_context)
-                    .StartNow()
-                    .SubmitValidLoginDetails();
+                return _loginHelper.Login();
             }
             return new ProviderHomePage(_context);
         }

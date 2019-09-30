@@ -30,5 +30,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers
             new ProviderSiginPage(_context)
                     .SubmitValidLoginDetails();
         }
+
+        public ProviderHomePage Login()
+        {
+            return new ProviderIndexPage(_context)
+                    .StartNow()
+                    .SubmitValidLoginDetails();
+        }
     }
 }
