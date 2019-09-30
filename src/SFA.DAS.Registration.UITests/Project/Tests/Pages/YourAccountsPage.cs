@@ -37,8 +37,19 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         public HomePage GoToHomePage(string organisationName)
         {
-            _formCompletionHelper.ClickElement(SearchLinkUrl(organisationName));
+            NavigateTo(organisationName);
             return new HomePage(_context);
+        }
+
+        public HomePage GoToHomePage()
+        {
+            NavigateTo(_config.RE_OrganisationName);
+            return new HomePage(_context);
+        }
+
+        private void NavigateTo(string organisationName)
+        {
+            _formCompletionHelper.ClickElement(SearchLinkUrl(organisationName));
         }
 
         private IWebElement SearchLinkUrl(string searchText) => _pageInteractionHelper.GetLinkContains(OpenLink(), searchText);
