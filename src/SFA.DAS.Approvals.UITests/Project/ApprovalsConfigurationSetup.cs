@@ -1,4 +1,5 @@
-﻿using SFA.DAS.UI.Framework.TestSupport;
+﻿using SFA.DAS.Registration.UITests.Project;
+using SFA.DAS.UI.Framework.TestSupport;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project
@@ -20,6 +21,15 @@ namespace SFA.DAS.Approvals.UITests.Project
         {
             var config = _configSection.GetConfigSection<ApprovalsConfig>();
             _context.SetApprovalsConfig(config);
+
+            var transferUser = _configSection.GetConfigSection<TransfersUser>();
+            _context.SetUser(transferUser);
+
+            var agreementNotSignedTransfersUser = _configSection.GetConfigSection<AgreementNotSignedTransfersUser>();
+            _context.SetUser(agreementNotSignedTransfersUser);
+
+            var transfersConfig = _configSection.GetConfigSection<TransfersConfig>();
+            _context.SetTransfersConfig(transfersConfig);
         }
     }
 }

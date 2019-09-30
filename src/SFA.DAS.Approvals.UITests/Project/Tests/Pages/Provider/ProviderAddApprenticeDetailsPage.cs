@@ -79,6 +79,5 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             _formCompletionHelper.ClickElement(AddButton);
             return new ProviderReviewYourCohortPage(_context);
         }
-
     }
 }

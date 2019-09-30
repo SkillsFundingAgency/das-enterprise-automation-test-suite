@@ -26,7 +26,7 @@ namespace SFA.DAS.Approvals.UITests.Project
             _sqlDatabaseConnectionHelper = context.Get<SqlDatabaseConnectionHelper>();
         }
 
-        [BeforeScenario(Order = 22)]
+        [BeforeScenario(Order = 32)]
         public void SetUpHelpers()
         {
             var random = _context.Get<RandomDataGenerator>();
@@ -44,11 +44,15 @@ namespace SFA.DAS.Approvals.UITests.Project
 
             _context.Set(new EditedApprenticeDataHelper(random, _datahelper));
 
-            var apprenticeCourseDataHelper = new ApprenticeCourseDataHelper(random, apprenticeStatus);
+            var isTransfersFunds = _context.ScenarioInfo.Tags.Contains("transfersfunds");
+
+            var randomCoursehelper = new RandomCourseHelper(random, isTransfersFunds);
+
+            var apprenticeCourseDataHelper = new ApprenticeCourseDataHelper(randomCoursehelper, apprenticeStatus);
 
             _context.Set(apprenticeCourseDataHelper);
 
-            _context.Set(new EditedApprenticeCourseDataHelper(random, apprenticeCourseDataHelper));
+            _context.Set(new EditedApprenticeCourseDataHelper(randomCoursehelper, apprenticeCourseDataHelper));
 
             _context.Set(new TabHelper(_context.GetWebDriver()));
 

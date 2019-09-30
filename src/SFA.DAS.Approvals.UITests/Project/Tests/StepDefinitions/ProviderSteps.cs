@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using TechTalk.SpecFlow;
-using SFA.DAS.Approvals.UITests.Project.Helpers;
+using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 {
@@ -36,25 +36,17 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                 .SendInstructionsToEmployerForCohortToReview();
         }
 
-
         [When(@"the provider adds (.*) apprentices approves them and sends to employer to approve")]
         public void WhenTheProviderAddsApprenticesApprovesThemAndSendsToEmployerToApprove(int numberOfApprentices)
         {
-            var providerReviewYourCohortPage = _providerStepsHelper.AddApprentice(numberOfApprentices);
-
-            providerReviewYourCohortPage.SelectSaveAndContinue()
-                .SubmitApproveAndSendToEmployerForApproval()
-                .SendInstructionsToEmployerForAnApprovedCohort();
+            _providerStepsHelper.AddApprenticeAndSendToEmployerForApproval(numberOfApprentices);
         }
 
 
         [Then(@"the provider adds Ulns and approves the cohorts")]
         public void TheProviderAddsUlnsAndApprovesTheCohorts()
         {
-            var providerReviewYourCohortPage = _providerStepsHelper.EditApprentice();
-
-            providerReviewYourCohortPage.SelectContinueToApproval()
-                            .SubmitApprove();
+            _providerStepsHelper.Approve();
         }
 
         [When(@"the provider adds Ulns and approves the cohorts and sends to employer")]
