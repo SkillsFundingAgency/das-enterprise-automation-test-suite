@@ -1,8 +1,8 @@
 ﻿Feature: CreateLevyAccountOne
 
 @addpayedetails
+@addlevyfunds
 Scenario: Create Levy Account For Approvals
-Given I have levy declarations
 Given I create an Account 
 When I add paye details
 And add organisation details

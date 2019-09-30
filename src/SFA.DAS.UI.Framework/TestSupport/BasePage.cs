@@ -14,13 +14,12 @@ namespace SFA.DAS.UI.Framework.TestSupport
         private readonly FrameworkConfig _frameworkConfig;
         private readonly IWebDriver _webDriver;
         private readonly ScreenShotTitleGenerator _screenShotTitleGenerator;
+        private readonly string _directory;
         #endregion
 
         protected virtual By PageHeader => By.CssSelector(".heading-xlarge");
 
         protected abstract string PageTitle { get; }
-
-        private int counter;
 
         public BasePage(ScenarioContext context)
         {
@@ -30,13 +29,14 @@ namespace SFA.DAS.UI.Framework.TestSupport
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
             _screenShotTitleGenerator = context.Get<ScreenShotTitleGenerator>();
+            _directory = context.Get<ObjectContext>().GetDirectory();
         }
 
         protected bool VerifyPage()
         {
             if (_frameworkConfig.TakeEveryPageScreenShot)
             {
-                ScreenshotHelper.TakeScreenShot(_webDriver, _screenShotTitleGenerator.GetNextCount());
+                ScreenshotHelper.TakeScreenShot(_webDriver, _directory, _screenShotTitleGenerator.GetNextCount());
             }
 
             return _pageInteractionHelper.VerifyPage(PageHeader, PageTitle);

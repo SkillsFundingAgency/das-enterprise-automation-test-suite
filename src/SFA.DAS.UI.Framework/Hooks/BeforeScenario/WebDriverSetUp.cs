@@ -7,6 +7,7 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.IE;
+using OpenQA.Selenium.Remote;
 using SFA.DAS.UI.Framework.Project.Tests.TestSupport;
 using SFA.DAS.UI.Framework.TestSupport;
 using TechTalk.SpecFlow;
@@ -71,7 +72,6 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
                     WebDriver = ChromeDriver(new List<string>() { "--headless" });
                     break;
                
-
                 case bool _ when browser.IsCloudExecution():
                     _frameworkConfig.BrowserStackSetting.Name = _context.ScenarioInfo.Title;
                     WebDriver = BrowserStackSetup.Init(_frameworkConfig.BrowserStackSetting);
@@ -86,6 +86,15 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
             var currentWindow = WebDriver.CurrentWindowHandle;
             WebDriver.SwitchTo().Window(currentWindow);
             WebDriver.Manage().Cookies.DeleteAllCookies();
+
+            if (!browser.IsCloudExecution())
+            {
+                var wb = WebDriver as RemoteWebDriver;
+                var cap = wb.Capabilities;
+
+                _objectContext.SetBrowserName(cap["browserName"]);
+                _objectContext.SetBrowserVersion(cap["browserVersion"]);
+            }
 
             _context.SetWebDriver(WebDriver);
         }

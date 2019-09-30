@@ -45,11 +45,23 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         public HomePage Login(LoginUser loginUser)
         {
-             EnterEmailAddress(loginUser.Username)
-            .EnterPassword(loginUser.Password)
-            .SignIn();
+            SignIn(loginUser);
             return new HomePage(_context);
         }
+
+        public YourAccountsPage MultipleAccountLogin(LoginUser loginUser)
+        {
+            SignIn(loginUser);
+            return new YourAccountsPage(_context);
+        }
+
+        private void SignIn(LoginUser loginUser)
+        {
+            EnterEmailAddress(loginUser.Username)
+            .EnterPassword(loginUser.Password)
+            .SignIn();
+        }
+
 
         private SignInPage EnterEmailAddress(string username)
         {

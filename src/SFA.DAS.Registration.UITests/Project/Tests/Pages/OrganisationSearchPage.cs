@@ -17,6 +17,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         private readonly FormCompletionHelper _formCompletionHelper;
         private readonly ScenarioContext _context;
         private readonly ProjectConfig _config;
+        private readonly ObjectContext _objectContext;
         #endregion
 
         private By SearchInput => By.Id("searchTerm");
@@ -27,6 +28,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         public OrganisationSearchPage(ScenarioContext context) : base(context)
         {
             _context = context;
+            _objectContext = context.Get<ObjectContext>();
             _config = context.GetProjectConfig<ProjectConfig>();
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
@@ -43,7 +45,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         private OrganisationSearchPage EnterOrganisationName()
         {
-            _formCompletionHelper.EnterText(SearchInput, _config.RE_OrganisationName);
+            _formCompletionHelper.EnterText(SearchInput, _objectContext.GetOrganisationName());
             return this;
         }
 

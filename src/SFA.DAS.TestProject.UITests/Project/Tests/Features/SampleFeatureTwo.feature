@@ -5,7 +5,6 @@
 	So that I can see all department services and information 
 
 	
-	@regression
 	Scenario Outline: User navigates to MoD home page from GOV.UK page
 		Given I navigate to GOV.UK home page
 		When I search for <SearchLink>

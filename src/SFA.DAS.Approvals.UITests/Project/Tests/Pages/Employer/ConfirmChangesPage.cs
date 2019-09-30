@@ -21,6 +21,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         {
             _context = context;
             _formCompletionHelper = context.Get<FormCompletionHelper>();
+            VerifyPage();
         }
 
         public ApprenticeDetailsPage AcceptChangesAndSubmit()

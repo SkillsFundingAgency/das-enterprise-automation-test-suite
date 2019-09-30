@@ -8,9 +8,9 @@ namespace SFA.DAS.UI.Framework.TestSupport
 {
     public class BrowserStackTeardown
     {
-        public static void MarkTestAsFailed(RemoteWebDriver webDriver, BrowserStackSetting options, string scenarioTitle, string message)
+        public static void MarkTestAsFailed(RemoteWebDriver webDriver, BrowserStackSetting options,string directory, string scenarioTitle, string message)
         {
-            ScreenshotHelper.TakeScreenShot(webDriver, scenarioTitle, true);
+            ScreenshotHelper.TakeScreenShot(webDriver, directory, scenarioTitle, true);
 
             string reqString = "{\"status\":\"failed\", \"reason\":\"" + message + "\"}";
 

@@ -8,11 +8,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
     {
         protected override string PageTitle => _cocDataHelper.ApprenticeEditedFullName;
 
-        private readonly CocDataHelper _cocDataHelper;
+        private readonly EditedApprenticeDataHelper _cocDataHelper;
 
         public ProviderEditedApprenticeDetailsPage(ScenarioContext context) : base(context)
         {
-            _cocDataHelper = context.Get<CocDataHelper>();
+            _cocDataHelper = context.Get<EditedApprenticeDataHelper>();
             VerifyPage();
         }
     }
