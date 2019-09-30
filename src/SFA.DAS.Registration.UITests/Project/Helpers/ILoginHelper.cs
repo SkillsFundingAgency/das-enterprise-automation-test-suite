@@ -4,6 +4,8 @@
     {
         bool IsSignInPageDisplayed();
 
+        bool IsIndexPageDisplayed();
+
         void ReLogin();
     }
 }

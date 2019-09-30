@@ -23,6 +23,12 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
                 .IsPageDisplayed();
         }
 
+        public bool IsIndexPageDisplayed()
+        {
+            return new CheckIndexPage(_context)
+                .IsPageDisplayed();
+        }
+
         public bool IsYourAccountPageDisplayed()
         {
             return new CheckYourAccountPage(_context)
