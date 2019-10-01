@@ -184,8 +184,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
         {
             employerReviewYourCohortPage
                 .SelectAddAnApprentice()
-                .SubmitValidApprenticeDetails()
-                .SubmitApproveAndSendToTrainingProvider();
+                .SubmitValidApprenticeDetails();
 
             string apprenticeTotalCost = _reviewYourCohortStepsHelper.ApprenticeTotalCost(employerReviewYourCohortPage);
 
