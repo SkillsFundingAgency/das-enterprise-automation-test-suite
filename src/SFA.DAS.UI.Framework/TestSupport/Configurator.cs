@@ -9,9 +9,12 @@ namespace SFA.DAS.UI.Framework.TestSupport
 
         private readonly static IConfigurationRoot _hostingConfig;
 
+        internal static bool IsVstsExecution;
+
         static Configurator()
         {
             _hostingConfig = InitializeHostingConfig();
+            IsVstsExecution = TestsExecutionInVsts();
             _config = InitializeConfig();
         }
 
@@ -20,14 +23,10 @@ namespace SFA.DAS.UI.Framework.TestSupport
             return _config;
         }
 
-        internal static string GetAgentMachineName(this IConfigurationRoot configurationRoot)
-        {
-            return configurationRoot.GetSection("AGENT_MACHINENAME")?.Value;
-        }
-
         private static IConfigurationRoot InitializeConfig()
         {
-            var EnvironmentName = _hostingConfig.GetSection("Release_EnvironmentName").Value;
+            var EnvironmentName = GetEnvironmentName();
+
             var ProjectName = _hostingConfig.GetSection("ProjectName").Value;
 
             return ConfigurationBuilder()
@@ -47,6 +46,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
         {
             return ConfigurationBuilder()
                 .AddJsonFile("appsettings.Environment.json", true)
+                .AddEnvironmentVariables()
                 .Build();
         }
 
@@ -54,6 +54,23 @@ namespace SFA.DAS.UI.Framework.TestSupport
         {
             return new ConfigurationBuilder()
                     .SetBasePath(Directory.GetCurrentDirectory());
+        }
+
+        private static bool TestsExecutionInVsts()
+        {
+            return !string.IsNullOrEmpty(GetAgentMachineName());
+        }
+
+        private static string GetAgentMachineName()
+        {
+            return _hostingConfig.GetSection("AGENT_MACHINENAME")?.Value;
+        }
+
+        private static string GetEnvironmentName()
+        {
+            return IsVstsExecution ?
+                   _hostingConfig.GetSection("RELEASE_ENVIRONMENTNAME")?.Value :
+                   _hostingConfig.GetSection("local_EnvironmentName").Value;
         }
     }
 }
