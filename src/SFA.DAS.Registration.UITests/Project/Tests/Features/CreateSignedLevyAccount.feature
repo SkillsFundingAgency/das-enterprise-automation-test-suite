@@ -1,4 +1,4 @@
-﻿Feature: CreateLevyAccountOne
+﻿Feature: CreateSignedLevyAccount
 
 @addpayedetails
 @addlevyfunds
