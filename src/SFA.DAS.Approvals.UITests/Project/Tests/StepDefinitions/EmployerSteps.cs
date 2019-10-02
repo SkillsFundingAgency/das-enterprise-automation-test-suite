@@ -1,6 +1,7 @@
 ﻿using SFA.DAS.Approvals.UITests.Project.Helpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
+using SFA.DAS.UI.Framework.TestSupport;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -14,9 +15,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         private readonly EmployerStepsHelper _employerStepsHelper;
         private YourCohortRequestsPage _yourCohortRequestsPage;
         private ReviewYourCohortPage _reviewYourCohortPage;
+        private readonly ObjectContext _objectContext;
 
         public EmployerSteps(ScenarioContext context)
         {
+            _objectContext = context.Get<ObjectContext>();
             _employerStepsHelper = new EmployerStepsHelper(context);
         }
 
@@ -24,6 +27,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         public void EmployerAddsApprenticesToCurrentCohort(int numberOfApprentices)
         {
             _reviewYourCohortPage = _employerStepsHelper.EmployerAddApprentice(numberOfApprentices, false);
+
+            var x = _reviewYourCohortPage.CohortReferenceFromUrl();
+            _objectContext.SetCohortReference(x);
 
             _yourCohortRequestsPage = _reviewYourCohortPage.SaveAndContinue()
                 .SubmitSaveButDontSendToProvider();
