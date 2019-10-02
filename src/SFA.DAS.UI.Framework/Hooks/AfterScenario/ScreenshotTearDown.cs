@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium.Remote;
+﻿using System;
+using OpenQA.Selenium.Remote;
 using SFA.DAS.UI.Framework.TestSupport;
 using TechTalk.SpecFlow;
 
@@ -32,7 +33,15 @@ namespace SFA.DAS.UI.Framework.Hooks.AfterScenario
                 {
                     case bool _ when browser.IsCloudExecution():
                         RemoteWebDriver remoteWebDriver = (RemoteWebDriver)_context.GetWebDriver();
-                        BrowserStackTeardown.MarkTestAsFailed(remoteWebDriver, options.BrowserStackSetting, _directory, _scenarioTitle, _context.TestError.Message);
+                        try
+                        {
+                            BrowserStackTeardown.MarkTestAsFailedViaRestApi(remoteWebDriver, options.BrowserStackSetting, _directory, _scenarioTitle, _context.TestError.Message);
+                        }
+                        catch (Exception ex)
+                        {
+                            _objectContext.SetBrowserstackFailedtoUpdateTestResult();
+                            _objectContext.SetAfterScenarioException(ex);
+                        }
                         break;
                     default:
                         var webDriver = _context.GetWebDriver();
@@ -40,6 +49,8 @@ namespace SFA.DAS.UI.Framework.Hooks.AfterScenario
                         break;
                 }
             }
+
         }
     }
 }
+

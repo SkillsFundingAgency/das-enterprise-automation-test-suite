@@ -17,7 +17,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
         private readonly string _directory;
         #endregion
 
-        protected virtual By PageHeader => By.CssSelector(".heading-xlarge");
+        protected virtual By PageHeader => By.CssSelector(".govuk-heading-xl, .heading-xlarge");
 
         protected abstract string PageTitle { get; }
 

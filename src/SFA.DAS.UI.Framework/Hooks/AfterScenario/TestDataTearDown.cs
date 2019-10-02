@@ -26,6 +26,8 @@ namespace SFA.DAS.UI.Framework.Hooks.AfterScenario
         [AfterScenario(Order = 10)]
         public void CollectTestData()
         {
+            _objectContext.SetAfterScenarioExceptions(new List<Exception>());
+
             DateTime dateTime = DateTime.Now;
 
             string fileName = dateTime.ToString("HH-mm-ss")

@@ -1,13 +1,18 @@
-﻿namespace SFA.DAS.UI.Framework.TestSupport
+﻿using System;
+using System.Collections.Generic;
+
+namespace SFA.DAS.UI.Framework.TestSupport
 {
     public static class ObjectContextExtension
     {
         #region Constants
         private const string BrowserKey = "browser";
         private const string DirectoryKey = "directory";
+        private const string AfterScenarioExceptions = "afterscenarioexceptions";
         private const string BrowserNameKey = "browsername";
         private const string BrowserVersionKey = "browserVersion";
-        
+        private const string BrowserstackFailedToUpdateTestResult = "browserstackfailedtoupdatetestresult";
+
         #endregion
 
         public static string GetBrowser(this ObjectContext objectContext)
@@ -38,6 +43,32 @@
         public static string GetDirectory(this ObjectContext objectContext)
         {
             return objectContext.Get(DirectoryKey);
+        }
+
+        internal static void SetBrowserstackFailedtoUpdateTestResult(this ObjectContext objectContext)
+        {
+            objectContext.Set(BrowserstackFailedToUpdateTestResult, true);
+        }
+
+        public static bool FailedtoUpdateTestResultInBrowserStack(this ObjectContext objectContext)
+        {
+            return objectContext.KeyExists<bool>(BrowserstackFailedToUpdateTestResult);
+        }
+
+        internal static void SetAfterScenarioException(this ObjectContext objectContext, Exception value)
+        {
+            var exceptions = objectContext.GetAfterScenarioExceptions();
+            exceptions.Add(value);
+        }
+
+        internal static void SetAfterScenarioExceptions(this ObjectContext objectContext, List<Exception> afterscenarioexceptions)
+        {
+            objectContext.Set(AfterScenarioExceptions, afterscenarioexceptions);
+        }
+
+        internal static List<Exception> GetAfterScenarioExceptions(this ObjectContext objectContext)
+        {
+            return objectContext.Get<List<Exception>>(AfterScenarioExceptions);
         }
     }
 }

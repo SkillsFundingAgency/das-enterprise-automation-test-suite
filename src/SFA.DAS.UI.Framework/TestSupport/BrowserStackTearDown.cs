@@ -3,6 +3,10 @@ using System;
 using System.IO;
 using System.Text;
 using System.Net;
+using RestSharp;
+using RestSharp.Authenticators;
+using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace SFA.DAS.UI.Framework.TestSupport
 {
@@ -41,19 +45,52 @@ namespace SFA.DAS.UI.Framework.TestSupport
 
             myHttpWebRequest.Credentials = myCredentialCache;
 
-            WebResponse myWebResponse = myWebRequest.GetResponse();
+            using (WebResponse myWebResponse = myWebRequest.GetResponse())
+            {
+                using (Stream responseStream = myWebResponse.GetResponseStream())
+                {
+                    using (StreamReader myStreamReader = new StreamReader(responseStream, Encoding.Default))
+                    {
+                        string pageContent = myStreamReader.ReadToEnd();
 
-            Stream responseStream = myWebResponse.GetResponseStream();
+                        NUnit.Framework.TestContext.Progress.WriteLine(pageContent);
 
-            StreamReader myStreamReader = new StreamReader(responseStream, Encoding.Default);
+                        responseStream.Close();
 
-            string pageContent = myStreamReader.ReadToEnd();
+                        myWebResponse.Close();
+                    }
+                }
+            }
+        }
+    
+        public static void MarkTestAsFailedViaRestApi(RemoteWebDriver webDriver, BrowserStackSetting options, string directory, string scenarioTitle, string message)
+        {
+            ScreenshotHelper.TakeScreenShot(webDriver, directory, scenarioTitle, true);
 
-            NUnit.Framework.TestContext.Progress.WriteLine(pageContent);
+            var sessionId = webDriver.SessionId.ToString();
 
-            responseStream.Close();
+            var client = new RestClient(options.AutomateSessions)
+            {
+                Authenticator = new HttpBasicAuthenticator(options.User, options.Key)
+            };
 
-            myWebResponse.Close();
+            var request = new RestRequest($"{sessionId}.json", Method.PUT)
+            {
+                RequestFormat = DataFormat.Json
+            };
+
+            var jsonObject = JsonConvert.SerializeObject(new {status = "failed", reason = message} );
+
+            request.AddJsonBody(jsonObject);
+
+            var response = client.Put(request);
+
+            if (response.StatusCode != HttpStatusCode.OK)
+            {
+                throw new Exception(response.Content, response.ErrorException);
+            }
+
+            NUnit.Framework.TestContext.Progress.WriteLine(response.Content);
         }
     }
 }
