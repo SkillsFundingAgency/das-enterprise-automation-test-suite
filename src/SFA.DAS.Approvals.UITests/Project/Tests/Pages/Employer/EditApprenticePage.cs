@@ -13,10 +13,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private readonly ScenarioContext _context;
         private readonly EditedApprenticeCourseDataHelper _coursedataHelper;
         #endregion
-        private By CourseOption(string courseid) => By.CssSelector($"#TrainingCode option[value='{courseid}']");
 
-        protected override By Reference => By.Id("EmployerRef");
-        protected override By UpdateDetailsButton => By.Id("submit-edit-app");
+        private By CourseOption(string courseid) => By.CssSelector($"#TrainingCode option[value='{courseid}']");
 
         public EditApprenticePage(ScenarioContext context) : base(context)
         {

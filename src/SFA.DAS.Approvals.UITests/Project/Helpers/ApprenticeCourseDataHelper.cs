@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using SFA.DAS.UI.FrameworkHelpers;
 
 namespace SFA.DAS.Approvals.UITests.Project.Helpers
@@ -37,7 +38,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers
             Course = randomCourseHelper.RandomCourse();
         }
 
-        public string Course { get; }
+        public int RandomCourse(List<string> availablecourses)
+        {
+            var random = new Random().Next(1, availablecourses.Count);
+            Course = availablecourses[random];
+            return random;
+        }
+
+        public string Course { get; private set; }
 
         public int CourseDurationInMonths => 15;
 

@@ -14,6 +14,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         #region Helpers and Context
         private readonly FormCompletionHelper _formCompletionHelper;
+        private readonly PageInteractionHelper _pageInteractionHelper;
         private readonly ScenarioContext _context;
         private readonly ApprenticeDataHelper _dataHelper;
         private readonly ApprenticeCourseDataHelper _coursedataHelper;
@@ -39,6 +40,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             _dataHelper = context.Get<ApprenticeDataHelper>();
             _coursedataHelper = context.Get<ApprenticeCourseDataHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
+            _pageInteractionHelper = context.Get<PageInteractionHelper>();
             VerifyPage();
         }
 
@@ -59,6 +61,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             _formCompletionHelper.EnterText(EmployerReference, _dataHelper.EmployerReference);
             _formCompletionHelper.ClickElement(SaveAndContinueButton);
             return new ReviewYourCohortPage(_context);
+        }
+
+        private void SelectRandomTrainingCourse()
+        {
+            var options = _pageInteractionHelper.GetAvailableOptions(TrainingCourseContainer);
+            var index = _coursedataHelper.RandomCourse(options);
+            _formCompletionHelper.SelectByIndex(TrainingCourseContainer, index);
         }
     }
 }

@@ -37,12 +37,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             return _pageInteractionHelper.FindElements(By.LinkText("Edit")).Count;
         }
 
-        public EditTransfersApprenticeDetailsPage SelectEditTransfersApprentice(int apprenticeNumber = 0)
-        {
-            Edit(apprenticeNumber);
-            return new EditTransfersApprenticeDetailsPage(_context);
-        }
-
         public EditApprenticePage SelectEditApprentice(int apprenticeNumber = 0)
         {
             Edit(apprenticeNumber);
