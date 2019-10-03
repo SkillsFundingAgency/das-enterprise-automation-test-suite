@@ -15,7 +15,7 @@ Note: This framework is built with all standard libraries and ready to write new
 
 ## How to use User secrets
 1. Navigate to "%APPDATA%/Microsoft" Create Directory "UserSecrets" if you dont find it.
-2. Create a folder under "%APPDATA%/Microsoft/UserSecrets" folder in the format <ProjectName>_<EnvironmentName>_Secrets. You can get project name and environment name appsettings.Environment.json file
+2. Create a folder under "%APPDATA%/Microsoft/UserSecrets" folder in the format <ProjectName>_<EnvironmentName>_Secrets. You can get project name and environment name from appsettings.Environment.json project specific file
 3. Create a file "secrets.json" and replace only those values you want to keep it as secrets (copy the structure from appsettings.Project.json file)
 
 ## Automated SpecFlow Tests:
