@@ -57,10 +57,6 @@ c:\> dotnet vstest C:\SFA\DFE-Standardised-Test-Automation-Framework\src\SFA.DAS
 
 ## Framework:
 
-### Multiple Environments:
-The framework is designed to execute the tests on multiple environments.
-1. All the default details specific to environment (Ex: Url, Credentials etc) are defined <Arvind please add more details here>
-
 ### Supported Browsers: The framework can currently work on the following browsers
 1. Chrome - use "chrome", "googlechrome" or "local" as values for the Browser in appsettings
 2. Firefox - use "firefox" or "mozillafirefox" as values for the Browser in appsettings
