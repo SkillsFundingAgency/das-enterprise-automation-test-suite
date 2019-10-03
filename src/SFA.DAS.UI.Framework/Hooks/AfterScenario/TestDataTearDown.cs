@@ -6,8 +6,6 @@ using System.Collections.Generic;
 using TechTalk.SpecFlow;
 using NUnit.Framework;
 using System.IO;
-using CsvHelper.Configuration;
-using CsvHelper.Configuration.Attributes;
 
 namespace SFA.DAS.UI.Framework.Hooks.AfterScenario
 {
@@ -26,42 +24,40 @@ namespace SFA.DAS.UI.Framework.Hooks.AfterScenario
         [AfterScenario(Order = 10)]
         public void CollectTestData()
         {
-            _objectContext.SetAfterScenarioExceptions(new List<Exception>());
-
-            DateTime dateTime = DateTime.Now;
-
-            string fileName = dateTime.ToString("HH-mm-ss")
-                   + "_"
-                   + _context.ScenarioInfo.Title
-                   + ".txt";
-            string directory = _objectContext.GetDirectory();
-
-            string filePath = Path.Combine(directory, fileName);
-
-            List<TestData> records = new List<TestData>();
-
-            var testDatas = _objectContext.GetAll();
-
-            testDatas.ToList().ForEach(x => records.Add(new TestData { Key = x.Key, Value = testDatas[x.Key].ToString() }));
-
-            using (var writer = new StreamWriter(filePath))
+            try
             {
-                using (var csv = new CsvWriter(writer))
+                _objectContext.SetAfterScenarioExceptions(new List<Exception>());
+
+                DateTime dateTime = DateTime.Now;
+
+                string fileName = dateTime.ToString("HH-mm-ss")
+                       + "_"
+                       + _context.ScenarioInfo.Title
+                       + ".txt";
+                string directory = _objectContext.GetDirectory();
+
+                string filePath = Path.Combine(directory, fileName);
+
+                List<TestData> records = new List<TestData>();
+
+                var testDatas = _objectContext.GetAll();
+
+                testDatas.ToList().ForEach(x => records.Add(new TestData { Key = x.Key, Value = testDatas[x.Key].ToString() }));
+
+                using (var writer = new StreamWriter(filePath))
                 {
-                    csv.WriteRecords(records);
-                    writer?.Flush();
+                    using (var csv = new CsvWriter(writer))
+                    {
+                        csv.WriteRecords(records);
+                        writer?.Flush();
+                    }
                 }
+                TestContext.AddTestAttachment(filePath, fileName);
             }
-            TestContext.AddTestAttachment(filePath, fileName);
+            catch (Exception ex)
+            {
+                _objectContext.SetAfterScenarioException(ex);
+            }
         }
-    }
-
-    public class TestData
-    {
-        [Name("Key")]
-        public string Key { get; set; }
-
-        [Name("Value")]
-        public string Value { get; set; }
     }
 }

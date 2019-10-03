@@ -12,7 +12,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
         private const string BrowserNameKey = "browsername";
         private const string BrowserVersionKey = "browserVersion";
         private const string BrowserstackFailedToUpdateTestResult = "browserstackfailedtoupdatetestresult";
-
+        private const string WebDriverUrl = "webdriverurl";
         #endregion
 
         public static string GetBrowser(this ObjectContext objectContext)
@@ -45,7 +45,17 @@ namespace SFA.DAS.UI.Framework.TestSupport
             return objectContext.Get(DirectoryKey);
         }
 
-        internal static void SetBrowserstackFailedtoUpdateTestResult(this ObjectContext objectContext)
+        internal static string GetUrl(this ObjectContext objectContext)
+        {
+            return objectContext.Get(WebDriverUrl);
+        }
+
+        internal static void SetUrl(this ObjectContext objectContext, string value)
+        {
+            objectContext.Set(WebDriverUrl, value);
+        }
+
+        internal static void SetBrowserstackResponse(this ObjectContext objectContext)
         {
             objectContext.Set(BrowserstackFailedToUpdateTestResult, true);
         }
