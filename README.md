@@ -15,14 +15,9 @@ Note: This framework is built with all standard libraries and ready to write new
 
 ## How to use User secrets
 1. Navigate to "%APPDATA%/Microsoft" Create Directory "UserSecrets" if you dont find it.
-2. Create folder "ProjectSecrets" under "%APPDATA%/Microsoft/UserSecrets"
-3. Create a file "secrets.json" and replace only those values you want to keep it as secrets (do not copy the full json from appsettings.json)
-4. Collapse settings like this, since you probably only need to override a few settings
-```json
-{
-     "AppSettings:ConnectionString": "http://localhost:9000?user=arvinthseran&password=1234"
-}
-```
+2. Create a folder under "%APPDATA%/Microsoft/UserSecrets" folder in the format <ProjectName>_<EnvironmentName>_Secrets. You can get project name and environment name appsettings.Environment.json file
+3. Create a file "secrets.json" and replace only those values you want to keep it as secrets (copy the structure from appsettings.Project.json file)
+
 ## Automated SpecFlow Tests:
 Acceptance Tests must be written in Feature files (Project/Tests/Features/) using standard Gherkin language using Given, When, Then format with an associated step definition for each test step. Test steps in the scenarios explains the business conditions/behaviour and the associated step definition defines how the individual scenario steps should be automated.
 
@@ -64,9 +59,7 @@ c:\> dotnet vstest C:\SFA\DFE-Standardised-Test-Automation-Framework\src\SFA.DAS
 
 ### Multiple Environments:
 The framework is designed to execute the tests on multiple environments.
-1. All the default details specific to environment (Ex: Url, Credentials etc) are defined in App.config file.
-2. EnvironmentConfigurator (Project/Tests/TestSupport/) reads the data from App.Config and stores the values in variables. Which then can be used during the tests.
-3. Tests can be executed on multiple environments by replacing the default values provided in App.Config using Configuration Manager and transforming the data
+1. All the default details specific to environment (Ex: Url, Credentials etc) are defined <Arvind please add more details here>
 
 ### Supported Browsers: The framework can currently work on the following browsers
 1. Chrome - use "chrome", "googlechrome" or "local" as values for the Browser in appsettings
@@ -85,7 +78,6 @@ Note: Tests can be executed on different browsers using BrowserStack. Tests can 
 3. Each test must be independent of other tests
 4. Where possible create the users/data on runtime and clear the users/data at the end of the tests
 5. Every Page class must extend BasePage (Project/Tests/TestSupport/BasePage) and implement the methods from it, which initiate the elements and waits for the page to load and verifies the current page
-6. Every Test class must extend BaseTest (Project/Tests/TestSupport/BaseTest), which provides the instance of WebDriver to the test classes
 
 ### Helpers: The framework has the following helper classes to assist the testing (Project/Framework/Helpers/)
 1. FormCompletionHelper - Which helps most of the user actions on a page
@@ -118,5 +110,3 @@ By default up to all available cores on the machine may be used, we can use /Par
 If LevelOfParallelism is not specified, workers defaults to the number of processors on the machine, or 2, whichever is greater.
 1. You can specify no of threads to use in the parameter : ``[assembly: LevelOfParallelism(2)]``
 2. You can specify 0 to exeute tests in sequential order : ``[assembly: LevelOfParallelism(0)]``
-
-
