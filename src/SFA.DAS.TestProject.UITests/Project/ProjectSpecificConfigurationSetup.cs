@@ -22,7 +22,7 @@ namespace SFA.DAS.TestProject.UITests.Project
         public void SetUpProjectSpecificConfiguration()
         {
             var config = _configSection.GetConfigSection<ProjectConfig>();
-            _context.SetProjectConfig(config);
+            _context.SetRegistrationConfig(config);
 
             _objectContext.ReplaceBrowser(config.Browser);
         }

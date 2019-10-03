@@ -8,7 +8,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
     {
         #region Helpers and Context
         private readonly ScenarioContext _context;
-        protected readonly ProjectConfig config;
+        protected readonly RegistrationConfig config;
         protected readonly ObjectContext objectContext;
         #endregion
 
@@ -28,7 +28,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         public InterimBasePage(ScenarioContext context, bool navigate) : base(context, navigate)
         {
             _context = context;
-            config = context.GetProjectConfig<ProjectConfig>();
+            config = context.GetRegistrationConfig<RegistrationConfig>();
             objectContext = context.Get<ObjectContext>();
             VerifyPage();
         }

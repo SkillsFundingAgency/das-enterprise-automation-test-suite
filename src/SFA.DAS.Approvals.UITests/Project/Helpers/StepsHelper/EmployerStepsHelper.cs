@@ -17,13 +17,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
         private readonly TabHelper _tabHelper;
         private readonly ObjectContext _objectContext;
         private readonly ScenarioContext _context;
-        private readonly ProjectConfig _projectConfig;
+        private readonly RegistrationConfig _registrationConfig;
 
         internal EmployerStepsHelper(ScenarioContext context)
         {
             _context = context;
             _objectContext = _context.Get<ObjectContext>();
-            _projectConfig = _context.GetProjectConfig<ProjectConfig>();
+            _registrationConfig = _context.GetRegistrationConfig<RegistrationConfig>();
             _tabHelper = _context.Get<TabHelper>();
             _loginHelper = new EmployerPortalLoginHelper(_context);
             _reviewYourCohortStepsHelper = new ReviewYourCohortStepsHelper(_context.Get<AssertHelper>());
@@ -52,7 +52,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 
         internal ApprenticesHomePage GoToEmployerApprenticesHomePage()
         {
-            _tabHelper.OpenInNewtab(_projectConfig.RE_BaseUrl);
+            _tabHelper.OpenInNewtab(_registrationConfig.RE_BaseUrl);
 
             if (_loginHelper.IsSignInPageDisplayed())
             {

@@ -1,6 +1,6 @@
 ﻿namespace SFA.DAS.Registration.UITests.Project
 {
-    public class ProjectConfig
+    public class RegistrationConfig
     {
         public string TwoDigitProjectCode { get; set; }
 

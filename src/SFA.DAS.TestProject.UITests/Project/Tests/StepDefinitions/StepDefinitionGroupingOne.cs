@@ -20,7 +20,7 @@ namespace SFA.DAS.TestProject.UITests.Project.Tests.StepDefinitions
         {
             _context = context;
             _webDriver = context.GetWebDriver();
-            _configuration = context.GetProjectConfig<ProjectConfig>();
+            _configuration = context.GetRegistrationConfig<ProjectConfig>();
             _objectContext = context.Get<ObjectContext>();
         }
 
