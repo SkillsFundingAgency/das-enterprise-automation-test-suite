@@ -90,7 +90,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
 
         #endregion
 
-        private bool KeyExists<T>(string key)
+        public bool KeyExists<T>(string key)
         {
             return _objects.ContainsKey(key);
         }

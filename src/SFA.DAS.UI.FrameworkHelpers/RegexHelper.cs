@@ -25,6 +25,13 @@ namespace SFA.DAS.UI.FrameworkHelpers
             return match.Success ? TrimAnySpace(match.Value) : value;
         }
 
+        public string GetCohortReferenceFromUrl(string url)
+        {
+            Match match = Regex.Match(url, @"apprentices\/[A-Z0-9]{6}\/");
+
+            return match.Success ? Regex.Replace(match.Value, @"apprentices|\/", string.Empty) : url;
+        }
+
         private string TrimAnySpace(string value)
         {
             return Regex.Replace(value, @"\s", string.Empty);

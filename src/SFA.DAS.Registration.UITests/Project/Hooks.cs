@@ -15,7 +15,7 @@ namespace SFA.DAS.Registration.UITests.Project
     public class Hooks          
     {
         private readonly ScenarioContext _context;
-        private readonly ProjectConfig _config;
+        private readonly RegistrationConfig _config;
         private readonly IWebDriver _webDriver;
         private readonly ObjectContext _objectContext;
         private List<string> _empRefs;
@@ -27,7 +27,7 @@ namespace SFA.DAS.Registration.UITests.Project
         {
             _context = context;
             _webDriver = context.GetWebDriver();
-            _config = context.GetProjectConfig<ProjectConfig>();
+            _config = context.GetRegistrationConfig<RegistrationConfig>();
             _objectContext = context.Get<ObjectContext>();
         }
 

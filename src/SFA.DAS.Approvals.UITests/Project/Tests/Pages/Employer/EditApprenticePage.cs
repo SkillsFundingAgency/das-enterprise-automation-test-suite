@@ -11,31 +11,34 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
-        private readonly EditedApprenticeDataHelper _dataHelper;
         private readonly EditedApprenticeCourseDataHelper _coursedataHelper;
         #endregion
+
         private By CourseOption(string courseid) => By.CssSelector($"#TrainingCode option[value='{courseid}']");
 
-        protected override By Reference => By.Id("EmployerRef");
-        protected override By UpdateDetailsButton => By.Id("submit-edit-app");
+        private By DeleteButton => By.LinkText("Delete");
 
         public EditApprenticePage(ScenarioContext context) : base(context)
         {
             _context = context;
-            _dataHelper = context.Get<EditedApprenticeDataHelper>();
             _coursedataHelper = context.Get<EditedApprenticeCourseDataHelper>();
-            VerifyPage();
+        }
+
+        public ConfirmApprenticeDeletionPage SelectDeleteApprentice()
+        {
+           formCompletionHelper.ClickElement(DeleteButton);
+            return new ConfirmApprenticeDeletionPage(_context);
         }
 
         public ConfirmChangesPage EditCostCourseAndReference()
         {
-            EditCostCourseAndReference(_dataHelper.EmployerReference);
+            EditCostCourseAndReference(dataHelper.EmployerReference);
             return ConfirmChangesPage();
         }
 
         public ConfirmChangesPage EditApprenticeNameDobAndReference()
         {
-            EditApprenticeNameDobAndReference(_dataHelper.EmployerReference);
+            EditApprenticeNameDobAndReference(dataHelper.EmployerReference);
             return ConfirmChangesPage();
         }
         protected override void SelectCourse()

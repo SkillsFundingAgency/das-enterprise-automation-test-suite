@@ -61,6 +61,11 @@ namespace SFA.DAS.UI.FrameworkHelpers
             EnterText(element, value.ToString());
         }
 
+        public void SelectByIndex(By @by, int index)
+        {
+            SelectByIndex(_webDriver.FindElement(by), index);
+        }
+
         public void SelectFromDropDownByValue(By @by, string value)
         {
             SelectFromDropDownByValue(_webDriver.FindElement(by), value);
@@ -71,12 +76,17 @@ namespace SFA.DAS.UI.FrameworkHelpers
             SelectFromDropDownByText(_webDriver.FindElement(by), text);
         }
 
-        public void SelectFromDropDownByValue(IWebElement element, string value)
+        private void SelectByIndex(IWebElement element, int index)
+        {
+            SelectElement(element).SelectByIndex(index);
+        }
+
+        private void SelectFromDropDownByValue(IWebElement element, string value)
         {
             SelectElement(element).SelectByValue(value);
         }
 
-        public void SelectFromDropDownByText(IWebElement element, string text)
+        private void SelectFromDropDownByText(IWebElement element, string text)
         {
             SelectElement(element).SelectByText(text);
         }

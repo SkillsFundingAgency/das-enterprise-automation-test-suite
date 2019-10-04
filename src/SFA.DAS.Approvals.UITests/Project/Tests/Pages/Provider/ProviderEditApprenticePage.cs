@@ -16,9 +16,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         #endregion
         protected By CourseCode => By.Id("CourseCode");
 
-        protected override By Reference => By.Id("ProviderRef");
-        protected override By UpdateDetailsButton => By.Id("submit-edit-details");
-
         public ProviderEditApprenticePage(ScenarioContext context) : base(context)
         {
             _context = context;

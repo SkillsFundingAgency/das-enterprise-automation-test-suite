@@ -3,7 +3,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
 {
-    public abstract class EditApprentice : EditAppretinceNameDobAndReference
+    public abstract class EditApprentice : EditApprenticePreApproval
     {
 
         private By TrainingCost => By.Id("Cost");

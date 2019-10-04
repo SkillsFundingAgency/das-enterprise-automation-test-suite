@@ -1,17 +1,16 @@
 ﻿using SFA.DAS.UI.Framework.TestSupport;
-using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.TestProject.UITests.Project
 {
     [Binding]
-    public class ProjectSpecificConfigurationSetup          
+    public class TestProjectConfigurationSetup          
     {
         private readonly ScenarioContext _context;
         private readonly ObjectContext _objectContext;
         private readonly IConfigSection _configSection;
 
-        public ProjectSpecificConfigurationSetup(ScenarioContext context)
+        public TestProjectConfigurationSetup(ScenarioContext context)
         {
             _context = context;
             _configSection = context.Get<IConfigSection>();
@@ -19,10 +18,10 @@ namespace SFA.DAS.TestProject.UITests.Project
         }
 
         [BeforeScenario(Order = 2)]
-        public void SetUpProjectSpecificConfiguration()
+        public void SetUpTestProjectConfiguration()
         {
-            var config = _configSection.GetConfigSection<ProjectConfig>();
-            _context.SetProjectConfig(config);
+            var config = _configSection.GetConfigSection<TestProjectConfig>();
+            _context.SetTestProjectConfig(config);
 
             _objectContext.ReplaceBrowser(config.Browser);
         }

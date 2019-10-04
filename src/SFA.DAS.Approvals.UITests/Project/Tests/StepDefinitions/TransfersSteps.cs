@@ -35,7 +35,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         public TransfersSteps(ScenarioContext context)
         {
             _context = context;
-            _sender = context.GetProjectConfig<ProjectConfig>().RE_OrganisationName;
+            _sender = context.GetRegistrationConfig<RegistrationConfig>().RE_OrganisationName;
             _receiver = context.GetTransfersConfig<TransfersConfig>().AP_ReceiverOrganisationName;
             _multipleAccountsLoginHelper = new MultipleAccountsLoginHelper(context);
             _employerPortalLoginHelper = new EmployerPortalLoginHelper(context);

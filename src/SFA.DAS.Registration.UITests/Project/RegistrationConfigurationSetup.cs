@@ -5,13 +5,13 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.Registration.UITests.Project
 {
     [Binding]
-    public class ProjectSpecificConfigurationSetup
+    public class RegistrationConfigurationSetup
     {
         private readonly ScenarioContext _context;
         private readonly ObjectContext _objectContext;
         private readonly IConfigSection _configSection;
 
-        public ProjectSpecificConfigurationSetup(ScenarioContext context)
+        public RegistrationConfigurationSetup(ScenarioContext context)
         {
             _context = context;
             _configSection = context.Get<IConfigSection>();
@@ -19,10 +19,10 @@ namespace SFA.DAS.Registration.UITests.Project
         }
 
         [BeforeScenario(Order = 2)]
-        public void SetUpProjectSpecificConfiguration()
+        public void SetUpRegistrationConfigConfiguration()
         {
-            var config = _configSection.GetConfigSection<ProjectConfig>();
-            _context.SetProjectConfig(config);
+            var config = _configSection.GetConfigSection<RegistrationConfig>();
+            _context.SetRegistrationConfig(config);
 
             var levyUser = _configSection.GetConfigSection<LevyUser>();
             _context.SetUser(levyUser);

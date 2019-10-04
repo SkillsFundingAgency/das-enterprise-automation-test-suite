@@ -1,11 +1,12 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
 {
-    public abstract class ReviewYourCohort : BasePage
+    public abstract class ReviewYourCohort : CohortReferenceBasePage
     {
         #region Helpers and Context
         protected readonly PageInteractionHelper pageInteractionHelper;

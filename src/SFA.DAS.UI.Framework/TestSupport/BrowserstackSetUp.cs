@@ -14,12 +14,6 @@ namespace SFA.DAS.UI.Framework.Project.Tests.TestSupport
             _buildDateTime = DateTime.Now.ToString("ddMMMyyyy HH:mm:ss").ToUpper();
         }
 
-        private static void CheckBrowserStackLogin(BrowserStackSetting options)
-        {
-            if (options.User == null || options.Key == null)
-                throw new Exception("Please enter browserstack credentials");
-        }
-
         public static IWebDriver Init(BrowserStackSetting options)
         {
             CheckBrowserStackLogin(options);
@@ -42,6 +36,12 @@ namespace SFA.DAS.UI.Framework.Project.Tests.TestSupport
             AddAdditionalCapability(chromeOption, "browserstack.networkLogs", options.EnableNetworkLogs);
 
             return new RemoteWebDriver(new Uri(options.ServerName), chromeOption);
+        }
+
+        private static void CheckBrowserStackLogin(BrowserStackSetting options)
+        {
+            if (options.User == null || options.Key == null)
+                throw new Exception("Please enter browserstack credentials");
         }
 
         private static void AddAdditionalCapability(ChromeOptions chromeOptions, string capabilityName, object capabilityValue)

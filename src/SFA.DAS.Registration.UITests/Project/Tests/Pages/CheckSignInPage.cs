@@ -7,7 +7,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
     {
         protected override string PageTitle { get; }
 
-        protected override By Identifier => By.LinkText("sign in");
+        protected override By Identifier => By.Id("EmailAddress");
 
         public CheckSignInPage(ScenarioContext context) : base(context)
         {  

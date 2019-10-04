@@ -17,7 +17,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         private readonly PageInteractionHelper _pageInteractionHelper;
         private readonly FormCompletionHelper _formCompletionHelper;
         private readonly ScenarioContext _context;
-        private readonly ProjectConfig _config;
+        private readonly RegistrationConfig _config;
         private readonly ObjectContext _objectContext;
         #endregion
 
@@ -29,7 +29,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             _objectContext = context.Get<ObjectContext>();
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
-            _config = context.GetProjectConfig<ProjectConfig>();
+            _config = context.GetRegistrationConfig<RegistrationConfig>();
             VerifyPage();
         }
         public CheckYourDetailsPage SelectYourOrganisation()

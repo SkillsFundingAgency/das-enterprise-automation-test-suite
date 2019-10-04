@@ -13,7 +13,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         private readonly PageInteractionHelper _pageInteractionHelper;
         private readonly FormCompletionHelper _formCompletionHelper;
         private readonly ScenarioContext _context;
-        private readonly ProjectConfig _config;
+        private readonly RegistrationConfig _config;
         #endregion
 
         private By AccessCodeInput => By.Id("AccessCode");
@@ -25,7 +25,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         public ConfirmPage(ScenarioContext context) : base(context)
         {
             _context = context;
-            _config = context.GetProjectConfig<ProjectConfig>();
+            _config = context.GetRegistrationConfig<RegistrationConfig>();
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
             VerifyPage();

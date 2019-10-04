@@ -15,17 +15,15 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
 
         protected virtual By FirstNameField => By.Id("FirstName");
         protected virtual By LastNameField => By.Id("LastName");
-        protected virtual By DateOfBirthDay => By.Id("DateOfBirth_Day");
-        protected virtual By DateOfBirthMonth => By.Id("DateOfBirth_Month");
-        protected virtual By DateOfBirthYear => By.Id("DateOfBirth_Year");
-        protected virtual By StartDateMonth => By.Id("StartDate_Month");
-        protected virtual By StartDateYear => By.Id("StartDate_Year");
-        protected virtual By EndDateMonth => By.Id("EndDate_Month");
-        protected virtual By EndDateYear => By.Id("EndDate_Year");
-
-        protected abstract By Reference { get; }
-
-        protected abstract By UpdateDetailsButton { get; }
+        protected virtual By DateOfBirthDay => By.CssSelector("#BirthDay, #DateOfBirth_Day");
+        protected virtual By DateOfBirthMonth => By.CssSelector("#BirthMonth, #DateOfBirth_Month");
+        protected virtual By DateOfBirthYear => By.CssSelector("#BirthYear, #DateOfBirth_Year");
+        protected virtual By StartDateMonth => By.CssSelector("#StartMonth, #StartDate_Month");
+        protected virtual By StartDateYear => By.CssSelector("#StartYear, #StartDate_Year");
+        protected virtual By EndDateMonth => By.CssSelector("#EndMonth, #EndDate_Month");
+        protected virtual By EndDateYear => By.CssSelector("#EndYear, #EndDate_Year");
+        protected virtual By Reference => By.CssSelector("#EmployerRef, #Reference, #ProviderRef");
+        protected virtual By UpdateDetailsButton => By.CssSelector("#submit-edit-app, .govuk-button, #submit-edit-details");
 
         public EditAppretinceNameDobAndReference(ScenarioContext context) : base(context)
         {

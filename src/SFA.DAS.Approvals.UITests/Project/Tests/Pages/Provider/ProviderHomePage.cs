@@ -22,6 +22,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         private By ProviderManageYourApprenticesLink => By.LinkText("Manage your apprentices");
 
+        private By NotificationSettingsLink => By.LinkText("Notification settings");
+
         public ProviderHomePage(ScenarioContext context, bool navigate = false) : base(context, navigate)
         {
             _context = context;
@@ -35,5 +37,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             _formCompletionHelper.ClickElement(ProviderManageYourApprenticesLink);
             return new ProviderManageYourApprenticesPage(_context);
         }
+
+        public ProviderNotificationSettingsPage GoToProviderNotificationSettingsPage()
+        {
+            _formCompletionHelper.ClickElement(NotificationSettingsLink);
+            return new ProviderNotificationSettingsPage(_context);
+        }
+
     }
 }
