@@ -43,7 +43,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         }
 
         [Then(@"Employer is able to edit all apprentices before approval")]
-        public void ThenEmployerIsAbleToEditAllApprenticesBeforeApproval()
+        public void EmployerIsAbleToEditAllApprenticesBeforeApproval()
         {
             int totalApprentices = _reviewYourCohortPage.TotalNoOfEditableApprentice();
             for (int i = 0; i < totalApprentices; i++)
@@ -52,6 +52,26 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                     .EditApprenticePreApprovalAndSubmit();
             }
         }
+
+        [Then(@"Employer is able to delete all apprentices before approval")]
+        public void EmployerIsAbleToDeleteAllApprenticesBeforeApproval()
+        {
+            int totalApprentices = _reviewYourCohortPage.TotalNoOfEditableApprentice();
+            for (int i = 0; i < totalApprentices; i++)
+            {
+                _reviewYourCohortPage = _reviewYourCohortPage.SelectEditApprentice(i)
+                     .SelectDeleteApprentice()
+                    .ConfirmDeleteAndSubmit();
+            }
+        }
+
+        [Then(@"Employer is able to delete the cohort before approval")]
+        public void ThenEmployerIsAbleToDeleteTheCohortBeforeApproval()
+        {
+            _reviewYourCohortPage.SelectDeleteCohort()
+                .ConfirmDeleteAndSubmit();
+        }
+
 
         [When(@"the Employer approves (\d) cohort and sends to provider")]
         public void TheEmployerApprovesCohortAndSendsToProvider(int numberOfApprentices)

@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using System;
+using OpenQA.Selenium;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
@@ -14,7 +15,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private readonly PageInteractionHelper _pageInteractionHelper;
         private readonly FormCompletionHelper _formCompletionHelper;
         private readonly ScenarioContext _context;
-        private readonly ApprovalsConfig _config;
         #endregion
 
         private By AddAnApprenticeButton => By.ClassName("button-secondary");
@@ -26,7 +26,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         public ReviewYourCohortPage(ScenarioContext context) : base(context)
         {
             _context = context;
-            _config = context.GetApprovalsConfig<ApprovalsConfig>();
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
             VerifyPage();
@@ -70,6 +69,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         {
             var editApprenticeLinks = _pageInteractionHelper.FindElements(EditApprenticeLink);
             _formCompletionHelper.ClickElement(editApprenticeLinks[apprenticeNumber]);
+        }
+
+        public ConfirmCohortDeletionPage SelectDeleteCohort()
+        {
+            _formCompletionHelper.ClickElement(DeleteCohortbutton);
+            return new ConfirmCohortDeletionPage(_context);
         }
     }
 }

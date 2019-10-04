@@ -23,7 +23,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers
 
         public string RandomCourse()
         {
-            return (RandomNumber % 2 == 0) ? AvailableCourses[0] : AvailableCourses[1];
+            return (RandomNumber % 2 == 0) ? AvailableCourses[1] : AvailableCourses[1];
         }
 
         private List<string> AllCourses() => new List<string> { AbleSeafarerStandardCourseOption, FrameworkCourseOption };

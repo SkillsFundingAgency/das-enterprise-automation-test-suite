@@ -16,10 +16,18 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         private By CourseOption(string courseid) => By.CssSelector($"#TrainingCode option[value='{courseid}']");
 
+        private By DeleteButton => By.LinkText("Delete");
+
         public EditApprenticePage(ScenarioContext context) : base(context)
         {
             _context = context;
             _coursedataHelper = context.Get<EditedApprenticeCourseDataHelper>();
+        }
+
+        public ConfirmApprenticeDeletionPage SelectDeleteApprentice()
+        {
+           formCompletionHelper.ClickElement(DeleteButton);
+            return new ConfirmApprenticeDeletionPage(_context);
         }
 
         public ConfirmChangesPage EditCostCourseAndReference()
