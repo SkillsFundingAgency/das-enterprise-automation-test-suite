@@ -4,26 +4,22 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ManageFunding.UITests.Project.Tests.Pages
 {
-    public class YourFundingReservationsPage : InterimBasePage
+    public class YourFundingReservationsHomePage : HomePage
     {
-        protected override string Linktext => "Finance";
-
-        protected override string PageTitle => "Finance";
-
         private ScenarioContext _context;
 
         private By YourFundingReservationsLink => By.LinkText("Your funding reservations");
 
-        public YourFundingReservationsPage(ScenarioContext context, bool navigate = false) : base(context, navigate)
+        public YourFundingReservationsHomePage(ScenarioContext context) : base(context)
         {
             _context = context;
             VerifyPage();
         }
 
-        internal YourFundingReservationsPage OpenYourFundingReservations()
+        internal YourFundingReservationsHomePage OpenYourFundingReservations()
         {
             formCompletionHelper.ClickElement(YourFundingReservationsLink);
-            return new YourFundingReservationsPage(_context);
+            return new YourFundingReservationsHomePage(_context);
         }
     }
 }
