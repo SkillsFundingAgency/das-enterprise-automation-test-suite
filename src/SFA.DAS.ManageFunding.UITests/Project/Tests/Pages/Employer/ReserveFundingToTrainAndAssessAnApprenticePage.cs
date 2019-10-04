@@ -5,7 +5,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ManageFunding.UITests.Project.Tests.Pages.Employer
 {
-    class ReserveFundingToTrainAndAssessAnApprenticePage : BasePage
+    public class ReserveFundingToTrainAndAssessAnApprenticePage : BasePage
     {
         protected override string PageTitle => "Reserve funding to train and assess an apprentice";
 

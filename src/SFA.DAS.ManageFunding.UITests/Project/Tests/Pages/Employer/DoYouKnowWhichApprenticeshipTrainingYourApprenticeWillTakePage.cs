@@ -5,7 +5,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ManageFunding.UITests.Project.Tests.Pages.Employer
 {
-    class DoYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage : BasePage
+    public class DoYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage : BasePage
     {
         protected override string PageTitle => "Do you know which apprenticeship training your apprentice will take?";
 
