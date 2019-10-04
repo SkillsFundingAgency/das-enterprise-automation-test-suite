@@ -7,16 +7,22 @@ namespace SFA.DAS.UI.Framework.TestSupport
     public static class ScenarioContextExtension
     {
         #region Constants
-        private const string ProjectConfigKey = "projectconfig";
+        private const string TestProjectConfigKey = "testprojectconfig";
+        private const string RegistrationProjectConfigKey = "registrationprojectconfig";
         private const string ApprovalsProjectConfigKey = "approvalsprojectconfig";
         private const string TransfersProjectConfigKey = "transfersprojectconfig";
         private const string MongoDbConfigKey = "mongodbconfig";
         private const string WebDriverKey = "webdriver";
         #endregion
 
-        public static void SetProjectConfig<T>(this ScenarioContext context, T value)
+        public static void SetTestProjectConfig<T>(this ScenarioContext context, T value)
         {
-            Set(context, value, ProjectConfigKey);
+            Set(context, value, TestProjectConfigKey);
+        }
+
+        public static void SetRegistrationConfig<T>(this ScenarioContext context, T value)
+        {
+            Set(context, value, RegistrationProjectConfigKey);
         }
 
         public static void SetApprovalsConfig<T>(this ScenarioContext context, T value)
@@ -29,9 +35,14 @@ namespace SFA.DAS.UI.Framework.TestSupport
             Set(context, value, TransfersProjectConfigKey);
         }
 
-        public static T GetProjectConfig<T>(this ScenarioContext context)
+        public static T GetRegistrationConfig<T>(this ScenarioContext context)
         {
-            return Get<T>(context, ProjectConfigKey);
+            return Get<T>(context, RegistrationProjectConfigKey);
+        }
+
+        public static T GetTestProjectConfig<T>(this ScenarioContext context)
+        {
+            return Get<T>(context, TestProjectConfigKey);
         }
 
         public static T GetApprovalsConfig<T>(this ScenarioContext context)

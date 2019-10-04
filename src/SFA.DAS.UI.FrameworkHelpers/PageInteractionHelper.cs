@@ -193,5 +193,11 @@ namespace SFA.DAS.UI.FrameworkHelpers
         }
 
         public IWebElement GetLink(By by, Func<string, bool> func) => _webDriver.FindElements(by).ToList().First(x => func(x.GetAttribute("innerText")));
+
+
+        public List<string> GetAvailableOptions(By @by)
+        {
+            return new SelectElement(_webDriver.FindElement(by)).Options.Where(t => string.IsNullOrEmpty(t.Text)).Select(x => x.Text).ToList();
+        }
     }
 }

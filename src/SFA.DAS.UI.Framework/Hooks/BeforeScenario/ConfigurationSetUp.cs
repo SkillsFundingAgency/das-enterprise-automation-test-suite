@@ -30,15 +30,10 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
             {
                 TimeOutConfig = _configSection.GetConfigSection<TimeOutConfig>(),
                 BrowserStackSetting = _configSection.GetConfigSection<BrowserStackSetting>(),
-                TakeEveryPageScreenShot = TestsExecutionInVsts()
+                TakeEveryPageScreenShot = Configurator.IsVstsExecution
             };
 
             _context.Set(configuration);
-        }
-
-        private bool TestsExecutionInVsts()
-        {
-            return !string.IsNullOrEmpty(_configurationRoot.GetAgentMachineName());
         }
     }
 }

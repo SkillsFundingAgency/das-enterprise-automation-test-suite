@@ -20,7 +20,6 @@ namespace SFA.DAS.UI.FrameworkHelpers
         {
             return Policy
                  .Handle<Exception>((x) => x.Message.Contains("verification failed"))
-                 .Or<WebDriverException>()
                  .WaitAndRetry(TimeOut, (exception, timeSpan, retryCount, context) =>
                  {
                      TestContext.Progress.WriteLine($"Retry Count : {retryCount}, Exception : {exception.Message}");

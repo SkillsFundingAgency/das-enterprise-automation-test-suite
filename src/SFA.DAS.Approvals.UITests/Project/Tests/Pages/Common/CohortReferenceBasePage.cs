@@ -3,7 +3,7 @@ using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 using OpenQA.Selenium;
 
-namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
+namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
 {
     public abstract class CohortReferenceBasePage : BasePage
     {
@@ -25,6 +25,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         {
             var reference = _pageInteractionHelper.GetRowData(Instructions, "Cohort reference");
             return _regexHelper.GetCohortReference(reference);
+        }
+
+        public string CohortReferenceFromUrl()
+        {
+            var url = _pageInteractionHelper.GetUrl();
+            return _regexHelper.GetCohortReferenceFromUrl(url);
         }
     }
 }
