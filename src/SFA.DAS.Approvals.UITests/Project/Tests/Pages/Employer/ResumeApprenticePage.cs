@@ -1,34 +1,23 @@
-﻿using OpenQA.Selenium;
-using SFA.DAS.UI.Framework.TestSupport;
-using SFA.DAS.UI.FrameworkHelpers;
+﻿using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
-    public class ResumeApprenticePage : BasePage
+    public class ResumeApprenticePage : ChangeApprenticeStatus
     {
         protected override string PageTitle => "Resume apprentice";
 
-        #region Helpers and Context
         private readonly ScenarioContext _context;
-        private readonly FormCompletionHelper _formCompletionHelper;
-        #endregion
-
-        private By ConfirmResumeOptions => By.CssSelector(".selection-button-radio");
-        private By ConfirmButton => By.CssSelector(".button");
 
         public ResumeApprenticePage(ScenarioContext context) : base(context)
         {
-            _context = context;
-            _formCompletionHelper = context.Get<FormCompletionHelper>();
-            VerifyPage();
+            _context = context;          
         }
 
-        internal ApprenticeDetailsPage SelectYesAndConfirm()
+        public new ResumedApprenticeDetailsPage SelectYesAndConfirm()
         {
-            _formCompletionHelper.SelectRadioOptionByForAttribute(ConfirmResumeOptions, "ChangeConfirmed-True");
-            _formCompletionHelper.ClickElement(ConfirmButton);
-            return new ApprenticeDetailsPage(_context);
+            base.SelectYesAndConfirm();
+            return new ResumedApprenticeDetailsPage(_context);
         }
     }
 }
