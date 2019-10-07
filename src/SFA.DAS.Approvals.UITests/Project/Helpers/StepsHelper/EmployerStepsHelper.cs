@@ -87,6 +87,22 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                 .SelectApproveChangesAndSubmit();
         }
 
+        internal StoppedApprenticeDetailsPage StopApprenticeThisMonth()
+        {
+            var apprenticeDetailsPage = ViewCurrentApprenticeDetails();
+
+            return StopApprenticeThisMonth(apprenticeDetailsPage);
+        }
+
+        internal StoppedApprenticeDetailsPage StopApprenticeThisMonth(ApprenticeDetailsPage apprenticeDetailsPage)
+        {
+            return apprenticeDetailsPage
+                .ClickEditStatusLink()
+                .SelectStopAndContinueForAStartedApprentice()
+                .EditStopDateToThisMonthAndSubmit()
+                .SelectYesAndConfirm();
+        }
+
         internal ApprenticeDetailsPage ViewCurrentApprenticeDetails()
         {
             return GoToManageYourApprenticesPage()

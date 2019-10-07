@@ -58,11 +58,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Then(@"the Employer can stop the live apprentice")]
         public void ThenTheEmployerCanStopTheLiveApprentice()
         {
-            _employerStepsHelper.ViewCurrentApprenticeDetails()
-                .ClickEditStatusLink()
-                .SelectStopAndContinueForAStartedApprentice()
-                .ChooseRandomStopMonthAndSubmit()
-                .SelectYesandConfirm();
+            _employerStepsHelper.StopApprenticeThisMonth();
         }
 
         [Then(@"the Employer can not stop the waiting to start apprentice")]

@@ -51,6 +51,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             return new ChangeApprenticeStatusPage(_context);
         }
 
+        public ThisApprenticeshipTrainingStopPage ClickEditStopDateLink()
+        {
+            _formCompletionHelper.ClickElement(EditStopDateLink);
+            return new ThisApprenticeshipTrainingStopPage(_context);
+        }
+
         public bool VerifyIfChangeRequestWasApproved()
         {
             if (_pageInteractionHelper.IsElementDisplayed(ViewChangesLink))
