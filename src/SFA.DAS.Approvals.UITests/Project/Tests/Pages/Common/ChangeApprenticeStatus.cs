@@ -21,7 +21,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
         public void SelectYesAndConfirm()
         {
             _formCompletionHelper.SelectRadioOptionByForAttribute(ConfirmResumeOptions, "ChangeConfirmed-True");
-            _formCompletionHelper.ClickElement(ConfirmButton);
+            _formCompletionHelper.ClickElement(ConfirmButton, true);
         }
     }
 }
