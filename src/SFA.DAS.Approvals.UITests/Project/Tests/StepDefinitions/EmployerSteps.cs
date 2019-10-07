@@ -94,7 +94,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             int totalApprentices = _reviewYourCohortPage.TotalNoOfEditableApprentice();
             for (int i = 0; i < totalApprentices; i++)
             {
-                _reviewYourCohortPage = _reviewYourCohortPage.SelectEditApprentice(i)
+                _reviewYourCohortPage = _reviewYourCohortPage.SelectEditApprentice(0)
                      .SelectDeleteApprentice()
                     .ConfirmDeleteAndSubmit();
             }
