@@ -9,26 +9,25 @@ namespace SFA.DAS.UI.Framework.TestSupport
 
         private readonly static IConfigurationRoot _hostingConfig;
 
-        internal static bool IsVstsExecution;
+        internal readonly static bool IsVstsExecution;
+
+        internal readonly static string EnvironmentName;
+
+        internal readonly static string ProjectName;
 
         static Configurator()
         {
             _hostingConfig = InitializeHostingConfig();
             IsVstsExecution = TestsExecutionInVsts();
+            EnvironmentName = GetEnvironmentName();
+            ProjectName = GetProjectName();
             _config = InitializeConfig();
         }
 
-        internal static IConfigurationRoot GetConfig()
-        {
-            return _config;
-        }
+        internal static IConfigurationRoot GetConfig() => _config;
 
         private static IConfigurationRoot InitializeConfig()
         {
-            var EnvironmentName = GetEnvironmentName();
-
-            var ProjectName = _hostingConfig.GetSection("ProjectName").Value;
-
             return ConfigurationBuilder()
             .AddJsonFile("appsettings.json", true)
             .AddJsonFile("appsettings.BrowserStack.json", true)
@@ -42,35 +41,22 @@ namespace SFA.DAS.UI.Framework.TestSupport
             .Build();
         }
 
-        private static IConfigurationRoot InitializeHostingConfig()
-        {
-            return ConfigurationBuilder()
+        private static IConfigurationRoot InitializeHostingConfig() => ConfigurationBuilder()
                 .AddJsonFile("appsettings.Environment.json", true)
                 .AddEnvironmentVariables()
                 .Build();
-        }
 
-        private static IConfigurationBuilder ConfigurationBuilder()
-        {
-            return new ConfigurationBuilder()
-                    .SetBasePath(Directory.GetCurrentDirectory());
-        }
+        private static IConfigurationBuilder ConfigurationBuilder() => new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory());
 
-        private static bool TestsExecutionInVsts()
-        {
-            return !string.IsNullOrEmpty(GetAgentMachineName());
-        }
+        private static bool TestsExecutionInVsts() => !string.IsNullOrEmpty(GetAgentMachineName());
 
-        private static string GetAgentMachineName()
-        {
-            return _hostingConfig.GetSection("AGENT_MACHINENAME")?.Value;
-        }
+        private static string GetAgentMachineName() => GetHostingConfigSection("AGENT_MACHINENAME");
 
-        private static string GetEnvironmentName()
-        {
-            return IsVstsExecution ?
-                   _hostingConfig.GetSection("RELEASE_ENVIRONMENTNAME")?.Value :
-                   _hostingConfig.GetSection("local_EnvironmentName").Value;
-        }
+        private static string GetEnvironmentName() => IsVstsExecution ? GetHostingConfigSection("RELEASE_ENVIRONMENTNAME") : GetHostingConfigSection("local_EnvironmentName");
+
+        private static string GetProjectName() => GetHostingConfigSection("ProjectName");
+
+        private static string GetHostingConfigSection(string name) => _hostingConfig.GetSection(name)?.Value;
     }
 }

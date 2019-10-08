@@ -10,4 +10,12 @@ namespace SFA.DAS.UI.Framework
 
         public bool TakeEveryPageScreenShot { get; set; }
     }
+
+    public class ExecutionConfig
+    {
+        public string EnvironmentName { get; internal set; }
+
+        public string ProjectName { get; internal set; }
+
+    }
 }

@@ -27,6 +27,8 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
 
         private readonly FrameworkConfig _frameworkConfig;
 
+        private readonly ExecutionConfig _executionConfig;
+
         private const string ChromeDriverServiceName = "chromedriver.exe";
 
         private const string FirefoxDriverServiceName = "geckodriver.exe";
@@ -39,6 +41,7 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
             _context = context;
             _objectContext = context.Get<ObjectContext>();
             _frameworkConfig = context.Get<FrameworkConfig>();
+            _executionConfig = context.Get<ExecutionConfig>();
         }
 
 
@@ -74,7 +77,7 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
                
                 case bool _ when browser.IsCloudExecution():
                     _frameworkConfig.BrowserStackSetting.Name = _context.ScenarioInfo.Title;
-                    WebDriver = BrowserStackSetup.Init(_frameworkConfig.BrowserStackSetting);
+                    WebDriver = BrowserStackSetup.Init(_frameworkConfig.BrowserStackSetting, _executionConfig);
                     break;
 
                 default:
