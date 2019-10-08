@@ -28,6 +28,6 @@
 
         public bool EnableNetworkLogs { get; set; }
 
-        public string TimeZone { get; set; }
+        internal string TimeZone => "London";
     }
 }
