@@ -17,7 +17,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private readonly PageInteractionHelper _pageInteractionHelper;
         private readonly FormCompletionHelper _formCompletionHelper;
         #endregion
+        private By NotificationOptions => By.CssSelector(".selection-button-radio");
+        private By UpdateButton => By.CssSelector(".button");
 
+        private By Alert => By.CssSelector(".green-box-alert");
 
         public ProviderNotificationSettingsPage(ScenarioContext context): base(context)
         {
@@ -25,9 +28,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             _formCompletionHelper = context.Get<FormCompletionHelper>();
             VerifyPage();
         }
-
-        private By NotificationOptions => By.CssSelector(".selection-button-radio");
-        private By UpdateButton => By.CssSelector(".button");
 
         public ProviderNotificationSettingsPage ChooseToReceiveEmails()
         {
@@ -41,7 +41,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         public bool IsSettingsUpdated()
         {
-            return _pageInteractionHelper.IsElementDisplayed(By.CssSelector(".green-box-alert"));
+            return _pageInteractionHelper.IsElementDisplayed(Alert);
         }
 
         private ProviderNotificationSettingsPage SelectReceiveEmailsOptions(string option)

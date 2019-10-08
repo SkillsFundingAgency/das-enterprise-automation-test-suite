@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using SFA.DAS.UI.FrameworkHelpers;
 
 namespace SFA.DAS.Approvals.UITests.Project.Helpers
 {
     public enum ApprenticeStatus
     {
         Live,
+        CurrentAcademicYearStartDate,
         WaitingToStart,
         Random
     }
@@ -60,6 +60,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers
             int range = (end - start).Days;
             var randomStartDate = start.AddDays(new Random().Next(range));
             return _apprenticeStatus == ApprenticeStatus.Live ? GetLiveApprenticeStartDate(randomStartDate) :
+                   _apprenticeStatus == ApprenticeStatus.CurrentAcademicYearStartDate ? _currentAcademicYearStartDate :
                    _apprenticeStatus == ApprenticeStatus.WaitingToStart ? GetWaitingToStartApprenticeStartDate(randomStartDate) : randomStartDate;
         }
 

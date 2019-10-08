@@ -14,7 +14,7 @@ namespace SFA.DAS.UI.Framework.Project.Tests.TestSupport
             _buildDateTime = DateTime.Now.ToString("ddMMMyyyy HH:mm:ss").ToUpper();
         }
 
-        public static IWebDriver Init(BrowserStackSetting options)
+        public static IWebDriver Init(BrowserStackSetting options, ExecutionConfig executionConfig)
         {
             CheckBrowserStackLogin(options);
 
@@ -29,7 +29,7 @@ namespace SFA.DAS.UI.Framework.Project.Tests.TestSupport
             AddAdditionalCapability(chromeOption, "resolution", options.Resolution);
             AddAdditionalCapability(chromeOption, "browserstack.user", options.User);
             AddAdditionalCapability(chromeOption, "browserstack.key", options.Key);
-            AddAdditionalCapability(chromeOption, "build", $"{options.Build}_{_buildDateTime}");
+            AddAdditionalCapability(chromeOption, "build", $"{options.Build}_{executionConfig.EnvironmentName.ToUpper()}_{_buildDateTime}");
             AddAdditionalCapability(chromeOption, "project", options.Project);
             AddAdditionalCapability(chromeOption, "browserstack.debug", "true");
             AddAdditionalCapability(chromeOption, "name", options.Name);

@@ -32,7 +32,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         public StartAddingApprenticesPage ConfirmProviderDetailsAreCorrect()
         {
             _formCompletionHelper.SelectRadioOptionByForAttribute(ConfirmProviderDetailsOptions, "Confirmation-True");
-            _formCompletionHelper.ClickElement(ContinueButton);
+            _formCompletionHelper.ClickElement(ContinueButton, true);
             return new StartAddingApprenticesPage(_context);
         }
     }
