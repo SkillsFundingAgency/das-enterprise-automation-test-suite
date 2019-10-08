@@ -27,5 +27,7 @@
         public string Name { get; internal set; }
 
         public bool EnableNetworkLogs { get; set; }
+
+        public string TimeZone { get; set; }
     }
 }

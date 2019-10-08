@@ -34,6 +34,8 @@ namespace SFA.DAS.UI.Framework.Project.Tests.TestSupport
             AddAdditionalCapability(chromeOption, "browserstack.debug", "true");
             AddAdditionalCapability(chromeOption, "name", options.Name);
             AddAdditionalCapability(chromeOption, "browserstack.networkLogs", options.EnableNetworkLogs);
+            AddAdditionalCapability(chromeOption, "browserstack.timezone", "London");
+            AddAdditionalCapability(chromeOption, "browserstack.console", "info");
 
             return new RemoteWebDriver(new Uri(options.ServerName), chromeOption);
         }
