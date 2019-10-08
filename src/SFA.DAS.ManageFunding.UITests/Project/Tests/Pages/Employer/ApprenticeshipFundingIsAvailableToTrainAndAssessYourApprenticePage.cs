@@ -13,32 +13,30 @@ namespace SFA.DAS.ManageFunding.UITests.Project.Tests.Pages.Employer
         private readonly PageInteractionHelper _pageInteractionHelper;
         private readonly FormCompletionHelper _formCompletionHelper;
         private readonly ScenarioContext _context;
-        private readonly ManageFundingConfig _config;
         #endregion
 
         public ApprenticeshipFundingIsAvailableToTrainAndAssessYourApprenticePage(ScenarioContext context) : base(context)
         {
             _context = context;
-            _config = context.GetManageFundingConfig<ManageFundingConfig>();
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
             VerifyPage();
         }
 
-        private By YesRadioButton => By.CssSelector("label[for=Reserve]");
+        private By YesReserveFundingNowRadioButton => By.CssSelector("label[for=Reserve]");
 
-        public ApprenticeshipFundingIsAvailableToTrainAndAssessYourApprenticePage ClickYesRadioButton()
+        public ApprenticeshipFundingIsAvailableToTrainAndAssessYourApprenticePage ClickYesReserveFundingNowRadioButton()
         {
-            _formCompletionHelper.ClickElement(YesRadioButton);
+            _formCompletionHelper.ClickElement(YesReserveFundingNowRadioButton);
             return new ApprenticeshipFundingIsAvailableToTrainAndAssessYourApprenticePage(_context);
         }
 
         private By ConfirmButton => By.CssSelector(".govuk-button");
 
-        public YouHaveSuccessfullyReservedFundingForApprenticeshipTrainingPage ClickConfirmButton()
+        public MakingChangesPage ClickConfirmButton()
         {
             _formCompletionHelper.ClickElement(ConfirmButton);
-            return new YouHaveSuccessfullyReservedFundingForApprenticeshipTrainingPage(_context);
+            return new MakingChangesPage(_context);
         }
     }
 }

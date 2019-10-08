@@ -8,24 +8,23 @@ namespace SFA.DAS.ManageFunding.UITests.Project.Tests.Pages.Employer
     public class DoYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage : BasePage
     {
         protected override string PageTitle => "Do you know which apprenticeship training your apprentice will take?";
+        private By YesRadioButton => By.CssSelector("label[for=ApprenticeTrainingKnown]");
+        private By TrainingCourseContainer => By.Id("SelectedCourseId");
+        private By standardCourseOption = By.Id("SelectedCourseId__option--0");
 
         #region Helpers and Context
         private readonly PageInteractionHelper _pageInteractionHelper;
         private readonly FormCompletionHelper _formCompletionHelper;
         private readonly ScenarioContext _context;
-        private readonly ManageFundingConfig _config;
         #endregion
 
         public DoYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage(ScenarioContext context) : base(context)
         {
             _context = context;
-            _config = context.GetManageFundingConfig<ManageFundingConfig>();
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
             VerifyPage();
         }
-
-        private By YesRadioButton => By.CssSelector("label[for=ApprenticeTrainingKnown]");
 
         public DoYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage ClickYesRadioButton()
         {
@@ -33,11 +32,10 @@ namespace SFA.DAS.ManageFunding.UITests.Project.Tests.Pages.Employer
             return new DoYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage(_context);
         }
 
-        private By TrainingCourseContainer => By.Id("SelectedCourseId");
-
         public DoYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage EnterSelectForACourseAndSubmit()
         {
-            _formCompletionHelper.EnterText(TrainingCourseContainer,"Food");
+            _formCompletionHelper.EnterText(TrainingCourseContainer, "Food Technologist - Level 3");
+            _formCompletionHelper.ClickElement(standardCourseOption);
             return new DoYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage(_context);
         }
 
