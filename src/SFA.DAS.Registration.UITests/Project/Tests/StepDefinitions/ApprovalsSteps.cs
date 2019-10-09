@@ -12,7 +12,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         public ApprovalsSteps(ScenarioContext context)
         {
             _context = context;
-           _stepsHelper = new ApprovalsStepsHelper(context);
+            _stepsHelper = new ApprovalsStepsHelper(context);
         }
 
         [Given(@"the User creates Employer account and sign an agreement")]

@@ -1,5 +1,4 @@
 ﻿Feature: EmployerStopsApprentice
-
 As an employer I can pause, resume and stop an apprentice
 
 @regression

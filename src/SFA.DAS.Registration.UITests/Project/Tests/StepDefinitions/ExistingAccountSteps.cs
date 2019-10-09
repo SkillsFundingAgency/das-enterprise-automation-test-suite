@@ -1,7 +1,4 @@
 ﻿using SFA.DAS.Registration.UITests.Project.Helpers;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions

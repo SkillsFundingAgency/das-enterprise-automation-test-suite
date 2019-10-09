@@ -31,7 +31,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.AccountSettings
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "EmployerNotificationSetting", "A short summary of the feature", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "EmployerNotificationSetting", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -76,17 +76,17 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.AccountSettings
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Employer login and modifies notification settings", null, new string[] {
                         "regression"});
-#line 7
+#line 4
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
+#line 5
+ testRunner.Given("Employer navigates to Apprentices home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 6
+ testRunner.When("Employer navigates to notification settings page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 7
+ testRunner.Then("Employer is able to choose to receive notification emails", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 8
-testRunner.Given("Employer navigates to Apprentices home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 9
-testRunner.When("Employer navigates to notification settings page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 10
-testRunner.Then("Employer is able to choose to receive notification emails", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 11
-testRunner.And("Employer is able to choose No notification emails", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("Employer is able to choose No notification emails", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
