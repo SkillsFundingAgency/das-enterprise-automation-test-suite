@@ -73,17 +73,17 @@ namespace SFA.DAS.TestProject.UITests.Project.Tests.Features
         public virtual void UserNavigatesToDFEHomePageFromGOV_UKPage(string searchLink, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User navigates to DFE home page from GOV.UK page", null, exampleTags);
-#line 8
- this.ScenarioInitialize(scenarioInfo);
+#line 6
+this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
+#line 7
+ testRunner.Given("the User navigates to GOV.UK home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 8
+ testRunner.When(string.Format("the User searches for {0}", searchLink), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 9
-  testRunner.Given("I navigate to GOV.UK home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.And("clicks the same link", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 10
-  testRunner.When(string.Format("I search for {0}", searchLink), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 11
-  testRunner.And("I click the same link", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 12
-  testRunner.Then("I should be on DFE home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the User should be on DFE home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -92,8 +92,8 @@ namespace SFA.DAS.TestProject.UITests.Project.Tests.Features
         [NUnit.Framework.DescriptionAttribute("User navigates to DFE home page from GOV.UK page: Ministry of Defence")]
         public virtual void UserNavigatesToDFEHomePageFromGOV_UKPage_MinistryOfDefence()
         {
-#line 8
- this.UserNavigatesToDFEHomePageFromGOV_UKPage("Ministry of Defence", ((string[])(null)));
+#line 6
+this.UserNavigatesToDFEHomePageFromGOV_UKPage("Ministry of Defence", ((string[])(null)));
 #line hidden
         }
         
@@ -101,8 +101,8 @@ namespace SFA.DAS.TestProject.UITests.Project.Tests.Features
         [NUnit.Framework.DescriptionAttribute("User navigates to DFE home page from GOV.UK page: Department for Education")]
         public virtual void UserNavigatesToDFEHomePageFromGOV_UKPage_DepartmentForEducation()
         {
-#line 8
- this.UserNavigatesToDFEHomePageFromGOV_UKPage("Department for Education", ((string[])(null)));
+#line 6
+this.UserNavigatesToDFEHomePageFromGOV_UKPage("Department for Education", ((string[])(null)));
 #line hidden
         }
         
@@ -110,8 +110,8 @@ namespace SFA.DAS.TestProject.UITests.Project.Tests.Features
         [NUnit.Framework.DescriptionAttribute("User navigates to DFE home page from GOV.UK page: Universal Credit")]
         public virtual void UserNavigatesToDFEHomePageFromGOV_UKPage_UniversalCredit()
         {
-#line 8
- this.UserNavigatesToDFEHomePageFromGOV_UKPage("Universal Credit", ((string[])(null)));
+#line 6
+this.UserNavigatesToDFEHomePageFromGOV_UKPage("Universal Credit", ((string[])(null)));
 #line hidden
         }
         
@@ -119,8 +119,8 @@ namespace SFA.DAS.TestProject.UITests.Project.Tests.Features
         [NUnit.Framework.DescriptionAttribute("User navigates to DFE home page from GOV.UK page: Corporation Tax")]
         public virtual void UserNavigatesToDFEHomePageFromGOV_UKPage_CorporationTax()
         {
-#line 8
- this.UserNavigatesToDFEHomePageFromGOV_UKPage("Corporation Tax", ((string[])(null)));
+#line 6
+this.UserNavigatesToDFEHomePageFromGOV_UKPage("Corporation Tax", ((string[])(null)));
 #line hidden
         }
     }
