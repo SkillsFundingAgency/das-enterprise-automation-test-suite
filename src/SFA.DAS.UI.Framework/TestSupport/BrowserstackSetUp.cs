@@ -11,7 +11,7 @@ namespace SFA.DAS.UI.Framework.Project.Tests.TestSupport
 
         static BrowserStackSetup()
         {
-            _buildDateTime = DateTime.Now.ToString("ddMMMyyyy HH:mm:ss").ToUpper();
+            _buildDateTime = DateTime.Now.ToString("ddMMMyyyy_HH:mm:ss").ToUpper();
         }
 
         public static IWebDriver Init(BrowserStackSetting options, ExecutionConfig executionConfig)
@@ -34,6 +34,8 @@ namespace SFA.DAS.UI.Framework.Project.Tests.TestSupport
             AddAdditionalCapability(chromeOption, "browserstack.debug", "true");
             AddAdditionalCapability(chromeOption, "name", options.Name);
             AddAdditionalCapability(chromeOption, "browserstack.networkLogs", options.EnableNetworkLogs);
+            AddAdditionalCapability(chromeOption, "browserstack.timezone", options.TimeZone);
+            AddAdditionalCapability(chromeOption, "browserstack.console", "info");
 
             return new RemoteWebDriver(new Uri(options.ServerName), chromeOption);
         }

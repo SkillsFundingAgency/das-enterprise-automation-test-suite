@@ -10,10 +10,12 @@ namespace SFA.DAS.UI.FrameworkHelpers
     public class RetryHelper
     {
         private readonly IWebDriver _webDriver;
+        private readonly bool _isCloudExecution;
 
-        public RetryHelper(IWebDriver webDriver )
+        public RetryHelper(IWebDriver webDriver, bool isCloudExecution)
         {
             _webDriver = webDriver;
+            _isCloudExecution = isCloudExecution;
         }
 
         internal bool RetryOnException(Func<bool> func, Action beforeAction = null)
@@ -40,6 +42,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
             Action beforeAction = null, afterAction = null;
             Policy
                  .Handle<ElementClickInterceptedException>()
+                 .Or<WebDriverException>()
                  .WaitAndRetry(TimeOut, (exception, timeSpan, retryCount, context) =>
                  {
                      TestContext.Progress.WriteLine($"Retry Count : {retryCount}, Exception : {exception.Message}");
@@ -71,7 +74,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         private Action ClickEvent(bool useAction, IWebElement element)
         {
-            if (useAction)
+            if (useAction || _isCloudExecution)
             {
                 return () => new Actions(_webDriver).MoveToElement(element).Click(element).Perform();
             }
