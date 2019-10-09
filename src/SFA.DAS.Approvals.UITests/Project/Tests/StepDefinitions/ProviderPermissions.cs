@@ -38,6 +38,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             _loginHelper.Login(_context.GetUser<ProviderPermissionLevyUser>(), true);
 
+           // RemovePermissionsInSQLDatabase();
+           // RemovePermissionsInCosmosDatabase();
+
             new TrainingProviderPermissionsHomePage(_context)
                .OpenProviderPermissions()
                .SelectAddANewTrainingProvider()
@@ -79,7 +82,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             return _providerStepsHelper.GoToProviderHomePage().CreateCohortPermissionLinkIsDisplayed();
         }
 
-        internal void RemovePermissionsInSQLDatabase()
+        private void RemovePermissionsInSQLDatabase()
         {
             while (true)
             {
@@ -95,7 +98,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             }
         }
 
-        internal void RemovePermissionsInCosmosDatabase()
+        private void RemovePermissionsInCosmosDatabase()
         {
             CosmosActionsPerformerHelper.RemoveDoc(_config.AP_PrelDbCosmosUri, _config.AP_PrelDbAuthKey, _config.AP_PrelDbDatabaseName, _config.AP_PrelDbCollectionName, "ukprn", _config.AP_ProviderPermissionUkprn);
         }
