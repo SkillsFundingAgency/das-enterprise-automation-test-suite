@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.ManageFunding.UITests.Project.Tests.Features.Employer
+namespace SFA.DAS.ManageFunding.UITests.Project.Tests.Features.Employer.Non_Levy
 {
     using TechTalk.SpecFlow;
     
@@ -31,7 +31,7 @@ namespace SFA.DAS.ManageFunding.UITests.Project.Tests.Features.Employer
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "CreateReserveFunding", "A short summary of the feature", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "CreateReserveFunding", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -70,23 +70,23 @@ namespace SFA.DAS.ManageFunding.UITests.Project.Tests.Features.Employer
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Reserving funding by an employer")]
+        [NUnit.Framework.DescriptionAttribute("Reserving funding by a non-levy eoi employer")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("reservefunds")]
-        public virtual void ReservingFundingByAnEmployer()
+        public virtual void ReservingFundingByANon_LevyEoiEmployer()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Reserving funding by an employer", null, new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Reserving funding by a non-levy eoi employer", null, new string[] {
                         "regression",
                         "reservefunds"});
-#line 7
+#line 5
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
+#line 6
+ testRunner.Given("the Employer login using existing eoi account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 7
+ testRunner.When("the Employer reserves funding for an apprenticeship course", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 8
-testRunner.Given("the Employer login using existing eoi account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 9
-testRunner.When("the Employer reserves funding for an apprenticeship course", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 10
-testRunner.Then("Verify funding is successfully reserved", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("Verify funding is successfully reserved", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

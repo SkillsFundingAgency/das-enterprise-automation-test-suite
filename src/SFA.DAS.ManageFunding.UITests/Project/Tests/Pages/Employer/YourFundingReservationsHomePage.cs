@@ -8,7 +8,6 @@ namespace SFA.DAS.ManageFunding.UITests.Project.Tests.Pages
     public class YourFundingReservationsHomePage : HomePage
     {
         private ScenarioContext _context;
-
         private By YourFundingReservationsLink => By.LinkText("Your funding reservations");
 
         public YourFundingReservationsHomePage(ScenarioContext context) : base(context)

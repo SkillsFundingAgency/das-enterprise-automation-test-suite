@@ -8,6 +8,7 @@ namespace SFA.DAS.ManageFunding.UITests.Project.Tests.Pages.Employer
     public class YourFundingReservationsPage : BasePage
     {
         protected override string PageTitle => "Your funding reservations";
+        private By ReserveMoreFundingLink => By.LinkText("Reserve more funding");
 
         #region Helpers and Context
         private readonly PageInteractionHelper _pageInteractionHelper;
@@ -22,8 +23,6 @@ namespace SFA.DAS.ManageFunding.UITests.Project.Tests.Pages.Employer
             _formCompletionHelper = context.Get<FormCompletionHelper>();
             VerifyPage();
         }
-
-        private By ReserveMoreFundingLink => By.LinkText("Reserve more funding");
 
         public ReserveFundingToTrainAndAssessAnApprenticePage ClickReserveMoreFundingLink()
         {

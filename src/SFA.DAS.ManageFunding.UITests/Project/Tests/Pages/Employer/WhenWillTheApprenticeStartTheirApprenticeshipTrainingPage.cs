@@ -8,6 +8,8 @@ namespace SFA.DAS.ManageFunding.UITests.Project.Tests.Pages.Employer
     public class WhenWillTheApprenticeStartTheirApprenticeshipTrainingPage : BasePage
     {
         protected override string PageTitle => "When will the apprentice start their apprenticeship training?";
+        private By MonthRadioButton => By.CssSelector(".govuk-radios__label");
+        private By SaveAndContinueButton => By.CssSelector(".govuk-button");
 
         #region Helpers and Context
         private readonly PageInteractionHelper _pageInteractionHelper;
@@ -23,15 +25,11 @@ namespace SFA.DAS.ManageFunding.UITests.Project.Tests.Pages.Employer
             VerifyPage();
         }
 
-        private By MonthRadioButton => By.CssSelector(".govuk-radios__label");
-
         public WhenWillTheApprenticeStartTheirApprenticeshipTrainingPage ClickMonthRadioButton()
         {
             _formCompletionHelper.ClickElement(MonthRadioButton);
             return new WhenWillTheApprenticeStartTheirApprenticeshipTrainingPage(_context);
         }
-
-        private By SaveAndContinueButton => By.CssSelector(".govuk-button");
 
         public ApprenticeshipFundingIsAvailableToTrainAndAssessYourApprenticePage ClickSaveAndContinueButton()
         {
