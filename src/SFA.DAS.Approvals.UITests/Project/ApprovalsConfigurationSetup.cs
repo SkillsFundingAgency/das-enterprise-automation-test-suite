@@ -22,6 +22,9 @@ namespace SFA.DAS.Approvals.UITests.Project
             var config = _configSection.GetConfigSection<ApprovalsConfig>();
             _context.SetApprovalsConfig(config);
 
+            var ppconfig = _configSection.GetConfigSection<ProviderPermissionsConfig>();
+            _context.SetApprovalsConfig(ppconfig);
+
             var transferUser = _configSection.GetConfigSection<TransfersUser>();
             _context.SetUser(transferUser);
 
