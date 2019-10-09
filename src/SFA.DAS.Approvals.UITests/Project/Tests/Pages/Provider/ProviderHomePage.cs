@@ -24,6 +24,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         private By NotificationSettingsLink => By.LinkText("Notification settings");
 
+        private By CreateACohortLink => By.LinkText("Create a cohort");
+
         public ProviderHomePage(ScenarioContext context, bool navigate = false) : base(context, navigate)
         {
             _context = context;
@@ -44,5 +46,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             return new ProviderNotificationSettingsPage(_context);
         }
 
+        public bool CreateCohortPermissionLinkIsDisplayed()
+        {
+            return _pageInteractionHelper.IsElementDisplayed(CreateACohortLink);
+        }
     }
 }
