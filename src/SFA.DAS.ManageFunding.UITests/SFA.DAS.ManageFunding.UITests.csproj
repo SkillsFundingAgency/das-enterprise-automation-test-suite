@@ -7,10 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <SpecFlowObsoleteCodeBehindFiles Remove="Project\Tests\Features\TransfersApprovalJourneyOne.feature.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Compile Include="..\NUnitConfigurator.cs" Link="NUnitConfigurator.cs" />
   </ItemGroup>
 
@@ -43,17 +39,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Project\Tests\Features\Provider\" />
+    <Folder Include="Project\Tests\Features\Provider\Non-Levy\" />
     <Folder Include="Project\Tests\Pages\Provider\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <SpecFlowFeatureFiles Update="Project\Tests\Features\Employer\CreateReserveFunding.feature">
-      <Visible>$(UsingMicrosoftNETSdk)</Visible>
-      <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>CreateReserveFunding.feature.cs</LastGenOutput>
-    </SpecFlowFeatureFiles>
   </ItemGroup>
 
 </Project>

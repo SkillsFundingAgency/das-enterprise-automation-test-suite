@@ -11,6 +11,7 @@ namespace SFA.DAS.ManageFunding.UITests.Project.Tests.Pages.Employer
         private By YesRadioButton => By.CssSelector("label[for=ApprenticeTrainingKnown]");
         private By TrainingCourseContainer => By.Id("SelectedCourseId");
         private By standardCourseOption = By.Id("SelectedCourseId__option--0");
+        private By SaveAndContinueButton => By.CssSelector(".govuk-button");
 
         #region Helpers and Context
         private readonly PageInteractionHelper _pageInteractionHelper;
@@ -38,8 +39,6 @@ namespace SFA.DAS.ManageFunding.UITests.Project.Tests.Pages.Employer
             _formCompletionHelper.ClickElement(standardCourseOption);
             return new DoYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage(_context);
         }
-
-        private By SaveAndContinueButton => By.CssSelector(".govuk-button");
 
         public WhenWillTheApprenticeStartTheirApprenticeshipTrainingPage ClickSaveAndContinueButton()
         {

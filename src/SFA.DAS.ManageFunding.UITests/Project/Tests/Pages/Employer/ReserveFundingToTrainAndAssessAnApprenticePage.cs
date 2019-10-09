@@ -8,6 +8,7 @@ namespace SFA.DAS.ManageFunding.UITests.Project.Tests.Pages.Employer
     public class ReserveFundingToTrainAndAssessAnApprenticePage : BasePage
     {
         protected override string PageTitle => "Reserve funding to train and assess an apprentice";
+        private By ReserveFundingButton => By.LinkText("Reserve funding");
 
         #region Helpers and Context
         private readonly PageInteractionHelper _pageInteractionHelper;
@@ -22,8 +23,6 @@ namespace SFA.DAS.ManageFunding.UITests.Project.Tests.Pages.Employer
             _formCompletionHelper = context.Get<FormCompletionHelper>();
             VerifyPage();
         }
-
-        private By ReserveFundingButton => By.LinkText("Reserve funding");
 
         public DoYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage ClickReserveFundingButton()
         {
