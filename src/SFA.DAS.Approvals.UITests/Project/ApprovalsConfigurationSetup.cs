@@ -28,6 +28,9 @@ namespace SFA.DAS.Approvals.UITests.Project
             var agreementNotSignedTransfersUser = _configSection.GetConfigSection<AgreementNotSignedTransfersUser>();
             _context.SetUser(agreementNotSignedTransfersUser);
 
+            var providerPermissionLevyUser = _configSection.GetConfigSection<ProviderPermissionLevyUser>();
+            _context.SetUser(providerPermissionLevyUser);
+
             var transfersConfig = _configSection.GetConfigSection<TransfersConfig>();
             _context.SetTransfersConfig(transfersConfig);
         }
