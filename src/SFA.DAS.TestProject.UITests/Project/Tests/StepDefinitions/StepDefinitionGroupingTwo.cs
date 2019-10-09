@@ -7,7 +7,7 @@ namespace SFA.DAS.TestProject.UITests.Project.Tests.StepDefinitions
 {
     [Binding]
     public class StepDefinitionGroupingTwo
-    { 
+    {
         #region Private Variables
         private readonly ScenarioContext _context;
         private readonly ObjectContext _objectContext;
@@ -19,8 +19,8 @@ namespace SFA.DAS.TestProject.UITests.Project.Tests.StepDefinitions
             _objectContext = context.Get<ObjectContext>();
         }
 
-        [When(@"I click the same link")]
-        public void WhenIClickTheSameLink()
+        [When(@"clicks the same link")]
+        public void ClicksTheSameLink()
         {
             var searchResultsPage = new SearchResultsPage(_context);
             var searchText = _objectContext.Get("searchText");
