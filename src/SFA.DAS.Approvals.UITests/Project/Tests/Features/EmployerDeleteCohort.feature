@@ -1,5 +1,4 @@
 ﻿Feature: EmployerDeleteCohort
-
 A Levy employer can view, edit and delete all the apprentice and cohort before commitments gets approved by all parties
 
 @regression

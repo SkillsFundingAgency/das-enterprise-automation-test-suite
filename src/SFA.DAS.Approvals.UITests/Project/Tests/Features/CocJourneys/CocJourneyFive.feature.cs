@@ -31,7 +31,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.CocJourneys
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "CocJourneyFive", "A short summary of the feature", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "CocJourneyFive", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -82,15 +82,15 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.CocJourneys
                         "regression",
                         "liveapprentice",
                         "cocscenarios"});
-#line 8
+#line 6
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
+#line 7
+ testRunner.Given("the Employer has approved apprentice", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 8
+ testRunner.Then("Employer cannot make changes to cost and course after ILR match", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 9
-testRunner.Given("the Employer has approved apprentice", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 10
-testRunner.Then("Employer cannot make changes to cost and course after ILR match", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 11
-testRunner.And("provider cannot make changes to cost and course after ILR match", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("provider cannot make changes to cost and course after ILR match", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }

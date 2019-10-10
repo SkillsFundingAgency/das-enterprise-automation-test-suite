@@ -31,7 +31,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.E2EJourneys
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "NewUserAccountE2EJourneyThree", "A short summary of the feature", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "NewUserAccountE2EJourneyThree", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -82,17 +82,17 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.E2EJourneys
                         "addpayedetails",
                         "addlevyfunds",
                         "e2escenarios"});
-#line 9
+#line 6
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
+#line 7
+ testRunner.Given("the User creates Employer account and sign an agreement", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 8
+ testRunner.When("the Employer create a cohort and send to provider to add apprentices", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 9
+ testRunner.And("the provider adds 2 apprentices approves them and sends to employer to approve", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 10
-testRunner.Given("the User creates Employer account and sign an agreement", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 11
-testRunner.When("the Employer create a cohort and send to provider to add apprentices", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 12
-testRunner.And("the provider adds 2 apprentices approves them and sends to employer to approve", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 13
-testRunner.Then("the Employer approves the cohorts", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the Employer approves the cohorts", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

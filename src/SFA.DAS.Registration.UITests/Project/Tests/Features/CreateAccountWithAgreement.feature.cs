@@ -31,7 +31,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "CreateAccountWithAgreement", "A short summary of the feature", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "CreateAccountWithAgreement", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -76,18 +76,18 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Create Non Levy Account with PAYE Details And Sign Agreement", null, new string[] {
                         "addpayedetails"});
-#line 6
+#line 4
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 7
+#line 5
  testRunner.Given("I create an Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 8
+#line 6
  testRunner.When("I add paye details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 9
+#line 7
  testRunner.And("add organisation details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 10
+#line 8
  testRunner.And("I sign the agreement", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 11
+#line 9
  testRunner.Then("sucess message is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();

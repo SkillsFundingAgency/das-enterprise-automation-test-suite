@@ -31,7 +31,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.E2EJourneys
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "NewUserAccountE2EJourneyOne", "A short summary of the feature", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "NewUserAccountE2EJourneyOne", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -80,15 +80,15 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.E2EJourneys
                         "addpayedetails",
                         "addlevyfunds",
                         "e2escenarios"});
-#line 9
+#line 6
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 10
-testRunner.Given("the User creates Employer account and sign an agreement", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 11
-testRunner.When("the Employer approves 2 cohort and sends to provider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 12
-testRunner.Then("the provider adds Ulns and approves the cohorts", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 7
+ testRunner.Given("the User creates Employer account and sign an agreement", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 8
+ testRunner.When("the Employer approves 2 cohort and sends to provider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 9
+ testRunner.Then("the provider adds Ulns and approves the cohorts", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

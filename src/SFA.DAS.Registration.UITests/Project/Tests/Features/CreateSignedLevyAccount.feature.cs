@@ -82,15 +82,15 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 6
-testRunner.Given("I create an Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("I create an Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 7
-testRunner.When("I add paye details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("I add paye details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 8
-testRunner.And("add organisation details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("add organisation details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 9
-testRunner.When("I sign the agreement", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("I sign the agreement", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 10
-testRunner.Then("I will land in the User Home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("I will land in the User Home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

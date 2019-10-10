@@ -73,17 +73,17 @@ namespace SFA.DAS.TestProject.UITests.Project.Tests.Features
         public virtual void UserNavigatesToITHomePageFromGOV_UKPage(string searchLink, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User navigates to IT home page from GOV.UK page", null, exampleTags);
-#line 8
+#line 6
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
+#line 7
+ testRunner.Given("the User navigates to GOV.UK home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 8
+ testRunner.When(string.Format("the User searches for {0}", searchLink), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 9
-testRunner.Given("I navigate to GOV.UK home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.And("clicks the same link", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 10
-testRunner.When(string.Format("I search for {0}", searchLink), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 11
-testRunner.And("I click the same link", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 12
-testRunner.Then("I should be on DFE home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the User should be on DFE home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -92,7 +92,7 @@ testRunner.Then("I should be on DFE home page", ((string)(null)), ((TechTalk.Spe
         [NUnit.Framework.DescriptionAttribute("User navigates to IT home page from GOV.UK page: Ministry of Defence")]
         public virtual void UserNavigatesToITHomePageFromGOV_UKPage_MinistryOfDefence()
         {
-#line 8
+#line 6
 this.UserNavigatesToITHomePageFromGOV_UKPage("Ministry of Defence", ((string[])(null)));
 #line hidden
         }
@@ -101,7 +101,7 @@ this.UserNavigatesToITHomePageFromGOV_UKPage("Ministry of Defence", ((string[])(
         [NUnit.Framework.DescriptionAttribute("User navigates to IT home page from GOV.UK page: Department for Education")]
         public virtual void UserNavigatesToITHomePageFromGOV_UKPage_DepartmentForEducation()
         {
-#line 8
+#line 6
 this.UserNavigatesToITHomePageFromGOV_UKPage("Department for Education", ((string[])(null)));
 #line hidden
         }
@@ -110,7 +110,7 @@ this.UserNavigatesToITHomePageFromGOV_UKPage("Department for Education", ((strin
         [NUnit.Framework.DescriptionAttribute("User navigates to IT home page from GOV.UK page: Income Tax")]
         public virtual void UserNavigatesToITHomePageFromGOV_UKPage_IncomeTax()
         {
-#line 8
+#line 6
 this.UserNavigatesToITHomePageFromGOV_UKPage("Income Tax", ((string[])(null)));
 #line hidden
         }

@@ -31,7 +31,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.E2EJourneys
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "ExistingUserAccountE2EJourneyOne", "A short summary of the feature", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "ExistingUserAccountE2EJourneyOne", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -78,15 +78,15 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.E2EJourneys
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Employer sends an approved cohort then provider approves the cohort", null, new string[] {
                         "regression",
                         "e2escenarios"});
-#line 7
+#line 5
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
+#line 6
+ testRunner.Given("the Employer login using existing levy account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 7
+ testRunner.When("the Employer approves 2 cohort and sends to provider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 8
-testRunner.Given("the Employer login using existing levy account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 9
-testRunner.When("the Employer approves 2 cohort and sends to provider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 10
-testRunner.Then("the provider adds Ulns and approves the cohorts", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the provider adds Ulns and approves the cohorts", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
