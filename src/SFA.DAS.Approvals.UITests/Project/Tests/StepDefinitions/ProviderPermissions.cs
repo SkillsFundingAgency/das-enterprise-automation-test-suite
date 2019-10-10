@@ -4,6 +4,7 @@ using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
 using SFA.DAS.Registration.UITests.Project;
 using SFA.DAS.Registration.UITests.Project.Helpers;
+using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using System;
 using System.Collections.Generic;
@@ -21,15 +22,17 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         private readonly ProviderStepsHelper _providerStepsHelper;
         private readonly ProviderPermissionsDatahelper _providerPermissionsDatahelper;
         private readonly ProviderPermissionsConfig _config;
+        private readonly ProviderLogin _login;
 
         public ProviderPermissions(ScenarioContext context)
         {
             _context = context;
-            _config = context.Get<ProviderPermissionsConfig>();
+            _config = context.GetProviderPermissionConfig<ProviderPermissionsConfig>();
             _providerPermissionsDatahelper = context.Get<ProviderPermissionsDatahelper>();
             _employerStepsHelper = new EmployerStepsHelper(context);
             _loginHelper = new EmployerPortalLoginHelper(context);
             _providerStepsHelper = new ProviderStepsHelper(context);
+            _login = new ProviderLogin { Username = _config.AP_ProviderLoginId, Password = _config.AP_ProviderLoginPassword, Ukprn = _config.AP_ProviderPermissionUkprn };
         }
 
 
@@ -38,8 +41,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             _loginHelper.Login(_context.GetUser<ProviderPermissionLevyUser>(), true);
 
-           // RemovePermissionsInSQLDatabase();
-           // RemovePermissionsInCosmosDatabase();
+             RemovePermissionsInSQLDatabase();
+             RemovePermissionsInCosmosDatabase();
 
             new TrainingProviderPermissionsHomePage(_context)
                .OpenProviderPermissions()
@@ -79,7 +82,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
         private bool CreateCohortPermissionLinkIsDisplayed()
         {
-            return _providerStepsHelper.GoToProviderHomePage().CreateCohortPermissionLinkIsDisplayed();
+            return _providerStepsHelper.GoToProviderHomePage(_login).CreateCohortPermissionLinkIsDisplayed();
         }
 
         private void RemovePermissionsInSQLDatabase()

@@ -15,13 +15,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private readonly PageInteractionHelper _pageInteractionHelper;
         private readonly FormCompletionHelper _formCompletionHelper;
         private readonly ScenarioContext _context;
-        private readonly ApprovalsConfig _config;
         #endregion
 
         public ProviderSiginPage(ScenarioContext context) : base(context)
         {
             _context = context;
-            _config = context.GetApprovalsConfig<ApprovalsConfig>();
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
             VerifyPage();
@@ -31,23 +29,23 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private By PasswordField => By.Id("password");
         private By SignInButton => By.XPath("//button[@value='Log in']");
 
-        public ProviderHomePage SubmitValidLoginDetails()
+        public ProviderHomePage SubmitValidLoginDetails(ProviderLogin login)
         {
-            EnterEmailAddress()
-            .EnterPassword()
+            EnterEmailAddress(login.Username)
+            .EnterPassword(login.Password)
             .SignIn();
             return new ProviderHomePage(_context);
         }
 
-        private ProviderSiginPage EnterEmailAddress()
+        private ProviderSiginPage EnterEmailAddress(string username)
         {
-            _formCompletionHelper.EnterText(UsernameField, _config.AP_ProviderLoginId);
+            _formCompletionHelper.EnterText(UsernameField, username);
             return this;
         }
 
-        private ProviderSiginPage EnterPassword()
+        private ProviderSiginPage EnterPassword(string password)
         {
-            _formCompletionHelper.EnterText(PasswordField, _config.AP_ProviderLoginPassword);
+            _formCompletionHelper.EnterText(PasswordField, password);
             return this;
         }
 

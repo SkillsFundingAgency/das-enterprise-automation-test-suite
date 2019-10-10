@@ -30,30 +30,4 @@
 
         public string AP_FinanceDbConnectionString { get; set; }
     }
-
-    public class TransfersConfig
-    {
-        public string AP_ReceiverOrganisationName { get; set; }
-
-        public string AP_ReceiverAccountId{ get; set; }
-    }
-
-    public class ProviderPermissionsConfig
-    {
-        public string AP_ProviderLoginId { get; set; }
-        
-        public string AP_ProviderLoginPassword { get; set; }
-
-        public string AP_ProviderPermissionUkprn { get; set; }
-
-        public string AP_PermissionsDbConnectionString { get; set; }
-
-        public string AP_PrelDbCosmosUri { get; set; }
-
-        public string AP_PrelDbAuthKey { get; set; }
-
-        public string AP_PrelDbDatabaseName { get; set; }
-
-        public string AP_PrelDbCollectionName { get; set; }
-    }
 }

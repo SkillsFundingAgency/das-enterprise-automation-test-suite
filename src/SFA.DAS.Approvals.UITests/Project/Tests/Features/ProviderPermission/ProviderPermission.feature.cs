@@ -18,20 +18,20 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.ProviderPermission
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.0.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("GrantProviderPermission")]
-    public partial class GrantProviderPermissionFeature
+    [NUnit.Framework.DescriptionAttribute("ProviderPermission")]
+    public partial class ProviderPermissionFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "GrantProviderPermission.feature"
+#line 1 "ProviderPermission.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "GrantProviderPermission", "An employer can grant and revoke create cohort permission to a provider", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "ProviderPermission", "An employer can grant and revoke create cohort permission to a provider", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -70,12 +70,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.ProviderPermission
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Employer grnat and revoke Create Cohort permission to a provider")]
+        [NUnit.Framework.DescriptionAttribute("Employer grant and revoke Create Cohort permission to a provider")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("CreateCohortPermission")]
-        public virtual void EmployerGrnatAndRevokeCreateCohortPermissionToAProvider()
+        public virtual void EmployerGrantAndRevokeCreateCohortPermissionToAProvider()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Employer grnat and revoke Create Cohort permission to a provider", null, new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Employer grant and revoke Create Cohort permission to a provider", null, new string[] {
                         "regression",
                         "CreateCohortPermission"});
 #line 8

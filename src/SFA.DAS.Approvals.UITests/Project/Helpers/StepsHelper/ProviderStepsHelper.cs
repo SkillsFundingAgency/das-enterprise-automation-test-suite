@@ -14,6 +14,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
         private readonly ApprovalsConfig _config;
         private readonly ProviderPortalLoginHelper _loginHelper;
         private readonly ReviewYourCohortStepsHelper _reviewYourCohortStepsHelper;
+        private readonly ProviderLogin _login;
 
         public ProviderStepsHelper(ScenarioContext context)
         {
@@ -21,21 +22,29 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             _objectContext = _context.Get<ObjectContext>();
             _tabHelper = new TabHelper(context.GetWebDriver());
             _config = context.GetApprovalsConfig<ApprovalsConfig>();
+            _login = new ProviderLogin { Username = _config.AP_ProviderLoginId, Password = _config.AP_ProviderLoginPassword, Ukprn = _config.AP_ProviderUkprn };
             _loginHelper = new ProviderPortalLoginHelper(_context);
             _reviewYourCohortStepsHelper = new ReviewYourCohortStepsHelper(_context.Get<AssertHelper>());
         }
 
         public ProviderHomePage GoToProviderHomePage()
         {
+            return GoToProviderHomePage(_login);
+        }
+
+        public ProviderHomePage GoToProviderHomePage(ProviderLogin login)
+        {
             _tabHelper.OpenInNewtab(_config.AP_ProviderAppUrl);
+
+            _objectContext.SetUkprn(login.Ukprn);
 
             if (_loginHelper.IsSignInPageDisplayed())
             {
-                _loginHelper.ReLogin();
+                return _loginHelper.ReLogin(login);
             }
             else if (_loginHelper.IsIndexPageDisplayed())
             {
-                return _loginHelper.Login();
+                return _loginHelper.Login(login);
             }
             return new ProviderHomePage(_context);
         }

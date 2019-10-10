@@ -56,7 +56,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 
             if (_loginHelper.IsSignInPageDisplayed())
             {
-                _loginHelper.ReLogin();
+                return _loginHelper.ReLogin();
             }
 
             if (_loginHelper.IsYourAccountPageDisplayed())
