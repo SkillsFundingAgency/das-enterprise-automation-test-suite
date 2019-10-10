@@ -46,7 +46,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Then(@"Employer is able to Stop the apprentice")]
         public void ThenEmployerIsAbleToStopTheApprentice()
         {
-            _apprenticeDetailsPage =_employerStepsHelper
+            _apprenticeDetailsPage = _employerStepsHelper
                                     .StopApprenticeThisMonth(_apprenticeDetailsPage);
         }
 
@@ -151,6 +151,19 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         public void ThenTheEmployerApprovesTheCohorts()
         {
             _employerStepsHelper.Approve();
+        }
+
+        [When(@"Employer adds the full apprentice")]
+        public void EmployerAddsTheFullApprentice()
+        {
+
+
+        }
+
+        [Then(@"The apprenticeship record is created using the reservation")]
+        public void TheApprenticeshipRecordIsCreatedUsingTheReservation()
+        {
+
         }
     }
 }

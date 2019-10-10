@@ -27,7 +27,7 @@ namespace SFA.DAS.ManageFunding.UITests.Project.Helpers.StepsHelper
 
         internal MakingChangesPage CreateReservation()
         {
-            return new YourFundingReservationsHomePage(_context).OpenYourFundingReservations()
+             return new YourFundingReservationsHomePage(_context).OpenYourFundingReservations()
                 .ClickReserveMoreFundingLink()
                 .ClickReserveFundingButton()
                 .ClickYesRadioButton()
@@ -37,6 +37,11 @@ namespace SFA.DAS.ManageFunding.UITests.Project.Helpers.StepsHelper
                 .ClickSaveAndContinueButton()
                 .ClickYesReserveFundingNowRadioButton()
                 .ClickConfirmButton();
+        }
+
+        internal void AddAnApprentice()
+        {
+            new MakingChangesPage(_context).AddApprentice();
         }
     }
 }

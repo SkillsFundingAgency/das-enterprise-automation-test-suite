@@ -10,6 +10,8 @@ namespace SFA.DAS.ManageFunding.UITests.Project.Tests.Pages.Employer
     {
         protected override string PageTitle => "Making changes";
         private By SuccessMessage => By.CssSelector("govuk-panel--confirmation");
+        private By AddApprenticeRadioButton => By.CssSelector("label[for=WhatsNext-add]");
+        private By ContinueButton => By.CssSelector(".govuk-button");
 
         #region Helpers and Context
         private readonly PageInteractionHelper _pageInteractionHelper;
@@ -31,6 +33,12 @@ namespace SFA.DAS.ManageFunding.UITests.Project.Tests.Pages.Employer
                 throw new Exception("Reserve Funding is not successfully created");
             else
                 return true;
+        }
+
+        internal void AddApprentice()
+        {
+            _formCompletionHelper.ClickElement(AddApprenticeRadioButton);
+            _formCompletionHelper.ClickElement(ContinueButton);
         }
     }
 }

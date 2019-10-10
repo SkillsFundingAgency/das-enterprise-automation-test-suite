@@ -16,7 +16,7 @@ namespace SFA.DAS.ManageFunding.UITests.Project.Tests.StepDefinitions
     {
         private readonly ObjectContext _objectContext;
         private readonly ScenarioContext _context;
-        private MakingChangesPage _sucessMessage;
+        private MakingChangesPage makingChangesPage;
         private readonly EmployerPortalLoginHelper _loginHelper;
         private readonly EmployerReservationStepsHelper _reservationHelper;
 
@@ -31,21 +31,26 @@ namespace SFA.DAS.ManageFunding.UITests.Project.Tests.StepDefinitions
         [When(@"the Employer reserves funding for an apprenticeship course")]
         public void TheEmployerReservesFundingForAnApprenticeshipCourse()
         {
-            _reservationHelper.CreateReservation();
+            makingChangesPage=_reservationHelper.CreateReservation();
         }
 
         [Then(@"Verify funding is successfully reserved")]
         public void VerifyFundingIsSuccessfullyReserved()
         {
-            _sucessMessage.IsReserveFundingSuccessMessageUpdated();
+            makingChangesPage.IsReserveFundingSuccessMessageUpdated();
         }
-
 
         [Given(@"the Employer has created a reservation")]
         public void GivenTheEmployerHasCreatedAReservation()
         {
             _loginHelper.Login(_context.GetUser<EoiUser>(), false);
             _reservationHelper.CreateReservation();
+        }
+
+        [When(@"the Employer adds the full apprentice details")]
+        public void TheEmployerAddsTheFullApprenticeDetails()
+        {
+            _reservationHelper.AddAnApprentice();
         }
     }
 }
