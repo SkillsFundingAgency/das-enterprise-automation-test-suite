@@ -2,20 +2,20 @@
 {
     public class ProviderPermissionsConfig
     {
-        public string AP_ProviderLoginId { get; set; }
+        public string AP_ProviderUserId { get; set; }
         
-        public string AP_ProviderLoginPassword { get; set; }
+        public string AP_ProviderPassword { get; set; }
 
-        public string AP_ProviderPermissionUkprn { get; set; }
+        public string AP_ProviderUkprn { get; set; }
 
-        public string AP_PermissionsDbConnectionString { get; set; }
+        public string PermissionsDbConnectionString { get; set; }
 
-        public string AP_PrelDbCosmosUri { get; set; }
+        public string PermissionsCosmosUrl { get; set; }
 
-        public string AP_PrelDbAuthKey { get; set; }
+        public string PermissionsCosmosDBKey { get; set; }
 
-        public string AP_PrelDbDatabaseName { get; set; }
+        public string PermissionsCosmosDatabaseName { get; set; }
 
-        public string AP_PrelDbCollectionName { get; set; }
+        public string PermissionsCosmosCollectionName { get; set; }
     }
 }

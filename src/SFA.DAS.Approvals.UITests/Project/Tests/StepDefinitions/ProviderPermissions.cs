@@ -32,7 +32,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _employerStepsHelper = new EmployerStepsHelper(context);
             _loginHelper = new EmployerPortalLoginHelper(context);
             _providerStepsHelper = new ProviderStepsHelper(context);
-            _login = new ProviderLogin { Username = _config.AP_ProviderLoginId, Password = _config.AP_ProviderLoginPassword, Ukprn = _config.AP_ProviderPermissionUkprn };
+            _login = new ProviderLogin { Username = _config.AP_ProviderUserId, Password = _config.AP_ProviderPassword, Ukprn = _config.AP_ProviderUkprn };
         }
 
 
@@ -41,8 +41,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             _loginHelper.Login(_context.GetUser<ProviderPermissionLevyUser>(), true);
 
-             //RemovePermissionsInSQLDatabase();
-             //RemovePermissionsInCosmosDatabase();
+             RemovePermissionsInSQLDatabase();
+             RemovePermissionsInCosmosDatabase();
 
             new TrainingProviderPermissionsHomePage(_context)
                .OpenProviderPermissions()
@@ -103,7 +103,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
         private void RemovePermissionsInCosmosDatabase()
         {
-            CosmosActionsPerformerHelper.RemoveDoc(_config.AP_PrelDbCosmosUri, _config.AP_PrelDbAuthKey, _config.AP_PrelDbDatabaseName, _config.AP_PrelDbCollectionName, "ukprn", _config.AP_ProviderPermissionUkprn);
+            CosmosActionsPerformerHelper.RemoveDoc(_config.PermissionsCosmosUrl, _config.PermissionsCosmosDBKey, _config.PermissionsCosmosDatabaseName, _config.PermissionsCosmosCollectionName, "ukprn", _config.AP_ProviderUkprn);
         }
     }
 }

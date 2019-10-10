@@ -2,11 +2,7 @@
 {
     public class ApprovalsConfig
     {
-        public string AP_EmployerAppUrl { get; set; }
-
-        public string AP_ProviderAppUrl { get; set; }
-
-        public string AP_ProviderPermissionsAppUrl { get; set; }
+        public string ProviderBaseUrl { get; set; }
 
         public string AP_ProviderAppNoDraftsUrl { get; set; }
 
@@ -24,7 +20,7 @@
 
         public string AP_SupportConsoleUrl { get; set; }
 
-        public string AP_CommitmentsDbConnectionString { get; set; }
+        public string CommitmentsDbConnectionString { get; set; }
 
         public string AP_AccountsDbConnectionString { get; set; }
 

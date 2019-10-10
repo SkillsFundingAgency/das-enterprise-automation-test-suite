@@ -34,7 +34,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 
         public ProviderHomePage GoToProviderHomePage(ProviderLogin login)
         {
-            _tabHelper.OpenInNewtab(_config.AP_ProviderAppUrl);
+            _tabHelper.OpenInNewtab(_config.ProviderBaseUrl);
 
             _objectContext.SetUkprn(login.Ukprn);
 

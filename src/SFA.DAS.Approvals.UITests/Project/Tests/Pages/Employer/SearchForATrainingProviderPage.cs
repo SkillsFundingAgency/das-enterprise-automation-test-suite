@@ -30,7 +30,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         internal ConfirmTrainingProviderUnderPermissionsPage SearchForATrainingProvider()
         {
-            _formCompletionHelper.EnterText(UKProviderReferenceNumberText, _config.AP_ProviderPermissionUkprn);
+            _formCompletionHelper.EnterText(UKProviderReferenceNumberText, _config.AP_ProviderUkprn);
             _formCompletionHelper.ClickElement(ContinueButton);
             return new ConfirmTrainingProviderUnderPermissionsPage(_context);
         }
