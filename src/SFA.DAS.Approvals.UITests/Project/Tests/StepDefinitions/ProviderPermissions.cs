@@ -41,8 +41,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             _loginHelper.Login(_context.GetUser<ProviderPermissionLevyUser>(), true);
 
-             RemovePermissionsInSQLDatabase();
-             RemovePermissionsInCosmosDatabase();
+             //RemovePermissionsInSQLDatabase();
+             //RemovePermissionsInCosmosDatabase();
 
             new TrainingProviderPermissionsHomePage(_context)
                .OpenProviderPermissions()
