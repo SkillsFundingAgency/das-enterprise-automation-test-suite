@@ -12,22 +12,20 @@ namespace SFA.DAS.ManageFunding.UITests.Project.Helpers.StepsHelper
 {
     internal class EmployerReservationStepsHelper
     {
-        private readonly ObjectContext _objectContext;
         private readonly ScenarioContext _context;
-        private readonly RegistrationConfig _registrationConfig;
         private readonly EmployerPortalLoginHelper _loginHelper;
-
+        
         internal EmployerReservationStepsHelper(ScenarioContext context)
         {
             _context = context;
-            _objectContext = _context.Get<ObjectContext>();
-            _registrationConfig = _context.GetRegistrationConfig<RegistrationConfig>();
             _loginHelper = new EmployerPortalLoginHelper(_context);
         }
 
         internal MakingChangesPage CreateReservation()
         {
-             return new YourFundingReservationsHomePage(_context).OpenYourFundingReservations()
+            _loginHelper.Login(_context.GetUser<EoiUser>(), false);
+
+            return new YourFundingReservationsHomePage(_context).OpenYourFundingReservations()
                 .ClickReserveMoreFundingLink()
                 .ClickReserveFundingButton()
                 .ClickYesRadioButton()
@@ -39,9 +37,9 @@ namespace SFA.DAS.ManageFunding.UITests.Project.Helpers.StepsHelper
                 .ClickConfirmButton();
         }
 
-        internal void AddAnApprentice()
+        internal void AddAnApprentice(MakingChangesPage makingChangesPage)
         {
-            new MakingChangesPage(_context).AddApprentice();
+            makingChangesPage.AddApprentice();
         }
     }
 }

@@ -14,43 +14,36 @@ namespace SFA.DAS.ManageFunding.UITests.Project.Tests.StepDefinitions
     [Binding]
     public class ManageFundingNonLevyEoiEmployerSteps
     {
-        private readonly ObjectContext _objectContext;
-        private readonly ScenarioContext _context;
-        private MakingChangesPage makingChangesPage;
-        private readonly EmployerPortalLoginHelper _loginHelper;
+        private MakingChangesPage _makingChangesPage;
         private readonly EmployerReservationStepsHelper _reservationHelper;
 
         public ManageFundingNonLevyEoiEmployerSteps(ScenarioContext context)
         {
-            _objectContext = context.Get<ObjectContext>();
-            _context = context;
-            _loginHelper = new EmployerPortalLoginHelper(context);
             _reservationHelper = new EmployerReservationStepsHelper(context);
         }
 
-        [When(@"the Employer reserves funding for an apprenticeship course")]
-        public void TheEmployerReservesFundingForAnApprenticeshipCourse()
+        [Given(@"the Employer reserves funding for an apprenticeship course")]
+        public void GivenTheEmployerReservesFundingForAnApprenticeshipCourse()
         {
-            makingChangesPage=_reservationHelper.CreateReservation();
+            _makingChangesPage = _reservationHelper.CreateReservation();
         }
 
-        [Then(@"Verify funding is successfully reserved")]
-        public void VerifyFundingIsSuccessfullyReserved()
+        [Then(@"the funding is successfully reserved")]
+        public void ThenTheFundingIsSuccessfullyReserved()
         {
-            makingChangesPage.IsReserveFundingSuccessMessageUpdated();
+            _makingChangesPage.IsReserveFundingSuccessMessageUpdated();
         }
 
         [Given(@"the Employer has created a reservation")]
         public void GivenTheEmployerHasCreatedAReservation()
         {
-            _loginHelper.Login(_context.GetUser<EoiUser>(), false);
-            _reservationHelper.CreateReservation();
+            _makingChangesPage = _reservationHelper.CreateReservation();
         }
 
-        [When(@"the Employer adds the full apprentice details")]
-        public void TheEmployerAddsTheFullApprenticeDetails()
+        [Then(@"the Employer can add the full apprentice details")]
+        public void ThenTheEmployerCanAddTheFullApprenticeDetails()
         {
-            _reservationHelper.AddAnApprentice();
+            _reservationHelper.AddAnApprentice(_makingChangesPage);
         }
     }
 }
