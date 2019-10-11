@@ -16,6 +16,7 @@ namespace SFA.DAS.Approvals.UITests.Project
         private readonly ObjectContext _objectcontext;
         private ApprenticeDataHelper _datahelper;
         private readonly ApprovalsConfig _approvalsConfig;
+        private readonly ProviderPermissionsConfig _providerPermissionsConfig;
         private readonly SqlDatabaseConnectionHelper _sqlDatabaseConnectionHelper;
 
         public BeforeScenarioHooks(ScenarioContext context)
@@ -23,6 +24,7 @@ namespace SFA.DAS.Approvals.UITests.Project
             _context = context;
             _objectcontext = context.Get<ObjectContext>();
             _approvalsConfig = context.GetApprovalsConfig<ApprovalsConfig>();
+            _providerPermissionsConfig = context.GetProviderPermissionConfig<ProviderPermissionsConfig>();
             _sqlDatabaseConnectionHelper = context.Get<SqlDatabaseConnectionHelper>();
         }
 
@@ -38,6 +40,10 @@ namespace SFA.DAS.Approvals.UITests.Project
             var commitmentsdatahelper = new CommitmentsDataHelper(_approvalsConfig, _sqlDatabaseConnectionHelper);
 
             _context.Set(commitmentsdatahelper);
+
+            var providerPermissionsdatahelper = new ProviderPermissionsDatahelper(_providerPermissionsConfig, _sqlDatabaseConnectionHelper);
+
+            _context.Set(providerPermissionsdatahelper);
 
             _datahelper = new ApprenticeDataHelper(_objectcontext, random, commitmentsdatahelper);
 

@@ -34,7 +34,7 @@ namespace SFA.DAS.Registration.UITests.Project
         [BeforeScenario(Order = 21)]
         public void Navigate()
         {
-            var url = _config.RE_BaseUrl;
+            var url = _config.EmployerApprenticeshipServiceBaseURL;
             _webDriver.Navigate().GoToUrl(url);
         }
 

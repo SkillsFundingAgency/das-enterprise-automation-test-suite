@@ -25,17 +25,20 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers
                     .IsPageDisplayed();
         }
 
-        public void ReLogin()
+        public ProviderHomePage ReLogin(ProviderLogin login)
         {
-            new ProviderSiginPage(_context)
-                    .SubmitValidLoginDetails();
+            return Login(new ProviderSiginPage(_context), login);
         }
 
-        public ProviderHomePage Login()
+        public ProviderHomePage Login(ProviderLogin login)
         {
-            return new ProviderIndexPage(_context)
-                    .StartNow()
-                    .SubmitValidLoginDetails();
+            return Login(new ProviderIndexPage(_context)
+                    .StartNow(), login);
+        }
+
+        public ProviderHomePage Login(ProviderSiginPage siginPage, ProviderLogin login)
+        {
+            return siginPage.SubmitValidLoginDetails(login);
         }
     }
 }

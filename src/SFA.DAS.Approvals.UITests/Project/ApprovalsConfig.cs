@@ -1,12 +1,8 @@
 ﻿namespace SFA.DAS.Approvals.UITests.Project
 {
-    public class ApprovalsConfig
+    public class ApprovalsConfig : ProviderLoginConfig
     {
-        public string AP_EmployerAppUrl { get; set; }
-
-        public string AP_ProviderAppUrl { get; set; }
-
-        public string AP_ProviderPermissionsAppUrl { get; set; }
+        public string ProviderBaseUrl { get; set; }
 
         public string AP_ProviderAppNoDraftsUrl { get; set; }
 
@@ -16,37 +12,12 @@
 
         public string AP_EmployerConfirmIdentityCode { get; set; }
 
-        public string AP_ProviderUkprn { get; set; }
-
-        public string AP_ProviderLoginId { get; set; }
-
-        public string AP_ProviderLoginIdForPermissionTests { get; set; }
-
-        public string AP_ProviderLoginPassword { get; set; }
-
         public string AP_SupportConsoleUrl { get; set; }
 
-        public string AP_CommitmentsDbConnectionString { get; set; }
+        public string CommitmentsDbConnectionString { get; set; }
 
         public string AP_AccountsDbConnectionString { get; set; }
 
         public string AP_FinanceDbConnectionString { get; set; }
-
-        public string AP_PermissionsDbConnectionString { get; set; }
-
-        public string AP_PrelDbCosmosUri{ get; set; }
-
-        public string AP_PrelDbAuthKey{ get; set; }
-
-        public string AP_PrelDbDatabaseName{ get; set; }
-
-        public string AP_PrelDbCollectionName{ get; set; }
-    }
-
-    public class TransfersConfig
-    {
-        public string AP_ReceiverOrganisationName { get; set; }
-
-        public string AP_ReceiverAccountId{ get; set; }
     }
 }

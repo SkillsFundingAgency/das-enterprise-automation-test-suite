@@ -8,13 +8,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
     {
         #region Helpers and Context
         private readonly ScenarioContext _context;
-        protected readonly ApprovalsConfig config;
+        protected readonly ObjectContext objectContext;
         #endregion
 
         public InterimProviderBasePage(ScenarioContext context, bool navigate) : base(context, navigate)
         {
             _context = context;
-            config = context.GetApprovalsConfig<ApprovalsConfig>();
+            objectContext = context.Get<ObjectContext>();
             VerifyPage();
         }
 

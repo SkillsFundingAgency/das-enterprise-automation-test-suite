@@ -50,20 +50,27 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                     .ClickManageYourApprenticesLink();
         }
 
-        internal ApprenticesHomePage GoToEmployerApprenticesHomePage()
+        internal HomePage GotoEmployerHomePage()
         {
-            _tabHelper.OpenInNewtab(_registrationConfig.RE_BaseUrl);
+            _tabHelper.OpenInNewtab(_registrationConfig.EmployerApprenticeshipServiceBaseURL);
 
             if (_loginHelper.IsSignInPageDisplayed())
             {
-                _loginHelper.ReLogin();
+                return _loginHelper.ReLogin();
             }
 
             if (_loginHelper.IsYourAccountPageDisplayed())
             {
-                new YourAccountsPage(_context)
+                return new YourAccountsPage(_context)
                     .GoToHomePage(_objectContext.GetOrganisationName());
             }
+
+            return new HomePage(_context);
+        }
+
+        internal ApprenticesHomePage GoToEmployerApprenticesHomePage()
+        {
+            GotoEmployerHomePage();
 
             return new ApprenticesHomePage(_context, true);
         }

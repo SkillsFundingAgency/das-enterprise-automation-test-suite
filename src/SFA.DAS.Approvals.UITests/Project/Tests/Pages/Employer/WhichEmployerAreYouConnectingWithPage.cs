@@ -27,7 +27,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         internal ConfirmConnectionDetailsPage ConnectWithReceivingEmployer(string receiverAccountId)
         {
-            _formCompletionHelper.EnterText(ReceivingEmployer, receiverAccountId ?? _transfersConfig.AP_ReceiverAccountId);
+            _formCompletionHelper.EnterText(ReceivingEmployer, receiverAccountId);
             _formCompletionHelper.ClickElement(ContinueButton);
             return new ConfirmConnectionDetailsPage(_context);
         }

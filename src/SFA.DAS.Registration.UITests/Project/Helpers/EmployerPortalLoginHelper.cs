@@ -35,11 +35,11 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
                 .IsPageDisplayed();
         }
 
-        public void ReLogin()
+        public HomePage ReLogin()
         {
             var loginCredentials = loginCredentialsHelper.GetLoginCredentials();
 
-            new SignInPage(_context)
+            return new SignInPage(_context)
                 .Login(loginCredentials);
         }
 

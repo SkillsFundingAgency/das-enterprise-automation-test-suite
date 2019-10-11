@@ -27,7 +27,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers
             _fileHelper = filehelper;
             _dataHelper = dataHelper;
             _coursedataHelper = coursedataHelper;
-            _connectionString = _approvalsConfig.AP_CommitmentsDbConnectionString;
+            _connectionString = _approvalsConfig.CommitmentsDbConnectionString;
         }
 
         public int GetDatalocksResolvedStatus()
