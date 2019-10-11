@@ -8,7 +8,7 @@
 
         public string Browser { get; set; }
 
-        public string RE_BaseUrl { get; set; }
+        public string EmployerApprenticeshipServiceBaseURL { get; set; }
 
         public string RE_ConfirmCode { get; set; }
 

@@ -52,7 +52,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 
         internal HomePage GotoEmployerHomePage()
         {
-            _tabHelper.OpenInNewtab(_registrationConfig.RE_BaseUrl);
+            _tabHelper.OpenInNewtab(_registrationConfig.EmployerApprenticeshipServiceBaseURL);
 
             if (_loginHelper.IsSignInPageDisplayed())
             {
