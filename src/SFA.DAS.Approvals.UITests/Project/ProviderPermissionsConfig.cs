@@ -1,13 +1,7 @@
 ﻿namespace SFA.DAS.Approvals.UITests.Project
 {
-    public class ProviderPermissionsConfig
+    public class ProviderPermissionsConfig : ProviderLoginConfig
     {
-        public string AP_ProviderUserId { get; set; }
-        
-        public string AP_ProviderPassword { get; set; }
-
-        public string AP_ProviderUkprn { get; set; }
-
         public string PermissionsDbConnectionString { get; set; }
 
         public string PermissionsCosmosUrl { get; set; }
