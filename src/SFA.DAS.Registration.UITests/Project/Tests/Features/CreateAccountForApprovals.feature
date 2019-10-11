@@ -1,4 +1,4 @@
-﻿Feature: CreateSignedLevyAccount
+﻿Feature: CreateAccountForApprovals
 
 #Do not add regression tag as these test are meant to create data
 
