@@ -36,6 +36,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
             .AddJsonFile($"appsettings.{EnvironmentName}.json", true)
             .AddEnvironmentVariables()
             .AddUserSecrets("BrowserStackSecrets")
+            .AddUserSecrets($"{ProjectName}_Secrets")
             .AddUserSecrets($"{ProjectName}_{EnvironmentName}_Secrets")
             .AddUserSecrets("MongoDbSecrets")
             .Build();
