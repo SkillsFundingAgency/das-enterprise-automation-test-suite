@@ -46,10 +46,15 @@
     <None Update="appsettings.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="appsettings.TestExecution.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Properties\" />
   </ItemGroup>
+
+  <ProjectExtensions><VisualStudio><UserProperties testsupport_4appsettings_1testexecution_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>
 
 </Project>
