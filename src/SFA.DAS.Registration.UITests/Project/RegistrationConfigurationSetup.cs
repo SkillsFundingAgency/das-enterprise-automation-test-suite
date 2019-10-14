@@ -1,4 +1,5 @@
-﻿using SFA.DAS.UI.Framework.TestSupport;
+﻿using SFA.DAS.UI.Framework;
+using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
@@ -8,14 +9,12 @@ namespace SFA.DAS.Registration.UITests.Project
     public class RegistrationConfigurationSetup
     {
         private readonly ScenarioContext _context;
-        private readonly ObjectContext _objectContext;
         private readonly IConfigSection _configSection;
 
         public RegistrationConfigurationSetup(ScenarioContext context)
         {
             _context = context;
             _configSection = context.Get<IConfigSection>();
-            _objectContext = context.Get<ObjectContext>();
         }
 
         [BeforeScenario(Order = 2)]
@@ -35,8 +34,6 @@ namespace SFA.DAS.Registration.UITests.Project
 
             var mongoDbconfig = _configSection.GetConfigSection<MongoDbConfig>();
             _context.SetMongoDbConfig(mongoDbconfig);
-
-            _objectContext.ReplaceBrowser(config.Browser);
         }
     }
 }

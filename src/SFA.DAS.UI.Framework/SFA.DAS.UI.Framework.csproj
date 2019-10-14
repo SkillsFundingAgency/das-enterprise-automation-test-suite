@@ -55,6 +55,6 @@
     <Folder Include="Properties\" />
   </ItemGroup>
 
-  <ProjectExtensions><VisualStudio><UserProperties testsupport_4appsettings_1testexecution_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>
+  <ProjectExtensions><VisualStudio><UserProperties /></VisualStudio></ProjectExtensions>
 
 </Project>
