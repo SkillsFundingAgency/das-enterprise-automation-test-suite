@@ -14,7 +14,7 @@ namespace SFA.DAS.UI.Framework.Project.Tests.TestSupport
             _buildDateTime = DateTime.Now.ToString("ddMMMyyyy_HH:mm:ss").ToUpper();
         }
 
-        public static IWebDriver Init(BrowserStackSetting options, ExecutionConfig executionConfig)
+        public static IWebDriver Init(BrowserStackSetting options, EnvironmentConfig executionConfig)
         {
             CheckBrowserStackLogin(options);
 

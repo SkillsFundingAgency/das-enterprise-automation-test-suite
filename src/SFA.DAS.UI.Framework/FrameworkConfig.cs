@@ -4,18 +4,10 @@ namespace SFA.DAS.UI.Framework
 {
     public class FrameworkConfig
     {
-        public TimeOutConfig TimeOutConfig { get; set; }
+        public TimeOutConfig TimeOutConfig { get; internal set; }
 
-        public BrowserStackSetting BrowserStackSetting { get; set; }
+        public BrowserStackSetting BrowserStackSetting { get; internal set; }
 
-        public bool TakeEveryPageScreenShot { get; set; }
-    }
-
-    public class ExecutionConfig
-    {
-        public string EnvironmentName { get; internal set; }
-
-        public string ProjectName { get; internal set; }
-
+        public bool TakeEveryPageScreenShot { get; internal set; }
     }
 }

@@ -20,9 +20,9 @@ namespace SFA.DAS.UI.Framework.TestSupport
             return objectContext.Get(BrowserKey);
         }
 
-        public static void ReplaceBrowser(this ObjectContext objectContext, string browser)
+        public static void SetBrowser(this ObjectContext objectContext, string browser)
         {
-            objectContext.Replace(BrowserKey, browser);
+            objectContext.Set(BrowserKey, browser);
         }
 
         public static void SetDirectory(this ObjectContext objectContext, string value)

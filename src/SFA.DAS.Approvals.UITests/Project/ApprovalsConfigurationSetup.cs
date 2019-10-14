@@ -9,7 +9,7 @@ namespace SFA.DAS.Approvals.UITests.Project
     {
         private readonly ScenarioContext _context;
         private readonly IConfigSection _configSection;
-
+        
         public ApprovalsConfigurationSetup(ScenarioContext context)
         {
             _context = context;

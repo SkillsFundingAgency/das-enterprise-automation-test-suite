@@ -34,7 +34,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
             .AddJsonFile("appsettings.Project.json", true)
             .AddJsonFile("appsettings.Project.BrowserStack.json", true)
             .AddJsonFile($"appsettings.{EnvironmentName}.json", true)
-            .AddEnvironmentVariables()
+            .AddJsonFile("appsettings.TestExecution.json", true)
             .AddUserSecrets("BrowserStackSecrets")
             .AddUserSecrets($"{ProjectName}_Secrets")
             .AddUserSecrets($"{ProjectName}_{EnvironmentName}_Secrets")
