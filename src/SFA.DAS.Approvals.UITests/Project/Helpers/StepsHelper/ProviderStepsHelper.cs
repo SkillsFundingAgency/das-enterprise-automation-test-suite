@@ -7,7 +7,7 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 {
     public class ProviderStepsHelper
-    {      
+    {
         private readonly ScenarioContext _context;
         private readonly ObjectContext _objectContext;
         private readonly TabHelper _tabHelper;
@@ -120,6 +120,17 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                 .SelectContinueToApproval()
                 .SubmitApproveAndSendToEmployerForApproval()
                 .SendInstructionsToEmployerForAnApprovedCohort();
+        }
+
+        public void ViewApprentices()
+        {
+            ProviderViewYourCohortPage _providerViewYourCohortPage = new ProviderViewYourCohortPage(_context);
+            int totalApprentices = _providerViewYourCohortPage.TotalNoOfApprentices();
+            for (int i = 0; i < totalApprentices; i++)
+            {
+                _providerViewYourCohortPage.SelectViewApprentice(i)
+                    .SelectReturnToCohortView();
+            }
         }
     }
 }
