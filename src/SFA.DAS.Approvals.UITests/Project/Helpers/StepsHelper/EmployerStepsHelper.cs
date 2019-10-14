@@ -231,5 +231,23 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                 .OpenTransfers()
                 .OpenPendingCohortRequestAsFundingEmployer();
         }
+
+        internal void NonLevyEmployerApproveAndSendToProvider(int numberOfApprentices, bool isTransfersFunds)
+        {
+            NonLevyEmployerAddsAnApprentice(numberOfApprentices, false);
+        }
+
+        public string NonLevyEmployerAddsAnApprentice(int numberOfApprentices, bool isTransfersFunds)
+        {
+            return new AddAnApprenitcePage(_context).StartNowToAddTrainingProvider()
+                .SubmitValidUkprn()
+                .ConfirmProviderDetailsAreCorrect()
+                .NonLevyEmployerAddsApprentices()
+                .SubmitValidApprenticeDetails()
+                .SaveAndContinue()
+                .SubmitApproveAndSendToTrainingProvider()
+                .SendInstructionsToProviderForAnApprovedCohort()
+                .CohortReference();
+        }
     }
 }

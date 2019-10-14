@@ -17,6 +17,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         private ReviewYourCohortPage _reviewYourCohortPage;
         private readonly ObjectContext _objectContext;
         private ApprenticeDetailsPage _apprenticeDetailsPage;
+        private AddAnApprenitcePage _addAnApprenticePage;
 
         public EmployerSteps(ScenarioContext context)
         {
@@ -153,17 +154,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _employerStepsHelper.Approve();
         }
 
-        [When(@"Employer adds the full apprentice")]
-        public void EmployerAddsTheFullApprentice()
+        [When(@"the Employer uses the reservation to create and approve (\d) cohort and sends to provider")]
+        public void TheEmployerUsesTheReservationToCreateAndApproveCohortAndSendsToProvider(int numberOfApprentices)
         {
-
-
-        }
-
-        [Then(@"The apprenticeship record is created using the reservation")]
-        public void TheApprenticeshipRecordIsCreatedUsingTheReservation()
-        {
-
+            _employerStepsHelper.NonLevyEmployerApproveAndSendToProvider(numberOfApprentices, false);
         }
     }
 }

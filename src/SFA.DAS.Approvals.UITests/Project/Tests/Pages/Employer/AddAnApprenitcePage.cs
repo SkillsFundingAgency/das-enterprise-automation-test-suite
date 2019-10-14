@@ -16,7 +16,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private readonly ApprovalsConfig _config;
         #endregion
 
-        private By StartNowButton => By.CssSelector(".button-start");
+        private By StartNowButton => By.CssSelector(".govuk-button--start");
 
         public AddAnApprenitcePage(ScenarioContext context) : base(context)
         {

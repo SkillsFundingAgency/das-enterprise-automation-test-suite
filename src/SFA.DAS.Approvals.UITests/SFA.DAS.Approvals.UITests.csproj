@@ -59,19 +59,19 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Project\Tests\Features\NonLevy\EmployerCreateCohort.feature.cs">
-      <DependentUpon>EmployerCreateCohort.feature</DependentUpon>
+    <Compile Update="Project\Tests\Features\NonLevy\NonLevyEmployerCreatesACohort.feature.cs">
+      <DependentUpon>NonLevyEmployerCreatesACohort.feature</DependentUpon>
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
     </Compile>
   </ItemGroup>
 
   <ItemGroup>
-    <SpecFlowFeatureFiles Update="Project\Tests\Features\NonLevy\EmployerCreateCohort.feature">
+    <SpecFlowFeatureFiles Update="Project\Tests\Features\NonLevy\NonLevyEmployerCreatesACohort.feature">
       <Visible>$(UsingMicrosoftNETSdk)</Visible>
       <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>EmployerCreateCohort.feature.cs</LastGenOutput>
+      <LastGenOutput>NonLevyEmployerCreatesACohort.feature.cs</LastGenOutput>
     </SpecFlowFeatureFiles>
   </ItemGroup>
 </Project>

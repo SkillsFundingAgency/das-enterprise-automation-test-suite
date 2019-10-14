@@ -21,13 +21,18 @@ namespace SFA.DAS.ManageFunding.UITests.Project.Helpers.StepsHelper
             _loginHelper = new EmployerPortalLoginHelper(_context);
         }
 
-        internal MakingChangesPage CreateReservation()
+        public DoYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage LoginAndReserveFunding()
         {
             _loginHelper.Login(_context.GetUser<EoiUser>(), false);
 
             return new YourFundingReservationsHomePage(_context).OpenYourFundingReservations()
                 .ClickReserveMoreFundingLink()
-                .ClickReserveFundingButton()
+                .ClickReserveFundingButton();
+        }
+
+        public MakingChangesPage CreateReservation()
+        {
+            return new DoYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage(_context)
                 .ClickYesRadioButton()
                 .EnterSelectForACourseAndSubmit()
                 .ClickSaveAndContinueButton()

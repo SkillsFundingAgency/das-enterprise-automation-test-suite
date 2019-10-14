@@ -15,17 +15,18 @@ namespace SFA.DAS.ManageFunding.UITests.Project.Tests.StepDefinitions
     public class ManageFundingNonLevyEoiEmployerSteps
     {
         private MakingChangesPage _makingChangesPage;
-        private readonly EmployerReservationStepsHelper _reservationHelper;
+        private readonly EmployerReservationStepsHelper _reservationStepsHelper;
 
         public ManageFundingNonLevyEoiEmployerSteps(ScenarioContext context)
         {
-            _reservationHelper = new EmployerReservationStepsHelper(context);
+            _reservationStepsHelper = new EmployerReservationStepsHelper(context);
         }
 
         [Given(@"the Employer reserves funding for an apprenticeship course")]
         public void GivenTheEmployerReservesFundingForAnApprenticeshipCourse()
         {
-            _makingChangesPage = _reservationHelper.CreateReservation();
+            _reservationStepsHelper.LoginAndReserveFunding();
+            _makingChangesPage = _reservationStepsHelper.CreateReservation();
         }
 
         [Then(@"the funding is successfully reserved")]
@@ -37,13 +38,14 @@ namespace SFA.DAS.ManageFunding.UITests.Project.Tests.StepDefinitions
         [Given(@"the Employer has created a reservation")]
         public void GivenTheEmployerHasCreatedAReservation()
         {
-            _makingChangesPage = _reservationHelper.CreateReservation();
+            _makingChangesPage = _reservationStepsHelper.CreateReservation();
         }
 
-        [Then(@"the Employer can add the full apprentice details")]
-        public void ThenTheEmployerCanAddTheFullApprenticeDetails()
+        [Given(@"the Employer has created a new reservation to add an apprentice")]
+        public void TheEmployerHasCreatedANewReservationToAddAnApprentice()
         {
-            _reservationHelper.AddAnApprentice(_makingChangesPage);
+            GivenTheEmployerHasCreatedAReservation();
+            _reservationStepsHelper.AddAnApprentice(_makingChangesPage);
         }
     }
 }
