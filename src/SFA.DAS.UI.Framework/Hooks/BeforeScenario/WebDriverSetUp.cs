@@ -27,7 +27,7 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
 
         private readonly FrameworkConfig _frameworkConfig;
 
-        private readonly ExecutionConfig _executionConfig;
+        private readonly EnvironmentConfig _executionConfig;
 
         private const string ChromeDriverServiceName = "chromedriver.exe";
 
@@ -41,7 +41,7 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
             _context = context;
             _objectContext = context.Get<ObjectContext>();
             _frameworkConfig = context.Get<FrameworkConfig>();
-            _executionConfig = context.Get<ExecutionConfig>();
+            _executionConfig = context.Get<EnvironmentConfig>();
         }
 
 

@@ -7,14 +7,12 @@ namespace SFA.DAS.TestProject.UITests.Project
     public class TestProjectConfigurationSetup          
     {
         private readonly ScenarioContext _context;
-        private readonly ObjectContext _objectContext;
         private readonly IConfigSection _configSection;
 
         public TestProjectConfigurationSetup(ScenarioContext context)
         {
             _context = context;
             _configSection = context.Get<IConfigSection>();
-            _objectContext = context.Get<ObjectContext>();
         }
 
         [BeforeScenario(Order = 2)]
@@ -22,8 +20,6 @@ namespace SFA.DAS.TestProject.UITests.Project
         {
             var config = _configSection.GetConfigSection<TestProjectConfig>();
             _context.SetTestProjectConfig(config);
-
-            _objectContext.ReplaceBrowser(config.Browser);
         }
     }
 }

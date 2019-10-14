@@ -6,8 +6,6 @@
 
         public string RE_AccountPassword { get; set; }
 
-        public string Browser { get; set; }
-
         public string EmployerApprenticeshipServiceBaseURL { get; set; }
 
         public string RE_ConfirmCode { get; set; }
