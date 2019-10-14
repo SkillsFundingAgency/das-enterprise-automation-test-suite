@@ -9,7 +9,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
     class ProviderViewYourCohortPage : BasePage
     {
         protected override string PageTitle => "View your cohort";
-        private By viewApprenticeLink = By.LinkText("View");
+        private By viewApprenticeLink => By.LinkText("View");
 
         #region Helpers and Context
         private readonly FormCompletionHelper _formCompletionHelper;
@@ -27,7 +27,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         public int TotalNoOfApprentices()
         {
-            return _pageInteractionHelper.FindElements(By.LinkText("View")).Count;
+            return _pageInteractionHelper.FindElements(viewApprenticeLink).Count;
         }
 
         internal ProviderViewApprenticeDetailsPage SelectViewApprentice(int apprenticeNumber = 0)
