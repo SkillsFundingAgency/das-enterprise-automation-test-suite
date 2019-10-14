@@ -71,13 +71,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Then(@"Provider can view Create Cohort link")]
         public void ThenProviderCanViewCreateCohortLink()
         {
-            Assert.IsTrue(CreateCohortPermissionLinkIsDisplayed());
+            Assert.IsTrue(CreateCohortPermissionLinkIsDisplayed(), "Create Cohort link is not visible");
         }
 
         [Then(@"Provider cannot view Create Cohort link")]
         public void ThenProviderCannotViewCreateCohortLink()
         {
-            Assert.IsFalse(CreateCohortPermissionLinkIsDisplayed());
+            Assert.IsFalse(CreateCohortPermissionLinkIsDisplayed(), "Create Cohort link is visible");
         }
 
         private bool CreateCohortPermissionLinkIsDisplayed()
