@@ -1,0 +1,41 @@
+﻿using OpenQA.Selenium;
+using SFA.DAS.UI.Framework.TestSupport;
+using SFA.DAS.UI.FrameworkHelpers;
+using TechTalk.SpecFlow;
+
+namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider.ManageFunding
+{
+    public class ProviderMakingChangesPage : BasePage
+    {
+        protected override string PageTitle => "Making changes";
+
+        #region Helpers and Context
+        private readonly FormCompletionHelper _formCompletionHelper;
+        private readonly ScenarioContext _context;
+        #endregion
+
+
+        public ProviderMakingChangesPage(ScenarioContext context) : base(context)
+        {
+            _context = context;
+            _formCompletionHelper = context.Get<FormCompletionHelper>();
+            VerifyPage();
+        }
+        private By GoToRadioButton => By.CssSelector(".govuk-radios__label");
+        private By ContinueButton => By.CssSelector(".govuk-button");
+
+        internal ProviderHomePage GoToHomePage()
+        {
+            _formCompletionHelper.SelectRadioOptionByForAttribute(GoToRadioButton, "WhatsNext-home");
+            _formCompletionHelper.ClickElement(ContinueButton);
+            return new ProviderHomePage(_context);
+        }
+
+        internal ProviderAddApprenticeDetailsPage GoToAddApprenticeDetailsPage()
+        {
+            _formCompletionHelper.SelectRadioOptionByForAttribute(GoToRadioButton, "WhatsNext-add");
+            _formCompletionHelper.ClickElement(ContinueButton);
+            return new ProviderAddApprenticeDetailsPage(_context);
+        }
+    }
+}

@@ -1,5 +1,6 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.Approvals.UITests.Project.Helpers;
+using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider.ManageFunding;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
@@ -26,6 +27,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         private By CreateACohortLink => By.LinkText("Create a cohort");
 
+        private By GetFundingLink => By.LinkText("Get funding for non-levy employers");
+
         public ProviderHomePage(ScenarioContext context, bool navigate = false) : base(context, navigate)
         {
             _context = context;
@@ -49,6 +52,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         public bool CreateCohortPermissionLinkIsDisplayed()
         {
             return _pageInteractionHelper.IsElementDisplayed(CreateACohortLink);
+        }
+        public ProviderReserveFundingForNonLevyEmployersPage GoToProviderGetFunding()
+        {
+            _formCompletionHelper.ClickElement(GetFundingLink);
+            return new ProviderReserveFundingForNonLevyEmployersPage(_context);
         }
     }
 }

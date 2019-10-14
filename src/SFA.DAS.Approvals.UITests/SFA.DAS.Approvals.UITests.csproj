@@ -52,4 +52,8 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Project\Tests\Features\NonLevyEoiProvider\" />
+  </ItemGroup>
 </Project>
