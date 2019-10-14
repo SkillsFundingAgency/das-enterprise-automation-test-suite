@@ -2,6 +2,6 @@
 {
     public class TestExecutionConfig
     {
-        public string Browser { get; internal set; }
+        public string Browser { get; set; }
     }
 }
