@@ -8,7 +8,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
     class ProviderViewApprenticeDetailsPage : BasePage
     {
         protected override string PageTitle => "View apprentice details";
-        private By returnToCohortViewLink => By.LinkText("Return to cohort view");
+        private By ReturnToCohortViewLink => By.LinkText("Return to cohort view");
 
         #region Helpers and Context
         private readonly FormCompletionHelper _formCompletionHelper;
@@ -24,7 +24,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         internal ProviderViewYourCohortPage SelectReturnToCohortView()
         {
-            _formCompletionHelper.ClickElement(returnToCohortViewLink);
+            _formCompletionHelper.ClickElement(ReturnToCohortViewLink);
             return new ProviderViewYourCohortPage(_context);
         }
     }
