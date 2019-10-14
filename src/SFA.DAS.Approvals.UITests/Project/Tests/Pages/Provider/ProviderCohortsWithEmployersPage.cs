@@ -4,9 +4,9 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 {
-    public class ProviderCohortsToReviewPage : BasePage
+    public class ProviderCohortsWithEmployersPage : BasePage
     {
-        protected override string PageTitle => "Cohorts to review, update or approve";
+        protected override string PageTitle => "Cohorts with employers";
 
         #region Helpers and Context
         private readonly TableRowHelper _tableRowHelper;
@@ -14,8 +14,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private readonly ObjectContext _objectContext;
         #endregion
 
-
-        public ProviderCohortsToReviewPage(ScenarioContext context) : base(context)
+        public ProviderCohortsWithEmployersPage(ScenarioContext context) : base(context)
         {
             _context = context;
             _objectContext = context.Get<ObjectContext>();
@@ -23,10 +22,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             VerifyPage();
         }
 
-        public ProviderReviewYourCohortPage SelectViewCurrentCohortDetails()
+        internal ProviderViewYourCohortPage SelectViewCurrentCohortDetails()
         {
             _tableRowHelper.SelectRowFromTable("Details", _objectContext.GetCohortReference());
-            return new ProviderReviewYourCohortPage(_context);
+            return new ProviderViewYourCohortPage(_context);
         }
+
     }
 }
