@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using TechTalk.SpecFlow;
+﻿using TechTalk.SpecFlow;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
+using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 {
@@ -24,7 +21,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                 .SelectContinueToApproval()
                 .SubmitApprove();
         }
-
 
         [When(@"the provider adds (.*) apprentices and sends to employer to review")]
         public void WhenTheProviderAddsApprenticesAndSendsToEmployerToReview(int numberOfApprentices)
@@ -57,6 +53,22 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             providerReviewYourCohortPage.SelectSaveAndContinue()
                 .SubmitApproveAndSendToEmployerForApproval()
                 .SendInstructionsToEmployerForAnApprovedCohort();
+        }
+
+        [Then(@"Provider is able to view the cohort with employer")]
+        public void ThenProviderIsAbleToViewTheCohortWithEmployer()
+        {
+            var providerHomePage = _providerStepsHelper.GoToProviderHomePage();
+
+            providerHomePage.GoToProviderYourCohortsPage()
+                    .GoToCohortsWithEmployers()
+                    .SelectViewCurrentCohortDetails();
+        }
+
+        [Then(@"Provider is able to view all apprentice details when the cohort with employer")]
+        public void ThenProviderIsAbleToViewAllApprenticeDetailsWhenTheCohortWithEmployer()
+        {
+            _providerStepsHelper.ViewApprentices();
         }
     }
 }

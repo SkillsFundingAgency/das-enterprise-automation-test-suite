@@ -11,6 +11,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
         private const string RegistrationProjectConfigKey = "registrationprojectconfig";
         private const string ManageFundingProjectConfigKey = "managefundingprojectconfig";
         private const string ApprovalsProjectConfigKey = "approvalsprojectconfig";
+        private const string ProviderPermissionConfigKey = "providerpermissionconfigkey";
         private const string TransfersProjectConfigKey = "transfersprojectconfig";
         private const string MongoDbConfigKey = "mongodbconfig";
         private const string WebDriverKey = "webdriver";
@@ -31,6 +32,11 @@ namespace SFA.DAS.UI.Framework.TestSupport
             Set(context, value, ApprovalsProjectConfigKey);
         }
 
+        public static void SetProviderPermissionConfig<T>(this ScenarioContext context, T value)
+        {
+            Set(context, value, ProviderPermissionConfigKey);
+        }
+
         public static void SetTransfersConfig<T>(this ScenarioContext context, T value)
         {
             Set(context, value, TransfersProjectConfigKey);
@@ -49,6 +55,11 @@ namespace SFA.DAS.UI.Framework.TestSupport
         public static T GetApprovalsConfig<T>(this ScenarioContext context)
         {
             return Get<T>(context, ApprovalsProjectConfigKey);
+        }
+
+        public static T GetProviderPermissionConfig<T>(this ScenarioContext context)
+        {
+            return Get<T>(context, ProviderPermissionConfigKey);
         }
 
         public static T GetTransfersConfig<T>(this ScenarioContext context)

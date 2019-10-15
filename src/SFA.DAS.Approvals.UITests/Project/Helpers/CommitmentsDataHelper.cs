@@ -14,7 +14,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers
         public CommitmentsDataHelper(ApprovalsConfig approvalsConfig, SqlDatabaseConnectionHelper sqlDatabase)
         {
             _sqlDatabase = sqlDatabase;
-            _connectionString = approvalsConfig.AP_CommitmentsDbConnectionString;
+            _connectionString = approvalsConfig.CommitmentsDbConnectionString;
         }
 
         public void SetHasHadDataLockSuccessTrue(String uln)
