@@ -16,9 +16,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private readonly ApprovalsConfig _config;
         #endregion
 
-        private By ConfirmProviderDetailsOptions => By.CssSelector(".govuk-radios__label");
+        private By ConfirmProviderDetailsOptions => By.CssSelector(".selection-button-radio");
 
-        private By ContinueButton => By.CssSelector(".govuk-button");
+        private By ContinueButton => By.Id("submit-select-provider");
 
         public ConfirmTrainingProviderPage(ScenarioContext context): base(context)
         {
@@ -31,7 +31,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         public StartAddingApprenticesPage ConfirmProviderDetailsAreCorrect()
         {
-            _formCompletionHelper.SelectRadioOptionByForAttribute(ConfirmProviderDetailsOptions, "UseThisProvider");
+            _formCompletionHelper.SelectRadioOptionByForAttribute(ConfirmProviderDetailsOptions, "Confirmation-True");
             _formCompletionHelper.ClickElement(ContinueButton, true);
             return new StartAddingApprenticesPage(_context);
         }

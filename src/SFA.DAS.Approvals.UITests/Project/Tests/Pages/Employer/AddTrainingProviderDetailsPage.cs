@@ -18,9 +18,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private readonly ApprenticeDataHelper _dataHelper;
         #endregion
 
-        private By ukprnField => By.CssSelector(".govuk-input ");
+        private By ukprnField => By.Id("ProviderId");
 
-        private By continueButton => By.CssSelector(".govuk-button");
+        private By continueButton => By.CssSelector(".button");
 
         public AddTrainingProviderDetailsPage(ScenarioContext context): base(context)
         {

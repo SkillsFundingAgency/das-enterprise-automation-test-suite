@@ -24,9 +24,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             _formCompletionHelper = context.Get<FormCompletionHelper>();
             VerifyPage();
         }
-        private By WhoAddsApprenticesOptions => By.CssSelector(".govuk-radios__label");
+        private By WhoAddsApprenticesOptions => By.CssSelector(".selection-button-radio");
 
-        private By ContinueButton => By.CssSelector(".govuk-button");
+        private By ContinueButton => By.CssSelector(".button");
 
         public ReviewYourCohortPage EmployerAddsApprentices()
         {
@@ -44,7 +44,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         private StartAddingApprenticesPage EmployerAgreesToAdds()
         {
-            _formCompletionHelper.SelectRadioOptionByForAttribute(WhoAddsApprenticesOptions, "WhoIsAddingApprentices");
+            _formCompletionHelper.SelectRadioOptionByForAttribute(WhoAddsApprenticesOptions, "SelectedRoute-Employer");
             return this;
         }
 
