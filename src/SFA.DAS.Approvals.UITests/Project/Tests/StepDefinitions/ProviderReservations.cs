@@ -1,4 +1,5 @@
-﻿using SFA.DAS.Registration.UITests.Project;
+﻿using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
+using SFA.DAS.Registration.UITests.Project;
 using SFA.DAS.Registration.UITests.Project.Helpers;
 using SFA.DAS.UI.Framework.TestSupport;
 using System;
@@ -13,14 +14,19 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
     {
         private readonly ScenarioContext _context;
         private readonly ObjectContext _objectContext;
-
+        private readonly ProviderStepsHelper _providerStepsHelper;
         private readonly EmployerPortalLoginHelper _loginHelper;
+        private readonly ProviderPermissionsConfig _config;
+        private readonly ProviderLogin _login;
 
         public ProviderReservations(ScenarioContext context)
         {
             _context = context;
             _objectContext = context.Get<ObjectContext>();
+            _config = context.GetProviderPermissionConfig<ProviderPermissionsConfig>();
             _loginHelper = new EmployerPortalLoginHelper(_context);
+            _providerStepsHelper = new ProviderStepsHelper(_context);
+            _login = new ProviderLogin { Username = _config.AP_ProviderUserId, Password = _config.AP_ProviderPassword, Ukprn = _config.AP_ProviderUkprn };
         }
 
         [Given(@"An Employer has given create reservation permission to a provider")]
@@ -32,19 +38,17 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                 .SetAgreementId();
         }
 
-        [When(@"Provider login and makes a reservation")]
-        public void WhenProviderLoginAndMakesAReservation()
+        [Then(@"Provider can make a reservation")]
+        public void ThenProviderCanMakeAReservation()
         {
-            throw new PendingStepException();
+            _providerStepsHelper.GoToProviderHomePage(_login)
+                .GoToProviderGetFunding()
+                .StartReservedFunding()
+                .ChooseAnEmployerNonLevyEOI()
+                .ConfirmNonLevyEmployer()
+                .AddTrainingCourseAndDate()
+                .ConfirmReserveFunding()
+                .VerifySucessMessage();
         }
-
-        [Then(@"Funding is reserved successfully")]
-        public void ThenFundingIsReservedSuccessfully()
-        {
-            throw new PendingStepException();
-        }
-
-
-
     }
 }

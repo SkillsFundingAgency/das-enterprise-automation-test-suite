@@ -25,7 +25,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider.ManageFunding
             VerifyPage();
         }
         
-        internal ProviderApprenticeshipTrainingPage confirmNonLevyEmployer()
+        internal ProviderApprenticeshipTrainingPage ConfirmNonLevyEmployer()
         {
             _formCompletionHelper.SelectRadioOptionByForAttribute(ConfirmEmployerOptions, "confirm-yes");
             _formCompletionHelper.ClickElement(SaveAndContinueButton);

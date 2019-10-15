@@ -11,6 +11,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider.ManageFunding
 
         #region Helpers and Context
         private readonly FormCompletionHelper _formCompletionHelper;
+        private readonly PageInteractionHelper _pageInteractionHelper;
         private readonly ScenarioContext _context;
         #endregion
 
@@ -19,10 +20,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider.ManageFunding
         {
             _context = context;
             _formCompletionHelper = context.Get<FormCompletionHelper>();
+            _pageInteractionHelper = context.Get<PageInteractionHelper>();
             VerifyPage();
         }
         private By GoToRadioButton => By.CssSelector(".govuk-radios__label");
         private By ContinueButton => By.CssSelector(".govuk-button");
+        private By MessageLocator => By.TagName("body");
 
         internal ProviderHomePage GoToHomePage()
         {
@@ -36,6 +39,15 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider.ManageFunding
             _formCompletionHelper.SelectRadioOptionByForAttribute(GoToRadioButton, "WhatsNext-add");
             _formCompletionHelper.ClickElement(ContinueButton);
             return new ProviderAddApprenticeDetailsPage(_context);
+        }
+
+        public void VerifySucessMessage()
+        {
+            var expected = "You have successfully reserved funding for apprenticeship training";
+
+            var actual = _pageInteractionHelper.GetText(MessageLocator);
+
+            _pageInteractionHelper.VerifyText(actual, expected);
         }
     }
 }
