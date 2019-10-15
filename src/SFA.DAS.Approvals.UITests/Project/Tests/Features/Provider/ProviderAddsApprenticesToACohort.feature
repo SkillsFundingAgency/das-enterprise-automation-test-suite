@@ -1,4 +1,4 @@
-﻿Feature: ProviderAddsApprentiesToACohort
+﻿Feature: ProviderAddsApprenticesToACohort
 
 @regression
 Scenario: Provider adds apprentices and views cohort details when the cohort is with the employer

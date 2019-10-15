@@ -51,6 +51,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             return new ProviderMessageForEmployerPage(_context);
         }
 
+        public void SubmitSaveButDontSendToEmployer()
+        {
+            SelectOption("SaveStatus-Save");
+        }
+
         private void SelectOption(string option)
         {
             _formCompletionHelper.SelectRadioOptionByForAttribute(CohortApproveOptions, option);

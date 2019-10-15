@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.Approvals.UITests.Project.Tests.Features
+namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.Provider
 {
     using TechTalk.SpecFlow;
     
@@ -18,20 +18,20 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.0.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("ProviderAddsApprentiesToACohort")]
-    public partial class ProviderAddsApprentiesToACohortFeature
+    [NUnit.Framework.DescriptionAttribute("ProviderEditsOrDeletesApprenticesOfACohort")]
+    public partial class ProviderEditsOrDeletesApprenticesOfACohortFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "ProviderAddsApprentiesToACohort.feature"
+#line 1 "ProviderEditsOrDeletesApprenticesOfACohort.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "ProviderAddsApprentiesToACohort", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "ProviderEditsOrDeletesApprenticesOfACohort", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -70,13 +70,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Provider adds apprentices and views cohort details when the cohort is with the em" +
-            "ployer")]
+        [NUnit.Framework.DescriptionAttribute("Provider Edits, Deletes Apprentices and Deletes Cohort that is not sent to a Empl" +
+            "oyer")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public virtual void ProviderAddsApprenticesAndViewsCohortDetailsWhenTheCohortIsWithTheEmployer()
+        public virtual void ProviderEditsDeletesApprenticesAndDeletesCohortThatIsNotSentToAEmployer()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Provider adds apprentices and views cohort details when the cohort is with the em" +
-                    "ployer", null, new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Provider Edits, Deletes Apprentices and Deletes Cohort that is not sent to a Empl" +
+                    "oyer", null, new string[] {
                         "regression"});
 #line 4
 this.ScenarioInitialize(scenarioInfo);
@@ -86,11 +86,13 @@ this.ScenarioInitialize(scenarioInfo);
 #line 6
  testRunner.When("the Employer create a cohort and send to provider to add apprentices", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 7
- testRunner.And("the provider adds 2 apprentices approves them and sends to employer to approve", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("Provider adds 2 apprentices and saves without sending to the employer", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 8
- testRunner.Then("Provider is able to view the cohort with employer", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("Provider is able to edit all apprentices before approval", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 9
- testRunner.And("Provider is able to view all apprentice details when the cohort with employer", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("Provider is able to delete all apprentices before approval", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 10
+ testRunner.And("Provider is able to delete the cohort before approval", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }

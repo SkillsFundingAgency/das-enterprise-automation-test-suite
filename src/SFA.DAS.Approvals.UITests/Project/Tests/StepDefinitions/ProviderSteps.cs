@@ -70,5 +70,30 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             _providerStepsHelper.ViewApprentices();
         }
+
+        [When(@"Provider adds (.*) apprentices and saves without sending to the employer")]
+        public void WhenProviderAddsApprenticesAndSavesWithoutSendingToTheEmployer(int numberOfApprentices)
+        {
+            _providerStepsHelper.AddApprenticeAndSavesWithoutSendingEmployerForApproval(numberOfApprentices);
+        }
+
+        [Then(@"Provider is able to edit all apprentices before approval")]
+        public void ThenProviderIsAbleToEditAllApprenticesBeforeApproval()
+        {
+            _providerStepsHelper.EditApprentice(true);
+        }
+
+        [Then(@"Provider is able to delete all apprentices before approval")]
+        public void ThenProviderIsAbleToDeleteAllApprenticesBeforeApproval()
+        {
+            _providerStepsHelper.DeleteApprentice();
+        }
+
+        [Then(@"Provider is able to delete the cohort before approval")]
+        public void ThenProviderIsAbleToDeleteTheCohortBeforeApproval()
+        {
+            _providerStepsHelper.DeleteCohort();
+        }
+
     }
 }

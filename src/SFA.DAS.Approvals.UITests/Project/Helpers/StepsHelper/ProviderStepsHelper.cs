@@ -58,6 +58,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                 .SendInstructionsToEmployerForAnApprovedCohort();
         }
 
+        public void AddApprenticeAndSavesWithoutSendingEmployerForApproval(int numberOfApprentices)
+        {
+            AddApprentice(numberOfApprentices)
+                .SelectSaveAndContinue()
+                .SubmitSaveButDontSendToEmployer();
+        }
+
         public ProviderReviewYourCohortPage AddApprentice(int numberOfApprentices)
         {
             var providerReviewYourCohortPage = CurrentCohortDetails();
@@ -82,7 +89,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                     .SelectViewCurrentCohortDetails();
         }
 
-        public ProviderReviewYourCohortPage EditApprentice()
+        public ProviderReviewYourCohortPage EditApprentice(bool EditAllDetails = false)
         {
             var providerReviewYourCohortPage = CurrentCohortDetails();
 
@@ -100,11 +107,38 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                                                       .EnterUlnAndSave();
                         break;
                     }
+                    else if (EditAllDetails)
+                    {
+                        providerReviewYourCohortPage = providerReviewYourCohortPage.SelectEditApprentice(i)
+                                                 .EditAllApprenticeDetails();
+                        break;
+                    }
                     j++;
                 }
             }
 
             return providerReviewYourCohortPage;
+        }
+
+        public ProviderReviewYourCohortPage DeleteApprentice()
+        {
+            var providerReviewYourCohortPage = new ProviderReviewYourCohortPage(_context);
+            var totalNoOfApprentices = providerReviewYourCohortPage.TotalNoOfApprentices();
+
+            for (int i = 0; i < totalNoOfApprentices; i++)
+                providerReviewYourCohortPage.SelectEditApprentice(0)
+                                          .DeleteApprentice()
+                                          .ConfirmDeleteAndSubmit();
+
+            return new ProviderReviewYourCohortPage(_context);
+        }
+
+        public void DeleteCohort()
+        {
+            var providerReviewYourCohortPage = new ProviderReviewYourCohortPage(_context);
+
+            providerReviewYourCohortPage.SelectDeleteCohort()
+                .ConfirmDeleteAndSubmit();
         }
 
         public void Approve()
