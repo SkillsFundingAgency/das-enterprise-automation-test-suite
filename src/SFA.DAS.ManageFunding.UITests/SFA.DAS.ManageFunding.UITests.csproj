@@ -39,10 +39,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Project\Tests\Features\Employer\Levy\" />
-    <Folder Include="Project\Tests\Features\Provider\Levy\" />
-    <Folder Include="Project\Tests\Features\Provider\Non-Levy\" />
+    <Folder Include="Project\Helpers\StepsHelper\" />
+    <Folder Include="Project\Tests\Pages\Employer\" />
     <Folder Include="Project\Tests\Pages\Provider\" />
+    <Folder Include="Project\Tests\StepDefinitions\" />
   </ItemGroup>
 
 </Project>

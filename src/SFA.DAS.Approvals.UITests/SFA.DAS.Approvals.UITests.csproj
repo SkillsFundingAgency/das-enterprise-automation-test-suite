@@ -26,7 +26,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SFA.DAS.ManageFunding.UITests\SFA.DAS.ManageFunding.UITests.csproj" />
     <ProjectReference Include="..\SFA.DAS.Registration.UITests\SFA.DAS.Registration.UITests.csproj" />
     <ProjectReference Include="..\SFA.DAS.UI.Framework\SFA.DAS.UI.Framework.csproj" />
   </ItemGroup>
@@ -64,6 +63,12 @@
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
     </Compile>
+    <Compile Update="Project\Tests\Features\ManageFunding\Non-Levy\NonLevyEmployerReservesFunding.feature.cs">
+      <Visible>true</Visible>
+      <DependentUpon>NonLevyEmployerReservesFunding.feature</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
@@ -73,5 +78,16 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>NonLevyEmployerCreatesACohort.feature.cs</LastGenOutput>
     </SpecFlowFeatureFiles>
+    <SpecFlowFeatureFiles Update="Project\Tests\Features\ManageFunding\Non-Levy\NonLevyEmployerReservesFunding.feature">
+      <Visible>$(UsingMicrosoftNETSdk)</Visible>
+      <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>NonLevyEmployerReservesFunding.feature.cs</LastGenOutput>
+    </SpecFlowFeatureFiles>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Project\Tests\Features\ManageFunding\Levy\" />
+    <Folder Include="Project\Tests\Pages\ManageFunding\Provider\" />
   </ItemGroup>
 </Project>

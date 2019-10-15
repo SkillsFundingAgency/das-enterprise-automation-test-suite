@@ -1,10 +1,11 @@
 ﻿using System;
 using OpenQA.Selenium;
+using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.ManageFunding.UITests.Project.Tests.Pages.Employer
+namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
 {
     public class MakingChangesPage : BasePage
     {
@@ -35,10 +36,11 @@ namespace SFA.DAS.ManageFunding.UITests.Project.Tests.Pages.Employer
                 return true;
         }
 
-        internal void AddApprentice()
+        internal AddAnApprenitcePage AddApprentice()
         {
             _formCompletionHelper.ClickElement(AddApprenticeRadioButton);
             _formCompletionHelper.ClickElement(ContinueButton);
+            return new AddAnApprenitcePage(_context);
         }
     }
 }
