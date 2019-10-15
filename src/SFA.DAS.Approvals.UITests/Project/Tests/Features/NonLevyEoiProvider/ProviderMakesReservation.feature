@@ -7,5 +7,4 @@
 @nonlevyeoiproviderscenarios
 Scenario: Provider makes reservation for non-levy EOI employers		
 	Given An Employer has given create reservation permission to a provider
-	When Provider login and makes a reservation
-	Then Funding is reserved successfully
+	Then Provider can make a reservation

@@ -28,7 +28,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider.ManageFunding
 
         internal ProviderCheckYourInformationPage AddTrainingCourseAndDate()
         {
-            _formCompletionHelper.EnterText(CourseSearch, "");
+            _formCompletionHelper.EnterText(CourseSearch, "Food technologist - Level 3");
             _formCompletionHelper.ClickElement(StandardCourseOption);
             _formCompletionHelper.ClickElement(ApprenticeshipTrainingStartDate);
             _formCompletionHelper.ClickElement(SaveAndContinueButton);
