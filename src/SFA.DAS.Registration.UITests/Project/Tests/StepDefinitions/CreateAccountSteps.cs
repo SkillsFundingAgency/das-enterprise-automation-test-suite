@@ -76,6 +76,12 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             homePage = aboutYourAgreementPage
                 .ContinueWithAgreement()
                 .SignAgreement();
+
+            homePage
+                .GoToYourOrganisationsAndAgreementsPage()
+                .SetAgreementId();
+
+            homePage = new HomePage(_context, true);
         }
 
         [When(@"I do not sign the agreement")]

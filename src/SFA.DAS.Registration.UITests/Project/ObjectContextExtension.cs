@@ -6,6 +6,7 @@ namespace SFA.DAS.Registration.UITests.Project
     {
         #region Constants
         private const string AccountIdKey = "accountid";
+        private const string AgreementIdKey = "agreementid";
         private const string LoggedInUserKey = "loggedinuserkey";
         private const string OrganisationNameKey = "organisationname";
         private const string ReceiverAccountIdkey = "receiveraccountidkey";
@@ -21,6 +22,11 @@ namespace SFA.DAS.Registration.UITests.Project
         internal static void SetAccountId(this ObjectContext objectContext, string accountid)
         {
             objectContext.Replace(AccountIdKey, accountid);
+        }
+
+        internal static void SetAgreementId(this ObjectContext objectContext, string agreementId)
+        {
+            objectContext.Replace(AgreementIdKey, agreementId);
         }
 
         public static void SetOrganisationName(this ObjectContext objectContext, string organisationName)
@@ -42,10 +48,14 @@ namespace SFA.DAS.Registration.UITests.Project
         {
             objectContext.Set(ReceiverPublicAccountIdkey, value);
         }
-
         public static string GetReceiverAccountId(this ObjectContext objectContext)
         {
             return objectContext.Get(ReceiverAccountIdkey);
+        }
+
+        public static string GetAgreementId(this ObjectContext objectContext)
+        {
+            return objectContext.Get(AgreementIdKey);
         }
 
         public static string GetPublicReceiverAccountId(this ObjectContext objectContext)
