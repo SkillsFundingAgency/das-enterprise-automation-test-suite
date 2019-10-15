@@ -7,7 +7,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 {
     public class EoiAboutYourAgreementPage : BasePage
     {
-        protected override string PageTitle => "About this document";
+        protected override string PageTitle => "About your agreement";
 
         #region Helpers and Context
         private readonly PageInteractionHelper _pageInteractionHelper;
