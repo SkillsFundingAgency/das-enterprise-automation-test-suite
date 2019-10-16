@@ -10,12 +10,10 @@ namespace SFA.DAS.UI.FrameworkHelpers
     public class RetryHelper
     {
         private readonly IWebDriver _webDriver;
-        private readonly bool _isCloudExecution;
 
-        public RetryHelper(IWebDriver webDriver, bool isCloudExecution)
+        public RetryHelper(IWebDriver webDriver)
         {
             _webDriver = webDriver;
-            _isCloudExecution = isCloudExecution;
         }
 
         internal bool RetryOnException(Func<bool> func, Action beforeAction = null)
@@ -36,7 +34,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
                  });
         }
 
-        internal void RetryOnElementClickInterceptedException(IWebElement element, bool useAction)
+        internal void RetryOnElementClickInterceptedException(IWebElement element)
         {
 
             Action beforeAction = null, afterAction = null;
@@ -66,22 +64,15 @@ namespace SFA.DAS.UI.FrameworkHelpers
                      using (var testcontext = new NUnit.Framework.Internal.TestExecutionContext.IsolatedContext())
                      {
                          beforeAction?.Invoke();
-                         ClickEvent(useAction, element).Invoke();
+                         ClickEvent(element).Invoke();
                          afterAction?.Invoke();
                      }
                  });
         }
 
-        private Action ClickEvent(bool useAction, IWebElement element)
+        private Action ClickEvent(IWebElement element)
         {
-            if (useAction || _isCloudExecution)
-            {
-                return () => new Actions(_webDriver).MoveToElement(element).Click(element).Perform();
-            }
-            else
-            {
-                return () => element.Click();
-            }
+            return () => new Actions(_webDriver).MoveToElement(element).Click(element).Perform();
         }
 
         private static TimeSpan[] TimeOut => new[]

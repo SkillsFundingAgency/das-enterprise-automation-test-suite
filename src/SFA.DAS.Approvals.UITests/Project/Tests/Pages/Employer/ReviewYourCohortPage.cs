@@ -70,7 +70,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         private void ClickElement(By locator)
         {
-            _formCompletionHelper.ClickElement(locator, true);
+            _formCompletionHelper.ClickElement(locator);
         }
 
         private void Edit(int apprenticeNumber)

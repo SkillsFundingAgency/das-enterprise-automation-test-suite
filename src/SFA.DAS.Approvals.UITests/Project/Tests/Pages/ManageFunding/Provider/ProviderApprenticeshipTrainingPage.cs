@@ -33,7 +33,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider
 
             var option = _pageInteractionHelper.FindElements(Options);
 
-            _formCompletionHelper.ClickElement(option.LastOrDefault(), true);
+            _formCompletionHelper.ClickElement(option.LastOrDefault());
 
             _formCompletionHelper.ClickElement(SaveAndContinueButton);
 

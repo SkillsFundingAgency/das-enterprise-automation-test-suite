@@ -41,7 +41,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         private void StartNow()
         {
-            _formCompletionHelper.ClickElement(StartNowButton, true);
+            _formCompletionHelper.ClickElement(StartNowButton);
         }
     }
 }

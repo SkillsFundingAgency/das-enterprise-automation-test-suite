@@ -60,7 +60,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private void SelectOption(string option)
         {
             _formCompletionHelper.SelectRadioOptionByForAttribute(CohortApproveOptions, option);
-            _formCompletionHelper.ClickElement(ContinueButton, true);
+            _formCompletionHelper.ClickElement(ContinueButton);
         }
     }
 }
