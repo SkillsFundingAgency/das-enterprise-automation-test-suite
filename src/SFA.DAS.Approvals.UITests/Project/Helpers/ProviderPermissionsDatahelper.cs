@@ -22,9 +22,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers
             _connectionString = config.PermissionsDbConnectionString;
         }
 
-        public int GetAccountIdOfAProvider()
+        public int GetAccountIdOfAProvider(string ukprn)
         {
-            string sqlQueryToGetAccountId = $"SELECT AccountId from [AccountProviders] WHERE ProviderUkprn = {Convert.ToInt64(_config.AP_ProviderUkprn)}";
+            string sqlQueryToGetAccountId = $"SELECT AccountId from [AccountProviders] WHERE ProviderUkprn = {Convert.ToInt64(ukprn)}";
 
             List<object[]> responseData = _sqlDatabase.ReadDataFromDataBase(sqlQueryToGetAccountId, _connectionString);
 
