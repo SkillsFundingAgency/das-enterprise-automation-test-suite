@@ -70,14 +70,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.CocJourneys
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Provider requests change to dob and reference After ILR match and Employer approv" +
-            "es")]
+        [NUnit.Framework.DescriptionAttribute("COC2 Provider requests change to dob and reference After ILR match and Employer a" +
+            "pproves")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("cocscenarios")]
-        public virtual void ProviderRequestsChangeToDobAndReferenceAfterILRMatchAndEmployerApproves()
+        public virtual void COC2ProviderRequestsChangeToDobAndReferenceAfterILRMatchAndEmployerApproves()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Provider requests change to dob and reference After ILR match and Employer approv" +
-                    "es", null, new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("COC2 Provider requests change to dob and reference After ILR match and Employer a" +
+                    "pproves", null, new string[] {
                         "regression",
                         "cocscenarios"});
 #line 5

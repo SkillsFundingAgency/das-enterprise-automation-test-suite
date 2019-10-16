@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
+using SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer;
 using SFA.DAS.Registration.UITests.Project;
 using SFA.DAS.Registration.UITests.Project.Helpers;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages;
@@ -13,6 +14,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
     internal class EmployerStepsHelper
     {
         private readonly ReviewYourCohortStepsHelper _reviewYourCohortStepsHelper;
+        private readonly MFEmployerStepsHelper _employerReservationStepsHelper;
         private readonly EmployerPortalLoginHelper _loginHelper;
         private readonly TabHelper _tabHelper;
         private readonly ObjectContext _objectContext;
@@ -27,6 +29,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             _tabHelper = _context.Get<TabHelper>();
             _loginHelper = new EmployerPortalLoginHelper(_context);
             _reviewYourCohortStepsHelper = new ReviewYourCohortStepsHelper(_context.Get<AssertHelper>());
+            _employerReservationStepsHelper = new MFEmployerStepsHelper(_context);
         }
 
         public void Approve()
@@ -207,7 +210,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
         {
             employerReviewYourCohortPage
                 .SelectAddAnApprentice()
-                .SubmitValidApprenticeDetails();
+                .SubmitValidApprenticeDetails(false);
 
             string apprenticeTotalCost = _reviewYourCohortStepsHelper.ApprenticeTotalCost(employerReviewYourCohortPage);
 
@@ -223,7 +226,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                .SendInstructionsToProviderForEmptyCohort();
         }
 
-        private string EmployerApproveAndSendToProvider(ReviewYourCohortPage employerReviewYourCohortPage)
+        public string EmployerApproveAndSendToProvider(ReviewYourCohortPage employerReviewYourCohortPage)
         {
             return employerReviewYourCohortPage.SaveAndContinue()
                 .SubmitApproveAndSendToTrainingProvider()
@@ -237,6 +240,33 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             return new FinancePage(_context, true)
                 .OpenTransfers()
                 .OpenPendingCohortRequestAsFundingEmployer();
+        }
+
+        public ReviewYourCohortPage NonLevyEmployerAddsApprenticesUsingReservations(int numberOfApprentices, bool isTransfersFunds)
+        {
+            var doYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage = _employerReservationStepsHelper.GoToReserveFunding();
+            for (int i = 1; i <= numberOfApprentices; i++)
+            {
+                _employerReservationStepsHelper.CreateReservation(doYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage)
+                    .AddApprentice();
+                var reviewYourCohortPage = NonLevyEmployerAddsAnApprentice(false);
+                if (i < numberOfApprentices)
+                {
+                    reviewYourCohortPage.SelectAddAnApprenticeUsingReservation()
+                        .ChooseCreateANewReservationRadioButton()
+                        .ClickSaveAndContinueButton();
+                }
+            }
+            return new ReviewYourCohortPage(_context);
+        }
+
+        public ReviewYourCohortPage NonLevyEmployerAddsAnApprentice(bool isTransfersFunds)
+        {
+            return new AddAnApprenitcePage(_context).StartNowToAddTrainingProvider()
+                .SubmitValidUkprn()
+                .ConfirmProviderDetailsAreCorrect()
+                .NonLevyEmployerAddsApprentices()
+                .SubmitValidApprenticeDetails(true);
         }
     }
 }

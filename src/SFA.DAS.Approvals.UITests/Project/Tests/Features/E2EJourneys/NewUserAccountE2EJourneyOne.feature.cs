@@ -70,13 +70,15 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.E2EJourneys
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Create Employer send an approved cohort then provider approves the cohort")]
+        [NUnit.Framework.DescriptionAttribute("NewE2E1 Create Employer send an approved cohort then provider approves the cohort" +
+            "")]
         [NUnit.Framework.CategoryAttribute("addpayedetails")]
         [NUnit.Framework.CategoryAttribute("addlevyfunds")]
         [NUnit.Framework.CategoryAttribute("e2escenarios")]
-        public virtual void CreateEmployerSendAnApprovedCohortThenProviderApprovesTheCohort()
+        public virtual void NewE2E1CreateEmployerSendAnApprovedCohortThenProviderApprovesTheCohort()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Create Employer send an approved cohort then provider approves the cohort", null, new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("NewE2E1 Create Employer send an approved cohort then provider approves the cohort" +
+                    "", null, new string[] {
                         "addpayedetails",
                         "addlevyfunds",
                         "e2escenarios"});

@@ -17,8 +17,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         private ReviewYourCohortPage _reviewYourCohortPage;
         private readonly ObjectContext _objectContext;
         private ApprenticeDetailsPage _apprenticeDetailsPage;
+        private AddAnApprenitcePage _addAnApprenticePage;
 
-        public EmployerSteps(ScenarioContext context)
+                public EmployerSteps(ScenarioContext context)
         {
             _objectContext = context.Get<ObjectContext>();
             _employerStepsHelper = new EmployerStepsHelper(context);
@@ -46,7 +47,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Then(@"Employer is able to Stop the apprentice")]
         public void ThenEmployerIsAbleToStopTheApprentice()
         {
-            _apprenticeDetailsPage =_employerStepsHelper
+            _apprenticeDetailsPage = _employerStepsHelper
                                     .StopApprenticeThisMonth(_apprenticeDetailsPage);
         }
 
@@ -151,6 +152,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         public void ThenTheEmployerApprovesTheCohorts()
         {
             _employerStepsHelper.Approve();
+        }
+
+        [When(@"the Employer uses the reservation to create and approve (\d) cohort and sends to provider")]
+        public void TheEmployerUsesTheReservationToCreateAndApproveCohortAndSendsToProvider(int numberOfApprentices)
+        {
+            var reviewYourCohortPage = _employerStepsHelper.NonLevyEmployerAddsApprenticesUsingReservations(numberOfApprentices, false);
+            var cohortReference = _employerStepsHelper.EmployerApproveAndSendToProvider(reviewYourCohortPage);
+            _employerStepsHelper.SetCohortReference(cohortReference);
         }
     }
 }

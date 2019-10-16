@@ -70,13 +70,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.DLockJourneys
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Triaging and resolving mismatch Datalocks after ILR match")]
+        [NUnit.Framework.DescriptionAttribute("DLOCK2 Triaging and resolving mismatch Datalocks after ILR match")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("liveapprentice")]
         [NUnit.Framework.CategoryAttribute("dlockscenarios")]
-        public virtual void TriagingAndResolvingMismatchDatalocksAfterILRMatch()
+        public virtual void DLOCK2TriagingAndResolvingMismatchDatalocksAfterILRMatch()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Triaging and resolving mismatch Datalocks after ILR match", null, new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("DLOCK2 Triaging and resolving mismatch Datalocks after ILR match", null, new string[] {
                         "regression",
                         "liveapprentice",
                         "dlockscenarios"});
