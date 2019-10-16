@@ -10,10 +10,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         protected override string PageTitle => "Search for a training provider";
 
         #region Helpers and Context
-        private readonly PageInteractionHelper _pageInteractionHelper;
         private readonly FormCompletionHelper _formCompletionHelper;
         private readonly ScenarioContext _context;
-        private readonly ProviderPermissionsConfig _config;
         #endregion
 
         private By UKProviderReferenceNumberText => By.Id("Ukprn");
@@ -22,15 +20,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         public SearchForATrainingProviderPage(ScenarioContext context) : base(context)
         {
             _context = context;
-            _config = context.GetProviderPermissionConfig<ProviderPermissionsConfig>();
-            _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
             VerifyPage();
         }
 
-        internal ConfirmTrainingProviderUnderPermissionsPage SearchForATrainingProvider()
+        internal ConfirmTrainingProviderUnderPermissionsPage SearchForATrainingProvider(string ukprn)
         {
-            _formCompletionHelper.EnterText(UKProviderReferenceNumberText, _config.AP_ProviderUkprn);
+            _formCompletionHelper.EnterText(UKProviderReferenceNumberText, ukprn);
             _formCompletionHelper.ClickElement(ContinueButton);
             return new ConfirmTrainingProviderUnderPermissionsPage(_context);
         }

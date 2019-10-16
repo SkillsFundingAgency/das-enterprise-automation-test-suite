@@ -48,7 +48,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                 .ConfirmNonLevyEmployer()
                 .AddTrainingCourseAndDate()
                 .ConfirmReserveFunding()
-                .VerifySucessMessage();
+                .VerifySucessMessage()
+                .GoToHomePage();
         }
     }
 }

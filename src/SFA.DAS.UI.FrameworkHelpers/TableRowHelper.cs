@@ -25,7 +25,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
             {
                 if (tableRow.Text.Contains(byKey))
                 {
-                    _formCompletionHelper.ClickElement(links[i]);
+                    _formCompletionHelper.ClickElement(links[i], true);
                     break;
                 }
                 i++;
@@ -41,7 +41,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
                                select tr)?.FirstOrDefault();
 
             var linkToClick = requiredRow.FindElement(By.LinkText(byLinkText));
-            _formCompletionHelper.ClickElement(linkToClick);
+            _formCompletionHelper.ClickElement(linkToClick, true);
         }
     }
 }

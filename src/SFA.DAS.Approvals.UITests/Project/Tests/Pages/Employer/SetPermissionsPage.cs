@@ -30,14 +30,54 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         internal ConfirmTrainingProviderPermissionsPage SetCreateCohortPermissions()
         {
-            _formCompletionHelper.SelectRadioOptionByForAttribute(SetCreateCohortPermissionsOptions, "operation-0-yes");
-            _formCompletionHelper.ClickElement(SetPermissionsButton);
-            return new ConfirmTrainingProviderPermissionsPage(_context);
+            return CreateCohortPermissions(true)
+                   .Update();
         }
 
         internal ConfirmTrainingProviderPermissionsPage UnSetCreateCohortPermissions()
         {
-            _formCompletionHelper.SelectRadioOptionByForAttribute(SetCreateCohortPermissionsOptions, "operation-0-no");
+            return CreateCohortPermissions(false)
+                   .Update();
+        }
+
+        internal ConfirmTrainingProviderPermissionsPage SetCreateCohortAndRecruitmentPermissions()
+        {
+            return CreateCohortPermissions(true)
+                   .CreateRecruitmentPermissions(true)
+                   .Update();
+        }
+
+        internal ConfirmTrainingProviderPermissionsPage UnSetCreateCohortAndRecruitmentPermissions()
+        {
+            return CreateCohortPermissions(false)
+                   .CreateRecruitmentPermissions(false)
+                   .Update();
+        }
+        internal ConfirmTrainingProviderPermissionsPage SetRecruitmentPermissions()
+        {
+            return CreateRecruitmentPermissions(true)
+                   .Update();
+        }
+
+        internal ConfirmTrainingProviderPermissionsPage UnSetRecruitmentPermissions()
+        {
+            return CreateRecruitmentPermissions(false)
+                   .Update();
+        }
+
+        private SetPermissionsPage CreateCohortPermissions(bool set)
+        {
+            _formCompletionHelper.SelectRadioOptionByForAttribute(SetCreateCohortPermissionsOptions, set ? "operation-0-yes": "operation-0-no");
+            return this;
+        }
+        private SetPermissionsPage CreateRecruitmentPermissions(bool set)
+        {
+            _formCompletionHelper.SelectRadioOptionByForAttribute(SetCreateCohortPermissionsOptions, set ? "operation-1-yes" : "operation-1-no");
+            return this;
+        }
+
+        private ConfirmTrainingProviderPermissionsPage Update()
+        {
             _formCompletionHelper.ClickElement(SetPermissionsButton);
             return new ConfirmTrainingProviderPermissionsPage(_context);
         }
