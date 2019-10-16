@@ -4,7 +4,7 @@ using SFA.DAS.UI.FrameworkHelpers;
 using System.Linq;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider.ManageFunding
+namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider
 {
     public class ProviderApprenticeshipTrainingPage : BasePage
     {

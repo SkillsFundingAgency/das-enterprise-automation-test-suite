@@ -1,9 +1,10 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider.ManageFunding
+namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider
 {
     public class ProviderMakingChangesPage : BasePage
     {
