@@ -4,7 +4,7 @@
 @transfersscenarios
 @liveapprentice
 @transfersfunds
-Scenario: Creating Cohort rejected by Sender and then approved by all 3 parties
+Scenario: Transfers - Creating Cohort rejected by Sender and then approved by all 3 parties
 	Given Receiver sends an approved cohort to the provider
 	When Provider approves the cohort
 	And Sender rejects the cohort

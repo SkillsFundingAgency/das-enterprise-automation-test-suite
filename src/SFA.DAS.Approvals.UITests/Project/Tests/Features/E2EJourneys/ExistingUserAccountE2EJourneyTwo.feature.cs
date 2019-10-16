@@ -70,14 +70,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.E2EJourneys
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Employer sends cohort to provider for review then provider approves then employer" +
-            " approves")]
+        [NUnit.Framework.DescriptionAttribute("E2E2 Employer sends cohort to provider for review then provider approves then emp" +
+            "loyer approves")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("e2escenarios")]
-        public virtual void EmployerSendsCohortToProviderForReviewThenProviderApprovesThenEmployerApproves()
+        public virtual void E2E2EmployerSendsCohortToProviderForReviewThenProviderApprovesThenEmployerApproves()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Employer sends cohort to provider for review then provider approves then employer" +
-                    " approves", null, new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("E2E2 Employer sends cohort to provider for review then provider approves then emp" +
+                    "loyer approves", null, new string[] {
                         "regression",
                         "e2escenarios"});
 #line 5

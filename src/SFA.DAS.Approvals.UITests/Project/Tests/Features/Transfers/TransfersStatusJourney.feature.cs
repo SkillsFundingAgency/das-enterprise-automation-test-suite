@@ -70,12 +70,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.Transfers
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Verify transfer status when agreement is not signed")]
+        [NUnit.Framework.DescriptionAttribute("Transfers - Verify transfer status when agreement is not signed")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("transfersscenarios")]
-        public virtual void VerifyTransferStatusWhenAgreementIsNotSigned()
+        public virtual void Transfers_VerifyTransferStatusWhenAgreementIsNotSigned()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify transfer status when agreement is not signed", null, new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Transfers - Verify transfer status when agreement is not signed", null, new string[] {
                         "regression",
                         "transfersscenarios"});
 #line 5
@@ -90,12 +90,12 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Verify transfer status when agreement is signed")]
+        [NUnit.Framework.DescriptionAttribute("Transfers - Verify transfer status when agreement is signed")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("transfersscenarios")]
-        public virtual void VerifyTransferStatusWhenAgreementIsSigned()
+        public virtual void Transfers_VerifyTransferStatusWhenAgreementIsSigned()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify transfer status when agreement is signed", null, new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Transfers - Verify transfer status when agreement is signed", null, new string[] {
                         "regression",
                         "transfersscenarios"});
 #line 11

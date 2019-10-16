@@ -70,15 +70,15 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.CocJourneys
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Provider requests changes to cost and course After ILR match on waiting to start " +
-            "Apprentice and Employer approves")]
+        [NUnit.Framework.DescriptionAttribute("COC7 Provider requests changes to cost and course After ILR match on waiting to s" +
+            "tart Apprentice and Employer approves")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("waitingtostartapprentice")]
         [NUnit.Framework.CategoryAttribute("cocscenarios")]
-        public virtual void ProviderRequestsChangesToCostAndCourseAfterILRMatchOnWaitingToStartApprenticeAndEmployerApproves()
+        public virtual void COC7ProviderRequestsChangesToCostAndCourseAfterILRMatchOnWaitingToStartApprenticeAndEmployerApproves()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Provider requests changes to cost and course After ILR match on waiting to start " +
-                    "Apprentice and Employer approves", null, new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("COC7 Provider requests changes to cost and course After ILR match on waiting to s" +
+                    "tart Apprentice and Employer approves", null, new string[] {
                         "regression",
                         "waitingtostartapprentice",
                         "cocscenarios"});

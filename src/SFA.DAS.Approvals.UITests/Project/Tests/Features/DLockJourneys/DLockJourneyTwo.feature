@@ -3,7 +3,7 @@
 @regression
 @liveapprentice
 @dlockscenarios
-Scenario: Triaging and resolving mismatch Datalocks after ILR match
+Scenario: DLOCK2 Triaging and resolving mismatch Datalocks after ILR match
 	Given the Employer has approved apprentice
 	And the datalock has been successful
 	When the provider submit an ILR with price mismatch

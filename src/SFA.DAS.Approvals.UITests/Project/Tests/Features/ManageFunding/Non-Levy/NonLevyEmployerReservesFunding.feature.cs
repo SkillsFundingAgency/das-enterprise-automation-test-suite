@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.ManageFunding.UITests.Project.Tests.Features.Employer.Non_Levy
+namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.ManageFunding.Non_Levy
 {
     using TechTalk.SpecFlow;
     
@@ -18,20 +18,20 @@ namespace SFA.DAS.ManageFunding.UITests.Project.Tests.Features.Employer.Non_Levy
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.0.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("CreateReserveFunding")]
-    public partial class CreateReserveFundingFeature
+    [NUnit.Framework.DescriptionAttribute("NonLevyEmployerReservesFunding")]
+    public partial class NonLevyEmployerReservesFundingFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "CreateReserveFunding.feature"
+#line 1 "NonLevyEmployerReservesFunding.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "CreateReserveFunding", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "NonLevyEmployerReservesFunding", "A Non Levy Employer reserves funding for an apprenticeship course", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -70,23 +70,23 @@ namespace SFA.DAS.ManageFunding.UITests.Project.Tests.Features.Employer.Non_Levy
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Reserving funding by a non-levy eoi employer")]
+        [NUnit.Framework.DescriptionAttribute("Non Levy Employer reserves funding")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("reservefunds")]
-        public virtual void ReservingFundingByANon_LevyEoiEmployer()
+        public virtual void NonLevyEmployerReservesFunding()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Reserving funding by a non-levy eoi employer", null, new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Non Levy Employer reserves funding", null, new string[] {
                         "regression",
                         "reservefunds"});
-#line 5
+#line 7
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 6
- testRunner.Given("the Employer login using existing eoi account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 7
- testRunner.When("the Employer reserves funding for an apprenticeship course", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 8
- testRunner.Then("Verify funding is successfully reserved", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Given("the Employer login using existing eoi account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 9
+ testRunner.When("the Employer reserves funding for an apprenticeship course", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 10
+ testRunner.Then("the funding is successfully reserved", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

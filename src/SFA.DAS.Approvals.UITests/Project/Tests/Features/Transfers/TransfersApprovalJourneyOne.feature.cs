@@ -70,14 +70,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.Transfers
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Creating a Cohort and Approve by all 3 parties")]
+        [NUnit.Framework.DescriptionAttribute("Transfers - Creating a Cohort and Approve by all 3 parties")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("transfersscenarios")]
         [NUnit.Framework.CategoryAttribute("liveapprentice")]
         [NUnit.Framework.CategoryAttribute("transfersfunds")]
-        public virtual void CreatingACohortAndApproveByAll3Parties()
+        public virtual void Transfers_CreatingACohortAndApproveByAll3Parties()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Creating a Cohort and Approve by all 3 parties", null, new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Transfers - Creating a Cohort and Approve by all 3 parties", null, new string[] {
                         "regression",
                         "transfersscenarios",
                         "liveapprentice",

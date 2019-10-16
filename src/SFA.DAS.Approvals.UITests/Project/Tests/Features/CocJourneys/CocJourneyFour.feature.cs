@@ -70,14 +70,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.CocJourneys
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Provider requests changes to cost and course Before ILR match and Employer approv" +
-            "es")]
+        [NUnit.Framework.DescriptionAttribute("COC4 Provider requests changes to cost and course Before ILR match and Employer a" +
+            "pproves")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("cocscenarios")]
-        public virtual void ProviderRequestsChangesToCostAndCourseBeforeILRMatchAndEmployerApproves()
+        public virtual void COC4ProviderRequestsChangesToCostAndCourseBeforeILRMatchAndEmployerApproves()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Provider requests changes to cost and course Before ILR match and Employer approv" +
-                    "es", null, new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("COC4 Provider requests changes to cost and course Before ILR match and Employer a" +
+                    "pproves", null, new string[] {
                         "regression",
                         "cocscenarios"});
 #line 5

@@ -3,7 +3,7 @@ using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.ManageFunding.UITests.Project.Tests.Pages.Employer
+namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
 {
     public class YourFundingReservationsPage : BasePage
     {
