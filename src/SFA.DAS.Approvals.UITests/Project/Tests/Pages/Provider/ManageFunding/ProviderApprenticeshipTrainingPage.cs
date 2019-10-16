@@ -17,7 +17,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider.ManageFunding
         #endregion
 
         private By CourseSearch => By.CssSelector("#course-search, #SelectedCourseId");
-        private By Options => By.CssSelector(".govuk-radios");
+        private By Options => By.CssSelector(".govuk-radios__item input");
         private By SaveAndContinueButton => By.CssSelector(".govuk-button");
 
         public ProviderApprenticeshipTrainingPage(ScenarioContext context) : base(context)
@@ -33,7 +33,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider.ManageFunding
 
             var option = _pageInteractionHelper.FindElements(Options);
 
-            _formCompletionHelper.ClickElement(option.LastOrDefault());
+            _formCompletionHelper.ClickElement(option.LastOrDefault(), true);
 
             _formCompletionHelper.ClickElement(SaveAndContinueButton);
 
