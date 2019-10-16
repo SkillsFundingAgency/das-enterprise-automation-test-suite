@@ -70,15 +70,15 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.DLockJourneys
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Employer can not stop the waiting to start apprentice after Datalocks and ILR mat" +
-            "ch")]
+        [NUnit.Framework.DescriptionAttribute("DLOCK5 Employer can not stop the waiting to start apprentice after Datalocks and " +
+            "ILR match")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("waitingtostartapprentice")]
         [NUnit.Framework.CategoryAttribute("dlockscenarios")]
-        public virtual void EmployerCanNotStopTheWaitingToStartApprenticeAfterDatalocksAndILRMatch()
+        public virtual void DLOCK5EmployerCanNotStopTheWaitingToStartApprenticeAfterDatalocksAndILRMatch()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Employer can not stop the waiting to start apprentice after Datalocks and ILR mat" +
-                    "ch", null, new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("DLOCK5 Employer can not stop the waiting to start apprentice after Datalocks and " +
+                    "ILR match", null, new string[] {
                         "regression",
                         "waitingtostartapprentice",
                         "dlockscenarios"});
