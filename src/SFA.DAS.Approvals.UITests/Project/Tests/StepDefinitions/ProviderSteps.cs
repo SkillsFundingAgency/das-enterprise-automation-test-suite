@@ -8,6 +8,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
     public class ProviderSteps
     {
         private readonly ProviderStepsHelper _providerStepsHelper;
+        private ProviderReviewYourCohortPage _providerReviewYourCohortPage;
+        private int _totalNoOfApprentices;
 
         public ProviderSteps(ScenarioContext context)
         {
@@ -69,6 +71,30 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         public void ThenProviderIsAbleToViewAllApprenticeDetailsWhenTheCohortWithEmployer()
         {
             _providerStepsHelper.ViewApprentices();
+        }
+
+        [When(@"Provider adds (.*) apprentices and saves without sending to the employer")]
+        public void WhenProviderAddsApprenticesAndSavesWithoutSendingToTheEmployer(int numberOfApprentices)
+        {
+            _providerReviewYourCohortPage = _providerStepsHelper.AddApprenticeAndSavesWithoutSendingEmployerForApproval(numberOfApprentices);
+        }
+
+        [Then(@"Provider is able to edit all apprentices before approval")]
+        public void ThenProviderIsAbleToEditAllApprenticesBeforeApproval()
+        {
+            (_providerReviewYourCohortPage, _totalNoOfApprentices) = _providerStepsHelper.EditAllDetailsOfApprentice(_providerReviewYourCohortPage);
+        }
+
+        [Then(@"Provider is able to delete all apprentices before approval")]
+        public void ThenProviderIsAbleToDeleteAllApprenticesBeforeApproval()
+        {
+            _providerReviewYourCohortPage = _providerStepsHelper.DeleteApprentice(_providerReviewYourCohortPage, _totalNoOfApprentices);
+        }
+
+        [Then(@"Provider is able to delete the cohort before approval")]
+        public void ThenProviderIsAbleToDeleteTheCohortBeforeApproval()
+        {
+            _providerStepsHelper.DeleteCohort(_providerReviewYourCohortPage);
         }
     }
 }

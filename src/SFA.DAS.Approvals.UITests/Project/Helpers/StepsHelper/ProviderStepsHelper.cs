@@ -58,6 +58,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                 .SendInstructionsToEmployerForAnApprovedCohort();
         }
 
+        public ProviderReviewYourCohortPage AddApprenticeAndSavesWithoutSendingEmployerForApproval(int numberOfApprentices)
+        {
+           return AddApprentice(numberOfApprentices)
+                .SelectSaveAndContinue()
+                .SubmitSaveButDontSendToEmployer()
+                .SelectViewCurrentCohortDetails();
+        }
+
         public ProviderReviewYourCohortPage AddApprentice(int numberOfApprentices)
         {
             var providerReviewYourCohortPage = CurrentCohortDetails();
@@ -105,6 +113,36 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             }
 
             return providerReviewYourCohortPage;
+        }
+
+        public (ProviderReviewYourCohortPage, int) EditAllDetailsOfApprentice(ProviderReviewYourCohortPage providerReviewYourCohortPage)
+        {
+            var totalNoOfApprentices = providerReviewYourCohortPage.TotalNoOfApprentices();
+
+            for (int i = 0; i < totalNoOfApprentices; i++)
+                providerReviewYourCohortPage = providerReviewYourCohortPage.SelectEditApprentice(i)
+                                         .EditAllApprenticeDetails();
+
+            return (providerReviewYourCohortPage, totalNoOfApprentices);
+        }
+
+        public ProviderReviewYourCohortPage DeleteApprentice(ProviderReviewYourCohortPage providerReviewYourCohortPage, int totalNoOfApprentices)
+        {
+            for (int i = 0; i < totalNoOfApprentices; i++)
+            {
+                providerReviewYourCohortPage = providerReviewYourCohortPage.SelectEditApprentice(0)
+                                          .DeleteApprentice()
+                                          .ConfirmDeleteAndSubmit();
+            }
+
+
+            return providerReviewYourCohortPage;
+        }
+
+        public void DeleteCohort(ProviderReviewYourCohortPage providerReviewYourCohortPage)
+        {
+            providerReviewYourCohortPage.SelectDeleteCohort()
+                .ConfirmDeleteAndSubmit();
         }
 
         public void Approve()

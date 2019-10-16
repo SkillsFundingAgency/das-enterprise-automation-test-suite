@@ -27,6 +27,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         protected override By TotalApprentices => By.CssSelector(".providerList tbody tr");
 
+        private By DeleteCohortbutton => By.ClassName("delete-button");
+
         public ProviderReviewYourCohortPage(ScenarioContext context) : base(context)
         {
             _context = context;
@@ -61,5 +63,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             _formCompletionHelper.ClickElement(SaveAndContinueButton);
             return new ProviderChooseAnOptionPage(_context);
         }
+
+        public ProviderConfirmCohortDeletionPage SelectDeleteCohort()
+        {
+            _formCompletionHelper.ClickElement(DeleteCohortbutton);
+            return new ProviderConfirmCohortDeletionPage(_context);
+        }
+
     }
 }
