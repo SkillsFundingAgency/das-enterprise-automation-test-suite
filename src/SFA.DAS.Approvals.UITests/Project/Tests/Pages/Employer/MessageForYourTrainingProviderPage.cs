@@ -60,7 +60,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         private MessageForYourTrainingProviderPage Send()
         {
-            _formCompletionHelper.ClickElement(SendButton, true);
+            _formCompletionHelper.ClickElement(SendButton);
             return this;
         }
     }

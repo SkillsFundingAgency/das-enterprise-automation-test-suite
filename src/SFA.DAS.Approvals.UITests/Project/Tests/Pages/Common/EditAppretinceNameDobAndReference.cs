@@ -51,7 +51,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
 
         private void Update()
         {
-            formCompletionHelper.ClickElement(UpdateDetailsButton, true);
+            formCompletionHelper.ClickElement(UpdateDetailsButton);
         }
     }
 }

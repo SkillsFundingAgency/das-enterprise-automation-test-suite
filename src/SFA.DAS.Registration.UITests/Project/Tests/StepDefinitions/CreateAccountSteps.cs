@@ -76,6 +76,8 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             homePage = aboutYourAgreementPage
                 .ContinueWithAgreement()
                 .SignAgreement();
+
+            SetAgreementId(homePage);
         }
 
         [When(@"I do not sign the agreement")]
@@ -84,6 +86,16 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             homePage = aboutYourAgreementPage
                 .ContinueWithAgreement()
                 .DoNotSignAgreement();
+        }
+
+        [When(@"I sign the eoi agreement")]
+        public void WhenISignTheEoiAgreement()
+        {
+            homePage = eoiAboutYourAgreementPage
+                .ContinueWithEoiAgreement()
+                .SignAgreement();
+
+            SetAgreementId(homePage);
         }
 
         [When(@"I do not sign the eoi agreement")]
@@ -116,5 +128,14 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         {
             homePage.VerifySucessSummary();
         }
+        private HomePage SetAgreementId(HomePage homePage)
+        {
+            homePage
+                 .GoToYourOrganisationsAndAgreementsPage()
+                 .SetAgreementId();
+
+            return new HomePage(_context, true);
+        }
+
     }
 }

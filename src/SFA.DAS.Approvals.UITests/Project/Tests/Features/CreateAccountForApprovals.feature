@@ -3,6 +3,16 @@
 #Do not add regression tag as these test are meant to create data
 
 @addpayedetails
+@eoiaccount
+Scenario: Create EOI Account For Approvals
+	Given I create an Account
+	When I add paye details
+	And add eoi organisation details
+	And I sign the eoi agreement
+	Then I will land in the User Home page
+	And the Employer can set create cohort and recruitment permissions
+
+@addpayedetails
 @addlevyfunds
 Scenario: Create Levy Account For Approvals
 	Given I create an Account

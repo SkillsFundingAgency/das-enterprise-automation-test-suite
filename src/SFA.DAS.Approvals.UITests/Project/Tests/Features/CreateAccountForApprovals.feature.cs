@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.Registration.UITests.Project.Tests.Features
+namespace SFA.DAS.Approvals.UITests.Project.Tests.Features
 {
     using TechTalk.SpecFlow;
     
@@ -70,14 +70,14 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Create Levy Account For Approvals")]
+        [NUnit.Framework.DescriptionAttribute("Create EOI Account For Approvals")]
         [NUnit.Framework.CategoryAttribute("addpayedetails")]
-        [NUnit.Framework.CategoryAttribute("addlevyfunds")]
-        public virtual void CreateLevyAccountForApprovals()
+        [NUnit.Framework.CategoryAttribute("eoiaccount")]
+        public virtual void CreateEOIAccountForApprovals()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Create Levy Account For Approvals", null, new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Create EOI Account For Approvals", null, new string[] {
                         "addpayedetails",
-                        "addlevyfunds"});
+                        "eoiaccount"});
 #line 7
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
@@ -86,10 +86,38 @@ this.ScenarioInitialize(scenarioInfo);
 #line 9
  testRunner.When("I add paye details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 10
- testRunner.And("add organisation details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("add eoi organisation details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 11
- testRunner.When("I sign the agreement", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.And("I sign the eoi agreement", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 12
+ testRunner.Then("I will land in the User Home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 13
+ testRunner.And("the Employer can set create cohort and recruitment permissions", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Create Levy Account For Approvals")]
+        [NUnit.Framework.CategoryAttribute("addpayedetails")]
+        [NUnit.Framework.CategoryAttribute("addlevyfunds")]
+        public virtual void CreateLevyAccountForApprovals()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Create Levy Account For Approvals", null, new string[] {
+                        "addpayedetails",
+                        "addlevyfunds"});
+#line 17
+this.ScenarioInitialize(scenarioInfo);
+            this.ScenarioStart();
+#line 18
+ testRunner.Given("I create an Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 19
+ testRunner.When("I add paye details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 20
+ testRunner.And("add organisation details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 21
+ testRunner.When("I sign the agreement", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 22
  testRunner.Then("I will land in the User Home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -104,16 +132,16 @@ this.ScenarioInitialize(scenarioInfo);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Create Agreement Not Signed Transfers Account For Approvals", null, new string[] {
                         "addtransferslevyfunds",
                         "addpayedetails"});
-#line 17
+#line 27
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 18
+#line 28
  testRunner.Given("I create an Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 19
+#line 29
  testRunner.When("I add paye details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 20
+#line 30
  testRunner.And("add organisation details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 21
+#line 31
  testRunner.When("I do not sign the agreement", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
             this.ScenarioCleanup();
