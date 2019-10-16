@@ -23,10 +23,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             VerifyPage();
         }
 
-        public void ConfirmDeleteAndSubmit()
+        public ProviderDeleteCohortPage ConfirmDeleteAndSubmit()
         {
             _formCompletionHelper.SelectRadioOptionByForAttribute(ConfirmDeleteOptions, "DeleteConfirmed-True");
             _formCompletionHelper.ClickElement(ContinueButton);
+            return new ProviderDeleteCohortPage(_context);
         }
     }
 }

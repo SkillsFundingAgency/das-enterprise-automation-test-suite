@@ -65,8 +65,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         public ProviderReviewYourCohortPage EditAllApprenticeDetails()
         {
-            _formCompletionHelper.EnterText(FirstNameField, _editedApprenticeDataHelper.ApprenticeEditedFirstname);
-            _formCompletionHelper.EnterText(LastNameField, _editedApprenticeDataHelper.ApprenticeEditedLastname);
+            _formCompletionHelper.EnterText(FirstNameField, _editedApprenticeDataHelper.SetCurrentApprenticeEditedFirstname());
+            _formCompletionHelper.EnterText(LastNameField, _editedApprenticeDataHelper.SetCurrentApprenticeEditedLastname());
             _formCompletionHelper.EnterText(DateOfBirthDay, _editedApprenticeDataHelper.DateOfBirthDay);
             _formCompletionHelper.EnterText(DateOfBirthMonth, _editedApprenticeDataHelper.DateOfBirthMonth);
             _formCompletionHelper.EnterText(DateOfBirthYear, _editedApprenticeDataHelper.DateOfBirthYear);
