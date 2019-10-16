@@ -41,13 +41,15 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider.ManageFunding
             return new ProviderAddApprenticeDetailsPage(_context);
         }
 
-        public void VerifySucessMessage()
+        public ProviderMakingChangesPage VerifySucessMessage()
         {
             var expected = "You have successfully reserved funding for apprenticeship training";
 
             var actual = _pageInteractionHelper.GetText(MessageLocator);
 
             _pageInteractionHelper.VerifyText(actual, expected);
+
+            return this;
         }
     }
 }

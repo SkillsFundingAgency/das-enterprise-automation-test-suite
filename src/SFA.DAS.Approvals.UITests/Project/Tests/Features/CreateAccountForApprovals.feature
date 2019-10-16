@@ -10,6 +10,7 @@ Scenario: Create EOI Account For Approvals
 	And add eoi organisation details
 	And I sign the eoi agreement
 	Then I will land in the User Home page
+	And the Employer can set create cohort and recruitment permissions
 
 @addpayedetails
 @addlevyfunds
