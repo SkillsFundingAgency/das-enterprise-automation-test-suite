@@ -1,6 +1,7 @@
 ﻿using System;
 using OpenQA.Selenium;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common;
+using SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
@@ -46,6 +47,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         {
             ClickElement(AddAnApprenticeButton);
             return new AddApprenticeDetailsPage(_context);
+        }
+
+
+        public ChooseAReservationPage SelectAddAnApprenticeUsingReservation()
+        {
+            ClickElement(AddAnApprenticeButton);
+            return new ChooseAReservationPage(_context);
         }
 
         public ChooseAnOptionPage SelectContinueToApproval()

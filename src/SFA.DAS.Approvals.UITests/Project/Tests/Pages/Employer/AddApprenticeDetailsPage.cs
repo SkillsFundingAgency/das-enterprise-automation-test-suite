@@ -2,6 +2,7 @@
 using SFA.DAS.Approvals.UITests.Project.Helpers;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
+using System;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
@@ -44,7 +45,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             VerifyPage();
         }
 
-        public ReviewYourCohortPage SubmitValidApprenticeDetails()
+        public ReviewYourCohortPage SubmitValidApprenticeDetails(bool isMF)
         {
             _formCompletionHelper.EnterText(FirstNameField, _dataHelper.ApprenticeFirstname);
             _formCompletionHelper.EnterText(LastNameField, _dataHelper.ApprenticeLastname);
@@ -53,8 +54,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             _formCompletionHelper.EnterText(DateOfBirthYear, _dataHelper.DateOfBirthYear);
             _formCompletionHelper.SelectFromDropDownByValue(TrainingCourseContainer, _coursedataHelper.Course);
             _formCompletionHelper.ClickElement(StartDateMonth);
-            _formCompletionHelper.EnterText(StartDateMonth, _coursedataHelper.CourseStartDate.Month);
-            _formCompletionHelper.EnterText(StartDateYear, _coursedataHelper.CourseStartDate.Year);
+            if(isMF==false)
+            {
+                _formCompletionHelper.EnterText(StartDateMonth, _coursedataHelper.CourseStartDate.Month);
+                _formCompletionHelper.EnterText(StartDateYear, _coursedataHelper.CourseStartDate.Year);
+            }
             _formCompletionHelper.EnterText(EndDateMonth, _coursedataHelper.CourseEndDate.Month);
             _formCompletionHelper.EnterText(EndDateYear, _coursedataHelper.CourseEndDate.Year);
             _formCompletionHelper.EnterText(TrainingCost, _dataHelper.TrainingPrice);

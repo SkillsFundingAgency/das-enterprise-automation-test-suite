@@ -70,13 +70,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.DLockJourneys
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Employer can stop the live apprentice after Datalocks and ILR match")]
+        [NUnit.Framework.DescriptionAttribute("DLOCK3 Employer can stop the live apprentice after Datalocks and ILR match")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("liveapprentice")]
         [NUnit.Framework.CategoryAttribute("dlockscenarios")]
-        public virtual void EmployerCanStopTheLiveApprenticeAfterDatalocksAndILRMatch()
+        public virtual void DLOCK3EmployerCanStopTheLiveApprenticeAfterDatalocksAndILRMatch()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Employer can stop the live apprentice after Datalocks and ILR match", null, new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("DLOCK3 Employer can stop the live apprentice after Datalocks and ILR match", null, new string[] {
                         "regression",
                         "liveapprentice",
                         "dlockscenarios"});

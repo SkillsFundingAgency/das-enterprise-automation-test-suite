@@ -70,14 +70,16 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.Transfers
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Creating Cohort and approve by all 3 parties and second approval by provider")]
+        [NUnit.Framework.DescriptionAttribute("Transfers - Creating Cohort and approve by all 3 parties and second approval by p" +
+            "rovider")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("transfersscenarios")]
         [NUnit.Framework.CategoryAttribute("liveapprentice")]
         [NUnit.Framework.CategoryAttribute("transfersfunds")]
-        public virtual void CreatingCohortAndApproveByAll3PartiesAndSecondApprovalByProvider()
+        public virtual void Transfers_CreatingCohortAndApproveByAll3PartiesAndSecondApprovalByProvider()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Creating Cohort and approve by all 3 parties and second approval by provider", null, new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Transfers - Creating Cohort and approve by all 3 parties and second approval by p" +
+                    "rovider", null, new string[] {
                         "regression",
                         "transfersscenarios",
                         "liveapprentice",

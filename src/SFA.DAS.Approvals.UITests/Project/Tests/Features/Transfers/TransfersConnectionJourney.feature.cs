@@ -70,14 +70,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.Transfers
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Creating Transfer Connection between Sender and Receiver")]
+        [NUnit.Framework.DescriptionAttribute("Transfers - Creating Transfer Connection between Sender and Receiver")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("transfersscenarios")]
         [NUnit.Framework.CategoryAttribute("addpayedetails")]
         [NUnit.Framework.CategoryAttribute("addtransferslevyfunds")]
-        public virtual void CreatingTransferConnectionBetweenSenderAndReceiver()
+        public virtual void Transfers_CreatingTransferConnectionBetweenSenderAndReceiver()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Creating Transfer Connection between Sender and Receiver", null, new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Transfers - Creating Transfer Connection between Sender and Receiver", null, new string[] {
                         "regression",
                         "transfersscenarios",
                         "addpayedetails",

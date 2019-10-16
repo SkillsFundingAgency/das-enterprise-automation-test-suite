@@ -59,5 +59,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             _formCompletionHelper.ClickElement(ContinueButton);
         }
 
+        public AddApprenticeDetailsPage NonLevyEmployerAddsApprentices()
+        {
+            EmployerAgreesToAdds();
+            Continue();
+            return new AddApprenticeDetailsPage(_context);
+        }
     }
 }

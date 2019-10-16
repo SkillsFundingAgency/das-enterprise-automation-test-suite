@@ -1,15 +1,18 @@
 ﻿using System;
 using OpenQA.Selenium;
+using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.ManageFunding.UITests.Project.Tests.Pages.Employer
+namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
 {
     public class MakingChangesPage : BasePage
     {
         protected override string PageTitle => "Making changes";
         private By SuccessMessage => By.CssSelector("govuk-panel--confirmation");
+        private By AddApprenticeRadioButton => By.CssSelector("label[for=WhatsNext-add]");
+        private By ContinueButton => By.CssSelector(".govuk-button");
 
         #region Helpers and Context
         private readonly PageInteractionHelper _pageInteractionHelper;
@@ -31,6 +34,13 @@ namespace SFA.DAS.ManageFunding.UITests.Project.Tests.Pages.Employer
                 throw new Exception("Reserve Funding is not successfully created");
             else
                 return true;
+        }
+
+        internal AddAnApprenitcePage AddApprentice()
+        {
+            _formCompletionHelper.ClickElement(AddApprenticeRadioButton);
+            _formCompletionHelper.ClickElement(ContinueButton);
+            return new AddAnApprenitcePage(_context);
         }
     }
 }

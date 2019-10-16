@@ -70,15 +70,15 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.CocJourneys
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Employer or Provider cannot make change to cost and course after ILR match on liv" +
-            "e Apprentice")]
+        [NUnit.Framework.DescriptionAttribute("COC5 Employer or Provider cannot make change to cost and course after ILR match o" +
+            "n live Apprentice")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("liveapprentice")]
         [NUnit.Framework.CategoryAttribute("cocscenarios")]
-        public virtual void EmployerOrProviderCannotMakeChangeToCostAndCourseAfterILRMatchOnLiveApprentice()
+        public virtual void COC5EmployerOrProviderCannotMakeChangeToCostAndCourseAfterILRMatchOnLiveApprentice()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Employer or Provider cannot make change to cost and course after ILR match on liv" +
-                    "e Apprentice", null, new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("COC5 Employer or Provider cannot make change to cost and course after ILR match o" +
+                    "n live Apprentice", null, new string[] {
                         "regression",
                         "liveapprentice",
                         "cocscenarios"});
