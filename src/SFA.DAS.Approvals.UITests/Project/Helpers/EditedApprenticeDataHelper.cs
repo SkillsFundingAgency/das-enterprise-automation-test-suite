@@ -9,8 +9,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers
         public EditedApprenticeDataHelper(RandomDataGenerator randomDataGenerator, ApprenticeDataHelper apprenticeDataHelper)
         {
             _randomDataGenerator = randomDataGenerator;
-            ApprenticeEditedFirstname = apprenticeDataHelper.ApprenticeFirstname;
-            ApprenticeEditedLastname = apprenticeDataHelper.ApprenticeLastname;
+            ApprenticeEditedFirstname = $"F_{_randomDataGenerator.GenerateRandomAlphabeticString(10)}";
+            ApprenticeEditedLastname = $"L_{_randomDataGenerator.GenerateRandomAlphabeticString(10)}";
             DateOfBirthDay = _randomDataGenerator.GenerateRandomDateOfMonth();
             DateOfBirthMonth = _randomDataGenerator.GenerateRandomMonth();
             DateOfBirthYear = _randomDataGenerator.GenerateRandomDobYear();
@@ -45,9 +45,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers
             return ApprenticeEditedLastname;
         }
 
-        private string ApprenticeEditedFirstname { get; set; }
+        public string ApprenticeEditedFirstname { get; set; }
 
-        private string ApprenticeEditedLastname { get; set; }
+        public string ApprenticeEditedLastname { get; set; }
 
     }
 }

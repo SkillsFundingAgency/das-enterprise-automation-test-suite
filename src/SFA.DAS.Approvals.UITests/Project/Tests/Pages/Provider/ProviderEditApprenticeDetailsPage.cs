@@ -38,6 +38,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private readonly ApprenticeCourseDataHelper _coursedataHelper;
         private readonly LoginCredentialsHelper _loginCredentialsHelper;
         private readonly RandomDataGenerator _randomDataGenerator;
+        private readonly EditedApprenticeDataHelper _editedApprenticeDataHelper;
         #endregion
 
         public ProviderEditApprenticeDetailsPage(ScenarioContext context) : base(context)
@@ -51,6 +52,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             _coursedataHelper = context.Get<ApprenticeCourseDataHelper>();
             _loginCredentialsHelper = context.Get<LoginCredentialsHelper>();
             _randomDataGenerator = new RandomDataGenerator();
+            _editedApprenticeDataHelper = new EditedApprenticeDataHelper(_randomDataGenerator, _dataHelper);
             VerifyPage();
         }
 
@@ -63,11 +65,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         public ProviderReviewYourCohortPage EditAllApprenticeDetails()
         {
-            _formCompletionHelper.EnterText(FirstNameField, $"F_{_randomDataGenerator.GenerateRandomAlphabeticString(10)}");
-            _formCompletionHelper.EnterText(LastNameField, $"L_{_randomDataGenerator.GenerateRandomAlphabeticString(10)}");
-            _formCompletionHelper.EnterText(DateOfBirthDay, _randomDataGenerator.GenerateRandomDateOfMonth());
-            _formCompletionHelper.EnterText(DateOfBirthMonth, _randomDataGenerator.GenerateRandomMonth());
-            _formCompletionHelper.EnterText(DateOfBirthYear, _randomDataGenerator.GenerateRandomDobYear());
+            _formCompletionHelper.EnterText(FirstNameField, _editedApprenticeDataHelper.ApprenticeEditedFirstname);
+            _formCompletionHelper.EnterText(LastNameField, _editedApprenticeDataHelper.ApprenticeEditedLastname);
+            _formCompletionHelper.EnterText(DateOfBirthDay, _editedApprenticeDataHelper.DateOfBirthDay);
+            _formCompletionHelper.EnterText(DateOfBirthMonth, _editedApprenticeDataHelper.DateOfBirthMonth);
+            _formCompletionHelper.EnterText(DateOfBirthYear, _editedApprenticeDataHelper.DateOfBirthYear);
             _formCompletionHelper.EnterText(Uln, _dataHelper.Uln());
             _formCompletionHelper.SelectFromDropDownByValue(TrainingCourseContainer, _coursedataHelper.Course);
             _formCompletionHelper.ClickElement(StartDateMonth);
@@ -81,8 +83,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             }
             _formCompletionHelper.EnterText(EndDateMonth, _coursedataHelper.CourseEndDate.Month);
             _formCompletionHelper.EnterText(EndDateYear, _coursedataHelper.CourseEndDate.Year);
-            _formCompletionHelper.EnterText(TrainingCost, "1" + _randomDataGenerator.GenerateRandomNumber(3));
-            _formCompletionHelper.EnterText(EmployerReference, _randomDataGenerator.GenerateRandomAlphanumericString(10));
+            _formCompletionHelper.EnterText(TrainingCost, "1" + _editedApprenticeDataHelper.TrainingPrice);
+            _formCompletionHelper.EnterText(EmployerReference, _editedApprenticeDataHelper.EmployerReference);
 
             _formCompletionHelper.ClickElement(SaveButton);
             return new ProviderReviewYourCohortPage(_context);

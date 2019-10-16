@@ -80,7 +80,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Then(@"Provider is able to edit all apprentices before approval")]
         public void ThenProviderIsAbleToEditAllApprenticesBeforeApproval()
         {
-            _providerStepsHelper.EditApprentice(true);
+            _providerStepsHelper.EditAllDetailsOfApprentice();
         }
 
         [Then(@"Provider is able to delete all apprentices before approval")]

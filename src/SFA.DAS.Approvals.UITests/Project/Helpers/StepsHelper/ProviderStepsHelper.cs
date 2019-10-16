@@ -89,7 +89,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                     .SelectViewCurrentCohortDetails();
         }
 
-        public ProviderReviewYourCohortPage EditApprentice(bool EditAllDetails = false)
+        public ProviderReviewYourCohortPage EditApprentice()
         {
             var providerReviewYourCohortPage = CurrentCohortDetails();
 
@@ -107,15 +107,22 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                                                       .EnterUlnAndSave();
                         break;
                     }
-                    else if (EditAllDetails)
-                    {
-                        providerReviewYourCohortPage = providerReviewYourCohortPage.SelectEditApprentice(i)
-                                                 .EditAllApprenticeDetails();
-                        break;
-                    }
                     j++;
                 }
             }
+
+            return providerReviewYourCohortPage;
+        }
+
+        public ProviderReviewYourCohortPage EditAllDetailsOfApprentice()
+        {
+            var providerReviewYourCohortPage = CurrentCohortDetails();
+
+            var totalNoOfApprentices = providerReviewYourCohortPage.TotalNoOfApprentices();
+
+            for (int i = 0; i < totalNoOfApprentices; i++)
+                providerReviewYourCohortPage = providerReviewYourCohortPage.SelectEditApprentice(i)
+                                         .EditAllApprenticeDetails();
 
             return providerReviewYourCohortPage;
         }
