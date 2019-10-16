@@ -23,8 +23,7 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
         {
             var webDriver = _context.GetWebDriver();
             var webDriverwaitHelper = new WebDriverWaitHelper(webDriver, _config.TimeOutConfig);
-            bool isCloudExecution = _objectContext.GetBrowser().IsCloudExecution();
-            var retryHelper = new RetryHelper(webDriver, isCloudExecution);
+            var retryHelper = new RetryHelper(webDriver);
             _context.Set(new SqlDatabaseConnectionHelper());
             _context.Set(new PageInteractionHelper(webDriver, webDriverwaitHelper, retryHelper));
             var formCompletionHelper = new FormCompletionHelper(webDriver, webDriverwaitHelper, retryHelper);

@@ -29,15 +29,15 @@ namespace SFA.DAS.UI.FrameworkHelpers
             SelectRadioButton(_webDriver.FindElement(locator));
         }
 
-        public void ClickElement(IWebElement element, bool useAction = false)
+        public void ClickElement(IWebElement element)
         {
-            _retryHelper.RetryOnElementClickInterceptedException(element, useAction);
+            _retryHelper.RetryOnElementClickInterceptedException(element);
         }
 
-        public void ClickElement(By locator, bool useAction = false)
+        public void ClickElement(By locator)
         {
             _webDriverWaitHelper.WaitForElementToBeClickable(locator);
-            ClickElement(_webDriver.FindElement(locator), useAction);
+            ClickElement(_webDriver.FindElement(locator));
         }
 
         public void EnterText(IWebElement element, string text)
