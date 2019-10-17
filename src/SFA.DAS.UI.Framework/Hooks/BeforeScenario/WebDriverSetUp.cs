@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using NUnit.Framework;
@@ -6,6 +7,7 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.IE;
+using OpenQA.Selenium.Remote;
 using SFA.DAS.UI.Framework.Project.Tests.TestSupport;
 using SFA.DAS.UI.Framework.TestSupport;
 using TechTalk.SpecFlow;
@@ -23,6 +25,10 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
 
         private readonly ObjectContext _objectContext;
 
+        private readonly FrameworkConfig _frameworkConfig;
+
+        private readonly EnvironmentConfig _executionConfig;
+
         private const string ChromeDriverServiceName = "chromedriver.exe";
 
         private const string FirefoxDriverServiceName = "geckodriver.exe";
@@ -34,12 +40,14 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
             DriverPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
             _context = context;
             _objectContext = context.Get<ObjectContext>();
+            _frameworkConfig = context.Get<FrameworkConfig>();
+            _executionConfig = context.Get<EnvironmentConfig>();
         }
+
 
         [BeforeScenario(Order = 3)]
         public void SetupWebDriver()
         {
-            var options = _context.Get<FrameworkConfig>();
             var browser = _objectContext.GetBrowser();
             
             switch (true)
@@ -50,7 +58,8 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
                     break;
 
                 case bool _ when browser.IsChrome():
-                    WebDriver = new ChromeDriver(FindDriverService(ChromeDriverServiceName));
+
+                    WebDriver = ChromeDriver(new List<string>());
                     break;
 
                 case bool _ when browser.IsIe():
@@ -63,15 +72,12 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
                     break;
 
                 case bool _ when browser.IsChromeHeadless():
-                    var chromeOptions = new ChromeOptions();
-                    chromeOptions.AddArgument("--headless");
-                    WebDriver = new ChromeDriver(FindDriverService(ChromeDriverServiceName), chromeOptions);
+                    WebDriver = ChromeDriver(new List<string>() { "--headless" });
                     break;
                
-
                 case bool _ when browser.IsCloudExecution():
-                    options.BrowserStackSetting.Name = _context.ScenarioInfo.Title;
-                    WebDriver = BrowserStackSetup.Init(options.BrowserStackSetting);
+                    _frameworkConfig.BrowserStackSetting.Name = _context.ScenarioInfo.Title;
+                    WebDriver = BrowserStackSetup.Init(_frameworkConfig.BrowserStackSetting, _executionConfig);
                     break;
 
                 default:
@@ -79,10 +85,19 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
             }
 
             WebDriver.Manage().Window.Maximize();
-            WebDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(options.TimeOutConfig.PageNavigation);
+            WebDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(_frameworkConfig.TimeOutConfig.PageNavigation);
             var currentWindow = WebDriver.CurrentWindowHandle;
             WebDriver.SwitchTo().Window(currentWindow);
             WebDriver.Manage().Cookies.DeleteAllCookies();
+
+            if (!browser.IsCloudExecution())
+            {
+                var wb = WebDriver as RemoteWebDriver;
+                var cap = wb.Capabilities;
+
+                _objectContext.SetBrowserName(cap["browserName"]);
+                _objectContext.SetBrowserVersion(cap["browserVersion"]);
+            }
 
             _context.SetWebDriver(WebDriver);
         }
@@ -113,6 +128,21 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
             chromeOptions.Proxy = proxy;
 
             WebDriver = new ChromeDriver(FindDriverService(ChromeDriverServiceName), chromeOptions);
+        }
+
+        private ChromeDriver ChromeDriver(List<string> arguments)
+        {
+            arguments.Add("no-sandbox");
+            return new ChromeDriver(FindDriverService(ChromeDriverServiceName),
+                                                 AddArguments(arguments),
+                                                 TimeSpan.FromMinutes(_frameworkConfig.TimeOutConfig.CommandTimeout));
+        }
+
+        private ChromeOptions AddArguments(List<string> arguments)
+        {
+            var chromeOptions = new ChromeOptions();
+            arguments.ForEach((x) => chromeOptions.AddArgument(x));
+            return chromeOptions;
         }
     }
 }

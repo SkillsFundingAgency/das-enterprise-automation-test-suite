@@ -1,0 +1,9 @@
+﻿namespace SFA.DAS.TestProject.UITests.Project
+{
+    public class TestProjectConfig
+    {
+        public string TwoDigitProjectCode { get; set; }
+
+        public string TP_BaseUrl { get; set; }
+    }
+}

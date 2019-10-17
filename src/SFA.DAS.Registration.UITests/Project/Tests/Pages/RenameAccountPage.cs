@@ -1,0 +1,15 @@
+﻿using TechTalk.SpecFlow;
+using SFA.DAS.UI.Framework.TestSupport;
+
+namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
+{
+    public class RenameAccountPage : BasePage
+    {
+        protected override string PageTitle => "Rename account";
+
+        public RenameAccountPage(ScenarioContext context) : base(context)
+        {
+            VerifyPage();
+        }
+    }
+}

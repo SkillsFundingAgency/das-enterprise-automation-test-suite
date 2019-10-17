@@ -9,24 +9,41 @@ namespace SFA.DAS.UI.Framework.TestSupport
     {
         #region Helpers and Context
         private readonly PageInteractionHelper _pageInteractionHelper;
-        private readonly FormCompletionHelper _formCompletionHelper;
-        private readonly ScenarioContext _context;
+        private readonly FrameworkConfig _frameworkConfig;
+        private readonly IWebDriver _webDriver;
+        private readonly ScreenShotTitleGenerator _screenShotTitleGenerator;
+        private readonly string _directory;
+        private readonly string _browser;
         #endregion
 
-        protected virtual By PageHeader => By.CssSelector(".heading-xlarge");
+        protected virtual By PageHeader => By.CssSelector(".govuk-heading-xl, .heading-xlarge, .govuk-heading-l");
 
         protected abstract string PageTitle { get; }
 
         public BasePage(ScenarioContext context)
         {
-            _context = context;
+            _frameworkConfig = context.Get<FrameworkConfig>();
+            _webDriver = context.GetWebDriver();
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
-            _formCompletionHelper = context.Get<FormCompletionHelper>();
+            _screenShotTitleGenerator = context.Get<ScreenShotTitleGenerator>();
+            var objectContext = context.Get<ObjectContext>();
+            _directory = objectContext.GetDirectory();
+            _browser = objectContext.GetBrowser();
         }
 
         protected bool VerifyPage()
         {
+            if (_frameworkConfig.TakeEveryPageScreenShot && !_browser.IsCloudExecution())
+            {
+                ScreenshotHelper.TakeScreenShot(_webDriver, _directory, _screenShotTitleGenerator.GetNextCount());
+            }
+
             return _pageInteractionHelper.VerifyPage(PageHeader, PageTitle);
+        }
+
+        protected bool VerifyPage(Action beforeAction)
+        {
+            return _pageInteractionHelper.VerifyPage(PageHeader, PageTitle, beforeAction);
         }
     }
 }

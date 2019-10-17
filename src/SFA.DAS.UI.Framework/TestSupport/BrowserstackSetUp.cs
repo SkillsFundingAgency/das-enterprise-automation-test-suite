@@ -11,16 +11,10 @@ namespace SFA.DAS.UI.Framework.Project.Tests.TestSupport
 
         static BrowserStackSetup()
         {
-            _buildDateTime = DateTime.Now.ToString("ddMMMyyyy HH:mm:ss").ToUpper();
+            _buildDateTime = DateTime.Now.ToString("ddMMMyyyy_HH:mm:ss").ToUpper();
         }
 
-        private static void CheckBrowserStackLogin(BrowserStackSetting options)
-        {
-            if (options.User == null || options.Key == null)
-                throw new Exception("Please enter browserstack credentials");
-        }
-
-        public static IWebDriver Init(BrowserStackSetting options)
+        public static IWebDriver Init(BrowserStackSetting options, EnvironmentConfig executionConfig)
         {
             CheckBrowserStackLogin(options);
 
@@ -35,13 +29,21 @@ namespace SFA.DAS.UI.Framework.Project.Tests.TestSupport
             AddAdditionalCapability(chromeOption, "resolution", options.Resolution);
             AddAdditionalCapability(chromeOption, "browserstack.user", options.User);
             AddAdditionalCapability(chromeOption, "browserstack.key", options.Key);
-            AddAdditionalCapability(chromeOption, "build", $"{options.Build}_{_buildDateTime}");
+            AddAdditionalCapability(chromeOption, "build", $"{options.Build}_{executionConfig.EnvironmentName.ToUpper()}_{_buildDateTime}");
             AddAdditionalCapability(chromeOption, "project", options.Project);
             AddAdditionalCapability(chromeOption, "browserstack.debug", "true");
             AddAdditionalCapability(chromeOption, "name", options.Name);
             AddAdditionalCapability(chromeOption, "browserstack.networkLogs", options.EnableNetworkLogs);
+            AddAdditionalCapability(chromeOption, "browserstack.timezone", options.TimeZone);
+            AddAdditionalCapability(chromeOption, "browserstack.console", "info");
 
             return new RemoteWebDriver(new Uri(options.ServerName), chromeOption);
+        }
+
+        private static void CheckBrowserStackLogin(BrowserStackSetting options)
+        {
+            if (options.User == null || options.Key == null)
+                throw new Exception("Please enter browserstack credentials");
         }
 
         private static void AddAdditionalCapability(ChromeOptions chromeOptions, string capabilityName, object capabilityValue)

@@ -10,7 +10,7 @@ namespace SFA.DAS.TestProject.UITests.Project.Tests.StepDefinitions
     public class StepDefinitionGroupingOne
     {
         #region Private Variables
-        private readonly ProjectConfig _configuration;
+        private readonly TestProjectConfig _configuration;
         private readonly ScenarioContext _context;
         private readonly ObjectContext _objectContext;
         private readonly IWebDriver _webDriver;
@@ -20,11 +20,11 @@ namespace SFA.DAS.TestProject.UITests.Project.Tests.StepDefinitions
         {
             _context = context;
             _webDriver = context.GetWebDriver();
-            _configuration = context.GetProjectConfig<ProjectConfig>();
+            _configuration = context.GetTestProjectConfig<TestProjectConfig>();
             _objectContext = context.Get<ObjectContext>();
         }
 
-        [Given(@"I navigate to GOV.UK home page")]
+        [Given(@"the User navigates to GOV.UK home page")]
         public void NavigateToGovUkHomePage()
         {
             var url = _configuration.TP_BaseUrl;
@@ -32,7 +32,7 @@ namespace SFA.DAS.TestProject.UITests.Project.Tests.StepDefinitions
             _webDriver.Url = url; 
         }
 
-        [When(@"I search for (.*)")]
+        [When(@"the User searches for (.*)")]
         public void SearchForText(string searchText)
         {
             var welcomePage = new WelcomePage(_context);
@@ -41,15 +41,7 @@ namespace SFA.DAS.TestProject.UITests.Project.Tests.StepDefinitions
             welcomePage.EnterSearchTextAndSubmit(searchText);
         }
 
-        [When(@"I click on (.*) link")]
-        public void ClickOnDfeLink(string searchText)
-        {
-            var searchResultsPage = new SearchResultsPage(_context);
-            TestContext.Progress.WriteLine($"Navigating to {searchText} page");
-            searchResultsPage.OpenDesiredPage(searchText);
-        }
-
-        [Then(@"I should be on DFE home page")]
+        [Then(@"the User should be on DFE home page")]
         public void ShouldBeOnDfeHomePage()
         {
             TestContext.Progress.WriteLine($"Verifying Page title");

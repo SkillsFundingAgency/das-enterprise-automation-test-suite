@@ -9,50 +9,55 @@ namespace SFA.DAS.UI.Framework.TestSupport
 
         private readonly static IConfigurationRoot _hostingConfig;
 
+        internal readonly static bool IsVstsExecution;
+
+        internal readonly static string EnvironmentName;
+
+        internal readonly static string ProjectName;
+
         static Configurator()
         {
             _hostingConfig = InitializeHostingConfig();
+            IsVstsExecution = TestsExecutionInVsts();
+            EnvironmentName = GetEnvironmentName();
+            ProjectName = GetProjectName();
             _config = InitializeConfig();
         }
 
-        internal static IConfigurationRoot GetConfig()
-        {
-            return _config;
-        }
-
-        private static HostingConfig GetHostingConfig()
-        {
-            return _hostingConfig.GetSection(nameof(HostingConfig)).Get<HostingConfig>();
-        }
+        internal static IConfigurationRoot GetConfig() => _config;
 
         private static IConfigurationRoot InitializeConfig()
         {
-            var host = GetHostingConfig();
-
             return ConfigurationBuilder()
             .AddJsonFile("appsettings.json", true)
             .AddJsonFile("appsettings.BrowserStack.json", true)
             .AddJsonFile("appsettings.Project.json", true)
             .AddJsonFile("appsettings.Project.BrowserStack.json", true)
-            .AddJsonFile($"appsettings.{host?.EnvironmentName}.json", true)
-            .AddEnvironmentVariables()
+            .AddJsonFile($"appsettings.{EnvironmentName}.json", true)
+            .AddJsonFile("appsettings.TestExecution.json", true)
             .AddUserSecrets("BrowserStackSecrets")
-            .AddUserSecrets($"{host?.ProjectName}_{host?.EnvironmentName}_Secrets")
+            .AddUserSecrets($"{ProjectName}_Secrets")
+            .AddUserSecrets($"{ProjectName}_{EnvironmentName}_Secrets")
             .AddUserSecrets("MongoDbSecrets")
             .Build();
         }
 
-        private static IConfigurationRoot InitializeHostingConfig()
-        {
-            return ConfigurationBuilder()
+        private static IConfigurationRoot InitializeHostingConfig() => ConfigurationBuilder()
                 .AddJsonFile("appsettings.Environment.json", true)
+                .AddEnvironmentVariables()
                 .Build();
-        }
 
-        private static IConfigurationBuilder ConfigurationBuilder()
-        {
-            return new ConfigurationBuilder()
-                    .SetBasePath(Directory.GetCurrentDirectory());
-        }
+        private static IConfigurationBuilder ConfigurationBuilder() => new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory());
+
+        private static bool TestsExecutionInVsts() => !string.IsNullOrEmpty(GetAgentMachineName());
+
+        private static string GetAgentMachineName() => GetHostingConfigSection("AGENT_MACHINENAME");
+
+        private static string GetEnvironmentName() => IsVstsExecution ? GetHostingConfigSection("RELEASE_ENVIRONMENTNAME") : GetHostingConfigSection("local_EnvironmentName");
+
+        private static string GetProjectName() => GetHostingConfigSection("ProjectName");
+
+        private static string GetHostingConfigSection(string name) => _hostingConfig.GetSection(name)?.Value;
     }
 }
