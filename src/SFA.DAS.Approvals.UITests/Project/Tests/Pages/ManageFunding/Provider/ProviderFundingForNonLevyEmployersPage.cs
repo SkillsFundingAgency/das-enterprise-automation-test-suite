@@ -17,9 +17,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider
         #endregion
 
 
-        private By AddApprenticeLink => By.CssSelector($"td.govuk-table__cell.govuk-table__cell--numeric > a[href*='?reservationId={_reservationId}']");
+        private By AddApprenticeLink => By.CssSelector($"table a[href*='?reservationId={_reservationId}']");
 
-        private By DeleteFundingLink => By.CssSelector($"td.govuk-table__cell.govuk-table__cell--numeric > a[href$='{_reservationId}/ delete']");
+        private By DeleteFundingLink => By.CssSelector($"table a[href$='{_reservationId}/delete']");
 
         public ProviderFundingForNonLevyEmployersPage(ScenarioContext context) : base(context)
         {

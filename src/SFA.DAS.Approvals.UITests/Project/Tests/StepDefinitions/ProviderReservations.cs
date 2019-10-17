@@ -78,7 +78,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             _providerStepsHelper.NavigateToProviderHomePage()
                 .GoToManageYourFunding()
-                .DeleteTheReservedFunding();
+                .DeleteTheReservedFunding()
+                .YesDeleteThisReservation();
         }
     }
 }
