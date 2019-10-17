@@ -14,7 +14,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private readonly EditedApprenticeCourseDataHelper _coursedataHelper;
         #endregion
 
-        private By CourseOption(string courseid) => By.CssSelector($"#TrainingCode option[value='{courseid}']");
+        private By CourseOption => By.CssSelector("#TrainingCode");
 
         private By DeleteButton => By.LinkText("Delete");
 
@@ -43,7 +43,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         }
         protected override void SelectCourse()
         {
-            formCompletionHelper.ClickElement(CourseOption(_coursedataHelper.EditedCourse));
+            formCompletionHelper.SelectFromDropDownByValue(CourseOption, _coursedataHelper.EditedCourse);
         }
 
         private ConfirmChangesPage ConfirmChangesPage()
