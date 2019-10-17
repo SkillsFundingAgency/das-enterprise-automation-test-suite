@@ -1,5 +1,6 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -8,10 +9,14 @@ namespace SFA.DAS.UI.FrameworkHelpers
     public class FormCompletionHelper 
     {
         private readonly IWebDriver _webDriver;
+        private readonly WebDriverWaitHelper _webDriverWaitHelper;
+        private readonly RetryHelper _retryHelper;
 
-        public FormCompletionHelper(IWebDriver webDriver)
+        public FormCompletionHelper(IWebDriver webDriver, WebDriverWaitHelper webDriverWaitHelper, RetryHelper retryHelper)
         {
             _webDriver = webDriver;
+            _webDriverWaitHelper = webDriverWaitHelper;
+            _retryHelper = retryHelper;
         }
 
         public void SelectRadioButton(IWebElement element)
@@ -26,11 +31,12 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         public void ClickElement(IWebElement element)
         {
-            element.Click();
+            _retryHelper.RetryOnElementClickInterceptedException(element);
         }
 
         public void ClickElement(By locator)
         {
+            _webDriverWaitHelper.WaitForElementToBeClickable(locator);
             ClickElement(_webDriver.FindElement(locator));
         }
 
@@ -45,9 +51,19 @@ namespace SFA.DAS.UI.FrameworkHelpers
             EnterText(_webDriver.FindElement(locator), text);
         }
 
+        public void EnterText(By locator, int text)
+        {
+            EnterText(locator, text.ToString());
+        }
+
         public void EnterText(IWebElement element, int value)
         {
             EnterText(element, value.ToString());
+        }
+
+        public void SelectByIndex(By @by, int index)
+        {
+            SelectByIndex(_webDriver.FindElement(by), index);
         }
 
         public void SelectFromDropDownByValue(By @by, string value)
@@ -60,12 +76,17 @@ namespace SFA.DAS.UI.FrameworkHelpers
             SelectFromDropDownByText(_webDriver.FindElement(by), text);
         }
 
-        public void SelectFromDropDownByValue(IWebElement element, string value)
+        private void SelectByIndex(IWebElement element, int index)
+        {
+            SelectElement(element).SelectByIndex(index);
+        }
+
+        private void SelectFromDropDownByValue(IWebElement element, string value)
         {
             SelectElement(element).SelectByValue(value);
         }
 
-        public void SelectFromDropDownByText(IWebElement element, string text)
+        private void SelectFromDropDownByText(IWebElement element, string text)
         {
             SelectElement(element).SelectByText(text);
         }
@@ -85,6 +106,21 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
             if (radioToSelect != null)
                 ClickElement(radioToSelect);
+        }
+
+        public void SelectRadioOptionByText(By locator, String text)
+        {
+            IList<IWebElement> radios = _webDriver.FindElements(locator);
+
+            for (int i = 0; i < radios.Count; i++)
+            {
+                String str = radios.ElementAt(i).Text;
+                if (str.Equals(text))
+                {
+                    radios.ElementAt(i).Click();
+                    return;
+                }
+            }
         }
 
         private SelectElement SelectElement(IWebElement element)

@@ -51,6 +51,46 @@ namespace SFA.DAS.UI.FrameworkHelpers
             return rand.Next(min, max);
         }
 
+        public int GenerateRandomDobYear()
+        {
+            int yearsToAdd = GenerateRandomNumberBetweenTwoValues(-30, -18);
+            DateTime date = DateTime.Now.AddYears(yearsToAdd);
+            return date.Year;
+        }
+
+        public String GenerateRandomUln()
+        {
+            String randomUln = GenerateRandomNumberBetweenTwoValues(10, 99).ToString()
+                + DateTime.Now.ToString("ssffffff");
+
+            for (int i = 1; i < 30; i++)
+            {
+                if (IsValidCheckSum(randomUln))
+                {
+                    return randomUln;
+                }
+                randomUln = (long.Parse(randomUln) + 1).ToString();
+            }
+            throw new Exception("Unable to generate ULN");
+        }
+
+        private bool IsValidCheckSum(string uln)
+        {
+            var ulnCheckArray = uln.ToCharArray()
+                                    .Select(c => long.Parse(c.ToString()))
+                                    .ToList();
+
+            var multiplier = 10;
+            long checkSumValue = 0;
+            for (var i = 0; i < 10; i++)
+            {
+                checkSumValue += ulnCheckArray[i] * multiplier;
+                multiplier--;
+            }
+
+            return checkSumValue % 11 == 10;
+        }
+
         private string GenerateRandomString(string characters, int length)
         {
             var random = new Random();
