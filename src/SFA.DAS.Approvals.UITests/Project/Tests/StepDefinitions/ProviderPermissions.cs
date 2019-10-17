@@ -1,6 +1,7 @@
 ﻿using NUnit.Framework;
 using SFA.DAS.Approvals.UITests.Project.Helpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
+using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
 using SFA.DAS.Registration.UITests.Project;
 using SFA.DAS.Registration.UITests.Project.Helpers;
 using SFA.DAS.UI.Framework.TestSupport;
@@ -24,6 +25,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         private readonly ProviderPermissionsConfig _providerPermissionConfig;
         private ProviderLogin _providerLogin;
         private readonly ApprovalsConfig _approvalsConfig;
+        private ProviderHomePage _providerHomePage;
 
         public ProviderPermissions(ScenarioContext context)
         {
@@ -48,7 +50,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Given(@"Employer grant create cohort permission to a provider")]
         public void GivenEmployerGrantCreateCohortPermissionToAProvider()
         {
-            _employerLoginHelper.Login(_context.GetUser<ProviderPermissionLevyUser>(), true);
+            var homePage = _employerLoginHelper.Login(_context.GetUser<ProviderPermissionLevyUser>(), true);
+
+            var organisationPage = homePage.GoToYourOrganisationsAndAgreementsPage();
+
+            organisationPage.SetAgreementId();
+
+            organisationPage.GoToHomePage();
 
              RemovePermissionsInSQLDatabase();
 
@@ -67,21 +75,46 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _employerPermissionsStepsHelper.UnSetCreateCohortPermission();
         }
 
-        [Then(@"Provider can view Create Cohort link")]
-        public void ThenProviderCanViewCreateCohortLink()
+        [Then(@"Provider can Create Cohort")]
+        public void ThenProviderCanCreateCohort()
         {
-            Assert.IsTrue(CreateCohortPermissionLinkIsDisplayed(), "Create Cohort link is not visible");
+            var linkDisplayed = CreateCohortPermissionLinkIsDisplayed();
+
+            if (linkDisplayed)
+            {
+                Assert.IsTrue(CanChooseAnEmployer(), "Create Cohort link is not visible");
+            }
+            else
+            {
+                Assert.IsTrue(linkDisplayed, "Create Cohort link is not visible");
+            }
         }
 
-        [Then(@"Provider cannot view Create Cohort link")]
-        public void ThenProviderCannotViewCreateCohortLink()
+        [Then(@"Provider cannot Create Cohort")]
+        public void ThenProviderCannotCreateCohort()
         {
-            Assert.IsFalse(CreateCohortPermissionLinkIsDisplayed(), "Create Cohort link is visible");
+            var linkDisplayed = CreateCohortPermissionLinkIsDisplayed();
+
+            if (linkDisplayed)
+            {
+                Assert.IsFalse(CanChooseAnEmployer(), "Create Cohort link is visible");
+            }
+            else
+            {
+                Assert.IsFalse(linkDisplayed, "Create Cohort link is visible");
+            }
+        }
+
+        private bool CanChooseAnEmployer()
+        {
+            return _providerHomePage.GotoChooseAnEmployerNonLevyPage().CanChooseAnEmployer();
         }
 
         private bool CreateCohortPermissionLinkIsDisplayed()
         {
-            return _providerStepsHelper.GoToProviderHomePage(_providerLogin).CreateCohortPermissionLinkIsDisplayed();
+            _providerHomePage = _providerStepsHelper.GoToProviderHomePage(_providerLogin);
+
+            return _providerHomePage.CreateCohortPermissionLinkIsDisplayed();
         }
 
         private void RemovePermissionsInSQLDatabase()
