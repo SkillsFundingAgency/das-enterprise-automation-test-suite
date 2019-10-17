@@ -29,6 +29,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         private By GetFundingLink => By.LinkText("Get funding for non-levy employers");
 
+        private By ManageYourFundingLink => By.LinkText("Manage your funding reserved for non-levy employers");
+
         public ProviderHomePage(ScenarioContext context, bool navigate = false) : base(context, navigate)
         {
             _context = context;
@@ -57,6 +59,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         {
             _formCompletionHelper.ClickElement(GetFundingLink);
             return new ProviderReserveFundingForNonLevyEmployersPage(_context);
+        }
+
+        public ProviderFundingForNonLevyEmployersPage GoToManageYourFunding()
+        {
+            _formCompletionHelper.ClickElement(ManageYourFundingLink);
+            return new ProviderFundingForNonLevyEmployersPage(_context);
         }
     }
 }

@@ -10,7 +10,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
         protected override string PageTitle => "Do you know which apprenticeship training your apprentice will take?";
         private By YesRadioButton => By.CssSelector("label[for=ApprenticeTrainingKnown]");
         private By TrainingCourseContainer => By.Id("SelectedCourseId");
-        private By standardCourseOption = By.Id("SelectedCourseId__option--0");
+
+        private By StandardCourseOption => By.Id("SelectedCourseId__option--0");
         private By SaveAndContinueButton => By.CssSelector(".govuk-button");
 
         #region Helpers and Context
@@ -36,7 +37,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
         public DoYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage EnterSelectForACourseAndSubmit()
         {
             _formCompletionHelper.EnterText(TrainingCourseContainer, "Food Technologist - Level 3");
-            _formCompletionHelper.ClickElement(standardCourseOption);
+            _formCompletionHelper.ClickElement(StandardCourseOption);
             return new DoYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage(_context);
         }
 

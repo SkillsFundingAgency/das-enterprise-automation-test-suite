@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
@@ -25,6 +26,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             _login = new ProviderLogin { Username = _config.AP_ProviderUserId, Password = _config.AP_ProviderPassword, Ukprn = _config.AP_ProviderUkprn };
             _loginHelper = new ProviderPortalLoginHelper(_context);
             _reviewYourCohortStepsHelper = new ReviewYourCohortStepsHelper(_context.Get<AssertHelper>());
+        }
+
+        public ProviderHomePage NavigateToProviderHomePage()
+        {
+            return new ProviderHomePage(_context, true);
         }
 
         public ProviderHomePage GoToProviderHomePage()
@@ -66,35 +72,38 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                 .SelectViewCurrentCohortDetails();
         }
 
+        public ProviderReviewYourCohortPage AddApprentice(ProviderFundingForNonLevyEmployersPage providerFundingForNonLevy)
+        {
+            var providerReviewYourCohortPage = providerFundingForNonLevy.AddApprenticeWithReservedFunding()
+                .SubmitValidApprenticeDetails();
+
+            return SetApprenticeDetails(providerReviewYourCohortPage, 1);
+        }
+
         public ProviderReviewYourCohortPage AddApprentice(int numberOfApprentices)
         {
             var providerReviewYourCohortPage = CurrentCohortDetails();
 
             for (int i = 0; i < numberOfApprentices; i++)
             {
-                providerReviewYourCohortPage.SelectAddAnApprentice()
+                providerReviewYourCohortPage = providerReviewYourCohortPage.SelectAddAnApprentice()
                         .SubmitValidApprenticeDetails();
             }
 
-            _objectContext.SetNoOfApprentices(_reviewYourCohortStepsHelper.NoOfApprentice(providerReviewYourCohortPage, numberOfApprentices));
-            _objectContext.SetApprenticeTotalCost(_reviewYourCohortStepsHelper.ApprenticeTotalCost(providerReviewYourCohortPage));
-
-            return providerReviewYourCohortPage;
+            return SetApprenticeDetails(providerReviewYourCohortPage, numberOfApprentices);
         }
 
         public ProviderReviewYourCohortPage CurrentCohortDetails()
         {
             return GoToProviderHomePage()
-                    .GoToProviderYourCohortsPage()
-                    .GoToCohortsToReviewPage()
-                    .SelectViewCurrentCohortDetails();
+                .GoToProviderYourCohortsPage()
+                .GoToCohortsToReviewPage()
+                .SelectViewCurrentCohortDetails();
         }
 
-        public ProviderReviewYourCohortPage EditApprentice()
+        public ProviderReviewYourCohortPage EditApprentice(ProviderReviewYourCohortPage providerReviewYourCohortPage)
         {
-            var providerReviewYourCohortPage = CurrentCohortDetails();
-
-            var totalNoOfApprentices = providerReviewYourCohortPage.TotalNoOfApprentices();
+            var totalNoOfApprentices = _objectContext.GetNoOfApprentices();
 
             for (int i = 0; i < totalNoOfApprentices; i++)
             {
@@ -115,26 +124,32 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             return providerReviewYourCohortPage;
         }
 
-        public (ProviderReviewYourCohortPage, int) EditAllDetailsOfApprentice(ProviderReviewYourCohortPage providerReviewYourCohortPage)
+        public ProviderReviewYourCohortPage EditApprentice()
         {
-            var totalNoOfApprentices = providerReviewYourCohortPage.TotalNoOfApprentices();
+            return EditApprentice(CurrentCohortDetails());
+        }
+
+        public ProviderReviewYourCohortPage EditAllDetailsOfApprentice(ProviderReviewYourCohortPage providerReviewYourCohortPage)
+        {
+            var totalNoOfApprentices = _objectContext.GetNoOfApprentices();
 
             for (int i = 0; i < totalNoOfApprentices; i++)
                 providerReviewYourCohortPage = providerReviewYourCohortPage.SelectEditApprentice(i)
                                          .EditAllApprenticeDetails();
 
-            return (providerReviewYourCohortPage, totalNoOfApprentices);
+            return providerReviewYourCohortPage;
         }
 
-        public ProviderReviewYourCohortPage DeleteApprentice(ProviderReviewYourCohortPage providerReviewYourCohortPage, int totalNoOfApprentices)
+        public ProviderReviewYourCohortPage DeleteApprentice(ProviderReviewYourCohortPage providerReviewYourCohortPage)
         {
+            var totalNoOfApprentices = _objectContext.GetNoOfApprentices();
+
             for (int i = 0; i < totalNoOfApprentices; i++)
             {
                 providerReviewYourCohortPage = providerReviewYourCohortPage.SelectEditApprentice(0)
                                           .DeleteApprentice()
                                           .ConfirmDeleteAndSubmit();
             }
-
 
             return providerReviewYourCohortPage;
         }
@@ -169,6 +184,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                 _providerViewYourCohortPage.SelectViewApprentice(i)
                     .SelectReturnToCohortView();
             }
+        }
+        private ProviderReviewYourCohortPage SetApprenticeDetails(ProviderReviewYourCohortPage providerReviewYourCohortPage, int numberOfApprentices)
+        {
+            _objectContext.SetNoOfApprentices(_reviewYourCohortStepsHelper.NoOfApprentice(providerReviewYourCohortPage, numberOfApprentices));
+            _objectContext.SetApprenticeTotalCost(_reviewYourCohortStepsHelper.ApprenticeTotalCost(providerReviewYourCohortPage));
+
+            return providerReviewYourCohortPage;
         }
     }
 }

@@ -10,7 +10,8 @@ namespace SFA.DAS.Approvals.UITests.Project
         private const string Ukprn = "ukprn";
         private const string CohortReference = "cohortreference";
         private const string ApprenticeId = "apprenticeid";
-        
+        private const string ReservationId = "reservationid";
+
         #endregion
         internal static void SetNoOfApprentices(this ObjectContext objectContext, int value)
         {
@@ -30,6 +31,11 @@ namespace SFA.DAS.Approvals.UITests.Project
         internal static void SetApprenticeId(this ObjectContext objectContext, int value)
         {
             objectContext.Set(ApprenticeId, value);
+        }
+
+        internal static void SetReservationId(this ObjectContext objectContext, string value)
+        {
+            objectContext.Set(ReservationId, value);
         }
 
         internal static void SetUln(this ObjectContext objectContext, string value)
@@ -52,9 +58,9 @@ namespace SFA.DAS.Approvals.UITests.Project
             return objectContext.Get(ApprenticeTotalCost);
         }
 
-        internal static string GetNoOfApprentices(this ObjectContext objectContext)
+        internal static int GetNoOfApprentices(this ObjectContext objectContext)
         {
-            return objectContext.Get(NoOfApprentices);
+            return objectContext.Get<int>(NoOfApprentices);
         }
 
         internal static string GetCohortReference(this ObjectContext objectContext)
@@ -62,7 +68,9 @@ namespace SFA.DAS.Approvals.UITests.Project
             return objectContext.Get(CohortReference);
         }
 
-        
+        internal static string GetReservationId(this ObjectContext objectContext)
+        {
+            return objectContext.Get(ReservationId);
+        }
     }
-
 }

@@ -71,12 +71,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.NonLevyEoiProvider
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Provider makes reservation for non-levy EOI employers")]
+        [NUnit.Framework.DescriptionAttribute("Provider makes reservation adds and deletes apprentice for non-levy EOI employers" +
+            "")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("nonlevyeoiproviderscenarios")]
-        public virtual void ProviderMakesReservationForNon_LevyEOIEmployers()
+        public virtual void ProviderMakesReservationAddsAndDeletesApprenticeForNon_LevyEOIEmployers()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Provider makes reservation for non-levy EOI employers", null, new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Provider makes reservation adds and deletes apprentice for non-levy EOI employers" +
+                    "", null, new string[] {
                         "regression",
                         "nonlevyeoiproviderscenarios"});
 #line 8
@@ -86,6 +88,14 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("An Employer has given create reservation permission to a provider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 10
  testRunner.Then("Provider can make a reservation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 11
+ testRunner.And("Provider can add an apprentice", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 12
+ testRunner.And("Provider can edit an apprentice", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 13
+ testRunner.And("Provider can delete an apprentice", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 14
+ testRunner.And("Provider can delete the funding", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }

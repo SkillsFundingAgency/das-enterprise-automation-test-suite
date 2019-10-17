@@ -14,12 +14,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider
         private readonly FormCompletionHelper _formCompletionHelper;
         private readonly PageInteractionHelper _pageInteractionHelper;
         private readonly ScenarioContext _context;
+        private readonly ObjectContext _objectContext;
         #endregion
 
 
         public ProviderMakingChangesPage(ScenarioContext context) : base(context)
         {
             _context = context;
+            _objectContext = context.Get<ObjectContext>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             VerifyPage();
@@ -49,6 +51,20 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider
             var actual = _pageInteractionHelper.GetText(MessageLocator);
 
             _pageInteractionHelper.VerifyText(actual, expected);
+
+            return SetCurrentReservationId();
+        }
+
+        private ProviderMakingChangesPage SetCurrentReservationId()
+        {
+            var currentUrl = _pageInteractionHelper.GetUrl();
+
+            int subStringIndexFrom = currentUrl.IndexOf("/reservations/") + "/reservations/".Length;
+            int subStringIndexTo = currentUrl.LastIndexOf("/completed");
+
+            var reservationId = currentUrl.Substring(subStringIndexFrom, subStringIndexTo - subStringIndexFrom);
+
+            _objectContext.SetReservationId(reservationId);
 
             return this;
         }

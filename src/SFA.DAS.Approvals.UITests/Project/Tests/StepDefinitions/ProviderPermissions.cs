@@ -42,7 +42,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             _employerPermissionsStepsHelper.SetCreateCohortAndRecruitmentPermission(_providerPermissionConfig.AP_ProviderUkprn);
 
-            _providerLogin = new ProviderLogin { Username = _providerPermissionConfig.AP_ProviderUserId, Password = _providerPermissionConfig.AP_ProviderPassword, Ukprn = _providerPermissionConfig.AP_ProviderUkprn };
+            _providerLogin = ProviderLogin(_providerPermissionConfig.AP_ProviderUserId, _providerPermissionConfig.AP_ProviderPassword,_providerPermissionConfig.AP_ProviderUkprn);
         }
 
         [Given(@"Employer grant create cohort permission to a provider")]
@@ -55,6 +55,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
              RemovePermissionsInCosmosDatabase();
 
             _employerPermissionsStepsHelper.SetCreateCohortPermission(_approvalsConfig.AP_ProviderUkprn);
+
+            _providerLogin = ProviderLogin(_approvalsConfig.AP_ProviderUserId, _approvalsConfig.AP_ProviderPassword, _approvalsConfig.AP_ProviderUkprn);
         }
 
         [When(@"Employer revoke create cohort permission to a provider")]
@@ -101,6 +103,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         private void RemovePermissionsInCosmosDatabase()
         {
             CosmosActionsPerformerHelper.RemoveDoc(_providerPermissionConfig.PermissionsCosmosUrl, _providerPermissionConfig.PermissionsCosmosDBKey, _providerPermissionConfig.PermissionsCosmosDatabaseName, _providerPermissionConfig.PermissionsCosmosCollectionName, "ukprn", _approvalsConfig.AP_ProviderUkprn);
+        }
+
+        private ProviderLogin ProviderLogin(string usename, string password, string ukprn)
+        {
+            return new ProviderLogin { Username = usename, Password = password, Ukprn = ukprn };
         }
     }
 }

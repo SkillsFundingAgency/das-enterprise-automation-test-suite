@@ -9,7 +9,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
     {
         private readonly ProviderStepsHelper _providerStepsHelper;
         private ProviderReviewYourCohortPage _providerReviewYourCohortPage;
-        private int _totalNoOfApprentices;
 
         public ProviderSteps(ScenarioContext context)
         {
@@ -82,13 +81,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Then(@"Provider is able to edit all apprentices before approval")]
         public void ThenProviderIsAbleToEditAllApprenticesBeforeApproval()
         {
-            (_providerReviewYourCohortPage, _totalNoOfApprentices) = _providerStepsHelper.EditAllDetailsOfApprentice(_providerReviewYourCohortPage);
+            _providerReviewYourCohortPage = _providerStepsHelper.EditAllDetailsOfApprentice(_providerReviewYourCohortPage);
         }
 
         [Then(@"Provider is able to delete all apprentices before approval")]
         public void ThenProviderIsAbleToDeleteAllApprenticesBeforeApproval()
         {
-            _providerReviewYourCohortPage = _providerStepsHelper.DeleteApprentice(_providerReviewYourCohortPage, _totalNoOfApprentices);
+            _providerReviewYourCohortPage = _providerStepsHelper.DeleteApprentice(_providerReviewYourCohortPage);
         }
 
         [Then(@"Provider is able to delete the cohort before approval")]
