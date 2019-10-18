@@ -35,24 +35,18 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
             return new HomePage(_context);
         }
 
-        public bool IsReserveFundingSuccessMessageUpdated()
-        {
-            if (pageInteractionHelper.IsElementDisplayed(SuccessMessage))
-            {
-                SetCurrentReservationId();
-                return true;
-            }
-            else
-            {
-                throw new Exception("Reserve Funding is not successfully created");
-            }       
-        }
-
         internal AddAnApprenitcePage AddApprentice()
         {
             _formCompletionHelper.ClickElement(AddApprenticeRadioButton);
             _formCompletionHelper.ClickElement(ContinueButton);
             return new AddAnApprenitcePage(_context);
         }
+
+        public new MakingChangesPage VerifySucessMessage()
+        {
+            base.VerifySucessMessage();
+            return this;
+        }
+
     }
 }

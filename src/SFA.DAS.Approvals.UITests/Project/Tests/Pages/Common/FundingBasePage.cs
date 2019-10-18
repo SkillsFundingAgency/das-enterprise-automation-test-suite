@@ -22,6 +22,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
 
         public FundingBasePage(ScenarioContext context) : base(context)
         {
+            _context = context;
+            formCompletionHelper = context.Get<FormCompletionHelper>();
             _reservationId = context.Get<ObjectContext>().GetReservationId();
             VerifyPage();
         }

@@ -23,8 +23,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider
         }
         private By GoToRadioButton => By.CssSelector(".govuk-radios__label");
         private By ContinueButton => By.CssSelector(".govuk-button");
-        private By MessageLocator => By.TagName("body");
-
+        
         internal ProviderHomePage GoToHomePage()
         {
             _formCompletionHelper.SelectRadioOptionByForAttribute(GoToRadioButton, "WhatsNext-home");
@@ -39,17 +38,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider
             return new ProviderAddApprenticeDetailsPage(_context);
         }
 
-        public ProviderMakingChangesPage VerifySucessMessage()
+        public new ProviderMakingChangesPage VerifySucessMessage()
         {
-            var expected = "You have successfully reserved funding for apprenticeship training";
-
-            var actual = pageInteractionHelper.GetText(MessageLocator);
-
-            pageInteractionHelper.VerifyText(actual, expected);
-
-            SetCurrentReservationId();
-
+            base.VerifySucessMessage();
             return this;
         }
+
     }
 }

@@ -90,14 +90,18 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             var providerReviewYourCohortPage = providerFundingForNonLevy.AddApprenticeWithReservedFunding()
                 .SubmitValidApprenticeDetails();
 
-            return SubmitValidApprenticeDetails(providerReviewYourCohortPage, numberOfApprentices - 1); 
+            providerReviewYourCohortPage = SubmitValidApprenticeDetails(providerReviewYourCohortPage, numberOfApprentices - 1);
+
+            return SetApprenticeDetails(providerReviewYourCohortPage, numberOfApprentices);
         }
 
         public ProviderReviewYourCohortPage AddApprentice(int numberOfApprentices)
         {
             var providerReviewYourCohortPage = CurrentCohortDetails();
 
-            return SubmitValidApprenticeDetails(providerReviewYourCohortPage, numberOfApprentices);
+            providerReviewYourCohortPage = SubmitValidApprenticeDetails(providerReviewYourCohortPage, numberOfApprentices);
+
+            return SetApprenticeDetails(providerReviewYourCohortPage, numberOfApprentices);
         }
 
         public ProviderReviewYourCohortPage CurrentCohortDetails()
@@ -200,6 +204,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 
             return providerReviewYourCohortPage;
         }
+
         private ProviderReviewYourCohortPage SubmitValidApprenticeDetails(ProviderReviewYourCohortPage providerReviewYourCohortPage, int numberOfApprentices)
         {
             for (int i = 0; i < numberOfApprentices; i++)
@@ -208,7 +213,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                         .SubmitValidApprenticeDetails();
             }
 
-            return SetApprenticeDetails(providerReviewYourCohortPage, numberOfApprentices); ;
+            return providerReviewYourCohortPage;
         }
     }
 }

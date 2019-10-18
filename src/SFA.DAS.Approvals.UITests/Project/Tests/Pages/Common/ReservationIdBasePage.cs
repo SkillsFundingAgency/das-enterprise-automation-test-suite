@@ -1,4 +1,5 @@
-﻿using SFA.DAS.UI.Framework.TestSupport;
+﻿using OpenQA.Selenium;
+using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
@@ -11,6 +12,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
         protected readonly ObjectContext objectContext;
         #endregion
 
+        private By MessageLocator => By.TagName("body");
+
         public ReservationIdBasePage(ScenarioContext context) : base(context)
         {
             pageInteractionHelper = context.Get<PageInteractionHelper>();
@@ -18,7 +21,18 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
             VerifyPage();
         }
 
-        protected void SetCurrentReservationId()
+        public void VerifySucessMessage()
+        {
+            var expected = "You have successfully reserved funding for apprenticeship training";
+
+            var actual = pageInteractionHelper.GetText(MessageLocator);
+
+            pageInteractionHelper.VerifyText(actual, expected);
+
+            SetCurrentReservationId();
+        }
+
+        private void SetCurrentReservationId()
         {
             var currentUrl = pageInteractionHelper.GetUrl();
 

@@ -36,7 +36,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Then(@"the funding is successfully reserved")]
         public void ThenTheFundingIsSuccessfullyReserved()
         {
-            _makingChangesPage.IsReserveFundingSuccessMessageUpdated();
+            _makingChangesPage = _makingChangesPage.VerifySucessMessage();
         }
 
         [Then(@"the funding can be deleted")]
