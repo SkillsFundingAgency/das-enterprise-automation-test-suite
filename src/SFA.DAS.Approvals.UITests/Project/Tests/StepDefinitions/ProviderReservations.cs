@@ -17,6 +17,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         private readonly ObjectContext _objectContext;
         private readonly ProviderStepsHelper _providerStepsHelper;
         private readonly EmployerPortalLoginHelper _loginHelper;
+        private readonly EmployerStepsHelper _employerStepsHelper;
         private readonly ProviderPermissionsConfig _config;
         private readonly ProviderLogin _login;
         private ProviderHomePage _providerHomePage;
@@ -29,6 +30,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _config = context.GetProviderPermissionConfig<ProviderPermissionsConfig>();
             _loginHelper = new EmployerPortalLoginHelper(_context);
             _providerStepsHelper = new ProviderStepsHelper(_context);
+            _employerStepsHelper = new EmployerStepsHelper(_context);
             _login = new ProviderLogin { Username = _config.AP_ProviderUserId, Password = _config.AP_ProviderPassword, Ukprn = _config.AP_ProviderUkprn };
         }
 
@@ -41,24 +43,28 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                 .SetAgreementId();
         }
 
+        [When(@"Provider creates a reservation and adds (.*) apprentices and approves the cohort and sends to Employer to approve")]
+        public void WhenProviderCreatesAReservationAndAddsApprenticeSAndApprovesTheCohortAndSendsToEmployerToApprove(int numberOfApprentices)
+        {
+            _providerHomePage = _providerStepsHelper.ProviderMakeReservation(_login);
+
+            _providerReviewYourCohortPage = _providerStepsHelper.AddApprentice(_providerHomePage.GoToManageYourFunding(), numberOfApprentices);
+
+            _providerReviewYourCohortPage.SelectSaveAndContinue()
+                .SubmitApproveAndSendToEmployerForApproval()
+                .SendInstructionsToEmployerForAnApprovedCohort();
+        }
+
         [Then(@"Provider can make a reservation")]
         public void ThenProviderCanMakeAReservation()
         {
-            _providerHomePage = _providerStepsHelper.GoToProviderHomePage(_login)
-                                .GoToProviderGetFunding()
-                                .StartReservedFunding()
-                                .ChooseAnEmployerNonLevyEOI()
-                                .ConfirmNonLevyEmployer()
-                                .AddTrainingCourseAndDate()
-                                .ConfirmReserveFunding()
-                                .VerifySucessMessage()
-                                .GoToHomePage();
+            _providerHomePage = _providerStepsHelper.ProviderMakeReservation(_login);
         }
 
         [Then(@"Provider can add an apprentice")]
         public void ThenProviderCanAddAnApprentice()
         {
-            _providerReviewYourCohortPage = _providerStepsHelper.AddApprentice(_providerHomePage.GoToManageYourFunding()); 
+            _providerReviewYourCohortPage = _providerStepsHelper.AddApprentice(_providerHomePage.GoToManageYourFunding(), 1);
         }
 
         [Then(@"Provider can edit an apprentice")]
