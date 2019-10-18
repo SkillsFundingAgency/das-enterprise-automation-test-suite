@@ -1,4 +1,5 @@
-﻿using SFA.DAS.Approvals.UITests.Project.Helpers;
+﻿using NUnit.Framework;
+using SFA.DAS.Approvals.UITests.Project.Helpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer;
@@ -15,7 +16,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
     [Binding]
     public class MFEmployerSteps
     {
-        private MakingChangesPage _makingChangesPage;
+        private SuccessfullyReservedFundingPage _successfullyReservedFundingPage;
+        private YourFundingReservationsPage _yourFundingReservationsPage;
         private readonly MFEmployerStepsHelper _reservationStepsHelper;
 
         public MFEmployerSteps(ScenarioContext context)
@@ -27,13 +29,25 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         public void WhenTheEmployerReservesFundingForAnApprenticeshipCourse()
         {
             var doYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage = _reservationStepsHelper.GoToReserveFunding();
-            _makingChangesPage = _reservationStepsHelper.CreateReservation(doYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage);
+            _successfullyReservedFundingPage = _reservationStepsHelper.CreateReservation(doYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage);
         }
 
         [Then(@"the funding is successfully reserved")]
         public void ThenTheFundingIsSuccessfullyReserved()
         {
-            _makingChangesPage.IsReserveFundingSuccessMessageUpdated();
+            _successfullyReservedFundingPage.IsReserveFundingSuccessMessageUpdated();
+        }
+
+        [When(@"the Employer deletes all unused funding for an apprenticeship course")]
+        public void WhenTheEmployerDeletesAllUnusedFundingForAnApprenticeshipCourse()
+        {
+            _yourFundingReservationsPage = _reservationStepsHelper.DeleteAllUnusedFunding();
+        }
+
+        [Then(@"all the unused funding are successfully deleted")]
+        public void ThenAllTheUnusedFundingAreSuccessfullyDeleted()
+        {
+            Assert.IsFalse(_yourFundingReservationsPage.CheckIfDeleteLinkIsPresent(), $"Delete link is present in the Manage Reservations page");
         }
     }
 }

@@ -16,9 +16,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private readonly ApprovalsConfig _config;
         #endregion
 
-        private By ConfirmProviderDetailsOptions => By.CssSelector(".selection-button-radio");
+        private By ConfirmProviderDetailsOptions => By.CssSelector(".govuk-radios__label");
 
-        private By ContinueButton => By.Id("submit-select-provider");
+        private By ContinueButton => By.CssSelector(".govuk-button");
 
         public ConfirmTrainingProviderPage(ScenarioContext context): base(context)
         {

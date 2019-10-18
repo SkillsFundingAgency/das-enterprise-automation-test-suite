@@ -9,6 +9,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
     {
         protected override string PageTitle => "Your funding reservations";
         private By ReserveMoreFundingLink => By.LinkText("Reserve more funding");
+        private By DeleteLink => By.LinkText("Delete");
 
         #region Helpers and Context
         private readonly PageInteractionHelper _pageInteractionHelper;
@@ -28,6 +29,24 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
         {
             _formCompletionHelper.ClickElement(ReserveMoreFundingLink);
             return new ReserveFundingToTrainAndAssessAnApprenticePage(_context);
+        }
+
+        public DeleteReservationPage DeleteUnusedFunding()
+        {
+            _formCompletionHelper.ClickElement(DeleteLink);
+            return new DeleteReservationPage(_context);
+        }
+        
+        public bool CheckIfDeleteLinkIsPresent()
+        {
+            if(_pageInteractionHelper.IsElementPresent(DeleteLink))
+            { 
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }
