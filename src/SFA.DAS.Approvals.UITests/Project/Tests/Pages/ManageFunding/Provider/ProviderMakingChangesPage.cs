@@ -1,29 +1,24 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
-using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider
 {
-    public class ProviderMakingChangesPage : BasePage
+    public class ProviderMakingChangesPage : ReservationIdBasePage
     {
         protected override string PageTitle => "Making changes";
 
         #region Helpers and Context
         private readonly FormCompletionHelper _formCompletionHelper;
-        private readonly PageInteractionHelper _pageInteractionHelper;
         private readonly ScenarioContext _context;
-        private readonly ObjectContext _objectContext;
         #endregion
-
 
         public ProviderMakingChangesPage(ScenarioContext context) : base(context)
         {
             _context = context;
-            _objectContext = context.Get<ObjectContext>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
-            _pageInteractionHelper = context.Get<PageInteractionHelper>();
             VerifyPage();
         }
         private By GoToRadioButton => By.CssSelector(".govuk-radios__label");
@@ -48,23 +43,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider
         {
             var expected = "You have successfully reserved funding for apprenticeship training";
 
-            var actual = _pageInteractionHelper.GetText(MessageLocator);
+            var actual = pageInteractionHelper.GetText(MessageLocator);
 
-            _pageInteractionHelper.VerifyText(actual, expected);
+            pageInteractionHelper.VerifyText(actual, expected);
 
-            return SetCurrentReservationId();
-        }
-
-        private ProviderMakingChangesPage SetCurrentReservationId()
-        {
-            var currentUrl = _pageInteractionHelper.GetUrl();
-
-            int subStringIndexFrom = currentUrl.IndexOf("/reservations/") + "/reservations/".Length;
-            int subStringIndexTo = currentUrl.LastIndexOf("/completed");
-
-            var reservationId = currentUrl.Substring(subStringIndexFrom, subStringIndexTo - subStringIndexFrom);
-
-            _objectContext.SetReservationId(reservationId);
+            SetCurrentReservationId();
 
             return this;
         }
