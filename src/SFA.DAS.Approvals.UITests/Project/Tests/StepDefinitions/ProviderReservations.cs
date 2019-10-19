@@ -48,7 +48,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             _providerHomePage = _providerStepsHelper.ProviderMakeReservation(_login);
 
-            _providerReviewYourCohortPage = _providerStepsHelper.AddApprentice(_providerHomePage.GoToManageYourFunding(), numberOfApprentices);
+            _providerReviewYourCohortPage = _providerStepsHelper.AddApprentice(_providerHomePage, numberOfApprentices);
 
             _providerReviewYourCohortPage.SelectSaveAndContinue()
                 .SubmitApproveAndSendToEmployerForApproval()
@@ -64,7 +64,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Then(@"Provider can add an apprentice")]
         public void ThenProviderCanAddAnApprentice()
         {
-            _providerReviewYourCohortPage = _providerStepsHelper.AddApprentice(_providerHomePage.GoToManageYourFunding(), 1);
+            _providerReviewYourCohortPage = _providerStepsHelper.AddApprentice(_providerHomePage, 1);
         }
 
         [Then(@"Provider can edit an apprentice")]
