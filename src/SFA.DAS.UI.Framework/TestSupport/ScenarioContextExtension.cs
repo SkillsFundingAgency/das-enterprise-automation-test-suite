@@ -73,11 +73,12 @@ namespace SFA.DAS.UI.Framework.TestSupport
             return Get<T>(context, ManageFundingProjectConfigKey);
         }
 
-        public static T GetProjectConfig<T>(this ScenarioContext context)
+        public static T GetCampaingnsProjectConfig<T>(this ScenarioContext context)
         {
             return Get<T>(context, CampaingnsProjectConfigKey);
         }
-        public static void SetProjectConfig<T>(this ScenarioContext context, T value)
+
+        public static void SetCampaingnsProjectConfig<T>(this ScenarioContext context, T value)
         {
             Set(context, value, CampaingnsProjectConfigKey);
         }

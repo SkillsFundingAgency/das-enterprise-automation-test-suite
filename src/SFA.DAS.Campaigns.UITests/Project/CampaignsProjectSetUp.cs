@@ -24,7 +24,7 @@ namespace SFA.DAS.Campaigns.UITests.Project
         public void SetUpProjectSpecificConfiguration()
         {
             var config = _configSection.GetConfigSection<CampaignsConfig>();
-            _context.SetProjectConfig(config);
+            _context.SetCampaingnsProjectConfig(config);
 
             _objectContext.SetBrowser(config.CA_Browser);
         }

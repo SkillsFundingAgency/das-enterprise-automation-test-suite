@@ -23,7 +23,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
         {
             _context = context;
             _webDriver = context.Get<IWebDriver>("webdriver");
-            _configuration = context.GetProjectConfig<CampaignsConfig>();
+            _configuration = context.GetCampaingnsProjectConfig<CampaignsConfig>();
             _objectContext = context.Get<ObjectContext>();
             myInterestsPage = new MyInterestsPage(_context);
         }
