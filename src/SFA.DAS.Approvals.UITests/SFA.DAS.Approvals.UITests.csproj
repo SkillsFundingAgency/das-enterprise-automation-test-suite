@@ -31,7 +31,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Project\Tests\Features\ManageFunding\Non-Levy\NonLevyEmployerDeletesAllUnusedFunding.feature.cs">
+    <Compile Update="Project\Tests\Features\ManageFunding\Non-Levy\Employer\NonLevyEmployerDeletesAllUnusedFunding.feature.cs">
       <DependentUpon>NonLevyEmployerDeletesAllUnusedFunding.feature</DependentUpon>
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -71,7 +71,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <SpecFlowFeatureFiles Update="Project\Tests\Features\ManageFunding\Non-Levy\NonLevyEmployerDeletesAllUnusedFunding.feature">
+    <SpecFlowFeatureFiles Update="Project\Tests\Features\ManageFunding\Non-Levy\Employer\NonLevyEmployerDeletesAllUnusedFunding.feature">
       <Visible>$(UsingMicrosoftNETSdk)</Visible>
       <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
       <Generator>SpecFlowSingleFileGenerator</Generator>
@@ -83,6 +83,10 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>NonLevyE2EJourneyTwo.feature.cs</LastGenOutput>
     </SpecFlowFeatureFiles>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Project\Tests\Features\ManageFunding\Non-Levy\Provider\" />
   </ItemGroup>
 
 </Project>

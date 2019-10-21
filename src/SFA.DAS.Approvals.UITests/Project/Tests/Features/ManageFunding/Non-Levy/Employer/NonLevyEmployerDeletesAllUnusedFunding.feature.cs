@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.ManageFunding.Non_Levy
+namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.ManageFunding.Non_Levy.Employer
 {
     using TechTalk.SpecFlow;
     
