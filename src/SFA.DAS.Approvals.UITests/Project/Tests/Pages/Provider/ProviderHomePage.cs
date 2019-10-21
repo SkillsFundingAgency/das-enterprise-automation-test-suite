@@ -55,6 +55,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         {
             return _pageInteractionHelper.IsElementDisplayed(CreateACohortLink);
         }
+
+        public ProviderChooseAnEmployerNonLevyPage GotoChooseAnEmployerNonLevyPage()
+        {
+            _formCompletionHelper.ClickElement(CreateACohortLink);
+            return new ProviderChooseAnEmployerNonLevyPage(_context);
+        }
+
         public ProviderReserveFundingForNonLevyEmployersPage GoToProviderGetFunding()
         {
             _formCompletionHelper.ClickElement(GetFundingLink);
