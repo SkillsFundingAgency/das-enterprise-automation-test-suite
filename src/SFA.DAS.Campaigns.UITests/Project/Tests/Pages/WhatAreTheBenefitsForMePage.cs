@@ -77,7 +77,6 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
             expectedWhatAreMyFutureProspectsParagraph2BPList.Add(ExpectedWhatAreMyFutureProspectsParagraph2BP6);
             expectedWhatAreMyFutureProspectsParagraph2BPList.Add(ExpectedWhatAreMyFutureProspectsParagraph2BP7);
 
-            _pageInteractionHelper.WaitForElementToBeDisplayed(_whatAreMyFutureProspectsLink);
             _formCompletionHelper.ClickElement(_whatAreMyFutureProspectsLink);
 
             string actualWhatAreMyFutureProspectsHeader = _pageInteractionHelper.GetText(_whatAreMyFutureProspectsHeader);
@@ -97,9 +96,6 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
 
         internal void VerifyContentUnderHowMuchCanYouEarnSection()
         {
-            _pageInteractionHelper.WaitForElementToBeDisplayed(_howMuchCanYouEarnLink);
-            _pageInteractionHelper.FocusTheElement(_howMuchCanYouEarnLink);
-
             string actualHowMuchCanYouEarnHeader = _pageInteractionHelper.GetText(_howMuchCanYouEarnHeader);
             string actualHowMuchCanYouEarnParagraph1 = _pageInteractionHelper.GetText(_howMuchCanYouEarnParagraph1);
             string actualHowMuchCanYouEarnParagraph2 = _pageInteractionHelper.GetText(_howMuchCanYouEarnParagraph2);
@@ -113,8 +109,6 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
 
         internal void VerifyContentUnderWhatWillMyApprenticeshipCostMeSection()
         {
-            _pageInteractionHelper.WaitForElementToBeDisplayed(_whatWillMyApprenticeshipCostMeLink);
-            _pageInteractionHelper.FocusTheElement(_whatWillMyApprenticeshipCostMeLink);
             _formCompletionHelper.ClickElement(_whatWillMyApprenticeshipCostMeLink);
 
             string actualWhatWillMyApprenticeshipCostMeHeader = _pageInteractionHelper.GetText(_whatWillMyApprenticeshipCostMeHeader);

@@ -39,7 +39,6 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
 
         internal void ClickObSignInToApplyButton()
         {
-            _pageInteractionHelper.WaitForElementToBeClickable(_signInToApplyButton);
             _formCompletionHelper.ClickElement(_signInToApplyButton);
         }
 

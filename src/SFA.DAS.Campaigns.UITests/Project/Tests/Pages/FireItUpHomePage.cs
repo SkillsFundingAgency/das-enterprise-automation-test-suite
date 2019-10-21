@@ -46,88 +46,72 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
         {
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
-            _pageInteractionHelper.WaitForElementToBeDisplayed(_pageTitle);
-            //base.VerifyPage(); // this verification is failing due a bug in the application. We will uncomment this in future
+            base.VerifyPage(); // this verification is failing due a bug in the application. We will uncomment this in future
 
         }
 
         internal void ClickOnCookieContinueButton()
         {
-            _pageInteractionHelper.WaitForElementToBeDisplayed(_cookieButton);
             _formCompletionHelper.ClickElement(_cookieButton);
         }
 
         internal void VerifyApprenticesHeaderSupportText()
         {
-            _pageInteractionHelper.WaitForElementToBeDisplayed(_ApprenticesHeaderSupportText);
-            _pageInteractionHelper.FocusTheElement(_ApprenticesHeaderSupportText);
             _pageInteractionHelper.VerifyPage(_ApprenticesHeaderSupportText, ExpectedApprenticesHeaderSupportText);
         }
 
         internal void VerifyEmployersHeaderSupportText()
         {
-            _pageInteractionHelper.WaitForElementToBeDisplayed(_EmployersHeaderSupportText);
-            _pageInteractionHelper.FocusTheElement(_EmployersHeaderSupportText);
             _pageInteractionHelper.VerifyPage(_EmployersHeaderSupportText, ExpectedEmployersHeaderSupportText);
         }
 
         internal void LaunchApprenticeMenu()
         {
-            _pageInteractionHelper.WaitForElementToBeDisplayed(_apprenticeMenu);
             _pageInteractionHelper.FocusTheElement(_apprenticeMenu);
         }
 
         internal void ClickOnFindAnApprenticeLink()
         {
-            _pageInteractionHelper.WaitForElementToBeClickable(_findAnApprenticeLink);
             _formCompletionHelper.ClickElement(_findAnApprenticeLink);
         }
 
         internal void ClickOnYourApprenticeshipLink()
         {
-            _pageInteractionHelper.WaitForElementToBeClickable(_yourApprenticeshipLink);
             _formCompletionHelper.ClickElement(_yourApprenticeshipLink);
         }
 
         internal void ClickOnAssessmentAndCertificationLink()
         {
-            _pageInteractionHelper.WaitForElementToBeClickable(_assessmentAndCertificationLink);
             _formCompletionHelper.ClickElement(_assessmentAndCertificationLink);
         }
 
         internal void ClickOnInterviewLink()
         {
-            _pageInteractionHelper.WaitForElementToBeClickable(_inetrviewLink);
             _formCompletionHelper.ClickElement(_inetrviewLink);
         }
 
         internal void ClickOnApplicationLink()
         {
-            _pageInteractionHelper.WaitForElementToBeClickable(_applicationLink);
             _formCompletionHelper.ClickElement(_applicationLink);
         }
 
         internal void ClickOnWhatIsAnApprenticeshipLink()
         {
-            _pageInteractionHelper.WaitForElementToBeClickable(_whatIsAnApprenticeshipLink);
             _formCompletionHelper.ClickElement(_whatIsAnApprenticeshipLink);
         }
 
         internal void ClickOnMyInterestsLink()
         {
-            _pageInteractionHelper.WaitForElementToBeClickable(_myinterestsLink);
             _formCompletionHelper.ClickElement(_myinterestsLink);
         }
 
         internal void ClickOnWhatAreTheBenefitsForMeLink()
         {
-            _pageInteractionHelper.WaitForElementToBeClickable(_whatAreTheBenefitsForMeLink);
             _formCompletionHelper.ClickElement(_whatAreTheBenefitsForMeLink);
         }
 
         internal void ClickOnRealStoriesLink()
         {
-            _pageInteractionHelper.WaitForElementToBeClickable(_realStoriesLink);
             _formCompletionHelper.ClickElement(_realStoriesLink);
         }
 

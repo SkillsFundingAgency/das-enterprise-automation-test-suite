@@ -46,12 +46,11 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
             _pageInteractionCampaignsHelper = context.Get<PageInteractionCampaignsHelper>();
-            base.VerifyPage();
+            VerifyPage();
         }
 
         internal void VerifyResultsPageHeader()
         {
-            _pageInteractionHelper.WaitForElementToBeDisplayed(_resultsHeader);
             string actualResultsHeader = _pageInteractionHelper.GetText(_resultsHeader);
             _pageInteractionHelper.VerifyPage(actualResultsHeader, ExpectedHeaderWhenResultsFound, ExpectedHeaderWhenNoResultsFound);
         }
@@ -72,7 +71,6 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
 
             for (int i=0; i < postCodeList.Count; i++)
             {
-                _pageInteractionHelper.WaitForElementToBeDisplayed(_resultsHeader);
                 if (_pageInteractionHelper.GetText(_resultsHeader).Contains(ExpectedHeaderWhenResultsFound))
                 {
                     ExtractApprenticeDetailsFromResultsPage();
@@ -90,23 +88,19 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
 
         internal void ClickOnFirstSearchResult()
         {
-            _pageInteractionHelper.WaitForPageToLoad();
-            _pageInteractionHelper.WaitForElementToBeDisplayed(_firstSearchResult);
-            _pageInteractionHelper.FocusTheElement(_firstSearchResult);
+            
             _formCompletionHelper.ClickElement(_firstSearchResult);
             _pageInteractionCampaignsHelper.SwitchToANewTab();
         }
 
         internal void EnterPostCode(string postcode)
         {
-            _pageInteractionHelper.WaitForElementToBeDisplayed(_postCodeBox);
             _formCompletionHelper.EnterText(_postCodeBox,postcode);
 
         }
 
         internal void ClickOnUpdateResultsButton()
         {
-            _pageInteractionHelper.WaitForElementToBeClickable(_updateResultsButton);
             _formCompletionHelper.ClickElement(_updateResultsButton);
         }
 
@@ -126,7 +120,6 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
 
             for (int i = 0; i < postCodeList.Count; i++)
             {
-                _pageInteractionHelper.WaitForElementToBeDisplayed(_resultsHeader);
                 if (_pageInteractionHelper.GetText(_resultsHeader).Contains(ExpectedHeaderWhenNoResultsFound))
                 {
                     VerifyTheNoMatchResultsPageContent();
@@ -142,10 +135,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
 
         internal void VerifyTheNoMatchResultsPageContent()
         {
-            _pageInteractionHelper.WaitForElementToBeDisplayed(_noMatchResultParagraphOne);
             _pageInteractionHelper.VerifyText(_noMatchResultParagraphOne, ExpectedParagraphOneText);
-            _pageInteractionHelper.WaitForElementToBeDisplayed(_noMatchResultParagraphTwo);
-            _pageInteractionHelper.FocusTheElement(_noMatchResultParagraphTwo);
             _pageInteractionHelper.VerifyText(_noMatchResultParagraphTwo, ExpectedParagraphTwoText);
         }
 

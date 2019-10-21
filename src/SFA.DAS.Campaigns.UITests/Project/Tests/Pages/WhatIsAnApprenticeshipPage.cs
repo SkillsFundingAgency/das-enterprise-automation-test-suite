@@ -101,7 +101,6 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
 
         internal void VerifyContentUnderDifferentTypesOfApprenticeshipsSection()
         {
-            _pageInteractionHelper.WaitForElementToBeDisplayed(_differentTypesOfApprebticeshipsLink);
             _formCompletionHelper.ClickElement(_differentTypesOfApprebticeshipsLink);
 
             string actualDifferentTypesOfApprenticeshipsHeader = _pageInteractionHelper.GetText(_differentTypesOfApprenticeshipsHeader);

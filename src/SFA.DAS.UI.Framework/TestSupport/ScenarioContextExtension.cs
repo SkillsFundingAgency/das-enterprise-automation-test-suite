@@ -10,6 +10,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
         private const string TestProjectConfigKey = "testprojectconfig";
         private const string RegistrationProjectConfigKey = "registrationprojectconfig";
         private const string ManageFundingProjectConfigKey = "managefundingprojectconfig";
+        private const string CampaingnsProjectConfigKey = "campaingnsprojectconfig";
         private const string ApprovalsProjectConfigKey = "approvalsprojectconfig";
         private const string ProviderPermissionConfigKey = "providerpermissionconfigkey";
         private const string TransfersProjectConfigKey = "transfersprojectconfig";
@@ -70,6 +71,15 @@ namespace SFA.DAS.UI.Framework.TestSupport
         public static T GetManageFundingConfig<T>(this ScenarioContext context)
         {
             return Get<T>(context, ManageFundingProjectConfigKey);
+        }
+
+        public static T GetProjectConfig<T>(this ScenarioContext context)
+        {
+            return Get<T>(context, CampaingnsProjectConfigKey);
+        }
+        public static void SetProjectConfig<T>(this ScenarioContext context, T value)
+        {
+            Set(context, value, CampaingnsProjectConfigKey);
         }
 
         public static void SetManageFundingConfig<T>(this ScenarioContext context, T value)

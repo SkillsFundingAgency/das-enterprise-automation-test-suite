@@ -98,7 +98,6 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
 
         internal void VerifyContentUnderInterviewSection()
         {
-            _pageInteractionHelper.WaitForElementToBeDisplayed(_theInterviewProcessLink);
             _formCompletionHelper.ClickElement(_theInterviewProcessLink);
 
             string actualTheInterviewProcessHeader = _pageInteractionHelper.GetText(_theInterviewProcessHeader);
@@ -123,7 +122,6 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
 
         internal void VerifyContentUnderBeforeYourInterviewSection()
         {
-            _pageInteractionHelper.WaitForElementToBeDisplayed(_beforeYourInterviewLink);
             _pageInteractionHelper.FocusTheElement(_beforeYourInterviewLink);
 
             string actualBeforeYourInterviewHeader = _pageInteractionHelper.GetText(_beforeYourInterviewHeader);
@@ -147,8 +145,6 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
 
         internal void VerifyContentUnderDayOfTheInterviewSection()
         {
-            _pageInteractionHelper.WaitForElementToBeDisplayed(_dayOfTheInterviewLink);
-            _pageInteractionHelper.FocusTheElement(_dayOfTheInterviewLink);
             _formCompletionHelper.ClickElement(_dayOfTheInterviewLink);
 
             string actualDayOfTheInterviewHeader = _pageInteractionHelper.GetText(_dayOfTheInterviewHeader);

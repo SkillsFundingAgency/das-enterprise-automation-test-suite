@@ -51,7 +51,6 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
 
         internal void VerifyContentUnderGetAssessedAndGetYourCertificateSection()
         {
-            _pageInteractionHelper.WaitForElementToBeDisplayed(_getAssessedAndGetYourCertificateLink);
             _formCompletionHelper.ClickElement(_getAssessedAndGetYourCertificateLink);
 
             string actualGetAssessedAndGetYourCertificateHeader = _pageInteractionHelper.GetText(_getAssessedAndGetYourCertificateHeader);
@@ -65,8 +64,6 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
 
         internal void VerifyContentUnderCompleteYourApprenticeshipSection()
         {
-            _pageInteractionHelper.WaitForElementToBeDisplayed(_completeYourApprenticeshipLink);
-            _pageInteractionHelper.FocusTheElement(_completeYourApprenticeshipLink);
             _formCompletionHelper.ClickElement(_completeYourApprenticeshipLink);
 
             string actualCompleteYourApprenticeshipHeader = _pageInteractionHelper.GetText(_completeYourApprenticeshipHeader);

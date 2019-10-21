@@ -37,19 +37,16 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
 
         internal void EnterPostCode(String postCode)
         {
-            _pageInteractionHelper.WaitForElementToBeDisplayed(_postCodeBox);
             _formCompletionHelper.EnterText(_postCodeBox, postCode);
         }
 
         internal void SelectMiles(String noOfMiles)
         {
-            _pageInteractionHelper.WaitForElementToBeDisplayed(_selectMilesDropDown);
             _formCompletionHelper.SelectFromDropDownByText(_selectMilesDropDown, noOfMiles);
         }
 
         internal void ClickOnSearchButton()
         {
-            _pageInteractionHelper.WaitForElementToBeClickable(_searchButton);
             _formCompletionHelper.ClickElement(_searchButton);
         }
 

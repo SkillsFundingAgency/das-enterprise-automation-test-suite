@@ -46,26 +46,22 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
 
         internal void SelectAValidInterest(String interestValue)
         {
-            _pageInteractionHelper.WaitForElementToBeDisplayed(_selectInterestDropDown);
             _formCompletionHelper.SelectFromDropDownByText(_selectInterestDropDown, interestValue);
         }
 
         internal void EnterPostCode(String postCode)
         {
             PostcodeFromTestScnario = postCode;
-            _pageInteractionHelper.WaitForElementToBeDisplayed(_postCodeBox);
             _formCompletionHelper.EnterText(_postCodeBox, postCode);
         }
 
         internal void SelectMiles(String noOfMiles)
         {
-            _pageInteractionHelper.WaitForElementToBeDisplayed(_selectMilesDropDown);
             _formCompletionHelper.SelectFromDropDownByText(_selectMilesDropDown, noOfMiles);
         }
 
         internal void ClickOnSearchButton()
         {
-            _pageInteractionHelper.WaitForElementToBeClickable(_searchButton);
             _formCompletionHelper.ClickElement(_searchButton);
         }
 
@@ -73,12 +69,10 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
         {
             if (PostcodeFromTestScnario.Length > 0)
             {
-                _pageInteractionHelper.WaitForElementToBeDisplayed(_messageForInvalidPostcode);
                 _pageInteractionHelper.VerifyText(_messageForInvalidPostcode, InvalidPostCodeMessage);
             }
             else
             {
-                _pageInteractionHelper.WaitForElementToBeDisplayed(_messageForInvalidPostcode);
                 _pageInteractionHelper.VerifyText(_messageForInvalidPostcode, EmptyPostCodeMessage);
 
             }
@@ -86,13 +80,11 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
 
         internal void VerifyTheMessageForNonSelectionOfInterest()
         {
-            _pageInteractionHelper.WaitForElementToBeDisplayed(_messageForInvalidInterestSelection);
             _pageInteractionHelper.VerifyText(_messageForInvalidInterestSelection, MessageForInvalidInterestSelection);
         }
 
         internal void VerifyDefaultValueFromMilesDropDown()
         {
-            _pageInteractionHelper.WaitForElementToBePresent(_defaultValueFromInterestDropDown);
             _pageInteractionHelper.VerifyText(_defaultValueFromInterestDropDown,DefaultValueFromMilesDropDown);
         }
 

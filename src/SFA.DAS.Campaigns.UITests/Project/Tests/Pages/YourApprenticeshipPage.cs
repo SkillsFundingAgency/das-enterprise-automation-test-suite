@@ -73,7 +73,6 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
             expectedQuestionsList.Add(ExpectedQuestion5);
             expectedQuestionsList.Add(ExpectedQuestion6);
 
-            _pageInteractionHelper.WaitForElementToBeDisplayed(_whatToBringLink);
             _formCompletionHelper.ClickElement(_whatToBringLink);
 
             string actualWhatToBringHeader = _pageInteractionHelper.GetText(_whatToBringHeader);
@@ -93,8 +92,6 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
 
         internal void VerifyContentUnderMeetYourNewTeamSection()
         {
-            _pageInteractionHelper.WaitForElementToBeDisplayed(_meetYourNewTeamLink);
-            _pageInteractionHelper.FocusTheElement(_meetYourNewTeamLink);
             string actualMeetYourNewTeamHeader = _pageInteractionHelper.GetText(_meetYourNewTeamHeader);
             string actualMeetYourNewTeamParagraph1 = _pageInteractionHelper.GetText(_meetYourNewTeamParagraph1);
             _pageInteractionHelper.VerifyText(actualMeetYourNewTeamHeader, ExpectedMeetYourNewTeamHeader);
@@ -103,8 +100,6 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
 
         internal void VerifyContentUnderWhatComesAfterMyApprenticeshipSection()
         {
-            _pageInteractionHelper.WaitForElementToBeDisplayed(_whatComesAfterMyApprenticeshipLink);
-            _pageInteractionHelper.FocusTheElement(_whatComesAfterMyApprenticeshipLink);
             string actualWhatComesAfterMyApprenticeshipHeader = _pageInteractionHelper.GetText(_whatComesAfterMyApprenticeshipHeader);
             string actualWhatComesAfterMyApprenticeshipParagraph1 = _pageInteractionHelper.GetText(_whatComesAfterMyApprenticeshipParagraph1);
             string actualWhatComesAfterMyApprenticeshipParagraph2 = _pageInteractionHelper.GetText(_whatComesAfterMyApprenticeshipParagraph2);

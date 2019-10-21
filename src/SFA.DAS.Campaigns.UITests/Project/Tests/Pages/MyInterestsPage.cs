@@ -101,78 +101,48 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
 
         internal void verifyContentUnderWhatIsAnApprenticeshipSection()
         {
-            _pageInteractionHelper.WaitForElementToBeDisplayed(_industry1Name);
-            _pageInteractionHelper.FocusTheElement(_industry1Name);
             string actualIndustry1Name = _pageInteractionHelper.GetText(_industry1Name);
             string actualIndustry1Description = _pageInteractionHelper.GetText(_industry1Description);
 
-            _pageInteractionHelper.WaitForElementToBeDisplayed(_industry2Name);
-            _pageInteractionHelper.FocusTheElement(_industry2Name);
             string actualIndustry2Name = _pageInteractionHelper.GetText(_industry2Name);
             string actualIndustry2Description = _pageInteractionHelper.GetText(_industry2Description);
 
-            _pageInteractionHelper.WaitForElementToBeDisplayed(_industry3Name);
-            _pageInteractionHelper.FocusTheElement(_industry3Name);
             string actualIndustry3Name = _pageInteractionHelper.GetText(_industry3Name);
             string actualIndustry3Description = _pageInteractionHelper.GetText(_industry3Description);
 
-            _pageInteractionHelper.WaitForElementToBeDisplayed(_industry4Name);
-            _pageInteractionHelper.FocusTheElement(_industry4Name);
             string actualIndustry4Name = _pageInteractionHelper.GetText(_industry4Name);
             string actualIndustry4Description = _pageInteractionHelper.GetText(_industry4Description);
 
-            _pageInteractionHelper.WaitForElementToBeDisplayed(_industry5Name);
-            _pageInteractionHelper.FocusTheElement(_industry5Name);
             string actualIndustry5Name = _pageInteractionHelper.GetText(_industry5Name);
             string actualIndustry5Description = _pageInteractionHelper.GetText(_industry5Description);
 
-            _pageInteractionHelper.WaitForElementToBeDisplayed(_industry6Name);
-            _pageInteractionHelper.FocusTheElement(_industry6Name);
             string actualIndustry6Name = _pageInteractionHelper.GetText(_industry6Name);
             string actualIndustry6Description = _pageInteractionHelper.GetText(_industry6Description);
 
-            _pageInteractionHelper.WaitForElementToBeDisplayed(_industry7Name);
-            _pageInteractionHelper.FocusTheElement(_industry7Name);
             string actualIndustry7Name = _pageInteractionHelper.GetText(_industry7Name);
             string actualIndustry7Description = _pageInteractionHelper.GetText(_industry7Description);
 
-            _pageInteractionHelper.WaitForElementToBeDisplayed(_industry8Name);
-            _pageInteractionHelper.FocusTheElement(_industry8Name);
             string actualIndustry8Name = _pageInteractionHelper.GetText(_industry8Name);
             string actualIndustry8Description = _pageInteractionHelper.GetText(_industry8Description);
 
-            _pageInteractionHelper.WaitForElementToBeDisplayed(_industry9Name);
-            _pageInteractionHelper.FocusTheElement(_industry9Name);
             string actualIndustry9Name = _pageInteractionHelper.GetText(_industry9Name);
             string actualIndustry9Description = _pageInteractionHelper.GetText(_industry9Description);
 
-            _pageInteractionHelper.WaitForElementToBeDisplayed(_industry10Name);
-            _pageInteractionHelper.FocusTheElement(_industry10Name);
             string actualIndustry10Name = _pageInteractionHelper.GetText(_industry10Name);
             string actualIndustry10Description = _pageInteractionHelper.GetText(_industry10Description);
 
-            _pageInteractionHelper.WaitForElementToBeDisplayed(_industry11Name);
-            _pageInteractionHelper.FocusTheElement(_industry11Name);
             string actualIndustry11Name = _pageInteractionHelper.GetText(_industry11Name);
             string actualIndustry11Description = _pageInteractionHelper.GetText(_industry11Description);
 
-            _pageInteractionHelper.WaitForElementToBeDisplayed(_industry12Name);
-            _pageInteractionHelper.FocusTheElement(_industry12Name);
             string actualIndustry12Name = _pageInteractionHelper.GetText(_industry12Name);
             string actualIndustry12Description = _pageInteractionHelper.GetText(_industry12Description);
 
-            _pageInteractionHelper.WaitForElementToBeDisplayed(_industry13Name);
-            _pageInteractionHelper.FocusTheElement(_industry13Name);
             string actualIndustry13Name = _pageInteractionHelper.GetText(_industry13Name);
             string actualIndustry13Description = _pageInteractionHelper.GetText(_industry13Description);
 
-            _pageInteractionHelper.WaitForElementToBeDisplayed(_industry14Name);
-            _pageInteractionHelper.FocusTheElement(_industry14Name);
             string actualIndustry14Name = _pageInteractionHelper.GetText(_industry14Name);
             string actualIndustry14Description = _pageInteractionHelper.GetText(_industry14Description);
 
-            _pageInteractionHelper.WaitForElementToBeDisplayed(_industry15Name);
-            _pageInteractionHelper.FocusTheElement(_industry15Name);
             string actualIndustry15Name = _pageInteractionHelper.GetText(_industry15Name);
             string actualIndustry15Description = _pageInteractionHelper.GetText(_industry15Description);
 
