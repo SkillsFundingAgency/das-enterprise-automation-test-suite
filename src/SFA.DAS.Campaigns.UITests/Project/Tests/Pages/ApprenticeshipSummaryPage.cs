@@ -34,7 +34,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
         {
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
-            //base.VerifyPage();
+            VerifyPage();
         }
 
         internal void ClickObSignInToApplyButton()
