@@ -7,13 +7,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider
 {
     public class ProviderDeleteReservationPage : BasePage
     {
-
         protected override string PageTitle => "Delete Reservation";
 
         #region Helpers and Context
         private readonly FormCompletionHelper _formCompletionHelper;
         private readonly ScenarioContext _context;
         #endregion
+        private By DeleteRadioButton => By.CssSelector(".govuk-radios__label");
+        private By ConfirmButton => By.CssSelector(".govuk-button");
 
         public ProviderDeleteReservationPage(ScenarioContext context) : base(context)
         {
@@ -21,9 +22,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider
             _formCompletionHelper = context.Get<FormCompletionHelper>();
             VerifyPage();
         }
-
-        private By DeleteRadioButton => By.CssSelector(".govuk-radios__label");
-        private By ConfirmButton => By.CssSelector(".govuk-button");
 
         internal ProviderReservationSuccessfullyDeletedPage YesDeleteThisReservation()
         {

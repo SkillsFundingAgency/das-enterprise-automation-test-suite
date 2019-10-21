@@ -15,8 +15,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider
         private readonly ScenarioContext _context;
         private readonly string _reservationId;
         #endregion
-
-
         private By AddApprenticeLink => By.CssSelector($"table a[href*='?reservationId={_reservationId}']");
 
         private By DeleteFundingLink => By.CssSelector($"table a[href$='{_reservationId}/delete']");
