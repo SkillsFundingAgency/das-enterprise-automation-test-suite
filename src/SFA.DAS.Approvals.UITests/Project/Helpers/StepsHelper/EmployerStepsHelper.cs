@@ -13,6 +13,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 {
     internal class EmployerStepsHelper
     {
+        private ReviewYourCohortPage _reviewYourCohortPage;
         private readonly ReviewYourCohortStepsHelper _reviewYourCohortStepsHelper;
         private readonly MFEmployerStepsHelper _employerReservationStepsHelper;
         private readonly EmployerPortalLoginHelper _loginHelper;
@@ -250,9 +251,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                 .NonLevyEmployerAddsApprentices();
         }
 
-        public ReviewYourCohortPage NonLevyEmployerAddsApprenticeDetails(bool isTransfersFunds, AddApprenticeDetailsPage addApprenticeDetailsPage)
+        public ReviewYourCohortPage NonLevyEmployerAddsApprenticeDetails(bool isTransfersFunds, AddApprenticeDetailsPage addApprenticeDetailsPage, int count)
         {
-            return addApprenticeDetailsPage.SubmitValidApprenticeDetails(true);
+            _reviewYourCohortPage = addApprenticeDetailsPage.SubmitValidApprenticeDetails(true);
+            string apprenticeTotalCost = _reviewYourCohortStepsHelper.ApprenticeTotalCost(_reviewYourCohortPage);
+            int noOfApprentice = _reviewYourCohortStepsHelper.NoOfApprentice(_reviewYourCohortPage, count);
+            _objectContext.SetNoOfApprentices(noOfApprentice);
+            _objectContext.SetApprenticeTotalCost(apprenticeTotalCost);
+            return new ReviewYourCohortPage(_context);
         }
 
         public ReviewYourCohortPage NonLevyEmployerAddsApprenticesUsingReservations(int numberOfApprentices, bool isTransfersFunds)
@@ -263,7 +269,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             var addApprenticeDetailsPage = NonLevyEmployerAddsProviderDetails();
             for (int i = 1; i <= numberOfApprentices; i++)
             {
-                var reviewYourCohortPage = NonLevyEmployerAddsApprenticeDetails(false, addApprenticeDetailsPage);
+                var reviewYourCohortPage = NonLevyEmployerAddsApprenticeDetails(false, addApprenticeDetailsPage, i);
                 if (i < numberOfApprentices)
                 {
                     reviewYourCohortPage.SelectAddAnApprenticeUsingReservation()
