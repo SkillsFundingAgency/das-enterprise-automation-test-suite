@@ -40,6 +40,11 @@ namespace SFA.DAS.UI.FrameworkHelpers
             ClickElement(_webDriver.FindElement(locator));
         }
 
+        public void Click(By locator)
+        {
+            ClickElement(locator);
+        }
+
         public void EnterText(IWebElement element, string text)
         {
             element.Clear();
@@ -110,17 +115,33 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         public void SelectRadioOptionByText(By locator, String text)
         {
-            IList<IWebElement> radios = _webDriver.FindElements(locator);
+            ClickElementByText(locator, text);
+        }
 
-            for (int i = 0; i < radios.Count; i++)
+        private void ClickElementByText(By locator, String text)
+        {
+            IList<IWebElement> elements = _webDriver.FindElements(locator);
+
+            for (int i = 0; i < elements.Count; i++)
             {
-                String str = radios.ElementAt(i).Text;
-                if (str.Equals(text))
+                String str = elements.ElementAt(i).Text ?? elements.ElementAt(i).GetAttribute("innertext");
+                if (str.Contains(text))
                 {
-                    radios.ElementAt(i).Click();
+                    elements.ElementAt(i).Click();
                     return;
                 }
             }
+        }
+
+        public void ClickButtonByText(String text)
+        {
+            ClickElementByText(By.CssSelector(".button"), text);
+        }
+
+
+        public void SelectRadioOptionByText(String text)
+        {
+            ClickElementByText(By.CssSelector("label.selection-button-radio"), text);
         }
 
         private SelectElement SelectElement(IWebElement element)
