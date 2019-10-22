@@ -1,5 +1,4 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
@@ -55,6 +54,19 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             return new ProviderHomePage(_context);
         }
 
+        public ProviderHomePage ProviderMakeReservation(ProviderLogin login)
+        {
+            return GoToProviderHomePage(login)
+                   .GoToProviderGetFunding()
+                   .StartReservedFunding()
+                   .ChooseAnEmployerNonLevyEOI()
+                   .ConfirmNonLevyEmployer()
+                   .AddTrainingCourseAndDate()
+                   .ConfirmReserveFunding()
+                   .VerifySucessMessage()
+                   .GoToHomePage();
+        }
+
         public void AddApprenticeAndSendToEmployerForApproval(int numberOfApprentices)
         {
             var providerReviewYourCohortPage = AddApprentice(numberOfApprentices);
@@ -72,12 +84,25 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                 .SelectViewCurrentCohortDetails();
         }
 
-        public ProviderReviewYourCohortPage AddApprentice(ProviderFundingForNonLevyEmployersPage providerFundingForNonLevy)
+        public ProviderReviewYourCohortPage AddApprentice(ProviderHomePage providerHomePage, int numberOfApprentices)
         {
-            var providerReviewYourCohortPage = providerFundingForNonLevy.AddApprenticeWithReservedFunding()
-                .SubmitValidApprenticeDetails();
+            var providerAddApprenticeDetailsPage = providerHomePage.GoToManageYourFunding().AddApprenticeWithReservedFunding();
 
-            return SetApprenticeDetails(providerReviewYourCohortPage, 1);
+            var providerReviewYourCohortPage = providerAddApprenticeDetailsPage.SubmitValidApprenticeDetails();
+
+            for (int i = 1; i < numberOfApprentices; i++)
+            {
+                providerReviewYourCohortPage = providerReviewYourCohortPage
+                    .SelectAddAnApprenticeUsingReservation()
+                    .CreateANewReservation()
+                    .AddTrainingCourseAndDate()
+                    .ConfirmReserveFunding()
+                    .VerifySucessMessage()
+                    .GoToAddApprenticeDetailsPage()
+                    .SubmitValidApprenticeDetails();
+            }
+
+            return SetApprenticeDetails(providerReviewYourCohortPage, numberOfApprentices);
         }
 
         public ProviderReviewYourCohortPage AddApprentice(int numberOfApprentices)
@@ -185,6 +210,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                     .SelectReturnToCohortView();
             }
         }
+
         private ProviderReviewYourCohortPage SetApprenticeDetails(ProviderReviewYourCohortPage providerReviewYourCohortPage, int numberOfApprentices)
         {
             _objectContext.SetNoOfApprentices(_reviewYourCohortStepsHelper.NoOfApprentice(providerReviewYourCohortPage, numberOfApprentices));
