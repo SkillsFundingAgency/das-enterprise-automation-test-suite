@@ -16,7 +16,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
             _webDriver = webDriver;
         }
 
-        internal bool RetryOnException(Func<bool> func, Action beforeAction = null)
+        internal bool RetryOnException(Func<bool> func, Action beforeAction)
         {
             return Policy
                  .Handle<Exception>((x) => x.Message.Contains("verification failed"))

@@ -1,6 +1,8 @@
-﻿using SFA.DAS.UI.FrameworkHelpers;
+﻿using OpenQA.Selenium;
+using SFA.DAS.UI.FrameworkHelpers;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
@@ -8,10 +10,12 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
     public class RAAV1DataHelper
     {
         private readonly RandomDataGenerator _randomDataGenerator;
+        private readonly RegexHelper _regexHelper;
 
-        public RAAV1DataHelper(RandomDataGenerator randomDataGenerator)
+        public RAAV1DataHelper(RandomDataGenerator randomDataGenerator, RegexHelper regexHelper)
         {
             _randomDataGenerator = randomDataGenerator;
+            _regexHelper = regexHelper;
             EmployerDescription = _randomDataGenerator.GenerateRandomAlphabeticString(10);
             EmployerReason = _randomDataGenerator.GenerateRandomAlphabeticString(10);
             EmployerBody = _randomDataGenerator.GenerateRandomAlphabeticString(25);
@@ -34,6 +38,19 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
             FirstQuestion = _randomDataGenerator.GenerateRandomAlphabeticString(15);
             SecondQuestion = _randomDataGenerator.GenerateRandomAlphabeticString(15);
             AdditionalLocationInformation = _randomDataGenerator.GenerateRandomAlphabeticString(5);
+        }
+
+        public string EmployerErn { get; private set; }
+
+        public IWebElement Employers(List<IWebElement> links)
+        {
+            var randomEmployerLink = _randomDataGenerator.GenerateRandomNumberBetweenTwoValues(0, links.Count - 1);
+
+            var randomEmployer = links[randomEmployerLink];
+
+            EmployerErn = _regexHelper.GetEmployerERN(randomEmployer.GetAttribute("href"));
+
+            return randomEmployer;
         }
 
         public string EmployerDescription { get; }

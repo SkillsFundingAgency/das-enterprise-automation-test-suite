@@ -35,7 +35,9 @@ namespace SFA.DAS.RAA_V1.UITests.Project
         {
             var random = _context.Get<RandomDataGenerator>();
 
-            _context.Set(new RAAV1DataHelper(random));
+            var regexHelper = _context.Get<RegexHelper>();
+
+            _context.Set(new RAAV1DataHelper(random), regexHelper);
         }
     }
 }

@@ -31,6 +31,11 @@ namespace SFA.DAS.UI.Framework.TestSupport
             _browser = objectContext.GetBrowser();
         }
 
+        protected bool VerifyPage(By locator)
+        {
+
+        }
+
         protected bool VerifyPage()
         {
             if (_frameworkConfig.TakeEveryPageScreenShot && !_browser.IsCloudExecution())
@@ -39,11 +44,6 @@ namespace SFA.DAS.UI.Framework.TestSupport
             }
 
             return _pageInteractionHelper.VerifyPage(PageHeader, PageTitle);
-        }
-
-        protected bool VerifyPage(Action beforeAction)
-        {
-            return _pageInteractionHelper.VerifyPage(PageHeader, PageTitle, beforeAction);
         }
     }
 }

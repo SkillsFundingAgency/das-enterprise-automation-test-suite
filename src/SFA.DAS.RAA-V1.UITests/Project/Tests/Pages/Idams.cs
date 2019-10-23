@@ -15,13 +15,14 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages
         private readonly ScenarioContext _context;
         private readonly RAAV1Config _config;
         #endregion
+
         public Idams(ScenarioContext context): base(context)
         {
             _context = context;
             _config = context.GetRAAV1Config<RAAV1Config>();
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
-            VerifyPage();
+            VerifyPage(RAAStaffIdams);
         }
         
         #region Properties

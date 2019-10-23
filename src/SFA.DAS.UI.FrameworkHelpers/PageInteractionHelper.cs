@@ -25,11 +25,26 @@ namespace SFA.DAS.UI.FrameworkHelpers
             _webDriverWaitHelper.WaitforURLToChange(url);
         }
 
-        public bool VerifyPage(By locator, string expected, Action beforeAction = null)
+        public bool VerifyPage(By locator)
         {
             bool func()
             {
-                _webDriverWaitHelper.WaitForPageToLoad();
+                var elements = FindElements(locator);
+                if (elements.Count > 0)
+                {
+                    return true;
+                }
+
+                throw new Exception($"Page verification failed:{locator.ToString()} is not found");
+            }
+
+            return VerifyPage(func);
+        }
+
+        public bool VerifyPage(By locator, string expected)
+        {
+            bool func()
+            {
                 var actual = GetText(locator);
                 if (actual.Contains(expected))
                 {
@@ -40,7 +55,14 @@ namespace SFA.DAS.UI.FrameworkHelpers
                     + "\n Expected: " + expected + " page"
                     + "\n Found: " + actual + " page");
             }
-            
+
+            return VerifyPage(func);
+        }
+
+        private bool VerifyPage(Func<bool> func)
+        {
+            void beforeAction() => _webDriverWaitHelper.WaitForPageToLoad();
+
             return _retryHelper.RetryOnException(func, beforeAction);
         }
 
@@ -180,6 +202,8 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         public IWebElement GetLink(By by, string linkText) => GetLink(by, (x) => x == linkText);
 
+        public List<IWebElement> GetLinks(By by, string linkText) => _webDriver.FindElements(by).Where(x => x.GetAttribute("innerText") == linkText).ToList();
+
         public IWebElement GetLinkContains(By by, string linkText) => GetLink(by, (x) => x.ContainsCompareCaseInsensitive(linkText));
 
         public string GetRowData(By tableIdentifier, string rowIdentifier)
@@ -198,7 +222,6 @@ namespace SFA.DAS.UI.FrameworkHelpers
         }
 
         public IWebElement GetLink(By by, Func<string, bool> func) => _webDriver.FindElements(by).ToList().First(x => func(x.GetAttribute("innerText")));
-
 
         public List<string> GetAvailableOptions(By @by)
         {
