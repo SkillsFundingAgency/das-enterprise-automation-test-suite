@@ -14,13 +14,15 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
 
         public RAAV1DataHelper(RandomDataGenerator randomDataGenerator, RegexHelper regexHelper)
         {
+            var datetime = System.DateTime.Now;
             _randomDataGenerator = randomDataGenerator;
             _regexHelper = regexHelper;
             EmployerDescription = _randomDataGenerator.GenerateRandomAlphabeticString(10);
             EmployerReason = _randomDataGenerator.GenerateRandomAlphabeticString(10);
             EmployerBody = _randomDataGenerator.GenerateRandomAlphabeticString(25);
             EmployerWebsiteUrl = WebsiteUrl(EmployerDescription);
-            VacancyShortDescription = _randomDataGenerator.GenerateRandomAlphabeticString(10);
+            VacancyTitle = $"{_randomDataGenerator.GenerateRandomAlphabeticString(10)}_{datetime.ToString("ddMMMyyyy_HHmmss")}";
+            VacancyShortDescription = _randomDataGenerator.GenerateRandomAlphabeticString(15);
             VacancyDescription = _randomDataGenerator.GenerateRandomAlphabeticString(50);
             VacancyWebsiteUrl = WebsiteUrl(VacancyShortDescription);
             ApplicationProcess = _randomDataGenerator.GenerateRandomAlphabeticString(40);
@@ -61,6 +63,8 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
         
         public string EmployerWebsiteUrl { get; }
 
+        public string VacancyTitle { get; }
+
         public string VacancyShortDescription { get; }
 
         public string VacancyWebsiteUrl { get; }
@@ -68,6 +72,8 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
         public string ApplicationProcess { get; }
 
         public string TrainingDetails { get; }
+
+        public int RandomCourse => _randomDataGenerator.GenerateRandomNumberBetweenTwoValues(2, 20);
 
         public string TrainingContactName { get; }
 

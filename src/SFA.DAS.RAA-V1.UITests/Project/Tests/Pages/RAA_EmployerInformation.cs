@@ -58,19 +58,19 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages
             return this;
         }
 
-        public RAA_BasicVacancyDetails EmployerWishesToBeAnonymous()
+        public void EmployerWishesToBeAnonymous()
         {
             _formCompletionHelper.SelectRadioOptionByText("No, the employer wants to remain anonymous");
             _formCompletionHelper.EnterText(EmployerDescription, _dataHelper.EmployerDescription);
             _formCompletionHelper.EnterText(EmployerReason, _dataHelper.EmployerReason);
-            return SaveAndContinue();
+            SaveAndContinue();
         }
 
-        public RAA_BasicVacancyDetails EmployerDoesNotWantToBeAnonymous()
+        public void EmployerDoesNotWantToBeAnonymous()
         {
             _formCompletionHelper.SelectRadioOptionByText("Yes");
             _formCompletionHelper.EnterText(EmployerWebsiteUrlOptional, _dataHelper.EmployerWebsiteUrl);
-            return SaveAndContinue();
+            SaveAndContinue();
         }
 
         private RAA_EmployerInformation SetNoOfVacancy(string position)
@@ -79,11 +79,10 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages
             return this;
         }
 
-        private RAA_BasicVacancyDetails SaveAndContinue()
+        private void SaveAndContinue()
         {
             EnterAboutTheEmployerInformation();
             _formCompletionHelper.ClickButtonByText("Save and continue");
-            return new RAA_BasicVacancyDetails(_context);
         }
 
         private RAA_EmployerInformation EnterAboutTheEmployerInformation()

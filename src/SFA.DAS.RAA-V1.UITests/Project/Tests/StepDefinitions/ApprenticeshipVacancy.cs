@@ -62,24 +62,24 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
             switch (answer)
             {
                 case "Yes":
-                    _basicVacancyDetails = _raaEmployerInformation.EmployerDoesNotWantToBeAnonymous();
+                    _raaEmployerInformation.EmployerDoesNotWantToBeAnonymous();
                     break;
 
                 case "No":
-                    _basicVacancyDetails = _raaEmployerInformation.EmployerWishesToBeAnonymous();
+                    _raaEmployerInformation.EmployerWishesToBeAnonymous();
                     break;
             }
         }
 
-        [When(@"the Provider fills out details for an Offline Vacancy '(.*)','(.*)','(.*)','(.*)','(.*)','(.*)','(.*)','(.*)'")]
-        public void WhenTheProviderFillsOutDetailsForAnOfflineVacancy(string location, string title, string typeOfVacancy, string disabilityConfident, string applicationMethod, string apprenticeShip, string hoursPerWeek, string vacancyDuration)
+        [When(@"the Provider fills out details for an Offline Vacancy '(.*)','(.*)','(.*)','(.*)','(.*)','(.*)'")]
+        public void WhenTheProviderFillsOutDetailsForAnOfflineVacancy(string location, string disabilityConfident, string applicationMethod, string apprenticeShip, string hoursPerWeek, string vacancyDuration)
         {
             switch (location)
             {
                 case "Use the main employer address":
 
-                    _enterTrainingDetails = _basicVacancyDetails
-                        .EnterVacancyTitle(title, typeOfVacancy)
+                    _enterTrainingDetails = new RAA_BasicVacancyDetails(_context)
+                        .EnterVacancyTitle()
                         .EnterVacancyShortDescription()
                         .ClickOnVacancyType(VacancyType.Apprenticeship)
                         .CickDisabilityConfident(disabilityConfident)
@@ -117,7 +117,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
                         new RAA_ExtraQuestions(_context)
                             .EnterFirstQuestion()
                             .EnterSecondQuestion()
-                            .ClickPreviewVacacncyButton();
+                            .ClickPreviewVacancyButton();
                     }
                     break;
 
@@ -134,10 +134,8 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
                         .EnterAdditionalLocationInformation()
                         .ClickSaveAndContinue();
 
-                    const string multiLocation = "Multi-Location ";
-
-                    _enterTrainingDetails = _basicVacancyDetails
-                        .EnterVacancyTitle(title, typeOfVacancy + multiLocation)
+                    _enterTrainingDetails = new RAA_BasicVacancyDetails(_context)
+                        .EnterVacancyTitle()
                         .EnterVacancyShortDescription()
                         .ClickOnVacancyType(VacancyType.Apprenticeship)
                         .CickDisabilityConfident(disabilityConfident)
@@ -175,16 +173,14 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
                         new RAA_ExtraQuestions(_context)
                             .EnterFirstQuestion()
                             .EnterSecondQuestion()
-                            .ClickPreviewVacacncyButton();
+                            .ClickPreviewVacancyButton();
                     }
                     break;
 
                 case "Set as a nationwide vacancy":
 
-                    const string nationwide = "NationwideVacancy";
-
-                    _enterTrainingDetails = _basicVacancyDetails
-                        .EnterVacancyTitle(title, typeOfVacancy + nationwide)
+                    _enterTrainingDetails = new RAA_BasicVacancyDetails(_context)
+                        .EnterVacancyTitle()
                         .EnterVacancyShortDescription()
                         .ClickOnVacancyType(VacancyType.Apprenticeship)
                         .CickDisabilityConfident("Yes")
@@ -222,7 +218,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
                         new RAA_ExtraQuestions(_context)
                             .EnterFirstQuestion()
                             .EnterSecondQuestion()
-                            .ClickPreviewVacacncyButton();
+                            .ClickPreviewVacancyButton();
                     }
                     break;
             }

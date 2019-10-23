@@ -42,14 +42,12 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages
             return this;
         }
 
-        public RAA_ExtraQuestions ClickPreviewVacacncyButton()
+        public void ClickPreviewVacancyButton()
         {
             if (_pageInteractionHelper.IsElementDisplayed(ClickPreviewVacacncy))
             {
                 _formCompletionHelper.Click(ClickPreviewVacacncy);
             }
-            return this;
         }
-
     }
 }

@@ -8,7 +8,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages
 {
     public class RAA_EnterTrainingDetails : BasePage
     {
-        protected override string PageTitle => "Enter Training Details";
+        protected override string PageTitle => "Enter training details";
 
         #region Helpers and Context
         private readonly FormCompletionHelper _formCompletionHelper;
@@ -17,19 +17,15 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages
         private readonly IWebDriver _webDriver;
         #endregion
 
-        private By TrainingTypeFramework => By.Id("training-type-frameworks");
-        private By TrainingTypeStandards => By.Id("training-type-standards");
         private By StandardsDropDownMenu => By.Id("StandardId");
         private By FrameworkDropDown => By.Id("s2id_FrameworkCodeName");
         private By FrameWorkDropdownTextEntry => By.CssSelector(".select2-input");
-        private By FWkApprenticeshipLevelIntermediateButton => By.CssSelector("#apprenticeship-level-intermediate");
         private By ContactNameField => By.Id("ContactName");
         private By ContactumberField => By.CssSelector("#ContactNumber");
         private By EmailField => By.CssSelector("#ContactEmail");
         private By SaveAndContinueButton => By.Id("createVacancyButton");
         private By Iframe => By.CssSelector("iframe");
         private By TraineeshipDropdown => By.Id("s2id_SectorCodeName");
-        private By TraineeshipSelector => By.CssSelector("#s2id_autogen1_search");
         private By TrainingBody => By.XPath("//body");
 
 
@@ -44,28 +40,33 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages
 
         public RAA_EnterTrainingDetails SelectApprenticeshipType(string frameworkOrStanndard)
         {
+            void SelectRandomCourse(By locator)
+            {
+                for (int i = 0; i < _dataHelper.RandomCourse; i++)
+                {
+                    _formCompletionHelper.SendKeys(locator, Keys.ArrowDown);
+                }
+                _formCompletionHelper.SendKeys(locator, Keys.Enter);
+            }
+
             switch (frameworkOrStanndard)
             {
                 case "Framework":
-                    _formCompletionHelper.EnterSpace(TrainingTypeFramework);
+                    _formCompletionHelper.SelectRadioOptionByText("Framework");
                     _formCompletionHelper.Click(FrameworkDropDown);
-                    _formCompletionHelper.SendKeys(FrameWorkDropdownTextEntry,Keys.ArrowDown);
-                    _formCompletionHelper.SendKeys(FrameWorkDropdownTextEntry,Keys.ArrowDown);
-                    _formCompletionHelper.SendKeys(FrameWorkDropdownTextEntry,Keys.Enter);
-                    _formCompletionHelper.EnterSpace(FWkApprenticeshipLevelIntermediateButton);
+                    SelectRandomCourse(FrameWorkDropdownTextEntry);
+                    _formCompletionHelper.SelectRadioOptionByText("Intermediate");
                     break;
 
                 case "Standard":
-                    _formCompletionHelper.EnterSpace(TrainingTypeStandards);
+                    _formCompletionHelper.SelectRadioOptionByText("Standard");
                     _formCompletionHelper.Click(StandardsDropDownMenu);
                     _formCompletionHelper.SelectFromDropDownByValue(StandardsDropDownMenu, "208");
                     break;
 
                 case "Traineeship":
                     _formCompletionHelper.Click(TraineeshipDropdown);
-                    _formCompletionHelper.SendKeys(TraineeshipSelector, Keys.ArrowDown);
-                    _formCompletionHelper.SendKeys(TraineeshipSelector, Keys.ArrowDown);
-                    _formCompletionHelper.SendKeys(TraineeshipSelector, Keys.Enter);
+                    SelectRandomCourse(FrameWorkDropdownTextEntry);
                     break;
             }
             return this;

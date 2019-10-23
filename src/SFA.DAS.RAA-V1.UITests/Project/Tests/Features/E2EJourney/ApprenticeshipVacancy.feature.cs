@@ -69,24 +69,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Features.E2EJourney
             testRunner.CollectScenarioErrors();
         }
         
-        public virtual void V1_E2E_CreateApproveAndApplyForAApprenticeshipVacancy(
-                    string location, 
-                    string anonymity, 
-                    string title, 
-                    string typeOfVacancy, 
-                    string disabilityConfident, 
-                    string applicationMethod, 
-                    string apprenticeshipType, 
-                    string hoursPerWeek, 
-                    string vacancyDuration, 
-                    string changeteam, 
-                    string changeRole, 
-                    string provider, 
-                    string noOfPositions, 
-                    string qualificationDetails, 
-                    string workExperience, 
-                    string trainingCourse, 
-                    string[] exampleTags)
+        public virtual void V1_E2E_CreateApproveAndApplyForAApprenticeshipVacancy(string location, string anonymity, string disabilityConfident, string applicationMethod, string apprenticeshipType, string hoursPerWeek, string vacancyDuration, string changeteam, string changeRole, string provider, string noOfPositions, string qualificationDetails, string workExperience, string trainingCourse, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "V1_E2E"};
@@ -106,7 +89,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And(string.Format("the Provider chooses their \'{0}\'", anonymity), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 10
  testRunner.And(string.Format("the Provider fills out details for an Offline Vacancy \'{0}\',\'{1}\',\'{2}\',\'{3}\',\'{4" +
-                        "}\',\'{5}\',\'{6}\',\'{7}\'", location, title, typeOfVacancy, disabilityConfident, applicationMethod, apprenticeshipType, hoursPerWeek, vacancyDuration), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+                        "}\',\'{5}\'", location, disabilityConfident, applicationMethod, apprenticeshipType, hoursPerWeek, vacancyDuration), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 11
  testRunner.Then("Provider is able to submit the vacancy for approval", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
@@ -120,7 +103,7 @@ this.ScenarioInitialize(scenarioInfo);
         public virtual void V1_E2E_CreateApproveAndApplyForAApprenticeshipVacancy_UseTheMainEmployerAddress()
         {
 #line 6
-this.V1_E2E_CreateApproveAndApplyForAApprenticeshipVacancy("Use the main employer address", "No", "ManualTestingTitle", "Apprenticeship", "No", "Online", "Framework", "42", "52", "West Midlands", "Vacancy reviewer", "Department for Business, Innovation and Skills-Skills Funding Agency", "2", "Yes", "Yes", "Yes", ((string[])(null)));
+this.V1_E2E_CreateApproveAndApplyForAApprenticeshipVacancy("Use the main employer address", "No", "No", "Online", "Framework", "42", "52", "West Midlands", "Vacancy reviewer", "Department for Business, Innovation and Skills-Skills Funding Agency", "2", "Yes", "Yes", "Yes", ((string[])(null)));
 #line hidden
         }
         
@@ -131,7 +114,7 @@ this.V1_E2E_CreateApproveAndApplyForAApprenticeshipVacancy("Use the main employe
         public virtual void V1_E2E_CreateApproveAndApplyForAApprenticeshipVacancy_AddDifferentLocation()
         {
 #line 6
-this.V1_E2E_CreateApproveAndApplyForAApprenticeshipVacancy("Add different location", "Yes", "RegressionTestingTitle", "Apprenticeship", "Yes", "Online", "Standard", "42", "52", "West Midlands", "Vacancy reviewer", "Department for Business, Innovation and Skills-Skills Funding Agency", "3", "No", "Yes", "No", ((string[])(null)));
+this.V1_E2E_CreateApproveAndApplyForAApprenticeshipVacancy("Add different location", "Yes", "Yes", "Online", "Standard", "42", "52", "West Midlands", "Vacancy reviewer", "Department for Business, Innovation and Skills-Skills Funding Agency", "3", "No", "Yes", "No", ((string[])(null)));
 #line hidden
         }
         
@@ -142,7 +125,7 @@ this.V1_E2E_CreateApproveAndApplyForAApprenticeshipVacancy("Add different locati
         public virtual void V1_E2E_CreateApproveAndApplyForAApprenticeshipVacancy_SetAsANationwideVacancy()
         {
 #line 6
-this.V1_E2E_CreateApproveAndApplyForAApprenticeshipVacancy("Set as a nationwide vacancy", "Yes", "RegressionTestingTitle", "Apprenticeship", "Yes", "Online", "Standard", "42", "52", "West Midlands", "Vacancy reviewer", "Department for Business, Innovation and Skills-Skills Funding Agency", "3", "Yes", "No", "No", ((string[])(null)));
+this.V1_E2E_CreateApproveAndApplyForAApprenticeshipVacancy("Set as a nationwide vacancy", "Yes", "Yes", "Online", "Standard", "42", "52", "West Midlands", "Vacancy reviewer", "Department for Business, Innovation and Skills-Skills Funding Agency", "3", "Yes", "No", "No", ((string[])(null)));
 #line hidden
         }
     }

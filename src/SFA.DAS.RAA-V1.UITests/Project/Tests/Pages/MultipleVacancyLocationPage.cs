@@ -73,11 +73,9 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages
             _pageInteractionHelper.WaitforURLToChange("/vacancy/locations");
             return this;
         }
-
-        public MultipleVacancyLocationPage ClickSaveAndContinue()
+        public void ClickSaveAndContinue()
         {
             _formCompletionHelper.Click(SaveAndContinueButton);
-            return this;
         }
     }
 }

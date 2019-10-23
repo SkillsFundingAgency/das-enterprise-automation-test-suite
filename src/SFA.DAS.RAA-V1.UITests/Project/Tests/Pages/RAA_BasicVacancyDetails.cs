@@ -26,14 +26,11 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages
 
         private By ApprenticeShipOfflineVacancy => By.Id("apprenticeship-offline-vacancy");
         private By ApprenticeShipOnlineVacancy => By.Id("apprenticeship-online-vacancy");
-        private By CheckDisabilityConfident => By.Id("is-disability-confident");
         private By OfflineApplicationProcess => By.Id("apprenticheship-offline-application-instructions");
         private By OfflineVacancyUrl => By.Id("apprenticeship-offline-application-url");
         private By SaveAndContinueButton => By.Id("createVacancyButton");
         private By VacancyShortDescription => By.CssSelector("#ShortDescription");
         private By VacancyTitle => By.CssSelector("#Title");
-        private By VacancyTypeApprenticeShip => By.Id("vacancy-type-apprenticeship");
-        private By VacancyTypeTraineeship => By.Id("vacancy-type-traineeship");
 
         public RAA_BasicVacancyDetails(ScenarioContext context) : base(context)
         {
@@ -44,16 +41,14 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages
             VerifyPage();
         }
 
-        public RAA_BasicVacancyDetails EnterVacancyTitle(string v1Text, string typeOfVacancy)
+        public RAA_BasicVacancyDetails EnterVacancyTitle()
         {
-            var title = v1Text + typeOfVacancy + System.DateTime.Now;
-            _formCompletionHelper.EnterText(VacancyTitle, title);
+            _formCompletionHelper.EnterText(VacancyTitle, _dataHelper.VacancyTitle);
             return this;
         }
 
         public RAA_BasicVacancyDetails EnterVacancyShortDescription()
         {
-            _formCompletionHelper.Click(VacancyShortDescription);
             _formCompletionHelper.EnterText(VacancyShortDescription, _dataHelper.VacancyShortDescription);
             return this;
         }
@@ -61,15 +56,15 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages
         public RAA_BasicVacancyDetails ClickOnVacancyType(VacancyType vacancyType)
         {
             if (vacancyType == VacancyType.Traineeship)
-                _formCompletionHelper.EnterSpace(VacancyTypeTraineeship);
+                _formCompletionHelper.SelectRadioOptionByText("Traineeship");
             else
-                _formCompletionHelper.EnterSpace(VacancyTypeApprenticeShip);
+                _formCompletionHelper.SelectRadioOptionByText("Apprenticeship");  
             return this;
         }
 
         public RAA_BasicVacancyDetails CickDisabilityConfident(string answer)
         {
-            if (answer == "Yes") _formCompletionHelper.EnterSpace(CheckDisabilityConfident);
+            if (answer == "Yes") _formCompletionHelper.SelectCheckBoxByText("The employer is signed up to the Disability Confident scheme");
             return this;
         }
 
@@ -83,17 +78,14 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages
         {
             if (onlineoffline == "Online")
             {
-                _formCompletionHelper.EnterSpace(ApprenticeShipOnlineVacancy);
+                _formCompletionHelper.SelectRadioOptionByText("Candidates will apply on this website");
             }
             else if (onlineoffline == "Offline")
             {
-                _formCompletionHelper.EnterSpace(ApprenticeShipOfflineVacancy);
-                _formCompletionHelper.Click(OfflineVacancyUrl);
+                _formCompletionHelper.SelectRadioOptionByText("Candidates will apply through an external website");
                 _formCompletionHelper.EnterText(OfflineVacancyUrl, _dataHelper.VacancyWebsiteUrl);
-                _formCompletionHelper.Click(OfflineApplicationProcess);
                 _formCompletionHelper.EnterText(OfflineApplicationProcess, _dataHelper.ApplicationProcess);
             }
-
             return this;
         }
 

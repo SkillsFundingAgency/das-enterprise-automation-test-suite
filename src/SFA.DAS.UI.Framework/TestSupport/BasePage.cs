@@ -33,7 +33,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
 
         protected bool VerifyPage(By locator)
         {
-
+            return _pageInteractionHelper.VerifyPage(locator);
         }
 
         protected bool VerifyPage()

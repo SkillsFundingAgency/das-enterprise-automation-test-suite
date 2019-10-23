@@ -154,6 +154,11 @@ namespace SFA.DAS.UI.FrameworkHelpers
             ClickElementByText(By.CssSelector("label.selection-button-radio"), text);
         }
 
+        public void SelectCheckBoxByText(String text)
+        {
+            ClickElementByText(By.CssSelector("label.selection-button-checkbox"), text);
+        }
+
         private SelectElement SelectElement(IWebElement element)
         {
             return new SelectElement(element);
