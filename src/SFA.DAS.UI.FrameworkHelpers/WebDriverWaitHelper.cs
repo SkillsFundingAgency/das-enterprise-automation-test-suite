@@ -27,6 +27,8 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         internal void WaitForPageToLoad() => _pagenavigationWait.Until(driver => IsDocumentReady(driver));
 
+        internal void WaitforURLToChange(string url) => _pagenavigationWait.Until(ExpectedConditions.UrlContains(url));
+
         internal void TurnOnImplicitWaits() => _webDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(_timeOutConfig.ImplicitWait);
 
         private bool IsDocumentReady(IWebDriver driver) => ((IJavaScriptExecutor)driver).ExecuteScript("return document.readyState").Equals("complete");

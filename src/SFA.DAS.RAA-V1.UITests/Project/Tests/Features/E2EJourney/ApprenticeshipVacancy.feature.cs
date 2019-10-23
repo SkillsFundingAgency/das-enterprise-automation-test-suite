@@ -109,20 +109,6 @@ this.ScenarioInitialize(scenarioInfo);
                         "}\',\'{5}\',\'{6}\',\'{7}\'", location, title, typeOfVacancy, disabilityConfident, applicationMethod, apprenticeshipType, hoursPerWeek, vacancyDuration), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 11
  testRunner.Then("Provider is able to submit the vacancy for approval", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 12
- testRunner.When("the Reviewer initiates reviewing the Vacancy in \'Manage\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 13
- testRunner.Then(string.Format("the Reviewer is able to approve the Vacancy \'{0}\',\'{1}\',\'{2}\',\'<VacancyReference>" +
-                        "\'", changeteam, changeRole, provider), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 14
- testRunner.When("the Applicant initiates applying for a Vacancy in \'FAA\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 15
- testRunner.And("Applicant searches for the Vacancy \'<VacancyReference>\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 16
- testRunner.And(string.Format("fills the application form \'{0}\',\'{1}\' ,\'{2}\'", qualificationDetails, workExperience, trainingCourse), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 17
- testRunner.Then("the Provider is able to view the Applicant\'s application <VacancyReference> in \'R" +
-                    "ecruit\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

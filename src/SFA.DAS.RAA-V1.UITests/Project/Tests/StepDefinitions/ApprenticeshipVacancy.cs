@@ -1,4 +1,5 @@
 ﻿using SFA.DAS.RAA_V1.UITests.Project.Tests.Pages;
+using SFA.DAS.UI.Framework.TestSupport;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -10,6 +11,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
     public class ApprenticeshipVacancy
     {
         private readonly ScenarioContext _context;
+        private readonly ObjectContext _objectContext; 
         private RAA_EmployerSelection _employerSelection;
         private RAA_EmployerInformation _raaEmployerInformation;
         private RAA_BasicVacancyDetails _basicVacancyDetails;
@@ -21,6 +23,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
         public ApprenticeshipVacancy(ScenarioContext context)
         {
             _context = context;
+            _objectContext = context.Get<ObjectContext>();
         }
 
         [Given(@"the Provider initiates Create Apprenticeship Vacancy in Recruit")]
@@ -75,7 +78,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
             {
                 case "Use the main employer address":
 
-                    _basicVacancyDetails
+                    _enterTrainingDetails = _basicVacancyDetails
                         .EnterVacancyTitle(title, typeOfVacancy)
                         .EnterVacancyShortDescription()
                         .ClickOnVacancyType(VacancyType.Apprenticeship)
@@ -83,7 +86,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
                         .ApplicationMethod(applicationMethod)
                         .ClickSaveAndContinueButton();
 
-                    _enterTrainingDetails
+                    _enterFurtherDetails = _enterTrainingDetails
                         .SelectApprenticeshipType(apprenticeShip)
                         .EnterTrainingToBeProvided()
                         .EnterContactName()
@@ -91,7 +94,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
                         .EnterEmailDetails()
                         .ClickOnSaveAndContinue();
 
-                    _enterFurtherDetails
+                    _requirementsAndProspects = _enterFurtherDetails
                         .EnterWorkingInformation()
                         .EnterHoursPerWeek(hoursPerWeek)
                         .ClickApprenticeshipMinimumWage()
@@ -108,9 +111,10 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
                         .EnterFutureProspectsText()
                         .EnterThingsToConsiderText()
                         .ClickSaveAndContinue();
+
                     if (applicationMethod != "Offline")
                     {
-                        _extraQuestions
+                        new RAA_ExtraQuestions(_context)
                             .EnterFirstQuestion()
                             .EnterSecondQuestion()
                             .ClickPreviewVacacncyButton();
@@ -119,7 +123,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
 
                 case "Add different location":
 
-                    _multipleVacancyLocationPage
+                    new MultipleVacancyLocationPage(_context)
                         .EnterPostCode("CV1 2WT")
                         .ClickOnTheFirstAddress()
                         .EnterNumberOfVacancy()
@@ -132,7 +136,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
 
                     const string multiLocation = "Multi-Location ";
 
-                    _basicVacancyDetails
+                    _enterTrainingDetails = _basicVacancyDetails
                         .EnterVacancyTitle(title, typeOfVacancy + multiLocation)
                         .EnterVacancyShortDescription()
                         .ClickOnVacancyType(VacancyType.Apprenticeship)
@@ -140,7 +144,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
                         .ApplicationMethod(applicationMethod)
                         .ClickSaveAndContinueButton();
 
-                    _enterTrainingDetails
+                    _enterFurtherDetails = _enterTrainingDetails
                         .SelectApprenticeshipType(apprenticeShip)
                         .EnterTrainingToBeProvided()
                         .EnterContactName()
@@ -148,7 +152,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
                         .EnterEmailDetails()
                         .ClickOnSaveAndContinue();
 
-                    _enterFurtherDetails
+                    _requirementsAndProspects = _enterFurtherDetails
                         .EnterWorkingInformation()
                         .EnterHoursPerWeek(hoursPerWeek)
                         .ClickApprenticeshipMinimumWage()
@@ -168,7 +172,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
 
                     if (applicationMethod != "Offline")
                     {
-                        _extraQuestions
+                        new RAA_ExtraQuestions(_context)
                             .EnterFirstQuestion()
                             .EnterSecondQuestion()
                             .ClickPreviewVacacncyButton();
@@ -179,7 +183,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
 
                     const string nationwide = "NationwideVacancy ";
 
-                    _basicVacancyDetails
+                    _enterTrainingDetails = _basicVacancyDetails
                         .EnterVacancyTitle(title, typeOfVacancy + nationwide)
                         .EnterVacancyShortDescription()
                         .ClickOnVacancyType(VacancyType.Apprenticeship)
@@ -187,7 +191,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
                         .ApplicationMethod(applicationMethod)
                         .ClickSaveAndContinueButton();
 
-                    _enterTrainingDetails
+                    _enterFurtherDetails = _enterTrainingDetails
                         .SelectApprenticeshipType(apprenticeShip)
                         .EnterTrainingToBeProvided()
                         .EnterContactName()
@@ -195,7 +199,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
                         .EnterEmailDetails()
                         .ClickOnSaveAndContinue();
 
-                    _enterFurtherDetails
+                    _requirementsAndProspects = _enterFurtherDetails
                         .EnterWorkingInformation()
                         .EnterHoursPerWeek("37")
                         .ClickApprenticeshipMinimumWage()
@@ -215,13 +219,28 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
 
                     if (applicationMethod != "Offline")
                     {
-                        _extraQuestions
+                        new RAA_ExtraQuestions(_context)
                             .EnterFirstQuestion()
                             .EnterSecondQuestion()
                             .ClickPreviewVacacncyButton();
                     }
                     break;
             }
+        }
+
+        [Then(@"Provider is able to submit the vacancy for approval")]
+        public void ThenProviderIsAbleToSubmitTheVacancyForApproval()
+        {
+            var vacancyReference = new RAA_VacancyPreview(_context)
+            .ClickSubmitForApprovalButton();
+            
+            var referenceNumber1 = vacancyReference.GetVacancyReference();
+
+            var referenceNumber = (referenceNumber1.Remove(0, 2)).TrimStart('0');
+            
+            _objectContext.SetVacancyReference(referenceNumber);
+
+            vacancyReference.ExitFromWebsite();
         }
     }
 }

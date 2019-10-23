@@ -31,6 +31,9 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
             DesiredQualifications = _randomDataGenerator.GenerateRandomAlphabeticString(24);
             FutureProspects = _randomDataGenerator.GenerateRandomAlphabeticString(30);
             ThingsToConsider = _randomDataGenerator.GenerateRandomAlphabeticString(35);
+            FirstQuestion = _randomDataGenerator.GenerateRandomAlphabeticString(15);
+            SecondQuestion = _randomDataGenerator.GenerateRandomAlphabeticString(15);
+            AdditionalLocationInformation = _randomDataGenerator.GenerateRandomAlphabeticString(5);
         }
 
         public string EmployerDescription { get; }
@@ -72,6 +75,14 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
         public string FutureProspects { get; }
         
         public string ThingsToConsider { get; }
+
+        public string SecondQuestion { get; }
+        
+        public string FirstQuestion { get; }
+
+        public string AdditionalLocationInformation { get;}
+        
+        public string NumberOfVacancy => "2" ;
 
         private string WebsiteUrl(string url) => $"https://www.{url}.com";
     }

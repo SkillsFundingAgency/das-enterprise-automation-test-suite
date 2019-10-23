@@ -97,10 +97,10 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages
             return this;
         }
 
-        public RAA_EnterTrainingDetails ClickOnSaveAndContinue()
+        public RAA_EnterFurtherDetails ClickOnSaveAndContinue()
         {
             _formCompletionHelper.Click(SaveAndContinueButton);
-            return this;
+            return new RAA_EnterFurtherDetails(_context);
         }
     }
 }

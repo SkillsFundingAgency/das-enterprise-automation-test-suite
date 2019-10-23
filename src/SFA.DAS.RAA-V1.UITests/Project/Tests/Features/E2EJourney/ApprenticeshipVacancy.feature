@@ -9,12 +9,12 @@ Scenario Outline: V1_E2E - Create, Approve and Apply for a Apprenticeship Vacanc
 	And the Provider chooses their '<anonymity>'
 	And the Provider fills out details for an Offline Vacancy '<location>','<Title>','<TypeOfVacancy>','<DisabilityConfident>','<ApplicationMethod>','<ApprenticeshipType>','<HoursPerWeek>','<VacancyDuration>'
 	Then Provider is able to submit the vacancy for approval
-	When the Reviewer initiates reviewing the Vacancy in 'Manage'
-	Then the Reviewer is able to approve the Vacancy '<Changeteam>','<ChangeRole>','<Provider>','<VacancyReference>'
-	When the Applicant initiates applying for a Vacancy in 'FAA'
-	And Applicant searches for the Vacancy '<VacancyReference>'
-	And fills the application form '<QualificationDetails>','<WorkExperience>' ,'<TrainingCourse>'
-	Then the Provider is able to view the Applicant's application <VacancyReference> in 'Recruit'
+	#When the Reviewer initiates reviewing the Vacancy in 'Manage'
+	#Then the Reviewer is able to approve the Vacancy '<Changeteam>','<ChangeRole>','<Provider>','<VacancyReference>'
+	#When the Applicant initiates applying for a Vacancy in 'FAA'
+	#And Applicant searches for the Vacancy '<VacancyReference>'
+	#And fills the application form '<QualificationDetails>','<WorkExperience>' ,'<TrainingCourse>'
+	#Then the Provider is able to view the Applicant's application <VacancyReference> in 'Recruit'
 
 Examples:
 | location                      | anonymity | Title                  | TypeOfVacancy  | DisabilityConfident | ApplicationMethod | ApprenticeshipType | HoursPerWeek | VacancyDuration | Changeteam    | ChangeRole       | Provider                                                             | NoOfPositions | QualificationDetails | WorkExperience | TrainingCourse |

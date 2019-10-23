@@ -20,6 +20,11 @@ namespace SFA.DAS.UI.FrameworkHelpers
             _retryHelper = retryHelper;
         }
 
+        public void WaitforURLToChange(string url)
+        {
+            _webDriverWaitHelper.WaitforURLToChange(url);
+        }
+
         public bool VerifyPage(By locator, string expected, Action beforeAction = null)
         {
             bool func()

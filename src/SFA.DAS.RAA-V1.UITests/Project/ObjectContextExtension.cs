@@ -1,0 +1,24 @@
+﻿using SFA.DAS.UI.Framework.TestSupport;
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace SFA.DAS.RAA_V1.UITests.Project
+{
+    public static class ObjectContextExtension
+    {
+        #region Constants
+        private const string VacancyReference = "vacancyreference";
+        #endregion
+
+        internal static void SetVacancyReference(this ObjectContext objectContext, string value)
+        {
+            objectContext.Set(VacancyReference, value);
+        }
+
+        public static string GetVacancyReference(this ObjectContext objectContext)
+        {
+            return objectContext.Get(VacancyReference);
+        }
+    }
+}
