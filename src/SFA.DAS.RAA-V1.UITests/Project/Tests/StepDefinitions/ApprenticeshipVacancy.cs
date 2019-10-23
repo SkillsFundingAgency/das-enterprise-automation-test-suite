@@ -181,7 +181,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
 
                 case "Set as a nationwide vacancy":
 
-                    const string nationwide = "NationwideVacancy ";
+                    const string nationwide = "NationwideVacancy";
 
                     _enterTrainingDetails = _basicVacancyDetails
                         .EnterVacancyTitle(title, typeOfVacancy + nationwide)

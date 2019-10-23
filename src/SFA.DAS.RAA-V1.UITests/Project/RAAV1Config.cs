@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace SFA.DAS.RAA_V1.UITests
+namespace SFA.DAS.RAA_V1.UITests.Project
 {
     public class RAAV1Config
     {
