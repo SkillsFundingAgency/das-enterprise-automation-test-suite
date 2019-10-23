@@ -35,7 +35,7 @@ namespace SFA.DAS.Approvals.UITests.Project
 
         internal static void SetReservationId(this ObjectContext objectContext, string value)
         {
-            objectContext.Set(ReservationId, value);
+            objectContext.Replace(ReservationId, value);
         }
 
         internal static void SetUln(this ObjectContext objectContext, string value)
