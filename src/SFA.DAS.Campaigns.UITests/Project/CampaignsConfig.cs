@@ -7,7 +7,6 @@ namespace SFA.DAS.Campaigns.UITests.Project
     public class CampaignsConfig
     { 
         public string TwoDigitProjectCode { get; set; }
-        public string CA_Browser { get; set; }
         public string CA_BaseUrl { get; set; }
     }
 }

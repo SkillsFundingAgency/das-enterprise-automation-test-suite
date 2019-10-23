@@ -31,7 +31,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Features
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "ApprenticeFeature", "\tAs a user\r\n\tI want to be able to navigate to Fire It Up home page\r\n\tSo that I ca" +
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "ApprenticeFeature", "\tAs a user\r\n\tI want to be able to navigate to Fire It Up home page\r\n\tSo that I ca" +
                     "n use the benefits of apprentice services and information ", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
@@ -125,12 +125,6 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Features
             this.ScenarioCleanup();
         }
         
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Application should show default value for Miles DropDown and valid error messages" +
-            " for invalid postcode and interest selection")]
-        [NUnit.Framework.TestCaseAttribute("Engineering and manufacturing", "123456", null)]
-        [NUnit.Framework.TestCaseAttribute("Care services", "AS$$TT55", null)]
-        [NUnit.Framework.TestCaseAttribute("Care services", "", null)]
         public virtual void ApplicationShouldShowDefaultValueForMilesDropDownAndValidErrorMessagesForInvalidPostcodeAndInterestSelection(string selectInterest, string postcode, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Application should show default value for Miles DropDown and valid error messages" +
@@ -158,6 +152,36 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Features
   testRunner.Then("I can verify the error message for invalid postcode", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Application should show default value for Miles DropDown and valid error messages" +
+            " for invalid postcode and interest selection: Variant 0")]
+        public virtual void ApplicationShouldShowDefaultValueForMilesDropDownAndValidErrorMessagesForInvalidPostcodeAndInterestSelection_Variant0()
+        {
+#line 26
+ this.ApplicationShouldShowDefaultValueForMilesDropDownAndValidErrorMessagesForInvalidPostcodeAndInterestSelection("Engineering and manufacturing", "123456", ((string[])(null)));
+#line hidden
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Application should show default value for Miles DropDown and valid error messages" +
+            " for invalid postcode and interest selection: Variant 1")]
+        public virtual void ApplicationShouldShowDefaultValueForMilesDropDownAndValidErrorMessagesForInvalidPostcodeAndInterestSelection_Variant1()
+        {
+#line 26
+ this.ApplicationShouldShowDefaultValueForMilesDropDownAndValidErrorMessagesForInvalidPostcodeAndInterestSelection("Care services", "AS$$TT55", ((string[])(null)));
+#line hidden
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Application should show default value for Miles DropDown and valid error messages" +
+            " for invalid postcode and interest selection: Variant 2")]
+        public virtual void ApplicationShouldShowDefaultValueForMilesDropDownAndValidErrorMessagesForInvalidPostcodeAndInterestSelection_Variant2()
+        {
+#line 26
+ this.ApplicationShouldShowDefaultValueForMilesDropDownAndValidErrorMessagesForInvalidPostcodeAndInterestSelection("Care services", "", ((string[])(null)));
+#line hidden
         }
         
         [NUnit.Framework.TestAttribute()]

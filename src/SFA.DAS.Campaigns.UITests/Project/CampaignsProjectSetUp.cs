@@ -10,14 +10,12 @@ namespace SFA.DAS.Campaigns.UITests.Project
     public class CampaignsProjectSetUp
     {
         private readonly ScenarioContext _context;
-        private readonly ObjectContext _objectContext;
         private readonly IConfigSection _configSection;
 
         public CampaignsProjectSetUp(ScenarioContext context)
         {
             _context = context;
             _configSection = context.Get<IConfigSection>();
-            _objectContext = context.Get<ObjectContext>();
         }
 
         [BeforeScenario(Order = 2)]
@@ -25,14 +23,11 @@ namespace SFA.DAS.Campaigns.UITests.Project
         {
             var config = _configSection.GetConfigSection<CampaignsConfig>();
             _context.SetCampaingnsProjectConfig(config);
-
-            _objectContext.SetBrowser(config.CA_Browser);
         }
 
         [BeforeScenario(Order = 22)]
         public void SetUpHelpers()
         {
-
             var WebDriver = _context.GetWebDriver();
             _context.Set(new PageInteractionCampaignsHelper(WebDriver));
         }
