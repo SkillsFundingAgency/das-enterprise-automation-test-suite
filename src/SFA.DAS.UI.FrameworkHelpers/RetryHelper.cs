@@ -92,7 +92,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         private (Action beforeAction, Action afterAction) ScrollIntoView(IWebElement element)
         {
-            void beforeAction() => ((IJavaScriptExecutor)_webDriver).ExecuteScript("arguments[0].scrollIntoView(false);", element);
+            void beforeAction() => ((IJavaScriptExecutor)_webDriver).ExecuteScript("arguments[0].scrollIntoView(true);", element);
 
             return (beforeAction, null);
         }
