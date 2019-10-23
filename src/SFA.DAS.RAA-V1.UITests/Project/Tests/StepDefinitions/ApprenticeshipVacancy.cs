@@ -12,6 +12,11 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
         private readonly ScenarioContext _context;
         private RAA_EmployerSelection _employerSelection;
         private RAA_EmployerInformation _raaEmployerInformation;
+        private RAA_BasicVacancyDetails _basicVacancyDetails;
+        private RAA_EnterTrainingDetails _enterTrainingDetails;
+        private RAA_EnterFurtherDetails _enterFurtherDetails;
+        private RAA_RequirementsAndProspects _requirementsAndProspects;
+
 
         public ApprenticeshipVacancy(ScenarioContext context)
         {
@@ -48,21 +53,175 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
             }
         }
 
-        [When(@"the Provider chooses their '([^']*)'")]
+        [When(@"the Provider chooses their '(.*)'")]
         public void WhenTheProviderChoosesTheir(string answer)
         {
             switch (answer)
             {
                 case "Yes":
-                    _raaEmployerInformation.EmployerDoesNotWantToBeAnonymous();
+                    _basicVacancyDetails = _raaEmployerInformation.EmployerDoesNotWantToBeAnonymous();
                     break;
 
                 case "No":
-                    _raaEmployerInformation.EmployerWishesToBeAnonymous();
+                    _basicVacancyDetails = _raaEmployerInformation.EmployerWishesToBeAnonymous();
                     break;
             }
         }
 
+        [When(@"the Provider fills out details for an Offline Vacancy '(.*)','(.*)','(.*)','(.*)','(.*)','(.*)','(.*)','(.*)'")]
+        public void WhenTheProviderFillsOutDetailsForAnOfflineVacancy(string location, string title, string typeOfVacancy, string disabilityConfident, string applicationMethod, string apprenticeShip, string hoursPerWeek, string vacancyDuration)
+        {
+            switch (location)
+            {
+                case "Use the main employer address":
 
+                    _basicVacancyDetails
+                        .EnterVacancyTitle(title, typeOfVacancy)
+                        .EnterVacancyShortDescription()
+                        .ClickOnVacancyType(VacancyType.Apprenticeship)
+                        .CickDisabilityConfident(disabilityConfident)
+                        .ApplicationMethod(applicationMethod)
+                        .ClickSaveAndContinueButton();
+
+                    _enterTrainingDetails
+                        .SelectApprenticeshipType(apprenticeShip)
+                        .EnterTrainingToBeProvided()
+                        .EnterContactName()
+                        .ContactTelephone()
+                        .EnterEmailDetails()
+                        .ClickOnSaveAndContinue();
+
+                    _enterFurtherDetails
+                        .EnterWorkingInformation()
+                        .EnterHoursPerWeek(hoursPerWeek)
+                        .ClickApprenticeshipMinimumWage()
+                        .EnterVacancyDuration(vacancyDuration)
+                        .EnterVacancyClosingDate()
+                        .EnterPossibleStartDate()
+                        .EnterVacancyDescription()
+                        .ClickSaveAndContinueButton();
+
+                    _requirementsAndProspects
+                        .EnterDesiredQualificationsText()
+                        .EnterPersonalQualitiesText()
+                        .EnterDesiredSkillsText()
+                        .EnterFutureProspectsText()
+                        .EnterThingsToConsiderText()
+                        .ClickSaveAndContinue();
+                    if (applicationMethod != "Offline")
+                    {
+                        _extraQuestions
+                            .EnterFirstQuestion()
+                            .EnterSecondQuestion()
+                            .ClickPreviewVacacncyButton();
+                    }
+                    break;
+
+                case "Add different location":
+
+                    _multipleVacancyLocationPage
+                        .EnterPostCode("CV1 2WT")
+                        .ClickOnTheFirstAddress()
+                        .EnterNumberOfVacancy()
+                        .ClickAddAnotherLocationLink()
+                        .EnterPostCode("BS16 4EA")
+                        .ClickOnTheFirstAddress()
+                        .EnterNumberOfVacancy2()
+                        .EnterAdditionalLocationInformation()
+                        .ClickSaveAndContinue();
+
+                    const string multiLocation = "Multi-Location ";
+
+                    _basicVacancyDetails
+                        .EnterVacancyTitle(title, typeOfVacancy + multiLocation)
+                        .EnterVacancyShortDescription()
+                        .ClickOnVacancyType(VacancyType.Apprenticeship)
+                        .CickDisabilityConfident(disabilityConfident)
+                        .ApplicationMethod(applicationMethod)
+                        .ClickSaveAndContinueButton();
+
+                    _enterTrainingDetails
+                        .SelectApprenticeshipType(apprenticeShip)
+                        .EnterTrainingToBeProvided()
+                        .EnterContactName()
+                        .ContactTelephone()
+                        .EnterEmailDetails()
+                        .ClickOnSaveAndContinue();
+
+                    _enterFurtherDetails
+                        .EnterWorkingInformation()
+                        .EnterHoursPerWeek(hoursPerWeek)
+                        .ClickApprenticeshipMinimumWage()
+                        .EnterVacancyDuration(vacancyDuration)
+                        .EnterVacancyClosingDate()
+                        .EnterPossibleStartDate()
+                        .EnterVacancyDescription()
+                        .ClickSaveAndContinueButton();
+
+                    _requirementsAndProspects
+                        .EnterDesiredQualificationsText()
+                        .EnterPersonalQualitiesText()
+                        .EnterDesiredSkillsText()
+                        .EnterFutureProspectsText()
+                        .EnterThingsToConsiderText()
+                        .ClickSaveAndContinue();
+
+                    if (applicationMethod != "Offline")
+                    {
+                        _extraQuestions
+                            .EnterFirstQuestion()
+                            .EnterSecondQuestion()
+                            .ClickPreviewVacacncyButton();
+                    }
+                    break;
+
+                case "Set as a nationwide vacancy":
+
+                    const string nationwide = "NationwideVacancy ";
+
+                    _basicVacancyDetails
+                        .EnterVacancyTitle(title, typeOfVacancy + nationwide)
+                        .EnterVacancyShortDescription()
+                        .ClickOnVacancyType(VacancyType.Apprenticeship)
+                        .CickDisabilityConfident("Yes")
+                        .ApplicationMethod(applicationMethod)
+                        .ClickSaveAndContinueButton();
+
+                    _enterTrainingDetails
+                        .SelectApprenticeshipType(apprenticeShip)
+                        .EnterTrainingToBeProvided()
+                        .EnterContactName()
+                        .ContactTelephone()
+                        .EnterEmailDetails()
+                        .ClickOnSaveAndContinue();
+
+                    _enterFurtherDetails
+                        .EnterWorkingInformation()
+                        .EnterHoursPerWeek("37")
+                        .ClickApprenticeshipMinimumWage()
+                        .EnterVacancyDuration("52")
+                        .EnterVacancyClosingDate()
+                        .EnterPossibleStartDate()
+                        .EnterVacancyDescription()
+                        .ClickSaveAndContinueButton();
+
+                    _requirementsAndProspects
+                        .EnterDesiredQualificationsText()
+                        .EnterPersonalQualitiesText()
+                        .EnterDesiredSkillsText()
+                        .EnterFutureProspectsText()
+                        .EnterThingsToConsiderText()
+                        .ClickSaveAndContinue();
+
+                    if (applicationMethod != "Offline")
+                    {
+                        _extraQuestions
+                            .EnterFirstQuestion()
+                            .EnterSecondQuestion()
+                            .ClickPreviewVacacncyButton();
+                    }
+                    break;
+            }
+        }
     }
 }

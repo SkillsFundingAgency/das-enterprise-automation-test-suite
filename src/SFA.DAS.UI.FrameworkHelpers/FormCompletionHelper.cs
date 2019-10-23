@@ -56,6 +56,16 @@ namespace SFA.DAS.UI.FrameworkHelpers
             EnterText(_webDriver.FindElement(locator), text);
         }
 
+        public void EnterSpace(By locator)
+        {
+            EnterText(_webDriver.FindElement(locator), Keys.Space);
+        }
+
+        public void SendKeys(By locator, string Key)
+        {
+            EnterText(_webDriver.FindElement(locator), Key);
+        }
+
         public void EnterText(By locator, int text)
         {
             EnterText(locator, text.ToString());
