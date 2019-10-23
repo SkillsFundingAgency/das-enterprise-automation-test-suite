@@ -97,7 +97,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages
 
         public RAA_EnterFurtherDetails EnterVacancyDescription()
         {
-            _formCompletionHelper.EnterText(Iframe, _dataHelper.VacancyDescription);
+            _formCompletionHelper.SendKeys(Iframe, Keys.Tab + _dataHelper.VacancyDescription);
             return this;
         }
     }

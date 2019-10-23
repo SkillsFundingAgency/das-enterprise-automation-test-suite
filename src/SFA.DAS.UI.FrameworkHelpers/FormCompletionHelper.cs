@@ -53,17 +53,19 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         public void EnterText(By locator, string text)
         {
+            _webDriverWaitHelper.WaitForElementToBeDisplayed(locator);
             EnterText(_webDriver.FindElement(locator), text);
         }
 
         public void EnterSpace(By locator)
         {
-            EnterText(_webDriver.FindElement(locator), Keys.Space);
+            SendKeys(locator, Keys.Space);
         }
 
         public void SendKeys(By locator, string Key)
         {
-            EnterText(_webDriver.FindElement(locator), Key);
+            _webDriverWaitHelper.WaitForElementToBeDisplayed(locator);
+            _webDriver.FindElement(locator).SendKeys(Key);
         }
 
         public void EnterText(By locator, int text)

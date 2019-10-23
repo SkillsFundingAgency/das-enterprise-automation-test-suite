@@ -30,8 +30,8 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
             TrainingContactName = _randomDataGenerator.GenerateRandomAlphabeticString(5);
             TrainingEmail = $"{TrainingContactName}@lorem.com";
             WorkkingWeek = _randomDataGenerator.GenerateRandomAlphabeticString(15);
-            VacancyStart = DateTime.Today.AddMonths(1).AddDays(3);
-            VacancyClosing = VacancyStart.AddMonths(2).AddDays(3);
+            VacancyClosing = DateTime.Today.AddMonths(2).AddDays(3);
+            VacancyStart = VacancyClosing.AddMonths(1).AddDays(1);
             DesiredSkills = _randomDataGenerator.GenerateRandomAlphabeticString(18);
             PersonalQualities = _randomDataGenerator.GenerateRandomAlphabeticString(20);
             DesiredQualifications = _randomDataGenerator.GenerateRandomAlphabeticString(24);

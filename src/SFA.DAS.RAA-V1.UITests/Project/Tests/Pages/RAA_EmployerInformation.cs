@@ -18,6 +18,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages
         #endregion
 
         private By NumberOfVacancy => By.Id("NumberOfPositions");
+        private By NationwideNumberOfVacancy => By.Id("NumberOfPositionsNationwide");
 
         private By EmployerDescription => By.Id("AnonymousEmployerDescription");
         
@@ -41,7 +42,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages
         public RAA_EmployerInformation UseTheMainEmployerAddress(string position)
         {
             _formCompletionHelper.SelectRadioOptionByText("Use the main employer address");
-            SetNoOfVacancy(position);
+            _formCompletionHelper.EnterText(NumberOfVacancy, position);
             return this;
         }
 
@@ -54,7 +55,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages
         public RAA_EmployerInformation SetAsANationWideVacancy(string position)
         {
             _formCompletionHelper.SelectRadioOptionByText("Set as a nationwide vacancy");
-            SetNoOfVacancy(position);
+            _formCompletionHelper.EnterText(NationwideNumberOfVacancy, position);
             return this;
         }
 
@@ -71,12 +72,6 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages
             _formCompletionHelper.SelectRadioOptionByText("Yes");
             _formCompletionHelper.EnterText(EmployerWebsiteUrlOptional, _dataHelper.EmployerWebsiteUrl);
             SaveAndContinue();
-        }
-
-        private RAA_EmployerInformation SetNoOfVacancy(string position)
-        {
-            _formCompletionHelper.EnterText(NumberOfVacancy, position);
-            return this;
         }
 
         private void SaveAndContinue()

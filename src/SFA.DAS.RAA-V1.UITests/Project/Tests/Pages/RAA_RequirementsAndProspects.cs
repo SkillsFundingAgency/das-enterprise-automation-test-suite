@@ -33,31 +33,31 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages
 
         public RAA_RequirementsAndProspects EnterDesiredSkillsText()
         {
-            _formCompletionHelper.EnterText(DesiredSkillsText, _dataHelper.DesiredSkills);
+            _formCompletionHelper.SendKeys(DesiredSkillsText, Keys.Tab + _dataHelper.DesiredSkills);
             return this;
         }
 
         public RAA_RequirementsAndProspects EnterPersonalQualitiesText()
         {
-            _formCompletionHelper.EnterText(PersonalQualitiesText, _dataHelper.PersonalQualities);
+            _formCompletionHelper.SendKeys(PersonalQualitiesText, Keys.Tab + _dataHelper.PersonalQualities);
             return this;
         }
 
         public RAA_RequirementsAndProspects EnterDesiredQualificationsText()
         {
-            _formCompletionHelper.EnterText(DesiredQualificationsText, _dataHelper.DesiredQualifications);
+            _formCompletionHelper.SendKeys(DesiredQualificationsText, Keys.Tab + _dataHelper.DesiredQualifications);
             return this;
         }
 
         public RAA_RequirementsAndProspects EnterFutureProspectsText()
         {
-            _formCompletionHelper.EnterText(FutureProspectsText, _dataHelper.FutureProspects);
+            _formCompletionHelper.SendKeys(FutureProspectsText, Keys.Tab + _dataHelper.FutureProspects);
             return this;
         }
 
         public RAA_RequirementsAndProspects EnterThingsToConsiderText()
         {
-            _formCompletionHelper.EnterText(ThingsToConsiderText, _dataHelper.ThingsToConsider);
+            _formCompletionHelper.SendKeys(ThingsToConsiderText, Keys.Tab + _dataHelper.ThingsToConsider);
             return this;
         }
 
