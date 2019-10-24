@@ -40,19 +40,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             _successfullyReservedFundingPage = _successfullyReservedFundingPage.VerifySucessMessage();
         }
-
-        [Then(@"the funding can be deleted")]
-        public void ThenTheFundingCanBeDeleted()
-        {
-            _successfullyReservedFundingPage.GoToHomePage();
-
-            new YourFundingReservationsHomePage(_context)
-                .OpenYourFundingReservations()
-                .DeleteTheReservedFunding()
-                .YesDeleteThisReservation();
-            //_successfullyReservedFundingPage.IsReserveFundingSuccessMessageUpdated();
-        }
-
+        
         [When(@"the Employer deletes all unused funding for an apprenticeship course")]
         public void WhenTheEmployerDeletesAllUnusedFundingForAnApprenticeshipCourse()
         {

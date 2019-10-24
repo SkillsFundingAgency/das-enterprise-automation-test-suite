@@ -3,7 +3,7 @@
 A Non Levy Employer deletes all unused funding for an apprenticeship course
 
 @regression
-@reservefunds
+@cleanup
 Scenario: Non Levy Employer deletes all unused funding
 	Given the Employer login using existing eoi account
 	When the Employer deletes all unused funding for an apprenticeship course

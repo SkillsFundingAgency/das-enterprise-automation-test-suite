@@ -72,12 +72,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.ManageFunding.Non_Lev
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Non Levy Employer deletes all unused funding")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("reservefunds")]
+        [NUnit.Framework.CategoryAttribute("cleanup")]
         public virtual void NonLevyEmployerDeletesAllUnusedFunding()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Non Levy Employer deletes all unused funding", null, new string[] {
                         "regression",
-                        "reservefunds"});
+                        "cleanup"});
 #line 7
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();

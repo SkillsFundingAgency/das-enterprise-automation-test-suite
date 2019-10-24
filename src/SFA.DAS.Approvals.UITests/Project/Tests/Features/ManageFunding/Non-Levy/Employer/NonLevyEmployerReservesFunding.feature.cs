@@ -87,8 +87,6 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.When("the Employer reserves funding for an apprenticeship course", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 10
  testRunner.Then("the funding is successfully reserved", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 11
- testRunner.And("the funding can be deleted", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
