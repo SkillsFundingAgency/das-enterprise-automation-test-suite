@@ -23,13 +23,6 @@ namespace SFA.DAS.RAA_V1.UITests.Project
             _config = context.GetRAAV1Config<RAAV1Config>();
         }
 
-        [BeforeScenario(Order = 31)]
-        public void Navigate()
-        {
-            var url = _config.RecruitBaseUrl;
-            _webDriver.Navigate().GoToUrl(url);
-        }
-
         [BeforeScenario(Order = 32)]
         public void SetUpHelpers()
         {

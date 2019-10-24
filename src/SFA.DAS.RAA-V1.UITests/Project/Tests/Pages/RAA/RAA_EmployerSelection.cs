@@ -4,7 +4,7 @@ using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages
+namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
 {
     public class RAA_EmployerSelection : BasePage
     {
@@ -18,7 +18,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages
         private readonly RAAV1DataHelper _dataHelper;
         #endregion
 
-        private By SelectAnEmployer => By.CssSelector("a");
+        private By SelectEmployerLinks => By.CssSelector("a");
 
         public RAA_EmployerSelection(ScenarioContext context) : base(context)
         {
@@ -30,9 +30,9 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages
             VerifyPage();
         }
 
-        public RAA_EmployerInformation SelectAndEmployer()
+        public RAA_EmployerInformation SelectAnEmployer()
         {
-            var links = _pageInteractionHelper.GetLinks(SelectAnEmployer, "Select employer");
+            var links = _pageInteractionHelper.GetLinks(SelectEmployerLinks, "Select employer");
             _formCompletionHelper.ClickElement(_dataHelper.Employers(links));
             return new RAA_EmployerInformation(_context);
         }

@@ -6,30 +6,31 @@ using System.Collections.Generic;
 using System.Text;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages
+namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.Manage
 {
-    public class RAAIndexPage : BasePage
+    public class Manage_IndexPage : BasePage
     {
-        protected override string PageTitle => "Recruit an apprentice";
-        
+        protected override string PageTitle => "Recruitment";
+
         #region Helpers and Context
         private readonly FormCompletionHelper _formCompletionHelper;
         private readonly ScenarioContext _context;
         #endregion
 
-        private By SignInButton => By.LinkText("Sign in");
+        private readonly By AgencyButton = By.CssSelector(".button");
 
-        public RAAIndexPage(ScenarioContext context): base(context)
+        public Manage_IndexPage(ScenarioContext context) : base(context)
         {
             _context = context;
             _formCompletionHelper = context.Get<FormCompletionHelper>();
             VerifyPage();
         }
 
-        public Idams ClickOnSignInButton()
+        public Idams ClickAgencyButton()
         {
-            _formCompletionHelper.Click(SignInButton);
+            _formCompletionHelper.Click(AgencyButton);
             return new Idams(_context);
         }
+
     }
 }

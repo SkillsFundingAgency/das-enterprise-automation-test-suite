@@ -4,9 +4,9 @@ using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages
+namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
 {
-    public class MultipleVacancyLocationPage : BasePage
+    public class RAA_MultipleVacancyLocationPage : BasePage
     {
         protected override string PageTitle => "";
 
@@ -25,7 +25,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages
         private By SaveAndContinueButton => By.Name("AddLocations");
         private By AddAnotherLocation => By.CssSelector("#add-new-location");
 
-        public MultipleVacancyLocationPage(ScenarioContext context) : base(context)
+        public RAA_MultipleVacancyLocationPage(ScenarioContext context) : base(context)
         {
             _context = context;
             _dataHelper = context.Get<RAAV1DataHelper>();
@@ -34,41 +34,41 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages
             VerifyPage();
         }
 
-        public MultipleVacancyLocationPage ClickAddAnotherLocationLink()
+        public RAA_MultipleVacancyLocationPage ClickAddAnotherLocationLink()
         {
             _formCompletionHelper.Click(AddAnotherLocation);
             return this;
         }
 
-        public MultipleVacancyLocationPage EnterPostCode(string postcode)
+        public RAA_MultipleVacancyLocationPage EnterPostCode(string postcode)
         {
             _formCompletionHelper.EnterText(EnterVacancyPostCode, postcode);
             return this;
         }
 
-        public MultipleVacancyLocationPage ClickOnTheFirstAddress()
+        public RAA_MultipleVacancyLocationPage ClickOnTheFirstAddress()
         {
             _formCompletionHelper.Click(ClickOnPostCodeResult);
             return this;
         }
 
-        public MultipleVacancyLocationPage EnterAdditionalLocationInformation()
+        public RAA_MultipleVacancyLocationPage EnterAdditionalLocationInformation()
         {
             _formCompletionHelper.EnterText(AdditionalLocationInformation, _dataHelper.AdditionalLocationInformation);
             return this;
         }
 
-        public MultipleVacancyLocationPage EnterNumberOfVacancy()
+        public RAA_MultipleVacancyLocationPage EnterNumberOfVacancy()
         {
             _formCompletionHelper.EnterText(NumberOfVacancy, _dataHelper.NumberOfVacancy);
             return this;
         }
-        public MultipleVacancyLocationPage EnterNumberOfVacancy2()
+        public RAA_MultipleVacancyLocationPage EnterNumberOfVacancy2()
         {
             _formCompletionHelper.EnterText(NumberOfVacancy2, _dataHelper.NumberOfVacancy);
             return this;
         }
-        public MultipleVacancyLocationPage ConfirmIfOnLocationPage()
+        public RAA_MultipleVacancyLocationPage ConfirmIfOnLocationPage()
         {
             _pageInteractionHelper.WaitforURLToChange("/vacancy/locations");
             return this;

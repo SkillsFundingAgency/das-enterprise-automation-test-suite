@@ -4,7 +4,7 @@ using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages
+namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
 {
     public class RAA_RequirementsAndProspects : BasePage
     {

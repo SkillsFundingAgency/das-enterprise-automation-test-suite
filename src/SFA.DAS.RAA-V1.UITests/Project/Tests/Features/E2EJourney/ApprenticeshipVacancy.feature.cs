@@ -92,6 +92,8 @@ this.ScenarioInitialize(scenarioInfo);
                         "}\',\'{5}\'", location, disabilityConfident, applicationMethod, apprenticeshipType, hoursPerWeek, vacancyDuration), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 11
  testRunner.Then("Provider is able to submit the vacancy for approval", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 12
+ testRunner.When("the Reviewer initiates reviewing the Vacancy in \'Manage\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
             this.ScenarioCleanup();
         }

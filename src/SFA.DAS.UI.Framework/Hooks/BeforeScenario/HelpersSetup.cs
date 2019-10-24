@@ -8,13 +8,11 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
     public class HelpersSetup
     {
         private readonly ScenarioContext _context;
-        private readonly ObjectContext _objectContext;
         private readonly FrameworkConfig _config;
 
         public HelpersSetup(ScenarioContext context)
         {
             _context = context;
-            _objectContext = context.Get<ObjectContext>();
             _config = context.Get<FrameworkConfig>();
         }
 
@@ -22,6 +20,7 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
         public void SetUpHelpers()
         {
             var webDriver = _context.GetWebDriver();
+            _context.Set(new TabHelper(webDriver));
             var webDriverwaitHelper = new WebDriverWaitHelper(webDriver, _config.TimeOutConfig);
             var retryHelper = new RetryHelper(webDriver);
             _context.Set(new SqlDatabaseConnectionHelper());

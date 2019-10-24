@@ -5,7 +5,7 @@ using SFA.DAS.UI.FrameworkHelpers;
 using System;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages
+namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
 {
     public class RAA_EnterFurtherDetails : BasePage
     {

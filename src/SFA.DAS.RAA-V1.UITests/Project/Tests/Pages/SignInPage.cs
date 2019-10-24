@@ -1,11 +1,13 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.Manage;
+using SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages
 {
-    public class RAASignInPage : BasePage
+    public class SignInPage : BasePage
     {
         protected override By PageHeader => By.CssSelector(".pageTitle");
 
@@ -22,7 +24,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages
         private By PasswordField => By.Id("password");
         private By SignInButton => By.XPath("//button[@value='Log in']");
 
-        public RAASignInPage(ScenarioContext context) : base(context)
+        public SignInPage(ScenarioContext context) : base(context)
         {
             _context = context;
             _config = context.GetRAAV1Config<RAAV1Config>();
@@ -31,29 +33,25 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages
             VerifyPage();
         }
 
-
-        public RAA_RecruitmentHomePage SubmitValidLoginDetails()
+        public Manage_HomePage SubmitManageLoginDetails()
         {
-            EnterEmailAddress()
-            .EnterPassword()
-            .SignIn();
+            SubmitValidLoginDetails(_config.ManageUserName, _config.ManagePassword);
+
+            _pageInteractionHelper.WaitforURLToChange("/dashboard");
+
+            return new Manage_HomePage(_context);
+        }
+
+        public RAA_RecruitmentHomePage SubmitRecruitmentLoginDetails()
+        {
+            SubmitValidLoginDetails(_config.RecruitUserName, _config.RecruitPassword);
             return new RAA_RecruitmentHomePage(_context);
         }
 
-        private RAASignInPage EnterEmailAddress()
+        private void SubmitValidLoginDetails(string username, string password)
         {
-            _formCompletionHelper.EnterText(UsernameField, _config.RecruitUserName);
-            return this;
-        }
-
-        private RAASignInPage EnterPassword()
-        {
-            _formCompletionHelper.EnterText(PasswordField, _config.RecruitPassword);
-            return this;
-        }
-
-        private void SignIn()
-        {
+            _formCompletionHelper.EnterText(UsernameField, username);
+            _formCompletionHelper.EnterText(PasswordField, password);
             _formCompletionHelper.ClickElement(SignInButton);
         }
     }

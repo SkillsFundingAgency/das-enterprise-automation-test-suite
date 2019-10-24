@@ -20,7 +20,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
         {
             _context = context;
             _objectContext = _context.Get<ObjectContext>();
-            _tabHelper = new TabHelper(context.GetWebDriver());
+            _tabHelper = _context.Get<TabHelper>();
             _config = context.GetApprovalsConfig<ApprovalsConfig>();
             _login = new ProviderLogin { Username = _config.AP_ProviderUserId, Password = _config.AP_ProviderPassword, Ukprn = _config.AP_ProviderUkprn };
             _loginHelper = new ProviderPortalLoginHelper(_context);

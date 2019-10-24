@@ -1,5 +1,6 @@
-﻿using SFA.DAS.RAA_V1.UITests.Project.Tests.Pages;
-using SFA.DAS.UI.Framework.TestSupport;
+﻿using SFA.DAS.RAA_V1.UITests.Project.Helpers;
+using SFA.DAS.RAA_V1.UITests.Project.Tests.Pages;
+using SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -10,36 +11,38 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
     [Binding]
     public class ApprenticeshipVacancy
     {
-        private readonly ScenarioContext _context;
-        private readonly ObjectContext _objectContext; 
         private RAA_EmployerSelection _employerSelection;
         private RAA_EmployerInformation _raaEmployerInformation;
-        private RAA_BasicVacancyDetails _basicVacancyDetails;
         private RAA_EnterTrainingDetails _enterTrainingDetails;
         private RAA_EnterFurtherDetails _enterFurtherDetails;
         private RAA_RequirementsAndProspects _requirementsAndProspects;
-
+        private readonly RAAStepsHelper _raaStepsHelper;
+        private readonly ManageStepsHelper _manageStepsHelper;
 
         public ApprenticeshipVacancy(ScenarioContext context)
         {
-            _context = context;
-            _objectContext = context.Get<ObjectContext>();
+            _raaStepsHelper = new RAAStepsHelper(context);
+            _manageStepsHelper = new ManageStepsHelper(context);
         }
+
+        [When(@"the Reviewer initiates reviewing the Vacancy in '([^']*)'")]
+        public void WhenTheReviewerInitiatesReviewingTheVacancyIn(string manage)
+        {
+            _manageStepsHelper.GoToManageHomePage();
+        }
+
+
 
         [Given(@"the Provider initiates Create Apprenticeship Vacancy in Recruit")]
         public void GivenTheProviderInitiatesCreateApprenticeshipVacancyIn()
         {
-            _employerSelection = new RAAIndexPage(_context)
-                .ClickOnSignInButton()
-                .ClickRecruitStaffIdams()
-                .SubmitValidLoginDetails()
-                .CreateANewVacancy();
+            _employerSelection = _raaStepsHelper.CreateANewVacancy();
         }
 
         [When(@"the Provider chooses the employer '(.*)','(.*)'")]
         public void WhenTheProviderChoosesTheEmployer(string location, string noOfpositions)
         {
-            _raaEmployerInformation = _employerSelection.SelectAndEmployer();
+            _raaEmployerInformation = _employerSelection.SelectAnEmployer();
             
             switch (location)
             {
@@ -77,166 +80,35 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
             switch (location)
             {
                 case "Use the main employer address":
-
-                    _enterTrainingDetails = new RAA_BasicVacancyDetails(_context)
-                        .EnterVacancyTitle()
-                        .EnterVacancyShortDescription()
-                        .ClickOnVacancyType(VacancyType.Apprenticeship)
-                        .CickDisabilityConfident(disabilityConfident)
-                        .ApplicationMethod(applicationMethod)
-                        .ClickSaveAndContinueButton();
-
-                    _enterFurtherDetails = _enterTrainingDetails
-                        .SelectApprenticeshipType(apprenticeShip)
-                        .EnterTrainingToBeProvided()
-                        .EnterContactName()
-                        .ContactTelephone()
-                        .EnterEmailDetails()
-                        .ClickOnSaveAndContinue();
-
-                    _requirementsAndProspects = _enterFurtherDetails
-                        .EnterWorkingInformation()
-                        .EnterHoursPerWeek(hoursPerWeek)
-                        .ClickApprenticeshipMinimumWage()
-                        .EnterVacancyDuration(vacancyDuration)
-                        .EnterVacancyClosingDate()
-                        .EnterPossibleStartDate()
-                        .EnterVacancyDescription()
-                        .ClickSaveAndContinueButton();
-
-                    _requirementsAndProspects
-                        .EnterDesiredQualificationsText()
-                        .EnterPersonalQualitiesText()
-                        .EnterDesiredSkillsText()
-                        .EnterFutureProspectsText()
-                        .EnterThingsToConsiderText()
-                        .ClickSaveAndContinue();
-
-                    if (applicationMethod != "Offline")
-                    {
-                        new RAA_ExtraQuestions(_context)
-                            .EnterFirstQuestion()
-                            .EnterSecondQuestion()
-                            .ClickPreviewVacancyButton();
-                    }
                     break;
 
                 case "Add different location":
-
-                    new MultipleVacancyLocationPage(_context)
-                        .EnterPostCode("CV1 2WT")
-                        .ClickOnTheFirstAddress()
-                        .EnterNumberOfVacancy()
-                        .ClickAddAnotherLocationLink()
-                        .EnterPostCode("BS16 4EA")
-                        .ClickOnTheFirstAddress()
-                        .EnterNumberOfVacancy2()
-                        .EnterAdditionalLocationInformation()
-                        .ClickSaveAndContinue();
-
-                    _enterTrainingDetails = new RAA_BasicVacancyDetails(_context)
-                        .EnterVacancyTitle()
-                        .EnterVacancyShortDescription()
-                        .ClickOnVacancyType(VacancyType.Apprenticeship)
-                        .CickDisabilityConfident(disabilityConfident)
-                        .ApplicationMethod(applicationMethod)
-                        .ClickSaveAndContinueButton();
-
-                    _enterFurtherDetails = _enterTrainingDetails
-                        .SelectApprenticeshipType(apprenticeShip)
-                        .EnterTrainingToBeProvided()
-                        .EnterContactName()
-                        .ContactTelephone()
-                        .EnterEmailDetails()
-                        .ClickOnSaveAndContinue();
-
-                    _requirementsAndProspects = _enterFurtherDetails
-                        .EnterWorkingInformation()
-                        .EnterHoursPerWeek(hoursPerWeek)
-                        .ClickApprenticeshipMinimumWage()
-                        .EnterVacancyDuration(vacancyDuration)
-                        .EnterVacancyClosingDate()
-                        .EnterPossibleStartDate()
-                        .EnterVacancyDescription()
-                        .ClickSaveAndContinueButton();
-
-                    _requirementsAndProspects
-                        .EnterDesiredQualificationsText()
-                        .EnterPersonalQualitiesText()
-                        .EnterDesiredSkillsText()
-                        .EnterFutureProspectsText()
-                        .EnterThingsToConsiderText()
-                        .ClickSaveAndContinue();
-
-                    if (applicationMethod != "Offline")
-                    {
-                        new RAA_ExtraQuestions(_context)
-                            .EnterFirstQuestion()
-                            .EnterSecondQuestion()
-                            .ClickPreviewVacancyButton();
-                    }
+                    _raaStepsHelper.AddMultipleVacancy();
                     break;
 
                 case "Set as a nationwide vacancy":
-
-                    _enterTrainingDetails = new RAA_BasicVacancyDetails(_context)
-                        .EnterVacancyTitle()
-                        .EnterVacancyShortDescription()
-                        .ClickOnVacancyType(VacancyType.Apprenticeship)
-                        .CickDisabilityConfident("Yes")
-                        .ApplicationMethod(applicationMethod)
-                        .ClickSaveAndContinueButton();
-
-                    _enterFurtherDetails = _enterTrainingDetails
-                        .SelectApprenticeshipType(apprenticeShip)
-                        .EnterTrainingToBeProvided()
-                        .EnterContactName()
-                        .ContactTelephone()
-                        .EnterEmailDetails()
-                        .ClickOnSaveAndContinue();
-
-                    _requirementsAndProspects = _enterFurtherDetails
-                        .EnterWorkingInformation()
-                        .EnterHoursPerWeek("37")
-                        .ClickApprenticeshipMinimumWage()
-                        .EnterVacancyDuration("52")
-                        .EnterVacancyClosingDate()
-                        .EnterPossibleStartDate()
-                        .EnterVacancyDescription()
-                        .ClickSaveAndContinueButton();
-
-                    _requirementsAndProspects
-                        .EnterDesiredQualificationsText()
-                        .EnterPersonalQualitiesText()
-                        .EnterDesiredSkillsText()
-                        .EnterFutureProspectsText()
-                        .EnterThingsToConsiderText()
-                        .ClickSaveAndContinue();
-
-                    if (applicationMethod != "Offline")
-                    {
-                        new RAA_ExtraQuestions(_context)
-                            .EnterFirstQuestion()
-                            .EnterSecondQuestion()
-                            .ClickPreviewVacancyButton();
-                    }
+                    hoursPerWeek = "37";
+                    vacancyDuration = "52";
                     break;
+            }
+            _enterTrainingDetails = _raaStepsHelper.EnterBasicVacancyDetails(disabilityConfident, applicationMethod);
+
+            _enterFurtherDetails = _raaStepsHelper.EnterTrainingDetails(_enterTrainingDetails, apprenticeShip);
+
+            _requirementsAndProspects = _raaStepsHelper.EnterFurtherDetails(_enterFurtherDetails, hoursPerWeek, vacancyDuration);
+
+            _raaStepsHelper.EnterRequirementsAndProspects(_requirementsAndProspects);
+
+            if (applicationMethod != "Offline")
+            {
+                _raaStepsHelper.EnterExtraQuestions();
             }
         }
 
         [Then(@"Provider is able to submit the vacancy for approval")]
         public void ThenProviderIsAbleToSubmitTheVacancyForApproval()
         {
-            var vacancyReference = new RAA_VacancyPreview(_context)
-            .ClickSubmitForApprovalButton();
-            
-            var referenceNumber1 = vacancyReference.GetVacancyReference();
-
-            var referenceNumber = (referenceNumber1.Remove(0, 2)).TrimStart('0');
-            
-            _objectContext.SetVacancyReference(referenceNumber);
-
-            vacancyReference.ExitFromWebsite();
+            _raaStepsHelper.ApproveVacenacy();
         }
     }
 }
