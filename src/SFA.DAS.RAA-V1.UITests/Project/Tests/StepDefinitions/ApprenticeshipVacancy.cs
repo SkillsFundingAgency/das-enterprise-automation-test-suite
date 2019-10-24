@@ -114,7 +114,9 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
         [Then(@"Provider is able to submit the vacancy for approval")]
         public void ThenProviderIsAbleToSubmitTheVacancyForApproval()
         {
-            _raaStepsHelper.ApproveVacenacy();
+            _raaStepsHelper
+                .ApproveVacanacy()
+                .ExitFromWebsite();
         }
     }
 }

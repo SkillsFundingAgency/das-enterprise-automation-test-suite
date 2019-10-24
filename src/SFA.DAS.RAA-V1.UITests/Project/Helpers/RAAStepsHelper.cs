@@ -100,7 +100,8 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
                        .EnterAdditionalLocationInformation()
                        .ClickSaveAndContinue();
         }
-        internal void ApproveVacenacy()
+
+        internal RAA_VacancyReferencePage ApproveVacanacy()
         {
             var vacancyReference = new RAA_VacancyPreview(_context)
            .ClickSubmitForApprovalButton();
@@ -110,6 +111,8 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
             var referenceNumber = (referenceNumber1.Remove(0, 2)).TrimStart('0');
 
             _objectContext.SetVacancyReference(referenceNumber);
+
+            return vacancyReference;
         }
     }
 }
