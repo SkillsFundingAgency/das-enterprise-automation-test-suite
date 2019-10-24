@@ -28,7 +28,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
 
             return new RAA_IndexPage(_context)
                 .ClickOnSignInButton()
-                .ClickRecruitStaffIdams()
+                .RecruitStaffIdams()
                 .SubmitRecruitmentLoginDetails()
                 .CreateANewVacancy();
         }

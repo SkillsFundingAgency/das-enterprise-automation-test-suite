@@ -30,7 +30,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project
 
             var regexHelper = _context.Get<RegexHelper>();
 
-            _context.Set(new RAAV1DataHelper(random, regexHelper));
+            _context.Set(new RAADataHelper(random, regexHelper));
         }
     }
 }

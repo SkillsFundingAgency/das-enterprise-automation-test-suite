@@ -1,4 +1,6 @@
-﻿using SFA.DAS.UI.Framework.TestSupport;
+﻿using OpenQA.Selenium;
+using SFA.DAS.RAA_V1.UITests.Project.Helpers;
+using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
@@ -6,23 +8,95 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.Manage
 {
     public class Manage_HomePage : BasePage
     {
-
-        protected override string PageTitle => "Sign in";
+        protected override string PageTitle => "Agency home";
 
         #region Helpers and Context
         private readonly PageInteractionHelper _pageInteractionHelper;
         private readonly FormCompletionHelper _formCompletionHelper;
         private readonly ScenarioContext _context;
-        private readonly RAAV1Config _config;
+        private TableRowHelper _tableRowHelper;
+        private RAADataHelper _dataHelper;
         #endregion
+
+        private By ChangeTeam => By.CssSelector("#select2-chosen-2");
+
+        private By ChangeRole => By.CssSelector("#select2-chosen-1");
+
+        private By InputChangeTeam => By.Id("s2id_autogen2_search");
+
+        private By InputChangeRole => By.Id("s2id_autogen1_search");
+
+        private By Filters => By.CssSelector(".column-one-quarter");
+
+        private By DateFilter => By.CssSelector(".bold-xsmall");
+
+        private By NoOfVacancy => By.CssSelector(".bold-xlarge");
+
+        private By VacancyFilters => By.CssSelector(".column-one-quarter .bold-xsmall");
+
+        private By ApproveAndContinue => By.Name("VacancyQAAction");
+        
+        private By ClickAgencyHome => By.Id("proposition-name");
+
+        private By NoResults => By.XPath("//td[@colspan='6'][contains(.,'No results')]");
 
         public Manage_HomePage(ScenarioContext context) : base(context)
         {
             _context = context;
-            _config = context.GetRAAV1Config<RAAV1Config>();
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
+            _tableRowHelper = context.Get<TableRowHelper>();
+            _dataHelper = context.Get<RAADataHelper>();
             VerifyPage();
+        }
+
+        private void TodaysVacancy()
+        {
+            _pageInteractionHelper.GetLink(VacancyFilters, "Today");
+        }
+
+        private bool AretherAnyVacancyToday()
+        {
+            var filters = _pageInteractionHelper.FindElements(Filters);
+            foreach (var filter in filters)
+            {
+                var filterelement = filter.FindElement(DateFilter);
+                if (filterelement.Text == "Today")
+                {
+                    return filter.FindElement(NoOfVacancy).Text != "0";
+                }
+            }
+            return false;
+        }
+
+        private void ChangeFilter(By locator, By inputlocator, string changeTo)
+        {
+            if (!(_pageInteractionHelper.GetText(locator).Contains(changeTo)))
+            {
+                _formCompletionHelper.Click(locator);
+                _formCompletionHelper.EnterText(inputlocator, changeTo);
+                _formCompletionHelper.SendKeys(inputlocator, Keys.Enter);
+            }
+        }
+
+        public void ApproveAVacancy(string changeTeam, string changeRole)
+        {
+            ChangeFilter(ChangeTeam, InputChangeTeam, changeTeam);
+            
+            ChangeFilter(ChangeRole, InputChangeRole, changeRole);
+
+            TodaysVacancy();
+
+            if (AretherAnyVacancyToday() == true)
+            {
+                _tableRowHelper.SelectRowFromTable("Review", _dataHelper.VacancyTitle);
+                _formCompletionHelper.Click(ApproveAndContinue);
+                _formCompletionHelper.Click(ClickAgencyHome);
+            }
+            else
+            {
+                _pageInteractionHelper.GetText(NoResults);
+            }
         }
     }
 }

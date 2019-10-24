@@ -15,7 +15,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         private readonly FormCompletionHelper _formCompletionHelper;
         private readonly ScenarioContext _context;
         private readonly RAAV1Config _config;
-        private readonly RAAV1DataHelper _dataHelper;
+        private readonly RAADataHelper _dataHelper;
         #endregion
 
         private By SelectEmployerLinks => By.CssSelector("a");
@@ -24,7 +24,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         {
             _context = context;
             _config = context.GetRAAV1Config<RAAV1Config>();
-            _dataHelper = context.Get<RAAV1DataHelper>();
+            _dataHelper = context.Get<RAADataHelper>();
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
             VerifyPage();

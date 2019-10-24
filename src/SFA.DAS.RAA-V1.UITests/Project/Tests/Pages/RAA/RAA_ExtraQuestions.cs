@@ -14,7 +14,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         private readonly FormCompletionHelper _formCompletionHelper;
         private readonly PageInteractionHelper _pageInteractionHelper;
         private readonly ScenarioContext _context;
-        private readonly RAAV1DataHelper _dataHelper;
+        private readonly RAADataHelper _dataHelper;
         #endregion
 
         private By ClickPreviewVacacncy => By.Name("VacancyQuestions");
@@ -24,7 +24,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         public RAA_ExtraQuestions(ScenarioContext context) : base(context)
         {
             _context = context;
-            _dataHelper = context.Get<RAAV1DataHelper>();
+            _dataHelper = context.Get<RAADataHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             VerifyPage();

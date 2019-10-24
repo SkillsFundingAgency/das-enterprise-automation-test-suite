@@ -7,12 +7,12 @@ using System.Text;
 
 namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
 {
-    public class RAAV1DataHelper
+    public class RAADataHelper
     {
         private readonly RandomDataGenerator _randomDataGenerator;
         private readonly RegexHelper _regexHelper;
 
-        public RAAV1DataHelper(RandomDataGenerator randomDataGenerator, RegexHelper regexHelper)
+        public RAADataHelper(RandomDataGenerator randomDataGenerator, RegexHelper regexHelper)
         {
             var datetime = System.DateTime.Now;
             _randomDataGenerator = randomDataGenerator;

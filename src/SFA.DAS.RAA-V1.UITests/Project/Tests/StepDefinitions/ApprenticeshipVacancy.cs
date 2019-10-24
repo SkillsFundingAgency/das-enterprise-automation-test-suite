@@ -1,5 +1,6 @@
 ﻿using SFA.DAS.RAA_V1.UITests.Project.Helpers;
 using SFA.DAS.RAA_V1.UITests.Project.Tests.Pages;
+using SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.Manage;
 using SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
         private RAA_EnterTrainingDetails _enterTrainingDetails;
         private RAA_EnterFurtherDetails _enterFurtherDetails;
         private RAA_RequirementsAndProspects _requirementsAndProspects;
+        private Manage_HomePage _manage_HomePage;
         private readonly RAAStepsHelper _raaStepsHelper;
         private readonly ManageStepsHelper _manageStepsHelper;
 
@@ -25,13 +27,17 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
             _manageStepsHelper = new ManageStepsHelper(context);
         }
 
-        [When(@"the Reviewer initiates reviewing the Vacancy in '([^']*)'")]
-        public void WhenTheReviewerInitiatesReviewingTheVacancyIn(string manage)
+        [When(@"the Reviewer initiates reviewing the Vacancy in Manage")]
+        public void WhenTheReviewerInitiatesReviewingTheVacancyInManage()
         {
-            _manageStepsHelper.GoToManageHomePage();
+            _manage_HomePage = _manageStepsHelper.GoToManageHomePage();
         }
 
-
+        [Then(@"the Reviewer is able to approve the Vacancy '(.*)','(.*)'")]
+        public void ThenTheReviewerIsAbleToApproveTheVacancy(string changeTeam, string changeRole)
+        {
+            _manage_HomePage.ApproveAVacancy(changeTeam, changeRole);
+        }
 
         [Given(@"the Provider initiates Create Apprenticeship Vacancy in Recruit")]
         public void GivenTheProviderInitiatesCreateApprenticeshipVacancyIn()

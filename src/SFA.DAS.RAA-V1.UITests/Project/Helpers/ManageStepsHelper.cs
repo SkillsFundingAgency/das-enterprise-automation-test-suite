@@ -20,12 +20,12 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
             _config = context.GetRAAV1Config<RAAV1Config>();
         }
 
-        public void GoToManageHomePage()
+        public Manage_HomePage GoToManageHomePage()
         {
             _tabHelper.OpenInNewtab(_config.ManageBaseUrl);
-            new Manage_IndexPage(_context)
+            return new Manage_IndexPage(_context)
                 .ClickAgencyButton()
-                .ClickRecruitStaffIdams()
+                .ManageStaffIdams()
                 .SubmitManageLoginDetails();
         }
 

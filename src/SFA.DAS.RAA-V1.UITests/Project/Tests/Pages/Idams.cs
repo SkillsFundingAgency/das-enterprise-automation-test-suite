@@ -27,12 +27,20 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages
         
         #region Properties
         private By RAAStaffIdams => By.XPath("//span[contains(text(),'Pirean Preprod')]");
+
+        private By RAAAccess1StaffIdams => By.XPath("//span[contains(text(),'Access1 Staff')]");
         #endregion
 
-        public SignInPage ClickRecruitStaffIdams()
+        public SignInPage RecruitStaffIdams()
         {
             _formCompletionHelper.Click(RAAStaffIdams);
             return new SignInPage(_context);
         }
+
+        public SignInPage ManageStaffIdams()
+        {
+            _formCompletionHelper.Click(RAAAccess1StaffIdams);
+            return new SignInPage(_context);
+        }      
     }
 }

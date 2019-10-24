@@ -16,7 +16,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         #region Helpers and Context
         private readonly FormCompletionHelper _formCompletionHelper;
         private readonly ScenarioContext _context;
-        private readonly RAAV1DataHelper _dataHelper;
+        private readonly RAADataHelper _dataHelper;
         #endregion
         
         private By Iframe => By.CssSelector("iframe");
@@ -36,7 +36,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         public RAA_EnterFurtherDetails(ScenarioContext context) : base(context)
         {
             _context = context;
-            _dataHelper = context.Get<RAAV1DataHelper>();
+            _dataHelper = context.Get<RAADataHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
             VerifyPage();
         }
