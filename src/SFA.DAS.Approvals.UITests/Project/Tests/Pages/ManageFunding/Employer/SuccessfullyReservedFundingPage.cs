@@ -1,21 +1,22 @@
 ﻿using System;
 using OpenQA.Selenium;
+using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
-using SFA.DAS.UI.Framework.TestSupport;
+using SFA.DAS.Registration.UITests.Project.Tests.Pages;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
 {
-    public class SuccessfullyReservedFundingPage : BasePage
+    public class SuccessfullyReservedFundingPage : ReservationIdBasePage
     {
         protected override string PageTitle => "You have successfully reserved funding for apprenticeship training";
         private By SuccessMessage => By.CssSelector("govuk-panel--confirmation");
         private By AddApprenticeRadioButton => By.CssSelector("label[for=WhatsNext-add]");
         private By ContinueButton => By.CssSelector(".govuk-button");
+        private By GoToRadioButton => By.CssSelector(".govuk-radios__label");
 
         #region Helpers and Context
-        private readonly PageInteractionHelper _pageInteractionHelper;
         private readonly FormCompletionHelper _formCompletionHelper;
         private readonly ScenarioContext _context;
         #endregion
@@ -23,17 +24,15 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
         public SuccessfullyReservedFundingPage(ScenarioContext context) : base(context)
         {
             _context = context;
-            _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
             VerifyPage();
         }
 
-        public bool IsReserveFundingSuccessMessageUpdated()
+        internal HomePage GoToHomePage()
         {
-            if (_pageInteractionHelper.IsElementDisplayed(SuccessMessage))
-                throw new Exception("Reserve Funding is not successfully created");
-            else
-                return true;
+            _formCompletionHelper.SelectRadioOptionByForAttribute(GoToRadioButton, "WhatsNext-home");
+            _formCompletionHelper.ClickElement(ContinueButton);
+            return new HomePage(_context);
         }
 
         private void ChooseToAddApprenticeRadioButton()
@@ -52,6 +51,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
             ClickContinueButton();
             return new AddAnApprenitcePage(_context);
         }
+
+        public new SuccessfullyReservedFundingPage VerifySucessMessage()
+        {
+            base.VerifySucessMessage();
+            return this;
+        }
+
 
         internal AddApprenticeDetailsPage AddAnotherApprentice()
         {

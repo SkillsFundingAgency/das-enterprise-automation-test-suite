@@ -18,10 +18,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
     {
         private SuccessfullyReservedFundingPage _successfullyReservedFundingPage;
         private YourFundingReservationsPage _yourFundingReservationsPage;
+        private readonly ScenarioContext _context;
         private readonly MFEmployerStepsHelper _reservationStepsHelper;
 
         public MFEmployerSteps(ScenarioContext context)
         {
+            _context = context;
             _reservationStepsHelper = new MFEmployerStepsHelper(context);
         }
 
@@ -29,13 +31,26 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         public void WhenTheEmployerReservesFundingForAnApprenticeshipCourse()
         {
             var doYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage = _reservationStepsHelper.GoToReserveFunding();
+
             _successfullyReservedFundingPage = _reservationStepsHelper.CreateReservation(doYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage);
         }
 
         [Then(@"the funding is successfully reserved")]
         public void ThenTheFundingIsSuccessfullyReserved()
         {
-            _successfullyReservedFundingPage.IsReserveFundingSuccessMessageUpdated();
+            _successfullyReservedFundingPage = _successfullyReservedFundingPage.VerifySucessMessage();
+        }
+
+        [Then(@"the funding can be deleted")]
+        public void ThenTheFundingCanBeDeleted()
+        {
+            _successfullyReservedFundingPage.GoToHomePage();
+
+            new YourFundingReservationsHomePage(_context)
+                .OpenYourFundingReservations()
+                .DeleteTheReservedFunding()
+                .YesDeleteThisReservation();
+            //_successfullyReservedFundingPage.IsReserveFundingSuccessMessageUpdated();
         }
 
         [When(@"the Employer deletes all unused funding for an apprenticeship course")]

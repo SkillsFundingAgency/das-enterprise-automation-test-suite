@@ -17,7 +17,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         private ReviewYourCohortPage _reviewYourCohortPage;
         private readonly ObjectContext _objectContext;
         private ApprenticeDetailsPage _apprenticeDetailsPage;
-
+        
         public EmployerSteps(ScenarioContext context)
         {
             _objectContext = context.Get<ObjectContext>();

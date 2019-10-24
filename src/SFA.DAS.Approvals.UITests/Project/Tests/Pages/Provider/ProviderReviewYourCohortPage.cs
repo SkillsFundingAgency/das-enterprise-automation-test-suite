@@ -1,5 +1,6 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common;
+using SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider;
 using SFA.DAS.UI.FrameworkHelpers;
 using System.Collections.Generic;
 using TechTalk.SpecFlow;
@@ -34,6 +35,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             _context = context;
             _formCompletionHelper = context.Get<FormCompletionHelper>();
         }
+
+        internal ProviderChooseAReservationPage SelectAddAnApprenticeUsingReservation()
+        {
+            _formCompletionHelper.ClickElement(AddAnApprenticeButton);
+            return new ProviderChooseAReservationPage(_context);
+        }
+
         internal ProviderAddApprenticeDetailsPage SelectAddAnApprentice()
         {
             _formCompletionHelper.ClickElement(AddAnApprenticeButton);
