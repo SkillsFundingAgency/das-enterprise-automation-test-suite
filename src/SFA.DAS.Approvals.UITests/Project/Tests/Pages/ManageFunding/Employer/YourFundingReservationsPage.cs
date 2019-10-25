@@ -9,8 +9,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
     public class YourFundingReservationsPage : FundingBasePage
     {
         protected override string PageTitle => "Your funding reservations";
-        private By ReserveFundingButton => By.LinkText("Reserve funding");
-        private By ReserveMoreFundingLink => By.LinkText("Reserve funding");
+        private By ReserveFundingFirstButton => By.LinkText("Reserve funding");
+        private By ReserveFundingSecondButton => By.LinkText("Reserve funding");
+        private By ReserveMoreFundingLink => By.LinkText("Reserve more funding");
         private By DeleteLink => By.LinkText("Delete");
 
         #region Helpers and Context
@@ -29,9 +30,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
     
         public ReserveFundingToTrainAndAssessAnApprenticePage ClickReserveFundingButton()
         {
-            if (_pageInteractionHelper.IsElementPresent(ReserveFundingButton))
+            if (_pageInteractionHelper.IsElementPresent(ReserveFundingFirstButton))
             {
-                formCompletionHelper.ClickElement(ReserveFundingButton);
+                formCompletionHelper.ClickElement(ReserveFundingFirstButton);
+            }
+            
+            if (_pageInteractionHelper.IsElementPresent(ReserveMoreFundingLink))
+            {
+                formCompletionHelper.ClickElement(ReserveMoreFundingLink);
             }
             return new ReserveFundingToTrainAndAssessAnApprenticePage(_context);
         }
@@ -39,7 +45,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
         public DoYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage ClickReserveMoreFundingLink()
         {
             ClickReserveFundingButton();
-            formCompletionHelper.ClickElement(ReserveMoreFundingLink);
+            formCompletionHelper.ClickElement(ReserveFundingSecondButton);
             return new DoYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage(_context);
         }
 
