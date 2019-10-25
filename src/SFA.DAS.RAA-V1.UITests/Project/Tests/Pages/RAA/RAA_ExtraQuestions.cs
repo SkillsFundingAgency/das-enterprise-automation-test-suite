@@ -6,15 +6,12 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
 {
-    public class RAA_ExtraQuestions : BasePage
+    public class RAA_ExtraQuestions : RAA_HeaderSectionBasePage
     {
         protected override string PageTitle => "Extra questions you'd like to ask candidates (optional)";
 
         #region Helpers and Context
-        private readonly FormCompletionHelper _formCompletionHelper;
         private readonly PageInteractionHelper _pageInteractionHelper;
-        private readonly ScenarioContext _context;
-        private readonly RAADataHelper _dataHelper;
         #endregion
 
         private By ClickPreviewVacacncy => By.Name("VacancyQuestions");
@@ -23,22 +20,18 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
 
         public RAA_ExtraQuestions(ScenarioContext context) : base(context)
         {
-            _context = context;
-            _dataHelper = context.Get<RAADataHelper>();
-            _formCompletionHelper = context.Get<FormCompletionHelper>();
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
-            VerifyPage();
         }
 
         public RAA_ExtraQuestions EnterFirstQuestion()
         {
-            _formCompletionHelper.EnterText(FirstQuestion, _dataHelper.FirstQuestion);
+            formCompletionHelper.EnterText(FirstQuestion, dataHelper.FirstQuestion);
             return this;
         }
 
         public RAA_ExtraQuestions EnterSecondQuestion()
         {
-            _formCompletionHelper.EnterText(SecondQuestion, _dataHelper.SecondQuestion);
+            formCompletionHelper.EnterText(SecondQuestion, dataHelper.SecondQuestion);
             return this;
         }
 
@@ -46,7 +39,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         {
             if (_pageInteractionHelper.IsElementDisplayed(ClickPreviewVacacncy))
             {
-                _formCompletionHelper.Click(ClickPreviewVacacncy);
+                formCompletionHelper.Click(ClickPreviewVacacncy);
             }
         }
     }

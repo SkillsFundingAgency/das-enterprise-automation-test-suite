@@ -1,22 +1,17 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.RAA_V1.UITests.Project.Helpers;
-using SFA.DAS.UI.Framework.TestSupport;
-using SFA.DAS.UI.FrameworkHelpers;
 using System;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
 {
-    public class RAA_EnterFurtherDetails : BasePage
+    public class RAA_EnterFurtherDetails : RAA_HeaderSectionBasePage
     {
         protected override By PageHeader => Heading;
 
         protected override string PageTitle => "Enter further details";
 
         #region Helpers and Context
-        private readonly FormCompletionHelper _formCompletionHelper;
         private readonly ScenarioContext _context;
-        private readonly RAADataHelper _dataHelper;
         #endregion
         
         private By Iframe => By.CssSelector("iframe");
@@ -36,68 +31,65 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         public RAA_EnterFurtherDetails(ScenarioContext context) : base(context)
         {
             _context = context;
-            _dataHelper = context.Get<RAADataHelper>();
-            _formCompletionHelper = context.Get<FormCompletionHelper>();
-            VerifyPage();
         }
 
         public RAA_RequirementsAndProspects ClickSaveAndContinueButton()
         {
-            _formCompletionHelper.Click(SaveAndContinueButton);
+            formCompletionHelper.Click(SaveAndContinueButton);
             return new RAA_RequirementsAndProspects(_context);
         }
 
         public RAA_EnterFurtherDetails EnterWorkingInformation()
         {
-            _formCompletionHelper.EnterText(WorkkingWeek, _dataHelper.WorkkingWeek);
+            formCompletionHelper.EnterText(WorkkingWeek, dataHelper.WorkkingWeek);
             return this;
         }
 
         public RAA_EnterFurtherDetails EnterHoursPerWeek(string hours)
         {
-            _formCompletionHelper.EnterText(HoursPerWeek, hours);
+            formCompletionHelper.EnterText(HoursPerWeek, hours);
             return this;
         }
 
         public RAA_EnterFurtherDetails ClickApprenticeshipMinimumWage()
         {
-            _formCompletionHelper.SelectRadioOptionByText("National Minimum Wage for apprentices");
+            formCompletionHelper.SelectRadioOptionByText("National Minimum Wage for apprentices");
             return this;
         }
 
         public RAA_EnterFurtherDetails EnterVacancyDuration(string duration)
         {
-            _formCompletionHelper.EnterText(VacancyDuration, duration);
+            formCompletionHelper.EnterText(VacancyDuration, duration);
             return this;
         }
 
         public RAA_EnterFurtherDetails EnterVacancyClosingDate()
         {
-            DateTime closingDate = _dataHelper.VacancyClosing;
+            DateTime closingDate = dataHelper.VacancyClosing;
             string month = closingDate.Month.ToString();
             string year = closingDate.Year.ToString();
             string day = closingDate.Day.ToString();
-            _formCompletionHelper.EnterText(ClosingDay, day);
-            _formCompletionHelper.EnterText(ClosingMonth, month);
-            _formCompletionHelper.EnterText(ClosingYear, year);
+            formCompletionHelper.EnterText(ClosingDay, day);
+            formCompletionHelper.EnterText(ClosingMonth, month);
+            formCompletionHelper.EnterText(ClosingYear, year);
             return this;
         }
 
         public RAA_EnterFurtherDetails EnterPossibleStartDate()
         {
-            DateTime startDate = _dataHelper.VacancyStart;
+            DateTime startDate = dataHelper.VacancyStart;
             var month = startDate.Month.ToString();
             var year = startDate.Year.ToString();
             var day = startDate.Day.ToString();
-            _formCompletionHelper.EnterText(StartDateDay, day);
-            _formCompletionHelper.EnterText(StartDateMonth, month);
-            _formCompletionHelper.EnterText(StartDateYear, year);
+            formCompletionHelper.EnterText(StartDateDay, day);
+            formCompletionHelper.EnterText(StartDateMonth, month);
+            formCompletionHelper.EnterText(StartDateYear, year);
             return this;
         }
 
         public RAA_EnterFurtherDetails EnterVacancyDescription()
         {
-            _formCompletionHelper.SendKeys(Iframe, Keys.Tab + _dataHelper.VacancyDescription);
+            formCompletionHelper.SendKeys(Iframe, Keys.Tab + dataHelper.VacancyDescription);
             return this;
         }
     }

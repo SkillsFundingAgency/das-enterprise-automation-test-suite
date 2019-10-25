@@ -6,14 +6,12 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
 {
-    public class RAA_EnterTrainingDetails : BasePage
+    public class RAA_EnterTrainingDetails : RAA_HeaderSectionBasePage
     {
         protected override string PageTitle => "Enter training details";
 
         #region Helpers and Context
-        private readonly FormCompletionHelper _formCompletionHelper;
         private readonly ScenarioContext _context;
-        private readonly RAADataHelper _dataHelper;
         private readonly IWebDriver _webDriver;
         #endregion
 
@@ -32,40 +30,37 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         public RAA_EnterTrainingDetails(ScenarioContext context) : base(context)
         {
             _context = context;
-            _dataHelper = context.Get<RAADataHelper>();
-            _formCompletionHelper = context.Get<FormCompletionHelper>();
             _webDriver = context.GetWebDriver();
-            VerifyPage();
         }
 
         public RAA_EnterTrainingDetails SelectApprenticeshipType(string frameworkOrStanndard)
         {
             void SelectRandomCourse(By locator)
             {
-                for (int i = 0; i < _dataHelper.RandomCourse; i++)
+                for (int i = 0; i < dataHelper.RandomCourse; i++)
                 {
-                    _formCompletionHelper.SendKeys(locator, Keys.ArrowDown);
+                    formCompletionHelper.SendKeys(locator, Keys.ArrowDown);
                 }
-                _formCompletionHelper.SendKeys(locator, Keys.Enter);
+                formCompletionHelper.SendKeys(locator, Keys.Enter);
             }
 
             switch (frameworkOrStanndard)
             {
                 case "Framework":
-                    _formCompletionHelper.SelectRadioOptionByText("Framework");
-                    _formCompletionHelper.Click(FrameworkDropDown);
+                    formCompletionHelper.SelectRadioOptionByText("Framework");
+                    formCompletionHelper.Click(FrameworkDropDown);
                     SelectRandomCourse(FrameWorkDropdownTextEntry);
-                    _formCompletionHelper.SelectRadioOptionByText("Intermediate");
+                    formCompletionHelper.SelectRadioOptionByText("Intermediate");
                     break;
 
                 case "Standard":
-                    _formCompletionHelper.SelectRadioOptionByText("Standard");
-                    _formCompletionHelper.Click(StandardsDropDownMenu);
-                    _formCompletionHelper.SelectFromDropDownByValue(StandardsDropDownMenu, "208");
+                    formCompletionHelper.SelectRadioOptionByText("Standard");
+                    formCompletionHelper.Click(StandardsDropDownMenu);
+                    formCompletionHelper.SelectFromDropDownByValue(StandardsDropDownMenu, "208");
                     break;
 
                 case "Traineeship":
-                    _formCompletionHelper.Click(TraineeshipDropdown);
+                    formCompletionHelper.Click(TraineeshipDropdown);
                     SelectRandomCourse(FrameWorkDropdownTextEntry);
                     break;
             }
@@ -75,32 +70,32 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         public RAA_EnterTrainingDetails EnterTrainingToBeProvided()
         {
             _webDriver.SwitchTo().Frame(_webDriver.FindElement(Iframe));
-            _formCompletionHelper.EnterText(TrainingBody, _dataHelper.TrainingDetails);
+            formCompletionHelper.EnterText(TrainingBody, dataHelper.TrainingDetails);
             _webDriver.SwitchTo().DefaultContent();
             return this;
         }
 
         public RAA_EnterTrainingDetails EnterContactName()
         {
-            _formCompletionHelper.EnterText(ContactNameField, _dataHelper.TrainingContactName);
+            formCompletionHelper.EnterText(ContactNameField, dataHelper.TrainingContactName);
             return this;
         }
 
         public RAA_EnterTrainingDetails ContactTelephone()
         {
-            _formCompletionHelper.EnterText(ContactumberField, _dataHelper.TrainingContactNumber);
+            formCompletionHelper.EnterText(ContactumberField, dataHelper.TrainingContactNumber);
             return this;
         }
 
         public RAA_EnterTrainingDetails EnterEmailDetails()
         {
-            _formCompletionHelper.EnterText(EmailField, _dataHelper.TrainingEmail);
+            formCompletionHelper.EnterText(EmailField, dataHelper.TrainingEmail);
             return this;
         }
 
         public RAA_EnterFurtherDetails ClickOnSaveAndContinue()
         {
-            _formCompletionHelper.Click(SaveAndContinueButton);
+            formCompletionHelper.Click(SaveAndContinueButton);
             return new RAA_EnterFurtherDetails(_context);
         }
     }

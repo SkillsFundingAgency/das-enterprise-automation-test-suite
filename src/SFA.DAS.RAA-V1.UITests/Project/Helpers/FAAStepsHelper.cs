@@ -21,7 +21,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
 
         public FAA_HomePage GoToFAAHomePage()
         {
-            _tabHelper.ClearCookiesAndOpenInNewTab(_config.FAABaseUrl);
+            _tabHelper.CloseAndOpenInNewTab(_config.FAABaseUrl);
             return new FAA_Indexpage(_context)
                 .GoToSignInPage()
                 .SubmitValidLoginDetails();

@@ -21,7 +21,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
 
         public Manage_HomePage GoToManageHomePage()
         {
-            _tabHelper.ClearCookiesAndOpenInNewTab(_config.ManageBaseUrl);
+            _tabHelper.CloseAndOpenInNewTab(_config.ManageBaseUrl);
             return new Manage_IndexPage(_context)
                 .ClickAgencyButton()
                 .ManageStaffIdams()

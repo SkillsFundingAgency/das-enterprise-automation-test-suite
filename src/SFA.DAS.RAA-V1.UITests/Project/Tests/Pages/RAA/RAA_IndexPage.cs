@@ -8,12 +8,11 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
 {
-    public class RAA_IndexPage : BasePage
+    public class RAA_IndexPage : RAA_HeaderSectionBasePage
     {
         protected override string PageTitle => "Recruit an apprentice";
         
         #region Helpers and Context
-        private readonly FormCompletionHelper _formCompletionHelper;
         private readonly ScenarioContext _context;
         #endregion
 
@@ -22,13 +21,11 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         public RAA_IndexPage(ScenarioContext context): base(context)
         {
             _context = context;
-            _formCompletionHelper = context.Get<FormCompletionHelper>();
-            VerifyPage();
         }
 
         public Idams ClickOnSignInButton()
         {
-            _formCompletionHelper.Click(SignInButton);
+            formCompletionHelper.Click(SignInButton);
             return new Idams(_context);
         }
     }

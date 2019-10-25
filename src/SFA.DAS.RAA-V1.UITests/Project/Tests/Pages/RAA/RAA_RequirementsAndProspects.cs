@@ -1,20 +1,12 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.RAA_V1.UITests.Project.Helpers;
-using SFA.DAS.UI.Framework.TestSupport;
-using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
 {
-    public class RAA_RequirementsAndProspects : BasePage
+    public class RAA_RequirementsAndProspects : RAA_HeaderSectionBasePage
     {
         protected override string PageTitle => "Requirements and prospects";
-
-        #region Helpers and Context
-        private readonly FormCompletionHelper _formCompletionHelper;
-        private readonly ScenarioContext _context;
-        private readonly RAADataHelper _dataHelper;
-        #endregion
 
         private By SaveAndContinueButton => By.Id("VacancyRequirementsProspectsButton");
         private By DesiredSkillsText => By.XPath(".//*[@title='Rich Text Editor, DesiredSkills']");
@@ -23,47 +15,41 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         private By FutureProspectsText => By.XPath(".//*[@title='Rich Text Editor, FutureProspects']");
         private By ThingsToConsiderText => By.XPath(".//*[@title='Rich Text Editor, ThingsToConsider']");
 
-        public RAA_RequirementsAndProspects(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            _dataHelper = context.Get<RAADataHelper>();
-            _formCompletionHelper = context.Get<FormCompletionHelper>();
-            VerifyPage();
-        }
+        public RAA_RequirementsAndProspects(ScenarioContext context) : base(context) { }
 
         public RAA_RequirementsAndProspects EnterDesiredSkillsText()
         {
-            _formCompletionHelper.SendKeys(DesiredSkillsText, Keys.Tab + _dataHelper.DesiredSkills);
+            formCompletionHelper.SendKeys(DesiredSkillsText, Keys.Tab + dataHelper.DesiredSkills);
             return this;
         }
 
         public RAA_RequirementsAndProspects EnterPersonalQualitiesText()
         {
-            _formCompletionHelper.SendKeys(PersonalQualitiesText, Keys.Tab + _dataHelper.PersonalQualities);
+            formCompletionHelper.SendKeys(PersonalQualitiesText, Keys.Tab + dataHelper.PersonalQualities);
             return this;
         }
 
         public RAA_RequirementsAndProspects EnterDesiredQualificationsText()
         {
-            _formCompletionHelper.SendKeys(DesiredQualificationsText, Keys.Tab + _dataHelper.DesiredQualifications);
+            formCompletionHelper.SendKeys(DesiredQualificationsText, Keys.Tab + dataHelper.DesiredQualifications);
             return this;
         }
 
         public RAA_RequirementsAndProspects EnterFutureProspectsText()
         {
-            _formCompletionHelper.SendKeys(FutureProspectsText, Keys.Tab + _dataHelper.FutureProspects);
+            formCompletionHelper.SendKeys(FutureProspectsText, Keys.Tab + dataHelper.FutureProspects);
             return this;
         }
 
         public RAA_RequirementsAndProspects EnterThingsToConsiderText()
         {
-            _formCompletionHelper.SendKeys(ThingsToConsiderText, Keys.Tab + _dataHelper.ThingsToConsider);
+            formCompletionHelper.SendKeys(ThingsToConsiderText, Keys.Tab + dataHelper.ThingsToConsider);
             return this;
         }
 
         public RAA_RequirementsAndProspects ClickSaveAndContinue()
         {
-            _formCompletionHelper.Click(SaveAndContinueButton);
+            formCompletionHelper.Click(SaveAndContinueButton);
             return this;
         }
     }

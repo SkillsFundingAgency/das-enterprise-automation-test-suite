@@ -6,23 +6,13 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
 {
-    public enum VacancyType
-    {
-        Apprenticeship,
-        Traineeship
-    }
-
-    public class RAA_BasicVacancyDetails : BasePage
+    public class RAA_BasicVacancyDetails : RAA_HeaderSectionBasePage
     {
         protected override string PageTitle => "Enter basic vacancy details";
 
         #region Helpers and Context
-        private readonly FormCompletionHelper _formCompletionHelper;
         private readonly ScenarioContext _context;
-        private readonly RAADataHelper _dataHelper;
-        private readonly IWebDriver _webDriver;
         #endregion
-
 
         private By ApprenticeShipOfflineVacancy => By.Id("apprenticeship-offline-vacancy");
         private By ApprenticeShipOnlineVacancy => By.Id("apprenticeship-online-vacancy");
@@ -35,42 +25,38 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         public RAA_BasicVacancyDetails(ScenarioContext context) : base(context)
         {
             _context = context;
-            _dataHelper = context.Get<RAADataHelper>();
-            _formCompletionHelper = context.Get<FormCompletionHelper>();
-            _webDriver = context.GetWebDriver();
-            VerifyPage();
         }
 
         public RAA_BasicVacancyDetails EnterVacancyTitle()
         {
-            _formCompletionHelper.EnterText(VacancyTitle, _dataHelper.VacancyTitle);
+            formCompletionHelper.EnterText(VacancyTitle, dataHelper.VacancyTitle);
             return this;
         }
 
         public RAA_BasicVacancyDetails EnterVacancyShortDescription()
         {
-            _formCompletionHelper.EnterText(VacancyShortDescription, _dataHelper.VacancyShortDescription);
+            formCompletionHelper.EnterText(VacancyShortDescription, dataHelper.VacancyShortDescription);
             return this;
         }
 
         public RAA_BasicVacancyDetails ClickOnVacancyType(VacancyType vacancyType)
         {
             if (vacancyType == VacancyType.Traineeship)
-                _formCompletionHelper.SelectRadioOptionByText("Traineeship");
+                formCompletionHelper.SelectRadioOptionByText("Traineeship");
             else
-                _formCompletionHelper.SelectRadioOptionByText("Apprenticeship");  
+                formCompletionHelper.SelectRadioOptionByText("Apprenticeship");  
             return this;
         }
 
         public RAA_BasicVacancyDetails CickDisabilityConfident(string answer)
         {
-            if (answer == "Yes") _formCompletionHelper.SelectCheckBoxByText("The employer is signed up to the Disability Confident scheme");
+            if (answer == "Yes") formCompletionHelper.SelectCheckBoxByText("The employer is signed up to the Disability Confident scheme");
             return this;
         }
 
         public RAA_EnterTrainingDetails ClickSaveAndContinueButton()
         {
-            _formCompletionHelper.Click(SaveAndContinueButton);
+            formCompletionHelper.Click(SaveAndContinueButton);
             return new RAA_EnterTrainingDetails(_context);
         }
 
@@ -78,13 +64,13 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         {
             if (onlineoffline == "Online")
             {
-                _formCompletionHelper.SelectRadioOptionByText("Candidates will apply on this website");
+                formCompletionHelper.SelectRadioOptionByText("Candidates will apply on this website");
             }
             else if (onlineoffline == "Offline")
             {
-                _formCompletionHelper.SelectRadioOptionByText("Candidates will apply through an external website");
-                _formCompletionHelper.EnterText(OfflineVacancyUrl, _dataHelper.VacancyWebsiteUrl);
-                _formCompletionHelper.EnterText(OfflineApplicationProcess, _dataHelper.ApplicationProcess);
+                formCompletionHelper.SelectRadioOptionByText("Candidates will apply through an external website");
+                formCompletionHelper.EnterText(OfflineVacancyUrl, dataHelper.VacancyWebsiteUrl);
+                formCompletionHelper.EnterText(OfflineApplicationProcess, dataHelper.ApplicationProcess);
             }
             return this;
         }
