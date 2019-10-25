@@ -26,8 +26,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
         public DoYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage GoToReserveFunding()
         {
             var yourFundingReservationsPage = GoToManageFunding();
-            return yourFundingReservationsPage.ClickReserveMoreFundingLink()
-                .ClickReserveFundingButton();
+            return yourFundingReservationsPage.ClickReserveMoreFundingLink();
         }
 
         public SuccessfullyReservedFundingPage CreateReservation(DoYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage doYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage)
