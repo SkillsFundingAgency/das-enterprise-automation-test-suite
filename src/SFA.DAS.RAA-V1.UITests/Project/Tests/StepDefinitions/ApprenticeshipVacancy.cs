@@ -1,5 +1,6 @@
 ﻿using SFA.DAS.RAA_V1.UITests.Project.Helpers;
 using SFA.DAS.RAA_V1.UITests.Project.Tests.Pages;
+using SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.FAA;
 using SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.Manage;
 using SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA;
 using System;
@@ -20,11 +21,23 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
         private Manage_HomePage _manage_HomePage;
         private readonly RAAStepsHelper _raaStepsHelper;
         private readonly ManageStepsHelper _manageStepsHelper;
+        private readonly FAAStepsHelper _faaStepsHelper;
 
         public ApprenticeshipVacancy(ScenarioContext context)
         {
             _raaStepsHelper = new RAAStepsHelper(context);
             _manageStepsHelper = new ManageStepsHelper(context);
+            _faaStepsHelper = new FAAStepsHelper(context);
+        }
+
+        [When(@"the Applicant apply for a Vacancy in FAA '(.*)','(.*)','(.*)'")]
+        public void WhenTheApplicantApplyForAVacancyInFAA(string qualificationdetails, string workExperience, string trainingCourse)
+        {
+            var homePage = _faaStepsHelper.GoToFAAHomePage();
+
+            var applicationFormPage = _faaStepsHelper.ApplyForApprenticeship(homePage);
+
+            _faaStepsHelper.ConfirmApplicationSubmission(applicationFormPage, qualificationdetails, workExperience, trainingCourse);
         }
 
         [When(@"the Reviewer initiates reviewing the Vacancy in Manage")]
@@ -120,3 +133,4 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
         }
     }
 }
+

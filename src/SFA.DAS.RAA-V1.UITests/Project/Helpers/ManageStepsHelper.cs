@@ -7,7 +7,6 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
 {
     public class ManageStepsHelper
     {
-
         private readonly ScenarioContext _context;
         private readonly ObjectContext _objectContext;
         private readonly TabHelper _tabHelper;
@@ -22,12 +21,11 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
 
         public Manage_HomePage GoToManageHomePage()
         {
-            _tabHelper.OpenInNewtab(_config.ManageBaseUrl);
+            _tabHelper.ClearCookiesAndOpenInNewTab(_config.ManageBaseUrl);
             return new Manage_IndexPage(_context)
                 .ClickAgencyButton()
                 .ManageStaffIdams()
                 .SubmitManageLoginDetails();
         }
-
     }
 }

@@ -6,11 +6,17 @@ namespace SFA.DAS.UI.FrameworkHelpers
 {
     public class TabHelper
     {
-        private readonly IWebDriver _webDriver;
+        private IWebDriver _webDriver;
 
         public TabHelper(IWebDriver webDriver)
         {
             _webDriver = webDriver;
+        }
+
+        public void ClearCookiesAndOpenInNewTab(string url)
+        {
+            _webDriver.Manage().Cookies.DeleteAllCookies();
+            OpenInNewtab(url);
         }
 
         public void OpenInNewtab(string url)
@@ -23,7 +29,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
             var newtab = newtabs.Except(existingTabs).Single();
 
-            _webDriver.SwitchTo().Window(newtab);
+            _webDriver = _webDriver.SwitchTo().Window(newtab);
         }
 
         public void GoToUrl(string url)
