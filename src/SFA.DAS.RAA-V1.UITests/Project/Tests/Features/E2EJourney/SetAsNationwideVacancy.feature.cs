@@ -72,7 +72,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Features.E2EJourney
         public virtual void E2E3_CreateApproveAndApplyForAApprenticeshipVacancy(string location, string anonymity, string disabilityConfident, string applicationMethod, string apprenticeshipType, string hoursPerWeek, string vacancyDuration, string changeteam, string changeRole, string noOfPositions, string qualificationDetails, string workExperience, string trainingCourse, string[] exampleTags)
         {
             string[] @__tags = new string[] {
-                    "RAAV1_E2E",
+                    "V1_E2E",
                     "regression"};
             if ((exampleTags != null))
             {
@@ -108,7 +108,7 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("E2E3 - Create, Approve and Apply for a Apprenticeship Vacancy: Set as a nationwid" +
             "e vacancy")]
-        [NUnit.Framework.CategoryAttribute("RAAV1_E2E")]
+        [NUnit.Framework.CategoryAttribute("V1_E2E")]
         [NUnit.Framework.CategoryAttribute("regression")]
         public virtual void E2E3_CreateApproveAndApplyForAApprenticeshipVacancy_SetAsANationwideVacancy()
         {
