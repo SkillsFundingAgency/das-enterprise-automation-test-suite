@@ -32,9 +32,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
                 .ClickOnSignInButton()
                 .RecruitStaffIdams()
                 .SubmitRecruitmentLoginDetails();
-
         }
-
 
         internal RAA_EmployerSelection CreateANewVacancy()
         {

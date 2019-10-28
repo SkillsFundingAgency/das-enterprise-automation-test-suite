@@ -1,5 +1,4 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.UI.FrameworkHelpers;
 using System.Linq;
 
 namespace SFA.DAS.UI.FrameworkHelpers
@@ -13,6 +12,11 @@ namespace SFA.DAS.UI.FrameworkHelpers
         {
             _webDriver = webDriver;
             _formCompletionHelper = formCompletionHelper;
+        }
+
+        public void SelectRowFromTable(string byLinkText)
+        {
+            SelectRowFromTable(byLinkText, byLinkText);
         }
 
         public void SelectRowFromTable(string byLinkText, string byKey)

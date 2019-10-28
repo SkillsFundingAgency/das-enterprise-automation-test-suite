@@ -33,7 +33,11 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
         [Then(@"the Provider is able to view the Applicant's application in Recruit")]
         public void ThenTheProviderIsAbleToViewTheApplicantsApplicationInRecruit()
         {
-            _raaStepsHelper.GoToRAAHomePage();
+           var homePage = _raaStepsHelper.GoToRAAHomePage();
+
+            homePage.SearchByReferenceNumber();
+
+            homePage.ExitFromWebsite();
         }
 
         [When(@"the Applicant apply for a Vacancy in FAA '(.*)','(.*)','(.*)'")]
@@ -62,8 +66,6 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
         public void GivenTheProviderInitiatesCreateApprenticeshipVacancyIn()
         {
             _employerSelection = _raaStepsHelper.CreateANewVacancy();
-
-            _employerSelection.ExitFromWebsite();
         }
 
         [When(@"the Provider chooses the employer '(.*)','(.*)'")]

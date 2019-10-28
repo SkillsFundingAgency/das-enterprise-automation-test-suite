@@ -13,14 +13,10 @@ namespace SFA.DAS.RAA_V1.UITests.Project
     public class Hooks
     {
         private readonly ScenarioContext _context;
-        private readonly RAAV1Config _config;
-        private readonly IWebDriver _webDriver;
 
         public Hooks(ScenarioContext context)
         {
             _context = context;
-            _webDriver = context.GetWebDriver();
-            _config = context.GetRAAV1Config<RAAV1Config>();
         }
 
         [BeforeScenario(Order = 32)]
