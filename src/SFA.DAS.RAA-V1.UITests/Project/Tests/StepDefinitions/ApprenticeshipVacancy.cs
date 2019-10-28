@@ -33,22 +33,17 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
         [Then(@"the Provider is able to view the Applicant's application in Recruit")]
         public void ThenTheProviderIsAbleToViewTheApplicantsApplicationInRecruit()
         {
-            var homePage = _raaStepsHelper.GoToRAAHomePage();
-
-            homePage.ExitFromWebsite();
+            _raaStepsHelper.GoToRAAHomePage();
         }
-
 
         [When(@"the Applicant apply for a Vacancy in FAA '(.*)','(.*)','(.*)'")]
         public void WhenTheApplicantApplyForAVacancyInFAA(string qualificationdetails, string workExperience, string trainingCourse)
         {
             var homePage = _faaStepsHelper.GoToFAAHomePage();
 
-            homePage.ClickSignOut();
+            var applicationFormPage = _faaStepsHelper.ApplyForApprenticeship(homePage);
 
-            //var applicationFormPage = _faaStepsHelper.ApplyForApprenticeship(homePage);
-
-            //  _faaStepsHelper.ConfirmApplicationSubmission(applicationFormPage, qualificationdetails, workExperience, trainingCourse);
+             _faaStepsHelper.ConfirmApplicationSubmission(applicationFormPage, qualificationdetails, workExperience, trainingCourse);
         }
 
         [When(@"the Reviewer initiates reviewing the Vacancy in Manage")]
@@ -60,9 +55,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
         [Then(@"the Reviewer is able to approve the Vacancy '(.*)','(.*)'")]
         public void ThenTheReviewerIsAbleToApproveTheVacancy(string changeTeam, string changeRole)
         {
-            //_manage_HomePage.ApproveAVacancy(changeTeam, changeRole);
-
-            _manage_HomePage.SignOut();
+            _manage_HomePage.ApproveAVacancy(changeTeam, changeRole);
         }
 
         [Given(@"the Provider initiates Create Apprenticeship Vacancy in Recruit")]

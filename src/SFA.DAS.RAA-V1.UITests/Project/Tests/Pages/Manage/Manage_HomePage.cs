@@ -13,9 +13,8 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.Manage
         #region Helpers and Context
         private readonly PageInteractionHelper _pageInteractionHelper;
         private readonly FormCompletionHelper _formCompletionHelper;
-        private readonly ScenarioContext _context;
-        private TableRowHelper _tableRowHelper;
-        private RAADataHelper _dataHelper;
+        private readonly TableRowHelper _tableRowHelper;
+        private readonly RAADataHelper _dataHelper;
         #endregion
 
         private By ChangeTeam => By.CssSelector("#select2-chosen-2");
@@ -44,7 +43,6 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.Manage
 
         public Manage_HomePage(ScenarioContext context) : base(context)
         {
-            _context = context;
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
             _tableRowHelper = context.Get<TableRowHelper>();
@@ -100,11 +98,6 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.Manage
             {
                 _pageInteractionHelper.GetText(NoResults);
             }
-        }
-
-        public void SignOut()
-        {
-            _formCompletionHelper.Click(SignOutCss);
         }
     }
 }

@@ -10,6 +10,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
         private readonly ObjectContext _objectContext;
         private readonly RAAV1Config _config;
         private readonly RestartWebDriverHelper _helper;
+        private const string _applicationName = "Manage";
 
         public ManageStepsHelper(ScenarioContext context)
         {
@@ -21,7 +22,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
 
         public Manage_HomePage GoToManageHomePage()
         {
-            _helper.RestartWebDriver(_config.ManageBaseUrl, "Manage");
+            _helper.RestartWebDriver(_config.ManageBaseUrl, _applicationName);
 
             return new Manage_IndexPage(_context)
                 .ClickAgencyButton()

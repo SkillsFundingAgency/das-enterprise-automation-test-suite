@@ -13,6 +13,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
         private readonly RAAV1Config _config;
         private readonly TabHelper _tabHelper;
         private readonly RestartWebDriverHelper _helper;
+        private const string _applicationName = "Recruit";
 
         public RAAStepsHelper(ScenarioContext context)
         {
@@ -25,7 +26,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
 
         internal RAA_RecruitmentHomePage GoToRAAHomePage()
         {
-            _helper.RestartWebDriver(_config.RecruitBaseUrl, "Recruit");
+            _helper.RestartWebDriver(_config.RecruitBaseUrl, _applicationName);
             
             return new RAA_IndexPage(_context)
                 .ClickOnSignInButton()
@@ -37,7 +38,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
 
         internal RAA_EmployerSelection CreateANewVacancy()
         {
-            _objectContext.SetCurrentApplicationName("Recruit");
+            _objectContext.SetCurrentApplicationName(_applicationName);
 
             _tabHelper.GoToUrl(_config.RecruitBaseUrl);
 
