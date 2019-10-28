@@ -7,6 +7,9 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.FAA
 {
     public class FAA_SignInPage : BasePage
     {
+
+        protected override By PageHeader => By.CssSelector(".heading-large");
+
         protected override string PageTitle => "Sign in";
 
         #region Helpers and Context

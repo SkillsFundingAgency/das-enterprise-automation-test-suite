@@ -1,6 +1,5 @@
 ﻿using SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.FAA;
 using SFA.DAS.UI.Framework.TestSupport;
-using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
@@ -9,19 +8,20 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
     {
         private readonly ScenarioContext _context;
         private readonly ObjectContext _objectContext;
-        private readonly TabHelper _tabHelper;
         private readonly RAAV1Config _config;
+        private readonly RestartWebDriverHelper _helper;
         public FAAStepsHelper(ScenarioContext context)
         {
             _context = context;
             _objectContext = context.Get<ObjectContext>();
-            _tabHelper = context.Get<TabHelper>();
             _config = context.GetRAAV1Config<RAAV1Config>();
+            _helper = new RestartWebDriverHelper(context);
         }
 
         public FAA_HomePage GoToFAAHomePage()
         {
-            _tabHelper.CloseAndOpenInNewTab(_config.FAABaseUrl);
+            _helper.RestartWebDriver(_config.FAABaseUrl, "FindApprenticeship");
+
             return new FAA_Indexpage(_context)
                 .GoToSignInPage()
                 .SubmitValidLoginDetails();

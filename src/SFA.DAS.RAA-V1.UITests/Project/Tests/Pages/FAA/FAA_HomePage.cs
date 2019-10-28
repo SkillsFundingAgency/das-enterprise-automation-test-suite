@@ -17,6 +17,8 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.FAA
         
         private By FindAnApprenticeShip => By.Id("find-apprenticeship-link");
 
+        private By SignOutCss => By.XPath("//a[contains(.,'Sign out')]");
+
         public FAA_HomePage(ScenarioContext context) : base(context)
         {
             _context = context;
@@ -29,6 +31,11 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.FAA
         {
             _formCompletionHelper.Click(FindAnApprenticeShip);
             return new FAA_ApprenticeSearchPage(_context);
+        }
+
+        public void ClickSignOut()
+        {
+            _formCompletionHelper.Click(SignOutCss);
         }
     }
 }

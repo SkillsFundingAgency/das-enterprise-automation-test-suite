@@ -49,11 +49,6 @@ namespace SFA.DAS.UI.Framework.TestSupport
             _objects.Add(key, value);
         }
 
-        public void Set<T>(T value)
-        {
-            Set(typeof(T).FullName, value);
-        }
-
         public void Update<T>(T value)
         {
             Update<T>(typeof(T).FullName, value);
@@ -78,14 +73,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
 
         public void Replace<T>(string key, T value)
         {
-            if (KeyExists<T>(key))
-            {
-                _objects[key] = value;
-            }
-            else
-            {
-                Set(key, value);
-            }
+            _objects.Replace(key, value);
         }
 
         #endregion

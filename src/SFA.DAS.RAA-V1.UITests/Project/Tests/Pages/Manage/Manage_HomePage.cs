@@ -40,6 +40,8 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.Manage
 
         private By NoResults => By.XPath("//td[@colspan='6'][contains(.,'No results')]");
 
+        private By SignOutCss => By.Id("signout-link");
+
         public Manage_HomePage(ScenarioContext context) : base(context)
         {
             _context = context;
@@ -92,11 +94,17 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.Manage
                 _tableRowHelper.SelectRowFromTable("Review", _dataHelper.VacancyTitle);
                 _formCompletionHelper.Click(ApproveAndContinue);
                 _formCompletionHelper.Click(ClickAgencyHome);
+                _formCompletionHelper.Click(SignOutCss);
             }
             else
             {
                 _pageInteractionHelper.GetText(NoResults);
             }
+        }
+
+        public void SignOut()
+        {
+            _formCompletionHelper.Click(SignOutCss);
         }
     }
 }

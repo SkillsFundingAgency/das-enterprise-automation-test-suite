@@ -12,6 +12,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
         private readonly ObjectContext _objectContext;
         private readonly RAAV1Config _config;
         private readonly TabHelper _tabHelper;
+        private readonly RestartWebDriverHelper _helper;
 
         public RAAStepsHelper(ScenarioContext context)
         {
@@ -19,12 +20,26 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
             _objectContext = context.Get<ObjectContext>();
             _config = context.GetRAAV1Config<RAAV1Config>();
             _tabHelper = context.Get<TabHelper>();
+            _helper = new RestartWebDriverHelper(context);
         }
+
+        internal RAA_RecruitmentHomePage GoToRAAHomePage()
+        {
+            _helper.RestartWebDriver(_config.RecruitBaseUrl, "Recruit");
+            
+            return new RAA_IndexPage(_context)
+                .ClickOnSignInButton()
+                .RecruitStaffIdams()
+                .SubmitRecruitmentLoginDetails();
+
+        }
+
 
         internal RAA_EmployerSelection CreateANewVacancy()
         {
-            var url = _config.RecruitBaseUrl;
-            _tabHelper.GoToUrl(url);
+            _objectContext.SetCurrentApplicationName("Recruit");
+
+            _tabHelper.GoToUrl(_config.RecruitBaseUrl);
 
             return new RAA_IndexPage(_context)
                 .ClickOnSignInButton()
