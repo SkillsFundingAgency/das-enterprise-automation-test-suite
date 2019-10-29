@@ -185,27 +185,4 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.FAA
             }
         }
     }
-
-    public class ApprenticeshipApplicationSubmittedPage : BasePage
-    {
-        protected override By PageHeader => By.ClassName("bold-large sfa-large-bottom-margin");
-        protected override string PageTitle => "Apprenticeship application submitted";
-
-        public ApprenticeshipApplicationSubmittedPage(ScenarioContext context) : base(context)
-        {
-            VerifyPage();
-        }
-    }
-
-    public class TraineeshipApplicationSubmittedPage : BasePage
-    {
-        protected override By PageHeader => By.ClassName("bold-large");
-
-        protected override string PageTitle => "Traineeship application submitted";
-
-        public TraineeshipApplicationSubmittedPage(ScenarioContext context) : base(context)
-        {
-            VerifyPage();
-        }
-    }
 }
