@@ -20,6 +20,11 @@ namespace SFA.DAS.UI.FrameworkHelpers
             _retryHelper = retryHelper;
         }
 
+        public void WaitForElementToChange(By locator, string text)
+        {
+            _webDriverWaitHelper.TextToBePresentInElementLocated(locator, text);
+        }
+
         public void WaitforURLToChange(string url)
         {
             _webDriverWaitHelper.WaitforURLToChange(url);

@@ -14,21 +14,22 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         private readonly ScenarioContext _context;
         private readonly ObjectContext _objectContext;
         private readonly RAADataHelper _dataHelper;
-        private readonly TableRowHelper _tableRowHelper;
+        private readonly PageInteractionHelper _pageInteractionHelper;
         #endregion
 
         private By CreateANewVacancyButton => By.Id("new-vacancy-button");
         private By VacancySearchMode => By.CssSelector("#VacanciesSummary_VacanciesSummarySearch_SearchMode");
         private By VacancySearchText => By.CssSelector("#VacanciesSummary_VacanciesSummarySearch_SearchString");
         private By SearchVacancy => By.CssSelector("#search-vacancies-button");
-
+        private By VacancyTitle => By.CssSelector(".vac-title");
+        private By NoOfVacancy => By.CssSelector(".bold-xlarge");
 
         public RAA_RecruitmentHomePage(ScenarioContext context) : base(context)
         {
             _context = context;
             _objectContext = context.Get<ObjectContext>();
             _dataHelper = context.Get<RAADataHelper>();
-            _tableRowHelper = context.Get<TableRowHelper>();
+            _pageInteractionHelper = context.Get<PageInteractionHelper>();
         }
 
         public RAA_EmployerSelection CreateANewVacancy()
@@ -37,13 +38,20 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
             return new RAA_EmployerSelection(_context);
         }
 
-        public RAA_VacancyPreview SearchByReferenceNumber()
+        public RAA_VacancySummaryPage SearchByReferenceNumber()
         {
             formCompletionHelper.SelectFromDropDownByValue(VacancySearchMode, "ReferenceNumber");
             formCompletionHelper.EnterText(VacancySearchText, _objectContext.GetVacancyReference());
             formCompletionHelper.Click(SearchVacancy);
-            _tableRowHelper.SelectRowFromTable(_dataHelper.VacancyTitle);
-            return new RAA_VacancyPreview(_context);
+            _pageInteractionHelper.WaitForElementToChange(NoOfVacancy, "1");
+            return GoToVacancSummary();  
+        }
+
+        private RAA_VacancySummaryPage GoToVacancSummary()
+        {
+            var vacTitle = _pageInteractionHelper.GetLink(VacancyTitle, _dataHelper.VacancyTitle);
+            formCompletionHelper.ClickElement(vacTitle);
+             return new RAA_VacancySummaryPage(_context);
         }
     }
 }

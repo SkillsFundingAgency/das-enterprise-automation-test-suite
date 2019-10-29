@@ -14,11 +14,6 @@ namespace SFA.DAS.UI.FrameworkHelpers
             _formCompletionHelper = formCompletionHelper;
         }
 
-        public void SelectRowFromTable(string byLinkText)
-        {
-            SelectRowFromTable(byLinkText, byLinkText);
-        }
-
         public void SelectRowFromTable(string byLinkText, string byKey)
         {
             var table = _webDriver.FindElement(By.TagName("table"));
