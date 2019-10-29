@@ -1,5 +1,4 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
@@ -7,7 +6,9 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
 {
     public class RAA_VacancyReferencePage : RAA_HeaderSectionBasePage
     {
-        protected override string PageTitle => "";
+        protected override By PageHeader => VacancyReferenceNumber;
+
+        protected override string PageTitle => "VAC";
         
         #region Helpers and Context
         private readonly PageInteractionHelper _pageInteractionHelper;
