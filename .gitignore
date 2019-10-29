@@ -240,3 +240,4 @@ _Pvt_Extensions
 SFA.DAS.CookieService/Tools/PhantomJS/tools/phantomjs/ChangeLog
 SFA.DAS.Learners/Tools/PhantomJS/tools/phantomjs/ChangeLog
 Messaging/SFA.DAS.Messaging.v3.ncrunchsolution
+/src/SFA.DAS.Approvals.UITests/Project/Tests/Pages/Employer
