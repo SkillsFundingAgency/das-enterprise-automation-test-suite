@@ -52,7 +52,8 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.Manage
 
         private void TodaysVacancy()
         {
-            _pageInteractionHelper.GetLink(VacancyFilters, "Today");
+            var link = _pageInteractionHelper.GetLink(VacancyFilters, "Today");
+            _formCompletionHelper.ClickElement(link);
         }
 
         private bool AretherAnyVacancyToday()
