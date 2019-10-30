@@ -3,6 +3,7 @@ As a user
 I want to be able to navigate to DFE home page
 So that I can see all department services and information 
 
+@testproject
 Scenario Outline: User navigates to IT home page from GOV.UK page
 	Given the User navigates to GOV.UK home page
 	When the User searches for <SearchLink>

@@ -1,4 +1,5 @@
-﻿Feature: CocJourneyThree
+﻿@approvals
+Feature: CocJourneyThree
 
 @regression
 @cocscenarios

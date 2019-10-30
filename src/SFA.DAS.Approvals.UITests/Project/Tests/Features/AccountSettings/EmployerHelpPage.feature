@@ -1,4 +1,5 @@
-﻿Feature: EmployerHelpPage
+﻿@approvals
+Feature: EmployerHelpPage
 
 @regression
 Scenario: Employer navigates to Help pages

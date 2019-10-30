@@ -1,4 +1,5 @@
-﻿Feature: DLockJourneyFour
+﻿@approvals
+Feature: DLockJourneyFour
 
 @regression
 @liveapprentice

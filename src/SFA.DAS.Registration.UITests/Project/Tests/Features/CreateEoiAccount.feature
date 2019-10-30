@@ -2,6 +2,7 @@
 
 @addpayedetails
 @eoiaccount
+@registration
 Scenario: Create EOI Account with PAYE Details
 	Given I create an Account
 	When I add paye details

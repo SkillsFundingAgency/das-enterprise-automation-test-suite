@@ -1,4 +1,5 @@
-﻿Feature: ProviderEditsOrDeletesApprenticesOfACohort
+﻿@approvals
+Feature: ProviderEditsOrDeletesApprenticesOfACohort
 
 @regression
 Scenario: Provider Edits, Deletes Apprentices and Deletes Cohort that is not sent to a Employer
