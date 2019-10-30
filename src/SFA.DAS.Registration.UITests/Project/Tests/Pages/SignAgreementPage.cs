@@ -19,7 +19,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         private By DoNotWantToSignRadioButton => By.CssSelector("label[for=do-not-want-to-sign]");
 
-        private By ContinueButton => By.CssSelector("input.button");
+        private By ContinueButton => By.CssSelector("input.govuk-button");
 
         public SignAgreementPage(ScenarioContext context) : base(context)
         {
