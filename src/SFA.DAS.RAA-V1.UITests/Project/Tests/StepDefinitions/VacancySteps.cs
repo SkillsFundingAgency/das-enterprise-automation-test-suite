@@ -1,33 +1,44 @@
 ﻿using SFA.DAS.RAA_V1.UITests.Project.Helpers;
-using SFA.DAS.RAA_V1.UITests.Project.Tests.Pages;
-using SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.FAA;
 using SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.Manage;
 using SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA;
-using System;
-using System.Collections.Generic;
-using System.Text;
+
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
 {
     [Binding]
-    public class ApprenticeshipVacancy
+    public class VacancySteps
     {
         private RAA_EmployerSelection _employerSelection;
         private RAA_EmployerInformation _raaEmployerInformation;
         private RAA_EnterTrainingDetails _enterTrainingDetails;
-        private RAA_EnterFurtherDetails _enterFurtherDetails;
+        private RAA_EnterFurtherDetailsPage _enterFurtherDetails;
+        private RAA_EnterOpportunityDetails _enterOpportunityDetails;
         private RAA_RequirementsAndProspects _requirementsAndProspects;
         private Manage_HomePage _manage_HomePage;
         private readonly RAAStepsHelper _raaStepsHelper;
         private readonly ManageStepsHelper _manageStepsHelper;
         private readonly FAAStepsHelper _faaStepsHelper;
 
-        public ApprenticeshipVacancy(ScenarioContext context)
+        public VacancySteps(ScenarioContext context)
         {
             _raaStepsHelper = new RAAStepsHelper(context);
             _manageStepsHelper = new ManageStepsHelper(context);
             _faaStepsHelper = new FAAStepsHelper(context);
+        }
+
+        [When(@"the Vacancy details are filled out for a Traineeship for a different '(.*)'")]
+        public void WhenTheVacancyDetailsAreFilledOutForATraineeshipForADifferent(string location)
+        {
+            _enterTrainingDetails = _raaStepsHelper.EnterBasicVacancyDetails(VacancyType.Traineeship, "Yes", "Online");
+
+            _enterOpportunityDetails = _raaStepsHelper.EnterTrainingDetails(_enterTrainingDetails);
+
+            _requirementsAndProspects = _raaStepsHelper.EnterOpportunityDetails(_enterOpportunityDetails, "18");
+
+            _raaStepsHelper.EnterRequirementsAndProspects(_requirementsAndProspects);
+
+            _raaStepsHelper.EnterExtraQuestions();
         }
 
         [Then(@"the Provider is able to view the Applicant's application in Recruit")]
@@ -120,7 +131,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
                     vacancyDuration = "52";
                     break;
             }
-            _enterTrainingDetails = _raaStepsHelper.EnterBasicVacancyDetails(disabilityConfident, applicationMethod);
+            _enterTrainingDetails = _raaStepsHelper.EnterBasicVacancyDetails(VacancyType.Apprenticeship, disabilityConfident, applicationMethod);
 
             _enterFurtherDetails = _raaStepsHelper.EnterTrainingDetails(_enterTrainingDetails, apprenticeShip);
 

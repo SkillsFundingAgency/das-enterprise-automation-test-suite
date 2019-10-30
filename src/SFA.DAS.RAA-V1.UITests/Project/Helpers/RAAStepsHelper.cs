@@ -47,18 +47,30 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
                 .CreateANewVacancy();
         }
 
-        internal RAA_EnterTrainingDetails EnterBasicVacancyDetails(string disabilityConfident, string applicationMethod)
+        internal RAA_EnterTrainingDetails EnterBasicVacancyDetails(VacancyType vacancyType, string disabilityConfident, string applicationMethod)
         {
             return new RAA_BasicVacancyDetails(_context)
                        .EnterVacancyTitle()
                        .EnterVacancyShortDescription()
-                       .ClickOnVacancyType(VacancyType.Apprenticeship)
+                       .ClickOnVacancyType(vacancyType)
                        .CickDisabilityConfident(disabilityConfident)
                        .ApplicationMethod(applicationMethod)
                        .ClickSaveAndContinueButton();
         }
 
-        internal RAA_EnterFurtherDetails EnterTrainingDetails(RAA_EnterTrainingDetails enterTrainingDetails, string apprenticeShip)
+        internal RAA_EnterOpportunityDetails EnterTrainingDetails(RAA_EnterTrainingDetails enterTrainingDetails)
+        {
+            return enterTrainingDetails
+                   .SelectApprenticeshipType("Traineeship")
+                   .EnterTrainingToBeProvided()
+                   .EnterContactName()
+                   .ContactTelephone()
+                   .EnterEmailDetails()
+                   .GotoOpportunityDetailsPage();
+        }
+
+
+        internal RAA_EnterFurtherDetailsPage EnterTrainingDetails(RAA_EnterTrainingDetails enterTrainingDetails, string apprenticeShip)
         {
             return enterTrainingDetails
                    .SelectApprenticeshipType(apprenticeShip)
@@ -66,10 +78,21 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
                    .EnterContactName()
                    .ContactTelephone()
                    .EnterEmailDetails()
-                   .ClickOnSaveAndContinue();
+                   .GotoFurtherDetailsPage();
         }
 
-        internal RAA_RequirementsAndProspects EnterFurtherDetails(RAA_EnterFurtherDetails enterFurtherDetails, string hoursPerWeek, string vacancyDuration)
+        internal RAA_RequirementsAndProspects EnterOpportunityDetails(RAA_EnterOpportunityDetails enteropportunityDetails,string vacancyDuration)
+        {
+            return enteropportunityDetails
+                   .EnterWorkingInformation()
+                   .EnterVacancyDuration(vacancyDuration)
+                   .EnterVacancyClosingDate()
+                   .EnterPossibleStartDate()
+                   .EnterVacancyDescription()
+                   .ClickSaveAndContinueButton();
+        }
+
+        internal RAA_RequirementsAndProspects EnterFurtherDetails(RAA_EnterFurtherDetailsPage enterFurtherDetails, string hoursPerWeek, string vacancyDuration)
         {
             return enterFurtherDetails
                    .EnterWorkingInformation()
