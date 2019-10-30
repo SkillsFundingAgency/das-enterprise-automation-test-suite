@@ -34,10 +34,10 @@ namespace SFA.DAS.UI.FrameworkHelpers
                  });
         }
 
-        internal void RetryOnStaleElementException(Func<IWebElement> element)
+        internal void RetryOnWebDriverException(Func<IWebElement> element)
         {
             Policy
-                .Handle<StaleElementReferenceException>()
+                .Handle<WebDriverException>()
                 .WaitAndRetry(TimeOut, (exception, timeSpan, retryCount, context) =>
                 {
                     TestContext.Progress.WriteLine($"Retry Count : {retryCount}, Exception : {exception.Message}");
@@ -46,8 +46,8 @@ namespace SFA.DAS.UI.FrameworkHelpers
                 {
                     using (var testcontext = new NUnit.Framework.Internal.TestExecutionContext.IsolatedContext())
                     {
-                        var webelekment = element.Invoke();
-                        ClickEvent(webelekment).Invoke();
+                        var webelement = element.Invoke();
+                        ClickEvent(webelement).Invoke();
                     }
                 });
         }
