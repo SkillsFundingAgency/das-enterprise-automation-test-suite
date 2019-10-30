@@ -19,6 +19,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.DLockJourneys
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("DLockJourneyOne")]
+    [NUnit.Framework.CategoryAttribute("approvals")]
     public partial class DLockJourneyOneFeature
     {
         
@@ -31,7 +32,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.DLockJourneys
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "DLockJourneyOne", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "DLockJourneyOne", null, ProgrammingLanguage.CSharp, new string[] {
+                        "approvals"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -80,16 +82,16 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.DLockJourneys
                         "regression",
                         "liveapprentice",
                         "dlockscenarios"});
-#line 6
+#line 7
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 7
- testRunner.Given("the Employer has approved apprentice", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 8
- testRunner.When("the provider submit an ILR with price mismatch", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.Given("the Employer has approved apprentice", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 9
- testRunner.Then("the Employer can approve the ILR mismatch changes", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.When("the provider submit an ILR with price mismatch", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 10
+ testRunner.Then("the Employer can approve the ILR mismatch changes", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 11
  testRunner.And("the ILR should be matched and datalock is resolved", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();

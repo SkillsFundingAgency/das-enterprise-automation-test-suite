@@ -1,4 +1,5 @@
-﻿Feature: CocJourneySeven
+﻿@approvals
+Feature: CocJourneySeven
 
 @regression
 @waitingtostartapprentice

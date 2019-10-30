@@ -1,6 +1,7 @@
 ﻿Feature: EmployerStopsApprentice
 As an employer I can pause, resume and stop an apprentice
 
+@approvals
 @regression
 @liveapprentice
 @currentacademicyearstartdate

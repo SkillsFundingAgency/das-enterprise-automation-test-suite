@@ -1,6 +1,7 @@
 ﻿Feature: CreateAccountOne
 
 @addpayedetails
+@registration
 Scenario: Create Non Levy Account with PAYE Details will land in the Agreement Page
 	Given I create an Account
 	When I add paye details

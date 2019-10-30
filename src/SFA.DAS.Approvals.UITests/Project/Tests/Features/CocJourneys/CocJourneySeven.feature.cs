@@ -19,6 +19,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.CocJourneys
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("CocJourneySeven")]
+    [NUnit.Framework.CategoryAttribute("approvals")]
     public partial class CocJourneySevenFeature
     {
         
@@ -31,7 +32,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.CocJourneys
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "CocJourneySeven", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "CocJourneySeven", null, ProgrammingLanguage.CSharp, new string[] {
+                        "approvals"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -82,14 +84,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.CocJourneys
                         "regression",
                         "waitingtostartapprentice",
                         "cocscenarios"});
-#line 6
+#line 7
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 7
- testRunner.Given("the Employer has approved apprentice", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 8
- testRunner.When("the provider edits cost and course and confirm the changes after ILR match", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.Given("the Employer has approved apprentice", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 9
+ testRunner.When("the provider edits cost and course and confirm the changes after ILR match", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 10
  testRunner.Then("the Employer can review and approve the changes", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();

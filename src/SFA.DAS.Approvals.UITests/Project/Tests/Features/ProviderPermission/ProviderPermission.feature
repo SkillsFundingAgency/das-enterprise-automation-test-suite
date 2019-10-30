@@ -1,4 +1,5 @@
-﻿Feature: ProviderPermission
+﻿@approvals
+Feature: ProviderPermission
 An employer can grant and revoke create cohort permission to a provider
 
 @regression

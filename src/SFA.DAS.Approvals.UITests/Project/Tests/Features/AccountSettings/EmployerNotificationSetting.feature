@@ -1,4 +1,5 @@
-﻿Feature: EmployerNotificationSetting
+﻿@approvals
+Feature: EmployerNotificationSetting
 
 @regression
 Scenario: Employer login and modifies notification settings

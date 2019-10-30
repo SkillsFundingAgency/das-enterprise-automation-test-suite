@@ -72,25 +72,27 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Employer view edit and delete apprentices and cohort")]
+        [NUnit.Framework.CategoryAttribute("approvals")]
         [NUnit.Framework.CategoryAttribute("regression")]
         public virtual void EmployerViewEditAndDeleteApprenticesAndCohort()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Employer view edit and delete apprentices and cohort", null, new string[] {
+                        "approvals",
                         "regression"});
-#line 5
+#line 6
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 6
- testRunner.Given("the Employer login using existing levy account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 7
- testRunner.And("Employer adds 2 apprentices to current cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Given("the Employer login using existing levy account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 8
- testRunner.Then("Employer is able to view saved cohort from Draft", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("Employer adds 2 apprentices to current cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 9
- testRunner.And("Employer is able to edit all apprentices before approval", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Then("Employer is able to view saved cohort from Draft", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 10
- testRunner.And("Employer is able to delete all apprentices before approval", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("Employer is able to edit all apprentices before approval", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 11
+ testRunner.And("Employer is able to delete all apprentices before approval", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 12
  testRunner.And("Employer is able to delete the cohort before approval", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();

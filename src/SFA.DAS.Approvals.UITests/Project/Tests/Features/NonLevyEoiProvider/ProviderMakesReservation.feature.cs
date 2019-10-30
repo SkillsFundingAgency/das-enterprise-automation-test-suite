@@ -19,6 +19,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.NonLevyEoiProvider
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("Provider makes reservation for non-levy EOI employers")]
+    [NUnit.Framework.CategoryAttribute("approvals")]
     public partial class ProviderMakesReservationForNon_LevyEOIEmployersFeature
     {
         
@@ -32,7 +33,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.NonLevyEoiProvider
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Provider makes reservation for non-levy EOI employers", "\tAs a valid provider user \r\n\tI want to be able to get funding for a non-levy EOI " +
-                    "employer\r\n\tSo that provider can book courses for a certain training period", ProgrammingLanguage.CSharp, ((string[])(null)));
+                    "employer\r\n\tSo that provider can book courses for a certain training period", ProgrammingLanguage.CSharp, new string[] {
+                        "approvals"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -81,20 +83,20 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.NonLevyEoiProvider
                     "", null, new string[] {
                         "regression",
                         "nonlevyeoiproviderscenarios"});
-#line 8
+#line 9
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 9
- testRunner.Given("An Employer has given create reservation permission to a provider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 10
- testRunner.Then("Provider can make a reservation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Given("An Employer has given create reservation permission to a provider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 11
- testRunner.And("Provider can add an apprentice", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Then("Provider can make a reservation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 12
- testRunner.And("Provider can edit an apprentice", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("Provider can add an apprentice", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 13
- testRunner.And("Provider can delete an apprentice", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("Provider can edit an apprentice", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 14
+ testRunner.And("Provider can delete an apprentice", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 15
  testRunner.And("Provider can delete the funding", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();

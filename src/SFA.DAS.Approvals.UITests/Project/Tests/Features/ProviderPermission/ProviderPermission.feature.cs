@@ -19,6 +19,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.ProviderPermission
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("ProviderPermission")]
+    [NUnit.Framework.CategoryAttribute("approvals")]
     public partial class ProviderPermissionFeature
     {
         
@@ -31,7 +32,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.ProviderPermission
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "ProviderPermission", "An employer can grant and revoke create cohort permission to a provider", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "ProviderPermission", "An employer can grant and revoke create cohort permission to a provider", ProgrammingLanguage.CSharp, new string[] {
+                        "approvals"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -78,16 +80,16 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.ProviderPermission
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Employer grant and revoke Create Cohort permission to a provider", null, new string[] {
                         "regression",
                         "CreateCohortPermission"});
-#line 6
+#line 7
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 7
- testRunner.Given("Employer grant create cohort permission to a provider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 8
- testRunner.Then("Provider can Create Cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Given("Employer grant create cohort permission to a provider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 9
- testRunner.When("Employer revoke create cohort permission to a provider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.Then("Provider can Create Cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 10
+ testRunner.When("Employer revoke create cohort permission to a provider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 11
  testRunner.Then("Provider cannot Create Cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();

@@ -1,4 +1,5 @@
-﻿Feature: Provider makes reservation for non-levy EOI employers
+﻿@approvals
+Feature: Provider makes reservation for non-levy EOI employers
 	As a valid provider user 
 	I want to be able to get funding for a non-levy EOI employer
 	So that provider can book courses for a certain training period

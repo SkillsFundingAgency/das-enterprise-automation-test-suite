@@ -19,6 +19,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.NonLevy
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("NonLevyEmployerCreatesACohort")]
+    [NUnit.Framework.CategoryAttribute("approvals")]
     public partial class NonLevyEmployerCreatesACohortFeature
     {
         
@@ -31,7 +32,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.NonLevy
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "NonLevyEmployerCreatesACohort", "A Non Levy employer creates a cohort using the reservation", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "NonLevyEmployerCreatesACohort", "A Non Levy employer creates a cohort using the reservation", ProgrammingLanguage.CSharp, new string[] {
+                        "approvals"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -80,15 +82,15 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.NonLevy
                         "regression",
                         "non-levy",
                         "ignore"});
-#line 8
+#line 9
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 9
- testRunner.Given("the Employer login using existing eoi account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 10
+ testRunner.Given("the Employer login using existing eoi account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 11
  testRunner.When("the Employer uses the reservation to create and approve 2 cohort and sends to pro" +
                     "vider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 11
+#line 12
  testRunner.Then("the provider adds Ulns and approves the cohorts", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
