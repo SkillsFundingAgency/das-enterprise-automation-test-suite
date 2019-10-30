@@ -88,6 +88,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             {
                 Assert.IsTrue(linkDisplayed, "Create Cohort link is not visible");
             }
+
+            _providerHomePage.SignsOut();
         }
 
         [Then(@"Provider cannot Create Cohort")]

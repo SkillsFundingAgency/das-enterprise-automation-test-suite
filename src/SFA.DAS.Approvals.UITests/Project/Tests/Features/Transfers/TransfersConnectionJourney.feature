@@ -1,4 +1,5 @@
-﻿Feature: TransfersConnectionJourney
+﻿@approvals
+Feature: TransfersConnectionJourney
 
 @regression
 @transfersscenarios

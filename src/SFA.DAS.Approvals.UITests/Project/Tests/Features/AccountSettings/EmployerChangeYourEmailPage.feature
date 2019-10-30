@@ -1,4 +1,5 @@
-﻿Feature: EmployerChangeYourEmailPage
+﻿@approvals
+Feature: EmployerChangeYourEmailPage
 
 @regression
 Scenario: Employer navigates to Change your email address pages

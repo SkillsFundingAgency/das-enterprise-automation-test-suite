@@ -1,6 +1,7 @@
 ﻿Feature: CreateLevyAccount
 
 @addpayedetails
+@registration
 Scenario: Create Levy Account
 	Given the following levy declarations with english fraction of 1.00 calculated at 2019-01-15
 		| Year  | Month | LevyDueYTD | LevyAllowanceForFullYear | SubmissionDate |
