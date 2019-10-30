@@ -1,7 +1,7 @@
 ﻿using SFA.DAS.RAA_V1.UITests.Project.Helpers;
 using SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.Manage;
 using SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA;
-
+using SFA.DAS.UI.Framework.TestSupport;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
@@ -19,9 +19,10 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
         private readonly RAAStepsHelper _raaStepsHelper;
         private readonly ManageStepsHelper _manageStepsHelper;
         private readonly FAAStepsHelper _faaStepsHelper;
-
+        private readonly ObjectContext _objectContext;
         public VacancySteps(ScenarioContext context)
         {
+            _objectContext = context.Get<ObjectContext>();
             _raaStepsHelper = new RAAStepsHelper(context);
             _manageStepsHelper = new ManageStepsHelper(context);
             _faaStepsHelper = new FAAStepsHelper(context);
@@ -30,7 +31,23 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
         [When(@"the Vacancy details are filled out for a Traineeship for a different '(.*)'")]
         public void WhenTheVacancyDetailsAreFilledOutForATraineeshipForADifferent(string location)
         {
-            _enterTrainingDetails = _raaStepsHelper.EnterBasicVacancyDetails(VacancyType.Traineeship, "Yes", "Online");
+            string disabilityConfident = "Yes";
+            string applicationMethod = "Online";
+            switch (location)
+            {
+                case "Use the main employer address":
+                    break;
+
+                case "Add different location":
+                    _raaStepsHelper.AddMultipleVacancy();
+                    disabilityConfident = "No";
+                    break;
+
+                case "Set as a nationwide vacancy":
+                    break;
+            }
+
+            _enterTrainingDetails = _raaStepsHelper.EnterBasicVacancyDetails(VacancyType.Traineeship, disabilityConfident, applicationMethod);
 
             _enterOpportunityDetails = _raaStepsHelper.EnterTrainingDetails(_enterTrainingDetails);
 
@@ -131,7 +148,10 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
                     vacancyDuration = "52";
                     break;
             }
-            _enterTrainingDetails = _raaStepsHelper.EnterBasicVacancyDetails(VacancyType.Apprenticeship, disabilityConfident, applicationMethod);
+
+            _objectContext.SetApprenticeshipVacancyType();
+
+           _enterTrainingDetails = _raaStepsHelper.EnterBasicVacancyDetails(VacancyType.Apprenticeship, disabilityConfident, applicationMethod);
 
             _enterFurtherDetails = _raaStepsHelper.EnterTrainingDetails(_enterTrainingDetails, apprenticeShip);
 

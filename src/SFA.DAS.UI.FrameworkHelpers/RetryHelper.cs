@@ -34,6 +34,24 @@ namespace SFA.DAS.UI.FrameworkHelpers
                  });
         }
 
+        internal void RetryOnStaleElementException(Func<IWebElement> element)
+        {
+            Policy
+                .Handle<StaleElementReferenceException>()
+                .WaitAndRetry(TimeOut, (exception, timeSpan, retryCount, context) =>
+                {
+                    TestContext.Progress.WriteLine($"Retry Count : {retryCount}, Exception : {exception.Message}");
+                })
+                .Execute(() =>
+                {
+                    using (var testcontext = new NUnit.Framework.Internal.TestExecutionContext.IsolatedContext())
+                    {
+                        var webelekment = element.Invoke();
+                        ClickEvent(webelekment).Invoke();
+                    }
+                });
+        }
+
         internal void RetryOnElementClickInterceptedException(IWebElement element)
         {
 

@@ -69,39 +69,36 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Features.E2EJourney
             testRunner.CollectScenarioErrors();
         }
         
-        public virtual void V1_E2E_CreateApproveAndApplyForATraineeshipVacancy(string location, string changeteam, string changeRole, string provider, string qualificationDetails, string workExperience, string trainingCourse, string[] exampleTags)
+        public virtual void V1_E2E_CreateApproveAndApplyForATraineeshipVacancy(string location, string changeteam, string changeRole, string qualificationDetails, string workExperience, string trainingCourse, string[] exampleTags)
         {
             string[] @__tags = new string[] {
-                    "V1_E2E"};
+                    "V1_E2E",
+                    "regression"};
             if ((exampleTags != null))
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
             }
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("V1_E2E - Create, Approve and Apply for a Traineeship Vacancy", null, @__tags);
-#line 6
+#line 7
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 7
-testRunner.Given("the Provider initiates Create Apprenticeship Vacancy in Recruit", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 8
-testRunner.When(string.Format("the Provider chooses the employer \'{0}\',\'2\'", location), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+testRunner.Given("the Provider initiates Create Apprenticeship Vacancy in Recruit", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 9
-testRunner.And("the Provider chooses their \'Yes\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.When(string.Format("the Provider chooses the employer \'{0}\',\'2\'", location), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 10
-testRunner.And(string.Format("the Vacancy details are filled out for a Traineeship for a different \'{0}\'", location), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.And("the Provider chooses their \'Yes\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 11
-testRunner.Then("Provider is able to submit the vacancy for approval", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+testRunner.And(string.Format("the Vacancy details are filled out for a Traineeship for a different \'{0}\'", location), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 12
-testRunner.When("the Reviewer initiates reviewing the Vacancy in Manage", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+testRunner.Then("Provider is able to submit the vacancy for approval", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 13
-testRunner.Then(string.Format("the Reviewer is able to approve the Vacancy \'{0}\',\'{1}\'", changeteam, changeRole), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+testRunner.When("the Reviewer initiates reviewing the Vacancy in Manage", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 14
-testRunner.When("the Applicant initiates applying for a Vacancy in FAA", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+testRunner.Then(string.Format("the Reviewer is able to approve the Vacancy \'{0}\',\'{1}\'", changeteam, changeRole), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 15
-testRunner.And("Applicant searches for the Vacancy \'<VacancyReference>\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.When(string.Format("the Applicant apply for a Vacancy in FAA \'{0}\',\'{1}\',\'{2}\'", qualificationDetails, workExperience, trainingCourse), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 16
-testRunner.And(string.Format("fills the application form \'{0}\',\'{1}\' ,\'{2}\'", qualificationDetails, workExperience, trainingCourse), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 17
 testRunner.Then("the Provider is able to view the Applicant\'s application in Recruit", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -111,10 +108,11 @@ testRunner.Then("the Provider is able to view the Applicant\'s application in Re
         [NUnit.Framework.DescriptionAttribute("V1_E2E - Create, Approve and Apply for a Traineeship Vacancy: Use the main employ" +
             "er address")]
         [NUnit.Framework.CategoryAttribute("V1_E2E")]
+        [NUnit.Framework.CategoryAttribute("regression")]
         public virtual void V1_E2E_CreateApproveAndApplyForATraineeshipVacancy_UseTheMainEmployerAddress()
         {
-#line 6
-this.V1_E2E_CreateApproveAndApplyForATraineeshipVacancy("Use the main employer address", "West Midlands", "Vacancy reviewer", "Department for Business, Innovation and Skills-Skills Funding Agency", "No", "No", "No", ((string[])(null)));
+#line 7
+this.V1_E2E_CreateApproveAndApplyForATraineeshipVacancy("Use the main employer address", "West Midlands", "Vacancy reviewer", "No", "No", "No", ((string[])(null)));
 #line hidden
         }
         
@@ -122,10 +120,11 @@ this.V1_E2E_CreateApproveAndApplyForATraineeshipVacancy("Use the main employer a
         [NUnit.Framework.DescriptionAttribute("V1_E2E - Create, Approve and Apply for a Traineeship Vacancy: Add different locat" +
             "ion")]
         [NUnit.Framework.CategoryAttribute("V1_E2E")]
+        [NUnit.Framework.CategoryAttribute("regression")]
         public virtual void V1_E2E_CreateApproveAndApplyForATraineeshipVacancy_AddDifferentLocation()
         {
-#line 6
-this.V1_E2E_CreateApproveAndApplyForATraineeshipVacancy("Add different location", "West Midlands", "Vacancy reviewer", "Department for Business, Innovation and Skills-Skills Funding Agency", "No", "No", "No", ((string[])(null)));
+#line 7
+this.V1_E2E_CreateApproveAndApplyForATraineeshipVacancy("Add different location", "West Midlands", "Vacancy reviewer", "No", "No", "No", ((string[])(null)));
 #line hidden
         }
         
@@ -133,10 +132,11 @@ this.V1_E2E_CreateApproveAndApplyForATraineeshipVacancy("Add different location"
         [NUnit.Framework.DescriptionAttribute("V1_E2E - Create, Approve and Apply for a Traineeship Vacancy: Set as a nationwide" +
             " vacancy")]
         [NUnit.Framework.CategoryAttribute("V1_E2E")]
+        [NUnit.Framework.CategoryAttribute("regression")]
         public virtual void V1_E2E_CreateApproveAndApplyForATraineeshipVacancy_SetAsANationwideVacancy()
         {
-#line 6
-this.V1_E2E_CreateApproveAndApplyForATraineeshipVacancy("Set as a nationwide vacancy", "West Midlands", "Vacancy reviewer", "Department for Business, Innovation and Skills-Skills Funding Agency", "No", "No", "No", ((string[])(null)));
+#line 7
+this.V1_E2E_CreateApproveAndApplyForATraineeshipVacancy("Set as a nationwide vacancy", "West Midlands", "Vacancy reviewer", "No", "No", "No", ((string[])(null)));
 #line hidden
         }
     }

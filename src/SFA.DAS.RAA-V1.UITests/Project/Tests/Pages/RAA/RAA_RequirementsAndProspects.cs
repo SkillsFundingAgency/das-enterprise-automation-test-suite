@@ -9,11 +9,11 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         protected override string PageTitle => "Requirements and prospects";
 
         private By SaveAndContinueButton => By.Id("VacancyRequirementsProspectsButton");
-        private By DesiredSkillsText => By.XPath(".//*[@title='Rich Text Editor, DesiredSkills']");
-        private By PersonalQualitiesText => By.XPath(".//*[@title='Rich Text Editor, PersonalQualities']");
-        private By DesiredQualificationsText => By.XPath(".//*[@title='Rich Text Editor, DesiredQualifications']");
-        private By FutureProspectsText => By.XPath(".//*[@title='Rich Text Editor, FutureProspects']");
-        private By ThingsToConsiderText => By.XPath(".//*[@title='Rich Text Editor, ThingsToConsider']");
+        private By DesiredSkillsText => By.CssSelector("iframe[title='Rich Text Editor, DesiredSkills']");
+        private By PersonalQualitiesText => By.CssSelector("iframe[title='Rich Text Editor, PersonalQualities']");
+        private By DesiredQualificationsText => By.CssSelector("iframe[title='Rich Text Editor, DesiredQualifications']");
+        private By FutureProspectsText => By.CssSelector("iframe[title='Rich Text Editor, FutureProspects']");
+        private By ThingsToConsiderText => By.CssSelector("iframe[title='Rich Text Editor, ThingsToConsider']");
 
         public RAA_RequirementsAndProspects(ScenarioContext context) : base(context) { }
 

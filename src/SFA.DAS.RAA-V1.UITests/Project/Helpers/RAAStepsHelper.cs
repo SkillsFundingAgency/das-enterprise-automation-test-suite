@@ -107,13 +107,17 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
 
         internal void EnterRequirementsAndProspects(RAA_RequirementsAndProspects requirementsAndProspects)
         {
-            requirementsAndProspects
-                .EnterDesiredQualificationsText()
-                .EnterPersonalQualitiesText()
-                .EnterDesiredSkillsText()
-                .EnterFutureProspectsText()
-                .EnterThingsToConsiderText()
-                .ClickSaveAndContinue();
+            if (_objectContext.IsApprenticeshipVacancyType())
+            {
+                requirementsAndProspects = requirementsAndProspects
+                .EnterDesiredQualificationsText();
+            }
+                requirementsAndProspects
+                    .EnterDesiredSkillsText()
+                    .EnterPersonalQualitiesText()
+                    .EnterFutureProspectsText()
+                    .EnterThingsToConsiderText()
+                    .ClickSaveAndContinue();
         }
 
         internal void EnterExtraQuestions()
@@ -127,12 +131,10 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
         internal void AddMultipleVacancy()
         {
             new RAA_MultipleVacancyLocationPage(_context)
-                       .EnterPostCode("CV1 2WT")
-                       .ClickOnTheFirstAddress()
+                       .AddLocation("CV1 2WT")
                        .EnterNumberOfVacancy()
                        .ClickAddAnotherLocationLink()
-                       .EnterPostCode("BS16 4EA")
-                       .ClickOnTheFirstAddress()
+                       .AddLocation("BS16 4EA")
                        .EnterNumberOfVacancy2()
                        .EnterAdditionalLocationInformation()
                        .ClickSaveAndContinue();

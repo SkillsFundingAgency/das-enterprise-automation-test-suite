@@ -9,7 +9,19 @@ namespace SFA.DAS.RAA_V1.UITests.Project
     {
         #region Constants
         private const string VacancyReference = "vacancyreference";
+        private const string VacancyType = "vacancytype";
         #endregion
+
+
+        internal static void SetApprenticeshipVacancyType(this ObjectContext objectContext)
+        {
+            objectContext.Set(VacancyType, true);
+        }
+
+        public static bool IsApprenticeshipVacancyType(this ObjectContext objectContext)
+        {
+            return objectContext.KeyExists<bool>(VacancyType);
+        }
 
         internal static void SetVacancyReference(this ObjectContext objectContext, string value)
         {

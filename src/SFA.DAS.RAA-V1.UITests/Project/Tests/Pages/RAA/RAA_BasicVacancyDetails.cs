@@ -1,5 +1,6 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.RAA_V1.UITests.Project.Helpers;
+using SFA.DAS.UI.Framework.TestSupport;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
@@ -10,6 +11,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
+        private readonly ObjectContext _objectContext;
         #endregion
 
         private By ApprenticeShipOfflineVacancy => By.Id("apprenticeship-offline-vacancy");
@@ -23,6 +25,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         public RAA_BasicVacancyDetails(ScenarioContext context) : base(context)
         {
             _context = context;
+            _objectContext = context.Get<ObjectContext>();
         }
 
         public RAA_BasicVacancyDetails EnterVacancyTitle()
@@ -40,9 +43,13 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         public RAA_BasicVacancyDetails ClickOnVacancyType(VacancyType vacancyType)
         {
             if (vacancyType == VacancyType.Traineeship)
+            {
                 formCompletionHelper.SelectRadioOptionByText("Traineeship");
+            }
             else
-                formCompletionHelper.SelectRadioOptionByText("Apprenticeship");  
+            {
+                formCompletionHelper.SelectRadioOptionByText("Apprenticeship");
+            }
             return this;
         }
 

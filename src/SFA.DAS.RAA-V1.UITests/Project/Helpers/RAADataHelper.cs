@@ -46,14 +46,14 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
 
         public IWebElement Employers(List<IWebElement> links)
         {
-            var randomEmployerLink = _randomDataGenerator.GenerateRandomNumberBetweenTwoValues(0, links.Count - 1);
-
-            var randomEmployer = links[randomEmployerLink];
+            var randomEmployer = RandomElement(links);
 
             EmployerErn = _regexHelper.GetEmployerERN(randomEmployer.GetAttribute("href"));
 
             return randomEmployer;
         }
+
+        public IWebElement Address(List<IWebElement> addresses) => RandomElement(addresses);
 
         public string EmployerDescription { get; }
 
@@ -108,6 +108,13 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
         public string NumberOfVacancy => "2" ;
 
         private string WebsiteUrl(string url) => $"https://www.{url}.com";
+
+        private IWebElement RandomElement(List<IWebElement> elements)
+        {
+            var randomNumber = _randomDataGenerator.GenerateRandomNumberBetweenTwoValues(0, elements.Count - 1);
+
+            return elements[randomNumber];
+        }
     }
 }
 
