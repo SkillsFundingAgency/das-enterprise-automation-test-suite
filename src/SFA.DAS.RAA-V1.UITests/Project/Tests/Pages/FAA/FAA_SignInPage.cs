@@ -7,9 +7,6 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.FAA
 {
     public class FAA_SignInPage : BasePage
     {
-
-        protected override By PageHeader => By.CssSelector(".heading-large");
-
         protected override string PageTitle => "Sign in";
 
         #region Helpers and Context
@@ -29,7 +26,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.FAA
             _context = context;
             _formCompletionHelper = context.Get<FormCompletionHelper>();
             _config = context.GetRAAV1Config<RAAV1Config>();
-            VerifyPage();
+            VerifyPage(UsernameField);
         }
 
         public FAA_HomePage SubmitValidLoginDetails()

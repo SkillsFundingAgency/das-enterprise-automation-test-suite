@@ -11,22 +11,36 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.FAA
 
         #region Helpers and Context
         private readonly FormCompletionHelper _formCompletionHelper;
+        private readonly PageInteractionHelper _pageInteractionHelper;
         private readonly ScenarioContext _context;
         #endregion
 
-        private readonly By SignIn = By.CssSelector("#loginLink");
+        private By SignIn => By.CssSelector("#loginLink");
+
+        private By AcceptCookieButton => By.CssSelector("#btn-cookie-accept");
 
         public FAA_Indexpage(ScenarioContext context) : base(context)
         {
             _context = context;
             _formCompletionHelper = context.Get<FormCompletionHelper>();
+            _pageInteractionHelper = context.Get<PageInteractionHelper>();
             VerifyPage();
+            AcceptCookies();
         }
 
         public FAA_SignInPage GoToSignInPage()
         {
             _formCompletionHelper.Click(SignIn);
             return new FAA_SignInPage(_context);
+        }
+
+        private FAA_Indexpage AcceptCookies()
+        {
+            if (_pageInteractionHelper.IsElementDisplayed(AcceptCookieButton))
+            {
+                _formCompletionHelper.Click(AcceptCookieButton);
+            }
+            return this;
         }
     }
 }
