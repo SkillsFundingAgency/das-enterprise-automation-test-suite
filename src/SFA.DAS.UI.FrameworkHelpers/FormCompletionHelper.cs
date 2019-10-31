@@ -137,31 +137,40 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         private void ClickElementByText(By locator, String text)
         {
-            IList<IWebElement> elements = _webDriver.FindElements(locator);
-
-            for (int i = 0; i < elements.Count; i++)
+            IWebElement element()
             {
-                String str = elements.ElementAt(i).Text ?? elements.ElementAt(i).GetAttribute("innertext");
-                if (str.Contains(text))
+                IList<IWebElement> elements = _webDriver.FindElements(locator);
+
+                for (int i = 0; i < elements.Count; i++)
                 {
-                    elements.ElementAt(i).Click();
-                    return;
+                    String str = elements.ElementAt(i).Text ?? elements.ElementAt(i).GetAttribute("innertext");
+                    if (str.Contains(text))
+                    {
+                        return elements.ElementAt(i);
+                    }
                 }
+                return null;
             }
+
+           ClickElement(element);
         }
 
-        public void ClickButtonByText(String text)
+        public void ClickLinkByText(string text)
+        {
+            ClickElementByText(By.CssSelector("a"), text);
+        }
+
+        public void ClickButtonByText(string text)
         {
             ClickElementByText(By.CssSelector(".button"), text);
         }
 
-
-        public void SelectRadioOptionByText(String text)
+        public void SelectRadioOptionByText(string text)
         {
             ClickElementByText(By.CssSelector("label.selection-button-radio"), text);
         }
 
-        public void SelectCheckBoxByText(String text)
+        public void SelectCheckBoxByText(string text)
         {
             ClickElementByText(By.CssSelector("label.selection-button-checkbox"), text);
         }

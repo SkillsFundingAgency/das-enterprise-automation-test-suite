@@ -23,6 +23,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         private By SearchVacancy => By.CssSelector("#search-vacancies-button");
         private By VacancyTitle => By.CssSelector(".vac-title");
         private By NoOfVacancy => By.CssSelector(".bold-xlarge");
+        private By InlineText => By.CssSelector(".sfa-display-inline");
 
         public RAA_RecruitmentHomePage(ScenarioContext context) : base(context)
         {
@@ -42,20 +43,20 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         {
             if (!_objectContext.IsApprenticeshipVacancyType())
             {
-                _pageInteractionHelper.GetLink("Traineeships");
+                formCompletionHelper.ClickLinkByText("Traineeships");
+                _pageInteractionHelper.WaitForElementToChange(InlineText, "Your opportunities");
             }
 
             formCompletionHelper.SelectFromDropDownByValue(VacancySearchMode, "ReferenceNumber");
             formCompletionHelper.EnterText(VacancySearchText, _objectContext.GetVacancyReference());
-            formCompletionHelper.Click(SearchVacancy);
+            formCompletionHelper.ClickElement(() => _pageInteractionHelper.FindElement(SearchVacancy));
             _pageInteractionHelper.WaitForElementToChange(NoOfVacancy, "1");
-            return GoToVacancSummary();  
+            return GoToVacancSummary();
         }
 
         private RAA_VacancySummaryPage GoToVacancSummary()
         {
-            var vacTitle = _pageInteractionHelper.GetLink(VacancyTitle, _dataHelper.VacancyTitle);
-            formCompletionHelper.ClickElement(vacTitle);
+            formCompletionHelper.ClickElement(() => _pageInteractionHelper.GetLink(VacancyTitle, _dataHelper.VacancyTitle));
              return new RAA_VacancySummaryPage(_context);
         }
     }

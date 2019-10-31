@@ -205,8 +205,6 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         public string GetUrl() => _webDriver.Url;
 
-        public IWebElement GetLink(string linkText) => GetLink(By.CssSelector("a"), (x) => x == linkText);
-
         public IWebElement GetLink(By by, string linkText) => GetLink(by, (x) => x == linkText);
 
         public List<IWebElement> GetLinks(By by, string linkText) => _webDriver.FindElements(by).Where(x => x.GetAttribute("innerText") == linkText).ToList();
@@ -221,6 +219,11 @@ namespace SFA.DAS.UI.FrameworkHelpers
         public List<IWebElement> GetRows(By tableIdentifier)
         {
             return _webDriver.FindElement(tableIdentifier).FindElements(By.CssSelector("tr")).ToList();
+        }
+
+        public IWebElement FindElement(By locator)
+        {
+            return _webDriver.FindElement(locator);
         }
 
         public List<IWebElement> FindElements(By locator)
