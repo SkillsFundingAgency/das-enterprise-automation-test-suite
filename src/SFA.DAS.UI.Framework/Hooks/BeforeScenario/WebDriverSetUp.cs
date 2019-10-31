@@ -12,8 +12,6 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
     {
         private readonly string DriverPath;
 
-        private readonly ScenarioContext _context;
-
         private readonly ObjectContext _objectContext;
 
         private readonly WebDriverSetupHelper _webDriverSetupHelper;
@@ -27,7 +25,6 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
         public WebDriverSetup(ScenarioContext context)
         {
             DriverPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-            _context = context;
             _objectContext = context.Get<ObjectContext>();
             _webDriverSetupHelper = new WebDriverSetupHelper(context);
         }
@@ -57,15 +54,9 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
 
         private string FindDriverServiceLocation(string executableName)
         {
-            TestContext.Progress.WriteLine($"DriverPath : {DriverPath}, Executable Name : {executableName}");
-
             FileInfo[] file = Directory.GetParent(DriverPath).GetFiles(executableName, SearchOption.AllDirectories);
 
-            var info = file.Length != 0 ? file[0].DirectoryName : DriverPath;
-
-            TestContext.Progress.WriteLine($"Driver Service should be available under: {info}");
-
-            return info;
+            return file.Length != 0 ? file[0].DirectoryName : DriverPath;
         }
     }
 }

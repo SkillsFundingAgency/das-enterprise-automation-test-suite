@@ -29,7 +29,7 @@ namespace SFA.DAS.UI.Framework.Hooks.AfterScenario
 
                     _objectContext.SetUrl(webDriver.Url);
 
-                    ScreenshotHelper.TakeScreenShot(webDriver, directory, scenarioTitle, true);
+                    ScreenshotHelper.TakeScreenShot(webDriver, directory, scenarioTitle);
                 }
                 catch (Exception ex)
                 {

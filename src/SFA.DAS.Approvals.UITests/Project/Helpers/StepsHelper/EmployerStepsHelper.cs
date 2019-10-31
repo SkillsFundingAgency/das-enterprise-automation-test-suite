@@ -161,8 +161,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
         internal void SetCohortReference(string cohortReference)
         {
             _objectContext.SetCohortReference(cohortReference);
-
-            TestContext.Progress.WriteLine($"Cohort Reference: {cohortReference}");
         }
 
         private StartAddingApprenticesPage ConfirmProviderDetailsAreCorrect(ApprenticesHomePage apprenticesHomePage)
