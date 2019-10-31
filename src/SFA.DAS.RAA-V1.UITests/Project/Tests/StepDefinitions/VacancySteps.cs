@@ -20,8 +20,11 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
         private readonly ManageStepsHelper _manageStepsHelper;
         private readonly FAAStepsHelper _faaStepsHelper;
         private readonly ObjectContext _objectContext;
+        private readonly ScenarioContext _context;
+
         public VacancySteps(ScenarioContext context)
         {
+            _context = context;
             _objectContext = context.Get<ObjectContext>();
             _raaStepsHelper = new RAAStepsHelper(context);
             _manageStepsHelper = new ManageStepsHelper(context);
@@ -31,7 +34,26 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
         [Given(@"the Provider clones an existing vacancy")]
         public void GivenTheProviderClonesAnExistingVacancy()
         {
-            throw new PendingStepException();
+            var homePage = _raaStepsHelper.GoToRAAHomePage();
+
+            _raaEmployerInformation = homePage.CloneAVacancy();
+
+            _raaEmployerInformation.ClickOnSaveAndContinueButton();
+
+            _objectContext.SetApprenticeshipVacancyType();
+
+            _enterTrainingDetails = _raaStepsHelper.EnterBasicVacancyDetails();
+
+            _enterFurtherDetails = _enterTrainingDetails.GotoFurtherDetailsPage();
+
+            _requirementsAndProspects = _raaStepsHelper.EnterFurtherDetails(_enterFurtherDetails);
+
+            _requirementsAndProspects.ClickSaveAndContinue();
+
+            new RAA_ExtraQuestions(_context).ClickPreviewVacancyButton();
+
+            _raaStepsHelper.ApproveVacanacy().ExitFromWebsite();
+
         }
 
 

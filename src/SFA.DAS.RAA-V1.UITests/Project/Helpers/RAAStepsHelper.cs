@@ -47,6 +47,13 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
                 .CreateANewVacancy();
         }
 
+        internal RAA_EnterTrainingDetails EnterBasicVacancyDetails()
+        {
+            return new RAA_BasicVacancyDetails(_context)
+                       .EnterVacancyTitle()
+                       .ClickSaveAndContinueButton();
+        }
+
         internal RAA_EnterTrainingDetails EnterBasicVacancyDetails(VacancyType vacancyType, string disabilityConfident, string applicationMethod)
         {
             return new RAA_BasicVacancyDetails(_context)
@@ -92,6 +99,14 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
                    .ClickSaveAndContinueButton();
         }
 
+        internal RAA_RequirementsAndProspects EnterFurtherDetails(RAA_EnterFurtherDetailsPage enterFurtherDetails)
+        {
+            return enterFurtherDetails
+                   .EnterVacancyClosingDate()
+                   .EnterPossibleStartDate()
+                   .ClickSaveAndContinueButton();
+        }
+
         internal RAA_RequirementsAndProspects EnterFurtherDetails(RAA_EnterFurtherDetailsPage enterFurtherDetails, string hoursPerWeek, string vacancyDuration)
         {
             return enterFurtherDetails
@@ -119,6 +134,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
                     .EnterThingsToConsiderText()
                     .ClickSaveAndContinue();
         }
+
 
         internal void EnterExtraQuestions()
         {

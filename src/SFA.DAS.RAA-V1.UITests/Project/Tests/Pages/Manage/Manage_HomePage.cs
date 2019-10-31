@@ -9,7 +9,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.Manage
     public class Manage_HomePage : BasePage
     {
         protected override string PageTitle => "Agency home";
-
+        
         #region Helpers and Context
         private readonly PageInteractionHelper _pageInteractionHelper;
         private readonly FormCompletionHelper _formCompletionHelper;
@@ -29,10 +29,6 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.Manage
 
         private By DateFilter => By.CssSelector(".bold-xsmall");
 
-        private By NoOfVacancy => By.CssSelector(".bold-xlarge");
-
-        private By VacancyFilters => By.CssSelector(".column-one-quarter .bold-xsmall");
-
         private By ApproveAndContinue => By.Name("VacancyQAAction");
         
         private By ClickAgencyHome => By.Id("proposition-name");
@@ -40,6 +36,10 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.Manage
         private By NoResults => By.XPath("//td[@colspan='6'][contains(.,'No results')]");
 
         private By SignOutCss => By.Id("signout-link");
+
+        private By VacancyFilters => By.CssSelector(".column-one-quarter .bold-xsmall");
+
+        private By NoOfVacancy => By.CssSelector(".bold-xlarge");
 
         public Manage_HomePage(ScenarioContext context) : base(context)
         {
@@ -50,10 +50,9 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.Manage
             VerifyPage();
         }
 
-        private void TodaysVacancy()
+        protected void TodayVacancy()
         {
-            var link = _pageInteractionHelper.GetLink(VacancyFilters, "Today");
-            _formCompletionHelper.ClickElement(link);
+            _formCompletionHelper.ClickElement(() => _pageInteractionHelper.GetLink(VacancyFilters, "Today"));
         }
 
         private bool AretherAnyVacancyToday()
@@ -86,7 +85,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.Manage
             
             ChangeFilter(ChangeRole, InputChangeRole, changeRole);
 
-            TodaysVacancy();
+            TodayVacancy();
 
             if (AretherAnyVacancyToday() == true)
             {
