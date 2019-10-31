@@ -205,6 +205,8 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         public string GetUrl() => _webDriver.Url;
 
+        public IWebElement GetLink(string linkText) => GetLink(By.CssSelector("a"), (x) => x == linkText);
+
         public IWebElement GetLink(By by, string linkText) => GetLink(by, (x) => x == linkText);
 
         public List<IWebElement> GetLinks(By by, string linkText) => _webDriver.FindElements(by).Where(x => x.GetAttribute("innerText") == linkText).ToList();

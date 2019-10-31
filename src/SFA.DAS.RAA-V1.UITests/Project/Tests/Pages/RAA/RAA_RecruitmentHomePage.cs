@@ -40,6 +40,11 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
 
         public RAA_VacancySummaryPage SearchByReferenceNumber()
         {
+            if (!_objectContext.IsApprenticeshipVacancyType())
+            {
+                _pageInteractionHelper.GetLink("Traineeships");
+            }
+
             formCompletionHelper.SelectFromDropDownByValue(VacancySearchMode, "ReferenceNumber");
             formCompletionHelper.EnterText(VacancySearchText, _objectContext.GetVacancyReference());
             formCompletionHelper.Click(SearchVacancy);
