@@ -28,6 +28,13 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
             _faaStepsHelper = new FAAStepsHelper(context);
         }
 
+        [Given(@"the Provider clones an existing vacancy")]
+        public void GivenTheProviderClonesAnExistingVacancy()
+        {
+            throw new PendingStepException();
+        }
+
+
         [When(@"the Vacancy details are filled out for a Traineeship for a different '(.*)'")]
         public void WhenTheVacancyDetailsAreFilledOutForATraineeshipForADifferent(string location)
         {
