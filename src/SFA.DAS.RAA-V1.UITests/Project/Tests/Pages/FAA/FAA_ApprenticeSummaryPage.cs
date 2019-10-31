@@ -16,7 +16,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.FAA
         private readonly FormCompletionHelper _formCompletionHelper;
         #endregion
 
-        private By Apply => By.Id("apply-button");
+        private By ApplyButton => By.Id("apply-button");
         
 
         public FAA_ApprenticeSummaryPage(ScenarioContext context) : base(context)
@@ -27,9 +27,9 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.FAA
             VerifyPage();
         }
 
-        public FAA_ApplicationForm ApplyForApprenticeship()
+        public FAA_ApplicationForm Apply()
         {
-            _formCompletionHelper.Click(Apply);
+            _formCompletionHelper.Click(ApplyButton);
             return new FAA_ApplicationForm(_context);
         }
     }

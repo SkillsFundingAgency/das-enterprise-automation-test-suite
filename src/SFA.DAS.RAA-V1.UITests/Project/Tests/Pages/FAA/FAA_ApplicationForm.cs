@@ -52,7 +52,6 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.FAA
         private By SecondQuestion => By.Id("Candidate_EmployerQuestionAnswers_CandidateAnswer2");
         private By SaveAndContinue => By.Id("apply-button");
         private By AcceptSubmit => By.Id("AcceptSubmitLabel");
-        private By SubmitApplication => By.XPath("//button[@type='submit'][contains(.,'Submit application')]");
         private By SignOut => By.XPath("//a[contains(.,'Sign out')]");
         private By MyApplications => By.CssSelector("#myapplications-link");
         #endregion
@@ -138,7 +137,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.FAA
             }
         }
 
-        public void AnswerQuestions()
+        public void AnswerAdditionalQuestions()
         {
             if (_pageInteractionHelper.IsElementDisplayed(FirstQuestion))
             {
@@ -162,13 +161,13 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.FAA
 
         public ApprenticeshipApplicationSubmittedPage SubmitApprenticeshipApplication()
         {
-            _formCompletionHelper.Click(SubmitApplication);
+            _formCompletionHelper.ClickButtonByText("Submit application");
             return new ApprenticeshipApplicationSubmittedPage(_context);
         }
 
         public TraineeshipApplicationSubmittedPage SubmitTraineeshipApplication()
         {
-            _formCompletionHelper.Click(SubmitApplication);
+            _formCompletionHelper.ClickButtonByText("Submit application");
             return new TraineeshipApplicationSubmittedPage(_context);
         }
 

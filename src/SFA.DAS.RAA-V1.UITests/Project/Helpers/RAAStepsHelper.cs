@@ -142,8 +142,17 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
 
         internal RAA_VacancyReferencePage ApproveVacanacy()
         {
-            var vacancyReference = new RAA_VacancyPreview(_context)
-           .ClickSubmitForApprovalButton();
+            RAA_PreviewBasePage previewPage;
+            if (_objectContext.IsApprenticeshipVacancyType())
+            {
+                previewPage = new RAA_VacancyPreviewPage(_context);
+            }
+            else
+            {
+                previewPage = new RAA_OppurtunityPreviewPage(_context);
+            }
+
+            var vacancyReference = previewPage.ClickSubmitForApprovalButton();
 
             var referenceNumber1 = vacancyReference.GetVacancyReference();
 
