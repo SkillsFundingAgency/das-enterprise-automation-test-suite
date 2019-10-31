@@ -1,4 +1,4 @@
-﻿Feature: TraineeshipVacancy
+﻿Feature: SetAsNationwideVacancy
 
 A short summary of the feature
 
@@ -16,10 +16,8 @@ When the Applicant apply for a Vacancy in FAA '<QualificationDetails>','<WorkExp
 Then the Provider is able to view the Applicant's application in Recruit
 
 Examples:
-| location                      | Changeteam    | ChangeRole       | QualificationDetails | WorkExperience | TrainingCourse |
-| Use the main employer address | West Midlands | Vacancy reviewer | No                   | No             | No             |
-| Add different location        | West Midlands | Vacancy reviewer | No                   | No             | No             |
-| Set as a nationwide vacancy   | West Midlands | Vacancy reviewer | No                   | No             | No             |
+| location                    | Changeteam    | ChangeRole       | QualificationDetails | WorkExperience | TrainingCourse |
+| Set as a nationwide vacancy | West Midlands | Vacancy reviewer | No                   | No             | No             |
 
 
 

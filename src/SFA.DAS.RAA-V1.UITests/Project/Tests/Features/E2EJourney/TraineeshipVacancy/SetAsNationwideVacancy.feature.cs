@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Features.E2EJourney
+namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Features.E2EJourney.TraineeshipVacancy
 {
     using TechTalk.SpecFlow;
     
@@ -18,20 +18,20 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Features.E2EJourney
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.0.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("TraineeshipVacancy")]
-    public partial class TraineeshipVacancyFeature
+    [NUnit.Framework.DescriptionAttribute("SetAsNationwideVacancy")]
+    public partial class SetAsNationwideVacancyFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "TraineeshipVacancy.feature"
+#line 1 "SetAsNationwideVacancy.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "TraineeshipVacancy", "A short summary of the feature", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "SetAsNationwideVacancy", "A short summary of the feature", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -102,30 +102,6 @@ testRunner.When(string.Format("the Applicant apply for a Vacancy in FAA \'{0}\',
 testRunner.Then("the Provider is able to view the Applicant\'s application in Recruit", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("V1_E2E - Create, Approve and Apply for a Traineeship Vacancy: Use the main employ" +
-            "er address")]
-        [NUnit.Framework.CategoryAttribute("V1_E2E")]
-        [NUnit.Framework.CategoryAttribute("regression")]
-        public virtual void V1_E2E_CreateApproveAndApplyForATraineeshipVacancy_UseTheMainEmployerAddress()
-        {
-#line 7
-this.V1_E2E_CreateApproveAndApplyForATraineeshipVacancy("Use the main employer address", "West Midlands", "Vacancy reviewer", "No", "No", "No", ((string[])(null)));
-#line hidden
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("V1_E2E - Create, Approve and Apply for a Traineeship Vacancy: Add different locat" +
-            "ion")]
-        [NUnit.Framework.CategoryAttribute("V1_E2E")]
-        [NUnit.Framework.CategoryAttribute("regression")]
-        public virtual void V1_E2E_CreateApproveAndApplyForATraineeshipVacancy_AddDifferentLocation()
-        {
-#line 7
-this.V1_E2E_CreateApproveAndApplyForATraineeshipVacancy("Add different location", "West Midlands", "Vacancy reviewer", "No", "No", "No", ((string[])(null)));
-#line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
