@@ -40,6 +40,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="application.runtimeconfig.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="appsettings.BrowserStack.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -49,10 +52,6 @@
     <None Update="appsettings.TestExecution.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Properties\" />
   </ItemGroup>
 
 </Project>
