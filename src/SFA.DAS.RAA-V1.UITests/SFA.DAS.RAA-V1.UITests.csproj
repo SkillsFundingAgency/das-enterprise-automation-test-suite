@@ -8,6 +8,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <SpecFlowObsoleteCodeBehindFiles Remove="Project\Tests\Features\Clone\ApprenticeshipVacancy\E2E1CloneApprentiship - Copy (2).feature.cs" />
+    <SpecFlowObsoleteCodeBehindFiles Remove="Project\Tests\Features\Clone\ApprenticeshipVacancy\E2E1CloneApprentiship - Copy (3).feature.cs" />
+    <SpecFlowObsoleteCodeBehindFiles Remove="Project\Tests\Features\Clone\ApprenticeshipVacancy\E2E1CloneApprentiship - Copy.feature.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Include="..\NUnitConfigurator.cs" Link="NUnitConfigurator.cs" />
   </ItemGroup>
 
@@ -20,6 +26,18 @@
 
   <ItemGroup>
     <ProjectReference Include="..\SFA.DAS.UI.Framework\SFA.DAS.UI.Framework.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Project\Tests\Features\Clone\ApprenticeshipVacancy\E2E4CloneApprentiship.feature.cs">
+      <DependentUpon>E2E4CloneApprentiship.feature</DependentUpon>
+    </Compile>
+    <Compile Update="Project\Tests\Features\Clone\ApprenticeshipVacancy\E2E3CloneApprentiship.feature.cs">
+      <DependentUpon>E2E3CloneApprentiship.feature</DependentUpon>
+    </Compile>
+    <Compile Update="Project\Tests\Features\Clone\ApprenticeshipVacancy\E2E2CloneApprentiship.feature.cs">
+      <DependentUpon>E2E2CloneApprentiship.feature</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
@@ -38,6 +56,21 @@
     <None Update="specflow.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <SpecFlowFeatureFiles Update="Project\Tests\Features\Clone\ApprenticeshipVacancy\E2E4CloneApprentiship.feature">
+      <Visible>$(UsingMicrosoftNETSdk)</Visible>
+      <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
+    </SpecFlowFeatureFiles>
+    <SpecFlowFeatureFiles Update="Project\Tests\Features\Clone\ApprenticeshipVacancy\E2E3CloneApprentiship.feature">
+      <Visible>$(UsingMicrosoftNETSdk)</Visible>
+      <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
+    </SpecFlowFeatureFiles>
+    <SpecFlowFeatureFiles Update="Project\Tests\Features\Clone\ApprenticeshipVacancy\E2E2CloneApprentiship.feature">
+      <Visible>$(UsingMicrosoftNETSdk)</Visible>
+      <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
+    </SpecFlowFeatureFiles>
   </ItemGroup>
 
 </Project>

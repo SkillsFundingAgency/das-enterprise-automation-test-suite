@@ -18,20 +18,20 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Features.Clone.ApprenticeshipVaca
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.0.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("CloneApprentishipVacancy")]
-    public partial class CloneApprentishipVacancyFeature
+    [NUnit.Framework.DescriptionAttribute("E2E1CloneApprentishipVacancy")]
+    public partial class E2E1CloneApprentishipVacancyFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "CloneApprentishipVacancy.feature"
+#line 1 "E2E1CloneApprentiship.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "CloneApprentishipVacancy", "A short summary of the feature", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "E2E1CloneApprentishipVacancy", "A short summary of the feature", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -72,70 +72,38 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Features.Clone.ApprenticeshipVaca
         public virtual void E2E1_CloneAnExistingLiveApprenticeshipVacancyApproveAndApply(string qualificationDetails, string workExperience, string trainingCourse, string[] exampleTags)
         {
             string[] @__tags = new string[] {
-                    "V1_E2E"};
+                    "V1_E2E",
+                    "regression"};
             if ((exampleTags != null))
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
             }
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("E2E1 - Clone an existing Live Apprenticeship Vacancy, Approve and Apply", null, @__tags);
-#line 6
+#line 7
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 7
-testRunner.Given("the Provider clones an existing vacancy", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 8
-testRunner.Then("Provider is able to submit the vacancy for approval", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+testRunner.Given("the Provider clones an existing vacancy", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 9
-testRunner.Then("the Reviewer approves the vacancy", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+testRunner.Then("Provider is able to submit the vacancy for approval", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 10
-testRunner.When(string.Format("the Applicant apply for a Vacancy in FAA \'{0}\',\'{1}\',\'{2}\'", qualificationDetails, workExperience, trainingCourse), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+testRunner.Then("the Reviewer approves the vacancy", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 11
+testRunner.When(string.Format("the Applicant apply for a Vacancy in FAA \'{0}\',\'{1}\',\'{2}\'", qualificationDetails, workExperience, trainingCourse), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 12
 testRunner.Then("the Provider is able to view the Applicant\'s application in Recruit", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("E2E1 - Clone an existing Live Apprenticeship Vacancy, Approve and Apply: Variant " +
-            "0")]
+        [NUnit.Framework.DescriptionAttribute("E2E1 - Clone an existing Live Apprenticeship Vacancy, Approve and Apply: Yes")]
         [NUnit.Framework.CategoryAttribute("V1_E2E")]
-        public virtual void E2E1_CloneAnExistingLiveApprenticeshipVacancyApproveAndApply_Variant0()
+        [NUnit.Framework.CategoryAttribute("regression")]
+        public virtual void E2E1_CloneAnExistingLiveApprenticeshipVacancyApproveAndApply_Yes()
         {
-#line 6
+#line 7
 this.E2E1_CloneAnExistingLiveApprenticeshipVacancyApproveAndApply("Yes", "Yes", "Yes", ((string[])(null)));
-#line hidden
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("E2E1 - Clone an existing Live Apprenticeship Vacancy, Approve and Apply: Variant " +
-            "1")]
-        [NUnit.Framework.CategoryAttribute("V1_E2E")]
-        public virtual void E2E1_CloneAnExistingLiveApprenticeshipVacancyApproveAndApply_Variant1()
-        {
-#line 6
-this.E2E1_CloneAnExistingLiveApprenticeshipVacancyApproveAndApply("No", "No", "No", ((string[])(null)));
-#line hidden
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("E2E1 - Clone an existing Live Apprenticeship Vacancy, Approve and Apply: Variant " +
-            "2")]
-        [NUnit.Framework.CategoryAttribute("V1_E2E")]
-        public virtual void E2E1_CloneAnExistingLiveApprenticeshipVacancyApproveAndApply_Variant2()
-        {
-#line 6
-this.E2E1_CloneAnExistingLiveApprenticeshipVacancyApproveAndApply("No", "Yes", "No", ((string[])(null)));
-#line hidden
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("E2E1 - Clone an existing Live Apprenticeship Vacancy, Approve and Apply: Variant " +
-            "3")]
-        [NUnit.Framework.CategoryAttribute("V1_E2E")]
-        public virtual void E2E1_CloneAnExistingLiveApprenticeshipVacancyApproveAndApply_Variant3()
-        {
-#line 6
-this.E2E1_CloneAnExistingLiveApprenticeshipVacancyApproveAndApply("Yes", "Yes", "No", ((string[])(null)));
 #line hidden
         }
     }
