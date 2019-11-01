@@ -34,13 +34,13 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
         [Given(@"the Provider clones an existing vacancy")]
         public void GivenTheProviderClonesAnExistingVacancy()
         {
+            _objectContext.SetApprenticeshipVacancyType();
+
             var homePage = _raaStepsHelper.GoToRAAHomePage(false);
 
             _raaEmployerInformation = homePage.CloneAVacancy();
 
             _raaEmployerInformation.ClickOnSaveAndContinueButton();
-
-            _objectContext.SetApprenticeshipVacancyType();
 
             _enterTrainingDetails = _raaStepsHelper.EnterBasicVacancyDetails();
 

@@ -32,25 +32,16 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
             }
             else
             {
-                _tabHelper.GoToUrl(_config.RecruitBaseUrl);
+                GoToRAA();
             }
 
-            return new RAA_IndexPage(_context)
-                .ClickOnSignInButton()
-                .RecruitStaffIdams()
-                .SubmitRecruitmentLoginDetails();
+            return SubmitRecruitmentLoginDetails();
         }
 
         internal RAA_EmployerSelection CreateANewVacancy()
         {
-            _objectContext.SetCurrentApplicationName(_applicationName);
-
-            _tabHelper.GoToUrl(_config.RecruitBaseUrl);
-
-            return new RAA_IndexPage(_context)
-                .ClickOnSignInButton()
-                .RecruitStaffIdams()
-                .SubmitRecruitmentLoginDetails()
+            GoToRAA();
+            return SubmitRecruitmentLoginDetails()
                 .CreateANewVacancy();
         }
 
@@ -184,6 +175,20 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
             _objectContext.SetVacancyReference(referenceNumber);
 
             return vacancyReference;
+        }
+        private RAA_RecruitmentHomePage SubmitRecruitmentLoginDetails()
+        {
+            return new RAA_IndexPage(_context)
+                .ClickOnSignInButton()
+                .RecruitStaffIdams()
+                .SubmitRecruitmentLoginDetails();
+        }
+
+        private void GoToRAA()
+        {
+            _objectContext.SetCurrentApplicationName(_applicationName);
+
+            _tabHelper.GoToUrl(_config.RecruitBaseUrl);
         }
     }
 }
