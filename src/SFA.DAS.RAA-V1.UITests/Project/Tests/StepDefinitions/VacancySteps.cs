@@ -51,9 +51,6 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
             _requirementsAndProspects.ClickSaveAndContinue();
 
             new RAA_ExtraQuestions(_context).ClickPreviewVacancyButton();
-
-            _raaStepsHelper.ApproveVacanacy().ExitFromWebsite();
-
         }
 
 
