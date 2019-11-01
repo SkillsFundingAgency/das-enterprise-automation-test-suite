@@ -24,10 +24,17 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
             _helper = new RestartWebDriverHelper(context);
         }
 
-        internal RAA_RecruitmentHomePage GoToRAAHomePage()
+        internal RAA_RecruitmentHomePage GoToRAAHomePage(bool restrat)
         {
-            _helper.RestartWebDriver(_config.RecruitBaseUrl, _applicationName);
-            
+            if (restrat)
+            {
+                _helper.RestartWebDriver(_config.RecruitBaseUrl, _applicationName);
+            }
+            else
+            {
+                _tabHelper.GoToUrl(_config.RecruitBaseUrl);
+            }
+
             return new RAA_IndexPage(_context)
                 .ClickOnSignInButton()
                 .RecruitStaffIdams()

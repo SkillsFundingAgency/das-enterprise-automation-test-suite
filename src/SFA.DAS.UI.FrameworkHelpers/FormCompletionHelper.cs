@@ -31,7 +31,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         public void ClickElement(Func<IWebElement> element)
         {
-            _retryHelper.RetryOnWebDriverException(element);
+            _retryHelper.RetryClickOnWebDriverException(element);
         }
 
         public void ClickElement(IWebElement element)

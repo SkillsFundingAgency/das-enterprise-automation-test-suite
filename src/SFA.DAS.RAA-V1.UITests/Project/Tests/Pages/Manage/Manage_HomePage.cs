@@ -85,6 +85,11 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.Manage
             
             ChangeFilter(ChangeRole, InputChangeRole, changeRole);
 
+            ApproveAVacancy();
+        }
+
+        public void ApproveAVacancy()
+        {
             TodayVacancy();
 
             if (AretherAnyVacancyToday() == true)

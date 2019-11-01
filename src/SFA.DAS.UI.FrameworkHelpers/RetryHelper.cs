@@ -34,8 +34,16 @@ namespace SFA.DAS.UI.FrameworkHelpers
                  });
         }
 
-        internal void RetryOnWebDriverException(Func<IWebElement> element)
+        internal void RetryClickOnWebDriverException(Func<IWebElement> element)
         {
+            var webElement = RetryOnWebDriverException(element);
+
+            ClickEvent(webElement).Invoke();
+        }
+
+        internal T RetryOnWebDriverException<T>(Func<T> element)
+        {
+            T webElement = default;
             Policy
                 .Handle<WebDriverException>()
                 .WaitAndRetry(TimeOut, (exception, timeSpan, retryCount, context) =>
@@ -46,10 +54,11 @@ namespace SFA.DAS.UI.FrameworkHelpers
                 {
                     using (var testcontext = new NUnit.Framework.Internal.TestExecutionContext.IsolatedContext())
                     {
-                        var webelement = element.Invoke();
-                        ClickEvent(webelement).Invoke();
+                        webElement = element.Invoke();
                     }
                 });
+
+            return webElement;
         }
 
         internal void RetryOnElementClickInterceptedException(IWebElement element)

@@ -34,7 +34,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
         [Given(@"the Provider clones an existing vacancy")]
         public void GivenTheProviderClonesAnExistingVacancy()
         {
-            var homePage = _raaStepsHelper.GoToRAAHomePage();
+            var homePage = _raaStepsHelper.GoToRAAHomePage(false);
 
             _raaEmployerInformation = homePage.CloneAVacancy();
 
@@ -51,6 +51,14 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
             _requirementsAndProspects.ClickSaveAndContinue();
 
             new RAA_ExtraQuestions(_context).ClickPreviewVacancyButton();
+        }
+
+        [Then(@"the Reviewer approves the vacancy")]
+        public void ThenTheReviewerApprovesTheVacancy()
+        {
+            _manage_HomePage = _manageStepsHelper.GoToManageHomePage();
+
+            _manage_HomePage.ApproveAVacancy();
         }
 
 
@@ -87,7 +95,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
         [Then(@"the Provider is able to view the Applicant's application in Recruit")]
         public void ThenTheProviderIsAbleToViewTheApplicantsApplicationInRecruit()
         {
-           var homePage = _raaStepsHelper.GoToRAAHomePage();
+           var homePage = _raaStepsHelper.GoToRAAHomePage(true);
 
             homePage.SearchByReferenceNumber();
 

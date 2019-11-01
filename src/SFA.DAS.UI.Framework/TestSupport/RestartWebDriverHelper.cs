@@ -37,5 +37,4 @@ namespace SFA.DAS.UI.Framework.TestSupport
             _frameworkHelpersSetup.SetupFrameworkHelpers();
         }
     }
-
 }

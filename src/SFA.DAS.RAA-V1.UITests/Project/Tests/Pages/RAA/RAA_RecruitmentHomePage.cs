@@ -82,7 +82,8 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
                 {
                     var tablerows = rows();
                     randomLink = _dataHelper.CloneVacancy(tablerows);
-                    if (!rows()[randomLink].Text.Contains("(Applications managed externally)"))
+                    var text = _pageInteractionHelper.GetText(() => rows()[randomLink]);
+                    if (!text.Contains("(Applications managed externally)"))
                     {
                         break;
                     }

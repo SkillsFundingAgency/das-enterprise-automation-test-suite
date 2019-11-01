@@ -109,9 +109,9 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.FAA
                 _formCompletionHelper.EnterText(Employer, _dataHelper.WorkExperienceEmployer);
                 _formCompletionHelper.EnterText(JobTitle, _dataHelper.WorkExperienceJobTitle);
                 _formCompletionHelper.EnterText(MainDuties, _dataHelper.WorkExperienceMainDuties);
-                _formCompletionHelper.SelectFromDropDownByText(StartedMonth, _dataHelper.WorkExperienceStarted.ToString("MMM"));
+                _formCompletionHelper.SelectFromDropDownByValue(StartedMonth, _dataHelper.WorkExperienceStarted.Month.ToString());
                 _formCompletionHelper.EnterText(FromYear, _dataHelper.WorkExperienceStarted.Year.ToString());
-                _formCompletionHelper.SelectFromDropDownByText(FinishedMonth, _dataHelper.WorkExperienceFinished.ToString("MMM"));
+                _formCompletionHelper.SelectFromDropDownByValue(FinishedMonth, _dataHelper.WorkExperienceFinished.Month.ToString());
                 _formCompletionHelper.EnterText(ToYear, _dataHelper.WorkExperienceFinished.Year.ToString());
                 _formCompletionHelper.Click(SaveWorkExperience);
             }
@@ -129,9 +129,9 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.FAA
                 _formCompletionHelper.EnterText(ProviderDetails, _dataHelper.TrainingCoursesProvider);
                 _formCompletionHelper.EnterText(CourseTitle, _dataHelper.TrainingCoursesCourseTitle);
 
-                _formCompletionHelper.SelectFromDropDownByText(TrainingHistoryFromMonth, _dataHelper.TrainingCoursesFrom.ToString("MMM"));
+                _formCompletionHelper.SelectFromDropDownByValue(TrainingHistoryFromMonth, _dataHelper.TrainingCoursesFrom.Month.ToString());
                 _formCompletionHelper.EnterText(TrainigHistoryFromYear, _dataHelper.TrainingCoursesFrom.Year.ToString());
-                _formCompletionHelper.SelectFromDropDownByText(TrainingHistoryToMonth, _dataHelper.TrainingCoursesTo.ToString("MMM"));
+                _formCompletionHelper.SelectFromDropDownByValue(TrainingHistoryToMonth, _dataHelper.TrainingCoursesTo.Month.ToString());
                 _formCompletionHelper.EnterText(TrainingHistoryToYear, _dataHelper.TrainingCoursesTo.Year.ToString());
                 _formCompletionHelper.Click(SaveTrainingCourse);
             }

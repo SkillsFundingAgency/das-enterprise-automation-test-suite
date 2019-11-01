@@ -199,7 +199,15 @@ namespace SFA.DAS.UI.FrameworkHelpers
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.FrameToBeAvailableAndSwitchToIt(locator));
         }
 
-        public string GetText(By locator) => GetText(_webDriver.FindElement(locator));
+        public string GetText(By locator) 
+        {
+            return GetText(() => _webDriver.FindElement(locator));
+        } 
+
+        public string GetText(Func<IWebElement> element)
+        {
+            return _retryHelper.RetryOnWebDriverException<string>(() => element().Text);
+        }
 
         public string GetText(IWebElement webElement) => webElement.Text;
 
