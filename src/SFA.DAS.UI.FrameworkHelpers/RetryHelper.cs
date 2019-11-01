@@ -36,9 +36,19 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         internal void RetryClickOnWebDriverException(Func<IWebElement> element)
         {
-            var webElement = RetryOnWebDriverException(element);
-
-            ClickEvent(webElement).Invoke();
+            Policy
+                .Handle<WebDriverException>()
+                .WaitAndRetry(TimeOut, (exception, timeSpan, retryCount, context) =>
+                {
+                    TestContext.Progress.WriteLine($"Retry Count : {retryCount}, Exception : {exception.Message}");
+                })
+               .Execute(() =>
+               {
+                   using (var testcontext = new NUnit.Framework.Internal.TestExecutionContext.IsolatedContext())
+                   {
+                       ClickEvent(element()).Invoke();
+                   }
+               });
         }
 
         internal T RetryOnWebDriverException<T>(Func<T> element)

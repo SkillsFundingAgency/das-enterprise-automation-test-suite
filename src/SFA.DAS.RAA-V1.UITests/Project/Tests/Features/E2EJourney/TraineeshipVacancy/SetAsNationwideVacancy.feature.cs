@@ -69,7 +69,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Features.E2EJourney.TraineeshipVa
             testRunner.CollectScenarioErrors();
         }
         
-        public virtual void V1_E2E_CreateApproveAndApplyForATraineeshipVacancy(string location, string changeteam, string changeRole, string qualificationDetails, string workExperience, string trainingCourse, string[] exampleTags)
+        public virtual void E2E3_CreateApproveAndApplyForATraineeshipVacancy(string location, string changeteam, string changeRole, string qualificationDetails, string workExperience, string trainingCourse, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "V1_E2E",
@@ -78,7 +78,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Features.E2EJourney.TraineeshipVa
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
             }
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("V1_E2E - Create, Approve and Apply for a Traineeship Vacancy", null, @__tags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("E2E3 - Create, Approve and Apply for a Traineeship Vacancy", null, @__tags);
 #line 7
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
@@ -105,14 +105,14 @@ testRunner.Then("the Provider is able to view the Applicant\'s application in Re
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("V1_E2E - Create, Approve and Apply for a Traineeship Vacancy: Set as a nationwide" +
-            " vacancy")]
+        [NUnit.Framework.DescriptionAttribute("E2E3 - Create, Approve and Apply for a Traineeship Vacancy: Set as a nationwide v" +
+            "acancy")]
         [NUnit.Framework.CategoryAttribute("V1_E2E")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public virtual void V1_E2E_CreateApproveAndApplyForATraineeshipVacancy_SetAsANationwideVacancy()
+        public virtual void E2E3_CreateApproveAndApplyForATraineeshipVacancy_SetAsANationwideVacancy()
         {
 #line 7
-this.V1_E2E_CreateApproveAndApplyForATraineeshipVacancy("Set as a nationwide vacancy", "West Midlands", "Vacancy reviewer", "No", "No", "No", ((string[])(null)));
+this.E2E3_CreateApproveAndApplyForATraineeshipVacancy("Set as a nationwide vacancy", "West Midlands", "Vacancy reviewer", "No", "No", "No", ((string[])(null)));
 #line hidden
         }
     }
