@@ -43,7 +43,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         internal T RetryOnWebDriverException<T>(Func<T> element)
         {
-            T webElement = default;
+            T webElement = default(T);
             Policy
                 .Handle<WebDriverException>()
                 .WaitAndRetry(TimeOut, (exception, timeSpan, retryCount, context) =>
