@@ -1,6 +1,7 @@
 ﻿Feature: EmployerDeleteCohort
 A Levy employer can view, edit and delete all the apprentice and cohort before commitments gets approved by all parties
 
+@approvals
 @regression
 Scenario: Employer view edit and delete apprentices and cohort
 	Given the Employer login using existing levy account

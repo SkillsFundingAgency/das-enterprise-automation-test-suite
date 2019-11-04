@@ -1,4 +1,5 @@
-﻿Feature: EmployerChangeYourPasswordPage
+﻿@approvals
+Feature: EmployerChangeYourPasswordPage
 
 @regression
 Scenario: Employer navigates to Change your password pages

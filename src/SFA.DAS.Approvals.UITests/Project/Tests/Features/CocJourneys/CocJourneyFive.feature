@@ -1,4 +1,5 @@
-﻿Feature: CocJourneyFive
+﻿@approvals
+Feature: CocJourneyFive
 
 @regression
 @liveapprentice

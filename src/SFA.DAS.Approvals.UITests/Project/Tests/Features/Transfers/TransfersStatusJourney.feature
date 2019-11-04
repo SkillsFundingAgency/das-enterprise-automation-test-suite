@@ -1,4 +1,5 @@
-﻿Feature: TransfersStatusJourney
+﻿@approvals
+Feature: TransfersStatusJourney
 
 @regression
 @transfersscenarios

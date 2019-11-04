@@ -22,7 +22,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         private By SearchInput => By.Id("searchTerm");
 
-        private By SearchButton => By.CssSelector("input.button");
+        private By SearchButton => By.CssSelector("input.govuk-button");
 
 
         public OrganisationSearchPage(ScenarioContext context) : base(context)

@@ -1,4 +1,5 @@
-﻿Feature: ExistingLevyAccount
+﻿@registration
+Feature: ExistingLevyAccount
 
 Scenario: Existing Levy Account
 	Given the Employer login using existing levy account

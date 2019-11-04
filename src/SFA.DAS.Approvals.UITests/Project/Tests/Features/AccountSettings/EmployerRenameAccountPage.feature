@@ -1,4 +1,5 @@
-﻿Feature: EmployerRenameAccountPage
+﻿@approvals
+Feature: EmployerRenameAccountPage
 
 @regression
 Scenario: Employer navigates to Rename account pages

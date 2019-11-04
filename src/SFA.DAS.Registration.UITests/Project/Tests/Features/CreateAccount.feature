@@ -1,4 +1,5 @@
-﻿Feature: CreateAccount
+﻿@registration
+Feature: CreateAccount
 
 Scenario: Create Account without PAYE details
 	Given I create an Account

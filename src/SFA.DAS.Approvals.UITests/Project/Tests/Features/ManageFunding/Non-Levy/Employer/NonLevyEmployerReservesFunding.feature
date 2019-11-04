@@ -1,4 +1,5 @@
-﻿Feature: NonLevyEmployerReservesFunding
+﻿@approvals
+Feature: NonLevyEmployerReservesFunding
 
 A Non Levy Employer reserves funding for an apprenticeship course
 

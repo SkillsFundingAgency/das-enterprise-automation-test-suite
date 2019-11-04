@@ -1,4 +1,5 @@
-﻿Feature: DLockJourneyFive
+﻿@approvals
+Feature: DLockJourneyFive
 
 @regression
 @waitingtostartapprentice
