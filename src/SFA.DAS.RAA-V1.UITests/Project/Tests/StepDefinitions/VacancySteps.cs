@@ -31,8 +31,15 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
             _faaStepsHelper = new FAAStepsHelper(context);
         }
 
-        [Given(@"the Provider clones an existing vacancy")]
-        public void GivenTheProviderClonesAnExistingVacancy()
+        [Given(@"the Provider clones an existing traineeship")]
+        public void GivenTheProviderClonesAnExistingTraineeship()
+        {
+            var homePage = _raaStepsHelper.GoToRAAHomePage(false);
+        }
+
+
+        [Given(@"the Provider clones an existing apprenticeship")]
+        public void GivenTheProviderClonesAnExistingApprenticeship()
         {
             _objectContext.SetApprenticeshipVacancyType();
 
