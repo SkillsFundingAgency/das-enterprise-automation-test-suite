@@ -45,6 +45,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
 
         public RAA_EmployerInformation CloneAVacancy()
         {
+            ApprenticeshipVacancyType();
             return LiveVacancy()
                 .Clone();
         }
@@ -57,17 +58,22 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
 
         public RAA_VacancySummaryPage SearchByReferenceNumber()
         {
-            if (!_objectContext.IsApprenticeshipVacancyType())
-            {
-                formCompletionHelper.ClickLinkByText("Traineeships");
-                _pageInteractionHelper.WaitForElementToChange(InlineText, "Your opportunities");
-            }
+            ApprenticeshipVacancyType();
 
             formCompletionHelper.SelectFromDropDownByValue(VacancySearchMode, "ReferenceNumber");
             formCompletionHelper.EnterText(VacancySearchText, _objectContext.GetVacancyReference());
             formCompletionHelper.ClickElement(() => _pageInteractionHelper.FindElement(SearchVacancy));
             _pageInteractionHelper.WaitForElementToChange(NoOfVacancy, "1");
             return GoToVacancySummary();
+        }
+
+        private void ApprenticeshipVacancyType()
+        {
+            if (!_objectContext.IsApprenticeshipVacancyType())
+            {
+                formCompletionHelper.ClickLinkByText("Traineeships");
+                _pageInteractionHelper.WaitForElementToChange(InlineText, "Your opportunities");
+            }
         }
 
         private RAA_EmployerInformation Clone()

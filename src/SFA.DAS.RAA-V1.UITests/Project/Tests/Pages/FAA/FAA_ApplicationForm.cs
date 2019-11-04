@@ -167,7 +167,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.FAA
 
         public TraineeshipApplicationSubmittedPage SubmitTraineeshipApplication()
         {
-            _formCompletionHelper.ClickButtonByText("Submit application");
+            _formCompletionHelper.ClickButtonByText("Submit application", "Save and continue");
             return new TraineeshipApplicationSubmittedPage(_context);
         }
 
