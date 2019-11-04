@@ -2,7 +2,8 @@
 
 A short summary of the feature
 
-@V1_E2E
+@raa-v1
+@v1_e2e
 @regression
 Scenario Outline: E2E1 - Create, Approve and Apply for a Traineeship Vacancy
 Given the Provider initiates Create Apprenticeship Vacancy in Recruit

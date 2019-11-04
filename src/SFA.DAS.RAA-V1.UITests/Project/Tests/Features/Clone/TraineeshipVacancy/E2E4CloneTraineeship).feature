@@ -2,7 +2,8 @@
 
 A short summary of the feature
 
-@V1_E2E
+@raa-v1
+@v1_e2e
 @regression
 Scenario Outline: E2E4 - Clone an existing Live Traineeship Vacancy, Approve and Apply
 Given the Provider clones an existing traineeship
