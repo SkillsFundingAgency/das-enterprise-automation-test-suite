@@ -1,4 +1,4 @@
-![Build Status](https://sfa-gov-uk.visualstudio.com/_apis/public/build/definitions/c39e0c0b-7aff-4606-b160-3566f3bbce23/715/badge)
+[![Build Status](https://dev.azure.com/sfa-gov-uk/Digital%20Apprenticeship%20Service/_apis/build/status/das-enterprise-automation-test-suite?branchName=master)](https://dev.azure.com/sfa-gov-uk/Digital%20Apprenticeship%20Service/_build/latest?definitionId=1678&branchName=master)
 
 # DAS-ENTERPRISE-AUTOMATION-TEST-SUITE
 
