@@ -22,6 +22,22 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         public void WaitForElementToChange(By locator, string text) => _webDriverWaitHelper.TextToBePresentInElementLocated(locator, text);
 
+        public void WaitForElementToChange(By locator, string attribute, string value)
+        {
+            bool func()
+            {
+                var actual = FindElement(locator).GetAttribute(attribute);
+                if (actual.Contains(value))
+                {
+                    return true;
+                }
+
+                throw new WebDriverException($"Expected {attribute}=\"{value}\", Actual {attribute}=\"{actual}\"");
+            }
+
+            _retryHelper.RetryOnWebDriverException<bool>(func);
+        }
+
         public void WaitforURLToChange(string url) => _webDriverWaitHelper.WaitforURLToChange(url);
 
         public bool VerifyPage(By locator)
@@ -182,7 +198,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.FrameToBeAvailableAndSwitchToIt(locator));
         }
 
-        public string GetText(By locator) => GetText(() => _webDriver.FindElement(locator));
+        public string GetText(By locator) => GetText(() => FindElement(locator));
 
         public string GetText(Func<IWebElement> element) => _retryHelper.RetryOnWebDriverException<string>(() => element().Text);
 
@@ -196,16 +212,18 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         public string GetRowData(By tableIdentifier, string rowIdentifier) => GetRows(tableIdentifier).Where(x => x.FindElements(By.CssSelector("td")).Any(y => y?.Text == rowIdentifier)).SingleOrDefault()?.Text;
 
-        public List<IWebElement> GetRows(By tableIdentifier) => _webDriver.FindElement(tableIdentifier).FindElements(By.CssSelector("tr")).ToList();
+        public List<IWebElement> GetRows(By tableIdentifier) => FindElement(tableIdentifier).FindElements(By.CssSelector("tr")).ToList();
 
         public IWebElement FindElement(By locator) => _webDriver.FindElement(locator);
 
         public List<IWebElement> FindElements(By locator) =>  _webDriver.FindElements(locator).ToList();
 
-        public IWebElement GetLink(By by, Func<string, bool> func) => _webDriver.FindElements(by).ToList().First(x => func(x.GetAttribute("innerText")));
+        public IWebElement GetLinkByHref(string hrefContains) => FindElements(LinkCssSelector).First(x => x.GetAttribute("href").ContainsCompareCaseInsensitive(hrefContains));
 
-        public List<IWebElement> GetLinks(By by, string linkText) => _webDriver.FindElements(by).Where(x => x.GetAttribute("innerText") == linkText).ToList();
+        public IWebElement GetLink(By by, Func<string, bool> func) => FindElements(by).First(x => func(x.GetAttribute("innerText")));
 
-        public List<string> GetAvailableOptions(By @by) => SelectElement(_webDriver.FindElement(by)).Options.Where(t => string.IsNullOrEmpty(t.Text)).Select(x => x.Text).ToList();
+        public List<IWebElement> GetLinks(By by, string linkText) => FindElements(by).Where(x => x.GetAttribute("innerText") == linkText).ToList();
+
+        public List<string> GetAvailableOptions(By @by) => SelectElement(FindElement(by)).Options.Where(t => string.IsNullOrEmpty(t.Text)).Select(x => x.Text).ToList();
     }
 }

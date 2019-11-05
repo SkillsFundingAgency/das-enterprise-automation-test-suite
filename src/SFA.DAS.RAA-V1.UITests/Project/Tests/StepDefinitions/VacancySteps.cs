@@ -16,6 +16,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
         private RAA_EnterOpportunityDetailsPage _enterOpportunityDetails;
         private RAA_RequirementsAndProspectsPage _requirementsAndProspects;
         private Manage_HomePage _manage_HomePage;
+        private Manage_EnterBasicVacancyDetailsPage _manage_EnterBasicVacancyDetailsPage;
         private readonly RAAStepsHelper _raaStepsHelper;
         private readonly ManageStepsHelper _manageStepsHelper;
         private readonly FAAStepsHelper _faaStepsHelper;
@@ -114,6 +115,16 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
         public void ThenTheReviewerIsAbleToApproveTheVacancy(string changeTeam, string changeRole)
         {
             _manage_HomePage.ApproveAVacancy(changeTeam, changeRole);
+        }
+
+        [When(@"the Reviewer refer a vacancy with comments '(.*)','(.*)'")]
+        public void WhenTheReviewerReferAVacancyWithComments(string changeTeam, string changeRole)
+        {
+            _manage_EnterBasicVacancyDetailsPage = _manage_HomePage.EditOrCommentTitle(changeTeam, changeRole);
+
+            _manage_EnterBasicVacancyDetailsPage
+                .AddTitleComments()
+                .ReferVacancy();
         }
 
         [Given(@"the Provider initiates Create Apprenticeship Vacancy in Recruit")]
