@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.RAA_V1.UITests
+namespace SFA.DAS.RAA_V1.UITests.Project
 {
     [Binding]
     public class RAAV1ConfigurationSetup

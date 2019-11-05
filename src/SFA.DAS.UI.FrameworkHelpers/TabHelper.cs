@@ -1,18 +1,19 @@
 ﻿using OpenQA.Selenium;
+using System;
 using System.Linq;
 
-namespace SFA.DAS.Approvals.UITests.Project.Helpers
+namespace SFA.DAS.UI.FrameworkHelpers
 {
-    internal class TabHelper
+    public class TabHelper
     {
-        private readonly IWebDriver _webDriver;
+        private IWebDriver _webDriver;
 
-        internal TabHelper(IWebDriver webDriver)
+        public TabHelper(IWebDriver webDriver)
         {
             _webDriver = webDriver;
         }
 
-        internal void OpenInNewtab(string url)
+        public void OpenInNewtab(string url)
         {
             var existingTabs = _webDriver.WindowHandles;
 
@@ -22,7 +23,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers
 
             var newtab = newtabs.Except(existingTabs).Single();
 
-            _webDriver.SwitchTo().Window(newtab);
+            _webDriver = _webDriver.SwitchTo().Window(newtab);
+        }
+
+        public void GoToUrl(string url)
+        {
+            _webDriver.Navigate().GoToUrl(url);
         }
     }
 }

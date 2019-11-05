@@ -100,12 +100,17 @@ namespace SFA.DAS.UI.Framework.TestSupport
 
         public static void SetWebDriver(this ScenarioContext context, IWebDriver webDriver)
         {
-            Set(context, webDriver, WebDriverKey);
+            Replace(context, webDriver, WebDriverKey);
         }
 
         public static IWebDriver GetWebDriver(this ScenarioContext context)
         {
             return Get<IWebDriver>(context, WebDriverKey);
+        }
+
+        private static void Replace<T>(ScenarioContext context, T value, string key)
+        {
+            context.Replace(key, value);
         }
 
         private static void Set<T>(ScenarioContext context, T value, string key)
