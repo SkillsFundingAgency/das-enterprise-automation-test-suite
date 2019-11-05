@@ -23,10 +23,10 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
             _context = context;
         }
 
-        public Idams ClickOnSignInButton()
+        public IdamsPage ClickOnSignInButton()
         {
             formCompletionHelper.Click(SignInButton);
-            return new Idams(_context);
+            return new IdamsPage(_context);
         }
     }
 }

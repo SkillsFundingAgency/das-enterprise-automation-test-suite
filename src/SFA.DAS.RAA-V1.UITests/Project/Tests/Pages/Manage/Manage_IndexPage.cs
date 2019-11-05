@@ -26,10 +26,10 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.Manage
             VerifyPage();
         }
 
-        public Idams ClickAgencyButton()
+        public IdamsPage ClickAgencyButton()
         {
             _formCompletionHelper.Click(AgencyButton);
-            return new Idams(_context);
+            return new IdamsPage(_context);
         }
 
     }

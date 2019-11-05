@@ -29,7 +29,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
                 .SubmitValidLoginDetails();
         }
 
-        public FAA_ApplicationForm ApplyForVacancy(FAA_HomePage homePage)
+        public FAA_ApplicationFormPage ApplyForVacancy(FAA_HomePage homePage)
         {
             if (_objectContext.IsApprenticeshipVacancyType())
             {
@@ -45,7 +45,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
             }   
         }
 
-        public void ConfirmApplicationSubmission(FAA_ApplicationForm applicationFormPage, string qualificationdetails, string workExperience, string trainingCourse)
+        public void ConfirmApplicationSubmission(FAA_ApplicationFormPage applicationFormPage, string qualificationdetails, string workExperience, string trainingCourse)
         {
             
             if (_objectContext.IsApprenticeshipVacancyType())

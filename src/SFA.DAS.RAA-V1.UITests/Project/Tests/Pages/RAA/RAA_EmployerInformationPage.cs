@@ -5,7 +5,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
 {
-    public class RAA_EmployerInformation : RAA_HeaderSectionBasePage
+    public class RAA_EmployerInformationPage : RAA_HeaderSectionBasePage
     {
         protected override string PageTitle => "Check employer information";
 
@@ -31,26 +31,26 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
 
         private By VacancyLocationPageSaveAndContinue => By.CssSelector("button[type='submit']");
 
-        public RAA_EmployerInformation(ScenarioContext context) : base(context)
+        public RAA_EmployerInformationPage(ScenarioContext context) : base(context)
         {
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _webDriver = context.GetWebDriver();
         }
 
-        public RAA_EmployerInformation UseTheMainEmployerAddress(string position)
+        public RAA_EmployerInformationPage UseTheMainEmployerAddress(string position)
         {
             formCompletionHelper.SelectRadioOptionByText("Use the main employer address");
             formCompletionHelper.EnterText(NumberOfVacancy, position);
             return this;
         }
 
-        public RAA_EmployerInformation AddDifferentLocation()
+        public RAA_EmployerInformationPage AddDifferentLocation()
         {
             formCompletionHelper.SelectRadioOptionByText("Add different location(s)");
             return this;
         }
 
-        public RAA_EmployerInformation SetAsANationWideVacancy(string position)
+        public RAA_EmployerInformationPage SetAsANationWideVacancy(string position)
         {
             formCompletionHelper.SelectRadioOptionByText("Set as a nationwide vacancy");
             formCompletionHelper.EnterText(NationwideNumberOfVacancy, position);
@@ -78,7 +78,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
             ClickOnSaveAndContinueButton();   
         }
 
-        private RAA_EmployerInformation EnterAboutTheEmployerInformation()
+        private RAA_EmployerInformationPage EnterAboutTheEmployerInformation()
         {
             _webDriver.SwitchTo().Frame(_webDriver.FindElement(IFrame));
             _webDriver.FindElement(AboutTheEmployerBody).SendKeys(Keys.Tab + Keys.Control + "a" + Keys.Delete);

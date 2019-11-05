@@ -15,7 +15,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         #endregion
         
         private By Iframe => By.CssSelector("iframe");
-        private By WorkkingWeek => By.Id("WorkingWeek");
+        private By WorkingWeek => By.Id("WorkingWeek");
         private By HoursPerWeek => By.Id("Wage_HoursPerWeek");
         private By ApprenticeshipMinimumWage => By.Id("apprenticeship-minimum-wage");
         private By VacancyDuration => By.Id("Duration");
@@ -33,15 +33,15 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
             _context = context;
         }
 
-        public RAA_RequirementsAndProspects ClickSaveAndContinueButton()
+        public RAA_RequirementsAndProspectsPage ClickSaveAndContinueButton()
         {
             formCompletionHelper.Click(SaveAndContinueButton);
-            return new RAA_RequirementsAndProspects(_context);
+            return new RAA_RequirementsAndProspectsPage(_context);
         }
 
         public RAA_EnterFurtherDetailsPage EnterWorkingInformation()
         {
-            formCompletionHelper.EnterText(WorkkingWeek, dataHelper.WorkkingWeek);
+            formCompletionHelper.EnterText(WorkingWeek, dataHelper.WorkkingWeek);
             return this;
         }
 

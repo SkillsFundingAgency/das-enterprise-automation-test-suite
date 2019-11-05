@@ -5,7 +5,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages
 {
-    public class Idams : BasePage
+    public class IdamsPage : BasePage
     {
         protected override string PageTitle => "Sign in using your account on:";
 
@@ -16,7 +16,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages
         private readonly RAAV1Config _config;
         #endregion
 
-        public Idams(ScenarioContext context): base(context)
+        public IdamsPage(ScenarioContext context): base(context)
         {
             _context = context;
             _config = context.GetRAAV1Config<RAAV1Config>();
