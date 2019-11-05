@@ -3,7 +3,6 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
     <RootNamespace>SFA.DAS.RAA_V1.UITests</RootNamespace>
-
     <IsPackable>false</IsPackable>
   </PropertyGroup>
 

@@ -2,9 +2,10 @@
 
 A short summary of the feature
 
-@V1_E2E
+@raa-v1
+@v1_e2e
 @regression
-Scenario Outline: V1_E2E - Create, Approve and Apply for a Traineeship Vacancy
+Scenario Outline: E2E3 - Create, Approve and Apply for a Traineeship Vacancy
 Given the Provider initiates Create Apprenticeship Vacancy in Recruit
 When the Provider chooses the employer '<location>','2'
 And the Provider chooses their 'Yes'

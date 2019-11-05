@@ -1,10 +1,12 @@
-﻿Feature: CloneApprentishipVacancy
+﻿Feature: E2E4CloneTraineeshipVacancy
 
 A short summary of the feature
 
-@V1_E2E
-Scenario Outline: E2E1 - Clone an existing Live Apprenticeship Vacancy, Approve and Apply
-Given the Provider clones an existing vacancy
+@raa-v1
+@v1_e2e
+@regression
+Scenario Outline: E2E4 - Clone an existing Live Traineeship Vacancy, Approve and Apply
+Given the Provider clones an existing traineeship
 Then Provider is able to submit the vacancy for approval
 Then the Reviewer approves the vacancy
 When the Applicant apply for a Vacancy in FAA '<QualificationDetails>','<WorkExperience>','<TrainingCourse>'
@@ -12,7 +14,4 @@ Then the Provider is able to view the Applicant's application in Recruit
 
 Examples:
 | QualificationDetails | WorkExperience | TrainingCourse |
-| Yes                  | Yes            | Yes            |
-| No                   | No             | No             |
-| No                   | Yes            | No             |
 | Yes                  | Yes            | No             |

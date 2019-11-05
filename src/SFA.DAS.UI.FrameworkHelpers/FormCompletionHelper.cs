@@ -1,18 +1,17 @@
 ﻿using OpenQA.Selenium;
-using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace SFA.DAS.UI.FrameworkHelpers
 {
-    public class FormCompletionHelper 
+    public class FormCompletionHelper : WebElementInteractionHelper
     {
         private readonly IWebDriver _webDriver;
         private readonly WebDriverWaitHelper _webDriverWaitHelper;
         private readonly RetryHelper _retryHelper;
 
-        public FormCompletionHelper(IWebDriver webDriver, WebDriverWaitHelper webDriverWaitHelper, RetryHelper retryHelper)
+        public FormCompletionHelper(IWebDriver webDriver, WebDriverWaitHelper webDriverWaitHelper, RetryHelper retryHelper) : base(webDriver)
         {
             _webDriver = webDriver;
             _webDriverWaitHelper = webDriverWaitHelper;
@@ -31,7 +30,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         public void ClickElement(Func<IWebElement> element)
         {
-            _retryHelper.RetryOnWebDriverException(element);
+            _retryHelper.RetryClickOnWebDriverException(element);
         }
 
         public void ClickElement(IWebElement element)
@@ -137,47 +136,34 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         private void ClickElementByText(By locator, String text)
         {
-            IWebElement element()
-            {
-                IList<IWebElement> elements = _webDriver.FindElements(locator);
-
-                for (int i = 0; i < elements.Count; i++)
-                {
-                    String str = elements.ElementAt(i).Text ?? elements.ElementAt(i).GetAttribute("innertext");
-                    if (str.Contains(text))
-                    {
-                        return elements.ElementAt(i);
-                    }
-                }
-                return null;
-            }
-
-           ClickElement(element);
+           ClickElement(() => GetElementByText(locator, text));
         }
 
         public void ClickLinkByText(string text)
         {
-            ClickElementByText(By.CssSelector("a"), text);
+            ClickElementByText(LinkCssSelector, text);
+        }
+
+        public void ClickButtonByText(params string[] buttons)
+        {
+            string text = buttons.First(x => GetElementByText(ButtonCssSelector, x) != null);
+
+            ClickElementByText(ButtonCssSelector, text);
         }
 
         public void ClickButtonByText(string text)
         {
-            ClickElementByText(By.CssSelector(".button"), text);
+            ClickElementByText(ButtonCssSelector, text);
         }
 
         public void SelectRadioOptionByText(string text)
         {
-            ClickElementByText(By.CssSelector("label.selection-button-radio"), text);
+            ClickElementByText(RadioButtonCssSelector, text);
         }
 
         public void SelectCheckBoxByText(string text)
         {
-            ClickElementByText(By.CssSelector("label.selection-button-checkbox"), text);
-        }
-
-        private SelectElement SelectElement(IWebElement element)
-        {
-            return new SelectElement(element);
+            ClickElementByText(CheckBoxCssSelector, text);
         }
     }
 }
