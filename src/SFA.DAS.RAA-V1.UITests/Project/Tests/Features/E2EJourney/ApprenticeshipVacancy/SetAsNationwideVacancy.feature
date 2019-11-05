@@ -1,6 +1,7 @@
 ﻿Feature: SetAsNationwideVacancy
 
-@V1_E2E
+@raa-v1
+@v1_e2e
 @regression
 Scenario Outline: E2E3 - Create, Approve and Apply for a Apprenticeship Vacancy
 	Given the Provider initiates Create Apprenticeship Vacancy in Recruit

@@ -38,23 +38,23 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
             return SubmitRecruitmentLoginDetails();
         }
 
-        internal RAA_EmployerSelection CreateANewVacancy()
+        internal RAA_EmployerSelectionPage CreateANewVacancy()
         {
             GoToRAA();
             return SubmitRecruitmentLoginDetails()
                 .CreateANewVacancy();
         }
 
-        internal RAA_EnterTrainingDetails EnterBasicVacancyDetails()
+        internal RAA_EnterTrainingDetailsPage EnterBasicVacancyDetails()
         {
-            return new RAA_BasicVacancyDetails(_context)
+            return new RAA_BasicVacancyDetailsPage(_context)
                        .EnterVacancyTitle()
                        .ClickSaveAndContinueButton();
         }
 
-        internal RAA_EnterTrainingDetails EnterBasicVacancyDetails(VacancyType vacancyType, string disabilityConfident, string applicationMethod)
+        internal RAA_EnterTrainingDetailsPage EnterBasicVacancyDetails(VacancyType vacancyType, string disabilityConfident, string applicationMethod)
         {
-            return new RAA_BasicVacancyDetails(_context)
+            return new RAA_BasicVacancyDetailsPage(_context)
                        .EnterVacancyTitle()
                        .EnterVacancyShortDescription()
                        .ClickOnVacancyType(vacancyType)
@@ -63,7 +63,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
                        .ClickSaveAndContinueButton();
         }
 
-        internal RAA_EnterOpportunityDetails EnterTrainingDetails(RAA_EnterTrainingDetails enterTrainingDetails)
+        internal RAA_EnterOpportunityDetailsPage EnterTrainingDetails(RAA_EnterTrainingDetailsPage enterTrainingDetails)
         {
             return enterTrainingDetails
                    .SelectApprenticeshipType("Traineeship")
@@ -75,7 +75,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
         }
 
 
-        internal RAA_EnterFurtherDetailsPage EnterTrainingDetails(RAA_EnterTrainingDetails enterTrainingDetails, string apprenticeShip)
+        internal RAA_EnterFurtherDetailsPage EnterTrainingDetails(RAA_EnterTrainingDetailsPage enterTrainingDetails, string apprenticeShip)
         {
             return enterTrainingDetails
                    .SelectApprenticeshipType(apprenticeShip)
@@ -86,7 +86,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
                    .GotoFurtherDetailsPage();
         }
 
-        internal RAA_RequirementsAndProspects EnterOpportunityDetails(RAA_EnterOpportunityDetails enteropportunityDetails,string vacancyDuration)
+        internal RAA_RequirementsAndProspectsPage EnterOpportunityDetails(RAA_EnterOpportunityDetailsPage enteropportunityDetails,string vacancyDuration)
         {
             return enteropportunityDetails
                    .EnterWorkingInformation()
@@ -97,7 +97,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
                    .ClickSaveAndContinueButton();
         }
 
-        internal RAA_RequirementsAndProspects EnterFurtherDetails(RAA_EnterFurtherDetailsPage enterFurtherDetails)
+        internal RAA_RequirementsAndProspectsPage EnterFurtherDetails(RAA_EnterFurtherDetailsPage enterFurtherDetails)
         {
             return enterFurtherDetails
                    .EnterVacancyClosingDate()
@@ -105,7 +105,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
                    .ClickSaveAndContinueButton();
         }
 
-        internal RAA_RequirementsAndProspects EnterFurtherDetails(RAA_EnterFurtherDetailsPage enterFurtherDetails, string hoursPerWeek, string vacancyDuration)
+        internal RAA_RequirementsAndProspectsPage EnterFurtherDetails(RAA_EnterFurtherDetailsPage enterFurtherDetails, string hoursPerWeek, string vacancyDuration)
         {
             return enterFurtherDetails
                    .EnterWorkingInformation()
@@ -118,7 +118,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
                    .ClickSaveAndContinueButton();
         }
 
-        internal void EnterRequirementsAndProspects(RAA_RequirementsAndProspects requirementsAndProspects)
+        internal void EnterRequirementsAndProspects(RAA_RequirementsAndProspectsPage requirementsAndProspects)
         {
             if (_objectContext.IsApprenticeshipVacancyType())
             {
@@ -136,7 +136,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
 
         internal void EnterExtraQuestions()
         {
-            new RAA_ExtraQuestions(_context)
+            new RAA_ExtraQuestionsPage(_context)
                 .EnterFirstQuestion()
                 .EnterSecondQuestion()
                 .ClickPreviewVacancyButton();

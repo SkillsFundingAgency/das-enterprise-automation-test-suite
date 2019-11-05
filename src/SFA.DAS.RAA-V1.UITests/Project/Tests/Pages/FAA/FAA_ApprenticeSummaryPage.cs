@@ -27,10 +27,10 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.FAA
             VerifyPage();
         }
 
-        public FAA_ApplicationForm Apply()
+        public FAA_ApplicationFormPage Apply()
         {
             _formCompletionHelper.Click(ApplyButton);
-            return new FAA_ApplicationForm(_context);
+            return new FAA_ApplicationFormPage(_context);
         }
     }
 }

@@ -9,12 +9,12 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
     [Binding]
     public class VacancySteps
     {
-        private RAA_EmployerSelection _employerSelection;
-        private RAA_EmployerInformation _raaEmployerInformation;
-        private RAA_EnterTrainingDetails _enterTrainingDetails;
+        private RAA_EmployerSelectionPage _employerSelection;
+        private RAA_EmployerInformationPage _raaEmployerInformation;
+        private RAA_EnterTrainingDetailsPage _enterTrainingDetails;
         private RAA_EnterFurtherDetailsPage _enterFurtherDetails;
-        private RAA_EnterOpportunityDetails _enterOpportunityDetails;
-        private RAA_RequirementsAndProspects _requirementsAndProspects;
+        private RAA_EnterOpportunityDetailsPage _enterOpportunityDetails;
+        private RAA_RequirementsAndProspectsPage _requirementsAndProspects;
         private Manage_HomePage _manage_HomePage;
         private readonly RAAStepsHelper _raaStepsHelper;
         private readonly ManageStepsHelper _manageStepsHelper;
@@ -31,26 +31,18 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
             _faaStepsHelper = new FAAStepsHelper(context);
         }
 
-        [Given(@"the Provider clones an existing vacancy")]
-        public void GivenTheProviderClonesAnExistingVacancy()
+        [Given(@"the Provider clones an existing traineeship")]
+        public void GivenTheProviderClonesAnExistingTraineeship()
+        {
+            CloneVacancy();
+        }
+
+        [Given(@"the Provider clones an existing apprenticeship")]
+        public void GivenTheProviderClonesAnExistingApprenticeship()
         {
             _objectContext.SetApprenticeshipVacancyType();
-
-            var homePage = _raaStepsHelper.GoToRAAHomePage(false);
-
-            _raaEmployerInformation = homePage.CloneAVacancy();
-
-            _raaEmployerInformation.ClickOnSaveAndContinueButton();
-
-            _enterTrainingDetails = _raaStepsHelper.EnterBasicVacancyDetails();
-
-            _enterFurtherDetails = _enterTrainingDetails.GotoFurtherDetailsPage();
-
-            _requirementsAndProspects = _raaStepsHelper.EnterFurtherDetails(_enterFurtherDetails);
-
-            _requirementsAndProspects.ClickSaveAndContinue();
-
-            new RAA_ExtraQuestions(_context).ClickPreviewVacancyButton();
+            
+            CloneVacancy();
         }
 
         [Then(@"the Reviewer approves the vacancy")]
@@ -206,6 +198,34 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
                 .ApproveVacanacy()
                 .ExitFromWebsite();
         }
+        private void CloneVacancy()
+        {
+            var homePage = _raaStepsHelper.GoToRAAHomePage(false);
+
+            _raaEmployerInformation = homePage.CloneAVacancy();
+
+            _raaEmployerInformation.ClickOnSaveAndContinueButton();
+
+            _enterTrainingDetails = _raaStepsHelper.EnterBasicVacancyDetails();
+
+            if (_objectContext.IsApprenticeshipVacancyType())
+            {
+                _enterFurtherDetails = _enterTrainingDetails.GotoFurtherDetailsPage();
+
+                _requirementsAndProspects = _raaStepsHelper.EnterFurtherDetails(_enterFurtherDetails);
+            }
+            else
+            {
+                _enterOpportunityDetails = _enterTrainingDetails.GotoOpportunityDetailsPage();
+
+                _requirementsAndProspects = _raaStepsHelper.EnterFurtherDetails(_enterOpportunityDetails);
+            }
+
+            _requirementsAndProspects.ClickSaveAndContinue();
+
+            new RAA_ExtraQuestionsPage(_context).ClickPreviewVacancyButton();
+        }
+
     }
 }
 

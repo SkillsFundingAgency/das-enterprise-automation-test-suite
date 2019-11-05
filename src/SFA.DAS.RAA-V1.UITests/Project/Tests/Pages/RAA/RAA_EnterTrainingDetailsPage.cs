@@ -1,12 +1,10 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.RAA_V1.UITests.Project.Helpers;
 using SFA.DAS.UI.Framework.TestSupport;
-using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
 {
-    public class RAA_EnterTrainingDetails : RAA_HeaderSectionBasePage
+    public class RAA_EnterTrainingDetailsPage : RAA_HeaderSectionBasePage
     {
         protected override string PageTitle => "Enter training details";
 
@@ -27,13 +25,13 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         private By TrainingBody => By.XPath("//body");
 
 
-        public RAA_EnterTrainingDetails(ScenarioContext context) : base(context)
+        public RAA_EnterTrainingDetailsPage(ScenarioContext context) : base(context)
         {
             _context = context;
             _webDriver = context.GetWebDriver();
         }
 
-        public RAA_EnterTrainingDetails SelectApprenticeshipType(string frameworkOrStanndard)
+        public RAA_EnterTrainingDetailsPage SelectApprenticeshipType(string frameworkOrStanndard)
         {
             void SelectRandomCourse(By locator)
             {
@@ -67,7 +65,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
             return this;
         }
 
-        public RAA_EnterTrainingDetails EnterTrainingToBeProvided()
+        public RAA_EnterTrainingDetailsPage EnterTrainingToBeProvided()
         {
             _webDriver.SwitchTo().Frame(_webDriver.FindElement(Iframe));
             formCompletionHelper.EnterText(TrainingBody, dataHelper.TrainingDetails);
@@ -75,19 +73,19 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
             return this;
         }
 
-        public RAA_EnterTrainingDetails EnterContactName()
+        public RAA_EnterTrainingDetailsPage EnterContactName()
         {
             formCompletionHelper.EnterText(ContactNameField, dataHelper.TrainingContactName);
             return this;
         }
 
-        public RAA_EnterTrainingDetails ContactTelephone()
+        public RAA_EnterTrainingDetailsPage ContactTelephone()
         {
             formCompletionHelper.EnterText(ContactumberField, dataHelper.TrainingContactNumber);
             return this;
         }
 
-        public RAA_EnterTrainingDetails EnterEmailDetails()
+        public RAA_EnterTrainingDetailsPage EnterEmailDetails()
         {
             formCompletionHelper.EnterText(EmailField, dataHelper.TrainingEmail);
             return this;
@@ -99,10 +97,10 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
             return new RAA_EnterFurtherDetailsPage(_context);
         }
 
-        public RAA_EnterOpportunityDetails GotoOpportunityDetailsPage()
+        public RAA_EnterOpportunityDetailsPage GotoOpportunityDetailsPage()
         {
             formCompletionHelper.Click(SaveAndContinueButton);
-            return new RAA_EnterOpportunityDetails(_context);
+            return new RAA_EnterOpportunityDetailsPage(_context);
         }
     }
 }

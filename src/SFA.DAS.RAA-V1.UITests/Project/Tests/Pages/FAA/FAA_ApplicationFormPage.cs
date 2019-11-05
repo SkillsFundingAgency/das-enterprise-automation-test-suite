@@ -6,7 +6,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.FAA
 {
-    public class FAA_ApplicationForm : BasePage
+    public class FAA_ApplicationFormPage : BasePage
     {
         protected override string PageTitle => "Application form";
 
@@ -56,7 +56,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.FAA
         private By MyApplications => By.CssSelector("#myapplications-link");
         #endregion
 
-        public FAA_ApplicationForm(ScenarioContext context) : base(context)
+        public FAA_ApplicationFormPage(ScenarioContext context) : base(context)
         {
             _context = context;
             _dataHelper = context.Get<FAADataHelper>();
@@ -167,7 +167,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.FAA
 
         public TraineeshipApplicationSubmittedPage SubmitTraineeshipApplication()
         {
-            _formCompletionHelper.ClickButtonByText("Submit application");
+            _formCompletionHelper.ClickButtonByText("Submit application", "Save and continue");
             return new TraineeshipApplicationSubmittedPage(_context);
         }
 

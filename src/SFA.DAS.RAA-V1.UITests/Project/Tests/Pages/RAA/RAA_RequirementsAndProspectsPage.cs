@@ -1,10 +1,9 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.RAA_V1.UITests.Project.Helpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
 {
-    public class RAA_RequirementsAndProspects : RAA_HeaderSectionBasePage
+    public class RAA_RequirementsAndProspectsPage : RAA_HeaderSectionBasePage
     {
         protected override string PageTitle => "Requirements and prospects";
 
@@ -15,39 +14,39 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         private By FutureProspectsText => By.CssSelector("iframe[title='Rich Text Editor, FutureProspects']");
         private By ThingsToConsiderText => By.CssSelector("iframe[title='Rich Text Editor, ThingsToConsider']");
 
-        public RAA_RequirementsAndProspects(ScenarioContext context) : base(context) { }
+        public RAA_RequirementsAndProspectsPage(ScenarioContext context) : base(context) { }
 
-        public RAA_RequirementsAndProspects EnterDesiredSkillsText()
+        public RAA_RequirementsAndProspectsPage EnterDesiredSkillsText()
         {
             formCompletionHelper.SendKeys(DesiredSkillsText, Keys.Tab + dataHelper.DesiredSkills);
             return this;
         }
 
-        public RAA_RequirementsAndProspects EnterPersonalQualitiesText()
+        public RAA_RequirementsAndProspectsPage EnterPersonalQualitiesText()
         {
             formCompletionHelper.SendKeys(PersonalQualitiesText, Keys.Tab + dataHelper.PersonalQualities);
             return this;
         }
 
-        public RAA_RequirementsAndProspects EnterDesiredQualificationsText()
+        public RAA_RequirementsAndProspectsPage EnterDesiredQualificationsText()
         {
             formCompletionHelper.SendKeys(DesiredQualificationsText, Keys.Tab + dataHelper.DesiredQualifications);
             return this;
         }
 
-        public RAA_RequirementsAndProspects EnterFutureProspectsText()
+        public RAA_RequirementsAndProspectsPage EnterFutureProspectsText()
         {
             formCompletionHelper.SendKeys(FutureProspectsText, Keys.Tab + dataHelper.FutureProspects);
             return this;
         }
 
-        public RAA_RequirementsAndProspects EnterThingsToConsiderText()
+        public RAA_RequirementsAndProspectsPage EnterThingsToConsiderText()
         {
             formCompletionHelper.SendKeys(ThingsToConsiderText, Keys.Tab + dataHelper.ThingsToConsider);
             return this;
         }
 
-        public RAA_RequirementsAndProspects ClickSaveAndContinue()
+        public RAA_RequirementsAndProspectsPage ClickSaveAndContinue()
         {
             formCompletionHelper.Click(SaveAndContinueButton);
             return this;

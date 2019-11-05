@@ -43,25 +43,22 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
         }
 
-        public RAA_EmployerInformation CloneAVacancy()
+        public RAA_EmployerInformationPage CloneAVacancy()
         {
+            ApprenticeshipVacancyType();
             return LiveVacancy()
                 .Clone();
         }
 
-        public RAA_EmployerSelection CreateANewVacancy()
+        public RAA_EmployerSelectionPage CreateANewVacancy()
         {
             formCompletionHelper.Click(CreateANewVacancyButton);
-            return new RAA_EmployerSelection(_context);
+            return new RAA_EmployerSelectionPage(_context);
         }
 
         public RAA_VacancySummaryPage SearchByReferenceNumber()
         {
-            if (!_objectContext.IsApprenticeshipVacancyType())
-            {
-                formCompletionHelper.ClickLinkByText("Traineeships");
-                _pageInteractionHelper.WaitForElementToChange(InlineText, "Your opportunities");
-            }
+            ApprenticeshipVacancyType();
 
             formCompletionHelper.SelectFromDropDownByValue(VacancySearchMode, "ReferenceNumber");
             formCompletionHelper.EnterText(VacancySearchText, _objectContext.GetVacancyReference());
@@ -70,7 +67,16 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
             return GoToVacancySummary();
         }
 
-        private RAA_EmployerInformation Clone()
+        private void ApprenticeshipVacancyType()
+        {
+            if (!_objectContext.IsApprenticeshipVacancyType())
+            {
+                formCompletionHelper.ClickLinkByText("Traineeships");
+                _pageInteractionHelper.WaitForElementToChange(InlineText, "Your opportunities");
+            }
+        }
+
+        private RAA_EmployerInformationPage Clone()
         {
             List<IWebElement> rows() => _pageInteractionHelper.FindElements(TableRows).ToList();
             int randomLink = 0;
@@ -101,7 +107,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
             }
 
             formCompletionHelper.ClickElement(() => _pageInteractionHelper.GetLinks(CloneLink, "Clone")[randomLink]);
-            return new RAA_EmployerInformation(_context);
+            return new RAA_EmployerInformationPage(_context);
         }
 
         private RAA_VacancySummaryPage GoToVacancySummary()

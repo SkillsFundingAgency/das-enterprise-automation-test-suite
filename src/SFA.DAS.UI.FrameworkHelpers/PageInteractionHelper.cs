@@ -7,28 +7,22 @@ using System.Linq;
 
 namespace SFA.DAS.UI.FrameworkHelpers
 {
-    public class PageInteractionHelper
+    public class PageInteractionHelper : WebElementInteractionHelper
     {
         private readonly IWebDriver _webDriver;
         private readonly WebDriverWaitHelper _webDriverWaitHelper;
         private readonly RetryHelper _retryHelper;
 
-        public PageInteractionHelper(IWebDriver webDriver, WebDriverWaitHelper webDriverWaitHelper, RetryHelper retryHelper)
+        public PageInteractionHelper(IWebDriver webDriver, WebDriverWaitHelper webDriverWaitHelper, RetryHelper retryHelper) : base(webDriver)
         {
             _webDriver = webDriver;
             _webDriverWaitHelper = webDriverWaitHelper;
             _retryHelper = retryHelper;
         }
 
-        public void WaitForElementToChange(By locator, string text)
-        {
-            _webDriverWaitHelper.TextToBePresentInElementLocated(locator, text);
-        }
+        public void WaitForElementToChange(By locator, string text) => _webDriverWaitHelper.TextToBePresentInElementLocated(locator, text);
 
-        public void WaitforURLToChange(string url)
-        {
-            _webDriverWaitHelper.WaitforURLToChange(url);
-        }
+        public void WaitforURLToChange(string url) => _webDriverWaitHelper.WaitforURLToChange(url);
 
         public bool VerifyPage(By locator)
         {
@@ -113,7 +107,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
                 + "\n Expected: " + expected
                 + "\n Found: " + actual);
         }
-
+       
         public string GetTextFromElementsGroup(By locator)
         {
             string text = null;
@@ -124,10 +118,8 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
             return text;
         }
-        public int GetCountOfElementsGroup(By locator)
-        {
-            return _webDriver.FindElements(locator).Count;
-        }
+
+        public int GetCountOfElementsGroup(By locator) => _webDriver.FindElements(locator).Count;
 
         public bool IsElementPresent(By locator)
         {
@@ -171,10 +163,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
             _webDriverWaitHelper.WaitForElementToBeDisplayed(locator);
         }
 
-        public void FocusTheElement(IWebElement element)
-        {
-            new Actions(_webDriver).MoveToElement(element).Perform();
-        }
+        public void FocusTheElement(IWebElement element) => new Actions(_webDriver).MoveToElement(element).Perform();
 
         public void UnFocusTheElement(By locator)
         {
@@ -183,15 +172,9 @@ namespace SFA.DAS.UI.FrameworkHelpers
             _webDriverWaitHelper.WaitForElementToBeDisplayed(locator);
         }
 
-        public void UnFocusTheElement(IWebElement element)
-        {
-            new Actions(_webDriver).MoveToElement(element).Perform();
-        }
+        public void UnFocusTheElement(IWebElement element) => new Actions(_webDriver).MoveToElement(element).Perform();
 
-        public void TurnOffImplicitWaits()
-        {
-            _webDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromMilliseconds(500);
-        }
+        public void TurnOffImplicitWaits() => _webDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromMilliseconds(500);
 
         public void SwitchToFrame(By locator)
         {
@@ -199,15 +182,9 @@ namespace SFA.DAS.UI.FrameworkHelpers
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.FrameToBeAvailableAndSwitchToIt(locator));
         }
 
-        public string GetText(By locator) 
-        {
-            return GetText(() => _webDriver.FindElement(locator));
-        } 
+        public string GetText(By locator) => GetText(() => _webDriver.FindElement(locator));
 
-        public string GetText(Func<IWebElement> element)
-        {
-            return _retryHelper.RetryOnWebDriverException<string>(() => element().Text);
-        }
+        public string GetText(Func<IWebElement> element) => _retryHelper.RetryOnWebDriverException<string>(() => element().Text);
 
         public string GetText(IWebElement webElement) => webElement.Text;
 
@@ -215,35 +192,20 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         public IWebElement GetLink(By by, string linkText) => GetLink(by, (x) => x == linkText);
 
-        public List<IWebElement> GetLinks(By by, string linkText) => _webDriver.FindElements(by).Where(x => x.GetAttribute("innerText") == linkText).ToList();
-
         public IWebElement GetLinkContains(By by, string linkText) => GetLink(by, (x) => x.ContainsCompareCaseInsensitive(linkText));
 
-        public string GetRowData(By tableIdentifier, string rowIdentifier)
-        {
-            return GetRows(tableIdentifier).Where(x => x.FindElements(By.CssSelector("td")).Any(y => y?.Text == rowIdentifier)).SingleOrDefault()?.Text;
-        }
+        public string GetRowData(By tableIdentifier, string rowIdentifier) => GetRows(tableIdentifier).Where(x => x.FindElements(By.CssSelector("td")).Any(y => y?.Text == rowIdentifier)).SingleOrDefault()?.Text;
 
-        public List<IWebElement> GetRows(By tableIdentifier)
-        {
-            return _webDriver.FindElement(tableIdentifier).FindElements(By.CssSelector("tr")).ToList();
-        }
+        public List<IWebElement> GetRows(By tableIdentifier) => _webDriver.FindElement(tableIdentifier).FindElements(By.CssSelector("tr")).ToList();
 
-        public IWebElement FindElement(By locator)
-        {
-            return _webDriver.FindElement(locator);
-        }
+        public IWebElement FindElement(By locator) => _webDriver.FindElement(locator);
 
-        public List<IWebElement> FindElements(By locator)
-        {
-            return _webDriver.FindElements(locator).ToList();
-        }
+        public List<IWebElement> FindElements(By locator) =>  _webDriver.FindElements(locator).ToList();
 
         public IWebElement GetLink(By by, Func<string, bool> func) => _webDriver.FindElements(by).ToList().First(x => func(x.GetAttribute("innerText")));
 
-        public List<string> GetAvailableOptions(By @by)
-        {
-            return new SelectElement(_webDriver.FindElement(by)).Options.Where(t => string.IsNullOrEmpty(t.Text)).Select(x => x.Text).ToList();
-        }
+        public List<IWebElement> GetLinks(By by, string linkText) => _webDriver.FindElements(by).Where(x => x.GetAttribute("innerText") == linkText).ToList();
+
+        public List<string> GetAvailableOptions(By @by) => SelectElement(_webDriver.FindElement(by)).Options.Where(t => string.IsNullOrEmpty(t.Text)).Select(x => x.Text).ToList();
     }
 }
