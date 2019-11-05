@@ -18,20 +18,20 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Features.E2EJourney.TraineeshipVa
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.0.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("UseTheMainEmployerAddress")]
-    public partial class UseTheMainEmployerAddressFeature
+    [NUnit.Framework.DescriptionAttribute("RV1_E2ETV_02")]
+    public partial class RV1_E2ETV_02Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "UseTheMainEmployerAddress.feature"
+#line 1 "RV1_E2ETV_02.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "UseTheMainEmployerAddress", "A short summary of the feature", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "RV1_E2ETV_02", "A short summary of the feature", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -69,7 +69,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Features.E2EJourney.TraineeshipVa
             testRunner.CollectScenarioErrors();
         }
         
-        public virtual void E2E1_CreateApproveAndApplyForATraineeshipVacancy(string location, string changeteam, string changeRole, string qualificationDetails, string workExperience, string trainingCourse, string[] exampleTags)
+        public virtual void RV1_E2ETV_02_CreateApproveAndApplyForATraineeshipVacancy(string location, string changeteam, string changeRole, string qualificationDetails, string workExperience, string trainingCourse, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "raa-v1",
@@ -79,7 +79,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Features.E2EJourney.TraineeshipVa
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
             }
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("E2E1 - Create, Approve and Apply for a Traineeship Vacancy", null, @__tags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV1_E2ETV_02 - Create, Approve and Apply for a Traineeship Vacancy", null, @__tags);
 #line 8
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
@@ -106,15 +106,15 @@ testRunner.Then("the Provider is able to view the Applicant\'s application in Re
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("E2E1 - Create, Approve and Apply for a Traineeship Vacancy: Use the main employer" +
-            " address")]
+        [NUnit.Framework.DescriptionAttribute("RV1_E2ETV_02 - Create, Approve and Apply for a Traineeship Vacancy: Set as a nati" +
+            "onwide vacancy")]
         [NUnit.Framework.CategoryAttribute("raa-v1")]
         [NUnit.Framework.CategoryAttribute("v1_e2e")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public virtual void E2E1_CreateApproveAndApplyForATraineeshipVacancy_UseTheMainEmployerAddress()
+        public virtual void RV1_E2ETV_02_CreateApproveAndApplyForATraineeshipVacancy_SetAsANationwideVacancy()
         {
 #line 8
-this.E2E1_CreateApproveAndApplyForATraineeshipVacancy("Use the main employer address", "West Midlands", "Vacancy reviewer", "No", "No", "No", ((string[])(null)));
+this.RV1_E2ETV_02_CreateApproveAndApplyForATraineeshipVacancy("Set as a nationwide vacancy", "West Midlands", "Vacancy reviewer", "No", "No", "No", ((string[])(null)));
 #line hidden
         }
     }

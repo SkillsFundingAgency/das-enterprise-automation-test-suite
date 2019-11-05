@@ -1,11 +1,11 @@
-﻿Feature: E2E2CloneTraineeshipVacancy
+﻿Feature: RV1_CTV_02
 
 A short summary of the feature
 
 @raa-v1
 @v1_e2e
 @regression
-Scenario Outline: E2E2 - Clone an existing Live Traineeship Vacancy, Approve and Apply
+Scenario Outline: RV1_CTV_02 - Clone an existing Live Traineeship Vacancy, Approve and Apply
 Given the Provider clones an existing traineeship
 Then Provider is able to submit the vacancy for approval
 Then the Reviewer approves the vacancy

@@ -1,11 +1,11 @@
-﻿Feature: SetAsNationwideVacancy
+﻿Feature: RV1_E2ETV_03
 
 A short summary of the feature
 
 @raa-v1
 @v1_e2e
 @regression
-Scenario Outline: E2E3 - Create, Approve and Apply for a Traineeship Vacancy
+Scenario Outline: RV1_E2ETV_03 - Create, Approve and Apply for a Traineeship Vacancy
 Given the Provider initiates Create Apprenticeship Vacancy in Recruit
 When the Provider chooses the employer '<location>','2'
 And the Provider chooses their 'Yes'
@@ -17,8 +17,5 @@ When the Applicant apply for a Vacancy in FAA '<QualificationDetails>','<WorkExp
 Then the Provider is able to view the Applicant's application in Recruit
 
 Examples:
-| location                    | Changeteam    | ChangeRole       | QualificationDetails | WorkExperience | TrainingCourse |
-| Set as a nationwide vacancy | West Midlands | Vacancy reviewer | No                   | No             | No             |
-
-
-
+| location                      | Changeteam    | ChangeRole       | QualificationDetails | WorkExperience | TrainingCourse |
+| Use the main employer address | West Midlands | Vacancy reviewer | No                   | No             | No             |

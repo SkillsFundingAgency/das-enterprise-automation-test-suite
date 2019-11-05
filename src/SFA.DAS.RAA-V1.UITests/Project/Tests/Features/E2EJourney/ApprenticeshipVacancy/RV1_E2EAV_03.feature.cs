@@ -18,20 +18,20 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Features.E2EJourney.Apprenticeshi
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.0.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("AddDifferentLocation")]
-    public partial class AddDifferentLocationFeature
+    [NUnit.Framework.DescriptionAttribute("RV1_E2EAV_03")]
+    public partial class RV1_E2EAV_03Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "AddDifferentLocation.feature"
+#line 1 "RV1_E2EAV_03.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "AddDifferentLocation", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "RV1_E2EAV_03", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -69,7 +69,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Features.E2EJourney.Apprenticeshi
             testRunner.CollectScenarioErrors();
         }
         
-        public virtual void E2E2_CreateApproveAndApplyForAApprenticeshipVacancy(string location, string anonymity, string disabilityConfident, string applicationMethod, string apprenticeshipType, string hoursPerWeek, string vacancyDuration, string changeteam, string changeRole, string noOfPositions, string qualificationDetails, string workExperience, string trainingCourse, string[] exampleTags)
+        public virtual void RV1_E2EAV_03_CreateApproveAndApplyForAApprenticeshipVacancy(string location, string anonymity, string disabilityConfident, string applicationMethod, string apprenticeshipType, string hoursPerWeek, string vacancyDuration, string changeteam, string changeRole, string noOfPositions, string qualificationDetails, string workExperience, string trainingCourse, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "raa-v1",
@@ -79,7 +79,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Features.E2EJourney.Apprenticeshi
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
             }
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("E2E2 - Create, Approve and Apply for a Apprenticeship Vacancy", null, @__tags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV1_E2EAV_03 - Create, Approve and Apply for a Apprenticeship Vacancy", null, @__tags);
 #line 6
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
@@ -107,15 +107,15 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("E2E2 - Create, Approve and Apply for a Apprenticeship Vacancy: Add different loca" +
-            "tion")]
+        [NUnit.Framework.DescriptionAttribute("RV1_E2EAV_03 - Create, Approve and Apply for a Apprenticeship Vacancy: Use the ma" +
+            "in employer address")]
         [NUnit.Framework.CategoryAttribute("raa-v1")]
         [NUnit.Framework.CategoryAttribute("v1_e2e")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public virtual void E2E2_CreateApproveAndApplyForAApprenticeshipVacancy_AddDifferentLocation()
+        public virtual void RV1_E2EAV_03_CreateApproveAndApplyForAApprenticeshipVacancy_UseTheMainEmployerAddress()
         {
 #line 6
-this.E2E2_CreateApproveAndApplyForAApprenticeshipVacancy("Add different location", "Yes", "Yes", "Online", "Standard", "42", "52", "West Midlands", "Vacancy reviewer", "3", "No", "Yes", "No", ((string[])(null)));
+this.RV1_E2EAV_03_CreateApproveAndApplyForAApprenticeshipVacancy("Use the main employer address", "No", "No", "Online", "Framework", "42", "52", "West Midlands", "Vacancy reviewer", "2", "Yes", "Yes", "Yes", ((string[])(null)));
 #line hidden
         }
     }

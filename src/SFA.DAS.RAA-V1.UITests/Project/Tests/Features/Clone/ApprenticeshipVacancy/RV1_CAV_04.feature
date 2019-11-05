@@ -1,12 +1,12 @@
-﻿Feature: E2E4CloneTraineeshipVacancy
+﻿Feature: RV1_CAV_04
 
 A short summary of the feature
 
 @raa-v1
 @v1_e2e
 @regression
-Scenario Outline: E2E4 - Clone an existing Live Traineeship Vacancy, Approve and Apply
-Given the Provider clones an existing traineeship
+Scenario Outline: RV1_CAV_04 - Clone an existing Live Apprenticeship Vacancy, Approve and Apply
+Given the Provider clones an existing apprenticeship
 Then Provider is able to submit the vacancy for approval
 Then the Reviewer approves the vacancy
 When the Applicant apply for a Vacancy in FAA '<QualificationDetails>','<WorkExperience>','<TrainingCourse>'

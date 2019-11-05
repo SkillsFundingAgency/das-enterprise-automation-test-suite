@@ -1,11 +1,11 @@
-﻿Feature: E2E3CloneApprentishipVacancy
+﻿Feature: RV1_CAV_03
 
 A short summary of the feature
 
 @raa-v1
 @v1_e2e
 @regression
-Scenario Outline: E2E3 - Clone an existing Live Apprenticeship Vacancy, Approve and Apply
+Scenario Outline: RV1_CAV_03 - Clone an existing Live Apprenticeship Vacancy, Approve and Apply
 Given the Provider clones an existing apprenticeship
 Then Provider is able to submit the vacancy for approval
 Then the Reviewer approves the vacancy

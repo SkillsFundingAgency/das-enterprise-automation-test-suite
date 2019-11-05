@@ -1,11 +1,11 @@
-﻿Feature: AddDifferentLocation
+﻿Feature: RV1_E2ETV_01
 
 A short summary of the feature
 
 @raa-v1
 @v1_e2e
 @regression
-Scenario Outline: E2E2 - Create, Approve and Apply for a Traineeship Vacancy
+Scenario Outline: RV1_E2ETV_01 - Create, Approve and Apply for a Traineeship Vacancy
 Given the Provider initiates Create Apprenticeship Vacancy in Recruit
 When the Provider chooses the employer '<location>','2'
 And the Provider chooses their 'Yes'

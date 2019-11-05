@@ -18,20 +18,20 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Features.Clone.ApprenticeshipVaca
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.0.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("E2E2CloneApprentishipVacancy")]
-    public partial class E2E2CloneApprentishipVacancyFeature
+    [NUnit.Framework.DescriptionAttribute("RV1_CAV_03")]
+    public partial class RV1_CAV_03Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "E2E2CloneApprentiship.feature"
+#line 1 "RV1_CAV_03.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "E2E2CloneApprentishipVacancy", "A short summary of the feature", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "RV1_CAV_03", "A short summary of the feature", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -69,7 +69,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Features.Clone.ApprenticeshipVaca
             testRunner.CollectScenarioErrors();
         }
         
-        public virtual void E2E2_CloneAnExistingLiveApprenticeshipVacancyApproveAndApply(string qualificationDetails, string workExperience, string trainingCourse, string[] exampleTags)
+        public virtual void RV1_CAV_03_CloneAnExistingLiveApprenticeshipVacancyApproveAndApply(string qualificationDetails, string workExperience, string trainingCourse, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "raa-v1",
@@ -79,7 +79,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Features.Clone.ApprenticeshipVaca
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
             }
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("E2E2 - Clone an existing Live Apprenticeship Vacancy, Approve and Apply", null, @__tags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV1_CAV_03 - Clone an existing Live Apprenticeship Vacancy, Approve and Apply", null, @__tags);
 #line 8
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
@@ -98,14 +98,15 @@ testRunner.Then("the Provider is able to view the Applicant\'s application in Re
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("E2E2 - Clone an existing Live Apprenticeship Vacancy, Approve and Apply: No")]
+        [NUnit.Framework.DescriptionAttribute("RV1_CAV_03 - Clone an existing Live Apprenticeship Vacancy, Approve and Apply: No" +
+            "")]
         [NUnit.Framework.CategoryAttribute("raa-v1")]
         [NUnit.Framework.CategoryAttribute("v1_e2e")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public virtual void E2E2_CloneAnExistingLiveApprenticeshipVacancyApproveAndApply_No()
+        public virtual void RV1_CAV_03_CloneAnExistingLiveApprenticeshipVacancyApproveAndApply_No()
         {
 #line 8
-this.E2E2_CloneAnExistingLiveApprenticeshipVacancyApproveAndApply("No", "No", "No", ((string[])(null)));
+this.RV1_CAV_03_CloneAnExistingLiveApprenticeshipVacancyApproveAndApply("No", "Yes", "No", ((string[])(null)));
 #line hidden
         }
     }
