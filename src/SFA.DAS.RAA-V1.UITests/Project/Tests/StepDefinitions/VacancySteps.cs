@@ -1,39 +1,93 @@
 ﻿using SFA.DAS.RAA_V1.UITests.Project.Helpers;
-using SFA.DAS.RAA_V1.UITests.Project.Tests.Pages;
-using SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.FAA;
 using SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.Manage;
 using SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using SFA.DAS.UI.Framework.TestSupport;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
 {
     [Binding]
-    public class ApprenticeshipVacancy
+    public class VacancySteps
     {
-        private RAA_EmployerSelection _employerSelection;
-        private RAA_EmployerInformation _raaEmployerInformation;
-        private RAA_EnterTrainingDetails _enterTrainingDetails;
-        private RAA_EnterFurtherDetails _enterFurtherDetails;
-        private RAA_RequirementsAndProspects _requirementsAndProspects;
+        private RAA_EmployerSelectionPage _employerSelection;
+        private RAA_EmployerInformationPage _raaEmployerInformation;
+        private RAA_EnterTrainingDetailsPage _enterTrainingDetails;
+        private RAA_EnterFurtherDetailsPage _enterFurtherDetails;
+        private RAA_EnterOpportunityDetailsPage _enterOpportunityDetails;
+        private RAA_RequirementsAndProspectsPage _requirementsAndProspects;
         private Manage_HomePage _manage_HomePage;
         private readonly RAAStepsHelper _raaStepsHelper;
         private readonly ManageStepsHelper _manageStepsHelper;
         private readonly FAAStepsHelper _faaStepsHelper;
+        private readonly ObjectContext _objectContext;
+        private readonly ScenarioContext _context;
 
-        public ApprenticeshipVacancy(ScenarioContext context)
+        public VacancySteps(ScenarioContext context)
         {
+            _context = context;
+            _objectContext = context.Get<ObjectContext>();
             _raaStepsHelper = new RAAStepsHelper(context);
             _manageStepsHelper = new ManageStepsHelper(context);
             _faaStepsHelper = new FAAStepsHelper(context);
         }
 
+        [Given(@"the Provider clones an existing traineeship")]
+        public void GivenTheProviderClonesAnExistingTraineeship()
+        {
+            CloneVacancy();
+        }
+
+        [Given(@"the Provider clones an existing apprenticeship")]
+        public void GivenTheProviderClonesAnExistingApprenticeship()
+        {
+            _objectContext.SetApprenticeshipVacancyType();
+            
+            CloneVacancy();
+        }
+
+        [Then(@"the Reviewer approves the vacancy")]
+        public void ThenTheReviewerApprovesTheVacancy()
+        {
+            _manage_HomePage = _manageStepsHelper.GoToManageHomePage();
+
+            _manage_HomePage.ApproveAVacancy();
+        }
+
+
+        [When(@"the Vacancy details are filled out for a Traineeship for a different '(.*)'")]
+        public void WhenTheVacancyDetailsAreFilledOutForATraineeshipForADifferent(string location)
+        {
+            string disabilityConfident = "Yes";
+            string applicationMethod = "Online";
+            switch (location)
+            {
+                case "Use the main employer address":
+                    break;
+
+                case "Add different location":
+                    _raaStepsHelper.AddMultipleVacancy();
+                    disabilityConfident = "No";
+                    break;
+
+                case "Set as a nationwide vacancy":
+                    break;
+            }
+
+            _enterTrainingDetails = _raaStepsHelper.EnterBasicVacancyDetails(VacancyType.Traineeship, disabilityConfident, applicationMethod);
+
+            _enterOpportunityDetails = _raaStepsHelper.EnterTrainingDetails(_enterTrainingDetails);
+
+            _requirementsAndProspects = _raaStepsHelper.EnterOpportunityDetails(_enterOpportunityDetails, "18");
+
+            _raaStepsHelper.EnterRequirementsAndProspects(_requirementsAndProspects);
+
+            _raaStepsHelper.EnterExtraQuestions();
+        }
+
         [Then(@"the Provider is able to view the Applicant's application in Recruit")]
         public void ThenTheProviderIsAbleToViewTheApplicantsApplicationInRecruit()
         {
-           var homePage = _raaStepsHelper.GoToRAAHomePage();
+           var homePage = _raaStepsHelper.GoToRAAHomePage(true);
 
             homePage.SearchByReferenceNumber();
 
@@ -45,7 +99,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
         {
             var homePage = _faaStepsHelper.GoToFAAHomePage();
 
-            var applicationFormPage = _faaStepsHelper.ApplyForApprenticeship(homePage);
+            var applicationFormPage = _faaStepsHelper.ApplyForVacancy(homePage);
 
              _faaStepsHelper.ConfirmApplicationSubmission(applicationFormPage, qualificationdetails, workExperience, trainingCourse);
         }
@@ -120,7 +174,10 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
                     vacancyDuration = "52";
                     break;
             }
-            _enterTrainingDetails = _raaStepsHelper.EnterBasicVacancyDetails(disabilityConfident, applicationMethod);
+
+            _objectContext.SetApprenticeshipVacancyType();
+
+           _enterTrainingDetails = _raaStepsHelper.EnterBasicVacancyDetails(VacancyType.Apprenticeship, disabilityConfident, applicationMethod);
 
             _enterFurtherDetails = _raaStepsHelper.EnterTrainingDetails(_enterTrainingDetails, apprenticeShip);
 
@@ -141,6 +198,34 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
                 .ApproveVacanacy()
                 .ExitFromWebsite();
         }
+        private void CloneVacancy()
+        {
+            var homePage = _raaStepsHelper.GoToRAAHomePage(false);
+
+            _raaEmployerInformation = homePage.CloneAVacancy();
+
+            _raaEmployerInformation.ClickOnSaveAndContinueButton();
+
+            _enterTrainingDetails = _raaStepsHelper.EnterBasicVacancyDetails();
+
+            if (_objectContext.IsApprenticeshipVacancyType())
+            {
+                _enterFurtherDetails = _enterTrainingDetails.GotoFurtherDetailsPage();
+
+                _requirementsAndProspects = _raaStepsHelper.EnterFurtherDetails(_enterFurtherDetails);
+            }
+            else
+            {
+                _enterOpportunityDetails = _enterTrainingDetails.GotoOpportunityDetailsPage();
+
+                _requirementsAndProspects = _raaStepsHelper.EnterFurtherDetails(_enterOpportunityDetails);
+            }
+
+            _requirementsAndProspects.ClickSaveAndContinue();
+
+            new RAA_ExtraQuestionsPage(_context).ClickPreviewVacancyButton();
+        }
+
     }
 }
 

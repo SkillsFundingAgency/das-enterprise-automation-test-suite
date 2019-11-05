@@ -15,7 +15,9 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.FAA
         private readonly RAAV1Config _config;
         #endregion
         
-        private By FindAnApprenticeShip => By.Id("find-apprenticeship-link");
+        private By FindAnApprenticeshipLink => By.Id("find-apprenticeship-link");
+
+        private By FindTraineeshipLink => By.Id("find-traineeship-link");
 
         private By SignOutCss => By.XPath("//a[contains(.,'Sign out')]");
 
@@ -27,10 +29,16 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.FAA
             VerifyPage();
         }
 
-        public FAA_ApprenticeSearchPage ClickFindAnApprenticeshipLink()
+        public FAA_ApprenticeSearchPage FindAnApprenticeship()
         {
-            _formCompletionHelper.Click(FindAnApprenticeShip);
+            _formCompletionHelper.Click(FindAnApprenticeshipLink);
             return new FAA_ApprenticeSearchPage(_context);
+        }
+
+        public FAA_TraineeshipSearchPage FindTraineeship()
+        {
+            _formCompletionHelper.Click(FindTraineeshipLink);
+            return new FAA_TraineeshipSearchPage(_context);
         }
 
         public void ClickSignOut()

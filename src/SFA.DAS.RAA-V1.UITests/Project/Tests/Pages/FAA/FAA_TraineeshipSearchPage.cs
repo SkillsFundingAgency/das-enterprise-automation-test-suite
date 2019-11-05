@@ -5,9 +5,9 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.FAA
 {
-    public class FAA_ApprenticeSearchPage : BasePage
+    public class FAA_TraineeshipSearchPage : BasePage
     {
-        protected override string PageTitle => "Find an apprenticeship";
+        protected override string PageTitle => "Find a traineeship";
 
         #region Helpers and Context
         private readonly FormCompletionHelper _formCompletionHelper;
@@ -15,13 +15,14 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.FAA
         private readonly ObjectContext _objectContext;
         #endregion
 
-        private By SearchField => By.Id("SearchField");
+        
+        private By Location => By.Id("Location");
 
-        private By KeyWord => By.Id("Keywords");
+        private By ReferenceNumber => By.Id("ReferenceNumber");
 
         private By Search => By.Id("search-button");
 
-        public FAA_ApprenticeSearchPage(ScenarioContext context) : base(context)
+        public FAA_TraineeshipSearchPage(ScenarioContext context) : base(context)
         {
             _context = context;
             _objectContext = context.Get<ObjectContext>();
@@ -31,10 +32,11 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.FAA
 
         public FAA_ApprenticeSummaryPage SearchByReferenceNumber()
         {
-            _formCompletionHelper.SelectFromDropDownByValue(SearchField, "ReferenceNumber");
-            _formCompletionHelper.EnterText(KeyWord, _objectContext.GetVacancyReference());
+            _formCompletionHelper.EnterText(Location, string.Empty);
+            _formCompletionHelper.EnterText(ReferenceNumber, _objectContext.GetVacancyReference());
             _formCompletionHelper.Click(Search);
             return new FAA_ApprenticeSummaryPage(_context);
         }
+
     }
 }

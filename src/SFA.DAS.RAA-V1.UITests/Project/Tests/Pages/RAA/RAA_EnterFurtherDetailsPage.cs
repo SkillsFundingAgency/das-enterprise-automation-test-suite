@@ -4,7 +4,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
 {
-    public class RAA_EnterFurtherDetails : RAA_HeaderSectionBasePage
+    public class RAA_EnterFurtherDetailsPage : RAA_HeaderSectionBasePage
     {
         protected override By PageHeader => Heading;
 
@@ -15,7 +15,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         #endregion
         
         private By Iframe => By.CssSelector("iframe");
-        private By WorkkingWeek => By.Id("WorkingWeek");
+        private By WorkingWeek => By.Id("WorkingWeek");
         private By HoursPerWeek => By.Id("Wage_HoursPerWeek");
         private By ApprenticeshipMinimumWage => By.Id("apprenticeship-minimum-wage");
         private By VacancyDuration => By.Id("Duration");
@@ -28,42 +28,42 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         private By SaveAndContinueButton => By.Id("vacancySummaryButton");
         private By Heading => By.Id("heading");
 
-        public RAA_EnterFurtherDetails(ScenarioContext context) : base(context)
+        public RAA_EnterFurtherDetailsPage(ScenarioContext context) : base(context)
         {
             _context = context;
         }
 
-        public RAA_RequirementsAndProspects ClickSaveAndContinueButton()
+        public RAA_RequirementsAndProspectsPage ClickSaveAndContinueButton()
         {
             formCompletionHelper.Click(SaveAndContinueButton);
-            return new RAA_RequirementsAndProspects(_context);
+            return new RAA_RequirementsAndProspectsPage(_context);
         }
 
-        public RAA_EnterFurtherDetails EnterWorkingInformation()
+        public RAA_EnterFurtherDetailsPage EnterWorkingInformation()
         {
-            formCompletionHelper.EnterText(WorkkingWeek, dataHelper.WorkkingWeek);
+            formCompletionHelper.EnterText(WorkingWeek, dataHelper.WorkkingWeek);
             return this;
         }
 
-        public RAA_EnterFurtherDetails EnterHoursPerWeek(string hours)
+        public RAA_EnterFurtherDetailsPage EnterHoursPerWeek(string hours)
         {
             formCompletionHelper.EnterText(HoursPerWeek, hours);
             return this;
         }
 
-        public RAA_EnterFurtherDetails ClickApprenticeshipMinimumWage()
+        public RAA_EnterFurtherDetailsPage ClickApprenticeshipMinimumWage()
         {
             formCompletionHelper.SelectRadioOptionByText("National Minimum Wage for apprentices");
             return this;
         }
 
-        public RAA_EnterFurtherDetails EnterVacancyDuration(string duration)
+        public RAA_EnterFurtherDetailsPage EnterVacancyDuration(string duration)
         {
             formCompletionHelper.EnterText(VacancyDuration, duration);
             return this;
         }
 
-        public RAA_EnterFurtherDetails EnterVacancyClosingDate()
+        public RAA_EnterFurtherDetailsPage EnterVacancyClosingDate()
         {
             DateTime closingDate = dataHelper.VacancyClosing;
             string month = closingDate.Month.ToString();
@@ -75,7 +75,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
             return this;
         }
 
-        public RAA_EnterFurtherDetails EnterPossibleStartDate()
+        public RAA_EnterFurtherDetailsPage EnterPossibleStartDate()
         {
             DateTime startDate = dataHelper.VacancyStart;
             var month = startDate.Month.ToString();
@@ -87,7 +87,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
             return this;
         }
 
-        public RAA_EnterFurtherDetails EnterVacancyDescription()
+        public RAA_EnterFurtherDetailsPage EnterVacancyDescription()
         {
             formCompletionHelper.SendKeys(Iframe, Keys.Tab + dataHelper.VacancyDescription);
             return this;

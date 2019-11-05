@@ -6,7 +6,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.FAA
 {
-    public class FAA_ApplicationForm : BasePage
+    public class FAA_ApplicationFormPage : BasePage
     {
         protected override string PageTitle => "Application form";
 
@@ -52,12 +52,11 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.FAA
         private By SecondQuestion => By.Id("Candidate_EmployerQuestionAnswers_CandidateAnswer2");
         private By SaveAndContinue => By.Id("apply-button");
         private By AcceptSubmit => By.Id("AcceptSubmitLabel");
-        private By SubmitApplication => By.XPath("//button[@type='submit'][contains(.,'Submit application')]");
         private By SignOut => By.XPath("//a[contains(.,'Sign out')]");
         private By MyApplications => By.CssSelector("#myapplications-link");
         #endregion
 
-        public FAA_ApplicationForm(ScenarioContext context) : base(context)
+        public FAA_ApplicationFormPage(ScenarioContext context) : base(context)
         {
             _context = context;
             _dataHelper = context.Get<FAADataHelper>();
@@ -110,9 +109,9 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.FAA
                 _formCompletionHelper.EnterText(Employer, _dataHelper.WorkExperienceEmployer);
                 _formCompletionHelper.EnterText(JobTitle, _dataHelper.WorkExperienceJobTitle);
                 _formCompletionHelper.EnterText(MainDuties, _dataHelper.WorkExperienceMainDuties);
-                _formCompletionHelper.SelectFromDropDownByText(StartedMonth, _dataHelper.WorkExperienceStarted.ToString("MMM"));
+                _formCompletionHelper.SelectFromDropDownByValue(StartedMonth, _dataHelper.WorkExperienceStarted.Month.ToString());
                 _formCompletionHelper.EnterText(FromYear, _dataHelper.WorkExperienceStarted.Year.ToString());
-                _formCompletionHelper.SelectFromDropDownByText(FinishedMonth, _dataHelper.WorkExperienceFinished.ToString("MMM"));
+                _formCompletionHelper.SelectFromDropDownByValue(FinishedMonth, _dataHelper.WorkExperienceFinished.Month.ToString());
                 _formCompletionHelper.EnterText(ToYear, _dataHelper.WorkExperienceFinished.Year.ToString());
                 _formCompletionHelper.Click(SaveWorkExperience);
             }
@@ -130,15 +129,15 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.FAA
                 _formCompletionHelper.EnterText(ProviderDetails, _dataHelper.TrainingCoursesProvider);
                 _formCompletionHelper.EnterText(CourseTitle, _dataHelper.TrainingCoursesCourseTitle);
 
-                _formCompletionHelper.SelectFromDropDownByText(TrainingHistoryFromMonth, _dataHelper.TrainingCoursesFrom.ToString("MMM"));
+                _formCompletionHelper.SelectFromDropDownByValue(TrainingHistoryFromMonth, _dataHelper.TrainingCoursesFrom.Month.ToString());
                 _formCompletionHelper.EnterText(TrainigHistoryFromYear, _dataHelper.TrainingCoursesFrom.Year.ToString());
-                _formCompletionHelper.SelectFromDropDownByText(TrainingHistoryToMonth, _dataHelper.TrainingCoursesTo.ToString("MMM"));
+                _formCompletionHelper.SelectFromDropDownByValue(TrainingHistoryToMonth, _dataHelper.TrainingCoursesTo.Month.ToString());
                 _formCompletionHelper.EnterText(TrainingHistoryToYear, _dataHelper.TrainingCoursesTo.Year.ToString());
                 _formCompletionHelper.Click(SaveTrainingCourse);
             }
         }
 
-        public void AnswerQuestions()
+        public void AnswerAdditionalQuestions()
         {
             if (_pageInteractionHelper.IsElementDisplayed(FirstQuestion))
             {
@@ -162,13 +161,13 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.FAA
 
         public ApprenticeshipApplicationSubmittedPage SubmitApprenticeshipApplication()
         {
-            _formCompletionHelper.Click(SubmitApplication);
+            _formCompletionHelper.ClickButtonByText("Submit application");
             return new ApprenticeshipApplicationSubmittedPage(_context);
         }
 
         public TraineeshipApplicationSubmittedPage SubmitTraineeshipApplication()
         {
-            _formCompletionHelper.Click(SubmitApplication);
+            _formCompletionHelper.ClickButtonByText("Submit application", "Save and continue");
             return new TraineeshipApplicationSubmittedPage(_context);
         }
 

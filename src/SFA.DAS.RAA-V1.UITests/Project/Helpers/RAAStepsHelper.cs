@@ -24,41 +24,58 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
             _helper = new RestartWebDriverHelper(context);
         }
 
-        internal RAA_RecruitmentHomePage GoToRAAHomePage()
+        internal RAA_RecruitmentHomePage GoToRAAHomePage(bool restrat)
         {
-            _helper.RestartWebDriver(_config.RecruitBaseUrl, _applicationName);
-            
-            return new RAA_IndexPage(_context)
-                .ClickOnSignInButton()
-                .RecruitStaffIdams()
-                .SubmitRecruitmentLoginDetails();
+            if (restrat)
+            {
+                _helper.RestartWebDriver(_config.RecruitBaseUrl, _applicationName);
+            }
+            else
+            {
+                GoToRAA();
+            }
+
+            return SubmitRecruitmentLoginDetails();
         }
 
-        internal RAA_EmployerSelection CreateANewVacancy()
+        internal RAA_EmployerSelectionPage CreateANewVacancy()
         {
-            _objectContext.SetCurrentApplicationName(_applicationName);
-
-            _tabHelper.GoToUrl(_config.RecruitBaseUrl);
-
-            return new RAA_IndexPage(_context)
-                .ClickOnSignInButton()
-                .RecruitStaffIdams()
-                .SubmitRecruitmentLoginDetails()
+            GoToRAA();
+            return SubmitRecruitmentLoginDetails()
                 .CreateANewVacancy();
         }
 
-        internal RAA_EnterTrainingDetails EnterBasicVacancyDetails(string disabilityConfident, string applicationMethod)
+        internal RAA_EnterTrainingDetailsPage EnterBasicVacancyDetails()
         {
-            return new RAA_BasicVacancyDetails(_context)
+            return new RAA_BasicVacancyDetailsPage(_context)
+                       .EnterVacancyTitle()
+                       .ClickSaveAndContinueButton();
+        }
+
+        internal RAA_EnterTrainingDetailsPage EnterBasicVacancyDetails(VacancyType vacancyType, string disabilityConfident, string applicationMethod)
+        {
+            return new RAA_BasicVacancyDetailsPage(_context)
                        .EnterVacancyTitle()
                        .EnterVacancyShortDescription()
-                       .ClickOnVacancyType(VacancyType.Apprenticeship)
+                       .ClickOnVacancyType(vacancyType)
                        .CickDisabilityConfident(disabilityConfident)
                        .ApplicationMethod(applicationMethod)
                        .ClickSaveAndContinueButton();
         }
 
-        internal RAA_EnterFurtherDetails EnterTrainingDetails(RAA_EnterTrainingDetails enterTrainingDetails, string apprenticeShip)
+        internal RAA_EnterOpportunityDetailsPage EnterTrainingDetails(RAA_EnterTrainingDetailsPage enterTrainingDetails)
+        {
+            return enterTrainingDetails
+                   .SelectApprenticeshipType("Traineeship")
+                   .EnterTrainingToBeProvided()
+                   .EnterContactName()
+                   .ContactTelephone()
+                   .EnterEmailDetails()
+                   .GotoOpportunityDetailsPage();
+        }
+
+
+        internal RAA_EnterFurtherDetailsPage EnterTrainingDetails(RAA_EnterTrainingDetailsPage enterTrainingDetails, string apprenticeShip)
         {
             return enterTrainingDetails
                    .SelectApprenticeshipType(apprenticeShip)
@@ -66,10 +83,29 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
                    .EnterContactName()
                    .ContactTelephone()
                    .EnterEmailDetails()
-                   .ClickOnSaveAndContinue();
+                   .GotoFurtherDetailsPage();
         }
 
-        internal RAA_RequirementsAndProspects EnterFurtherDetails(RAA_EnterFurtherDetails enterFurtherDetails, string hoursPerWeek, string vacancyDuration)
+        internal RAA_RequirementsAndProspectsPage EnterOpportunityDetails(RAA_EnterOpportunityDetailsPage enteropportunityDetails,string vacancyDuration)
+        {
+            return enteropportunityDetails
+                   .EnterWorkingInformation()
+                   .EnterVacancyDuration(vacancyDuration)
+                   .EnterVacancyClosingDate()
+                   .EnterPossibleStartDate()
+                   .EnterVacancyDescription()
+                   .ClickSaveAndContinueButton();
+        }
+
+        internal RAA_RequirementsAndProspectsPage EnterFurtherDetails(RAA_EnterFurtherDetailsPage enterFurtherDetails)
+        {
+            return enterFurtherDetails
+                   .EnterVacancyClosingDate()
+                   .EnterPossibleStartDate()
+                   .ClickSaveAndContinueButton();
+        }
+
+        internal RAA_RequirementsAndProspectsPage EnterFurtherDetails(RAA_EnterFurtherDetailsPage enterFurtherDetails, string hoursPerWeek, string vacancyDuration)
         {
             return enterFurtherDetails
                    .EnterWorkingInformation()
@@ -82,20 +118,25 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
                    .ClickSaveAndContinueButton();
         }
 
-        internal void EnterRequirementsAndProspects(RAA_RequirementsAndProspects requirementsAndProspects)
+        internal void EnterRequirementsAndProspects(RAA_RequirementsAndProspectsPage requirementsAndProspects)
         {
-            requirementsAndProspects
-                .EnterDesiredQualificationsText()
-                .EnterPersonalQualitiesText()
-                .EnterDesiredSkillsText()
-                .EnterFutureProspectsText()
-                .EnterThingsToConsiderText()
-                .ClickSaveAndContinue();
+            if (_objectContext.IsApprenticeshipVacancyType())
+            {
+                requirementsAndProspects = requirementsAndProspects
+                .EnterDesiredQualificationsText();
+            }
+                requirementsAndProspects
+                    .EnterDesiredSkillsText()
+                    .EnterPersonalQualitiesText()
+                    .EnterFutureProspectsText()
+                    .EnterThingsToConsiderText()
+                    .ClickSaveAndContinue();
         }
+
 
         internal void EnterExtraQuestions()
         {
-            new RAA_ExtraQuestions(_context)
+            new RAA_ExtraQuestionsPage(_context)
                 .EnterFirstQuestion()
                 .EnterSecondQuestion()
                 .ClickPreviewVacancyButton();
@@ -104,12 +145,10 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
         internal void AddMultipleVacancy()
         {
             new RAA_MultipleVacancyLocationPage(_context)
-                       .EnterPostCode("CV1 2WT")
-                       .ClickOnTheFirstAddress()
+                       .AddLocation("CV1 2WT")
                        .EnterNumberOfVacancy()
                        .ClickAddAnotherLocationLink()
-                       .EnterPostCode("BS16 4EA")
-                       .ClickOnTheFirstAddress()
+                       .AddLocation("BS16 4EA")
                        .EnterNumberOfVacancy2()
                        .EnterAdditionalLocationInformation()
                        .ClickSaveAndContinue();
@@ -117,8 +156,17 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
 
         internal RAA_VacancyReferencePage ApproveVacanacy()
         {
-            var vacancyReference = new RAA_VacancyPreview(_context)
-           .ClickSubmitForApprovalButton();
+            RAA_PreviewBasePage previewPage;
+            if (_objectContext.IsApprenticeshipVacancyType())
+            {
+                previewPage = new RAA_VacancyPreviewPage(_context);
+            }
+            else
+            {
+                previewPage = new RAA_OppurtunityPreviewPage(_context);
+            }
+
+            var vacancyReference = previewPage.ClickSubmitForApprovalButton();
 
             var referenceNumber1 = vacancyReference.GetVacancyReference();
 
@@ -127,6 +175,20 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
             _objectContext.SetVacancyReference(referenceNumber);
 
             return vacancyReference;
+        }
+        private RAA_RecruitmentHomePage SubmitRecruitmentLoginDetails()
+        {
+            return new RAA_IndexPage(_context)
+                .ClickOnSignInButton()
+                .RecruitStaffIdams()
+                .SubmitRecruitmentLoginDetails();
+        }
+
+        private void GoToRAA()
+        {
+            _objectContext.SetCurrentApplicationName(_applicationName);
+
+            _tabHelper.GoToUrl(_config.RecruitBaseUrl);
         }
     }
 }

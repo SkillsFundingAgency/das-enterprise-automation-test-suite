@@ -1,5 +1,7 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.RAA_V1.UITests.Project.Helpers;
 using SFA.DAS.UI.FrameworkHelpers;
+using System;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
@@ -10,10 +12,11 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
 
         #region Helpers and Context
         private readonly PageInteractionHelper _pageInteractionHelper;
+        private readonly RAADataHelper _raadataHelper;
         #endregion
 
         private By EnterVacancyPostCode => By.Id("postcode-search");
-        private By ClickOnPostCodeResult => By.CssSelector(".ui-menu-item");
+        private By PostCodeResult => By.CssSelector(".ui-menu-item");
         private By NumberOfVacancy => By.Id("addresses_0__numberofpositions");
         private By NumberOfVacancy2 => By.Id("addresses_1__numberofpositions");
         private By AdditionalLocationInformation => By.Id("AdditionalLocationInformation");
@@ -23,23 +26,25 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         public RAA_MultipleVacancyLocationPage(ScenarioContext context) : base(context)
         {
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
+            _raadataHelper = context.Get<RAADataHelper>();
+        }
+
+        public RAA_MultipleVacancyLocationPage AddLocation(string postcode)
+        {
+            formCompletionHelper.EnterText(EnterVacancyPostCode, postcode);
+            
+            formCompletionHelper.ClickElement(() => 
+            {
+                var randomAddress = _pageInteractionHelper.FindElements(PostCodeResult);
+                return _raadataHelper.Address(randomAddress);
+            });
+            
+            return this;
         }
 
         public RAA_MultipleVacancyLocationPage ClickAddAnotherLocationLink()
         {
             formCompletionHelper.Click(AddAnotherLocation);
-            return this;
-        }
-
-        public RAA_MultipleVacancyLocationPage EnterPostCode(string postcode)
-        {
-            formCompletionHelper.EnterText(EnterVacancyPostCode, postcode);
-            return this;
-        }
-
-        public RAA_MultipleVacancyLocationPage ClickOnTheFirstAddress()
-        {
-            formCompletionHelper.Click(ClickOnPostCodeResult);
             return this;
         }
 
@@ -54,6 +59,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
             formCompletionHelper.EnterText(NumberOfVacancy, dataHelper.NumberOfVacancy);
             return this;
         }
+
         public RAA_MultipleVacancyLocationPage EnterNumberOfVacancy2()
         {
             formCompletionHelper.EnterText(NumberOfVacancy2, dataHelper.NumberOfVacancy);

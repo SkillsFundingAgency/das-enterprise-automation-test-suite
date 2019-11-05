@@ -1,8 +1,9 @@
-﻿Feature: SetAsNationwideVacancy
+﻿Feature: AddDifferentLocation
 
-@V1_E2E
+@raa-v1
+@v1_e2e
 @regression
-Scenario Outline: E2E3 - Create, Approve and Apply for a Apprenticeship Vacancy
+Scenario Outline: E2E2 - Create, Approve and Apply for a Apprenticeship Vacancy
 	Given the Provider initiates Create Apprenticeship Vacancy in Recruit
 	When the Provider chooses the employer '<location>','<NoOfPositions>'
 	And the Provider chooses their '<anonymity>'
@@ -14,5 +15,5 @@ Scenario Outline: E2E3 - Create, Approve and Apply for a Apprenticeship Vacancy
 	Then the Provider is able to view the Applicant's application in Recruit
 
 Examples:
-| location                    | anonymity | DisabilityConfident | ApplicationMethod | ApprenticeshipType | HoursPerWeek | VacancyDuration | Changeteam    | ChangeRole       | NoOfPositions | QualificationDetails | WorkExperience | TrainingCourse |
-| Set as a nationwide vacancy | Yes       | Yes                 | Online            | Standard           | 42           | 52              | West Midlands | Vacancy reviewer | 3             | Yes                  | No             | No             |
+| location               | anonymity | DisabilityConfident | ApplicationMethod | ApprenticeshipType | HoursPerWeek | VacancyDuration | Changeteam    | ChangeRole       | NoOfPositions | QualificationDetails | WorkExperience | TrainingCourse |
+| Add different location | Yes       | Yes                 | Online            | Standard           | 42           | 52              | West Midlands | Vacancy reviewer | 3             | No                   | Yes            | No             |
