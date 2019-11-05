@@ -4,11 +4,11 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.FAA
 {
-    public abstract class ApplicationSubmittedPage : BasePage
+    public abstract class FAA_ApplicationSubmittedPage : BasePage
     {
         protected override By PageHeader => By.CssSelector(".bold-large");
 
-        public ApplicationSubmittedPage(ScenarioContext context) : base(context)
+        public FAA_ApplicationSubmittedPage(ScenarioContext context) : base(context)
         {
             VerifyPage();
         }

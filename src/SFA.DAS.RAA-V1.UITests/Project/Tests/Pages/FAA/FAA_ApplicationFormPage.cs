@@ -159,16 +159,16 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.FAA
             _formCompletionHelper.SendKeys(AcceptSubmit, Keys.Space);
         }
 
-        public ApprenticeshipApplicationSubmittedPage SubmitApprenticeshipApplication()
+        public FAA_ApprenticeshipApplicationSubmittedPage SubmitApprenticeshipApplication()
         {
             _formCompletionHelper.ClickButtonByText("Submit application");
-            return new ApprenticeshipApplicationSubmittedPage(_context);
+            return new FAA_ApprenticeshipApplicationSubmittedPage(_context);
         }
 
-        public TraineeshipApplicationSubmittedPage SubmitTraineeshipApplication()
+        public FAA_TraineeshipApplicationSubmittedPage SubmitTraineeshipApplication()
         {
             _formCompletionHelper.ClickButtonByText("Submit application", "Save and continue");
-            return new TraineeshipApplicationSubmittedPage(_context);
+            return new FAA_TraineeshipApplicationSubmittedPage(_context);
         }
 
         public void ClickSignOut()
