@@ -42,9 +42,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Then(@"the Employer can set create cohort and recruitment permissions")]
         public void ThenTheEmployerCanSetCreateCohortAndRecruitmentPermissions()
         {
-            _employerPermissionsStepsHelper.SetCreateCohortAndRecruitmentPermission(_providerPermissionConfig.AP_ProviderUkprn);
+            _employerPermissionsStepsHelper.SetCreateCohortAndRecruitmentPermission(_approvalsConfig.AP_ProviderUkprn);
 
-            _providerLogin = ProviderLogin(_providerPermissionConfig.AP_ProviderUserId, _providerPermissionConfig.AP_ProviderPassword,_providerPermissionConfig.AP_ProviderUkprn);
+            _providerLogin = ProviderLogin(_approvalsConfig.AP_ProviderUserId, _approvalsConfig.AP_ProviderPassword, _approvalsConfig.AP_ProviderUkprn);
         }
 
         [Given(@"Employer grant create cohort permission to a provider")]
@@ -62,9 +62,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
              RemovePermissionsInCosmosDatabase();
 
-            _employerPermissionsStepsHelper.SetCreateCohortPermission(_approvalsConfig.AP_ProviderUkprn);
+            _employerPermissionsStepsHelper.SetCreateCohortPermission(_providerPermissionConfig.AP_ProviderUkprn);
 
-            _providerLogin = ProviderLogin(_approvalsConfig.AP_ProviderUserId, _approvalsConfig.AP_ProviderPassword, _approvalsConfig.AP_ProviderUkprn);
+            _providerLogin = ProviderLogin(_providerPermissionConfig.AP_ProviderUserId, _providerPermissionConfig.AP_ProviderPassword, _providerPermissionConfig.AP_ProviderUkprn);
         }
 
         [When(@"Employer revoke create cohort permission to a provider")]
@@ -123,7 +123,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             while (true)
             {
-                int accountId = _providerPermissionsDatahelper.GetAccountIdOfAProvider(_approvalsConfig.AP_ProviderUkprn);
+                int accountId = _providerPermissionsDatahelper.GetAccountIdOfAProvider(_providerPermissionConfig.AP_ProviderUkprn);
                 if (accountId == 0)
                 {
                     break;
@@ -137,7 +137,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
         private void RemovePermissionsInCosmosDatabase()
         {
-            CosmosActionsPerformerHelper.RemoveDoc(_providerPermissionConfig.PermissionsCosmosUrl, _providerPermissionConfig.PermissionsCosmosDBKey, _providerPermissionConfig.PermissionsCosmosDatabaseName, _providerPermissionConfig.PermissionsCosmosCollectionName, "ukprn", _approvalsConfig.AP_ProviderUkprn);
+            CosmosActionsPerformerHelper.RemoveDoc(_providerPermissionConfig.PermissionsCosmosUrl, _providerPermissionConfig.PermissionsCosmosDBKey, _providerPermissionConfig.PermissionsCosmosDatabaseName, _providerPermissionConfig.PermissionsCosmosCollectionName, "ukprn", _providerPermissionConfig.AP_ProviderUkprn);
         }
 
         private ProviderLogin ProviderLogin(string usename, string password, string ukprn)
