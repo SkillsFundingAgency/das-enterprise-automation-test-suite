@@ -24,9 +24,14 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         public void WaitForElementToChange(By locator, string attribute, string value)
         {
-            bool func()
+            WaitForElementToChange(() => FindElement(locator), attribute, value);
+        }
+
+        public void WaitForElementToChange(Func<IWebElement> element, string attribute, string value)
+        {
+            bool func(Func<IWebElement> webelement)
             {
-                var actual = FindElement(locator).GetAttribute(attribute);
+                var actual = webelement().GetAttribute(attribute);
                 if (actual.Contains(value))
                 {
                     return true;
@@ -35,7 +40,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
                 throw new WebDriverException($"Expected {attribute}=\"{value}\", Actual {attribute}=\"{actual}\"");
             }
 
-            _retryHelper.RetryOnWebDriverException<bool>(func);
+            _retryHelper.RetryOnWebDriverException(() => func(element));
         }
 
         public void WaitforURLToChange(string url) => _webDriverWaitHelper.WaitforURLToChange(url);
@@ -216,13 +221,15 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         public IWebElement FindElement(By locator) => _webDriver.FindElement(locator);
 
+        public IWebElement FindElement(IWebElement element, By locator) => element.FindElement(locator);
+
         public List<IWebElement> FindElements(By locator) =>  _webDriver.FindElements(locator).ToList();
 
         public IWebElement GetLinkByHref(string hrefContains) => FindElements(LinkCssSelector).First(x => x.GetAttribute("href").ContainsCompareCaseInsensitive(hrefContains));
 
-        public IWebElement GetLink(By by, Func<string, bool> func) => FindElements(by).First(x => func(x.GetAttribute("innerText")));
+        public IWebElement GetLink(By by, Func<string, bool> func) => FindElements(by).First(x => func(x.GetAttribute(AttributeHelper.InnerText)));
 
-        public List<IWebElement> GetLinks(By by, string linkText) => FindElements(by).Where(x => x.GetAttribute("innerText") == linkText).ToList();
+        public List<IWebElement> GetLinks(By by, string linkText) => FindElements(by).Where(x => x.GetAttribute(AttributeHelper.InnerText) == linkText).ToList();
 
         public List<string> GetAvailableOptions(By @by) => SelectElement(FindElement(by)).Options.Where(t => string.IsNullOrEmpty(t.Text)).Select(x => x.Text).ToList();
     }

@@ -29,9 +29,9 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         private By VacancyFilters => By.CssSelector(".column-one-quarter .bold-xsmall");
         private By NoOfVacancy => By.CssSelector(".bold-xlarge");
         private By CloneLink => By.CssSelector("a");
-
+        private By VacancyFilter => By.CssSelector(".vacancy-filter");
+        private By VacancyStatus => By.CssSelector(".bold-xsmall");
         private By TableRows => By.CssSelector("tbody tr");
-
         private By NextPage => By.CssSelector(".page-navigation__btn.next");
 
 
@@ -56,14 +56,31 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
             return new RAA_EmployerSelectionPage(_context);
         }
 
-        public RAA_VacancySummaryPage SearchByReferenceNumber()
+        public RAA_VacancySummaryPage SearchByReferenceNumber(string vacancyType)
         {
+            IWebElement func()
+            {
+                var filters = _pageInteractionHelper.FindElements(VacancyFilter);
+
+                foreach (var filter in filters)
+                {
+                    var status = _pageInteractionHelper.FindElement(filter, VacancyStatus);
+                    if (status.Text == vacancyType)
+                    {
+                        return _pageInteractionHelper.FindElement(status, NoOfVacancy);
+                    }
+                }
+
+                return null;
+            }
+
             ApprenticeshipVacancyType();
 
             formCompletionHelper.SelectFromDropDownByValue(VacancySearchMode, "ReferenceNumber");
             formCompletionHelper.EnterText(VacancySearchText, _objectContext.GetVacancyReference());
             formCompletionHelper.ClickElement(() => _pageInteractionHelper.FindElement(SearchVacancy));
-            _pageInteractionHelper.WaitForElementToChange(NoOfVacancy, "1");
+            _pageInteractionHelper.WaitForElementToChange(func, AttributeHelper.InnerText, "1");
+
             return GoToVacancySummary();
         }
 

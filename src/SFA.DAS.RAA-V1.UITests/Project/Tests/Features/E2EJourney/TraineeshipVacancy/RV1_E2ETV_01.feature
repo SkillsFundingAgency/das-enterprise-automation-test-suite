@@ -14,7 +14,7 @@ Then Provider is able to submit the vacancy for approval
 When the Reviewer initiates reviewing the Vacancy in Manage
 Then the Reviewer is able to approve the Vacancy '<Changeteam>','<ChangeRole>'
 When the Applicant apply for a Vacancy in FAA '<QualificationDetails>','<WorkExperience>','<TrainingCourse>'
-Then the Provider is able to view the Applicant's application in Recruit
+Then the vacancy status should be 'Live' in Recruit
 
 Examples:
 | location               | Changeteam    | ChangeRole       | QualificationDetails | WorkExperience | TrainingCourse |

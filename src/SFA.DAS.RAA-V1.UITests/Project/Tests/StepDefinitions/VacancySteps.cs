@@ -85,16 +85,6 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
             _raaStepsHelper.EnterExtraQuestions();
         }
 
-        [Then(@"the Provider is able to view the Applicant's application in Recruit")]
-        public void ThenTheProviderIsAbleToViewTheApplicantsApplicationInRecruit()
-        {
-           var homePage = _raaStepsHelper.GoToRAAHomePage(true);
-
-            homePage.SearchByReferenceNumber();
-
-            homePage.ExitFromWebsite();
-        }
-
         [When(@"the Applicant apply for a Vacancy in FAA '(.*)','(.*)','(.*)'")]
         public void WhenTheApplicantApplyForAVacancyInFAA(string qualificationdetails, string workExperience, string trainingCourse)
         {
@@ -209,6 +199,18 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
                 .ApproveVacanacy()
                 .ExitFromWebsite();
         }
+
+        [Then(@"the vacancy status should be '(.*)' in Recruit")]
+        public void ThenTheVacancyStatusShouldBeInRecruit(string status)
+        {
+            var homePage = _raaStepsHelper.GoToRAAHomePage(true);
+
+            homePage.SearchByReferenceNumber(status);
+
+            homePage.ExitFromWebsite();
+        }
+
+
         private void CloneVacancy()
         {
             var homePage = _raaStepsHelper.GoToRAAHomePage(false);

@@ -10,7 +10,7 @@ Given the Provider clones an existing traineeship
 Then Provider is able to submit the vacancy for approval
 Then the Reviewer approves the vacancy
 When the Applicant apply for a Vacancy in FAA '<QualificationDetails>','<WorkExperience>','<TrainingCourse>'
-Then the Provider is able to view the Applicant's application in Recruit
+Then the vacancy status should be 'Live' in Recruit
 
 Examples:
 | QualificationDetails | WorkExperience | TrainingCourse |
