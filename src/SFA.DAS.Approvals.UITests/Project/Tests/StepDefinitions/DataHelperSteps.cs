@@ -11,11 +11,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         
         private readonly ApprovalsConfig _approvalsConfig;
 
-        private ProviderLogin _providerLogin;
-
         public DataHelperSteps(ScenarioContext context)
         {
             _approvalsConfig = context.GetApprovalsConfig<ApprovalsConfig>();
+            _employerPermissionsStepsHelper = new EmployerPermissionsStepsHelper(context);
         }
 
         [Then(@"the Employer can set create cohort and recruitment permissions")]
