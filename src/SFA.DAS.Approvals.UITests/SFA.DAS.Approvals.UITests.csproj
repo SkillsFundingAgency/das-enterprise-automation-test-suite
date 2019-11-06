@@ -26,6 +26,14 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Project\Tests\Features\DLockJourneys\DLockJourneyTwo.feature.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>DLockJourneyTwo.feature</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
     <None Update="appsettings.Environment.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -50,6 +58,133 @@
     <None Update="Project\Helpers\SqlScripts\ProviderPermissionsDeleteAccount.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <SpecFlowFeatureFiles Update="Project\Tests\Features\AccountSettings\EmployerChangeYourEmailPage.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+    </SpecFlowFeatureFiles>
+    <SpecFlowFeatureFiles Update="Project\Tests\Features\AccountSettings\EmployerChangeYourPasswordPage.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+    </SpecFlowFeatureFiles>
+    <SpecFlowFeatureFiles Update="Project\Tests\Features\AccountSettings\EmployerHelpPage.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+    </SpecFlowFeatureFiles>
+    <SpecFlowFeatureFiles Update="Project\Tests\Features\AccountSettings\EmployerNotificationSetting.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+    </SpecFlowFeatureFiles>
+    <SpecFlowFeatureFiles Update="Project\Tests\Features\AccountSettings\EmployerRenameAccountPage.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+    </SpecFlowFeatureFiles>
+    <SpecFlowFeatureFiles Update="Project\Tests\Features\AccountSettings\ProviderNotificationSetting.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+    </SpecFlowFeatureFiles>
+    <SpecFlowFeatureFiles Update="Project\Tests\Features\CocJourneys\CocJourneyFive.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+    </SpecFlowFeatureFiles>
+    <SpecFlowFeatureFiles Update="Project\Tests\Features\CocJourneys\CocJourneyFour.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+    </SpecFlowFeatureFiles>
+    <SpecFlowFeatureFiles Update="Project\Tests\Features\CocJourneys\CoCJourneyOne.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+    </SpecFlowFeatureFiles>
+    <SpecFlowFeatureFiles Update="Project\Tests\Features\CocJourneys\CocJourneySeven.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+    </SpecFlowFeatureFiles>
+    <SpecFlowFeatureFiles Update="Project\Tests\Features\CocJourneys\CocJourneySix.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+    </SpecFlowFeatureFiles>
+    <SpecFlowFeatureFiles Update="Project\Tests\Features\CocJourneys\CocJourneyThree.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+    </SpecFlowFeatureFiles>
+    <SpecFlowFeatureFiles Update="Project\Tests\Features\CocJourneys\CoCJourneyTwo.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+    </SpecFlowFeatureFiles>
+    <SpecFlowFeatureFiles Update="Project\Tests\Features\CreateAccountForApprovals.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+    </SpecFlowFeatureFiles>
+    <SpecFlowFeatureFiles Update="Project\Tests\Features\DLockJourneys\DLockJourneyFive.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+    </SpecFlowFeatureFiles>
+    <SpecFlowFeatureFiles Update="Project\Tests\Features\DLockJourneys\DLockJourneyFour.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+    </SpecFlowFeatureFiles>
+    <SpecFlowFeatureFiles Update="Project\Tests\Features\DLockJourneys\DLockJourneyOne.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+    </SpecFlowFeatureFiles>
+    <SpecFlowFeatureFiles Update="Project\Tests\Features\DLockJourneys\DLockJourneyThree.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+    </SpecFlowFeatureFiles>
+    <SpecFlowFeatureFiles Update="Project\Tests\Features\DLockJourneys\DLockJourneyTwo.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>DLockJourneyTwo.feature.cs</LastGenOutput>
+    </SpecFlowFeatureFiles>
+    <SpecFlowFeatureFiles Update="Project\Tests\Features\E2EJourneys\ExistingUserAccountE2EJourneyFour.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+    </SpecFlowFeatureFiles>
+    <SpecFlowFeatureFiles Update="Project\Tests\Features\E2EJourneys\ExistingUserAccountE2EJourneyOne.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+    </SpecFlowFeatureFiles>
+    <SpecFlowFeatureFiles Update="Project\Tests\Features\E2EJourneys\ExistingUserAccountE2EJourneyThree.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+    </SpecFlowFeatureFiles>
+    <SpecFlowFeatureFiles Update="Project\Tests\Features\E2EJourneys\ExistingUserAccountE2EJourneyTwo.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+    </SpecFlowFeatureFiles>
+    <SpecFlowFeatureFiles Update="Project\Tests\Features\E2EJourneys\NewUserAccountE2EJourneyFour.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+    </SpecFlowFeatureFiles>
+    <SpecFlowFeatureFiles Update="Project\Tests\Features\E2EJourneys\NewUserAccountE2EJourneyOne.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+    </SpecFlowFeatureFiles>
+    <SpecFlowFeatureFiles Update="Project\Tests\Features\E2EJourneys\NewUserAccountE2EJourneyThree.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+    </SpecFlowFeatureFiles>
+    <SpecFlowFeatureFiles Update="Project\Tests\Features\E2EJourneys\NewUserAccountE2EJourneyTwo.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+    </SpecFlowFeatureFiles>
+    <SpecFlowFeatureFiles Update="Project\Tests\Features\EmployerDeleteCohort.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+    </SpecFlowFeatureFiles>
+    <SpecFlowFeatureFiles Update="Project\Tests\Features\EmployerStopsApprentice.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+    </SpecFlowFeatureFiles>
+    <SpecFlowFeatureFiles Update="Project\Tests\Features\ManageFunding\Non-Levy\NonLevyEmployerReservesFunding.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+    </SpecFlowFeatureFiles>
+    <SpecFlowFeatureFiles Update="Project\Tests\Features\NonLevyEoiProvider\ApprovedCohort.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+    </SpecFlowFeatureFiles>
+    <SpecFlowFeatureFiles Update="Project\Tests\Features\NonLevyEoiProvider\ProviderMakesReservation.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+    </SpecFlowFeatureFiles>
+    <SpecFlowFeatureFiles Update="Project\Tests\Features\NonLevy\NonLevyEmployerCreatesACohort.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+    </SpecFlowFeatureFiles>
+    <SpecFlowFeatureFiles Update="Project\Tests\Features\ProviderPermission\ProviderPermission.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+    </SpecFlowFeatureFiles>
+    <SpecFlowFeatureFiles Update="Project\Tests\Features\Provider\ProviderAddsApprenticesToACohort.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+    </SpecFlowFeatureFiles>
+    <SpecFlowFeatureFiles Update="Project\Tests\Features\Provider\ProviderEditsOrDeletesApprenticesOfACohort.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+    </SpecFlowFeatureFiles>
+    <SpecFlowFeatureFiles Update="Project\Tests\Features\Transfers\TransfersApprovalJourneyOne.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+    </SpecFlowFeatureFiles>
+    <SpecFlowFeatureFiles Update="Project\Tests\Features\Transfers\TransfersApprovalJourneyThree.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+    </SpecFlowFeatureFiles>
+    <SpecFlowFeatureFiles Update="Project\Tests\Features\Transfers\TransfersApprovalJourneyTwo.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+    </SpecFlowFeatureFiles>
+    <SpecFlowFeatureFiles Update="Project\Tests\Features\Transfers\TransfersConnectionJourney.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+    </SpecFlowFeatureFiles>
+    <SpecFlowFeatureFiles Update="Project\Tests\Features\Transfers\TransfersStatusJourney.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+    </SpecFlowFeatureFiles>
   </ItemGroup>
 
 </Project>

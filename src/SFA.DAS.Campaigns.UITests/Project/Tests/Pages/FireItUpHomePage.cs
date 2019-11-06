@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using System;
@@ -11,7 +12,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
 {
     internal sealed class FireItUpHomePage : BasePage
     {
-        protected override string PageTitle => "FIRE \n IT UP";
+        protected override string PageTitle => "FIRE\r\nIT UP";
 
         #region Constants
         private const string ExpectedApprenticesHeaderSupportText = "BLAZE YOUR OWN TRAIL AND BECOME AN APPRENTICE";
@@ -21,15 +22,24 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
         #region Helpers
         private readonly PageInteractionHelper _pageInteractionHelper;
         private readonly FormCompletionHelper _formCompletionHelper;
+        private readonly ScenarioContext _context;
         #endregion
 
         #region Page Object Elements
         private readonly By _pageTitle = By.ClassName("homepage-title");
         private readonly By _apprenticeMenu = By.Id("link-nav-apprentice");
+        private readonly By _employerMenu = By.Id("link-nav-employer");
+        private readonly By _parentPage =By.Id("link-nav-parents");
+        private readonly By _registerMyInterestButton =By.Id("btn-register-interest-header");
         private readonly By _cookieButton = By.Id("link-cookie-accept");
         private readonly By _findAnApprenticeLink = By.Id("link-nav-app-step-2");
-        private readonly By _ApprenticesHeaderSupportText = By.XPath("(//div[@class='launcher__content']/child::p)[1]");
-        private readonly By _EmployersHeaderSupportText = By.XPath("(//div[@class='launcher__content']/child::p)[4]");
+       // private readonly By _ApprenticesHeaderSupportText = By.XPath("(//div[@class='launcher__content']/child::p)[1]");
+        private readonly By _ApprenticesHeaderSupportText = By.ClassName("launcher__heading");
+       // private readonly By _EmployersHeaderSupportText = By.XPath("//div[@classname='launcher__heading'][contains(.,'Fire up your business with an apprentice')]");
+      
+        private readonly By _EmployersHeaderSupportText = By.XPath("//*[@classname='launcher__heading']//*[text()='Fire up your business with an apprentice']");
+        
+        //private readonly By _EmployersHeaderSupportText = By.XPath("(//div[@class='launcher__content']/child::p)[4]");
         private readonly By _yourApprenticeshipLink = By.Id("link-nav-app-step-5");
         private readonly By _assessmentAndCertificationLink = By.Id("link-nav-app-step-6");
         private readonly By _inetrviewLink = By.Id("link-nav-app-step-4");
@@ -38,12 +48,17 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
         private readonly By _myinterestsLink = By.Id("link-nav-app-interests");
         private readonly By _whatAreTheBenefitsForMeLink = By.Id("link-nav-app-benefits");
         private readonly By _realStoriesLink = By.Id("link-nav-app-real-stories");
-
-
+        private readonly By _howMuchIsItGoingToCostLink =By.Id("link-nav-employer");
+        private readonly By _theRightApprenticeshipLink =By.Id("link-nav-emp-step-2");
+        private readonly By _chooseATrainingProviderLink =By.Id("link-nav-emp-step-3");
+        private readonly By _hireAnApprenticeLink =By.Id("link-nav-emp-step-4");
+        private readonly By _preparingAndMonitoringLink =By.Id("link-nav-emp-step-5");
+        private readonly By _asessmentAndCertificationLink =By.Id("link-nav-emp-step-6");
         #endregion
 
         public FireItUpHomePage(ScenarioContext context) : base(context)
         {
+            _context=context;
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
             base.VerifyPage(); // this verification is failing due a bug in the application. We will uncomment this in future
@@ -115,5 +130,48 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
             _formCompletionHelper.ClickElement(_realStoriesLink);
         }
 
+         internal EmployerMenuOptionPage LaunchEmployerMenu()
+         {
+            _pageInteractionHelper.FocusTheElement(_employerMenu);
+            return new EmployerMenuOptionPage(_context);
+         }
+
+        internal HowMuchIsItGoingToCostPage ClickOnHowMuchIsItGoingToCostLink()
+        {
+            _formCompletionHelper.ClickElement(_howMuchIsItGoingToCostLink);
+            return new HowMuchIsItGoingToCostPage(_context);
+        }
+
+        internal TheRightApprenticeshipPage ClickTheRightApprenticeshipLink()
+        {
+            _formCompletionHelper.ClickElement(_theRightApprenticeshipLink);
+            return new TheRightApprenticeshipPage(_context);
+        }
+        internal ChoosingATrainingProviderPage ClickChoosingATrainingProviderLink()
+        {
+            _formCompletionHelper.ClickElement(_chooseATrainingProviderLink);
+            return new ChoosingATrainingProviderPage(_context);
+        }
+        internal HireAnApprenticePage ClicKHireAnApprenticeLink()
+        {
+            _formCompletionHelper.ClickElement(_hireAnApprenticeLink);
+            return new HireAnApprenticePage(_context);
+        }
+
+        internal PreparingAndMonitoringPage ClickPreparingAndMonitoringLink()
+        {
+             _formCompletionHelper.ClickElement(_preparingAndMonitoringLink);
+            return new PreparingAndMonitoringPage(_context);
+        }
+        internal HelpShapeTheirCareerPage LaunchParentPage()
+         {
+           _formCompletionHelper.ClickElement(_parentPage);
+            return new HelpShapeTheirCareerPage(_context);
+         }
+        internal RegisterMyInterestPage LaunchRegisterMyInterestPage()
+         {
+           _formCompletionHelper.ClickElement( _registerMyInterestButton);
+            return new RegisterMyInterestPage(_context);
+         }
     }
 }

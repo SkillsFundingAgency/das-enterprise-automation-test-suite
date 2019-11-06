@@ -16,8 +16,8 @@ namespace SFA.DAS.UI.Framework.TestSupport
         private readonly string _browser;
         #endregion
 
-        protected virtual By PageHeader => By.CssSelector(".govuk-heading-xl, .heading-xlarge, .govuk-heading-l");
-
+        protected virtual By PageHeader => By.ClassName("homepage-title");
+       // protected virtual By PageHeader => By.CssSelector(".govuk-heading-xl, .heading-xlarge, .govuk-heading-l");
         protected abstract string PageTitle { get; }
 
         public BasePage(ScenarioContext context)

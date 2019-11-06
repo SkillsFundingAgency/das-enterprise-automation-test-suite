@@ -18,7 +18,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
         private const string ExpectedHeaderWhenNoResultsFound = "NO MATCHING RESULTS...";
         private const string ExpectedHeaderWhenResultsFound = "YOUR RESULTS...";
         private const string ExpectedParagraphOneText = "Try expanding your search location or changing your area of interest.";
-        private const string ExpectedParagraphTwoText = "Alternatively, visit Find an apprenticeship to refine your search further.";
+        private const string ExpectedParagraphTwoText = "Alternatively, visit Find an apprenticeship on GOV.UK to refine your search further.";
         #endregion
 
         #region Helpers
@@ -29,13 +29,16 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
         #endregion
 
         #region Page Object Elements
-        private readonly By _resultsHeader = By.ClassName("heading-l");
+        //private readonly By _resultsHeader = By.CssSelector("heading-l");
+         private readonly By _resultsHeader = By.XPath("//div[@class='search-results']/h1");
+
         private readonly By _firstSearchResult = By.XPath("//ol[@id='vacancy-search-results']/li[1]/h2/a");
         private readonly By _postCodeBox = By.Id("Postcode");
         private readonly By _updateResultsButton = By.Id("button-faa-update-results");
         private readonly By _noMatchResultParagraphOne = By.XPath("//div[@class='search-results']/p[1]");
         private readonly By _noMatchResultParagraphTwo = By.XPath("//div[@class='search-results']/p[2]");
-        private readonly By _vacancyTitle = By.XPath("//ol[@id='vacancy-search-results']/li[1]/ul/li[1]");
+        //private readonly By _vacancyTitle = By.XPath("//ol[@id='vacancy-search-results']/li[1]/ul/li[1]");
+        private readonly By _vacancyTitle = By.ClassName("link-faa-more-details-title");
         private readonly By _vacancyDescription = By.XPath("//ol[@id='vacancy-search-results']/li[1]/p");
         private readonly By _employerName = By.XPath("//ol[@id='vacancy-search-results']/li[1]/div/div[1]/dl/dd[1]");
         private readonly By _possibleClosingDate = By.XPath("//ol[@id='vacancy-search-results']/li[1]/div/div[1]/dl/dd[4]/span");
@@ -46,7 +49,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
             _pageInteractionCampaignsHelper = context.Get<PageInteractionCampaignsHelper>();
-            VerifyPage();
+            //VerifyPage();
         }
 
         internal void VerifyResultsPageHeader()

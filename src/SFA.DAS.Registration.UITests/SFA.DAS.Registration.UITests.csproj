@@ -44,6 +44,19 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Project\Tests\Features\CreateAccountOne.feature.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>CreateAccountOne.feature</DependentUpon>
+    </Compile>
+    <Compile Update="Project\Tests\Features\CreateEoiAccount.feature.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>CreateEoiAccount.feature</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
     <SpecFlowFeatureFiles Update="Project\Tests\Features\CreateAccount.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
     </SpecFlowFeatureFiles>
@@ -54,6 +67,22 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
     </SpecFlowFeatureFiles>
     <SpecFlowFeatureFiles Update="Project\Tests\Features\CreateAccountTwo.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+    </SpecFlowFeatureFiles>
+    <SpecFlowFeatureFiles Update="Project\Tests\Features\CreateAccountWithAgreement.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+    </SpecFlowFeatureFiles>
+    <SpecFlowFeatureFiles Update="Project\Tests\Features\CreateAccountWithOutAgreement.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+    </SpecFlowFeatureFiles>
+    <SpecFlowFeatureFiles Update="Project\Tests\Features\CreateEoiAccount.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>CreateEoiAccount.feature.cs</LastGenOutput>
+    </SpecFlowFeatureFiles>
+    <SpecFlowFeatureFiles Update="Project\Tests\Features\CreateLevyAccount.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+    </SpecFlowFeatureFiles>
+    <SpecFlowFeatureFiles Update="Project\Tests\Features\ExistingLevyAccount.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
     </SpecFlowFeatureFiles>
   </ItemGroup>

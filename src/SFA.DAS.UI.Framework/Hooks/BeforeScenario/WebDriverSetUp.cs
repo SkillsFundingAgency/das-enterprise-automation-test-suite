@@ -48,7 +48,7 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
         [BeforeScenario(Order = 3)]
         public void SetupWebDriver()
         {
-            var browser = _objectContext.GetBrowser();
+            var browser = "chrome";
             
             switch (true)
             {

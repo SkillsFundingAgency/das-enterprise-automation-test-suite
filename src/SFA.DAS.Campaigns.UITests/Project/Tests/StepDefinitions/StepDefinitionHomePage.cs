@@ -33,7 +33,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
             fireItUpHomePage = new FireItUpHomePage(_context);
             fireItUpHomePage.ClickOnCookieContinueButton();
             fireItUpHomePage.VerifyApprenticesHeaderSupportText();
-            fireItUpHomePage.VerifyEmployersHeaderSupportText();
+           // fireItUpHomePage.VerifyEmployersHeaderSupportText();
         }
 
         [Given(@"I launch the Find An Apprentice page")]

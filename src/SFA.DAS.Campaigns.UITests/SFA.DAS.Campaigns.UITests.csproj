@@ -24,6 +24,14 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Project\Tests\Features\ApprenticeFeature.feature.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ApprenticeFeature.feature</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
     <None Update="appsettings.Environment.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -36,6 +44,13 @@
     <None Update="specflow.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <SpecFlowFeatureFiles Update="Project\Tests\Features\ApprenticeFeature.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>ApprenticeFeature.feature.cs</LastGenOutput>
+    </SpecFlowFeatureFiles>
   </ItemGroup>
 
   </Project>

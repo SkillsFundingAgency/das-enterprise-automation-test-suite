@@ -32,6 +32,11 @@
     <Compile Update="NUnitConfigurator.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
+    <Compile Update="Project\Tests\Features\SampleFeatureFour.feature.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>SampleFeatureFour.feature</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
@@ -47,6 +52,25 @@
     <None Update="specflow.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <SpecFlowFeatureFiles Update="Project\Tests\Features\SampleFeatureFive.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+    </SpecFlowFeatureFiles>
+    <SpecFlowFeatureFiles Update="Project\Tests\Features\SampleFeatureFour.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>SampleFeatureFour.feature.cs</LastGenOutput>
+    </SpecFlowFeatureFiles>
+    <SpecFlowFeatureFiles Update="Project\Tests\Features\SampleFeatureOne.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+    </SpecFlowFeatureFiles>
+    <SpecFlowFeatureFiles Update="Project\Tests\Features\SampleFeatureThree.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+    </SpecFlowFeatureFiles>
+    <SpecFlowFeatureFiles Update="Project\Tests\Features\SampleFeatureTwo.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+    </SpecFlowFeatureFiles>
   </ItemGroup>
 
 </Project>
