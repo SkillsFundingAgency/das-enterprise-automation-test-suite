@@ -2,7 +2,8 @@
 
 A short summary of the feature
 
-
+@raa-v1
+@regression
 Scenario Outline: RV1_REF_01 Refering a vacancy with comments
 Given the Provider initiates Create Apprenticeship Vacancy in Recruit
 When the Provider chooses the employer '<location>','<NoOfPositions>'
