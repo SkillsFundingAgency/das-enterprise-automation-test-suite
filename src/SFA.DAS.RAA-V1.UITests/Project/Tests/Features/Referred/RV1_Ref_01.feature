@@ -11,7 +11,7 @@ And the Provider fills out details for an Offline Vacancy '<location>','<Disabil
 Then Provider is able to submit the vacancy for approval
 When the Reviewer initiates reviewing the Vacancy in Manage
 And the Reviewer refer a vacancy with comments '<Changeteam>','<ChangeRole>'
-Then the vacancy status should be 'Referred' in Recruit
+Then the vacancy status should be Referred in Recruit
 
 Examples: 
 | location                      | anonymity | DisabilityConfident | ApplicationMethod | ApprenticeshipType | HoursPerWeek | VacancyDuration | Changeteam    | ChangeRole       |NoOfPositions |

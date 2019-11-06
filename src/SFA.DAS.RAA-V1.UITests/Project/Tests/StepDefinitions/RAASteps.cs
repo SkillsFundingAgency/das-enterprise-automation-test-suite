@@ -152,12 +152,23 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
                 .ExitFromWebsite();
         }
 
-        [Then(@"the vacancy status should be '(.*)' in Recruit")]
-        public void ThenTheVacancyStatusShouldBeInRecruit(string status)
+        [Then(@"the vacancy status should be Referred in Recruit")]
+        public void ThenTheVacancyStatusShouldBeReferredInRecruit()
         {
             var homePage = _raaStepsHelper.GoToRAAHomePage(true);
 
-            homePage.SearchByReferenceNumber(status);
+            homePage.SearchReferredVacancy();
+
+            homePage.ExitFromWebsite();
+        }
+
+
+        [Then(@"the vacancy status should be Live in Recruit")]
+        public void ThenTheVacancyStatusShouldBeInRecruit()
+        {
+            var homePage = _raaStepsHelper.GoToRAAHomePage(true);
+
+            homePage.SearchLiveVacancy();
 
             homePage.ExitFromWebsite();
         }

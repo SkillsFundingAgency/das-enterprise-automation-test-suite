@@ -56,7 +56,19 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
             return new RAA_EmployerSelectionPage(_context);
         }
 
-        public RAA_VacancySummaryPage SearchByReferenceNumber(string vacancyType)
+        public RAA_VacancySummaryPage SearchLiveVacancy()
+        {
+            SearchByReferenceNumber("Live");
+            return GoToVacancySummary();
+        }
+
+        public RAA_VacancyPreviewPage SearchReferredVacancy()
+        {
+            SearchByReferenceNumber("Referred");
+            return GoToVacancyPeviewPage();
+        }
+
+        private void SearchByReferenceNumber(string vacancyType)
         {
             IWebElement func()
             {
@@ -80,8 +92,6 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
             formCompletionHelper.EnterText(VacancySearchText, _objectContext.GetVacancyReference());
             formCompletionHelper.ClickElement(() => _pageInteractionHelper.FindElement(SearchVacancy));
             _pageInteractionHelper.WaitForElementToChange(func, AttributeHelper.InnerText, "1");
-
-            return GoToVacancySummary();
         }
 
         private void ApprenticeshipVacancyType()
@@ -129,11 +139,22 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
 
         private RAA_VacancySummaryPage GoToVacancySummary()
         {
-            formCompletionHelper.ClickElement(() => _pageInteractionHelper.GetLink(VacancyTitle, _dataHelper.VacancyTitle));
+             ClickVacancy();
              return new RAA_VacancySummaryPage(_context);
         }
 
-        protected RAA_RecruitmentHomePage LiveVacancy()
+        private RAA_VacancyPreviewPage GoToVacancyPeviewPage()
+        {
+            ClickVacancy();
+            return new RAA_VacancyPreviewPage(_context);
+        }
+
+        private void ClickVacancy()
+        {
+            formCompletionHelper.ClickElement(() => _pageInteractionHelper.GetLink(VacancyTitle, _dataHelper.VacancyTitle));
+        }
+
+        private RAA_RecruitmentHomePage LiveVacancy()
         {
             formCompletionHelper.ClickElement(() => _pageInteractionHelper.GetLink(VacancyFilters, "Live"));
             return this;

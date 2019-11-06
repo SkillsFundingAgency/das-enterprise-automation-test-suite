@@ -12,7 +12,7 @@ Scenario Outline: RV1_E2EAV_02 - Create, Approve and Apply for a Apprenticeship 
 	When the Reviewer initiates reviewing the Vacancy in Manage
 	Then the Reviewer is able to approve the Vacancy '<Changeteam>','<ChangeRole>'
 	When the Applicant apply for a Vacancy in FAA '<QualificationDetails>','<WorkExperience>','<TrainingCourse>'
-	Then the vacancy status should be 'Live' in Recruit
+	Then the vacancy status should be Live in Recruit
 
 Examples:
 | location                    | anonymity | DisabilityConfident | ApplicationMethod | ApprenticeshipType | HoursPerWeek | VacancyDuration | Changeteam    | ChangeRole       | NoOfPositions | QualificationDetails | WorkExperience | TrainingCourse |

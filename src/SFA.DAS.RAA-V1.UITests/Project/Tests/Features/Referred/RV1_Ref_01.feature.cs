@@ -91,7 +91,7 @@ testRunner.When("the Reviewer initiates reviewing the Vacancy in Manage", ((stri
 #line 13
 testRunner.And(string.Format("the Reviewer refer a vacancy with comments \'{0}\',\'{1}\'", changeteam, changeRole), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 14
-testRunner.Then("the vacancy status should be \'Referred\' in Recruit", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+testRunner.Then("the vacancy status should be Referred in Recruit", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
