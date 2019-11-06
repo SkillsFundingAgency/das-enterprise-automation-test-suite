@@ -8,7 +8,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
         public static bool ContainsCompareCaseInsensitive(this string text, string value,
             StringComparison stringComparison = StringComparison.CurrentCultureIgnoreCase)
         {
-            var index = text.IndexOf(value, stringComparison);
+            var index = text?.IndexOf(value, stringComparison) ?? -1;
             return index >= 0;
         }
 
