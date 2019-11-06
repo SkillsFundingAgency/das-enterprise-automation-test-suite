@@ -5,7 +5,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 {
     public class ManageApprenticeshipsServiceHelpPage : BasePage
     {
-        protected override string PageTitle => "Manage apprenticeships service help";
+        protected override string PageTitle => "Top articles";
 
         public ManageApprenticeshipsServiceHelpPage(ScenarioContext context) : base(context)
         {
