@@ -1,5 +1,4 @@
 ﻿using SFA.DAS.RAA_V1.UITests.Project.Helpers;
-using SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.Manage;
 using SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA;
 using SFA.DAS.UI.Framework.TestSupport;
 using TechTalk.SpecFlow;
@@ -7,7 +6,7 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
 {
     [Binding]
-    public class VacancySteps
+    public class RAASteps
     {
         private RAA_EmployerSelectionPage _employerSelection;
         private RAA_EmployerInformationPage _raaEmployerInformation;
@@ -15,21 +14,15 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
         private RAA_EnterFurtherDetailsPage _enterFurtherDetails;
         private RAA_EnterOpportunityDetailsPage _enterOpportunityDetails;
         private RAA_RequirementsAndProspectsPage _requirementsAndProspects;
-        private Manage_HomePage _manage_HomePage;
-        private Manage_EnterBasicVacancyDetailsPage _manage_EnterBasicVacancyDetailsPage;
         private readonly RAAStepsHelper _raaStepsHelper;
-        private readonly ManageStepsHelper _manageStepsHelper;
-        private readonly FAAStepsHelper _faaStepsHelper;
         private readonly ObjectContext _objectContext;
         private readonly ScenarioContext _context;
 
-        public VacancySteps(ScenarioContext context)
+        public RAASteps(ScenarioContext context)
         {
             _context = context;
             _objectContext = context.Get<ObjectContext>();
             _raaStepsHelper = new RAAStepsHelper(context);
-            _manageStepsHelper = new ManageStepsHelper(context);
-            _faaStepsHelper = new FAAStepsHelper(context);
         }
 
         [Given(@"the Provider clones an existing traineeship")]
@@ -42,18 +35,9 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
         public void GivenTheProviderClonesAnExistingApprenticeship()
         {
             _objectContext.SetApprenticeshipVacancyType();
-            
+
             CloneVacancy();
         }
-
-        [Then(@"the Reviewer approves the vacancy")]
-        public void ThenTheReviewerApprovesTheVacancy()
-        {
-            _manage_HomePage = _manageStepsHelper.GoToManageHomePage();
-
-            _manage_HomePage.ApproveAVacancy();
-        }
-
 
         [When(@"the Vacancy details are filled out for a Traineeship for a different '(.*)'")]
         public void WhenTheVacancyDetailsAreFilledOutForATraineeshipForADifferent(string location)
@@ -85,38 +69,6 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
             _raaStepsHelper.EnterExtraQuestions();
         }
 
-        [When(@"the Applicant apply for a Vacancy in FAA '(.*)','(.*)','(.*)'")]
-        public void WhenTheApplicantApplyForAVacancyInFAA(string qualificationdetails, string workExperience, string trainingCourse)
-        {
-            var homePage = _faaStepsHelper.GoToFAAHomePage();
-
-            var applicationFormPage = _faaStepsHelper.ApplyForVacancy(homePage);
-
-             _faaStepsHelper.ConfirmApplicationSubmission(applicationFormPage, qualificationdetails, workExperience, trainingCourse);
-        }
-
-        [When(@"the Reviewer initiates reviewing the Vacancy in Manage")]
-        public void WhenTheReviewerInitiatesReviewingTheVacancyInManage()
-        {
-            _manage_HomePage = _manageStepsHelper.GoToManageHomePage();
-        }
-
-        [Then(@"the Reviewer is able to approve the Vacancy '(.*)','(.*)'")]
-        public void ThenTheReviewerIsAbleToApproveTheVacancy(string changeTeam, string changeRole)
-        {
-            _manage_HomePage.ApproveAVacancy(changeTeam, changeRole);
-        }
-
-        [When(@"the Reviewer refer a vacancy with comments '(.*)','(.*)'")]
-        public void WhenTheReviewerReferAVacancyWithComments(string changeTeam, string changeRole)
-        {
-            _manage_EnterBasicVacancyDetailsPage = _manage_HomePage.EditOrCommentTitle(changeTeam, changeRole);
-
-            _manage_EnterBasicVacancyDetailsPage
-                .AddTitleComments()
-                .ReferVacancy();
-        }
-
         [Given(@"the Provider initiates Create Apprenticeship Vacancy in Recruit")]
         public void GivenTheProviderInitiatesCreateApprenticeshipVacancyIn()
         {
@@ -127,7 +79,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
         public void WhenTheProviderChoosesTheEmployer(string location, string noOfpositions)
         {
             _raaEmployerInformation = _employerSelection.SelectAnEmployer();
-            
+
             switch (location)
             {
                 case "Use the main employer address":
@@ -178,7 +130,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
 
             _objectContext.SetApprenticeshipVacancyType();
 
-           _enterTrainingDetails = _raaStepsHelper.EnterBasicVacancyDetails(VacancyType.Apprenticeship, disabilityConfident, applicationMethod);
+            _enterTrainingDetails = _raaStepsHelper.EnterBasicVacancyDetails(VacancyType.Apprenticeship, disabilityConfident, applicationMethod);
 
             _enterFurtherDetails = _raaStepsHelper.EnterTrainingDetails(_enterTrainingDetails, apprenticeShip);
 
@@ -209,7 +161,6 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
 
             homePage.ExitFromWebsite();
         }
-
 
         private void CloneVacancy()
         {
