@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Features.Clone.TraineeshipVacancy
+namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Features.Referred
 {
     using TechTalk.SpecFlow;
     
@@ -18,20 +18,20 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Features.Clone.TraineeshipVacancy
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.0.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("RV1_CTV_01")]
-    public partial class RV1_CTV_01Feature
+    [NUnit.Framework.DescriptionAttribute("RV1_REF_01")]
+    public partial class RV1_REF_01Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "RV1_CTV_01.feature"
+#line 1 "RV1_Ref_01.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "RV1_CTV_01", "A short summary of the feature", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "RV1_REF_01", "A short summary of the feature", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -69,43 +69,48 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Features.Clone.TraineeshipVacancy
             testRunner.CollectScenarioErrors();
         }
         
-        public virtual void RV1_CTV_01_CloneAnExistingLiveTraineeshipVacancyApproveAndApply(string qualificationDetails, string workExperience, string trainingCourse, string[] exampleTags)
+        public virtual void RV1_REF_01ReferingAVacancyWithComments(string location, string anonymity, string disabilityConfident, string applicationMethod, string apprenticeshipType, string hoursPerWeek, string vacancyDuration, string changeteam, string changeRole, string noOfPositions, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "raa-v1",
-                    "v1_e2e",
                     "regression"};
             if ((exampleTags != null))
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
             }
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV1_CTV_01 - Clone an existing Live Traineeship Vacancy, Approve and Apply", null, @__tags);
-#line 8
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV1_REF_01 Refering a vacancy with comments", null, @__tags);
+#line 7
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
+#line 8
+testRunner.Given("the Provider initiates Create Apprenticeship Vacancy in Recruit", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 9
-testRunner.Given("the Provider clones an existing traineeship", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+testRunner.When(string.Format("the Provider chooses the employer \'{0}\',\'{1}\'", location, noOfPositions), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 10
-testRunner.Then("Provider is able to submit the vacancy for approval", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+testRunner.And(string.Format("the Provider chooses their \'{0}\'", anonymity), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 11
-testRunner.Then("the Reviewer approves the vacancy", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+testRunner.And(string.Format("the Provider fills out details for an Offline Vacancy \'{0}\',\'{1}\',\'{2}\',\'{3}\',\'{4" +
+                        "}\',\'{5}\'", location, disabilityConfident, applicationMethod, apprenticeshipType, hoursPerWeek, vacancyDuration), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 12
-testRunner.When(string.Format("the Applicant apply for a Vacancy in FAA \'{0}\',\'{1}\',\'{2}\'", qualificationDetails, workExperience, trainingCourse), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+testRunner.Then("Provider is able to submit the vacancy for approval", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 13
-testRunner.Then("the vacancy status should be Live in Recruit", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+testRunner.When("the Reviewer initiates reviewing the Vacancy in Manage", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 14
+testRunner.And(string.Format("the Reviewer refer a vacancy with comments \'{0}\',\'{1}\'", changeteam, changeRole), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 15
+testRunner.Then("the vacancy status should be Referred in Recruit", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RV1_CTV_01 - Clone an existing Live Traineeship Vacancy, Approve and Apply: Yes")]
+        [NUnit.Framework.DescriptionAttribute("RV1_REF_01 Refering a vacancy with comments: Use the main employer address")]
         [NUnit.Framework.CategoryAttribute("raa-v1")]
-        [NUnit.Framework.CategoryAttribute("v1_e2e")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public virtual void RV1_CTV_01_CloneAnExistingLiveTraineeshipVacancyApproveAndApply_Yes()
+        public virtual void RV1_REF_01ReferingAVacancyWithComments_UseTheMainEmployerAddress()
         {
-#line 8
-this.RV1_CTV_01_CloneAnExistingLiveTraineeshipVacancyApproveAndApply("Yes", "Yes", "Yes", ((string[])(null)));
+#line 7
+this.RV1_REF_01ReferingAVacancyWithComments("Use the main employer address", "No", "No", "Online", "Framework", "42", "52", "West Midlands", "Vacancy reviewer", "2", ((string[])(null)));
 #line hidden
         }
     }
