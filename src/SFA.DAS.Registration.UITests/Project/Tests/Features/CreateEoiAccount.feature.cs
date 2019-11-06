@@ -73,21 +73,23 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features
         [NUnit.Framework.DescriptionAttribute("Create EOI Account with PAYE Details")]
         [NUnit.Framework.CategoryAttribute("addpayedetails")]
         [NUnit.Framework.CategoryAttribute("eoiaccount")]
+        [NUnit.Framework.CategoryAttribute("registration")]
         public virtual void CreateEOIAccountWithPAYEDetails()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Create EOI Account with PAYE Details", null, new string[] {
                         "addpayedetails",
-                        "eoiaccount"});
-#line 5
+                        "eoiaccount",
+                        "registration"});
+#line 6
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 6
- testRunner.Given("I create an Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 7
- testRunner.When("I add paye details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.Given("I create an Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 8
- testRunner.And("add eoi organisation details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.When("I add paye details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 9
+ testRunner.And("add eoi organisation details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 10
  testRunner.And("I do not sign the eoi agreement", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();

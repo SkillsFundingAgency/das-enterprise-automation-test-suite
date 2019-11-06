@@ -1,4 +1,5 @@
-﻿Feature: NonLevyEmployerCreatesACohort
+﻿@approvals
+Feature: NonLevyEmployerCreatesACohort
 
 A Non Levy employer creates a cohort using the reservation
 

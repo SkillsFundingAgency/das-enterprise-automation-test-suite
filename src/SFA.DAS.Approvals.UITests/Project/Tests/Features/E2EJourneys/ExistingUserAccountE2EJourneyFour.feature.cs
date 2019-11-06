@@ -19,6 +19,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.E2EJourneys
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("ExistingUserAccountE2EJourneyFour")]
+    [NUnit.Framework.CategoryAttribute("approvals")]
     public partial class ExistingUserAccountE2EJourneyFourFeature
     {
         
@@ -31,7 +32,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.E2EJourneys
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "ExistingUserAccountE2EJourneyFour", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "ExistingUserAccountE2EJourneyFour", null, ProgrammingLanguage.CSharp, new string[] {
+                        "approvals"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -80,18 +82,18 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.E2EJourneys
                     "vider approves", null, new string[] {
                         "regression",
                         "e2escenarios"});
-#line 5
+#line 6
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 6
- testRunner.Given("the Employer login using existing levy account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 7
- testRunner.When("the Employer create a cohort and send to provider to add apprentices", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.Given("the Employer login using existing levy account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 8
- testRunner.And("the provider adds 2 apprentices and sends to employer to review", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.When("the Employer create a cohort and send to provider to add apprentices", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 9
- testRunner.When("the Employer approves the cohort and sends to provider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.And("the provider adds 2 apprentices and sends to employer to review", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 10
+ testRunner.When("the Employer approves the cohort and sends to provider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 11
  testRunner.Then("the provider approves the cohorts", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();

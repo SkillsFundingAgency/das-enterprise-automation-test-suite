@@ -1,0 +1,194 @@
+﻿using SFA.DAS.RAA_V1.UITests.Project.Tests.Pages;
+using SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA;
+using SFA.DAS.UI.Framework.TestSupport;
+using SFA.DAS.UI.FrameworkHelpers;
+using TechTalk.SpecFlow;
+
+namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
+{
+    public class RAAStepsHelper
+    {
+        private readonly ScenarioContext _context;
+        private readonly ObjectContext _objectContext;
+        private readonly RAAV1Config _config;
+        private readonly TabHelper _tabHelper;
+        private readonly RestartWebDriverHelper _helper;
+        private const string _applicationName = "Recruit";
+
+        public RAAStepsHelper(ScenarioContext context)
+        {
+            _context = context;
+            _objectContext = context.Get<ObjectContext>();
+            _config = context.GetRAAV1Config<RAAV1Config>();
+            _tabHelper = context.Get<TabHelper>();
+            _helper = new RestartWebDriverHelper(context);
+        }
+
+        internal RAA_RecruitmentHomePage GoToRAAHomePage(bool restrat)
+        {
+            if (restrat)
+            {
+                _helper.RestartWebDriver(_config.RecruitBaseUrl, _applicationName);
+            }
+            else
+            {
+                GoToRAA();
+            }
+
+            return SubmitRecruitmentLoginDetails();
+        }
+
+        internal RAA_EmployerSelectionPage CreateANewVacancy()
+        {
+            GoToRAA();
+            return SubmitRecruitmentLoginDetails()
+                .CreateANewVacancy();
+        }
+
+        internal RAA_EnterTrainingDetailsPage EnterBasicVacancyDetails()
+        {
+            return new RAA_BasicVacancyDetailsPage(_context)
+                       .EnterVacancyTitle()
+                       .ClickSaveAndContinueButton();
+        }
+
+        internal RAA_EnterTrainingDetailsPage EnterBasicVacancyDetails(VacancyType vacancyType, string disabilityConfident, string applicationMethod)
+        {
+            return new RAA_BasicVacancyDetailsPage(_context)
+                       .EnterVacancyTitle()
+                       .EnterVacancyShortDescription()
+                       .ClickOnVacancyType(vacancyType)
+                       .CickDisabilityConfident(disabilityConfident)
+                       .ApplicationMethod(applicationMethod)
+                       .ClickSaveAndContinueButton();
+        }
+
+        internal RAA_EnterOpportunityDetailsPage EnterTrainingDetails(RAA_EnterTrainingDetailsPage enterTrainingDetails)
+        {
+            return enterTrainingDetails
+                   .SelectApprenticeshipType("Traineeship")
+                   .EnterTrainingToBeProvided()
+                   .EnterContactName()
+                   .ContactTelephone()
+                   .EnterEmailDetails()
+                   .GotoOpportunityDetailsPage();
+        }
+
+
+        internal RAA_EnterFurtherDetailsPage EnterTrainingDetails(RAA_EnterTrainingDetailsPage enterTrainingDetails, string apprenticeShip)
+        {
+            return enterTrainingDetails
+                   .SelectApprenticeshipType(apprenticeShip)
+                   .EnterTrainingToBeProvided()
+                   .EnterContactName()
+                   .ContactTelephone()
+                   .EnterEmailDetails()
+                   .GotoFurtherDetailsPage();
+        }
+
+        internal RAA_RequirementsAndProspectsPage EnterOpportunityDetails(RAA_EnterOpportunityDetailsPage enteropportunityDetails,string vacancyDuration)
+        {
+            return enteropportunityDetails
+                   .EnterWorkingInformation()
+                   .EnterVacancyDuration(vacancyDuration)
+                   .EnterVacancyClosingDate()
+                   .EnterPossibleStartDate()
+                   .EnterVacancyDescription()
+                   .ClickSaveAndContinueButton();
+        }
+
+        internal RAA_RequirementsAndProspectsPage EnterFurtherDetails(RAA_EnterFurtherDetailsPage enterFurtherDetails)
+        {
+            return enterFurtherDetails
+                   .EnterVacancyClosingDate()
+                   .EnterPossibleStartDate()
+                   .ClickSaveAndContinueButton();
+        }
+
+        internal RAA_RequirementsAndProspectsPage EnterFurtherDetails(RAA_EnterFurtherDetailsPage enterFurtherDetails, string hoursPerWeek, string vacancyDuration)
+        {
+            return enterFurtherDetails
+                   .EnterWorkingInformation()
+                   .EnterHoursPerWeek(hoursPerWeek)
+                   .ClickApprenticeshipMinimumWage()
+                   .EnterVacancyDuration(vacancyDuration)
+                   .EnterVacancyClosingDate()
+                   .EnterPossibleStartDate()
+                   .EnterVacancyDescription()
+                   .ClickSaveAndContinueButton();
+        }
+
+        internal void EnterRequirementsAndProspects(RAA_RequirementsAndProspectsPage requirementsAndProspects)
+        {
+            if (_objectContext.IsApprenticeshipVacancyType())
+            {
+                requirementsAndProspects = requirementsAndProspects
+                .EnterDesiredQualificationsText();
+            }
+                requirementsAndProspects
+                    .EnterDesiredSkillsText()
+                    .EnterPersonalQualitiesText()
+                    .EnterFutureProspectsText()
+                    .EnterThingsToConsiderText()
+                    .ClickSaveAndContinue();
+        }
+
+
+        internal void EnterExtraQuestions()
+        {
+            new RAA_ExtraQuestionsPage(_context)
+                .EnterFirstQuestion()
+                .EnterSecondQuestion()
+                .ClickPreviewVacancyButton();
+        }
+
+        internal void AddMultipleVacancy()
+        {
+            new RAA_MultipleVacancyLocationPage(_context)
+                       .AddLocation("CV1 2WT")
+                       .EnterNumberOfVacancy()
+                       .ClickAddAnotherLocationLink()
+                       .AddLocation("BS16 4EA")
+                       .EnterNumberOfVacancy2()
+                       .EnterAdditionalLocationInformation()
+                       .ClickSaveAndContinue();
+        }
+
+        internal RAA_VacancyReferencePage ApproveVacanacy()
+        {
+            RAA_PreviewBasePage previewPage;
+            if (_objectContext.IsApprenticeshipVacancyType())
+            {
+                previewPage = new RAA_VacancyPreviewPage(_context);
+            }
+            else
+            {
+                previewPage = new RAA_OppurtunityPreviewPage(_context);
+            }
+
+            var vacancyReference = previewPage.ClickSubmitForApprovalButton();
+
+            var referenceNumber1 = vacancyReference.GetVacancyReference();
+
+            var referenceNumber = (referenceNumber1.Remove(0, 2)).TrimStart('0');
+
+            _objectContext.SetVacancyReference(referenceNumber);
+
+            return vacancyReference;
+        }
+        private RAA_RecruitmentHomePage SubmitRecruitmentLoginDetails()
+        {
+            return new RAA_IndexPage(_context)
+                .ClickOnSignInButton()
+                .RecruitStaffIdams()
+                .SubmitRecruitmentLoginDetails();
+        }
+
+        private void GoToRAA()
+        {
+            _objectContext.SetCurrentApplicationName(_applicationName);
+
+            _tabHelper.GoToUrl(_config.RecruitBaseUrl);
+        }
+    }
+}

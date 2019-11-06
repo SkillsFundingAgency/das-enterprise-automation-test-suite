@@ -19,6 +19,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.AccountSettings
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("EmployerChangeYourEmailPage")]
+    [NUnit.Framework.CategoryAttribute("approvals")]
     public partial class EmployerChangeYourEmailPageFeature
     {
         
@@ -31,7 +32,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.AccountSettings
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "EmployerChangeYourEmailPage", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "EmployerChangeYourEmailPage", null, ProgrammingLanguage.CSharp, new string[] {
+                        "approvals"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -76,12 +78,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.AccountSettings
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Employer navigates to Change your email address pages", null, new string[] {
                         "regression"});
-#line 4
+#line 5
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 5
- testRunner.Given("Employer navigates to Apprentices home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 6
+ testRunner.Given("Employer navigates to Apprentices home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 7
  testRunner.Then("Employer should be able to navigate to Change your email address page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();

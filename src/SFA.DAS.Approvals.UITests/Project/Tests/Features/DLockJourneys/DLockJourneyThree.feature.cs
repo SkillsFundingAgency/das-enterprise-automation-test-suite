@@ -19,6 +19,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.DLockJourneys
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("DLockJourneyThree")]
+    [NUnit.Framework.CategoryAttribute("approvals")]
     public partial class DLockJourneyThreeFeature
     {
         
@@ -31,7 +32,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.DLockJourneys
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "DLockJourneyThree", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "DLockJourneyThree", null, ProgrammingLanguage.CSharp, new string[] {
+                        "approvals"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -80,18 +82,18 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.DLockJourneys
                         "regression",
                         "liveapprentice",
                         "dlockscenarios"});
-#line 6
+#line 7
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 7
- testRunner.Given("the Employer has approved apprentice", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 8
- testRunner.And("the datalock has been successful", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Given("the Employer has approved apprentice", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 9
- testRunner.When("the provider submit an ILR with course price mismatch", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.And("the datalock has been successful", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 10
- testRunner.Then("the Employer can stop the live apprentice", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.When("the provider submit an ILR with course price mismatch", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 11
+ testRunner.Then("the Employer can stop the live apprentice", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 12
  testRunner.And("the ILR should be matched and datalock is resolved", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();

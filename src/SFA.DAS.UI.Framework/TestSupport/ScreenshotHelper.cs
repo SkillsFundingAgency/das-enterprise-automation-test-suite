@@ -7,7 +7,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
 {
     public class ScreenshotHelper
     {
-        public static void TakeScreenShot(IWebDriver webDriver, string screenshotsDirectory, string scenarioTitle, bool testFailed = false)
+        public static void TakeScreenShot(IWebDriver webDriver, string screenshotsDirectory, string scenarioTitle)
         {
             try
             {
@@ -23,10 +23,6 @@ namespace SFA.DAS.UI.Framework.TestSupport
                 String screenshotPath = Path.Combine(screenshotsDirectory, failureImageName);
                 screenshot.SaveAsFile(screenshotPath, ScreenshotImageFormat.Png);
                 TestContext.AddTestAttachment(screenshotPath, failureImageName);
-                if (testFailed)
-                {
-                    TestContext.Progress.WriteLine($"{scenarioTitle} -- Scenario under feature failed and the screenshot is available at -- {screenshotPath}");
-                }
             }
             catch (Exception exception)
             {

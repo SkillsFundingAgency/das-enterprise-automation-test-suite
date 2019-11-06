@@ -16,7 +16,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
             _webDriver = webDriver;
         }
 
-        internal bool RetryOnException(Func<bool> func, Action beforeAction = null)
+        internal bool RetryOnException(Func<bool> func, Action beforeAction)
         {
             return Policy
                  .Handle<Exception>((x) => x.Message.Contains("verification failed"))
@@ -32,6 +32,43 @@ namespace SFA.DAS.UI.FrameworkHelpers
                          return func();
                      }
                  });
+        }
+
+        internal void RetryClickOnWebDriverException(Func<IWebElement> element)
+        {
+            Policy
+                .Handle<WebDriverException>()
+                .WaitAndRetry(TimeOut, (exception, timeSpan, retryCount, context) =>
+                {
+                    TestContext.Progress.WriteLine($"Retry Count : {retryCount}, Exception : {exception.Message}");
+                })
+               .Execute(() =>
+               {
+                   using (var testcontext = new NUnit.Framework.Internal.TestExecutionContext.IsolatedContext())
+                   {
+                       ClickEvent(element()).Invoke();
+                   }
+               });
+        }
+
+        internal T RetryOnWebDriverException<T>(Func<T> element)
+        {
+            T webElement = default(T);
+            Policy
+                .Handle<WebDriverException>()
+                .WaitAndRetry(TimeOut, (exception, timeSpan, retryCount, context) =>
+                {
+                    TestContext.Progress.WriteLine($"Retry Count : {retryCount}, Exception : {exception.Message}");
+                })
+                .Execute(() =>
+                {
+                    using (var testcontext = new NUnit.Framework.Internal.TestExecutionContext.IsolatedContext())
+                    {
+                        webElement = element.Invoke();
+                    }
+                });
+
+            return webElement;
         }
 
         internal void RetryOnElementClickInterceptedException(IWebElement element)
@@ -92,7 +129,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         private (Action beforeAction, Action afterAction) ScrollIntoView(IWebElement element)
         {
-            void beforeAction() => ((IJavaScriptExecutor)_webDriver).ExecuteScript("arguments[0].scrollIntoView(false);", element);
+            void beforeAction() => ((IJavaScriptExecutor)_webDriver).ExecuteScript("arguments[0].scrollIntoView(true);", element);
 
             return (beforeAction, null);
         }

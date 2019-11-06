@@ -72,19 +72,21 @@ namespace SFA.DAS.TestProject.UITests.Project.Tests.Features
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("User navigates to VAT home page from GOV.UK page")]
+        [NUnit.Framework.CategoryAttribute("testproject")]
         public virtual void UserNavigatesToVATHomePageFromGOV_UKPage()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User navigates to VAT home page from GOV.UK page", null, ((string[])(null)));
-#line 6
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User navigates to VAT home page from GOV.UK page", null, new string[] {
+                        "testproject"});
+#line 7
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 7
- testRunner.Given("the User navigates to GOV.UK home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 8
- testRunner.When("the User searches for VAT", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.Given("the User navigates to GOV.UK home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 9
- testRunner.When("clicks the same link", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("the User searches for VAT", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 10
+ testRunner.When("clicks the same link", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 11
  testRunner.Then("the User should be on DFE home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();

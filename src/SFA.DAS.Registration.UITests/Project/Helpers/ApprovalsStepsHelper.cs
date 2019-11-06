@@ -23,7 +23,6 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
                  .Register()
                  .ContinueToGetApprenticeshipFunding()
                  .AddPaye()
-                 .SelectGovermentGateway()
                  .ContinueToGGSignIn()
                  .SignInTo()
                  .SearchForAnOrganisation()

@@ -1,5 +1,4 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.UI.FrameworkHelpers;
 using System.Linq;
 
 namespace SFA.DAS.UI.FrameworkHelpers

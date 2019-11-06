@@ -3,7 +3,7 @@ using OpenQA.Selenium.Remote;
 using System;
 using OpenQA.Selenium.Chrome;
 
-namespace SFA.DAS.UI.Framework.Project.Tests.TestSupport
+namespace SFA.DAS.UI.Framework.TestSupport
 {
     public class BrowserStackSetup
     {

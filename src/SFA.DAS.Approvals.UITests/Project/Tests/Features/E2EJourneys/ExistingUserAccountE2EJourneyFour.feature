@@ -1,4 +1,5 @@
-﻿Feature: ExistingUserAccountE2EJourneyFour
+﻿@approvals
+Feature: ExistingUserAccountE2EJourneyFour
 
 @regression
 @e2escenarios

@@ -19,6 +19,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.CocJourneys
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("CocJourneyFive")]
+    [NUnit.Framework.CategoryAttribute("approvals")]
     public partial class CocJourneyFiveFeature
     {
         
@@ -31,7 +32,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.CocJourneys
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "CocJourneyFive", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "CocJourneyFive", null, ProgrammingLanguage.CSharp, new string[] {
+                        "approvals"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -82,14 +84,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.CocJourneys
                         "regression",
                         "liveapprentice",
                         "cocscenarios"});
-#line 6
+#line 7
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 7
- testRunner.Given("the Employer has approved apprentice", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 8
- testRunner.Then("Employer cannot make changes to cost and course after ILR match", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Given("the Employer has approved apprentice", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 9
+ testRunner.Then("Employer cannot make changes to cost and course after ILR match", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 10
  testRunner.And("provider cannot make changes to cost and course after ILR match", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();

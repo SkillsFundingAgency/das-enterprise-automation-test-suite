@@ -1,6 +1,7 @@
 ﻿Feature: CreateAccountWithAgreement
 
 @addpayedetails
+@registration
 Scenario: Create Non Levy Account with PAYE Details And Sign Agreement
 	Given I create an Account
 	When I add paye details

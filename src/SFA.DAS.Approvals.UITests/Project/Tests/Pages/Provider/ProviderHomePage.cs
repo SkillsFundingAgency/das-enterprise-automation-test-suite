@@ -31,12 +31,19 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         private By ManageYourFundingLink => By.LinkText("Manage your funding reserved for non-levy employers");
 
+        private By SignOutLink => By.LinkText("Sign out");
+
         public ProviderHomePage(ScenarioContext context, bool navigate = false) : base(context, navigate)
         {
             _context = context;
             _dataHelper = context.Get<ApprenticeDataHelper>();
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
+        }
+
+        internal void SignsOut()
+        {
+            _formCompletionHelper.ClickElement(SignOutLink);
         }
 
         public ProviderManageYourApprenticesPage GoToProviderManageYourApprenticePage()

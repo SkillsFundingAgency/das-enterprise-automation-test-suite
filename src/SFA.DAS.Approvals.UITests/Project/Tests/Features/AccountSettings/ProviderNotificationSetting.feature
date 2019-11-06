@@ -1,4 +1,5 @@
-﻿Feature: ProviderNotificationSetting
+﻿@approvals
+Feature: ProviderNotificationSetting
 
 @regression
 Scenario: Provider login and modifies notification settings

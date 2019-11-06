@@ -19,6 +19,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("CreateAccount")]
+    [NUnit.Framework.CategoryAttribute("registration")]
     public partial class CreateAccountFeature
     {
         
@@ -31,7 +32,8 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "CreateAccount", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "CreateAccount", null, ProgrammingLanguage.CSharp, new string[] {
+                        "registration"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,12 +76,12 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features
         public virtual void CreateAccountWithoutPAYEDetails()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Create Account without PAYE details", null, ((string[])(null)));
-#line 3
+#line 4
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 4
- testRunner.Given("I create an Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 5
+ testRunner.Given("I create an Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 6
  testRunner.Then("I do not add paye details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -92,18 +94,18 @@ this.ScenarioInitialize(scenarioInfo);
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Create Non Levy Account with PAYE Details", null, new string[] {
                         "addpayedetails"});
-#line 8
+#line 9
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 9
- testRunner.Given("I create an Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 10
- testRunner.When("I add paye details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.Given("I create an Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 11
- testRunner.And("add organisation details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.When("I add paye details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 12
- testRunner.When("I do not sign the agreement", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.And("add organisation details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 13
+ testRunner.When("I do not sign the agreement", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 14
  testRunner.Then("I will land in the User Home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
