@@ -29,7 +29,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         private By VacancyFilters => By.CssSelector(".column-one-quarter .bold-xsmall");
         private By NoOfVacancy => By.CssSelector(".bold-xlarge");
         private By CloneLink => By.CssSelector("a");
-        private By VacancyFilter => By.CssSelector(".vacancy-filter");
+        private By VacancyFilter => By.CssSelector(".column-one-quarter .vacancy-filter");
         private By VacancyStatus => By.CssSelector(".bold-xsmall");
         private By TableRows => By.CssSelector("tbody tr");
         private By NextPage => By.CssSelector(".page-navigation__btn.next");
@@ -67,7 +67,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
                     var status = _pageInteractionHelper.FindElement(filter, VacancyStatus);
                     if (status.Text == vacancyType)
                     {
-                        return _pageInteractionHelper.FindElement(status, NoOfVacancy);
+                        return _pageInteractionHelper.FindElement(filter, NoOfVacancy);
                     }
                 }
 

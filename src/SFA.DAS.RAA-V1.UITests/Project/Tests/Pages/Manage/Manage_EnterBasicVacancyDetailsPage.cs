@@ -12,7 +12,6 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.Manage
         private readonly ScenarioContext _context;
         private readonly PageInteractionHelper _pageInteractionHelper;
         private readonly FormCompletionHelper _formCompletionHelper;
-        private readonly TableRowHelper _tableRowHelper;
         private readonly ManagedataHelper _dataHelper;
         #endregion
 
@@ -25,14 +24,13 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.Manage
             _context = context;
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
-            _tableRowHelper = context.Get<TableRowHelper>();
             _dataHelper = context.Get<ManagedataHelper>();
         }
 
         public Manage_VacanacyPreviewPage AddTitleComments()
         {
             _formCompletionHelper.Click(TitleComments);
-            _pageInteractionHelper.WaitForElementToChange(TitleComments, "aria-expanded", "true");
+            _pageInteractionHelper.WaitForElementToChange(TitleComments, AttributeHelper.AriaExpanded, "true");
             _formCompletionHelper.EnterText(TitleCommentTextArea, _dataHelper.TitleComments);
             _formCompletionHelper.ClickButtonByText("Save");
             return new Manage_VacanacyPreviewPage(_context);
