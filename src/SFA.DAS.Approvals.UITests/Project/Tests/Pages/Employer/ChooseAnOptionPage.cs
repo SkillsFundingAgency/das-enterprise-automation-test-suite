@@ -42,13 +42,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             return new MessageForYourTrainingProviderPage(_context);
         }
 
-        public CohortApprovedPage SubmitApprove()
-        {
-            SelectCohortApproveOptions("SaveStatus-Approve")
-            .Continue();
-            return new CohortApprovedPage(_context);
-        }
-
         public YourCohortRequestsPage SubmitSaveButDontSendToProvider()
         {
             SelectCohortApproveOptions("SaveStatus-Save")
