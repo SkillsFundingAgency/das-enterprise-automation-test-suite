@@ -5,7 +5,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.FAA
 {
-    public class FAA_WithdrawSuccessful : BasePage
+    public class FAA_WithdrawSuccessfulPage : BasePage
     {
         protected override string PageTitle => $"You've successfully withdrawn from {_dataHelper.VacancyTitle}";
 
@@ -15,7 +15,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.FAA
         private readonly RAADataHelper _dataHelper;
         #endregion
 
-        public FAA_WithdrawSuccessful(ScenarioContext context) : base(context)
+        public FAA_WithdrawSuccessfulPage(ScenarioContext context) : base(context)
         {
             _dataHelper = context.Get<RAADataHelper>();
             VerifyPage();

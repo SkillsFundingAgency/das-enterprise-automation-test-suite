@@ -2,7 +2,7 @@
 
 @raa-v1
 @regression
-Scenario Outline: Withdraw Vacancy
+Scenario Outline: RV1_WD_01 - Withdraw Vacancy
 	Given the vacancy is Live in Recruit
 		| location   | anonymity   | DisabilityConfident   | ApplicationMethod   | ApprenticeshipType   | HoursPerWeek   | VacancyDuration   | Changeteam   | ChangeRole   | NoOfPositions   | QualificationDetails   | WorkExperience   | TrainingCourse   |
 		| <location> | <anonymity> | <DisabilityConfident> | <ApplicationMethod> | <ApprenticeshipType> | <HoursPerWeek> | <VacancyDuration> | <Changeteam> | <ChangeRole> | <NoOfPositions> | <QualificationDetails> | <WorkExperience> | <TrainingCourse> |

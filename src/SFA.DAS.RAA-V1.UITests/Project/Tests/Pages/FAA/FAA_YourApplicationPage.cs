@@ -21,10 +21,10 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.FAA
         }
 
 
-        public FAA_WithDrawConfirmation Withdraw()
+        public FAA_WithDrawConfirmationPage Withdraw()
         {
             _formCompletionHelper.ClickLinkByText("Withdraw my application");
-            return new FAA_WithDrawConfirmation(_context);
+            return new FAA_WithDrawConfirmationPage(_context);
         }
 
     }

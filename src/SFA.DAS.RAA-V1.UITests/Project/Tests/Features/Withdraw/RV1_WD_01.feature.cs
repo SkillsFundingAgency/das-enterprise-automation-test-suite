@@ -31,7 +31,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Features.Withdraw
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "RV1_WD_01", "A short summary of the feature", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "RV1_WD_01", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -69,7 +69,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Features.Withdraw
             testRunner.CollectScenarioErrors();
         }
         
-        public virtual void WithdrawVacancy(string location, string anonymity, string disabilityConfident, string applicationMethod, string apprenticeshipType, string hoursPerWeek, string vacancyDuration, string changeteam, string changeRole, string noOfPositions, string qualificationDetails, string workExperience, string trainingCourse, string[] exampleTags)
+        public virtual void RV1_WD_01_WithdrawVacancy(string location, string anonymity, string disabilityConfident, string applicationMethod, string apprenticeshipType, string hoursPerWeek, string vacancyDuration, string changeteam, string changeRole, string noOfPositions, string qualificationDetails, string workExperience, string trainingCourse, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "raa-v1",
@@ -78,8 +78,8 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Features.Withdraw
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
             }
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Withdraw Vacancy", null, @__tags);
-#line 8
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV1_WD_01 - Withdraw Vacancy", null, @__tags);
+#line 5
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line hidden
@@ -111,24 +111,24 @@ this.ScenarioInitialize(scenarioInfo);
                         string.Format("{0}", qualificationDetails),
                         string.Format("{0}", workExperience),
                         string.Format("{0}", trainingCourse)});
-#line 9
+#line 6
  testRunner.Given("the vacancy is Live in Recruit", ((string)(null)), table1, "Given ");
-#line 12
+#line 9
  testRunner.When("the Applicant withdraw the application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 13
+#line 10
  testRunner.Then("the vacancy should not be displayed in Recruit", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Withdraw Vacancy: Set as a nationwide vacancy")]
+        [NUnit.Framework.DescriptionAttribute("RV1_WD_01 - Withdraw Vacancy: Set as a nationwide vacancy")]
         [NUnit.Framework.CategoryAttribute("raa-v1")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public virtual void WithdrawVacancy_SetAsANationwideVacancy()
+        public virtual void RV1_WD_01_WithdrawVacancy_SetAsANationwideVacancy()
         {
-#line 8
-this.WithdrawVacancy("Set as a nationwide vacancy", "Yes", "Yes", "Online", "Standard", "42", "52", "West Midlands", "Vacancy reviewer", "3", "Yes", "No", "No", ((string[])(null)));
+#line 5
+this.RV1_WD_01_WithdrawVacancy("Set as a nationwide vacancy", "Yes", "Yes", "Online", "Standard", "42", "52", "West Midlands", "Vacancy reviewer", "3", "Yes", "No", "No", ((string[])(null)));
 #line hidden
         }
     }
