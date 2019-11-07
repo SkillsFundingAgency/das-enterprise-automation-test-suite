@@ -72,13 +72,14 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Features.Withdraw
         public virtual void WithdrawVacancy(string location, string anonymity, string disabilityConfident, string applicationMethod, string apprenticeshipType, string hoursPerWeek, string vacancyDuration, string changeteam, string changeRole, string noOfPositions, string qualificationDetails, string workExperience, string trainingCourse, string[] exampleTags)
         {
             string[] @__tags = new string[] {
-                    "Vacancy"};
+                    "raa-v1",
+                    "regression"};
             if ((exampleTags != null))
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
             }
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Withdraw Vacancy", null, @__tags);
-#line 6
+#line 8
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line hidden
@@ -110,11 +111,11 @@ this.ScenarioInitialize(scenarioInfo);
                         string.Format("{0}", qualificationDetails),
                         string.Format("{0}", workExperience),
                         string.Format("{0}", trainingCourse)});
-#line 7
+#line 9
  testRunner.Given("the vacancy is Live in Recruit", ((string)(null)), table1, "Given ");
-#line 10
+#line 12
  testRunner.When("the Applicant withdraw the application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 11
+#line 13
  testRunner.Then("the vacancy should not be displayed in Recruit", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -122,10 +123,11 @@ this.ScenarioInitialize(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Withdraw Vacancy: Set as a nationwide vacancy")]
-        [NUnit.Framework.CategoryAttribute("Vacancy")]
+        [NUnit.Framework.CategoryAttribute("raa-v1")]
+        [NUnit.Framework.CategoryAttribute("regression")]
         public virtual void WithdrawVacancy_SetAsANationwideVacancy()
         {
-#line 6
+#line 8
 this.WithdrawVacancy("Set as a nationwide vacancy", "Yes", "Yes", "Online", "Standard", "42", "52", "West Midlands", "Vacancy reviewer", "3", "Yes", "No", "No", ((string[])(null)));
 #line hidden
         }

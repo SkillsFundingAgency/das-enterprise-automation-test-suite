@@ -2,7 +2,9 @@
 
 A short summary of the feature
 
-@Vacancy
+
+@raa-v1
+@regression
 Scenario Outline: Withdraw Vacancy
 	Given the vacancy is Live in Recruit
 	| location   | anonymity   | DisabilityConfident   | ApplicationMethod   | ApprenticeshipType   | HoursPerWeek   | VacancyDuration   | Changeteam   | ChangeRole   | NoOfPositions   | QualificationDetails   | WorkExperience   | TrainingCourse   |
