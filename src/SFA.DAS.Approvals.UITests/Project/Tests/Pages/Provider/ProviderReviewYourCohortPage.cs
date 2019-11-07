@@ -34,6 +34,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         {
             _context = context;
             _formCompletionHelper = context.Get<FormCompletionHelper>();
+            VerifyPage();
         }
 
         internal ProviderChooseAReservationPage SelectAddAnApprenticeUsingReservation()

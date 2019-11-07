@@ -226,10 +226,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 
         public string EmployerApproveAndSendToProvider(ReviewYourCohortPage employerReviewYourCohortPage)
         {
-            return employerReviewYourCohortPage.SaveAndContinue()
-                .SubmitApproveAndSendToTrainingProvider()
-                .SendInstructionsToProviderForAnApprovedCohort()
+            return employerReviewYourCohortPage.
+                 Approve()
                 .CohortReference();
+
+            //return employerReviewYourCohortPage.SaveAndContinue()
+            //    .SubmitApproveAndSendToTrainingProvider()
+            //    .SendInstructionsToProviderForAnApprovedCohort()
+            //    .CohortReference();
         }
 
         private TransferRequestDetailsPage OpenTransferRequestDetailsPage()

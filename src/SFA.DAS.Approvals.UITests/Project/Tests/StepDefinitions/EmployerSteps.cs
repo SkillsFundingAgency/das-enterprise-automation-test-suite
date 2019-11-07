@@ -107,7 +107,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                 .ConfirmDeleteAndSubmit();
         }
 
-
         [When(@"the Employer approves (\d) cohort and sends to provider")]
         public void TheEmployerApprovesCohortAndSendsToProvider(int numberOfApprentices)
         {

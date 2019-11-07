@@ -1,5 +1,6 @@
 ﻿using System;
 using OpenQA.Selenium;
+using SFA.DAS.Approvals.UITests.Project.Helpers;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer;
 using SFA.DAS.UI.Framework.TestSupport;
@@ -10,25 +11,32 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
     public class ReviewYourCohortPage : ReviewYourCohort
     {
-        protected override string PageTitle => "Review your cohort";
+        protected override string PageTitle => _pageTitle;
 
         #region Helpers and Context
         private readonly PageInteractionHelper _pageInteractionHelper;
         private readonly FormCompletionHelper _formCompletionHelper;
         private readonly ScenarioContext _context;
+        private readonly ApprenticeDataHelper _dataHelper;
+        private readonly string _pageTitle;
         #endregion
 
-        private By AddAnApprenticeButton => By.ClassName("button-secondary");
         private By SaveAndContinueButton => By.ClassName("finishEditingBtn");
         private By ContinueToApprovalButton => By.ClassName("finishEditingBtn");
         private By EditApprenticeLink => By.LinkText("Edit");
-        private By DeleteCohortbutton => By.ClassName("delete-button");
+        private By RadioOptions => By.CssSelector(".govuk-radios__label");
+        private By Message => By.CssSelector("#approve-details");
+        private By SaveSubmit => By.CssSelector(".govuk-button");
+
 
         public ReviewYourCohortPage(ScenarioContext context) : base(context)
         {
             _context = context;
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
+            _dataHelper = context.Get<ApprenticeDataHelper>();
+            var noOfApprentice = TotalNoOfApprentices();
+            _pageTitle = noOfApprentice == 1 ? "Approve apprentice details" : $"Approve {noOfApprentice} apprentices' details";
             VerifyPage();
         }
 
@@ -45,14 +53,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         public AddApprenticeDetailsPage SelectAddAnApprentice()
         {
-            ClickElement(AddAnApprenticeButton);
+            AddAnApprentice();
             return new AddApprenticeDetailsPage(_context);
         }
 
-
         public ChooseAReservationPage SelectAddAnApprenticeUsingReservation()
         {
-            ClickElement(AddAnApprenticeButton);
+            AddAnApprentice();
             return new ChooseAReservationPage(_context);
         }
 
@@ -62,10 +69,24 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             return new ChooseAnOptionPage(_context);
         }
 
+        public ApprenticeDetailsApprovedAndSentToTrainingProviderPage Approve()
+        {
+            _formCompletionHelper.SelectRadioOptionByForAttribute(RadioOptions, "radio-approve");
+            _formCompletionHelper.EnterText(Message, _dataHelper.MessageToProvider);
+            _formCompletionHelper.Click(SaveSubmit);
+            return new ApprenticeDetailsApprovedAndSentToTrainingProviderPage(_context);
+        }
+
         public ChooseAnOptionPage SaveAndContinue()
         {
             ClickElement(SaveAndContinueButton);
             return new ChooseAnOptionPage(_context);
+        }
+
+        public ConfirmCohortDeletionPage SelectDeleteCohort()
+        {
+            _formCompletionHelper.ClickLinkByText("Delete this group");
+            return new ConfirmCohortDeletionPage(_context);
         }
 
         private void ClickElement(By locator)
@@ -79,10 +100,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             _formCompletionHelper.ClickElement(editApprenticeLinks[apprenticeNumber]);
         }
 
-        public ConfirmCohortDeletionPage SelectDeleteCohort()
-        {
-            _formCompletionHelper.ClickElement(DeleteCohortbutton);
-            return new ConfirmCohortDeletionPage(_context);
-        }
+        private void AddAnApprentice() => _formCompletionHelper.ClickLinkByText("Add another apprentice");
     }
 }

@@ -12,18 +12,19 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
         private readonly RegexHelper _regexHelper;
         #endregion
 
-        private By Instructions => By.CssSelector(".instructionSent tbody");
+        private By Instructions => By.CssSelector(".govuk-summary-list__row");
+
+        private By KeyIdentifier => By.CssSelector(".govuk-summary-list__key");
 
         public CohortReferenceBasePage(ScenarioContext context) : base(context)
         {
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _regexHelper = context.Get<RegexHelper>();
-            VerifyPage();
         }
 
         public string CohortReference()
         {
-            var reference = _pageInteractionHelper.GetRowData(Instructions, "Cohort reference");
+            var reference = _pageInteractionHelper.GetRowData(Instructions, KeyIdentifier, "Reference");
             return _regexHelper.GetCohortReference(reference);
         }
 
