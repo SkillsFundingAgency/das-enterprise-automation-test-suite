@@ -38,12 +38,82 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
             return SubmitRecruitmentLoginDetails();
         }
 
+
         internal RAA_EmployerSelectionPage CreateANewVacancy()
         {
             GoToRAA();
             return SubmitRecruitmentLoginDetails()
                 .CreateANewVacancy();
         }
+
+        internal RAA_EmployerInformationPage ChoosesTheEmployer(RAA_EmployerSelectionPage employerSelection, string location, string noOfpositions)
+        {
+            var raaEmployerInformation = employerSelection.SelectAnEmployer();
+
+            switch (location)
+            {
+                case "Use the main employer address":
+                    raaEmployerInformation = raaEmployerInformation.UseTheMainEmployerAddress(noOfpositions);
+                    break;
+
+                case "Add different location":
+                    raaEmployerInformation = raaEmployerInformation.AddDifferentLocation();
+                    break;
+                case "Set as a nationwide vacancy":
+                    raaEmployerInformation = raaEmployerInformation.SetAsANationWideVacancy(noOfpositions);
+                    break;
+            }
+
+            return raaEmployerInformation;
+        }
+
+        internal void ChooseAnonymous(RAA_EmployerInformationPage raaEmployerInformation, string answer)
+        {
+            switch (answer)
+            {
+                case "Yes":
+                    raaEmployerInformation.EmployerDoesNotWantToBeAnonymous();
+                    break;
+
+                case "No":
+                    raaEmployerInformation.EmployerWishesToBeAnonymous();
+                    break;
+            }
+        }
+
+        internal void ProviderFillsOutDetails(string location, string disabilityConfident, string applicationMethod, string apprenticeShip, string hoursPerWeek, string vacancyDuration)
+        {
+            switch (location)
+            {
+                case "Use the main employer address":
+                    break;
+
+                case "Add different location":
+                    AddMultipleVacancy();
+                    break;
+
+                case "Set as a nationwide vacancy":
+                    hoursPerWeek = "37";
+                    vacancyDuration = "52";
+                    break;
+            }
+
+            _objectContext.SetApprenticeshipVacancyType();
+
+            var enterTrainingDetails = EnterBasicVacancyDetails(VacancyType.Apprenticeship, disabilityConfident, applicationMethod);
+
+            var enterFurtherDetails = EnterTrainingDetails(enterTrainingDetails, apprenticeShip);
+
+            var requirementsAndProspects = EnterFurtherDetails(enterFurtherDetails, hoursPerWeek, vacancyDuration);
+
+            EnterRequirementsAndProspects(requirementsAndProspects);
+
+            if (applicationMethod != "Offline")
+            {
+                EnterExtraQuestions();
+            }
+        }
+
 
         internal RAA_EnterTrainingDetailsPage EnterBasicVacancyDetails()
         {

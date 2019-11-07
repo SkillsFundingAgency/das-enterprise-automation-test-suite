@@ -17,7 +17,9 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.FAA
         #endregion
 
         private By ApplyButton => By.Id("apply-button");
-        
+
+        private By ViewApplicationLink => By.Id("view-application-link");
+
 
         public FAA_ApprenticeSummaryPage(ScenarioContext context) : base(context)
         {
@@ -26,6 +28,13 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.FAA
             _formCompletionHelper = context.Get<FormCompletionHelper>();
             VerifyPage();
         }
+
+        public FAA_YourApplicationPage View()
+        {
+            _formCompletionHelper.Click(ViewApplicationLink);
+            return new FAA_YourApplicationPage(_context);
+        }
+
 
         public FAA_ApplicationFormPage Apply()
         {
