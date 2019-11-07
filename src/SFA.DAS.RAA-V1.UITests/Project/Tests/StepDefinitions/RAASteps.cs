@@ -1,10 +1,12 @@
-﻿using SFA.DAS.RAA_V1.UITests.Project.Helpers;
+﻿using NUnit.Framework;
+using SFA.DAS.RAA_V1.UITests.Project.Helpers;
 using SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA;
 using SFA.DAS.UI.Framework.TestSupport;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
 {
+
     [Binding]
     public class RAASteps
     {
@@ -23,6 +25,20 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
             _context = context;
             _objectContext = context.Get<ObjectContext>();
             _raaStepsHelper = new RAAStepsHelper(context);
+        }
+
+        [Then(@"the vacancy should not be displayed in Recruit")]
+        public void ThenTheVacancyShouldNotBeDisplayedInRecruit()
+        {
+            var homePage = _raaStepsHelper.GoToRAAHomePage(true);
+
+            var vacancySummary = homePage.SearchLiveVacancy();
+
+            var actual = vacancySummary.GetInfoSummary();
+
+            Assert.AreEqual("1 candidate has withdrawn their application", actual, "Withdraw message is not displayed");
+
+            homePage.ExitFromWebsite();
         }
 
         [Given(@"the Provider clones an existing traineeship")]
@@ -78,70 +94,19 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
         [When(@"the Provider chooses the employer '(.*)','(.*)'")]
         public void WhenTheProviderChoosesTheEmployer(string location, string noOfpositions)
         {
-            _raaEmployerInformation = _employerSelection.SelectAnEmployer();
-
-            switch (location)
-            {
-                case "Use the main employer address":
-                    _raaEmployerInformation = _raaEmployerInformation.UseTheMainEmployerAddress(noOfpositions);
-                    break;
-
-                case "Add different location":
-                    _raaEmployerInformation = _raaEmployerInformation.AddDifferentLocation();
-                    break;
-                case "Set as a nationwide vacancy":
-                    _raaEmployerInformation = _raaEmployerInformation.SetAsANationWideVacancy(noOfpositions);
-                    break;
-            }
+            _raaEmployerInformation = _raaStepsHelper.ChoosesTheEmployer(_employerSelection, location, noOfpositions);
         }
 
         [When(@"the Provider chooses their '(.*)'")]
         public void WhenTheProviderChoosesTheir(string answer)
         {
-            switch (answer)
-            {
-                case "Yes":
-                    _raaEmployerInformation.EmployerDoesNotWantToBeAnonymous();
-                    break;
-
-                case "No":
-                    _raaEmployerInformation.EmployerWishesToBeAnonymous();
-                    break;
-            }
+            _raaStepsHelper.ChooseAnonymous(_raaEmployerInformation, answer);
         }
 
         [When(@"the Provider fills out details for an Offline Vacancy '(.*)','(.*)','(.*)','(.*)','(.*)','(.*)'")]
         public void WhenTheProviderFillsOutDetailsForAnOfflineVacancy(string location, string disabilityConfident, string applicationMethod, string apprenticeShip, string hoursPerWeek, string vacancyDuration)
         {
-            switch (location)
-            {
-                case "Use the main employer address":
-                    break;
-
-                case "Add different location":
-                    _raaStepsHelper.AddMultipleVacancy();
-                    break;
-
-                case "Set as a nationwide vacancy":
-                    hoursPerWeek = "37";
-                    vacancyDuration = "52";
-                    break;
-            }
-
-            _objectContext.SetApprenticeshipVacancyType();
-
-            _enterTrainingDetails = _raaStepsHelper.EnterBasicVacancyDetails(VacancyType.Apprenticeship, disabilityConfident, applicationMethod);
-
-            _enterFurtherDetails = _raaStepsHelper.EnterTrainingDetails(_enterTrainingDetails, apprenticeShip);
-
-            _requirementsAndProspects = _raaStepsHelper.EnterFurtherDetails(_enterFurtherDetails, hoursPerWeek, vacancyDuration);
-
-            _raaStepsHelper.EnterRequirementsAndProspects(_requirementsAndProspects);
-
-            if (applicationMethod != "Offline")
-            {
-                _raaStepsHelper.EnterExtraQuestions();
-            }
+            _raaStepsHelper.ProviderFillsOutDetails(location, disabilityConfident, applicationMethod, apprenticeShip, hoursPerWeek, vacancyDuration);
         }
 
         [Then(@"Provider is able to submit the vacancy for approval")]

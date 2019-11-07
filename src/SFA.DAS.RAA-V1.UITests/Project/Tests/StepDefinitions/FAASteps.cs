@@ -1,7 +1,4 @@
 ﻿using SFA.DAS.RAA_V1.UITests.Project.Helpers;
-using SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.Manage;
-using SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA;
-using SFA.DAS.UI.Framework.TestSupport;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
@@ -26,6 +23,15 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
 
              _faaStepsHelper.ConfirmApplicationSubmission(applicationFormPage, qualificationdetails, workExperience, trainingCourse);
         }
+        
+        [When(@"the Applicant withdraw the application")]
+        public void WhenTheApplicantWithdrawTheApplication()
+        {
+            var homePage = _faaStepsHelper.GoToFAAHomePage();
+
+            _faaStepsHelper.WithdrawVacancy(homePage);
+        }
+
     }
 }
 
