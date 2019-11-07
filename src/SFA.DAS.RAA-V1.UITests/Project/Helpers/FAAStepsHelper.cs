@@ -29,21 +29,33 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
                 .SubmitValidLoginDetails();
         }
 
+        public void WithdrawVacancy(FAA_HomePage homePage)
+        {
+            SearchByReferenceNumber(homePage)
+                .View()
+                .Withdraw()
+                .YesWithdraw();
+        }
+
         public FAA_ApplicationFormPage ApplyForVacancy(FAA_HomePage homePage)
+        {
+          return SearchByReferenceNumber(homePage).Apply();
+        }
+
+        private FAA_ApprenticeSummaryPage SearchByReferenceNumber(FAA_HomePage homePage)
         {
             if (_objectContext.IsApprenticeshipVacancyType())
             {
                 return homePage.FindAnApprenticeship()
-                        .SearchByReferenceNumber()
-                        .Apply();
+                        .SearchByReferenceNumber();
             }
             else
             {
                 return homePage.FindTraineeship()
-                        .SearchByReferenceNumber()
-                        .Apply();
-            }   
+                        .SearchByReferenceNumber();
+            }
         }
+
 
         public void ConfirmApplicationSubmission(FAA_ApplicationFormPage applicationFormPage, string qualificationdetails, string workExperience, string trainingCourse)
         {
