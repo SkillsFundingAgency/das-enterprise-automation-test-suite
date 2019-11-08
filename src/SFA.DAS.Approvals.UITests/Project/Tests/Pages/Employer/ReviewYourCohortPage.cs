@@ -57,12 +57,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             return new ChooseAReservationPage(_context);
         }
 
-        public ChooseAnOptionPage SelectContinueToApproval()
-        {
-            ClickElement(ContinueToApprovalButton);
-            return new ChooseAnOptionPage(_context);
-        }
- 
         public YourCohortRequestsPage SaveAndExit()
         {
             _formCompletionHelper.ClickLinkByText("Save and exit");
@@ -77,10 +71,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             return new ApprenticeDetailsApprovedAndSentToTrainingProviderPage(_context);
         }
 
-        public ChooseAnOptionPage SaveAndContinue()
+        public NotificationSentToTrainingProviderPage SentToTrainingProvider()
         {
-            ClickElement(SaveAndContinueButton);
-            return new ChooseAnOptionPage(_context);
+            _formCompletionHelper.SelectRadioOptionByForAttribute(RadioOptions, "radio-send");
+            _formCompletionHelper.EnterText(Message, _dataHelper.MessageToProvider);
+            _formCompletionHelper.Click(SaveSubmit);
+            return new NotificationSentToTrainingProviderPage(_context);
         }
 
         public ConfirmCohortDeletionPage SelectDeleteCohort()

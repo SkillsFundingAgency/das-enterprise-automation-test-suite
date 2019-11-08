@@ -15,4 +15,17 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             VerifyPage();
         }
     }
+    public class NotificationSentToTrainingProviderPage : CohortReferenceBasePage
+    {
+        protected override string PageTitle => "Notification sent to training provider";
+
+        protected override By PageHeader => By.CssSelector(".govuk-panel__title");
+
+        public NotificationSentToTrainingProviderPage(ScenarioContext context) : base(context)
+        {
+            VerifyPage();
+        }
+    }
+
+    
 }
