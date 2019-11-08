@@ -34,14 +34,20 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         public string GetCohortReferenceFromUrl(string url)
         {
-            Match match = Regex.Match(url, @"apprentices\/[A-Z0-9]{6}\/");
+            string match(string action)
+            {
+                var x = CohortMatch(url, action);
+                return x.Success ? Regex.Replace(x.Value, $"{action}|/", string.Empty) : null;
+            }
 
-            return match.Success ? Regex.Replace(match.Value, @"apprentices|\/", string.Empty) : url;
+            return match("apprentices") ?? match("unapproved") ?? url;
         }
 
-        private string TrimAnySpace(string value)
+        private string TrimAnySpace(string value) => Regex.Replace(value, @"\s", string.Empty);
+
+        private Match CohortMatch(string url, string action) 
         {
-            return Regex.Replace(value, @"\s", string.Empty);
+            return Regex.Match(url, $@"{action}\/[A-Z0-9][A-Z0-9][A-Z0-9][A-Z0-9][A-Z0-9][A-Z0-9]");
         }
     }
 }

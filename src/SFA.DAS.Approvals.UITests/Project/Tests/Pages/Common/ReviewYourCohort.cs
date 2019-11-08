@@ -1,5 +1,6 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.UI.FrameworkHelpers;
+using System.Collections.Generic;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
@@ -20,9 +21,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
             pageInteractionHelper = context.Get<PageInteractionHelper>();
         }
 
+        protected List<IWebElement> TotalNoOfEditableApprentices()
+        {
+            return pageInteractionHelper.GetLinks("Edit");
+        }
+
         public int TotalNoOfApprentices()
         {
-            return pageInteractionHelper.GetLinks("Edit").Count;
+            return TotalNoOfEditableApprentices().Count;
         }
 
         public string ApprenticeTotalCost()

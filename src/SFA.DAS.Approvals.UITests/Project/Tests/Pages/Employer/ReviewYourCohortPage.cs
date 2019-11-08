@@ -23,7 +23,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         private By SaveAndContinueButton => By.ClassName("finishEditingBtn");
         private By ContinueToApprovalButton => By.ClassName("finishEditingBtn");
-        private By EditApprenticeLink => By.LinkText("Edit");
         private By RadioOptions => By.CssSelector(".govuk-radios__label");
         private By Message => By.CssSelector("#approve-details");
         private By SaveSubmit => By.CssSelector(".govuk-button");
@@ -38,11 +37,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             var noOfApprentice = TotalNoOfApprentices();
             _pageTitle = noOfApprentice == 1 ? "Approve apprentice details" : $"Approve {noOfApprentice} apprentices' details";
             VerifyPage();
-        }
-
-        public int TotalNoOfEditableApprentice()
-        {
-            return _pageInteractionHelper.FindElements(By.LinkText("Edit")).Count;
         }
 
         public EditApprenticePage SelectEditApprentice(int apprenticeNumber = 0)
@@ -67,6 +61,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         {
             ClickElement(ContinueToApprovalButton);
             return new ChooseAnOptionPage(_context);
+        }
+ 
+        public YourCohortRequestsPage SaveAndExit()
+        {
+            _formCompletionHelper.ClickLinkByText("Save and exit");
+            return new YourCohortRequestsPage(_context);
         }
 
         public ApprenticeDetailsApprovedAndSentToTrainingProviderPage Approve()
@@ -96,7 +96,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         private void Edit(int apprenticeNumber)
         {
-            var editApprenticeLinks = _pageInteractionHelper.FindElements(EditApprenticeLink);
+            var editApprenticeLinks = TotalNoOfEditableApprentices();
             _formCompletionHelper.ClickElement(editApprenticeLinks[apprenticeNumber]);
         }
 
