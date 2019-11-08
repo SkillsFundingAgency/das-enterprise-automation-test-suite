@@ -215,7 +215,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         public IWebElement GetLinkContains(By by, string linkText) => GetLink(by, (x) => x.ContainsCompareCaseInsensitive(linkText));
 
-        public string GetRowData(By tableIdentifier, By keyIdentifier, string rowIdentifier) => FindElements(tableIdentifier).Where(x => x.FindElements(keyIdentifier).Any(y => y?.Text == rowIdentifier)).SingleOrDefault()?.Text;
+        public string GetRowData(By tableIdentifier, By keyIdentifier, params string[] rowIdentifier) => FindElements(tableIdentifier).Where(x => x.FindElements(keyIdentifier).Any(y => rowIdentifier.Any(r => y?.Text == r))).SingleOrDefault()?.Text;
 
         public IWebElement FindElement(By locator) => _webDriver.FindElement(locator);
 

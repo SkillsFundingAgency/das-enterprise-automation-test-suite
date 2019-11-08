@@ -12,9 +12,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
         private readonly RegexHelper _regexHelper;
         #endregion
 
-        private By Instructions => By.CssSelector(".govuk-summary-list__row");
-
-        private By KeyIdentifier => By.CssSelector(".govuk-summary-list__key");
+        private By Instructions => By.CssSelector(".govuk-summary-list__row, .instructionSent tbody");
+        private By KeyIdentifier => By.CssSelector(".govuk-summary-list__key, tr > td");
 
         public CohortReferenceBasePage(ScenarioContext context) : base(context)
         {
@@ -24,7 +23,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
 
         public string CohortReference()
         {
-            var reference = _pageInteractionHelper.GetRowData(Instructions, KeyIdentifier, "Reference");
+            var reference = _pageInteractionHelper.GetRowData(Instructions, KeyIdentifier, "Reference", "Cohort reference");
             return _regexHelper.GetCohortReference(reference);
         }
 
