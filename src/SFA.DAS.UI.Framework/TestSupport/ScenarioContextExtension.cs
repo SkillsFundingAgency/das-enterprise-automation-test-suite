@@ -9,7 +9,6 @@ namespace SFA.DAS.UI.Framework.TestSupport
         #region Constants
         private const string TestProjectConfigKey = "testprojectconfig";
         private const string RegistrationProjectConfigKey = "registrationprojectconfig";
-        private const string ManageFundingProjectConfigKey = "managefundingprojectconfig";
         private const string ApprovalsSupportProjectConfigKey = "approvalssupportprojectconfigkey";
         private const string RAAV1ProjectConfigKey = "raav1projectconfigkey";
         private const string ApprovalsProjectConfigKey = "approvalsprojectconfig";
