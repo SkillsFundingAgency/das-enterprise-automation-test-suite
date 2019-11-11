@@ -3,7 +3,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprovalsSupport.UITests.Project
 {
-    class ApprovalsSupportConfigurationSetup
+    public class ApprovalsSupportConfigurationSetup
     {
         private readonly ScenarioContext _context;
         private readonly IConfigSection _configSection;
@@ -18,7 +18,7 @@ namespace SFA.DAS.ApprovalsSupport.UITests.Project
         public void SetUpTestProjectConfiguration()
         {
             var config = _configSection.GetConfigSection<ApprovalsSupportConfig>();
-            _context.SetRAAV1Config(config);
+            _context.SetApprovalsSupportConfig(config);
         }
     }
 }

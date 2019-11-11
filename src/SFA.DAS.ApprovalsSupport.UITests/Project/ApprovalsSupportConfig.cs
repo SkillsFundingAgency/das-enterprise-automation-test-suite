@@ -1,6 +1,6 @@
 ﻿namespace SFA.DAS.ApprovalsSupport.UITests.Project
 {
-    class ApprovalsSupportConfig
+    public class ApprovalsSupportConfig
     {
         public string SupportConsoleUrl { get; set; }
         public string SupportLoginUsername { get; set; }
