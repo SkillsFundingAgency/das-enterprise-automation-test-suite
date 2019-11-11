@@ -23,7 +23,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.MongoDb.DataGenerat
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DataGenerator", "DataGenerator", "{6CBA241C-2191-4B98-9FBD-E493554506AD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SFA.DAS.RAA-V1.UITests", "SFA.DAS.RAA-V1.UITests\SFA.DAS.RAA-V1.UITests.csproj", "{AC429705-0AFC-4514-B95D-26132F808BD2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.RAA-V1.UITests", "SFA.DAS.RAA-V1.UITests\SFA.DAS.RAA-V1.UITests.csproj", "{AC429705-0AFC-4514-B95D-26132F808BD2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SFA.DAS.ApprovalsSupport.UITests", "SFA.DAS.ApprovalsSupport.UITests\SFA.DAS.ApprovalsSupport.UITests.csproj", "{42C05AB2-BDC7-4A32-B0EB-11AB85B810DB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -74,6 +76,12 @@ Global
 		{AC429705-0AFC-4514-B95D-26132F808BD2}.Development|Any CPU.Build.0 = Debug|Any CPU
 		{AC429705-0AFC-4514-B95D-26132F808BD2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AC429705-0AFC-4514-B95D-26132F808BD2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{42C05AB2-BDC7-4A32-B0EB-11AB85B810DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42C05AB2-BDC7-4A32-B0EB-11AB85B810DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42C05AB2-BDC7-4A32-B0EB-11AB85B810DB}.Development|Any CPU.ActiveCfg = Debug|Any CPU
+		{42C05AB2-BDC7-4A32-B0EB-11AB85B810DB}.Development|Any CPU.Build.0 = Debug|Any CPU
+		{42C05AB2-BDC7-4A32-B0EB-11AB85B810DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42C05AB2-BDC7-4A32-B0EB-11AB85B810DB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

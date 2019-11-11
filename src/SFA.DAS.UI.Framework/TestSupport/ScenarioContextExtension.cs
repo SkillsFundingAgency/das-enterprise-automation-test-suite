@@ -9,7 +9,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
         #region Constants
         private const string TestProjectConfigKey = "testprojectconfig";
         private const string RegistrationProjectConfigKey = "registrationprojectconfig";
-        private const string ManageFundingProjectConfigKey = "managefundingprojectconfig";
+        private const string ApprovalsSupportProjectConfigKey = "approvalssupportprojectconfigkey";
         private const string RAAV1ProjectConfigKey = "raav1projectconfigkey";
         private const string ApprovalsProjectConfigKey = "approvalsprojectconfig";
         private const string ProviderPermissionConfigKey = "providerpermissionconfigkey";
@@ -68,24 +68,24 @@ namespace SFA.DAS.UI.Framework.TestSupport
             return Get<T>(context, TransfersProjectConfigKey);
         }
 
-        public static T GetManageFundingConfig<T>(this ScenarioContext context)
-        {
-            return Get<T>(context, ManageFundingProjectConfigKey);
-        }
-
         public static T GetRAAV1Config<T>(this ScenarioContext context)
         {
             return Get<T>(context, RAAV1ProjectConfigKey);
         }
 
+        public static T GetApprovalsSupportConfig<T>(this ScenarioContext context)
+        {
+            return Get<T>(context, ApprovalsSupportProjectConfigKey);
+        }
+
+        public static void SetApprovalsSupportConfig<T>(this ScenarioContext context, T value)
+        {
+            Set(context, value, ApprovalsSupportProjectConfigKey);
+        }
+
         public static void SetRAAV1Config<T>(this ScenarioContext context, T value)
         {
             Set(context, value, RAAV1ProjectConfigKey);
-        }
-
-        public static void SetManageFundingConfig<T>(this ScenarioContext context, T value)
-        {
-            Set(context, value, ManageFundingProjectConfigKey);
         }
 
         public static void SetMongoDbConfig(this ScenarioContext context, MongoDbConfig value)
