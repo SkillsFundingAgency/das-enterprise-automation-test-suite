@@ -63,7 +63,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
         
         public string EmployerWebsiteUrl { get; }
 
-        public string VacancyTitle { get; }
+        public string VacancyTitle { get; set; }
 
         public string VacancyShortDescription { get; }
 

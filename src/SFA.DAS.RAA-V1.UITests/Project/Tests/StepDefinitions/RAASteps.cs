@@ -26,6 +26,19 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
             _objectContext = context.Get<ObjectContext>();
             _raaStepsHelper = new RAAStepsHelper(context);
         }
+        
+        [Given(@"Provider views a vacancy which has NO Applications")]
+        public void GivenProviderViewsAVacancyWhichHasNOApplications()
+        {
+            var homePage = _raaStepsHelper.GoToRAAHomePage(false);
+        }
+
+        [Then(@"Provider is able to change the '(.*)' of the vacancy")]
+        public void ThenProviderIsAbleToChangeTheOfTheVacancy(string status)
+        {
+            throw new PendingStepException();
+        }
+
 
         [Then(@"the vacancy should not be displayed in Recruit")]
         public void ThenTheVacancyShouldNotBeDisplayedInRecruit()
