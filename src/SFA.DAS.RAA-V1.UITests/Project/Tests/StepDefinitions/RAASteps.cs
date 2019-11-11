@@ -34,7 +34,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
 
             var vacancySummary = homePage.SearchLiveVacancy();
 
-            var actual = vacancySummary.GetInfoSummary();
+            var actual = vacancySummary.GetVacancyStatus();
 
             Assert.AreEqual("1 candidate has withdrawn their application", actual, "Withdraw message is not displayed");
 
