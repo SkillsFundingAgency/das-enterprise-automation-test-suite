@@ -58,31 +58,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
         [When(@"the Vacancy details are filled out for a Traineeship for a different '(.*)'")]
         public void WhenTheVacancyDetailsAreFilledOutForATraineeshipForADifferent(string location)
         {
-            string disabilityConfident = "Yes";
-            string applicationMethod = "Online";
-            switch (location)
-            {
-                case "Use the main employer address":
-                    break;
-
-                case "Add different location":
-                    _raaStepsHelper.AddMultipleVacancy();
-                    disabilityConfident = "No";
-                    break;
-
-                case "Set as a nationwide vacancy":
-                    break;
-            }
-
-            _enterTrainingDetails = _raaStepsHelper.EnterBasicVacancyDetails(VacancyType.Traineeship, disabilityConfident, applicationMethod);
-
-            _enterOpportunityDetails = _raaStepsHelper.EnterTrainingDetails(_enterTrainingDetails);
-
-            _requirementsAndProspects = _raaStepsHelper.EnterOpportunityDetails(_enterOpportunityDetails, "18");
-
-            _raaStepsHelper.EnterRequirementsAndProspects(_requirementsAndProspects);
-
-            _raaStepsHelper.EnterExtraQuestions();
+            _raaStepsHelper.ProviderFillsOutTraineeshipDetails(location);
         }
 
         [Given(@"the Provider initiates Create Apprenticeship Vacancy in Recruit")]

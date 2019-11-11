@@ -81,6 +81,33 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
             }
         }
 
+        public void ProviderFillsOutTraineeshipDetails(string location)
+        {
+            string disabilityConfident = "Yes";
+            string applicationMethod = "Online";
+            switch (location)
+            {
+                case "Use the main employer address":
+                    break;
+
+                case "Add different location":
+                    AddMultipleVacancy();
+                    disabilityConfident = "No";
+                    break;
+
+                case "Set as a nationwide vacancy":
+                    break;
+            }
+
+            var enterTrainingDetails = EnterBasicVacancyDetails(VacancyType.Traineeship, disabilityConfident, applicationMethod);
+
+            var enterOpportunityDetails = EnterTrainingDetails(enterTrainingDetails);
+
+            var requirementsAndProspects = EnterOpportunityDetails(enterOpportunityDetails, "18");
+
+            EnterRequirementsAndExtraQuestions(requirementsAndProspects, applicationMethod);
+        }
+
         internal void ProviderFillsOutDetails(string location, string disabilityConfident, string applicationMethod, string apprenticeShip, string hoursPerWeek, string vacancyDuration)
         {
             switch (location)
@@ -106,6 +133,11 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
 
             var requirementsAndProspects = EnterFurtherDetails(enterFurtherDetails, hoursPerWeek, vacancyDuration);
 
+            EnterRequirementsAndExtraQuestions(requirementsAndProspects, applicationMethod);
+        }
+
+        private void EnterRequirementsAndExtraQuestions(RAA_RequirementsAndProspectsPage requirementsAndProspects, string applicationMethod)
+        {
             EnterRequirementsAndProspects(requirementsAndProspects);
 
             if (applicationMethod != "Offline")
@@ -113,7 +145,6 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
                 EnterExtraQuestions();
             }
         }
-
 
         internal RAA_EnterTrainingDetailsPage EnterBasicVacancyDetails()
         {
