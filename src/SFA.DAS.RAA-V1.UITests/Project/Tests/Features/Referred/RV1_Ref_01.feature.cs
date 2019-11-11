@@ -69,7 +69,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Features.Referred
             testRunner.CollectScenarioErrors();
         }
         
-        public virtual void RV1_REF_01_ReferingAVacancyWithComments(string location, string anonymity, string disabilityConfident, string applicationMethod, string apprenticeshipType, string hoursPerWeek, string vacancyDuration, string changeteam, string changeRole, string noOfPositions, string[] exampleTags)
+        public virtual void RV1_REF_01_ReferringAnApprenticeshipVacancyWithComments(string location, string anonymity, string disabilityConfident, string applicationMethod, string apprenticeshipType, string hoursPerWeek, string vacancyDuration, string changeteam, string changeRole, string noOfPositions, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "raa-v1",
@@ -78,7 +78,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Features.Referred
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
             }
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV1_REF_01 - Refering a vacancy with comments", null, @__tags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV1_REF_01 - Referring an Apprenticeship Vacancy with comments", null, @__tags);
 #line 5
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
@@ -104,13 +104,14 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RV1_REF_01 - Refering a vacancy with comments: Use the main employer address")]
+        [NUnit.Framework.DescriptionAttribute("RV1_REF_01 - Referring an Apprenticeship Vacancy with comments: Use the main empl" +
+            "oyer address")]
         [NUnit.Framework.CategoryAttribute("raa-v1")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public virtual void RV1_REF_01_ReferingAVacancyWithComments_UseTheMainEmployerAddress()
+        public virtual void RV1_REF_01_ReferringAnApprenticeshipVacancyWithComments_UseTheMainEmployerAddress()
         {
 #line 5
-this.RV1_REF_01_ReferingAVacancyWithComments("Use the main employer address", "No", "No", "Online", "Framework", "42", "52", "West Midlands", "Vacancy reviewer", "2", ((string[])(null)));
+this.RV1_REF_01_ReferringAnApprenticeshipVacancyWithComments("Use the main employer address", "No", "No", "Online", "Framework", "42", "52", "West Midlands", "Vacancy reviewer", "2", ((string[])(null)));
 #line hidden
         }
     }
