@@ -38,20 +38,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             return new CohortSentYourTrainingProviderPage(_context);
         }
 
-        public ApprenticeDetailsApprovedAndSentToTrainingProviderPage SendInstructionsToProviderForAnApprovedCohort()
-        {
-            Message()
-            .Send();
-            return new ApprenticeDetailsApprovedAndSentToTrainingProviderPage(_context);
-        }
-
-        public CohortSentForReviewPage SendInstructionsToProviderForCohortToBeReviewed()
-        {
-            Message()
-            .Send();
-            return new CohortSentForReviewPage(_context);
-        }
-
         private MessageForYourTrainingProviderPage Message()
         {
             _formCompletionHelper.EnterText(MessageBox, _dataHelper.MessageToProvider);
