@@ -36,7 +36,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
 
             var actual = vacancySummary.GetVacancyStatus();
 
-            Assert.AreEqual("1 candidate has withdrawn their application", actual, "Withdraw message is not displayed");
+            Assert.AreEqual("Withdrawn", actual, "Withdrawn status is not displayed");
 
             homePage.ExitFromWebsite();
         }
