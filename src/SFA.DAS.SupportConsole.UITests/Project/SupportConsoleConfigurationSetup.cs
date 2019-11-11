@@ -1,14 +1,14 @@
 ﻿using SFA.DAS.UI.Framework.TestSupport;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.ApprovalsSupport.UITests.Project
+namespace SFA.DAS.SupportConsole.UITests.Project
 {
-    public class ApprovalsSupportConfigurationSetup
+    public class SupportConsoleConfigurationSetup
     {
         private readonly ScenarioContext _context;
         private readonly IConfigSection _configSection;
 
-        public ApprovalsSupportConfigurationSetup(ScenarioContext context)
+        public SupportConsoleConfigurationSetup(ScenarioContext context)
         {
             _context = context;
             _configSection = context.Get<IConfigSection>();
@@ -17,8 +17,8 @@ namespace SFA.DAS.ApprovalsSupport.UITests.Project
         [BeforeScenario(Order = 2)]
         public void SetUpTestProjectConfiguration()
         {
-            var config = _configSection.GetConfigSection<ApprovalsSupportConfig>();
-            _context.SetApprovalsSupportConfig(config);
+            var config = _configSection.GetConfigSection<SupportConsoleConfig>();
+            _context.SetSupportConsoleConfig(config);
         }
     }
 }
