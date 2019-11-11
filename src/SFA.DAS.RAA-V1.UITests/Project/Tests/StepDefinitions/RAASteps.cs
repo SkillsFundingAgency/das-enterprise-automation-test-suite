@@ -16,6 +16,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
         private RAA_EnterFurtherDetailsPage _enterFurtherDetails;
         private RAA_EnterOpportunityDetailsPage _enterOpportunityDetails;
         private RAA_RequirementsAndProspectsPage _requirementsAndProspects;
+        private RAA_VacancyPreviewPage _vacancyPreviewPage;
         private readonly RAAStepsHelper _raaStepsHelper;
         private readonly ObjectContext _objectContext;
         private readonly ScenarioContext _context;
@@ -31,12 +32,29 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
         public void GivenProviderViewsAVacancyWhichHasNOApplications()
         {
             var homePage = _raaStepsHelper.GoToRAAHomePage(false);
+
+            _vacancyPreviewPage = homePage.SelectLiveVacancyWithNoApplications();
+
+            _vacancyPreviewPage.SetVacancyReference();
         }
 
         [Then(@"Provider is able to change the '(.*)' of the vacancy")]
         public void ThenProviderIsAbleToChangeTheOfTheVacancy(string status)
         {
-            throw new PendingStepException();
+            switch (status)
+            {
+                case "Close this vacancy":
+                    _vacancyPreviewPage.CloseVacancy().CloseOpportunity();
+
+                    var vacancypreview = new RAA_RecruitmentHomePage(_context, true).SearchClosedVacancy();
+
+                    var actual = vacancypreview.GetVacancyInfo();
+
+                    Assert.AreEqual("This vacancy is now closed", actual, "Withdraw message is not displayed");
+                    break;
+                default:
+                    break;
+            }
         }
 
 

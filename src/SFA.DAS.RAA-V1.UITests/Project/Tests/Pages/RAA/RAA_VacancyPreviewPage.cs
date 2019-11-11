@@ -1,5 +1,4 @@
-﻿using OpenQA.Selenium;
-using TechTalk.SpecFlow;
+﻿using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
 {
@@ -11,29 +10,26 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         private readonly ScenarioContext _context;
         #endregion
 
-        private By CloseVacancyLink => By.LinkText("Close this vacancy");
-        private By ChangeVacancyDates => By.LinkText("Change vacancy dates");
-
         public RAA_VacancyPreviewPage(ScenarioContext context) : base(context)
         {
             _context = context;
         }
 
-        public RAA_VacancyPreviewPage ClickCloseVacancyLink()
+        public RAA_CloseThisOpportunityPage CloseVacancy()
         {
-            formCompletionHelper.Click(CloseVacancyLink);
+            formCompletionHelper.ClickLinkByText("Close this vacancy");
+            return new RAA_CloseThisOpportunityPage(_context);
+        }
+
+        public RAA_VacancyPreviewPage ChangeVacancyDates()
+        {
+            formCompletionHelper.ClickLinkByText("Change vacancy dates");
             return this;
         }
 
-        public RAA_VacancyPreviewPage ClickChangeVacancyDates()
+        public RAA_VacancyPreviewPage IncreaseWage()
         {
-            formCompletionHelper.Click(ChangeVacancyDates);
-            return this;
-        }
-
-        public RAA_VacancyPreviewPage ClickIncreaseWage()
-        {
-            formCompletionHelper.Click(ChangeVacancyDates);
+            formCompletionHelper.ClickLinkByText("Increase wage");
             return this;
         }
     }

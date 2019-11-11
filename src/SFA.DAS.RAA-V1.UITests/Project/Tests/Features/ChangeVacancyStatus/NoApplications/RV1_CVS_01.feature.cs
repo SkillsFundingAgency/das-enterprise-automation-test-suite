@@ -100,29 +100,6 @@ this.ScenarioInitialize(scenarioInfo);
 this.RV1_CVS_01_ChangeVacancyStatusWhichHasNOApplications("Close this vacancy", ((string[])(null)));
 #line hidden
         }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RV1_CVS_01 - Change Vacancy status which has NO Applications: Change vacancy date" +
-            "s")]
-        [NUnit.Framework.CategoryAttribute("raa-v1")]
-        [NUnit.Framework.CategoryAttribute("regression")]
-        public virtual void RV1_CVS_01_ChangeVacancyStatusWhichHasNOApplications_ChangeVacancyDates()
-        {
-#line 5
-this.RV1_CVS_01_ChangeVacancyStatusWhichHasNOApplications("Change vacancy dates", ((string[])(null)));
-#line hidden
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RV1_CVS_01 - Change Vacancy status which has NO Applications: Increase wage")]
-        [NUnit.Framework.CategoryAttribute("raa-v1")]
-        [NUnit.Framework.CategoryAttribute("regression")]
-        public virtual void RV1_CVS_01_ChangeVacancyStatusWhichHasNOApplications_IncreaseWage()
-        {
-#line 5
-this.RV1_CVS_01_ChangeVacancyStatusWhichHasNOApplications("Increase wage", ((string[])(null)));
-#line hidden
-        }
     }
 }
 #pragma warning restore

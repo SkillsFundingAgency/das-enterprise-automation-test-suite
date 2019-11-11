@@ -34,6 +34,13 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         private By TableRows => By.CssSelector("tbody tr");
         private By NextPage => By.CssSelector(".page-navigation__btn.next");
 
+        public RAA_RecruitmentHomePage(ScenarioContext context, bool navigate) : base(context, navigate)
+        {
+            _context = context;
+            _objectContext = context.Get<ObjectContext>();
+            _dataHelper = context.Get<RAADataHelper>();
+            _pageInteractionHelper = context.Get<PageInteractionHelper>();
+        }
 
         public RAA_RecruitmentHomePage(ScenarioContext context) : base(context)
         {
@@ -63,6 +70,12 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         {
             formCompletionHelper.Click(CreateANewVacancyButton);
             return new RAA_EmployerSelectionPage(_context);
+        }
+
+        public RAA_ClosedVacancyPreviewPage SearchClosedVacancy()
+        {
+            SearchByReferenceNumber("Closed");
+            return new RAA_ClosedVacancyPreviewPage(_context);
         }
 
         public RAA_VacancySummaryPage SearchLiveVacancy()

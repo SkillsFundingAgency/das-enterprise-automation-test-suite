@@ -9,5 +9,5 @@ Scenario Outline: RV1_CVS_01 - Change Vacancy status which has NO Applications
 Examples:
 	| status               |
 	| Close this vacancy   |
-	| Change vacancy dates |
-	| Increase wage        |
+	#| Change vacancy dates |
+	#| Increase wage        |
