@@ -119,9 +119,9 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.Manage
 
         private void ChangeFilters(string changeTeam, string changeRole)
         {
-            ChangeFilter(ChangeTeam, InputChangeTeam, changeTeam);
-
             ChangeFilter(ChangeRole, InputChangeRole, changeRole);
+
+            ChangeFilter(ChangeTeam, InputChangeTeam, changeTeam);
         }
 
     }

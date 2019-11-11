@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Features.Withdraw
+namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Features.Withdraw.TraineeshipVacancy
 {
     using TechTalk.SpecFlow;
     
@@ -18,20 +18,20 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Features.Withdraw
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.0.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("RV1_WD_01")]
-    public partial class RV1_WD_01Feature
+    [NUnit.Framework.DescriptionAttribute("RV1_WDTV_01")]
+    public partial class RV1_WDTV_01Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "RV1_WD_01.feature"
+#line 1 "RV1_WDTV_01.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "RV1_WD_01", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "RV1_WDTV_01", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -69,7 +69,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Features.Withdraw
             testRunner.CollectScenarioErrors();
         }
         
-        public virtual void RV1_WD_01_WithdrawVacancy(string location, string anonymity, string disabilityConfident, string applicationMethod, string apprenticeshipType, string hoursPerWeek, string vacancyDuration, string changeteam, string changeRole, string noOfPositions, string qualificationDetails, string workExperience, string trainingCourse, string[] exampleTags)
+        public virtual void RV1_WDTV_01_WithdrawTraineeshipVacancy(string location, string changeteam, string changeRole, string qualificationDetails, string workExperience, string trainingCourse, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "raa-v1",
@@ -78,41 +78,29 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Features.Withdraw
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
             }
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV1_WD_01 - Withdraw Vacancy", null, @__tags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV1_WDTV_01 - Withdraw Traineeship Vacancy", null, @__tags);
 #line 5
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line hidden
-            TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
+            TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
                         "location",
                         "anonymity",
-                        "DisabilityConfident",
-                        "ApplicationMethod",
-                        "ApprenticeshipType",
-                        "HoursPerWeek",
-                        "VacancyDuration",
                         "Changeteam",
                         "ChangeRole",
-                        "NoOfPositions",
                         "QualificationDetails",
                         "WorkExperience",
                         "TrainingCourse"});
-            table1.AddRow(new string[] {
+            table2.AddRow(new string[] {
                         string.Format("{0}", location),
-                        string.Format("{0}", anonymity),
-                        string.Format("{0}", disabilityConfident),
-                        string.Format("{0}", applicationMethod),
-                        string.Format("{0}", apprenticeshipType),
-                        string.Format("{0}", hoursPerWeek),
-                        string.Format("{0}", vacancyDuration),
+                        "Yes",
                         string.Format("{0}", changeteam),
                         string.Format("{0}", changeRole),
-                        string.Format("{0}", noOfPositions),
                         string.Format("{0}", qualificationDetails),
                         string.Format("{0}", workExperience),
                         string.Format("{0}", trainingCourse)});
 #line 6
- testRunner.Given("the vacancy is Live in Recruit", ((string)(null)), table1, "Given ");
+ testRunner.Given("the traineeship vacancy is Live in Recruit", ((string)(null)), table2, "Given ");
 #line 9
  testRunner.When("the Applicant withdraw the application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 10
@@ -122,13 +110,13 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RV1_WD_01 - Withdraw Vacancy: Set as a nationwide vacancy")]
+        [NUnit.Framework.DescriptionAttribute("RV1_WDTV_01 - Withdraw Traineeship Vacancy: Add different location")]
         [NUnit.Framework.CategoryAttribute("raa-v1")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public virtual void RV1_WD_01_WithdrawVacancy_SetAsANationwideVacancy()
+        public virtual void RV1_WDTV_01_WithdrawTraineeshipVacancy_AddDifferentLocation()
         {
 #line 5
-this.RV1_WD_01_WithdrawVacancy("Set as a nationwide vacancy", "Yes", "Yes", "Online", "Standard", "42", "52", "West Midlands", "Vacancy reviewer", "3", "Yes", "No", "No", ((string[])(null)));
+this.RV1_WDTV_01_WithdrawTraineeshipVacancy("Add different location", "West Midlands", "Vacancy reviewer", "No", "No", "No", ((string[])(null)));
 #line hidden
         }
     }
