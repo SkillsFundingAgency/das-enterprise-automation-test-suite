@@ -15,7 +15,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         private readonly PageInteractionHelper _pageInteractionHelper;
         #endregion
 
-        private By InfoSummary => By.CssSelector(".info-summary > p");
+        private By VacancyStatus => By.CssSelector("#applicationTable .applicant span");
 
 
         public RAA_VacancySummaryPage(ScenarioContext context) : base(context)
@@ -25,9 +25,9 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
             VerifyPage();
         }
 
-        public string GetInfoSummary()
+        public string GetVacancyStatus()
         {
-            return _pageInteractionHelper.GetText(InfoSummary);
+            return _pageInteractionHelper.GetText(VacancyStatus);
         }
     }
 }

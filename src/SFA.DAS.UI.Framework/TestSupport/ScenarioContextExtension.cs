@@ -9,7 +9,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
         #region Constants
         private const string TestProjectConfigKey = "testprojectconfig";
         private const string RegistrationProjectConfigKey = "registrationprojectconfig";
-        private const string ApprovalsSupportProjectConfigKey = "approvalssupportprojectconfigkey";
+        private const string SupportConsoleProjectConfigKey = "SupportConsoleprojectconfigkey";
         private const string RAAV1ProjectConfigKey = "raav1projectconfigkey";
         private const string ApprovalsProjectConfigKey = "approvalsprojectconfig";
         private const string ProviderPermissionConfigKey = "providerpermissionconfigkey";
@@ -73,14 +73,14 @@ namespace SFA.DAS.UI.Framework.TestSupport
             return Get<T>(context, RAAV1ProjectConfigKey);
         }
 
-        public static T GetApprovalsSupportConfig<T>(this ScenarioContext context)
+        public static T GetSupportConsoleConfig<T>(this ScenarioContext context)
         {
-            return Get<T>(context, ApprovalsSupportProjectConfigKey);
+            return Get<T>(context, SupportConsoleProjectConfigKey);
         }
 
-        public static void SetApprovalsSupportConfig<T>(this ScenarioContext context, T value)
+        public static void SetSupportConsoleConfig<T>(this ScenarioContext context, T value)
         {
-            Set(context, value, ApprovalsSupportProjectConfigKey);
+            Set(context, value, SupportConsoleProjectConfigKey);
         }
 
         public static void SetRAAV1Config<T>(this ScenarioContext context, T value)
