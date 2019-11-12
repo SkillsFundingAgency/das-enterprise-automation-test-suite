@@ -16,6 +16,9 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
         private RAA_EnterFurtherDetailsPage _enterFurtherDetails;
         private RAA_EnterOpportunityDetailsPage _enterOpportunityDetails;
         private RAA_RequirementsAndProspectsPage _requirementsAndProspects;
+        private RAA_VacancyPreviewPage _vacancyPreviewPage;
+        private RAA_VacancySummaryPage _vacancySummaryPage;
+        private RAA_VacancyLinkBasePage _vacancyLinkBasePage;
         private readonly RAAStepsHelper _raaStepsHelper;
         private readonly ObjectContext _objectContext;
         private readonly ScenarioContext _context;
@@ -25,6 +28,36 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
             _context = context;
             _objectContext = context.Get<ObjectContext>();
             _raaStepsHelper = new RAAStepsHelper(context);
+        }
+        
+        [Given(@"Provider views a vacancy which has (0|1) Applications")]
+        public void GivenProviderViewsAVacancyWhichHasApplications(int applications)
+        {
+            var homePage = _raaStepsHelper.GoToRAAHomePage(false);
+
+            switch (applications)
+            {
+                case 0:
+                    _vacancyPreviewPage = homePage.SelectVacancyWithNoApplications();
+                    _vacancyPreviewPage.SetVacancyReference();
+                    _vacancyLinkBasePage = _vacancyPreviewPage;
+                    break;
+
+                case 1:
+                    _vacancySummaryPage = homePage.SelectVacancyWithLiveApplications();
+                    _vacancySummaryPage.SetVacancyReference();
+                    _vacancyLinkBasePage = _vacancySummaryPage;
+                    break;
+            }   
+        }
+
+        [Then(@"Provider is able to close this vacancy")]
+        public void ThenProviderIsAbleToCloseThisVacancy()
+        {
+            _vacancyLinkBasePage.CloseVacancy().CloseVacancy();
+
+            new RAA_RecruitmentHomePage(_context, true)
+                .SearchClosedVacancy();
         }
 
         [Then(@"the vacancy should not be displayed in Recruit")]

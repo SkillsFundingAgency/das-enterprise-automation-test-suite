@@ -234,7 +234,6 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
                     .ClickSaveAndContinue();
         }
 
-
         internal void EnterExtraQuestions()
         {
             new RAA_ExtraQuestionsPage(_context)
@@ -267,15 +266,11 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
                 previewPage = new RAA_OppurtunityPreviewPage(_context);
             }
 
-            var vacancyReference = previewPage.ClickSubmitForApprovalButton();
+            var vacancyReferencepage = previewPage.ClickSubmitForApprovalButton();
 
-            var referenceNumber1 = vacancyReference.GetVacancyReference();
+            vacancyReferencepage.SetVacancyReference();
 
-            var referenceNumber = (referenceNumber1.Remove(0, 2)).TrimStart('0');
-
-            _objectContext.SetVacancyReference(referenceNumber);
-
-            return vacancyReference;
+            return vacancyReferencepage;
         }
         private RAA_RecruitmentHomePage SubmitRecruitmentLoginDetails()
         {

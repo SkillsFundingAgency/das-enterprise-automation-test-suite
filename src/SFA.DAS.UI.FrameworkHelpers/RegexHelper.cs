@@ -25,6 +25,22 @@ namespace SFA.DAS.UI.FrameworkHelpers
             return match.Success ? TrimAnySpace(match.Value) : value;
         }
 
+        public string GetVacancyReference(string value)
+        {
+            string pattern = @"VAC|vac";
+
+            Match match = Regex.Match(value, pattern);
+
+            return match.Success ? (Regex.Replace(value, pattern, string.Empty))?.TrimStart('0') : value;
+        }
+
+        public string GetVacancyReferenceFromUrl(string url)
+        {
+            Match match = Regex.Match(url, @"vacancyReferenceNumber=[0-9]*");
+
+            return match.Success ? Regex.Replace(match.Value, @"vacancyReferenceNumber|=", string.Empty) : url;
+        }
+
         public string GetEmployerERN(string url)
         {
             Match match = Regex.Match(url, @"edsUrn=[0-9]*&vacancyGuid=");
