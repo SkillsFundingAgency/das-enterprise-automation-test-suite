@@ -39,15 +39,14 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
         }
 
-        public RAA_VacancyPreviewPage SelectLiveVacancyWithNoApplications()
+        public RAA_VacancyPreviewPage SelectVacancyWithNoApplications()
         {
-            string[] shouldNotContain = new string[] { "(Applications managed externally)", dataHelper.VacancyTitleDateElement };
+            return SelectLiveVacancy(0).GoToVacancyPeviewPage();
+        }
 
-            int randomLink = RandomElementAt((str) => shouldNotContain.Any(x => !str.Contains(x)) && str.Contains("0\r\napplication"));
-
-            dataHelper.VacancyTitle = _pageInteractionHelper.GetText(() => _pageInteractionHelper.FindElements(VacancyTitle)[randomLink]);
-
-            return GoToVacancyPeviewPage();
+        public RAA_VacancySummaryPage SelectVacancyWithLiveApplications()
+        {
+            return SelectLiveVacancy(1).GoToVacancySummary();
         }
 
         public RAA_EmployerInformationPage CloneAVacancy()
@@ -124,7 +123,6 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
             return new RAA_EmployerInformationPage(_context);
         }
 
-
         private int RandomElementAt(Func<string, bool> func)
         {
             List<IWebElement> rows() => _pageInteractionHelper.FindElements(TableRows).ToList();
@@ -180,5 +178,17 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
             formCompletionHelper.ClickElement(() => _pageInteractionHelper.GetLink(VacancyFilters, "Live"));
             return this;
         }
+
+        private RAA_RecruitmentHomePage SelectLiveVacancy(int applications)
+        {
+            string[] shouldNotContain = new string[] { "(Applications managed externally)", $"_{dataHelper.VacancyTitleDateElement}_" };
+
+            int randomLink = RandomElementAt((str) => shouldNotContain.Any(x => !str.Contains(x)) && str.Contains($"{applications}\r\napplication"));
+
+            dataHelper.VacancyTitle = _pageInteractionHelper.GetText(() => _pageInteractionHelper.FindElements(VacancyTitle)[randomLink]);
+
+            return this;
+        }
+
     }
 }

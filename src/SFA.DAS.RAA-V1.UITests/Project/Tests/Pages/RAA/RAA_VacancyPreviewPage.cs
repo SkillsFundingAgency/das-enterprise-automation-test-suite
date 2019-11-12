@@ -2,7 +2,7 @@
 
 namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
 {
-    public class RAA_VacancyPreviewPage : RAA_PreviewBasePage
+    public class RAA_VacancyPreviewPage : RAA_VacancyLinkBasePage
     {
         protected override string PageTitle => "Vacancy preview";
 
@@ -13,24 +13,6 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         public RAA_VacancyPreviewPage(ScenarioContext context) : base(context)
         {
             _context = context;
-        }
-
-        public RAA_CloseVacancyPage CloseVacancy()
-        {
-            formCompletionHelper.ClickLinkByText("Close this vacancy");
-            return new RAA_CloseVacancyPage(_context);
-        }
-
-        public RAA_VacancyPreviewPage ChangeVacancyDates()
-        {
-            formCompletionHelper.ClickLinkByText("Change vacancy dates");
-            return this;
-        }
-
-        public RAA_VacancyPreviewPage IncreaseWage()
-        {
-            formCompletionHelper.ClickLinkByText("Increase wage");
-            return this;
         }
     }
 }
