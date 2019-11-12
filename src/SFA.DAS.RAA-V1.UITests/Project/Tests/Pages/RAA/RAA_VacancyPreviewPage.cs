@@ -15,10 +15,10 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
             _context = context;
         }
 
-        public RAA_CloseThisOpportunityPage CloseVacancy()
+        public RAA_CloseVacancyPage CloseVacancy()
         {
             formCompletionHelper.ClickLinkByText("Close this vacancy");
-            return new RAA_CloseThisOpportunityPage(_context);
+            return new RAA_CloseVacancyPage(_context);
         }
 
         public RAA_VacancyPreviewPage ChangeVacancyDates()

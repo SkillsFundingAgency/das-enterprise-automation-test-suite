@@ -31,7 +31,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
             Match match = Regex.Match(value, pattern);
 
-            return match.Success ? (Regex.Replace(match.Value, pattern, string.Empty))?.TrimStart('0') : value;
+            return match.Success ? (Regex.Replace(value, pattern, string.Empty))?.TrimStart('0') : value;
         }
 
 

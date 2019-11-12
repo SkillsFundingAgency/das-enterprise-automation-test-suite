@@ -41,16 +41,18 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
         [Then(@"Provider is able to change the '(.*)' of the vacancy")]
         public void ThenProviderIsAbleToChangeTheOfTheVacancy(string status)
         {
+            _objectContext.SetApprenticeshipVacancyType();
+
             switch (status)
             {
                 case "Close this vacancy":
-                    _vacancyPreviewPage.CloseVacancy().CloseOpportunity();
+                    _vacancyPreviewPage.CloseVacancy().CloseVacancy();
 
                     var vacancypreview = new RAA_RecruitmentHomePage(_context, true).SearchClosedVacancy();
 
                     var actual = vacancypreview.GetVacancyInfo();
 
-                    Assert.AreEqual("This vacancy is now closed", actual, "Withdraw message is not displayed");
+                    Assert.AreEqual("This vacancy is now closed", actual, "Closed message is not displayed");
                     break;
                 default:
                     break;

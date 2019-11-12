@@ -17,16 +17,11 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         protected readonly RAADataHelper dataHelper;
         #endregion
 
-        public RAA_HeaderSectionBasePage(ScenarioContext context, bool navigate) : this(context)
-        {
-            formCompletionHelper = context.Get<FormCompletionHelper>();
-            if (navigate) { formCompletionHelper.Click(Home); }
-        }
-
-        public RAA_HeaderSectionBasePage(ScenarioContext context) : base(context)
+        public RAA_HeaderSectionBasePage(ScenarioContext context, bool navigate = false) : base(context)
         {
             dataHelper = context.Get<RAADataHelper>();
             formCompletionHelper = context.Get<FormCompletionHelper>();
+            if (navigate) { formCompletionHelper.Click(Home); }
             VerifyPage();
         }
 
