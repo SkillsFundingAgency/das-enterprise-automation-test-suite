@@ -26,9 +26,10 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
             return new RAA_ChangeVacancyDatesPage(_context);
         }
 
-        public void IncreaseWage()
+        public RAA_IncreaseVacancyWagePage IncreaseWage()
         {
             formCompletionHelper.ClickLinkByText("Increase wage");
+            return new RAA_IncreaseVacancyWagePage(_context);
         }
     }
 }

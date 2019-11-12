@@ -7,6 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <SpecFlowObsoleteCodeBehindFiles Remove="Project\Tests\Features\ChangeVacancyStatus\IncreaseWage\RV1_CVSD_01.feature.cs" />
+    <SpecFlowObsoleteCodeBehindFiles Remove="Project\Tests\Features\ChangeVacancyStatus\IncreaseWage\RV1_CVSD_02.feature.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Include="..\NUnitConfigurator.cs" Link="NUnitConfigurator.cs" />
   </ItemGroup>
 
@@ -19,6 +24,15 @@
 
   <ItemGroup>
     <ProjectReference Include="..\SFA.DAS.UI.Framework\SFA.DAS.UI.Framework.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Project\Tests\Features\ChangeVacancyStatus\IncreaseWage\RV1_IVSW_01.feature.cs">
+      <DependentUpon>RV1_IVSW_01.feature</DependentUpon>
+    </Compile>
+    <Compile Update="Project\Tests\Features\ChangeVacancyStatus\IncreaseWage\RV1_IVSW_02.feature.cs">
+      <DependentUpon>RV1_IVSW_02.feature</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
@@ -37,6 +51,17 @@
     <None Update="specflow.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <SpecFlowFeatureFiles Update="Project\Tests\Features\ChangeVacancyStatus\IncreaseWage\RV1_IVSW_01.feature">
+      <Visible>$(UsingMicrosoftNETSdk)</Visible>
+      <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
+    </SpecFlowFeatureFiles>
+    <SpecFlowFeatureFiles Update="Project\Tests\Features\ChangeVacancyStatus\IncreaseWage\RV1_IVSW_02.feature">
+      <Visible>$(UsingMicrosoftNETSdk)</Visible>
+      <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
+    </SpecFlowFeatureFiles>
   </ItemGroup>
 
 </Project>
