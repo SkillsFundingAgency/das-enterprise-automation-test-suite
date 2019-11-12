@@ -48,10 +48,8 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
                     _vacancySummaryPage.SetVacancyReference();
                     _vacancyLinkBasePage = _vacancySummaryPage;
                     break;
-            }
-            
+            }   
         }
-
 
         [Then(@"Provider is able to close this vacancy")]
         public void ThenProviderIsAbleToCloseThisVacancy()

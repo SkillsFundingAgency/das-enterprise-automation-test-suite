@@ -7,10 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <SpecFlowObsoleteCodeBehindFiles Remove="Project\Tests\Features\ChangeVacancyStatus\CloseVacancy\RV1_CLVS_01 - Copy.feature.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Compile Include="..\NUnitConfigurator.cs" Link="NUnitConfigurator.cs" />
   </ItemGroup>
 
@@ -41,13 +37,6 @@
     <None Update="specflow.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-  </ItemGroup>
-
-  <ItemGroup>
-    <SpecFlowFeatureFiles Update="Project\Tests\Features\ChangeVacancyStatus\CloseVacancy\RV1_CLVS_02.feature">
-      <Visible>$(UsingMicrosoftNETSdk)</Visible>
-      <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
-    </SpecFlowFeatureFiles>
   </ItemGroup>
 
 </Project>
