@@ -2,9 +2,10 @@
 
 @raa-v1
 @regression
-Scenario Outline: RV1_CVS_01 - Change Vacancy status which has NO Applications
+@apprenticeshipvacancy
+Scenario Outline: RV1_CVS_01 - Close Vacancy which has NO Applications
 	Given Provider views a vacancy which has NO Applications
-	Then Provider is able to change the '<status>' of the vacancy
+	Then Provider is able to close this vacancy
 
 Examples:
 	| status               |

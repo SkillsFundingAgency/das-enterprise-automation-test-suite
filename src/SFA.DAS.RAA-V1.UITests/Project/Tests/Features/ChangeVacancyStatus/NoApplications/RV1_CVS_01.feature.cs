@@ -69,35 +69,37 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Features.ChangeVacancyStatus.NoAp
             testRunner.CollectScenarioErrors();
         }
         
-        public virtual void RV1_CVS_01_ChangeVacancyStatusWhichHasNOApplications(string status, string[] exampleTags)
+        public virtual void RV1_CVS_01_CloseVacancyWhichHasNOApplications(string status, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "raa-v1",
-                    "regression"};
+                    "regression",
+                    "apprenticeshipvacancy"};
             if ((exampleTags != null))
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
             }
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV1_CVS_01 - Change Vacancy status which has NO Applications", null, @__tags);
-#line 5
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV1_CVS_01 - Close Vacancy which has NO Applications", null, @__tags);
+#line 6
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 6
- testRunner.Given("Provider views a vacancy which has NO Applications", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 7
- testRunner.Then(string.Format("Provider is able to change the \'{0}\' of the vacancy", status), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Given("Provider views a vacancy which has NO Applications", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 8
+ testRunner.Then("Provider is able to close this vacancy", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RV1_CVS_01 - Change Vacancy status which has NO Applications: Close this vacancy")]
+        [NUnit.Framework.DescriptionAttribute("RV1_CVS_01 - Close Vacancy which has NO Applications: Close this vacancy")]
         [NUnit.Framework.CategoryAttribute("raa-v1")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public virtual void RV1_CVS_01_ChangeVacancyStatusWhichHasNOApplications_CloseThisVacancy()
+        [NUnit.Framework.CategoryAttribute("apprenticeshipvacancy")]
+        public virtual void RV1_CVS_01_CloseVacancyWhichHasNOApplications_CloseThisVacancy()
         {
-#line 5
-this.RV1_CVS_01_ChangeVacancyStatusWhichHasNOApplications("Close this vacancy", ((string[])(null)));
+#line 6
+this.RV1_CVS_01_CloseVacancyWhichHasNOApplications("Close this vacancy", ((string[])(null)));
 #line hidden
         }
     }

@@ -38,27 +38,17 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
             _vacancyPreviewPage.SetVacancyReference();
         }
 
-        [Then(@"Provider is able to change the '(.*)' of the vacancy")]
-        public void ThenProviderIsAbleToChangeTheOfTheVacancy(string status)
+        [Then(@"Provider is able to close this vacancy")]
+        public void ThenProviderIsAbleToCloseThisVacancy()
         {
-            _objectContext.SetApprenticeshipVacancyType();
+            _vacancyPreviewPage.CloseVacancy().CloseVacancy();
 
-            switch (status)
-            {
-                case "Close this vacancy":
-                    _vacancyPreviewPage.CloseVacancy().CloseVacancy();
+            var vacancypreview = new RAA_RecruitmentHomePage(_context, true).SearchClosedVacancy();
 
-                    var vacancypreview = new RAA_RecruitmentHomePage(_context, true).SearchClosedVacancy();
+            var actual = vacancypreview.GetVacancyInfo();
 
-                    var actual = vacancypreview.GetVacancyInfo();
-
-                    Assert.AreEqual("This vacancy is now closed", actual, "Closed message is not displayed");
-                    break;
-                default:
-                    break;
-            }
+            Assert.AreEqual("This vacancy is now closed", actual, "Closed message is not displayed");
         }
-
 
         [Then(@"the vacancy should not be displayed in Recruit")]
         public void ThenTheVacancyShouldNotBeDisplayedInRecruit()
