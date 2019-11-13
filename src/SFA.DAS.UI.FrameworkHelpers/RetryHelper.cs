@@ -33,6 +33,22 @@ namespace SFA.DAS.UI.FrameworkHelpers
                      }
                  });
         }
+        internal void RetryClickOnException(Func<IWebElement> element)
+        {
+            Policy
+                .Handle<Exception>()
+                .WaitAndRetry(TimeOut, (exception, timeSpan, retryCount, context) =>
+                {
+                    TestContext.Progress.WriteLine($"Retry Count : {retryCount}, Exception : {exception.Message}");
+                })
+               .Execute(() =>
+               {
+                   using (var testcontext = new NUnit.Framework.Internal.TestExecutionContext.IsolatedContext())
+                   {
+                       ClickEvent(element()).Invoke();
+                   }
+               });
+        }
 
         internal void RetryClickOnWebDriverException(Func<IWebElement> element)
         {

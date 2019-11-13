@@ -21,9 +21,12 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         {
             dataHelper = context.Get<RAADataHelper>();
             formCompletionHelper = context.Get<FormCompletionHelper>();
-            if (navigate) { formCompletionHelper.Click(Home); }
+            if (navigate) { NavigateToHome(); }
             VerifyPage();
         }
+
+        protected void NavigateToHome() => formCompletionHelper.Click(Home);
+
 
         public void ExitFromWebsite()
         {

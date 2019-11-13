@@ -41,23 +41,27 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
 
         public RAA_VacancyPreviewPage SelectLiveVacancyWithNoApplication()
         {
-            return LiveVacancy().SelectVacancy(0).GoToVacancyPeviewPage();
+            SelectVacancy("Live", 0);
+            return new RAA_VacancyPreviewPage(_context);
         }
 
         public RAA_VacancySummaryPage SelectLiveVacancyWithApplications()
         {
-            return LiveVacancy().SelectVacancy(1).GoToVacancySummary();
+            SelectVacancy("Live", 1);
+            return new RAA_VacancySummaryPage(_context);
         }
+
         public RAA_VacancySummaryPage SelectClosedVacancyWithApplications()
         {
-            return ClosedVacancy().SelectVacancy(1).GoToVacancySummary();
+            SelectVacancy("Closed", 1);
+            return new RAA_VacancySummaryPage(_context);
         }
 
         public RAA_EmployerInformationPage CloneAVacancy()
         {
             ApprenticeshipVacancyType();
-            return LiveVacancy()
-                .Clone();
+
+            return SelectVacancyFilter("Live").Clone();
         }
         
         public RAA_EmployerSelectionPage CreateANewVacancy()
@@ -76,13 +80,15 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         public RAA_VacancySummaryPage SearchLiveVacancy()
         {
             SearchByReferenceNumber("Live");
-            return GoToVacancySummary();
+            ClickVacancy();
+            return new RAA_VacancySummaryPage(_context);
         }
 
         public RAA_VacancyPreviewPage SearchReferredVacancy()
         {
             SearchByReferenceNumber("Referred");
-            return GoToVacancyPeviewPage();
+            ClickVacancy();
+            return new RAA_VacancyPreviewPage(_context);
         }
 
         private void SearchByReferenceNumber(string vacancyType)
@@ -160,31 +166,9 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         }
 
 
-        private RAA_VacancySummaryPage GoToVacancySummary()
-        {
-             ClickVacancy();
-             return new RAA_VacancySummaryPage(_context);
-        }
-
-        private RAA_VacancyPreviewPage GoToVacancyPeviewPage()
-        {
-            ClickVacancy();
-            return new RAA_VacancyPreviewPage(_context);
-        }
-
         private void ClickVacancy()
         {
             formCompletionHelper.ClickElement(() => _pageInteractionHelper.GetLink(VacancyTitle, dataHelper.VacancyTitle));
-        }
-
-        private RAA_RecruitmentHomePage LiveVacancy()
-        {
-            return SelectVacancyFilter("Live");
-        }
-
-        private RAA_RecruitmentHomePage ClosedVacancy()
-        {
-            return SelectVacancyFilter("Closed");
         }
 
         private RAA_RecruitmentHomePage SelectVacancyFilter(string filter)
@@ -193,15 +177,27 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
             return this;
         }
 
-        private RAA_RecruitmentHomePage SelectVacancy(int applications)
+        private RAA_RecruitmentHomePage SelectVacancy(string filter, int applications)
         {
-            string[] shouldNotContain = new string[] { "(Applications managed externally)", $"_{dataHelper.VacancyTitleDateElement}_" };
+            IWebElement element()
+            {
+                NavigateToHome();
 
-            int randomLink = RandomElementAt((str) => shouldNotContain.Any(x => !str.Contains(x)) && str.Contains($"{applications}\r\napplication"));
+                SelectVacancyFilter(filter);
 
-            dataHelper.VacancyTitle = _pageInteractionHelper.GetText(() => _pageInteractionHelper.FindElements(VacancyTitle)[randomLink]);
+                string[] shouldNotContain = new string[] { "(Applications managed externally)", $"_{dataHelper.VacancyTitleDateElement}_" };
+
+                int randomLink = RandomElementAt((str) => shouldNotContain.Any(x => !str.Contains(x)) && str.Contains($"{applications}\r\napplication"));
+
+                dataHelper.VacancyTitle = _pageInteractionHelper.GetText(() => _pageInteractionHelper.FindElements(VacancyTitle)[randomLink]);
+
+                return _pageInteractionHelper.GetLink(VacancyTitle, dataHelper.VacancyTitle);
+            }
+
+            formCompletionHelper.RetryClickOnException(element);
 
             return this;
+
         }
 
     }
