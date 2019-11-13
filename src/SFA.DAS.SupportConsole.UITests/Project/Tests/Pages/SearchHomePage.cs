@@ -36,9 +36,9 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
         public AccountOverviewPage SearchAndViewAccount()
         {
             _formCompletionHelper.SelectRadioOptionByForAttribute(AccountsRadioButton, "AccountSearchType");
-            _formCompletionHelper.EnterText(SearchTextBox, _config.AccountId);
+            _formCompletionHelper.EnterText(SearchTextBox, _config.SupportConsoleAccountId);
             _formCompletionHelper.Click(SearchButton);
-            _tableRowHelper.SelectRowFromTable("view", _config.AccountId);
+            _tableRowHelper.SelectRowFromTable("view", _config.SupportConsoleAccountId);
             return new AccountOverviewPage(_context);
         }
     }

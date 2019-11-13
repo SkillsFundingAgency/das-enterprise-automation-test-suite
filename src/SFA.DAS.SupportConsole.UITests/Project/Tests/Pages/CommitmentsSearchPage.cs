@@ -47,7 +47,7 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
         public UlnSearchResultsPage SearchForULN()
         {
             _formCompletionHelper.SelectRadioOptionByForAttribute(UlnRadioButton, "UnlSearchType");
-            _formCompletionHelper.EnterText(SearchTextBox, _config.Uln);
+            _formCompletionHelper.EnterText(SearchTextBox, _config.SupportConsoleUln);
             _formCompletionHelper.Click(SearchButton);
             return new UlnSearchResultsPage(_context);
         }

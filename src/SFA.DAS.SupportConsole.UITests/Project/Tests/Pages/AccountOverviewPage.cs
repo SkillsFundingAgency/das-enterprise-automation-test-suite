@@ -45,7 +45,7 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
         private void VerifyAccountDetailsInHeader()
         {
             var AccountDetails = _pageInteractionHelper.GetText(PageHeaderWithAccountDetails);
-            Assert.AreEqual(AccountDetails, _config.AccountDetails, "Account details mismatch in AccountOverviewPage");
+            Assert.AreEqual(AccountDetails, _config.SupportConsoleAccountDetails, "Account details mismatch in AccountOverviewPage");
         }
 
         private AccountOverviewPage ClickOrganisationsLink()

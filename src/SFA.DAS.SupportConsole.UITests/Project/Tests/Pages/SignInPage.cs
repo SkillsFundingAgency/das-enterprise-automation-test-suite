@@ -32,8 +32,8 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
 
         public SearchHomePage SignInWithValidDetails()
         {
-            _formCompletionHelper.EnterText(UserName, _config.SupportLoginUsername);
-            _formCompletionHelper.EnterText(Password, _config.SupportLoginPassword);
+            _formCompletionHelper.EnterText(UserName, _config.SupportConsoleLoginUsername);
+            _formCompletionHelper.EnterText(Password, _config.SupportConsoleLoginPassword);
             _formCompletionHelper.Click(SignInButton);
             return new SearchHomePage(_context);
         }
