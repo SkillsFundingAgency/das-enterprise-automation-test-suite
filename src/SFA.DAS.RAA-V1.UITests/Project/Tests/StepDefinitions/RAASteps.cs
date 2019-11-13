@@ -135,17 +135,9 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
             homePage.ExitFromWebsite();
         }
 
-        [Given(@"the Provider clones an existing traineeship")]
-        public void GivenTheProviderClonesAnExistingTraineeship()
+        [Given(@"the Provider clones an existing vacancy")]
+        public void GivenTheProviderClonesAnExistingVacancy()
         {
-            CloneVacancy();
-        }
-
-        [Given(@"the Provider clones an existing apprenticeship")]
-        public void GivenTheProviderClonesAnExistingApprenticeship()
-        {
-            _objectContext.SetApprenticeshipVacancyType();
-
             CloneVacancy();
         }
 

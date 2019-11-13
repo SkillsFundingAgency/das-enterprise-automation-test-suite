@@ -73,13 +73,14 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Features.Withdraw.ApprenticeshipV
         {
             string[] @__tags = new string[] {
                     "raa-v1",
-                    "regression"};
+                    "regression",
+                    "apprenticeshipvacancy"};
             if ((exampleTags != null))
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
             }
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV1_WDAV_01 - Withdraw Apprenticeship Vacancy", null, @__tags);
-#line 5
+#line 6
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line hidden
@@ -111,11 +112,11 @@ this.ScenarioInitialize(scenarioInfo);
                         string.Format("{0}", qualificationDetails),
                         string.Format("{0}", workExperience),
                         string.Format("{0}", trainingCourse)});
-#line 6
+#line 7
  testRunner.Given("the apprenticeship vacancy is Live in Recruit", ((string)(null)), table1, "Given ");
-#line 9
- testRunner.When("the Applicant withdraw the application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 10
+ testRunner.When("the Applicant withdraw the application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 11
  testRunner.Then("the vacancy should not be displayed in Recruit", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -125,9 +126,10 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.DescriptionAttribute("RV1_WDAV_01 - Withdraw Apprenticeship Vacancy: Set as a nationwide vacancy")]
         [NUnit.Framework.CategoryAttribute("raa-v1")]
         [NUnit.Framework.CategoryAttribute("regression")]
+        [NUnit.Framework.CategoryAttribute("apprenticeshipvacancy")]
         public virtual void RV1_WDAV_01_WithdrawApprenticeshipVacancy_SetAsANationwideVacancy()
         {
-#line 5
+#line 6
 this.RV1_WDAV_01_WithdrawApprenticeshipVacancy("Set as a nationwide vacancy", "Yes", "Yes", "Online", "Standard", "42", "52", "West Midlands", "Vacancy reviewer", "3", "Yes", "No", "No", ((string[])(null)));
 #line hidden
         }

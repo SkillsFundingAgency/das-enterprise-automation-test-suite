@@ -84,7 +84,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Features.Clone.TraineeshipVacancy
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 9
-testRunner.Given("the Provider clones an existing traineeship", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+testRunner.Given("the Provider clones an existing vacancy", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 10
 testRunner.Then("Provider is able to submit the vacancy for approval", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 11

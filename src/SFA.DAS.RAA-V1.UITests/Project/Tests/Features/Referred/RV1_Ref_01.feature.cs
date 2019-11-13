@@ -73,31 +73,32 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Features.Referred
         {
             string[] @__tags = new string[] {
                     "raa-v1",
-                    "regression"};
+                    "regression",
+                    "apprenticeshipvacancy"};
             if ((exampleTags != null))
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
             }
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV1_REF_01 - Referring an Apprenticeship Vacancy with comments", null, @__tags);
-#line 5
+#line 6
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 6
- testRunner.Given("the Provider initiates Create Apprenticeship Vacancy in Recruit", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 7
- testRunner.When(string.Format("the Provider chooses the employer \'{0}\',\'{1}\'", location, noOfPositions), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.Given("the Provider initiates Create Apprenticeship Vacancy in Recruit", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 8
- testRunner.And(string.Format("the Provider chooses their \'{0}\'", anonymity), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.When(string.Format("the Provider chooses the employer \'{0}\',\'{1}\'", location, noOfPositions), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 9
+ testRunner.And(string.Format("the Provider chooses their \'{0}\'", anonymity), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 10
  testRunner.And(string.Format("the Provider fills out details for an Offline Vacancy \'{0}\',\'{1}\',\'{2}\',\'{3}\',\'{4" +
                         "}\',\'{5}\'", location, disabilityConfident, applicationMethod, apprenticeshipType, hoursPerWeek, vacancyDuration), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 10
- testRunner.Then("Provider is able to submit the vacancy for approval", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 11
- testRunner.When("the Reviewer initiates reviewing the Vacancy in Manage", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.Then("Provider is able to submit the vacancy for approval", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 12
- testRunner.And(string.Format("the Reviewer refer a vacancy with comments \'{0}\',\'{1}\'", changeteam, changeRole), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.When("the Reviewer initiates reviewing the Vacancy in Manage", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 13
+ testRunner.And(string.Format("the Reviewer refer a vacancy with comments \'{0}\',\'{1}\'", changeteam, changeRole), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 14
  testRunner.Then("the vacancy status should be Referred in Recruit", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -108,9 +109,10 @@ this.ScenarioInitialize(scenarioInfo);
             "oyer address")]
         [NUnit.Framework.CategoryAttribute("raa-v1")]
         [NUnit.Framework.CategoryAttribute("regression")]
+        [NUnit.Framework.CategoryAttribute("apprenticeshipvacancy")]
         public virtual void RV1_REF_01_ReferringAnApprenticeshipVacancyWithComments_UseTheMainEmployerAddress()
         {
-#line 5
+#line 6
 this.RV1_REF_01_ReferringAnApprenticeshipVacancyWithComments("Use the main employer address", "No", "No", "Online", "Framework", "42", "52", "West Midlands", "Vacancy reviewer", "2", ((string[])(null)));
 #line hidden
         }

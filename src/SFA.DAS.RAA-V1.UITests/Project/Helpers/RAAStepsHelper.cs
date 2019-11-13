@@ -125,8 +125,6 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
                     break;
             }
 
-            _objectContext.SetApprenticeshipVacancyType();
-
             var enterTrainingDetails = EnterBasicVacancyDetails(VacancyType.Apprenticeship, disabilityConfident, applicationMethod);
 
             var enterFurtherDetails = EnterTrainingDetails(enterTrainingDetails, apprenticeShip);

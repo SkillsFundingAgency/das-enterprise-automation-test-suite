@@ -3,6 +3,7 @@
 @raa-v1
 @v1_e2e
 @regression
+@apprenticeshipvacancy
 Scenario Outline: RV1_E2EAV_03 - Create, Approve and Apply for a Apprenticeship Vacancy
 	Given the Provider initiates Create Apprenticeship Vacancy in Recruit
 	When the Provider chooses the employer '<location>','<NoOfPositions>'
