@@ -34,6 +34,13 @@ namespace SFA.DAS.UI.FrameworkHelpers
             return match.Success ? (Regex.Replace(value, pattern, string.Empty))?.TrimStart('0') : value;
         }
 
+        public string GetVacancyCurrentWage(string value)
+        {
+            Match match = Regex.Match(value, @"£[1-9][0-9]{2}");
+
+            return match.Success ? TrimAnySpace(Regex.Replace(match.Value, @"£", string.Empty)) : value;
+        }
+
         public string GetVacancyReferenceFromUrl(string url)
         {
             Match match = Regex.Match(url, @"vacancyReferenceNumber=[0-9]*");

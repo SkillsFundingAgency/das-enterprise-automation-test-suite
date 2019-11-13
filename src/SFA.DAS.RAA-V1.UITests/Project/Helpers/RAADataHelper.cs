@@ -76,7 +76,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
 
         public string TrainingDetails { get; }
 
-        public int RandomCourse => _randomDataGenerator.GenerateRandomNumberBetweenTwoValues(2, 20);
+        public int RandomNumber => _randomDataGenerator.GenerateRandomNumberBetweenTwoValues(2, 20);
 
         public string TrainingContactName { get; }
 
