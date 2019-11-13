@@ -1,4 +1,5 @@
 ﻿using SFA.DAS.RAA_V1.UITests.Project.Helpers;
+using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
@@ -8,10 +9,12 @@ namespace SFA.DAS.RAA_V1.UITests.Project
     public class Hooks
     {
         private readonly ScenarioContext _context;
+        private readonly ObjectContext _objectContext;
 
         public Hooks(ScenarioContext context)
         {
             _context = context;
+            _objectContext = context.Get<ObjectContext>();
         }
 
         [BeforeScenario(Order = 32)]
@@ -26,6 +29,12 @@ namespace SFA.DAS.RAA_V1.UITests.Project
             _context.Set(new ManagedataHelper(random));
 
             _context.Set(new FAADataHelper(random));
+        }
+
+        [BeforeScenario("apprenticeshipvacancy", Order = 33)]
+        public void SetApprenticeshipVacancyType()
+        {
+            _objectContext.SetApprenticeshipVacancyType();
         }
     }
 }

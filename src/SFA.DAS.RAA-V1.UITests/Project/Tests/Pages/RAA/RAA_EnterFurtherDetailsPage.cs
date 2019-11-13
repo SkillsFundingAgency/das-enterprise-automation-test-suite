@@ -4,7 +4,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
 {
-    public class RAA_EnterFurtherDetailsPage : RAA_HeaderSectionBasePage
+    public class RAA_EnterFurtherDetailsPage : RAA_ChangeVacancyDatesBasePage
     {
         protected override By PageHeader => Heading;
 
@@ -17,14 +17,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         private By Iframe => By.CssSelector("iframe");
         private By WorkingWeek => By.Id("WorkingWeek");
         private By HoursPerWeek => By.Id("Wage_HoursPerWeek");
-        private By ApprenticeshipMinimumWage => By.Id("apprenticeship-minimum-wage");
         private By VacancyDuration => By.Id("Duration");
-        private By ClosingDay => By.Id("VacancyDatesViewModel_ClosingDate_Day");
-        private By ClosingMonth => By.Id("VacancyDatesViewModel_ClosingDate_Month");
-        private By ClosingYear => By.Id("VacancyDatesViewModel_ClosingDate_Year");
-        private By StartDateDay => By.Id("VacancyDatesViewModel_PossibleStartDate_Day");
-        private By StartDateMonth => By.Id("VacancyDatesViewModel_PossibleStartDate_Month");
-        private By StartDateYear => By.Id("VacancyDatesViewModel_PossibleStartDate_Year");
         private By SaveAndContinueButton => By.Id("vacancySummaryButton");
         private By Heading => By.Id("heading");
 
@@ -33,7 +26,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
             _context = context;
         }
 
-        public RAA_RequirementsAndProspectsPage ClickSaveAndContinueButton()
+        public RAA_RequirementsAndProspectsPage SaveAndContinue()
         {
             formCompletionHelper.Click(SaveAndContinueButton);
             return new RAA_RequirementsAndProspectsPage(_context);
@@ -63,27 +56,15 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
             return this;
         }
 
-        public RAA_EnterFurtherDetailsPage EnterVacancyClosingDate()
+        public new RAA_EnterFurtherDetailsPage EnterVacancyClosingDate()
         {
-            DateTime closingDate = dataHelper.VacancyClosing;
-            string month = closingDate.Month.ToString();
-            string year = closingDate.Year.ToString();
-            string day = closingDate.Day.ToString();
-            formCompletionHelper.EnterText(ClosingDay, day);
-            formCompletionHelper.EnterText(ClosingMonth, month);
-            formCompletionHelper.EnterText(ClosingYear, year);
+            base.EnterVacancyClosingDate();
             return this;
         }
 
-        public RAA_EnterFurtherDetailsPage EnterPossibleStartDate()
+        public new RAA_EnterFurtherDetailsPage EnterPossibleStartDate()
         {
-            DateTime startDate = dataHelper.VacancyStart;
-            var month = startDate.Month.ToString();
-            var year = startDate.Year.ToString();
-            var day = startDate.Day.ToString();
-            formCompletionHelper.EnterText(StartDateDay, day);
-            formCompletionHelper.EnterText(StartDateMonth, month);
-            formCompletionHelper.EnterText(StartDateYear, year);
+            base.EnterPossibleStartDate();
             return this;
         }
 

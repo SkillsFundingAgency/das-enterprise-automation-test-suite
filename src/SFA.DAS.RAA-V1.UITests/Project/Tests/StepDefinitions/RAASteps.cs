@@ -16,6 +16,9 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
         private RAA_EnterFurtherDetailsPage _enterFurtherDetails;
         private RAA_EnterOpportunityDetailsPage _enterOpportunityDetails;
         private RAA_RequirementsAndProspectsPage _requirementsAndProspects;
+        private RAA_VacancyPreviewPage _vacancyPreviewPage;
+        private RAA_VacancySummaryPage _vacancySummaryPage;
+        private RAA_VacancyLinkBasePage _vacancyLinkBasePage;
         private readonly RAAStepsHelper _raaStepsHelper;
         private readonly ObjectContext _objectContext;
         private readonly ScenarioContext _context;
@@ -26,6 +29,54 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
             _objectContext = context.Get<ObjectContext>();
             _raaStepsHelper = new RAAStepsHelper(context);
         }
+        
+        [Given(@"Provider views a vacancy which has (0|1) Applications")]
+        public void GivenProviderViewsAVacancyWhichHasApplications(int applications)
+        {
+            var homePage = _raaStepsHelper.GoToRAAHomePage(false);
+
+            switch (applications)
+            {
+                case 0:
+                    _vacancyPreviewPage = homePage.SelectVacancyWithNoApplications();
+                    _vacancyPreviewPage.SetVacancyReference();
+                    _vacancyLinkBasePage = _vacancyPreviewPage;
+                    break;
+
+                case 1:
+                    _vacancySummaryPage = homePage.SelectVacancyWithLiveApplications();
+                    _vacancySummaryPage.SetVacancyReference();
+                    _vacancyLinkBasePage = _vacancySummaryPage;
+                    break;
+            }   
+        }
+
+        [Then(@"Provider is able to increase vacancy wage")]
+        public void ThenProviderIsAbleToIncreaseVacancyWage()
+        {
+            _vacancyLinkBasePage.
+                IncreaseWage()
+                .SaveAndReturn();
+        }
+
+
+        [Then(@"Provider is able to change vacancy dates")]
+        public void ThenProviderIsAbleToChangeVacancyDates()
+        {
+            _vacancyLinkBasePage
+                .ChangeVacancyDates()
+                .SaveAndContinue();
+        }
+
+
+        [Then(@"Provider is able to close this vacancy")]
+        public void ThenProviderIsAbleToCloseThisVacancy()
+        {
+            _vacancyLinkBasePage.CloseVacancy().CloseVacancy();
+
+            new RAA_RecruitmentHomePage(_context, true)
+                .SearchClosedVacancy();
+        }
 
         [Then(@"the vacancy should not be displayed in Recruit")]
         public void ThenTheVacancyShouldNotBeDisplayedInRecruit()
@@ -34,9 +85,9 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
 
             var vacancySummary = homePage.SearchLiveVacancy();
 
-            var actual = vacancySummary.GetInfoSummary();
+            var actual = vacancySummary.GetVacancyStatus();
 
-            Assert.AreEqual("1 candidate has withdrawn their application", actual, "Withdraw message is not displayed");
+            Assert.AreEqual("Withdrawn", actual, "Withdrawn status is not displayed");
 
             homePage.ExitFromWebsite();
         }
@@ -58,31 +109,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
         [When(@"the Vacancy details are filled out for a Traineeship for a different '(.*)'")]
         public void WhenTheVacancyDetailsAreFilledOutForATraineeshipForADifferent(string location)
         {
-            string disabilityConfident = "Yes";
-            string applicationMethod = "Online";
-            switch (location)
-            {
-                case "Use the main employer address":
-                    break;
-
-                case "Add different location":
-                    _raaStepsHelper.AddMultipleVacancy();
-                    disabilityConfident = "No";
-                    break;
-
-                case "Set as a nationwide vacancy":
-                    break;
-            }
-
-            _enterTrainingDetails = _raaStepsHelper.EnterBasicVacancyDetails(VacancyType.Traineeship, disabilityConfident, applicationMethod);
-
-            _enterOpportunityDetails = _raaStepsHelper.EnterTrainingDetails(_enterTrainingDetails);
-
-            _requirementsAndProspects = _raaStepsHelper.EnterOpportunityDetails(_enterOpportunityDetails, "18");
-
-            _raaStepsHelper.EnterRequirementsAndProspects(_requirementsAndProspects);
-
-            _raaStepsHelper.EnterExtraQuestions();
+            _raaStepsHelper.ProviderFillsOutTraineeshipDetails(location);
         }
 
         [Given(@"the Provider initiates Create Apprenticeship Vacancy in Recruit")]

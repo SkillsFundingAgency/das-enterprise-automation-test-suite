@@ -81,6 +81,33 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
             }
         }
 
+        public void ProviderFillsOutTraineeshipDetails(string location)
+        {
+            string disabilityConfident = "Yes";
+            string applicationMethod = "Online";
+            switch (location)
+            {
+                case "Use the main employer address":
+                    break;
+
+                case "Add different location":
+                    AddMultipleVacancy();
+                    disabilityConfident = "No";
+                    break;
+
+                case "Set as a nationwide vacancy":
+                    break;
+            }
+
+            var enterTrainingDetails = EnterBasicVacancyDetails(VacancyType.Traineeship, disabilityConfident, applicationMethod);
+
+            var enterOpportunityDetails = EnterTrainingDetails(enterTrainingDetails);
+
+            var requirementsAndProspects = EnterOpportunityDetails(enterOpportunityDetails, "18");
+
+            EnterRequirementsAndExtraQuestions(requirementsAndProspects, applicationMethod);
+        }
+
         internal void ProviderFillsOutDetails(string location, string disabilityConfident, string applicationMethod, string apprenticeShip, string hoursPerWeek, string vacancyDuration)
         {
             switch (location)
@@ -106,6 +133,11 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
 
             var requirementsAndProspects = EnterFurtherDetails(enterFurtherDetails, hoursPerWeek, vacancyDuration);
 
+            EnterRequirementsAndExtraQuestions(requirementsAndProspects, applicationMethod);
+        }
+
+        private void EnterRequirementsAndExtraQuestions(RAA_RequirementsAndProspectsPage requirementsAndProspects, string applicationMethod)
+        {
             EnterRequirementsAndProspects(requirementsAndProspects);
 
             if (applicationMethod != "Offline")
@@ -113,7 +145,6 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
                 EnterExtraQuestions();
             }
         }
-
 
         internal RAA_EnterTrainingDetailsPage EnterBasicVacancyDetails()
         {
@@ -164,7 +195,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
                    .EnterVacancyClosingDate()
                    .EnterPossibleStartDate()
                    .EnterVacancyDescription()
-                   .ClickSaveAndContinueButton();
+                   .SaveAndContinue();
         }
 
         internal RAA_RequirementsAndProspectsPage EnterFurtherDetails(RAA_EnterFurtherDetailsPage enterFurtherDetails)
@@ -172,7 +203,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
             return enterFurtherDetails
                    .EnterVacancyClosingDate()
                    .EnterPossibleStartDate()
-                   .ClickSaveAndContinueButton();
+                   .SaveAndContinue();
         }
 
         internal RAA_RequirementsAndProspectsPage EnterFurtherDetails(RAA_EnterFurtherDetailsPage enterFurtherDetails, string hoursPerWeek, string vacancyDuration)
@@ -185,7 +216,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
                    .EnterVacancyClosingDate()
                    .EnterPossibleStartDate()
                    .EnterVacancyDescription()
-                   .ClickSaveAndContinueButton();
+                   .SaveAndContinue();
         }
 
         internal void EnterRequirementsAndProspects(RAA_RequirementsAndProspectsPage requirementsAndProspects)
@@ -202,7 +233,6 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
                     .EnterThingsToConsiderText()
                     .ClickSaveAndContinue();
         }
-
 
         internal void EnterExtraQuestions()
         {
@@ -236,15 +266,11 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
                 previewPage = new RAA_OppurtunityPreviewPage(_context);
             }
 
-            var vacancyReference = previewPage.ClickSubmitForApprovalButton();
+            var vacancyReferencepage = previewPage.ClickSubmitForApprovalButton();
 
-            var referenceNumber1 = vacancyReference.GetVacancyReference();
+            vacancyReferencepage.SetVacancyReference();
 
-            var referenceNumber = (referenceNumber1.Remove(0, 2)).TrimStart('0');
-
-            _objectContext.SetVacancyReference(referenceNumber);
-
-            return vacancyReference;
+            return vacancyReferencepage;
         }
         private RAA_RecruitmentHomePage SubmitRecruitmentLoginDetails()
         {

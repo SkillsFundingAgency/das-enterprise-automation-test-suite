@@ -45,7 +45,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages
         public RAA_RecruitmentHomePage SubmitRecruitmentLoginDetails()
         {
             SubmitValidLoginDetails(_config.RecruitUserName, _config.RecruitPassword);
-            return new RAA_RecruitmentHomePage(_context);
+            return new RAA_RecruitmentHomePage(_context, false);
         }
 
         private void SubmitValidLoginDetails(string username, string password)
