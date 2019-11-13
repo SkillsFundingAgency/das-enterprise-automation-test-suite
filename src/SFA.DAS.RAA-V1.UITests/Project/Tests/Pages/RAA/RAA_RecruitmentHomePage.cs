@@ -61,9 +61,12 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
 
         public RAA_EmployerInformationPage CloneAVacancy()
         {
-            ApprenticeshipVacancyType();
-
-            return Clone();
+           
+            int randomLink = RandomElementAt("Live", (str) => !str.Contains("(Applications managed externally)"));
+            
+            formCompletionHelper.ClickElement(() => _pageInteractionHelper.GetLinks(CloneLink, "Clone")[randomLink]);
+            
+            return new RAA_EmployerInformationPage(_context);
         }
         
         public RAA_EmployerSelectionPage CreateANewVacancy()
@@ -119,12 +122,16 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
             _pageInteractionHelper.WaitForElementToChange(func, AttributeHelper.InnerText, "1");
         }
 
-        private void SearchByVacancyTitleContains()
+        private void SearchByVacancyTitleContains(string filter)
         {
+            NavigateToHome();
+            ApprenticeshipVacancyType();
             formCompletionHelper.SelectFromDropDownByValue(VacancySearchMode, "VacancyTitle");
             var searchTerm = dataHelper.VacancyTitleDate.AddDays(-1).ToString("MMMyyyy");
             formCompletionHelper.EnterText(VacancySearchText, $"{searchTerm}_");
             formCompletionHelper.ClickElement(() => _pageInteractionHelper.FindElement(SearchVacancy));
+            formCompletionHelper.ClickElement(() => _pageInteractionHelper.GetLink(VacancyFilters, filter));
+            _pageInteractionHelper.WaitforURLToChange($"FilterType={filter}");
         }
 
         private void ApprenticeshipVacancyType()
@@ -134,13 +141,6 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
                 formCompletionHelper.ClickLinkByText("Traineeships");
                 _pageInteractionHelper.WaitForElementToChange(InlineText, "Your opportunities");
             }
-        }
-
-        private RAA_EmployerInformationPage Clone()
-        {
-            int randomLink = RandomElementAt("Live", (str) => !str.Contains("(Applications managed externally)"));
-            formCompletionHelper.ClickElement(() => _pageInteractionHelper.GetLinks(CloneLink, "Clone")[randomLink]);
-            return new RAA_EmployerInformationPage(_context);
         }
 
         private void ClickVacancy()
@@ -176,10 +176,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
             {
                 for (int i = 1; i < rows().Count; i++)
                 {
-                    NavigateToHome();
-                    SearchByVacancyTitleContains();
-                    formCompletionHelper.ClickElement(() => _pageInteractionHelper.GetLink(VacancyFilters, filter));
-                    _pageInteractionHelper.WaitforURLToChange($"FilterType={filter}");
+                    SearchByVacancyTitleContains(filter);
                     var tablerows = rows();
                     randomLink = dataHelper.RandomVacancy(tablerows);
                     var text = _pageInteractionHelper.GetText(() => rows()[randomLink]);
