@@ -128,7 +128,20 @@ namespace SFA.DAS.UI.FrameworkHelpers
                 + "\n Expected: " + expected
                 + "\n Found: " + actual);
         }
-       
+
+        public bool VerifyPlaceHolderAttributeOfAnElement(By locator, string expected)
+        {
+            string actual = _webDriver.FindElement(locator).GetAttribute("placeholder");
+            if (actual.Contains(expected))
+            {
+                return true;
+            }
+
+            throw new Exception("Value verification failed: "
+                + "\n Expected: " + expected
+                + "\n Found: " + actual);
+        }
+
         public string GetTextFromElementsGroup(By locator)
         {
             string text = null;

@@ -3,6 +3,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.SupportConsole.UITests.Project
 {
+    [Binding]
     public class SupportConsoleConfigurationSetup
     {
         private readonly ScenarioContext _context;
@@ -15,7 +16,7 @@ namespace SFA.DAS.SupportConsole.UITests.Project
         }
 
         [BeforeScenario(Order = 2)]
-        public void SetUpTestProjectConfiguration()
+        public void SetUpSupportConsoleProjectConfiguration()
         {
             var config = _configSection.GetConfigSection<SupportConsoleConfig>();
             _context.SetSupportConsoleConfig(config);
