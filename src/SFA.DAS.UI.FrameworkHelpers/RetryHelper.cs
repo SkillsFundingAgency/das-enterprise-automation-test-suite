@@ -153,7 +153,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
         }
         private void Report(int retryCount, Exception exception)
         {
-            TestContext.Progress.WriteLine($"Retry Count : {retryCount}{Environment.NewLine}Scenario Title : {_scenarioTitle}{Environment.NewLine}Exception : {exception.Message}");
+            TestContext.Progress.WriteLine($"{Environment.NewLine}Retry Count : {retryCount}{Environment.NewLine}Scenario Title : {_scenarioTitle}{Environment.NewLine}Exception : {exception.Message}");
         }
     }
 }
