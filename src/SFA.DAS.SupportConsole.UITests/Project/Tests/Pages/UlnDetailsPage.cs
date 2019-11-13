@@ -5,7 +5,7 @@ using SFA.DAS.UI.Framework.TestSupport;
 
 namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
 {
-    public class UlnDetailsPage : SupportConsoleBasePage
+    public class UlnDetailsPage : BasePage
     {
         protected override string PageTitle => _config.UlnName;
         private const string StatusSectionHeaderText = "Status";
@@ -21,7 +21,6 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
         #endregion
 
         #region Locators
-        protected override By PageHeader => By.CssSelector(".heading-xlarge");
         private By StatusSectionHeader => By.XPath("//h2[contains(text(),'Status')]");
         private By ApprenticeSectionHeader => By.XPath("//h2[contains(text(),'Apprentice')]");
         private By TrainingSectionHeader => By.XPath("//h2[contains(text(),'Training')]");

@@ -5,7 +5,7 @@ using SFA.DAS.UI.Framework.TestSupport;
 
 namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
 {
-    public class SignInPage : SupportConsoleBasePage
+    public class SignInPage : BasePage
     {
         protected override string PageTitle => "ESFA Sign in";
 
@@ -16,10 +16,10 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
         #endregion
 
         #region Locators
+        protected override By PageHeader => By.XPath("//h1");
         private By UserName => By.Id("username");
         private By Password => By.Id("password");
         private By SignInButton => By.CssSelector("button.pull-left");
-        protected override By PageHeader => By.XPath("//h1");
         #endregion
 
         public SignInPage(ScenarioContext context) : base(context)

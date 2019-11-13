@@ -70,13 +70,13 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Features.ChangeVacancyStatus.Clos
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RV1_CVS_01 - Close Vacancy which has NO Applications")]
+        [NUnit.Framework.DescriptionAttribute("RV1_CVLS_01 - Close Vacancy which has NO Applications")]
         [NUnit.Framework.CategoryAttribute("raa-v1")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("apprenticeshipvacancy")]
-        public virtual void RV1_CVS_01_CloseVacancyWhichHasNOApplications()
+        public virtual void RV1_CVLS_01_CloseVacancyWhichHasNOApplications()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV1_CVS_01 - Close Vacancy which has NO Applications", null, new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV1_CVLS_01 - Close Vacancy which has NO Applications", null, new string[] {
                         "raa-v1",
                         "regression",
                         "apprenticeshipvacancy"});

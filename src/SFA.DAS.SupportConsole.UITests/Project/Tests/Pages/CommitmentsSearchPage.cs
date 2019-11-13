@@ -6,7 +6,7 @@ using NUnit.Framework;
 
 namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
 {
-    public class CommitmentsSearchPage : SupportConsoleBasePage
+    public class CommitmentsSearchPage : BasePage
     {
         protected override string PageTitle => "Department for Education";
         private const string SearchSectionHeaderText = "Search";
@@ -20,6 +20,7 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
         #endregion
 
         #region Locators
+        protected override By PageHeader => By.CssSelector(".heading-large");
         private By SearchSectionHeader => By.XPath("(//h1)[2]");
         private By UlnRadioButton => By.CssSelector("label");
         private By SearchTextBox = By.Id("search-main");

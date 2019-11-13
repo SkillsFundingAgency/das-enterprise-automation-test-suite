@@ -1,10 +1,11 @@
 ﻿using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 using SFA.DAS.UI.FrameworkHelpers;
+using SFA.DAS.UI.Framework.TestSupport;
 
 namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
 {
-    public class IdamsPage : SupportConsoleBasePage
+    public class IdamsPage : BasePage
     {
         protected override string PageTitle => "";
 

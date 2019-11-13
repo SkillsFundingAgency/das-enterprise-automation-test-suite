@@ -5,7 +5,7 @@ using SFA.DAS.UI.Framework.TestSupport;
 
 namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
 {
-    public class SearchHomePage : SupportConsoleBasePage
+    public class SearchHomePage : BasePage
     {
         protected override string PageTitle => "Search";
 
@@ -18,6 +18,7 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
         #endregion
 
         #region Locators
+        protected override By PageHeader => By.CssSelector(".heading-large");
         private By AccountsRadioButton => By.CssSelector("label");
         private By SearchButton => By.Id("searchButton");
         private By SearchTextBox => By.Id("search-main");

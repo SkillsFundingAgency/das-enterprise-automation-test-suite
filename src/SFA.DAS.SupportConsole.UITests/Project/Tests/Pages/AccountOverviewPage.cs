@@ -6,7 +6,7 @@ using NUnit.Framework;
 
 namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
 {
-    public class AccountOverviewPage : SupportConsoleBasePage
+    public class AccountOverviewPage : BasePage
     {
         protected override string PageTitle => "Department for Education";
 
@@ -19,6 +19,7 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
         #endregion
 
         #region Locators
+        protected override By PageHeader => By.CssSelector(".heading-large");
         private By PageHeaderWithAccountDetails => By.CssSelector(".heading-secondary");
         private By OrganisationsMenuLink => By.LinkText("Organisations");
         private By CommitmentsMenuLink => By.LinkText("Commitments");
