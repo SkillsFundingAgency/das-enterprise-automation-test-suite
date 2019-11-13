@@ -42,8 +42,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         public EditApprenticePage SelectEditApprentice(int apprenticeNumber = 0)
         {
-            Edit(apprenticeNumber);
-            return new EditApprenticePage(_context);
+			var editApprenticeLinks = TotalNoOfEditableApprentices();
+			_formCompletionHelper.ClickElement(editApprenticeLinks[apprenticeNumber]);
+			return new EditApprenticePage(_context);
         }
 
         public AddApprenticeDetailsPage SelectAddAnApprentice()
