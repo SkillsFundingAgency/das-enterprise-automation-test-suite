@@ -10,10 +10,12 @@ namespace SFA.DAS.UI.FrameworkHelpers
     public class RetryHelper
     {
         private readonly IWebDriver _webDriver;
+        private readonly string _scenarioTitle;
 
-        public RetryHelper(IWebDriver webDriver)
+        public RetryHelper(IWebDriver webDriver, string scenarioTitle)
         {
             _webDriver = webDriver;
+            _scenarioTitle = scenarioTitle;
         }
 
         internal bool RetryOnException(Func<bool> func, Action beforeAction)
@@ -22,7 +24,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
                  .Handle<Exception>((x) => x.Message.Contains("verification failed"))
                  .WaitAndRetry(TimeOut, (exception, timeSpan, retryCount, context) =>
                  {
-                     TestContext.Progress.WriteLine($"Retry Count : {retryCount}, Exception : {exception.Message}");
+                     Report(retryCount, exception);
                  })
                  .Execute(() =>
                  {
@@ -39,7 +41,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
                 .Handle<Exception>()
                 .WaitAndRetry(TimeOut, (exception, timeSpan, retryCount, context) =>
                 {
-                    TestContext.Progress.WriteLine($"Retry Count : {retryCount}, Exception : {exception.Message}");
+                    Report(retryCount, exception);
                 })
                .Execute(() =>
                {
@@ -56,7 +58,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
                 .Handle<WebDriverException>()
                 .WaitAndRetry(TimeOut, (exception, timeSpan, retryCount, context) =>
                 {
-                    TestContext.Progress.WriteLine($"Retry Count : {retryCount}, Exception : {exception.Message}");
+                    Report(retryCount, exception);
                 })
                .Execute(() =>
                {
@@ -74,7 +76,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
                 .Handle<WebDriverException>()
                 .WaitAndRetry(TimeOut, (exception, timeSpan, retryCount, context) =>
                 {
-                    TestContext.Progress.WriteLine($"Retry Count : {retryCount}, Exception : {exception.Message}");
+                    Report(retryCount, exception);
                 })
                 .Execute(() =>
                 {
@@ -96,7 +98,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
                  .Or<WebDriverException>()
                  .WaitAndRetry(TimeOut, (exception, timeSpan, retryCount, context) =>
                  {
-                     TestContext.Progress.WriteLine($"Retry Count : {retryCount}, Exception : {exception.Message}");
+                     Report(retryCount, exception);
 
                      switch (true)
                      {
@@ -148,6 +150,10 @@ namespace SFA.DAS.UI.FrameworkHelpers
             void beforeAction() => ((IJavaScriptExecutor)_webDriver).ExecuteScript("arguments[0].scrollIntoView(true);", element);
 
             return (beforeAction, null);
+        }
+        private void Report(int retryCount, Exception exception)
+        {
+            TestContext.Progress.WriteLine($"Retry Count : {retryCount}{Environment.NewLine}Scenario Title : {_scenarioTitle}{Environment.NewLine}Exception : {exception.Message}");
         }
     }
 }

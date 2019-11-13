@@ -25,6 +25,13 @@ namespace SFA.DAS.UI.FrameworkHelpers
             return match.Success ? TrimAnySpace(match.Value) : value;
         }
 
+        public bool CheckVacancyTitle(string value)
+        {
+            var match = Regex.Match(value, @"_[0-9]{2}[A-Z][a-z]{2}20[1-9]{2}_[0-9]{6}");
+
+            return match.Success;
+        }
+
         public string GetVacancyReference(string value)
         {
             string pattern = @"VAC|vac";
