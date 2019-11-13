@@ -39,6 +39,8 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
             FirstQuestion = _randomDataGenerator.GenerateRandomAlphabeticString(15);
             SecondQuestion = _randomDataGenerator.GenerateRandomAlphabeticString(15);
             AdditionalLocationInformation = _randomDataGenerator.GenerateRandomAlphabeticString(5);
+            ShareApplicationEmail = $"{TrainingContactName}@gmail.com";
+            OptionalMessage = _randomDataGenerator.GenerateRandomAlphabeticString(30);
         }
 
         public string EmployerErn { get; private set; }
@@ -109,6 +111,10 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
         public string AdditionalLocationInformation { get;}
         
         public string NumberOfVacancy => "2" ;
+
+        public string ShareApplicationEmail { get; }
+
+        public string OptionalMessage { get; }
 
         private string WebsiteUrl(string url) => $"https://www.{url}.com";
 

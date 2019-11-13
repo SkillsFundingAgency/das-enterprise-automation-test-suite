@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Features.ChangeVacancyStatus.CloseVacancy
+namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Features.ChangeVacancyStatus.ArchiveVacancy
 {
     using TechTalk.SpecFlow;
     
@@ -18,20 +18,20 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Features.ChangeVacancyStatus.Clos
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.0.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("RV1_CLVS_01")]
-    public partial class RV1_CLVS_01Feature
+    [NUnit.Framework.DescriptionAttribute("RV1_AV_01")]
+    public partial class RV1_AV_01Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "RV1_CLVS_01.feature"
+#line 1 "RV1_AV_01.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "RV1_CLVS_01", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "RV1_AV_01", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -70,13 +70,13 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Features.ChangeVacancyStatus.Clos
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RV1_CVLS_01 - Close Vacancy which has NO Applications")]
+        [NUnit.Framework.DescriptionAttribute("RV1_AV_01 - Archive vacancy which has Applications")]
         [NUnit.Framework.CategoryAttribute("raa-v1")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("apprenticeshipvacancy")]
-        public virtual void RV1_CVLS_01_CloseVacancyWhichHasNOApplications()
+        public virtual void RV1_AV_01_ArchiveVacancyWhichHasApplications()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV1_CVLS_01 - Close Vacancy which has NO Applications", null, new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV1_AV_01 - Archive vacancy which has Applications", null, new string[] {
                         "raa-v1",
                         "regression",
                         "apprenticeshipvacancy"});
@@ -84,9 +84,9 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Features.ChangeVacancyStatus.Clos
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 7
- testRunner.Given("Provider views a vacancy which has 0 Applications", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("Provider views a vacancy which has 1 Applications", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 8
- testRunner.Then("Provider is able to close this vacancy", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("Provider is able to archive vacancy", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

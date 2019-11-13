@@ -51,6 +51,39 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
             }   
         }
 
+        [Then(@"Provider is able to archive vacancy")]
+        public void ThenProviderIsAbleToArchiveVacancy()
+        {
+            if (_vacancyLinkBasePage.IsRespondToCandidateLinkDisplayed())
+            {
+                _vacancyLinkBasePage.ArchiveVacancyAndRespondToCandidates()
+                .RespondToRemainingCandidates()
+                .ConfirmAndContinue()
+                .SendFeedback()
+                .ReturnToVacancyApplications();
+            }
+            _vacancyLinkBasePage.ArchiveVacancy().Confirm();
+        }
+
+
+        [Then(@"Provider is able to respond to candidates")]
+        public void ThenProviderIsAbleToRespondToCandidates()
+        {
+            _vacancyLinkBasePage.
+                RespondToCandidates()
+                .ConfirmAndContinue()
+                .SendFeedback();
+        }
+
+        [Then(@"Provider is able to share vacancy application")]
+        public void ThenProviderIsAbleToShareVacancyApplication()
+        {
+            _vacancyLinkBasePage.
+                ShareApplications()
+                .Send();
+        }
+
+
         [Then(@"Provider is able to increase vacancy wage")]
         public void ThenProviderIsAbleToIncreaseVacancyWage()
         {

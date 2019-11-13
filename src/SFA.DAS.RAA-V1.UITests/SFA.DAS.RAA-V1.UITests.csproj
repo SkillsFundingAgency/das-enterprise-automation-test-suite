@@ -7,6 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <SpecFlowObsoleteCodeBehindFiles Remove="Project\Tests\Features\ChangeVacancyStatus\ArchiveVacancy\RV1_RC_01.feature.cs" />
+    <SpecFlowObsoleteCodeBehindFiles Remove="Project\Tests\Features\ChangeVacancyStatus\ResponceToCandidate\RV1_SA_01.feature.cs" />
+    <SpecFlowObsoleteCodeBehindFiles Remove="Project\Tests\Features\ChangeVacancyStatus\ShareApplications\RV1_IVSW_01.feature.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Include="..\NUnitConfigurator.cs" Link="NUnitConfigurator.cs" />
   </ItemGroup>
 
@@ -37,6 +43,33 @@
     <None Update="specflow.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Project\Tests\Features\ChangeVacancyStatus\ArchiveVacancy\RV1_AV_01.feature.cs">
+      <DependentUpon>RV1_AV_01.feature</DependentUpon>
+    </Compile>
+    <Compile Update="Project\Tests\Features\ChangeVacancyStatus\ResponceToCandidate\RV1_RC_01.feature.cs">
+      <DependentUpon>RV1_RC_01.feature</DependentUpon>
+    </Compile>
+    <Compile Update="Project\Tests\Features\ChangeVacancyStatus\ShareApplications\RV1_SA_01.feature.cs">
+      <DependentUpon>RV1_SA_01.feature</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <SpecFlowFeatureFiles Update="Project\Tests\Features\ChangeVacancyStatus\ArchiveVacancy\RV1_AV_01.feature">
+      <Visible>$(UsingMicrosoftNETSdk)</Visible>
+      <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
+    </SpecFlowFeatureFiles>
+    <SpecFlowFeatureFiles Update="Project\Tests\Features\ChangeVacancyStatus\ResponceToCandidate\RV1_RC_01.feature">
+      <Visible>$(UsingMicrosoftNETSdk)</Visible>
+      <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
+    </SpecFlowFeatureFiles>
+    <SpecFlowFeatureFiles Update="Project\Tests\Features\ChangeVacancyStatus\ShareApplications\RV1_SA_01.feature">
+      <Visible>$(UsingMicrosoftNETSdk)</Visible>
+      <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
+    </SpecFlowFeatureFiles>
   </ItemGroup>
 
 </Project>
