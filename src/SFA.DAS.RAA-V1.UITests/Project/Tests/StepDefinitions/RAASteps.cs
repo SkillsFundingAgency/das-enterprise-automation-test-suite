@@ -51,6 +51,24 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
             }   
         }
 
+        [Then(@"Provider is able to increase vacancy wage")]
+        public void ThenProviderIsAbleToIncreaseVacancyWage()
+        {
+            _vacancyLinkBasePage.
+                IncreaseWage()
+                .SaveAndReturn();
+        }
+
+
+        [Then(@"Provider is able to change vacancy dates")]
+        public void ThenProviderIsAbleToChangeVacancyDates()
+        {
+            _vacancyLinkBasePage
+                .ChangeVacancyDates()
+                .SaveAndContinue();
+        }
+
+
         [Then(@"Provider is able to close this vacancy")]
         public void ThenProviderIsAbleToCloseThisVacancy()
         {

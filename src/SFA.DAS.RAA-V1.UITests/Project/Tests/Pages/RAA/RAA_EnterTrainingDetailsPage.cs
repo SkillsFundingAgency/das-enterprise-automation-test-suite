@@ -35,7 +35,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         {
             void SelectRandomCourse(By locator)
             {
-                for (int i = 0; i < dataHelper.RandomCourse; i++)
+                for (int i = 0; i < dataHelper.RandomNumber; i++)
                 {
                     formCompletionHelper.SendKeys(locator, Keys.ArrowDown);
                 }

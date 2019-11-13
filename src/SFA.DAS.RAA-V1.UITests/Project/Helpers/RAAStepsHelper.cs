@@ -195,7 +195,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
                    .EnterVacancyClosingDate()
                    .EnterPossibleStartDate()
                    .EnterVacancyDescription()
-                   .ClickSaveAndContinueButton();
+                   .SaveAndContinue();
         }
 
         internal RAA_RequirementsAndProspectsPage EnterFurtherDetails(RAA_EnterFurtherDetailsPage enterFurtherDetails)
@@ -203,7 +203,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
             return enterFurtherDetails
                    .EnterVacancyClosingDate()
                    .EnterPossibleStartDate()
-                   .ClickSaveAndContinueButton();
+                   .SaveAndContinue();
         }
 
         internal RAA_RequirementsAndProspectsPage EnterFurtherDetails(RAA_EnterFurtherDetailsPage enterFurtherDetails, string hoursPerWeek, string vacancyDuration)
@@ -216,7 +216,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
                    .EnterVacancyClosingDate()
                    .EnterPossibleStartDate()
                    .EnterVacancyDescription()
-                   .ClickSaveAndContinueButton();
+                   .SaveAndContinue();
         }
 
         internal void EnterRequirementsAndProspects(RAA_RequirementsAndProspectsPage requirementsAndProspects)
