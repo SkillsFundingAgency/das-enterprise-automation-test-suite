@@ -38,18 +38,28 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
             switch (applications)
             {
                 case 0:
-                    _vacancyPreviewPage = homePage.SelectVacancyWithNoApplications();
+                    _vacancyPreviewPage = homePage.SelectLiveVacancyWithNoApplication();
                     _vacancyPreviewPage.SetVacancyReference();
                     _vacancyLinkBasePage = _vacancyPreviewPage;
                     break;
 
                 case 1:
-                    _vacancySummaryPage = homePage.SelectVacancyWithLiveApplications();
+                    _vacancySummaryPage = homePage.SelectLiveVacancyWithApplications();
                     _vacancySummaryPage.SetVacancyReference();
                     _vacancyLinkBasePage = _vacancySummaryPage;
                     break;
             }   
         }
+
+        [Given(@"Provider views a closed vacancy which has Applications")]
+        public void GivenProviderViewsAClosedVacancyWhichHasApplications()
+        {
+            var homePage = _raaStepsHelper.GoToRAAHomePage(false);
+            _vacancySummaryPage = homePage.SelectClosedVacancyWithApplications();
+            _vacancySummaryPage.SetVacancyReference();
+            _vacancyLinkBasePage = _vacancySummaryPage;
+        }
+
 
         [Then(@"Provider is able to archive vacancy")]
         public void ThenProviderIsAbleToArchiveVacancy()

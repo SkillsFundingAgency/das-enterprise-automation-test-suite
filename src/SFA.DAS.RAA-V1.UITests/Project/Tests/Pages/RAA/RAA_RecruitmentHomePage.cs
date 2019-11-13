@@ -39,14 +39,18 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
         }
 
-        public RAA_VacancyPreviewPage SelectVacancyWithNoApplications()
+        public RAA_VacancyPreviewPage SelectLiveVacancyWithNoApplication()
         {
-            return SelectLiveVacancy(0).GoToVacancyPeviewPage();
+            return LiveVacancy().SelectVacancy(0).GoToVacancyPeviewPage();
         }
 
-        public RAA_VacancySummaryPage SelectVacancyWithLiveApplications()
+        public RAA_VacancySummaryPage SelectLiveVacancyWithApplications()
         {
-            return SelectLiveVacancy(1).GoToVacancySummary();
+            return LiveVacancy().SelectVacancy(1).GoToVacancySummary();
+        }
+        public RAA_VacancySummaryPage SelectClosedVacancyWithApplications()
+        {
+            return ClosedVacancy().SelectVacancy(1).GoToVacancySummary();
         }
 
         public RAA_EmployerInformationPage CloneAVacancy()
@@ -55,7 +59,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
             return LiveVacancy()
                 .Clone();
         }
-
+        
         public RAA_EmployerSelectionPage CreateANewVacancy()
         {
             formCompletionHelper.Click(CreateANewVacancyButton);
@@ -175,11 +179,21 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
 
         private RAA_RecruitmentHomePage LiveVacancy()
         {
-            formCompletionHelper.ClickElement(() => _pageInteractionHelper.GetLink(VacancyFilters, "Live"));
+            return SelectVacancyFilter("Live");
+        }
+
+        private RAA_RecruitmentHomePage ClosedVacancy()
+        {
+            return SelectVacancyFilter("Closed");
+        }
+
+        private RAA_RecruitmentHomePage SelectVacancyFilter(string filter)
+        {
+            formCompletionHelper.ClickElement(() => _pageInteractionHelper.GetLink(VacancyFilters, filter));
             return this;
         }
 
-        private RAA_RecruitmentHomePage SelectLiveVacancy(int applications)
+        private RAA_RecruitmentHomePage SelectVacancy(int applications)
         {
             string[] shouldNotContain = new string[] { "(Applications managed externally)", $"_{dataHelper.VacancyTitleDateElement}_" };
 
