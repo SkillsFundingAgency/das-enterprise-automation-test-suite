@@ -1,5 +1,4 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.UI.Framework.TestSupport;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
@@ -9,8 +8,6 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         #region Helpers and Context
         private readonly ScenarioContext _context;
         #endregion
-
-
         private By RespondToCandidateLink => By.LinkText("Respond to candidates");
 
         public RAA_VacancyLinkBasePage(ScenarioContext context) : base(context)
@@ -63,66 +60,6 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         public bool IsRespondToCandidateLinkDisplayed()
         {
             return pageInteractionHelper.IsElementDisplayed(RespondToCandidateLink);
-        }
-    }
-
-
-    public class RAA_ArchiveVacancyPage : RAA_HeaderSectionBasePage
-    {
-        protected override string PageTitle => "Archive vacancy";
-
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public RAA_ArchiveVacancyPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-        }
-
-        public RAA_ArchivedVacancyPreviewPage Confirm()
-        {
-            formCompletionHelper.ClickButtonByText("Confirm");
-
-            return new RAA_ArchivedVacancyPreviewPage(_context);
-        }
-    }
-
-
-    public class RAA_ArchivedVacancyPreviewPage : BasePage
-    {
-        protected override By PageHeader => By.CssSelector(".info-summary > p");
-
-        protected override string PageTitle => "This vacancy has been archived";
-
-        public RAA_ArchivedVacancyPreviewPage(ScenarioContext context) : base(context)
-        {
-            VerifyPage();
-        }
-    }
-
-
-    
-
-
-    public class RAA_ReadyToArchiveVacancyPage : RAA_HeaderSectionBasePage
-    {
-        protected override string PageTitle => "Are you ready to archive this vacancy?";
-
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public RAA_ReadyToArchiveVacancyPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-        }
-
-        public RAA_ResponceToCandidatePage RespondToRemainingCandidates()
-        {
-            formCompletionHelper.ClickButtonByText("Respond to remaining candidates");
-
-            return new RAA_ResponceToCandidatePage(_context);
         }
     }
 }
