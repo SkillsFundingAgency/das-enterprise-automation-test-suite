@@ -27,5 +27,16 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         }
     }
 
-    
+	public class ApprenticeDetailsApproved : CohortReferenceBasePage
+	{
+		protected override string PageTitle => "Apprentice details approved";
+
+		protected override By PageHeader => By.CssSelector(".govuk-panel__title");
+
+		public ApprenticeDetailsApproved(ScenarioContext context) : base(context)
+		{
+			VerifyPage();
+		}
+	}
+
 }

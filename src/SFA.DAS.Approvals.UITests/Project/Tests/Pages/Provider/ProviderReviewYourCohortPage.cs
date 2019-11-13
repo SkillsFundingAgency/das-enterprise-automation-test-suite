@@ -13,10 +13,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         #region Helpers and Context
         private readonly FormCompletionHelper _formCompletionHelper;
-        private readonly ScenarioContext _context;
-        #endregion
+		private readonly PageInteractionHelper _pageInteractionHelper;
+		private readonly ScenarioContext _context;
+		#endregion
 
-        private By AddAnApprenticeButton => By.ClassName("button-secondary");
+		private By pireanPreprodButton = By.XPath("//span[contains(text(),'Pirean Preprod')]");
+
+		private By AddAnApprenticeButton => By.ClassName("button-secondary");
 
         private By ApprenticeUlnField => By.CssSelector("tbody tr td:nth-of-type(2)");
 
@@ -30,11 +33,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         private By DeleteCohortbutton => By.ClassName("delete-button");
 
-        public ProviderReviewYourCohortPage(ScenarioContext context) : base(context)
+		public ProviderReviewYourCohortPage(ScenarioContext context) : base(context)
         {
             _context = context;
             _formCompletionHelper = context.Get<FormCompletionHelper>();
-            VerifyPage();
+			_pageInteractionHelper = context.Get<PageInteractionHelper>();
+			VerifyPage();
         }
 
         internal ProviderChooseAReservationPage SelectAddAnApprenticeUsingReservation()
@@ -46,7 +50,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         internal ProviderAddApprenticeDetailsPage SelectAddAnApprentice()
         {
             _formCompletionHelper.ClickElement(AddAnApprenticeButton);
-            return new ProviderAddApprenticeDetailsPage(_context);
+			if (_pageInteractionHelper.IsElementDisplayed(pireanPreprodButton))
+			{
+				_formCompletionHelper.ClickElement(pireanPreprodButton);
+			}
+			return new ProviderAddApprenticeDetailsPage(_context);
         }
 
         public List<IWebElement> ApprenticeUlns()
@@ -57,8 +65,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         public ProviderEditApprenticeDetailsPage SelectEditApprentice(int apprenticeNumber = 0)
         {
             IList<IWebElement> editApprenticeLinks = pageInteractionHelper.FindElements(EditApprenticeLink);
-            _formCompletionHelper.ClickElement(editApprenticeLinks[apprenticeNumber]);
-            return new ProviderEditApprenticeDetailsPage(_context);
+			_formCompletionHelper.ClickElement(editApprenticeLinks[apprenticeNumber]);
+			if (_pageInteractionHelper.IsElementDisplayed(pireanPreprodButton))
+			{
+				_formCompletionHelper.ClickElement(pireanPreprodButton);
+			}
+			return new ProviderEditApprenticeDetailsPage(_context);
         }
 
         public ProviderChooseAnOptionPage SelectContinueToApproval()

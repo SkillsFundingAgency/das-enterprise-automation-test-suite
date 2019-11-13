@@ -24,8 +24,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private By SaveAndContinueButton => By.ClassName("finishEditingBtn");
         private By ContinueToApprovalButton => By.ClassName("finishEditingBtn");
         private By RadioOptions => By.CssSelector(".govuk-radios__label");
-        private By Message => By.CssSelector("#approve-details");
-        private By SaveSubmit => By.CssSelector(".govuk-button");
+        private By ApproveMessage => By.CssSelector("#approve-details");
+		private By ReviewMessage => By.CssSelector("#send-details");
+		private By SaveSubmit => By.CssSelector(".govuk-button");
 
 
         public ReviewYourCohortPage(ScenarioContext context) : base(context)
@@ -35,7 +36,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             _formCompletionHelper = context.Get<FormCompletionHelper>();
             _dataHelper = context.Get<ApprenticeDataHelper>();
             var noOfApprentice = TotalNoOfApprentices();
-            _pageTitle = noOfApprentice == 1 ? "Approve apprentice details" : $"Approve {noOfApprentice} apprentices' details";
+			_pageTitle = noOfApprentice == 1 ? "Approve apprentice details" : $"Approve {noOfApprentice} apprentices' details";
             VerifyPage();
         }
 
@@ -63,20 +64,27 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             return new YourCohortRequestsPage(_context);
         }
 
-        public ApprenticeDetailsApprovedAndSentToTrainingProviderPage Approve()
-        {
-            _formCompletionHelper.SelectRadioOptionByForAttribute(RadioOptions, "radio-approve");
-            _formCompletionHelper.EnterText(Message, _dataHelper.MessageToProvider);
-            _formCompletionHelper.Click(SaveSubmit);
-            return new ApprenticeDetailsApprovedAndSentToTrainingProviderPage(_context);
-        }
+		public ApprenticeDetailsApprovedAndSentToTrainingProviderPage EmployerFirstApproveAndNotifyTrainingProvider()
+		{
+			_formCompletionHelper.SelectRadioOptionByForAttribute(RadioOptions, "radio-approve");
+			_formCompletionHelper.EnterText(ApproveMessage, _dataHelper.MessageToProvider);
+			_formCompletionHelper.Click(SaveSubmit);
+			return new ApprenticeDetailsApprovedAndSentToTrainingProviderPage(_context);
+		}
 
-        public NotificationSentToTrainingProviderPage SentToTrainingProvider()
+		public NotificationSentToTrainingProviderPage EmployerSendsToTrainingProviderForReview()
         {
             _formCompletionHelper.SelectRadioOptionByForAttribute(RadioOptions, "radio-send");
-            _formCompletionHelper.EnterText(Message, _dataHelper.MessageToProvider);
+			_formCompletionHelper.EnterText(ReviewMessage, _dataHelper.MessageToProvider);
             _formCompletionHelper.Click(SaveSubmit);
             return new NotificationSentToTrainingProviderPage(_context);
+        }
+
+		public ApprenticeDetailsApproved EmployerDoesSecondApproval()
+        {
+            _formCompletionHelper.SelectRadioOptionByForAttribute(RadioOptions, "radio-approve");
+            _formCompletionHelper.Click(SaveSubmit);
+            return new ApprenticeDetailsApproved(_context);
         }
 
         public ConfirmCohortDeletionPage SelectDeleteCohort()
