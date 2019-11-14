@@ -39,4 +39,8 @@
     </None>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Project\Tests\Features\ChangeApplicationStatus\" />
+  </ItemGroup>
+
 </Project>
