@@ -21,8 +21,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         #endregion
 
         private By StartNowButton => By.CssSelector(".button-start");
+		private By pireanPreprodButton = By.XPath("//span[contains(text(),'Pirean Preprod')]");
 
-        public ProviderIndexPage(ScenarioContext context):base(context)
+		public ProviderIndexPage(ScenarioContext context):base(context)
         {
             _context = context;
             _config = context.GetApprovalsConfig<ApprovalsConfig>();
@@ -33,8 +34,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         public ProviderSiginPage StartNow()
         {
-            _formCompletionHelper.ClickElement(StartNowButton);
-            return new ProviderSiginPage(_context);
-        }
+			_formCompletionHelper.ClickElement(StartNowButton);
+			if (_pageInteractionHelper.IsElementDisplayed(pireanPreprodButton))
+			{
+				_formCompletionHelper.ClickElement(pireanPreprodButton);
+			}
+			return new ProviderSiginPage(_context);
+		}
     }
 }

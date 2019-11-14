@@ -73,12 +73,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.ProviderPermission
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Employer grant and revoke Create Cohort permission to a provider")]
-        [NUnit.Framework.CategoryAttribute("regression")]
+        [NUnit.Framework.CategoryAttribute("inprogress")]
         [NUnit.Framework.CategoryAttribute("CreateCohortPermission")]
         public virtual void EmployerGrantAndRevokeCreateCohortPermissionToAProvider()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Employer grant and revoke Create Cohort permission to a provider", null, new string[] {
-                        "regression",
+                        "inprogress",
                         "CreateCohortPermission"});
 #line 7
 this.ScenarioInitialize(scenarioInfo);
