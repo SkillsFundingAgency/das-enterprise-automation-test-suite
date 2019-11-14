@@ -14,6 +14,7 @@ namespace SFA.DAS.FAT.UITests
             _context = context;
             _configSection = context.Get<IConfigSection>();
         }
+
         [BeforeScenario(Order = 2)]
         public void SetUpFATConfiguration()
         {
