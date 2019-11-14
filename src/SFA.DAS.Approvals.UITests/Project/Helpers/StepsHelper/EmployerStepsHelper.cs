@@ -35,8 +35,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
         public void Approve()
         {
             EmployerReviewCohort()
-                .SelectContinueToApproval()
-                .SubmitApprove();
+                .EmployerDoesSecondApproval();
         }
 
         internal ReviewYourCohortPage OpenRejectedCohort()
@@ -226,9 +225,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 
         public string EmployerApproveAndSendToProvider(ReviewYourCohortPage employerReviewYourCohortPage)
         {
-            return employerReviewYourCohortPage.SaveAndContinue()
-                .SubmitApproveAndSendToTrainingProvider()
-                .SendInstructionsToProviderForAnApprovedCohort()
+            return employerReviewYourCohortPage.
+                 EmployerFirstApproveAndNotifyTrainingProvider()
                 .CohortReference();
         }
 

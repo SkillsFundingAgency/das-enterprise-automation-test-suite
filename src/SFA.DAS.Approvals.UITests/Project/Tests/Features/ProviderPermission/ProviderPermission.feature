@@ -2,7 +2,7 @@
 Feature: ProviderPermission
 An employer can grant and revoke create cohort permission to a provider
 
-@regression
+@inprogress
 @CreateCohortPermission
 Scenario: Employer grant and revoke Create Cohort permission to a provider
 	Given Employer grant create cohort permission to a provider

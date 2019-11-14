@@ -1,7 +1,7 @@
 ﻿@approvals
 Feature: TransfersApprovalJourneyThree
 
-@regression
+@inprogress
 @transfersscenarios
 @liveapprentice
 @transfersfunds

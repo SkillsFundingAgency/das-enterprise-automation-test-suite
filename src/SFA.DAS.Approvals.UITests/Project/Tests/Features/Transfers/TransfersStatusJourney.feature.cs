@@ -73,12 +73,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.Transfers
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Transfers - Verify transfer status when agreement is not signed")]
-        [NUnit.Framework.CategoryAttribute("regression")]
+        [NUnit.Framework.CategoryAttribute("inprogress")]
         [NUnit.Framework.CategoryAttribute("transfersscenarios")]
         public virtual void Transfers_VerifyTransferStatusWhenAgreementIsNotSigned()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Transfers - Verify transfer status when agreement is not signed", null, new string[] {
-                        "regression",
+                        "inprogress",
                         "transfersscenarios"});
 #line 6
 this.ScenarioInitialize(scenarioInfo);
