@@ -4,13 +4,13 @@ using OpenQA.Selenium;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
-    public class ApprenticeDetailsApprovedAndSentToTrainingProviderPage : CohortReferenceBasePage
+    public class ApprenticeDetailsApprovedPage : CohortReferenceBasePage
     {
-        protected override string PageTitle => "Apprentice details approved and sent to training provider";
+        protected override string PageTitle => "Apprentice details approved";
 
         protected override By PageHeader => By.CssSelector(".govuk-panel__title");
 
-        public ApprenticeDetailsApprovedAndSentToTrainingProviderPage(ScenarioContext context) : base(context)
+        public ApprenticeDetailsApprovedPage(ScenarioContext context) : base(context)
         {
             VerifyPage();
         }

@@ -81,11 +81,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             return new NotificationSentToTrainingProviderPage(_context);
         }
 
-		public ApprenticeDetailsApproved EmployerDoesSecondApproval()
+		public ApprenticeDetailsApprovedPage EmployerDoesSecondApproval()
         {
             _formCompletionHelper.SelectRadioOptionByForAttribute(RadioOptions, "radio-approve");
             _formCompletionHelper.Click(SaveSubmit);
-            return new ApprenticeDetailsApproved(_context);
+            return new ApprenticeDetailsApprovedPage(_context);
         }
 
         public ConfirmCohortDeletionPage SelectDeleteCohort()
