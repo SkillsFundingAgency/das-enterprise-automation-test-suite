@@ -1,9 +1,6 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.FAT.UITests.Project.Tests.Pages
@@ -34,8 +31,6 @@ namespace SFA.DAS.FAT.UITests.Project.Tests.Pages
         {
             _formCompletionHelper.Click(StartButton);
             return new FindApprenticeshipTrainingSearchPage(_context);
-        }
-
-       
+        }       
     }
 }
