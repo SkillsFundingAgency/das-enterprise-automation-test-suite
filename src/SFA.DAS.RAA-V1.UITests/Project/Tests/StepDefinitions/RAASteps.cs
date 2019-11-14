@@ -51,6 +51,14 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
             }   
         }
 
+        [Then(@"Provider is able to change the status of the Application '(.*)' to '(.*)' to '(.*)'")]
+        public void ThenProviderIsAbleToChangeTheStatusOfTheApplicationToTo(string oldstatus, string newStatus1, string newStatus2)
+        {
+            var homePage = _raaStepsHelper.GoToRAAHomePage(false);
+            homePage.SelectLiveVacancyWithNewApplications();
+        }
+
+
         [Given(@"Provider views a closed vacancy which has Applications")]
         public void GivenProviderViewsAClosedVacancyWhichHasApplications()
         {

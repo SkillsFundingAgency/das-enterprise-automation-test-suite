@@ -13,13 +13,14 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         private readonly ObjectContext _objectContext;
         private RegexHelper _regexHelper;
         private readonly PageInteractionHelper _pageInteractionHelper;
+        private readonly ScenarioContext _context;
         #endregion
 
         private By VacancyStatus => By.CssSelector("#applicationTable .applicant span");
 
-
         public RAA_VacancySummaryPage(ScenarioContext context) : base(context)
         {
+            _context = context;
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _objectContext = context.Get<ObjectContext>();
             _regexHelper = context.Get<RegexHelper>();
@@ -35,5 +36,12 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
             var vacref = _regexHelper.GetVacancyReferenceFromUrl(_pageInteractionHelper.GetUrl());
             _objectContext.SetVacancyReference(vacref);
         }
+
+        public RAA_ApplicationPreviewPage ViewApplication()
+        {
+            formCompletionHelper.ClickLinkByText("View application");
+            return new RAA_ApplicationPreviewPage(_context);
+        }
+
     }
 }
