@@ -9,5 +9,9 @@ namespace SFA.DAS.UI.FrameworkHelpers
         public static string InnerText => "innerText";
 
         public static string AriaExpanded => "aria-expanded";
+
+        public static string Placeholder => "placeholder";
+
+        public static string Value => "value";
     }
 }

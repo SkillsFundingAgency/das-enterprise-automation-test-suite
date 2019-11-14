@@ -116,19 +116,6 @@ namespace SFA.DAS.UI.FrameworkHelpers
             return VerifyText(actual, expected);
         }
 
-        public bool VerifyValueAttributeOfAnElement(By locator, string expected)
-        {
-            var actual = _webDriver.FindElement(locator).GetAttribute("value");
-            if (actual.Contains(expected))
-            {
-                return true;
-            }
-
-            throw new Exception("Value verification failed: "
-                + "\n Expected: " + expected
-                + "\n Found: " + actual);
-        }
-       
         public string GetTextFromElementsGroup(By locator)
         {
             string text = null;
@@ -206,6 +193,10 @@ namespace SFA.DAS.UI.FrameworkHelpers
         public string GetText(By locator) => GetText(() => FindElement(locator));
 
         public string GetText(Func<IWebElement> element) => _retryHelper.RetryOnWebDriverException<string>(() => element().Text);
+
+        public string GetTextFromPlaceholderAttributeOfAnElement(By by) => FindElement(by).GetAttribute(AttributeHelper.Placeholder);
+
+        public string GetTextFromValueAttributeOfAnElement(By by) => FindElement(by).GetAttribute(AttributeHelper.Value);
 
         public string GetText(IWebElement webElement) => webElement.Text;
 
