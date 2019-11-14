@@ -41,7 +41,7 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
         private void VerifySearchSection()
         {
             Assert.AreEqual(_pageInteractionHelper.GetText(SearchSectionHeader), SearchSectionHeaderText, "Search section header mismatch");
-            _pageInteractionHelper.VerifyPlaceHolderAttributeOfAnElement(SearchTextBoxHelpText, SearchTextBoxHelpTextContent);
+            Assert.AreEqual(_pageInteractionHelper.GetTextFromPlaceholderAttributeOfAnElement(SearchTextBoxHelpText), SearchTextBoxHelpTextContent, "Search Text Help text mismatch");
         }
 
         public UlnSearchResultsPage SearchForULN()
