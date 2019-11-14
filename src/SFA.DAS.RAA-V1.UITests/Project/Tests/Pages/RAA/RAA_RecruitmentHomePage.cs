@@ -130,6 +130,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
 
         private void SearchByVacancyTitleContains(string filter)
         {
+            string filtertype(string x) => x == "New applications" ? "NewApplications" : x;
             NavigateToHome();
             ApprenticeshipVacancyType();
             formCompletionHelper.SelectFromDropDownByValue(VacancySearchMode, "VacancyTitle");
@@ -137,7 +138,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
             formCompletionHelper.EnterText(VacancySearchText, $"{searchTerm}_");
             formCompletionHelper.ClickElement(() => _pageInteractionHelper.FindElement(SearchVacancy));
             formCompletionHelper.ClickElement(() => _pageInteractionHelper.GetLink(VacancyFilters, filter));
-            _pageInteractionHelper.WaitforURLToChange($"FilterType={filter}");
+            _pageInteractionHelper.WaitforURLToChange($"FilterType={filtertype(filter)}");
         }
 
         private void ApprenticeshipVacancyType()
