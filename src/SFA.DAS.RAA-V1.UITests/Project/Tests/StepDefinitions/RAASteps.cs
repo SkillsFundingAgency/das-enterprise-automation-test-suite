@@ -161,6 +161,12 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
             CloneVacancy();
         }
 
+        [When(@"an offline Vacancy details are filled out for a Traineeship for a different '(.*)'")]
+        public void WhenAnOfflineVacancyDetailsAreFilledOutForATraineeshipForADifferent(string location)
+        {
+            _raaStepsHelper.ProviderFillsOutTraineeshipDetails(location, "Offline");
+        }
+
         [When(@"the Vacancy details are filled out for a Traineeship for a different '(.*)'")]
         public void WhenTheVacancyDetailsAreFilledOutForATraineeshipForADifferent(string location)
         {
