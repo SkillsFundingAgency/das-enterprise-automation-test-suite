@@ -1,4 +1,5 @@
-﻿using TechTalk.SpecFlow;
+﻿using OpenQA.Selenium;
+using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
 {
@@ -7,7 +8,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         #region Helpers and Context
         private readonly ScenarioContext _context;
         #endregion
-
+        private By RespondToCandidateLink => By.LinkText("Respond to candidates");
 
         public RAA_VacancyLinkBasePage(ScenarioContext context) : base(context)
         {
@@ -30,6 +31,35 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         {
             formCompletionHelper.ClickLinkByText("Increase wage");
             return new RAA_IncreaseVacancyWagePage(_context);
+        }
+
+        public RAA_ShareApplicationsPage ShareApplications()
+        {
+            formCompletionHelper.ClickLinkByText("Share applications");
+            return new RAA_ShareApplicationsPage(_context);
+        }
+
+        public RAA_ResponceToCandidatePage RespondToCandidates()
+        {
+            formCompletionHelper.ClickLinkByText("Respond to candidates");
+            return new RAA_ResponceToCandidatePage(_context);
+        }
+
+        public RAA_ReadyToArchiveVacancyPage ArchiveVacancyAndRespondToCandidates()
+        {
+            formCompletionHelper.ClickLinkByText("Archive vacancy");
+            return new RAA_ReadyToArchiveVacancyPage(_context);
+        }
+
+        public RAA_ArchiveVacancyPage ArchiveVacancy()
+        {
+            formCompletionHelper.ClickLinkByText("Archive vacancy");
+            return new RAA_ArchiveVacancyPage(_context);
+        }
+
+        public bool IsRespondToCandidateLinkDisplayed()
+        {
+            return pageInteractionHelper.IsElementDisplayed(RespondToCandidateLink);
         }
     }
 }

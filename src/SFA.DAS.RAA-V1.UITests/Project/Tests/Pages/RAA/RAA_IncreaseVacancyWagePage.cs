@@ -18,6 +18,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         private By AmountLowerBound => By.CssSelector("#AmountLowerBound");
         private By AmountUpperBound => By.CssSelector("#AmountUpperBound");
         private By RangeUnit => By.CssSelector("#RangeUnit");
+        private By CustomWageLabel => By.CssSelector("#custom-wage-label");
 
 
         public RAA_IncreaseVacancyWagePage(ScenarioContext context) : base(context)
@@ -29,17 +30,26 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
 
         public RAA_IncreaseVacancyWagePreviewPage SaveAndReturn()
         {
-            var currentwage = _regexHelper.GetVacancyCurrentWage(_pageInteractionHelper.GetText(CurrentWage));
+            string currentwage;
+
+            if (_pageInteractionHelper.IsElementDisplayed(CustomWageLabel))
+            {
+                currentwage = _regexHelper.GetVacancyCurrentWage(_pageInteractionHelper.GetText(AmountLowerBound));
+            }
+            else
+            {
+                currentwage = _regexHelper.GetVacancyCurrentWage(_pageInteractionHelper.GetText(CurrentWage));
+                
+                formCompletionHelper.SelectRadioOptionByText("Custom wage");
+
+                formCompletionHelper.SelectRadioOptionByText("Wage range");
+            }
 
             int.TryParse(currentwage, out int newMinWage);
 
             newMinWage = newMinWage == 0 ? 200 : (newMinWage + dataHelper.RandomNumber);
 
             int newMaxWage = newMinWage + dataHelper.RandomNumber;
-
-            formCompletionHelper.SelectRadioOptionByText("Custom wage");
-
-            formCompletionHelper.SelectRadioOptionByText("Wage range");
 
             formCompletionHelper.EnterText(AmountLowerBound, newMinWage.ToString());
 

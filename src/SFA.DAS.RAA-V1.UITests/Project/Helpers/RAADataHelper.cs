@@ -12,15 +12,15 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
 
         public RAADataHelper(RandomDataGenerator randomDataGenerator, RegexHelper regexHelper)
         {
-            var datetime = System.DateTime.Now;
             _randomDataGenerator = randomDataGenerator;
             _regexHelper = regexHelper;
             EmployerDescription = _randomDataGenerator.GenerateRandomAlphabeticString(10);
             EmployerReason = _randomDataGenerator.GenerateRandomAlphabeticString(10);
             EmployerBody = _randomDataGenerator.GenerateRandomAlphabeticString(25);
             EmployerWebsiteUrl = WebsiteUrl(EmployerDescription);
-            VacancyTitleDateElement = datetime.ToString("ddMMMyyyy");
-            VacancyTitle = $"{_randomDataGenerator.GenerateRandomAlphabeticString(10)}_{VacancyTitleDateElement}_{datetime.ToString("HHmmss")}";
+            VacancyTitleDate = DateTime.Now;
+            VacancyTitleDateElement = VacancyTitleDate.ToString("ddMMMyyyy");
+            VacancyTitle = $"{_randomDataGenerator.GenerateRandomAlphabeticString(10)}_{VacancyTitleDateElement}_{VacancyTitleDate.ToString("HHmmss")}";
             VacancyShortDescription = _randomDataGenerator.GenerateRandomAlphabeticString(15);
             VacancyDescription = _randomDataGenerator.GenerateRandomAlphabeticString(50);
             VacancyWebsiteUrl = WebsiteUrl(VacancyShortDescription);
@@ -39,6 +39,8 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
             FirstQuestion = _randomDataGenerator.GenerateRandomAlphabeticString(15);
             SecondQuestion = _randomDataGenerator.GenerateRandomAlphabeticString(15);
             AdditionalLocationInformation = _randomDataGenerator.GenerateRandomAlphabeticString(5);
+            ShareApplicationEmail = $"{TrainingContactName}@gmail.com";
+            OptionalMessage = _randomDataGenerator.GenerateRandomAlphabeticString(30);
         }
 
         public string EmployerErn { get; private set; }
@@ -54,7 +56,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
 
         public IWebElement Address(List<IWebElement> addresses) => RandomElement(addresses).Item2;
 
-        public int CloneVacancy(List<IWebElement> vacancies) => RandomElement(vacancies).Item1;
+        public int RandomVacancy(List<IWebElement> vacancies) => RandomElement(vacancies).Item1;
 
         public string EmployerDescription { get; }
 
@@ -63,6 +65,8 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
         public string EmployerBody { get; }
         
         public string EmployerWebsiteUrl { get; }
+
+        internal DateTime VacancyTitleDate { get; }
 
         internal string VacancyTitleDateElement { get; }
 
@@ -109,6 +113,10 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
         public string AdditionalLocationInformation { get;}
         
         public string NumberOfVacancy => "2" ;
+
+        public string ShareApplicationEmail { get; }
+
+        public string OptionalMessage { get; }
 
         private string WebsiteUrl(string url) => $"https://www.{url}.com";
 

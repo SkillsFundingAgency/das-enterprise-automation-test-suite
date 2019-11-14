@@ -14,6 +14,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
+        private readonly RegexHelper _regexHelper;
         private readonly ObjectContext _objectContext;
         private readonly PageInteractionHelper _pageInteractionHelper;
         #endregion
@@ -29,7 +30,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         private By CloneLink => By.CssSelector("a");
         private By VacancyFilter => By.CssSelector(".column-one-quarter .vacancy-filter");
         private By VacancyStatus => By.CssSelector(".bold-xsmall");
-        private By TableRows => By.CssSelector("tbody tr");
+        private By VacancyTables => By.CssSelector("#vacancies-table tbody tr");
         private By NextPage => By.CssSelector(".page-navigation__btn.next");
 
         public RAA_RecruitmentHomePage(ScenarioContext context, bool navigate) : base(context, navigate)
@@ -37,25 +38,43 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
             _context = context;
             _objectContext = context.Get<ObjectContext>();
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
+            _regexHelper = context.Get<RegexHelper>();
         }
 
-        public RAA_VacancyPreviewPage SelectVacancyWithNoApplications()
+        public RAA_VacancyPreviewPage SelectLiveVacancyWithNoApplication()
         {
-            return SelectLiveVacancy(0).GoToVacancyPeviewPage();
+            SelectVacancy("Live", 0);
+            return new RAA_VacancyPreviewPage(_context);
         }
 
-        public RAA_VacancySummaryPage SelectVacancyWithLiveApplications()
+        public RAA_VacancySummaryPage SelectLiveVacancyWithApplications()
         {
-            return SelectLiveVacancy(1).GoToVacancySummary();
+            SelectVacancy("Live", 1);
+            return new RAA_VacancySummaryPage(_context);
+        }
+
+        public RAA_VacancySummaryPage SelectClosedVacancyWithApplications()
+        {
+            SelectVacancy("Closed", 1);
+            return new RAA_VacancySummaryPage(_context);
+        }
+
+        public RAA_VacancySummaryPage SelectLiveVacancyWithNewApplications()
+        {
+            SelectVacancy("New applications", 1, "Live");
+            return new RAA_VacancySummaryPage(_context);
         }
 
         public RAA_EmployerInformationPage CloneAVacancy()
         {
-            ApprenticeshipVacancyType();
-            return LiveVacancy()
-                .Clone();
+           
+            int randomLink = RandomElementAt("Live", (str) => !str.Contains("(Applications managed externally)"));
+            
+            formCompletionHelper.ClickElement(() => _pageInteractionHelper.GetLinks(CloneLink, "Clone")[randomLink]);
+            
+            return new RAA_EmployerInformationPage(_context);
         }
-
+        
         public RAA_EmployerSelectionPage CreateANewVacancy()
         {
             formCompletionHelper.Click(CreateANewVacancyButton);
@@ -72,13 +91,15 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         public RAA_VacancySummaryPage SearchLiveVacancy()
         {
             SearchByReferenceNumber("Live");
-            return GoToVacancySummary();
+            ClickVacancy();
+            return new RAA_VacancySummaryPage(_context);
         }
 
         public RAA_VacancyPreviewPage SearchReferredVacancy()
         {
             SearchByReferenceNumber("Referred");
-            return GoToVacancyPeviewPage();
+            ClickVacancy();
+            return new RAA_VacancyPreviewPage(_context);
         }
 
         private void SearchByReferenceNumber(string vacancyType)
@@ -107,6 +128,19 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
             _pageInteractionHelper.WaitForElementToChange(func, AttributeHelper.InnerText, "1");
         }
 
+        private void SearchByVacancyTitleContains(string filter)
+        {
+            string filtertype(string x) => x == "New applications" ? "NewApplications" : x;
+            NavigateToHome();
+            ApprenticeshipVacancyType();
+            formCompletionHelper.SelectFromDropDownByValue(VacancySearchMode, "VacancyTitle");
+            var searchTerm = dataHelper.VacancyTitleDate.AddDays(-1).ToString("MMMyyyy");
+            formCompletionHelper.EnterText(VacancySearchText, $"{searchTerm}_");
+            formCompletionHelper.ClickElement(() => _pageInteractionHelper.FindElement(SearchVacancy));
+            formCompletionHelper.ClickElement(() => _pageInteractionHelper.GetLink(VacancyFilters, filter));
+            _pageInteractionHelper.WaitforURLToChange($"FilterType={filtertype(filter)}");
+        }
+
         private void ApprenticeshipVacancyType()
         {
             if (!_objectContext.IsApprenticeshipVacancyType())
@@ -116,16 +150,33 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
             }
         }
 
-        private RAA_EmployerInformationPage Clone()
+        private void ClickVacancy()
         {
-            int randomLink = RandomElementAt((str) => !str.Contains("(Applications managed externally)"));
-            formCompletionHelper.ClickElement(() => _pageInteractionHelper.GetLinks(CloneLink, "Clone")[randomLink]);
-            return new RAA_EmployerInformationPage(_context);
+            formCompletionHelper.ClickElement(() => _pageInteractionHelper.GetLink(VacancyTitle, dataHelper.VacancyTitle));
         }
 
-        private int RandomElementAt(Func<string, bool> func)
+        private RAA_RecruitmentHomePage SelectVacancy(string filter, int applications, string additionalFilter = null)
         {
-            List<IWebElement> rows() => _pageInteractionHelper.FindElements(TableRows).ToList();
+            IWebElement element()
+            {
+                string[] shouldNotContain = new string[] { "(Applications managed externally)", $"_{dataHelper.VacancyTitleDateElement}_" };
+
+                int randomLink = RandomElementAt(filter, (str) => shouldNotContain.Any(x => !str.Contains(x)) 
+                && str.Contains($"{applications}\r\napplication") && (additionalFilter == null ? true : str.Contains(additionalFilter)) && _regexHelper.CheckVacancyTitle(str));
+
+                dataHelper.VacancyTitle = _pageInteractionHelper.GetText(() => _pageInteractionHelper.FindElements(VacancyTitle)[randomLink]);
+
+                return _pageInteractionHelper.GetLink(VacancyTitle, dataHelper.VacancyTitle);
+            }
+
+            formCompletionHelper.RetryClickOnException(element);
+
+            return this;
+        }
+
+        private int RandomElementAt(string filter, Func<string, bool> func)
+        {
+            List<IWebElement> rows() => _pageInteractionHelper.FindElements(VacancyTables).ToList();
             int randomLink = 0;
             int count = 1;
 
@@ -133,8 +184,9 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
             {
                 for (int i = 1; i < rows().Count; i++)
                 {
+                    SearchByVacancyTitleContains(filter);
                     var tablerows = rows();
-                    randomLink = dataHelper.CloneVacancy(tablerows);
+                    randomLink = dataHelper.RandomVacancy(tablerows);
                     var text = _pageInteractionHelper.GetText(() => rows()[randomLink]);
                     if (func(text))
                     {
@@ -153,41 +205,6 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
                 count++;
             }
             return randomLink;
-        }
-
-
-        private RAA_VacancySummaryPage GoToVacancySummary()
-        {
-             ClickVacancy();
-             return new RAA_VacancySummaryPage(_context);
-        }
-
-        private RAA_VacancyPreviewPage GoToVacancyPeviewPage()
-        {
-            ClickVacancy();
-            return new RAA_VacancyPreviewPage(_context);
-        }
-
-        private void ClickVacancy()
-        {
-            formCompletionHelper.ClickElement(() => _pageInteractionHelper.GetLink(VacancyTitle, dataHelper.VacancyTitle));
-        }
-
-        private RAA_RecruitmentHomePage LiveVacancy()
-        {
-            formCompletionHelper.ClickElement(() => _pageInteractionHelper.GetLink(VacancyFilters, "Live"));
-            return this;
-        }
-
-        private RAA_RecruitmentHomePage SelectLiveVacancy(int applications)
-        {
-            string[] shouldNotContain = new string[] { "(Applications managed externally)", $"_{dataHelper.VacancyTitleDateElement}_" };
-
-            int randomLink = RandomElementAt((str) => shouldNotContain.Any(x => !str.Contains(x)) && str.Contains($"{applications}\r\napplication"));
-
-            dataHelper.VacancyTitle = _pageInteractionHelper.GetText(() => _pageInteractionHelper.FindElements(VacancyTitle)[randomLink]);
-
-            return this;
         }
 
     }

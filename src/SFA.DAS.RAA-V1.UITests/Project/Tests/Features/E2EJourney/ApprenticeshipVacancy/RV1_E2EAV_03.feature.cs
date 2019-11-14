@@ -74,33 +74,34 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Features.E2EJourney.Apprenticeshi
             string[] @__tags = new string[] {
                     "raa-v1",
                     "v1_e2e",
-                    "regression"};
+                    "regression",
+                    "apprenticeshipvacancy"};
             if ((exampleTags != null))
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
             }
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV1_E2EAV_03 - Create, Approve and Apply for a Apprenticeship Vacancy", null, @__tags);
-#line 6
+#line 7
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 7
- testRunner.Given("the Provider initiates Create Apprenticeship Vacancy in Recruit", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 8
- testRunner.When(string.Format("the Provider chooses the employer \'{0}\',\'{1}\'", location, noOfPositions), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.Given("the Provider initiates Create Apprenticeship Vacancy in Recruit", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 9
- testRunner.And(string.Format("the Provider chooses their \'{0}\'", anonymity), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.When(string.Format("the Provider chooses the employer \'{0}\',\'{1}\'", location, noOfPositions), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 10
+ testRunner.And(string.Format("the Provider chooses their \'{0}\'", anonymity), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 11
  testRunner.And(string.Format("the Provider fills out details for an Offline Vacancy \'{0}\',\'{1}\',\'{2}\',\'{3}\',\'{4" +
                         "}\',\'{5}\'", location, disabilityConfident, applicationMethod, apprenticeshipType, hoursPerWeek, vacancyDuration), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 11
- testRunner.Then("Provider is able to submit the vacancy for approval", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 12
- testRunner.When("the Reviewer initiates reviewing the Vacancy in Manage", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.Then("Provider is able to submit the vacancy for approval", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 13
- testRunner.Then(string.Format("the Reviewer is able to approve the Vacancy \'{0}\',\'{1}\'", changeteam, changeRole), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.When("the Reviewer initiates reviewing the Vacancy in Manage", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 14
- testRunner.When(string.Format("the Applicant apply for a Vacancy in FAA \'{0}\',\'{1}\',\'{2}\'", qualificationDetails, workExperience, trainingCourse), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.Then(string.Format("the Reviewer is able to approve the Vacancy \'{0}\',\'{1}\'", changeteam, changeRole), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 15
+ testRunner.When(string.Format("the Applicant apply for a Vacancy in FAA \'{0}\',\'{1}\',\'{2}\'", qualificationDetails, workExperience, trainingCourse), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 16
  testRunner.Then("the vacancy status should be Live in Recruit", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -112,9 +113,10 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.CategoryAttribute("raa-v1")]
         [NUnit.Framework.CategoryAttribute("v1_e2e")]
         [NUnit.Framework.CategoryAttribute("regression")]
+        [NUnit.Framework.CategoryAttribute("apprenticeshipvacancy")]
         public virtual void RV1_E2EAV_03_CreateApproveAndApplyForAApprenticeshipVacancy_UseTheMainEmployerAddress()
         {
-#line 6
+#line 7
 this.RV1_E2EAV_03_CreateApproveAndApplyForAApprenticeshipVacancy("Use the main employer address", "No", "No", "Online", "Framework", "42", "52", "West Midlands", "Vacancy reviewer", "2", "Yes", "Yes", "Yes", ((string[])(null)));
 #line hidden
         }
