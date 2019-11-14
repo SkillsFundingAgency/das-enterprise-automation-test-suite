@@ -182,6 +182,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
         [When(@"the Provider chooses the employer '(.*)','(.*)'")]
         public void WhenTheProviderChoosesTheEmployer(string location, string noOfpositions)
         {
+
             _raaEmployerInformation = _raaStepsHelper.ChoosesTheEmployer(_employerSelection, location, noOfpositions);
         }
 
