@@ -1,7 +1,7 @@
 ﻿@approvals
 Feature: TransfersStatusJourney
 
-@regression
+@inprogress
 @transfersscenarios
 Scenario: Transfers - Verify transfer status when agreement is not signed
 	Given We have a Sender with sufficient levy funds without signing an agreement
