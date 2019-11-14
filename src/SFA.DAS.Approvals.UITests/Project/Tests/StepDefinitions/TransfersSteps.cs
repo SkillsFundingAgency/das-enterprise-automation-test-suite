@@ -193,7 +193,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             _objectContext.UpdateOrganisationName(_receiver);
 
-            _employerStepsHelper.OpenRejectedCohort().EmployerFirstApproveAndNotifyTrainingProvider();
+            _employerStepsHelper.OpenRejectedCohort().EmployerSendsToTrainingProviderForReview();
         }
 
         [When(@"Receiver approves the cohort")]
