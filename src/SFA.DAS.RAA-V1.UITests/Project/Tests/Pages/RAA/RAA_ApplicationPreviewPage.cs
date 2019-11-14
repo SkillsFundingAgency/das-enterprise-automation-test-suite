@@ -60,7 +60,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
                 formCompletionHelper.ClickButtonByText("Return to vacancy applications");
             }
 
-            if (newstatus == "UnSuccessful")
+            if (newstatus == "Unsuccessful")
             {
                 formCompletionHelper.EnterText(CandidateFeedback, dataHelper.OptionalMessage);
                 formCompletionHelper.ClickButtonByText("Confirm and send");
