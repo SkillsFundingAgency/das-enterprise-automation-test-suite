@@ -29,6 +29,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>ApprenticeFeature.feature</DependentUpon>
     </Compile>
+    <Compile Update="Project\Tests\Features\Employer\CheckThatFindTheRightApprenticeshipSearchWorks.feature.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>CheckThatFindTheRightApprenticeshipSearchWorks.feature</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
@@ -50,6 +55,10 @@
     <SpecFlowFeatureFiles Update="Project\Tests\Features\ApprenticeFeature.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>ApprenticeFeature.feature.cs</LastGenOutput>
+    </SpecFlowFeatureFiles>
+    <SpecFlowFeatureFiles Update="Project\Tests\Features\Employer\CheckThatFindTheRightApprenticeshipSearchWorks.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>CheckThatFindTheRightApprenticeshipSearchWorks.feature.cs</LastGenOutput>
     </SpecFlowFeatureFiles>
   </ItemGroup>
 

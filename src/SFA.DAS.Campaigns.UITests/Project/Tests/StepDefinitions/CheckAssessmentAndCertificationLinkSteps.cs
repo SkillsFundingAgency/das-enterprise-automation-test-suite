@@ -17,6 +17,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
         private FireItUpHomePage fireItUpHomePage;
         private EmployerMenuOptionPage employerMenuOptionPage;
         private AssessmentAndCertificationPage assessmentAndCertificationPage;
+        private EmployerAssessmentAndCertificationPage employerAssessmentAndCertificationPage;
         #endregion
         public CheckAssessmentAndCertificationLinkSteps(ScenarioContext context)
         {
@@ -30,14 +31,14 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
             fireItUpHomePage = new FireItUpHomePage(_context);
             fireItUpHomePage.LaunchEmployerMenu();
             TestContext.Progress.WriteLine("Navigating to Assessment And Certification page");
-            fireItUpHomePage.ClickOnAssessmentAndCertificationLink();
+            fireItUpHomePage.ClickOnAssessmentAndCertificationEmployerLink();
         }
         
         [Then(@"I verify the title for Assessment And Certification page")]
         public void ThenIVerifyTheTitleForAssessmentAndCertificationPage()
         {
-            assessmentAndCertificationPage = new AssessmentAndCertificationPage(_context);
-            assessmentAndCertificationPage.VerifyContentUnderGetAssessedAndGetYourCertificateSection();
+            employerAssessmentAndCertificationPage= new EmployerAssessmentAndCertificationPage(_context);
+            employerAssessmentAndCertificationPage.CheckEmployerAssessmentAndCertificationContent();
         }
     }
 }

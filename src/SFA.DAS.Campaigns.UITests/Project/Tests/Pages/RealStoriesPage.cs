@@ -17,7 +17,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
 
         #region Constants
         private const string ExpectedRealStoriesDescription = "Do you want to earn while you learn and get hands-on experience? Have a look at real stories and see how becoming an apprentice changed the following lives.";
-        private const string ExpectedTotalTimeDurationForVideo1 = "1:02";
+        private const string ExpectedTotalTimeDurationForVideo1 = "1:01";
         #endregion
 
         #region Helpers

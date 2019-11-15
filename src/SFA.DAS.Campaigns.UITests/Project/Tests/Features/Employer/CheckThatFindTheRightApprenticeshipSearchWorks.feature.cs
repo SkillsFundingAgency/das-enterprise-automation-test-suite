@@ -18,20 +18,20 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Features.Employer
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.0.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("CheckTheLinkTheRightApprenticeship")]
-    public partial class CheckTheLinkTheRightApprenticeshipFeature
+    [NUnit.Framework.DescriptionAttribute("CheckThatFindTheRightApprenticeshipSearchWorks")]
+    public partial class CheckThatFindTheRightApprenticeshipSearchWorksFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "CheckTheLinkTheRightApprenticeship.feature"
+#line 1 "CheckThatFindTheRightApprenticeshipSearchWorks.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "CheckTheLinkTheRightApprenticeship", "\tAs an Employer\r\n\tI want to be able to navigate to Fire It Up home page\r\n\tSo that" +
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "CheckThatFindTheRightApprenticeshipSearchWorks", "\tAs an Employer\r\n\tI want to be able to navigate to Fire It Up home page\r\n\tSo that" +
                     " I can use the benefits of Employer services and information ", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
@@ -81,9 +81,13 @@ this.ScenarioInitialize(scenarioInfo);
 #line 7
  testRunner.Given("I navigate to Fire It Up home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 8
- testRunner.And("I launch The Right Apprenticeship page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("I Launch Find The Right Apprenticeship page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 9
- testRunner.Then("I verify the title for The Right Apprenticeship  page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("I verify the title for Find The Right Apprenticeship  page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 10
+ testRunner.And("I Can Perform The Search on the Empty Field", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 11
+ testRunner.And("I Can Verify The Result Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }

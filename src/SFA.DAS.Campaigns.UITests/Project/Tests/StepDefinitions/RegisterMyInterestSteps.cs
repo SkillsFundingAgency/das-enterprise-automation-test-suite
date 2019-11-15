@@ -18,7 +18,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
         private EmployerMenuOptionPage employerMenuOptionPage;
         private AssessmentAndCertificationPage assessmentAndCertificationPage;
         private RegisterMyInterestPage  registerMyInterestPage;
-         private RegisterMyInterestSuccessPage  registerMyInterestSuccessPage;
+        private RegisterMyInterestSuccessPage  registerMyInterestSuccessPage;
         #endregion
         public RegisterMyInterestSteps(ScenarioContext context)
         {

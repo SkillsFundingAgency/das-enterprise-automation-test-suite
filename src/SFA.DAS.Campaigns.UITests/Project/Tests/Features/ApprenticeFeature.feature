@@ -58,7 +58,7 @@
 		And I launch the Interview page
 		Then I verify the content under The Interview Process section
 		And I verify the content under Before Your Interview section
-		And I verify the content under Day Of The Interview section
+		# And I verify the content under Day Of The Interview section
 
 	Scenario: Check all the links and content of APPLICATION screen
 		Given I navigate to Fire It Up home page
@@ -92,7 +92,7 @@
 		And I launch the What Are The Benefits For Me page
 		Then I verify the content under WHAT ARE MY FUTURE PROSPECTS section
 		And I verify the content under HOW MUCH CAN YOU EARN section
-		And I verify the content under WHAT WILL MY APPRENTICESHIP COST ME section
+		# And I verify the content under WHAT WILL MY APPRENTICESHIP COST ME section
 
 	Scenario: Check all the links and content of REAL STORIES page
 		Given I navigate to Fire It Up home page

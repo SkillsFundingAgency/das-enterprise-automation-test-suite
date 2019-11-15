@@ -242,8 +242,6 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Features
   testRunner.Then("I verify the content under The Interview Process section", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 60
   testRunner.And("I verify the content under Before Your Interview section", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 61
-  testRunner.And("I verify the content under Day Of The Interview section", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -311,8 +309,6 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Features
   testRunner.Then("I verify the content under WHAT ARE MY FUTURE PROSPECTS section", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 94
   testRunner.And("I verify the content under HOW MUCH CAN YOU EARN section", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 95
-  testRunner.And("I verify the content under WHAT WILL MY APPRENTICESHIP COST ME section", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }

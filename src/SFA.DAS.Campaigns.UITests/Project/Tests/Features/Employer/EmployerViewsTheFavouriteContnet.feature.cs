@@ -18,20 +18,20 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Features.Employer
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.0.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("CheckTheLinkTheRightApprenticeship")]
-    public partial class CheckTheLinkTheRightApprenticeshipFeature
+    [NUnit.Framework.DescriptionAttribute("EmployerViewsTheFavouriteContnet")]
+    public partial class EmployerViewsTheFavouriteContnetFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "CheckTheLinkTheRightApprenticeship.feature"
+#line 1 "EmployerViewsTheFavouriteContnet.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "CheckTheLinkTheRightApprenticeship", "\tAs an Employer\r\n\tI want to be able to navigate to Fire It Up home page\r\n\tSo that" +
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "EmployerViewsTheFavouriteContnet", "\tAs an Employer\r\n\tI want to be able to navigate to Fire It Up home page\r\n\tSo that" +
                     " I can use the benefits of Employer services and information ", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
@@ -71,19 +71,19 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Features.Employer
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Check That Find The Right Apprenticeship Search Works")]
-        public virtual void CheckThatFindTheRightApprenticeshipSearchWorks()
+        [NUnit.Framework.DescriptionAttribute("I want to be able to view the Favourite content")]
+        public virtual void IWantToBeAbleToViewTheFavouriteContent()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Check That Find The Right Apprenticeship Search Works", null, ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("I want to be able to view the Favourite content", null, ((string[])(null)));
 #line 6
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 7
  testRunner.Given("I navigate to Fire It Up home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 8
- testRunner.And("I launch The Right Apprenticeship page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("I Click on the Favourite Icon", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 9
- testRunner.Then("I verify the title for The Right Apprenticeship  page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("I Can Verify the Header for The Favourite Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

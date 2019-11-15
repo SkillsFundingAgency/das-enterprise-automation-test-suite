@@ -41,7 +41,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
         
         //private readonly By _EmployersHeaderSupportText = By.XPath("(//div[@class='launcher__content']/child::p)[4]");
         private readonly By _yourApprenticeshipLink = By.Id("link-nav-app-step-5");
-        private readonly By _assessmentAndCertificationLink = By.Id("link-nav-app-step-6");
+        private readonly By _assessmentAndCertificationApprenticeLink = By.Id("link-nav-app-step-6");
         private readonly By _inetrviewLink = By.Id("link-nav-app-step-4");
         private readonly By _applicationLink = By.Id("link-nav-app-step-3");
         private readonly By _whatIsAnApprenticeshipLink = By.Id("link-nav-app-step-1");
@@ -53,7 +53,8 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
         private readonly By _chooseATrainingProviderLink =By.Id("link-nav-emp-step-3");
         private readonly By _hireAnApprenticeLink =By.Id("link-nav-emp-step-4");
         private readonly By _preparingAndMonitoringLink =By.Id("link-nav-emp-step-5");
-        private readonly By _asessmentAndCertificationLink =By.Id("link-nav-emp-step-6");
+        private readonly By _assessmentAndCertificationEmployerLink =By.Id("link-nav-emp-step-6");
+        private readonly By _findTheRightApprenticeshipLink =By.Id("link-nav-emp-find-apprenticeship-training");
         #endregion
 
         public FireItUpHomePage(ScenarioContext context) : base(context)
@@ -95,9 +96,9 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
             _formCompletionHelper.ClickElement(_yourApprenticeshipLink);
         }
 
-        internal void ClickOnAssessmentAndCertificationLink()
+        internal void ClickOnAssessmentAndCertificationApprenticeLink()
         {
-            _formCompletionHelper.ClickElement(_assessmentAndCertificationLink);
+            _formCompletionHelper.ClickElement(_assessmentAndCertificationApprenticeLink);
         }
 
         internal void ClickOnInterviewLink()
@@ -173,5 +174,15 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
            _formCompletionHelper.ClickElement( _registerMyInterestButton);
             return new RegisterMyInterestPage(_context);
          }
+        internal FindTheRightApprenticeshipPage ClickFindTheRightApprenticeshipPage()
+        {
+            _formCompletionHelper.ClickElement(_findTheRightApprenticeshipLink);
+            return new FindTheRightApprenticeshipPage(_context);
+        }
+        internal EmployerAssessmentAndCertificationPage ClickOnAssessmentAndCertificationEmployerLink()
+        {
+            _formCompletionHelper.ClickElement(_assessmentAndCertificationEmployerLink);
+            return new EmployerAssessmentAndCertificationPage(_context);
+        }
     }
 }

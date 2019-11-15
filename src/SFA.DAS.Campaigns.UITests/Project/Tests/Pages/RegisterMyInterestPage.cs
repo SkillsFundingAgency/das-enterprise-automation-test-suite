@@ -22,20 +22,16 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
         #endregion
 
         #region Page Objects Elements
+        // Hd to use xpath because duplicate id were present on page
         private readonly By _helpShapeTheirCareerHeader = By.ClassName("heading-xl");
-       // private readonly By _firstNameField =By.Id("FirstName");
-        private readonly By _firstNameField =By.XPath("(//input[@id='FirstName'])[2]");
-        private readonly By _lastNameField =By.XPath("(//input[@id='LastName'])[2]");
-        //private readonly By _lastNamFied = By.Id("LastName");
-        private readonly By _emailField =By.XPath("(//input[@id='Email'])[2]");
-        private readonly By _radioButtonApprentice=By.XPath("(//input[@id='rbApprentice'])[2]");
-        private readonly By _radioButtonEmployer=By.XPath("(//input[@id='rbEmployer'])[2]");
-        //private readonly By _checkBoxTAndCs=By.XPath("(input[@id='AcceptTandCs'])[2]");
-        private readonly By _checkBoxTAndCs=By.XPath("(//input[@id='AcceptTandCs'])[2]");
-        //(//input[@id='btn-register-interest-complete'])[2]
-        private readonly By _registerMyInterestButton = By.XPath("(//button [@id='btn-register-interest-complete'])[2]");
+        private readonly By  _firstNameField =By.Id("FirstName");
+        private readonly By _lastNameField =By.Id("LastName");
+        private readonly By _emailField =By.Id("Email");
+        private readonly By _radioButtonApprentice=By.Id("rbApprentice");
+        private readonly By _radioButtonEmployer=By.Id("rbEmployer");
+        private readonly By _checkBoxTAndCs=By.Id("AcceptTandCs");
+        private readonly By _registerMyInterestButton = By.Id("btn-register-interest-complete");
         #endregion
-
         public RegisterMyInterestPage(ScenarioContext context): base(context)
         {
             _context = context;
@@ -50,12 +46,11 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
             string _first = _randomDataGenerator.GenerateRandomAlphabeticString(4);
             string _lastchar =_randomDataGenerator.GenerateRandomAlphabeticString(4);
             string _email = _randomDataGenerator.GenerateRandomEmail();
-            //_pageInteractionHelper.IsElementPresent(_checkBoxTAndCs);
             _pageInteractionHelper.IsElementDisplayed(_firstNameField);
             _formCompletionHelper.EnterText(_firstNameField,FirstName + _first);
-             _formCompletionHelper.EnterText(_lastNameField,LastName + _lastchar);
-             _formCompletionHelper.EnterText(_emailField, _email);
-             return new RegisterMyInterestPage(_context);
+            _formCompletionHelper.EnterText(_lastNameField,LastName + _lastchar);
+            _formCompletionHelper.EnterText(_emailField, _email);
+            return new RegisterMyInterestPage(_context);
          }    
         public RegisterMyInterestPage TickIWantToBecomeAnApprentice()
         {

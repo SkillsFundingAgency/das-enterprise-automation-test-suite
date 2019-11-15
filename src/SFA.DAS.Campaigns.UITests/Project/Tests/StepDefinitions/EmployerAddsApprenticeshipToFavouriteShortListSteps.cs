@@ -1,0 +1,45 @@
+﻿using OpenQA.Selenium;
+using SFA.DAS.Campaigns.UITests.Project;
+using SFA.DAS.Campaigns.UITests.Project.Tests.Pages;
+using SFA.DAS.UI.Framework.TestSupport;
+using System;
+using TechTalk.SpecFlow;
+
+namespace SFA.DAS.Campaigns.UITests
+{
+    [Binding]
+    public class EmployerAddsApprenticeshipToFavouriteShortListSteps
+    {
+        #region Private Variables
+        private readonly CampaignsConfig _configuration;
+        private readonly ScenarioContext _context;
+        private readonly IWebDriver _webDriver;
+        private FireItUpHomePage fireItUpHomePage;
+        private EmployerMenuOptionPage employerMenuOptionPage;
+        private ApprenticeshipSearchResultPage apprenticeshipSearchResultPage ;
+        private SummeryOfThisApprenticeshipPage summeryOfThisApprenticeshipPage;
+        private TrainingProviderResulPage trainingProviderResulPage;
+        #endregion
+        public EmployerAddsApprenticeshipToFavouriteShortListSteps(ScenarioContext context)
+        {
+            _context = context;
+            _webDriver = context.Get<IWebDriver>("webdriver");
+            _configuration = context.GetCampaingnsProjectConfig<CampaignsConfig>();
+        }
+        [Then(@"I Can Add Apprenticeships From Search Result  List to Favourite Short List")]
+        public void ThenICanAddApprenticeshipFromSearchResultListToFavouriteShortList()
+        {
+            trainingProviderResulPage = new TrainingProviderResulPage(_context);
+            trainingProviderResulPage.AddApprenticeshiptoFavouriteShortList();
+        }
+        [Then(@"I can Click on the Favourite Icon with Apprenticeship")]
+        public void ThenICanClickOnTheFavouriteIconWithApprenticeship()
+        {
+           apprenticeshipSearchResultPage = new ApprenticeshipSearchResultPage(_context);
+            apprenticeshipSearchResultPage.ClickOnTheFavouriteIconWithApprenticeship();
+
+        }
+
+
+    }
+}

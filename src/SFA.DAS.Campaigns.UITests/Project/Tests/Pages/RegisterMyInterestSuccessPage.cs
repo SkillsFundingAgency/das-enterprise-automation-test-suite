@@ -7,7 +7,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
 {
     public class RegisterMyInterestSuccessPage : BasePage
     {
-                protected override string PageTitle => "";
+        protected override string PageTitle => "";
         #region Helpers and Context
         private readonly PageInteractionHelper _pageInteractionHelper;
         private readonly FormCompletionHelper _formCompletionHelper;
@@ -21,8 +21,6 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
 
         #region Page Objects Elements
         private readonly By __successHeader = By.ClassName("heading-l");
-        private readonly By _firstNameField =By.XPath("(//input[@id='FirstName'])[2]");
-        
         #endregion
 
         public RegisterMyInterestSuccessPage(ScenarioContext context): base(context)
