@@ -32,6 +32,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         private By VacancyStatus => By.CssSelector(".bold-xsmall");
         private By VacancyTables => By.CssSelector("#vacancies-table tbody tr");
         private By NextPage => By.CssSelector(".page-navigation__btn.next");
+        private By NoOfPagesCssSelector => By.CssSelector(".page-navigation__btn.next .counter");
 
         public RAA_RecruitmentHomePage(ScenarioContext context, bool navigate) : base(context, navigate)
         {
@@ -67,8 +68,9 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
 
         public RAA_EmployerInformationPage CloneAVacancy()
         {
-           
-            int randomLink = RandomElementAt("Live", (str) => !str.Contains("(Applications managed externally)"));
+            SearchByVacancyTitleContains("Live");
+
+            int randomLink = RandomElementAt((str) => !str.Contains("(Applications managed externally)"));
             
             formCompletionHelper.ClickElement(() => _pageInteractionHelper.GetLinks(CloneLink, "Clone")[randomLink]);
             
@@ -157,14 +159,14 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
 
         private RAA_RecruitmentHomePage SelectVacancy(string filter, int applications, string additionalFilter = null)
         {
+            SearchByVacancyTitleContains(filter);
+
             IWebElement element()
             {
                 string[] shouldNotContain = new string[] { "(Applications managed externally)", $"_{dataHelper.VacancyTitleDateElement}_" };
 
-                int randomLink = RandomElementAt(filter, (str) => shouldNotContain.Any(x => !str.Contains(x)) 
+                int randomLink = RandomElementAt((str) => shouldNotContain.Any(x => !str.Contains(x)) 
                 && str.Contains($"{applications}\r\napplication") && (additionalFilter == null ? true : str.Contains(additionalFilter)) && _regexHelper.CheckVacancyTitle(str));
-
-                dataHelper.VacancyTitle = _pageInteractionHelper.GetText(() => _pageInteractionHelper.FindElements(VacancyTitle)[randomLink]);
 
                 return _pageInteractionHelper.GetLink(VacancyTitle, dataHelper.VacancyTitle);
             }
@@ -174,38 +176,41 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
             return this;
         }
 
-        private int RandomElementAt(string filter, Func<string, bool> func)
+        private int RandomElementAt(Func<string, bool> func)
         {
-            List<IWebElement> rows() => _pageInteractionHelper.FindElements(VacancyTables).ToList();
-            int randomLink = 0;
-            int count = 1;
+            int randomNumber = 0;
 
-            while (count < 5)
+            int noOfPages = 1;
+
+            if (_pageInteractionHelper.IsElementDisplayed(NoOfPagesCssSelector))
             {
-                for (int i = 1; i < rows().Count; i++)
-                {
-                    SearchByVacancyTitleContains(filter);
-                    var tablerows = rows();
-                    randomLink = dataHelper.RandomVacancy(tablerows);
-                    var text = _pageInteractionHelper.GetText(() => rows()[randomLink]);
-                    if (func(text))
-                    {
-                        break;
-                    }
-                    else
-                    {
-                        randomLink = 0;
-                    }
-                }
-                if (randomLink != 0)
-                {
-                    break;
-                }
-                formCompletionHelper.ClickElement(() => _pageInteractionHelper.FindElement(NextPage));
-                count++;
+                noOfPages = int.Parse(_pageInteractionHelper.GetText(NoOfPagesCssSelector).Split("of")[1].Trim());
             }
-            return randomLink;
-        }
 
+            for (int i = 1; i < noOfPages; i++)
+            {
+                List<IWebElement> tablerows() => _pageInteractionHelper.FindElements(VacancyTables).ToList();
+
+                List<IWebElement> filteredRows = tablerows().Where(x => func(x.Text)).ToList();
+                
+                if (filteredRows.Count == 0)
+                {
+                    if (_pageInteractionHelper.IsElementDisplayed(NextPage))
+                    {
+                        formCompletionHelper.ClickElement(() => _pageInteractionHelper.FindElement(NextPage));
+                    }
+                    continue; 
+                }
+
+                randomNumber = new Random().Next(1, filteredRows.Count);
+                
+                var randomElement = filteredRows[randomNumber - 1];
+                
+                dataHelper.VacancyTitle = _pageInteractionHelper.GetText(randomElement.FindElement(VacancyTitle));
+
+                break;
+            }
+            return randomNumber;
+        }
     }
 }

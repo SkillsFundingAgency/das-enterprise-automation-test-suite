@@ -47,16 +47,16 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
 
         public IWebElement Employers(List<IWebElement> links)
         {
-            var randomEmployer = RandomElement(links).Item2;
+            var randomEmployer = RandomElement(links);
 
             EmployerErn = _regexHelper.GetEmployerERN(randomEmployer.GetAttribute("href"));
 
             return randomEmployer;
         }
 
-        public IWebElement Address(List<IWebElement> addresses) => RandomElement(addresses).Item2;
+        public IWebElement Address(List<IWebElement> addresses) => RandomElement(addresses);
 
-        public int RandomVacancy(List<IWebElement> vacancies) => RandomElement(vacancies).Item1;
+        public int RandomVacancy(int upperBound) => _randomDataGenerator.GenerateRandomNumberBetweenTwoValues(0, upperBound - 1);
 
         public string EmployerDescription { get; }
 
@@ -120,12 +120,11 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
 
         private string WebsiteUrl(string url) => $"https://www.{url}.com";
 
-        private (int,IWebElement) RandomElement(List<IWebElement> elements)
+        private IWebElement RandomElement(List<IWebElement> elements)
         {
             var randomNumber = _randomDataGenerator.GenerateRandomNumberBetweenTwoValues(0, elements.Count - 1);
 
-            return (randomNumber, elements[randomNumber]);
+            return elements[randomNumber];
         }
     }
 }
-
