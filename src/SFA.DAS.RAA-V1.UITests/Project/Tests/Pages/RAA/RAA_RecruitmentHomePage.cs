@@ -97,11 +97,19 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
             return new RAA_VacancySummaryPage(_context);
         }
 
-        public RAA_VacancyPreviewPage SearchReferredVacancy()
+        public RAA_PreviewBasePage SearchReferredVacancy()
         {
             SearchByReferenceNumber("Referred");
             ClickVacancy();
-            return new RAA_VacancyPreviewPage(_context);
+
+            if (_objectContext.IsApprenticeshipVacancyType())
+            {
+                return new RAA_VacancyPreviewPage(_context);
+            }
+            else
+            {
+                return new RAA_OppurtunityPreviewPage(_context);
+            }
         }
 
         private void SearchByReferenceNumber(string vacancyType)
