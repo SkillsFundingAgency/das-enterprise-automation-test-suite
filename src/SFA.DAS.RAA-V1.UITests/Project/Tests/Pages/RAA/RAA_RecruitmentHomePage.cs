@@ -54,12 +54,6 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
             return new RAA_VacancySummaryPage(_context);
         }
 
-        public RAA_VacancySummaryPage SelectClosedVacancyWithApplications()
-        {
-            SelectVacancy("Closed", 1);
-            return new RAA_VacancySummaryPage(_context);
-        }
-
         public RAA_VacancySummaryPage SelectLiveVacancyWithNewApplications()
         {
             SelectVacancy("New applications", 1, "Live");

@@ -74,16 +74,21 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
         [Given(@"Provider views a closed vacancy which has Applications")]
         public void GivenProviderViewsAClosedVacancyWhichHasApplications()
         {
-            var homePage = _raaStepsHelper.GoToRAAHomePage(false);
-            _vacancySummaryPage = homePage.SelectClosedVacancyWithApplications();
+            _vacancySummaryPage = _raaStepsHelper.GoToRAAHomePage(false)
+                                    .SelectLiveVacancyWithApplications();
+
             _vacancySummaryPage.SetVacancyReference();
             _vacancyLinkBasePage = _vacancySummaryPage;
+            _vacancyLinkBasePage.CloseVacancy().CloseVacancy();
         }
-
 
         [Then(@"Provider is able to archive vacancy")]
         public void ThenProviderIsAbleToArchiveVacancy()
         {
+            new RAA_RecruitmentHomePage(_context, true).SearchClosedVacancy();
+
+            _vacancyLinkBasePage = new RAA_VacancySummaryPage(_context);
+
             if (_vacancyLinkBasePage.IsRespondToCandidateLinkDisplayed())
             {
                 _vacancyLinkBasePage.ArchiveVacancyAndRespondToCandidates()
@@ -94,7 +99,6 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
             }
             _vacancyLinkBasePage.ArchiveVacancy().Confirm();
         }
-
 
         [Then(@"Provider is able to respond to candidates")]
         public void ThenProviderIsAbleToRespondToCandidates()
