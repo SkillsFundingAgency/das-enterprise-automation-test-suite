@@ -63,6 +63,8 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         public bool VerifyPage(By locator, string expected)
         {
+            _webDriverWaitHelper.WaitForPageToLoad();
+
             bool func()
             {
                 var actual = GetText(locator);

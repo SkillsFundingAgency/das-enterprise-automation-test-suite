@@ -24,8 +24,7 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Helpers
 
         public AccountOverviewPage SearchAndViewAccount()
         {
-            var searchHomePage = new SearchHomePage(_context);
-            return searchHomePage.SearchAndViewAccount();
+            return new SearchHomePage(_context).SearchAndViewAccount();
         }
 
         public UlnSearchResultsPage SearchForUln()
@@ -33,6 +32,39 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Helpers
             var accountOverviewPage = new AccountOverviewPage(_context);
             return accountOverviewPage.ClickCommitmentsMenuLink()
                 .SearchForULN();
+        }
+
+        public void SearchWithInvalidUln(bool WithSpecialChars)
+        {
+            new AccountOverviewPage(_context).ClickCommitmentsMenuLink().SelectUlnSearchTypeRadioButton();
+
+            if (WithSpecialChars)
+                new CommitmentsSearchPage(_context).SearchWithInvalidCohortWithSpecialChars();
+            else
+                new CommitmentsSearchPage(_context).SearchWithInvalidULN();
+        }
+
+        public void SearchWithInvalidCohort(bool WithSpecialChars)
+        {
+            new AccountOverviewPage(_context).ClickCommitmentsMenuLink().SelectCohortRefSearchTypeRadioButton();
+
+            if (WithSpecialChars)
+                new CommitmentsSearchPage(_context).SearchWithInvalidCohortWithSpecialChars();
+            else
+                new CommitmentsSearchPage(_context).SearchWithInvalidCohort();
+        }
+
+        public void SearchWithUnauthorisedCohortAccess()
+        {
+            new AccountOverviewPage(_context).ClickCommitmentsMenuLink().SelectCohortRefSearchTypeRadioButton();
+            new CommitmentsSearchPage(_context).SearchWithUnauthorisedCohortAccess();
+        }
+
+        public CohortSummaryPage SearchForCohort()
+        {
+            var accountOverviewPage = new AccountOverviewPage(_context);
+            return accountOverviewPage.ClickCommitmentsMenuLink()
+                .SearchForCohort();
         }
     }
 }
