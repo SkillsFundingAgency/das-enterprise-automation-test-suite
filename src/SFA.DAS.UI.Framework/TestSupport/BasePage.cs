@@ -38,7 +38,12 @@ namespace SFA.DAS.UI.Framework.TestSupport
 
         protected bool VerifyPage()
         {
-            return VerifyPage(() => _pageInteractionHelper.VerifyPage(PageHeader, PageTitle));
+            return VerifyPage(PageHeader, PageTitle);
+        }
+
+        protected bool VerifyPage(By locator, string text)
+        {
+            return VerifyPage(() => _pageInteractionHelper.VerifyPage(locator, text));
         }
 
         private bool VerifyPage(Func<bool> func)
