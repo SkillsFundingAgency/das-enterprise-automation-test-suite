@@ -1,6 +1,9 @@
 ﻿using SFA.DAS.SupportConsole.UITests.Project.Tests.Pages;
 using SFA.DAS.UI.Framework.TestSupport;
 using TechTalk.SpecFlow;
+using NUnit.Framework;
+using SFA.DAS.SupportConsole.UITests.Project.Helpers;
+using SFA.DAS.UI.FrameworkHelpers;
 
 namespace SFA.DAS.SupportConsole.UITests.Project.Helpers
 {
@@ -8,10 +11,12 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Helpers
     {
         private readonly ScenarioContext _context;
         private readonly SupportConsoleConfig _config;
+        private readonly PageInteractionHelper _pageInteractionHelper;
 
         public StepsHelper(ScenarioContext context)
         {
             _context = context;
+            _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _config = context.GetSupportConsoleConfig<SupportConsoleConfig>();
         }
 
@@ -38,25 +43,32 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Helpers
         {
             new AccountOverviewPage(_context).ClickCommitmentsMenuLink().SelectUlnSearchTypeRadioButton();
 
+            var commitmentsSearchPage = new CommitmentsSearchPage(_context);
+            Assert.AreEqual(_pageInteractionHelper.GetTextFromPlaceholderAttributeOfAnElement(commitmentsSearchPage.SearchTextBoxHelpText), CommitmentsSearchPage.UlnSearchTextBoxHelpTextContent, "Search Textbox Help text mismatch in CommitmentsSearchPage");
+
             if (WithSpecialChars)
-                new CommitmentsSearchPage(_context).SearchWithInvalidCohortWithSpecialChars();
+                commitmentsSearchPage.SearchWithInvalidULNWithSpecialChars();
             else
-                new CommitmentsSearchPage(_context).SearchWithInvalidULN();
+                commitmentsSearchPage.SearchWithInvalidULN();
         }
 
         public void SearchWithInvalidCohort(bool WithSpecialChars)
         {
             new AccountOverviewPage(_context).ClickCommitmentsMenuLink().SelectCohortRefSearchTypeRadioButton();
 
+            var commitmentsSearchPage = new CommitmentsSearchPage(_context);
+            VerifyCohortSearchTextBoxHelpTextContent();
+
             if (WithSpecialChars)
-                new CommitmentsSearchPage(_context).SearchWithInvalidCohortWithSpecialChars();
+                commitmentsSearchPage.SearchWithInvalidCohortWithSpecialChars();
             else
-                new CommitmentsSearchPage(_context).SearchWithInvalidCohort();
+                commitmentsSearchPage.SearchWithInvalidCohort();
         }
 
         public void SearchWithUnauthorisedCohortAccess()
         {
             new AccountOverviewPage(_context).ClickCommitmentsMenuLink().SelectCohortRefSearchTypeRadioButton();
+            VerifyCohortSearchTextBoxHelpTextContent();
             new CommitmentsSearchPage(_context).SearchWithUnauthorisedCohortAccess();
         }
 
@@ -65,6 +77,12 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Helpers
             var accountOverviewPage = new AccountOverviewPage(_context);
             return accountOverviewPage.ClickCommitmentsMenuLink()
                 .SearchForCohort();
+        }
+
+        void VerifyCohortSearchTextBoxHelpTextContent()
+        {
+            var commitmentsSearchPage = new CommitmentsSearchPage(_context);
+            Assert.AreEqual(_pageInteractionHelper.GetTextFromPlaceholderAttributeOfAnElement(commitmentsSearchPage.SearchTextBoxHelpText), CommitmentsSearchPage.CohortSearchTextBoxHelpTextContent, "Search Textbox Help text mismatch in CommitmentsSearchPage");
         }
     }
 }

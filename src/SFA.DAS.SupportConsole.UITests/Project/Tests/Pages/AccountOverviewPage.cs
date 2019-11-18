@@ -2,7 +2,6 @@
 using TechTalk.SpecFlow;
 using SFA.DAS.UI.FrameworkHelpers;
 using SFA.DAS.UI.Framework.TestSupport;
-using NUnit.Framework;
 
 namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
 {
@@ -13,7 +12,6 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
         #region Helpers and Context
         private readonly ScenarioContext _context;
         private readonly FormCompletionHelper _formCompletionHelper;
-        private readonly PageInteractionHelper _pageInteractionHelper;
         private readonly SupportConsoleConfig _config;
 
         #endregion
@@ -29,7 +27,6 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
         {
             _context = context;
             _formCompletionHelper = context.Get<FormCompletionHelper>();
-            _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _config = context.GetSupportConsoleConfig<SupportConsoleConfig>();
             ClickOrganisationsLink(); //Doing this to refresh the page as the Header dissappears at times - known issue
             VerifyPage();
