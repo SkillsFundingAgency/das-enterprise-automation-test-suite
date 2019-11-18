@@ -12,6 +12,7 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
         #region Helpers and Context
         private readonly ScenarioContext _context;
         private readonly FormCompletionHelper _formCompletionHelper;
+        private readonly PageInteractionHelper _pageInteractionHelper;
         #endregion
 
         #region Locators
@@ -23,12 +24,19 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
         {
             _context = context;
             _formCompletionHelper = context.Get<FormCompletionHelper>();
+            _pageInteractionHelper = context.Get<PageInteractionHelper>();
             VerifyPage();
         }
 
         public void ClickViewUlnLink()
         {
             _formCompletionHelper.Click(UlnViewLink);
+            _pageInteractionHelper.WaitforURLToChange("CommitmentApprenticeDetail");
+        }
+
+        public string GetCohortRefNumber()
+        {
+            return _pageInteractionHelper.GetText(CohortRefNumber);
         }
     }
 }

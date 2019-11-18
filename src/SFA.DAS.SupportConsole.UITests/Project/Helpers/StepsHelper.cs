@@ -8,12 +8,10 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Helpers
     public class StepsHelper
     {
         private readonly ScenarioContext _context;
-        private readonly PageInteractionHelper _pageInteractionHelper;
 
         public StepsHelper(ScenarioContext context)
         {
             _context = context;
-            _pageInteractionHelper = context.Get<PageInteractionHelper>();
         }
 
         public SearchHomePage LoginToSupportConsole() => new IdamsPage(_context).ClickAccessStaff1Link().SignInWithValidDetails();
@@ -26,7 +24,7 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Helpers
         {
             var commitmentsSearchPage = new AccountOverviewPage(_context).ClickCommitmentsMenuLink().SelectUlnSearchTypeRadioButton();
 
-            Assert.AreEqual(_pageInteractionHelper.GetTextFromPlaceholderAttributeOfAnElement(commitmentsSearchPage.SearchTextBoxHelpText), commitmentsSearchPage.UlnSearchTextBoxHelpTextContent, "Search Textbox Help text mismatch in CommitmentsSearchPage");
+            Assert.AreEqual(commitmentsSearchPage.GetSearchTextBoxHelpText(), commitmentsSearchPage.UlnSearchTextBoxHelpTextContent, "Search Textbox Help text mismatch in CommitmentsSearchPage");
 
             if (WithSpecialChars)
                 commitmentsSearchPage.SearchWithInvalidULNWithSpecialChars();
@@ -57,6 +55,6 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Helpers
 
         public CohortSummaryPage SearchForCohort() => new AccountOverviewPage(_context).ClickCommitmentsMenuLink().SearchForCohort();
 
-        void VerifyCohortSearchTextBoxHelpTextContent(CommitmentsSearchPage commitmentsSearchPage) => Assert.AreEqual(_pageInteractionHelper.GetTextFromPlaceholderAttributeOfAnElement(commitmentsSearchPage.SearchTextBoxHelpText), commitmentsSearchPage.CohortSearchTextBoxHelpTextContent, "Search Textbox Help text mismatch in CommitmentsSearchPage");
+        void VerifyCohortSearchTextBoxHelpTextContent(CommitmentsSearchPage commitmentsSearchPage) => Assert.AreEqual(commitmentsSearchPage.GetSearchTextBoxHelpText(), commitmentsSearchPage.CohortSearchTextBoxHelpTextContent, "Search Textbox Help text mismatch in CommitmentsSearchPage");
     }
 }

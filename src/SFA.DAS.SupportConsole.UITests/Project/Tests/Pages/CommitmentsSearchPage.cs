@@ -22,6 +22,7 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
         #region Helpers and Context
         private readonly ScenarioContext _context;
         private readonly FormCompletionHelper _formCompletionHelper;
+        private readonly PageInteractionHelper _pageInteractionHelper;
         private readonly SupportConsoleConfig _config;
         #endregion
 
@@ -39,8 +40,9 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
         {
             _context = context;
             _formCompletionHelper = context.Get<FormCompletionHelper>();
+            _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _config = context.GetSupportConsoleConfig<SupportConsoleConfig>();
-            VerifyPage(SearchSectionHeader, SearchSectionHeaderText); 
+            VerifyPage(SearchSectionHeader, SearchSectionHeaderText);
         }
 
         private void EnterTextInSearchBox(string searchText)
@@ -109,6 +111,16 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
         {
             EnterTextInSearchBox(InvalidCohortWithSpecialChars);
             ClickSearchButton();
+        }
+
+        public string GetCommitmentsSearchPageErrorText()
+        {
+            return _pageInteractionHelper.GetText(CommitmentsSearchPageErrorText);
+        }
+
+        public string GetSearchTextBoxHelpText()
+        {
+            return _pageInteractionHelper.GetTextFromPlaceholderAttributeOfAnElement(SearchTextBoxHelpText);
         }
     }
 }
