@@ -8,11 +8,11 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
     public class UlnDetailsPage : BasePage
     {
         protected override string PageTitle => _config.SupportConsoleUlnName;
-        private const string StatusSectionHeaderText = "Status";
-        private const string ApprenticeSectionHeaderText = "Apprentice";
-        private const string TrainingSectionHeaderText = "Training";
-        private const string DatesSectionHeaderText = "Dates";
-        private const string PaymentsSectionHeaderText = "Payment";
+        private string StatusSectionHeaderText => "Status";
+        private string ApprenticeSectionHeaderText => "Apprentice";
+        private string TrainingSectionHeaderText => "Training";
+        private string DatesSectionHeaderText => "Dates";
+        private string PaymentsSectionHeaderText => "Payment";
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
