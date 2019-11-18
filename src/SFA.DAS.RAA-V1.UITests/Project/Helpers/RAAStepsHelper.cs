@@ -81,10 +81,9 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
             }
         }
 
-        public void ProviderFillsOutTraineeshipDetails(string location)
+        public void ProviderFillsOutTraineeshipDetails(string location, string applicationMethod = "Online")
         {
             string disabilityConfident = "Yes";
-            string applicationMethod = "Online";
             switch (location)
             {
                 case "Use the main employer address":
