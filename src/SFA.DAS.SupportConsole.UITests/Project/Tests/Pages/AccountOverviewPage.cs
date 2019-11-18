@@ -32,20 +32,14 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _config = context.GetSupportConsoleConfig<SupportConsoleConfig>();
             ClickOrganisationsLink(); //Doing this to refresh the page as the Header dissappears at times - known issue
-            VerifyPage(PageHeader);
-            VerifyAccountDetailsInHeader();
+            VerifyPage();
+            VerifyPage(PageHeaderWithAccountDetails, _config.SupportConsoleAccountDetails);
         }
 
         public CommitmentsSearchPage ClickCommitmentsMenuLink()
         {
             _formCompletionHelper.Click(CommitmentsMenuLink);
             return new CommitmentsSearchPage(_context);
-        }
-
-        private void VerifyAccountDetailsInHeader()
-        {
-            var AccountDetails = _pageInteractionHelper.GetText(PageHeaderWithAccountDetails);
-            Assert.AreEqual(AccountDetails, _config.SupportConsoleAccountDetails, "Account details mismatch in AccountOverviewPage");
         }
 
         private AccountOverviewPage ClickOrganisationsLink()
