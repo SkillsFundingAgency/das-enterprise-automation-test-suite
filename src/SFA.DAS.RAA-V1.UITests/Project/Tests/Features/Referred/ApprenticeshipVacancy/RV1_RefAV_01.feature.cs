@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Features.Referred
+namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Features.Referred.ApprenticeshipVacancy
 {
     using TechTalk.SpecFlow;
     
@@ -18,20 +18,20 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Features.Referred
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.0.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("RV1_REF_01")]
-    public partial class RV1_REF_01Feature
+    [NUnit.Framework.DescriptionAttribute("RV1_RefAV_01")]
+    public partial class RV1_RefAV_01Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "RV1_Ref_01.feature"
+#line 1 "RV1_RefAV_01.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "RV1_REF_01", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "RV1_RefAV_01", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -69,7 +69,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Features.Referred
             testRunner.CollectScenarioErrors();
         }
         
-        public virtual void RV1_REF_01_ReferringAnApprenticeshipVacancyWithComments(string location, string anonymity, string disabilityConfident, string applicationMethod, string apprenticeshipType, string hoursPerWeek, string vacancyDuration, string changeteam, string changeRole, string noOfPositions, string[] exampleTags)
+        public virtual void RV1_RefAV_01_ReferringAnApprenticeshipVacancyWithComments(string location, string anonymity, string disabilityConfident, string applicationMethod, string apprenticeshipType, string hoursPerWeek, string vacancyDuration, string changeteam, string changeRole, string noOfPositions, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "raa-v1",
@@ -79,7 +79,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Features.Referred
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
             }
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV1_REF_01 - Referring an Apprenticeship Vacancy with comments", null, @__tags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV1_RefAV_01 - Referring an Apprenticeship Vacancy with comments", null, @__tags);
 #line 6
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
@@ -105,15 +105,15 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RV1_REF_01 - Referring an Apprenticeship Vacancy with comments: Use the main empl" +
-            "oyer address")]
+        [NUnit.Framework.DescriptionAttribute("RV1_RefAV_01 - Referring an Apprenticeship Vacancy with comments: Use the main em" +
+            "ployer address")]
         [NUnit.Framework.CategoryAttribute("raa-v1")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("apprenticeshipvacancy")]
-        public virtual void RV1_REF_01_ReferringAnApprenticeshipVacancyWithComments_UseTheMainEmployerAddress()
+        public virtual void RV1_RefAV_01_ReferringAnApprenticeshipVacancyWithComments_UseTheMainEmployerAddress()
         {
 #line 6
-this.RV1_REF_01_ReferringAnApprenticeshipVacancyWithComments("Use the main employer address", "No", "No", "Online", "Framework", "42", "52", "West Midlands", "Vacancy reviewer", "2", ((string[])(null)));
+this.RV1_RefAV_01_ReferringAnApprenticeshipVacancyWithComments("Use the main employer address", "No", "No", "Online", "Framework", "42", "52", "West Midlands", "Vacancy reviewer", "2", ((string[])(null)));
 #line hidden
         }
     }

@@ -27,13 +27,25 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.Manage
             _dataHelper = context.Get<ManagedataHelper>();
         }
 
-        public Manage_VacanacyPreviewPage AddTitleComments()
+        public Manage_VacanacyPreviewPage AddApprenticeshipTitleComments()
+        {
+            AddTitleComments();
+            return new Manage_VacanacyPreviewPage(_context);
+        }
+
+        public Manage_OpportunityPreviewPage AddTraineeshipTitleComments()
+        {
+            AddTitleComments();
+            return new Manage_OpportunityPreviewPage(_context);
+        }
+
+        private void AddTitleComments()
         {
             _formCompletionHelper.Click(TitleComments);
             _pageInteractionHelper.WaitForElementToChange(TitleComments, AttributeHelper.AriaExpanded, "true");
             _formCompletionHelper.EnterText(TitleCommentTextArea, _dataHelper.TitleComments);
             _formCompletionHelper.ClickButtonByText("Save");
-            return new Manage_VacanacyPreviewPage(_context);
         }
+
     }
 }

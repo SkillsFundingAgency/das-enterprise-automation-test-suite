@@ -1,5 +1,6 @@
 ﻿using SFA.DAS.RAA_V1.UITests.Project.Helpers;
 using SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.Manage;
+using SFA.DAS.UI.Framework.TestSupport;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
@@ -10,10 +11,12 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
         private Manage_HomePage _manage_HomePage;
         private Manage_EnterBasicVacancyDetailsPage _manage_EnterBasicVacancyDetailsPage;
         private readonly ManageStepsHelper _manageStepsHelper;
+        private readonly ObjectContext _objectContext;
 
         public ManageSteps(ScenarioContext context)
         {
             _manageStepsHelper = new ManageStepsHelper(context);
+            _objectContext = context.Get<ObjectContext>();
         }
 
         [Then(@"the Reviewer approves the vacancy")]
@@ -41,9 +44,18 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
         {
             _manage_EnterBasicVacancyDetailsPage = _manage_HomePage.EditOrCommentTitle(changeTeam, changeRole);
 
-            _manage_EnterBasicVacancyDetailsPage
-                .AddTitleComments()
+            if (_objectContext.IsApprenticeshipVacancyType())
+            {
+                _manage_EnterBasicVacancyDetailsPage
+                .AddApprenticeshipTitleComments()
                 .ReferVacancy();
+            }
+            else
+            {
+                _manage_EnterBasicVacancyDetailsPage
+                .AddTraineeshipTitleComments()
+                .ReferVacancy();
+            }
         }
     }
 }
