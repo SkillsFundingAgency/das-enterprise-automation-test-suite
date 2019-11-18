@@ -8,16 +8,16 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
     public class CommitmentsSearchPage : BasePage
     {
         protected override string PageTitle => "Department for Education";
-        public const string SearchSectionHeaderText = "Search";
-        public const string UlnSearchTextBoxHelpTextContent = "Enter ULN number";
-        public const string CohortSearchTextBoxHelpTextContent = "Enter Cohort Reference number";
-        public const string InvalidUln = "1234567";
-        public const string InvalidUlnWithSpecialChars = "!£$%^&*()@?|#";
-        public const string InvalidCohort = "ABCD";
-        public const string InvalidCohortWithSpecialChars = "!£$%^&*()@?|#";
-        public const string UlnSearchErrorMessage = "Please enter a 10-digit unique learner number";
-        public const string CohortSearchErrorMessage = "Please enter a 6-digit Cohort number";
-        public const string UnauthorisedCohortSearchErrorMessage = "Account is unauthorised to access this Cohort.";
+        public string SearchSectionHeaderText => "Search";
+        public string UlnSearchTextBoxHelpTextContent => "Enter ULN number";
+        public string CohortSearchTextBoxHelpTextContent => "Enter Cohort Reference number";
+        public string InvalidUln => "1234567";
+        public string InvalidUlnWithSpecialChars => "!£$%^&*()@?|#";
+        public string InvalidCohort => "ABCD";
+        public string InvalidCohortWithSpecialChars => "!£$%^&*()@?|#";
+        public string UlnSearchErrorMessage => "Please enter a 10-digit unique learner number";
+        public string CohortSearchErrorMessage => "Please enter a 6-digit Cohort number";
+        public string UnauthorisedCohortSearchErrorMessage => "Account is unauthorised to access this Cohort.";
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
@@ -48,9 +48,10 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
             _formCompletionHelper.EnterText(SearchTextBox, searchText);
         }
 
-        public void SelectUlnSearchTypeRadioButton()
+        public CommitmentsSearchPage SelectUlnSearchTypeRadioButton()
         {
             _formCompletionHelper.SelectRadioOptionByForAttribute(UlnRadioButton, "UnlSearchType");
+            return this;
         }
 
         private void ClickSearchButton()
@@ -86,9 +87,10 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
             return new CohortSummaryPage(_context);
         }
 
-        public void SelectCohortRefSearchTypeRadioButton()
+        public CommitmentsSearchPage SelectCohortRefSearchTypeRadioButton()
         {
             _formCompletionHelper.SelectRadioOptionByForAttribute(CohortRefRadioButton, "CohortSearchType");
+            return this;
         }
 
         public void SearchWithInvalidCohort()

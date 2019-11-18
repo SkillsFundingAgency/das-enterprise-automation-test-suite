@@ -54,7 +54,7 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.StepDefinitions
         public void ThenAppropriateUlnErrorMessageIsShownToTheUser()
         {
             var commitmentsSearchPage = new CommitmentsSearchPage(_context);
-            Assert.AreEqual(_pageInteractionHelper.GetText(commitmentsSearchPage.CommitmentsSearchPageErrorText), CommitmentsSearchPage.UlnSearchErrorMessage, "Uln search Error message mismatch in CommitmentsSearchPage");
+            Assert.AreEqual(_pageInteractionHelper.GetText(commitmentsSearchPage.CommitmentsSearchPageErrorText), commitmentsSearchPage.UlnSearchErrorMessage, "Uln search Error message mismatch in CommitmentsSearchPage");
         }
 
         [When(@"the User searches for a Cohort")]
@@ -75,12 +75,6 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.StepDefinitions
             var cohortSummaryPage = new CohortSummaryPage(_context);
             Assert.AreEqual(_pageInteractionHelper.GetText(cohortSummaryPage.CohortRefNumber), _config.SupportConsoleCohortRef, "Cohort reference mismatch in CohortSummaryPage");
             cohortSummaryPage.ClickViewThisCohortButton();
-        }
-
-        [Then(@"the Cohort Details page is displayed")]
-        public void ThenTheCohortDetailsPageIsDisplayed()
-        {
-            new CohortDetailsPage(_context).IsPageDisplayed();
         }
 
         [When(@"the user chooses to view Uln of the Cohort")]
@@ -107,7 +101,7 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.StepDefinitions
         public void ThenAppropriateCohortErrorMessageIsShownToTheUser()
         {
             var commitmentsSearchPage = new CommitmentsSearchPage(_context);
-            Assert.AreEqual(_pageInteractionHelper.GetText(commitmentsSearchPage.CommitmentsSearchPageErrorText), CommitmentsSearchPage.CohortSearchErrorMessage, "Cohort search Error message mismatch in CommitmentsSearchPage");
+            Assert.AreEqual(_pageInteractionHelper.GetText(commitmentsSearchPage.CommitmentsSearchPageErrorText), commitmentsSearchPage.CohortSearchErrorMessage, "Cohort search Error message mismatch in CommitmentsSearchPage");
         }
 
         [When(@"the User searches with a invalid Cohort Ref having special characters")]
@@ -126,7 +120,7 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.StepDefinitions
         public void ThenUnauthorisedCohortAccessErrorMessageIsShownToTheUser()
         {
             var commitmentsSearchPage = new CommitmentsSearchPage(_context);
-            Assert.AreEqual(_pageInteractionHelper.GetText(commitmentsSearchPage.CommitmentsSearchPageErrorText), CommitmentsSearchPage.UnauthorisedCohortSearchErrorMessage, "Cohort search Error message mismatch in CommitmentsSearchPage");
+            Assert.AreEqual(_pageInteractionHelper.GetText(commitmentsSearchPage.CommitmentsSearchPageErrorText), commitmentsSearchPage.UnauthorisedCohortSearchErrorMessage, "Cohort search Error message mismatch in CommitmentsSearchPage");
         }
     }
 }

@@ -94,10 +94,8 @@ this.ScenarioInitialize(scenarioInfo);
 #line 11
  testRunner.When("the User clicks on \'View this cohort\' button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 12
- testRunner.Then("the Cohort Details page is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 13
  testRunner.When("the user chooses to view Uln of the Cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 14
+#line 13
  testRunner.Then("the ULN details page is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();

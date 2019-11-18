@@ -1,8 +1,6 @@
 ﻿using SFA.DAS.SupportConsole.UITests.Project.Tests.Pages;
-using SFA.DAS.UI.Framework.TestSupport;
 using TechTalk.SpecFlow;
 using NUnit.Framework;
-using SFA.DAS.SupportConsole.UITests.Project.Helpers;
 using SFA.DAS.UI.FrameworkHelpers;
 
 namespace SFA.DAS.SupportConsole.UITests.Project.Helpers
@@ -10,41 +8,25 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Helpers
     public class StepsHelper
     {
         private readonly ScenarioContext _context;
-        private readonly SupportConsoleConfig _config;
         private readonly PageInteractionHelper _pageInteractionHelper;
 
         public StepsHelper(ScenarioContext context)
         {
             _context = context;
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
-            _config = context.GetSupportConsoleConfig<SupportConsoleConfig>();
         }
 
-        public SearchHomePage LoginToSupportConsole()
-        {
-            var idamsPage = new IdamsPage(_context);
-            return idamsPage.ClickAccessStaff1Link()
-                .SignInWithValidDetails();
-        }
+        public SearchHomePage LoginToSupportConsole() => new IdamsPage(_context).ClickAccessStaff1Link().SignInWithValidDetails();
 
-        public AccountOverviewPage SearchAndViewAccount()
-        {
-            return new SearchHomePage(_context).SearchAndViewAccount();
-        }
+        public AccountOverviewPage SearchAndViewAccount() => new SearchHomePage(_context).SearchAndViewAccount();
 
-        public UlnSearchResultsPage SearchForUln()
-        {
-            var accountOverviewPage = new AccountOverviewPage(_context);
-            return accountOverviewPage.ClickCommitmentsMenuLink()
-                .SearchForULN();
-        }
+        public UlnSearchResultsPage SearchForUln() => new AccountOverviewPage(_context).ClickCommitmentsMenuLink().SearchForULN();
 
         public void SearchWithInvalidUln(bool WithSpecialChars)
         {
-            new AccountOverviewPage(_context).ClickCommitmentsMenuLink().SelectUlnSearchTypeRadioButton();
+            var commitmentsSearchPage = new AccountOverviewPage(_context).ClickCommitmentsMenuLink().SelectUlnSearchTypeRadioButton();
 
-            var commitmentsSearchPage = new CommitmentsSearchPage(_context);
-            Assert.AreEqual(_pageInteractionHelper.GetTextFromPlaceholderAttributeOfAnElement(commitmentsSearchPage.SearchTextBoxHelpText), CommitmentsSearchPage.UlnSearchTextBoxHelpTextContent, "Search Textbox Help text mismatch in CommitmentsSearchPage");
+            Assert.AreEqual(_pageInteractionHelper.GetTextFromPlaceholderAttributeOfAnElement(commitmentsSearchPage.SearchTextBoxHelpText), commitmentsSearchPage.UlnSearchTextBoxHelpTextContent, "Search Textbox Help text mismatch in CommitmentsSearchPage");
 
             if (WithSpecialChars)
                 commitmentsSearchPage.SearchWithInvalidULNWithSpecialChars();
@@ -54,10 +36,9 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Helpers
 
         public void SearchWithInvalidCohort(bool WithSpecialChars)
         {
-            new AccountOverviewPage(_context).ClickCommitmentsMenuLink().SelectCohortRefSearchTypeRadioButton();
+            var commitmentsSearchPage = new AccountOverviewPage(_context).ClickCommitmentsMenuLink().SelectCohortRefSearchTypeRadioButton();
 
-            var commitmentsSearchPage = new CommitmentsSearchPage(_context);
-            VerifyCohortSearchTextBoxHelpTextContent();
+            VerifyCohortSearchTextBoxHelpTextContent(commitmentsSearchPage);
 
             if (WithSpecialChars)
                 commitmentsSearchPage.SearchWithInvalidCohortWithSpecialChars();
@@ -67,22 +48,15 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Helpers
 
         public void SearchWithUnauthorisedCohortAccess()
         {
-            new AccountOverviewPage(_context).ClickCommitmentsMenuLink().SelectCohortRefSearchTypeRadioButton();
-            VerifyCohortSearchTextBoxHelpTextContent();
-            new CommitmentsSearchPage(_context).SearchWithUnauthorisedCohortAccess();
+            var commitmentsSearchPage = new AccountOverviewPage(_context).ClickCommitmentsMenuLink().SelectCohortRefSearchTypeRadioButton();
+
+            VerifyCohortSearchTextBoxHelpTextContent(commitmentsSearchPage);
+            
+            commitmentsSearchPage.SearchWithUnauthorisedCohortAccess();
         }
 
-        public CohortSummaryPage SearchForCohort()
-        {
-            var accountOverviewPage = new AccountOverviewPage(_context);
-            return accountOverviewPage.ClickCommitmentsMenuLink()
-                .SearchForCohort();
-        }
+        public CohortSummaryPage SearchForCohort() => new AccountOverviewPage(_context).ClickCommitmentsMenuLink().SearchForCohort();
 
-        void VerifyCohortSearchTextBoxHelpTextContent()
-        {
-            var commitmentsSearchPage = new CommitmentsSearchPage(_context);
-            Assert.AreEqual(_pageInteractionHelper.GetTextFromPlaceholderAttributeOfAnElement(commitmentsSearchPage.SearchTextBoxHelpText), CommitmentsSearchPage.CohortSearchTextBoxHelpTextContent, "Search Textbox Help text mismatch in CommitmentsSearchPage");
-        }
+        void VerifyCohortSearchTextBoxHelpTextContent(CommitmentsSearchPage commitmentsSearchPage) => Assert.AreEqual(_pageInteractionHelper.GetTextFromPlaceholderAttributeOfAnElement(commitmentsSearchPage.SearchTextBoxHelpText), commitmentsSearchPage.CohortSearchTextBoxHelpTextContent, "Search Textbox Help text mismatch in CommitmentsSearchPage");
     }
 }

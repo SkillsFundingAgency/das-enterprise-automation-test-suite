@@ -26,11 +26,6 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
             VerifyPage();
         }
 
-        public void IsPageDisplayed()
-        {
-            VerifyPage();
-        }
-
         public void ClickViewUlnLink()
         {
             _formCompletionHelper.Click(UlnViewLink);
