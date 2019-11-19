@@ -74,7 +74,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.Transfers
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Transfers - Creating Cohort rejected by Sender and then approved by all 3 parties" +
             "")]
-        [NUnit.Framework.CategoryAttribute("inprogress")]
+        [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("transfersscenarios")]
         [NUnit.Framework.CategoryAttribute("liveapprentice")]
         [NUnit.Framework.CategoryAttribute("transfersfunds")]
@@ -82,7 +82,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.Transfers
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Transfers - Creating Cohort rejected by Sender and then approved by all 3 parties" +
                     "", null, new string[] {
-                        "inprogress",
+                        "regression",
                         "transfersscenarios",
                         "liveapprentice",
                         "transfersfunds"});

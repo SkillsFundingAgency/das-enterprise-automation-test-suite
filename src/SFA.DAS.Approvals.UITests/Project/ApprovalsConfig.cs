@@ -4,12 +4,6 @@
     {
         public string ProviderBaseUrl { get; set; }
 
-        public string AP_ProviderAppNoDraftsUrl { get; set; }
-
-        public string AP_ProviderNoDraftCohortsLoginId { get; set; }
-
-        public string AP_ProviderNoDraftCohortsPassword { get; set; }
-
         public string AP_EmployerConfirmIdentityCode { get; set; }
 
         public string AP_SupportConsoleUrl { get; set; }

@@ -3,7 +3,7 @@ Feature: NonLevyEmployerReservesFunding
 
 A Non Levy Employer reserves funding for an apprenticeship course
 
-@inprogress
+@regression
 @reservefunds
 Scenario: Non Levy Employer reserves funding
 	Given the Employer login using existing eoi account
