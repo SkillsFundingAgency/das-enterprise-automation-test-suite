@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Linq.Expressions;
 using Microsoft.Azure.Documents;
 using Microsoft.Azure.Documents.Client;
 using Newtonsoft.Json;
@@ -9,13 +10,12 @@ namespace SFA.DAS.UI.FrameworkHelpers
 {
     public class CosmoDbInfo
     {
-        public CosmoDbInfo(string url, string authKey, string dbName, string collectionName, string recordName, bool isPartitionKey, string partitionKey = "partitionKey")
+        public CosmoDbInfo(string url, string authKey, string dbName, string collectionName, bool isPartitionKey, object partitionKey)
         {
             Url = url;
             AuthKey = authKey;
             DbName = dbName;
             CollectionName = collectionName;
-            RecordName = recordName;
             IsPartitionKey = isPartitionKey;
             PartitionKey = partitionKey;
         }
@@ -24,93 +24,19 @@ namespace SFA.DAS.UI.FrameworkHelpers
         public string AuthKey { get; private set; }
         public string DbName { get; private set; }
         public string CollectionName { get; private set; }
-        public string RecordName { get; private set; }
         public bool IsPartitionKey { get; private set; }
-        public string PartitionKey { get; private set; }
+        public object PartitionKey { get; private set; }
     }
 
     public class CosmosActionsPerformerHelper
     {
-
-        public static void RemoveDoc(string url, string authKey, string dbName, string collectionName, string recordName, string partitionKey, bool isPartitionKey = true)
+        public static void RemoveProviderPermissionDoc(string url, string authKey, string dbName, string collectionName, long ukprn, object partitionKey)
         {
-            var tuple = QueryDb(new CosmoDbInfo(url, authKey, dbName, collectionName, recordName, isPartitionKey = true, partitionKey));
-            var docs = tuple.Item1;
-            var requestOptions = tuple.Item2;
-            var db = tuple.Item3;
-            RemoveDoc(docs, db, requestOptions);
+            var (docs, requestOptions, db) = QueryDb(new CosmoDbInfo(url, authKey, dbName, collectionName, true, partitionKey), (a) => a.Ukprn == ukprn);
+            RemoveDoc(docs, requestOptions, db);
         }
 
-
-        public static void AddNewDoc(string url, string authKey, string dbName, string collectionName, string currentDocName, string newDocName, string guid)
-        {
-            var tuple = QueryDb(new CosmoDbInfo(url, authKey, dbName, collectionName, currentDocName, false));
-            var docs = tuple.Item1;
-            var requestOptions = tuple.Item2;
-            var db = tuple.Item3;
-            var addAple = AddAple(newDocName, guid);
-            AddDoc(docs, db, addAple, requestOptions);
-
-        }
-
-        public static void ModifyDoc(string url, string authKey, string dbName, string collectionName, string currentDocName, string newDocName, string guid)
-        {
-            var tuple = QueryDb(new CosmoDbInfo(url, authKey, dbName, collectionName, currentDocName, false));
-            var docs = tuple.Item1;
-            var requestOptions = tuple.Item2;
-            var db = tuple.Item3;
-            var addAple = AddAple(newDocName, guid);
-            UpdateDoc(docs, db, addAple, requestOptions);
-        }
-
-        private static void UpdateDoc(IQueryable<Aple> docs, DocumentRepository<Aple> db, Aple addAple, RequestOptions requestOptions)
-        {
-             int number = docs.Count();
-            foreach (var doc in docs)
-            {
-                db.Update(addAple, requestOptions);
-            }
-        }
-
-        private static Aple AddAple(string name, string guid)
-        {
-            Aple addAple = new Aple();
-            addAple.Name = name;
-            addAple.Id = new Guid(guid);
-            return addAple;
-        }
-
-
-        private static DocumentRepository<Aple> PermissionsDocumentRepository(string url, string authKey, string dbName, string collectionName)
-        {
-            var db = CosmosConnectionHelper.CreateCosmosDbRepoHelper<Aple>(url, authKey, dbName, collectionName);
-            return db;
-        }
-
-
-        private static Tuple<IQueryable<Aple>, RequestOptions, DocumentRepository<Aple>> QueryDb(CosmoDbInfo cosmoDbInfo)
-        {
-            var db = PermissionsDocumentRepository(cosmoDbInfo.Url, cosmoDbInfo.AuthKey, cosmoDbInfo.DbName, cosmoDbInfo.CollectionName);
-            var option = new FeedOptions { EnableCrossPartitionQuery = true };
-            var docs = db.CreateQuery(option).Select(x => x).Where(x => x.Name == cosmoDbInfo.RecordName);
-            var requestOptions = new RequestOptions();
-            if (cosmoDbInfo.IsPartitionKey)
-            {
-                requestOptions.PartitionKey = new PartitionKey(cosmoDbInfo.PartitionKey);
-            }
-            return Tuple.Create(docs, requestOptions, db);
-        }
-
-
-        private static void AddDoc(IQueryable<Aple> docs, DocumentRepository<Aple> db, Aple addAple, RequestOptions requestOptions)
-        {
-            foreach (var doc in docs)
-            {
-                db.Add(addAple, requestOptions);
-            }
-        }
-
-        private static void RemoveDoc(IQueryable<Aple> docs, DocumentRepository<Aple> db, RequestOptions requestOptions)
+        private static void RemoveDoc(IQueryable<Aple> docs, RequestOptions requestOptions, DocumentRepository<Aple> db)
         {
             foreach (var doc in docs)
             {
@@ -118,9 +44,43 @@ namespace SFA.DAS.UI.FrameworkHelpers
             }
         }
 
+        private static (IQueryable<Aple> , RequestOptions, DocumentRepository<Aple>) QueryDb(CosmoDbInfo cosmoDbInfo, Func<Aple, bool> predicate)
+        {
+            var documentrepository = PermissionsDocumentRepository(cosmoDbInfo.Url, cosmoDbInfo.AuthKey, cosmoDbInfo.DbName, cosmoDbInfo.CollectionName);
+
+            var docsfound = Query(documentrepository, predicate);
+
+            var queryrequestOptions = QueryRequestOptions(cosmoDbInfo.IsPartitionKey, cosmoDbInfo.PartitionKey);
+
+            return (docsfound, queryrequestOptions, documentrepository);
+        }
+
+        private static DocumentRepository<Aple> PermissionsDocumentRepository(string url, string authKey, string dbName, string collectionName) => CosmosConnectionHelper.CreateCosmosDbRepoHelper<Aple>(url, authKey, dbName, collectionName);
+
+        private static IQueryable<Aple> Query(DocumentRepository<Aple> db, Func<Aple, bool> predicate)
+        {
+            var option = new FeedOptions { EnableCrossPartitionQuery = true };
+
+            Expression<Func<Aple, bool>> Expression = (exp) => predicate(exp);
+
+            return db.CreateQuery(option).Select(x => x).Where(Expression);
+        }
+
+        private static RequestOptions QueryRequestOptions(bool isPartitionKey, object partitionKey)
+        {
+            var requestOptions = new RequestOptions();
+            if (isPartitionKey)
+            {
+                requestOptions.PartitionKey = new PartitionKey(partitionKey);
+            }
+            return requestOptions;
+        }
+
         // Add more properties in Aple as required
         class Aple : Document
         {
+            [JsonProperty("ukprn")]
+            public long Ukprn { get; set; }
 
             [JsonProperty("name")]
             public string Name { get; set; }
