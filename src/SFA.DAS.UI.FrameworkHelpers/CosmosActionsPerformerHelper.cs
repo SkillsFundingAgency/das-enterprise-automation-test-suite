@@ -44,11 +44,11 @@ namespace SFA.DAS.UI.FrameworkHelpers
             }
         }
 
-        private static (IQueryable<Aple> , RequestOptions, DocumentRepository<Aple>) QueryDb(CosmoDbInfo cosmoDbInfo, Func<Aple, bool> predicate)
+        private static (IQueryable<Aple> , RequestOptions, DocumentRepository<Aple>) QueryDb(CosmoDbInfo cosmoDbInfo, Expression<Func<Aple, bool>> expression)
         {
             var documentrepository = PermissionsDocumentRepository(cosmoDbInfo.Url, cosmoDbInfo.AuthKey, cosmoDbInfo.DbName, cosmoDbInfo.CollectionName);
 
-            var docsfound = Query(documentrepository, predicate);
+            var docsfound = Query(documentrepository, expression);
 
             var queryrequestOptions = QueryRequestOptions(cosmoDbInfo.IsPartitionKey, cosmoDbInfo.PartitionKey);
 
@@ -57,13 +57,11 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         private static DocumentRepository<Aple> PermissionsDocumentRepository(string url, string authKey, string dbName, string collectionName) => CosmosConnectionHelper.CreateCosmosDbRepoHelper<Aple>(url, authKey, dbName, collectionName);
 
-        private static IQueryable<Aple> Query(DocumentRepository<Aple> db, Func<Aple, bool> predicate)
+        private static IQueryable<Aple> Query(DocumentRepository<Aple> db, Expression<Func<Aple,bool>> expression)
         {
             var option = new FeedOptions { EnableCrossPartitionQuery = true };
 
-            Expression<Func<Aple, bool>> Expression = (exp) => predicate(exp);
-
-            return db.CreateQuery(option).Select(x => x).Where(Expression);
+            return db.CreateQuery(option).Select(x => x).Where(expression);
         }
 
         private static RequestOptions QueryRequestOptions(bool isPartitionKey, object partitionKey)
