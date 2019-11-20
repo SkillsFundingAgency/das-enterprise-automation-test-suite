@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
+using SFA.DAS.UI.FrameworkHelpers;
 using System;
 using System.IO;
 
@@ -12,12 +13,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
             try
             {
                 DateTime dateTime = DateTime.Now;
-
-                String failureImageName = dateTime.ToString("HH-mm-ss")
-                    + "_"
-                    + scenarioTitle
-                    + ".png";
-
+                String failureImageName = ($"{dateTime.ToString("HH-mm-ss")}_{scenarioTitle}.png").RemoveSpace();
                 ITakesScreenshot screenshotHandler = webDriver as ITakesScreenshot;
                 Screenshot screenshot = screenshotHandler.GetScreenshot();
                 String screenshotPath = Path.Combine(screenshotsDirectory, failureImageName);
