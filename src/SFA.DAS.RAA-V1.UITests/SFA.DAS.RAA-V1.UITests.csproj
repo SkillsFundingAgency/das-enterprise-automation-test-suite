@@ -39,20 +39,4 @@
     </None>
   </ItemGroup>
 
-  <ItemGroup>
-    <SpecFlowFeatureFiles Update="Project\Tests\Features\E2EJourney\ApprenticeshipVacancy\RV1_E2EAV_04.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-    </SpecFlowFeatureFiles>
-    <SpecFlowFeatureFiles Update="Project\Tests\Features\E2EJourney\TraineeshipVacancy\RV1_E2ETV_04.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>RV1_E2ETV_04.feature.cs</LastGenOutput>
-    </SpecFlowFeatureFiles>
-    <SpecFlowFeatureFiles Update="Project\Tests\Features\Referred\ApprenticeshipVacancy\RV1_RefAV_01.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-    </SpecFlowFeatureFiles>
-    <SpecFlowFeatureFiles Update="Project\Tests\Features\Referred\TraineeshipVacancy\RV1_RefTV_01.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-    </SpecFlowFeatureFiles>
-  </ItemGroup>
-
 </Project>
