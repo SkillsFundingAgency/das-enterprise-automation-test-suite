@@ -1,7 +1,7 @@
 ﻿@approvals
 Feature: AP_TR_05_TransfersStatusJourney
 
-@inprogress
+@regression
 @transfersscenarios
 Scenario: AP_TR_05_01 Transfers - Verify transfer status when agreement is not signed
 	Given We have a Sender with sufficient levy funds without signing an agreement
