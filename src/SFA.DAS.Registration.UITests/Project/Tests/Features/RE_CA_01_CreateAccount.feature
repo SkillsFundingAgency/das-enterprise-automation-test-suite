@@ -1,12 +1,14 @@
 ﻿@registration
-Feature: CreateAccount
+Feature: RE_CA_01_CreateAccount
 
-Scenario: Create Account without PAYE details
+@regression
+Scenario: RE_CA_01_01_Create Account without PAYE details
 	Given I create an Account
 	Then I do not add paye details
 
+@regression
 @addpayedetails
-Scenario: Create Non Levy Account with PAYE Details
+Scenario: RE_CA_01_02_Create Non Levy Account with PAYE Details
 	Given I create an Account
 	When I add paye details
 	And add organisation details
