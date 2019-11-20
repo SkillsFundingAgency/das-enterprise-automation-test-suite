@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
@@ -23,59 +23,6 @@
   <ItemGroup>
     <ProjectReference Include="..\SFA.DAS.Registration.UITests\SFA.DAS.Registration.UITests.csproj" />
     <ProjectReference Include="..\SFA.DAS.UI.Framework\SFA.DAS.UI.Framework.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Update="appsettings.Environment.feature.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>appsettings.Environment.json</DependentUpon>
-    </Compile>
-    <Compile Update="appsettings.Project.BrowserStack.feature.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>appsettings.Project.BrowserStack.json</DependentUpon>
-    </Compile>
-    <Compile Update="appsettings.Project.feature.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>appsettings.Project.json</DependentUpon>
-    </Compile>
-    <Compile Update="Project\Helpers\SqlScripts\AddLevy.feature.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>AddLevy.sql</DependentUpon>
-    </Compile>
-    <Compile Update="Project\Helpers\SqlScripts\CourseAndPriceDataLock.feature.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>CourseAndPriceDataLock.sql</DependentUpon>
-    </Compile>
-    <Compile Update="Project\Helpers\SqlScripts\CourseDataLock.feature.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>CourseDataLock.sql</DependentUpon>
-    </Compile>
-    <Compile Update="Project\Helpers\SqlScripts\PriceDataLock.feature.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>PriceDataLock.sql</DependentUpon>
-    </Compile>
-    <Compile Update="Project\Helpers\SqlScripts\ProviderPermissionsDeleteAccount.feature.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>ProviderPermissionsDeleteAccount.sql</DependentUpon>
-    </Compile>
-    <Compile Update="Project\Tests\Features\AP_EmpDC_01_EmployerDeleteCohort.feature.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>AP_EmpDC_01_EmployerDeleteCohort.feature</DependentUpon>
-    </Compile>
-    <Compile Update="SFA.DAS.Approvals.UITests.runtimeconfig.feature.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>SFA.DAS.Approvals.UITests.runtimeconfig.json</DependentUpon>
-    </Compile>
   </ItemGroup>
 
   <ItemGroup>
