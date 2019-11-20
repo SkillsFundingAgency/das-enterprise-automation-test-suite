@@ -10,18 +10,22 @@ namespace SFA.DAS.UI.FrameworkHelpers
 {
     public class CosmosActionsPerformerHelper
     {
-        public static void RemoveProviderPermissionDoc(string url, string authKey, string dbName, string collectionName, long ukprn, object partitionKey)
+        public static void RemoveProviderPermissionDoc(string url, string authKey, string dbName, string collectionName, long ukprn)
         {
-            var db = CosmosConnectionHelper.CreateCosmosDbRepoHelper<Aple>(url, authKey, dbName, collectionName);
+            var db = CosmosConnectionHelper.CreateCosmosDbRepoHelper<ProviderPermissionDocument>(url, authKey, dbName, collectionName);
 
             var docs = Query(db, (a) => a.Ukprn == ukprn);
             
-            var requestOptions = new RequestOptions { PartitionKey = new PartitionKey(partitionKey) };
+            var requestOptions = new RequestOptions { PartitionKey = new PartitionKey(ukprn) };
 
             RemoveDoc(db, docs, requestOptions);
         }
+        private static IQueryable<TDocument> Query<TDocument>(DocumentRepository<TDocument> db, Expression<Func<TDocument, bool>> expression) where TDocument : class, IDocument
+        {
+            return db.CreateQuery().Select(x => x).Where(expression);
+        }
 
-        private static void RemoveDoc(DocumentRepository<Aple> db, IQueryable<Aple> docs,  RequestOptions requestOptions)
+        private static void RemoveDoc<TDocument>(DocumentRepository<TDocument> db, IQueryable<TDocument> docs,  RequestOptions requestOptions) where TDocument : class, IDocument
         {
             foreach (var doc in docs)
             {
@@ -29,23 +33,11 @@ namespace SFA.DAS.UI.FrameworkHelpers
             }
         }
 
-        private static IQueryable<Aple> Query(DocumentRepository<Aple> db, Expression<Func<Aple,bool>> expression) => db.CreateQuery(new FeedOptions { EnableCrossPartitionQuery = true }).Select(x => x).Where(expression);
-
-        // Add more properties in Aple as required
-        class Aple : Document
+        // Add more properties in ProviderPermissionDocument as required
+        class ProviderPermissionDocument : Document
         {
             [JsonProperty("ukprn")]
             public long Ukprn { get; set; }
-
-            [JsonProperty("name")]
-            public string Name { get; set; }
         }
-
     }
-
 }
-
-
-
-
-

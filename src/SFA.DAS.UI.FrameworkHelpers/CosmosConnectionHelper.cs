@@ -8,7 +8,6 @@ namespace SFA.DAS.UI.FrameworkHelpers
 {
     public static class CosmosConnectionHelper
     {
-
         public static DocumentRepository<TDocument> CreateCosmosDbRepoHelper<TDocument>(string uri, string authKey, string databaseName,
             string collectionName) where TDocument : class, IDocument
         {
@@ -34,7 +33,8 @@ namespace SFA.DAS.UI.FrameworkHelpers
     public class Document : IDocument
     {
         [JsonProperty("id")]
-        public Guid Id { get; set; }
+        public Guid Id { get; protected set; }
+
         [JsonIgnore]
         public string ETag { get; protected set; }
 
