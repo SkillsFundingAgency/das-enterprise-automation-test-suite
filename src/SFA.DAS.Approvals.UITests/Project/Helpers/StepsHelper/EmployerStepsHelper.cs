@@ -42,8 +42,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
         {
             return GoToEmployerApprenticesHomePage()
               .ClickYourCohortsLink()
-              .GoToRejectedTransferRequests()
-              .OpenRejectedCohort();
+              .GoToCohortsReadyForReview()
+              .SelectViewCurrentCohortDetails();
         }
 
         internal ManageYourApprenticesPage GoToManageYourApprenticesPage()

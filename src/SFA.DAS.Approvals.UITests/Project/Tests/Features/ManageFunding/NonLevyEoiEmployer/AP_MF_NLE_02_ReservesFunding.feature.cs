@@ -73,12 +73,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.ManageFunding.NonLevy
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("AP_MF_NLE_02 Non Levy Employer reserves funding")]
-        [NUnit.Framework.CategoryAttribute("inprogress")]
+        [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("reservefunds")]
         public virtual void AP_MF_NLE_02NonLevyEmployerReservesFunding()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_MF_NLE_02 Non Levy Employer reserves funding", null, new string[] {
-                        "inprogress",
+                        "regression",
                         "reservefunds"});
 #line 8
 this.ScenarioInitialize(scenarioInfo);

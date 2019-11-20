@@ -89,7 +89,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
             if (linkDisplayed)
             {
-                Assert.IsFalse(CanChooseAnEmployer(), "Create Cohort link is visible");
+                Assert.IsFalse(linkDisplayed, "Create Cohort link is visible");
             }
             else
             {
