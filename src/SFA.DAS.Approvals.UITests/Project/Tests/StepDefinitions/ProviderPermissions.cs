@@ -40,6 +40,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Given(@"Employer grant create cohort permission to a provider")]
         public void GivenEmployerGrantCreateCohortPermissionToAProvider()
         {
+            RemovePermissionsInSQLDatabase();
+
+            RemovePermissionsInCosmosDatabase();
+
             var homePage = _employerLoginHelper.Login(_context.GetUser<ProviderPermissionLevyUser>(), true);
 
             var organisationPage = homePage.GoToYourOrganisationsAndAgreementsPage();
@@ -47,11 +51,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             organisationPage.SetAgreementId();
 
             organisationPage.GoToHomePage();
-
-             RemovePermissionsInSQLDatabase();
-
-             RemovePermissionsInCosmosDatabase();
-
+           
             _employerPermissionsStepsHelper.SetCreateCohortPermission(_providerPermissionConfig.AP_ProviderUkprn);
 
             _providerLogin = ProviderLogin(_providerPermissionConfig.AP_ProviderUserId, _providerPermissionConfig.AP_ProviderPassword, _providerPermissionConfig.AP_ProviderUkprn);
@@ -127,7 +127,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
         private void RemovePermissionsInCosmosDatabase()
         {
-            CosmosActionsPerformerHelper.RemoveDoc(_providerPermissionConfig.PermissionsCosmosUrl, _providerPermissionConfig.PermissionsCosmosDBKey, _providerPermissionConfig.PermissionsCosmosDatabaseName, _providerPermissionConfig.PermissionsCosmosCollectionName, "ukprn", _providerPermissionConfig.AP_ProviderUkprn);
+            CosmosActionsPerformerHelper.RemoveProviderPermissionDoc(_providerPermissionConfig.PermissionsCosmosUrl, _providerPermissionConfig.PermissionsCosmosDBKey, _providerPermissionConfig.PermissionsCosmosDatabaseName, _providerPermissionConfig.PermissionsCosmosCollectionName, Convert.ToInt64(_providerPermissionConfig.AP_ProviderUkprn));
         }
 
         private ProviderLogin ProviderLogin(string usename, string password, string ukprn)
