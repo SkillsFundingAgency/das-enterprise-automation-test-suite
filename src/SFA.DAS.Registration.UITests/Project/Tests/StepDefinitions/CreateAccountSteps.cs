@@ -75,6 +75,8 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
                 .ContinueWithAgreement()
                 .SignAgreement();
 
+            homePage.VerifySucessSummary();
+
             SetAgreementId(homePage);
         }
 
@@ -121,11 +123,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             _objectContext.SetAccountId(accountid);
         }
 
-        [Then(@"sucess message is displayed")]
-        public void SucessMessageIsDisplayed()
-        {
-            homePage.VerifySucessSummary();
-        }
         private HomePage SetAgreementId(HomePage homePage)
         {
             homePage

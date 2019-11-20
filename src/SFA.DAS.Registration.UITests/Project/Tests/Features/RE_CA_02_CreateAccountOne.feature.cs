@@ -18,20 +18,22 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.0.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("CreateAccountWithOutAgreement")]
-    public partial class CreateAccountWithOutAgreementFeature
+    [NUnit.Framework.DescriptionAttribute("RE_CA_02_CreateAccountOne")]
+    [NUnit.Framework.CategoryAttribute("registration")]
+    public partial class RE_CA_02_CreateAccountOneFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "CreateAccountWithOutAgreement.feature"
+#line 1 "RE_CA_02_CreateAccountOne.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "CreateAccountWithOutAgreement", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "RE_CA_02_CreateAccountOne", null, ProgrammingLanguage.CSharp, new string[] {
+                        "registration"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -70,27 +72,27 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Create Non Levy Account with PAYE Details And Do Not Sign Agreement")]
+        [NUnit.Framework.DescriptionAttribute("RE_CA_02_Create Non Levy Account with PAYE Details will land in the Agreement Pag" +
+            "e")]
         [NUnit.Framework.CategoryAttribute("addpayedetails")]
-        [NUnit.Framework.CategoryAttribute("registration")]
-        public virtual void CreateNonLevyAccountWithPAYEDetailsAndDoNotSignAgreement()
+        [NUnit.Framework.CategoryAttribute("regression")]
+        public virtual void RE_CA_02_CreateNonLevyAccountWithPAYEDetailsWillLandInTheAgreementPage()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Create Non Levy Account with PAYE Details And Do Not Sign Agreement", null, new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RE_CA_02_Create Non Levy Account with PAYE Details will land in the Agreement Pag" +
+                    "e", null, new string[] {
                         "addpayedetails",
-                        "registration"});
-#line 5
+                        "regression"});
+#line 6
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 6
- testRunner.Given("I create an Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 7
- testRunner.When("I add paye details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.Given("I create an Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 8
- testRunner.And("add organisation details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.When("I add paye details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 9
- testRunner.And("I do not sign the agreement", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("add organisation details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 10
- testRunner.Then("I will land in the User Home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("I will land in the Organisation Agreement page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

@@ -1,14 +1,17 @@
 ﻿@registration
-Feature: ExistingLevyAccount
+Feature: RE_EA_01_ExistingLevyAccount
 
-Scenario: Existing Levy Account
+@regression
+Scenario: RE_EA_01_01_Existing Levy Account
 	Given the Employer login using existing levy account
 	Then I will land in the User Home page
 
-Scenario: Existing NonLevy Account
+@regression
+Scenario: RE_EA_01_02_Existing NonLevy Account
 	Given the Employer login using existing non levy account
 	Then I will land in the User Home page
 
-Scenario: Existing Eoi Account
+@regression
+Scenario: RE_EA_01_03_Existing Eoi Account
 	Given the Employer login using existing eoi account
 	Then I will land in the User Home page

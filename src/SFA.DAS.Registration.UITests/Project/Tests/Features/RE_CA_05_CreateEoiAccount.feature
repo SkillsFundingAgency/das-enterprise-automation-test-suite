@@ -1,9 +1,10 @@
-﻿Feature: CreateEoiAccount
+﻿@registration
+Feature: RE_CA_05_CreateEoiAccount
 
 @addpayedetails
 @eoiaccount
-@registration
-Scenario: Create EOI Account with PAYE Details
+@regression
+Scenario: RE_CA_05_Create EOI Account with PAYE Details
 	Given I create an Account
 	When I add paye details
 	And add eoi organisation details
