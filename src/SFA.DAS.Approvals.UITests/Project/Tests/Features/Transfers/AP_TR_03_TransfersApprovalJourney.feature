@@ -1,7 +1,7 @@
 ﻿@approvals
 Feature: AP_TR_03_TransfersApprovalJourney
 
-@regression
+@inprogress
 @transfersscenarios
 @liveapprentice
 @transfersfunds
