@@ -1,4 +1,5 @@
-﻿using SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA;
+﻿using NUnit.Framework;
+using SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
@@ -28,6 +29,21 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
                .ClickOnSignInButton()
                .RecruitStaffIdams()
                .SubmitRecruitmentInvalidLoginDetails();
+        }
+
+        [Then(@"the provider should be able to submit the userId for password reset")]
+        public void ThenTheProviderShouldBeAbleToSubmitTheUserIdForPasswordReset()
+        {
+            _tabHelper.GoToUrl(_config.RecruitBaseUrl);
+
+            var text = new RAA_IndexPage(_context)
+              .ClickOnSignInButton()
+              .RecruitStaffIdams()
+              .ForgotMyPassword()
+              .ResetPassword()
+              .FormInfoText();
+
+            Assert.AreEqual("We have sent you an email containing a password reset link.", text);
         }
     }
 }

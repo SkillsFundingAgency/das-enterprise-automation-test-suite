@@ -54,6 +54,12 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages
             return new RAA_InvalidCredentialsSignInPage(_context);
         }
 
+        public RAA_ForgotMyPasswordPage ForgotMyPassword()
+        {
+            _formCompletionHelper.ClickLinkByText("I forgot my password");
+            return new RAA_ForgotMyPasswordPage(_context);
+        }
+
 
         private void SubmitValidLoginDetails(string username, string password)
         {
