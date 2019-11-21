@@ -42,6 +42,12 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
             _regexHelper = context.Get<RegexHelper>();
         }
 
+        public RAA_AdministratorFunctionsPage AdministratorFunctions()
+        {
+            NavigateToAdmin();
+            return new RAA_AdministratorFunctionsPage(_context);
+        }
+
         public RAA_VacancyPreviewPage SelectLiveVacancyWithNoApplication()
         {
             SelectVacancy("Live", 0);

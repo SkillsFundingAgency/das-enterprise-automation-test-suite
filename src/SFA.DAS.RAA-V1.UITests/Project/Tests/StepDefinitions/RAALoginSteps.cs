@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+using SFA.DAS.RAA_V1.UITests.Project.Tests.Pages;
 using SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
@@ -23,22 +24,18 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
         [Then(@"the provider is not be able to log in with Invalid credentials")]
         public void ThenTheProviderIsNotBeAbleToLogInWithInvalidCredentials()
         {
-            _tabHelper.GoToUrl(_config.RecruitBaseUrl);
+            GoToRecruitBaseUrl();
 
-            new RAA_IndexPage(_context)
-               .ClickOnSignInButton()
-               .RecruitStaffIdams()
-               .SubmitRecruitmentInvalidLoginDetails();
+            GotoSignInPage()
+                .SubmitRecruitmentInvalidLoginDetails();
         }
 
         [Then(@"the provider should be able to submit the userId for password reset")]
         public void ThenTheProviderShouldBeAbleToSubmitTheUserIdForPasswordReset()
         {
-            _tabHelper.GoToUrl(_config.RecruitBaseUrl);
+            GoToRecruitBaseUrl();
 
-            var text = new RAA_IndexPage(_context)
-              .ClickOnSignInButton()
-              .RecruitStaffIdams()
+            var text = GotoSignInPage()
               .ForgotMyPassword()
               .ResetPassword()
               .FormInfoText();
@@ -49,16 +46,26 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
         [Then(@"the provider should be able to register the account")]
         public void ThenTheProviderShouldBeAbleToRegisterTheAccount()
         {
-            _tabHelper.GoToUrl(_config.RecruitBaseUrl);
+            GoToRecruitBaseUrl();
 
-            var text = new RAA_IndexPage(_context)
-              .ClickOnSignInButton()
-              .RecruitStaffIdams()
+            var text = GotoSignInPage()
               .CreateNewAccount()
               .Register()
               .FormInfoText();
 
             StringAssert.Contains("We have sent you an email for verification.", text);
+        }
+
+        private void GoToRecruitBaseUrl()
+        {
+            _tabHelper.GoToUrl(_config.RecruitBaseUrl);
+        }
+
+        private SignInPage GotoSignInPage()
+        {
+            return new RAA_IndexPage(_context)
+             .ClickOnSignInButton()
+             .RecruitStaffIdams();
         }
     }
 }
