@@ -25,7 +25,9 @@ namespace SFA.DAS.RAA_V1.UITests.Project
             var regexHelper = _context.Get<RegexHelper>();
 
             _context.Set(new RAADataHelper(random, regexHelper));
-            
+
+            _context.Set(new RAARegistrationDataHelper(random));
+
             _context.Set(new ManagedataHelper(random));
 
             _context.Set(new FAADataHelper(random));

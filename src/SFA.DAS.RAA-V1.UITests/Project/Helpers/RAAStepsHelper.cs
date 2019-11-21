@@ -24,6 +24,12 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
             _helper = new RestartWebDriverHelper(context);
         }
 
+        public void GoToRAA()
+        {
+            _objectContext.SetCurrentApplicationName(_applicationName);
+            _tabHelper.GoToUrl(_config.RecruitBaseUrl);
+        }
+
         internal RAA_RecruitmentHomePage GoToRAAHomePage(bool restrat)
         {
             if (restrat)
@@ -269,19 +275,13 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
 
             return vacancyReferencepage;
         }
+
         private RAA_RecruitmentHomePage SubmitRecruitmentLoginDetails()
         {
             return new RAA_IndexPage(_context)
                 .ClickOnSignInButton()
                 .RecruitStaffIdams()
                 .SubmitRecruitmentLoginDetails();
-        }
-
-        private void GoToRAA()
-        {
-            _objectContext.SetCurrentApplicationName(_applicationName);
-
-            _tabHelper.GoToUrl(_config.RecruitBaseUrl);
-        }
+        }        
     }
 }

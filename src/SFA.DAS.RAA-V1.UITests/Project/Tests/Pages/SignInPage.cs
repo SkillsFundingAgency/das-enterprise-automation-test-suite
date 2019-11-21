@@ -48,6 +48,24 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages
             return new RAA_RecruitmentHomePage(_context, false);
         }
 
+        public RAA_InvalidCredentialsSignInPage SubmitRecruitmentInvalidLoginDetails()
+        {
+            SubmitValidLoginDetails($"{_config.RecruitUserName}1",$"{_config.RecruitUserName}1");
+            return new RAA_InvalidCredentialsSignInPage(_context);
+        }
+
+        public RAA_ForgotMyPasswordPage ForgotMyPassword()
+        {
+            _formCompletionHelper.ClickLinkByText("I forgot my password");
+            return new RAA_ForgotMyPasswordPage(_context);
+        }
+
+        public RAA_RegistrationPage CreateNewAccount()
+        {
+            _formCompletionHelper.ClickLinkByText("I don't have an account");
+            return new RAA_RegistrationPage(_context);
+        }
+
         private void SubmitValidLoginDetails(string username, string password)
         {
             _formCompletionHelper.EnterText(UsernameField, username);
