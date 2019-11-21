@@ -71,13 +71,17 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Features.RecruitLogin
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("RV1_RL_03 - Provider does not have an account scenario")]
+        [NUnit.Framework.CategoryAttribute("raa-v1")]
+        [NUnit.Framework.CategoryAttribute("regression")]
         public virtual void RV1_RL_03_ProviderDoesNotHaveAnAccountScenario()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV1_RL_03 - Provider does not have an account scenario", null, ((string[])(null)));
-#line 4
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV1_RL_03 - Provider does not have an account scenario", null, new string[] {
+                        "raa-v1",
+                        "regression"});
+#line 5
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 5
+#line 6
 testRunner.Then("the provider should be able to register the account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();

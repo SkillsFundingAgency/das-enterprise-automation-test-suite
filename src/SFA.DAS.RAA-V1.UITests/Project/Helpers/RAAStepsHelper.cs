@@ -27,7 +27,6 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
         public void GoToRAA()
         {
             _objectContext.SetCurrentApplicationName(_applicationName);
-
             _tabHelper.GoToUrl(_config.RecruitBaseUrl);
         }
 

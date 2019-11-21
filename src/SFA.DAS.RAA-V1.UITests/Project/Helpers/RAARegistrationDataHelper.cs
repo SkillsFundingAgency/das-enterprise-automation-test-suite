@@ -16,7 +16,6 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
         }
 
         public string Title => "Mr";
-
         public string FirstName { get; }
         public string LastName { get; }
         public string EmailAddress { get; }
