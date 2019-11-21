@@ -212,6 +212,8 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         public IWebElement FindElement(IWebElement element, By locator) => element.FindElement(locator);
 
+        public List<IWebElement> FindElements(IWebElement element, By locator) => element.FindElements(locator).ToList();
+
         public List<IWebElement> FindElements(By locator) =>  _webDriver.FindElements(locator).ToList();
 
         public IWebElement GetLinkByHref(string hrefContains) => FindElements(LinkCssSelector).First(x => x.GetAttribute("href").ContainsCompareCaseInsensitive(hrefContains));

@@ -64,10 +64,14 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         {
             SearchByVacancyTitleContains("Live");
 
-            int randomLink = RandomElementAt((str) => !str.Contains("(Applications managed externally)"));
-            
-            formCompletionHelper.ClickElement(() => _pageInteractionHelper.GetLinks(CloneLink, "Clone")[randomLink]);
-            
+            IWebElement element()
+            {
+                var randomElement = RandomElementAt((str) => !str.Contains("(Applications managed externally)"));
+                return _pageInteractionHelper.FindElements(randomElement, CloneLink).LastOrDefault();
+            }
+
+            formCompletionHelper.RetryClickOnException(element);
+
             return new RAA_EmployerInformationPage(_context);
         }
         
@@ -80,21 +84,18 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         public RAA_ClosedVacancyPreviewPage SearchClosedVacancy()
         {
             SearchByReferenceNumber("Closed");
-            ClickVacancy();
             return new RAA_ClosedVacancyPreviewPage(_context);
         }
 
         public RAA_VacancySummaryPage SearchLiveVacancy()
         {
             SearchByReferenceNumber("Live");
-            ClickVacancy();
             return new RAA_VacancySummaryPage(_context);
         }
 
         public RAA_PreviewBasePage SearchReferredVacancy()
         {
             SearchByReferenceNumber("Referred");
-            ClickVacancy();
 
             if (_objectContext.IsApprenticeshipVacancyType())
             {
@@ -130,6 +131,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
             formCompletionHelper.EnterText(VacancySearchText, _objectContext.GetVacancyReference());
             formCompletionHelper.ClickElement(() => _pageInteractionHelper.FindElement(SearchVacancy));
             _pageInteractionHelper.WaitForElementToChange(func, AttributeHelper.InnerText, "1");
+            formCompletionHelper.ClickElement(() => _pageInteractionHelper.GetLink(VacancyTitle, dataHelper.VacancyTitle));
         }
 
         private void SearchByVacancyTitleContains(string filter)
@@ -154,11 +156,6 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
             }
         }
 
-        private void ClickVacancy()
-        {
-            formCompletionHelper.ClickElement(() => _pageInteractionHelper.GetLink(VacancyTitle, dataHelper.VacancyTitle));
-        }
-
         private RAA_RecruitmentHomePage SelectVacancy(string filter, int applications, string additionalFilter = null)
         {
             SearchByVacancyTitleContains(filter);
@@ -167,10 +164,10 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
             {
                 string[] shouldNotContain = new string[] { "(Applications managed externally)", $"_{dataHelper.VacancyTitleDateElement}_" };
 
-                int randomLink = RandomElementAt((str) => shouldNotContain.Any(x => !str.Contains(x)) 
+                var randomElement = RandomElementAt((str) => shouldNotContain.Any(x => !str.Contains(x)) 
                 && str.Contains($"{applications}\r\napplication") && (additionalFilter == null ? true : str.Contains(additionalFilter)) && _regexHelper.CheckVacancyTitle(str));
 
-                return _pageInteractionHelper.GetLink(VacancyTitle, dataHelper.VacancyTitle);
+                return _pageInteractionHelper.FindElement(randomElement, VacancyTitle);
             }
 
             formCompletionHelper.RetryClickOnException(element);
@@ -178,8 +175,10 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
             return this;
         }
 
-        private int RandomElementAt(Func<string, bool> func)
+        private IWebElement RandomElementAt(Func<string, bool> func)
         {
+            IWebElement randomElement = null;
+
             int randomNumber = 0;
 
             int noOfPages = 1;
@@ -200,19 +199,24 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
                     if (_pageInteractionHelper.IsElementDisplayed(NextPage))
                     {
                         formCompletionHelper.ClickElement(() => _pageInteractionHelper.FindElement(NextPage));
+                        int currentPage = i + 1;
+                        if (currentPage < noOfPages)
+                        {
+                            _pageInteractionHelper.WaitForElementToChange(NextPage, $"{currentPage} of {noOfPages}");
+                        }
                     }
                     continue; 
                 }
 
                 randomNumber = new Random().Next(1, filteredRows.Count);
                 
-                var randomElement = filteredRows[randomNumber - 1];
-                
+                randomElement = filteredRows[randomNumber - 1];
+
                 dataHelper.VacancyTitle = _pageInteractionHelper.GetText(randomElement.FindElement(VacancyTitle));
 
                 break;
             }
-            return randomNumber;
+            return randomElement;
         }
     }
 }
