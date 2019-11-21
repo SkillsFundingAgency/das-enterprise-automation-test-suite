@@ -48,6 +48,13 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages
             return new RAA_RecruitmentHomePage(_context, false);
         }
 
+        public RAA_InvalidCredentialsSignInPage SubmitRecruitmentInvalidLoginDetails()
+        {
+            SubmitValidLoginDetails($"{_config.RecruitUserName}1",$"{_config.RecruitUserName}1");
+            return new RAA_InvalidCredentialsSignInPage(_context);
+        }
+
+
         private void SubmitValidLoginDetails(string username, string password)
         {
             _formCompletionHelper.EnterText(UsernameField, username);
