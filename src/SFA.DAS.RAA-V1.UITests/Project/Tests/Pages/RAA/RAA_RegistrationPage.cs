@@ -56,7 +56,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
 
         public string FormInfoText()
         {
-            _pageInteractionHelper.WaitforURLToChange("/registrationEmailSent/");
+            _pageInteractionHelper.WaitforURLToChange("registrationEmailSent");
             return _pageInteractionHelper.GetText(ConfirmationText);
         }
     }
