@@ -79,6 +79,11 @@ namespace SFA.DAS.UI.FrameworkHelpers
             return VerifyPage(func);
         }
 
+        public void Verify(Func<bool> func, Action beforeAction)
+        {
+            _retryHelper.RetryOnException(func, beforeAction);
+        }
+
         private bool VerifyPage(Func<bool> func)
         {
             void beforeAction() => _webDriverWaitHelper.WaitForPageToLoad();
