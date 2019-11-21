@@ -60,6 +60,11 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages
             return new RAA_ForgotMyPasswordPage(_context);
         }
 
+        public RAA_RegistrationPage CreateNewAccount()
+        {
+            _formCompletionHelper.ClickLinkByText("I don't have an account");
+            return new RAA_RegistrationPage(_context);
+        }
 
         private void SubmitValidLoginDetails(string username, string password)
         {
