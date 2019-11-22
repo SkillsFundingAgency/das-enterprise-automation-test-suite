@@ -80,10 +80,28 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Features.ApplicationAnonymousView
                         "raa-v1",
                         "regression",
                         "apprenticeshipvacancy"});
-#line 6
+#line 7
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 7
+#line 8
+testRunner.Then("the provider can view the application anonymously", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("RV1_AAV_02 - Checking Anonymous View of an Traineeship Vacancy Application")]
+        [NUnit.Framework.CategoryAttribute("raa-v1")]
+        [NUnit.Framework.CategoryAttribute("regression")]
+        public virtual void RV1_AAV_02_CheckingAnonymousViewOfAnTraineeshipVacancyApplication()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV1_AAV_02 - Checking Anonymous View of an Traineeship Vacancy Application", null, new string[] {
+                        "raa-v1",
+                        "regression"});
+#line 12
+this.ScenarioInitialize(scenarioInfo);
+            this.ScenarioStart();
+#line 13
 testRunner.Then("the provider can view the application anonymously", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
