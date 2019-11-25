@@ -98,10 +98,10 @@ testRunner.Then("the provider can view the application anonymously", ((string)(n
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV1_AAV_02 - Checking Anonymous View of an Traineeship Vacancy Application", null, new string[] {
                         "raa-v1",
                         "regression"});
-#line 12
+#line 13
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 13
+#line 14
 testRunner.Then("the provider can view the application anonymously", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();

@@ -43,7 +43,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
 
         public void CreateFAAAccount(FAA_CreateAnAccountPage accountCreationPage)
         {
-            accountCreationPage.SubmitSubmitAccountCreationDetails();
+            accountCreationPage.SubmitAccountCreationDetails();
         }
 
         public void WithdrawVacancy(FAA_HomePage homePage)

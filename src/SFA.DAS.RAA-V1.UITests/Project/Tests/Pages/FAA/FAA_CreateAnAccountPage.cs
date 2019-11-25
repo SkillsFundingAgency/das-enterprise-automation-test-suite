@@ -44,7 +44,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.FAA
             VerifyPage();
         }
 
-        public FAA_ActivateYourAccountPage SubmitSubmitAccountCreationDetails()
+        public FAA_ActivateYourAccountPage SubmitAccountCreationDetails()
         {
             _formCompletionHelper.EnterText(FirstName, _dataHelper.FirstName);
             _formCompletionHelper.EnterText(LastName, _dataHelper.LastName);
