@@ -7,7 +7,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 {
     public class GetApprenticeshipFunding : BasePage
     {
-        protected override string PageTitle => "Get apprenticeship funding";
+        protected override string PageTitle => "Add a PAYE Scheme";
 
         #region Helpers and Context
         private readonly PageInteractionHelper _pageInteractionHelper;
@@ -20,7 +20,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         private By DoNotAddPayeRadioButton => By.CssSelector("label[for=do-not-want-to-add-paye-scheme]");
 
-        private By ContinueButton => By.Id("submit-confirm-who-you-are-button");
+        private By ContinueButton => By.Id("submit-add-a-paye-scheme-button");
 
         public GetApprenticeshipFunding(ScenarioContext context) : base(context)
         {
@@ -31,11 +31,11 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             VerifyPage();
         }
 
-        public WaysToAddPayePage AddPaye()
+        public GatewayInformPage AddPaye()
         {
             SelectAddPaye().
                 Continue();
-            return new WaysToAddPayePage(_context);
+            return new GatewayInformPage(_context);
         }
 
         public MyAccountWithOutPaye DoNotAddPaye()

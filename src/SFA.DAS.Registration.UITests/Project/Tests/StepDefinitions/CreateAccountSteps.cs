@@ -46,9 +46,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         public void AddPayeDetails()
         {
             organistionSearchPage = getApprenticeshipFunding
-                .AddPaye()
-                .SelectGovermentGateway()
-                .ContinueToGGSignIn()
+                .AddPaye().ContinueToGGSignIn()
                 .SignInTo();
         }
 
@@ -76,6 +74,8 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             homePage = aboutYourAgreementPage
                 .ContinueWithAgreement()
                 .SignAgreement();
+
+            homePage.VerifySucessSummary();
 
             SetAgreementId(homePage);
         }
@@ -123,11 +123,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             _objectContext.SetAccountId(accountid);
         }
 
-        [Then(@"sucess message is displayed")]
-        public void SucessMessageIsDisplayed()
-        {
-            homePage.VerifySucessSummary();
-        }
         private HomePage SetAgreementId(HomePage homePage)
         {
             homePage

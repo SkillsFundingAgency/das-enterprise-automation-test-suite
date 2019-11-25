@@ -12,7 +12,5 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         {
             VerifyPage();
         }
-
-        protected override By PageHeader => By.CssSelector(".das-account__account-name");
     }
 }

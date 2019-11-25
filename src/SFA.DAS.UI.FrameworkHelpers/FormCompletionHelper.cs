@@ -1,18 +1,17 @@
 ﻿using OpenQA.Selenium;
-using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace SFA.DAS.UI.FrameworkHelpers
 {
-    public class FormCompletionHelper 
+    public class FormCompletionHelper : WebElementInteractionHelper
     {
         private readonly IWebDriver _webDriver;
         private readonly WebDriverWaitHelper _webDriverWaitHelper;
         private readonly RetryHelper _retryHelper;
 
-        public FormCompletionHelper(IWebDriver webDriver, WebDriverWaitHelper webDriverWaitHelper, RetryHelper retryHelper)
+        public FormCompletionHelper(IWebDriver webDriver, WebDriverWaitHelper webDriverWaitHelper, RetryHelper retryHelper) : base(webDriver)
         {
             _webDriver = webDriver;
             _webDriverWaitHelper = webDriverWaitHelper;
@@ -29,6 +28,16 @@ namespace SFA.DAS.UI.FrameworkHelpers
             SelectRadioButton(_webDriver.FindElement(locator));
         }
 
+        public void RetryClickOnException(Func<IWebElement> element)
+        {
+            _retryHelper.RetryClickOnException(element);
+        }
+
+        public void ClickElement(Func<IWebElement> element)
+        {
+            _retryHelper.RetryClickOnWebDriverException(element);
+        }
+
         public void ClickElement(IWebElement element)
         {
             _retryHelper.RetryOnElementClickInterceptedException(element);
@@ -40,6 +49,11 @@ namespace SFA.DAS.UI.FrameworkHelpers
             ClickElement(_webDriver.FindElement(locator));
         }
 
+        public void Click(By locator)
+        {
+            ClickElement(locator);
+        }
+
         public void EnterText(IWebElement element, string text)
         {
             element.Clear();
@@ -48,7 +62,19 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         public void EnterText(By locator, string text)
         {
+            _webDriverWaitHelper.WaitForElementToBeDisplayed(locator);
             EnterText(_webDriver.FindElement(locator), text);
+        }
+
+        public void EnterSpace(By locator)
+        {
+            SendKeys(locator, Keys.Space);
+        }
+
+        public void SendKeys(By locator, string Key)
+        {
+            _webDriverWaitHelper.WaitForElementToBeDisplayed(locator);
+            _webDriver.FindElement(locator).SendKeys(Key);
         }
 
         public void EnterText(By locator, int text)
@@ -110,22 +136,39 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         public void SelectRadioOptionByText(By locator, String text)
         {
-            IList<IWebElement> radios = _webDriver.FindElements(locator);
-
-            for (int i = 0; i < radios.Count; i++)
-            {
-                String str = radios.ElementAt(i).Text;
-                if (str.Equals(text))
-                {
-                    radios.ElementAt(i).Click();
-                    return;
-                }
-            }
+            ClickElementByText(locator, text);
         }
 
-        private SelectElement SelectElement(IWebElement element)
+        private void ClickElementByText(By locator, String text)
         {
-            return new SelectElement(element);
+           ClickElement(() => GetElementByText(locator, text));
+        }
+
+        public void ClickLinkByText(string text)
+        {
+            ClickElementByText(LinkCssSelector, text);
+        }
+
+        public void ClickButtonByText(params string[] buttons)
+        {
+            string text = buttons.First(x => GetElementByText(ButtonCssSelector, x) != null);
+
+            ClickElementByText(ButtonCssSelector, text);
+        }
+
+        public void ClickButtonByText(string text)
+        {
+            ClickElementByText(ButtonCssSelector, text);
+        }
+
+        public void SelectRadioOptionByText(string text)
+        {
+            ClickElementByText(RadioButtonCssSelector, text);
+        }
+
+        public void SelectCheckBoxByText(string text)
+        {
+            ClickElementByText(CheckBoxCssSelector, text);
         }
     }
 }

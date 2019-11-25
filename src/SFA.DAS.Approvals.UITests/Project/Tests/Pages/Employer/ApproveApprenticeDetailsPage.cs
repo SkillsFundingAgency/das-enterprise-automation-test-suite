@@ -8,7 +8,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
     public class ApproveApprenticeDetailsPage : BasePage
     {
-        protected override string PageTitle => "Approve apprentice details";
+        protected override string PageTitle => "ApproveAndNotifyTrainingProvider apprentice details";
         #region Helpers and Context
         private readonly PageInteractionHelper _pageInteractionHelper;
         private readonly FormCompletionHelper _formCompletionHelper;

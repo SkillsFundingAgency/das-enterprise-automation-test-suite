@@ -39,7 +39,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         private readonly ScenarioContext _context;
         #endregion
 
-        private By AgreementButton => By.CssSelector("input.button");
+        private By AgreementButton => By.CssSelector("input.govuk-button");
 
         protected override string Linktext => "Your organisations and agreements";
 

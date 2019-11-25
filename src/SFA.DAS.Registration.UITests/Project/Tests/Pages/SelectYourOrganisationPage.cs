@@ -21,7 +21,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         private readonly ObjectContext _objectContext;
         #endregion
 
-        private By OrganisationLink() => By.CssSelector("button.link-button");
+        private By OrganisationLink() => By.CssSelector("button[type=submit]");
 
         public SelectYourOrganisationPage(ScenarioContext context) : base(context)
         {

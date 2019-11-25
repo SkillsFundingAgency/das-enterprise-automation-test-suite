@@ -66,8 +66,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             var x = _reviewYourCohortPage.CohortReferenceFromUrl();
             _objectContext.SetCohortReference(x);
 
-            _yourCohortRequestsPage = _reviewYourCohortPage.SaveAndContinue()
-                .SubmitSaveButDontSendToProvider();
+            _yourCohortRequestsPage = _reviewYourCohortPage.SaveAndExit();
         }
 
         [Then(@"Employer is able to view saved cohort from Draft")]
@@ -80,7 +79,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Then(@"Employer is able to edit all apprentices before approval")]
         public void EmployerIsAbleToEditAllApprenticesBeforeApproval()
         {
-            int totalApprentices = _reviewYourCohortPage.TotalNoOfEditableApprentice();
+            int totalApprentices = _reviewYourCohortPage.TotalNoOfApprentices();
             for (int i = 0; i < totalApprentices; i++)
             {
                 _reviewYourCohortPage = _reviewYourCohortPage.SelectEditApprentice(i)
@@ -91,7 +90,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Then(@"Employer is able to delete all apprentices before approval")]
         public void EmployerIsAbleToDeleteAllApprenticesBeforeApproval()
         {
-            int totalApprentices = _reviewYourCohortPage.TotalNoOfEditableApprentice();
+            int totalApprentices = _reviewYourCohortPage.TotalNoOfApprentices();
             for (int i = 0; i < totalApprentices; i++)
             {
                 _reviewYourCohortPage = _reviewYourCohortPage.SelectEditApprentice(0)
@@ -107,7 +106,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                 .ConfirmDeleteAndSubmit();
         }
 
-
         [When(@"the Employer approves (\d) cohort and sends to provider")]
         public void TheEmployerApprovesCohortAndSendsToProvider(int numberOfApprentices)
         {
@@ -121,10 +119,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             var employerReviewYourCohortPage = _employerStepsHelper.EmployerReviewCohort();
 
-            employerReviewYourCohortPage
-                .SaveAndContinue()
-                .SubmitApproveAndSendToTrainingProvider()
-                .SendInstructionsToProviderForAnApprovedCohort();
+            employerReviewYourCohortPage.EmployerFirstApproveAndNotifyTrainingProvider();
         }
 
 
@@ -139,10 +134,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             var employerReviewYourCohortPage = _employerStepsHelper.EmployerAddApprentice(numberOfApprentices, false);
 
-            var cohortReference = employerReviewYourCohortPage.SaveAndContinue()
-                .SubmitSendToTrainingProviderForReview()
-                .SendInstructionsToProviderForCohortToBeReviewed()
-                .CohortReference();
+            var cohortReference = employerReviewYourCohortPage.EmployerSendsToTrainingProviderForReview().CohortReference();
 
             _employerStepsHelper.SetCohortReference(cohortReference);
         }

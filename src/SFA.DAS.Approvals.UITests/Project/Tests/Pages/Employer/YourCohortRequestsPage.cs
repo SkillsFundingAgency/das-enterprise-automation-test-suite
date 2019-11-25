@@ -18,7 +18,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         #endregion
 
         private By NumberofCohortsForReview => By.CssSelector(".block-one .bold-xxlarge");
-        private By NumberOfTransferRejectedCohorts => By.CssSelector(".block-five .bold-xxlarge");
+        private By NumberOfTransferRejectedCohorts => By.CssSelector(".block-one .bold-xxlarge");
         private By NumberOfDraftCohorts => By.CssSelector(".block-three .bold-xxlarge");
 
         public YourCohortRequestsPage(ScenarioContext context) : base(context)

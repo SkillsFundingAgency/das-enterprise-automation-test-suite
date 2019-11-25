@@ -185,9 +185,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _employerStepsHelper.OpenRejectedCohort()
                 .SelectEditApprentice()
                 .EditApprenticePreApprovalAndSubmit()
-                .SelectContinueToApproval()
-                .SubmitApproveAndSendToTrainingProvider()
-                .SendInstructionsToProviderForAnApprovedCohort();
+                .EmployerFirstApproveAndNotifyTrainingProvider();
         }
 
         [When(@"Receiver sends a cohort to the provider for review and approval")]
@@ -195,10 +193,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             _objectContext.UpdateOrganisationName(_receiver);
 
-            _employerStepsHelper.OpenRejectedCohort()
-                .SelectContinueToApproval()
-                .SubmitSendToTrainingProviderForReview()
-                .SendInstructionsToProviderForCohortToBeReviewed();
+            _employerStepsHelper.OpenRejectedCohort().EmployerSendsToTrainingProviderForReview();
         }
 
         [When(@"Receiver approves the cohort")]

@@ -15,7 +15,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         private readonly ScenarioContext _context;
         #endregion
 
-        private By ContinueButton => By.CssSelector("input.button");
+        private By ContinueButton => By.CssSelector("input.govuk-button, input.button");
 
         public EoiAboutYourAgreementPage(ScenarioContext context) : base(context)
         {

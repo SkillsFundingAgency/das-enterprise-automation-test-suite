@@ -1,7 +1,6 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
-using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
+using System.Collections.Generic;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
@@ -14,18 +13,22 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
 
         protected virtual By TotalApprentices => By.CssSelector("table tbody tr");
 
-        protected virtual By TotalCost => By.CssSelector(".dynamic-cost-display .bold-xlarge");
+        protected virtual By TotalCost => By.CssSelector(".dynamic-cost-display .bold-xlarge, .govuk-table__cell > strong");
 
 
         public ReviewYourCohort(ScenarioContext context) : base(context)
         {
             pageInteractionHelper = context.Get<PageInteractionHelper>();
-            VerifyPage();
+        }
+
+        protected List<IWebElement> TotalNoOfEditableApprentices()
+        {
+            return pageInteractionHelper.GetLinks("Edit");
         }
 
         public int TotalNoOfApprentices()
         {
-            return pageInteractionHelper.FindElements(TotalApprentices).Count;
+            return TotalNoOfEditableApprentices().Count;
         }
 
         public string ApprenticeTotalCost()
