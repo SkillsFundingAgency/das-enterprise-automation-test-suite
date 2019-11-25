@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.NonLevy
+namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.ManageFunding.NonLevyEmployer
 {
     using TechTalk.SpecFlow;
     
@@ -18,20 +18,20 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.NonLevy
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.0.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("AP_NL_E2E_03_NonLevyE2EJourneyOne")]
-    public partial class AP_NL_E2E_03_NonLevyE2EJourneyOneFeature
+    [NUnit.Framework.DescriptionAttribute("AP_MF_NLE_02_NonLevyEmployerDeletesAllUnusedFunding")]
+    public partial class AP_MF_NLE_02_NonLevyEmployerDeletesAllUnusedFundingFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "NonLevyE2EJourneyOne.feature"
+#line 1 "AP_MF_NLE_02_NonLevyEmployerDeletesAllUnusedFunding.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "AP_NL_E2E_03_NonLevyE2EJourneyOne", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "AP_MF_NLE_02_NonLevyEmployerDeletesAllUnusedFunding", "A Non Levy Employer deletes all unused funding for an apprenticeship course", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -70,26 +70,21 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.NonLevy
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("AP_NL_E2E_01 NE2E1 Non Levy Employer sends an approved cohort then provider appro" +
-            "ves the cohort")]
-        [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("non-levy")]
-        public virtual void AP_NL_E2E_01NE2E1NonLevyEmployerSendsAnApprovedCohortThenProviderApprovesTheCohort()
+        [NUnit.Framework.DescriptionAttribute("AP_MF_NLE_02 Non Levy Employer deletes all unused funding")]
+        [NUnit.Framework.CategoryAttribute("cleanup")]
+        public virtual void AP_MF_NLE_02NonLevyEmployerDeletesAllUnusedFunding()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_NL_E2E_01 NE2E1 Non Levy Employer sends an approved cohort then provider appro" +
-                    "ves the cohort", null, new string[] {
-                        "regression",
-                        "non-levy"});
-#line 5
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_MF_NLE_02 Non Levy Employer deletes all unused funding", null, new string[] {
+                        "cleanup"});
+#line 6
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 6
- testRunner.Given("the Employer login using existing eoi account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 7
- testRunner.When("the Employer uses the reservation to create and approve 2 cohort and sends to pro" +
-                    "vider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.Given("the Employer login using existing eoi account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 8
- testRunner.Then("the provider adds Ulns and approves the cohorts", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.When("the Employer deletes all unused funding for an apprenticeship course", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 9
+ testRunner.Then("all the unused funding are successfully deleted", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
