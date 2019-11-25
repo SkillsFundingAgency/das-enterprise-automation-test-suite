@@ -43,5 +43,10 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
             return new RAA_ApplicationPreviewPage(_context);
         }
 
+        public RAA_VacancyApplicationPage AnonymousView()
+        {
+            formCompletionHelper.ClickLinkByText("Anonymous view");
+            return new RAA_VacancyApplicationPage(_context);
+        }
     }
 }

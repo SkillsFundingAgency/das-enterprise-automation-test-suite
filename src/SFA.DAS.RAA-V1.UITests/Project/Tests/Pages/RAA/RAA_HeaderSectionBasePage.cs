@@ -12,6 +12,8 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
 
         private By Home => By.CssSelector("#applicationsLink");
 
+        private By Admin => By.CssSelector("#adminLink");
+
         #region Helpers and Context
         protected readonly FormCompletionHelper formCompletionHelper;
         protected readonly RAADataHelper dataHelper;
@@ -26,6 +28,8 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         }
 
         protected void NavigateToHome() => formCompletionHelper.Click(Home);
+
+        protected void NavigateToAdmin() => formCompletionHelper.Click(Admin);
 
 
         public void ExitFromWebsite()
