@@ -1,8 +1,8 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.RAA_V1.UITests.Project.Helpers;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using TechTalk.SpecFlow;
 
@@ -17,6 +17,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         private readonly RegexHelper _regexHelper;
         private readonly ObjectContext _objectContext;
         private readonly PageInteractionHelper _pageInteractionHelper;
+        private readonly RandomVacancyHelper _vacancyHelper;
         #endregion
 
         private By CreateANewVacancyButton => By.Id("new-vacancy-button");
@@ -86,7 +87,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
 
             return new RAA_EmployerInformationPage(_context);
         }
-        
+
         public RAA_EmployerSelectionPage CreateANewVacancy()
         {
             formCompletionHelper.Click(CreateANewVacancyButton);
@@ -189,52 +190,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
 
         private IWebElement RandomElementAt(Func<string, bool> func)
         {
-            IWebElement randomElement = null;
-
-            int randomNumber = 0;
-
-            int noOfPages = NoOfPages();
-
-            for (int i = 1; i < noOfPages; i++)
-            {
-                List<IWebElement> filteredRows = _pageInteractionHelper.FindElements(VacancyTables).ToList().Where(x => func(x.Text)).ToList();
-
-                if (filteredRows.Count == 0)
-                {
-                    if (_pageInteractionHelper.IsElementDisplayed(NextPage))
-                    {
-                        formCompletionHelper.ClickElement(() => _pageInteractionHelper.FindElement(NextPage));
-                        int currentPage = i + 1;
-                        if (currentPage < noOfPages)
-                        {
-                            _pageInteractionHelper.WaitForElementToChange(NextPage, AttributeHelper.InnerText, $"{currentPage + 1} of {noOfPages}");
-                        }
-                    }
-                    continue; 
-                }
-
-                randomNumber = new Random().Next(1, filteredRows.Count);
-                
-                randomElement = filteredRows[randomNumber - 1];
-
-                dataHelper.VacancyTitle = _pageInteractionHelper.GetText(randomElement.FindElement(VacancyTitle));
-
-                break;
-            }
-
-            return randomElement;
-        }
-
-        private int NoOfPages()
-        {
-            int noOfPages = 1;
-
-            if (_pageInteractionHelper.IsElementDisplayed(NoOfPagesCssSelector))
-            {
-                noOfPages = int.Parse(_pageInteractionHelper.GetText(NoOfPagesCssSelector).Split("of")[1].Trim());
-            }
-
-            return noOfPages;
+            return _vacancyHelper.RandomElementAt(func, VacancyTables, VacancyTitle, NextPage, NoOfPagesCssSelector);
         }
     }
 }

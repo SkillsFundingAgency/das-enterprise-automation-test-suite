@@ -6,6 +6,9 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.FAA
 {
+
+
+
     public class FAA_ApprenticeSearchPage : BasePage
     {
         protected override string PageTitle => "Find an apprenticeship";
@@ -21,6 +24,12 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.FAA
 
         private By KeyWord => By.Id("Keywords");
 
+        private By Location => By.Id("Location");
+
+        private By Distance => By.Id("loc-within");
+
+        private By ApprenticeshipLevel => By.Id("apprenticeship-level");
+
         private By Search => By.Id("search-button");
 
         private By NoSearchResults => By.Id("search-no-results-title");
@@ -32,6 +41,25 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.FAA
             _formCompletionHelper = context.Get<FormCompletionHelper>();
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             VerifyPage();
+        }
+
+        public FAA_SearchResultsPage SearchForAVacancy(string jobTitle, string location, string distance, string apprenticeshipLevel, string disabilityConfident)
+        {
+            _formCompletionHelper.SelectFromDropDownByValue(SearchField, "JobTitle");
+            _formCompletionHelper.EnterText(KeyWord, jobTitle);
+            _formCompletionHelper.EnterText(Location, location);
+            _formCompletionHelper.SelectFromDropDownByText(Distance, distance);
+            _formCompletionHelper.SelectFromDropDownByText(ApprenticeshipLevel, apprenticeshipLevel);
+            if (disabilityConfident == "Yes")
+            {
+                _formCompletionHelper.SelectCheckBoxByText("Disability Confident");
+            }
+
+            _formCompletionHelper.Click(Search);
+            
+            _pageInteractionHelper.WaitforURLToChange("SearchField=JobTitle");
+
+            return new FAA_SearchResultsPage(_context);
         }
 
         public FAA_ApprenticeSummaryPage SearchByReferenceNumber()
@@ -51,5 +79,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.FAA
 
             return new FAA_ApprenticeSummaryPage(_context);
         }
+
+
     }
 }

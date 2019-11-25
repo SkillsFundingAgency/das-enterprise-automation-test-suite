@@ -3,7 +3,6 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
 {
-
     [Binding]
     public class FAASteps
     {
