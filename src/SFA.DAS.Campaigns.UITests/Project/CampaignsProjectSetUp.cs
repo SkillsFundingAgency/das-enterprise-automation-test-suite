@@ -1,7 +1,4 @@
 ﻿using SFA.DAS.UI.Framework.TestSupport;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Campaigns.UITests.Project
@@ -22,7 +19,7 @@ namespace SFA.DAS.Campaigns.UITests.Project
         public void SetUpProjectSpecificConfiguration()
         {
             var config = _configSection.GetConfigSection<CampaignsConfig>();
-            _context.SetCampaingnsProjectConfig(config);
+            _context.SetCampaignsProjectConfig(config);
         }
 
         [BeforeScenario(Order = 22)]

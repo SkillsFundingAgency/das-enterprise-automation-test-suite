@@ -23,7 +23,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
         {
             _context = context;
             _webDriver = context.Get<IWebDriver>("webdriver");
-            _configuration = context.GetCampaingnsProjectConfig<CampaignsConfig>();
+            _configuration = context.GetCampaignsProjectConfig<CampaignsConfig>();
         }
         [Then(@"I Can Add Apprenticeships From Search Result by Clicking On the Title")]
         public void ThenICanAddApprenticeshipsFromSearchResultByClickingOnTheTitle()

@@ -25,7 +25,7 @@ namespace SFA.DAS.Campaigns.UITests
         {
             _context = context;
             _webDriver = context.Get<IWebDriver>("webdriver");
-            _configuration = context.GetCampaingnsProjectConfig<CampaignsConfig>();
+            _configuration = context.GetCampaignsProjectConfig<CampaignsConfig>();
         }
 
         [Then(@"I Can Save the Short list Favourite to my Gov>UK Account button")]

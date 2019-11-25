@@ -24,7 +24,7 @@ namespace SFA.DAS.Campaigns.UITests
         {
             _context = context;
             _webDriver = context.Get<IWebDriver>("webdriver");
-            _configuration = context.GetCampaingnsProjectConfig<CampaignsConfig>();
+            _configuration = context.GetCampaignsProjectConfig<CampaignsConfig>();
         }
         [Then(@"I Can Add Apprenticeships From Search Result  List to Favourite Short List")]
         public void ThenICanAddApprenticeshipFromSearchResultListToFavouriteShortList()

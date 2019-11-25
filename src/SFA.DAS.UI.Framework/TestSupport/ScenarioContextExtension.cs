@@ -17,6 +17,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
         private const string FATProjectConfigKey = "fatprojectconfigkey";
         private const string MongoDbConfigKey = "mongodbconfig";
         private const string WebDriverKey = "webdriver";
+        private const string CampaignsConfigKey = "Campaignsprojectconfigkey";
         #endregion
 
         public static void SetTestProjectConfig<T>(this ScenarioContext context, T value)
@@ -132,6 +133,16 @@ namespace SFA.DAS.UI.Framework.TestSupport
         public static T Get<T>(ScenarioContext context, string key)
         {
             return context.Get<T>(key);
+        }
+
+        public static T GetCampaignsProjectConfig<T>(this ScenarioContext context)
+        {
+            return Get<T>(context, CampaignsConfigKey);
+        }
+
+        public static void SetCampaignsProjectConfig<T>(this ScenarioContext context, T value)
+        {
+            Set(context, value, CampaignsConfigKey);
         }
     }
 }

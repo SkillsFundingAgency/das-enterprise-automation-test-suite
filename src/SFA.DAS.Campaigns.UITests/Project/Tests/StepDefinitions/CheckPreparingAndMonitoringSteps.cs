@@ -23,7 +23,7 @@ namespace SFA.DAS.Campaigns.UITests
         {
             _context = context;
             _webDriver = context.Get<IWebDriver>("webdriver");
-            _configuration = context.GetCampaingnsProjectConfig<CampaignsConfig>();
+            _configuration = context.GetCampaignsProjectConfig<CampaignsConfig>();
         }
 
         [Given(@"I launch Preparing And Monitoring page")]

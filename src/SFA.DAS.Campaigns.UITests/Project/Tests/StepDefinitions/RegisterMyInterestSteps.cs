@@ -24,7 +24,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
         {
             _context = context;
             _webDriver = context.Get<IWebDriver>("webdriver");
-            _configuration = context.GetCampaingnsProjectConfig<CampaignsConfig>();
+            _configuration = context.GetCampaignsProjectConfig<CampaignsConfig>();
         }
         [Given(@"I Click On The Register My Interest Button")]
         public void GivenIClickOnTheRegisterMyInterestButton()
