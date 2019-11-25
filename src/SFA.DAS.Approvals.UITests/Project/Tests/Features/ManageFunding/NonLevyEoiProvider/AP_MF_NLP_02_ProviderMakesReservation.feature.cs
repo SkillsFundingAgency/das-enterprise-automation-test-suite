@@ -96,8 +96,6 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("Provider can edit an apprentice", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 14
  testRunner.And("Provider can delete an apprentice", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 15
- testRunner.And("Provider can delete the funding", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }

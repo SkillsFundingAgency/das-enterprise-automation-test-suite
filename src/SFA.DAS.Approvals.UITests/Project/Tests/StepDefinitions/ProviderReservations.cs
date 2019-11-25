@@ -21,7 +21,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         private readonly ApprovalsConfig _config;
         private readonly ProviderLogin _login;
         private ProviderHomePage _providerHomePage;
-        private ProviderReviewYourCohortPage _providerReviewYourCohortPage;
+		private ProviderAddApprenticeDetailsPage _providerAddApprenticeDetailsPage;
+		private ProviderReviewYourCohortPage _providerReviewYourCohortPage;
 
         public ProviderReservations(ScenarioContext context)
         {
@@ -46,9 +47,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [When(@"Provider creates a reservation and adds (.*) apprentices and approves the cohort and sends to Employer to approve")]
         public void WhenProviderCreatesAReservationAndAddsApprenticeSAndApprovesTheCohortAndSendsToEmployerToApprove(int numberOfApprentices)
         {
-            _providerHomePage = _providerStepsHelper.ProviderMakeReservation(_login);
+			_providerAddApprenticeDetailsPage = _providerStepsHelper.ProviderMakeReservation(_login);
 
-            _providerReviewYourCohortPage = _providerStepsHelper.AddApprentice(_providerHomePage, numberOfApprentices);
+			_providerReviewYourCohortPage = _providerStepsHelper.AddApprentice(_providerAddApprenticeDetailsPage, numberOfApprentices);
 
             _providerReviewYourCohortPage.SelectSaveAndContinue()
                 .SubmitApproveAndSendToEmployerForApproval()
@@ -58,13 +59,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Then(@"Provider can make a reservation")]
         public void ThenProviderCanMakeAReservation()
         {
-            _providerHomePage = _providerStepsHelper.ProviderMakeReservation(_login);
+			_providerAddApprenticeDetailsPage = _providerStepsHelper.ProviderMakeReservation(_login);
         }
 
         [Then(@"Provider can add an apprentice")]
         public void ThenProviderCanAddAnApprentice()
         {
-            _providerReviewYourCohortPage = _providerStepsHelper.AddApprentice(_providerHomePage, 1);
+            _providerReviewYourCohortPage = _providerStepsHelper.AddApprentice(_providerAddApprenticeDetailsPage, 1);
         }
 
         [Then(@"Provider can edit an apprentice")]

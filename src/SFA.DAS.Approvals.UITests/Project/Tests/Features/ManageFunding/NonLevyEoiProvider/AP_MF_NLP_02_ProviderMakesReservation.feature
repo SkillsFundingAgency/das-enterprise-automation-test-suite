@@ -12,4 +12,3 @@ Scenario: AP_MF_NLP_02 Provider makes reservation adds and deletes apprentice fo
 	And Provider can add an apprentice
 	And Provider can edit an apprentice
 	And Provider can delete an apprentice
-	And Provider can delete the funding
