@@ -119,7 +119,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             _reviewYourCohortPage = _employerStepsHelper.EmployerReviewCohort();
 
-            employerReviewYourCohortPage.EmployerFirstApproveAndNotifyTrainingProvider();
+			_reviewYourCohortPage.EmployerFirstApproveAndNotifyTrainingProvider();
         }
 
 
@@ -134,7 +134,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             _reviewYourCohortPage = _employerStepsHelper.EmployerAddApprentice(numberOfApprentices, false);
 
-            var cohortReference = employerReviewYourCohortPage.EmployerSendsToTrainingProviderForReview().CohortReference();
+            var cohortReference = _reviewYourCohortPage.EmployerSendsToTrainingProviderForReview().CohortReference();
 
             _employerStepsHelper.SetCohortReference(cohortReference);
         }
@@ -158,9 +158,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             _reviewYourCohortPage = _employerStepsHelper.NonLevyEmployerAddsApprenticesUsingReservations(numberOfApprentices, false);
 
-            var cohortReference = _reviewYourCohortPage.SaveAndContinue()
-                .SubmitSendToTrainingProviderForReview()
-                .SendInstructionsToProviderForCohortToBeReviewed()
+            var cohortReference = _reviewYourCohortPage.EmployerSendsToTrainingProviderForReview()
                 .CohortReference();
 
             _employerStepsHelper.SetCohortReference(cohortReference);
