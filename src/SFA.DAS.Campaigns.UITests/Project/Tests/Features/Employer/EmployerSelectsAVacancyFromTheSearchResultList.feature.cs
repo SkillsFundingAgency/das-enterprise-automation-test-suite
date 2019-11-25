@@ -83,7 +83,7 @@ this.ScenarioInitialize(scenarioInfo);
 #line 8
  testRunner.And("I Launch Find The Right Apprenticeship page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 9
- testRunner.Then("I verify the title for Find The Right Apprenticeship  page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("I Verify the title for Find The Right Apprenticeship  page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 10
  testRunner.And("I Can Perform The Search on the Empty Field", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 11

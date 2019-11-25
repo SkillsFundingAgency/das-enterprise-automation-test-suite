@@ -18,20 +18,20 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Features.Employer
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.0.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("CheckThatFindTheRightApprenticeshipSearchWorks")]
-    public partial class CheckThatFindTheRightApprenticeshipSearchWorksFeature
+    [NUnit.Framework.DescriptionAttribute("EmployerAddsApprenticeshiptoFavourite")]
+    public partial class EmployerAddsApprenticeshiptoFavouriteFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "CheckThatFindTheRightApprenticeshipSearchWorks.feature"
+#line 1 "EmployerAddsApprenticeshiptoFavourite.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "CheckThatFindTheRightApprenticeshipSearchWorks", "\tAs an Employer\r\n\tI want to be able to navigate to Fire It Up home page\r\n\tSo that" +
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "EmployerAddsApprenticeshiptoFavourite", "\tAs an Employer\r\n\tI want to be able to navigate to Fire It Up home page\r\n\tSo that" +
                     " I can use the benefits of Employer services and information ", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
@@ -71,10 +71,10 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Features.Employer
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Check That Find The Right Apprenticeship Search Works")]
-        public virtual void CheckThatFindTheRightApprenticeshipSearchWorks()
+        [NUnit.Framework.DescriptionAttribute("I want to be able Save an Apprenticeship")]
+        public virtual void IWantToBeAbleSaveAnApprenticeship()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Check That Find The Right Apprenticeship Search Works", null, ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("I want to be able Save an Apprenticeship", null, ((string[])(null)));
 #line 6
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
@@ -88,6 +88,8 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("I Can Perform The Search on the Empty Field", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 11
  testRunner.And("I Can Verify The Result Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 12
+ testRunner.And("I Can Add Apprenticeships From Search Result by Clicking On the Title", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }

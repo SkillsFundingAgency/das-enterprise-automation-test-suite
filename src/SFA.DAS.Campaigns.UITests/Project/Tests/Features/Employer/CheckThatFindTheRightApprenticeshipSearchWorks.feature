@@ -6,6 +6,6 @@
 Scenario: Check That Find The Right Apprenticeship Search Works
 	Given I navigate to Fire It Up home page
 	And I Launch Find The Right Apprenticeship page
-	Then I verify the title for Find The Right Apprenticeship  page
+	Then I Verify the title for Find The Right Apprenticeship  page
 	And I Can Perform The Search on the Empty Field
 	And I Can Verify The Result Page

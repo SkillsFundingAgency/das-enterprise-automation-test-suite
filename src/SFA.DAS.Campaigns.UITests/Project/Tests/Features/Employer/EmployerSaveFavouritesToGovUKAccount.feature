@@ -1,9 +1,9 @@
-﻿Feature: EmployerAddsApprenticeshipToFavouriteShortList
+﻿Feature: EmployerSaveFavouritesToGovUKAccount
 	As an Employer
 	I want to be able to navigate to Fire It Up home page
 	So that I can use the benefits of Employer services and information 
 
-Scenario: I want to be able to Add Apprenticeships to the Favourite Short List
+Scenario: I want to be able Save my Favourite Short List to the GovUK Account
 	Given I navigate to Fire It Up home page
 	And I Launch Find The Right Apprenticeship page
 	Then I Verify the title for Find The Right Apprenticeship  page
@@ -11,4 +11,8 @@ Scenario: I want to be able to Add Apprenticeships to the Favourite Short List
 	And I Can Verify The Result Page
 	And I Can Add Apprenticeships From Search Result  List to Favourite Short List
 	And I Can Click on the Favourite Icon with Apprenticeship
-	Then I Can Verify the Favourite Count
+	Then I Can Add a Provider to an Apprenticeship in the Shortlist Favourite
+	And I Can Click on the Favourite Icon with Apprenticeship
+	Then I Can Verify the Favourite Count for Provider
+	And I Can Save the Short list Favourite to my Gov>UK Account button
+

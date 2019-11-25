@@ -83,7 +83,7 @@ this.ScenarioInitialize(scenarioInfo);
 #line 8
  testRunner.And("I Click on the Favourite Icon", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 9
- testRunner.Then("I Can Verify the Header for The Favourite Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("I Can Verify the Favourite Header", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

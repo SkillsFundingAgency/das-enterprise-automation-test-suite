@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using System;
@@ -9,6 +10,7 @@ namespace SFA.DAS.Campaigns.UITests
 {
     public class TrainingProviderResulPage :BasePage
     {
+        
        protected override string PageTitle => "";
         #region Helpers and Context
         private readonly PageInteractionHelper _pageInteractionHelper;
@@ -20,13 +22,21 @@ namespace SFA.DAS.Campaigns.UITests
         #region Constant
         private const string ExpectedProviderText = "There are";
         private const string ProviderPostCode = "CV1 4HS";
+        
         #endregion
 
         #region Page Objects Elements
         // Hd to use xpath because duplicate id were present on page
+        private readonly By _actaulProviderName=By.XPath("//h1[@class='heading-xl hero-heading__heading']");
         private readonly By _actualProviderText = By.XPath("//div[@class='page']/p[1]");
         private readonly By _firstApprenticeship = By.XPath("//button[@class='das-search-result__favourite-button--unchecked']");
         private readonly By _secondApprenticeship = By.XPath("//button[@class='das-search-result__favourite-button--unchecked']");
+        private readonly By _firstProvider = By.XPath("//button[@class='das-search-result__favourite-button--unchecked']");
+        private readonly By _secondProvider = By.XPath("//button[@class='das-search-result__favourite-button--unchecked']");
+        private readonly By _thirddProvider = By.XPath("//button[@class='das-search-result__favourite-button--unchecked']");
+        private readonly By _saveApprenticeshipButton=By.XPath("//a[@class='button button--sparks button-employer']");
+        private readonly By _providerTitleLink=By.XPath("//a[@class='link']");
+        private readonly By _actualProviderTitle=By.XPath("//a[@class='link']");
         #endregion
         public TrainingProviderResulPage(ScenarioContext context): base(context)
         {
@@ -74,11 +84,38 @@ namespace SFA.DAS.Campaigns.UITests
             }
                 
         }
-        public TrainingProviderResulPage AddApprenticeshiptoFavouriteShortList()
+        public TrainingProviderResulPage AddFavouriteShortList()
         {
 
             _formCompletionHelper.ClickElement(_firstApprenticeship);
             _formCompletionHelper.ClickElement(_secondApprenticeship);
+            return new TrainingProviderResulPage(_context);
+        }
+
+        public TrainingProviderResulPage ClickOnSaveApprenticeshipButton()
+        {
+            _formCompletionHelper.ClickElement(_saveApprenticeshipButton);
+            return new TrainingProviderResulPage(_context);
+        }
+
+        public TrainingProviderResulPage ClickOnProviderTitleLink()
+        {
+             
+            RunTimeVariable._providerTitleStored = _pageInteractionHelper.GetText(_providerTitleLink);
+            _formCompletionHelper.ClickElement(_providerTitleLink);
+            return new TrainingProviderResulPage(_context);
+        }
+        public TrainingProviderResulPage AddProviderToFavouriteShortList()
+        {
+
+            _formCompletionHelper.ClickElement(_firstProvider);
+            _formCompletionHelper.ClickElement(_secondProvider);
+            _formCompletionHelper.ClickElement(_thirddProvider);
+            return new TrainingProviderResulPage(_context);
+        }
+        public TrainingProviderResulPage VerifyTrainingProviderNameFromTitle()
+        {
+            _pageInteractionHelper.VerifyText(_actaulProviderName,RunTimeVariable._providerTitleStored);
             return new TrainingProviderResulPage(_context);
         }
     }

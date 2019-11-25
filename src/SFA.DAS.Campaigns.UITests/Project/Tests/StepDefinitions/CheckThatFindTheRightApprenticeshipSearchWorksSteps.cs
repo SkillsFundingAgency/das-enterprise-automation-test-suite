@@ -36,7 +36,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
             fireItUpHomePage.ClickFindTheRightApprenticeshipPage();
         }
         
-        [Then(@"I verify the title for Find The Right Apprenticeship  page")]
+        [Then(@"I Verify the title for Find The Right Apprenticeship  page")]
         public void ThenIVerifyTheTitleForFindTheRightApprenticeshipPage()
         {
             findTheRightApprenticeshipPage = new FindTheRightApprenticeshipPage(_context);

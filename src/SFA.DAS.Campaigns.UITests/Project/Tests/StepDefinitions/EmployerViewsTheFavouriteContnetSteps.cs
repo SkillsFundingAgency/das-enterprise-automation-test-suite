@@ -24,7 +24,6 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
             _configuration = context.GetCampaingnsProjectConfig<CampaignsConfig>();
         }
 
-
         [Given(@"I Click on the Favourite Icon")]
         public void GivenIClickOnTheFavouriteIcon()
         {
@@ -32,11 +31,24 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
             employerFavouritePage.ClickOnClickingOnTheFavouriteIcon();
         }
         
-        [Then(@"I Can Verify the Header for The Favourite Page")]
+        [Then(@"I Can Verify the Favourite Header")]
         public void ThenICanVerifyTheHeaderForTheFavouritePage()
         {
             employerFavouritePage= new EmployerFavouritePage(_context);
-            employerFavouritePage.ClickOnClickingOnTheFavouriteIcon();
+            employerFavouritePage.VerifyFavouritePageHeader();
         }
+        [Then(@"I Can Verify the Favourite Count")]
+        public void ThenICanVerifyTheFavouriteCount()
+        {
+           employerFavouritePage= new EmployerFavouritePage(_context);
+           employerFavouritePage.VerifyApprenticeshipFavouriteCount();
+        }
+        [Then(@"I Can Verify the Favourite Count for Provider")]
+        public void ThenICanVerifyTheFavouriteCountForProvider()
+        {
+            employerFavouritePage= new EmployerFavouritePage(_context);
+            employerFavouritePage.VerifyProviderFavouriteCount();
+        }
+
     }
 }

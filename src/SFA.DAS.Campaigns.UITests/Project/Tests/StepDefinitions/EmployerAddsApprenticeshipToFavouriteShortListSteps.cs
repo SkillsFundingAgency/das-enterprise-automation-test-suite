@@ -30,16 +30,15 @@ namespace SFA.DAS.Campaigns.UITests
         public void ThenICanAddApprenticeshipFromSearchResultListToFavouriteShortList()
         {
             trainingProviderResulPage = new TrainingProviderResulPage(_context);
-            trainingProviderResulPage.AddApprenticeshiptoFavouriteShortList();
+            trainingProviderResulPage.AddFavouriteShortList();
         }
-        [Then(@"I can Click on the Favourite Icon with Apprenticeship")]
+        [Then(@"I Can Click on the Favourite Icon with Apprenticeship")]
         public void ThenICanClickOnTheFavouriteIconWithApprenticeship()
         {
            apprenticeshipSearchResultPage = new ApprenticeshipSearchResultPage(_context);
             apprenticeshipSearchResultPage.ClickOnTheFavouriteIconWithApprenticeship();
 
         }
-
 
     }
 }
