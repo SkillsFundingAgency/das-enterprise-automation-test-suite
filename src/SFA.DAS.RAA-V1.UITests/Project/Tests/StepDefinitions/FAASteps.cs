@@ -1,4 +1,5 @@
 ﻿using SFA.DAS.RAA_V1.UITests.Project.Helpers;
+using SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.FAA;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
@@ -8,6 +9,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
     public class FAASteps
     {
         private readonly FAAStepsHelper _faaStepsHelper;
+        private FAA_CreateAnAccountPage accountCreationPage;
 
         public FAASteps(ScenarioContext context)
         {
@@ -21,9 +23,9 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
 
             var applicationFormPage = _faaStepsHelper.ApplyForVacancy(homePage);
 
-             _faaStepsHelper.ConfirmApplicationSubmission(applicationFormPage, qualificationdetails, workExperience, trainingCourse);
+            _faaStepsHelper.ConfirmApplicationSubmission(applicationFormPage, qualificationdetails, workExperience, trainingCourse);
         }
-        
+
         [When(@"the Applicant withdraw the application")]
         public void WhenTheApplicantWithdrawTheApplication()
         {
@@ -32,6 +34,16 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
             _faaStepsHelper.WithdrawVacancy(homePage);
         }
 
+        [When(@"an Applicant initiates Account creation journey")]
+        public void WhenAnApplicantInitiatesAccountCreationJourney()
+        {
+           accountCreationPage = _faaStepsHelper.StartFAAAccountCreation();
+        }
+
+        [Then(@"the Applicant is able to create a FAA Account")]
+        public void ThenTheApplicantIsAbleToCreateAFAAAccount()
+        {
+            _faaStepsHelper.CreateFAAAccount(accountCreationPage);
+        }
     }
 }
-

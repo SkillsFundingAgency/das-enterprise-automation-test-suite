@@ -6,6 +6,8 @@ namespace SFA.DAS.UI.FrameworkHelpers
     public class RandomDataGenerator
     {
         private const string Alphabets = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        private const string LowerCaseAlphabets = "abcdefghijklmnopqrstuvwxyz";
+        private const string UpperCaseAlphabets = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         private const string Numbers = "0123456789";
         private const string SpecialChars = "!@£$%^&*()_+{}:<>?-=[];',./";
 
@@ -27,6 +29,15 @@ namespace SFA.DAS.UI.FrameworkHelpers
         public string GenerateRandomAlphanumericStringWithSpecialCharacters(int length)
         {
             return GenerateRandomString(Alphabets + Numbers + SpecialChars, length);
+        }
+
+        public string GenerateRandomAlphanumericStringForPassword()
+        {
+            var randomString = GenerateRandomString(LowerCaseAlphabets, 4);
+            randomString += GenerateRandomString(UpperCaseAlphabets, 4);
+            randomString += GenerateRandomString(Numbers, 1);
+            randomString += GenerateRandomString(SpecialChars, 1);
+            return randomString;
         }
 
         public string GenerateRandomEmail()
