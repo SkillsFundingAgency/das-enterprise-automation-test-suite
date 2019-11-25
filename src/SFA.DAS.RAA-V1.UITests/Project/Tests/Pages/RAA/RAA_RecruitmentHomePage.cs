@@ -42,6 +42,12 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
             _regexHelper = context.Get<RegexHelper>();
         }
 
+        public RAA_SearchCandidatesPage SearchCandidates()
+        {
+            formCompletionHelper.ClickLinkByText("Search candidates");
+            return new RAA_SearchCandidatesPage(_context);
+        }
+
         public RAA_AdministratorFunctionsPage AdministratorFunctions()
         {
             NavigateToAdmin();
