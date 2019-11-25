@@ -18,8 +18,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.NonLevy
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.0.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("NonLevyE2EJourneyTwo")]
-    public partial class NonLevyE2EJourneyTwoFeature
+    [NUnit.Framework.DescriptionAttribute("AP_NL_E2E_03_NonLevyE2EJourneyTwo")]
+    public partial class AP_NL_E2E_03_NonLevyE2EJourneyTwoFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
@@ -31,7 +31,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.NonLevy
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "NonLevyE2EJourneyTwo", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "AP_NL_E2E_03_NonLevyE2EJourneyTwo", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -70,14 +70,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.NonLevy
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("NE2E2 Non Levy Employer sends cohort to provider for review then provider approve" +
-            "s then employer approves")]
+        [NUnit.Framework.DescriptionAttribute("AP_NL_E2E_02 NE2E2 Non Levy Employer sends cohort to provider for review then pro" +
+            "vider approves then employer approves")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("non-levy")]
-        public virtual void NE2E2NonLevyEmployerSendsCohortToProviderForReviewThenProviderApprovesThenEmployerApproves()
+        public virtual void AP_NL_E2E_02NE2E2NonLevyEmployerSendsCohortToProviderForReviewThenProviderApprovesThenEmployerApproves()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("NE2E2 Non Levy Employer sends cohort to provider for review then provider approve" +
-                    "s then employer approves", null, new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_NL_E2E_02 NE2E2 Non Levy Employer sends cohort to provider for review then pro" +
+                    "vider approves then employer approves", null, new string[] {
                         "regression",
                         "non-levy"});
 #line 5

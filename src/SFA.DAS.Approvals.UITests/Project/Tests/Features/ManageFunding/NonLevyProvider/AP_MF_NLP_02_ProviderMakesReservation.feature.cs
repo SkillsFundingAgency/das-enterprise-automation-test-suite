@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.ManageFunding.Non_Levy.Employer
+namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.ManageFunding.NonLevyProvider
 {
     using TechTalk.SpecFlow;
     
@@ -18,21 +18,22 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.ManageFunding.Non_Lev
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.0.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("NonLevyEmployerReservesFunding")]
+    [NUnit.Framework.DescriptionAttribute("AP_MF_NLP_01_ProviderMakesReservation")]
     [NUnit.Framework.CategoryAttribute("approvals")]
-    public partial class NonLevyEmployerReservesFundingFeature
+    public partial class AP_MF_NLP_01_ProviderMakesReservationFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "NonLevyEmployerReservesFunding.feature"
+#line 1 "AP_MF_NLP_02_ProviderMakesReservation.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "NonLevyEmployerReservesFunding", "A Non Levy Employer reserves funding for an apprenticeship course", ProgrammingLanguage.CSharp, new string[] {
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "AP_MF_NLP_01_ProviderMakesReservation", "\tAs a valid provider user \r\n\tI want to be able to get funding for a non-levy EOI " +
+                    "employer\r\n\tSo that provider can book courses for a certain training period", ProgrammingLanguage.CSharp, new string[] {
                         "approvals"});
             testRunner.OnFeatureStart(featureInfo);
         }
@@ -72,23 +73,23 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.ManageFunding.Non_Lev
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Non Levy Employer reserves funding")]
+        [NUnit.Framework.DescriptionAttribute("AP_MF_NLP_01 Provider makes reservation adds and deletes apprentice for non-levy " +
+            "EOI employers")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("reservefunds")]
-        public virtual void NonLevyEmployerReservesFunding()
+        [NUnit.Framework.CategoryAttribute("nonlevyeoiproviderscenarios")]
+        public virtual void AP_MF_NLP_01ProviderMakesReservationAddsAndDeletesApprenticeForNon_LevyEOIEmployers()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Non Levy Employer reserves funding", null, new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_MF_NLP_01 Provider makes reservation adds and deletes apprentice for non-levy " +
+                    "EOI employers", null, new string[] {
                         "regression",
-                        "reservefunds"});
-#line 8
+                        "nonlevyeoiproviderscenarios"});
+#line 9
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 9
- testRunner.Given("the Employer login using existing eoi account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 10
- testRunner.When("the Employer reserves funding for an apprenticeship course", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.Given("An Employer has given create reservation permission to a provider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 11
- testRunner.Then("the funding is successfully reserved", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("Provider can make a reservation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
