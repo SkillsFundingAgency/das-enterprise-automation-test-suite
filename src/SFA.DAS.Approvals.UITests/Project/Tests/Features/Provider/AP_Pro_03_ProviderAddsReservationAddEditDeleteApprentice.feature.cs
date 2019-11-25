@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.NonLevy
+namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.Provider
 {
     using TechTalk.SpecFlow;
     
@@ -18,21 +18,21 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.NonLevy
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.0.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("AP_NL_E2E_04_NonLevyE2EJourneyFour")]
+    [NUnit.Framework.DescriptionAttribute("AP_Pro_03_ProviderAddsReservationAddEditDeleteApprentice")]
     [NUnit.Framework.CategoryAttribute("approvals")]
-    public partial class AP_NL_E2E_04_NonLevyE2EJourneyFourFeature
+    public partial class AP_Pro_03_ProviderAddsReservationAddEditDeleteApprenticeFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "AP_NL_E2E_04_NonLevyE2EJourneyFour.feature"
+#line 1 "AP_Pro_03_ProviderAddsReservationAddEditDeleteApprentice.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "AP_NL_E2E_04_NonLevyE2EJourneyFour", "\tAs a valid provider user \r\n\tI want to be able to get funding for a non-levy EOI " +
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "AP_Pro_03_ProviderAddsReservationAddEditDeleteApprentice", "\tAs a valid provider user \r\n\tI want to be able to get funding for a non-levy EOI " +
                     "employer\r\n\tSo that provider can book courses for a certain training period", ProgrammingLanguage.CSharp, new string[] {
                         "approvals"});
             testRunner.OnFeatureStart(featureInfo);
@@ -73,14 +73,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.NonLevy
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("AP_NL_E2E_04 Provider makes reservation adds edits and deletes apprentice for non" +
-            "-levy EOI employers")]
+        [NUnit.Framework.DescriptionAttribute("AP_Pro_03 Provider makes reservation adds edits and deletes apprentice for non-le" +
+            "vy EOI employers")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("nonlevyeoiproviderscenarios")]
-        public virtual void AP_NL_E2E_04ProviderMakesReservationAddsEditsAndDeletesApprenticeForNon_LevyEOIEmployers()
+        public virtual void AP_Pro_03ProviderMakesReservationAddsEditsAndDeletesApprenticeForNon_LevyEOIEmployers()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_NL_E2E_04 Provider makes reservation adds edits and deletes apprentice for non" +
-                    "-levy EOI employers", null, new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_Pro_03 Provider makes reservation adds edits and deletes apprentice for non-le" +
+                    "vy EOI employers", null, new string[] {
                         "regression",
                         "nonlevyeoiproviderscenarios"});
 #line 9
