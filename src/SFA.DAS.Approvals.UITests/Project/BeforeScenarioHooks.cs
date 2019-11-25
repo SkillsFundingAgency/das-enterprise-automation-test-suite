@@ -61,8 +61,6 @@ namespace SFA.DAS.Approvals.UITests.Project
 
             _context.Set(new EditedApprenticeCourseDataHelper(randomCoursehelper, apprenticeCourseDataHelper));
 
-            _context.Set(new TabHelper(_context.GetWebDriver()));
-
             _context.Set(new DlockDataHelper(_approvalsConfig, new FileHelper(), _datahelper, apprenticeCourseDataHelper, _sqlDatabaseConnectionHelper));
         }
     }

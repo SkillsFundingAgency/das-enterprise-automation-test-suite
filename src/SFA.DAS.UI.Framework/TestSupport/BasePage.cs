@@ -31,19 +31,29 @@ namespace SFA.DAS.UI.Framework.TestSupport
             _browser = objectContext.GetBrowser();
         }
 
+        protected bool VerifyPage(By locator)
+        {
+            return VerifyPage(() => _pageInteractionHelper.VerifyPage(locator));
+        }
+
         protected bool VerifyPage()
+        {
+            return VerifyPage(PageHeader, PageTitle);
+        }
+
+        protected bool VerifyPage(By locator, string text)
+        {
+            return VerifyPage(() => _pageInteractionHelper.VerifyPage(locator, text));
+        }
+
+        private bool VerifyPage(Func<bool> func)
         {
             if (_frameworkConfig.TakeEveryPageScreenShot && !_browser.IsCloudExecution())
             {
                 ScreenshotHelper.TakeScreenShot(_webDriver, _directory, _screenShotTitleGenerator.GetNextCount());
             }
 
-            return _pageInteractionHelper.VerifyPage(PageHeader, PageTitle);
-        }
-
-        protected bool VerifyPage(Action beforeAction)
-        {
-            return _pageInteractionHelper.VerifyPage(PageHeader, PageTitle, beforeAction);
+            return func.Invoke();
         }
     }
 }

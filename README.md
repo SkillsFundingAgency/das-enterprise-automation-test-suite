@@ -1,6 +1,6 @@
-![Build Status](https://sfa-gov-uk.visualstudio.com/_apis/public/build/definitions/c39e0c0b-7aff-4606-b160-3566f3bbce23/715/badge)
+[![Build Status](https://dev.azure.com/sfa-gov-uk/Digital%20Apprenticeship%20Service/_apis/build/status/das-enterprise-automation-test-suite?branchName=master)](https://dev.azure.com/sfa-gov-uk/Digital%20Apprenticeship%20Service/_build/latest?definitionId=1678&branchName=master)
 
-# DFE-STANDARDISED-TEST-AUTOMATION-FRAMEWORK
+# DAS-ENTERPRISE-AUTOMATION-TEST-SUITE
 
 This is a SpecFlow-Selenium functional testing framework created using Selenium WebDriver with NUnit and C# in SpecFlow BDD methodology and Page Object Pattern.
 
@@ -14,14 +14,14 @@ All other dependencies (ex: Selenium, drivers etc) are packaged within the solut
 Note: This framework is built with all standard libraries and ready to write new tests, an example test is also provided for reference. However solution, project & namespace must be renamed before writing tests.
 
 ## How to use User secrets
-1. Navigate to "%APPDATA%/Microsoft" Create Directory "UserSecrets" if you dont find it.
+1. Navigate to "%APPDATA%/Microsoft" Create Directory "UserSecrets" if you don't find it.
 2. Create a folder under "%APPDATA%/Microsoft/UserSecrets" folder in the format <ProjectName>_<EnvironmentName>_Secrets. You can get project name and environment name from appsettings.Environment.json project specific file
 3. Create a file "secrets.json" and replace only those values you want to keep it as secrets (copy the structure from appsettings.Project.json file)
 
 ## Automated SpecFlow Tests:
 Acceptance Tests must be written in Feature files (Project/Tests/Features/) using standard Gherkin language using Given, When, Then format with an associated step definition for each test step. Test steps in the scenarios explains the business conditions/behaviour and the associated step definition defines how the individual scenario steps should be automated.
 
-A tag must be provided (ex: @Regression, @Smoke) for each test scenario which groups the tests, this provides the option to select which group of tests to execute.
+A tag must be provided (ex: @Regression, @Smoke) for each test scenario which groups the tests, this provides the option to select which group of tests to execute.  @Regression and @<projectname> tags are manadatory.
 
 ## Running Tests:
 Once the solution is imported and built, open Test Explorer window (Test->Windows->Test Explorer) which shows all the tests generated from the feature files using the scenario titles. From Test Explorer, we can choose to run
@@ -30,20 +30,20 @@ Once the solution is imported and built, open Test Explorer window (Test->Window
 3. Select a particular scenario to Run/Debug
 
 ## To Execute tests in Local :
-1. To execute tests in your local, change the Browser value to "local" (will execute in chrome) or "chrome" or "googlechrome",  "firefox" or "mozillafirefox", "ie" or "internetexplorer".
+1. To execute tests in your local, change the Browser value to "local" (will execute in chrome) or "chrome" or "googlechrome",  "firefox" or "mozillafirefox", "ie" or "internetexplorer" in ``secrets.json`` your project specific secret file (you can add the node if node does not exists).
 2. To execute tests through Zap Proxy, change the Browser value to "zapProxyChrome"
 ```json
-{
-  "Browser": "chrome"
-}
+"TestExecutionConfig": {
+    "Browser": "chrome"
+  }
 ```
 
 ## To Execute tests in Browserstack / Cloud :
-To execute tests in BrowserStack, change the Browser value to "browserstack" or "cloud" in ``appsettings.Project.json`` your project specific appsettings file (you can add the node if node does not exists)
+To execute tests in BrowserStack, change the Browser value to "browserstack" or "cloud" in ``secrets.json`` your project specific secret file (you can add the node if node does not exists)
 ```json
-{
-  "Browser": "browserstack"
-}
+"TestExecutionConfig": {
+    "Browser": "cloud"
+  }
 ```
 
 ## Running Tests from Command Prompt:
@@ -54,7 +54,6 @@ c:\> dotnet test C:\SFA\DFE-Standardised-Test-Automation-Framework\src\ESFA.UI.S
 c:\> dotnet vstest C:\SFA\DFE-Standardised-Test-Automation-Framework\src\SFA.DAS.PocProject.UITests\SFA.DAS.PocProject.UITests.dll /TestCaseFilter:"TestCategory=regression|FullyQualifiedName=Namespace.ClassName.MethodName"
 ```
 
-
 ## Framework:
 
 ### Supported Browsers: The framework can currently work on the following browsers
@@ -63,7 +62,7 @@ c:\> dotnet vstest C:\SFA\DFE-Standardised-Test-Automation-Framework\src\SFA.DAS
 3. Internet Explorer - use "ie" or "internetexplorer" as values for the Browser in appsettings
 3. Chrome Headless - use "headlessbrowser" or "headless" as values for the Browser in appsettings
 
-Note: Tests can be executed on different browsers using BrowserStack. Tests can also be run in headless mode using the Chrome headless browser.
+Note: Tests can be executed on different browsers versions using BrowserStack.
 
 ### Standards/Rules:
 1. The framework is designed using Page Object Model
@@ -77,8 +76,8 @@ Note: Tests can be executed on different browsers using BrowserStack. Tests can 
 
 ### Helpers: The framework has the following helper classes to assist the testing (Project/Framework/Helpers/)
 1. FormCompletionHelper - Which helps most of the user actions on a page
-2. PageInteraction - Helps verifying data and elements on the page
-3. RandomDataHelper - Helps creating random data to use
+2. PageInteractionHelper - Helps verifying data and elements on the page
+3. RandomDataGenerator - Helps creating random data to use
 4. HttpClientRequestHelper - Helps making some HTTP requests (POST, PUT, GET, DELETE, PATCH)
 5. SqlDatabaseConnectionHelper - Helps connecting to the SQL Database to read and write the data from Database
 6. CosmosActionPerformerHelper - Helps connecting to Cosmos DB to read and write the data

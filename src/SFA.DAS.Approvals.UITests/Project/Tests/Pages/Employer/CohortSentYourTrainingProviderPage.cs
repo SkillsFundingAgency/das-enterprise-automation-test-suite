@@ -9,6 +9,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         public CohortSentYourTrainingProviderPage(ScenarioContext context) : base(context)
         {
+            VerifyPage();
         }
     }
 }

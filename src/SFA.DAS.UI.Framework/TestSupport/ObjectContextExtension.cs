@@ -13,8 +13,18 @@ namespace SFA.DAS.UI.Framework.TestSupport
         private const string BrowserVersionKey = "browserVersion";
         private const string BrowserstackFailedToUpdateTestResult = "browserstackfailedtoupdatetestresult";
         private const string WebDriverUrl = "webdriverurl";
+        private const string CurrentApplicationName = "currentapplicationname";
         #endregion
 
+        public static void SetCurrentApplicationName(this ObjectContext objectContext, string value)
+        {
+            objectContext.Replace(CurrentApplicationName, value);
+        }
+
+        public static string GetCurrentApplicationName(this ObjectContext objectContext)
+        {
+            return objectContext.Get(CurrentApplicationName);
+        }
         public static string GetBrowser(this ObjectContext objectContext)
         {
             return objectContext.Get(BrowserKey);

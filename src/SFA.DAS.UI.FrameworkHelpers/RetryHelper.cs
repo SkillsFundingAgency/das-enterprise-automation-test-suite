@@ -10,19 +10,21 @@ namespace SFA.DAS.UI.FrameworkHelpers
     public class RetryHelper
     {
         private readonly IWebDriver _webDriver;
+        private readonly string _scenarioTitle;
 
-        public RetryHelper(IWebDriver webDriver)
+        public RetryHelper(IWebDriver webDriver, string scenarioTitle)
         {
             _webDriver = webDriver;
+            _scenarioTitle = scenarioTitle;
         }
 
-        internal bool RetryOnException(Func<bool> func, Action beforeAction = null)
+        internal bool RetryOnException(Func<bool> func, Action beforeAction)
         {
             return Policy
                  .Handle<Exception>((x) => x.Message.Contains("verification failed"))
                  .WaitAndRetry(TimeOut, (exception, timeSpan, retryCount, context) =>
                  {
-                     TestContext.Progress.WriteLine($"Retry Count : {retryCount}, Exception : {exception.Message}");
+                     Report(retryCount, exception);
                  })
                  .Execute(() =>
                  {
@@ -32,6 +34,59 @@ namespace SFA.DAS.UI.FrameworkHelpers
                          return func();
                      }
                  });
+        }
+        internal void RetryClickOnException(Func<IWebElement> element)
+        {
+            Policy
+                .Handle<Exception>()
+                .WaitAndRetry(TimeOut, (exception, timeSpan, retryCount, context) =>
+                {
+                    Report(retryCount, exception);
+                })
+               .Execute(() =>
+               {
+                   using (var testcontext = new NUnit.Framework.Internal.TestExecutionContext.IsolatedContext())
+                   {
+                       ClickEvent(element()).Invoke();
+                   }
+               });
+        }
+
+        internal void RetryClickOnWebDriverException(Func<IWebElement> element)
+        {
+            Policy
+                .Handle<WebDriverException>()
+                .WaitAndRetry(TimeOut, (exception, timeSpan, retryCount, context) =>
+                {
+                    Report(retryCount, exception);
+                })
+               .Execute(() =>
+               {
+                   using (var testcontext = new NUnit.Framework.Internal.TestExecutionContext.IsolatedContext())
+                   {
+                       ClickEvent(element()).Invoke();
+                   }
+               });
+        }
+
+        internal T RetryOnWebDriverException<T>(Func<T> element)
+        {
+            T webElement = default(T);
+            Policy
+                .Handle<WebDriverException>()
+                .WaitAndRetry(TimeOut, (exception, timeSpan, retryCount, context) =>
+                {
+                    Report(retryCount, exception);
+                })
+                .Execute(() =>
+                {
+                    using (var testcontext = new NUnit.Framework.Internal.TestExecutionContext.IsolatedContext())
+                    {
+                        webElement = element.Invoke();
+                    }
+                });
+
+            return webElement;
         }
 
         internal void RetryOnElementClickInterceptedException(IWebElement element)
@@ -43,7 +98,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
                  .Or<WebDriverException>()
                  .WaitAndRetry(TimeOut, (exception, timeSpan, retryCount, context) =>
                  {
-                     TestContext.Progress.WriteLine($"Retry Count : {retryCount}, Exception : {exception.Message}");
+                     Report(retryCount, exception);
 
                      switch (true)
                      {
@@ -92,9 +147,13 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         private (Action beforeAction, Action afterAction) ScrollIntoView(IWebElement element)
         {
-            void beforeAction() => ((IJavaScriptExecutor)_webDriver).ExecuteScript("arguments[0].scrollIntoView(false);", element);
+            void beforeAction() => ((IJavaScriptExecutor)_webDriver).ExecuteScript("arguments[0].scrollIntoView(true);", element);
 
             return (beforeAction, null);
+        }
+        private void Report(int retryCount, Exception exception)
+        {
+            TestContext.Progress.WriteLine($"{Environment.NewLine}Retry Count : {retryCount}{Environment.NewLine}Scenario Title : {_scenarioTitle}{Environment.NewLine}Exception : {exception.Message}");
         }
     }
 }

@@ -36,16 +36,15 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
         public void Approve()
         {
             EmployerReviewCohort()
-                .SelectContinueToApproval()
-                .SubmitApprove();
+                .EmployerDoesSecondApproval();
         }
 
         internal ReviewYourCohortPage OpenRejectedCohort()
         {
             return GoToEmployerApprenticesHomePage()
               .ClickYourCohortsLink()
-              .GoToRejectedTransferRequests()
-              .OpenRejectedCohort();
+              .GoToCohortsReadyForReview()
+              .SelectViewCurrentCohortDetails();
         }
 
         internal ManageYourApprenticesPage GoToManageYourApprenticesPage()
@@ -162,8 +161,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
         internal void SetCohortReference(string cohortReference)
         {
             _objectContext.SetCohortReference(cohortReference);
-
-            TestContext.Progress.WriteLine($"Cohort Reference: {cohortReference}");
         }
 
         private StartAddingApprenticesPage ConfirmProviderDetailsAreCorrect(ApprenticesHomePage apprenticesHomePage)
@@ -229,9 +226,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 
         public string EmployerApproveAndSendToProvider(ReviewYourCohortPage employerReviewYourCohortPage)
         {
-            return employerReviewYourCohortPage.SaveAndContinue()
-                .SubmitApproveAndSendToTrainingProvider()
-                .SendInstructionsToProviderForAnApprovedCohort()
+            return employerReviewYourCohortPage.
+                 EmployerFirstApproveAndNotifyTrainingProvider()
                 .CohortReference();
         }
 

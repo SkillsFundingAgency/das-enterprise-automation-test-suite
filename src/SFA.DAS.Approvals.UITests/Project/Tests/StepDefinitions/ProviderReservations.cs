@@ -18,7 +18,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         private readonly ProviderStepsHelper _providerStepsHelper;
         private readonly EmployerPortalLoginHelper _loginHelper;
         private readonly EmployerStepsHelper _employerStepsHelper;
-        private readonly ProviderPermissionsConfig _config;
+        private readonly ApprovalsConfig _config;
         private readonly ProviderLogin _login;
         private ProviderHomePage _providerHomePage;
         private ProviderReviewYourCohortPage _providerReviewYourCohortPage;
@@ -27,7 +27,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             _context = context;
             _objectContext = context.Get<ObjectContext>();
-            _config = context.GetProviderPermissionConfig<ProviderPermissionsConfig>();
+            _config = context.GetApprovalsConfig<ApprovalsConfig>();
             _loginHelper = new EmployerPortalLoginHelper(_context);
             _providerStepsHelper = new ProviderStepsHelper(_context);
             _employerStepsHelper = new EmployerStepsHelper(_context);

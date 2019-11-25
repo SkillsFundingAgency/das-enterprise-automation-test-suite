@@ -3,7 +3,6 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
     <RootNamespace>SFA.DAS.RAA_V1.UITests</RootNamespace>
-
     <IsPackable>false</IsPackable>
   </PropertyGroup>
 
@@ -14,6 +13,7 @@
   <ItemGroup>
     <PackageReference Include="NUnit3TestAdapter" Version="3.14.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.2.0" />
+    <PackageReference Include="Selenium.WebDriver.ChromeDriver" Version="77.0.3865.4000" />
     <PackageReference Include="SpecFlow.Tools.MsBuild.Generation" Version="3.0.225" />
   </ItemGroup>
 
@@ -29,6 +29,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="appsettings.Project.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="SFA.DAS.RAA-V1.UITests.runtimeconfig.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="specflow.json">
