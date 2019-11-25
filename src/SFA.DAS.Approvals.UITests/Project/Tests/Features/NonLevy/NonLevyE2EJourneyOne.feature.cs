@@ -18,22 +18,20 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.NonLevy
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.0.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("NonLevyEmployerCreatesACohort")]
-    [NUnit.Framework.CategoryAttribute("approvals")]
-    public partial class NonLevyEmployerCreatesACohortFeature
+    [NUnit.Framework.DescriptionAttribute("NonLevyE2EJourneyOne")]
+    public partial class NonLevyE2EJourneyOneFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "NonLevyEmployerCreatesACohort.feature"
+#line 1 "NonLevyE2EJourneyOne.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "NonLevyEmployerCreatesACohort", "A Non Levy employer creates a cohort using the reservation", ProgrammingLanguage.CSharp, new string[] {
-                        "approvals"});
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "NonLevyE2EJourneyOne", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -72,25 +70,25 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.NonLevy
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Non Levy Employer creates a cohort using the reservation")]
-        [NUnit.Framework.IgnoreAttribute("Ignored scenario")]
+        [NUnit.Framework.DescriptionAttribute("NE2E1 Non Levy Employer sends an approved cohort then provider approves the cohor" +
+            "t")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("non-levy")]
-        public virtual void NonLevyEmployerCreatesACohortUsingTheReservation()
+        public virtual void NE2E1NonLevyEmployerSendsAnApprovedCohortThenProviderApprovesTheCohort()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Non Levy Employer creates a cohort using the reservation", null, new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("NE2E1 Non Levy Employer sends an approved cohort then provider approves the cohor" +
+                    "t", null, new string[] {
                         "regression",
-                        "non-levy",
-                        "ignore"});
-#line 9
+                        "non-levy"});
+#line 5
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 10
+#line 6
  testRunner.Given("the Employer login using existing eoi account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 11
+#line 7
  testRunner.When("the Employer uses the reservation to create and approve 2 cohort and sends to pro" +
                     "vider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 12
+#line 8
  testRunner.Then("the provider adds Ulns and approves the cohorts", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
