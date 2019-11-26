@@ -1,6 +1,7 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.RAA_V1.UITests.Project.Helpers;
 using SFA.DAS.UI.FrameworkHelpers;
+using System;
 using System.Linq;
 using TechTalk.SpecFlow;
 
@@ -30,6 +31,8 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.FAA
 
         private By NextPage => By.CssSelector(".page-navigation__btn.next");
 
+        private By ApplyButton => By.Id("apply-button");
+
 
         public FAA_SearchResultsPage(ScenarioContext context) : base(context)
         {
@@ -45,17 +48,41 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.FAA
             return !_pageInteractionHelper.IsElementDisplayed(NoSearchResults);
         }
 
-        public bool CanApply()
+        public bool CanApplyTraineeship()
+        {
+            var vacancies = _pageInteractionHelper.FindElements(VacancyTitle).Select(x => x.Text).ToList();
+            
+            foreach (var vacancy in vacancies)
+            {
+                _formCompletionHelper.ClickLinkByText(vacancy);
+
+                if (_pageInteractionHelper.IsElementDisplayed(ApplyButton))
+                {
+                    _dataHelper.VacancyTitle = vacancy;
+                    return true;
+                }
+
+                _formCompletionHelper.ClickLinkByText("Return to search results");
+            }
+            return false;
+        }
+
+        public bool CanApplyApprenticeship()
+        {
+            return CanApply((x) => x.FindElements(AvailableVacancy).Any());
+        }
+
+        private bool CanApply(Func<IWebElement, bool> func)
         {
             _vacancyHelper = new RandomVacancyHelper(_pageInteractionHelper, _formCompletionHelper, _dataHelper);
 
             _dataHelper.VacancyTitle = string.Empty;
 
-            _vacancyHelper.RandomElementAt((x) => x.FindElements(AvailableVacancy).Any(), VacancyTables, VacancyTitle, NextPage, NoOfPagesCssSelector);
+            _vacancyHelper.RandomElementAt(func, VacancyTables, VacancyTitle, NextPage, NoOfPagesCssSelector);
 
             if (string.IsNullOrEmpty(_dataHelper.VacancyTitle))
             {
-                return false; 
+                return false;
             }
 
             _formCompletionHelper.ClickLinkByText(_dataHelper.VacancyTitle);

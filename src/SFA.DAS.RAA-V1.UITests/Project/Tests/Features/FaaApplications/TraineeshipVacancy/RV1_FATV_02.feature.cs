@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Features.FaaApplications.ApprenticeshipVacancy
+namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Features.FaaApplications.TraineeshipVacancy
 {
     using TechTalk.SpecFlow;
     
@@ -18,22 +18,22 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Features.FaaApplications.Apprenti
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.0.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("RV1_FA_02")]
+    [NUnit.Framework.DescriptionAttribute("RV1_FATV_02")]
     [NUnit.Framework.CategoryAttribute("raa-v1")]
     [NUnit.Framework.CategoryAttribute("regression")]
-    public partial class RV1_FA_02Feature
+    public partial class RV1_FATV_02Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "RV1_FA_02.feature"
+#line 1 "RV1_FATV_02.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "RV1_FA_02", null, ProgrammingLanguage.CSharp, new string[] {
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "RV1_FATV_02", null, ProgrammingLanguage.CSharp, new string[] {
                         "raa-v1",
                         "regression"});
             testRunner.OnFeatureStart(featureInfo);
@@ -73,35 +73,28 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Features.FaaApplications.Apprenti
             testRunner.CollectScenarioErrors();
         }
         
-        public virtual void RV1_FA_02ApplyForAnExistingApprenticeshipVacancy(string jobTitle, string location, string distance, string apprenticeshipLevel, string disabilityConfident, string qualificationDetails, string workExperience, string trainingCourse, string[] exampleTags)
+        public virtual void RV1_FATV_02ApplyForAnExistingTraineeshipVacancy(string location, string distance, string disabilityConfident, string qualificationDetails, string workExperience, string trainingCourse, string[] exampleTags)
         {
-            string[] @__tags = new string[] {
-                    "apprenticeshipvacancy"};
-            if ((exampleTags != null))
-            {
-                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
-            }
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV1_FA_02 Apply for an existing Apprenticeship Vacancy", null, @__tags);
-#line 6
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV1_FATV_02 Apply for an existing Traineeship Vacancy", null, exampleTags);
+#line 5
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 7
+#line 6
 testRunner.Given("the applicant is on the Find an Apprenticeship Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 7
+testRunner.When(string.Format("the applicant searches for a traineeship Vacancies \'{0}\',\'{1}\',\'{2}\'", location, distance, disabilityConfident), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 8
-testRunner.When(string.Format("the applicant searches for the Vacancies \'{0}\',\'{1}\',\'{2}\',\'{3}\',\'{4}\'", jobTitle, location, distance, apprenticeshipLevel, disabilityConfident), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 9
 testRunner.Then(string.Format("the applicant fills the application form \'{0}\',\'{1}\' ,\'{2}\'", qualificationDetails, workExperience, trainingCourse), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RV1_FA_02 Apply for an existing Apprenticeship Vacancy: Test")]
-        [NUnit.Framework.CategoryAttribute("apprenticeshipvacancy")]
-        public virtual void RV1_FA_02ApplyForAnExistingApprenticeshipVacancy_Test()
+        [NUnit.Framework.DescriptionAttribute("RV1_FATV_02 Apply for an existing Traineeship Vacancy: CV1 2WT")]
+        public virtual void RV1_FATV_02ApplyForAnExistingTraineeshipVacancy_CV12WT()
         {
-#line 6
-this.RV1_FA_02ApplyForAnExistingApprenticeshipVacancy("Test", "CV1 2WT", "10 miles", "Intermediate", "No", "No", "No", "No", ((string[])(null)));
+#line 5
+this.RV1_FATV_02ApplyForAnExistingTraineeshipVacancy("CV1 2WT", "40 miles", "Yes", "Yes", "Yes", "Yes", ((string[])(null)));
 #line hidden
         }
     }

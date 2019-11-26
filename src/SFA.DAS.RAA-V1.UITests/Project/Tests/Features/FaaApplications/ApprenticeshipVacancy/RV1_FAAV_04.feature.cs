@@ -18,22 +18,22 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Features.FaaApplications.Apprenti
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.0.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("RV1_FA_04")]
+    [NUnit.Framework.DescriptionAttribute("RV1_FAAV_04")]
     [NUnit.Framework.CategoryAttribute("raa-v1")]
     [NUnit.Framework.CategoryAttribute("regression")]
-    public partial class RV1_FA_04Feature
+    public partial class RV1_FAAV_04Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "RV1_FA_04.feature"
+#line 1 "RV1_FAAV_04.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "RV1_FA_04", null, ProgrammingLanguage.CSharp, new string[] {
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "RV1_FAAV_04", null, ProgrammingLanguage.CSharp, new string[] {
                         "raa-v1",
                         "regression"});
             testRunner.OnFeatureStart(featureInfo);
@@ -73,7 +73,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Features.FaaApplications.Apprenti
             testRunner.CollectScenarioErrors();
         }
         
-        public virtual void RV1_FA_04ApplyForAnExistingApprenticeshipVacancy(string jobTitle, string location, string distance, string apprenticeshipLevel, string disabilityConfident, string qualificationDetails, string workExperience, string trainingCourse, string[] exampleTags)
+        public virtual void RV1_FAAV_04ApplyForAnExistingApprenticeshipVacancy(string jobTitle, string location, string distance, string apprenticeshipLevel, string disabilityConfident, string qualificationDetails, string workExperience, string trainingCourse, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "apprenticeshipvacancy"};
@@ -81,7 +81,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Features.FaaApplications.Apprenti
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
             }
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV1_FA_04 Apply for an existing Apprenticeship Vacancy", null, @__tags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV1_FAAV_04 Apply for an existing Apprenticeship Vacancy", null, @__tags);
 #line 6
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
@@ -96,12 +96,12 @@ testRunner.Then(string.Format("the applicant fills the application form \'{0}\',
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RV1_FA_04 Apply for an existing Apprenticeship Vacancy: apprenticeship")]
+        [NUnit.Framework.DescriptionAttribute("RV1_FAAV_04 Apply for an existing Apprenticeship Vacancy: apprenticeship")]
         [NUnit.Framework.CategoryAttribute("apprenticeshipvacancy")]
-        public virtual void RV1_FA_04ApplyForAnExistingApprenticeshipVacancy_Apprenticeship()
+        public virtual void RV1_FAAV_04ApplyForAnExistingApprenticeshipVacancy_Apprenticeship()
         {
 #line 6
-this.RV1_FA_04ApplyForAnExistingApprenticeshipVacancy("apprenticeship", "CV1 2DY", "30 miles", "Higher", "Yes", "Yes", "Yes", "Yes", ((string[])(null)));
+this.RV1_FAAV_04ApplyForAnExistingApprenticeshipVacancy("apprenticeship", "CV1 2DY", "30 miles", "Higher", "Yes", "Yes", "Yes", "Yes", ((string[])(null)));
 #line hidden
         }
     }

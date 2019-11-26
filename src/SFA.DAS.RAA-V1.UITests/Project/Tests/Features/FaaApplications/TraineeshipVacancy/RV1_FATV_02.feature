@@ -1,12 +1,12 @@
 ﻿@raa-v1
 @regression
-Feature: RV1_FATV_01
+Feature: RV1_FATV_02
 
-Scenario Outline: RV1_FATV_01 Apply for an existing Traineeship Vacancy
+Scenario Outline: RV1_FATV_02 Apply for an existing Traineeship Vacancy
 Given the applicant is on the Find an Apprenticeship Page
 When the applicant searches for a traineeship Vacancies '<Location>','<Distance>','<DisabilityConfident>'
 Then  the applicant fills the application form '<QualificationDetails>','<WorkExperience>' ,'<TrainingCourse>'
 
 Examples:
 	| Location | Distance | DisabilityConfident | QualificationDetails | WorkExperience | TrainingCourse |
-	| CV1 2WT  | 10 miles | No                  | No                   | No             | No             |
+	| CV1 2WT  | 40 miles | Yes                 | Yes                  | Yes            | Yes            |
