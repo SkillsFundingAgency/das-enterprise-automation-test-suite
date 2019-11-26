@@ -24,7 +24,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
         [Given(@"the applicant is on the Find an Apprenticeship Page")]
         public void GivenTheApplicantIsOnTheFindAnApprenticeshipPage()
         {
-            _homePage = _faaStepsHelper.GoToFAAHomePage();
+            _homePage = _faaStepsHelper.GoToFAAHomePage(false);
         }
 
         [When(@"the applicant searches for the Vacancies '(.*)','(.*)','(.*)','(.*)','(.*)'")]

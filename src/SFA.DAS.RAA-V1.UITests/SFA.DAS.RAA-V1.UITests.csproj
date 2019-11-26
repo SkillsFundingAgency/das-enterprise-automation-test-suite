@@ -6,6 +6,13 @@
     <IsPackable>false</IsPackable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <SpecFlowObsoleteCodeBehindFiles Remove="Project\Tests\Features\FaaApplications\RV1_FA_01 - Copy (2).feature.cs" />
+    <SpecFlowObsoleteCodeBehindFiles Remove="Project\Tests\Features\FaaApplications\RV1_FA_01 - Copy (3).feature.cs" />
+    <SpecFlowObsoleteCodeBehindFiles Remove="Project\Tests\Features\FaaApplications\RV1_FA_01 - Copy (4).feature.cs" />
+    <SpecFlowObsoleteCodeBehindFiles Remove="Project\Tests\Features\FaaApplications\RV1_FA_01 - Copy.feature.cs" />
+  </ItemGroup>
+
 
   <ItemGroup>
     <Compile Include="..\NUnitConfigurator.cs" Link="NUnitConfigurator.cs" />
@@ -41,7 +48,37 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Project\Tests\Features\FaaApplications\" />
+    <Compile Update="Project\Tests\Features\FaaApplications\RV1_FA_03.feature.cs">
+      <DependentUpon>RV1_FA_03.feature</DependentUpon>
+    </Compile>
+    <Compile Update="Project\Tests\Features\FaaApplications\RV1_FA_04.feature.cs">
+      <DependentUpon>RV1_FA_04.feature</DependentUpon>
+    </Compile>
+    <Compile Update="Project\Tests\Features\FaaApplications\RV1_FA_05.feature.cs">
+      <DependentUpon>RV1_FA_05.feature</DependentUpon>
+    </Compile>
+    <Compile Update="Project\Tests\Features\FaaApplications\RV1_FA_02.feature.cs">
+      <DependentUpon>RV1_FA_02.feature</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <SpecFlowFeatureFiles Update="Project\Tests\Features\FaaApplications\RV1_FA_03.feature">
+      <Visible>$(UsingMicrosoftNETSdk)</Visible>
+      <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
+    </SpecFlowFeatureFiles>
+    <SpecFlowFeatureFiles Update="Project\Tests\Features\FaaApplications\RV1_FA_04.feature">
+      <Visible>$(UsingMicrosoftNETSdk)</Visible>
+      <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
+    </SpecFlowFeatureFiles>
+    <SpecFlowFeatureFiles Update="Project\Tests\Features\FaaApplications\RV1_FA_05.feature">
+      <Visible>$(UsingMicrosoftNETSdk)</Visible>
+      <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
+    </SpecFlowFeatureFiles>
+    <SpecFlowFeatureFiles Update="Project\Tests\Features\FaaApplications\RV1_FA_02.feature">
+      <Visible>$(UsingMicrosoftNETSdk)</Visible>
+      <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
+    </SpecFlowFeatureFiles>
   </ItemGroup>
 
 </Project>

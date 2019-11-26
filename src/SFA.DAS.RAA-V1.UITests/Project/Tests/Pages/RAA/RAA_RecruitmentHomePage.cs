@@ -17,7 +17,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         private readonly RegexHelper _regexHelper;
         private readonly ObjectContext _objectContext;
         private readonly PageInteractionHelper _pageInteractionHelper;
-        private readonly RandomVacancyHelper _vacancyHelper;
+        private RandomVacancyHelper _vacancyHelper;
         #endregion
 
         private By CreateANewVacancyButton => By.Id("new-vacancy-button");
@@ -41,7 +41,6 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
             _objectContext = context.Get<ObjectContext>();
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _regexHelper = context.Get<RegexHelper>();
-            _vacancyHelper = context.Get<RandomVacancyHelper>();
         }
 
         public RAA_SearchCandidatesPage SearchCandidates()
@@ -194,6 +193,8 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
 
         private IWebElement RandomElementAt(Func<IWebElement, bool> func)
         {
+            _vacancyHelper = new RandomVacancyHelper(_pageInteractionHelper, formCompletionHelper, dataHelper);
+
             return _vacancyHelper.RandomElementAt(func, VacancyTables, VacancyTitle, NextPage, NoOfPagesCssSelector);
         }
     }

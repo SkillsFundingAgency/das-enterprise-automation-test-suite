@@ -21,6 +21,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
             _objectContext = context.Get<ObjectContext>();
             _config = context.GetRAAV1Config<RAAV1Config>();
             _tabHelper = context.Get<TabHelper>();
+            _tabHelper = context.Get<TabHelper>();
             _helper = new RestartWebDriverHelper(context);
         }
 

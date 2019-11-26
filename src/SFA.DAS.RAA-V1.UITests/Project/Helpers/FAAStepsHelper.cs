@@ -1,5 +1,6 @@
 ﻿using SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.FAA;
 using SFA.DAS.UI.Framework.TestSupport;
+using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
@@ -9,6 +10,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
         private readonly ScenarioContext _context;
         private readonly RAAV1Config _config;
         private readonly RestartWebDriverHelper _helper;
+        private readonly TabHelper _tabHelper;
         private readonly ObjectContext _objectContext;
         private const string _applicationName = "FindApprenticeship";
 
@@ -18,11 +20,25 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
             _objectContext = context.Get<ObjectContext>();
             _config = context.GetRAAV1Config<RAAV1Config>();
             _helper = new RestartWebDriverHelper(context);
+            _tabHelper = context.Get<TabHelper>();
         }
 
-        public FAA_HomePage GoToFAAHomePage()
+        public void GoToFAA()
         {
-            _helper.RestartWebDriver(_config.FAABaseUrl, _applicationName);
+            _objectContext.SetCurrentApplicationName(_applicationName);
+            _tabHelper.GoToUrl(_config.FAABaseUrl);
+        }
+
+        public FAA_HomePage GoToFAAHomePage(bool restrat)
+        {
+            if (restrat)
+            {
+                _helper.RestartWebDriver(_config.FAABaseUrl, _applicationName);
+            }
+            else
+            {
+                GoToFAA();
+            }
 
             return new FAA_Indexpage(_context)
                 .GoToSignInPage()

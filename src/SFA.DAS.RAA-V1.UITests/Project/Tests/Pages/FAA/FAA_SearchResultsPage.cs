@@ -1,14 +1,12 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.RAA_V1.UITests.Project.Helpers;
-using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
-using System.Collections.Generic;
 using System.Linq;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.FAA
 {
-    public class FAA_SearchResultsPage : BasePage
+    public class FAA_SearchResultsPage : FAA_ApprenticeSearchPage
     {
         protected override string PageTitle => "Search results";
 
@@ -17,7 +15,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.FAA
         private readonly PageInteractionHelper _pageInteractionHelper;
         private readonly ScenarioContext _context;
         private readonly RAADataHelper _dataHelper;
-        private readonly RandomVacancyHelper _vacancyHelper;
+        private RandomVacancyHelper _vacancyHelper;
         #endregion
 
         private By NoSearchResults => By.Id("search-no-results-title");
@@ -39,7 +37,6 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.FAA
             _formCompletionHelper = context.Get<FormCompletionHelper>();
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _dataHelper = context.Get<RAADataHelper>();
-            _vacancyHelper = context.Get<RandomVacancyHelper>();
             VerifyPage();
         }
 
@@ -50,15 +47,20 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.FAA
 
         public bool CanApply()
         {
+            _vacancyHelper = new RandomVacancyHelper(_pageInteractionHelper, _formCompletionHelper, _dataHelper);
 
-            IWebElement element()
+            _dataHelper.VacancyTitle = string.Empty;
+
+            _vacancyHelper.RandomElementAt((x) => x.FindElements(VacancyStatus).FirstOrDefault()?.GetAttribute(AttributeHelper.InnerText) == "", VacancyTables, VacancyTitle, NextPage, NoOfPagesCssSelector);
+
+            if (string.IsNullOrEmpty(_dataHelper.VacancyTitle))
             {
-                return _vacancyHelper.RandomElementAt((x) => x.FindElements(VacancyStatus).FirstOrDefault()?.GetAttribute(AttributeHelper.InnerText) == "", VacancyTables, VacancyTitle, NextPage, NoOfPagesCssSelector);
+                return false; 
             }
 
-            _formCompletionHelper.RetryClickOnException(element);
+            _formCompletionHelper.ClickLinkByText(_dataHelper.VacancyTitle);
 
-            return false;
+            return true;
         }
     }
 }

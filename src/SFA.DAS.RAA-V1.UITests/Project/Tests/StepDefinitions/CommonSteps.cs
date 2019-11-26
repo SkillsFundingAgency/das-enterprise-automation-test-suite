@@ -76,7 +76,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
 
             manage_HomePage.ApproveAVacancy(dataset.Changeteam, dataset.ChangeRole);
 
-            var faa_homePage = _faaStepsHelper.GoToFAAHomePage();
+            var faa_homePage = _faaStepsHelper.GoToFAAHomePage(true);
 
             var faa_applicationFormPage = _faaStepsHelper.ApplyForVacancy(faa_homePage);
 

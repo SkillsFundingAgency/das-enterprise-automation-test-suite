@@ -6,9 +6,6 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.FAA
 {
-
-
-
     public class FAA_ApprenticeSearchPage : BasePage
     {
         protected override string PageTitle => "Find an apprenticeship";
@@ -22,7 +19,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.FAA
 
         private By SearchField => By.Id("SearchField");
 
-        private By KeyWord => By.Id("Keywords");
+        protected By KeyWord => By.Id("Keywords");
 
         private By Location => By.Id("Location");
 
@@ -30,7 +27,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.FAA
 
         private By ApprenticeshipLevel => By.Id("apprenticeship-level");
 
-        private By Search => By.Id("search-button");
+        protected By Search => By.Id("search-button");
 
         private By NoSearchResults => By.Id("search-no-results-title");
 

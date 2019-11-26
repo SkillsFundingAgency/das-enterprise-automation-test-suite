@@ -19,6 +19,8 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Features.FaaApplications
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("RV1_FA_01")]
+    [NUnit.Framework.CategoryAttribute("raa-v1")]
+    [NUnit.Framework.CategoryAttribute("regression")]
     public partial class RV1_FA_01Feature
     {
         
@@ -31,7 +33,9 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Features.FaaApplications
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "RV1_FA_01", "A short summary of the feature", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "RV1_FA_01", null, ProgrammingLanguage.CSharp, new string[] {
+                        "raa-v1",
+                        "regression"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -86,47 +90,11 @@ testRunner.Then(string.Format("the applicant fills the application form \'{0}\',
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RV1_FA_01 Apply for an existing Apprenticeship Vacancy: Variant 0")]
-        public virtual void RV1_FA_01ApplyForAnExistingApprenticeshipVacancy_Variant0()
+        [NUnit.Framework.DescriptionAttribute("RV1_FA_01 Apply for an existing Apprenticeship Vacancy: apprenticeship")]
+        public virtual void RV1_FA_01ApplyForAnExistingApprenticeshipVacancy_Apprenticeship()
         {
 #line 5
 this.RV1_FA_01ApplyForAnExistingApprenticeshipVacancy("apprenticeship", "CV1 2DY", "5 miles", "All levels", "Yes", "No", "No", "No", ((string[])(null)));
-#line hidden
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RV1_FA_01 Apply for an existing Apprenticeship Vacancy: Variant 1")]
-        public virtual void RV1_FA_01ApplyForAnExistingApprenticeshipVacancy_Variant1()
-        {
-#line 5
-this.RV1_FA_01ApplyForAnExistingApprenticeshipVacancy("Test", "CV1 2WT", "10 miles", "Intermediate", "No", "No", "No", "No", ((string[])(null)));
-#line hidden
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RV1_FA_01 Apply for an existing Apprenticeship Vacancy: Variant 2")]
-        public virtual void RV1_FA_01ApplyForAnExistingApprenticeshipVacancy_Variant2()
-        {
-#line 5
-this.RV1_FA_01ApplyForAnExistingApprenticeshipVacancy("apprenticeship", "CV1 2DY", "20 miles", "Advanced", "Yes", "No", "No", "No", ((string[])(null)));
-#line hidden
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RV1_FA_01 Apply for an existing Apprenticeship Vacancy: Variant 3")]
-        public virtual void RV1_FA_01ApplyForAnExistingApprenticeshipVacancy_Variant3()
-        {
-#line 5
-this.RV1_FA_01ApplyForAnExistingApprenticeshipVacancy("apprenticeship", "CV1 2DY", "30 miles", "Higher", "Yes", "Yes", "Yes", "Yes", ((string[])(null)));
-#line hidden
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RV1_FA_01 Apply for an existing Apprenticeship Vacancy: Variant 4")]
-        public virtual void RV1_FA_01ApplyForAnExistingApprenticeshipVacancy_Variant4()
-        {
-#line 5
-this.RV1_FA_01ApplyForAnExistingApprenticeshipVacancy("apprenticeship", "CV1 2DY", "40 miles", "Degree", "Yes", "Yes", "Yes", "Yes", ((string[])(null)));
 #line hidden
         }
     }

@@ -136,7 +136,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         public bool IsElementPresent(By locator)
         {
-            TurnOffImplicitWaits();
+            _webDriverWaitHelper.TurnOffImplicitWaits();
             try
             {
                 _webDriver.FindElement(locator);
@@ -154,7 +154,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         public bool IsElementDisplayed(By locator)
         {
-            TurnOffImplicitWaits();
+            _webDriverWaitHelper.TurnOffImplicitWaits();
             try
             {
                 return _webDriver.FindElement(locator).Displayed;
@@ -186,8 +186,6 @@ namespace SFA.DAS.UI.FrameworkHelpers
         }
 
         public void UnFocusTheElement(IWebElement element) => new Actions(_webDriver).MoveToElement(element).Perform();
-
-        public void TurnOffImplicitWaits() => _webDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromMilliseconds(500);
 
         public void SwitchToFrame(By locator)
         {

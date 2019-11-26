@@ -31,8 +31,6 @@ namespace SFA.DAS.RAA_V1.UITests.Project
             _context.Set(new ManagedataHelper(random));
 
             _context.Set(new FAADataHelper(random));
-
-            _context.Set(new RandomVacancyHelper(_context.Get<PageInteractionHelper>(), _context.Get<FormCompletionHelper>(), _context.Get<RAADataHelper>()));
         }
 
         [BeforeScenario("apprenticeshipvacancy", Order = 33)]
