@@ -40,7 +40,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
             DOB_Year = _randomDataGenerator.GenerateRandomDobYear();
             EmailId = _randomDataGenerator.GenerateRandomEmail();
             PhoneNumber = _randomDataGenerator.GenerateRandomNumber(10);
-            Password = _randomDataGenerator.GenerateRandomAlphanumericStringForPassword();
+            Password = _randomDataGenerator.GenerateRandomAlphanumericStringForPassword(4,4,1,1);
         }
 
         public string EducationSchoolOrCollege { get; }

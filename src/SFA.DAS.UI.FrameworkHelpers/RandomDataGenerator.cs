@@ -31,12 +31,12 @@ namespace SFA.DAS.UI.FrameworkHelpers
             return GenerateRandomString(Alphabets + Numbers + SpecialChars, length);
         }
 
-        public string GenerateRandomAlphanumericStringForPassword()
+        public string GenerateRandomAlphanumericStringForPassword(int NoOfUppercaseLetters, int NoOfLowerCaseLetters, int NoOfNumbers, int NoOfSpecialChars)
         {
-            var randomString = GenerateRandomString(LowerCaseAlphabets, 4);
-            randomString += GenerateRandomString(UpperCaseAlphabets, 4);
-            randomString += GenerateRandomString(Numbers, 1);
-            randomString += GenerateRandomString(SpecialChars, 1);
+            var randomString = GenerateRandomString(LowerCaseAlphabets, NoOfUppercaseLetters);
+            randomString += GenerateRandomString(UpperCaseAlphabets, NoOfLowerCaseLetters);
+            randomString += GenerateRandomString(Numbers, NoOfNumbers);
+            randomString += GenerateRandomString(SpecialChars, NoOfSpecialChars);
             return randomString;
         }
 
