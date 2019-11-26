@@ -90,11 +90,11 @@ testRunner.Then(string.Format("the applicant fills the application form \'{0}\',
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RV1_FATV_01 Apply for an existing Traineeship Vacancy: CV1 2WT")]
-        public virtual void RV1_FATV_01ApplyForAnExistingTraineeshipVacancy_CV12WT()
+        [NUnit.Framework.DescriptionAttribute("RV1_FATV_01 Apply for an existing Traineeship Vacancy: CV1 2DY")]
+        public virtual void RV1_FATV_01ApplyForAnExistingTraineeshipVacancy_CV12DY()
         {
 #line 5
-this.RV1_FATV_01ApplyForAnExistingTraineeshipVacancy("CV1 2WT", "10 miles", "No", "No", "No", "No", ((string[])(null)));
+this.RV1_FATV_01ApplyForAnExistingTraineeshipVacancy("CV1 2DY", "10 miles", "No", "No", "No", "No", ((string[])(null)));
 #line hidden
         }
     }

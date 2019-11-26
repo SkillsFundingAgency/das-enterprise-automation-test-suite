@@ -9,4 +9,4 @@ Then  the applicant fills the application form '<QualificationDetails>','<WorkEx
 
 Examples:
 	| Location | Distance | DisabilityConfident | QualificationDetails | WorkExperience | TrainingCourse |
-	| CV1 2WT  | 10 miles | No                  | No                   | No             | No             |
+	| CV1 2DY  | 10 miles | No                  | No                   | No             | No             |
