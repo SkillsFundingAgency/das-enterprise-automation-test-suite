@@ -21,6 +21,8 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.FAA
 
         private By SignInButton => By.CssSelector("#sign-in-button");
 
+        private By CreateAnAccountLink => By.Id("create-account-link");
+
         public FAA_SignInPage(ScenarioContext context) : base(context)
         {
             _context = context;
@@ -37,5 +39,10 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.FAA
             return new FAA_HomePage(_context);
         }
 
+        public FAA_CreateAnAccountPage ClickCreateAnAccountLink()
+        {
+            _formCompletionHelper.Click(CreateAnAccountLink);
+            return new FAA_CreateAnAccountPage(_context);
+        }
     }
 }
