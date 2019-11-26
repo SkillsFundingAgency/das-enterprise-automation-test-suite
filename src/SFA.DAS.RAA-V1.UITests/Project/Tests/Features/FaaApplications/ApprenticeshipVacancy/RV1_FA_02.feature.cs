@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Features.FaaApplications
+namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Features.FaaApplications.ApprenticeshipVacancy
 {
     using TechTalk.SpecFlow;
     

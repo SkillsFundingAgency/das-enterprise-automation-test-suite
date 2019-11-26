@@ -22,7 +22,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.FAA
 
         private By VacancyTables => By.CssSelector(".sfa-section-bordered");
 
-        private By VacancyStatus => By.CssSelector(".save-vacancy");
+        private By AvailableVacancy => By.CssSelector(".save-vacancy .save-vacancy-link[title='Save for later']");
 
         private By VacancyTitle => By.CssSelector(".vacancy-link");
 
@@ -51,7 +51,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.FAA
 
             _dataHelper.VacancyTitle = string.Empty;
 
-            _vacancyHelper.RandomElementAt((x) => x.FindElements(VacancyStatus).FirstOrDefault()?.GetAttribute(AttributeHelper.InnerText) == "", VacancyTables, VacancyTitle, NextPage, NoOfPagesCssSelector);
+            _vacancyHelper.RandomElementAt((x) => x.FindElements(AvailableVacancy).Any(), VacancyTables, VacancyTitle, NextPage, NoOfPagesCssSelector);
 
             if (string.IsNullOrEmpty(_dataHelper.VacancyTitle))
             {
