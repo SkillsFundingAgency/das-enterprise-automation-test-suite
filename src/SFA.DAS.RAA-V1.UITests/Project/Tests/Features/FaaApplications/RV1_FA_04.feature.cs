@@ -75,15 +75,21 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Features.FaaApplications
         
         public virtual void RV1_FA_04ApplyForAnExistingApprenticeshipVacancy(string jobTitle, string location, string distance, string apprenticeshipLevel, string disabilityConfident, string qualificationDetails, string workExperience, string trainingCourse, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV1_FA_04 Apply for an existing Apprenticeship Vacancy", null, exampleTags);
-#line 5
+            string[] @__tags = new string[] {
+                    "apprenticeshipvacancy"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV1_FA_04 Apply for an existing Apprenticeship Vacancy", null, @__tags);
+#line 6
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 6
-testRunner.Given("the applicant is on the Find an Apprenticeship Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 7
-testRunner.When(string.Format("the applicant searches for the Vacancies \'{0}\',\'{1}\',\'{2}\',\'{3}\',\'{4}\'", jobTitle, location, distance, apprenticeshipLevel, disabilityConfident), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+testRunner.Given("the applicant is on the Find an Apprenticeship Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 8
+testRunner.When(string.Format("the applicant searches for the Vacancies \'{0}\',\'{1}\',\'{2}\',\'{3}\',\'{4}\'", jobTitle, location, distance, apprenticeshipLevel, disabilityConfident), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 9
 testRunner.Then(string.Format("the applicant fills the application form \'{0}\',\'{1}\' ,\'{2}\'", qualificationDetails, workExperience, trainingCourse), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -91,9 +97,10 @@ testRunner.Then(string.Format("the applicant fills the application form \'{0}\',
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("RV1_FA_04 Apply for an existing Apprenticeship Vacancy: apprenticeship")]
+        [NUnit.Framework.CategoryAttribute("apprenticeshipvacancy")]
         public virtual void RV1_FA_04ApplyForAnExistingApprenticeshipVacancy_Apprenticeship()
         {
-#line 5
+#line 6
 this.RV1_FA_04ApplyForAnExistingApprenticeshipVacancy("apprenticeship", "CV1 2DY", "30 miles", "Higher", "Yes", "Yes", "Yes", "Yes", ((string[])(null)));
 #line hidden
         }

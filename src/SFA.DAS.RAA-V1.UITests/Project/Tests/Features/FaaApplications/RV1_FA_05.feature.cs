@@ -75,7 +75,13 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Features.FaaApplications
         
         public virtual void RV1_FA_05ApplyForAnExistingApprenticeshipVacancy(string jobTitle, string location, string distance, string apprenticeshipLevel, string disabilityConfident, string qualificationDetails, string workExperience, string trainingCourse, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV1_FA_05 Apply for an existing Apprenticeship Vacancy", null, exampleTags);
+            string[] @__tags = new string[] {
+                    "apprenticeshipvacancy"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV1_FA_05 Apply for an existing Apprenticeship Vacancy", null, @__tags);
 #line 6
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
@@ -91,6 +97,7 @@ testRunner.Then(string.Format("the applicant fills the application form \'{0}\',
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("RV1_FA_05 Apply for an existing Apprenticeship Vacancy: apprenticeship")]
+        [NUnit.Framework.CategoryAttribute("apprenticeshipvacancy")]
         public virtual void RV1_FA_05ApplyForAnExistingApprenticeshipVacancy_Apprenticeship()
         {
 #line 6
