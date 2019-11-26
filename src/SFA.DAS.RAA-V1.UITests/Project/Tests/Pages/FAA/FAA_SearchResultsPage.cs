@@ -17,19 +17,20 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.FAA
         private readonly PageInteractionHelper _pageInteractionHelper;
         private readonly ScenarioContext _context;
         private readonly RAADataHelper _dataHelper;
+        private readonly RandomVacancyHelper _vacancyHelper;
         #endregion
 
         private By NoSearchResults => By.Id("search-no-results-title");
 
-        private By VacancySection => By.CssSelector(".sfa-section-bordered");
+        private By VacancyTables => By.CssSelector(".sfa-section-bordered");
 
         private By VacancyStatus => By.CssSelector(".save-vacancy");
 
-        private By VacancyLink => By.CssSelector(".vacancy-link");
+        private By VacancyTitle => By.CssSelector(".vacancy-link");
 
-        private By NoOfPagesCounterCssSelector => By.CssSelector(".page-navigation__btn.next .counter");
+        private By NoOfPagesCssSelector => By.CssSelector(".page-navigation__btn.next .counter");
 
-        private By NoOfPagesCssSelector => By.CssSelector(".page-navigation__btn.next");
+        private By NextPage => By.CssSelector(".page-navigation__btn.next");
 
 
         public FAA_SearchResultsPage(ScenarioContext context) : base(context)
@@ -38,6 +39,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.FAA
             _formCompletionHelper = context.Get<FormCompletionHelper>();
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _dataHelper = context.Get<RAADataHelper>();
+            _vacancyHelper = context.Get<RandomVacancyHelper>();
             VerifyPage();
         }
 
@@ -48,54 +50,15 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.FAA
 
         public bool CanApply()
         {
-            List<int> pages = new List<int>();
-            for (int i = 1; i <= NoOfPages(); i++)
+
+            IWebElement element()
             {
-                pages.Add(i);
+                return _vacancyHelper.RandomElementAt((x) => x.FindElements(VacancyStatus).FirstOrDefault()?.GetAttribute(AttributeHelper.InnerText) == "", VacancyTables, VacancyTitle, NextPage, NoOfPagesCssSelector);
             }
 
-            foreach (var page in pages)
-            {
-                var vacancies = _pageInteractionHelper.FindElements(VacancySection).ToList();
-
-                List<IWebElement> availableVacancies = vacancies.Where(x => x.GetAttribute(AttributeHelper.InnerText) == "").ToList();
-
-                foreach (var vacancy in availableVacancies)
-                {
-                    var availableVacancy = _pageInteractionHelper.FindElement(vacancy, VacancyStatus);
-
-                    if (availableVacancy.GetAttribute(AttributeHelper.InnerText) == "")
-                    {
-                        _formCompletionHelper.ClickElement(() =>
-                        {
-                            var element = _pageInteractionHelper.FindElement(vacancy, VacancyLink);
-                            _dataHelper.VacancyTitle = element.Text;
-                            return element;
-                        });
-
-                        return true;
-                    }
-                }
-                if (_pageInteractionHelper.IsElementDisplayed(NoOfPagesCssSelector))
-                {
-                    _formCompletionHelper.Click(NoOfPagesCssSelector);
-                }
-            }
+            _formCompletionHelper.RetryClickOnException(element);
 
             return false;
-        }
-
-
-        private int NoOfPages()
-        {
-            int noOfPages = 1;
-
-            if (_pageInteractionHelper.IsElementDisplayed(NoOfPagesCounterCssSelector))
-            {
-                noOfPages = int.Parse(_pageInteractionHelper.GetText(NoOfPagesCounterCssSelector).Split("of")[1].Trim());
-            }
-
-            return noOfPages;
         }
     }
 }

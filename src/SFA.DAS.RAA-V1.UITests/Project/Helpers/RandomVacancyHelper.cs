@@ -20,7 +20,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
             _dataHelper = dataHelper;
         }
 
-        public IWebElement RandomElementAt(Func<string, bool> func, By VacancyTables, By VacancyTitle, By NextPage, By NoOfPagesCssSelector)
+        public IWebElement RandomElementAt(Func<IWebElement, bool> func, By VacancyTables, By VacancyTitle, By NextPage, By NoOfPagesCssSelector)
         {
             IWebElement randomElement = null;
 
@@ -30,7 +30,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
 
             for (int i = 1; i < noOfPages; i++)
             {
-                List<IWebElement> filteredRows = _pageInteractionHelper.FindElements(VacancyTables).ToList().Where(x => func(x.Text)).ToList();
+                List<IWebElement> filteredRows = _pageInteractionHelper.FindElements(VacancyTables).ToList().Where(x => func(x)).ToList();
 
                 if (filteredRows.Count == 0)
                 {

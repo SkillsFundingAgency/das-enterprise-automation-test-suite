@@ -41,6 +41,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
             _objectContext = context.Get<ObjectContext>();
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _regexHelper = context.Get<RegexHelper>();
+            _vacancyHelper = context.Get<RandomVacancyHelper>();
         }
 
         public RAA_SearchCandidatesPage SearchCandidates()
@@ -79,7 +80,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
 
             IWebElement element()
             {
-                var randomElement = RandomElementAt((str) => !str.Contains("(Applications managed externally)"));
+                var randomElement = RandomElementAt((str) => !str.Text.Contains("(Applications managed externally)"));
                 return _pageInteractionHelper.FindElements(randomElement, CloneLink).LastOrDefault();
             }
 
@@ -177,8 +178,11 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
             {
                 string[] shouldNotContain = new string[] { "(Applications managed externally)", $"_{dataHelper.VacancyTitleDateElement}_" };
 
-                var randomElement = RandomElementAt((str) => shouldNotContain.Any(x => !str.Contains(x)) 
-                && str.Contains($"{applications}\r\napplication") && (additionalFilter == null ? true : str.Contains(additionalFilter)) && _regexHelper.CheckVacancyTitle(str));
+                var randomElement = RandomElementAt((e) =>
+                {
+                    var str = e.Text;
+                    return shouldNotContain.Any(x => !str.Contains(x)) && str.Contains($"{applications}\r\napplication") && (additionalFilter == null ? true : str.Contains(additionalFilter)) && _regexHelper.CheckVacancyTitle(str);
+                });
 
                 return _pageInteractionHelper.FindElement(randomElement, VacancyTitle);
             }
@@ -188,7 +192,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
             return this;
         }
 
-        private IWebElement RandomElementAt(Func<string, bool> func)
+        private IWebElement RandomElementAt(Func<IWebElement, bool> func)
         {
             return _vacancyHelper.RandomElementAt(func, VacancyTables, VacancyTitle, NextPage, NoOfPagesCssSelector);
         }
