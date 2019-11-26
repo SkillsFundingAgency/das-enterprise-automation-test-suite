@@ -36,7 +36,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
             formCompletionHelper.ClickElement(() => 
             {
                 var randomAddress = _pageInteractionHelper.FindElements(PostCodeResult);
-                return _raadataHelper.Address(randomAddress);
+                return _raadataHelper.RandomElement(randomAddress);
             });
             
             return this;

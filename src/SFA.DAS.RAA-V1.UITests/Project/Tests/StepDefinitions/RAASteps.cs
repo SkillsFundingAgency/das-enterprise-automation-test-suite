@@ -168,13 +168,19 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
         [When(@"an offline Vacancy details are filled out for a Traineeship for a different '(.*)'")]
         public void WhenAnOfflineVacancyDetailsAreFilledOutForATraineeshipForADifferent(string location)
         {
-            _raaStepsHelper.ProviderFillsOutTraineeshipDetails(location, "Offline");
+            _raaStepsHelper.ProviderFillsOutTraineeshipDetails(location, "Yes", "Offline");
         }
 
         [When(@"the Vacancy details are filled out for a Traineeship for a different '(.*)'")]
         public void WhenTheVacancyDetailsAreFilledOutForATraineeshipForADifferent(string location)
         {
             _raaStepsHelper.ProviderFillsOutTraineeshipDetails(location);
+        }
+
+        [When(@"the Vacancy details are filled out with Disability Confident as No for a Traineeship for a different '(.*)'")]
+        public void WhenTheVacancyDetailsAreFilledOutWithDisabilityConfidentAsNoForATraineeshipForADifferent(string location)
+        {
+            _raaStepsHelper.ProviderFillsOutTraineeshipDetails(location, "No");
         }
 
         [Given(@"the Provider initiates Create Apprenticeship Vacancy in Recruit")]

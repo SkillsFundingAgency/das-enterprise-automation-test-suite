@@ -42,6 +42,12 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
             _regexHelper = context.Get<RegexHelper>();
         }
 
+        public RAA_SearchCandidatesPage SearchCandidates()
+        {
+            formCompletionHelper.ClickLinkByText("Search candidates");
+            return new RAA_SearchCandidatesPage(_context);
+        }
+
         public RAA_AdministratorFunctionsPage AdministratorFunctions()
         {
             NavigateToAdmin();
@@ -187,19 +193,12 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
 
             int randomNumber = 0;
 
-            int noOfPages = 1;
-
-            if (_pageInteractionHelper.IsElementDisplayed(NoOfPagesCssSelector))
-            {
-                noOfPages = int.Parse(_pageInteractionHelper.GetText(NoOfPagesCssSelector).Split("of")[1].Trim());
-            }
+            int noOfPages = NoOfPages();
 
             for (int i = 1; i < noOfPages; i++)
             {
-                List<IWebElement> tablerows() => _pageInteractionHelper.FindElements(VacancyTables).ToList();
+                List<IWebElement> filteredRows = _pageInteractionHelper.FindElements(VacancyTables).ToList().Where(x => func(x.Text)).ToList();
 
-                List<IWebElement> filteredRows = tablerows().Where(x => func(x.Text)).ToList();
-                
                 if (filteredRows.Count == 0)
                 {
                     if (_pageInteractionHelper.IsElementDisplayed(NextPage))
@@ -208,7 +207,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
                         int currentPage = i + 1;
                         if (currentPage < noOfPages)
                         {
-                            _pageInteractionHelper.WaitForElementToChange(NextPage, $"{currentPage} of {noOfPages}");
+                            _pageInteractionHelper.WaitForElementToChange(NextPage, AttributeHelper.InnerText, $"{currentPage + 1} of {noOfPages}");
                         }
                     }
                     continue; 
@@ -222,7 +221,20 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
 
                 break;
             }
+
             return randomElement;
+        }
+
+        private int NoOfPages()
+        {
+            int noOfPages = 1;
+
+            if (_pageInteractionHelper.IsElementDisplayed(NoOfPagesCssSelector))
+            {
+                noOfPages = int.Parse(_pageInteractionHelper.GetText(NoOfPagesCssSelector).Split("of")[1].Trim());
+            }
+
+            return noOfPages;
         }
     }
 }

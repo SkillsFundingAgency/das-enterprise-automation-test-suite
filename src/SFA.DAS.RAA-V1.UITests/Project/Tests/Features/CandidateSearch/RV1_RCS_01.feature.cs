@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Features.ApplicationAnonymousView
+namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Features.CandidateSearch
 {
     using TechTalk.SpecFlow;
     
@@ -18,20 +18,20 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Features.ApplicationAnonymousView
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.0.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("RV1_AAV_01")]
-    public partial class RV1_AAV_01Feature
+    [NUnit.Framework.DescriptionAttribute("RV1_RCS_01")]
+    public partial class RV1_RCS_01Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "RV1_AAV_01.feature"
+#line 1 "RV1_RCS_01.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "RV1_AAV_01", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "RV1_RCS_01", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -70,39 +70,19 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Features.ApplicationAnonymousView
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RV1_AAV_01 - Checking Anonymous View of an Apprenticeship Vacancy Application")]
+        [NUnit.Framework.DescriptionAttribute("RV1_RCS_01 - Search for a Candidate in Recruit")]
         [NUnit.Framework.CategoryAttribute("raa-v1")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("apprenticeshipvacancy")]
-        public virtual void RV1_AAV_01_CheckingAnonymousViewOfAnApprenticeshipVacancyApplication()
+        public virtual void RV1_RCS_01_SearchForACandidateInRecruit()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV1_AAV_01 - Checking Anonymous View of an Apprenticeship Vacancy Application", null, new string[] {
-                        "raa-v1",
-                        "regression",
-                        "apprenticeshipvacancy"});
-#line 7
-this.ScenarioInitialize(scenarioInfo);
-            this.ScenarioStart();
-#line 8
-testRunner.Then("the provider can view the application anonymously", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-            this.ScenarioCleanup();
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RV1_AAV_02 - Checking Anonymous View of an Traineeship Vacancy Application")]
-        [NUnit.Framework.CategoryAttribute("raa-v1")]
-        [NUnit.Framework.CategoryAttribute("regression")]
-        public virtual void RV1_AAV_02_CheckingAnonymousViewOfAnTraineeshipVacancyApplication()
-        {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV1_AAV_02 - Checking Anonymous View of an Traineeship Vacancy Application", null, new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV1_RCS_01 - Search for a Candidate in Recruit", null, new string[] {
                         "raa-v1",
                         "regression"});
-#line 13
+#line 6
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 14
-testRunner.Then("the provider can view the application anonymously", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 7
+testRunner.Then("the Provider is able to search and select a Candidate", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

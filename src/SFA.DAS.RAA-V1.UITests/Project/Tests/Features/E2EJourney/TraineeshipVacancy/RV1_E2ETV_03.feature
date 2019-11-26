@@ -7,7 +7,7 @@ Scenario Outline: RV1_E2ETV_03 - Create, Approve and Apply for a Traineeship Vac
 	Given the Provider initiates Create Apprenticeship Vacancy in Recruit
 	When the Provider chooses the employer '<location>','2'
 	And the Provider chooses their 'Yes'
-	And the Vacancy details are filled out for a Traineeship for a different '<location>'
+	And the Vacancy details are filled out with Disability Confident as No for a Traineeship for a different '<location>'
 	Then Provider is able to submit the vacancy for approval
 	When the Reviewer initiates reviewing the Vacancy in Manage
 	Then the Reviewer is able to approve the Vacancy '<Changeteam>','<ChangeRole>'
