@@ -5,7 +5,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
 {
     public class RandomDataGenerator
     {
-        private const string Alphabets = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        private const string Alphabets = LowerCaseAlphabets + UpperCaseAlphabets;
         private const string LowerCaseAlphabets = "abcdefghijklmnopqrstuvwxyz";
         private const string UpperCaseAlphabets = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         private const string Numbers = "0123456789";
@@ -31,12 +31,12 @@ namespace SFA.DAS.UI.FrameworkHelpers
             return GenerateRandomString(Alphabets + Numbers + SpecialChars, length);
         }
 
-        public string GenerateRandomAlphanumericStringForPassword(int NoOfUppercaseLetters, int NoOfLowerCaseLetters, int NoOfNumbers, int NoOfSpecialChars)
+        public string GenerateRandomPassword(int noOfUppercaseLetters, int noOfLowerCaseLetters, int noOfNumbers, int noOfSpecialChars)
         {
-            var randomString = GenerateRandomString(LowerCaseAlphabets, NoOfUppercaseLetters);
-            randomString += GenerateRandomString(UpperCaseAlphabets, NoOfLowerCaseLetters);
-            randomString += GenerateRandomString(Numbers, NoOfNumbers);
-            randomString += GenerateRandomString(SpecialChars, NoOfSpecialChars);
+            var randomString = GenerateRandomString(LowerCaseAlphabets, noOfUppercaseLetters);
+            randomString += GenerateRandomString(UpperCaseAlphabets, noOfLowerCaseLetters);
+            randomString += GenerateRandomString(Numbers, noOfNumbers);
+            randomString += GenerateRandomString(SpecialChars, noOfSpecialChars);
             return randomString;
         }
 
