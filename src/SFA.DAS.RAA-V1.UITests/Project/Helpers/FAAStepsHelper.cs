@@ -12,7 +12,6 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
         private readonly RestartWebDriverHelper _helper;
         private readonly TabHelper _tabHelper;
         private readonly ObjectContext _objectContext;
-        private readonly TabHelper _tabHelper;
         private const string _applicationName = "FindApprenticeship";
 
         public FAAStepsHelper(ScenarioContext context)
@@ -22,7 +21,6 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
             _config = context.GetRAAV1Config<RAAV1Config>();
             _tabHelper = context.Get<TabHelper>();
             _helper = new RestartWebDriverHelper(context);
-            _tabHelper = context.Get<TabHelper>();
         }
 
         public void GoToFAA()
