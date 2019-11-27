@@ -71,14 +71,18 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Features.RecruitAdminFunctions
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("RV1_RAF_04 - Verify Transfer Vacancies on Admin Functions")]
+        [NUnit.Framework.CategoryAttribute("raa-v1")]
+        [NUnit.Framework.CategoryAttribute("regression")]
         public virtual void RV1_RAF_04_VerifyTransferVacanciesOnAdminFunctions()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV1_RAF_04 - Verify Transfer Vacancies on Admin Functions", null, ((string[])(null)));
-#line 3
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV1_RAF_04 - Verify Transfer Vacancies on Admin Functions", null, new string[] {
+                        "raa-v1",
+                        "regression"});
+#line 5
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 4
-testRunner.Then("the provider can reach Transfer Vacancies", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 6
+ testRunner.Then("the provider can reach Transfer Vacancies", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

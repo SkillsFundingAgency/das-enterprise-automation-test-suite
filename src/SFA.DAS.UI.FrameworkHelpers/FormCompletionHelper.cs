@@ -144,6 +144,11 @@ namespace SFA.DAS.UI.FrameworkHelpers
            ClickElement(() => GetElementByText(locator, text));
         }
 
+        public void ClickLinkByText(By locator, string text)
+        {
+            ClickElementByText(locator, text);
+        }
+
         public void ClickLinkByText(string text)
         {
             ClickElementByText(LinkCssSelector, text);

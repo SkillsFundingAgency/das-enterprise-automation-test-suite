@@ -38,7 +38,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.Manage
 
         protected void TodayVacancy()
         {
-            formCompletionHelper.ClickElement(() => pageInteractionHelper.GetLink(VacancyFilters, "Today"));
+            formCompletionHelper.ClickLinkByText(VacancyFilters, "Today");
         }
 
         private bool AretherAnyVacancyToday()

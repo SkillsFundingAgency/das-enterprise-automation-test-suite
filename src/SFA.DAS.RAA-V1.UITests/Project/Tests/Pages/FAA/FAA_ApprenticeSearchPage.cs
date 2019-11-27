@@ -6,7 +6,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.FAA
 {
-    public class FAA_ApprenticeSearchPage : BasePage
+    public class FAA_ApprenticeSearchPage : FAA_SearchVacancyPage
     {
         protected override string PageTitle => "Find an apprenticeship";
 
@@ -19,11 +19,13 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.FAA
 
         private By SearchField => By.Id("SearchField");
 
-        private By KeyWord => By.Id("Keywords");
+        protected By KeyWord => By.Id("Keywords");
 
-        private By Search => By.Id("search-button");
+        private By Location => By.Id("Location");
 
-        private By NoSearchResults => By.Id("search-no-results-title");
+        private By Distance => By.Id("loc-within");
+
+        private By ApprenticeshipLevel => By.Id("apprenticeship-level");
 
         public FAA_ApprenticeSearchPage(ScenarioContext context) : base(context)
         {
@@ -34,20 +36,31 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.FAA
             VerifyPage();
         }
 
-        public FAA_ApprenticeSummaryPage SearchByReferenceNumber()
+        public FAA_SearchResultsPage SearchForAVacancy(string jobTitle, string location, string distance, string apprenticeshipLevel, string disabilityConfident)
+        {
+            _formCompletionHelper.SelectFromDropDownByValue(SearchField, "JobTitle");
+            _formCompletionHelper.EnterText(KeyWord, jobTitle);
+            _formCompletionHelper.EnterText(Location, location);
+            _formCompletionHelper.SelectFromDropDownByText(Distance, distance);
+            _formCompletionHelper.SelectFromDropDownByText(ApprenticeshipLevel, apprenticeshipLevel);
+            if (disabilityConfident == "Yes")
+            {
+                _formCompletionHelper.SelectCheckBoxByText("Disability Confident");
+            }
+
+            _formCompletionHelper.Click(Search);
+            
+            _pageInteractionHelper.WaitforURLToChange("SearchField=JobTitle");
+
+            return new FAA_SearchResultsPage(_context);
+        }
+
+        public new FAA_ApprenticeSummaryPage SearchByReferenceNumber()
         {
             _formCompletionHelper.SelectFromDropDownByValue(SearchField, "ReferenceNumber");
             _formCompletionHelper.EnterText(KeyWord, _objectContext.GetVacancyReference());
             
-            _pageInteractionHelper.Verify(() => 
-            {
-                var elementDisplayed = _pageInteractionHelper.IsElementDisplayed(NoSearchResults);
-                if (elementDisplayed)
-                {
-                    throw new Exception($"Element verification failed: No Search result found for Vacancy {_objectContext.GetVacancyReference()}");
-                }
-                return elementDisplayed; 
-            }, () => _formCompletionHelper.Click(Search));
+            base.SearchByReferenceNumber();
 
             return new FAA_ApprenticeSummaryPage(_context);
         }

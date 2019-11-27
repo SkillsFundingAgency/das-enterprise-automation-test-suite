@@ -4,7 +4,6 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
 {
-
     [Binding]
     public class FAASteps
     {
@@ -19,7 +18,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
         [When(@"the Applicant apply for a Vacancy in FAA '(.*)','(.*)','(.*)'")]
         public void WhenTheApplicantApplyForAVacancyInFAA(string qualificationdetails, string workExperience, string trainingCourse)
         {
-            var homePage = _faaStepsHelper.GoToFAAHomePage();
+            var homePage = _faaStepsHelper.GoToFAAHomePage(true);
 
             var applicationFormPage = _faaStepsHelper.ApplyForVacancy(homePage);
 
@@ -29,7 +28,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
         [When(@"the Applicant withdraw the application")]
         public void WhenTheApplicantWithdrawTheApplication()
         {
-            var homePage = _faaStepsHelper.GoToFAAHomePage();
+            var homePage = _faaStepsHelper.GoToFAAHomePage(true);
 
             _faaStepsHelper.WithdrawVacancy(homePage);
         }
