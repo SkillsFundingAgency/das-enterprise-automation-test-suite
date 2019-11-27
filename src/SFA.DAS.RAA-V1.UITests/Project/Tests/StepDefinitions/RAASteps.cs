@@ -205,7 +205,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
         [When(@"the Provider fills out details based on WageType '(.*)','(.*)'")]
         public void WhenTheProviderFillsOutDetailsBasedOnWageType(string location, string wageType)
         {
-            _raaStepsHelper.ProviderFillsOutDetails(location, "Yes", "Online", "Standard", "25", "52", wageType);
+            _raaStepsHelper.ProviderFillsOutDetails(location, "Yes", "Online", "Standard", "42", "52", wageType);
         }
 
         [When(@"the Provider fills out details for an Offline Vacancy '(.*)','(.*)','(.*)','(.*)','(.*)','(.*)'")]
