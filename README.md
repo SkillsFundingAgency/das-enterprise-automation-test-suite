@@ -5,8 +5,9 @@
 This is a SpecFlow-Selenium functional testing framework created using Selenium WebDriver with NUnit and C# in SpecFlow BDD methodology and Page Object Pattern.
 
 ## Prerequisites to run the application:
-1. Visual Studio
-2. Browsers (Chrome, Firefox, IE)
+1. Visual Studio (2017 with V15.9 or higher). Please check and upgrade your IDE if this is not the case.
+2. Download appropriate 'Dot Net Core 2.2' version matching Visual Studio version. NOTE: If you have been using .NET Framework so far, you might not have this installed in your computer at the moment. 
+3. Browsers (Chrome, Firefox, IE)
 
 ## Set Up:
 All other dependencies (ex: Selenium, drivers etc) are packaged within the solution using NuGet package manager. Once the solution is imported and built all the dependencies will be available within the solution.
@@ -15,8 +16,13 @@ Note: This framework is built with all standard libraries and ready to write new
 
 ## How to use User secrets
 1. Navigate to "%APPDATA%/Microsoft" Create Directory "UserSecrets" if you don't find it.
-2. Create a folder under "%APPDATA%/Microsoft/UserSecrets" folder in the format <ProjectName>_<EnvironmentName>_Secrets. You can get project name and environment name from appsettings.Environment.json project specific file
-3. Create a file "secrets.json" and replace only those values you want to keep it as secrets (copy the structure from appsettings.Project.json file)
+2. Create a folder under "%APPDATA%/Microsoft/UserSecrets" folder in the format <ProjectName>_<EnvironmentName>_Secrets. You can get project name and environment name from "appsettings.Environment.json" file under your respective project(s). f.i. For Registration project, you will see below data in "appsettings.Environment.json" file, so create the folder as "Registration_PP" (without the quotes)
+```json
+{
+  "local_EnvironmentName": "PP",
+  "ProjectName": "Registration"
+}```
+3. Create a file named "secrets.json" and replace only those values you want to keep it as secrets (copy the structure from "appsettings.Project.json" file under your respective project(s)).
 
 ## Automated SpecFlow Tests:
 Acceptance Tests must be written in Feature files (Project/Tests/Features/) using standard Gherkin language using Given, When, Then format with an associated step definition for each test step. Test steps in the scenarios explains the business conditions/behaviour and the associated step definition defines how the individual scenario steps should be automated.
@@ -30,20 +36,27 @@ Once the solution is imported and built, open Test Explorer window (Test->Window
 3. Select a particular scenario to Run/Debug
 
 ## To Execute tests in Local :
-1. To execute tests in your local, change the Browser value to "local" (will execute in chrome) or "chrome" or "googlechrome",  "firefox" or "mozillafirefox", "ie" or "internetexplorer" in ``secrets.json`` your project specific secret file (you can add the node if node does not exists).
+1. To execute tests in your local, change the Browser value to "local" (will execute in chrome) or "chrome" or "googlechrome",  "firefox" or "mozillafirefox", "ie" or "internetexplorer" in ``secrets.json`` in your project specific secrets file (you can add the below section into it if it does not exist already).
 2. To execute tests through Zap Proxy, change the Browser value to "zapProxyChrome"
 ```json
 "TestExecutionConfig": {
-    "Browser": "chrome"
+    "Browser": "local"
   }
 ```
 
 ## To Execute tests in Browserstack / Cloud :
-To execute tests in BrowserStack, change the Browser value to "browserstack" or "cloud" in ``secrets.json`` your project specific secret file (you can add the node if node does not exists)
+To execute tests in BrowserStack, change the Browser value to "browserstack" or "cloud" in ``secrets.json`` in your project specific secrets file (you can add the below section into it if it does not exist already)
 ```json
 "TestExecutionConfig": {
     "Browser": "cloud"
   }
+```
+To mention BrowserStack login details, create a folder by name "BrowserStackSecrets" (without the quotes) under "%APPDATA%/Microsoft/UserSecrets", create a file names "secrets.json" and add below section with your BrowserStack username and key (You can get the Access Key from BrowserStack application).
+```json
+{
+  "BrowserStackSetting:User": "XXX",
+  "BrowserStackSetting:Key": "XXX",
+}
 ```
 
 ## Running Tests from Command Prompt:
