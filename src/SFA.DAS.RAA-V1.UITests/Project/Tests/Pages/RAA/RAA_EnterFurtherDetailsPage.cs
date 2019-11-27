@@ -20,6 +20,10 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         private By VacancyDuration => By.Id("Duration");
         private By SaveAndContinueButton => By.Id("vacancySummaryButton");
         private By Heading => By.Id("heading");
+        private By FixedWageAmount => By.Id("Wage_Amount");
+        private By WageAmountLowerBound => By.Id("Wage_AmountLowerBound");
+        private By WageAmountUpperBound => By.Id("Wage_AmountUpperBound");
+        private By WageUnit => By.Id("Wage_Unit");
 
         public RAA_EnterFurtherDetailsPage(ScenarioContext context) : base(context)
         {
@@ -44,9 +48,54 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
             return this;
         }
 
-        public RAA_EnterFurtherDetailsPage ClickApprenticeshipMinimumWage()
+        public RAA_EnterFurtherDetailsPage Wage(string wagetype)
+        {
+            switch (wagetype)
+            {
+                case "National Minimum Wage":
+                    formCompletionHelper.SelectRadioOptionByText("National Minimum Wage");
+                    break;
+                case "Fixed Wage":
+                    FixedWage();
+                    break;
+                case "Wage Range":
+                    WageRange();
+                    break;
+                default:
+                    formCompletionHelper.SelectRadioOptionByText("National Minimum Wage for apprentices");
+                    break;
+            }
+            return this;
+        }
+
+        public RAA_EnterFurtherDetailsPage ApprenticeshipMinimumWage()
         {
             formCompletionHelper.SelectRadioOptionByText("National Minimum Wage for apprentices");
+            return this;
+        }
+
+        public RAA_EnterFurtherDetailsPage NationalMinimumWage()
+        {
+            formCompletionHelper.SelectRadioOptionByText("National Minimum Wage");
+            return this;            
+        }
+
+        public RAA_EnterFurtherDetailsPage FixedWage()
+        {
+            formCompletionHelper.SelectRadioOptionByText("Custom wage");
+            formCompletionHelper.SelectRadioOptionByText("Fixed wage");
+            formCompletionHelper.EnterText(FixedWageAmount, dataHelper.FixedWagePerWeek);
+            formCompletionHelper.SelectFromDropDownByValue(WageUnit, "Weekly");
+            return this;
+        }
+
+        public RAA_EnterFurtherDetailsPage WageRange()
+        {
+            formCompletionHelper.SelectRadioOptionByText("Custom wage");
+            formCompletionHelper.SelectRadioOptionByText("Wage range");
+            formCompletionHelper.EnterText(WageAmountLowerBound, dataHelper.CustomMinWagePerWeek);
+            formCompletionHelper.EnterText(WageAmountUpperBound, dataHelper.CustomMaxWagePerWeek);
+            formCompletionHelper.SelectFromDropDownByValue(WageUnit, "Weekly");
             return this;
         }
 
