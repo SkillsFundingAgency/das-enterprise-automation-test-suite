@@ -21,7 +21,8 @@ Note: This framework is built with all standard libraries and ready to write new
 {
   "local_EnvironmentName": "PP",
   "ProjectName": "Registration"
-}```
+}
+```
 3. Create a file named "secrets.json" and replace only those values you want to keep it as secrets (copy the structure from "appsettings.Project.json" file under your respective project(s)).
 
 ## Automated SpecFlow Tests:
