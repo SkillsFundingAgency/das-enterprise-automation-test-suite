@@ -39,8 +39,4 @@
     </None>
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Project\Tests\Features\ApprenticeshipVacancyWageOptions\" />
-  </ItemGroup>
-
 </Project>
