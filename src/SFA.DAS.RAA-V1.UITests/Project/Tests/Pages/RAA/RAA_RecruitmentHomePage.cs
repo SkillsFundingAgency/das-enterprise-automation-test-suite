@@ -144,7 +144,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
             formCompletionHelper.EnterText(VacancySearchText, _objectContext.GetVacancyReference());
             formCompletionHelper.ClickElement(() => _pageInteractionHelper.FindElement(SearchVacancy));
             _pageInteractionHelper.WaitForElementToChange(func, AttributeHelper.InnerText, "1");
-            formCompletionHelper.ClickElement(() => _pageInteractionHelper.GetLink(VacancyTitle, dataHelper.VacancyTitle));
+            formCompletionHelper.ClickLinkByText(VacancyTitle, dataHelper.VacancyTitle);
         }
 
         private void SearchByVacancyTitleContains(string filter)
@@ -156,7 +156,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
             var searchTerm = dataHelper.VacancyTitleDate.AddDays(-1).ToString("MMMyyyy");
             formCompletionHelper.EnterText(VacancySearchText, $"{searchTerm}_");
             formCompletionHelper.ClickElement(() => _pageInteractionHelper.FindElement(SearchVacancy));
-            formCompletionHelper.ClickElement(() => _pageInteractionHelper.GetLink(VacancyFilters, filter));
+            formCompletionHelper.ClickLinkByText(VacancyFilters, filter);
             _pageInteractionHelper.WaitforURLToChange($"FilterType={filtertype(filter)}");
         }
 
