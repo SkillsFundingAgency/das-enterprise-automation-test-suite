@@ -80,7 +80,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.FAA
 
             _vacancyHelper.RandomElementAt(func, VacancyTables, VacancyTitle, NextPage, NoOfPagesCssSelector);
 
-            if (string.IsNullOrEmpty(_dataHelper.VacancyTitle))
+            if (string.IsNullOrEmpty(_dataHelper.VacancyTitle) || !_pageInteractionHelper.IsElementDisplayed(ApplyButton))
             {
                 return false;
             }

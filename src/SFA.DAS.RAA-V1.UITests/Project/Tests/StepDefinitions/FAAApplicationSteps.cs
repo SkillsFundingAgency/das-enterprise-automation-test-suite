@@ -46,9 +46,12 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
                 .SearchForAVacancy(jobTitle, location, distance, apprenticeshipLevel, disabilityConfident);
         }
 
-        [Then(@"the applicant fills the application form '(.*)','(.*)' ,'(.*)'")]
-        public void ThenTheApplicantFillsTheApplicationForm(string qualificationDetails, string workExperience, string trainingCourse)
+        [Then(@"the applicant fills the application form '(.*)','(.*)','(.*)' when a qualified vacancy is found")]
+        public void ThenTheApplicantFillsTheApplicationFormWhenAnQualifiedVacancyIsFound(string qualificationDetails, string workExperience, string trainingCourse)
         {
+            //The test will apply only when the Apply button is displayed.
+            //The Apply scenario is already covered in E2E test scenarios, so its logical to skip apply functionality when qualified vacancy is not found.
+
             if (_searchResults.FoundVacancies())
             {
                 if (CanApply())
@@ -59,6 +62,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
                 }
             }
         }
+
         private bool CanApply()
         {
             if (_objectContext.IsApprenticeshipVacancyType())

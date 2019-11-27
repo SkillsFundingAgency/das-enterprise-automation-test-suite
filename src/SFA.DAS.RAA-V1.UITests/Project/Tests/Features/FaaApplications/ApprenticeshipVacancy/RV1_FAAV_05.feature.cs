@@ -90,7 +90,8 @@ testRunner.Given("the applicant is on the Find an Apprenticeship Page", ((string
 #line 8
 testRunner.When(string.Format("the applicant searches for the Vacancies \'{0}\',\'{1}\',\'{2}\',\'{3}\',\'{4}\'", jobTitle, location, distance, apprenticeshipLevel, disabilityConfident), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 9
-testRunner.Then(string.Format("the applicant fills the application form \'{0}\',\'{1}\' ,\'{2}\'", qualificationDetails, workExperience, trainingCourse), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+testRunner.Then(string.Format("the applicant fills the application form \'{0}\',\'{1}\',\'{2}\' when a qualified vacan" +
+                        "cy is found", qualificationDetails, workExperience, trainingCourse), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
