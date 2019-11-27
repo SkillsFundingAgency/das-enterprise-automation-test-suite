@@ -14,7 +14,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
     internal class EmployerStepsHelper
     {
         private ReviewYourCohortPage _reviewYourCohortPage;
-        private readonly ReviewYourCohortStepsHelper _reviewYourCohortStepsHelper;
+		private AddApprenticeDetailsPage _addApprenticeDetailsPage;
+		private readonly ReviewYourCohortStepsHelper _reviewYourCohortStepsHelper;
         private readonly MFEmployerStepsHelper _employerReservationStepsHelper;
         private readonly EmployerPortalLoginHelper _loginHelper;
         private readonly TabHelper _tabHelper;
@@ -147,7 +148,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
         internal ReviewYourCohortPage EmployerAddApprentice(int numberOfApprentices, bool isTransfersFunds)
         {
           var employerReviewYourCohortPage = ConfirmProviderDetailsAreCorrect(new ApprenticesHomePage(_context, true), isTransfersFunds)
-                .EmployerAddsApprentices();
+                .EmployerAddsApprentices().SubmitValidApprenticeDetails(false);
             return AddApprentices(employerReviewYourCohortPage, numberOfApprentices);
         }
 
@@ -188,10 +189,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 
         private ReviewYourCohortPage AddApprentices(ReviewYourCohortPage employerReviewYourCohortPage, int numberOfApprentices)
         {
-            int noOfApprentice = 0;
+            int noOfApprentice = 1;
             string apprenticeTotalCost = string.Empty;
 
-            for (int i = 1; i <= numberOfApprentices; i++)
+			for (int i = 1; i < numberOfApprentices; i++)
             {
                 var x = AddAnApprentice(employerReviewYourCohortPage, i);
                 noOfApprentice = x.noOfApprentice;

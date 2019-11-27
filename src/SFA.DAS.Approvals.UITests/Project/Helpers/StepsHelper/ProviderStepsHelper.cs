@@ -108,12 +108,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 
         public ProviderReviewYourCohortPage AddApprentice(int numberOfApprentices)
         {
-			var providerReviewYourCohortPage = _providerAddApprenticeDetailsPage.SubmitValidApprenticeDetails();
-			//var providerReviewYourCohortPage = CurrentCohortDetails();
-
-			int i =1;
-            while(i < numberOfApprentices)
-            {	i++;
+			var providerReviewYourCohortPage = CurrentCohortDetails();
+			
+            for(int i = 0; i < numberOfApprentices; i++)
+            {	
 				providerReviewYourCohortPage = providerReviewYourCohortPage.SelectAddAnApprentice()
                         .SubmitValidApprenticeDetails();
             }

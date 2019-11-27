@@ -30,7 +30,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         internal AddTrainingProviderDetailsPage SelectYesIWantToUseTransferFunds()
         {
-            _formCompletionHelper.SelectRadioOptionByForAttribute(CohortFundingOptions, "TransferConnection-GBGMDB");
+            _formCompletionHelper.SelectRadioOptionByText(CohortFundingOptions, "Yes, I will use transfer funds from ESFA LTD");
             _formCompletionHelper.ClickElement(ContinueButton);
             return new AddTrainingProviderDetailsPage(_context);
         }

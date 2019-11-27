@@ -31,7 +31,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         public StartAddingApprenticesPage ConfirmProviderDetailsAreCorrect()
         {
-            _formCompletionHelper.SelectRadioOptionByForAttribute(ConfirmProviderDetailsOptions, "UseThisProvider");
+            _formCompletionHelper.SelectRadioOptionByText(ConfirmProviderDetailsOptions, "Yes, use EDUC8 TRAINING (ENGLAND) LIMITED");
             _formCompletionHelper.ClickElement(ContinueButton);
             return new StartAddingApprenticesPage(_context);
         }
