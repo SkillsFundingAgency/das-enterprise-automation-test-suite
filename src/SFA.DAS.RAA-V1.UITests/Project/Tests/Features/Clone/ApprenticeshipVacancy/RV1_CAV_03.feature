@@ -1,5 +1,4 @@
 ﻿Feature: RV1_CAV_03
-
 A short summary of the feature
 
 @raa-v1
@@ -7,12 +6,12 @@ A short summary of the feature
 @regression
 @apprenticeshipvacancy
 Scenario Outline: RV1_CAV_03 - Clone an existing Live Apprenticeship Vacancy, Approve and Apply
-Given the Provider clones an existing vacancy
-Then Provider is able to submit the vacancy for approval
-Then the Reviewer approves the vacancy
-When the Applicant apply for a Vacancy in FAA '<QualificationDetails>','<WorkExperience>','<TrainingCourse>'
-Then the vacancy status should be Live in Recruit
+	Given the Provider clones an existing vacancy
+	Then Provider is able to submit the vacancy for approval
+	Then the Reviewer approves the vacancy
+	When the Applicant apply for a Vacancy in FAA '<QualificationDetails>','<WorkExperience>','<TrainingCourse>'
+	Then the vacancy status should be Live in Recruit
 
-Examples:
-| QualificationDetails | WorkExperience | TrainingCourse |
-| No                   | Yes            | No             |
+	Examples:
+		| QualificationDetails | WorkExperience | TrainingCourse |
+		| No                   | Yes            | No             |
