@@ -7,19 +7,16 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.FAA
 {
-    public class FAA_SearchResultsPage : FAA_ApprenticeSearchPage
+    public class FAA_SearchResultsPage : FAA_SearchVacancy
     {
         protected override string PageTitle => "Search results";
 
         #region Helpers and Context
         private readonly FormCompletionHelper _formCompletionHelper;
         private readonly PageInteractionHelper _pageInteractionHelper;
-        private readonly ScenarioContext _context;
         private readonly RAADataHelper _dataHelper;
         private RandomVacancyHelper _vacancyHelper;
         #endregion
-
-        private By NoSearchResults => By.Id("search-no-results-title");
 
         private By VacancyTables => By.CssSelector(".sfa-section-bordered");
 
@@ -36,16 +33,10 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.FAA
 
         public FAA_SearchResultsPage(ScenarioContext context) : base(context)
         {
-            _context = context;
             _formCompletionHelper = context.Get<FormCompletionHelper>();
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _dataHelper = context.Get<RAADataHelper>();
             VerifyPage();
-        }
-
-        public bool FoundVacancies()
-        {
-            return !_pageInteractionHelper.IsElementDisplayed(NoSearchResults);
         }
 
         public bool CanApplyTraineeship()

@@ -5,7 +5,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.FAA
 {
-    public class FAA_TraineeshipSearchPage : FAA_SearchByReferenceNumber
+    public class FAA_TraineeshipSearchPage : FAA_SearchVacancy
     {
         protected override string PageTitle => "Find a traineeship";
 

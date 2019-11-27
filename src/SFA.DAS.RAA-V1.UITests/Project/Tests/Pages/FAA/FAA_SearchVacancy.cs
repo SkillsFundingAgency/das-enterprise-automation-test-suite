@@ -6,21 +6,27 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.FAA
 {
-    public abstract class FAA_SearchByReferenceNumber : BasePage
+    public abstract class FAA_SearchVacancy : BasePage
     {
         #region Helpers and Context
         private readonly FormCompletionHelper _formCompletionHelper;
         private readonly PageInteractionHelper _pageInteractionHelper;
-        private readonly ScenarioContext _context;
         private readonly ObjectContext _objectContext;
         #endregion
 
         protected By NoSearchResults => By.Id("search-no-results-title");
         protected By Search => By.Id("search-button");
 
-        public FAA_SearchByReferenceNumber(ScenarioContext context) : base(context)
+        public FAA_SearchVacancy(ScenarioContext context) : base(context)
         {
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
+            _formCompletionHelper = context.Get<FormCompletionHelper>();
+            _objectContext = context.Get<ObjectContext>();
+        }
+
+        public bool FoundVacancies()
+        {
+            return !_pageInteractionHelper.IsElementDisplayed(NoSearchResults);
         }
 
         protected void SearchByReferenceNumber()
@@ -35,5 +41,6 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.FAA
                 return elementDisplayed;
             }, () => _formCompletionHelper.Click(Search));
         }
+
     }
 }
