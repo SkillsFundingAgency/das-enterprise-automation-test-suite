@@ -12,6 +12,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
         private readonly RestartWebDriverHelper _helper;
         private readonly TabHelper _tabHelper;
         private readonly ObjectContext _objectContext;
+        private readonly TabHelper _tabHelper;
         private const string _applicationName = "FindApprenticeship";
 
         public FAAStepsHelper(ScenarioContext context)
@@ -19,6 +20,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
             _context = context;
             _objectContext = context.Get<ObjectContext>();
             _config = context.GetRAAV1Config<RAAV1Config>();
+            _tabHelper = context.Get<TabHelper>();
             _helper = new RestartWebDriverHelper(context);
             _tabHelper = context.Get<TabHelper>();
         }
@@ -43,6 +45,20 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
             return new FAA_Indexpage(_context)
                 .GoToSignInPage()
                 .SubmitValidLoginDetails();
+        }
+
+        public FAA_CreateAnAccountPage StartFAAAccountCreation()
+        {
+            _tabHelper.GoToUrl(_config.FAABaseUrl);
+
+            return new FAA_Indexpage(_context)
+                .GoToSignInPage()
+                .ClickCreateAnAccountLink();
+        }
+
+        public void CreateFAAAccount(FAA_CreateAnAccountPage accountCreationPage)
+        {
+            accountCreationPage.SubmitAccountCreationDetails();
         }
 
         public void WithdrawVacancy(FAA_HomePage homePage)
@@ -71,7 +87,6 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
                         .SearchByReferenceNumber();
             }
         }
-
 
         public void ConfirmApplicationSubmission(FAA_ApplicationFormPage applicationFormPage, string qualificationdetails, string workExperience, string trainingCourse)
         {

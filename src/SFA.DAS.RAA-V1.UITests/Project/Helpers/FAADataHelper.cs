@@ -1,5 +1,7 @@
-﻿using SFA.DAS.UI.FrameworkHelpers;
+﻿using OpenQA.Selenium;
+using SFA.DAS.UI.FrameworkHelpers;
 using System;
+using System.Collections.Generic;
 
 namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
 {
@@ -31,7 +33,14 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
             AdditionalQuestions1 = _randomDataGenerator.GenerateRandomAlphabeticString(59);
             AdditionalQuestions2 = _randomDataGenerator.GenerateRandomAlphabeticString(59);
             InterviewSupport = _randomDataGenerator.GenerateRandomAlphabeticString(22);
-
+            FirstName = _randomDataGenerator.GenerateRandomAlphabeticString(5);
+            LastName = _randomDataGenerator.GenerateRandomAlphabeticString(10);
+            DOB_Day = _randomDataGenerator.GenerateRandomDateOfMonth();
+            DOB_Month = _randomDataGenerator.GenerateRandomMonth();
+            DOB_Year = _randomDataGenerator.GenerateRandomDobYear();
+            EmailId = _randomDataGenerator.GenerateRandomEmail();
+            PhoneNumber = _randomDataGenerator.GenerateRandomNumber(10);
+            Password = _randomDataGenerator.GenerateRandomPassword(4,4,1,1);
         }
 
         public string EducationSchoolOrCollege { get; }
@@ -42,7 +51,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
 
         public string QualificationYear { get; }
 
-        public string QualificationSubject{ get; }
+        public string QualificationSubject { get; }
 
         public string QualificationGrade { get; }
 
@@ -73,8 +82,31 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
         public string AdditionalQuestions1 { get; }
 
         public string AdditionalQuestions2 { get; }
-        
+
         public string InterviewSupport { get; }
+
+        public string FirstName { get; }
+
+        public string LastName { get; }
+
+        public int DOB_Day { get; }
+
+        public int DOB_Month { get; }
+
+        public int DOB_Year { get; }
+
+        public string EmailId { get; }
+
+        public string PhoneNumber { get; }
+
+        public string Password { get; }
+
+        public string PostCode => "CV1 2WT";
+
+        public IWebElement GetRandomElementFromListOfElements(List<IWebElement> WebElements)
+        {
+            var randomNumber = _randomDataGenerator.GenerateRandomNumberBetweenTwoValues(0, WebElements.Count - 1);
+            return WebElements[randomNumber];
+        }
     }
 }
-
