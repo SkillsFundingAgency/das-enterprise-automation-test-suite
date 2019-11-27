@@ -81,19 +81,19 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Features.Clone.ApprenticeshipVaca
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
             }
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV1_CAV_03 - Clone an existing Live Apprenticeship Vacancy, Approve and Apply", null, @__tags);
-#line 9
+#line 8
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
+#line 9
+ testRunner.Given("the Provider clones an existing vacancy", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 10
-testRunner.Given("the Provider clones an existing vacancy", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Then("Provider is able to submit the vacancy for approval", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 11
-testRunner.Then("Provider is able to submit the vacancy for approval", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the Reviewer approves the vacancy", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 12
-testRunner.Then("the Reviewer approves the vacancy", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.When(string.Format("the Applicant apply for a Vacancy in FAA \'{0}\',\'{1}\',\'{2}\'", qualificationDetails, workExperience, trainingCourse), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 13
-testRunner.When(string.Format("the Applicant apply for a Vacancy in FAA \'{0}\',\'{1}\',\'{2}\'", qualificationDetails, workExperience, trainingCourse), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 14
-testRunner.Then("the vacancy status should be Live in Recruit", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the vacancy status should be Live in Recruit", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -107,7 +107,7 @@ testRunner.Then("the vacancy status should be Live in Recruit", ((string)(null))
         [NUnit.Framework.CategoryAttribute("apprenticeshipvacancy")]
         public virtual void RV1_CAV_03_CloneAnExistingLiveApprenticeshipVacancyApproveAndApply_No()
         {
-#line 9
+#line 8
 this.RV1_CAV_03_CloneAnExistingLiveApprenticeshipVacancyApproveAndApply("No", "Yes", "No", ((string[])(null)));
 #line hidden
         }

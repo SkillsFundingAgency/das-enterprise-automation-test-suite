@@ -82,7 +82,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Features.RecruitLogin
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 6
-testRunner.Then("the provider should be able to submit the userId for password reset", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the provider should be able to submit the userId for password reset", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
