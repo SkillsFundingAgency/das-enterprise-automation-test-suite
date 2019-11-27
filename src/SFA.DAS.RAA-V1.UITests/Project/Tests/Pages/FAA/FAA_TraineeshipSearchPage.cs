@@ -5,7 +5,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.FAA
 {
-    public class FAA_TraineeshipSearchPage : BasePage
+    public class FAA_TraineeshipSearchPage : FAA_SearchByReferenceNumber
     {
         protected override string PageTitle => "Find a traineeship";
 
@@ -16,10 +16,8 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.FAA
         private readonly ObjectContext _objectContext;
         #endregion
 
-        
         private By Location => By.Id("Location");
         private By ReferenceNumber => By.Id("ReferenceNumber");
-        private By Search => By.Id("search-button");
         private By Distance => By.Id("loc-within");
 
         public FAA_TraineeshipSearchPage(ScenarioContext context) : base(context)
@@ -31,12 +29,12 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.FAA
             VerifyPage();
         }
 
-        public FAA_ApprenticeSummaryPage SearchByReferenceNumber()
+        public new FAA_ApprenticeSummaryPage SearchByReferenceNumber()
         {
             _formCompletionHelper.EnterText(Location, string.Empty);
             _formCompletionHelper.Click(Search);
             _formCompletionHelper.EnterText(ReferenceNumber, _objectContext.GetVacancyReference());
-            _formCompletionHelper.Click(Search);
+            base.SearchByReferenceNumber();
             return new FAA_ApprenticeSummaryPage(_context);
         }
 
@@ -58,7 +56,5 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.FAA
 
             return new FAA_SearchResultsPage(_context);
         }
-
-
     }
 }

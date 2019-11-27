@@ -6,7 +6,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.FAA
 {
-    public class FAA_ApprenticeSearchPage : BasePage
+    public class FAA_ApprenticeSearchPage : FAA_SearchByReferenceNumber
     {
         protected override string PageTitle => "Find an apprenticeship";
 
@@ -26,10 +26,6 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.FAA
         private By Distance => By.Id("loc-within");
 
         private By ApprenticeshipLevel => By.Id("apprenticeship-level");
-
-        protected By Search => By.Id("search-button");
-
-        private By NoSearchResults => By.Id("search-no-results-title");
 
         public FAA_ApprenticeSearchPage(ScenarioContext context) : base(context)
         {
@@ -59,24 +55,14 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.FAA
             return new FAA_SearchResultsPage(_context);
         }
 
-        public FAA_ApprenticeSummaryPage SearchByReferenceNumber()
+        public new FAA_ApprenticeSummaryPage SearchByReferenceNumber()
         {
             _formCompletionHelper.SelectFromDropDownByValue(SearchField, "ReferenceNumber");
             _formCompletionHelper.EnterText(KeyWord, _objectContext.GetVacancyReference());
             
-            _pageInteractionHelper.Verify(() => 
-            {
-                var elementDisplayed = _pageInteractionHelper.IsElementDisplayed(NoSearchResults);
-                if (elementDisplayed)
-                {
-                    throw new Exception($"Element verification failed: No Search result found for Vacancy {_objectContext.GetVacancyReference()}");
-                }
-                return elementDisplayed; 
-            }, () => _formCompletionHelper.Click(Search));
+            base.SearchByReferenceNumber();
 
             return new FAA_ApprenticeSummaryPage(_context);
         }
-
-
     }
 }
