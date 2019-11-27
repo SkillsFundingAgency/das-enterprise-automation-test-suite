@@ -111,34 +111,6 @@ testRunner.Then("Provider is able to submit the vacancy for approval", ((string)
 this.RV1_AVWO_01_PostApprenticeshipVacancyBasedOnLocationAndWage("Use the main employer address", "National Minimum Wage", "2", ((string[])(null)));
 #line hidden
         }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RV1_AVWO_01 - Post Apprenticeship Vacancy Based On Location and Wage: Add differe" +
-            "nt location")]
-        [NUnit.Framework.CategoryAttribute("raa-v1")]
-        [NUnit.Framework.CategoryAttribute("v1_e2e")]
-        [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("apprenticeshipvacancy")]
-        public virtual void RV1_AVWO_01_PostApprenticeshipVacancyBasedOnLocationAndWage_AddDifferentLocation()
-        {
-#line 8
-this.RV1_AVWO_01_PostApprenticeshipVacancyBasedOnLocationAndWage("Add different location", "Fixed wage", "3", ((string[])(null)));
-#line hidden
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RV1_AVWO_01 - Post Apprenticeship Vacancy Based On Location and Wage: Set as a na" +
-            "tionwide vacancy")]
-        [NUnit.Framework.CategoryAttribute("raa-v1")]
-        [NUnit.Framework.CategoryAttribute("v1_e2e")]
-        [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("apprenticeshipvacancy")]
-        public virtual void RV1_AVWO_01_PostApprenticeshipVacancyBasedOnLocationAndWage_SetAsANationwideVacancy()
-        {
-#line 8
-this.RV1_AVWO_01_PostApprenticeshipVacancyBasedOnLocationAndWage("Set as a nationwide vacancy", "Wage Range", "3", ((string[])(null)));
-#line hidden
-        }
     }
 }
 #pragma warning restore
