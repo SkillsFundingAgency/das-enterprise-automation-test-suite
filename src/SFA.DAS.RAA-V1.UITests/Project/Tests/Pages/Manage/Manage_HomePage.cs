@@ -31,6 +31,8 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.Manage
 
         private By NoOfVacancy => By.CssSelector(".bold-xlarge");
 
+        private By AdminLink => By.Id("adminLink");
+
         public Manage_HomePage(ScenarioContext context) : base(context)
         {
             _context = context;
@@ -124,5 +126,10 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.Manage
             ChangeFilter(ChangeTeam, InputChangeTeam, changeTeam);
         }
 
+        public Manage_AdminFunctionsPage ClickAdminLink()
+        {
+            formCompletionHelper.Click(AdminLink);
+            return new Manage_AdminFunctionsPage(_context);
+        }
     }
 }
