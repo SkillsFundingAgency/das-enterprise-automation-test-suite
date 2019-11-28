@@ -188,6 +188,8 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
 
             formCompletionHelper.RetryClickOnException(element);
 
+            dataHelper.VacancyTitle = _objectContext.GetVacancyTitle();
+
             return this;
         }
 
