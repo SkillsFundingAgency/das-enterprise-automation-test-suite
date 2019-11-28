@@ -1,4 +1,6 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.UI.Framework.TestSupport;
+using System;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.Manage
@@ -9,6 +11,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.Manage
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
+        private readonly ObjectContext _objectContext;
         #endregion
 
         private By ChangeTeam => By.CssSelector("#select2-chosen-2");
@@ -23,17 +26,16 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.Manage
 
         private By DateFilter => By.CssSelector(".bold-xsmall");
 
-        private By ApproveAndContinue => By.Name("VacancyQAAction");
-        
-        private By NoResults => By.XPath("//td[@colspan='6'][contains(.,'No results')]");
-
         private By VacancyFilters => By.CssSelector(".column-one-quarter .bold-xsmall");
 
         private By NoOfVacancy => By.CssSelector(".bold-xlarge");
 
+        private By VacancyReviewLink() => By.CssSelector($"a[href*='vacancyReferenceNumber={_objectContext.GetVacancyReference()}']");
+
         public Manage_HomePage(ScenarioContext context) : base(context)
         {
             _context = context;
+            _objectContext = context.Get<ObjectContext>();
         }
 
         public Manage_HelpdeskAdviserPage HelpdeskAdviser()
@@ -43,68 +45,38 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.Manage
             return new Manage_HelpdeskAdviserPage(_context);
         }
 
-        public Manage_EnterBasicVacancyDetailsPage EditOrCommentTitle()
-        {
-            EditOrComment("title");
-
-            return new Manage_EnterBasicVacancyDetailsPage(_context);
-        }
-        
-        public void ApproveAVacancy()
+        public Manage_VacancyPreviewPage ReviewAVacancy()
         {
             TodayVacancy();
 
-            if (AretherAnyVacancyToday() == true)
-            {
-                ReviewVacancy();
-                formCompletionHelper.Click(ApproveAndContinue);
-                SignOut();
-            }
-            else
-            {
-                pageInteractionHelper.GetText(NoResults);
-            }
-        }
+            formCompletionHelper.Click(VacancyReviewLink());
 
-        private void EditOrComment(string field)
-        {
-            TodayVacancy();
-
-            if (AretherAnyVacancyToday() == true)
-            {
-                ReviewVacancy();
-                formCompletionHelper.ClickElement(() => pageInteractionHelper.GetLinkByHref(field));
-            }
-            else
-            {
-                pageInteractionHelper.GetText(NoResults);
-            }
+            return new Manage_VacancyPreviewPage(_context);
         }
 
         private void TodayVacancy()
         {
-            ChangeToVacancyReviewer();
-
-            formCompletionHelper.ClickLinkByText(VacancyFilters, "Today");
-        }
-
-        private bool AretherAnyVacancyToday()
-        {
-            var filters = pageInteractionHelper.FindElements(Filters);
-            foreach (var filter in filters)
+            pageInteractionHelper.Verify(() =>
             {
-                var filterelement = filter.FindElement(DateFilter);
-                if (filterelement.Text == "Today")
-                {
-                    return filter.FindElement(NoOfVacancy).Text != "0";
-                }
-            }
-            return false;
-        }
+                ChangeToVacancyReviewer();
 
-        private void ReviewVacancy()
-        {
-            tableRowHelper.SelectRowFromTable("Review", raadataHelper.VacancyTitle);
+                formCompletionHelper.ClickLinkByText(VacancyFilters, "Today");
+
+                var filters = pageInteractionHelper.FindElements(Filters);
+                foreach (var filter in filters)
+                {
+                    var filterelement = filter.FindElement(DateFilter);
+                    if (filterelement.Text == "Today")
+                    {
+                        if (filter.FindElement(NoOfVacancy).Text == "0")
+                        {
+                            throw new Exception($"Element verification failed: There are no vacancy found today in Manage");
+                        }
+                    }
+                }
+
+                return true;
+            }, () => AgentHome());
         }
 
         private void ChangeFilter(By locator, By inputlocator, string changeTo)

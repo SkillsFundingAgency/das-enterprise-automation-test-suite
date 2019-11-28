@@ -8,7 +8,7 @@ Scenario Outline: RV1_RefTV_01 - Referring a Traineship Vacancy with comments
 	And the Provider chooses their 'Yes'
 	And the Vacancy details are filled out for a Traineeship for a different '<location>'
 	Then Provider is able to submit the vacancy for approval
-	And the Reviewer refer a vacancy with comments
+	When the Reviewer refer a vacancy with comments
 	Then the vacancy status should be Referred in Recruit
 
 	Examples:

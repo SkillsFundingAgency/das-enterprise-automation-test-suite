@@ -9,7 +9,7 @@ Scenario Outline: RV1_RefAV_01 - Referring an Apprenticeship Vacancy with commen
 	And the Provider chooses their '<anonymity>'
 	And the Provider fills out details for an Offline Vacancy '<location>','<DisabilityConfident>','<ApplicationMethod>','<ApprenticeshipType>','<HoursPerWeek>','<VacancyDuration>'
 	Then Provider is able to submit the vacancy for approval
-	And the Reviewer refer a vacancy with comments
+	When the Reviewer refer a vacancy with comments
 	Then the vacancy status should be Referred in Recruit
 
 	Examples:

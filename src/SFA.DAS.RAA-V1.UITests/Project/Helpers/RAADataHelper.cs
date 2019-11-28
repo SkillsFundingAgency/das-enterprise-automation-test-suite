@@ -20,7 +20,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
             EmployerWebsiteUrl = WebsiteUrl(EmployerDescription);
             VacancyTitleDate = DateTime.Now;
             VacancyTitleDateElement = VacancyTitleDate.ToString("ddMMMyyyy");
-            VacancyTitle = $"{_randomDataGenerator.GenerateRandomAlphabeticString(10)}_{VacancyTitleDateElement}_{VacancyTitleDate.ToString("HHmmss")}";
+            VacancyTitle = $"{_randomDataGenerator.GenerateRandomAlphabeticString(10)}_{VacancyTitleDateElement}_{VacancyTitleDate.ToString("HHmmssfffff")}";
             VacancyShortDescription = _randomDataGenerator.GenerateRandomAlphabeticString(15);
             VacancyDescription = _randomDataGenerator.GenerateRandomAlphabeticString(50);
             VacancyWebsiteUrl = WebsiteUrl(VacancyShortDescription);

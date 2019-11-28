@@ -193,7 +193,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
 
         private IWebElement RandomElementAt(Func<IWebElement, bool> func)
         {
-            _vacancyHelper = new RandomVacancyHelper(_pageInteractionHelper, formCompletionHelper, dataHelper);
+            _vacancyHelper = new RandomVacancyHelper(_pageInteractionHelper, formCompletionHelper, _objectContext);
 
             return _vacancyHelper.RandomElementAt(func, VacancyTables, VacancyTitle, NextPage, NoOfPagesCssSelector);
         }

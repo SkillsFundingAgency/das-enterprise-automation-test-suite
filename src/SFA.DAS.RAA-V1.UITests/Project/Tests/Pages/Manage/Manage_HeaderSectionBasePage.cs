@@ -16,7 +16,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.Manage
         protected readonly RAADataHelper raadataHelper;
         #endregion
 
-        private By ClickAgencyHome => By.Id("proposition-name");
+        private By AgencyHomeCss => By.Id("proposition-name");
         private By SignOutCss => By.Id("signout-link");
 
         public Manage_HeaderSectionBasePage(ScenarioContext context) : base(context)
@@ -30,9 +30,13 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.Manage
 
         protected void SignOut()
         {
-            formCompletionHelper.Click(ClickAgencyHome);
+            AgentHome();
             formCompletionHelper.Click(SignOutCss);
         }
 
+        protected void AgentHome()
+        {
+            formCompletionHelper.Click(AgencyHomeCss);
+        }
     }
 }

@@ -24,7 +24,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
         [Given(@"the reviewer logged in to the manage application")]
         public void GivenTheReviewerLoggedInToTheManageApplication()
         {
-            GoToManageHomePage(false);
+            _manage_HomePage = _manageStepsHelper.GoToManageHomePage(false);
         }
 
         [Given(@"switches the role to helpdesk adviser")]
@@ -48,17 +48,15 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
         [Then(@"the Reviewer approves the vacancy")]
         public void ThenTheReviewerApprovesTheVacancy()
         {
-            GoToManageHomePage(true);
-
-            _manage_HomePage.ApproveAVacancy();
+            _manageStepsHelper.ApproveAVacancy(true);
         }
 
         [When(@"the Reviewer refer a vacancy with comments")]
         public void WhenTheReviewerReferAVacancyWithComments()
         {
-            GoToManageHomePage(true);
+            _manage_HomePage = _manageStepsHelper.GoToManageHomePage(true);
 
-            _manage_EnterBasicVacancyDetailsPage = _manage_HomePage.EditOrCommentTitle();
+            _manage_EnterBasicVacancyDetailsPage = _manage_HomePage.ReviewAVacancy().EditOrCommentTitle();
 
             if (_objectContext.IsApprenticeshipVacancyType())
             {
@@ -72,11 +70,6 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
                 .AddTraineeshipTitleComments()
                 .ReferVacancy();
             }
-        }
-
-        private void GoToManageHomePage(bool restart)
-        {
-            _manage_HomePage = _manageStepsHelper.GoToManageHomePage(restart);
         }
     }
 }

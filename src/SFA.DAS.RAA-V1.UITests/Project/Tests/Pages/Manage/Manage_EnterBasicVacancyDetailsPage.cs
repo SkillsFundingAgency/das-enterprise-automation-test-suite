@@ -46,6 +46,5 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.Manage
             _formCompletionHelper.EnterText(TitleCommentTextArea, _managedataHelper.TitleComments);
             _formCompletionHelper.ClickButtonByText("Save");
         }
-
     }
 }

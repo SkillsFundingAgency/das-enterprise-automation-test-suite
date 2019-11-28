@@ -1,6 +1,7 @@
 ﻿using SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.Manage;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
+using System.Linq;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
@@ -21,6 +22,13 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
             _helper = new RestartWebDriverHelper(context);
             _tabHelper = context.Get<TabHelper>();
             _config = context.GetRAAV1Config<RAAV1Config>();
+        }
+
+        public void ApproveAVacancy(bool restart)
+        {
+            GoToManageHomePage(restart)
+            .ReviewAVacancy()
+            .ApproveAVacancy();
         }
        
         public Manage_HomePage GoToManageHomePage(bool restart)
