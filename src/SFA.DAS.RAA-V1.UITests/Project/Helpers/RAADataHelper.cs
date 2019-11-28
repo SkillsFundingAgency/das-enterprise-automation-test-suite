@@ -29,6 +29,9 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
             TrainingContactName = _randomDataGenerator.GenerateRandomAlphabeticString(5);
             TrainingEmail = $"{TrainingContactName}@lorem.com";
             WorkkingWeek = _randomDataGenerator.GenerateRandomAlphabeticString(15);
+            FixedWagePerWeek = _randomDataGenerator.GenerateRandomNumberBetweenTwoValues(300, 350).ToString();
+            CustomMinWagePerWeek = FixedWagePerWeek;
+            CustomMaxWagePerWeek = (int.Parse(FixedWagePerWeek) + _randomDataGenerator.GenerateRandomNumberBetweenTwoValues(50, 100)).ToString();
             VacancyClosing = DateTime.Today.AddMonths(2).AddDays(3);
             VacancyStart = VacancyClosing.AddMonths(1).AddDays(1);
             DesiredSkills = _randomDataGenerator.GenerateRandomAlphabeticString(18);
@@ -94,6 +97,12 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
         public string TrainingEmail { get; }
 
         public string WorkkingWeek { get; }
+
+        public string FixedWagePerWeek { get; }
+
+        public string CustomMinWagePerWeek { get; }
+
+        public string CustomMaxWagePerWeek { get; }
 
         public DateTime VacancyClosing { get; }
 

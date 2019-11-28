@@ -6,7 +6,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.FAA
 {
-    public abstract class FAA_SearchVacancyPage : BasePage
+    public abstract class FAA_SearchVacancyBasePage : BasePage
     {
         #region Helpers and Context
         private readonly FormCompletionHelper _formCompletionHelper;
@@ -17,7 +17,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.FAA
         protected By NoSearchResults => By.Id("search-no-results-title");
         protected By Search => By.Id("search-button");
 
-        public FAA_SearchVacancyPage(ScenarioContext context) : base(context)
+        public FAA_SearchVacancyBasePage(ScenarioContext context) : base(context)
         {
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();

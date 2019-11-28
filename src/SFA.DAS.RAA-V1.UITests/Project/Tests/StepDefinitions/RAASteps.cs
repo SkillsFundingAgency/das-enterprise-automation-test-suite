@@ -202,6 +202,12 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
             _raaStepsHelper.ChooseAnonymous(_raaEmployerInformation, answer);
         }
 
+        [When(@"the Provider fills out details based on WageType '(.*)','(.*)'")]
+        public void WhenTheProviderFillsOutDetailsBasedOnWageType(string location, string wageType)
+        {
+            _raaStepsHelper.ProviderFillsOutDetails(location, "Yes", "Online", "Standard", "42", "52", wageType);
+        }
+
         [When(@"the Provider fills out details for an Offline Vacancy '(.*)','(.*)','(.*)','(.*)','(.*)','(.*)'")]
         public void WhenTheProviderFillsOutDetailsForAnOfflineVacancy(string location, string disabilityConfident, string applicationMethod, string apprenticeShip, string hoursPerWeek, string vacancyDuration)
         {

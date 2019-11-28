@@ -112,7 +112,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
             EnterRequirementsAndExtraQuestions(requirementsAndProspects, applicationMethod);
         }
 
-        internal void ProviderFillsOutDetails(string location, string disabilityConfident, string applicationMethod, string apprenticeShip, string hoursPerWeek, string vacancyDuration)
+        internal void ProviderFillsOutDetails(string location, string disabilityConfident, string applicationMethod, string apprenticeShip, string hoursPerWeek, string vacancyDuration, string wagetype = null)
         {
             switch (location)
             {
@@ -133,7 +133,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
 
             var enterFurtherDetails = EnterTrainingDetails(enterTrainingDetails, apprenticeShip);
 
-            var requirementsAndProspects = EnterFurtherDetails(enterFurtherDetails, hoursPerWeek, vacancyDuration);
+            var requirementsAndProspects = EnterFurtherDetails(enterFurtherDetails, hoursPerWeek, vacancyDuration, wagetype);
 
             EnterRequirementsAndExtraQuestions(requirementsAndProspects, applicationMethod);
         }
@@ -208,12 +208,12 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
                    .SaveAndContinue();
         }
 
-        internal RAA_RequirementsAndProspectsPage EnterFurtherDetails(RAA_EnterFurtherDetailsPage enterFurtherDetails, string hoursPerWeek, string vacancyDuration)
+        internal RAA_RequirementsAndProspectsPage EnterFurtherDetails(RAA_EnterFurtherDetailsPage enterFurtherDetails, string hoursPerWeek, string vacancyDuration, string wagetype)
         {
             return enterFurtherDetails
                    .EnterWorkingInformation()
                    .EnterHoursPerWeek(hoursPerWeek)
-                   .ClickApprenticeshipMinimumWage()
+                   .Wage(wagetype)
                    .EnterVacancyDuration(vacancyDuration)
                    .EnterVacancyClosingDate()
                    .EnterPossibleStartDate()
