@@ -12,7 +12,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.Manage
         private readonly ScenarioContext _context;
         private readonly PageInteractionHelper _pageInteractionHelper;
         private readonly FormCompletionHelper _formCompletionHelper;
-        private readonly ManagedataHelper _dataHelper;
+        private readonly ManagedataHelper _managedataHelper;
         #endregion
 
         private By TitleComments => By.CssSelector("summary[aria-controls='details-content-0']");
@@ -24,7 +24,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.Manage
             _context = context;
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
-            _dataHelper = context.Get<ManagedataHelper>();
+            _managedataHelper = context.Get<ManagedataHelper>();
         }
 
         public Manage_VacanacyPreviewPage AddApprenticeshipTitleComments()
@@ -43,7 +43,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.Manage
         {
             _formCompletionHelper.Click(TitleComments);
             _pageInteractionHelper.WaitForElementToChange(TitleComments, AttributeHelper.AriaExpanded, "true");
-            _formCompletionHelper.EnterText(TitleCommentTextArea, _dataHelper.TitleComments);
+            _formCompletionHelper.EnterText(TitleCommentTextArea, _managedataHelper.TitleComments);
             _formCompletionHelper.ClickButtonByText("Save");
         }
 

@@ -13,7 +13,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.Manage
         protected readonly PageInteractionHelper pageInteractionHelper;
         protected readonly FormCompletionHelper formCompletionHelper;
         protected readonly TableRowHelper tableRowHelper;
-        protected readonly RAADataHelper dataHelper;
+        protected readonly RAADataHelper raadataHelper;
         #endregion
 
         private By ClickAgencyHome => By.Id("proposition-name");
@@ -24,7 +24,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.Manage
             pageInteractionHelper = context.Get<PageInteractionHelper>();
             formCompletionHelper = context.Get<FormCompletionHelper>();
             tableRowHelper = context.Get<TableRowHelper>();
-            dataHelper = context.Get<RAADataHelper>();
+            raadataHelper = context.Get<RAADataHelper>();
             VerifyPage();
         }
 

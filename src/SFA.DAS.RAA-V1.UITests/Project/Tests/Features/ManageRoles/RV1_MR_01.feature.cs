@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Features.FAAApplications.TraineeshipVacancy
+namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Features.ManageRoles
 {
     using TechTalk.SpecFlow;
     
@@ -18,24 +18,20 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Features.FAAApplications.Trainees
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.0.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("RV1_FATV_01")]
-    [NUnit.Framework.CategoryAttribute("raa-v1")]
-    [NUnit.Framework.CategoryAttribute("regression")]
-    public partial class RV1_FATV_01Feature
+    [NUnit.Framework.DescriptionAttribute("RV1_MR_01")]
+    public partial class RV1_MR_01Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "RV1_FATV_01.feature"
+#line 1 "RV1_MR_01.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "RV1_FATV_01", null, ProgrammingLanguage.CSharp, new string[] {
-                        "raa-v1",
-                        "regression"});
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "RV1_MR_01", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -73,30 +69,28 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Features.FAAApplications.Trainees
             testRunner.CollectScenarioErrors();
         }
         
-        public virtual void RV1_FATV_01ApplyForAnExistingTraineeshipVacancy(string location, string distance, string disabilityConfident, string qualificationDetails, string workExperience, string trainingCourse, string[] exampleTags)
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("RV1_MR_01 - Verify Manage Helpdesk adviser role functionality")]
+        [NUnit.Framework.CategoryAttribute("raa-v1")]
+        [NUnit.Framework.CategoryAttribute("regression")]
+        public virtual void RV1_MR_01_VerifyManageHelpdeskAdviserRoleFunctionality()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV1_FATV_01 Apply for an existing Traineeship Vacancy", null, exampleTags);
-#line 5
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV1_MR_01 - Verify Manage Helpdesk adviser role functionality", null, new string[] {
+                        "raa-v1",
+                        "regression"});
+#line 6
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 6
- testRunner.Given("the applicant is on the Find an Apprenticeship Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 7
- testRunner.When(string.Format("the applicant searches for a traineeship Vacancies \'{0}\',\'{1}\',\'{2}\'", location, distance, disabilityConfident), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+testRunner.Given("the reviewer logged in to the manage application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 8
- testRunner.Then(string.Format("the applicant fills the application form \'{0}\',\'{1}\',\'{2}\' when a qualified vacan" +
-                        "cy is found", qualificationDetails, workExperience, trainingCourse), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+testRunner.And("switches the role to helpdesk adviser", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 9
+testRunner.Then("the reviewer is able to search and select a candidate", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 10
+testRunner.And("view the candidate\'s applications", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RV1_FATV_01 Apply for an existing Traineeship Vacancy: CV1 2DY")]
-        public virtual void RV1_FATV_01ApplyForAnExistingTraineeshipVacancy_CV12DY()
-        {
-#line 5
-this.RV1_FATV_01ApplyForAnExistingTraineeshipVacancy("CV1 2DY", "10 miles", "No", "No", "No", "No", ((string[])(null)));
-#line hidden
         }
     }
 }

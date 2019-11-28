@@ -5,12 +5,12 @@ using System.Collections.Generic;
 
 namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
 {
-    public class RAADataHelper
+    public class RAADataHelper : RandomElementHelper
     {
         private readonly RandomDataGenerator _randomDataGenerator;
         private readonly RegexHelper _regexHelper;
 
-        public RAADataHelper(RandomDataGenerator randomDataGenerator, RegexHelper regexHelper)
+        public RAADataHelper(RandomDataGenerator randomDataGenerator, RegexHelper regexHelper) : base(randomDataGenerator)
         {
             _randomDataGenerator = randomDataGenerator;
             _regexHelper = regexHelper;
@@ -50,21 +50,12 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
 
         public IWebElement Employers(List<IWebElement> links)
         {
-            var randomEmployer = RandomElement(links);
+            var randomEmployer = GetRandomElementFromListOfElements(links);
 
             EmployerErn = _regexHelper.GetEmployerERN(randomEmployer.GetAttribute("href"));
 
             return randomEmployer;
         }
-
-        public IWebElement RandomElement(List<IWebElement> elements)
-        {
-            var randomNumber = _randomDataGenerator.GenerateRandomNumberBetweenTwoValues(0, elements.Count - 1);
-
-            return elements[randomNumber];
-        }
-
-        public int RandomVacancy(int upperBound) => _randomDataGenerator.GenerateRandomNumberBetweenTwoValues(0, upperBound - 1);
 
         public string EmployerDescription { get; }
 

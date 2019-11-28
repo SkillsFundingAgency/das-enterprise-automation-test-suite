@@ -36,23 +36,10 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.Manage
             _context = context;
         }
 
-        protected void TodayVacancy()
+        public Manage_HelpdeskAdviserPage HelpdeskAdviser()
         {
-            formCompletionHelper.ClickLinkByText(VacancyFilters, "Today");
-        }
-
-        private bool AretherAnyVacancyToday()
-        {
-            var filters = pageInteractionHelper.FindElements(Filters);
-            foreach (var filter in filters)
-            {
-                var filterelement = filter.FindElement(DateFilter);
-                if (filterelement.Text == "Today")
-                {
-                    return filter.FindElement(NoOfVacancy).Text != "0";
-                }
-            }
-            return false;
+            ChangeFilter(ChangeRole, InputChangeRole, "Helpdesk adviser");
+            return new Manage_HelpdeskAdviserPage(_context);
         }
 
         public Manage_EnterBasicVacancyDetailsPage EditOrCommentTitle(string changeTeam, string changeRole)
@@ -101,10 +88,28 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.Manage
                 pageInteractionHelper.GetText(NoResults);
             }
         }
+        protected void TodayVacancy()
+        {
+            formCompletionHelper.ClickLinkByText(VacancyFilters, "Today");
+        }
+
+        private bool AretherAnyVacancyToday()
+        {
+            var filters = pageInteractionHelper.FindElements(Filters);
+            foreach (var filter in filters)
+            {
+                var filterelement = filter.FindElement(DateFilter);
+                if (filterelement.Text == "Today")
+                {
+                    return filter.FindElement(NoOfVacancy).Text != "0";
+                }
+            }
+            return false;
+        }
 
         private void ReviewVacancy()
         {
-            tableRowHelper.SelectRowFromTable("Review", dataHelper.VacancyTitle);
+            tableRowHelper.SelectRowFromTable("Review", raadataHelper.VacancyTitle);
         }
 
         private void ChangeFilter(By locator, By inputlocator, string changeTo)
