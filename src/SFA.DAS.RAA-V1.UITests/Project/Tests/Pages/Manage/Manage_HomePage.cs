@@ -38,41 +38,18 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.Manage
 
         public Manage_HelpdeskAdviserPage HelpdeskAdviser()
         {
-            ChangeFilter(ChangeRole, InputChangeRole, "Helpdesk adviser");
+            ChangeToHelpdeskAdviser();
+
             return new Manage_HelpdeskAdviserPage(_context);
         }
 
-        public Manage_EnterBasicVacancyDetailsPage EditOrCommentTitle(string changeTeam, string changeRole)
+        public Manage_EnterBasicVacancyDetailsPage EditOrCommentTitle()
         {
-            ChangeFilters(changeTeam, changeRole);
-
             EditOrComment("title");
 
             return new Manage_EnterBasicVacancyDetailsPage(_context);
         }
         
-        public void ApproveAVacancy(string changeTeam, string changeRole)
-        {
-            ChangeFilters(changeTeam, changeRole);
-
-            ApproveAVacancy();
-        }
-
-        public void EditOrComment(string field)
-        {
-            TodayVacancy();
-
-            if (AretherAnyVacancyToday() == true)
-            {
-                ReviewVacancy();
-                formCompletionHelper.ClickElement(() => pageInteractionHelper.GetLinkByHref(field));
-            }
-            else
-            {
-                pageInteractionHelper.GetText(NoResults);
-            }
-        }
-
         public void ApproveAVacancy()
         {
             TodayVacancy();
@@ -88,8 +65,26 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.Manage
                 pageInteractionHelper.GetText(NoResults);
             }
         }
-        protected void TodayVacancy()
+
+        private void EditOrComment(string field)
         {
+            TodayVacancy();
+
+            if (AretherAnyVacancyToday() == true)
+            {
+                ReviewVacancy();
+                formCompletionHelper.ClickElement(() => pageInteractionHelper.GetLinkByHref(field));
+            }
+            else
+            {
+                pageInteractionHelper.GetText(NoResults);
+            }
+        }
+
+        private void TodayVacancy()
+        {
+            ChangeToVacancyReviewer();
+
             formCompletionHelper.ClickLinkByText(VacancyFilters, "Today");
         }
 
@@ -122,12 +117,16 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.Manage
             }
         }
 
-        private void ChangeFilters(string changeTeam, string changeRole)
+        private void ChangeToVacancyReviewer()
         {
-            ChangeFilter(ChangeRole, InputChangeRole, changeRole);
+            ChangeFilter(ChangeRole, InputChangeRole, "Vacancy reviewer");
 
-            ChangeFilter(ChangeTeam, InputChangeTeam, changeTeam);
+            ChangeFilter(ChangeTeam, InputChangeTeam, "West Midlands");
         }
 
+        private void ChangeToHelpdeskAdviser()
+        {
+            ChangeFilter(ChangeRole, InputChangeRole, "Helpdesk adviser");
+        }
     }
 }

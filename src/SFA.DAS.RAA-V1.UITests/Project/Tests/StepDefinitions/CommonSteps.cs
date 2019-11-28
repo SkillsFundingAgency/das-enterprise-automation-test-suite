@@ -74,7 +74,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
 
             var manage_HomePage = _manageStepsHelper.GoToManageHomePage(true);
 
-            manage_HomePage.ApproveAVacancy(dataset.Changeteam, dataset.ChangeRole);
+            manage_HomePage.ApproveAVacancy();
 
             var faa_homePage = _faaStepsHelper.GoToFAAHomePage(true);
 

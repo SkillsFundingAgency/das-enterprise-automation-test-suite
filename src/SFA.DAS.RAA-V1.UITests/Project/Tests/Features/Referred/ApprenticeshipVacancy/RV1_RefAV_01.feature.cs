@@ -69,7 +69,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Features.Referred.ApprenticeshipV
             testRunner.CollectScenarioErrors();
         }
         
-        public virtual void RV1_RefAV_01_ReferringAnApprenticeshipVacancyWithComments(string location, string anonymity, string disabilityConfident, string applicationMethod, string apprenticeshipType, string hoursPerWeek, string vacancyDuration, string changeteam, string changeRole, string noOfPositions, string[] exampleTags)
+        public virtual void RV1_RefAV_01_ReferringAnApprenticeshipVacancyWithComments(string location, string anonymity, string disabilityConfident, string applicationMethod, string apprenticeshipType, string hoursPerWeek, string vacancyDuration, string noOfPositions, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "raa-v1",
@@ -95,10 +95,8 @@ this.ScenarioInitialize(scenarioInfo);
 #line 11
  testRunner.Then("Provider is able to submit the vacancy for approval", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 12
- testRunner.When("the Reviewer initiates reviewing the Vacancy in Manage", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.And("the Reviewer refer a vacancy with comments", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 13
- testRunner.And(string.Format("the Reviewer refer a vacancy with comments \'{0}\',\'{1}\'", changeteam, changeRole), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 14
  testRunner.Then("the vacancy status should be Referred in Recruit", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -113,7 +111,7 @@ this.ScenarioInitialize(scenarioInfo);
         public virtual void RV1_RefAV_01_ReferringAnApprenticeshipVacancyWithComments_UseTheMainEmployerAddress()
         {
 #line 6
-this.RV1_RefAV_01_ReferringAnApprenticeshipVacancyWithComments("Use the main employer address", "No", "No", "Online", "Framework", "42", "52", "West Midlands", "Vacancy reviewer", "2", ((string[])(null)));
+this.RV1_RefAV_01_ReferringAnApprenticeshipVacancyWithComments("Use the main employer address", "No", "No", "Online", "Framework", "42", "52", "2", ((string[])(null)));
 #line hidden
         }
     }

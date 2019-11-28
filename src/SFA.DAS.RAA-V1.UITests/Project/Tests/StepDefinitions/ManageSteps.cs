@@ -24,7 +24,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
         [Given(@"the reviewer logged in to the manage application")]
         public void GivenTheReviewerLoggedInToTheManageApplication()
         {
-            _manage_HomePage = _manageStepsHelper.GoToManageHomePage(false);
+            GoToManageHomePage(false);
         }
 
         [Given(@"switches the role to helpdesk adviser")]
@@ -48,27 +48,17 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
         [Then(@"the Reviewer approves the vacancy")]
         public void ThenTheReviewerApprovesTheVacancy()
         {
-            _manage_HomePage = _manageStepsHelper.GoToManageHomePage(true);
+            GoToManageHomePage(true);
 
             _manage_HomePage.ApproveAVacancy();
         }
 
-        [When(@"the Reviewer initiates reviewing the Vacancy in Manage")]
-        public void WhenTheReviewerInitiatesReviewingTheVacancyInManage()
+        [When(@"the Reviewer refer a vacancy with comments")]
+        public void WhenTheReviewerReferAVacancyWithComments()
         {
-            _manage_HomePage = _manageStepsHelper.GoToManageHomePage(true);
-        }
+            GoToManageHomePage(true);
 
-        [Then(@"the Reviewer is able to approve the Vacancy '(.*)','(.*)'")]
-        public void ThenTheReviewerIsAbleToApproveTheVacancy(string changeTeam, string changeRole)
-        {
-            _manage_HomePage.ApproveAVacancy(changeTeam, changeRole);
-        }
-
-        [When(@"the Reviewer refer a vacancy with comments '(.*)','(.*)'")]
-        public void WhenTheReviewerReferAVacancyWithComments(string changeTeam, string changeRole)
-        {
-            _manage_EnterBasicVacancyDetailsPage = _manage_HomePage.EditOrCommentTitle(changeTeam, changeRole);
+            _manage_EnterBasicVacancyDetailsPage = _manage_HomePage.EditOrCommentTitle();
 
             if (_objectContext.IsApprenticeshipVacancyType())
             {
@@ -82,6 +72,11 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
                 .AddTraineeshipTitleComments()
                 .ReferVacancy();
             }
+        }
+
+        private void GoToManageHomePage(bool restart)
+        {
+            _manage_HomePage = _manageStepsHelper.GoToManageHomePage(restart);
         }
     }
 }

@@ -69,7 +69,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Features.Referred.TraineeshipVaca
             testRunner.CollectScenarioErrors();
         }
         
-        public virtual void RV1_RefTV_01_ReferringATraineshipVacancyWithComments(string location, string changeteam, string changeRole, string qualificationDetails, string workExperience, string trainingCourse, string[] exampleTags)
+        public virtual void RV1_RefTV_01_ReferringATraineshipVacancyWithComments(string location, string qualificationDetails, string workExperience, string trainingCourse, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "raa-v1",
@@ -93,10 +93,8 @@ this.ScenarioInitialize(scenarioInfo);
 #line 10
  testRunner.Then("Provider is able to submit the vacancy for approval", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 11
- testRunner.When("the Reviewer initiates reviewing the Vacancy in Manage", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.And("the Reviewer refer a vacancy with comments", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 12
- testRunner.And(string.Format("the Reviewer refer a vacancy with comments \'{0}\',\'{1}\'", changeteam, changeRole), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 13
  testRunner.Then("the vacancy status should be Referred in Recruit", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -110,7 +108,7 @@ this.ScenarioInitialize(scenarioInfo);
         public virtual void RV1_RefTV_01_ReferringATraineshipVacancyWithComments_SetAsANationwideVacancy()
         {
 #line 5
-this.RV1_RefTV_01_ReferringATraineshipVacancyWithComments("Set as a nationwide vacancy", "West Midlands", "Vacancy reviewer", "No", "No", "No", ((string[])(null)));
+this.RV1_RefTV_01_ReferringATraineshipVacancyWithComments("Set as a nationwide vacancy", "No", "No", "No", ((string[])(null)));
 #line hidden
         }
     }
