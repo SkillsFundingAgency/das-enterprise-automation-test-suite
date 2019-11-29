@@ -1,0 +1,15 @@
+{
+  "bindingCulture": {
+    "feature": "en-GB"
+  },
+  "language": {
+    "feature": "en-GB"
+  },
+  "stepAssemblies": [
+    { "assembly": "SFA.DAS.UI.Framework" },
+    { "assembly": "SFA.DAS.Registration.UITests" }
+  ],
+  "generator": {
+    "allowRowTests" : false
+  }
+}
