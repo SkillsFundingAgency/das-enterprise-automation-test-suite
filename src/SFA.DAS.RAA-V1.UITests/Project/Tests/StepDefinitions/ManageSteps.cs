@@ -79,7 +79,8 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
         [When(@"a Reviewer is on the Admin functions page")]
         public void WhenAReviewerIsOnTheAdminFunctionsPage()
         {
-            _manage_AdminFunctionsPage = _manageStepsHelper.GoToManageAdminFunctionsPage();
+            _manage_AdminFunctionsPage = _manageStepsHelper.GoToManageHomePage(false)
+                .NavigateToAdminFuntionsPage();
         }
 
         [Then(@"Reviewer is able to select '(.*)' link and view the page")]
