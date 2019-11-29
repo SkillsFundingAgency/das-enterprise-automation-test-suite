@@ -123,6 +123,5 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.Manage
 
             ChangeFilter(ChangeTeam, InputChangeTeam, changeTeam);
         }
-
     }
 }
