@@ -9,7 +9,6 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
     public class ManageStepsHelper
     {
         private readonly ScenarioContext _context;
-        private readonly ObjectContext _objectContext;
         private readonly RAAV1Config _config;
         private readonly RestartWebDriverHelper _helper;
         private readonly TabHelper _tabHelper;
@@ -18,7 +17,6 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
         public ManageStepsHelper(ScenarioContext context)
         {
             _context = context;
-            _objectContext = context.Get<ObjectContext>();
             _helper = new RestartWebDriverHelper(context);
             _tabHelper = context.Get<TabHelper>();
             _config = context.GetRAAV1Config<RAAV1Config>();
@@ -42,6 +40,19 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
                 GoToManageHomePage();
             }
 
+            return LoginToManageApplication();
+        }
+
+        public Manage_AdminFunctionsPage GoToManageAdminFunctionsPage()
+        {
+            _tabHelper.GoToUrl(_config.ManageBaseUrl);
+
+            var manage_HomePage = LoginToManageApplication();
+            return manage_HomePage.NavigateToAdminFuntionsPage();
+        }
+
+        private Manage_HomePage LoginToManageApplication()
+        {
             return new Manage_IndexPage(_context)
                .ClickAgencyButton()
                .ManageStaffIdams()

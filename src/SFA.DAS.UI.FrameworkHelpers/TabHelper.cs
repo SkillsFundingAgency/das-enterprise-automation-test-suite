@@ -1,5 +1,4 @@
 ﻿using OpenQA.Selenium;
-using System;
 using System.Linq;
 
 namespace SFA.DAS.UI.FrameworkHelpers
@@ -29,6 +28,11 @@ namespace SFA.DAS.UI.FrameworkHelpers
         public void GoToUrl(string url)
         {
             _webDriver.Navigate().GoToUrl(url);
+        }
+
+        public void NavigateBrowserBack()
+        {
+            _webDriver.Navigate().Back();
         }
     }
 }

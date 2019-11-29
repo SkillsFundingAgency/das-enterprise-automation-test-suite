@@ -14,13 +14,16 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.Manage
         protected readonly FormCompletionHelper formCompletionHelper;
         protected readonly TableRowHelper tableRowHelper;
         protected readonly RAADataHelper raadataHelper;
+        private readonly ScenarioContext _context;
         #endregion
 
         private By AgencyHomeCss => By.Id("proposition-name");
         private By SignOutCss => By.Id("signout-link");
+        private By AdminLink => By.Id("adminLink");
 
         public Manage_HeaderSectionBasePage(ScenarioContext context) : base(context)
         {
+            _context = context;
             pageInteractionHelper = context.Get<PageInteractionHelper>();
             formCompletionHelper = context.Get<FormCompletionHelper>();
             tableRowHelper = context.Get<TableRowHelper>();
@@ -37,6 +40,12 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.Manage
         protected void AgentHome()
         {
             formCompletionHelper.Click(AgencyHomeCss);
+        }
+        
+        public Manage_AdminFunctionsPage NavigateToAdminFuntionsPage()
+        {
+            formCompletionHelper.Click(AdminLink);
+            return new Manage_AdminFunctionsPage(_context);
         }
     }
 }
