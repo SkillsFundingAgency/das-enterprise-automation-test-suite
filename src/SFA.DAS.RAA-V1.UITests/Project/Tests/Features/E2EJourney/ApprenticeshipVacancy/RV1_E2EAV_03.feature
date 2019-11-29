@@ -10,11 +10,10 @@ Scenario Outline: RV1_E2EAV_03 - Create, Approve and Apply for a Apprenticeship 
 	And the Provider chooses their '<anonymity>'
 	And the Provider fills out details for an Offline Vacancy '<location>','<DisabilityConfident>','<ApplicationMethod>','<ApprenticeshipType>','<HoursPerWeek>','<VacancyDuration>'
 	Then Provider is able to submit the vacancy for approval
-	When the Reviewer initiates reviewing the Vacancy in Manage
-	Then the Reviewer is able to approve the Vacancy '<Changeteam>','<ChangeRole>'
+	Then the Reviewer approves the vacancy
 	When the Applicant apply for a Vacancy in FAA '<QualificationDetails>','<WorkExperience>','<TrainingCourse>'
 	Then the vacancy status should be Live in Recruit
 
 	Examples:
-		| location                      | anonymity | DisabilityConfident | ApplicationMethod | ApprenticeshipType | HoursPerWeek | VacancyDuration | Changeteam    | ChangeRole       | NoOfPositions | QualificationDetails | WorkExperience | TrainingCourse |
-		| Use the main employer address | No        | No                  | Online            | Framework          | 42           | 52              | West Midlands | Vacancy reviewer | 2             | Yes                  | Yes            | Yes            |
+		| location                      | anonymity | DisabilityConfident | ApplicationMethod | ApprenticeshipType | HoursPerWeek | VacancyDuration | NoOfPositions | QualificationDetails | WorkExperience | TrainingCourse |
+		| Use the main employer address | No        | No                  | Online            | Framework          | 42           | 52              | 2             | Yes                  | Yes            | Yes            |

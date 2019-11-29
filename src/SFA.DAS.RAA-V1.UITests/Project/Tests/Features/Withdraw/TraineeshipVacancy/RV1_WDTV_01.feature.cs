@@ -69,7 +69,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Features.Withdraw.TraineeshipVaca
             testRunner.CollectScenarioErrors();
         }
         
-        public virtual void RV1_WDTV_01_WithdrawTraineeshipVacancy(string location, string changeteam, string changeRole, string qualificationDetails, string workExperience, string trainingCourse, string[] exampleTags)
+        public virtual void RV1_WDTV_01_WithdrawTraineeshipVacancy(string location, string qualificationDetails, string workExperience, string trainingCourse, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "raa-v1",
@@ -86,16 +86,12 @@ this.ScenarioInitialize(scenarioInfo);
             TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
                         "location",
                         "anonymity",
-                        "Changeteam",
-                        "ChangeRole",
                         "QualificationDetails",
                         "WorkExperience",
                         "TrainingCourse"});
             table2.AddRow(new string[] {
                         string.Format("{0}", location),
                         "Yes",
-                        string.Format("{0}", changeteam),
-                        string.Format("{0}", changeRole),
                         string.Format("{0}", qualificationDetails),
                         string.Format("{0}", workExperience),
                         string.Format("{0}", trainingCourse)});
@@ -116,7 +112,7 @@ this.ScenarioInitialize(scenarioInfo);
         public virtual void RV1_WDTV_01_WithdrawTraineeshipVacancy_AddDifferentLocation()
         {
 #line 5
-this.RV1_WDTV_01_WithdrawTraineeshipVacancy("Add different location", "West Midlands", "Vacancy reviewer", "No", "No", "No", ((string[])(null)));
+this.RV1_WDTV_01_WithdrawTraineeshipVacancy("Add different location", "No", "No", "No", ((string[])(null)));
 #line hidden
         }
     }

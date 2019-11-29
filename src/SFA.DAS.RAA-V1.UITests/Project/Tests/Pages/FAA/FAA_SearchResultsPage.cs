@@ -1,5 +1,6 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.RAA_V1.UITests.Project.Helpers;
+using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using System;
 using System.Linq;
@@ -16,6 +17,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.FAA
         private readonly PageInteractionHelper _pageInteractionHelper;
         private readonly RAADataHelper _dataHelper;
         private RandomVacancyHelper _vacancyHelper;
+        private readonly ObjectContext _objectContext;
         #endregion
 
         private By VacancyTables => By.CssSelector(".sfa-section-bordered");
@@ -36,6 +38,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.FAA
             _formCompletionHelper = context.Get<FormCompletionHelper>();
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _dataHelper = context.Get<RAADataHelper>();
+            _objectContext = context.Get<ObjectContext>();
             VerifyPage();
         }
 
@@ -65,11 +68,11 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.FAA
 
         private bool CanApply(Func<IWebElement, bool> func)
         {
-            _vacancyHelper = new RandomVacancyHelper(_pageInteractionHelper, _formCompletionHelper, _dataHelper);
-
-            _dataHelper.VacancyTitle = string.Empty;
+            _vacancyHelper = new RandomVacancyHelper(_pageInteractionHelper, _formCompletionHelper, _objectContext);
 
             _vacancyHelper.RandomElementAt(func, VacancyTables, VacancyTitle, NextPage, NoOfPagesCssSelector);
+
+            _dataHelper.VacancyTitle = _objectContext.GetVacancyTitle();
 
             if (string.IsNullOrEmpty(_dataHelper.VacancyTitle) || !_pageInteractionHelper.IsElementDisplayed(ApplyButton))
             {

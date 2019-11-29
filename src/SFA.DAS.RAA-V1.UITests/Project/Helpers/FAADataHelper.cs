@@ -1,15 +1,13 @@
-﻿using OpenQA.Selenium;
-using SFA.DAS.UI.FrameworkHelpers;
+﻿using SFA.DAS.UI.FrameworkHelpers;
 using System;
-using System.Collections.Generic;
 
 namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
 {
-    public class FAADataHelper
+    public class FAADataHelper : RandomElementHelper
     {
         private readonly RandomDataGenerator _randomDataGenerator;
 
-        public FAADataHelper(RandomDataGenerator randomDataGenerator)
+        public FAADataHelper(RandomDataGenerator randomDataGenerator) : base(randomDataGenerator)
         {
             var datetime = DateTime.Now;
             _randomDataGenerator = randomDataGenerator;
@@ -103,10 +101,6 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
 
         public string PostCode => "CV1 2WT";
 
-        public IWebElement GetRandomElementFromListOfElements(List<IWebElement> WebElements)
-        {
-            var randomNumber = _randomDataGenerator.GenerateRandomNumberBetweenTwoValues(0, WebElements.Count - 1);
-            return WebElements[randomNumber];
-        }
+
     }
 }

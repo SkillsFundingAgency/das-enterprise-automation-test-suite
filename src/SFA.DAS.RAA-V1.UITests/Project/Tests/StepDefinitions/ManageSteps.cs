@@ -11,6 +11,8 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
     {
         private Manage_HomePage _manage_HomePage;
         private Manage_EnterBasicVacancyDetailsPage _manage_EnterBasicVacancyDetailsPage;
+        private Manage_HelpdeskAdviserPage manage_HelpdeskAdviserPage;
+        private Manage_SearchForACandidatePage manage_SearchForACandidatePage;
         private Manage_AdminFunctionsPage _manage_AdminFunctionsPage;
         private readonly ManageStepsHelper _manageStepsHelper;
         private readonly ObjectContext _objectContext;
@@ -23,29 +25,42 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
             _tabHelper = context.Get<TabHelper>();
         }
 
+        [Given(@"the reviewer logged in to the manage application")]
+        public void GivenTheReviewerLoggedInToTheManageApplication()
+        {
+            _manage_HomePage = _manageStepsHelper.GoToManageHomePage(false);
+        }
+
+        [Given(@"switches the role to helpdesk adviser")]
+        public void GivenSwitchesTheRoleToHelpdeskAdviser()
+        {
+            manage_HelpdeskAdviserPage = _manage_HomePage.HelpdeskAdviser();
+        }
+
+        [Then(@"the reviewer is able to search and select a candidate")]
+        public void ThenTheReviewerIsAbleToSearchAndSelectACandidate()
+        {
+            manage_SearchForACandidatePage = manage_HelpdeskAdviserPage.SearchForACandidate();
+        }
+
+        [Then(@"view the candidate's applications")]
+        public void ThenViewTheCandidatesApplications()
+        {
+            manage_SearchForACandidatePage.Search().ViewApplications();
+        }
+
         [Then(@"the Reviewer approves the vacancy")]
         public void ThenTheReviewerApprovesTheVacancy()
         {
-            _manage_HomePage = _manageStepsHelper.GoToManageHomePage();
-            _manage_HomePage.ApproveAVacancy();
+            _manageStepsHelper.ApproveAVacancy(true);
         }
 
-        [When(@"the Reviewer initiates reviewing the Vacancy in Manage")]
-        public void WhenTheReviewerInitiatesReviewingTheVacancyInManage()
+        [When(@"the Reviewer refer a vacancy with comments")]
+        public void WhenTheReviewerReferAVacancyWithComments()
         {
-            _manage_HomePage = _manageStepsHelper.GoToManageHomePage();
-        }
+            _manage_HomePage = _manageStepsHelper.GoToManageHomePage(true);
 
-        [Then(@"the Reviewer is able to approve the Vacancy '(.*)','(.*)'")]
-        public void ThenTheReviewerIsAbleToApproveTheVacancy(string changeTeam, string changeRole)
-        {
-            _manage_HomePage.ApproveAVacancy(changeTeam, changeRole);
-        }
-
-        [When(@"the Reviewer refer a vacancy with comments '(.*)','(.*)'")]
-        public void WhenTheReviewerReferAVacancyWithComments(string changeTeam, string changeRole)
-        {
-            _manage_EnterBasicVacancyDetailsPage = _manage_HomePage.EditOrCommentTitle(changeTeam, changeRole);
+            _manage_EnterBasicVacancyDetailsPage = _manage_HomePage.ReviewAVacancy().EditOrCommentTitle();
 
             if (_objectContext.IsApprenticeshipVacancyType())
             {
@@ -64,7 +79,8 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
         [When(@"a Reviewer is on the Admin functions page")]
         public void WhenAReviewerIsOnTheAdminFunctionsPage()
         {
-            _manage_AdminFunctionsPage = _manageStepsHelper.GoToManageAdminFunctionsPage();
+            _manage_AdminFunctionsPage = _manageStepsHelper.GoToManageHomePage(false)
+                .NavigateToAdminFuntionsPage();
         }
 
         [Then(@"Reviewer is able to select '(.*)' link and view the page")]

@@ -69,7 +69,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Features.E2EJourney.TraineeshipVa
             testRunner.CollectScenarioErrors();
         }
         
-        public virtual void RV1_E2ETV_03_CreateApproveAndApplyForATraineeshipVacancy(string location, string changeteam, string changeRole, string qualificationDetails, string workExperience, string trainingCourse, string[] exampleTags)
+        public virtual void RV1_E2ETV_03_CreateApproveAndApplyForATraineeshipVacancy(string location, string qualificationDetails, string workExperience, string trainingCourse, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "raa-v1",
@@ -95,12 +95,10 @@ this.ScenarioInitialize(scenarioInfo);
 #line 11
  testRunner.Then("Provider is able to submit the vacancy for approval", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 12
- testRunner.When("the Reviewer initiates reviewing the Vacancy in Manage", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.Then("the Reviewer approves the vacancy", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 13
- testRunner.Then(string.Format("the Reviewer is able to approve the Vacancy \'{0}\',\'{1}\'", changeteam, changeRole), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 14
  testRunner.When(string.Format("the Applicant apply for a Vacancy in FAA \'{0}\',\'{1}\',\'{2}\'", qualificationDetails, workExperience, trainingCourse), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 15
+#line 14
  testRunner.Then("the vacancy status should be Live in Recruit", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -115,7 +113,7 @@ this.ScenarioInitialize(scenarioInfo);
         public virtual void RV1_E2ETV_03_CreateApproveAndApplyForATraineeshipVacancy_UseTheMainEmployerAddress()
         {
 #line 6
-this.RV1_E2ETV_03_CreateApproveAndApplyForATraineeshipVacancy("Use the main employer address", "West Midlands", "Vacancy reviewer", "No", "No", "No", ((string[])(null)));
+this.RV1_E2ETV_03_CreateApproveAndApplyForATraineeshipVacancy("Use the main employer address", "No", "No", "No", ((string[])(null)));
 #line hidden
         }
     }

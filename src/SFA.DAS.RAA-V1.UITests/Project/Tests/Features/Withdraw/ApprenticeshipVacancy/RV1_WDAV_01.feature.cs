@@ -69,7 +69,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Features.Withdraw.ApprenticeshipV
             testRunner.CollectScenarioErrors();
         }
         
-        public virtual void RV1_WDAV_01_WithdrawApprenticeshipVacancy(string location, string anonymity, string disabilityConfident, string applicationMethod, string apprenticeshipType, string hoursPerWeek, string vacancyDuration, string changeteam, string changeRole, string noOfPositions, string qualificationDetails, string workExperience, string trainingCourse, string[] exampleTags)
+        public virtual void RV1_WDAV_01_WithdrawApprenticeshipVacancy(string location, string anonymity, string disabilityConfident, string applicationMethod, string apprenticeshipType, string hoursPerWeek, string vacancyDuration, string noOfPositions, string qualificationDetails, string workExperience, string trainingCourse, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "raa-v1",
@@ -92,8 +92,6 @@ this.ScenarioInitialize(scenarioInfo);
                         "ApprenticeshipType",
                         "HoursPerWeek",
                         "VacancyDuration",
-                        "Changeteam",
-                        "ChangeRole",
                         "NoOfPositions",
                         "QualificationDetails",
                         "WorkExperience",
@@ -106,8 +104,6 @@ this.ScenarioInitialize(scenarioInfo);
                         string.Format("{0}", apprenticeshipType),
                         string.Format("{0}", hoursPerWeek),
                         string.Format("{0}", vacancyDuration),
-                        string.Format("{0}", changeteam),
-                        string.Format("{0}", changeRole),
                         string.Format("{0}", noOfPositions),
                         string.Format("{0}", qualificationDetails),
                         string.Format("{0}", workExperience),
@@ -130,7 +126,7 @@ this.ScenarioInitialize(scenarioInfo);
         public virtual void RV1_WDAV_01_WithdrawApprenticeshipVacancy_SetAsANationwideVacancy()
         {
 #line 6
-this.RV1_WDAV_01_WithdrawApprenticeshipVacancy("Set as a nationwide vacancy", "Yes", "Yes", "Online", "Standard", "42", "52", "West Midlands", "Vacancy reviewer", "3", "Yes", "No", "No", ((string[])(null)));
+this.RV1_WDAV_01_WithdrawApprenticeshipVacancy("Set as a nationwide vacancy", "Yes", "Yes", "Online", "Standard", "42", "52", "3", "Yes", "No", "No", ((string[])(null)));
 #line hidden
         }
     }

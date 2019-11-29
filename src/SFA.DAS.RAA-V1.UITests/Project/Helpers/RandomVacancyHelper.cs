@@ -1,5 +1,6 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.RAA_V1.UITests.Project.Helpers;
+using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using System;
 using System.Collections.Generic;
@@ -11,13 +12,13 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
     {
         private readonly PageInteractionHelper _pageInteractionHelper;
         private readonly FormCompletionHelper _formCompletionHelper;
-        private readonly RAADataHelper _dataHelper;
+        private readonly ObjectContext _objectContext;
 
-        public RandomVacancyHelper(PageInteractionHelper pageInteractionHelper, FormCompletionHelper formCompletionHelper, RAADataHelper dataHelper)
+        public RandomVacancyHelper(PageInteractionHelper pageInteractionHelper, FormCompletionHelper formCompletionHelper, ObjectContext objectContext)
         {
             _pageInteractionHelper = pageInteractionHelper;
             _formCompletionHelper = formCompletionHelper;
-            _dataHelper = dataHelper;
+            _objectContext = objectContext;
         }
 
         public IWebElement RandomElementAt(Func<IWebElement, bool> func, By VacancyTables, By VacancyTitle, By NextPage, By NoOfPagesCssSelector)
@@ -50,7 +51,9 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
 
                 randomElement = filteredRows[randomNumber - 1];
 
-                _dataHelper.VacancyTitle = _pageInteractionHelper.GetText(randomElement.FindElement(VacancyTitle));
+                var vacTitle = _pageInteractionHelper.GetText(randomElement.FindElement(VacancyTitle));
+
+                _objectContext.SetVacancyTitle(vacTitle);
 
                 break;
             }

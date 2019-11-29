@@ -69,7 +69,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Features.E2EJourney.Apprenticeshi
             testRunner.CollectScenarioErrors();
         }
         
-        public virtual void RV1_E2EAV_01_CreateApproveAndApplyForAApprenticeshipVacancy(string location, string anonymity, string disabilityConfident, string applicationMethod, string apprenticeshipType, string hoursPerWeek, string vacancyDuration, string changeteam, string changeRole, string noOfPositions, string qualificationDetails, string workExperience, string trainingCourse, string[] exampleTags)
+        public virtual void RV1_E2EAV_01_CreateApproveAndApplyForAApprenticeshipVacancy(string location, string anonymity, string disabilityConfident, string applicationMethod, string apprenticeshipType, string hoursPerWeek, string vacancyDuration, string noOfPositions, string qualificationDetails, string workExperience, string trainingCourse, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "raa-v1",
@@ -96,12 +96,10 @@ this.ScenarioInitialize(scenarioInfo);
 #line 12
  testRunner.Then("Provider is able to submit the vacancy for approval", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 13
- testRunner.When("the Reviewer initiates reviewing the Vacancy in Manage", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.Then("the Reviewer approves the vacancy", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 14
- testRunner.Then(string.Format("the Reviewer is able to approve the Vacancy \'{0}\',\'{1}\'", changeteam, changeRole), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 15
  testRunner.When(string.Format("the Applicant apply for a Vacancy in FAA \'{0}\',\'{1}\',\'{2}\'", qualificationDetails, workExperience, trainingCourse), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 16
+#line 15
  testRunner.Then("the vacancy status should be Live in Recruit", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -117,7 +115,7 @@ this.ScenarioInitialize(scenarioInfo);
         public virtual void RV1_E2EAV_01_CreateApproveAndApplyForAApprenticeshipVacancy_AddDifferentLocation()
         {
 #line 7
-this.RV1_E2EAV_01_CreateApproveAndApplyForAApprenticeshipVacancy("Add different location", "Yes", "Yes", "Online", "Standard", "42", "52", "West Midlands", "Vacancy reviewer", "3", "No", "Yes", "No", ((string[])(null)));
+this.RV1_E2EAV_01_CreateApproveAndApplyForAApprenticeshipVacancy("Add different location", "Yes", "Yes", "Online", "Standard", "42", "52", "3", "No", "Yes", "No", ((string[])(null)));
 #line hidden
         }
     }

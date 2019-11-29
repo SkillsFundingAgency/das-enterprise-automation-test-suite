@@ -13,11 +13,11 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.Manage
         protected readonly PageInteractionHelper pageInteractionHelper;
         protected readonly FormCompletionHelper formCompletionHelper;
         protected readonly TableRowHelper tableRowHelper;
-        protected readonly RAADataHelper dataHelper;
+        protected readonly RAADataHelper raadataHelper;
         private readonly ScenarioContext _context;
         #endregion
 
-        private By ClickAgencyHome => By.Id("proposition-name");
+        private By AgencyHomeCss => By.Id("proposition-name");
         private By SignOutCss => By.Id("signout-link");
         private By AdminLink => By.Id("adminLink");
 
@@ -27,16 +27,21 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.Manage
             pageInteractionHelper = context.Get<PageInteractionHelper>();
             formCompletionHelper = context.Get<FormCompletionHelper>();
             tableRowHelper = context.Get<TableRowHelper>();
-            dataHelper = context.Get<RAADataHelper>();
+            raadataHelper = context.Get<RAADataHelper>();
             VerifyPage();
         }
 
         protected void SignOut()
         {
-            formCompletionHelper.Click(ClickAgencyHome);
+            AgentHome();
             formCompletionHelper.Click(SignOutCss);
         }
 
+        protected void AgentHome()
+        {
+            formCompletionHelper.Click(AgencyHomeCss);
+        }
+        
         public Manage_AdminFunctionsPage NavigateToAdminFuntionsPage()
         {
             formCompletionHelper.Click(AdminLink);
