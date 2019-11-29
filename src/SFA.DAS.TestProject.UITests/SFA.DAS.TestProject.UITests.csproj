@@ -63,7 +63,6 @@
     </SpecFlowFeatureFiles>
     <SpecFlowFeatureFiles Update="Project\Tests\Features\SampleFeatureFour.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>SampleFeatureFour.feature.cs</LastGenOutput>
     </SpecFlowFeatureFiles>
     <SpecFlowFeatureFiles Update="Project\Tests\Features\SampleFeatureOne.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
