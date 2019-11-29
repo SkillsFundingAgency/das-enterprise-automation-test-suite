@@ -19,6 +19,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
         private readonly PageInteractionHelper _pageInteractionHelper;
         private readonly FormCompletionHelper _formCompletionHelper;
         private readonly ScenarioContext _context;
+        private readonly TabHelper _tabHelper;
         #endregion
 
         #region Page Object Elements
@@ -35,11 +36,12 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
             _context = context;
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
+            _tabHelper = context.Get<TabHelper>();
         }
 
         public ManageApprenticeshipHomePage EmployerLogsIn()
         {
-            _pageInteractionHelper.IsElementDisplayed(_emailAddressField);
+            _tabHelper.SwitchToTheNewTab();
             _formCompletionHelper.EnterText(_emailAddressField,EmailAddress);
             _formCompletionHelper.EnterText(_passwordField,Password);
             _formCompletionHelper.ClickElement(_signInButton);
