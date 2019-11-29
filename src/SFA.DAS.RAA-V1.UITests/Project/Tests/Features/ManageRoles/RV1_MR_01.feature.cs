@@ -78,17 +78,17 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Features.ManageRoles
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV1_MR_01 - Verify Manage Helpdesk adviser role functionality", null, new string[] {
                         "raa-v1",
                         "regression"});
-#line 6
+#line 5
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
+#line 6
+ testRunner.Given("the reviewer logged in to the manage application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 7
-testRunner.Given("the reviewer logged in to the manage application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.And("switches the role to helpdesk adviser", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 8
-testRunner.And("switches the role to helpdesk adviser", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Then("the reviewer is able to search and select a candidate", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 9
-testRunner.Then("the reviewer is able to search and select a candidate", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 10
-testRunner.And("view the candidate\'s applications", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("view the candidate\'s applications", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
