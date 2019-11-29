@@ -32,8 +32,8 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
         {
             _tabHelper.GoToUrl(_config.ManageBaseUrl);
 
-            var manage_AdminFunctionsPage = LoginToManageApplication();
-            return manage_AdminFunctionsPage.ClickAdminLink();
+            var manage_HomePage = LoginToManageApplication();
+            return manage_HomePage.NavigateToAdminFuntionsPage();
         }
 
         private Manage_HomePage LoginToManageApplication()

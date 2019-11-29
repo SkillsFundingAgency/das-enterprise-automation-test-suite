@@ -11,7 +11,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
     {
         private Manage_HomePage _manage_HomePage;
         private Manage_EnterBasicVacancyDetailsPage _manage_EnterBasicVacancyDetailsPage;
-        Manage_AdminFunctionsPage manage_AdminFunctionsPage;
+        private Manage_AdminFunctionsPage _manage_AdminFunctionsPage;
         private readonly ManageStepsHelper _manageStepsHelper;
         private readonly ObjectContext _objectContext;
         private readonly TabHelper _tabHelper;
@@ -64,7 +64,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
         [When(@"a Reviewer is on the Admin functions page")]
         public void WhenAReviewerIsOnTheAdminFunctionsPage()
         {
-            manage_AdminFunctionsPage = _manageStepsHelper.GoToManageAdminFunctionsPage();
+            _manage_AdminFunctionsPage = _manageStepsHelper.GoToManageAdminFunctionsPage();
         }
 
         [Then(@"Reviewer is able to select '(.*)' link and view the page")]
@@ -73,25 +73,25 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
             switch (adminLink)
             {
                 case "Manage Providers":
-                    manage_AdminFunctionsPage.ClickManageProvidersLink();
+                    _manage_AdminFunctionsPage.ClickManageProvidersLink();
                     break;
                 case "Manage Provider Sites":
-                    manage_AdminFunctionsPage.ClickManageProviderSitesLink();
+                    _manage_AdminFunctionsPage.ClickManageProviderSitesLink();
                     break;
                 case "Manage API Users":
-                    manage_AdminFunctionsPage.ClickManageApiUsersLink();
+                    _manage_AdminFunctionsPage.ClickManageApiUsersLink();
                     break;
                 case "Manage Employers":
-                    manage_AdminFunctionsPage.ClickManageEmployersLink();
+                    _manage_AdminFunctionsPage.ClickManageEmployersLink();
                     break;
                 case "Sectors":
-                    manage_AdminFunctionsPage.ClickSectorsLink();
+                    _manage_AdminFunctionsPage.ClickSectorsLink();
                     break;
                 case "Standards":
-                    manage_AdminFunctionsPage.ClickStandardsLink();
+                    _manage_AdminFunctionsPage.ClickStandardsLink();
                     break;
                 case "Frameworks":
-                    manage_AdminFunctionsPage.ClickFrameworksLink();
+                    _manage_AdminFunctionsPage.ClickFrameworksLink();
                     break;
             }
             _tabHelper.NavigateBrowserBack();

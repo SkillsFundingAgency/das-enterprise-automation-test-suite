@@ -11,63 +11,55 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.Manage
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
-        protected readonly FormCompletionHelper formCompletionHelper;
+        private readonly FormCompletionHelper _formCompletionHelper;
         #endregion
-
-        private By ManageProvidersLink => By.LinkText("Manage Providers");
-        private By ManageProviderSitesLink => By.LinkText("Manage Provider Sites");
-        private By ManageApiUsersLink => By.LinkText("Manage API Users");
-        private By ManageEmployersLink => By.LinkText("Manage Employers");
-        private By SectorsLink => By.LinkText("Sectors");
-        private By StandardsLink => By.LinkText("Standards");
-        private By FrameworksLink => By.LinkText("Frameworks");
 
         public Manage_AdminFunctionsPage(ScenarioContext context) : base(context)
         {
             _context = context;
-            formCompletionHelper = context.Get<FormCompletionHelper>();
+            _formCompletionHelper = context.Get<FormCompletionHelper>();
             VerifyPage();
         }
 
         public Manage_AdminManageProvidersPage ClickManageProvidersLink()
         {
-            formCompletionHelper.Click(ManageProvidersLink);
+            _formCompletionHelper.ClickLinkByText("Manage Providers");
             return new Manage_AdminManageProvidersPage(_context);
         }
 
         public Manage_AdminManageProviderSitesPage ClickManageProviderSitesLink()
         {
-            formCompletionHelper.Click(ManageProviderSitesLink);
+            _formCompletionHelper.ClickLinkByText("Manage Provider Sites");
             return new Manage_AdminManageProviderSitesPage(_context);
         }
 
         public Manage_AdminManageApiUsersPage ClickManageApiUsersLink()
         {
-            formCompletionHelper.Click(ManageApiUsersLink);
+            _formCompletionHelper.ClickLinkByText("Manage API Users");
             return new Manage_AdminManageApiUsersPage(_context);
         }
 
         public Manage_AdminManageEmployersPage ClickManageEmployersLink()
         {
-            formCompletionHelper.Click(ManageEmployersLink);
+            _formCompletionHelper.ClickLinkByText("Manage Employers");
             return new Manage_AdminManageEmployersPage(_context);
         }
 
         public Manage_AdminSectorsPage ClickSectorsLink()
         {
-            formCompletionHelper.Click(SectorsLink);
+            _formCompletionHelper.ClickLinkByText("Sectors");
             return new Manage_AdminSectorsPage(_context);
         }
 
         public Manage_AdminStandardsPage ClickStandardsLink()
         {
-            formCompletionHelper.Click(StandardsLink);
+            _formCompletionHelper.ClickLinkByText("Standards");
             return new Manage_AdminStandardsPage(_context);
         }
 
         public Manage_AdminFrameworksPage ClickFrameworksLink()
         {
-            formCompletionHelper.Click(FrameworksLink);
+            _formCompletionHelper.ClickLinkByText("Frameworks");
             return new Manage_AdminFrameworksPage(_context);
         }
 
