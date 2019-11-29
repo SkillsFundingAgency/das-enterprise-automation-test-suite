@@ -1,4 +1,4 @@
-﻿Feature: EmployerAddsProviderToApprenticeshipInShorttlist
+﻿Feature: EmployerRemovesProviderFromTheApprenticeship
 	As an Employer
 	I want to be able to navigate to Fire It Up home page
 	So that I can use the benefits of Employer services and information 
@@ -15,3 +15,4 @@ Scenario: I want to be able to Remove Apprenticeships from the Favourite Short L
 	Then I Can Add a Provider to an Apprenticeship in the Shortlist Favourite
 	And I Can Click on the Favourite Icon with Apprenticeship
 	Then I Can Verify the Favourite Count for Provider
+	And I Can Remove Provider from the Shortlist Favourite

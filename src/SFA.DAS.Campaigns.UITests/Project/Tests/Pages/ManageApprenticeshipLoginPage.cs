@@ -23,7 +23,9 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
 
         #region Page Object Elements
         private readonly By _pageHeading =By.XPath("//h1[@class='heading-xlarge']");
+        //private readonly By _emailAddressField = By.XPath("//input [@class='form-control form-control-3-4']");
         private readonly By _emailAddressField = By.Id("EmailAddress");
+
         private readonly By _passwordField = By.Id("Password");
         private readonly By _signInButton=By.Id("button-signin");
         private readonly By _createAccountButton = By.XPath("//a[@class='button hero__panel-button']");
@@ -39,11 +41,13 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
 
         public ManageApprenticeshipHomePage EmployerLogsIn()
         {
-            _pageInteractionHelper.IsElementDisplayed(_emailAddressField);
+           
             _formCompletionHelper.EnterText(_emailAddressField,EmailAddress);
             _formCompletionHelper.EnterText(_passwordField,Password);
             _formCompletionHelper.ClickElement(_signInButton);
             return new ManageApprenticeshipHomePage(_context);
         }
+
+
     }
 }

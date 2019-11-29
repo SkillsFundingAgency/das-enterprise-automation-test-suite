@@ -4,6 +4,7 @@
 	I want to be able to navigate to Fire It Up home page
 	So that I can use the benefits of apprentice services and information 
 
+	@regression
 	Scenario: User can find an apprentice from Apprenticeships home page
 		Given I navigate to Fire It Up home page
 		And I launch the Find An Apprentice page
@@ -14,6 +15,8 @@
 		Then I click on first search result
 		And I can verify Apprentice Details Of Results Page Against Apprentice Details of Summary page
 
+
+	@regression
 	Scenario: User can see a valid message when no apprentice results found
 		Given I navigate to Fire It Up home page
 		And I launch the Find An Apprentice page
@@ -23,6 +26,7 @@
 		And I click on Serach button
 		Then I can verify the content of no matching results page
 
+	@regression
 	Scenario Outline: Application should show default value for Miles DropDown and valid error messages for invalid postcode and interest selection
 		Given I navigate to Fire It Up home page
 		And I launch the Find An Apprentice page
@@ -40,6 +44,7 @@
 		| Care services					| AS$$TT55 |
 		| Care services					|		   |
 
+	@regression
 	Scenario: Check all the links and content of YOUR APPRENTICESHIP screen
 		Given I navigate to Fire It Up home page
 		And I launch the Your Apprenticeship page
@@ -47,12 +52,14 @@
 		And I verify the content under Meet your new team section
 		And I verify the content under What comes after my apprenticeship section
 
+	@regression
 	Scenario: Check all the links and content of ASSESSMENT AND CERTIFICATION screen
 		Given I navigate to Fire It Up home page
 		And I launch the Assessment And Certification page
 		Then I verify the content under Get assured and get your certificate section
 		Then I verify the content under Complete your apprenticeship section
 
+	@regression
 	Scenario: Check all the links and content of INTERVIEW screen
 		Given I navigate to Fire It Up home page
 		And I launch the Interview page
@@ -60,6 +67,7 @@
 		And I verify the content under Before Your Interview section
 		# And I verify the content under Day Of The Interview section
 
+	@regression
 	Scenario: Check all the links and content of APPLICATION screen
 		Given I navigate to Fire It Up home page
 		And I launch the Application page
@@ -69,6 +77,7 @@
 		And I verify the content under IF YOU’RE ON THE SHORTLIST section
 		And I verify the content under TRAINING PROVIDERS section
 
+	@regression
 	Scenario: Check all the links and content of WAHT IS AN APPRENTICESHIP screen
 		Given I navigate to Fire It Up home page
 		And I launch the What Is An Apprenticeship page
@@ -87,6 +96,7 @@
 	#	Then I click on first search result
 	#	And I can verify Apprentice Details Of Results Page Against Apprentice Details of Summary page
 
+	@regression
 	Scenario: Check all the links and content of WHAT ARE THE BENEFITS FOR ME page
 		Given I navigate to Fire It Up home page
 		And I launch the What Are The Benefits For Me page
@@ -94,6 +104,7 @@
 		And I verify the content under HOW MUCH CAN YOU EARN section
 		# And I verify the content under WHAT WILL MY APPRENTICESHIP COST ME section
 
+	@regression
 	Scenario: Check all the links and content of REAL STORIES page
 		Given I navigate to Fire It Up home page
 		And I launch the Real Stories page
