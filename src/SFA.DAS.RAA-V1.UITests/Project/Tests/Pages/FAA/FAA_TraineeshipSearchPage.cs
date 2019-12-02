@@ -38,23 +38,13 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.FAA
             return new FAA_ApprenticeSummaryPage(_context);
         }
 
-        public FAA_SearchResultsPage SearchForAVacancy(string location, string distance, string disabilityConfident)
+        public FAA_TraineeshipSearchResultsPage SearchForAVacancy(string location)
         {
             _formCompletionHelper.EnterText(Location, location);
             _formCompletionHelper.Click(Search);
             _pageInteractionHelper.WaitforURLToChange("/traineeships/search?Hash=");
 
-
-            _formCompletionHelper.SelectFromDropDownByText(Distance, distance);
-            if (disabilityConfident == "Yes")
-            {
-                _formCompletionHelper.SelectCheckBoxByText("Disability Confident");
-            }
-
-            _formCompletionHelper.Click(Search);
-            _pageInteractionHelper.WaitforURLToChange("/traineeships/search?ReferenceNumber=");
-
-            return new FAA_SearchResultsPage(_context);
+            return new FAA_TraineeshipSearchResultsPage(_context);
         }
     }
 }

@@ -73,37 +73,30 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Features.FAAApplications.Apprenti
             testRunner.CollectScenarioErrors();
         }
         
-        public virtual void RV1_FAAV_01ApplyForAnExistingApprenticeshipVacancy(string jobTitle, string location, string distance, string apprenticeshipLevel, string disabilityConfident, string qualificationDetails, string workExperience, string trainingCourse, string[] exampleTags)
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("RV1_FAAV_01 search for an existing apprenticeship vacancy")]
+        [NUnit.Framework.CategoryAttribute("apprenticeshipvacancy")]
+        public virtual void RV1_FAAV_01SearchForAnExistingApprenticeshipVacancy()
         {
-            string[] @__tags = new string[] {
-                    "apprenticeshipvacancy"};
-            if ((exampleTags != null))
-            {
-                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
-            }
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV1_FAAV_01 Apply for an existing Apprenticeship Vacancy", null, @__tags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV1_FAAV_01 search for an existing apprenticeship vacancy", null, new string[] {
+                        "apprenticeshipvacancy"});
 #line 6
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 7
- testRunner.Given("the applicant is on the Find an Apprenticeship Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("the apprenticeship vacancy is Live in Recruit near \'CV3 5ER\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 8
- testRunner.When(string.Format("the applicant searches for the Vacancies \'{0}\',\'{1}\',\'{2}\',\'{3}\',\'{4}\'", jobTitle, location, distance, apprenticeshipLevel, disabilityConfident), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("an applicant is on the Find an Apprenticeship Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 9
- testRunner.Then(string.Format("the applicant fills the application form \'{0}\',\'{1}\',\'{2}\' when a qualified vacan" +
-                        "cy is found", qualificationDetails, workExperience, trainingCourse), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the apprenticeship can be found based on \'CV1 3RX\',\'2 miles\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 10
+ testRunner.And("the apprenticeship can be found based on \'CV5 9AD\',\'5 miles\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 11
+ testRunner.And("the apprenticeship can be found based on \'CV7 8EQ\',\'10 miles\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 12
+ testRunner.And("the apprenticeship can be found based on \'EH4 3AY\',\'England\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RV1_FAAV_01 Apply for an existing Apprenticeship Vacancy: apprenticeship")]
-        [NUnit.Framework.CategoryAttribute("apprenticeshipvacancy")]
-        public virtual void RV1_FAAV_01ApplyForAnExistingApprenticeshipVacancy_Apprenticeship()
-        {
-#line 6
-this.RV1_FAAV_01ApplyForAnExistingApprenticeshipVacancy("apprenticeship", "CV1 2DY", "5 miles", "All levels", "Yes", "No", "No", "No", ((string[])(null)));
-#line hidden
         }
     }
 }

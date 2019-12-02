@@ -3,11 +3,10 @@
 Feature: RV1_FAAV_01
 
 @apprenticeshipvacancy
-Scenario Outline: RV1_FAAV_01 Apply for an existing Apprenticeship Vacancy
-	Given the applicant is on the Find an Apprenticeship Page
-	When the applicant searches for the Vacancies '<JobTitle>','<Location>','<Distance>','<ApprenticeshipLevel>','<DisabilityConfident>'
-	Then the applicant fills the application form '<QualificationDetails>','<WorkExperience>','<TrainingCourse>' when a qualified vacancy is found
-
-	Examples:
-		| JobTitle       | Location | Distance | ApprenticeshipLevel | DisabilityConfident | QualificationDetails | WorkExperience | TrainingCourse |
-		| apprenticeship | CV1 2DY  | 5 miles  | All levels          | Yes                 | No                   | No             | No             |
+Scenario: RV1_FAAV_01 search for an existing apprenticeship vacancy
+	Given the apprenticeship vacancy is Live in Recruit near 'CV3 5ER'
+	When an applicant is on the Find an Apprenticeship Page
+	Then the apprenticeship can be found based on 'CV1 3RX','2 miles'
+	And the apprenticeship can be found based on 'CV5 9AD','5 miles'
+	And the apprenticeship can be found based on 'CV7 8EQ','10 miles'
+	And the apprenticeship can be found based on 'EH4 3AY','England'

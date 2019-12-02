@@ -1,6 +1,5 @@
 ﻿Feature: RV1_MR_01
 
-
 @raa-v1
 @regression
 Scenario: RV1_MR_01 - Verify Manage Helpdesk adviser role functionality
@@ -8,4 +7,3 @@ Scenario: RV1_MR_01 - Verify Manage Helpdesk adviser role functionality
 	And switches the role to helpdesk adviser
 	Then the reviewer is able to search and select a candidate
 	And view the candidate's applications
-

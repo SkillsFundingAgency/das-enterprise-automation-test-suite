@@ -87,7 +87,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
             }
         }
 
-        public void ProviderFillsOutTraineeshipDetails(string location, string disabilityConfident = "Yes", string applicationMethod = "Online")
+        public void ProviderFillsOutTraineeshipDetails(string location, string disabilityConfident = "Yes", string applicationMethod = "Online", string postCode = "CV1 2WT")
         {
             switch (location)
             {
@@ -95,7 +95,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
                     break;
 
                 case "Add different location":
-                    AddMultipleVacancy();
+                    AddMultipleVacancy(postCode);
                     disabilityConfident = "No";
                     break;
 
@@ -112,7 +112,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
             EnterRequirementsAndExtraQuestions(requirementsAndProspects, applicationMethod);
         }
 
-        internal void ProviderFillsOutDetails(string location, string disabilityConfident, string applicationMethod, string apprenticeShip, string hoursPerWeek, string vacancyDuration, string wagetype = null)
+        internal void ProviderFillsOutApprenticeshipDetails(string location, string disabilityConfident, string applicationMethod, string apprenticeShip, string hoursPerWeek, string vacancyDuration, string wagetype, string postCode = "CV1 2WT")
         {
             switch (location)
             {
@@ -120,7 +120,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
                     break;
 
                 case "Add different location":
-                    AddMultipleVacancy();
+                    AddMultipleVacancy(postCode);
                     break;
 
                 case "Set as a nationwide vacancy":
@@ -244,10 +244,10 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
                 .ClickPreviewVacancyButton();
         }
 
-        internal void AddMultipleVacancy()
+        internal void AddMultipleVacancy(string postCode)
         {
             new RAA_MultipleVacancyLocationPage(_context)
-                       .AddLocation("CV1 2WT")
+                       .AddLocation(postCode)
                        .EnterNumberOfVacancy()
                        .ClickAddAnotherLocationLink()
                        .AddLocation("BS16 4EA")
