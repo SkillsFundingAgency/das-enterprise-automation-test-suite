@@ -73,30 +73,28 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Features.FaaApplications.Trainees
             testRunner.CollectScenarioErrors();
         }
         
-        public virtual void RV1_FATV_01ApplyForAnExistingTraineeshipVacancy(string location, string distance, string disabilityConfident, string qualificationDetails, string workExperience, string trainingCourse, string[] exampleTags)
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("RV1_FATV_01 search for an existing traineeship vacancy")]
+        public virtual void RV1_FATV_01SearchForAnExistingTraineeshipVacancy()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV1_FATV_01 Apply for an existing Traineeship Vacancy", null, exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV1_FATV_01 search for an existing traineeship vacancy", null, ((string[])(null)));
 #line 5
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 6
- testRunner.Given("the applicant is on the Find an Apprenticeship Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("a traineeship is live in Recruit near \'CV3 5ER\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 7
- testRunner.When(string.Format("the applicant searches for a traineeship Vacancies \'{0}\',\'{1}\',\'{2}\'", location, distance, disabilityConfident), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("an applicant is on the Find an Traineeship Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 8
- testRunner.Then(string.Format("the applicant fills the application form \'{0}\',\'{1}\',\'{2}\' when a qualified vacan" +
-                        "cy is found", qualificationDetails, workExperience, trainingCourse), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the traineeship can be found based on \'CV1 3RX\',\'2 miles\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 9
+ testRunner.And("the traineeship can be found based on \'CV5 9AD\',\'5 miles\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 10
+ testRunner.And("the traineeship can be found based on \'CV7 8EQ\',\'10 miles\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 11
+ testRunner.And("the traineeship can be found based on \'EH4 3AY\',\'England\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RV1_FATV_01 Apply for an existing Traineeship Vacancy: CV1 2DY")]
-        public virtual void RV1_FATV_01ApplyForAnExistingTraineeshipVacancy_CV12DY()
-        {
-#line 5
-this.RV1_FATV_01ApplyForAnExistingTraineeshipVacancy("CV1 2DY", "10 miles", "No", "No", "No", "No", ((string[])(null)));
-#line hidden
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using SFA.DAS.RAA_V1.UITests.Project.Helpers;
+﻿using NUnit.Framework;
+using SFA.DAS.RAA_V1.UITests.Project.Helpers;
 using SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.FAA;
 using SFA.DAS.UI.Framework.TestSupport;
 using TechTalk.SpecFlow;
@@ -9,70 +10,45 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
     public class FAAApplicationSteps
     {
         private readonly FAAStepsHelper _faaStepsHelper;
-
-        private readonly ScenarioContext _context;
-        private readonly ObjectContext _objectContext;
-
-        private FAA_HomePage _homePage;
-
-        private FAA_SearchResultsPage _searchResults;
+        private FAA_ApprenticeSearchPage _apprenticeSearchPage;
+        private FAA_TraineeshipSearchPage _traineeshipSearchPage;
+        private FAA_SearchResultsPage _searchResultspage;
 
         public FAAApplicationSteps(ScenarioContext context)
         {
-            _context = context;
-            _objectContext = context.Get<ObjectContext>();
             _faaStepsHelper = new FAAStepsHelper(context);
         }
 
-        [Given(@"the applicant is on the Find an Apprenticeship Page")]
-        public void GivenTheApplicantIsOnTheFindAnApprenticeshipPage()
+        [When(@"an applicant is on the Find an Apprenticeship Page")]
+        public void WhenAnApplicantIsOnTheFindAnApprenticeshipPage()
         {
-            _homePage = _faaStepsHelper.GoToFAAHomePage(false);
+            _apprenticeSearchPage = _faaStepsHelper.GoToFAAHomePage(true)
+                .FindAnApprenticeship();
         }
 
-        [When(@"the applicant searches for a traineeship Vacancies '(.*)','(.*)','(.*)'")]
-        public void WhenTheApplicantSearchesForATraineeshipVacancies(string location, string distance, string disabilityConfident)
+        [When(@"an applicant is on the Find an Traineeship Page")]
+        public void WhenAnApplicantIsOnTheFindAnTraineeshipPage()
         {
-            _searchResults = _homePage
-                .FindTraineeship()
-                .SearchForAVacancy(location, distance, disabilityConfident);
+            _traineeshipSearchPage = _faaStepsHelper.GoToFAAHomePage(true)
+              .FindTraineeship();
         }
 
-        [When(@"the applicant searches for the Vacancies '(.*)','(.*)','(.*)','(.*)','(.*)'")]
-        public void WhenTheApplicantSearchesForTheVacancies(string jobTitle, string location, string distance, string apprenticeshipLevel, string disabilityConfident)
+        [Then(@"the traineeship can be found based on '(.*)','(.*)'")]
+        public void ThenTheTraineeshipCanBeFoundBasedOn(string postCode, string distance)
         {
-            _searchResults = _homePage
-                .FindAnApprenticeship()
-                .SearchForAVacancy(jobTitle, location, distance, apprenticeshipLevel, disabilityConfident);
+            _searchResultspage = _traineeshipSearchPage
+                 .SearchForAVacancy(postCode, distance, "Yes");
+
+            Assert.AreEqual(true, _searchResultspage.FoundVacancies(), $"No traineeship found within '{distance}' of '{postCode}'");
         }
 
-        [Then(@"the applicant fills the application form '(.*)','(.*)','(.*)' when a qualified vacancy is found")]
-        public void ThenTheApplicantFillsTheApplicationFormWhenAnQualifiedVacancyIsFound(string qualificationDetails, string workExperience, string trainingCourse)
+        [Then(@"the apprenticeship can be found based on '(.*)','(.*)'")]
+        public void ThenTheApprenticeshipCanBeFoundBasedOn(string postCode, string distance)
         {
-            //The test will apply only when the Apply button is displayed.
-            //The Apply scenario is already covered in E2E test scenarios, so its logical to skip apply functionality when qualified vacancy is not found.
+            _searchResultspage = _apprenticeSearchPage
+                .SearchForAVacancy(postCode, distance, "All levels", "Yes");
 
-            if (_searchResults.FoundVacancies())
-            {
-                if (CanApply())
-                {
-                    var applicationFormPage = new FAA_ApprenticeSummaryPage(_context).Apply();
-
-                    _faaStepsHelper.ConfirmApplicationSubmission(applicationFormPage, qualificationDetails, workExperience, trainingCourse);
-                }
-            }
-        }
-
-        private bool CanApply()
-        {
-            if (_objectContext.IsApprenticeshipVacancyType())
-            {
-                return _searchResults.CanApplyApprenticeship();
-            }
-            else
-            {
-                return _searchResults.CanApplyTraineeship();
-            }
+            Assert.AreEqual(true, _searchResultspage.FoundVacancies(), $"No apprenticeship found within '{distance}' of '{postCode}'");
         }
     }
 }

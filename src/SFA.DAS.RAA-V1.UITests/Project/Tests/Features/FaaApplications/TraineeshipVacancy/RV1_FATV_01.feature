@@ -2,11 +2,10 @@
 @regression
 Feature: RV1_FATV_01
 
-Scenario Outline: RV1_FATV_01 Apply for an existing Traineeship Vacancy
-	Given the applicant is on the Find an Apprenticeship Page
-	When the applicant searches for a traineeship Vacancies '<Location>','<Distance>','<DisabilityConfident>'
-	Then the applicant fills the application form '<QualificationDetails>','<WorkExperience>','<TrainingCourse>' when a qualified vacancy is found
-
-	Examples:
-		| Location | Distance | DisabilityConfident | QualificationDetails | WorkExperience | TrainingCourse |
-		| CV1 2DY  | 10 miles | No                  | No                   | No             | No             |
+Scenario: RV1_FATV_01 search for an existing traineeship vacancy
+	Given a traineeship is live in Recruit near 'CV3 5ER'
+	When an applicant is on the Find an Traineeship Page
+	Then the traineeship can be found based on 'CV1 3RX','2 miles'
+	And the traineeship can be found based on 'CV5 9AD','5 miles'
+	And the traineeship can be found based on 'CV7 8EQ','10 miles'
+	And the traineeship can be found based on 'EH4 3AY','England'

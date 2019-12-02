@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.RAA_V1.UITests.Project.Helpers;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using System;
@@ -15,6 +16,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.FAA
         private readonly PageInteractionHelper _pageInteractionHelper;
         private readonly ScenarioContext _context;
         private readonly ObjectContext _objectContext;
+        private readonly RAADataHelper _rAADataHelper;
         #endregion
 
         private By SearchField => By.Id("SearchField");
@@ -33,13 +35,14 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.FAA
             _objectContext = context.Get<ObjectContext>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
+            _rAADataHelper = context.Get<RAADataHelper>();
             VerifyPage();
         }
 
-        public FAA_SearchResultsPage SearchForAVacancy(string jobTitle, string location, string distance, string apprenticeshipLevel, string disabilityConfident)
+        public FAA_SearchResultsPage SearchForAVacancy(string location, string distance, string apprenticeshipLevel, string disabilityConfident)
         {
             _formCompletionHelper.SelectFromDropDownByValue(SearchField, "JobTitle");
-            _formCompletionHelper.EnterText(KeyWord, jobTitle);
+            _formCompletionHelper.EnterText(KeyWord, "gwTagLSHNh_02Dec2019_13390210959");// _rAADataHelper.VacancyTitle);
             _formCompletionHelper.EnterText(Location, location);
             _formCompletionHelper.SelectFromDropDownByText(Distance, distance);
             _formCompletionHelper.SelectFromDropDownByText(ApprenticeshipLevel, apprenticeshipLevel);
@@ -49,8 +52,10 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.FAA
             }
 
             _formCompletionHelper.Click(Search);
-            
-            _pageInteractionHelper.WaitforURLToChange("SearchField=JobTitle");
+
+            var urlChange = distance.Contains("miles") ? distance.Split(" ")[0] : "0";
+
+            _pageInteractionHelper.WaitforURLToChange($"WithinDistance={urlChange}");
 
             return new FAA_SearchResultsPage(_context);
         }
