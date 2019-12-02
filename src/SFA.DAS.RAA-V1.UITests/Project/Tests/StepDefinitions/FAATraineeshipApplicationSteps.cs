@@ -6,24 +6,15 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
 {
     [Binding]
-    public class FAAApplicationSteps
+    public class FAATraineeshipApplicationSteps
     {
         private readonly FAAStepsHelper _faaStepsHelper;
-        private FAA_ApprenticeSearchPage _apprenticeSearchPage;
         private FAA_TraineeshipSearchPage _traineeshipSearchPage;
-        private FAA_ApprenticeSearchResultsPage _apprenticeSearchResultspage;
         private FAA_TraineeshipSearchResultsPage _traineeshipSearchResultsPage;
 
-        public FAAApplicationSteps(ScenarioContext context)
+        public FAATraineeshipApplicationSteps(ScenarioContext context)
         {
             _faaStepsHelper = new FAAStepsHelper(context);
-        }
-
-        [When(@"an applicant is on the Find an Apprenticeship Page")]
-        public void WhenAnApplicantIsOnTheFindAnApprenticeshipPage()
-        {
-            _apprenticeSearchPage = _faaStepsHelper.GoToFAAHomePage(true)
-                .FindAnApprenticeship();
         }
 
         [When(@"an applicant is on the Find an Traineeship Page")]
@@ -46,15 +37,6 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
                  .SearchForAVacancy(postCode, distance);
 
             Assert.AreEqual(true, _traineeshipSearchResultsPage.FoundVacancies(), $"No traineeship found within '{distance}' of '{postCode}'");
-        }
-
-        [Then(@"the apprenticeship can be found based on '(.*)','(.*)'")]
-        public void ThenTheApprenticeshipCanBeFoundBasedOn(string postCode, string distance)
-        {
-            _apprenticeSearchResultspage = _apprenticeSearchPage
-                .SearchForAVacancy(postCode, distance, "All levels", "Yes");
-
-            Assert.AreEqual(true, _apprenticeSearchResultspage.FoundVacancies(), $"No apprenticeship found within '{distance}' of '{postCode}'");
         }
     }
 }
