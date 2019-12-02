@@ -81,19 +81,19 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Features.ApprenticeshipVacancyWag
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
             }
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV1_AVWO_02 - Post Apprenticeship Vacancy Based On Location and Wage", null, @__tags);
-#line 8
+#line 7
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
+#line 8
+ testRunner.Given("the Provider initiates Create Apprenticeship Vacancy in Recruit", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 9
-testRunner.Given("the Provider initiates Create Apprenticeship Vacancy in Recruit", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.When(string.Format("the Provider chooses the employer \'{0}\',\'{1}\'", location, noOfPositions), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 10
-testRunner.When(string.Format("the Provider chooses the employer \'{0}\',\'{1}\'", location, noOfPositions), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.And("the Provider chooses their \'Yes\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 11
-testRunner.And("the Provider chooses their \'Yes\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And(string.Format("the Provider fills out details based on WageType \'{0}\',\'{1}\'", location, wageType), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 12
-testRunner.And(string.Format("the Provider fills out details based on WageType \'{0}\',\'{1}\'", location, wageType), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 13
-testRunner.Then("Provider is able to submit the vacancy for approval", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("Provider is able to submit the vacancy for approval", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -107,7 +107,7 @@ testRunner.Then("Provider is able to submit the vacancy for approval", ((string)
         [NUnit.Framework.CategoryAttribute("apprenticeshipvacancy")]
         public virtual void RV1_AVWO_02_PostApprenticeshipVacancyBasedOnLocationAndWage_AddDifferentLocation()
         {
-#line 8
+#line 7
 this.RV1_AVWO_02_PostApprenticeshipVacancyBasedOnLocationAndWage("Add different location", "Fixed wage", "3", ((string[])(null)));
 #line hidden
         }
