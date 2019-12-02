@@ -13,6 +13,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
         private FAA_ApprenticeSearchPage _apprenticeSearchPage;
         private FAA_TraineeshipSearchPage _traineeshipSearchPage;
         private FAA_SearchResultsPage _searchResultspage;
+        private FAA_TraineeshipSearchResultsPage _traineeshipsearchResultsPage;
 
         public FAAApplicationSteps(ScenarioContext context)
         {
@@ -33,10 +34,16 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
               .FindTraineeship();
         }
 
+        [When(@"searched based on '(.*)'")]
+        public void WhenSearchedBasedOn(string postCode)
+        {
+            _traineeshipsearchResultsPage = _traineeshipSearchPage.SearchForAVacancy(postCode, "No");
+        }
+
         [Then(@"the traineeship can be found based on '(.*)','(.*)'")]
         public void ThenTheTraineeshipCanBeFoundBasedOn(string postCode, string distance)
         {
-            _searchResultspage = _traineeshipSearchPage
+            _searchResultspage = _traineeshipsearchResultsPage
                  .SearchForAVacancy(postCode, distance, "Yes");
 
             Assert.AreEqual(true, _searchResultspage.FoundVacancies(), $"No traineeship found within '{distance}' of '{postCode}'");

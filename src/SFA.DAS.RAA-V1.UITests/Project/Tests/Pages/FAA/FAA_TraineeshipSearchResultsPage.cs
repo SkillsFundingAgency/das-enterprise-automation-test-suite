@@ -5,10 +5,9 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.FAA
 {
-    public class FAA_TraineeshipSearchPage : FAA_SearchVacancyBasePage
+    public class FAA_TraineeshipSearchResultsPage : FAA_SearchVacancyBasePage
     {
-        protected override string PageTitle => "Find a traineeship";
-
+        protected override string PageTitle => "Search results";
         #region Helpers and Context
         private readonly FormCompletionHelper _formCompletionHelper;
         private readonly PageInteractionHelper _pageInteractionHelper;
@@ -20,7 +19,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.FAA
         private By ReferenceNumber => By.Id("ReferenceNumber");
         private By Distance => By.Id("loc-within");
 
-        public FAA_TraineeshipSearchPage(ScenarioContext context) : base(context)
+        public FAA_TraineeshipSearchResultsPage(ScenarioContext context) : base(context)
         {
             _context = context;
             _objectContext = context.Get<ObjectContext>();
@@ -29,28 +28,24 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.FAA
             VerifyPage();
         }
 
-        public new FAA_ApprenticeSummaryPage SearchByReferenceNumber()
-        {
-            _formCompletionHelper.EnterText(Location, string.Empty);
-            _formCompletionHelper.Click(Search);
-            _formCompletionHelper.EnterText(ReferenceNumber, _objectContext.GetVacancyReference());
-            base.SearchByReferenceNumber();
-            return new FAA_ApprenticeSummaryPage(_context);
-        }
-
-        public FAA_TraineeshipSearchResultsPage SearchForAVacancy(string location, string disabilityConfident)
+        public FAA_SearchResultsPage SearchForAVacancy(string location, string distance, string disabilityConfident)
         {
             _formCompletionHelper.EnterText(Location, location);
-
+           
+            _formCompletionHelper.SelectFromDropDownByText(Distance, distance);
             if (disabilityConfident == "Yes")
             {
                 _formCompletionHelper.SelectCheckBoxByText("Disability Confident");
             }
 
             _formCompletionHelper.Click(Search);
-            _pageInteractionHelper.WaitforURLToChange("/traineeships/search?Hash=");
 
-            return new FAA_TraineeshipSearchResultsPage(_context);
+            var urlChange = distance.Contains("miles") ? distance.Split(" ")[0] : "0";
+
+            _pageInteractionHelper.WaitforURLToChange($"WithinDistance={urlChange}");
+
+            return new FAA_SearchResultsPage(_context);
         }
+
     }
 }

@@ -86,12 +86,14 @@ this.ScenarioInitialize(scenarioInfo);
 #line 7
  testRunner.When("an applicant is on the Find an Traineeship Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 8
- testRunner.Then("the traineeship can be found based on \'CV1 3RX\',\'2 miles\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("searched based on \'CV3 5ER\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 9
- testRunner.And("the traineeship can be found based on \'CV5 9AD\',\'5 miles\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Then("the traineeship can be found based on \'CV1 3RX\',\'2 miles\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 10
- testRunner.And("the traineeship can be found based on \'CV7 8EQ\',\'10 miles\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("the traineeship can be found based on \'CV5 9AD\',\'5 miles\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 11
+ testRunner.And("the traineeship can be found based on \'CV7 8EQ\',\'10 miles\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 12
  testRunner.And("the traineeship can be found based on \'EH4 3AY\',\'England\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
