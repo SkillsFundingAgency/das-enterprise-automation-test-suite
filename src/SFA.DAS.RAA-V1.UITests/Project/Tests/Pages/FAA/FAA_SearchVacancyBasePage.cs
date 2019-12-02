@@ -42,5 +42,12 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.FAA
             }, () => _formCompletionHelper.Click(Search));
         }
 
+        protected void WaitforURLToChange(string distance)
+        {
+            var urlChange = distance.Contains("miles") ? distance.Split(" ")[0] : "0";
+
+            _pageInteractionHelper.WaitforURLToChange($"WithinDistance={urlChange}");
+        }
+
     }
 }

@@ -10,9 +10,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.FAA
         protected override string PageTitle => "Search results";
         #region Helpers and Context
         private readonly FormCompletionHelper _formCompletionHelper;
-        private readonly PageInteractionHelper _pageInteractionHelper;
         private readonly ScenarioContext _context;
-        private readonly ObjectContext _objectContext;
         #endregion
 
         private By Location => By.Id("Location");
@@ -22,30 +20,21 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.FAA
         public FAA_TraineeshipSearchResultsPage(ScenarioContext context) : base(context)
         {
             _context = context;
-            _objectContext = context.Get<ObjectContext>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
-            _pageInteractionHelper = context.Get<PageInteractionHelper>();
             VerifyPage();
         }
 
-        public FAA_SearchResultsPage SearchForAVacancy(string location, string distance, string disabilityConfident)
+        public FAA_TraineeshipSearchResultsPage SearchForAVacancy(string location, string distance)
         {
             _formCompletionHelper.EnterText(Location, location);
-           
+
             _formCompletionHelper.SelectFromDropDownByText(Distance, distance);
-            if (disabilityConfident == "Yes")
-            {
-                _formCompletionHelper.SelectCheckBoxByText("Disability Confident");
-            }
 
             _formCompletionHelper.Click(Search);
 
-            var urlChange = distance.Contains("miles") ? distance.Split(" ")[0] : "0";
+            WaitforURLToChange(distance);
 
-            _pageInteractionHelper.WaitforURLToChange($"WithinDistance={urlChange}");
-
-            return new FAA_SearchResultsPage(_context);
+            return new FAA_TraineeshipSearchResultsPage(_context);
         }
-
     }
 }

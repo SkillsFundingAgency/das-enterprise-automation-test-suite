@@ -81,8 +81,6 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Features.FaaApplications.Trainees
 #line 5
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 6
- testRunner.Given("a traineeship is live in Recruit near \'CV3 5ER\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 7
  testRunner.When("an applicant is on the Find an Traineeship Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 8
@@ -93,8 +91,6 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("the traineeship can be found based on \'CV5 9AD\',\'5 miles\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 11
  testRunner.And("the traineeship can be found based on \'CV7 8EQ\',\'10 miles\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 12
- testRunner.And("the traineeship can be found based on \'EH4 3AY\',\'England\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }

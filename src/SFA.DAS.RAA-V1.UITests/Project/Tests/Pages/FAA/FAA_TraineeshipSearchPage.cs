@@ -38,15 +38,9 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.FAA
             return new FAA_ApprenticeSummaryPage(_context);
         }
 
-        public FAA_TraineeshipSearchResultsPage SearchForAVacancy(string location, string disabilityConfident)
+        public FAA_TraineeshipSearchResultsPage SearchForAVacancy(string location)
         {
             _formCompletionHelper.EnterText(Location, location);
-
-            if (disabilityConfident == "Yes")
-            {
-                _formCompletionHelper.SelectCheckBoxByText("Disability Confident");
-            }
-
             _formCompletionHelper.Click(Search);
             _pageInteractionHelper.WaitforURLToChange("/traineeships/search?Hash=");
 
