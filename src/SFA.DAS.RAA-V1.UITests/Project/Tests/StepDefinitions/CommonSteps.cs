@@ -38,46 +38,30 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
         [Given(@"the traineeship vacancy is Live in Recruit")]
         public void GivenTheTraineeshipVacancyIsLiveInRecruit(Table table)
         {
-            var dataset = table.CreateInstance<RAATableData>();
-
-            AddTraineeshipVacancy(dataset);
+            AddTraineeshipVacancy(table.CreateInstance<RAATableData>());
         }
 
-        [Given(@"a traineeship is live in Recruit near '(.*)'")]
-        public void GivenATraineeshipIsLiveInRecruitNear(string postCode)
+        [Given(@"the traineeship vacancy is Live in Recruit near '(.*)'")]
+        public void GivenTheTraineeshipVacancyIsLiveInRecruitNear(string postCode)
         {
-            var dataset = new RAATableData
-            {
-                Anonymity = "Yes",
-                ApplicationMethod = "Online",
-                ApprenticeshipType = "Standard",
-                DisabilityConfident = "Yes",
-                HoursPerWeek = "42",
-                Location = "Add different location",
-                NoOfPositions = "2",
-                PostCode = postCode,
-                QualificationDetails = "No",
-                TrainingCourse = "No",
-                VacancyDuration = "52",
-                WorkExperience = "No"
-            };
-
-            AddTraineeshipVacancy(dataset);
+            AddTraineeshipVacancy(TestData(postCode));
         }
-
 
         [Given(@"the apprenticeship vacancy is Live in Recruit")]
         public void GivenTheApprenticeshipVacancyIsLiveInRecruit(Table table)
         {
-            var dataset = table.CreateInstance<RAATableData>();
-            
-            AddApprenticeshipVacancy(dataset);
+            AddApprenticeshipVacancy(table.CreateInstance<RAATableData>());
         }
 
-        [Given(@"an apprenticeship is live in Recruit near '(.*)'")]
-        public void GivenAnApprenticeshipIsLiveInRecruitNear(string postCode)
+        [Given(@"the apprenticeship vacancy is Live in Recruit near '(.*)'")]
+        public void GivenTheApprenticeshipVacancyIsLiveInRecruitNear(string postCode)
         {
-            var dataset = new RAATableData
+            AddApprenticeshipVacancy(TestData(postCode));
+        }
+
+        private RAATableData TestData(string postCode)
+        {
+            return new RAATableData
             {
                 Anonymity = "Yes",
                 ApplicationMethod = "Online",
@@ -92,8 +76,6 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
                 VacancyDuration = "52",
                 WorkExperience = "No"
             };
-
-            AddApprenticeshipVacancy(dataset);
         }
 
         private void AddTraineeshipVacancy(RAATableData dataset)

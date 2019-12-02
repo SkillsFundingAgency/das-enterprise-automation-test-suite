@@ -42,8 +42,8 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
         [Then(@"the traineeship can be found based on '(.*)','(.*)'")]
         public void ThenTheTraineeshipCanBeFoundBasedOn(string postCode, string distance)
         {
-            _searchResultspage = _traineeshipsearchResultsPage
-                 .SearchForAVacancy(postCode, distance, "No");
+            _traineeshipsearchResultsPage = _traineeshipsearchResultsPage
+                 .SearchForAVacancy(postCode, distance);
 
             Assert.AreEqual(true, _searchResultspage.FoundVacancies(), $"No traineeship found within '{distance}' of '{postCode}'");
         }
