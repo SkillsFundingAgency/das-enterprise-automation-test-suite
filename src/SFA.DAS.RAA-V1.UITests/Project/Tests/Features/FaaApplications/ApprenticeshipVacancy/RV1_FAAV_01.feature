@@ -10,5 +10,3 @@ Scenario: RV1_FAAV_01 search for an existing apprenticeship vacancy
 	And the apprenticeship can be found based on 'CV5 9AD','5 miles'
 	And the apprenticeship can be found based on 'CV7 8EQ','10 miles'
 	And the apprenticeship can be found based on 'EH4 3AY','England'
-
-
