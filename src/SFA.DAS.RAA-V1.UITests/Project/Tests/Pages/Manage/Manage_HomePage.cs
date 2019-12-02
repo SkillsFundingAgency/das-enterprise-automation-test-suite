@@ -1,4 +1,6 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.UI.Framework.TestSupport;
+using System;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.Manage
@@ -9,6 +11,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.Manage
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
+        private readonly ObjectContext _objectContext;
         #endregion
 
         private By ChangeTeam => By.CssSelector("#select2-chosen-2");
@@ -23,88 +26,57 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.Manage
 
         private By DateFilter => By.CssSelector(".bold-xsmall");
 
-        private By ApproveAndContinue => By.Name("VacancyQAAction");
-        
-        private By NoResults => By.XPath("//td[@colspan='6'][contains(.,'No results')]");
-
         private By VacancyFilters => By.CssSelector(".column-one-quarter .bold-xsmall");
 
         private By NoOfVacancy => By.CssSelector(".bold-xlarge");
 
+        private By VacancyReviewLink() => By.CssSelector($"a[href*='vacancyReferenceNumber={_objectContext.GetVacancyReference()}']");
+
         public Manage_HomePage(ScenarioContext context) : base(context)
         {
             _context = context;
+            _objectContext = context.Get<ObjectContext>();
         }
 
-        protected void TodayVacancy()
+        public Manage_HelpdeskAdviserPage HelpdeskAdviser()
         {
-            formCompletionHelper.ClickLinkByText(VacancyFilters, "Today");
+            ChangeToHelpdeskAdviser();
+
+            return new Manage_HelpdeskAdviserPage(_context);
         }
 
-        private bool AretherAnyVacancyToday()
+        public Manage_VacancyPreviewPage ReviewAVacancy()
         {
-            var filters = pageInteractionHelper.FindElements(Filters);
-            foreach (var filter in filters)
+            TodayVacancy();
+
+            formCompletionHelper.Click(VacancyReviewLink());
+
+            return new Manage_VacancyPreviewPage(_context);
+        }
+
+        private void TodayVacancy()
+        {
+            pageInteractionHelper.Verify(() =>
             {
-                var filterelement = filter.FindElement(DateFilter);
-                if (filterelement.Text == "Today")
+                ChangeToVacancyReviewer();
+
+                formCompletionHelper.ClickLinkByText(VacancyFilters, "Today");
+
+                var filters = pageInteractionHelper.FindElements(Filters);
+                foreach (var filter in filters)
                 {
-                    return filter.FindElement(NoOfVacancy).Text != "0";
+                    var filterelement = filter.FindElement(DateFilter);
+                    if (filterelement.Text == "Today")
+                    {
+                        if (filter.FindElement(NoOfVacancy).Text == "0")
+                        {
+                            throw new Exception($"Element verification failed: There are no vacancy found today in Manage");
+                        }
+                    }
                 }
-            }
-            return false;
-        }
 
-        public Manage_EnterBasicVacancyDetailsPage EditOrCommentTitle(string changeTeam, string changeRole)
-        {
-            ChangeFilters(changeTeam, changeRole);
-
-            EditOrComment("title");
-
-            return new Manage_EnterBasicVacancyDetailsPage(_context);
-        }
-        
-        public void ApproveAVacancy(string changeTeam, string changeRole)
-        {
-            ChangeFilters(changeTeam, changeRole);
-
-            ApproveAVacancy();
-        }
-
-        public void EditOrComment(string field)
-        {
-            TodayVacancy();
-
-            if (AretherAnyVacancyToday() == true)
-            {
-                ReviewVacancy();
-                formCompletionHelper.ClickElement(() => pageInteractionHelper.GetLinkByHref(field));
-            }
-            else
-            {
-                pageInteractionHelper.GetText(NoResults);
-            }
-        }
-
-        public void ApproveAVacancy()
-        {
-            TodayVacancy();
-
-            if (AretherAnyVacancyToday() == true)
-            {
-                ReviewVacancy();
-                formCompletionHelper.Click(ApproveAndContinue);
-                SignOut();
-            }
-            else
-            {
-                pageInteractionHelper.GetText(NoResults);
-            }
-        }
-
-        private void ReviewVacancy()
-        {
-            tableRowHelper.SelectRowFromTable("Review", dataHelper.VacancyTitle);
+                return true;
+            }, () => AgentHome());
         }
 
         private void ChangeFilter(By locator, By inputlocator, string changeTo)
@@ -117,11 +89,16 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.Manage
             }
         }
 
-        private void ChangeFilters(string changeTeam, string changeRole)
+        private void ChangeToVacancyReviewer()
         {
-            ChangeFilter(ChangeRole, InputChangeRole, changeRole);
+            ChangeFilter(ChangeRole, InputChangeRole, "Vacancy reviewer");
 
-            ChangeFilter(ChangeTeam, InputChangeTeam, changeTeam);
+            ChangeFilter(ChangeTeam, InputChangeTeam, "West Midlands");
+        }
+        
+        private void ChangeToHelpdeskAdviser()
+        {
+            ChangeFilter(ChangeRole, InputChangeRole, "Helpdesk adviser");
         }
     }
 }
