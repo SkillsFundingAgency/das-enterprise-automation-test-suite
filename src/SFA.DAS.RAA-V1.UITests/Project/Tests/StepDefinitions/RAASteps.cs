@@ -197,6 +197,15 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
         [Then(@"the vacancy can be viewed anonymously")]
         public void ThenTheVacancyCanBeViewedAnonymously() => _raaStepsHelper.GoToRAAHomePage(true).SearchLiveVacancy().AnonymousView();
 
+        [Then(@"Provider can to make the application to be '(.*)'")]
+        public void ThenProviderCanToMakeTheApplicationTo(string newStatus) 
+        {
+            _raaStepsHelper.GoToRAAHomePage(true)
+                .SearchLiveVacancy()
+                .ViewApplication()
+                .ChangeStatus(newStatus);
+        }
+
         private void CloneVacancy()
         {
             var homePage = _raaStepsHelper.GoToRAAHomePage(false);

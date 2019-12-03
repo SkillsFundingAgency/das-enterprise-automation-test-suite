@@ -4,12 +4,15 @@
 @v1_e2e
 @regression
 @apprenticeshipvacancy
-Scenario Outline: RV1_E2EAV_04 - Create an Offline Apprenticeship Vacancy
+Scenario Outline: RV1_E2EAV_04 - Create an Offline Apprenticeship Vacancy and make it In progress
 	Given the Provider initiates Create Apprenticeship Vacancy in Recruit
 	When the Provider chooses the employer '<location>','<NoOfPositions>'
 	And the Provider chooses their '<anonymity>'
 	And the Provider fills out details for an Offline Vacancy '<location>','<DisabilityConfident>','<ApplicationMethod>','<ApprenticeshipType>','<HoursPerWeek>','<VacancyDuration>'
 	Then Provider is able to submit the vacancy for approval
+    Then the Reviewer approves the vacancy
+	When the Applicant apply for a Vacancy in FAA '<QualificationDetails>','<WorkExperience>','<TrainingCourse>'
+	Then Provider can to make the application to be 'In progress'
 
 	Examples:
 		| location                      | anonymity | DisabilityConfident | ApplicationMethod | ApprenticeshipType | HoursPerWeek | VacancyDuration | Changeteam    | ChangeRole       | NoOfPositions | QualificationDetails | WorkExperience | TrainingCourse |

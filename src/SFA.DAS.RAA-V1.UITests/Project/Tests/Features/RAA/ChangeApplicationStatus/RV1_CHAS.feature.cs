@@ -69,62 +69,6 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Features.RAA.ChangeApplicationSta
             testRunner.CollectScenarioErrors();
         }
         
-        public virtual void RV1_CVSD_01_ChangeNewApplicationStatus(string toStatus, string[] exampleTags)
-        {
-            string[] @__tags = new string[] {
-                    "raa-v1",
-                    "regression",
-                    "apprenticeshipvacancy"};
-            if ((exampleTags != null))
-            {
-                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
-            }
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV1_CVSD_01 - Change New Application status", null, @__tags);
-#line 7
-this.ScenarioInitialize(scenarioInfo);
-            this.ScenarioStart();
-#line 8
- testRunner.Then(string.Format("Provider is able to change the status of the new application to \'{0}\'", toStatus), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-            this.ScenarioCleanup();
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RV1_CVSD_01 - Change New Application status: In progress")]
-        [NUnit.Framework.CategoryAttribute("raa-v1")]
-        [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("apprenticeshipvacancy")]
-        public virtual void RV1_CVSD_01_ChangeNewApplicationStatus_InProgress()
-        {
-#line 7
-this.RV1_CVSD_01_ChangeNewApplicationStatus("In progress", ((string[])(null)));
-#line hidden
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RV1_CVSD_01 - Change New Application status: Successful")]
-        [NUnit.Framework.CategoryAttribute("raa-v1")]
-        [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("apprenticeshipvacancy")]
-        public virtual void RV1_CVSD_01_ChangeNewApplicationStatus_Successful()
-        {
-#line 7
-this.RV1_CVSD_01_ChangeNewApplicationStatus("Successful", ((string[])(null)));
-#line hidden
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RV1_CVSD_01 - Change New Application status: Unsuccessful")]
-        [NUnit.Framework.CategoryAttribute("raa-v1")]
-        [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("apprenticeshipvacancy")]
-        public virtual void RV1_CVSD_01_ChangeNewApplicationStatus_Unsuccessful()
-        {
-#line 7
-this.RV1_CVSD_01_ChangeNewApplicationStatus("Unsuccessful", ((string[])(null)));
-#line hidden
-        }
-        
         public virtual void RV1_CVSD_02_ChangeInProgressApplicationStatus(string toStatus, string[] exampleTags)
         {
             string[] @__tags = new string[] {
@@ -136,10 +80,10 @@ this.RV1_CVSD_01_ChangeNewApplicationStatus("Unsuccessful", ((string[])(null)));
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
             }
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV1_CVSD_02 - Change In Progress Application status", null, @__tags);
-#line 19
+#line 8
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 20
+#line 9
  testRunner.Then(string.Format("Provider is able to change the status of the In progress application to \'{0}\'", toStatus), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -152,7 +96,7 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.CategoryAttribute("apprenticeshipvacancy")]
         public virtual void RV1_CVSD_02_ChangeInProgressApplicationStatus_New()
         {
-#line 19
+#line 8
 this.RV1_CVSD_02_ChangeInProgressApplicationStatus("New", ((string[])(null)));
 #line hidden
         }
@@ -164,7 +108,7 @@ this.RV1_CVSD_02_ChangeInProgressApplicationStatus("New", ((string[])(null)));
         [NUnit.Framework.CategoryAttribute("apprenticeshipvacancy")]
         public virtual void RV1_CVSD_02_ChangeInProgressApplicationStatus_Successful()
         {
-#line 19
+#line 8
 this.RV1_CVSD_02_ChangeInProgressApplicationStatus("Successful", ((string[])(null)));
 #line hidden
         }
@@ -176,7 +120,7 @@ this.RV1_CVSD_02_ChangeInProgressApplicationStatus("Successful", ((string[])(nul
         [NUnit.Framework.CategoryAttribute("apprenticeshipvacancy")]
         public virtual void RV1_CVSD_02_ChangeInProgressApplicationStatus_Unsuccessful()
         {
-#line 19
+#line 8
 this.RV1_CVSD_02_ChangeInProgressApplicationStatus("Unsuccessful", ((string[])(null)));
 #line hidden
         }
