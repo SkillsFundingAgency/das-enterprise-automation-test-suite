@@ -119,7 +119,6 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
             _exitFromWebsite = true;
         }
 
-
         private void AddApprenticeshipVacancy(RAATableData dataset)
         {
             string postCode = PostCodeTestData(dataset);
@@ -149,9 +148,16 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
             }
 
             var raa_homePage = _raaStepsHelper.GoToRAAHomePage(true);
-
-            raa_homePage.SearchLiveVacancy();
-
+            
+            if (_applyForVacancy)
+            {
+                raa_homePage.SearchLiveVacancy();
+            }
+            else
+            {
+                raa_homePage.SearchLiveVacancyWithNoApplications();
+            }
+            
             if (_exitFromWebsite)
             {
                 raa_homePage.ExitFromWebsite();

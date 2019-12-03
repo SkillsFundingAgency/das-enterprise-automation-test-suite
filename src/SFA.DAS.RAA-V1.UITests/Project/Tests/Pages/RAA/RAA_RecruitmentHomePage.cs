@@ -106,6 +106,12 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
             return new RAA_VacancySummaryPage(_context);
         }
 
+        public RAA_VacancyPreviewPage SearchLiveVacancyWithNoApplications()
+        {
+            SearchByReferenceNumber("Live");
+            return new RAA_VacancyPreviewPage(_context);
+        }
+
         public RAA_PreviewBasePage SearchReferredVacancy()
         {
             SearchByReferenceNumber("Referred");

@@ -62,26 +62,56 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
                 .Send();
         }
 
+        [Then(@"Provider is able to increase vacancy wage with no application")]
+        public void ThenProviderIsAbleToIncreaseVacancyWageWithNoApplication()
+        {
+            InIncreaseVacancyWage(new RAA_VacancyPreviewPage(_context));
+        }
+
         [Then(@"Provider is able to increase vacancy wage")]
         public void ThenProviderIsAbleToIncreaseVacancyWage()
         {
-            new RAA_VacancySummaryPage(_context)
-                .IncreaseWage()
-                .SaveAndReturn();
+            InIncreaseVacancyWage(new RAA_VacancySummaryPage(_context));
+        }
+
+        private void InIncreaseVacancyWage(RAA_VacancyLinkBasePage linkBasePage)
+        {
+            linkBasePage.IncreaseWage().SaveAndReturn();
+        }
+
+        [Then(@"Provider is able to change vacancy dates with no application")]
+        public void ThenProviderIsAbleToChangeVacancyDatesWithNoApplication()
+        {
+            ChangeVacancyDate(new RAA_VacancyPreviewPage(_context));
         }
 
         [Then(@"Provider is able to change vacancy dates")]
         public void ThenProviderIsAbleToChangeVacancyDates()
         {
-            new RAA_VacancySummaryPage(_context)
-               .ChangeVacancyDates()
-                .SaveAndContinue();
+            ChangeVacancyDate(new RAA_VacancySummaryPage(_context));
+        }
+
+        private void ChangeVacancyDate(RAA_VacancyLinkBasePage linkBasePage)
+        {
+            linkBasePage.ChangeVacancyDates().SaveAndContinue();
+        }
+
+
+        [Then(@"Provider is able to close this vacancy with no application")]
+        public void ThenProviderIsAbleToCloseThisVacancyWithNoApplication()
+        {
+            CloseVacancy(new RAA_VacancyPreviewPage(_context));
         }
 
         [Then(@"Provider is able to close this vacancy")]
         public void ThenProviderIsAbleToCloseThisVacancy()
         {
-            new RAA_VacancySummaryPage(_context).CloseVacancy().CloseVacancy();
+            CloseVacancy(new RAA_VacancySummaryPage(_context));
+        }
+
+        private void CloseVacancy(RAA_VacancyLinkBasePage linkBasePage)
+        {
+            linkBasePage.CloseVacancy().CloseVacancy();
 
             new RAA_RecruitmentHomePage(_context, true)
                 .SearchClosedVacancy();
