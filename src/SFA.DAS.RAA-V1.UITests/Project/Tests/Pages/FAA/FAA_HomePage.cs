@@ -35,7 +35,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.FAA
             return new FAA_ApprenticeSearchPage(_context);
         }
 
-        public FAA_TraineeshipSearchPage FindTraineeship()
+        public FAA_TraineeshipSearchPage FindATraineeship()
         {
             _formCompletionHelper.Click(FindTraineeshipLink);
             return new FAA_TraineeshipSearchPage(_context);

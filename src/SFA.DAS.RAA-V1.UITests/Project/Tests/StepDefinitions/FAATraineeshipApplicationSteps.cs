@@ -20,8 +20,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
         [When(@"an applicant is on the Find an Traineeship Page")]
         public void WhenAnApplicantIsOnTheFindAnTraineeshipPage()
         {
-            _traineeshipSearchPage = _faaStepsHelper.GoToFAAHomePage(true)
-              .FindTraineeship();
+            _traineeshipSearchPage = _faaStepsHelper.FindATraineeship();
         }
 
         [When(@"searched based on '(.*)'")]

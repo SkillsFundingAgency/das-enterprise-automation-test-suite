@@ -103,7 +103,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
         [Then(@"Provider is able to respond to candidates")]
         public void ThenProviderIsAbleToRespondToCandidates()
         {
-            _vacancyLinkBasePage.
+            new RAA_VacancySummaryPage(_context).
                 RespondToCandidates()
                 .ConfirmAndContinue()
                 .SendFeedback();

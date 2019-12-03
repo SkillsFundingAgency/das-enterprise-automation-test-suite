@@ -23,22 +23,14 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
             _helper = new RestartWebDriverHelper(context);
         }
 
-        public void GoToFAA()
-        {
-            _objectContext.SetCurrentApplicationName(_applicationName);
-            _tabHelper.GoToUrl(_config.FAABaseUrl);
-        }
+        public FAA_ApprenticeSearchPage FindAnApprenticeship() => GoToFAAHomePage().FindAnApprenticeship();
 
-        public FAA_HomePage GoToFAAHomePage(bool restrat)
+        public FAA_TraineeshipSearchPage FindATraineeship() => GoToFAAHomePage().FindATraineeship();
+        
+
+        public FAA_HomePage GoToFAAHomePage()
         {
-            if (restrat)
-            {
-                _helper.RestartWebDriver(_config.FAABaseUrl, _applicationName);
-            }
-            else
-            {
-                GoToFAA();
-            }
+           _helper.RestartWebDriver(_config.FAABaseUrl, _applicationName);
 
             return new FAA_Indexpage(_context)
                 .GoToSignInPage()
@@ -59,30 +51,29 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
             accountCreationPage.SubmitAccountCreationDetails();
         }
 
-        public void WithdrawVacancy(FAA_HomePage homePage)
+        public void WithdrawVacancy()
         {
-            SearchByReferenceNumber(homePage)
+            SearchByReferenceNumber()
                 .View()
                 .Withdraw()
                 .YesWithdraw();
         }
 
-        public FAA_ApplicationFormPage ApplyForVacancy(FAA_HomePage homePage)
+        public FAA_ApplicationFormPage ApplyForVacancy()
         {
-          return SearchByReferenceNumber(homePage).Apply();
+            return SearchByReferenceNumber()
+                .Apply();
         }
 
-        private FAA_ApprenticeSummaryPage SearchByReferenceNumber(FAA_HomePage homePage)
+        private FAA_ApprenticeSummaryPage SearchByReferenceNumber()
         {
             if (_objectContext.IsApprenticeshipVacancyType())
             {
-                return homePage.FindAnApprenticeship()
-                        .SearchByReferenceNumber();
+                return FindAnApprenticeship().SearchByReferenceNumber();
             }
             else
             {
-                return homePage.FindTraineeship()
-                        .SearchByReferenceNumber();
+                return FindATraineeship().SearchByReferenceNumber();
             }
         }
 

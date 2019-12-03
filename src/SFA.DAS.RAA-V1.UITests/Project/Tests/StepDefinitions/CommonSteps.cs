@@ -26,12 +26,14 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
         private readonly RAAStepsHelper _raaStepsHelper;
         private readonly ManageStepsHelper _manageStepsHelper; 
         private readonly FAAStepsHelper _faaStepsHelper;
+        private bool _exitFromWebsite;
 
         public CommonSteps(ScenarioContext context)
         {
             _raaStepsHelper = new RAAStepsHelper(context);
             _manageStepsHelper = new ManageStepsHelper(context);
             _faaStepsHelper = new FAAStepsHelper(context);
+            _exitFromWebsite = true;
         }
 
 
@@ -51,6 +53,14 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
         public void GivenTheApprenticeshipVacancyIsLiveInRecruit(Table table)
         {
             AddApprenticeshipVacancy(table.CreateInstance<RAATableData>());
+        }
+
+        [Given(@"the apprenticeship vacancy is Live in Recruit with an application")]
+        public void GivenTheApprenticeshipVacancyIsLiveInRecruitWithAnApplication()
+        {
+            _exitFromWebsite = false;
+            AddApprenticeshipVacancy(TestData("CV3 5JJ"));
+            _exitFromWebsite = true;
         }
 
         [Given(@"the apprenticeship vacancy is Live in Recruit near '(.*)'")]
@@ -114,9 +124,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
 
             _manageStepsHelper.ApproveAVacancy(true);
 
-            var faa_homePage = _faaStepsHelper.GoToFAAHomePage(true);
-
-            var faa_applicationFormPage = _faaStepsHelper.ApplyForVacancy(faa_homePage);
+            var faa_applicationFormPage = _faaStepsHelper.ApplyForVacancy();
 
             _faaStepsHelper.ConfirmApplicationSubmission(faa_applicationFormPage, dataset.QualificationDetails, dataset.WorkExperience, dataset.TrainingCourse);
 
@@ -124,7 +132,10 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
 
             raa_homePage.SearchLiveVacancy();
 
-            raa_homePage.ExitFromWebsite();
+            if (_exitFromWebsite)
+            {
+                raa_homePage.ExitFromWebsite();
+            }
         }
 
         private string PostCodeTestData(RAATableData dataset)
