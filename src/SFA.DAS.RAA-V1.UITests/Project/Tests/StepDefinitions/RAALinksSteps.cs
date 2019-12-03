@@ -24,14 +24,6 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
                 .SelectACandidate();
         }
 
-        [Then(@"the provider can view the application anonymously")]
-        public void ThenTheProviderCanViewTheApplicationAnonymously()
-        {
-            _raaStepsHelper.GoToRAAHomePage(false)
-                           .SelectLiveVacancyWithApplications()
-                           .AnonymousView();
-        }
-
         [Then(@"the provider can reach Provider Users")]
         public void ThenTheProviderCanReachProviderUsers()
         {

@@ -55,12 +55,6 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
             return new RAA_AdministratorFunctionsPage(_context);
         }
 
-        public RAA_VacancyPreviewPage SelectLiveVacancyWithNoApplication()
-        {
-            SelectVacancy("Live", 0);
-            return new RAA_VacancyPreviewPage(_context);
-        }
-
         public RAA_VacancySummaryPage SelectLiveVacancyWithApplications()
         {
             SelectVacancy("Live", 1);

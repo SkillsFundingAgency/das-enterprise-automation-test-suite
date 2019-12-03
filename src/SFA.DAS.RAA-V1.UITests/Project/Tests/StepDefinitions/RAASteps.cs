@@ -194,6 +194,9 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
         [Then(@"the vacancy status should be Live in Recruit")]
         public void ThenTheVacancyStatusShouldBeInRecruit() => _raaStepsHelper.GoToRAAHomePage(true).SearchLiveVacancy().ExitFromWebsite();
 
+        [Then(@"the vacancy can be viewed anonymously")]
+        public void ThenTheVacancyCanBeViewedAnonymously() => _raaStepsHelper.GoToRAAHomePage(true).SearchLiveVacancy().AnonymousView();
+
         private void CloneVacancy()
         {
             var homePage = _raaStepsHelper.GoToRAAHomePage(false);
