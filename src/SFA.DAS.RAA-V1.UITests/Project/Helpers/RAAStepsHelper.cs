@@ -259,6 +259,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
         internal RAA_VacancyReferencePage ApproveVacanacy()
         {
             RAA_PreviewBasePage previewPage;
+
             if (_objectContext.IsApprenticeshipVacancyType())
             {
                 previewPage = new RAA_VacancyPreviewPage(_context);

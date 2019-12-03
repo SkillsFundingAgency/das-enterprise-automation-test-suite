@@ -4,5 +4,5 @@
 @regression
 @apprenticeshipvacancy
 Scenario: RV1_SA_01 - Share Vacancy Application which has Applications
-	Given Provider views a vacancy which has 1 Applications
+	Given the apprenticeship vacancy is Live in Recruit with an application
 	Then Provider is able to share vacancy application

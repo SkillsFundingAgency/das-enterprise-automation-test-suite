@@ -4,5 +4,5 @@
 @regression
 @apprenticeshipvacancy
 Scenario: RV1_IVSW_01 - Increase Vacancy Wage dates which has NO Applications
-	Given Provider views a vacancy which has 0 Applications
+	Given the apprenticeship vacancy is Live in Recruit with no application
 	Then Provider is able to increase vacancy wage

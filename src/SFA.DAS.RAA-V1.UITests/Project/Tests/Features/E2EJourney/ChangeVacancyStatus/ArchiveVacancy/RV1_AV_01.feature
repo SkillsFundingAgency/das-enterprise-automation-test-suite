@@ -4,5 +4,6 @@
 @regression
 @apprenticeshipvacancy
 Scenario: RV1_AV_01 - Archive vacancy which has Applications
-	Given Provider views a closed vacancy which has Applications
-	Then Provider is able to archive vacancy
+	Given the apprenticeship vacancy is Live in Recruit with an application
+	Then Provider is able to close this vacancy
+	And Provider is able to archive vacancy
