@@ -8,9 +8,9 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
 {
-    public class MakingChangesPage : ReservationIdBasePage
+    public class SuccessfullyReservedFundingPage : ReservationIdBasePage
     {
-        protected override string PageTitle => "Making changes";
+        protected override string PageTitle => "You have successfully reserved funding for apprenticeship training";
         private By SuccessMessage => By.CssSelector("govuk-panel--confirmation");
         private By AddApprenticeRadioButton => By.CssSelector("label[for=WhatsNext-add]");
         private By ContinueButton => By.CssSelector(".govuk-button");
@@ -21,7 +21,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
         private readonly ScenarioContext _context;
         #endregion
 
-        public MakingChangesPage(ScenarioContext context) : base(context)
+        public SuccessfullyReservedFundingPage(ScenarioContext context) : base(context)
         {
             _context = context;
             _formCompletionHelper = context.Get<FormCompletionHelper>();
@@ -35,18 +35,35 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
             return new HomePage(_context);
         }
 
-        internal AddAnApprenitcePage AddApprentice()
+        private void ChooseToAddApprenticeRadioButton()
         {
             _formCompletionHelper.ClickElement(AddApprenticeRadioButton);
+        }
+
+        private void ClickContinueButton()
+        {
             _formCompletionHelper.ClickElement(ContinueButton);
+        }
+
+        internal AddAnApprenitcePage AddApprentice()
+        {
+            ChooseToAddApprenticeRadioButton();
+            ClickContinueButton();
             return new AddAnApprenitcePage(_context);
         }
 
-        public new MakingChangesPage VerifySucessMessage()
+        public new SuccessfullyReservedFundingPage VerifySucessMessage()
         {
             base.VerifySucessMessage();
             return this;
         }
 
+
+        internal AddApprenticeDetailsPage AddAnotherApprentice()
+        {
+            ChooseToAddApprenticeRadioButton();
+            ClickContinueButton();
+            return new AddApprenticeDetailsPage(_context);
+        }
     }
 }

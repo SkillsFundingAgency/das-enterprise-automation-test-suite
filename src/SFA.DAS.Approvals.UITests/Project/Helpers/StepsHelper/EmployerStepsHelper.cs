@@ -13,7 +13,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 {
     internal class EmployerStepsHelper
     {
-        private readonly ReviewYourCohortStepsHelper _reviewYourCohortStepsHelper;
+        private ReviewYourCohortPage _reviewYourCohortPage;
+		private AddApprenticeDetailsPage _addApprenticeDetailsPage;
+		private readonly ReviewYourCohortStepsHelper _reviewYourCohortStepsHelper;
         private readonly MFEmployerStepsHelper _employerReservationStepsHelper;
         private readonly EmployerPortalLoginHelper _loginHelper;
         private readonly TabHelper _tabHelper;
@@ -146,7 +148,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
         internal ReviewYourCohortPage EmployerAddApprentice(int numberOfApprentices, bool isTransfersFunds)
         {
           var employerReviewYourCohortPage = ConfirmProviderDetailsAreCorrect(new ApprenticesHomePage(_context, true), isTransfersFunds)
-                .EmployerAddsApprentices();
+                .EmployerAddsApprentices().SubmitValidApprenticeDetails(false);
             return AddApprentices(employerReviewYourCohortPage, numberOfApprentices);
         }
 
@@ -187,10 +189,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 
         private ReviewYourCohortPage AddApprentices(ReviewYourCohortPage employerReviewYourCohortPage, int numberOfApprentices)
         {
-            int noOfApprentice = 0;
+            int noOfApprentice = 1;
             string apprenticeTotalCost = string.Empty;
 
-            for (int i = 1; i <= numberOfApprentices; i++)
+			for (int i = 2; i <= numberOfApprentices; i++)
             {
                 var x = AddAnApprentice(employerReviewYourCohortPage, i);
                 noOfApprentice = x.noOfApprentice;
@@ -238,31 +240,43 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                 .OpenPendingCohortRequestAsFundingEmployer();
         }
 
+        public AddApprenticeDetailsPage NonLevyEmployerAddsProviderDetails()
+        {
+            return new AddAnApprenitcePage(_context).StartNowToAddTrainingProvider()
+                .SubmitValidUkprn()
+                .ConfirmProviderDetailsAreCorrect()
+                .NonLevyEmployerAddsApprentices();
+        }
+
+        public ReviewYourCohortPage NonLevyEmployerAddsApprenticeDetails(bool isTransfersFunds, AddApprenticeDetailsPage addApprenticeDetailsPage, int count)
+        {
+            _reviewYourCohortPage = addApprenticeDetailsPage.SubmitValidApprenticeDetails(true);
+            string apprenticeTotalCost = _reviewYourCohortStepsHelper.ApprenticeTotalCost(_reviewYourCohortPage);
+            int noOfApprentice = _reviewYourCohortStepsHelper.NoOfApprentice(_reviewYourCohortPage, count);
+            _objectContext.SetNoOfApprentices(noOfApprentice);
+            _objectContext.SetApprenticeTotalCost(apprenticeTotalCost);
+            return new ReviewYourCohortPage(_context);
+        }
+
         public ReviewYourCohortPage NonLevyEmployerAddsApprenticesUsingReservations(int numberOfApprentices, bool isTransfersFunds)
         {
             var doYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage = _employerReservationStepsHelper.GoToReserveFunding();
+            _employerReservationStepsHelper.CreateReservation(doYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage)
+                .AddApprentice();
+            var addApprenticeDetailsPage = NonLevyEmployerAddsProviderDetails();
             for (int i = 1; i <= numberOfApprentices; i++)
             {
-                _employerReservationStepsHelper.CreateReservation(doYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage)
-                    .AddApprentice();
-                var reviewYourCohortPage = NonLevyEmployerAddsAnApprentice(false);
+                var reviewYourCohortPage = NonLevyEmployerAddsApprenticeDetails(false, addApprenticeDetailsPage, i);
                 if (i < numberOfApprentices)
                 {
                     reviewYourCohortPage.SelectAddAnApprenticeUsingReservation()
                         .ChooseCreateANewReservationRadioButton()
                         .ClickSaveAndContinueButton();
+                    _employerReservationStepsHelper.CreateReservation(doYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage)
+                        .AddAnotherApprentice();
                 }
             }
             return new ReviewYourCohortPage(_context);
-        }
-
-        public ReviewYourCohortPage NonLevyEmployerAddsAnApprentice(bool isTransfersFunds)
-        {
-            return new AddAnApprenitcePage(_context).StartNowToAddTrainingProvider()
-                .SubmitValidUkprn()
-                .ConfirmProviderDetailsAreCorrect()
-                .NonLevyEmployerAddsApprentices()
-                .SubmitValidApprenticeDetails(true);
         }
     }
 }

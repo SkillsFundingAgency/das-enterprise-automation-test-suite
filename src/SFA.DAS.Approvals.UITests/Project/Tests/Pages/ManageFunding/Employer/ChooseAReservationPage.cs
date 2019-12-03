@@ -8,7 +8,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
     public class ChooseAReservationPage : BasePage
     {
         protected override string PageTitle => "Choose a Reservation";
-        private By CreateANewReservationRadioButton => By.CssSelector(".govuk-radios__label govuk-label--s");
+        private By CreateANewReservationRadioButton => By.CssSelector(".govuk-label--s");
         private By SaveAndContinueButton => By.CssSelector(".govuk-button");
 
         #region Helpers and Context

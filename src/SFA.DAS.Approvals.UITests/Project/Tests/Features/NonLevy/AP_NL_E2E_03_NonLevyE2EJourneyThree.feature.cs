@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.ManageFunding.NonLevyEoiEmployer
+namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.NonLevy
 {
     using TechTalk.SpecFlow;
     
@@ -18,22 +18,20 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.ManageFunding.NonLevy
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.0.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("AP_MF_NLE_01_CreatesACohort")]
-    [NUnit.Framework.CategoryAttribute("approvals")]
-    public partial class AP_MF_NLE_01_CreatesACohortFeature
+    [NUnit.Framework.DescriptionAttribute("AP_NL_E2E_03_NonLevyE2EJourneyThree")]
+    public partial class AP_NL_E2E_03_NonLevyE2EJourneyThreeFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "AP_MF_NLE_01_CreatesACohort.feature"
+#line 1 "AP_NL_E2E_03_NonLevyE2EJourneyThree.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "AP_MF_NLE_01_CreatesACohort", "A Non Levy employer creates a cohort using the reservation", ProgrammingLanguage.CSharp, new string[] {
-                        "approvals"});
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "AP_NL_E2E_03_NonLevyE2EJourneyThree", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -72,26 +70,24 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.ManageFunding.NonLevy
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("AP_MF_NLE_01 Non Levy Employer creates a cohort using the reservation")]
-        [NUnit.Framework.IgnoreAttribute("Ignored scenario")]
-        [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("non-levy")]
-        public virtual void AP_MF_NLE_01NonLevyEmployerCreatesACohortUsingTheReservation()
+        [NUnit.Framework.DescriptionAttribute("AP_NL_E2E_03 Provider approves and then the non-levy EOI Employer approves the co" +
+            "hort")]
+        [NUnit.Framework.CategoryAttribute("approvals")]
+        public virtual void AP_NL_E2E_03ProviderApprovesAndThenTheNon_LevyEOIEmployerApprovesTheCohort()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_MF_NLE_01 Non Levy Employer creates a cohort using the reservation", null, new string[] {
-                        "regression",
-                        "non-levy",
-                        "ignore"});
-#line 9
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_NL_E2E_03 Provider approves and then the non-levy EOI Employer approves the co" +
+                    "hort", null, new string[] {
+                        "approvals"});
+#line 4
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 10
- testRunner.Given("the Employer login using existing eoi account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 11
- testRunner.When("the Employer uses the reservation to create and approve 2 cohort and sends to pro" +
-                    "vider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 12
- testRunner.Then("the provider adds Ulns and approves the cohorts", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 5
+ testRunner.Given("An Employer has given create reservation permission to a provider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 6
+    testRunner.When("Provider creates a reservation and adds 2 apprentices and approves the cohort and" +
+                    " sends to Employer to approve", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 7
+ testRunner.Then("the Employer approves the cohorts", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

@@ -15,8 +15,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
         private readonly ProviderPortalLoginHelper _loginHelper;
         private readonly ReviewYourCohortStepsHelper _reviewYourCohortStepsHelper;
         private readonly ProviderLogin _login;
+		private readonly ProviderAddApprenticeDetailsPage _providerAddApprenticeDetailsPage;
 
-        public ProviderStepsHelper(ScenarioContext context)
+		public ProviderStepsHelper(ScenarioContext context)
         {
             _context = context;
             _objectContext = _context.Get<ObjectContext>();
@@ -24,7 +25,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             _config = context.GetApprovalsConfig<ApprovalsConfig>();
             _login = new ProviderLogin { Username = _config.AP_ProviderUserId, Password = _config.AP_ProviderPassword, Ukprn = _config.AP_ProviderUkprn };
             _loginHelper = new ProviderPortalLoginHelper(_context);
-            _reviewYourCohortStepsHelper = new ReviewYourCohortStepsHelper(_context.Get<AssertHelper>());
+			_reviewYourCohortStepsHelper = new ReviewYourCohortStepsHelper(_context.Get<AssertHelper>());
         }
 
         public ProviderHomePage NavigateToProviderHomePage()
@@ -54,7 +55,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             return new ProviderHomePage(_context);
         }
 
-        public ProviderHomePage ProviderMakeReservation(ProviderLogin login)
+        public ProviderAddApprenticeDetailsPage ProviderMakeReservation(ProviderLogin login)
         {
             return GoToProviderHomePage(login)
                    .GoToProviderGetFunding()
@@ -64,7 +65,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                    .AddTrainingCourseAndDate()
                    .ConfirmReserveFunding()
                    .VerifySucessMessage()
-                   .GoToHomePage();
+                   .GoToAddApprenticeDetailsPage();
         }
 
         public void AddApprenticeAndSendToEmployerForApproval(int numberOfApprentices)
@@ -84,11 +85,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                 .SelectViewCurrentCohortDetails();
         }
 
-        public ProviderReviewYourCohortPage AddApprentice(ProviderHomePage providerHomePage, int numberOfApprentices)
+        public ProviderReviewYourCohortPage AddApprentice(ProviderAddApprenticeDetailsPage _providerAddApprenticeDetailsPage, int numberOfApprentices)
         {
-            var providerAddApprenticeDetailsPage = providerHomePage.GoToManageYourFunding().AddApprenticeWithReservedFunding();
+            //var providerAddApprenticeDetailsPage = providerHomePage.GoToManageYourFunding().AddApprenticeWithReservedFunding();
 
-            var providerReviewYourCohortPage = providerAddApprenticeDetailsPage.SubmitValidApprenticeDetails();
+            var providerReviewYourCohortPage = _providerAddApprenticeDetailsPage.SubmitValidApprenticeDetails();
 
             for (int i = 1; i < numberOfApprentices; i++)
             {
@@ -107,11 +108,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 
         public ProviderReviewYourCohortPage AddApprentice(int numberOfApprentices)
         {
-            var providerReviewYourCohortPage = CurrentCohortDetails();
-
-            for (int i = 0; i < numberOfApprentices; i++)
-            {
-                providerReviewYourCohortPage = providerReviewYourCohortPage.SelectAddAnApprentice()
+			var providerReviewYourCohortPage = CurrentCohortDetails();
+			
+            for(int i = 0; i < numberOfApprentices; i++)
+            {	
+				providerReviewYourCohortPage = providerReviewYourCohortPage.SelectAddAnApprentice()
                         .SubmitValidApprenticeDetails();
             }
 

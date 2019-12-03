@@ -9,8 +9,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
     {
         private readonly ProviderStepsHelper _providerStepsHelper;
         private ProviderReviewYourCohortPage _providerReviewYourCohortPage;
+		private ProviderAddApprenticeDetailsPage _providerAddApprenticeDetailsPage;
 
-        public ProviderSteps(ScenarioContext context)
+
+		public ProviderSteps(ScenarioContext context)
         {
             _providerStepsHelper = new ProviderStepsHelper(context);
         }
