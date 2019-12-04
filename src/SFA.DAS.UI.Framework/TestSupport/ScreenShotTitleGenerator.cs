@@ -1,4 +1,6 @@
-﻿namespace SFA.DAS.UI.Framework.TestSupport
+﻿using System;
+
+namespace SFA.DAS.UI.Framework.TestSupport
 {
     public class ScreenShotTitleGenerator
     {
@@ -11,7 +13,7 @@
 
         public string GetNextCount()
         {
-            return (++count).ToString("D2");
+            return $"{(++count).ToString("D2")}_{DateTime.Now.ToString("fffff")}";
         }
     }
 }
