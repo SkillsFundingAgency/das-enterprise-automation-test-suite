@@ -69,7 +69,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Features.E2EJourney.Apprenticeshi
             testRunner.CollectScenarioErrors();
         }
         
-        public virtual void RV1_E2EAV_03_CreateApproveAndApplyForAApprenticeshipVacancy(string location, string anonymity, string disabilityConfident, string applicationMethod, string apprenticeshipType, string hoursPerWeek, string vacancyDuration, string noOfPositions, string qualificationDetails, string workExperience, string trainingCourse, string[] exampleTags)
+        public virtual void RV1_E2EAV_03_CreateApproveAndApplyForAApprenticeshipVacancyAndMakeItUnsuccessful(string location, string anonymity, string disabilityConfident, string applicationMethod, string apprenticeshipType, string hoursPerWeek, string vacancyDuration, string noOfPositions, string qualificationDetails, string workExperience, string trainingCourse, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "raa-v1",
@@ -80,7 +80,8 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Features.E2EJourney.Apprenticeshi
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
             }
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV1_E2EAV_03 - Create, Approve and Apply for a Apprenticeship Vacancy", null, @__tags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV1_E2EAV_03 - Create, Approve and Apply for a Apprenticeship Vacancy and make it" +
+                    " Unsuccessful", null, @__tags);
 #line 7
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
@@ -100,22 +101,22 @@ this.ScenarioInitialize(scenarioInfo);
 #line 14
  testRunner.When(string.Format("the Applicant apply for a Vacancy in FAA \'{0}\',\'{1}\',\'{2}\'", qualificationDetails, workExperience, trainingCourse), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 15
- testRunner.Then("the vacancy status should be Live in Recruit", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("Provider can to make the application to be \'Unsuccessful\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RV1_E2EAV_03 - Create, Approve and Apply for a Apprenticeship Vacancy: Use the ma" +
-            "in employer address")]
+        [NUnit.Framework.DescriptionAttribute("RV1_E2EAV_03 - Create, Approve and Apply for a Apprenticeship Vacancy and make it" +
+            " Unsuccessful: Use the main employer address")]
         [NUnit.Framework.CategoryAttribute("raa-v1")]
         [NUnit.Framework.CategoryAttribute("v1_e2e")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("apprenticeshipvacancy")]
-        public virtual void RV1_E2EAV_03_CreateApproveAndApplyForAApprenticeshipVacancy_UseTheMainEmployerAddress()
+        public virtual void RV1_E2EAV_03_CreateApproveAndApplyForAApprenticeshipVacancyAndMakeItUnsuccessful_UseTheMainEmployerAddress()
         {
 #line 7
-this.RV1_E2EAV_03_CreateApproveAndApplyForAApprenticeshipVacancy("Use the main employer address", "No", "No", "Online", "Framework", "42", "52", "2", "Yes", "Yes", "Yes", ((string[])(null)));
+this.RV1_E2EAV_03_CreateApproveAndApplyForAApprenticeshipVacancyAndMakeItUnsuccessful("Use the main employer address", "No", "No", "Online", "Framework", "42", "52", "2", "Yes", "Yes", "Yes", ((string[])(null)));
 #line hidden
         }
     }

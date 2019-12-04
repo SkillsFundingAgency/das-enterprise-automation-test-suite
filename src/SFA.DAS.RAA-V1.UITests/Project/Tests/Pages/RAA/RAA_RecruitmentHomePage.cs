@@ -55,18 +55,6 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
             return new RAA_AdministratorFunctionsPage(_context);
         }
 
-        public RAA_VacancyPreviewPage SelectLiveVacancyWithNoApplication()
-        {
-            SelectVacancy("Live", 0);
-            return new RAA_VacancyPreviewPage(_context);
-        }
-
-        public RAA_VacancySummaryPage SelectLiveVacancyWithApplications()
-        {
-            SelectVacancy("Live", 1);
-            return new RAA_VacancySummaryPage(_context);
-        }
-
         public RAA_VacancySummaryPage SelectLiveVacancyWithNewApplications()
         {
             SelectVacancy("New applications", 1, "Live");
@@ -104,6 +92,12 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         {
             SearchByReferenceNumber("Live");
             return new RAA_VacancySummaryPage(_context);
+        }
+
+        public RAA_VacancyPreviewPage SearchLiveVacancyWithNoApplications()
+        {
+            SearchByReferenceNumber("Live");
+            return new RAA_VacancyPreviewPage(_context);
         }
 
         public RAA_PreviewBasePage SearchReferredVacancy()

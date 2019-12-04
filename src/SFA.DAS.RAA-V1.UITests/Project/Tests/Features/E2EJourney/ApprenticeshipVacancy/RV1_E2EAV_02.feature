@@ -4,7 +4,7 @@
 @v1_e2e
 @regression
 @apprenticeshipvacancy
-Scenario Outline: RV1_E2EAV_02 - Create, Approve and Apply for a Apprenticeship Vacancy
+Scenario Outline: RV1_E2EAV_02 - Create, Approve and Apply for a Apprenticeship Vacancy and make it Successful
 	Given the Provider initiates Create Apprenticeship Vacancy in Recruit
 	When the Provider chooses the employer '<location>','<NoOfPositions>'
 	And the Provider chooses their '<anonymity>'
@@ -12,7 +12,7 @@ Scenario Outline: RV1_E2EAV_02 - Create, Approve and Apply for a Apprenticeship 
 	Then Provider is able to submit the vacancy for approval
 	Then the Reviewer approves the vacancy
 	When the Applicant apply for a Vacancy in FAA '<QualificationDetails>','<WorkExperience>','<TrainingCourse>'
-	Then the vacancy status should be Live in Recruit
+	Then Provider can to make the application to be 'Successful'
 
 	Examples:
 		| location                    | anonymity | DisabilityConfident | ApplicationMethod | ApprenticeshipType | HoursPerWeek | VacancyDuration | NoOfPositions | QualificationDetails | WorkExperience | TrainingCourse |

@@ -26,12 +26,16 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
         private readonly RAAStepsHelper _raaStepsHelper;
         private readonly ManageStepsHelper _manageStepsHelper; 
         private readonly FAAStepsHelper _faaStepsHelper;
+        private bool _exitFromWebsite;
+        private bool _applyForVacancy;
 
         public CommonSteps(ScenarioContext context)
         {
             _raaStepsHelper = new RAAStepsHelper(context);
             _manageStepsHelper = new ManageStepsHelper(context);
             _faaStepsHelper = new FAAStepsHelper(context);
+            _exitFromWebsite = true;
+            _applyForVacancy = true;
         }
 
 
@@ -51,6 +55,21 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
         public void GivenTheApprenticeshipVacancyIsLiveInRecruit(Table table)
         {
             AddApprenticeshipVacancy(table.CreateInstance<RAATableData>());
+        }
+
+        [Given(@"the apprenticeship vacancy is Live in Recruit with no application")]
+        public void GivenTheApprenticeshipVacancyIsLiveInRecruitWithNoApplication()
+        {
+            _applyForVacancy = false;
+            AddApprenticeshipVacancy();
+            _applyForVacancy = true;
+        }
+
+
+        [Given(@"the apprenticeship vacancy is Live in Recruit with an application")]
+        public void GivenTheApprenticeshipVacancyIsLiveInRecruitWithAnApplication()
+        {
+            AddApprenticeshipVacancy();
         }
 
         [Given(@"the apprenticeship vacancy is Live in Recruit near '(.*)'")]
@@ -93,6 +112,13 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
             VacancyIsLiveInRecruit(dataset);
         }
 
+        private void AddApprenticeshipVacancy()
+        {
+            _exitFromWebsite = false;
+            AddApprenticeshipVacancy(TestData("CV3 5JJ"));
+            _exitFromWebsite = true;
+        }
+
         private void AddApprenticeshipVacancy(RAATableData dataset)
         {
             string postCode = PostCodeTestData(dataset);
@@ -114,17 +140,28 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
 
             _manageStepsHelper.ApproveAVacancy(true);
 
-            var faa_homePage = _faaStepsHelper.GoToFAAHomePage(true);
+            if (_applyForVacancy)
+            {
+                var faa_applicationFormPage = _faaStepsHelper.ApplyForVacancy();
 
-            var faa_applicationFormPage = _faaStepsHelper.ApplyForVacancy(faa_homePage);
-
-            _faaStepsHelper.ConfirmApplicationSubmission(faa_applicationFormPage, dataset.QualificationDetails, dataset.WorkExperience, dataset.TrainingCourse);
+                _faaStepsHelper.ConfirmApplicationSubmission(faa_applicationFormPage, dataset.QualificationDetails, dataset.WorkExperience, dataset.TrainingCourse);
+            }
 
             var raa_homePage = _raaStepsHelper.GoToRAAHomePage(true);
-
-            raa_homePage.SearchLiveVacancy();
-
-            raa_homePage.ExitFromWebsite();
+            
+            if (_applyForVacancy)
+            {
+                raa_homePage.SearchLiveVacancy();
+            }
+            else
+            {
+                raa_homePage.SearchLiveVacancyWithNoApplications();
+            }
+            
+            if (_exitFromWebsite)
+            {
+                raa_homePage.ExitFromWebsite();
+            }
         }
 
         private string PostCodeTestData(RAATableData dataset)

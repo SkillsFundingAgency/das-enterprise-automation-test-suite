@@ -20,8 +20,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
         [When(@"an applicant is on the Find an Apprenticeship Page")]
         public void WhenAnApplicantIsOnTheFindAnApprenticeshipPage()
         {
-            _apprenticeSearchPage = _faaStepsHelper.GoToFAAHomePage(true)
-                .FindAnApprenticeship();
+            _apprenticeSearchPage = _faaStepsHelper.FindAnApprenticeship();
         }
 
         [Then(@"the apprenticeship can be found based on '(.*)','(.*)'")]
