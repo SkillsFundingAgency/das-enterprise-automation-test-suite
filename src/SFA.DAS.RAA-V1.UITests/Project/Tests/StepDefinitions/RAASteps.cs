@@ -200,20 +200,24 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
         [Then(@"Provider can to make the application to be '(.*)'")]
         public void ThenProviderCanToMakeTheApplicationTo(string newStatus) 
         {
-            _raaStepsHelper.GoToRAAHomePage(true)
-                .SearchLiveVacancy()
-                .ViewApplication()
-                .ChangeStatus(newStatus);
+            var summaryPage = _raaStepsHelper.GoToRAAHomePage(true).SearchLiveVacancy();
+
+            ChangeStatus(summaryPage, newStatus);
         }
 
         [Then(@"Provider is able to change the status of the In progress application to '(.*)'")]
         public void ThenProviderIsAbleToChangeTheStatusOfTheInProgressApplicationTo(string newStatus)
         {
-            new RAA_VacancySummaryPage(_context)
-                .ViewApplication()
-                .ChangeStatus("In progress")
-                .ViewApplication()
-                .ChangeStatus(newStatus);
+            var summaryPage = new RAA_VacancySummaryPage(_context);
+
+            summaryPage = ChangeStatus(summaryPage, "In progress");
+
+            ChangeStatus(summaryPage, newStatus);
+        }
+
+        private RAA_VacancySummaryPage ChangeStatus(RAA_VacancySummaryPage summaryPage, string newStatus)
+        {
+            return summaryPage.ViewApplication().ChangeStatus(newStatus);
         }
 
         private void CloneVacancy()
