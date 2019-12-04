@@ -25,14 +25,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 
         public DoYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage GoToReserveFunding()
         {
-            //_loginHelper.Login(_context.GetUser<EoiUser>(), false);
-
-            return new YourFundingReservationsHomePage(_context).OpenYourFundingReservations()
-                .ClickReserveMoreFundingLink()
-                .ClickReserveFundingButton();
+            var yourFundingReservationsPage = GoToManageFunding();
+            return yourFundingReservationsPage.ClickReserveMoreFundingLink();
         }
 
-        public MakingChangesPage CreateReservation(DoYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage doYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage)
+        public SuccessfullyReservedFundingPage CreateReservation(DoYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage doYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage)
         {
             return doYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage
                 .ClickYesRadioButton()
@@ -44,9 +41,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                 .ClickConfirmButton();
         }
 
-        public AddAnApprenitcePage AddAnApprentice(MakingChangesPage makingChangesPage)
+        public AddAnApprenitcePage AddAnApprentice(SuccessfullyReservedFundingPage successfullyReservedFundingPage)
         {
-            return makingChangesPage.AddApprentice();
+            return successfullyReservedFundingPage.AddApprentice();
         }
 
         public DoYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage AddAnotherReservation(ReviewYourCohortPage reviewYourCohortPage)
@@ -54,6 +51,25 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             return reviewYourCohortPage.SelectAddAnApprenticeUsingReservation()
                 .ChooseCreateANewReservationRadioButton()
                 .ClickSaveAndContinueButton();
+        }
+
+        public YourFundingReservationsPage GoToManageFunding()
+        {
+            return new YourFundingReservationsHomePage(_context).OpenYourFundingReservations();
+        }
+
+        public YourFundingReservationsPage DeleteAllUnusedFunding()
+        {
+            var yourFundingReservationsPage = GoToManageFunding();
+            while (yourFundingReservationsPage.CheckIfDeleteLinkIsPresent())
+            {
+                yourFundingReservationsPage.DeleteUnusedFunding()
+                    .ChooseDeleteReservationRadioButton()
+                    .ClickConfirmButton()
+                    .ChooseReturnToManageReservationRadioButton()
+                    .ClickConfirmButton();
+            }
+            return yourFundingReservationsPage;
         }
     }
 }

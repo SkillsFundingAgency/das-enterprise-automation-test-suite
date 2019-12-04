@@ -47,7 +47,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         public void ThenEmployerIsAbleToStopTheApprentice()
         {
             _apprenticeDetailsPage = _employerStepsHelper
-                                    .StopApprenticeThisMonth(_apprenticeDetailsPage);
+            .StopApprenticeThisMonth(_apprenticeDetailsPage);
         }
 
         [Then(@"Employer can edit stop date to learner start date")]
@@ -117,9 +117,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [When(@"the Employer approves the cohort and sends to provider")]
         public void WhenTheEmployerApprovesTheCohortAndSendsToProvider()
         {
-            var employerReviewYourCohortPage = _employerStepsHelper.EmployerReviewCohort();
+            _reviewYourCohortPage = _employerStepsHelper.EmployerReviewCohort();
 
-            employerReviewYourCohortPage.EmployerFirstApproveAndNotifyTrainingProvider();
+			_reviewYourCohortPage.EmployerFirstApproveAndNotifyTrainingProvider();
         }
 
 
@@ -132,9 +132,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [When(@"the Employer adds (\d) cohort and sends to provider")]
         public void WhenTheEmployerAddsCohortAndSendsToProvider(int numberOfApprentices)
         {
-            var employerReviewYourCohortPage = _employerStepsHelper.EmployerAddApprentice(numberOfApprentices, false);
+            _reviewYourCohortPage = _employerStepsHelper.EmployerAddApprentice(numberOfApprentices, false);
 
-            var cohortReference = employerReviewYourCohortPage.EmployerSendsToTrainingProviderForReview().CohortReference();
+            var cohortReference = _reviewYourCohortPage.EmployerSendsToTrainingProviderForReview().CohortReference();
 
             _employerStepsHelper.SetCohortReference(cohortReference);
         }
@@ -148,8 +148,19 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [When(@"the Employer uses the reservation to create and approve (\d) cohort and sends to provider")]
         public void TheEmployerUsesTheReservationToCreateAndApproveCohortAndSendsToProvider(int numberOfApprentices)
         {
-            var reviewYourCohortPage = _employerStepsHelper.NonLevyEmployerAddsApprenticesUsingReservations(numberOfApprentices, false);
-            var cohortReference = _employerStepsHelper.EmployerApproveAndSendToProvider(reviewYourCohortPage);
+            _reviewYourCohortPage = _employerStepsHelper.NonLevyEmployerAddsApprenticesUsingReservations(numberOfApprentices, false);
+            var cohortReference = _employerStepsHelper.EmployerApproveAndSendToProvider(_reviewYourCohortPage);
+            _employerStepsHelper.SetCohortReference(cohortReference);
+        }
+
+        [When(@"the Employer uses the reservation and adds (\d) cohort and sends to provider")]
+        public void TheEmployerUsesTheReservationAndAddsCohortAndSendsToProvider(int numberOfApprentices)
+        {
+            _reviewYourCohortPage = _employerStepsHelper.NonLevyEmployerAddsApprenticesUsingReservations(numberOfApprentices, false);
+
+            var cohortReference = _reviewYourCohortPage.EmployerSendsToTrainingProviderForReview()
+                .CohortReference();
+
             _employerStepsHelper.SetCohortReference(cohortReference);
         }
     }
