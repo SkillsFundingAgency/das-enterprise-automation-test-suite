@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Features.RAA.ChangeApplicationStatus
+namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Features.E2EJourney.ChangeApplicationStatus
 {
     using TechTalk.SpecFlow;
     
@@ -31,7 +31,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Features.RAA.ChangeApplicationSta
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "RV1_CHAS", "A short summary of the feature", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "RV1_CHAS", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -80,10 +80,12 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Features.RAA.ChangeApplicationSta
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
             }
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV1_CVSD_02 - Change In Progress Application status", null, @__tags);
-#line 8
+#line 6
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 9
+#line 7
+ testRunner.Given("the apprenticeship vacancy is Live in Recruit with an application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 8
  testRunner.Then(string.Format("Provider is able to change the status of the In progress application to \'{0}\'", toStatus), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -96,7 +98,7 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.CategoryAttribute("apprenticeshipvacancy")]
         public virtual void RV1_CVSD_02_ChangeInProgressApplicationStatus_New()
         {
-#line 8
+#line 6
 this.RV1_CVSD_02_ChangeInProgressApplicationStatus("New", ((string[])(null)));
 #line hidden
         }
@@ -108,7 +110,7 @@ this.RV1_CVSD_02_ChangeInProgressApplicationStatus("New", ((string[])(null)));
         [NUnit.Framework.CategoryAttribute("apprenticeshipvacancy")]
         public virtual void RV1_CVSD_02_ChangeInProgressApplicationStatus_Successful()
         {
-#line 8
+#line 6
 this.RV1_CVSD_02_ChangeInProgressApplicationStatus("Successful", ((string[])(null)));
 #line hidden
         }
@@ -120,7 +122,7 @@ this.RV1_CVSD_02_ChangeInProgressApplicationStatus("Successful", ((string[])(nul
         [NUnit.Framework.CategoryAttribute("apprenticeshipvacancy")]
         public virtual void RV1_CVSD_02_ChangeInProgressApplicationStatus_Unsuccessful()
         {
-#line 8
+#line 6
 this.RV1_CVSD_02_ChangeInProgressApplicationStatus("Unsuccessful", ((string[])(null)));
 #line hidden
         }

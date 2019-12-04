@@ -206,6 +206,16 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
                 .ChangeStatus(newStatus);
         }
 
+        [Then(@"Provider is able to change the status of the In progress application to '(.*)'")]
+        public void ThenProviderIsAbleToChangeTheStatusOfTheInProgressApplicationTo(string newStatus)
+        {
+            new RAA_VacancySummaryPage(_context)
+                .ViewApplication()
+                .ChangeStatus("In progress")
+                .ViewApplication()
+                .ChangeStatus(newStatus);
+        }
+
         private void CloneVacancy()
         {
             var homePage = _raaStepsHelper.GoToRAAHomePage(false);
