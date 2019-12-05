@@ -18,7 +18,7 @@ namespace SFA.DAS.FAA.UITests.Project.Helpers
         {
             _context = context;
             _objectContext = context.Get<ObjectContext>();
-            _config = context.GetRAAV1Config<FAAConfig>();
+            _config = context.GetFAAConfig<FAAConfig>();
             _tabHelper = context.Get<TabHelper>();
             _helper = new RestartWebDriverHelper(context);
         }

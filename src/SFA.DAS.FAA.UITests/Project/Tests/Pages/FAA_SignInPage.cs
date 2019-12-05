@@ -27,7 +27,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
         {
             _context = context;
             _formCompletionHelper = context.Get<FormCompletionHelper>();
-            _config = context.GetRAAV1Config<FAAConfig>();
+            _config = context.GetFAAConfig<FAAConfig>();
             VerifyPage(UsernameField);
         }
 

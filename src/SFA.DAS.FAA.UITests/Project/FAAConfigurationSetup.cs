@@ -1,8 +1,4 @@
-﻿
-using SFA.DAS.UI.Framework.TestSupport;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using SFA.DAS.UI.Framework.TestSupport;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.FAA.UITests.Project
@@ -23,7 +19,7 @@ namespace SFA.DAS.FAA.UITests.Project
         public void SetUpTestProjectConfiguration()
         {
             var config = _configSection.GetConfigSection<FAAConfig>();
-            _context.SetRAAV1Config(config);
+            _context.SetFAAConfig(config);
         }
     }
 }
