@@ -63,8 +63,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
         public void SelectAddress()
         {
             _formCompletionHelper.EnterText(PostCode, _dataHelper.PostCode);
-            var randomElements = _pageInteractionHelper.FindElements(PostCodeAutoSuggestResults);
-            _formCompletionHelper.ClickElement(() => _dataHelper.GetRandomElementFromListOfElements(randomElements));
+            _formCompletionHelper.ClickElement(() => _dataHelper.GetRandomElementFromListOfElements(_pageInteractionHelper.FindElements(PostCodeAutoSuggestResults)));
         }
     }
 }
