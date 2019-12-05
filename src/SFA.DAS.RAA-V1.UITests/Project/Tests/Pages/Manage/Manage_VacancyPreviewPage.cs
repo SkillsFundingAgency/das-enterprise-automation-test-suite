@@ -5,7 +5,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.Manage
 {
     public class Manage_VacancyPreviewPage : Manage_HeaderSectionBasePage
     {
-        protected override string PageTitle => raadataHelper.VacancyTitle;
+        protected override string PageTitle => vacancyTitleDataHelper.VacancyTitle;
 
         protected override By PageHeader => By.CssSelector("#vacancy-title");
 

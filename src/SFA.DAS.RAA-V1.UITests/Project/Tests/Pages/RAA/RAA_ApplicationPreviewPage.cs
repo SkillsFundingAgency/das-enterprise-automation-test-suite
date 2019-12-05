@@ -6,7 +6,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
 {
     public class RAA_ApplicationPreviewPage : RAA_HeaderSectionBasePage
     {
-        protected override string PageTitle => dataHelper.VacancyTitle;
+        protected override string PageTitle => vacancyTitledataHelper.VacancyTitle;
 
         #region Helpers and Context
         private readonly ScenarioContext _context;

@@ -1,4 +1,5 @@
-﻿using SFA.DAS.RAA_V1.UITests.Project.Helpers;
+﻿using SFA.DAS.FAA.UITests.Project;
+using SFA.DAS.RAA_V1.UITests.Project.Helpers;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
@@ -30,7 +31,6 @@ namespace SFA.DAS.RAA_V1.UITests.Project
 
             _context.Set(new ManagedataHelper(random));
 
-            _context.Set(new FAADataHelper(random));
         }
 
         [BeforeScenario("apprenticeshipvacancy", Order = 33)]

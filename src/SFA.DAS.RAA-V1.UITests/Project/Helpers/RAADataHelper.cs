@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.FAA.UITests.Project.Helpers;
 using SFA.DAS.UI.FrameworkHelpers;
 using System;
 using System.Collections.Generic;
@@ -18,9 +19,6 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
             EmployerReason = _randomDataGenerator.GenerateRandomAlphabeticString(10);
             EmployerBody = _randomDataGenerator.GenerateRandomAlphabeticString(25);
             EmployerWebsiteUrl = WebsiteUrl(EmployerDescription);
-            VacancyTitleDate = DateTime.Now;
-            VacancyTitleDateElement = VacancyTitleDate.ToString("ddMMMyyyy");
-            VacancyTitle = $"{_randomDataGenerator.GenerateRandomAlphabeticString(10)}_{VacancyTitleDateElement}_{VacancyTitleDate.ToString("HHmmssfffff")}";
             VacancyShortDescription = _randomDataGenerator.GenerateRandomAlphabeticString(15);
             VacancyDescription = _randomDataGenerator.GenerateRandomAlphabeticString(50);
             VacancyWebsiteUrl = WebsiteUrl(VacancyShortDescription);
@@ -64,12 +62,6 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
         public string EmployerBody { get; }
         
         public string EmployerWebsiteUrl { get; }
-
-        internal DateTime VacancyTitleDate { get; }
-
-        internal string VacancyTitleDateElement { get; }
-
-        public string VacancyTitle { get; internal set; }
 
         public string VacancyShortDescription { get; }
 

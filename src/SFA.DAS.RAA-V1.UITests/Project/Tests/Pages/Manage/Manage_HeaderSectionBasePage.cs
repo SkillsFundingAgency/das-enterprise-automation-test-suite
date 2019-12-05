@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.FAA.UITests.Project.Helpers;
 using SFA.DAS.RAA_V1.UITests.Project.Helpers;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
@@ -14,6 +15,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.Manage
         protected readonly FormCompletionHelper formCompletionHelper;
         protected readonly TableRowHelper tableRowHelper;
         protected readonly RAADataHelper raadataHelper;
+        protected readonly VacancyTitleDatahelper vacancyTitleDataHelper;
         private readonly ScenarioContext _context;
         #endregion
 
@@ -28,6 +30,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.Manage
             formCompletionHelper = context.Get<FormCompletionHelper>();
             tableRowHelper = context.Get<TableRowHelper>();
             raadataHelper = context.Get<RAADataHelper>();
+            vacancyTitleDataHelper = context.Get<VacancyTitleDatahelper>();
             VerifyPage();
         }
 
