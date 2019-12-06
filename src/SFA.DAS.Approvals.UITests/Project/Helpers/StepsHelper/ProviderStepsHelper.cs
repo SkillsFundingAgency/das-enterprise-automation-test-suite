@@ -15,7 +15,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
         private readonly ProviderPortalLoginHelper _loginHelper;
         private readonly ReviewYourCohortStepsHelper _reviewYourCohortStepsHelper;
         private readonly ProviderLogin _login;
-		private readonly ProviderAddApprenticeDetailsPage _providerAddApprenticeDetailsPage;
 
 		public ProviderStepsHelper(ScenarioContext context)
         {

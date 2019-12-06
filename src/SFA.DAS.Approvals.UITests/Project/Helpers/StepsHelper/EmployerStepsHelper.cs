@@ -14,7 +14,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
     internal class EmployerStepsHelper
     {
         private ReviewYourCohortPage _reviewYourCohortPage;
-		private AddApprenticeDetailsPage _addApprenticeDetailsPage;
 		private readonly ReviewYourCohortStepsHelper _reviewYourCohortStepsHelper;
         private readonly MFEmployerStepsHelper _employerReservationStepsHelper;
         private readonly EmployerPortalLoginHelper _loginHelper;
