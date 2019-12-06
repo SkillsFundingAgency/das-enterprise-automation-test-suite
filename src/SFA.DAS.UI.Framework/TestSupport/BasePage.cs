@@ -31,6 +31,11 @@ namespace SFA.DAS.UI.Framework.TestSupport
             _browser = objectContext.GetBrowser();
         }
 
+        protected bool VerifyPageAfterRefresh(By locator)
+        {
+            return VerifyPage(() => _pageInteractionHelper.VerifyPageAfterRefresh(locator));
+        }
+
         protected bool VerifyPage(By locator)
         {
             return VerifyPage(() => _pageInteractionHelper.VerifyPage(locator));
