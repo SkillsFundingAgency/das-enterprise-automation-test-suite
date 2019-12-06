@@ -22,7 +22,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages
             _config = context.GetRAAV1Config<RAAV1Config>();
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
-            VerifyPage(RAAStaffIdams);
+            VerifyPageAfterRefresh(RAAStaffIdams);
         }
         
         #region Properties

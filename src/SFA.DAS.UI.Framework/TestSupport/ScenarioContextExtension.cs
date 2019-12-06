@@ -7,16 +7,17 @@ namespace SFA.DAS.UI.Framework.TestSupport
     public static class ScenarioContextExtension
     {
         #region Constants
-        private const string TestProjectConfigKey = "testprojectconfig";
-        private const string RegistrationProjectConfigKey = "registrationprojectconfig";
-        private const string SupportConsoleProjectConfigKey = "SupportConsoleprojectconfig";
+        private const string TestProjectConfigKey = "testprojectconfigkey";
+        private const string RegistrationProjectConfigKey = "registrationprojectconfigkey";
+        private const string SupportConsoleProjectConfigKey = "supportconsoleprojectconfigkey";
         private const string RAAV1ProjectConfigKey = "raav1projectconfigkey";
-        private const string ApprovalsProjectConfigKey = "approvalsprojectconfig";
+        private const string FAAProjectConfigKey = "faaprojectconfigkey";
+        private const string ApprovalsProjectConfigKey = "approvalsprojectconfigkey";
         private const string ProviderPermissionConfigKey = "providerpermissionconfigkey";
-        private const string TransfersProjectConfigKey = "transfersprojectconfig";
+        private const string TransfersProjectConfigKey = "transfersprojectconfigkey";
         private const string FATProjectConfigKey = "fatprojectconfigkey";
-        private const string MongoDbConfigKey = "mongodbconfig";
-        private const string WebDriverKey = "webdriver";
+        private const string MongoDbConfigKey = "mongodbconfigkey";
+        private const string WebDriverKey = "webdriverkey";
         #endregion
 
         public static void SetTestProjectConfig<T>(this ScenarioContext context, T value)
@@ -84,6 +85,11 @@ namespace SFA.DAS.UI.Framework.TestSupport
             return Get<T>(context, RAAV1ProjectConfigKey);
         }
 
+        public static T GetFAAConfig<T>(this ScenarioContext context)
+        {
+            return Get<T>(context, FAAProjectConfigKey);
+        }
+
         public static T GetSupportConsoleConfig<T>(this ScenarioContext context)
         {
             return Get<T>(context, SupportConsoleProjectConfigKey);
@@ -97,6 +103,11 @@ namespace SFA.DAS.UI.Framework.TestSupport
         public static void SetRAAV1Config<T>(this ScenarioContext context, T value)
         {
             Set(context, value, RAAV1ProjectConfigKey);
+        }
+
+        public static void SetFAAConfig<T>(this ScenarioContext context, T value)
+        {
+            Set(context, value, FAAProjectConfigKey);
         }
 
         public static void SetMongoDbConfig(this ScenarioContext context, MongoDbConfig value)

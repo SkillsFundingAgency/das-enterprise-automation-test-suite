@@ -18,13 +18,14 @@ namespace SFA.DAS.UI.FrameworkHelpers
             _scenarioTitle = scenarioTitle;
         }
 
-        internal bool RetryOnException(Func<bool> func, Action beforeAction)
+        internal bool RetryOnException(Func<bool> func, Action beforeAction, Action retryAction = null)
         {
             return Policy
                  .Handle<Exception>((x) => x.Message.Contains("verification failed"))
                  .WaitAndRetry(TimeOut, (exception, timeSpan, retryCount, context) =>
                  {
                      Report(retryCount, exception);
+                     retryAction?.Invoke();
                  })
                  .Execute(() =>
                  {
@@ -35,6 +36,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
                      }
                  });
         }
+
         internal void RetryClickOnException(Func<IWebElement> element)
         {
             Policy

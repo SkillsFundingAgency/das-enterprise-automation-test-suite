@@ -47,18 +47,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         public bool VerifyPage(By locator)
         {
-            bool func()
-            {
-                var elements = FindElements(locator);
-                if (elements.Count > 0)
-                {
-                    return true;
-                }
-
-                throw new Exception($"Page verification failed:{locator.ToString()} is not found");
-            }
-
-            return VerifyPage(func);
+            return VerifyPage(Func(locator));
         }
 
         public bool VerifyPage(By locator, string expected)
@@ -77,6 +66,15 @@ namespace SFA.DAS.UI.FrameworkHelpers
             }
 
             return VerifyPage(func);
+        }
+
+        public bool VerifyPageAfterRefresh(By locator)
+        {
+            void beforeAction() => _webDriverWaitHelper.WaitForPageToLoad();
+
+            void retryAction() => _webDriver.Navigate().Refresh();
+
+            return _retryHelper.RetryOnException(Func(locator), beforeAction, retryAction);
         }
 
         public void Verify(Func<bool> func, Action beforeAction)
@@ -217,7 +215,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         public List<IWebElement> FindElements(IWebElement element, By locator) => element.FindElements(locator).ToList();
 
-        public List<IWebElement> FindElements(By locator) =>  _webDriver.FindElements(locator).ToList();
+        public List<IWebElement> FindElements(By locator) => _webDriver.FindElements(locator).ToList();
 
         public IWebElement GetLinkByHref(string hrefContains) => FindElements(LinkCssSelector).First(x => x.GetAttribute("href").ContainsCompareCaseInsensitive(hrefContains));
 
@@ -228,5 +226,17 @@ namespace SFA.DAS.UI.FrameworkHelpers
         public List<IWebElement> GetLinks(string linkText) => FindElements(LinkCssSelector).Where(x => x.GetAttribute(AttributeHelper.InnerText).ContainsCompareCaseInsensitive(linkText)).ToList();
 
         public List<string> GetAvailableOptions(By @by) => SelectElement(FindElement(by)).Options.Where(t => string.IsNullOrEmpty(t.Text)).Select(x => x.Text).ToList();
+
+        private Func<bool> Func(By locator)
+        {
+            return () =>
+            {
+                var elements = FindElements(locator);
+
+                if (elements.Count > 0)
+                    return true;
+                throw new Exception($"Page verification failed:{locator.ToString()} is not found");
+            };
+        }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.FAA.UITests.Project;
 using SFA.DAS.RAA_V1.UITests.Project.Helpers;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
@@ -53,12 +54,6 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         {
             NavigateToAdmin();
             return new RAA_AdministratorFunctionsPage(_context);
-        }
-
-        public RAA_VacancySummaryPage SelectLiveVacancyWithNewApplications()
-        {
-            SelectVacancy("New applications", 1, "Live");
-            return new RAA_VacancySummaryPage(_context);
         }
 
         public RAA_EmployerInformationPage CloneAVacancy()
@@ -138,7 +133,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
             formCompletionHelper.EnterText(VacancySearchText, _objectContext.GetVacancyReference());
             formCompletionHelper.ClickElement(() => _pageInteractionHelper.FindElement(SearchVacancy));
             _pageInteractionHelper.WaitForElementToChange(func, AttributeHelper.InnerText, "1");
-            formCompletionHelper.ClickLinkByText(VacancyTitle, dataHelper.VacancyTitle);
+            formCompletionHelper.ClickLinkByText(VacancyTitle, vacancyTitledataHelper.VacancyTitle);
         }
 
         private void SearchByVacancyTitleContains(string filter)
@@ -147,7 +142,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
             NavigateToHome();
             ApprenticeshipVacancyType();
             formCompletionHelper.SelectFromDropDownByValue(VacancySearchMode, "VacancyTitle");
-            var searchTerm = dataHelper.VacancyTitleDate.AddDays(-1).ToString("MMMyyyy");
+            var searchTerm = vacancyTitledataHelper.VacancyTitleDate.AddDays(-1).ToString("MMMyyyy");
             formCompletionHelper.EnterText(VacancySearchText, $"{searchTerm}_");
             formCompletionHelper.ClickElement(() => _pageInteractionHelper.FindElement(SearchVacancy));
             formCompletionHelper.ClickLinkByText(VacancyFilters, filter);
@@ -161,30 +156,6 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
                 formCompletionHelper.ClickLinkByText("Traineeships");
                 _pageInteractionHelper.WaitForElementToChange(InlineText, "Your opportunities");
             }
-        }
-
-        private RAA_RecruitmentHomePage SelectVacancy(string filter, int applications, string additionalFilter = null)
-        {
-            SearchByVacancyTitleContains(filter);
-
-            IWebElement element()
-            {
-                string[] shouldNotContain = new string[] { "(Applications managed externally)", $"_{dataHelper.VacancyTitleDateElement}_" };
-
-                var randomElement = RandomElementAt((e) =>
-                {
-                    var str = e.Text;
-                    return shouldNotContain.Any(x => !str.Contains(x)) && str.Contains($"{applications}\r\napplication") && (additionalFilter == null ? true : str.Contains(additionalFilter)) && _regexHelper.CheckVacancyTitle(str);
-                });
-
-                return _pageInteractionHelper.FindElement(randomElement, VacancyTitle);
-            }
-
-            formCompletionHelper.RetryClickOnException(element);
-
-            dataHelper.VacancyTitle = _objectContext.GetVacancyTitle();
-
-            return this;
         }
 
         private IWebElement RandomElementAt(Func<IWebElement, bool> func)
