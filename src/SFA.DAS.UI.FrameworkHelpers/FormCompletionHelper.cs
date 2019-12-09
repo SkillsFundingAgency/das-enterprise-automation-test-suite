@@ -175,5 +175,10 @@ namespace SFA.DAS.UI.FrameworkHelpers
         {
             ClickElementByText(CheckBoxCssSelector, text);
         }
+
+        public void SelectCheckBoxByText(By locator, string text)
+        {
+            ClickElementByText(locator, text);
+        }
     }
 }

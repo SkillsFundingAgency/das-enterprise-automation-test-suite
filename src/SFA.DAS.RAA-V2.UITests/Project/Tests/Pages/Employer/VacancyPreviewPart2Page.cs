@@ -1,0 +1,53 @@
+﻿using OpenQA.Selenium;
+using SFA.DAS.RAA_V2.UITests.Project.Helpers;
+using SFA.DAS.UI.FrameworkHelpers;
+using TechTalk.SpecFlow;
+
+namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer
+{
+
+    public class VacancyPreviewPart2Page : RAAV2CSSBasePage
+    {
+        protected override string PageTitle => _dataHelper.VacancyTitle;
+
+        #region Helpers and Context
+        private readonly FormCompletionHelper _formCompletionHelper;
+        private readonly ScenarioContext _context;
+        private readonly EmployerDataHelper _dataHelper;
+        #endregion
+
+        private By BriefOverview => By.CssSelector("a[data-automation='link-overview']");
+        private By VacancyDescription => By.CssSelector("a[data-automation='link-vacancy-description']");
+        private By DesiredSkills => By.CssSelector("a[data-automation='link-skills']");
+        private By Qualifications => By.CssSelector("a[data-automation='link-qualifications']");
+        private By EmployerDescription => By.CssSelector("a[data-automation='link-description']");
+        private By Submit => By.CssSelector("a[data-automation='submit-button']");
+
+
+        public VacancyPreviewPart2Page(ScenarioContext context) : base(context)
+        {
+            _context = context;
+            _formCompletionHelper = context.Get<FormCompletionHelper>();
+            _dataHelper = context.Get<EmployerDataHelper>();
+            VerifyPage();
+        }
+
+        public ShortDescriptionPage AddShortDescription()
+        {
+            _formCompletionHelper.Click(BriefOverview);
+            return new ShortDescriptionPage(_context);
+        }
+
+        public DescriptionPage AddDescription()
+        {
+            _formCompletionHelper.Click(VacancyDescription);
+            return new DescriptionPage(_context);
+        }
+
+        public DesiredSkillsPage AddSkills()
+        {
+            _formCompletionHelper.Click(DesiredSkills);
+            return new DesiredSkillsPage(_context);
+        }
+    }
+}
