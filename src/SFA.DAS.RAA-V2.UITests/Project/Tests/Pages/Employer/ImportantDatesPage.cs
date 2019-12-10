@@ -26,7 +26,6 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer
         public ImportantDatesPage(ScenarioContext context) : base(context)
         {
             _context = context;
-            VerifyPage();
         }
 
         public void EnterVacancyClosingDate()

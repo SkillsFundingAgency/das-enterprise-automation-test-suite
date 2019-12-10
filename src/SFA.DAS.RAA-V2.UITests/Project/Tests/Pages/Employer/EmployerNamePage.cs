@@ -20,7 +20,6 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer
         public EmployerNamePage(ScenarioContext context) : base(context)
         {
             _context = context;
-            VerifyPage();
         }
 
         public ChooseApprenticeshipLocationPage ChooseRegisteredName()

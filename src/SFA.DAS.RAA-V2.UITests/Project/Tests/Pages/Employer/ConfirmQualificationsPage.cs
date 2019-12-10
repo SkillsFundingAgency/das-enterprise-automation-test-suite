@@ -14,7 +14,6 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer
         public ConfirmQualificationsPage(ScenarioContext context) : base(context)
         {
             _context = context;
-            VerifyPage();
         }
 
         public VacancyPreviewPart2Page ConfirmQualifications()

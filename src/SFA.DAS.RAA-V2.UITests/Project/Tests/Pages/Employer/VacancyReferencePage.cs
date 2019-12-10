@@ -22,6 +22,7 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer
         public VacancyReferencePage(ScenarioContext context) : base(context)
         {
             _vacancyReferenceHelper = context.Get<VacancyReferenceHelper>();
+            VerifyPage();
         }
 
         public void SetVacancyReference()

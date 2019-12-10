@@ -1,6 +1,4 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.RAA_V2.UITests.Project.Helpers;
-using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer
@@ -26,7 +24,6 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer
         public VacancyPreviewPart2Page(ScenarioContext context) : base(context)
         {
             _context = context;
-            VerifyPage();
         }
 
         public ShortDescriptionPage AddBriefOverview()

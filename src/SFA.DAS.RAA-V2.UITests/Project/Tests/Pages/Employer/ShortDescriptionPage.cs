@@ -18,7 +18,6 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer
         public ShortDescriptionPage(ScenarioContext context) : base(context)
         {
             _context = context;
-            VerifyPage();
         }
 
         public VacancyPreviewPart2Page EnterBriefOverview()

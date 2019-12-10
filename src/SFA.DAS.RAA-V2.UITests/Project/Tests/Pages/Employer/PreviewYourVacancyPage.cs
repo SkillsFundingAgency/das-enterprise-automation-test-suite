@@ -15,7 +15,6 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer
         public PreviewYourVacancyPage(ScenarioContext context) : base(context)
         {
             _context = context;
-            VerifyPage();
         }
 
         public VacancyPreviewPart2Page PreviewVacancy()

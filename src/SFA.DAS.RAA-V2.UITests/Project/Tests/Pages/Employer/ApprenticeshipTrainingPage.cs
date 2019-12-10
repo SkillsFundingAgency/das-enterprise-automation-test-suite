@@ -22,7 +22,6 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer
         {
             _context = context;
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
-            VerifyPage();
         }
 
         public ConfirmApprenticeshipTrainingPage EnterTrainingTitle()

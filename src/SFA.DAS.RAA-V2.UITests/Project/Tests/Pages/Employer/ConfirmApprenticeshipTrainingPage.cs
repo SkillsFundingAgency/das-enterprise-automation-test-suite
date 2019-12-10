@@ -15,7 +15,6 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer
         public ConfirmApprenticeshipTrainingPage(ScenarioContext context) : base(context)
         {
             _context = context;
-            VerifyPage();
         }
 
         public ChooseTrainingProviderPage ConfirmTrainingAndContinue()
