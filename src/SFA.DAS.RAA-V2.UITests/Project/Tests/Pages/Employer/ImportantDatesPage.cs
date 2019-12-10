@@ -11,11 +11,9 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer
         protected override string PageTitle => "Important dates";
 
         #region Helpers and Context
-        private readonly FormCompletionHelper _formCompletionHelper;
         private readonly ScenarioContext _context;
-        private readonly EmployerDataHelper _dataHelper;
-
         #endregion
+
         private By ClosingDay => By.Id("ClosingDay");
         private By ClosingMonth => By.Id("ClosingMonth");
         private By ClosingYear => By.Id("ClosingYear");
@@ -28,8 +26,6 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer
         public ImportantDatesPage(ScenarioContext context) : base(context)
         {
             _context = context;
-            _formCompletionHelper = context.Get<FormCompletionHelper>();
-            _dataHelper = context.Get<EmployerDataHelper>();
             VerifyPage();
         }
 

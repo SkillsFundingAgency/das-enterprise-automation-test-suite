@@ -1,5 +1,7 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.RAA_V2.UITests.Project.Helpers;
 using SFA.DAS.UI.Framework.TestSupport;
+using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer
@@ -10,6 +12,14 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer
 
         protected By RadioLabels => By.CssSelector(".govuk-radios__label");
 
-        public RAAV2CSSBasePage(ScenarioContext context) : base(context) { }
+
+        protected readonly EmployerDataHelper _dataHelper;
+        protected readonly FormCompletionHelper _formCompletionHelper;
+
+        public RAAV2CSSBasePage(ScenarioContext context) : base(context) 
+        {
+            _dataHelper = context.Get<EmployerDataHelper>();
+            _formCompletionHelper = context.Get<FormCompletionHelper>();
+        }
     }
 }

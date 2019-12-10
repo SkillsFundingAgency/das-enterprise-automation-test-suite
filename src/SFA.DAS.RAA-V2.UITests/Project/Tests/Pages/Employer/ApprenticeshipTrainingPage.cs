@@ -10,27 +10,24 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer
         protected override string PageTitle => "What training will the apprentice take?";
 
         #region Helpers and Context
-        private readonly FormCompletionHelper _formCompletionHelper;
         private readonly ScenarioContext _context;
-        private readonly EmployerDataHelper _dataHelper;
+        private readonly PageInteractionHelper _pageInteractionHelper;
         #endregion
 
         private By ProgrammeId => By.CssSelector("#SelectedProgrammeId");
 
+        private By FirstOption => By.CssSelector("#SelectedProgrammeId__option--0");
+
         public ApprenticeshipTrainingPage(ScenarioContext context) : base(context)
         {
             _context = context;
-            _formCompletionHelper = context.Get<FormCompletionHelper>();
-            _dataHelper = context.Get<EmployerDataHelper>();
+            _pageInteractionHelper = context.Get<PageInteractionHelper>();
             VerifyPage();
         }
 
-
         public ConfirmApprenticeshipTrainingPage EnterTrainingTitle()
         {
-            _formCompletionHelper.SendKeys(ProgrammeId, _dataHelper.TrainingTitle);
-            _formCompletionHelper.SendKeys(ProgrammeId, Keys.ArrowDown);
-            _formCompletionHelper.SendKeys(ProgrammeId, Keys.Enter);
+            _formCompletionHelper.ClickElement(() => { _formCompletionHelper.SendKeys(ProgrammeId, _dataHelper.TrainingTitle); return _pageInteractionHelper.FindElement(FirstOption); });
             _formCompletionHelper.Click(Continue);
             return new ConfirmApprenticeshipTrainingPage(_context);
         }

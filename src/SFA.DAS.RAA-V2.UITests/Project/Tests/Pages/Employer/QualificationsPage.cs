@@ -10,9 +10,8 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer
         protected override string PageTitle => "What qualifications would you like the applicant to have?";
 
         #region Helpers and Context
-        private readonly FormCompletionHelper _formCompletionHelper;
         private readonly ScenarioContext _context;
-        private readonly EmployerDataHelper _dataHelper;
+        private PageInteractionHelper _pageInteractionHelper;
         #endregion
 
         private By QualificationType => By.CssSelector("#QualificationType");
@@ -25,8 +24,7 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer
         public QualificationsPage(ScenarioContext context) : base(context)
         {
             _context = context;
-            _formCompletionHelper = context.Get<FormCompletionHelper>();
-            _dataHelper = context.Get<EmployerDataHelper>();
+            _pageInteractionHelper = context.Get<PageInteractionHelper>();
             VerifyPage();
         }
 
@@ -35,6 +33,7 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer
             _formCompletionHelper.SelectFromDropDownByText(QualificationType, "A Level or equivalent");
             _formCompletionHelper.EnterText(Subject, _dataHelper.DesiredQualificationsSubject);
             _formCompletionHelper.EnterText(Grade, _dataHelper.DesiredQualificationsGrade);
+            _formCompletionHelper.ClickElement(() => _dataHelper.GetRandomElementFromListOfElements(_pageInteractionHelper.FindElements(RadioLabels)));
             _formCompletionHelper.Click(Continue);
             return new ConfirmQualificationsPage(_context);
         }

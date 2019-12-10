@@ -9,16 +9,12 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer
         protected override string PageTitle => "Preview your vacancy";
 
         #region Helpers and Context
-        private readonly FormCompletionHelper _formCompletionHelper;
         private readonly ScenarioContext _context;
-        private readonly EmployerDataHelper _dataHelper;
         #endregion
 
         public PreviewYourVacancyPage(ScenarioContext context) : base(context)
         {
             _context = context;
-            _formCompletionHelper = context.Get<FormCompletionHelper>();
-            _dataHelper = context.Get<EmployerDataHelper>();
             VerifyPage();
         }
 

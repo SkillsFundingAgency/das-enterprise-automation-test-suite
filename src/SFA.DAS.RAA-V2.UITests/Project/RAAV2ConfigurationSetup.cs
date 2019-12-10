@@ -1,4 +1,5 @@
-﻿using SFA.DAS.UI.Framework.TestSupport;
+﻿using SFA.DAS.Registration.UITests.Project;
+using SFA.DAS.UI.Framework.TestSupport;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2.UITests.Project.Helpers
@@ -20,6 +21,9 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Helpers
         {
             var config = _configSection.GetConfigSection<RAAV2Config>();
             _context.SetRAAV2Config(config);
+
+            var rAAV2EmployerUser = _configSection.GetConfigSection<RAAV2EmployerUser>();
+            _context.SetUser(rAAV2EmployerUser);
         }
     }
 }

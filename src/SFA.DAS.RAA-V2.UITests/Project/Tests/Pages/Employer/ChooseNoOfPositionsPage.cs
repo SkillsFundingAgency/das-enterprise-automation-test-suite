@@ -9,7 +9,6 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer
         protected override string PageTitle => "How many positions are there for this apprenticeship?";
 
         #region Helpers and Context
-        private readonly FormCompletionHelper _formCompletionHelper;
         private readonly ScenarioContext _context;
 
         #endregion
@@ -19,7 +18,6 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer
         public ChooseNoOfPositionsPage(ScenarioContext context) : base(context)
         {
             _context = context;
-            _formCompletionHelper = context.Get<FormCompletionHelper>();
             VerifyPage();
         }
 

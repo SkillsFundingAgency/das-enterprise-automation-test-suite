@@ -9,7 +9,6 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer
         protected override string PageTitle => "Confirm the training provider";
 
         #region Helpers and Context
-        private readonly FormCompletionHelper _formCompletionHelper;
         private readonly ScenarioContext _context;
 
         #endregion
@@ -17,7 +16,6 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer
         public ConfirmTrainingProviderPage(ScenarioContext context) : base(context)
         {
             _context = context;
-            _formCompletionHelper = context.Get<FormCompletionHelper>();
             VerifyPage();
         }
 

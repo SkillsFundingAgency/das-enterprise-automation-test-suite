@@ -1,5 +1,4 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.RAA_V2.UITests.Project.Helpers;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
@@ -10,28 +9,27 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer
         protected override string PageTitle => "Description of the apprenticeship";
 
         #region Helpers and Context
-        private readonly FormCompletionHelper _formCompletionHelper;
         private readonly ScenarioContext _context;
-        private readonly EmployerDataHelper _dataHelper;
+        private readonly PageInteractionHelper _pageInteractionHelper;
         #endregion
 
-        private By VacancyDescription => By.CssSelector("#tinymce[data-id='VacancyDescription'] > p");
-        private By TrainingDescription => By.CssSelector("#tinymce[data-id='TrainingDescription'] > p");
-        private By OutcomeDescription => By.CssSelector("#tinymce[data-id='OutcomeDescription'] > p");
+        private By iframeBody = By.CssSelector(".mce-content-body ");
+        private By OutcomeDescription = By.Id("OutcomeDescription_ifr");
+        private By TrainingDescription = By.Id("TrainingDescription_ifr");
+        private By VacancyDescription = By.Id("VacancyDescription_ifr");
 
         public DescriptionPage(ScenarioContext context) : base(context)
         {
             _context = context;
-            _formCompletionHelper = context.Get<FormCompletionHelper>();
-            _dataHelper = context.Get<EmployerDataHelper>();
+            _pageInteractionHelper = context.Get<PageInteractionHelper>();
             VerifyPage();
         }
 
         public VacancyPreviewPart2Page EnterDescription()
         {
-            _formCompletionHelper.EnterText(VacancyDescription, _dataHelper.VacancyShortDescription);
-            _formCompletionHelper.EnterText(TrainingDescription, _dataHelper.TrainingDetails);
-            _formCompletionHelper.EnterText(OutcomeDescription, _dataHelper.VacancyOutcome);
+            _pageInteractionHelper.SwitchFrame(VacancyDescription, iframeBody, _dataHelper.VacancyShortDescription);
+            _pageInteractionHelper.SwitchFrame(TrainingDescription, iframeBody, _dataHelper.TrainingDetails);
+            _pageInteractionHelper.SwitchFrame(OutcomeDescription, iframeBody, _dataHelper.VacancyOutcome);
             _formCompletionHelper.Click(Continue);
             return new VacancyPreviewPart2Page(_context);
         }

@@ -10,26 +10,22 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer
         protected override string PageTitle => _dataHelper.VacancyTitle;
 
         #region Helpers and Context
-        private readonly FormCompletionHelper _formCompletionHelper;
         private readonly ScenarioContext _context;
-        private readonly EmployerDataHelper _dataHelper;
         #endregion
 
         private By BriefOverview => By.CssSelector("a[data-automation='link-overview']");
         private By VacancyDescription => By.CssSelector("a[data-automation='link-vacancy-description']");
         private By DesiredSkills => By.CssSelector("a[data-automation='link-skills']");
-        private By Qualifications => By.CssSelector("a[data-automation='link-qualifications']");
+        private By Qualifications => By.CssSelector("a[data-automation= 'link-qualifications']");
         private By EmployerDescription => By.CssSelector("a[data-automation='link-description']");
 
         private By ApplicationProcess => By.CssSelector("a[data-automation='link-application-method']");
-        private By Submit => By.CssSelector("a[data-automation='submit-button']");
+        private By Submit => By.CssSelector(".govuk-button[data-automation='submit-button']");
 
 
         public VacancyPreviewPart2Page(ScenarioContext context) : base(context)
         {
             _context = context;
-            _formCompletionHelper = context.Get<FormCompletionHelper>();
-            _dataHelper = context.Get<EmployerDataHelper>();
             VerifyPage();
         }
 
@@ -63,9 +59,15 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer
             return new ApplicationProcessPage(_context);
         }
 
+        public EmployerDescriptionPage AddEmployerDescription()
+        {
+            _formCompletionHelper.Click(EmployerDescription);
+            return new EmployerDescriptionPage(_context);
+        }
+
         public VacancyReferencePage SubmitVacancy()
         {
-            _formCompletionHelper.Click(ApplicationProcess);
+            _formCompletionHelper.Click(Submit);
             return new VacancyReferencePage(_context);
         }
     }

@@ -10,9 +10,7 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer
         protected override string PageTitle => "Short description of the apprenticeship";
         
         #region Helpers and Context
-        private readonly FormCompletionHelper _formCompletionHelper;
         private readonly ScenarioContext _context;
-        private readonly EmployerDataHelper _dataHelper;
         #endregion
 
         private By ShortDescription => By.Id("ShortDescription");
@@ -20,8 +18,6 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer
         public ShortDescriptionPage(ScenarioContext context) : base(context)
         {
             _context = context;
-            _formCompletionHelper = context.Get<FormCompletionHelper>();
-            _dataHelper = context.Get<EmployerDataHelper>();
             VerifyPage();
         }
 

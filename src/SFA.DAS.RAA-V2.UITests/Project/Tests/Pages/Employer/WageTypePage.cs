@@ -10,9 +10,7 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer
         protected override string PageTitle => "How much would you like to pay the apprentice?";
 
         #region Helpers and Context
-        private readonly FormCompletionHelper _formCompletionHelper;
         private readonly ScenarioContext _context;
-        private readonly EmployerDataHelper _dataHelper;
         #endregion
 
         private By WageAdditionalInformation => By.CssSelector("#WageAdditionalInformation");
@@ -20,8 +18,6 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer
         public WageTypePage(ScenarioContext context) : base(context)
         {
             _context = context;
-            _formCompletionHelper = context.Get<FormCompletionHelper>();
-            _dataHelper = context.Get<EmployerDataHelper>();
             VerifyPage();
         }
 

@@ -10,23 +10,19 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer
 
         #region Helpers and Context
         private readonly PageInteractionHelper _pageInteractionHelper;
-        private readonly FormCompletionHelper _formCompletionHelper;
         private readonly ScenarioContext _context;
-        private readonly EmployerDataHelper _employerDatahelper;
         #endregion
 
         public CreateVacancyPage(ScenarioContext context) : base(context)
         {
             _context = context;
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
-            _formCompletionHelper = context.Get<FormCompletionHelper>();
-            _employerDatahelper = context.Get<EmployerDataHelper>();
             VerifyPage();
         }
 
         public void SelectAVacancy()
         {
-            _formCompletionHelper.ClickElement(() => _employerDatahelper.GetRandomElementFromListOfElements(_pageInteractionHelper.FindElements(RadioLabels)));
+            _formCompletionHelper.ClickElement(() => _dataHelper.GetRandomElementFromListOfElements(_pageInteractionHelper.FindElements(RadioLabels)));
             _formCompletionHelper.Click(Continue);
         }
 

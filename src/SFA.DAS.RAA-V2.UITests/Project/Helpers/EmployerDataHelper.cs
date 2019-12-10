@@ -50,8 +50,6 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Helpers
 
         public string TrainingTitle => AvailableTraining.RandomOrDefault();
 
-        public string DesiredSkill => AvailableSkills.RandomOrDefault();
-
         public string EmployerDescription { get; }
 
         public string EmployerReason { get; }
@@ -129,28 +127,6 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Helpers
             "Software tester, Level 4 (Higher national certificate)",
             "Lifting Technician, Level 2 (GCSE)",
             "Legal Services: Property, Level 3 (A level)"
-        };
-
-
-        private List<string> AvailableSkills => new List<string>
-        {
-            "Communication skills",
-            "IT skills",
-            "Attention to detail",
-            "Organisation skills",
-            "Customer care skills",
-            "Problem solving skills",
-            "Presentation skills",
-            "Administrative skills",
-            "Number skills",
-            "Analytical skills",
-            "Logical",
-            "Team working",
-            "Creative",
-            "Initiative",
-            "Non judgemental",
-            "Patience",
-            "Physical fitness"
         };
     }
 }
