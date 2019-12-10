@@ -1,5 +1,4 @@
-﻿using OpenQA.Selenium;
-using SFA.DAS.RAA_V2.UITests.Project.Helpers;
+﻿using SFA.DAS.RAA_V2.UITests.Project.Helpers;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
@@ -13,7 +12,7 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer
         private readonly PageInteractionHelper _pageInteractionHelper;
         private readonly FormCompletionHelper _formCompletionHelper;
         private readonly ScenarioContext _context;
-        private readonly EmployerDataHelper _dataHelper;
+        private readonly EmployerDataHelper _employerDatahelper;
         #endregion
 
         public CreateVacancyPage(ScenarioContext context) : base(context)
@@ -21,12 +20,13 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer
             _context = context;
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
+            _employerDatahelper = context.Get<EmployerDataHelper>();
             VerifyPage();
         }
 
         public void SelectAVacancy()
         {
-            _formCompletionHelper.ClickElement(() => _dataHelper.GetRandomElementFromListOfElements(_pageInteractionHelper.FindElements(RadioLabels)));
+            _formCompletionHelper.ClickElement(() => _employerDatahelper.GetRandomElementFromListOfElements(_pageInteractionHelper.FindElements(RadioLabels)));
             _formCompletionHelper.Click(Continue);
         }
 

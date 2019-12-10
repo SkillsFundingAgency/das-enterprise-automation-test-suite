@@ -1,35 +1,31 @@
-﻿using OpenQA.Selenium;
+﻿using SFA.DAS.RAA_V2.UITests.Project.Helpers;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer
 {
-    public class ConfirmTrainingProviderPage : RAAV2CSSBasePage
+    public class ApplicationProcessPage : RAAV2CSSBasePage
     {
-        protected override string PageTitle => "Confirm the training provider";
+        protected override string PageTitle => "How would you like to receive applications?";
 
         #region Helpers and Context
         private readonly FormCompletionHelper _formCompletionHelper;
         private readonly ScenarioContext _context;
-
         #endregion
 
-        public ConfirmTrainingProviderPage(ScenarioContext context) : base(context)
+        public ApplicationProcessPage(ScenarioContext context) : base(context)
         {
             _context = context;
             _formCompletionHelper = context.Get<FormCompletionHelper>();
             VerifyPage();
         }
 
-        public ChooseNoOfPositionsPage ConfirmTrainingProviderAndContinue()
+        public VacancyPreviewPart2Page ApplicationMethodFAA()
         {
+            _formCompletionHelper.SelectRadioOptionByForAttribute(RadioLabels, "application-method-faa");
             _formCompletionHelper.Click(Continue);
-            return new ChooseNoOfPositionsPage(_context);
+            return new VacancyPreviewPart2Page(_context);
         }
+
     }
-
-
-
-    
-
 }

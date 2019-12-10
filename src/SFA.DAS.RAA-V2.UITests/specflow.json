@@ -8,7 +8,7 @@
   "stepAssemblies": [
     { "assembly": "SFA.DAS.UI.Framework" },
     { "assembly": "SFA.DAS.Registration.UITests" },
-    { "assembly": "SFA.DAS.RAA-V1.UITests" }
+    { "assembly": "SFA.DAS.FAA.UITests" }
   ],
   "generator": {
     "allowRowTests" : false

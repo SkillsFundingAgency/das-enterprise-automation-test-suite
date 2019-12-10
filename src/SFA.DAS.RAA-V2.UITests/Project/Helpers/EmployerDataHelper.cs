@@ -36,7 +36,7 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Helpers
             VacancyStart = VacancyClosing.AddMonths(1).AddDays(1);
             DesiredSkills = _randomDataGenerator.GenerateRandomAlphabeticString(18);
             PersonalQualities = _randomDataGenerator.GenerateRandomAlphabeticString(20);
-            DesiredQualifications = _randomDataGenerator.GenerateRandomAlphabeticString(24);
+            DesiredQualificationsSubject = _randomDataGenerator.GenerateRandomAlphabeticString(8);
             FutureProspects = _randomDataGenerator.GenerateRandomAlphabeticString(30);
             ThingsToConsider = _randomDataGenerator.GenerateRandomAlphabeticString(35);
             FirstQuestion = _randomDataGenerator.GenerateRandomAlphabeticString(15);
@@ -96,8 +96,10 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Helpers
         
         public string PersonalQualities { get; }
         
-        public string DesiredQualifications { get; }
-        
+        public string DesiredQualificationsSubject { get; }
+
+        public string DesiredQualificationsGrade => "A Level";
+
         public string FutureProspects { get; }
         
         public string ThingsToConsider { get; }

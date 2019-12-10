@@ -23,11 +23,11 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer
             VerifyPage();
         }
 
-        public void ChooseNoOfPositions()
+        public SelectOrganisationPage ChooseNoOfPositions()
         {
             _formCompletionHelper.EnterText(NumberOfPositions, 2);
             _formCompletionHelper.Click(Continue);
-
+            return new SelectOrganisationPage(_context);
         }
     }
 }

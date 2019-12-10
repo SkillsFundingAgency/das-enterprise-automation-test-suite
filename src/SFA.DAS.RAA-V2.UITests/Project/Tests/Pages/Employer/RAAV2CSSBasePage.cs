@@ -6,9 +6,9 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer
 {
     public abstract class RAAV2CSSBasePage : BasePage
     {
-        internal By Continue => By.CssSelector(".govuk-button");
+        protected By Continue => By.CssSelector(".govuk-button");
 
-        internal By RadioLabels => By.CssSelector(".govuk-radios__label");
+        protected By RadioLabels => By.CssSelector(".govuk-radios__label");
 
         public RAAV2CSSBasePage(ScenarioContext context) : base(context) { }
     }

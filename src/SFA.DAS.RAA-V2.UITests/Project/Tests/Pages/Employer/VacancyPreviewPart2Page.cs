@@ -5,7 +5,6 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer
 {
-
     public class VacancyPreviewPart2Page : RAAV2CSSBasePage
     {
         protected override string PageTitle => _dataHelper.VacancyTitle;
@@ -21,6 +20,8 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer
         private By DesiredSkills => By.CssSelector("a[data-automation='link-skills']");
         private By Qualifications => By.CssSelector("a[data-automation='link-qualifications']");
         private By EmployerDescription => By.CssSelector("a[data-automation='link-description']");
+
+        private By ApplicationProcess => By.CssSelector("a[data-automation='link-application-method']");
         private By Submit => By.CssSelector("a[data-automation='submit-button']");
 
 
@@ -32,7 +33,7 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer
             VerifyPage();
         }
 
-        public ShortDescriptionPage AddShortDescription()
+        public ShortDescriptionPage AddBriefOverview()
         {
             _formCompletionHelper.Click(BriefOverview);
             return new ShortDescriptionPage(_context);
@@ -48,6 +49,24 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer
         {
             _formCompletionHelper.Click(DesiredSkills);
             return new DesiredSkillsPage(_context);
+        }
+
+        public QualificationsPage AddQualifications()
+        {
+            _formCompletionHelper.Click(Qualifications);
+            return new QualificationsPage(_context);
+        }
+
+        public ApplicationProcessPage AddApplicationProcess()
+        {
+            _formCompletionHelper.Click(ApplicationProcess);
+            return new ApplicationProcessPage(_context);
+        }
+
+        public VacancyReferencePage SubmitVacancy()
+        {
+            _formCompletionHelper.Click(ApplicationProcess);
+            return new VacancyReferencePage(_context);
         }
     }
 }

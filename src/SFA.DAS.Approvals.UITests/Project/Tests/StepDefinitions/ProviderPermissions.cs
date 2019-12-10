@@ -19,7 +19,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         private readonly EmployerPortalLoginHelper _employerLoginHelper;
         private readonly ScenarioContext _context;
         private readonly EmployerPermissionsStepsHelper _employerPermissionsStepsHelper;
-        private readonly EmployerStepsHelper _employerStepsHelper;
+        private readonly HomePageStepsHelper _homePageStepsHelper;
         private readonly ProviderStepsHelper _providerStepsHelper;
         private readonly ProviderPermissionsDatahelper _providerPermissionsDatahelper;
         private readonly ProviderPermissionsConfig _providerPermissionConfig;
@@ -31,7 +31,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _context = context;
             _providerPermissionConfig = context.GetProviderPermissionConfig<ProviderPermissionsConfig>();
             _providerPermissionsDatahelper = context.Get<ProviderPermissionsDatahelper>();
-            _employerStepsHelper = new EmployerStepsHelper(context);
+            _homePageStepsHelper = new HomePageStepsHelper(context);
             _employerPermissionsStepsHelper = new EmployerPermissionsStepsHelper(context);
             _employerLoginHelper = new EmployerPortalLoginHelper(context);
             _providerStepsHelper = new ProviderStepsHelper(context);
@@ -60,7 +60,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [When(@"Employer revoke create cohort permission to a provider")]
         public void WhenEmployerRevokeCreateCohortPermissionToAProvider()
         {
-            _employerStepsHelper.GotoEmployerHomePage();
+            _homePageStepsHelper.GotoEmployerHomePage();
 
             _employerPermissionsStepsHelper.UnSetCreateCohortPermission();
         }
