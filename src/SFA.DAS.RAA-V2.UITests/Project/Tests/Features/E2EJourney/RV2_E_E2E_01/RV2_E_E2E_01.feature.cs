@@ -87,6 +87,8 @@ this.ScenarioInitialize(scenarioInfo);
 testRunner.Given("the Employer creates a vacancy by using a registered name", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 7
 testRunner.And("the Reviewer Approves the vacancy", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 8
+testRunner.When("the Applicant apply for a Vacancy in FAA \'No\',\'No\',\'No\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
             this.ScenarioCleanup();
         }
