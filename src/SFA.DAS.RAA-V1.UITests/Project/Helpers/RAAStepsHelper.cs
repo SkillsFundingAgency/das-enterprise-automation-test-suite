@@ -1,4 +1,5 @@
 ﻿using SFA.DAS.FAA.UITests.Project;
+using SFA.DAS.RAA_V1.UITests.Project.Tests.Pages;
 using SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
@@ -278,9 +279,11 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
 
         private RAA_RecruitmentHomePage SubmitRecruitmentLoginDetails()
         {
-            return new RAA_IndexPage(_context)
+            new RAA_IndexPage(_context)
                 .ClickOnSignInButton()
-                .RecruitStaffIdams()
+                .RecruitStaffIdams();
+
+            return new SignInPage(_context)
                 .SubmitRecruitmentLoginDetails();
         }        
     }

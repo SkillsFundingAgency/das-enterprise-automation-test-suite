@@ -1,5 +1,5 @@
 ﻿
-namespace SFA.DAS.RAA_V2.UITests.Project.Helpers
+namespace SFA.DAS.RAA_V2.UITests.Project
 {
     public class RAAV2Config
     {

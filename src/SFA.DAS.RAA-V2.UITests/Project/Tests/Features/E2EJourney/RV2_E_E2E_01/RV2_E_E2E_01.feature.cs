@@ -85,6 +85,8 @@ this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 6
 testRunner.Given("the Employer creates a vacancy by using a registered name", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 7
+testRunner.And("the Reviewer Approves the vacancy", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }

@@ -1,4 +1,5 @@
-﻿using SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.Manage;
+﻿using SFA.DAS.RAA_V1.UITests.Project.Tests.Pages;
+using SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.Manage;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using System.Linq;
@@ -43,10 +44,11 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
                 _tabHelper.GoToUrl(_config.ManageBaseUrl);
             }
 
-            return new Manage_IndexPage(_context)
+            new Manage_IndexPage(_context)
                .ClickAgencyButton()
-               .ManageStaffIdams()
-               .SubmitManageLoginDetails();
+               .ManageStaffIdams();
+
+            return new SignInPage(_context).SubmitManageLoginDetails();
         }
     }
 }

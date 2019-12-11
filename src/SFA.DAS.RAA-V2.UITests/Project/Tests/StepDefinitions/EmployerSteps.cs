@@ -1,4 +1,5 @@
-﻿using TechTalk.SpecFlow;
+﻿using SFA.DAS.RAA_V2.UITests.Project.Helpers;
+using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2.UITests.Project.Tests.StepDefinitions
 {
@@ -18,4 +19,6 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.StepDefinitions
             _employerStepsHelper.CreateANewVacancy();
         }
     }
+
 }
+

@@ -42,8 +42,4 @@
     </None>
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Project\Tests\Features\E2EJourney\RV2_E_E2E_01\" />
-  </ItemGroup>
-
 </Project>
