@@ -59,18 +59,6 @@ namespace SFA.DAS.FAA.UITests.Project.Helpers
                 .YesWithdraw();
         }
 
-        private FAA_ApprenticeSummaryPage SearchByReferenceNumber()
-        {
-            if (_objectContext.IsApprenticeshipVacancyType())
-            {
-                return FindAnApprenticeship().SearchByReferenceNumber();
-            }
-            else
-            {
-                return FindATraineeship().SearchByReferenceNumber();
-            }
-        }
-
         public void ApplyForAVacancy(string qualificationdetails, string workExperience, string trainingCourse)
         {
             var applicationFormPage = SearchByReferenceNumber().Apply();
@@ -95,6 +83,18 @@ namespace SFA.DAS.FAA.UITests.Project.Helpers
                 applicationFormPage.EnterQualificationdetails(qualificationdetails);
                 applicationFormPage.AnswerAdditionalQuestions();
                 applicationFormPage.SubmitTraineeshipApplication();
+            }
+        }
+
+        private FAA_ApprenticeSummaryPage SearchByReferenceNumber()
+        {
+            if (_objectContext.IsApprenticeshipVacancyType())
+            {
+                return FindAnApprenticeship().SearchByReferenceNumber();
+            }
+            else
+            {
+                return FindATraineeship().SearchByReferenceNumber();
             }
         }
     }

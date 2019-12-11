@@ -19,6 +19,5 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.StepDefinitions
             _employerStepsHelper.CreateANewVacancy();
         }
     }
-
 }
 
