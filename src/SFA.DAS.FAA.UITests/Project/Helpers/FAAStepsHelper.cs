@@ -30,7 +30,14 @@ namespace SFA.DAS.FAA.UITests.Project.Helpers
 
         public FAA_HomePage GoToFAAHomePage()
         {
-           _helper.RestartWebDriver(_config.FAABaseUrl, _applicationName);
+            if (_objectContext.IsFAARestart())
+            {
+                _helper.RestartWebDriver(_config.FAABaseUrl, _applicationName);
+            }
+            else
+            {
+                _tabHelper.OpenInNewtab(_config.FAABaseUrl);
+            }
 
             return new FAA_Indexpage(_context)
                 .GoToSignInPage()

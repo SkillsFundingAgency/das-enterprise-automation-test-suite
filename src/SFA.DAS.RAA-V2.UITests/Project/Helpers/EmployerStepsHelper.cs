@@ -49,7 +49,8 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Helpers
                 .ApplicationMethodFAA()
                 .AddEmployerDescription()
                 .EnterEmployerDescription()
-                .SubmitVacancy();
+                .SubmitVacancy()
+                .SetVacancyReference();
         }
     }
 }

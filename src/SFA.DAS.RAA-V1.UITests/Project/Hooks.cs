@@ -30,6 +30,10 @@ namespace SFA.DAS.RAA_V1.UITests.Project
             _context.Set(new RAARegistrationDataHelper(random));
 
             _context.Set(new ManagedataHelper(random));
+
+            _objectContext.SetFAARestart();
+
+            _objectContext.SetRAAV1();
         }
 
         [BeforeScenario("apprenticeshipvacancy", Order = 33)]
