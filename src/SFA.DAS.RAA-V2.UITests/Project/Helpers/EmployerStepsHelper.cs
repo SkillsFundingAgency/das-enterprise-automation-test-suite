@@ -9,12 +9,26 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Helpers
     {
         private readonly ScenarioContext _context;
         private readonly EmployerPortalLoginHelper _loginhelper;
+        private readonly HomePageStepsHelper _homePageStepsHelper;
 
         public EmployerStepsHelper(ScenarioContext context)
         {
             _context = context;
             _loginhelper = new EmployerPortalLoginHelper(context);
+            _homePageStepsHelper = new HomePageStepsHelper(context);
         }
+
+        internal void ApplicantSucessful()
+        {
+            _homePageStepsHelper.GotoEmployerHomePage();
+
+            new RecruitmentHomePage(_context, true)
+                .SearchLiveVacancy()
+                .NavigateToManageApplicant()
+                .MakeApplicantSucessful()
+                .NotifyApplicantSucessful();
+        }
+
 
         internal void CreateANewVacancy()
         {

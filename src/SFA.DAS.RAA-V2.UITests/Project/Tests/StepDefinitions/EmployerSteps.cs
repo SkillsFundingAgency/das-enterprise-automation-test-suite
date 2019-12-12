@@ -18,6 +18,12 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.StepDefinitions
         {
             _employerStepsHelper.CreateANewVacancy();
         }
+
+        [Then(@"Employer is able to view and make the application '(.*)'")]
+        public void ThenEmployerIsAbleToViewAndMakeTheApplication(string status)
+        {
+            _employerStepsHelper.ApplicantSucessful();
+        }
     }
 }
 

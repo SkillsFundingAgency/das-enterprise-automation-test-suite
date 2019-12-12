@@ -50,8 +50,7 @@ namespace SFA.DAS.FAA.UITests.Project
 
         public static string GetVacancyReference(this ObjectContext objectContext)
         {
-            return "1000002660";
-            //return objectContext.Get(VacancyReference);
+            return objectContext.Get(VacancyReference);
         }
 
         public static void SetVacancyTitle(this ObjectContext objectContext, string value)

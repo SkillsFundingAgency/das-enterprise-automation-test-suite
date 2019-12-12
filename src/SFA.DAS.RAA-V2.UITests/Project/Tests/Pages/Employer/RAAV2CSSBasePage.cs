@@ -20,6 +20,7 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer
         {
             _dataHelper = context.Get<EmployerDataHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
+            VerifyPage();
         }
     }
 }
