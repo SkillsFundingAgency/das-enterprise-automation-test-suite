@@ -10,7 +10,6 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer
     {
         #region Helpers and Context
         private readonly ScenarioContext _context;
-        private readonly TableRowHelper _tableRowHelper;
         #endregion
 
         protected override string PageTitle => "Recruitment";
@@ -23,10 +22,11 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer
 
         private By SearchButton => By.CssSelector("#search-submit-button");
 
+        private By Manage => By.CssSelector("table tbody tr .govuk-link");
+
         public RecruitmentHomePage(ScenarioContext context, bool navigate = false) : base(context, navigate)
         {
             _context = context;
-            _tableRowHelper = context.Get<TableRowHelper>();
         }
 
         public CreateVacancyPage CreateANewVacancy()
@@ -42,7 +42,7 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer
             formCompletionHelper.EnterText(SearachInput, objectContext.GetVacancyReference());
             formCompletionHelper.Click(SearchButton);
             pageInteractionHelper.WaitforURLToChange($"SearchTerm={objectContext.GetVacancyReference()}");
-            _tableRowHelper.SelectRowFromTable("Manage", objectContext.GetVacancyReference());
+            formCompletionHelper.Click(Manage); 
             return new ManageVacancyPage(_context);
         }
     }
