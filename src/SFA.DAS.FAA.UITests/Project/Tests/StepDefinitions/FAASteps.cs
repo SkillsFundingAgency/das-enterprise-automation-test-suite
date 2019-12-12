@@ -40,6 +40,15 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.StepDefinitions
             _faaStepsHelper.CreateFAAAccount(accountCreationPage);
         }
 
+        [Then(@"the Application status should be '(.*)'")]
+        public void ThenTheApplicationStatusShouldBe(string expectedStatus)
+        {
+            var actualStatus = _faaStepsHelper.GetApplicationStatus();
+
+            StringAssert.Contains(expectedStatus, actualStatus);
+        }
+
+
         [Then(@"the Application status should be successful")]
         public void ThenTheApplicationStatusShouldBeSuccessful()
         {

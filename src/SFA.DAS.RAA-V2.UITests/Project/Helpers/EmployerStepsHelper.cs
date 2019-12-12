@@ -18,22 +18,21 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Helpers
             _homePageStepsHelper = new HomePageStepsHelper(context);
         }
 
-        internal void ApplicantSucessful()
+        internal void ApplicantUnSucessful()
         {
-            _homePageStepsHelper.GotoEmployerHomePage();
-
-            new RecruitmentHomePage(_context, true)
-                .SearchLiveVacancy()
-                .NavigateToManageApplicant()
-                .MakeApplicantSucessful()
-                .NotifyApplicantSucessful();
+            NavigateToManageApplicant().MakeApplicantUnsucessful().NotifyApplicant();
         }
 
-        internal void CreateANewVacancy()
+        internal void ApplicantSucessful()
+        {
+            NavigateToManageApplicant().MakeApplicantSucessful().NotifyApplicant();
+        }
+
+        internal void CreateANewVacancy(string employername = null)
         {
             _loginhelper.Login(_context.GetUser<RAAV2EmployerUser>(), true);
 
-            new RecruitmentHomePage(_context, true)
+            var employernamePage = new RecruitmentHomePage(_context, true)
                 .CreateANewVacancy()
                 .CreateNewVacancy()
                 .EnterVacancyTitle()
@@ -42,9 +41,11 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Helpers
                 .ChooseTrainingProvider()
                 .ConfirmTrainingProviderAndContinue()
                 .ChooseNoOfPositions()
-                .SelectOrganisation()
-                .ChooseRegisteredName()
-                .ChooseAddress()
+                .SelectOrganisation();
+
+            var locationPage = ChooseEmployerName(employernamePage, employername);
+
+            locationPage.ChooseAddress()
                 .EnterImportantDates()
                 .EnterDuration("52", "40")
                 .SelectNationalMinimumWage()
@@ -64,6 +65,26 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Helpers
                 .EnterEmployerDescription()
                 .SubmitVacancy()
                 .SetVacancyReference();
+        }
+
+        private ChooseApprenticeshipLocationPage ChooseEmployerName(EmployerNamePage employernamePage, string employername)
+        {
+            switch (employername)
+            {
+                default:
+                    return employernamePage.ChooseRegisteredName();
+                case "existing-trading-name":
+                    return  employernamePage.ChooseExistingTradingName();
+            };
+        }
+
+        private ManageApplicantPage NavigateToManageApplicant()
+        {
+            _homePageStepsHelper.GotoEmployerHomePage();
+
+            return new RecruitmentHomePage(_context, true)
+                .SearchLiveVacancy()
+                .NavigateToManageApplicant();
         }
     }
 }
