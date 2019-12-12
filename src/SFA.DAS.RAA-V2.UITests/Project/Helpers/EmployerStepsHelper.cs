@@ -29,7 +29,6 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Helpers
                 .NotifyApplicantSucessful();
         }
 
-
         internal void CreateANewVacancy()
         {
             _loginhelper.Login(_context.GetUser<RAAV2EmployerUser>(), true);

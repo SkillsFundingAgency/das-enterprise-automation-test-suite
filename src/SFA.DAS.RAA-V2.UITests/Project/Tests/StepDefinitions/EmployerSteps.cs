@@ -1,4 +1,5 @@
-﻿using SFA.DAS.RAA_V2.UITests.Project.Helpers;
+﻿using NUnit.Framework;
+using SFA.DAS.RAA_V2.UITests.Project.Helpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2.UITests.Project.Tests.StepDefinitions
@@ -19,8 +20,8 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.StepDefinitions
             _employerStepsHelper.CreateANewVacancy();
         }
 
-        [Then(@"Employer is able to view and make the application '(.*)'")]
-        public void ThenEmployerIsAbleToViewAndMakeTheApplication(string status)
+        [Then(@"Employer can make the application successful")]
+        public void ThenEmployerCanMakeTheApplicationSuccessful()
         {
             _employerStepsHelper.ApplicantSucessful();
         }

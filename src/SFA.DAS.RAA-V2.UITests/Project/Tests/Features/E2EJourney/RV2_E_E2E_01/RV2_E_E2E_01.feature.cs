@@ -90,7 +90,9 @@ testRunner.And("the Reviewer Approves the vacancy", ((string)(null)), ((TechTalk
 #line 8
 testRunner.When("the Applicant apply for a Vacancy in FAA \'No\',\'No\',\'No\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 9
-testRunner.Then("Employer is able to view and make the application \'Successful\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+testRunner.Then("Employer can make the application successful", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 10
+testRunner.Then("the Application status should be successful", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

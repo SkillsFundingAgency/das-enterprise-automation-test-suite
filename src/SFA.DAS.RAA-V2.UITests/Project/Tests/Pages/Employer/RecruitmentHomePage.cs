@@ -1,6 +1,7 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.FAA.UITests.Project;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages;
+using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer
@@ -9,6 +10,7 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer
     {
         #region Helpers and Context
         private readonly ScenarioContext _context;
+        private readonly TableRowHelper _tableRowHelper;
         #endregion
 
         protected override string PageTitle => "Recruitment";
@@ -24,6 +26,7 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer
         public RecruitmentHomePage(ScenarioContext context, bool navigate = false) : base(context, navigate)
         {
             _context = context;
+            _tableRowHelper = context.Get<TableRowHelper>();
         }
 
         public CreateVacancyPage CreateANewVacancy()
@@ -39,7 +42,7 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer
             formCompletionHelper.EnterText(SearachInput, objectContext.GetVacancyReference());
             formCompletionHelper.Click(SearchButton);
             pageInteractionHelper.WaitforURLToChange($"SearchTerm={objectContext.GetVacancyReference()}");
-            formCompletionHelper.ClickLinkByText("Manage");
+            _tableRowHelper.SelectRowFromTable("Manage", objectContext.GetVacancyReference());
             return new ManageVacancyPage(_context);
         }
     }
