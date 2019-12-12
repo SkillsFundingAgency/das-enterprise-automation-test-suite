@@ -31,12 +31,12 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
             VerifyPage(UsernameField);
         }
 
-        public FAA_HomePage SubmitValidLoginDetails()
+        public FAA_MyApplicationsHomePage SubmitValidLoginDetails()
         {
             _formCompletionHelper.EnterText(UsernameField, _config.FAAUserName);
             _formCompletionHelper.EnterText(PasswordField, _config.FAAPassword);
             _formCompletionHelper.ClickElement(SignInButton);
-            return new FAA_HomePage(_context);
+            return new FAA_MyApplicationsHomePage(_context);
         }
 
         public FAA_CreateAnAccountPage ClickCreateAnAccountLink()

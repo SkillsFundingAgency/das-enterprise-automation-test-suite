@@ -23,12 +23,21 @@ namespace SFA.DAS.FAA.UITests.Project.Helpers
             _helper = new RestartWebDriverHelper(context);
         }
 
+        public string GetApplicationStatus()
+        {
+            return OpenFAAHomePageinNewtab()
+                .FindAnApprenticeship()
+                .SearchByReferenceNumber()
+                .View()
+                .ApplicationStatus();
+        }
+
         public FAA_ApprenticeSearchPage FindAnApprenticeship() => GoToFAAHomePage().FindAnApprenticeship();
 
         public FAA_TraineeshipSearchPage FindATraineeship() => GoToFAAHomePage().FindATraineeship();
         
 
-        public FAA_HomePage GoToFAAHomePage()
+        public FAA_MyApplicationsHomePage GoToFAAHomePage()
         {
             if (_objectContext.IsFAARestart())
             {
@@ -103,6 +112,13 @@ namespace SFA.DAS.FAA.UITests.Project.Helpers
             {
                 return FindATraineeship().SearchByReferenceNumber();
             }
+        }
+        private FAA_MyApplicationsHomePage OpenFAAHomePageinNewtab()
+        {
+            _tabHelper.OpenInNewtab(_config.FAABaseUrl);
+
+            return new FAA_FindAnApprenticeshipHomePage(_context)
+                .MyApplications();
         }
     }
 }

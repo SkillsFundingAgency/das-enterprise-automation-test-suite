@@ -1,4 +1,5 @@
-﻿using SFA.DAS.FAA.UITests.Project.Helpers;
+﻿using NUnit.Framework;
+using SFA.DAS.FAA.UITests.Project.Helpers;
 using SFA.DAS.FAA.UITests.Project.Tests.Pages;
 using TechTalk.SpecFlow;
 
@@ -37,6 +38,14 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.StepDefinitions
         public void ThenTheApplicantIsAbleToCreateAFAAAccount()
         {
             _faaStepsHelper.CreateFAAAccount(accountCreationPage);
+        }
+
+        [Then(@"the Application status should be successful")]
+        public void ThenTheApplicationStatusShouldBeSuccessful()
+        {
+            var status = _faaStepsHelper.GetApplicationStatus();
+
+            StringAssert.Contains("This application was successful.", status);
         }
     }
 }
