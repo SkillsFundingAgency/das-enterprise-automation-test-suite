@@ -143,9 +143,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
 
             if (_applyForVacancy)
             {
-                var faa_applicationFormPage = _faaStepsHelper.ApplyForVacancy();
-
-                _faaStepsHelper.ConfirmApplicationSubmission(faa_applicationFormPage, dataset.QualificationDetails, dataset.WorkExperience, dataset.TrainingCourse);
+                _faaStepsHelper.ApplyForAVacancy(dataset.QualificationDetails, dataset.WorkExperience, dataset.TrainingCourse);
             }
 
             var raa_homePage = _raaStepsHelper.GoToRAAHomePage(true);

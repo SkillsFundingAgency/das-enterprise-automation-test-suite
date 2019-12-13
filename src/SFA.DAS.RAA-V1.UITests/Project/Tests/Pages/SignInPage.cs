@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.FAA.UITests.Project.Tests.Pages;
 using SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.Manage;
 using SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA;
 using SFA.DAS.UI.Framework.TestSupport;
@@ -7,12 +8,8 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages
 {
-    public class SignInPage : BasePage
+    public class SignInPage : SignInBasePage
     {
-        protected override By PageHeader => By.CssSelector(".pageTitle");
-
-        protected override string PageTitle => "Sign in";
-
         #region Helpers and Context
         private readonly PageInteractionHelper _pageInteractionHelper;
         private readonly FormCompletionHelper _formCompletionHelper;
@@ -20,17 +17,12 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages
         private readonly RAAV1Config _config;
         #endregion
 
-        private By UsernameField => By.Id("username");
-        private By PasswordField => By.Id("password");
-        private By SignInButton => By.XPath("//button[@value='Log in']");
-
         public SignInPage(ScenarioContext context) : base(context)
         {
             _context = context;
             _config = context.GetRAAV1Config<RAAV1Config>();
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
-            VerifyPage();
         }
 
         public Manage_HomePage SubmitManageLoginDetails()
@@ -64,13 +56,6 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages
         {
             _formCompletionHelper.ClickLinkByText("I don't have an account");
             return new RAA_RegistrationPage(_context);
-        }
-
-        private void SubmitValidLoginDetails(string username, string password)
-        {
-            _formCompletionHelper.EnterText(UsernameField, username);
-            _formCompletionHelper.EnterText(PasswordField, password);
-            _formCompletionHelper.ClickElement(SignInButton);
         }
     }
 }

@@ -11,8 +11,9 @@ namespace SFA.DAS.UI.Framework.TestSupport
         private const string RegistrationProjectConfigKey = "registrationprojectconfigkey";
         private const string SupportConsoleProjectConfigKey = "supportconsoleprojectconfigkey";
         private const string RAAV1ProjectConfigKey = "raav1projectconfigkey";
+        private const string RAAV2ProjectConfigKey = "raav2projectconfigkey";
+        private const string ApprovalsProjectConfigKey = "approvalsprojectconfig";
         private const string FAAProjectConfigKey = "faaprojectconfigkey";
-        private const string ApprovalsProjectConfigKey = "approvalsprojectconfigkey";
         private const string ProviderPermissionConfigKey = "providerpermissionconfigkey";
         private const string TransfersProjectConfigKey = "transfersprojectconfigkey";
         private const string FATProjectConfigKey = "fatprojectconfigkey";
@@ -85,6 +86,11 @@ namespace SFA.DAS.UI.Framework.TestSupport
             return Get<T>(context, RAAV1ProjectConfigKey);
         }
 
+        public static T GetRAAV2Config<T>(this ScenarioContext context)
+        {
+            return Get<T>(context, RAAV2ProjectConfigKey);
+        }
+
         public static T GetFAAConfig<T>(this ScenarioContext context)
         {
             return Get<T>(context, FAAProjectConfigKey);
@@ -103,6 +109,11 @@ namespace SFA.DAS.UI.Framework.TestSupport
         public static void SetRAAV1Config<T>(this ScenarioContext context, T value)
         {
             Set(context, value, RAAV1ProjectConfigKey);
+        }
+
+        public static void SetRAAV2Config<T>(this ScenarioContext context, T value)
+        {
+            Set(context, value, RAAV2ProjectConfigKey);
         }
 
         public static void SetFAAConfig<T>(this ScenarioContext context, T value)

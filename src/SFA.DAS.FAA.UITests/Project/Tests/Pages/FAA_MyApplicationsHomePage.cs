@@ -5,7 +5,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 {
-    public class FAA_HomePage : BasePage
+    public class FAA_MyApplicationsHomePage : BasePage
     {
         protected override string PageTitle => "My applications";
 
@@ -20,7 +20,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 
         private By SignOutCss => By.XPath("//a[contains(.,'Sign out')]");
 
-        public FAA_HomePage(ScenarioContext context) : base(context)
+        public FAA_MyApplicationsHomePage(ScenarioContext context) : base(context)
         {
             _context = context;
             _formCompletionHelper = context.Get<FormCompletionHelper>();

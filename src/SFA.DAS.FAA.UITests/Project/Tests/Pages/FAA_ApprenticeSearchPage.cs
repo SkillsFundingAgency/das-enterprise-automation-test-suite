@@ -13,9 +13,12 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 
         #region Helpers and Context
         private readonly FormCompletionHelper _formCompletionHelper;
+        private readonly PageInteractionHelper _pageInteractionHelper;
         private readonly ScenarioContext _context;
         private readonly ObjectContext _objectContext;
         private readonly VacancyTitleDatahelper _dataHelper;
+        private readonly TabHelper _tabHelper;
+        private readonly FAAConfig _config;
         #endregion
 
         private By SearchField => By.Id("SearchField");
@@ -33,7 +36,10 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
             _context = context;
             _objectContext = context.Get<ObjectContext>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
+            _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _dataHelper = context.Get<VacancyTitleDatahelper>();
+            _tabHelper = context.Get<TabHelper>();
+            _config = context.GetFAAConfig<FAAConfig>();
             VerifyPage();
         }
 
@@ -58,10 +64,21 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 
         public new FAA_ApprenticeSummaryPage SearchByReferenceNumber()
         {
-            _formCompletionHelper.SelectFromDropDownByValue(SearchField, "ReferenceNumber");
-            _formCompletionHelper.EnterText(KeyWord, _objectContext.GetVacancyReference());
+            var vacancyRef = _objectContext.GetVacancyReference();
+
+            if (_objectContext.IsRAAV1())
+            {
+                _formCompletionHelper.SelectFromDropDownByValue(SearchField, "ReferenceNumber");
+                _formCompletionHelper.EnterText(KeyWord, vacancyRef);
+
+                base.SearchByReferenceNumber();
+            }
+            else
+            {
+                var uri = new Uri(new Uri(_config.FAABaseUrl), $"apprenticeship/{vacancyRef}");
+                _tabHelper.GoToUrl(uri.AbsoluteUri);
+            }
             
-            base.SearchByReferenceNumber();
 
             return new FAA_ApprenticeSummaryPage(_context);
         }

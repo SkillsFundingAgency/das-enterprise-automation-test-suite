@@ -23,14 +23,30 @@ namespace SFA.DAS.FAA.UITests.Project.Helpers
             _helper = new RestartWebDriverHelper(context);
         }
 
+        public string GetApplicationStatus()
+        {
+            return OpenFAAHomePageinNewtab()
+                .FindAnApprenticeship()
+                .SearchByReferenceNumber()
+                .View()
+                .ApplicationStatus();
+        }
+
         public FAA_ApprenticeSearchPage FindAnApprenticeship() => GoToFAAHomePage().FindAnApprenticeship();
 
         public FAA_TraineeshipSearchPage FindATraineeship() => GoToFAAHomePage().FindATraineeship();
         
 
-        public FAA_HomePage GoToFAAHomePage()
+        public FAA_MyApplicationsHomePage GoToFAAHomePage()
         {
-           _helper.RestartWebDriver(_config.FAABaseUrl, _applicationName);
+            if (_objectContext.IsFAARestart())
+            {
+                _helper.RestartWebDriver(_config.FAABaseUrl, _applicationName);
+            }
+            else
+            {
+                _tabHelper.OpenInNewtab(_config.FAABaseUrl);
+            }
 
             return new FAA_Indexpage(_context)
                 .GoToSignInPage()
@@ -59,27 +75,10 @@ namespace SFA.DAS.FAA.UITests.Project.Helpers
                 .YesWithdraw();
         }
 
-        public FAA_ApplicationFormPage ApplyForVacancy()
+        public void ApplyForAVacancy(string qualificationdetails, string workExperience, string trainingCourse)
         {
-            return SearchByReferenceNumber()
-                .Apply();
-        }
+            var applicationFormPage = SearchByReferenceNumber().Apply();
 
-        private FAA_ApprenticeSummaryPage SearchByReferenceNumber()
-        {
-            if (_objectContext.IsApprenticeshipVacancyType())
-            {
-                return FindAnApprenticeship().SearchByReferenceNumber();
-            }
-            else
-            {
-                return FindATraineeship().SearchByReferenceNumber();
-            }
-        }
-
-        public void ConfirmApplicationSubmission(FAA_ApplicationFormPage applicationFormPage, string qualificationdetails, string workExperience, string trainingCourse)
-        {
-            
             if (_objectContext.IsApprenticeshipVacancyType())
             {
                 applicationFormPage.EnterEducation();
@@ -101,6 +100,25 @@ namespace SFA.DAS.FAA.UITests.Project.Helpers
                 applicationFormPage.AnswerAdditionalQuestions();
                 applicationFormPage.SubmitTraineeshipApplication();
             }
+        }
+
+        private FAA_ApprenticeSummaryPage SearchByReferenceNumber()
+        {
+            if (_objectContext.IsApprenticeshipVacancyType())
+            {
+                return FindAnApprenticeship().SearchByReferenceNumber();
+            }
+            else
+            {
+                return FindATraineeship().SearchByReferenceNumber();
+            }
+        }
+        private FAA_MyApplicationsHomePage OpenFAAHomePageinNewtab()
+        {
+            _tabHelper.OpenInNewtab(_config.FAABaseUrl);
+
+            return new FAA_FindAnApprenticeshipHomePage(_context)
+                .MyApplications();
         }
     }
 }

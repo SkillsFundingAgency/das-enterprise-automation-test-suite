@@ -3,24 +3,20 @@ using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages
+namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 {
     public class IdamsPage : BasePage
     {
         protected override string PageTitle => "Sign in using your account on:";
 
         #region Helpers and Context
-        private readonly PageInteractionHelper _pageInteractionHelper;
         private readonly FormCompletionHelper _formCompletionHelper;
         private readonly ScenarioContext _context;
-        private readonly RAAV1Config _config;
         #endregion
 
         public IdamsPage(ScenarioContext context): base(context)
         {
             _context = context;
-            _config = context.GetRAAV1Config<RAAV1Config>();
-            _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
             VerifyPageAfterRefresh(RAAStaffIdams);
         }
@@ -31,16 +27,14 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages
         private By RAAAccess1StaffIdams => By.XPath("//span[contains(text(),'Access1 Staff')]");
         #endregion
 
-        public SignInPage RecruitStaffIdams()
+        public void RecruitStaffIdams()
         {
             _formCompletionHelper.Click(RAAStaffIdams);
-            return new SignInPage(_context);
         }
 
-        public SignInPage ManageStaffIdams()
+        public void ManageStaffIdams()
         {
             _formCompletionHelper.Click(RAAAccess1StaffIdams);
-            return new SignInPage(_context);
         }      
     }
 }

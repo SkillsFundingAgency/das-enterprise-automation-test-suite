@@ -8,6 +8,8 @@ namespace SFA.DAS.FAA.UITests.Project
         private const string VacancyReference = "vacancyreference";
         private const string VacancyTitle = "vacancytitle";
         private const string VacancyType = "vacancytype";
+        private const string FAARestart = "faarestart";
+        private const string RAAV1 = "raav1";
         #endregion
 
         public static void SetApprenticeshipVacancyType(this ObjectContext objectContext)
@@ -18,6 +20,27 @@ namespace SFA.DAS.FAA.UITests.Project
         public static bool IsApprenticeshipVacancyType(this ObjectContext objectContext)
         {
             return objectContext.KeyExists<bool>(VacancyType);
+        }
+
+        public static void SetRAAV1(this ObjectContext objectContext)
+        {
+            objectContext.Set(RAAV1, true);
+        }
+
+        public static bool IsRAAV1(this ObjectContext objectContext)
+        {
+            return objectContext.KeyExists<bool>(RAAV1);
+        }
+
+
+        public static void SetFAARestart(this ObjectContext objectContext)
+        {
+            objectContext.Set(FAARestart, true);
+        }
+
+        public static bool IsFAARestart(this ObjectContext objectContext)
+        {
+            return objectContext.KeyExists<bool>(FAARestart);
         }
 
         public static void SetVacancyReference(this ObjectContext objectContext, string value)

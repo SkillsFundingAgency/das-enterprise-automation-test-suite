@@ -63,9 +63,11 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
 
         private SignInPage GotoSignInPage()
         {
-            return new RAA_IndexPage(_context)
+            new RAA_IndexPage(_context)
              .ClickOnSignInButton()
              .RecruitStaffIdams();
+
+            return new SignInPage(_context);
         }
     }
 }

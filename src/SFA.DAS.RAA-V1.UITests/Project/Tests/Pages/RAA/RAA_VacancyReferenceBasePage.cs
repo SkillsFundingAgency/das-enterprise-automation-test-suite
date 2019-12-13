@@ -1,6 +1,5 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.FAA.UITests.Project;
-using SFA.DAS.UI.Framework.TestSupport;
+using SFA.DAS.FAA.UITests.Helpers;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
@@ -9,25 +8,21 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
     public abstract class RAA_VacancyReferenceBasePage : RAA_HeaderSectionBasePage
     {
         #region Helpers and Context
-        private RegexHelper _regexHelper;
-        private ObjectContext _objectContext;
         protected readonly PageInteractionHelper pageInteractionHelper;
+        private readonly VacancyReferenceHelper _vacancyReferenceHelper;
         #endregion
 
         protected virtual By VacancyReferenceNumber { get; set; }
 
         public RAA_VacancyReferenceBasePage(ScenarioContext context) : base(context)
         {
-            _regexHelper = context.Get<RegexHelper>();
-            _objectContext = context.Get<ObjectContext>();
             pageInteractionHelper = context.Get<PageInteractionHelper>();
+            _vacancyReferenceHelper = context.Get<VacancyReferenceHelper>();
         }
 
         public void SetVacancyReference()
         {
-            var referenceNumber = pageInteractionHelper.GetText(VacancyReferenceNumber);
-
-            _objectContext.SetVacancyReference(_regexHelper.GetVacancyReference(referenceNumber));
+            _vacancyReferenceHelper.SetVacancyReference(VacancyReferenceNumber);
         }
     }
 }
