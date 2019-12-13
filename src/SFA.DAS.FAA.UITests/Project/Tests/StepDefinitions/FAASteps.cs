@@ -16,6 +16,13 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.StepDefinitions
             _faaStepsHelper = new FAAStepsHelper(context);
         }
 
+        [When(@"the Applicant applies for a Vacancy in FAA")]
+        public void WhenTheApplicantAppliesForAVacancyInFAA()
+        {
+            _faaStepsHelper.ApplyForAVacancy("No", "No", "No");
+        }
+
+
         [When(@"the Applicant apply for a Vacancy in FAA '(.*)','(.*)','(.*)'")]
         public void WhenTheApplicantApplyForAVacancyInFAA(string qualificationdetails, string workExperience, string trainingCourse)
         {
@@ -48,13 +55,12 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.StepDefinitions
             StringAssert.Contains(expectedStatus, actualStatus);
         }
 
-
-        [Then(@"the Application status should be successful")]
-        public void ThenTheApplicationStatusShouldBeSuccessful()
+        [Then(@"the status of the Application is shown as '(successful|unsuccessful)' in FAA")]
+        public void ThenTheStatusOfTheApplicationIsShownAsInFAA(string expectedStatus)
         {
-            var status = _faaStepsHelper.GetApplicationStatus();
+            var actualStatus = _faaStepsHelper.GetApplicationStatus();
 
-            StringAssert.Contains("This application was successful.", status);
+            StringAssert.Contains(expectedStatus, actualStatus);
         }
     }
 }

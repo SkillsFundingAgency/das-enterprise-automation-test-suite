@@ -84,15 +84,15 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Features.E2EJourney.RV2_E_E2E_02
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 6
-testRunner.Given("the Employer creates a vacancy by using a trading name", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("the Employer creates a vacancy by using a trading name", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 7
-testRunner.And("the Reviewer Approves the vacancy", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("the Reviewer Approves the vacancy", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 8
-testRunner.When("the Applicant apply for a Vacancy in FAA \'No\',\'No\',\'No\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("the Applicant applies for a Vacancy in FAA", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 9
-testRunner.Then("Employer can make the application unsuccessful", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("Employer can make the application unsuccessful", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 10
-testRunner.Then("the Application status should be \'unsuccessful\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("the status of the Application is shown as \'unsuccessful\' in FAA", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }

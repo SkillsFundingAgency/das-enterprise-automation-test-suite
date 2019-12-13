@@ -24,9 +24,4 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer
             return new ChooseNoOfPositionsPage(_context);
         }
     }
-
-
-
-    
-
 }
