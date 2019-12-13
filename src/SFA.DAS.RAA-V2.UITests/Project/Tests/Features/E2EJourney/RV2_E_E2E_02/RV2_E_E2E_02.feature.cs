@@ -70,14 +70,14 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Features.E2EJourney.RV2_E_E2E_02
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RV2_E_E2E_01 - Create vacancy with registered name, Approve, Apply and make Appli" +
-            "cation Successful")]
+        [NUnit.Framework.DescriptionAttribute("RV2_E_E2E_01 - Create vacancy with trading name, Approve, Apply and make Applicat" +
+            "ion Unsuccessful")]
         [NUnit.Framework.CategoryAttribute("raa-v2")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public virtual void RV2_E_E2E_01_CreateVacancyWithRegisteredNameApproveApplyAndMakeApplicationSuccessful()
+        public virtual void RV2_E_E2E_01_CreateVacancyWithTradingNameApproveApplyAndMakeApplicationUnsuccessful()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV2_E_E2E_01 - Create vacancy with registered name, Approve, Apply and make Appli" +
-                    "cation Successful", null, new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV2_E_E2E_01 - Create vacancy with trading name, Approve, Apply and make Applicat" +
+                    "ion Unsuccessful", null, new string[] {
                         "raa-v2",
                         "regression"});
 #line 5
