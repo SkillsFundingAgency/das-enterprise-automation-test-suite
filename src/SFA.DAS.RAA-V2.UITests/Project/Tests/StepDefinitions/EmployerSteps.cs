@@ -13,6 +13,13 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.StepDefinitions
             _employerStepsHelper = new EmployerStepsHelper(context);
         }
 
+        [Then(@"the Employer can create an anonymous vacancy")]
+        public void ThenTheEmployerCanCreateAnAnonymousVacancy()
+        {
+            _employerStepsHelper.CreateANewVacancy("anonymous");
+        }
+
+
         [Given(@"the Employer creates a vacancy by using a trading name")]
         public void GivenTheEmployerCreatesAVacancyByUsingATradingName()
         {

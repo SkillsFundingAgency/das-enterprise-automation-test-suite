@@ -75,6 +75,8 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Helpers
                     return employernamePage.ChooseRegisteredName();
                 case "existing-trading-name":
                     return  employernamePage.ChooseExistingTradingName();
+                case "anonymous":
+                    return employernamePage.ChooseAnonymous();
             };
         }
 
