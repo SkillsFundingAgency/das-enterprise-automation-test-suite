@@ -10,12 +10,10 @@ namespace SFA.DAS.FAA.UITests.Project
     public class Hooks
     {
         private readonly ScenarioContext _context;
-        private readonly ObjectContext _objectContext;
 
         public Hooks(ScenarioContext context)
         {
             _context = context;
-            _objectContext = context.Get<ObjectContext>();
         }
 
         [BeforeScenario(Order = 32)]
@@ -34,8 +32,6 @@ namespace SFA.DAS.FAA.UITests.Project
             var pageInteractionHelper = _context.Get<PageInteractionHelper>();
 
             _context.Set(new VacancyReferenceHelper(pageInteractionHelper, objectContext, regexHelper));
-
-            _objectContext.SetApprenticeshipVacancyType();
         }
     }
 }
