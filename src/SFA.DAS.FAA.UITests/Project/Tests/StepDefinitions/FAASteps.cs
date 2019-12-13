@@ -22,7 +22,6 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.StepDefinitions
             _faaStepsHelper.ApplyForAVacancy("No", "No", "No");
         }
 
-
         [When(@"the Applicant apply for a Vacancy in FAA '(.*)','(.*)','(.*)'")]
         public void WhenTheApplicantApplyForAVacancyInFAA(string qualificationdetails, string workExperience, string trainingCourse)
         {

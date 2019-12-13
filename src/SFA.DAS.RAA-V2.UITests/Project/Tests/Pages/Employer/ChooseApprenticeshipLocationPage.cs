@@ -1,4 +1,5 @@
-﻿using SFA.DAS.UI.FrameworkHelpers;
+﻿using OpenQA.Selenium;
+using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer
@@ -9,25 +10,42 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
+        private readonly PageInteractionHelper _pageInteractionHelper;
         #endregion
+
+        private By AddressLine1 => By.Id("AddressLine1");
+        private By AddressLine2 => By.Id("AddressLine2");
+        private By AddressLine3 => By.Id("AddressLine3");
+        private By AddressLine4 => By.Id("AddressLine4");
+        private By Postcode => By.Id("Postcode");
+
+        private By MenuItems => By.CssSelector(".ui-menu-item");
 
         public ChooseApprenticeshipLocationPage(ScenarioContext context) : base(context)
         {
             _context = context;
+            _pageInteractionHelper = context.Get<PageInteractionHelper>();
         }
 
-        public ImportantDatesPage ChooseDifferentLocation()
+        public ImportantDatesPage ChooseAddress(bool employerAddress)
+        {
+            if (employerAddress)
+            {
+                _formCompletionHelper.SelectRadioOptionByForAttribute(RadioLabels, "OtherLocation_1");
+            }
+            else
+            {
+                DifferentLocation();
+            }
+            _formCompletionHelper.Click(Continue);
+            return new ImportantDatesPage(_context);
+        }
+
+        private void DifferentLocation()
         {
             _formCompletionHelper.SelectRadioOptionByForAttribute(RadioLabels, "other-location");
-            _formCompletionHelper.Click(Continue);
-            return new ImportantDatesPage(_context);
-        }
-
-        public ImportantDatesPage ChooseAddress()
-        {
-            _formCompletionHelper.SelectRadioOptionByForAttribute(RadioLabels, "OtherLocation_1");
-            _formCompletionHelper.Click(Continue);
-            return new ImportantDatesPage(_context);
+            _formCompletionHelper.ClickElement(() => { _formCompletionHelper.SendKeys(AddressLine1, _dataHelper.EmployerAddress); return _pageInteractionHelper.FindElement(MenuItems); });
+            _formCompletionHelper.EnterText(AddressLine1, _dataHelper.EmployerAddress);
         }
     }
 }

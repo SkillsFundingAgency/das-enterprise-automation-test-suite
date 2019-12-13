@@ -21,9 +21,8 @@
 	<ProjectReference Include="..\SFA.DAS.FAA.UITests\SFA.DAS.FAA.UITests.csproj" />
 	<ProjectReference Include="..\SFA.DAS.Registration.UITests\SFA.DAS.Registration.UITests.csproj" />
 	<ProjectReference Include="..\SFA.DAS.UI.Framework\SFA.DAS.UI.Framework.csproj" />
-	
   </ItemGroup>
-
+  
   <ItemGroup>
     <None Update="appsettings.Environment.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

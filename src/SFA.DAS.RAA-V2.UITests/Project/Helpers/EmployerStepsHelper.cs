@@ -28,11 +28,11 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Helpers
             NavigateToManageApplicant().MakeApplicantSucessful().NotifyApplicant();
         }
 
-        internal void CreateANewVacancy(string employername, bool optionalFields = false)
+        private EmployerNamePage SelectOrganisation()
         {
             _loginhelper.Login(_context.GetUser<RAAV2EmployerUser>(), true);
 
-            var employernamePage = new RecruitmentHomePage(_context, true)
+            return new RecruitmentHomePage(_context, true)
                 .CreateANewVacancy()
                 .CreateNewVacancy()
                 .EnterVacancyTitle()
@@ -42,10 +42,15 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Helpers
                 .ConfirmTrainingProviderAndContinue()
                 .ChooseNoOfPositions()
                 .SelectOrganisation();
+        }
+
+        internal void CreateANewVacancy(string employername, bool employerAddress, bool optionalFields = false)
+        {
+            var employernamePage = SelectOrganisation();
 
             var locationPage = ChooseEmployerName(employernamePage, employername);
 
-            var previewPage = locationPage.ChooseAddress()
+            var previewPage = locationPage.ChooseAddress(employerAddress)
                 .EnterImportantDates()
                 .EnterDuration("52", "40")
                 .SelectNationalMinimumWage()
