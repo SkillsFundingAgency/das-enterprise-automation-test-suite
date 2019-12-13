@@ -1,5 +1,4 @@
-﻿using NUnit.Framework;
-using SFA.DAS.RAA_V2.UITests.Project.Helpers;
+﻿using SFA.DAS.RAA_V2.UITests.Project.Helpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2.UITests.Project.Tests.StepDefinitions
@@ -14,6 +13,13 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.StepDefinitions
             _employerStepsHelper = new EmployerStepsHelper(context);
         }
 
+        [Given(@"the Employer creates a vacancy by using a trading name")]
+        public void GivenTheEmployerCreatesAVacancyByUsingATradingName()
+        {
+            _employerStepsHelper.CreateANewVacancy("existing-trading-name");
+        }
+
+
         [Given(@"the Employer creates a vacancy by using a registered name")]
         public void GivenTheEmployerCreatesAVacancyByUsingARegisteredName()
         {
@@ -25,6 +31,11 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.StepDefinitions
         {
             _employerStepsHelper.ApplicantSucessful();
         }
+
+        [Then(@"Employer can make the application unsuccessful")]
+        public void ThenEmployerCanMakeTheApplicationUnsuccessful()
+        {
+            _employerStepsHelper.ApplicantUnSucessful();
+        }
     }
 }
-

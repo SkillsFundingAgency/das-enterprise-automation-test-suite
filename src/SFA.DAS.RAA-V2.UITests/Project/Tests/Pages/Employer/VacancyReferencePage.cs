@@ -30,6 +30,4 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer
             _vacancyReferenceHelper.SetVacancyReference(VacancyReferenceNumber);
         }
     }
-
-
 }

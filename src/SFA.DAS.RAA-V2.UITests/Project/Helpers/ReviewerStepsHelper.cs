@@ -43,6 +43,4 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Helpers
                 .SubmitReviewerLoginDetails();
         }
     }
-
-
 }
