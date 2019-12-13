@@ -16,8 +16,9 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer
         private By DesiredSkills => By.CssSelector("a[data-automation='link-skills']");
         private By Qualifications => By.CssSelector("a[data-automation= 'link-qualifications']");
         private By EmployerDescription => By.CssSelector("a[data-automation='link-description']");
-
         private By ApplicationProcess => By.CssSelector("a[data-automation='link-application-method']");
+        private By ThingsToConsider => By.CssSelector("a[data-automation='link-things-to-consider']");
+        private By ContactDetails => By.CssSelector("a[data-automation='link-employer-contact-details']");
         private By Submit => By.CssSelector(".govuk-button[data-automation='submit-button']");
 
 
@@ -60,6 +61,18 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer
         {
             _formCompletionHelper.Click(EmployerDescription);
             return new EmployerDescriptionPage(_context);
+        }
+
+        public ThingsToConsiderPage AddThingsToConsider()
+        {
+            _formCompletionHelper.Click(ThingsToConsider);
+            return new ThingsToConsiderPage(_context);
+        }
+
+        public ContactDetailsPage AddContactDetails()
+        {
+            _formCompletionHelper.Click(ContactDetails);
+            return new ContactDetailsPage(_context);
         }
 
         public VacancyReferencePage SubmitVacancy()

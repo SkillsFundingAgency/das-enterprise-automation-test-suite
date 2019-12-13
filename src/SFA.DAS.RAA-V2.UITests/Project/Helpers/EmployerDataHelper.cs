@@ -18,6 +18,8 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Helpers
             EmployerDescription = _randomDataGenerator.GenerateRandomAlphabeticString(10);
             EmployerReason = _randomDataGenerator.GenerateRandomAlphabeticString(10);
             EmployerWebsiteUrl = WebsiteUrl(EmployerTradingName);
+            EmployerContactName = _randomDataGenerator.GenerateRandomAlphabeticString(5);
+            EmployerEmail = $"{EmployerContactName}@lorem.com";
             VacancyShortDescription = _randomDataGenerator.GenerateRandomAlphabeticString(15);
             VacancyOutcome = _randomDataGenerator.GenerateRandomAlphabeticString(22);
             VacancyBriefOverview = _randomDataGenerator.GenerateRandomAlphabeticString(50);
@@ -40,6 +42,12 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Helpers
         public string EmployerReason { get; }
         
         public string EmployerWebsiteUrl { get; }
+        
+        public string EmployerContactName { get; }
+
+        public string EmployerContactNumber => "07777777777";
+
+        public string EmployerEmail { get; }
 
         public string VacancyShortDescription { get; }
 

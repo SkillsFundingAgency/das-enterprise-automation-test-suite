@@ -3,6 +3,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer
 {
+
     public class EmployerDescriptionPage : RAAV2CSSBasePage
     {
         protected override string PageTitle => "Add some information";

@@ -28,7 +28,7 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Helpers
             NavigateToManageApplicant().MakeApplicantSucessful().NotifyApplicant();
         }
 
-        internal void CreateANewVacancy(string employername = null)
+        internal void CreateANewVacancy(string employername, bool optionalFields = false)
         {
             _loginhelper.Login(_context.GetUser<RAAV2EmployerUser>(), true);
 
@@ -45,7 +45,7 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Helpers
 
             var locationPage = ChooseEmployerName(employernamePage, employername);
 
-            locationPage.ChooseAddress()
+            var previewPage = locationPage.ChooseAddress()
                 .EnterImportantDates()
                 .EnterDuration("52", "40")
                 .SelectNationalMinimumWage()
@@ -62,9 +62,26 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Helpers
                 .AddApplicationProcess()
                 .ApplicationMethodFAA()
                 .AddEmployerDescription()
-                .EnterEmployerDescription()
-                .SubmitVacancy()
+                .EnterEmployerDescription();
+
+            if (optionalFields)
+            {
+                previewPage = EnterOptionalFields(previewPage);
+            }
+            
+            previewPage.SubmitVacancy()
                 .SetVacancyReference();
+        }
+
+        private VacancyPreviewPart2Page EnterOptionalFields(VacancyPreviewPart2Page previewPage)
+        {
+            previewPage
+                .AddThingsToConsider()
+                .EnterThingsToConsider()
+                .AddContactDetails()
+                .EnterContactDetails();
+
+            return new VacancyCompletedAllSectionsPage(_context);
         }
 
         private ChooseApprenticeshipLocationPage ChooseEmployerName(EmployerNamePage employernamePage, string employername)
