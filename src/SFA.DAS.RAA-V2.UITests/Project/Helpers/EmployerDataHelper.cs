@@ -14,9 +14,10 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Helpers
         {
             _randomDataGenerator = randomDataGenerator;
             _vacancyTitleDatahelper = vacancyTitleDatahelper;
+            EmployerTradingName = _randomDataGenerator.GenerateRandomAlphabeticString(10);
             EmployerDescription = _randomDataGenerator.GenerateRandomAlphabeticString(10);
             EmployerReason = _randomDataGenerator.GenerateRandomAlphabeticString(10);
-            EmployerWebsiteUrl = WebsiteUrl(EmployerDescription);
+            EmployerWebsiteUrl = WebsiteUrl(EmployerTradingName);
             VacancyShortDescription = _randomDataGenerator.GenerateRandomAlphabeticString(15);
             VacancyOutcome = _randomDataGenerator.GenerateRandomAlphabeticString(22);
             VacancyBriefOverview = _randomDataGenerator.GenerateRandomAlphabeticString(50);
@@ -31,6 +32,8 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Helpers
         public string VacancyTitle => $"{_vacancyTitleDatahelper.VacancyTitle} apprenticeship";
 
         public string TrainingTitle => AvailableTraining.RandomOrDefault();
+
+        public string EmployerTradingName { get; }
 
         public string EmployerDescription { get; }
 

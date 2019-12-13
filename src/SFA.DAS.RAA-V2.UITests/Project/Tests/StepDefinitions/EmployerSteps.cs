@@ -36,7 +36,7 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.StepDefinitions
         [Then(@"Employer can make the application unsuccessful")]
         public void ThenEmployerCanMakeTheApplicationUnsuccessful()
         {
-            _employerStepsHelper.ApplicantSucessful();
+            _employerStepsHelper.ApplicantUnSucessful();
         }
 
     }

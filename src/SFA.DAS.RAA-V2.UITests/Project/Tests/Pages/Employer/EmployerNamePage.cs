@@ -13,6 +13,8 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer
         private readonly ScenarioContext _context;
         #endregion
 
+        private By NewTradingName => By.CssSelector("#NewTradingName");  
+
         private By EmployerDescription => By.CssSelector("#AnonymousName");
 
         private By EmployerReason => By.CssSelector("#AnonymousReason"); 
@@ -32,6 +34,7 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer
         public ChooseApprenticeshipLocationPage ChooseExistingTradingName()
         {
             _formCompletionHelper.SelectRadioOptionByForAttribute(RadioLabels, "existing-trading-name");
+            _formCompletionHelper.EnterText(NewTradingName, _dataHelper.EmployerTradingName);
             _formCompletionHelper.Click(Continue);
             return new ChooseApprenticeshipLocationPage(_context);
         }
