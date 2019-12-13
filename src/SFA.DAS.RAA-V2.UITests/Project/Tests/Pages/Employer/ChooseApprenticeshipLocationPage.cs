@@ -14,11 +14,7 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer
         #endregion
 
         private By AddressLine1 => By.Id("AddressLine1");
-        private By AddressLine2 => By.Id("AddressLine2");
-        private By AddressLine3 => By.Id("AddressLine3");
-        private By AddressLine4 => By.Id("AddressLine4");
-        private By Postcode => By.Id("Postcode");
-
+        
         private By MenuItems => By.CssSelector(".ui-menu-item");
 
         public ChooseApprenticeshipLocationPage(ScenarioContext context) : base(context)
