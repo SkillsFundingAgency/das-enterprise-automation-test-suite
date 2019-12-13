@@ -20,6 +20,6 @@ namespace SFA.DAS.FAT.UITests.Project.Tests.Pages
             _formCompletionHelper = context.Get<FormCompletionHelper>();
             _config = context.GetFATConfig<FATConfig>();
             VerifyPage();
-        }      
+        }
     }
 }

@@ -222,7 +222,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         public List<IWebElement> FindElements(IWebElement element, By locator) => element.FindElements(locator).ToList();
 
-        public List<IWebElement> FindElements(By locator) =>  _webDriver.FindElements(locator).ToList();
+        public List<IWebElement> FindElements(By locator) => _webDriver.FindElements(locator).ToList();
 
         public IWebElement GetLinkByHref(string hrefContains) => FindElements(LinkCssSelector).First(x => x.GetAttribute("href").ContainsCompareCaseInsensitive(hrefContains));
 
@@ -239,11 +239,9 @@ namespace SFA.DAS.UI.FrameworkHelpers
             return () =>
             {
                 var elements = FindElements(locator);
-                if (elements.Count > 0)
-                {
-                    return true;
-                }
 
+                if (elements.Count > 0)
+                    return true;
                 throw new Exception($"Page verification failed:{locator.ToString()} is not found");
             };
         }
