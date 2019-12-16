@@ -12,9 +12,9 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.StepDefinitions
         {
             _employerStepsHelper = new EmployerStepsHelper(context);
         }
-        
-        [Then(@"the Employer can create a vacancy by selecting different work location")]
-        public void ThenTheEmployerCanCreateAVacancyBySelectingDifferentWorkLocation()
+
+        [Given(@"the Employer creates a vacancy by selecting different work location")]
+        public void GivenTheEmployerCreatesAVacancyBySelectingDifferentWorkLocation()
         {
             _employerStepsHelper.CreateANewVacancy("legal-entity-name", false);
         }
@@ -25,8 +25,8 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.StepDefinitions
             _employerStepsHelper.CreateANewVacancy("anonymous", true, true);
         }
 
-        [Then(@"the Employer can create an anonymous vacancy")]
-        public void ThenTheEmployerCanCreateAnAnonymousVacancy()
+        [Given(@"the Employer creates an anonymous vacancy")]
+        public void GivenTheEmployerCreatesAnAnonymousVacancy()
         {
             _employerStepsHelper.CreateANewVacancy("anonymous", true);
         }

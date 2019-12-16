@@ -32,6 +32,8 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Helpers
             previewPage = EnterVacancyPreviewFields(previewPage, optionalFields);
 
             previewPage.SubmitVacancy().SetVacancyReference();
+
+            VerifyEmployerDetails(isEmployerAddress);
         }
 
         internal void ApplicantUnSucessful()
@@ -42,6 +44,17 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Helpers
         internal void ApplicantSucessful()
         {
             NavigateToManageApplicant().MakeApplicantSucessful().NotifyApplicant();
+            
+        }
+
+        private void VerifyEmployerDetails(bool isEmployerAddress)
+        {
+            var vacancyDetails = new RecruitmentHomePage(_context, true)
+               .SearchLiveVacancy()
+               .NavigateToViewVacancyPage()
+               .VerifyEmployerName();
+
+            if (!isEmployerAddress) { vacancyDetails.VerifyEmployerLocation(); };
         }
 
         private VacancyPreviewPart2Page EnterMandatoryFields(VacancyPreviewPart2Page previewPage)

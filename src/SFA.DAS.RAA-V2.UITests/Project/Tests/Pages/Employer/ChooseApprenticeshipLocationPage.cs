@@ -1,4 +1,6 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.FAA.UITests.Project;
+using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
@@ -10,6 +12,7 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
+        private readonly ObjectContext _objectContext;
         private readonly PageInteractionHelper _pageInteractionHelper;
         #endregion
 
@@ -17,9 +20,14 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer
         
         private By MenuItems => By.CssSelector(".ui-menu-item");
 
+        private By Postcode => By.CssSelector("#Postcode");
+
+        private By EmployerLocation => By.CssSelector("label[for='OtherLocation_1']");
+
         public ChooseApprenticeshipLocationPage(ScenarioContext context) : base(context)
         {
             _context = context;
+            _objectContext = context.Get<ObjectContext>();
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
         }
 
@@ -28,6 +36,8 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer
             if (isEmployerAddress)
             {
                 SelectRadioOptionByForAttribute("OtherLocation_1");
+                var empLocation = _pageInteractionHelper.GetText(EmployerLocation);
+                SetEmployerLocation(empLocation);
             }
             else
             {
@@ -40,8 +50,14 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer
         private void DifferentLocation()
         {
             SelectRadioOptionByForAttribute("other-location");
-            formCompletionHelper.ClickElement(() => { formCompletionHelper.SendKeys(AddressLine1, dataHelper.EmployerAddress); return _pageInteractionHelper.FindElement(MenuItems); });
-            formCompletionHelper.EnterText(AddressLine1, dataHelper.EmployerAddress);
+            formCompletionHelper.ClickElement(() => { formCompletionHelper.EnterText(AddressLine1, dataHelper.EmployerAddress); return _pageInteractionHelper.FindElement(MenuItems); });
+            var empLocation = _pageInteractionHelper.GetText(Postcode);
+            SetEmployerLocation(empLocation);
+        }
+
+        private void SetEmployerLocation(string value)
+        {
+            _objectContext.SetEmployerLocation(value);
         }
     }
 }

@@ -19,6 +19,7 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.StepDefinitions
         {
             _reviewerStepsHelper.GoToReviewerHomePage(false)
                 .ReviewVacancy()
+                .VerifyEmployerDetails()
                 .Approve();
         }
     }

@@ -14,8 +14,8 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Helpers
         {
             _randomDataGenerator = randomDataGenerator;
             _vacancyTitleDatahelper = vacancyTitleDatahelper;
-            EmployerTradingName = _randomDataGenerator.GenerateRandomAlphabeticString(10);
-            EmployerDescription = _randomDataGenerator.GenerateRandomAlphabeticString(10);
+            EmployerTradingName = $"{_randomDataGenerator.GenerateRandomAlphabeticString(10)}_EmployerName";
+            EmployerDescription = $"{_randomDataGenerator.GenerateRandomAlphabeticString(10)}_EmployerDescription";
             EmployerReason = _randomDataGenerator.GenerateRandomAlphabeticString(10);
             EmployerWebsiteUrl = WebsiteUrl(EmployerTradingName);
             EmployerContactName = _randomDataGenerator.GenerateRandomAlphabeticString(5);

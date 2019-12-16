@@ -32,7 +32,6 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Reviewer
             VerifyPage();
         }
 
-
         public Reviewer_VacancyPreviewPage ReviewVacancy()
         {
             _formCompletionHelper.EnterText(SearchTerm, _objectContext.GetVacancyReference());

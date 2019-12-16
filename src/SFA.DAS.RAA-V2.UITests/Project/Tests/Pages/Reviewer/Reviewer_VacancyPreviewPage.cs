@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.FAA.UITests.Project;
 using SFA.DAS.FAA.UITests.Project.Helpers;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
@@ -22,6 +23,11 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Reviewer
 
         private By SubmitButton => By.CssSelector("#submit-button");
 
+        private By EmployerName => By.ClassName("govuk-caption-xl");
+
+        private By EmployerNameInAboutTheEmployerSection => By.XPath("//div[@id='EmployerName']/p");
+
+        private By EmployerLocation => By.CssSelector(".govuk-grid-column-one-half .govuk-list");
         public Reviewer_VacancyPreviewPage(ScenarioContext context) : base(context)
         {
             _context = context;
@@ -42,6 +48,15 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Reviewer
             }
 
             _formCompletionHelper.Click(SubmitButton);
+        }
+
+        public Reviewer_VacancyPreviewPage VerifyEmployerDetails()
+        {
+            var empName = _objectContext.GetEmployerName();
+            VerifyPage(EmployerName, empName);
+            VerifyPage(EmployerNameInAboutTheEmployerSection, empName);
+            VerifyPage(EmployerLocation, _objectContext.GetEmployerLocation());
+            return this;
         }
     }
 }
