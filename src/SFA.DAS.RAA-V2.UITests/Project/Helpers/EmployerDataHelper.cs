@@ -76,11 +76,17 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Helpers
         private string WebsiteUrl(string url) => $"https://www.{url}.com";
 
         private List<string> AvailableTraining => new List<string> 
-        { 
-            "Agriculture: Agriculture, Level 3 (A level)",
-            "Construction Building: Maintenance Operations, Level 2 (GCSE)",
-            "Business to Business Sales Professional (degree), Level 6 (Degree with honours)",
+        {
             "Aerospace engineer, Level 6 (Degree with honours)",
+            "Agriculture: Agriculture, Level 3 (A level)",
+            "Broadcast production assistant, Level 3 (A level)",
+            "Construction Building: Maintenance Operations, Level 2 (GCSE)",
+            "Event Assistant, Level 3 (A level)",
+            "Financial services administrator, Level 3 (A level)",
+            "Groundworker, Level 2 (GCSE)",
+            "Healthcare support worker, Level 2 (GCSE)",
+            "IT Solutions Technician, Level 3 (A level)",
+            "Junior journalist, Level 3 (A level)",
             "Software Development Technician, Level 3 (A level)",
             "Software tester, Level 4 (Higher national certificate)",
             "Lifting Technician, Level 2 (GCSE)",
