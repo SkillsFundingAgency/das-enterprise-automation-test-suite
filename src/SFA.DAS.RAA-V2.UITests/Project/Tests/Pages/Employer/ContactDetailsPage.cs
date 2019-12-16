@@ -22,10 +22,10 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer
 
         public VacancyPreviewPart2Page EnterContactDetails()
         {
-            _formCompletionHelper.EnterText(EmployerContactName, _dataHelper.EmployerContactName);
-            _formCompletionHelper.EnterText(EmployerContactEmail, _dataHelper.EmployerEmail);
-            _formCompletionHelper.EnterText(EmployerContactPhone, _dataHelper.EmployerContactNumber);
-            _formCompletionHelper.Click(Continue);
+            formCompletionHelper.EnterText(EmployerContactName, dataHelper.EmployerContactName);
+            formCompletionHelper.EnterText(EmployerContactEmail, dataHelper.EmployerEmail);
+            formCompletionHelper.EnterText(EmployerContactPhone, dataHelper.EmployerContactNumber);
+            Continue();
             return new VacancyPreviewPart2Page(_context);
         }
     }

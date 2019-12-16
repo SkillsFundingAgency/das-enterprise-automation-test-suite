@@ -19,7 +19,7 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer
 
         public ChooseTrainingProviderPage ConfirmTrainingAndContinue()
         {
-            _formCompletionHelper.Click(Continue);
+            Continue();
             return new ChooseTrainingProviderPage(_context);
         }
     }

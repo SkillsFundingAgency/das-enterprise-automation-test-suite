@@ -20,8 +20,8 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer
 
         public VacancyPreviewPart2Page EnterThingsToConsider()
         {
-            _formCompletionHelper.EnterText(ThingsToConsider, _dataHelper.OptionalMessage);
-            _formCompletionHelper.Click(Continue);
+            formCompletionHelper.EnterText(ThingsToConsider, dataHelper.OptionalMessage);
+            Continue();
             return new VacancyPreviewPart2Page(_context);
         }
     }

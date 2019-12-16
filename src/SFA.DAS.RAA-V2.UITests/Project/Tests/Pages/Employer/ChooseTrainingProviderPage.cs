@@ -1,5 +1,4 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer
@@ -21,11 +20,11 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer
 
         public ConfirmTrainingProviderPage ChooseTrainingProvider()
         {
-            _formCompletionHelper.SelectRadioOptionByForAttribute(RadioLabels, "found_yes");
-            _formCompletionHelper.EnterText(TrainingProviderSearch, "BALTIC TRAINING SERVICES LIMITED 10019026");
-            _formCompletionHelper.SendKeys(TrainingProviderSearch, Keys.ArrowDown);
-            _formCompletionHelper.SendKeys(TrainingProviderSearch, Keys.Enter);
-            _formCompletionHelper.Click(Continue);
+            SelectRadioOptionByForAttribute("found_yes");
+            formCompletionHelper.EnterText(TrainingProviderSearch, "BALTIC TRAINING SERVICES LIMITED 10019026");
+            formCompletionHelper.SendKeys(TrainingProviderSearch, Keys.ArrowDown);
+            formCompletionHelper.SendKeys(TrainingProviderSearch, Keys.Enter);
+            Continue();
             return new ConfirmTrainingProviderPage(_context);
             
         }

@@ -26,8 +26,8 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer
 
         public ConfirmApprenticeshipTrainingPage EnterTrainingTitle()
         {
-            _formCompletionHelper.ClickElement(() => { _formCompletionHelper.SendKeys(ProgrammeId, _dataHelper.TrainingTitle); return _pageInteractionHelper.FindElement(FirstOption); });
-            _formCompletionHelper.Click(Continue);
+            formCompletionHelper.ClickElement(() => { formCompletionHelper.SendKeys(ProgrammeId, dataHelper.TrainingTitle); return _pageInteractionHelper.FindElement(FirstOption); });
+            Continue();
             return new ConfirmApprenticeshipTrainingPage(_context);
         }
     }

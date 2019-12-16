@@ -24,25 +24,25 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer
 
         public ChooseApprenticeshipLocationPage ChooseRegisteredName()
         {
-            _formCompletionHelper.SelectRadioOptionByForAttribute(RadioLabels, "legal-entity-name");
-            _formCompletionHelper.Click(Continue);
+            SelectRadioOptionByForAttribute("legal-entity-name");
+            Continue();
             return new ChooseApprenticeshipLocationPage(_context);
         }
 
         public ChooseApprenticeshipLocationPage ChooseExistingTradingName()
         {
-            _formCompletionHelper.SelectRadioOptionByForAttribute(RadioLabels, "existing-trading-name");
-            _formCompletionHelper.EnterText(NewTradingName, _dataHelper.EmployerTradingName);
-            _formCompletionHelper.Click(Continue);
+            SelectRadioOptionByForAttribute("existing-trading-name");
+            formCompletionHelper.EnterText(NewTradingName, dataHelper.EmployerTradingName);
+            Continue();
             return new ChooseApprenticeshipLocationPage(_context);
         }
 
         public ChooseApprenticeshipLocationPage ChooseAnonymous()
         {
-            _formCompletionHelper.SelectRadioOptionByForAttribute(RadioLabels, "anonymous");
-            _formCompletionHelper.EnterText(EmployerDescription, _dataHelper.EmployerDescription);
-            _formCompletionHelper.EnterText(EmployerReason, _dataHelper.EmployerReason);
-            _formCompletionHelper.Click(Continue);
+            SelectRadioOptionByForAttribute("anonymous");
+            formCompletionHelper.EnterText(EmployerDescription, dataHelper.EmployerDescription);
+            formCompletionHelper.EnterText(EmployerReason, dataHelper.EmployerReason);
+            Continue();
             return new ChooseApprenticeshipLocationPage(_context);
         }
     }

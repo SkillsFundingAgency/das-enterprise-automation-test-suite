@@ -17,8 +17,8 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer
 
         public ApplicationSuccessfulPage NotifyApplicant()
         {
-            _formCompletionHelper.SelectRadioOptionByForAttribute(RadioLabels, "notify-candidate-yes");
-            _formCompletionHelper.Click(Continue);
+            SelectRadioOptionByForAttribute("notify-candidate-yes");
+            Continue();
             return new ApplicationSuccessfulPage(_context);
         }
     }    

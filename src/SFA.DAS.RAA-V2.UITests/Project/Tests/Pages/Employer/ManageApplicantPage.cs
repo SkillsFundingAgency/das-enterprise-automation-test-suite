@@ -22,16 +22,16 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer
 
         public ConfirmApplicantSucessfulPage MakeApplicantSucessful()
         {
-            _formCompletionHelper.SelectRadioOptionByForAttribute(RadioLabels, "outcome-successful");
-            _formCompletionHelper.Click(Continue);
+            SelectRadioOptionByForAttribute("outcome-successful");
+            Continue();
             return new ConfirmApplicantSucessfulPage(_context);
         }
 
         public ConfirmApplicantUnsucessfulPage MakeApplicantUnsucessful()
         {
-            _formCompletionHelper.SelectRadioOptionByForAttribute(RadioLabels, "outcome-unsuccessful");
-            _formCompletionHelper.EnterText(CandidateFeedback, _dataHelper.OptionalMessage);
-            _formCompletionHelper.Click(Continue);
+            SelectRadioOptionByForAttribute("outcome-unsuccessful");
+            formCompletionHelper.EnterText(CandidateFeedback, dataHelper.OptionalMessage);
+            Continue();
             return new ConfirmApplicantUnsucessfulPage(_context);
         }
     }

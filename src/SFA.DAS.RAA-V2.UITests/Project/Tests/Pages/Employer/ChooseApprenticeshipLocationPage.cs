@@ -23,25 +23,25 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
         }
 
-        public ImportantDatesPage ChooseAddress(bool employerAddress)
+        public ImportantDatesPage ChooseAddress(bool isEmployerAddress)
         {
-            if (employerAddress)
+            if (isEmployerAddress)
             {
-                _formCompletionHelper.SelectRadioOptionByForAttribute(RadioLabels, "OtherLocation_1");
+                SelectRadioOptionByForAttribute("OtherLocation_1");
             }
             else
             {
                 DifferentLocation();
             }
-            _formCompletionHelper.Click(Continue);
+            Continue();
             return new ImportantDatesPage(_context);
         }
 
         private void DifferentLocation()
         {
-            _formCompletionHelper.SelectRadioOptionByForAttribute(RadioLabels, "other-location");
-            _formCompletionHelper.ClickElement(() => { _formCompletionHelper.SendKeys(AddressLine1, _dataHelper.EmployerAddress); return _pageInteractionHelper.FindElement(MenuItems); });
-            _formCompletionHelper.EnterText(AddressLine1, _dataHelper.EmployerAddress);
+            SelectRadioOptionByForAttribute("other-location");
+            formCompletionHelper.ClickElement(() => { formCompletionHelper.SendKeys(AddressLine1, dataHelper.EmployerAddress); return _pageInteractionHelper.FindElement(MenuItems); });
+            formCompletionHelper.EnterText(AddressLine1, dataHelper.EmployerAddress);
         }
     }
 }

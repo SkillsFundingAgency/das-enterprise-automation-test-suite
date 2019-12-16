@@ -25,8 +25,8 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer
 
         public VacancyPreviewPart2Page SelectSkill()
         {
-            _formCompletionHelper.ClickElement(() => _dataHelper.GetRandomElementFromListOfElements(_pageInteractionHelper.FindElements(Skills)));
-            _formCompletionHelper.Click(Continue);
+            formCompletionHelper.ClickElement(() => dataHelper.GetRandomElementFromListOfElements(_pageInteractionHelper.FindElements(Skills)));
+            Continue();
             return new VacancyPreviewPart2Page(_context);
         }
     }

@@ -5,7 +5,7 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer
 {
     public class VacancyPreviewPart2Page : RAAV2CSSBasePage
     {
-        protected override string PageTitle => _dataHelper.VacancyTitle;
+        protected override string PageTitle => dataHelper.VacancyTitle;
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
@@ -29,55 +29,55 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer
 
         public ShortDescriptionPage AddBriefOverview()
         {
-            _formCompletionHelper.Click(BriefOverview);
+            formCompletionHelper.Click(BriefOverview);
             return new ShortDescriptionPage(_context);
         }
 
         public DescriptionPage AddDescription()
         {
-            _formCompletionHelper.Click(VacancyDescription);
+            formCompletionHelper.Click(VacancyDescription);
             return new DescriptionPage(_context);
         }
 
         public DesiredSkillsPage AddSkills()
         {
-            _formCompletionHelper.Click(DesiredSkills);
+            formCompletionHelper.Click(DesiredSkills);
             return new DesiredSkillsPage(_context);
         }
 
         public QualificationsPage AddQualifications()
         {
-            _formCompletionHelper.Click(Qualifications);
+            formCompletionHelper.Click(Qualifications);
             return new QualificationsPage(_context);
         }
 
         public ApplicationProcessPage AddApplicationProcess()
         {
-            _formCompletionHelper.Click(ApplicationProcess);
+            formCompletionHelper.Click(ApplicationProcess);
             return new ApplicationProcessPage(_context);
         }
 
         public EmployerDescriptionPage AddEmployerDescription()
         {
-            _formCompletionHelper.Click(EmployerDescription);
+            formCompletionHelper.Click(EmployerDescription);
             return new EmployerDescriptionPage(_context);
         }
 
         public ThingsToConsiderPage AddThingsToConsider()
         {
-            _formCompletionHelper.Click(ThingsToConsider);
+            formCompletionHelper.Click(ThingsToConsider);
             return new ThingsToConsiderPage(_context);
         }
 
         public ContactDetailsPage AddContactDetails()
         {
-            _formCompletionHelper.Click(ContactDetails);
+            formCompletionHelper.Click(ContactDetails);
             return new ContactDetailsPage(_context);
         }
 
         public VacancyReferencePage SubmitVacancy()
         {
-            _formCompletionHelper.Click(Submit);
+            formCompletionHelper.Click(Submit);
             return new VacancyReferencePage(_context);
         }
     }

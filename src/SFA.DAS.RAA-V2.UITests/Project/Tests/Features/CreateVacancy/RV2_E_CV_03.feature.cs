@@ -82,7 +82,7 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Features.CreateVacancy
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 6
-testRunner.Then("the Employer can create a vacancy by selecting different work location", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the Employer can create a vacancy by selecting different work location", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

@@ -17,6 +17,22 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Helpers
             _loginhelper = new EmployerPortalLoginHelper(context);
             _homePageStepsHelper = new HomePageStepsHelper(context);
         }
+        internal void CreateANewVacancy(string employername, bool isEmployerAddress, bool optionalFields = false)
+        {
+            var employernamePage = SelectOrganisation();
+
+            var locationPage = ChooseEmployerName(employernamePage, employername);
+
+            var previewPage = locationPage.ChooseAddress(isEmployerAddress)
+                .EnterImportantDates()
+                .EnterDuration("52", "40")
+                .SelectNationalMinimumWage()
+                .PreviewVacancy();
+
+            previewPage = EnterVacancyPreviewFields(previewPage, optionalFields);
+
+            previewPage.SubmitVacancy().SetVacancyReference();
+        }
 
         internal void ApplicantUnSucessful()
         {
@@ -26,6 +42,33 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Helpers
         internal void ApplicantSucessful()
         {
             NavigateToManageApplicant().MakeApplicantSucessful().NotifyApplicant();
+        }
+
+        private VacancyPreviewPart2Page EnterMandatoryFields(VacancyPreviewPart2Page previewPage)
+        {
+            previewPage
+                .AddBriefOverview()
+                .EnterBriefOverview()
+                .AddDescription()
+                .EnterDescription()
+                .AddSkills()
+                .SelectSkill()
+                .AddQualifications()
+                .EnterQualifications()
+                .ConfirmQualifications()
+                .AddApplicationProcess()
+                .ApplicationMethodFAA()
+                .AddEmployerDescription()
+                .EnterEmployerDescription();
+
+            return new VacancyCompletedAllSectionsPage(_context);
+        }
+
+        private VacancyPreviewPart2Page EnterVacancyPreviewFields(VacancyPreviewPart2Page previewPage, bool optionalFields)
+        {
+            previewPage = EnterMandatoryFields(previewPage);
+            
+            return optionalFields ? EnterOptionalFields(previewPage) : previewPage;
         }
 
         private EmployerNamePage SelectOrganisation()
@@ -42,40 +85,6 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Helpers
                 .ConfirmTrainingProviderAndContinue()
                 .ChooseNoOfPositions()
                 .SelectOrganisation();
-        }
-
-        internal void CreateANewVacancy(string employername, bool employerAddress, bool optionalFields = false)
-        {
-            var employernamePage = SelectOrganisation();
-
-            var locationPage = ChooseEmployerName(employernamePage, employername);
-
-            var previewPage = locationPage.ChooseAddress(employerAddress)
-                .EnterImportantDates()
-                .EnterDuration("52", "40")
-                .SelectNationalMinimumWage()
-                .PreviewVacancy()
-                .AddBriefOverview()
-                .EnterBriefOverview()
-                .AddDescription()
-                .EnterDescription()
-                .AddSkills()
-                .SelectSkill()
-                .AddQualifications()
-                .EnterQualifications()
-                .ConfirmQualifications()
-                .AddApplicationProcess()
-                .ApplicationMethodFAA()
-                .AddEmployerDescription()
-                .EnterEmployerDescription();
-
-            if (optionalFields)
-            {
-                previewPage = EnterOptionalFields(previewPage);
-            }
-            
-            previewPage.SubmitVacancy()
-                .SetVacancyReference();
         }
 
         private VacancyPreviewPart2Page EnterOptionalFields(VacancyPreviewPart2Page previewPage)

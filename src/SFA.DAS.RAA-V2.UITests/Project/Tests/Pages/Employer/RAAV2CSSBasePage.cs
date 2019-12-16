@@ -8,19 +8,30 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer
 {
     public abstract class RAAV2CSSBasePage : BasePage
     {
-        protected By Continue => By.CssSelector(".govuk-button");
+        private By ContinueButton => By.CssSelector(".govuk-button");
 
         protected By RadioLabels => By.CssSelector(".govuk-radios__label");
 
 
-        protected readonly EmployerDataHelper _dataHelper;
-        protected readonly FormCompletionHelper _formCompletionHelper;
+        protected readonly EmployerDataHelper dataHelper;
+        protected readonly FormCompletionHelper formCompletionHelper;
 
         public RAAV2CSSBasePage(ScenarioContext context) : base(context) 
         {
-            _dataHelper = context.Get<EmployerDataHelper>();
-            _formCompletionHelper = context.Get<FormCompletionHelper>();
+            dataHelper = context.Get<EmployerDataHelper>();
+            formCompletionHelper = context.Get<FormCompletionHelper>();
             VerifyPage();
+        }
+
+        protected void Continue()
+        {
+            formCompletionHelper.Click(ContinueButton);
+        }
+
+        protected RAAV2CSSBasePage SelectRadioOptionByForAttribute(string value)
+        {
+            formCompletionHelper.SelectRadioOptionByForAttribute(RadioLabels, value);
+            return this;
         }
     }
 }
