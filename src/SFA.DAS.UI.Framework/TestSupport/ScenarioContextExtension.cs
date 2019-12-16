@@ -12,11 +12,12 @@ namespace SFA.DAS.UI.Framework.TestSupport
         private const string SupportConsoleProjectConfigKey = "supportconsoleprojectconfigkey";
         private const string RAAV1ProjectConfigKey = "raav1projectconfigkey";
         private const string RAAV2ProjectConfigKey = "raav2projectconfigkey";
-        private const string ApprovalsProjectConfigKey = "approvalsprojectconfig";
+        private const string ApprovalsProjectConfigKey = "approvalsprojectconfigkey";
         private const string FAAProjectConfigKey = "faaprojectconfigkey";
         private const string ProviderPermissionConfigKey = "providerpermissionconfigkey";
         private const string TransfersProjectConfigKey = "transfersprojectconfigkey";
         private const string FATProjectConfigKey = "fatprojectconfigkey";
+        private const string EPAOProjectConfigKey = "epaoprojectconfigkey";
         private const string MongoDbConfigKey = "mongodbconfigkey";
         private const string WebDriverKey = "webdriverkey";
         #endregion
@@ -101,6 +102,11 @@ namespace SFA.DAS.UI.Framework.TestSupport
             return Get<T>(context, SupportConsoleProjectConfigKey);
         }
 
+        public static T GetEPAOConfig<T>(this ScenarioContext context)
+        {
+            return Get<T>(context, EPAOProjectConfigKey);
+        }
+
         public static void SetSupportConsoleConfig<T>(this ScenarioContext context, T value)
         {
             Set(context, value, SupportConsoleProjectConfigKey);
@@ -129,6 +135,11 @@ namespace SFA.DAS.UI.Framework.TestSupport
         public static MongoDbConfig GetMongoDbConfig(this ScenarioContext context)
         {
             return Get<MongoDbConfig>(context, MongoDbConfigKey);
+        }
+
+        public static void SetEPAOConfig<T>(this ScenarioContext context, T value)
+        {
+            Set(context, value, EPAOProjectConfigKey);
         }
 
         public static void SetWebDriver(this ScenarioContext context, IWebDriver webDriver)
