@@ -9,7 +9,7 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.Campaigns.UITests
 {
     [Binding]
-    public class EmployerSaveFavouritesToGovUKAccountSteps
+    public class EmployerDeletesFromFavouritsOnGovUKSteps
     {
         #region Private Variables
         private readonly CampaignsConfig _configuration;
@@ -20,23 +20,21 @@ namespace SFA.DAS.Campaigns.UITests
         private EmployerFavouritePage employerFavouritePage ;
         private ManageApprenticeshipHomePage manageApprenticeshipHomePage;
         private ManageApprenticeshipLoginPage manageApprenticeshipLoginPage;
+        private YourSavedFavouritesGovUkPage yourSavedFavouritesGovUkPage;
         #endregion
-        public EmployerSaveFavouritesToGovUKAccountSteps(ScenarioContext context)
+        public EmployerDeletesFromFavouritsOnGovUKSteps(ScenarioContext context)
         {
             _context = context;
             _webDriver = context.Get<IWebDriver>("webdriver");
             _configuration = context.GetCampaignsProjectConfig<CampaignsConfig>();
         }
 
-        [Then(@"I Can Save the Short list Favourite to my Gov>UK Account button")]
-        public void ThenICanSaveTheShortListFavouriteToMyGovUKAccountButton()
+        [Then(@"I Can Delete From My Favourites on Gov UK Short List")]
+        public void ThenICanDeleteFromMyFavouritesOnGovUKShortList()
         {
-           employerFavouritePage= new EmployerFavouritePage(_context);
-           employerFavouritePage.ClickOnTheCreateAccountButton()
-                .ClickonCreateAccountButton()
-                .EmployerLogsIn()
-                .ClickOnViewSavedFavouroitesLink()
-                .VerifyYourSavedFavouritesHeader();
+            yourSavedFavouritesGovUkPage = new YourSavedFavouritesGovUkPage(_context);
+            yourSavedFavouritesGovUkPage.RemoveApprenticeshipAndProviderFromFavourites()
+                .ConfirmRemovalOfApprenticeship();
         }
     }
 }

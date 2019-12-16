@@ -11,14 +11,15 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
         protected override string PageTitle => "";
         #region Constants
         private const string ExpectedPageTitle = "Sign In";
-        private const string EmailAddress="sultan.m4hmood+qa1@gmail.com";
-        private const string Password ="Testing01";
+        //private const string EmailAddress="sultan.m4hmood+pp1@gmail.com";
+       // private const string Password ="Testing01";
         #endregion
 
         #region Helpers
         private readonly PageInteractionHelper _pageInteractionHelper;
         private readonly FormCompletionHelper _formCompletionHelper;
         private readonly ScenarioContext _context;
+        private readonly CampaignsConfig _config;
         private readonly TabHelper _tabHelper;
         #endregion
 
@@ -39,17 +40,25 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
             _tabHelper = context.Get<TabHelper>();
+            _config = context.GetCampaignsProjectConfig<CampaignsConfig>();
         }
 
         public ManageApprenticeshipHomePage EmployerLogsIn()
         {
             _tabHelper.SwitchToTheNewTab();
-            _formCompletionHelper.EnterText(_emailAddressField,EmailAddress);
-            _formCompletionHelper.EnterText(_passwordField,Password);
-            _formCompletionHelper.ClickElement(_signInButton);
+
+            //_formCompletionHelper.EnterText(_emailAddressField,EmailAddress);
+           //_formCompletionHelper.EnterText(_passwordField,Password);
+            SubmitLoginDetails(_config.EmployerUserName, _config.EmployerPassword);
             return new ManageApprenticeshipHomePage(_context);
         }
 
+        private void SubmitLoginDetails(string username, string password)
+        {
+            _formCompletionHelper.EnterText(_emailAddressField, username);
+            _formCompletionHelper.EnterText(_passwordField, password);
+            _formCompletionHelper.ClickElement(_signInButton);
+        }
 
     }
 }

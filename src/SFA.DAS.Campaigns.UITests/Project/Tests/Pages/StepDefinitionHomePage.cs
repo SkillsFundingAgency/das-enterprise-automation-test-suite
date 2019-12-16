@@ -33,13 +33,11 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
             fireItUpHomePage = new FireItUpHomePage(_context);
             fireItUpHomePage.ClickOnCookieContinueButton();
             fireItUpHomePage.VerifyApprenticesHeaderSupportText();
-           // fireItUpHomePage.VerifyEmployersHeaderSupportText();
         }
 
         [Given(@"I launch the Find An Apprentice page")]
         public void LaunchFindAnApprenticePage()
         {
-            fireItUpHomePage.LaunchApprenticeMenu();
             TestContext.Progress.WriteLine("Navigating to Find An Apprenticeship page");
             fireItUpHomePage.ClickOnFindAnApprenticeLink();
         }
@@ -95,7 +93,6 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
         [Given(@"I launch the What Are The Benefits For Me page")]
         public void LaunchWhatAreTheBenefitsForMePage()
         {
-            fireItUpHomePage.LaunchApprenticeMenu();
             TestContext.Progress.WriteLine("Navigating to What Are The Benefits For Me page");
             fireItUpHomePage.ClickOnWhatAreTheBenefitsForMeLink();
         }
@@ -103,7 +100,6 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
         [Given(@"I launch the Real Stories page")]
         public void LaunchRealStoriesPage()
         {
-            fireItUpHomePage.LaunchApprenticeMenu();
             TestContext.Progress.WriteLine("Navigating to Real Stories page");
             fireItUpHomePage.ClickOnRealStoriesLink();
         }
