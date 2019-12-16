@@ -77,7 +77,7 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Helpers
 
         private List<string> AvailableTraining => new List<string> 
         {
-            "Aerospace engineer, Level 6 (Degree with honours)",
+            "Aerospace Engineer (degree), Level 6 (Degree with honours)",
             "Agriculture: Agriculture, Level 3 (A level)",
             "Broadcast production assistant, Level 3 (A level)",
             "Construction Building: Maintenance Operations, Level 2 (GCSE)",

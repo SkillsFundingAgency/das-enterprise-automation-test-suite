@@ -15,7 +15,7 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer
 
         private By Skills => By.CssSelector("label.govuk-checkboxes__label");
 
-        protected new By Continue => By.CssSelector(".save-button[data-automation='btn-continue']");
+        private  By SaveAndContinue => By.CssSelector(".save-button[data-automation='btn-continue']");
 
         public DesiredSkillsPage(ScenarioContext context) : base(context)
         {
@@ -26,7 +26,7 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer
         public VacancyPreviewPart2Page SelectSkill()
         {
             formCompletionHelper.ClickElement(() => dataHelper.GetRandomElementFromListOfElements(_pageInteractionHelper.FindElements(Skills)));
-            Continue();
+            formCompletionHelper.Click(SaveAndContinue);
             return new VacancyPreviewPart2Page(_context);
         }
     }
