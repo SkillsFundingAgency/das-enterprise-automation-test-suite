@@ -1,7 +1,6 @@
 ﻿using SFA.DAS.SupportConsole.UITests.Project.Tests.Pages;
 using TechTalk.SpecFlow;
 using NUnit.Framework;
-using SFA.DAS.UI.FrameworkHelpers;
 
 namespace SFA.DAS.SupportConsole.UITests.Project.Helpers
 {
