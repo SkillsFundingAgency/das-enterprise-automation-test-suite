@@ -12,6 +12,7 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.StepDefinitions
         public ReviewerSteps(ScenarioContext context) => _reviewerStepsHelper = new ReviewerStepsHelper(context);
 
         [Given(@"the Reviewer Approves the vacancy")]
-        public void GivenTheReviewerApprovesTheVacancy() => _reviewerStepsHelper.Approve(false);
+        [When(@"the Reviewer Approves the vacancy")]
+        public void TheReviewerApprovesTheVacancy() => _reviewerStepsHelper.Approve(false);
     }
 }
