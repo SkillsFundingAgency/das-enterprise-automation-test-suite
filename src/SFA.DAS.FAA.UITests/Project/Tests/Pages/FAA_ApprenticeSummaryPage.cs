@@ -23,7 +23,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 
         private By EmployerName => By.Id("vacancy-subtitle-employer-name");
 
-        private By EmployerNameInAboutTheEmployerSection => By.Id("vacancy -employer-name");
+        private By EmployerNameInAboutTheEmployerSection => By.Id("vacancy-employer-name");
 
         public FAA_ApprenticeSummaryPage(ScenarioContext context) : base(context)
         {
