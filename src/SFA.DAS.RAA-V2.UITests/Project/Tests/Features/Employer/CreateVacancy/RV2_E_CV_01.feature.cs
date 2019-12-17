@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Features.Employer.ApplyVacancy
+namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Features.Employer.CreateVacancy
 {
     using TechTalk.SpecFlow;
     
@@ -18,20 +18,20 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Features.Employer.ApplyVacancy
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.0.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("RV2_E_CV_02")]
-    public partial class RV2_E_CV_02Feature
+    [NUnit.Framework.DescriptionAttribute("RV2_E_CV_01")]
+    public partial class RV2_E_CV_01Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "RV2_E_CV_02.feature"
+#line 1 "RV2_E_CV_01.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "RV2_E_CV_02", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "RV2_E_CV_01", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -70,12 +70,12 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Features.Employer.ApplyVacancy
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RV2_E_CV_02 - Create vacancy by entering data for Optional fields")]
+        [NUnit.Framework.DescriptionAttribute("RV2_E_CV_01 - Create vacancy by entering all the Optional fields")]
         [NUnit.Framework.CategoryAttribute("raa-v2")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public virtual void RV2_E_CV_02_CreateVacancyByEnteringDataForOptionalFields()
+        public virtual void RV2_E_CV_01_CreateVacancyByEnteringAllTheOptionalFields()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV2_E_CV_02 - Create vacancy by entering data for Optional fields", null, new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV2_E_CV_01 - Create vacancy by entering all the Optional fields", null, new string[] {
                         "raa-v2",
                         "regression"});
 #line 5

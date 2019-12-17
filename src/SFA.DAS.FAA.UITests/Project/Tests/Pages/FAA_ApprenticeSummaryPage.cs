@@ -35,7 +35,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
             _dataHelper = context.Get<VacancyTitleDatahelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
             VerifyPage();
-            if (!_objectContext.IsRAAV1()) { VerifyEmployerName(); }
+            if (!_objectContext.IsRAAV1()) { VerifyEmployerDetails(); }
         }
 
         public FAA_YourApplicationPage View()
@@ -50,11 +50,14 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
             return new FAA_ApplicationFormPage(_context);
         }
 
-        private void VerifyEmployerName()
+        private void VerifyEmployerDetails()
         {
             var empName = _objectContext.GetEmployerName();
             VerifyPage(EmployerName, empName);
             VerifyPage(EmployerNameInAboutTheEmployerSection, empName);
+            
+            var empLocation = _objectContext.GetEmployerLocation();
+            VerifyPage(EmployerLocation, empLocation);
         }
     }
 }
