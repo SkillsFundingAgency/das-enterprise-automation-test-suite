@@ -50,13 +50,17 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Reviewer
             _formCompletionHelper.Click(SubmitButton);
         }
 
-        public Reviewer_VacancyPreviewPage VerifyEmployerDetails()
+        public Reviewer_VacancyPreviewPage VerifyEmployerName()
         {
             var empName = _objectContext.GetEmployerName();
             VerifyPage(EmployerName, empName);
             VerifyPage(EmployerNameInAboutTheEmployerSection, empName);
-            VerifyPage(EmployerLocation, _objectContext.GetEmployerLocation());
             return this;
+        }
+
+        public string GetEmployerLocation()
+        {
+            return _pageInteractionHelper.GetText(EmployerLocation);
         }
     }
 }
