@@ -50,8 +50,6 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Helpers
 
         private void VerifyEmployerDetails(bool isEmployerAddress)
         {
-            _loginhelper.Login(_context.GetUser<RAAV2EmployerUser>(), true);
-
             var vacancyDetails = new RecruitmentHomePage(_context, true)
                .SearchAnyVacancy()
                .NavigateToViewVacancyPage()
