@@ -25,9 +25,6 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 
         private By EmployerNameInAboutTheEmployerSection => By.Id("vacancy -employer-name");
 
-        private By EmployerLocation => By.CssSelector("div[itemprop='address']");
-
-
         public FAA_ApprenticeSummaryPage(ScenarioContext context) : base(context)
         {
             _context = context;
@@ -55,9 +52,6 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
             var empName = _objectContext.GetEmployerName();
             VerifyPage(EmployerName, empName);
             VerifyPage(EmployerNameInAboutTheEmployerSection, empName);
-            
-            var empLocation = _objectContext.GetEmployerLocation();
-            VerifyPage(EmployerLocation, empLocation);
         }
     }
 }

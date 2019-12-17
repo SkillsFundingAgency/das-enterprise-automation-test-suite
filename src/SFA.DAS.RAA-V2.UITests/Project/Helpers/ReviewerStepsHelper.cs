@@ -28,15 +28,10 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Helpers
 
         public void Approve(bool restart)
         {
-            var previewpage = GoToReviewerHomePage(restart)
+            GoToReviewerHomePage(restart)
                 .ReviewVacancy()
-                .VerifyEmployerName();
-
-            var actual = previewpage.GetEmployerLocation();
-
-            StringAssert.Contains(_objectContext.GetEmployerLocation(), actual);
-            
-            previewpage.Approve();
+                .VerifyEmployerName()
+                .Approve();
         }
 
         private Reviewer_HomePage GoToReviewerHomePage(bool restart)

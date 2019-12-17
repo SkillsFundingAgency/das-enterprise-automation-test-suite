@@ -57,10 +57,5 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Reviewer
             VerifyPage(EmployerNameInAboutTheEmployerSection, empName);
             return this;
         }
-
-        public string GetEmployerLocation()
-        {
-            return _pageInteractionHelper.GetText(EmployerLocation);
-        }
     }
 }

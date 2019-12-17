@@ -34,21 +34,19 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Helpers
 
             previewPage.SubmitVacancy().SetVacancyReference();
 
-            VerifyEmployerDetails(isEmployerAddress);
+            VerifyEmployerName();
         }
 
         internal void ApplicantUnSucessful() => NavigateToManageApplicant().MakeApplicantUnsucessful().NotifyApplicant();
 
         internal void ApplicantSucessful() => NavigateToManageApplicant().MakeApplicantSucessful().NotifyApplicant();
 
-        private void VerifyEmployerDetails(bool isEmployerAddress)
+        private void VerifyEmployerName()
         {
-            var vacancyDetails = new RecruitmentHomePage(_context, true)
+            new RecruitmentHomePage(_context, true)
                .SearchAnyVacancy()
                .NavigateToViewVacancyPage()
                .VerifyEmployerName();
-
-            if (!isEmployerAddress) { vacancyDetails.VerifyEmployerLocation(); };
         }
 
         private VacancyPreviewPart2Page EnterMandatoryFields(VacancyPreviewPart2Page previewPage)
