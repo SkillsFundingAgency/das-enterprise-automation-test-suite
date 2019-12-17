@@ -43,7 +43,7 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer
 
         public ManageVacancyPage SearchAnyVacancy()
         {
-            var vacRef = objectContext.GetVacancyReference());
+            var vacRef = objectContext.GetVacancyReference();
             formCompletionHelper.EnterText(SearachInput, vacRef);;
             formCompletionHelper.Click(SearchButton);
             pageInteractionHelper.WaitforURLToChange($"SearchTerm={vacRef}");
