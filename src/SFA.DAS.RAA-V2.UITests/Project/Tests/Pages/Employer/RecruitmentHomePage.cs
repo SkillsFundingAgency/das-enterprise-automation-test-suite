@@ -39,10 +39,15 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer
         {
             formCompletionHelper.ClickLinkByText("Live vacancies");
             formCompletionHelper.SelectFromDropDownByValue(Filter, "Live");
+            return SearchAnyVacancy();
+        }
+
+        public ManageVacancyPage SearchAnyVacancy()
+        {
             formCompletionHelper.EnterText(SearachInput, objectContext.GetVacancyReference());
             formCompletionHelper.Click(SearchButton);
             pageInteractionHelper.WaitforURLToChange($"SearchTerm={objectContext.GetVacancyReference()}");
-            formCompletionHelper.Click(Manage); 
+            formCompletionHelper.Click(Manage);
             return new ManageVacancyPage(_context);
         }
     }
