@@ -1,4 +1,5 @@
-﻿using System.Text.RegularExpressions;
+﻿using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace SFA.DAS.UI.FrameworkHelpers
 {
@@ -6,7 +7,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
     {
         public string Remove(string value, string pattern)
         {
-            return Regex.Replace(value, pattern, string.Empty);
+            return Regex.Replace(value, EscapePattern(pattern), string.Empty);
         }
 
         public string GetAccountId(string url)
@@ -83,6 +84,21 @@ namespace SFA.DAS.UI.FrameworkHelpers
         private Match CohortMatch(string url, string action) 
         {
             return Regex.Match(url, $@"{action}\/[A-Z0-9][A-Z0-9][A-Z0-9][A-Z0-9][A-Z0-9][A-Z0-9]");
+        }
+
+        private string EscapePattern(string pattern)
+        {
+            var chars = new string[] { ".", "^", "$", "?", "(", ")", "[", "]", "{", "}", "\\", "|" };
+            string escapedPattern = pattern;
+            foreach (char x in pattern)
+            {
+                var y = x.ToString();
+                if (chars.Any(c => c == y))
+                {
+                    escapedPattern = escapedPattern.Replace(y, $"\\{x}");
+                }
+            }
+            return escapedPattern;
         }
     }
 }
