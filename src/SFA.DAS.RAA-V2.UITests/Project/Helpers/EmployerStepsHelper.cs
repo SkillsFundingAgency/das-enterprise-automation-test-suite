@@ -17,6 +17,7 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Helpers
             _loginhelper = new EmployerPortalLoginHelper(context);
             _homePageStepsHelper = new HomePageStepsHelper(context);
         }
+
         internal void CreateANewVacancy(string employername, bool isEmployerAddress, bool optionalFields = false)
         {
             var employernamePage = SelectOrganisation();
@@ -49,6 +50,8 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Helpers
 
         private void VerifyEmployerDetails(bool isEmployerAddress)
         {
+            _loginhelper.Login(_context.GetUser<RAAV2EmployerUser>(), true);
+
             var vacancyDetails = new RecruitmentHomePage(_context, true)
                .SearchAnyVacancy()
                .NavigateToViewVacancyPage()
