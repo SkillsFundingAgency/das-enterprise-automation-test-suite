@@ -1,7 +1,7 @@
 ﻿using SFA.DAS.UI.FrameworkHelpers;
 using System;
 
-namespace SFA.DAS.FAA.UITests.Project.Helpers
+namespace SFA.DAS.RAA.DataGenerator
 {
     public class FAADataHelper : RandomElementHelper
     {

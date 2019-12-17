@@ -1,5 +1,5 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.RAA_V1.UITests.Project.Helpers;
+using SFA.DAS.RAA.DataGenerator;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
@@ -17,7 +17,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         private readonly PageInteractionHelper _pageInteractionHelper;
         private readonly FormCompletionHelper _formCompletionHelper;
         private readonly ScenarioContext _context;
-        private readonly RAARegistrationDataHelper _dataHelper;
+        private readonly RAAV1RegistrationDataHelper _dataHelper;
         #endregion
 
         private By Title => By.Id("title");
@@ -36,7 +36,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
             _context = context;
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
-            _dataHelper = context.Get<RAARegistrationDataHelper>();
+            _dataHelper = context.Get<RAAV1RegistrationDataHelper>();
             VerifyPage();
         }
 

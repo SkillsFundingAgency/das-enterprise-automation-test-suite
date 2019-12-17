@@ -4,6 +4,11 @@ namespace SFA.DAS.UI.FrameworkHelpers
 {
     public class RegexHelper
     {
+        public string Remove(string value, string pattern)
+        {
+            return Regex.Replace(value, pattern, string.Empty);
+        }
+
         public string GetAccountId(string url)
         {
             Match match = Regex.Match(url, @"\/[A-Z0-9]{6}\/");

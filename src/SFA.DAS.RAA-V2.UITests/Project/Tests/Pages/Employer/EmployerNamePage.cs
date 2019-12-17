@@ -14,6 +14,7 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer
         private readonly ScenarioContext _context;
         private readonly ObjectContext _objectContext;
         private readonly PageInteractionHelper _pageInteractionHelper;
+        private readonly RegexHelper _regexHelper;
         #endregion
 
         private By LegalEntityName => By.CssSelector("label[for='legal-entity-name']");
@@ -22,20 +23,24 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer
 
         private By EmployerDescription => By.CssSelector("#AnonymousName");
 
-        private By EmployerReason => By.CssSelector("#AnonymousReason"); 
+        private By EmployerReason => By.CssSelector("#AnonymousReason");
 
         public EmployerNamePage(ScenarioContext context) : base(context)
         {
             _context = context;
             _objectContext = context.Get<ObjectContext>();
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
+            _regexHelper = context.Get<RegexHelper>();
         }
 
         public ChooseApprenticeshipLocationPage ChooseRegisteredName()
         {
             SelectRadioOptionByForAttribute("legal-entity-name");
+
             var entityName = _pageInteractionHelper.GetText(LegalEntityName);
-            SetEmployerName(entityName);
+
+            SetEmployerName(_regexHelper.Remove(entityName, "(registered name)"));
+
             Continue();
             return new ChooseApprenticeshipLocationPage(_context);
         }

@@ -1,6 +1,5 @@
 ﻿using SFA.DAS.FAA.UITests.Project;
-using SFA.DAS.FAA.UITests.Project.Helpers;
-using SFA.DAS.RAA_V2.UITests.Project.Helpers;
+using SFA.DAS.RAA.DataGenerator;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
@@ -26,7 +25,7 @@ namespace SFA.DAS.RAA_V2.UITests.Project
 
             var vacancyTitleDatahelper = _context.Get<VacancyTitleDatahelper>();
 
-            _context.Set(new EmployerDataHelper(random, vacancyTitleDatahelper));
+            _context.Set(new RAAV2EmployerDataHelper(random, vacancyTitleDatahelper));
 
             _objectContext.SetApprenticeshipVacancyType();
         }

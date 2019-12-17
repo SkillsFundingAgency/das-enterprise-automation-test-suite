@@ -1,16 +1,15 @@
-﻿using SFA.DAS.FAA.UITests.Project.Helpers;
-using SFA.DAS.UI.FrameworkHelpers;
+﻿using SFA.DAS.UI.FrameworkHelpers;
 using System;
 using System.Collections.Generic;
 
-namespace SFA.DAS.RAA_V2.UITests.Project.Helpers
+namespace SFA.DAS.RAA.DataGenerator
 {
-    public class EmployerDataHelper : RandomElementHelper
+    public class RAAV2EmployerDataHelper : RandomElementHelper
     {
         private readonly RandomDataGenerator _randomDataGenerator;
         private readonly VacancyTitleDatahelper _vacancyTitleDatahelper;
 
-        public EmployerDataHelper(RandomDataGenerator randomDataGenerator, VacancyTitleDatahelper vacancyTitleDatahelper) : base(randomDataGenerator)
+        public RAAV2EmployerDataHelper(RandomDataGenerator randomDataGenerator, VacancyTitleDatahelper vacancyTitleDatahelper) : base(randomDataGenerator)
         {
             _randomDataGenerator = randomDataGenerator;
             _vacancyTitleDatahelper = vacancyTitleDatahelper;
