@@ -6,7 +6,6 @@ namespace SFA.DAS.FAA.UITests.Project
     {
         #region Constants
         private const string EmployerName = "employername";
-        private const string EmployerLocation = "employerlocation";
         private const string VacancyReference = "vacancyreference";
         private const string VacancyTitle = "vacancytitle";
         private const string VacancyType = "vacancytype";
@@ -33,7 +32,6 @@ namespace SFA.DAS.FAA.UITests.Project
         {
             return objectContext.KeyExists<bool>(RAAV1);
         }
-
 
         public static void SetFAARestart(this ObjectContext objectContext)
         {
@@ -73,16 +71,6 @@ namespace SFA.DAS.FAA.UITests.Project
         public static string GetEmployerName(this ObjectContext objectContext)
         {
             return objectContext.Get(EmployerName);
-        }
-
-        public static void SetEmployerLocation(this ObjectContext objectContext, string value)
-        {
-            objectContext.Set(EmployerLocation, value);
-        }
-
-        public static string GetEmployerLocation(this ObjectContext objectContext)
-        {
-            return objectContext.Get(EmployerLocation);
         }
     }
 }

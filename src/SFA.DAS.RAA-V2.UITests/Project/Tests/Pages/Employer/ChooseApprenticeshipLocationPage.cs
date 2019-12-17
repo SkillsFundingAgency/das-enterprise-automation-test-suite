@@ -20,10 +20,6 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer
         
         private By MenuItems => By.CssSelector(".ui-menu-item");
 
-        private By Postcode => By.CssSelector("#Postcode");
-
-        private By EmployerLocation => By.CssSelector("label[for='OtherLocation_1']");
-
         public ChooseApprenticeshipLocationPage(ScenarioContext context) : base(context)
         {
             _context = context;
@@ -36,8 +32,6 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer
             if (isEmployerAddress)
             {
                 SelectRadioOptionByForAttribute("OtherLocation_1");
-                var empLocation = _pageInteractionHelper.GetText(EmployerLocation);
-                SetEmployerLocation(empLocation);
             }
             else
             {
@@ -51,13 +45,6 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer
         {
             SelectRadioOptionByForAttribute("other-location");
             formCompletionHelper.ClickElement(() => { formCompletionHelper.EnterText(AddressLine1, dataHelper.EmployerAddress); return _pageInteractionHelper.FindElement(MenuItems); });
-            var empLocation = _pageInteractionHelper.GetText(Postcode);
-            SetEmployerLocation(empLocation);
-        }
-
-        private void SetEmployerLocation(string value)
-        {
-            _objectContext.SetEmployerLocation(value);
         }
     }
 }

@@ -82,7 +82,7 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Features.Employer.ApplyVacancy
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 6
-testRunner.Given("the Employer creates an anonymous vacancy", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("the Employer creates an anonymous vacancy", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 7
  testRunner.When("the Reviewer Approves the vacancy", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 8
