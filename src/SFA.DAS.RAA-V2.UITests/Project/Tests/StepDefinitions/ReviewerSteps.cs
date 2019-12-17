@@ -9,18 +9,9 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.StepDefinitions
     {
         private readonly ReviewerStepsHelper _reviewerStepsHelper;
 
-        public ReviewerSteps(ScenarioContext context)
-        {
-            _reviewerStepsHelper = new ReviewerStepsHelper(context);
-        }
+        public ReviewerSteps(ScenarioContext context) => _reviewerStepsHelper = new ReviewerStepsHelper(context);
 
         [Given(@"the Reviewer Approves the vacancy")]
-        public void GivenTheReviewerApprovesTheVacancy()
-        {
-            _reviewerStepsHelper.GoToReviewerHomePage(false)
-                .ReviewVacancy()
-                .VerifyEmployerDetails()
-                .Approve();
-        }
+        public void GivenTheReviewerApprovesTheVacancy() => _reviewerStepsHelper.Approve(false);
     }
 }

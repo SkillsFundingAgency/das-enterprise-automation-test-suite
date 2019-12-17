@@ -37,16 +37,9 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Helpers
             VerifyEmployerDetails(isEmployerAddress);
         }
 
-        internal void ApplicantUnSucessful()
-        {
-            NavigateToManageApplicant().MakeApplicantUnsucessful().NotifyApplicant();
-        }
+        internal void ApplicantUnSucessful() => NavigateToManageApplicant().MakeApplicantUnsucessful().NotifyApplicant();
 
-        internal void ApplicantSucessful()
-        {
-            NavigateToManageApplicant().MakeApplicantSucessful().NotifyApplicant();
-            
-        }
+        internal void ApplicantSucessful() => NavigateToManageApplicant().MakeApplicantSucessful().NotifyApplicant();
 
         private void VerifyEmployerDetails(bool isEmployerAddress)
         {
