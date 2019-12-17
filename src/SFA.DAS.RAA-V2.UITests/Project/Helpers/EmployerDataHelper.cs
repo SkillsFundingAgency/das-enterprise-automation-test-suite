@@ -37,6 +37,8 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Helpers
 
         public string EmployerAddress => AvailableAddress.RandomOrDefault();
 
+        public string Provider => AvailableProviders.RandomOrDefault();
+
         public string EmployerTradingName { get; }
 
         public string EmployerDescription { get; }
@@ -74,6 +76,8 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Helpers
         public string OptionalMessage { get; }
 
         private string WebsiteUrl(string url) => $"https://www.{url}.com";
+
+        private List<string> AvailableProviders => new List<string> { "BALTIC TRAINING SERVICES LIMITED 10019026" };
 
         private List<string> AvailableTraining => new List<string> 
         {
