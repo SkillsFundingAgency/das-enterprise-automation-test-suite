@@ -18,8 +18,16 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Helpers
             _homePageStepsHelper = new HomePageStepsHelper(context);
         }
 
-
-        internal void EditVacancy() => SearchVacancy();
+        internal void EditVacancyDates() 
+        {
+            SearchVacancy()
+                .EditVacancy()
+                .EditVacancyCloseDate()
+                .EnterVacancyClosingDate()
+                .EditVacancyStartDate()
+                .EnterPossibleStartDate()
+                .PublishVacancy();
+        }
 
         internal void CloseVacancy() => SearchVacancy().CloseVacancy().YesCloseThisVacancy();
 

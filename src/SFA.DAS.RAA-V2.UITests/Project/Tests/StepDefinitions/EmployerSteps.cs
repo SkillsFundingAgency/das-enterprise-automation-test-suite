@@ -35,7 +35,6 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.StepDefinitions
         public void ThenTheEmployerCanCloseTheVacancy() => _employerStepsHelper.CloseVacancy();
         
         [Then(@"the Employer can edit the vacancy")]
-        public void ThenTheEmployerCanEditTheVacancy() => _employerStepsHelper.EditVacancy();
-
+        public void ThenTheEmployerCanEditTheVacancy() => _employerStepsHelper.EditVacancyDates();
     }
 }
