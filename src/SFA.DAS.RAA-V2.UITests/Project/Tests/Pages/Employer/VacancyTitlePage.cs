@@ -24,9 +24,9 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer
 
         public ApprenticeshipTrainingPage EnterVacancyTitle()
         {
-            _formCompletionHelper.EnterText(Title, $"{_dataHelper.VacancyTitle}");
-            _formCompletionHelper.Click(Continue);
-            _objectContext.SetVacancyTitle(_dataHelper.VacancyTitle);
+            formCompletionHelper.EnterText(Title, $"{dataHelper.VacancyTitle}");
+            Continue();
+            _objectContext.SetVacancyTitle(dataHelper.VacancyTitle);
             return new ApprenticeshipTrainingPage(_context);
         }
     }

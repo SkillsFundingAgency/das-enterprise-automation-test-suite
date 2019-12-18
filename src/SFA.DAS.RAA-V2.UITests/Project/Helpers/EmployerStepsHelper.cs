@@ -18,38 +18,40 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Helpers
             _homePageStepsHelper = new HomePageStepsHelper(context);
         }
 
-        internal void ApplicantUnSucessful()
+        internal void CreateANewVacancy(string employername, bool isEmployerAddress, bool optionalFields = false)
         {
-            NavigateToManageApplicant().MakeApplicantUnsucessful().NotifyApplicant();
-        }
-
-        internal void ApplicantSucessful()
-        {
-            NavigateToManageApplicant().MakeApplicantSucessful().NotifyApplicant();
-        }
-
-        internal void CreateANewVacancy(string employername = null)
-        {
-            _loginhelper.Login(_context.GetUser<RAAV2EmployerUser>(), true);
-
-            var employernamePage = new RecruitmentHomePage(_context, true)
-                .CreateANewVacancy()
-                .CreateNewVacancy()
-                .EnterVacancyTitle()
-                .EnterTrainingTitle()
-                .ConfirmTrainingAndContinue()
-                .ChooseTrainingProvider()
-                .ConfirmTrainingProviderAndContinue()
-                .ChooseNoOfPositions()
-                .SelectOrganisation();
+            var employernamePage = SelectOrganisation();
 
             var locationPage = ChooseEmployerName(employernamePage, employername);
 
-            locationPage.ChooseAddress()
+            var previewPage = locationPage.ChooseAddress(isEmployerAddress)
                 .EnterImportantDates()
                 .EnterDuration("52", "40")
                 .SelectNationalMinimumWage()
-                .PreviewVacancy()
+                .PreviewVacancy();
+
+            previewPage = EnterVacancyPreviewFields(previewPage, optionalFields);
+
+            previewPage.SubmitVacancy().SetVacancyReference();
+
+            VerifyEmployerName();
+        }
+
+        internal void ApplicantUnSucessful() => NavigateToManageApplicant().MakeApplicantUnsucessful().NotifyApplicant();
+
+        internal void ApplicantSucessful() => NavigateToManageApplicant().MakeApplicantSucessful().NotifyApplicant();
+
+        private void VerifyEmployerName()
+        {
+            new RecruitmentHomePage(_context, true)
+               .SearchAnyVacancy()
+               .NavigateToViewVacancyPage()
+               .VerifyEmployerName();
+        }
+
+        private VacancyPreviewPart2Page EnterMandatoryFields(VacancyPreviewPart2Page previewPage)
+        {
+            previewPage
                 .AddBriefOverview()
                 .EnterBriefOverview()
                 .AddDescription()
@@ -62,9 +64,43 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Helpers
                 .AddApplicationProcess()
                 .ApplicationMethodFAA()
                 .AddEmployerDescription()
-                .EnterEmployerDescription()
-                .SubmitVacancy()
-                .SetVacancyReference();
+                .EnterEmployerDescription();
+
+            return new VacancyCompletedAllSectionsPage(_context);
+        }
+
+        private VacancyPreviewPart2Page EnterVacancyPreviewFields(VacancyPreviewPart2Page previewPage, bool optionalFields)
+        {
+            previewPage = EnterMandatoryFields(previewPage);
+            
+            return optionalFields ? EnterOptionalFields(previewPage) : previewPage;
+        }
+
+        private EmployerNamePage SelectOrganisation()
+        {
+            _loginhelper.Login(_context.GetUser<RAAV2EmployerUser>(), true);
+
+            return new RecruitmentHomePage(_context, true)
+                .CreateANewVacancy()
+                .CreateNewVacancy()
+                .EnterVacancyTitle()
+                .EnterTrainingTitle()
+                .ConfirmTrainingAndContinue()
+                .ChooseTrainingProvider()
+                .ConfirmTrainingProviderAndContinue()
+                .ChooseNoOfPositions()
+                .SelectOrganisation();
+        }
+
+        private VacancyPreviewPart2Page EnterOptionalFields(VacancyPreviewPart2Page previewPage)
+        {
+            previewPage
+                .AddThingsToConsider()
+                .EnterThingsToConsider()
+                .AddContactDetails()
+                .EnterContactDetails();
+
+            return new VacancyCompletedAllSectionsPage(_context);
         }
 
         private ChooseApprenticeshipLocationPage ChooseEmployerName(EmployerNamePage employernamePage, string employername)
@@ -75,6 +111,8 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Helpers
                     return employernamePage.ChooseRegisteredName();
                 case "existing-trading-name":
                     return  employernamePage.ChooseExistingTradingName();
+                case "anonymous":
+                    return employernamePage.ChooseAnonymous();
             };
         }
 

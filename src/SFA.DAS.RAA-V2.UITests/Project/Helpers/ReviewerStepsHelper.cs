@@ -1,4 +1,6 @@
-﻿using SFA.DAS.FAA.UITests.Project.Tests.Pages;
+﻿using NUnit.Framework;
+using SFA.DAS.FAA.UITests.Project;
+using SFA.DAS.FAA.UITests.Project.Tests.Pages;
 using SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Reviewer;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
@@ -24,7 +26,15 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Helpers
             _config = context.GetRAAV2Config<RAAV2Config>();
         }
 
-        public Reviewer_HomePage GoToReviewerHomePage(bool restart)
+        public void Approve(bool restart)
+        {
+            GoToReviewerHomePage(restart)
+                .ReviewVacancy()
+                .VerifyEmployerName()
+                .Approve();
+        }
+
+        private Reviewer_HomePage GoToReviewerHomePage(bool restart)
         {
             if (restart)
             {

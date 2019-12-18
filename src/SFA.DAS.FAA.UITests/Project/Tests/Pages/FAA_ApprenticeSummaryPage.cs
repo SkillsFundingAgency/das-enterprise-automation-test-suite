@@ -1,5 +1,5 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.FAA.UITests.Project.Helpers;
+using SFA.DAS.RAA.DataGenerator;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
@@ -12,6 +12,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
+        private readonly ObjectContext _objectContext;
         private readonly VacancyTitleDatahelper _dataHelper;
         private readonly FormCompletionHelper _formCompletionHelper;
         #endregion
@@ -20,13 +21,18 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 
         private By ViewApplicationLink => By.Id("view-application-link");
 
+        private By EmployerName => By.Id("vacancy-subtitle-employer-name");
+
+        private By EmployerNameInAboutTheEmployerSection => By.Id("vacancy-employer-name");
 
         public FAA_ApprenticeSummaryPage(ScenarioContext context) : base(context)
         {
             _context = context;
+            _objectContext = context.Get<ObjectContext>();
             _dataHelper = context.Get<VacancyTitleDatahelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
             VerifyPage();
+            if (!_objectContext.IsRAAV1()) { VerifyEmployerDetails(); }
         }
 
         public FAA_YourApplicationPage View()
@@ -35,11 +41,17 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
             return new FAA_YourApplicationPage(_context);
         }
 
-
         public FAA_ApplicationFormPage Apply()
         {
             _formCompletionHelper.Click(ApplyButton);
             return new FAA_ApplicationFormPage(_context);
+        }
+
+        private void VerifyEmployerDetails()
+        {
+            var empName = _objectContext.GetEmployerName();
+            VerifyPage(EmployerName, empName);
+            VerifyPage(EmployerNameInAboutTheEmployerSection, empName);
         }
     }
 }

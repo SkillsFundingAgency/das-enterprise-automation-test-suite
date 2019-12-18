@@ -1,12 +1,12 @@
 ﻿using SFA.DAS.UI.FrameworkHelpers;
 
-namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
+namespace SFA.DAS.RAA.DataGenerator
 {
-    public class RAARegistrationDataHelper
+    public class RAAV1RegistrationDataHelper
     {
         private readonly RandomDataGenerator _randomDataGenerator;
 
-        public RAARegistrationDataHelper(RandomDataGenerator randomDataGenerator)
+        public RAAV1RegistrationDataHelper(RandomDataGenerator randomDataGenerator)
         {
             _randomDataGenerator = randomDataGenerator;
             FirstName = _randomDataGenerator.GenerateRandomAlphabeticString(6);

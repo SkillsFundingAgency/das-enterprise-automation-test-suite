@@ -26,10 +26,10 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer
 
         public VacancyPreviewPart2Page EnterDescription()
         {
-            _pageInteractionHelper.SwitchFrame(VacancyDescription, iframeBody, _dataHelper.VacancyShortDescription);
-            _pageInteractionHelper.SwitchFrame(TrainingDescription, iframeBody, _dataHelper.TrainingDetails);
-            _pageInteractionHelper.SwitchFrame(OutcomeDescription, iframeBody, _dataHelper.VacancyOutcome);
-            _formCompletionHelper.Click(Continue);
+            _pageInteractionHelper.SwitchFrame(VacancyDescription, iframeBody, dataHelper.VacancyShortDescription);
+            _pageInteractionHelper.SwitchFrame(TrainingDescription, iframeBody, dataHelper.TrainingDetails);
+            _pageInteractionHelper.SwitchFrame(OutcomeDescription, iframeBody, dataHelper.VacancyOutcome);
+            Continue();
             return new VacancyPreviewPart2Page(_context);
         }
     }

@@ -5,7 +5,7 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer
 {
     public class VacancyPreviewPart2Page : RAAV2CSSBasePage
     {
-        protected override string PageTitle => _dataHelper.VacancyTitle;
+        protected override string PageTitle => dataHelper.VacancyTitle;
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
@@ -16,8 +16,9 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer
         private By DesiredSkills => By.CssSelector("a[data-automation='link-skills']");
         private By Qualifications => By.CssSelector("a[data-automation= 'link-qualifications']");
         private By EmployerDescription => By.CssSelector("a[data-automation='link-description']");
-
         private By ApplicationProcess => By.CssSelector("a[data-automation='link-application-method']");
+        private By ThingsToConsider => By.CssSelector("a[data-automation='link-things-to-consider']");
+        private By ContactDetails => By.CssSelector("a[data-automation='link-employer-contact-details']");
         private By Submit => By.CssSelector(".govuk-button[data-automation='submit-button']");
 
 
@@ -28,43 +29,55 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer
 
         public ShortDescriptionPage AddBriefOverview()
         {
-            _formCompletionHelper.Click(BriefOverview);
+            formCompletionHelper.Click(BriefOverview);
             return new ShortDescriptionPage(_context);
         }
 
         public DescriptionPage AddDescription()
         {
-            _formCompletionHelper.Click(VacancyDescription);
+            formCompletionHelper.Click(VacancyDescription);
             return new DescriptionPage(_context);
         }
 
         public DesiredSkillsPage AddSkills()
         {
-            _formCompletionHelper.Click(DesiredSkills);
+            formCompletionHelper.Click(DesiredSkills);
             return new DesiredSkillsPage(_context);
         }
 
         public QualificationsPage AddQualifications()
         {
-            _formCompletionHelper.Click(Qualifications);
+            formCompletionHelper.Click(Qualifications);
             return new QualificationsPage(_context);
         }
 
         public ApplicationProcessPage AddApplicationProcess()
         {
-            _formCompletionHelper.Click(ApplicationProcess);
+            formCompletionHelper.Click(ApplicationProcess);
             return new ApplicationProcessPage(_context);
         }
 
         public EmployerDescriptionPage AddEmployerDescription()
         {
-            _formCompletionHelper.Click(EmployerDescription);
+            formCompletionHelper.Click(EmployerDescription);
             return new EmployerDescriptionPage(_context);
+        }
+
+        public ThingsToConsiderPage AddThingsToConsider()
+        {
+            formCompletionHelper.Click(ThingsToConsider);
+            return new ThingsToConsiderPage(_context);
+        }
+
+        public ContactDetailsPage AddContactDetails()
+        {
+            formCompletionHelper.Click(ContactDetails);
+            return new ContactDetailsPage(_context);
         }
 
         public VacancyReferencePage SubmitVacancy()
         {
-            _formCompletionHelper.Click(Submit);
+            formCompletionHelper.Click(Submit);
             return new VacancyReferencePage(_context);
         }
     }

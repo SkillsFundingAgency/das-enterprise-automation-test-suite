@@ -1,7 +1,6 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.FAA.UITests.Project;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages;
-using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer
@@ -39,10 +38,16 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer
         {
             formCompletionHelper.ClickLinkByText("Live vacancies");
             formCompletionHelper.SelectFromDropDownByValue(Filter, "Live");
-            formCompletionHelper.EnterText(SearachInput, objectContext.GetVacancyReference());
+            return SearchAnyVacancy();
+        }
+
+        public ManageVacancyPage SearchAnyVacancy()
+        {
+            var vacRef = objectContext.GetVacancyReference();
+            formCompletionHelper.EnterText(SearachInput, vacRef);;
             formCompletionHelper.Click(SearchButton);
-            pageInteractionHelper.WaitforURLToChange($"SearchTerm={objectContext.GetVacancyReference()}");
-            formCompletionHelper.Click(Manage); 
+            pageInteractionHelper.WaitforURLToChange($"SearchTerm={vacRef}");
+            formCompletionHelper.Click(Manage);
             return new ManageVacancyPage(_context);
         }
     }

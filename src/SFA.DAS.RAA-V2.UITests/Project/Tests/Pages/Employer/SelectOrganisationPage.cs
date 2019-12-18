@@ -22,8 +22,8 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer
 
         public EmployerNamePage SelectOrganisation()
         {
-            _formCompletionHelper.ClickElement(() => _dataHelper.GetRandomElementFromListOfElements(_pageInteractionHelper.FindElements(RadioLabels)));
-            _formCompletionHelper.Click(Continue);
+            formCompletionHelper.ClickElement(() => dataHelper.GetRandomElementFromListOfElements(_pageInteractionHelper.FindElements(RadioLabels)));
+            Continue();
             return new EmployerNamePage(_context);
         }
     }

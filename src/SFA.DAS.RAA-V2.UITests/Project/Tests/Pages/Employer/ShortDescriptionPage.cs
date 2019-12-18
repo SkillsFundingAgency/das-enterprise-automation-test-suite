@@ -22,8 +22,8 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer
 
         public VacancyPreviewPart2Page EnterBriefOverview()
         {
-            _formCompletionHelper.EnterText(ShortDescription, _dataHelper.VacancyBriefOverview);
-            _formCompletionHelper.Click(Continue);
+            formCompletionHelper.EnterText(ShortDescription, dataHelper.VacancyBriefOverview);
+            Continue();
             return new VacancyPreviewPart2Page(_context);
         }
     }
