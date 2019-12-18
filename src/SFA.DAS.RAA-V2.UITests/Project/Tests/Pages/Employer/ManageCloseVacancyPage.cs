@@ -17,7 +17,6 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer
         private readonly string _vacancyTitle;
         #endregion
 
-
         public ManageCloseVacancyPage(ScenarioContext context) : base(context)
         {
             _vacancyTitle = context.Get<RAAV2EmployerDataHelper>().VacancyTitle;
