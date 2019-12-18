@@ -1,4 +1,5 @@
 ﻿using SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService;
+using SFA.DAS.UI.Framework.TestSupport;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EPAO.UITests.Project.Helpers
@@ -7,12 +8,34 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
     {
 
         private readonly ScenarioContext _context;
+        private readonly EPAOConfig _ePAOConfig;
+        private readonly EPAODataHelper _ePAODataHelper;
 
         public AssessmentServiceStepsHelper(ScenarioContext context)
         {
             _context = context;
+            _ePAOConfig = context.GetEPAOConfig<EPAOConfig>();
+            _ePAODataHelper = context.Get<EPAODataHelper>();
         }
 
-        public void LoginToAssessmentServiceApplication() => new AS_LandingPage(_context).ClickStartButton().SignInWithValidDetails();
+        public AS_LoggedInHomePage LoginToAssessmentServiceApplication() => new AS_LandingPage(_context).ClickStartButton().SignInWithValidDetails();
+
+        public void CertifyApprentice(string enrolledStandards)
+        {
+            switch (enrolledStandards)
+            {
+                case "single":
+                    _ePAODataHelper.DeleteCertificate(_ePAOConfig.ApprenticeUlnWithSingleStandard);
+                    break;
+                case "more than one":
+                    _ePAODataHelper.DeleteCertificate(_ePAOConfig.ApprenticeNameWithMultipleStandards);
+                    break;
+                case "standard with learning option":
+                    _ePAODataHelper.DeleteCertificate(_ePAOConfig.ApprenticeUlnWithAStandardHavingLearningOption);
+                    break;
+            }
+
+            
+        }
     }
 }

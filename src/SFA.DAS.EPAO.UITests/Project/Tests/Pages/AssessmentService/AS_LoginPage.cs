@@ -29,11 +29,12 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
             VerifyPage();
         }
 
-        public void SignInWithValidDetails()
+        public AS_LoggedInHomePage SignInWithValidDetails()
         {
             _formCompletionHelper.EnterText(EmailAddressTextBox, _config.EPAOAssessorLoginUsername);
             _formCompletionHelper.EnterText(PasswordTextBox, _config.EPAOAssessorLoginPassword);
             _formCompletionHelper.Click(SignInButton);
+            return new AS_LoggedInHomePage(_context);
         }
     }
 }

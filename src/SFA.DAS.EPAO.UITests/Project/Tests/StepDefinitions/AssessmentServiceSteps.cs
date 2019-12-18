@@ -1,5 +1,4 @@
 ﻿using SFA.DAS.EPAO.UITests.Project.Helpers;
-using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
@@ -9,15 +8,11 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
     {
         private readonly ScenarioContext _context;
         private readonly AssessmentServiceStepsHelper _stepsHelper;
-        private readonly EPAODataHelper _ePAODataHelper;
-        private readonly SqlDatabaseConnectionHelper _sqlDatabaseConnectionHelper;
 
         public AssessmentServiceSteps(ScenarioContext context)
         {
             _context = context;
             _stepsHelper = new AssessmentServiceStepsHelper(_context);
-            _ePAODataHelper = context.Get<EPAODataHelper>();
-            _sqlDatabaseConnectionHelper = context.Get<SqlDatabaseConnectionHelper>();
         }
 
         [Given(@"the User is logged into Assessment Service Application")]
@@ -29,7 +24,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         [When(@"the User goes through certifying an Apprentice who has enrolled for '(.*)' standard")]
         public void WhenTheUserGoesThroughCertifyingAnApprenticeWhoHasEnrolledForStandard(string enrolledStandards)
         {
-            
+            _stepsHelper.CertifyApprentice(enrolledStandards);
         }
 
         [Then(@"the Assessment is recorded successfully")]

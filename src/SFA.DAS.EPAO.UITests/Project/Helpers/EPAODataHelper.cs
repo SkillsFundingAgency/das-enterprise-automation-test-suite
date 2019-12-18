@@ -16,11 +16,10 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
 
         public void DeleteCertificate(String uln)
         {
-            var queryToExecute = $"DELETE FROM [CertificateLogs] WHERE CertificateId IN (SELECT Id FROM [Certificates] WHERE ULN = '{uln}')";
-            _sqlDatabase.ExecuteSqlCommand(_connectionString, queryToExecute);
-
-            queryToExecute = $"DELETE FROM [Certificates] WHERE ULN = '{uln}'";
-            _sqlDatabase.ExecuteSqlCommand(_connectionString, queryToExecute);
+            ExecuteSqlCommand($"DELETE FROM [CertificateLogs] WHERE CertificateId IN (SELECT Id FROM [Certificates] WHERE ULN = '{uln}')");
+            ExecuteSqlCommand($"DELETE FROM [Certificates] WHERE ULN = '{uln}'");
         }
+
+        private void ExecuteSqlCommand(string queryToExecute) => _sqlDatabase.ExecuteSqlCommand(_connectionString, queryToExecute);
     }
 }
