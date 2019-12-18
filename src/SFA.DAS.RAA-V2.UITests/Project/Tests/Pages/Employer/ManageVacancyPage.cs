@@ -5,7 +5,6 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer
 {
-
     public class ManageVacancyPage : BasePage
     {
         protected override string PageTitle => "Manage vacancy";
@@ -24,6 +23,12 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer
             _formCompletionHelper = context.Get<FormCompletionHelper>();
             _tabHelper = context.Get<TabHelper>();
             VerifyPage();
+        }
+
+        public CloseVacancyPage CloseVacancy()
+        {
+            _formCompletionHelper.ClickLinkByText("Close vacancy");
+            return new CloseVacancyPage(_context);
         }
 
         public ViewVacancyPage NavigateToViewVacancyPage()
