@@ -20,7 +20,7 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer
 
         public ChooseNoOfPositionsPage ConfirmTrainingProviderAndContinue()
         {
-            _formCompletionHelper.Click(Continue);
+            Continue();
             return new ChooseNoOfPositionsPage(_context);
         }
     }

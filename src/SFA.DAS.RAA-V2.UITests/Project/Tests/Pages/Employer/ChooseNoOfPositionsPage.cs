@@ -22,8 +22,8 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer
 
         public SelectOrganisationPage ChooseNoOfPositions()
         {
-            _formCompletionHelper.EnterText(NumberOfPositions, _dataHelper.NumberOfVacancy);
-            _formCompletionHelper.Click(Continue);
+            formCompletionHelper.EnterText(NumberOfPositions, dataHelper.NumberOfVacancy);
+            Continue();
             return new SelectOrganisationPage(_context);
         }
     }

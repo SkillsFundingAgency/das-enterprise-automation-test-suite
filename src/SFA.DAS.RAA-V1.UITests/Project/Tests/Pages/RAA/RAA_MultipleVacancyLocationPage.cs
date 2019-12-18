@@ -1,5 +1,5 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.RAA_V1.UITests.Project.Helpers;
+using SFA.DAS.RAA.DataGenerator;
 using SFA.DAS.UI.FrameworkHelpers;
 using System;
 using TechTalk.SpecFlow;
@@ -12,7 +12,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
 
         #region Helpers and Context
         private readonly PageInteractionHelper _pageInteractionHelper;
-        private readonly RAADataHelper _raadataHelper;
+        private readonly RAAV1DataHelper _raadataHelper;
         #endregion
 
         private By EnterVacancyPostCode => By.Id("postcode-search");
@@ -26,7 +26,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         public RAA_MultipleVacancyLocationPage(ScenarioContext context) : base(context)
         {
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
-            _raadataHelper = context.Get<RAADataHelper>();
+            _raadataHelper = context.Get<RAAV1DataHelper>();
         }
 
         public RAA_MultipleVacancyLocationPage AddLocation(string postcode)

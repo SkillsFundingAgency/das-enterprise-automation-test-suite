@@ -19,7 +19,7 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer
 
         public VacancyPreviewPart2Page PreviewVacancy()
         {
-            _formCompletionHelper.Click(Continue);
+            Continue();
             return new VacancyPreviewPart2Page(_context);
         }
     }

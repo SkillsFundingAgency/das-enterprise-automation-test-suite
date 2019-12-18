@@ -1,23 +1,24 @@
-﻿using SFA.DAS.FAA.UITests.Project.Helpers;
-using SFA.DAS.UI.FrameworkHelpers;
+﻿using SFA.DAS.UI.FrameworkHelpers;
 using System;
 using System.Collections.Generic;
 
-namespace SFA.DAS.RAA_V2.UITests.Project.Helpers
+namespace SFA.DAS.RAA.DataGenerator
 {
-    public class EmployerDataHelper : RandomElementHelper
+    public class RAAV2EmployerDataHelper : RandomElementHelper
     {
         private readonly RandomDataGenerator _randomDataGenerator;
         private readonly VacancyTitleDatahelper _vacancyTitleDatahelper;
 
-        public EmployerDataHelper(RandomDataGenerator randomDataGenerator, VacancyTitleDatahelper vacancyTitleDatahelper) : base(randomDataGenerator)
+        public RAAV2EmployerDataHelper(RandomDataGenerator randomDataGenerator, VacancyTitleDatahelper vacancyTitleDatahelper) : base(randomDataGenerator)
         {
             _randomDataGenerator = randomDataGenerator;
             _vacancyTitleDatahelper = vacancyTitleDatahelper;
-            EmployerTradingName = _randomDataGenerator.GenerateRandomAlphabeticString(10);
-            EmployerDescription = _randomDataGenerator.GenerateRandomAlphabeticString(10);
+            EmployerTradingName = $"{_randomDataGenerator.GenerateRandomAlphabeticString(10)}_EmployerName";
+            EmployerDescription = $"{_randomDataGenerator.GenerateRandomAlphabeticString(10)}_EmployerDescription";
             EmployerReason = _randomDataGenerator.GenerateRandomAlphabeticString(10);
             EmployerWebsiteUrl = WebsiteUrl(EmployerTradingName);
+            EmployerContactName = _randomDataGenerator.GenerateRandomAlphabeticString(5);
+            EmployerEmail = $"{EmployerContactName}@lorem.com";
             VacancyShortDescription = _randomDataGenerator.GenerateRandomAlphabeticString(15);
             VacancyOutcome = _randomDataGenerator.GenerateRandomAlphabeticString(22);
             VacancyBriefOverview = _randomDataGenerator.GenerateRandomAlphabeticString(50);
@@ -33,6 +34,10 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Helpers
 
         public string TrainingTitle => AvailableTraining.RandomOrDefault();
 
+        public string EmployerAddress => AvailableAddress.RandomOrDefault();
+
+        public string Provider => AvailableProviders.RandomOrDefault();
+
         public string EmployerTradingName { get; }
 
         public string EmployerDescription { get; }
@@ -40,6 +45,12 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Helpers
         public string EmployerReason { get; }
         
         public string EmployerWebsiteUrl { get; }
+        
+        public string EmployerContactName { get; }
+
+        public string EmployerContactNumber => "07777777777";
+
+        public string EmployerEmail { get; }
 
         public string VacancyShortDescription { get; }
 
@@ -65,16 +76,27 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Helpers
 
         private string WebsiteUrl(string url) => $"https://www.{url}.com";
 
+        private List<string> AvailableProviders => new List<string> { "BALTIC TRAINING SERVICES LIMITED 10019026" };
+
         private List<string> AvailableTraining => new List<string> 
-        { 
+        {
+            "Aerospace Engineer (degree), Level 6 (Degree with honours)",
             "Agriculture: Agriculture, Level 3 (A level)",
+            "Broadcast production assistant, Level 3 (A level)",
             "Construction Building: Maintenance Operations, Level 2 (GCSE)",
-            "Business to Business Sales Professional (degree), Level 6 (Degree with honours)",
-            "Aerospace engineer, Level 6 (Degree with honours)",
+            "Event Assistant, Level 3 (A level)",
+            "Financial services administrator, Level 3 (A level)",
+            "Groundworker, Level 2 (GCSE)",
+            "Healthcare support worker, Level 2 (GCSE)",
+            "IT Solutions Technician, Level 3 (A level)",
+            "Junior journalist, Level 3 (A level)",
             "Software Development Technician, Level 3 (A level)",
             "Software tester, Level 4 (Higher national certificate)",
             "Lifting Technician, Level 2 (GCSE)",
             "Legal Services: Property, Level 3 (A level)"
         };
+
+        private List<string> AvailableAddress => new List<string>
+        {"0","1", "2", "3", "4", "5", "6", "7", "8", "9"};
     }
 }

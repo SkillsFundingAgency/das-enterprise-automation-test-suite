@@ -30,31 +30,31 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer
 
         public void EnterVacancyClosingDate()
         {
-            DateTime closingDate = _dataHelper.VacancyClosing;
+            DateTime closingDate = dataHelper.VacancyClosing;
             string month = closingDate.Month.ToString();
             string year = closingDate.Year.ToString();
             string day = closingDate.Day.ToString();
-            _formCompletionHelper.EnterText(ClosingDay, day);
-            _formCompletionHelper.EnterText(ClosingMonth, month);
-            _formCompletionHelper.EnterText(ClosingYear, year);
+            formCompletionHelper.EnterText(ClosingDay, day);
+            formCompletionHelper.EnterText(ClosingMonth, month);
+            formCompletionHelper.EnterText(ClosingYear, year);
         }
 
         public void EnterPossibleStartDate()
         {
-            DateTime startDate = _dataHelper.VacancyStart;
+            DateTime startDate = dataHelper.VacancyStart;
             var month = startDate.Month.ToString();
             var year = startDate.Year.ToString();
             var day = startDate.Day.ToString();
-            _formCompletionHelper.EnterText(StartDateDay, day);
-            _formCompletionHelper.EnterText(StartDateMonth, month);
-            _formCompletionHelper.EnterText(StartDateYear, year);
+            formCompletionHelper.EnterText(StartDateDay, day);
+            formCompletionHelper.EnterText(StartDateMonth, month);
+            formCompletionHelper.EnterText(StartDateYear, year);
         }
 
         public DurationPage EnterImportantDates()
         {
             EnterVacancyClosingDate();
             EnterPossibleStartDate();
-            _formCompletionHelper.Click(Continue);
+            Continue();
             return new DurationPage(_context);
         }
     }

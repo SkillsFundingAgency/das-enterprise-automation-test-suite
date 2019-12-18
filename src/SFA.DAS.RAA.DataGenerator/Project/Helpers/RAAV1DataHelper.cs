@@ -1,17 +1,16 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.FAA.UITests.Project.Helpers;
 using SFA.DAS.UI.FrameworkHelpers;
 using System;
 using System.Collections.Generic;
 
-namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
+namespace SFA.DAS.RAA.DataGenerator
 {
-    public class RAADataHelper : RandomElementHelper
+    public class RAAV1DataHelper : RandomElementHelper
     {
         private readonly RandomDataGenerator _randomDataGenerator;
         private readonly RegexHelper _regexHelper;
 
-        public RAADataHelper(RandomDataGenerator randomDataGenerator, RegexHelper regexHelper) : base(randomDataGenerator)
+        public RAAV1DataHelper(RandomDataGenerator randomDataGenerator, RegexHelper regexHelper) : base(randomDataGenerator)
         {
             _randomDataGenerator = randomDataGenerator;
             _regexHelper = regexHelper;

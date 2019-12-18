@@ -20,9 +20,9 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer
 
         public PreviewYourVacancyPage SelectNationalMinimumWage()
         {
-            _formCompletionHelper.SelectRadioOptionByForAttribute(RadioLabels, "wage-type-national-minimum-wage");
-            _formCompletionHelper.EnterText(WageAdditionalInformation, _dataHelper.OptionalMessage);
-            _formCompletionHelper.Click(Continue);
+            SelectRadioOptionByForAttribute("wage-type-national-minimum-wage");
+            formCompletionHelper.EnterText(WageAdditionalInformation, dataHelper.OptionalMessage);
+            Continue();
             return new PreviewYourVacancyPage(_context);
         }
     }

@@ -1,12 +1,12 @@
 ﻿using SFA.DAS.UI.FrameworkHelpers;
 
-namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
+namespace SFA.DAS.RAA.DataGenerator
 {
-    public class ManagedataHelper
+    public class RAAV1ManagedataHelper
     {
         private readonly RandomDataGenerator _randomDataGenerator;
 
-        public ManagedataHelper(RandomDataGenerator randomDataGenerator)
+        public RAAV1ManagedataHelper(RandomDataGenerator randomDataGenerator)
         {
             _randomDataGenerator = randomDataGenerator;
             TitleComments = _randomDataGenerator.GenerateRandomAlphabeticString(10);

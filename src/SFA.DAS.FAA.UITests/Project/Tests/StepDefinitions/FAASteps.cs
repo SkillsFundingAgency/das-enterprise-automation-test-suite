@@ -16,19 +16,6 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.StepDefinitions
             _faaStepsHelper = new FAAStepsHelper(context);
         }
 
-        [When(@"the Applicant applies for a Vacancy in FAA")]
-        public void WhenTheApplicantAppliesForAVacancyInFAA()
-        {
-            _faaStepsHelper.ApplyForAVacancy("No", "No", "No");
-        }
-
-
-        [When(@"the Applicant apply for a Vacancy in FAA '(.*)','(.*)','(.*)'")]
-        public void WhenTheApplicantApplyForAVacancyInFAA(string qualificationdetails, string workExperience, string trainingCourse)
-        {
-            _faaStepsHelper.ApplyForAVacancy(qualificationdetails, workExperience, trainingCourse);
-        }
-
         [When(@"the Applicant withdraw the application")]
         public void WhenTheApplicantWithdrawTheApplication()
         {

@@ -1,4 +1,7 @@
-﻿using SFA.DAS.UI.FrameworkHelpers;
+﻿using OpenQA.Selenium;
+using SFA.DAS.FAA.UITests.Project;
+using SFA.DAS.UI.Framework.TestSupport;
+using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer
@@ -9,25 +12,39 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
+        private readonly ObjectContext _objectContext;
+        private readonly PageInteractionHelper _pageInteractionHelper;
         #endregion
+
+        private By AddressLine1 => By.Id("AddressLine1");
+        
+        private By MenuItems => By.CssSelector(".ui-menu-item");
 
         public ChooseApprenticeshipLocationPage(ScenarioContext context) : base(context)
         {
             _context = context;
+            _objectContext = context.Get<ObjectContext>();
+            _pageInteractionHelper = context.Get<PageInteractionHelper>();
         }
 
-        public ImportantDatesPage ChooseDifferentLocation()
+        public ImportantDatesPage ChooseAddress(bool isEmployerAddress)
         {
-            _formCompletionHelper.SelectRadioOptionByForAttribute(RadioLabels, "other-location");
-            _formCompletionHelper.Click(Continue);
+            if (isEmployerAddress)
+            {
+                SelectRadioOptionByForAttribute("OtherLocation_1");
+            }
+            else
+            {
+                DifferentLocation();
+            }
+            Continue();
             return new ImportantDatesPage(_context);
         }
 
-        public ImportantDatesPage ChooseAddress()
+        private void DifferentLocation()
         {
-            _formCompletionHelper.SelectRadioOptionByForAttribute(RadioLabels, "OtherLocation_1");
-            _formCompletionHelper.Click(Continue);
-            return new ImportantDatesPage(_context);
+            SelectRadioOptionByForAttribute("other-location");
+            formCompletionHelper.ClickElement(() => { formCompletionHelper.EnterText(AddressLine1, dataHelper.EmployerAddress); return _pageInteractionHelper.FindElement(MenuItems); });
         }
     }
 }
