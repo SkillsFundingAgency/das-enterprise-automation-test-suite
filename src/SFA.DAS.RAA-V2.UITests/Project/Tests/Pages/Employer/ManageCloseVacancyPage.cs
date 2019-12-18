@@ -8,7 +8,7 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer
 {
     public class ManageCloseVacancyPage : BasePage
     {
-        protected override string PageTitle => $"Vacancy {_vacRef} - '{_vacancyTitle}' has been closed.";
+        protected override string PageTitle => $"Vacancy VAC{_vacRef} - '{_vacancyTitle}' has been closed.";
 
         protected override By PageHeader => By.CssSelector(".info-summary");
 
@@ -20,7 +20,7 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer
 
         public ManageCloseVacancyPage(ScenarioContext context) : base(context)
         {
-            _vacancyTitle = context.Get<VacancyTitleDatahelper>().VacancyTitle;
+            _vacancyTitle = context.Get<RAAV2EmployerDataHelper>().VacancyTitle;
             _vacRef = context.Get<ObjectContext>().GetVacancyReference();
             VerifyPage();
         }
