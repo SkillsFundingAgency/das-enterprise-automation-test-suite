@@ -18,6 +18,12 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Helpers
             _homePageStepsHelper = new HomePageStepsHelper(context);
         }
 
+        internal void CloseVacancy() => SearchVacancy().CloseVacancy().YesCloseThisVacancy();
+
+        internal void ApplicantUnSucessful() => NavigateToManageApplicant().MakeApplicantUnsucessful().NotifyApplicant();
+
+        internal void ApplicantSucessful() => NavigateToManageApplicant().MakeApplicantSucessful().NotifyApplicant();
+
         internal void CreateANewVacancy(string employername, bool isEmployerAddress, bool optionalFields = false)
         {
             var employernamePage = SelectOrganisation();
@@ -34,20 +40,17 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Helpers
 
             previewPage.SubmitVacancy().SetVacancyReference();
 
-            VerifyEmployerName();
+            SearchAnyVacancy().NavigateToViewVacancyPage().VerifyEmployerName();
         }
 
-        internal void ApplicantUnSucessful() => NavigateToManageApplicant().MakeApplicantUnsucessful().NotifyApplicant();
-
-        internal void ApplicantSucessful() => NavigateToManageApplicant().MakeApplicantSucessful().NotifyApplicant();
-
-        private void VerifyEmployerName()
+        private ManageVacancyPage SearchVacancy()
         {
-            new RecruitmentHomePage(_context, true)
-               .SearchAnyVacancy()
-               .NavigateToViewVacancyPage()
-               .VerifyEmployerName();
+            _homePageStepsHelper.GotoEmployerHomePage();
+
+            return SearchAnyVacancy();
         }
+
+        private ManageVacancyPage SearchAnyVacancy() => new RecruitmentHomePage(_context, true).SearchAnyVacancy();
 
         private VacancyPreviewPart2Page EnterMandatoryFields(VacancyPreviewPart2Page previewPage)
         {
@@ -118,11 +121,7 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Helpers
 
         private ManageApplicantPage NavigateToManageApplicant()
         {
-            _homePageStepsHelper.GotoEmployerHomePage();
-
-            return new RecruitmentHomePage(_context, true)
-                .SearchLiveVacancy()
-                .NavigateToManageApplicant();
+            return SearchVacancy().NavigateToManageApplicant();
         }
     }
 }

@@ -10,11 +10,11 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.StepDefinitions
 
         public EmployerSteps(ScenarioContext context) => _employerStepsHelper = new EmployerStepsHelper(context);
 
+        [Given(@"the Employer can create a vacancy by entering all the Optional fields")]
+        public void GivenTheEmployerCanCreateAVacancyByEnteringAllTheOptionalFields() => _employerStepsHelper.CreateANewVacancy("anonymous", true, true);
+        
         [Given(@"the Employer creates a vacancy by selecting different work location")]
         public void GivenTheEmployerCreatesAVacancyBySelectingDifferentWorkLocation() => _employerStepsHelper.CreateANewVacancy("legal-entity-name", false);
-
-        [Then(@"the Employer can create a vacancy by entering all the Optional fields")]
-        public void ThenTheEmployerCanCreateAVacancyByEnteringAllTheOptionalFields() => _employerStepsHelper.CreateANewVacancy("anonymous", true, true);
 
         [Given(@"the Employer creates an anonymous vacancy")]
         public void GivenTheEmployerCreatesAnAnonymousVacancy() => _employerStepsHelper.CreateANewVacancy("anonymous", true);
@@ -30,5 +30,9 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.StepDefinitions
 
         [Then(@"Employer can make the application unsuccessful")]
         public void ThenEmployerCanMakeTheApplicationUnsuccessful() => _employerStepsHelper.ApplicantUnSucessful();
+
+        [Then(@"the Employer can close the vacancy")]
+        public void ThenTheEmployerCanCloseTheVacancy() => _employerStepsHelper.CloseVacancy();
+
     }
 }

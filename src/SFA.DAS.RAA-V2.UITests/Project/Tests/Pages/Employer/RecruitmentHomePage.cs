@@ -17,7 +17,7 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer
 
         private By Filter => By.CssSelector("#Filter");
 
-        private By SearachInput => By.CssSelector("#search-input");
+        private By SearchInput => By.CssSelector("#search-input");
 
         private By SearchButton => By.CssSelector("#search-submit-button");
 
@@ -44,7 +44,7 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer
         public ManageVacancyPage SearchAnyVacancy()
         {
             var vacRef = objectContext.GetVacancyReference();
-            formCompletionHelper.EnterText(SearachInput, vacRef);;
+            formCompletionHelper.EnterText(SearchInput, vacRef);;
             formCompletionHelper.Click(SearchButton);
             pageInteractionHelper.WaitforURLToChange($"SearchTerm={vacRef}");
             formCompletionHelper.Click(Manage);
