@@ -71,22 +71,24 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Features.AssessmentService
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("EPAO_AS_CA_01 - Certify an Apprentice who has enrolled for a single standard")]
+        [NUnit.Framework.CategoryAttribute("epao")]
         [NUnit.Framework.CategoryAttribute("assessmentservice")]
         [NUnit.Framework.CategoryAttribute("regression")]
         public virtual void EPAO_AS_CA_01_CertifyAnApprenticeWhoHasEnrolledForASingleStandard()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EPAO_AS_CA_01 - Certify an Apprentice who has enrolled for a single standard", null, new string[] {
+                        "epao",
                         "assessmentservice",
                         "regression"});
-#line 5
+#line 6
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 6
- testRunner.Given("the User is logged into Assessment Service Application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 7
+ testRunner.Given("the User is logged into Assessment Service Application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 8
  testRunner.When("the User goes through certifying an Apprentice who has enrolled for \'single\' stan" +
                     "dard", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 8
+#line 9
  testRunner.Then("the Assessment is recorded and the User is able to navigate back to certifying an" +
                     "other Apprentice", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden

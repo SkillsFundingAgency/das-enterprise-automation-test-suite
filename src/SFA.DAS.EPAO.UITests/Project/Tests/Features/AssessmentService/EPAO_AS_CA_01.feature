@@ -1,5 +1,6 @@
 ﻿Feature: EPAO_AS_CA_01
 
+@epao
 @assessmentservice
 @regression
 Scenario: EPAO_AS_CA_01 - Certify an Apprentice who has enrolled for a single standard
