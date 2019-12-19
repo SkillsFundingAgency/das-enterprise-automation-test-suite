@@ -45,6 +45,24 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         public void WaitforURLToChange(string url) => _webDriverWaitHelper.WaitforURLToChange(url);
 
+        public bool VerifyPage(Func<List<IWebElement>> elements, string expected)
+        {
+            bool func()
+            {
+                var actual = elements().Select(x => x.Text).ToList();
+                if (actual.Any(x => x.Contains(expected)))
+                {
+                    return true;
+                }
+
+                throw new Exception("Page verification failed:"
+                    + "\n Expected: " + expected + " page"
+                    + "\n Found: " + string.Join(",", actual) + " page");
+            }
+
+            return VerifyPage(func);
+        }
+
         public bool VerifyPage(By locator)
         {
             return VerifyPage(Func(locator));
