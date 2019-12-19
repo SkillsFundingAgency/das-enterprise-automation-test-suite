@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using OpenQA.Selenium;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
@@ -34,6 +35,11 @@ namespace SFA.DAS.UI.Framework.TestSupport
         protected bool VerifyPageAfterRefresh(By locator)
         {
             return VerifyPage(() => _pageInteractionHelper.VerifyPageAfterRefresh(locator));
+        }
+
+        protected bool VerifyPage(Func<List<IWebElement>> func)
+        {
+            return VerifyPage(() => _pageInteractionHelper.VerifyPage(func, PageTitle));
         }
 
         protected bool VerifyPage(By locator)

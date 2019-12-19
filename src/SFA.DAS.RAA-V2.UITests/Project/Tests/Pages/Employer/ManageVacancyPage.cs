@@ -25,6 +25,12 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer
             VerifyPage();
         }
 
+        public EditVacancyPage EditVacancy()
+        {
+            _formCompletionHelper.ClickLinkByText("Edit vacancy");
+            return new EditVacancyPage(_context);
+        }
+
         public CloseVacancyPage CloseVacancy()
         {
             _formCompletionHelper.ClickLinkByText("Close vacancy");
