@@ -87,9 +87,8 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.When("the User goes through certifying an Apprentice who has enrolled for \'single\' stan" +
                     "dard", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 8
- testRunner.Then("the Assessment is recorded successfully", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 9
- testRunner.And("the User is able to navigate back to certifying another Apprentice", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Then("the Assessment is recorded and the User is able to navigate back to certifying an" +
+                    "other Apprentice", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

@@ -5,9 +5,9 @@ using SFA.DAS.UI.Framework.TestSupport;
 
 namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
 {
-    public class AS_RecordAGradePage : BasePage
+    public class AS_ConfirmAddressPage : BasePage
     {
-        protected override string PageTitle => "Record a grade";
+        protected override string PageTitle => "Confirm the address where we are sending the certificate";
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
@@ -15,24 +15,20 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
         #endregion
 
         #region Locators
-        private By FamilyNameTextBox => By.Name("Surname");
-        private By ULNTextBox => By.Name("Uln");
-        private By ContinueButton => By.Id("button-search");
+        private By ContinueButton => By.CssSelector(".govuk-button");
         #endregion
 
-        public AS_RecordAGradePage(ScenarioContext context) : base(context)
+        public AS_ConfirmAddressPage(ScenarioContext context) : base(context)
         {
             _context = context;
             _formCompletionHelper = context.Get<FormCompletionHelper>();
             VerifyPage();
         }
 
-        public AS_ConfirmApprenticePage SearchApprentice(string familyName, string uLN)
+        public AS_RecipientNamePage ClickContinueInConfirmEmployerAddressPage()
         {
-            _formCompletionHelper.EnterText(FamilyNameTextBox, familyName);
-            _formCompletionHelper.EnterText(ULNTextBox, uLN);
             _formCompletionHelper.Click(ContinueButton);
-            return new AS_ConfirmApprenticePage(_context);
+            return new AS_RecipientNamePage(_context);
         }
     }
 }

@@ -1,5 +1,4 @@
-﻿using SFA.DAS.UI.Framework.TestSupport;
-using SFA.DAS.UI.FrameworkHelpers;
+﻿using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.UI.Framework.TestSupport
@@ -33,5 +32,4 @@ namespace SFA.DAS.UI.Framework.TestSupport
             _context.Replace(new ScreenShotTitleGenerator(0));
         }
     }
-
 }

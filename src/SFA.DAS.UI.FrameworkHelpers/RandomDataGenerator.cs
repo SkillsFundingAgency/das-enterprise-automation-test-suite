@@ -108,5 +108,21 @@ namespace SFA.DAS.UI.FrameworkHelpers
             return new string(Enumerable.Repeat(characters, length)
                 .Select(s => s[random.Next(s.Length)]).ToArray());
         }
+
+        public int GetCurrentDay()
+        {
+            DateTime date = DateTime.Now;
+            return date.Day;
+        }
+        public int GetCurrentMonth()
+        {
+            DateTime date = DateTime.Now;
+            return date.Month;
+        }
+        public int GetCurrentYear()
+        {
+            DateTime date = DateTime.Now;
+            return date.Year;
+        }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using SFA.DAS.EPAO.UITests.Project.Helpers;
+using SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
@@ -27,16 +28,10 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
             _stepsHelper.CertifyApprentice(enrolledStandards);
         }
 
-        [Then(@"the Assessment is recorded successfully")]
-        public void ThenTheAssessmentIsRecordedSuccessfully()
+        [Then(@"the Assessment is recorded and the User is able to navigate back to certifying another Apprentice")]
+        public void ThenTheAssessmentIsRecordedAndTheUserIsAbleToNavigateBackToCertifyingAnotherApprentice()
         {
-
-        }
-
-        [Then(@"the User is able to navigate back to certifying another Apprentice")]
-        public void ThenTheUserIsAbleToNavigateBackToCertifyingAnotherApprentice()
-        {
-
+            new AS_AssessmentRecordedPage(_context).ClickRecordAnotherGradeLinkInAssessmentRecordedPage();
         }
     }
 }

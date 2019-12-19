@@ -35,7 +35,17 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
                     break;
             }
 
-            
+            new AS_LoggedInHomePage(_context).ClickOnRecordAGrade()
+                .SearchApprentice(_ePAOConfig.ApprenticeNameWithSingleStandard, _ePAOConfig.ApprenticeUlnWithSingleStandard)
+                .ClickConfirmInConfirmApprenticePage()
+                .ClickConfirmInDeclarationPage()
+                .SelectPassAndContinueInGradeSelectionPage()
+                .EnterAchievementDateAndContinue()
+                .SearchAndSelectEmployerAddress()
+                .ClickContinueInSearchEmployerAddressPage()
+                .ClickContinueInConfirmEmployerAddressPage()
+                .EnterRecipientDetailsAndContinue()
+                .ClickContinueInCheckAndSubmitAssessmentPage();
         }
     }
 }
