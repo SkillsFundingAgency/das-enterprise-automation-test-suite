@@ -1,14 +1,10 @@
-﻿using OpenQA.Selenium;
-using System;
-using TechTalk.SpecFlow;
+﻿using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer
 {
     public class EditVacancyDatesPage : VacancyDatesBasePage
     {
         protected override string PageTitle => "Edit vacancy dates";
-
-        protected override By PageHeader => By.CssSelector(".govuk-heading-m");
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
@@ -19,17 +15,19 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer
             _context = context;
         }
 
-        public EditVacancyPage EnterVacancyClosingDate()
+        public EditVacancyPage EnterVacancyDates()
         {
             ClosingDate(dataHelper.EditedVacancyClosing);
+            StartDate(dataHelper.EditedVacancyStart);
             Continue();
             return new EditVacancyPage(_context);
         }
 
         public EditVacancyPage EnterPossibleStartDate()
         {
+            // Vacancy dates are edited.
             StartDate(dataHelper.EditedVacancyStart);
-            Continue();
+            formCompletionHelper.ClickLinkByText("Cancel");
             return new EditVacancyPage(_context);
         }
     }

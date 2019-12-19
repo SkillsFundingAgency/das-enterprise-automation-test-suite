@@ -23,7 +23,7 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Helpers
             SearchVacancy()
                 .EditVacancy()
                 .EditVacancyCloseDate()
-                .EnterVacancyClosingDate()
+                .EnterVacancyDates()
                 .EditVacancyStartDate()
                 .EnterPossibleStartDate()
                 .PublishVacancy();
