@@ -18,6 +18,18 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Helpers
             _homePageStepsHelper = new HomePageStepsHelper(context);
         }
 
+        internal void CloneAVacancy()
+        {
+          var previewPage = GoToRecruitmentHomePage()
+                .SelectVacancy()
+                .CloneVacancy()
+                .SelectYes()
+                .UpdateTitle()
+                .UpdateVacancyTitle();
+
+            SubmitVacancy(previewPage);
+        }
+
         internal void EditVacancyDates() 
         {
             SearchVacancy()
@@ -49,9 +61,14 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Helpers
 
             previewPage = EnterVacancyPreviewFields(previewPage, optionalFields);
 
-            previewPage.SubmitVacancy().SetVacancyReference();
+            SubmitVacancy(previewPage);
 
             SearchAnyVacancy().NavigateToViewVacancyPage().VerifyEmployerName();
+        }
+
+        private void SubmitVacancy(VacancyPreviewPart2Page previewPage)
+        {
+            previewPage.SubmitVacancy().SetVacancyReference();
         }
 
         private ManageVacancyPage SearchVacancy()
@@ -90,11 +107,16 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Helpers
             return optionalFields ? EnterOptionalFields(previewPage) : previewPage;
         }
 
-        private EmployerNamePage SelectOrganisation()
+        private RecruitmentHomePage GoToRecruitmentHomePage()
         {
             _loginhelper.Login(_context.GetUser<RAAV2EmployerUser>(), true);
 
-            return new RecruitmentHomePage(_context, true)
+            return new RecruitmentHomePage(_context, true);
+        }
+
+        private EmployerNamePage SelectOrganisation()
+        {
+            return GoToRecruitmentHomePage()
                 .CreateANewVacancy()
                 .CreateNewVacancy()
                 .EnterVacancyTitle()

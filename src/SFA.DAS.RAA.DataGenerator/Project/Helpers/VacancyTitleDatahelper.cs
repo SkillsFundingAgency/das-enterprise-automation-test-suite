@@ -5,11 +5,12 @@ namespace SFA.DAS.RAA.DataGenerator
 {
     public class VacancyTitleDatahelper
     {
-        public VacancyTitleDatahelper(RandomDataGenerator randomDataGenerator)
+        public VacancyTitleDatahelper(RandomDataGenerator randomDataGenerator, bool isCloneVacancy)
         {
             VacancyTitleDate = DateTime.Now;
             VacancyTitleDateElement = VacancyTitleDate.ToString("ddMMMyyyy");
-            VacancyTitle = $"{randomDataGenerator.GenerateRandomAlphabeticString(10)}_{VacancyTitleDateElement}_{VacancyTitleDate.ToString("HHmmssfffff")}";
+            var part1 = isCloneVacancy ? $"Clone_{randomDataGenerator.GenerateRandomAlphabeticString(4)}" : $"{randomDataGenerator.GenerateRandomAlphabeticString(10)}";
+            VacancyTitle = $"{part1}_{VacancyTitleDateElement}_{VacancyTitleDate.ToString("HHmmssfffff")}";
         }
 
         public DateTime VacancyTitleDate { get; }

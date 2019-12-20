@@ -1,6 +1,8 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.FAA.UITests.Project;
+using SFA.DAS.RAA.DataGenerator;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages;
+using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer
@@ -9,6 +11,8 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer
     {
         #region Helpers and Context
         private readonly ScenarioContext _context;
+        private readonly RAAV2EmployerDataHelper _dataHelper;
+        private readonly PageInteractionHelper _pageInteractionHelper;
         #endregion
 
         protected override string PageTitle => "Recruitment";
@@ -26,6 +30,16 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer
         public RecruitmentHomePage(ScenarioContext context, bool navigate = false) : base(context, navigate)
         {
             _context = context;
+            _pageInteractionHelper = context.Get<PageInteractionHelper>();
+            _dataHelper = context.Get<RAAV2EmployerDataHelper>();
+        }
+
+        public ManageVacancyPage SelectVacancy()
+        {
+            formCompletionHelper.ClickLinkByText("Live vacancies");
+            pageInteractionHelper.WaitforURLToChange($"filter=Live");
+            formCompletionHelper.ClickElement(() => _dataHelper.GetRandomElementFromListOfElements(_pageInteractionHelper.FindElements(Manage)));
+            return new ManageVacancyPage(_context);
         }
 
         public CreateVacancyPage CreateANewVacancy()

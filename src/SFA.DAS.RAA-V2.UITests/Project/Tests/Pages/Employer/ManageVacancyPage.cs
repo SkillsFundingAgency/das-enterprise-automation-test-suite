@@ -25,6 +25,12 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer
             VerifyPage();
         }
 
+        public CloneVacancyDatesPage CloneVacancy()
+        {
+            _formCompletionHelper.ClickLinkByText("Clone vacancy");
+            return new CloneVacancyDatesPage(_context);
+        }
+
         public EditVacancyPage EditVacancy()
         {
             _formCompletionHelper.ClickLinkByText("Edit vacancy");

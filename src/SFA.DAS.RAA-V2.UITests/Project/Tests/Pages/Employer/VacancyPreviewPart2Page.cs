@@ -10,7 +10,7 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer
         #region Helpers and Context
         private readonly ScenarioContext _context;
         #endregion
-
+        
         private By BriefOverview => By.CssSelector("a[data-automation='link-overview']");
         private By VacancyDescription => By.CssSelector("a[data-automation='link-vacancy-description']");
         private By DesiredSkills => By.CssSelector("a[data-automation='link-skills']");
