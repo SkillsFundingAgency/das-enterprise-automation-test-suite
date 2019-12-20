@@ -25,10 +25,10 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
             switch (enrolledStandards)
             {
                 case "single":
-                    _ePAOSqlDataHelper.DeleteCertificate(_ePAOConfig.ApprenticeUlnWithSingleStandard);
+                    _ePAOSqlDataHelper.DeleteCertificate(_ePAOConfig.EPAOApprenticeUlnWithSingleStandard);
                     break;
                 case "more than one":
-                    _ePAOSqlDataHelper.DeleteCertificate(_ePAOConfig.ApprenticeNameWithMultipleStandards);
+                    _ePAOSqlDataHelper.DeleteCertificate(_ePAOConfig.EPAOApprenticeUlnWithMultipleStandards);
                     break;
                 case "standard with learning option":
                     _ePAOSqlDataHelper.DeleteCertificate(_ePAOConfig.ApprenticeUlnWithAStandardHavingLearningOption);
@@ -36,7 +36,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
             }
 
             new AS_LoggedInHomePage(_context).ClickOnRecordAGrade()
-                .SearchApprentice(_ePAOConfig.ApprenticeNameWithSingleStandard, _ePAOConfig.ApprenticeUlnWithSingleStandard)
+                .SearchApprentice(_ePAOConfig.EPAOApprenticeNameWithSingleStandard, _ePAOConfig.EPAOApprenticeUlnWithSingleStandard)
                 .ClickConfirmInConfirmApprenticePage()
                 .ClickConfirmInDeclarationPage()
                 .SelectPassAndContinueInGradeSelectionPage()

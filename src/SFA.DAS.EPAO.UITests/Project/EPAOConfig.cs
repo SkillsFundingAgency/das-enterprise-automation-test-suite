@@ -6,11 +6,11 @@
         public string EPAOAssessmentOpportunityFinderUrl { get; set; }
         public string EPAOAssessorLoginUsername { get; set; }
         public string EPAOAssessorLoginPassword { get; set; }
-        public string ApprenticeNameWithSingleStandard { get; set; }
-        public string ApprenticeUlnWithSingleStandard { get; set; }
-        public string ApprenticeNameWithMultipleStandards { get; set; }
-        public string ApprenticeUlnWithMultipleStandards { get; set; }
-        public string ApprenticeNameWithAStandardHavingLearningOption { get; set; }
+        public string EPAOApprenticeNameWithSingleStandard { get; set; }
+        public string EPAOApprenticeUlnWithSingleStandard { get; set; }
+        public string EPAOApprenticeNameWithMultipleStandards { get; set; }
+        public string EPAOApprenticeUlnWithMultipleStandards { get; set; }
+        public string EPAOApprenticeNameWithAStandardHavingLearningOption { get; set; }
         public string ApprenticeUlnWithAStandardHavingLearningOption { get; set; }
         public string EPAOAssessorDbConnectionString { get; set; }
     }
