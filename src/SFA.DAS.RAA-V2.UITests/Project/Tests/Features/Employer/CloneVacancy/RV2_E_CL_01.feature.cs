@@ -72,13 +72,13 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Features.Employer.CloneVacancy
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("RV2_E_CL_01 - Clone a vacancy, Approve, Apply and make Application Successful")]
         [NUnit.Framework.CategoryAttribute("raa-v2")]
-        [NUnit.Framework.CategoryAttribute("v2_clone")]
+        [NUnit.Framework.CategoryAttribute("clonevacancy")]
         [NUnit.Framework.CategoryAttribute("regression")]
         public virtual void RV2_E_CL_01_CloneAVacancyApproveApplyAndMakeApplicationSuccessful()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV2_E_CL_01 - Clone a vacancy, Approve, Apply and make Application Successful", null, new string[] {
                         "raa-v2",
-                        "v2_clone",
+                        "clonevacancy",
                         "regression"});
 #line 6
 this.ScenarioInitialize(scenarioInfo);
