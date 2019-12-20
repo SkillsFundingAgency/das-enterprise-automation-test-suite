@@ -9,13 +9,13 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
 
         private readonly ScenarioContext _context;
         private readonly EPAOConfig _ePAOConfig;
-        private readonly EPAODataHelper _ePAODataHelper;
+        private readonly EPAOSqlDataHelper _ePAOSqlDataHelper;
 
         public AssessmentServiceStepsHelper(ScenarioContext context)
         {
             _context = context;
             _ePAOConfig = context.GetEPAOConfig<EPAOConfig>();
-            _ePAODataHelper = context.Get<EPAODataHelper>();
+            _ePAOSqlDataHelper = context.Get<EPAOSqlDataHelper>();
         }
 
         public AS_LoggedInHomePage LoginToAssessmentServiceApplication() => new AS_LandingPage(_context).ClickStartButton().SignInWithValidDetails();
@@ -25,13 +25,13 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
             switch (enrolledStandards)
             {
                 case "single":
-                    _ePAODataHelper.DeleteCertificate(_ePAOConfig.ApprenticeUlnWithSingleStandard);
+                    _ePAOSqlDataHelper.DeleteCertificate(_ePAOConfig.ApprenticeUlnWithSingleStandard);
                     break;
                 case "more than one":
-                    _ePAODataHelper.DeleteCertificate(_ePAOConfig.ApprenticeNameWithMultipleStandards);
+                    _ePAOSqlDataHelper.DeleteCertificate(_ePAOConfig.ApprenticeNameWithMultipleStandards);
                     break;
                 case "standard with learning option":
-                    _ePAODataHelper.DeleteCertificate(_ePAOConfig.ApprenticeUlnWithAStandardHavingLearningOption);
+                    _ePAOSqlDataHelper.DeleteCertificate(_ePAOConfig.ApprenticeUlnWithAStandardHavingLearningOption);
                     break;
             }
 

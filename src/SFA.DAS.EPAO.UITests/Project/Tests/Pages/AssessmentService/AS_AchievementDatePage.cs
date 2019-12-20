@@ -2,6 +2,7 @@
 using TechTalk.SpecFlow;
 using SFA.DAS.UI.FrameworkHelpers;
 using SFA.DAS.UI.Framework.TestSupport;
+using SFA.DAS.EPAO.UITests.Project.Helpers;
 
 namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
 {
@@ -14,6 +15,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
         private readonly ScenarioContext _context;
         private readonly RandomDataGenerator _randomDataGenerator;
         private readonly FormCompletionHelper _formCompletionHelper;
+        private readonly EPAODataHelper _ePAODataHelper;
         #endregion
 
         #region Locators
@@ -28,14 +30,15 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
             _context = context;
             _formCompletionHelper = context.Get<FormCompletionHelper>();
             _randomDataGenerator = context.Get<RandomDataGenerator>();
+            _ePAODataHelper = new EPAODataHelper(_context);
             VerifyPage();
         }
 
         public AS_SearchEmployerAddress EnterAchievementDateAndContinue()
         {
-            _formCompletionHelper.EnterText(DayTextBox, _randomDataGenerator.GetCurrentDay());
-            _formCompletionHelper.EnterText(MonthTextBox, _randomDataGenerator.GetCurrentMonth());
-            _formCompletionHelper.EnterText(YearTextBox, _randomDataGenerator.GetCurrentYear());
+            _ePAODataHelper.EnterDate(DayTextBox, _randomDataGenerator.GetCurrentDay());
+            _ePAODataHelper.EnterDate(MonthTextBox, _randomDataGenerator.GetCurrentMonth());
+            _ePAODataHelper.EnterDate(YearTextBox, _randomDataGenerator.GetCurrentYear());
             _formCompletionHelper.Click(ContinueButton);
             return new AS_SearchEmployerAddress(_context);
         }

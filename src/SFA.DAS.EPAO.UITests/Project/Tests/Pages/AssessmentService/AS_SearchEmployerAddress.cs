@@ -2,6 +2,7 @@
 using TechTalk.SpecFlow;
 using SFA.DAS.UI.FrameworkHelpers;
 using SFA.DAS.UI.Framework.TestSupport;
+using SFA.DAS.EPAO.UITests.Project.Helpers;
 
 namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
 {
@@ -15,6 +16,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
         private readonly FormCompletionHelper _formCompletionHelper;
         private readonly PageInteractionHelper _pageInteractionHelper;
         private readonly RandomDataGenerator _randomDataGenerator;
+        private readonly EPAODataHelper _ePAODataHelper;
         #endregion
 
         #region Locators
@@ -30,21 +32,15 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
             _formCompletionHelper = context.Get<FormCompletionHelper>();
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _randomDataGenerator = context.Get<RandomDataGenerator>();
+            _ePAODataHelper = new EPAODataHelper(_context);
             VerifyPage();
         }
 
         public AS_SearchEmployerAddress SearchAndSelectEmployerAddress()
         {
             _formCompletionHelper.EnterText(AddressSearchTextBox, "CV1 2WT");
-
-            _formCompletionHelper.ClickElement(() =>
-            {
-                var postCodeAutocompleteAddresses = _pageInteractionHelper.FindElements(PostCodeAutocompleteElements);
-                return postCodeAutocompleteAddresses[_randomDataGenerator.GenerateRandomNumberBetweenTwoValues(0, postCodeAutocompleteAddresses.Count - 1)];
-            });
-
+            _ePAODataHelper.ClickAddressFromAutoSuggestOptions(PostCodeAutocompleteElements);
             _pageInteractionHelper.WaitForDynamicElementToAppear(SelectedAddressPanel);
-
             return this;
         }
 

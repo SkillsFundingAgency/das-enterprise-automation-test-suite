@@ -28,8 +28,8 @@ namespace SFA.DAS.EPAO.UITests.Project
             var url = _config.EPAOAssessmentServiceUrl;
             _webDriver.Navigate().GoToUrl(url);
 
-            var ePAODataHelper = new EPAODataHelper(_config, _sqlDatabaseConnectionHelper);
-            _context.Set(ePAODataHelper);
+            var ePAOSqlDataHelper = new EPAOSqlDataHelper(_config, _sqlDatabaseConnectionHelper);
+            _context.Set(ePAOSqlDataHelper);
         }
     }
 }

@@ -109,20 +109,10 @@ namespace SFA.DAS.UI.FrameworkHelpers
                 .Select(s => s[random.Next(s.Length)]).ToArray());
         }
 
-        public int GetCurrentDay()
-        {
-            DateTime date = DateTime.Now;
-            return date.Day;
-        }
-        public int GetCurrentMonth()
-        {
-            DateTime date = DateTime.Now;
-            return date.Month;
-        }
-        public int GetCurrentYear()
-        {
-            DateTime date = DateTime.Now;
-            return date.Year;
-        }
+        public int GetCurrentDay() => DateTime.Now.Day;
+
+        public int GetCurrentMonth() => DateTime.Now.Month;
+
+        public int GetCurrentYear() => DateTime.Now.Year;
     }
 }

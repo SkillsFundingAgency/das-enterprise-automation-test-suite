@@ -1,25 +1,31 @@
-﻿using SFA.DAS.UI.FrameworkHelpers;
-using System;
+﻿using OpenQA.Selenium;
+using SFA.DAS.UI.FrameworkHelpers;
+using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EPAO.UITests.Project.Helpers
 {
-    class EPAODataHelper
+    public class EPAODataHelper
     {
-        private readonly SqlDatabaseConnectionHelper _sqlDatabase;
-        private readonly string _connectionString;
+        private readonly RandomDataGenerator _randomDataGenerator;
+        private readonly FormCompletionHelper _formCompletionHelper;
+        private readonly PageInteractionHelper _pageInteractionHelper;
 
-        public EPAODataHelper(EPAOConfig ePAOConfig, SqlDatabaseConnectionHelper sqlDatabase)
+        public EPAODataHelper(ScenarioContext context)
         {
-            _sqlDatabase = sqlDatabase;
-            _connectionString = ePAOConfig.EPAOAssessorDbConnectionString;
+            _randomDataGenerator = context.Get<RandomDataGenerator>();
+            _formCompletionHelper = context.Get<FormCompletionHelper>();
+            _pageInteractionHelper = context.Get<PageInteractionHelper>();
         }
 
-        public void DeleteCertificate(String uln)
+        public void ClickAddressFromAutoSuggestOptions(By PostCodeAutocompleteElements)
         {
-            ExecuteSqlCommand($"DELETE FROM [CertificateLogs] WHERE CertificateId IN (SELECT Id FROM [Certificates] WHERE ULN = '{uln}')");
-            ExecuteSqlCommand($"DELETE FROM [Certificates] WHERE ULN = '{uln}'");
+            _formCompletionHelper.ClickElement(() =>
+            {
+                var postCodeAutocompleteAddresses = _pageInteractionHelper.FindElements(PostCodeAutocompleteElements);
+                return postCodeAutocompleteAddresses[_randomDataGenerator.GenerateRandomNumberBetweenTwoValues(0, postCodeAutocompleteAddresses.Count - 1)];
+            });
         }
 
-        private void ExecuteSqlCommand(string queryToExecute) => _sqlDatabase.ExecuteSqlCommand(_connectionString, queryToExecute);
+        public void EnterDate(By locator, int text) => _formCompletionHelper.EnterText(locator, text);
     }
 }
