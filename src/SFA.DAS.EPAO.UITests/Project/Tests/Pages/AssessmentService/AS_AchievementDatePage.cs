@@ -1,8 +1,8 @@
 ﻿using OpenQA.Selenium;
 using TechTalk.SpecFlow;
-using SFA.DAS.UI.FrameworkHelpers;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.EPAO.UITests.Project.Helpers;
+using System;
 
 namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
 {
@@ -13,8 +13,6 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
-        private readonly RandomDataGenerator _randomDataGenerator;
-        private readonly FormCompletionHelper _formCompletionHelper;
         private readonly EPAODataHelper _ePAODataHelper;
         #endregion
 
@@ -22,24 +20,21 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
         private By DayTextBox => By.Id("Day");
         private By MonthTextBox => By.Id("Month");
         private By YearTextBox => By.Id("Year");
-        private By ContinueButton => By.CssSelector(".govuk-button");
         #endregion
 
         public AS_AchievementDatePage(ScenarioContext context) : base(context)
         {
             _context = context;
-            _formCompletionHelper = context.Get<FormCompletionHelper>();
-            _randomDataGenerator = context.Get<RandomDataGenerator>();
             _ePAODataHelper = new EPAODataHelper(_context);
             VerifyPage();
         }
 
         public AS_SearchEmployerAddress EnterAchievementDateAndContinue()
         {
-            _ePAODataHelper.EnterDate(DayTextBox, _randomDataGenerator.GetCurrentDay());
-            _ePAODataHelper.EnterDate(MonthTextBox, _randomDataGenerator.GetCurrentMonth());
-            _ePAODataHelper.EnterDate(YearTextBox, _randomDataGenerator.GetCurrentYear());
-            _formCompletionHelper.Click(ContinueButton);
+            _ePAODataHelper.EnterDate(DayTextBox, DateTime.Now.Day);
+            _ePAODataHelper.EnterDate(MonthTextBox, DateTime.Now.Month);
+            _ePAODataHelper.EnterDate(YearTextBox, DateTime.Now.Year);
+            Continue();
             return new AS_SearchEmployerAddress(_context);
         }
     }

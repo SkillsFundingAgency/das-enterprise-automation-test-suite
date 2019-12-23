@@ -10,6 +10,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
     {
         #region Helpers and Context
         private readonly PageInteractionHelper _pageInteractionHelper;
+        private readonly FormCompletionHelper _formCompletionHelper;
         private readonly FrameworkConfig _frameworkConfig;
         private readonly IWebDriver _webDriver;
         private readonly ScreenShotTitleGenerator _screenShotTitleGenerator;
@@ -18,6 +19,8 @@ namespace SFA.DAS.UI.Framework.TestSupport
         #endregion
 
         protected virtual By PageHeader => By.CssSelector(".govuk-heading-xl, .heading-xlarge, .govuk-heading-l, .govuk-panel__title");
+        
+        protected virtual By ContinueButton => By.CssSelector(".govuk-button");
 
         protected abstract string PageTitle { get; }
 
@@ -26,6 +29,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
             _frameworkConfig = context.Get<FrameworkConfig>();
             _webDriver = context.GetWebDriver();
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
+            _formCompletionHelper = context.Get<FormCompletionHelper>();
             _screenShotTitleGenerator = context.Get<ScreenShotTitleGenerator>();
             var objectContext = context.Get<ObjectContext>();
             _directory = objectContext.GetDirectory();
@@ -65,6 +69,11 @@ namespace SFA.DAS.UI.Framework.TestSupport
             }
 
             return func.Invoke();
+        }
+
+        protected void Continue()
+        {
+            _formCompletionHelper.Click(ContinueButton);
         }
     }
 }

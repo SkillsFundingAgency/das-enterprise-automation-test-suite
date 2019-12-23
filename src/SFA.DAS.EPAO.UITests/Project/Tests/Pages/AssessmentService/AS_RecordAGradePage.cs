@@ -17,7 +17,6 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
         #region Locators
         private By FamilyNameTextBox => By.Name("Surname");
         private By ULNTextBox => By.Name("Uln");
-        private By ContinueButton => By.Id("button-search");
         #endregion
 
         public AS_RecordAGradePage(ScenarioContext context) : base(context)
@@ -31,7 +30,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
         {
             _formCompletionHelper.EnterText(FamilyNameTextBox, familyName);
             _formCompletionHelper.EnterText(ULNTextBox, uLN);
-            _formCompletionHelper.Click(ContinueButton);
+            Continue();
             return new AS_ConfirmApprenticePage(_context);
         }
     }

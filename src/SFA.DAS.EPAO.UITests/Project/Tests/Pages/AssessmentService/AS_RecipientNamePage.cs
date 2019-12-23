@@ -18,7 +18,6 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
         #region Locators
         private By RecipientNameTextBox => By.Name("Name");
         private By DepartmentTextBox => By.Name("Dept");
-        private By ContinueButton => By.CssSelector(".govuk-button");
         #endregion
 
         public AS_RecipientNamePage(ScenarioContext context) : base(context)
@@ -32,7 +31,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
         {
             _formCompletionHelper.EnterText(RecipientNameTextBox, "Mr Smith");
             _formCompletionHelper.EnterText(DepartmentTextBox, "IT");
-            _formCompletionHelper.Click(ContinueButton);
+            Continue();
             return new AS_CheckAndSubmitAssessmentPage(_context);
         }
     }

@@ -14,8 +14,6 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
         #region Helpers and Context
         private readonly ScenarioContext _context;
         private readonly FormCompletionHelper _formCompletionHelper;
-        private readonly PageInteractionHelper _pageInteractionHelper;
-        private readonly RandomDataGenerator _randomDataGenerator;
         private readonly EPAODataHelper _ePAODataHelper;
         #endregion
 
@@ -23,15 +21,12 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
         private By AddressSearchTextBox => By.Id("postcode-search");
         private By PostCodeAutocompleteElements => By.CssSelector(".ui-menu-item");
         private By SelectedAddressPanel => By.CssSelector(".js-address-panel");
-        private By ContinueButton => By.CssSelector(".govuk-button");
         #endregion
 
         public AS_SearchEmployerAddress(ScenarioContext context) : base(context)
         {
             _context = context;
             _formCompletionHelper = context.Get<FormCompletionHelper>();
-            _pageInteractionHelper = context.Get<PageInteractionHelper>();
-            _randomDataGenerator = context.Get<RandomDataGenerator>();
             _ePAODataHelper = new EPAODataHelper(_context);
             VerifyPage();
         }
@@ -40,13 +35,13 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
         {
             _formCompletionHelper.EnterText(AddressSearchTextBox, "CV1 2WT");
             _ePAODataHelper.ClickAddressFromAutoSuggestOptions(PostCodeAutocompleteElements);
-            _pageInteractionHelper.WaitForDynamicElementToAppear(SelectedAddressPanel);
+            VerifyPage(SelectedAddressPanel);
             return this;
         }
 
         public AS_ConfirmAddressPage ClickContinueInSearchEmployerAddressPage()
         {
-            _formCompletionHelper.Click(ContinueButton);
+            Continue();
             return new AS_ConfirmAddressPage(_context);
         }
     }

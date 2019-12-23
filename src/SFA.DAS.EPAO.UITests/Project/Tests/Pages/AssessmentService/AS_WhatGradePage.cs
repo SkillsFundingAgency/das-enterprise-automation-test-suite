@@ -18,7 +18,6 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
 
         #region Locators
         private By PassRadioButton => By.Id("Pass");
-        private By ContinueButton => By.CssSelector(".govuk-button");
         #endregion
 
         public AS_WhatGradePage(ScenarioContext context) : base(context)
@@ -29,15 +28,10 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
             VerifyPage();
         }
 
-        private void ClickContinueButton()
-        {
-            _formCompletionHelper.Click(ContinueButton);
-        }
-
         public AS_AchievementDatePage SelectPassAndContinueInGradeSelectionPage()
         {
             _formCompletionHelper.ClickElement(() => _pageInteractionHelper.FindElement(PassRadioButton));
-            ClickContinueButton();
+            Continue();
             return new AS_AchievementDatePage(_context);
         }
     }

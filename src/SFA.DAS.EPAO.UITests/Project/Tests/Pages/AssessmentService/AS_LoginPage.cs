@@ -18,7 +18,6 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
         #region Locators
         private By EmailAddressTextBox => By.Id("Username");
         private By PasswordTextBox => By.Id("Password");
-        private By SignInButton => By.ClassName("govuk-button");
         #endregion
 
         public AS_LoginPage(ScenarioContext context) : base(context)
@@ -33,7 +32,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
         {
             _formCompletionHelper.EnterText(EmailAddressTextBox, _config.EPAOAssessorLoginUsername);
             _formCompletionHelper.EnterText(PasswordTextBox, _config.EPAOAssessorLoginPassword);
-            _formCompletionHelper.Click(SignInButton);
+            Continue();
             return new AS_LoggedInHomePage(_context);
         }
     }
