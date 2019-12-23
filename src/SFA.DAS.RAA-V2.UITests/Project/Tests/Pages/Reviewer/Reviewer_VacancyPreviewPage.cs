@@ -26,6 +26,8 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Reviewer
 
         private By EmployerNameInAboutTheEmployerSection => By.XPath("//div[@id='EmployerName']/p");
 
+        private By DisabilityConfident => By.CssSelector("img.disability-confident-logo");
+
         public Reviewer_VacancyPreviewPage(ScenarioContext context) : base(context)
         {
             _objectContext = context.Get<ObjectContext>();
@@ -52,6 +54,12 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Reviewer
             var empName = _objectContext.GetEmployerName();
             VerifyPage(EmployerName, empName);
             VerifyPage(EmployerNameInAboutTheEmployerSection, empName);
+            return this;
+        }
+
+        public Reviewer_VacancyPreviewPage VerifyDisabilityConfident()
+        {
+            VerifyPage(DisabilityConfident);
             return this;
         }
     }

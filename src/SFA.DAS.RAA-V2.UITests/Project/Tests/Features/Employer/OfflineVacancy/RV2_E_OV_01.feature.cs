@@ -88,7 +88,7 @@ this.ScenarioInitialize(scenarioInfo);
 #line 7
  testRunner.Given("the Employer creates an offline vacancy with disability confidence", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 8
- testRunner.Then("the Reviewer Approves the vacancy", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the Reviewer verifies disability confident and approves the vacancy", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

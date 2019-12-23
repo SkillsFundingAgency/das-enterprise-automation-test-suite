@@ -16,6 +16,8 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer
 
         private By EmployerNameInAboutTheEmployerSection => By.CssSelector("div.govuk-grid-column-two-thirds > p:nth-child(4)");
 
+        private By DisabilityConfident => By.CssSelector("img.disability-confident-logo");
+
         #region Helpers and Context
         private readonly ObjectContext _objectContext;
         private readonly VacancyTitleDatahelper _titleDatahelper;
@@ -33,6 +35,12 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer
             var empName = _objectContext.GetEmployerName();
             VerifyPage(EmployerName, empName);
             VerifyPage(EmployerNameInAboutTheEmployerSection, empName);
+            return this;
+        }
+
+        public ViewVacancyPage VerifyDisabilityConfident()
+        {
+            VerifyPage(DisabilityConfident);
             return this;
         }
     }

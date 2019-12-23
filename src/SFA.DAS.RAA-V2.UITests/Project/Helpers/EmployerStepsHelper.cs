@@ -34,7 +34,7 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Helpers
 
             SubmitVacancy(previewPage);
 
-            SearchAnyVacancy().NavigateToViewVacancyPage();
+            SearchAnyVacancy().NavigateToViewVacancyPage().VerifyDisabilityConfident();
         }
 
 

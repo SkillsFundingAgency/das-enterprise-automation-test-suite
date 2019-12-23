@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.UI.FrameworkHelpers;
 using System;
 using TechTalk.SpecFlow;
 
@@ -10,11 +11,13 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
+        private readonly PageInteractionHelper _pageInteractionhelper;
         #endregion
 
         public ImportantDatesPage(ScenarioContext context) : base(context)
         {
             _context = context;
+            _pageInteractionhelper = context.Get<PageInteractionHelper>();
         }
 
         public DurationPage EnterImportantDates(bool disabilityConfidence)
@@ -24,7 +27,7 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer
 
             if (disabilityConfidence)
             {
-                formCompletionHelper.Click(IsDisabilityConfident);
+                formCompletionHelper.ClickElement(() => _pageInteractionhelper.FindElement(IsDisabilityConfident));
             }
 
             Continue();
