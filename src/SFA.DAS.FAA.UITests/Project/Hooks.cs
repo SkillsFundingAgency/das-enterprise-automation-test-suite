@@ -2,6 +2,7 @@
 using SFA.DAS.RAA.DataGenerator;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
+using System.Linq;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.FAA.UITests.Project
@@ -21,7 +22,9 @@ namespace SFA.DAS.FAA.UITests.Project
         {
             var random = _context.Get<RandomDataGenerator>();
 
-            _context.Set(new VacancyTitleDatahelper(random));
+            bool isCloneVacancy = _context.ScenarioInfo.Tags.Contains("clonevacancy");
+
+            _context.Set(new VacancyTitleDatahelper(random, isCloneVacancy));
 
             _context.Set(new FAADataHelper(random));
 

@@ -10,6 +10,9 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.StepDefinitions
 
         public EmployerSteps(ScenarioContext context) => _employerStepsHelper = new EmployerStepsHelper(context);
 
+        [Given(@"the Employer clones and creates a vacancy")]
+        public void GivenTheEmployerClonesAndCreatesAVacancy() => _employerStepsHelper.CloneAVacancy();
+
         [Given(@"the Employer can create a vacancy by entering all the Optional fields")]
         public void GivenTheEmployerCanCreateAVacancyByEnteringAllTheOptionalFields() => _employerStepsHelper.CreateANewVacancy("anonymous", true, true);
         

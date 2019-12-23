@@ -55,7 +55,7 @@ namespace SFA.DAS.FAA.UITests.Project
 
         public static void SetVacancyTitle(this ObjectContext objectContext, string value)
         {
-            objectContext.Set(VacancyTitle, value);
+            objectContext.Replace(VacancyTitle, value);
         }
 
         public static string GetVacancyTitle(this ObjectContext objectContext)

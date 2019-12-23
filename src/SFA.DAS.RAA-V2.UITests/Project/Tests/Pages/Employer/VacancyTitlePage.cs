@@ -24,10 +24,21 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer
 
         public ApprenticeshipTrainingPage EnterVacancyTitle()
         {
+            ChangeVacancyTitle();
+            return new ApprenticeshipTrainingPage(_context);
+        }
+
+        public VacancyPreviewPart2Page UpdateVacancyTitle()
+        {
+            ChangeVacancyTitle();
+            return new VacancyPreviewPart2Page(_context);
+        }
+
+        private void ChangeVacancyTitle()
+        {
             formCompletionHelper.EnterText(Title, $"{dataHelper.VacancyTitle}");
             Continue();
             _objectContext.SetVacancyTitle(dataHelper.VacancyTitle);
-            return new ApprenticeshipTrainingPage(_context);
         }
     }
 }
