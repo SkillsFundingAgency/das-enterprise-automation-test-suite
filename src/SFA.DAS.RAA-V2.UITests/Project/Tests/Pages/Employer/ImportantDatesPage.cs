@@ -1,9 +1,9 @@
-﻿using System;
+﻿using OpenQA.Selenium;
+using System;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer
 {
-
     public class ImportantDatesPage : VacancyDatesBasePage
     {
         protected override string PageTitle => "Important dates";
@@ -17,10 +17,16 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer
             _context = context;
         }
 
-        public DurationPage EnterImportantDates()
+        public DurationPage EnterImportantDates(bool disabilityConfidence)
         {
             ClosingDate(dataHelper.VacancyClosing);
             StartDate(dataHelper.VacancyStart);
+
+            if (disabilityConfidence)
+            {
+                formCompletionHelper.Click(IsDisabilityConfident);
+            }
+
             Continue();
             return new DurationPage(_context);
         }

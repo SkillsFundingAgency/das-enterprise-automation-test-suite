@@ -18,6 +18,26 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Helpers
             _homePageStepsHelper = new HomePageStepsHelper(context);
         }
 
+        internal void CreateOfflineVacancy(bool disabilityConfidence)
+        {
+            var employernamePage = SelectOrganisation();
+
+            var locationPage = ChooseEmployerName(employernamePage, string.Empty);
+
+            var previewPage = locationPage.ChooseAddress(true)
+                .EnterImportantDates(disabilityConfidence)
+                .EnterDuration("52", "40")
+                .SelectNationalMinimumWage()
+                .PreviewVacancy();
+
+            previewPage = EnterVacancyPreviewFields(previewPage, false, false);
+
+            SubmitVacancy(previewPage);
+
+            SearchAnyVacancy().NavigateToViewVacancyPage();
+        }
+
+
         internal void CloneAVacancy()
         {
           var previewPage = GoToRecruitmentHomePage()
@@ -54,12 +74,12 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Helpers
             var locationPage = ChooseEmployerName(employernamePage, employername);
 
             var previewPage = locationPage.ChooseAddress(isEmployerAddress)
-                .EnterImportantDates()
+                .EnterImportantDates(false)
                 .EnterDuration("52", "40")
                 .SelectNationalMinimumWage()
                 .PreviewVacancy();
 
-            previewPage = EnterVacancyPreviewFields(previewPage, optionalFields);
+            previewPage = EnterVacancyPreviewFields(previewPage, true, optionalFields);
 
             SubmitVacancy(previewPage);
 
@@ -80,7 +100,7 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Helpers
 
         private ManageVacancyPage SearchAnyVacancy() => new RecruitmentHomePage(_context, true).SearchAnyVacancy();
 
-        private VacancyPreviewPart2Page EnterMandatoryFields(VacancyPreviewPart2Page previewPage)
+        private VacancyPreviewPart2Page EnterMandatoryFields(VacancyPreviewPart2Page previewPage, bool isApplicationMethodFAA)
         {
             previewPage
                 .AddBriefOverview()
@@ -93,16 +113,16 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Helpers
                 .EnterQualifications()
                 .ConfirmQualifications()
                 .AddApplicationProcess()
-                .ApplicationMethodFAA()
+                .ApplicationMethod(isApplicationMethodFAA)
                 .AddEmployerDescription()
                 .EnterEmployerDescription();
 
             return new VacancyCompletedAllSectionsPage(_context);
         }
 
-        private VacancyPreviewPart2Page EnterVacancyPreviewFields(VacancyPreviewPart2Page previewPage, bool optionalFields)
+        private VacancyPreviewPart2Page EnterVacancyPreviewFields(VacancyPreviewPart2Page previewPage, bool isApplicationMethodFAA, bool optionalFields)
         {
-            previewPage = EnterMandatoryFields(previewPage);
+            previewPage = EnterMandatoryFields(previewPage, isApplicationMethodFAA);
             
             return optionalFields ? EnterOptionalFields(previewPage) : previewPage;
         }
