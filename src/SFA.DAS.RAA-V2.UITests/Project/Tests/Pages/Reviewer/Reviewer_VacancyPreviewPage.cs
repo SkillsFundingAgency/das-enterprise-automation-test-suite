@@ -1,13 +1,14 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.FAA.UITests.Project;
 using SFA.DAS.RAA.DataGenerator;
+using SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Common;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Reviewer
 {
-    public class Reviewer_VacancyPreviewPage : BasePage
+    public class Reviewer_VacancyPreviewPage : VerifyDetailsBasePage
     {
         protected override string PageTitle => _vacancyTitleDatahelper.VacancyTitle;
 
@@ -22,11 +23,11 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Reviewer
 
         private By SubmitButton => By.CssSelector("#submit-button");
 
-        private By EmployerName => By.ClassName("govuk-caption-xl");
+        protected override By EmployerName => By.ClassName("govuk-caption-xl");
 
-        private By EmployerNameInAboutTheEmployerSection => By.XPath("//div[@id='EmployerName']/p");
+        protected override By EmployerNameInAboutTheEmployerSection => By.XPath("//div[@id='EmployerName']/p");
 
-        private By DisabilityConfident => By.CssSelector("img.disability-confident-logo");
+        protected override By DisabilityConfident => By.CssSelector("img.disability-confident-logo");
 
         public Reviewer_VacancyPreviewPage(ScenarioContext context) : base(context)
         {
@@ -49,17 +50,15 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Reviewer
             _formCompletionHelper.Click(SubmitButton);
         }
 
-        public Reviewer_VacancyPreviewPage VerifyEmployerName()
+        public new Reviewer_VacancyPreviewPage VerifyEmployerName()
         {
-            var empName = _objectContext.GetEmployerName();
-            VerifyPage(EmployerName, empName);
-            VerifyPage(EmployerNameInAboutTheEmployerSection, empName);
+            base.VerifyEmployerName();
             return this;
         }
 
-        public Reviewer_VacancyPreviewPage VerifyDisabilityConfident()
+        public new Reviewer_VacancyPreviewPage VerifyDisabilityConfident()
         {
-            VerifyPage(DisabilityConfident);
+            base.VerifyDisabilityConfident();
             return this;
         }
     }
