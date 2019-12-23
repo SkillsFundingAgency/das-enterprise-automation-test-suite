@@ -15,7 +15,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         #endregion
 
         private By UKProviderReferenceNumberText => By.Id("Ukprn");
-        private By ContinueButton => By.CssSelector(".govuk-button");
 
         public SearchForATrainingProviderPage(ScenarioContext context) : base(context)
         {
@@ -27,9 +26,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         internal ConfirmTrainingProviderUnderPermissionsPage SearchForATrainingProvider(string ukprn)
         {
             _formCompletionHelper.EnterText(UKProviderReferenceNumberText, ukprn);
-            _formCompletionHelper.ClickElement(ContinueButton);
+            Continue();
             return new ConfirmTrainingProviderUnderPermissionsPage(_context);
         }
     }
 }
-
