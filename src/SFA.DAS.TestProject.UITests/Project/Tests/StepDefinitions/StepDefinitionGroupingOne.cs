@@ -1,5 +1,6 @@
 ﻿using SFA.DAS.TestProject.UITests.Project.Tests.Pages;
 using SFA.DAS.UI.Framework.TestSupport;
+using SFA.DAS.Configuration;
 using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 using TestContext = NUnit.Framework.TestContext;

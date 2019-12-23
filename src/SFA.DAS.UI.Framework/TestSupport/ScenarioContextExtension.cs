@@ -1,6 +1,7 @@
 ﻿using TechTalk.SpecFlow;
 using OpenQA.Selenium;
 using SFA.DAS.UI.FrameworkHelpers;
+using SFA.DAS.Configuration;
 
 namespace SFA.DAS.UI.Framework.TestSupport
 {

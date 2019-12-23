@@ -36,7 +36,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SFA.DAS.UI.FrameworkHelpers\SFA.DAS.UI.FrameworkHelpers.csproj" />
+    <ProjectReference Include="..\SFA.DAS.Configuration\SFA.DAS.Configuration.csproj" />
   </ItemGroup>
 
   <ItemGroup>

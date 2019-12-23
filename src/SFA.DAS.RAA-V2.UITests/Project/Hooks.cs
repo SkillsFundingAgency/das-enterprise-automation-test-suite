@@ -1,6 +1,6 @@
 ﻿using SFA.DAS.FAA.UITests.Project;
 using SFA.DAS.RAA.DataGenerator;
-using SFA.DAS.UI.Framework.TestSupport;
+using SFA.DAS.Configuration;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 

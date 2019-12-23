@@ -1,5 +1,5 @@
-﻿using NUnit.Framework;
-using OpenQA.Selenium.Remote;
+﻿using OpenQA.Selenium.Remote;
+using SFA.DAS.Configuration;
 using SFA.DAS.UI.Framework.TestSupport;
 using System.IO;
 using System.Reflection;

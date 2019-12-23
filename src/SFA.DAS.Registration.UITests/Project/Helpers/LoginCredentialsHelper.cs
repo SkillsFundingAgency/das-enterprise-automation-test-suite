@@ -1,5 +1,5 @@
 ﻿using NUnit.Framework;
-using SFA.DAS.UI.Framework.TestSupport;
+using SFA.DAS.Configuration;
 
 namespace SFA.DAS.Registration.UITests.Project.Helpers
 {

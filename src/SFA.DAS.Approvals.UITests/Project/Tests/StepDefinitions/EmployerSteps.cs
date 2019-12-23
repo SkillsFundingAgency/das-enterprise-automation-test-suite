@@ -1,7 +1,7 @@
 ﻿using SFA.DAS.Approvals.UITests.Project.Helpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
-using SFA.DAS.UI.Framework.TestSupport;
+using SFA.DAS.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Text;

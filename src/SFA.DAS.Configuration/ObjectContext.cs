@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace SFA.DAS.UI.Framework.TestSupport
+namespace SFA.DAS.Configuration
 {
     public class ObjectContext
     {
