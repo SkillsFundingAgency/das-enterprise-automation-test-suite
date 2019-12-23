@@ -10,6 +10,9 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.StepDefinitions
 
         public EmployerSteps(ScenarioContext context) => _employerStepsHelper = new EmployerStepsHelper(context);
 
+        [Given(@"the Employer creates an offline vacancy with disability confidence")]
+        public void GivenTheEmployerCreatesAnOfflineVacancyWithDisabilityConfidence() => _employerStepsHelper.CreateOfflineVacancy(true);
+
         [Given(@"the Employer clones and creates a vacancy")]
         public void GivenTheEmployerClonesAndCreatesAVacancy() => _employerStepsHelper.CloneAVacancy();
 

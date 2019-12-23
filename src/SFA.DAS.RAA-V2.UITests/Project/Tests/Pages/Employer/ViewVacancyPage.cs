@@ -1,38 +1,41 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.FAA.UITests.Project;
 using SFA.DAS.RAA.DataGenerator;
-using SFA.DAS.UI.Framework.TestSupport;
+using SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Common;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer
 {
-    public class ViewVacancyPage : BasePage
+    public class ViewVacancyPage : VerifyDetailsBasePage
     {
         protected override By PageHeader => By.CssSelector("#vacancy-header");
 
         protected override string PageTitle => _titleDatahelper.VacancyTitle;
 
-        private By EmployerName => By.CssSelector(".govuk-caption-xl");
+        protected override By EmployerName => By.CssSelector(".govuk-caption-xl");
 
-        private By EmployerNameInAboutTheEmployerSection => By.CssSelector("div.govuk-grid-column-two-thirds > p:nth-child(4)");
+        protected override By EmployerNameInAboutTheEmployerSection => By.CssSelector("div.govuk-grid-column-two-thirds > p:nth-child(4)");
+
+        protected override By DisabilityConfident => By.CssSelector("img.disability-confident-logo");
 
         #region Helpers and Context
-        private readonly ObjectContext _objectContext;
         private readonly VacancyTitleDatahelper _titleDatahelper;
         #endregion
 
         public ViewVacancyPage(ScenarioContext context) : base(context)
         {
-            _objectContext = context.Get<ObjectContext>();
             _titleDatahelper = context.Get<VacancyTitleDatahelper>();
             VerifyPage();
         }
 
-        public ViewVacancyPage VerifyEmployerName()
+        public new ViewVacancyPage VerifyEmployerName()
         {
-            var empName = _objectContext.GetEmployerName();
-            VerifyPage(EmployerName, empName);
-            VerifyPage(EmployerNameInAboutTheEmployerSection, empName);
+            base.VerifyEmployerName();
+            return this;
+        }
+
+        public new ViewVacancyPage VerifyDisabilityConfident()
+        {
+            base.VerifyDisabilityConfident();
             return this;
         }
     }

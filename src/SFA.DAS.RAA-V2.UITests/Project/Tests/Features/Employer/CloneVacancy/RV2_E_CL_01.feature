@@ -1,4 +1,4 @@
-﻿Feature: RV2_E_E2E_01
+﻿Feature: RV2_E_CL_01
 
 @raa-v2
 @clonevacancy
