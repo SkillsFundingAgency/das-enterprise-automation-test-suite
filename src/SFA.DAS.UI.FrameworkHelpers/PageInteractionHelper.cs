@@ -263,7 +263,5 @@ namespace SFA.DAS.UI.FrameworkHelpers
                 throw new Exception($"Page verification failed:{locator.ToString()} is not found");
             };
         }
-
-        public void WaitForDynamicElementToAppear(By locator) => _webDriverWaitHelper.WaitForElementToBeDisplayed(locator);
     }
 }
