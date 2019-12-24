@@ -42,13 +42,11 @@ namespace SFA.DAS.Registration.UITests.Project
         [BeforeScenario(Order = 22)]
         public void SetUpDataHelpers()
         {
-            var domainName = _context.ScenarioInfo.Tags.Contains("eoiaccount") ? "eoi.com" : "gmail.com";
-
             var dataHelper = new DataHelper(_config.TwoDigitProjectCode);
 
             _objectContext.SetDataHelper(dataHelper);
 
-            _registrationDatahelpers = new RegistrationDatahelpers(dataHelper.GatewayUsername, _config.RE_AccountPassword, domainName);
+            _registrationDatahelpers = new RegistrationDatahelpers(dataHelper.GatewayUsername, _config.RE_AccountPassword);
 
             _context.Set(_registrationDatahelpers);
 
