@@ -13,11 +13,12 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
         private readonly IConfigSection _configSection;
 
         private readonly ObjectContext _objectContext;
+
         public FrameworkConfigurationSetup(ScenarioContext context)
         {
             _context = context;
             _objectContext = context.Get<ObjectContext>();
-            _configSection = context.Get<ConfigSection>();
+            _configSection = context.Get<IConfigSection>();
         }
         
         [BeforeScenario(Order = 2)]

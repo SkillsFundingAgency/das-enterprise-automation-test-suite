@@ -5,9 +5,11 @@
     <RootNamespace>SFA.DAS.RAA_V2.UITests</RootNamespace>
     <IsPackable>false</IsPackable>
   </PropertyGroup>
-
+  
   <ItemGroup>
-    <Compile Include="..\NUnitConfigurator.cs" Link="NUnitConfigurator.cs" />
+    <Compile Include="..\NUnitConfigurator.cs" Link="NUnitConfigurator.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
