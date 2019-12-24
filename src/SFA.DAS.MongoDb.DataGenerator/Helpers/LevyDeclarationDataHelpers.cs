@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NUnit.Framework;
+using System;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.MongoDb.DataGenerator.Helpers
@@ -11,7 +12,7 @@ namespace SFA.DAS.MongoDb.DataGenerator.Helpers
 
         public static (decimal fraction, DateTime calculatedAt, Table levyDeclarations) TransferslevyFunds()
         {
-            var table = new Table("Year", "Month", "LevyDueYTD", "LevyAllowanceForFullYear", "SubmissionDate");
+            var table = GetTableHeader();
             table.AddRow("18-19", "10", "72000", "99000", "2019-01-15");
             table.AddRow("18-19", "11", "82000", "99000", "2019-02-15");
             table.AddRow("18-19", "12", "92000", "99000", "2019-03-15");
@@ -20,59 +21,54 @@ namespace SFA.DAS.MongoDb.DataGenerator.Helpers
 
         public static (decimal fraction, DateTime calculatedAt, Table levyDeclarations) LevyFunds()
         {
-            var table = new Table("Year", "Month", "LevyDueYTD", "LevyAllowanceForFullYear", "SubmissionDate");
+            var table = GetTableHeader();
             table.AddRow("19-20", "1", "62000", "80000", "2019-05-15");
             return (EnglishFraction, EnglishFractioncalculatedAt, table);
         }
 
         public static (decimal fraction, DateTime calculatedAt, Table levyDeclarations) LevyFunds(string duration, string levyPerMonth)
         {
-            var table = GetlevyDeclarations(duration, levyPerMonth);
-            return (EnglishFraction, EnglishFractioncalculatedAt, table);
+            (DateTime englishFractioncalculatedAt, Table levyDeclarations) = GetlevyDeclarations(duration, levyPerMonth);
+            return (EnglishFraction, englishFractioncalculatedAt, levyDeclarations);
         }
 
-        private static Table GetlevyDeclarations(string duration, string levyPerMonth)
+        private static Table GetTableHeader() => new Table("Year", "Month", "LevyDueYTD", "LevyAllowanceForFullYear", "SubmissionDate");
+
+        private static (DateTime calculatedAt, Table levyDeclarations) GetlevyDeclarations(string duration, string levyPerMonth)
         {
-            var table = new Table("Year", "Month", "LevyDueYTD", "LevyAllowanceForFullYear", "SubmissionDate");
+            var table = GetTableHeader();
 
-            var noOfMonths = int.Parse(duration);
-            for (int i = noOfMonths; i == 0; i--)
+            int.TryParse(duration, out int noOfMonths);
+            noOfMonths = noOfMonths == 0 ? 15 : noOfMonths;
+
+            int.TryParse(levyPerMonth, out int levyDueYTD);
+            levyDueYTD = levyDueYTD == 0 ? 10000 : levyDueYTD;
+
+            int levyAllowanceForFullYear = levyDueYTD * noOfMonths;
+
+            for (int i = 0; i < noOfMonths; i++)
             {
-                var date = DateTime.Now.AddMonths(-i);
-                table.AddRow(GetlevyDeclarations(date));
+                var date = DateTime.Now.AddMonths(i - noOfMonths);
+                int levythisMonth = levyDueYTD * (i + 1);
+
+                var levy = GetlevyDeclarations(date, levythisMonth, levyAllowanceForFullYear);
+                TestContext.Progress.WriteLine($"Levy Declarations: {string.Join(",", levy)}");
+                table.AddRow(levy);
             }
-
-
-            table.AddRow("19-20", "1", "62000", "80000", "2019-05-15");
-            return table;
+            var englishFractioncalculatedAt = DateTime.Now.AddMonths(-(noOfMonths + 1));
+            return (englishFractioncalculatedAt, table);
         }
 
-        private static string[] GetlevyDeclarations(DateTime dateTime)
+        public static string[] GetlevyDeclarations(DateTime date, int levyPerMonth, int levyAllowanceForFullYear)
         {
-            date
+            return new string[] { GetCurrentFinancialYear(date), GetCurrentFinancialMonth(date), levyPerMonth.ToString(), levyAllowanceForFullYear.ToString(), GetSubmissionDate(date) };
         }
 
-        private static string GetSubmissionDate(DateTime dateTime)
-        {
-            return $"{dateTime.Year.ToString()}-{dateTime.Month.ToString()}-15";
-        }
+        public static string GetSubmissionDate(DateTime dateTime) => $"{dateTime.Year.ToString()}-{dateTime.ToString("MM")}-15";
 
-
-        private static string GetMonth(DateTime dateTime)
+        public static string GetCurrentFinancialMonth(DateTime dateTime)
         {
-            int month = dateTime.Month - 3;
-            if (dateTime.Month == 3)
-            {
-                month = 12;
-            }
-            else if (dateTime.Month == 2)
-            {
-                month = 11;
-            }
-            else if (dateTime.Month == 1)
-            {
-                month = 10;
-            }
+            int month = dateTime.Month == 3 ? 12 : dateTime.Month == 2 ? 11 : dateTime.Month == 1 ? 10 : dateTime.Month - 3;
 
             return month.ToString();
         }
@@ -82,12 +78,13 @@ namespace SFA.DAS.MongoDb.DataGenerator.Helpers
             int CurrentYear = dateTime.Year;
             int PreviousYear = dateTime.Year - 1;
             int NextYear = dateTime.Year + 1;
-            string PreYear = PreviousYear.ToString("yy");
-            string NexYear = NextYear.ToString("yy");
-            string CurYear = CurrentYear.ToString("yy");
+            string PreYear = TrimYear(PreviousYear);
+            string NexYear = TrimYear(NextYear);
+            string CurYear = TrimYear(CurrentYear);
             string FinYear = dateTime.Month > 3 ? CurYear + "-" + NexYear : PreYear + "-" + CurYear;
-
             return FinYear.Trim();
         }
+
+        private static string TrimYear(int year) => year.ToString().Substring(2, 2);
     }
 }

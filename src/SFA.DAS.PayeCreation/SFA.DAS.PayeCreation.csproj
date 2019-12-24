@@ -7,10 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <SpecFlowObsoleteCodeBehindFiles Remove="Project\Tests\Features\PC_01_AddLevyPaye - Copy.feature.cs" />
-    <SpecFlowObsoleteCodeBehindFiles Remove="Project\Tests\Features\RE_CA_06_CreateLevyAccount.feature.cs" />
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="..\NUnitConfigurator.cs" Link="NUnitConfigurator.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
@@ -31,32 +27,15 @@
     <None Update="appsettings.Environment.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="appsettings.Project.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="SFA.DAS.PayeCreation.runtimeconfig.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="specflow.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Update="Project\Tests\Features\PC_02_AddLNonLevyPaye.feature.cs">
-      <DependentUpon>PC_02_AddLNonLevyPaye.feature</DependentUpon>
-    </Compile>
-    <Compile Update="Project\Tests\Features\PC_01_AddLevyPaye.feature.cs">
-      <DependentUpon>PC_01_AddLevyPaye.feature</DependentUpon>
-    </Compile>
-  </ItemGroup>
-
-  <ItemGroup>
-    <SpecFlowFeatureFiles Update="Project\Tests\Features\PC_02_AddLNonLevyPaye.feature">
-      <Visible>$(UsingMicrosoftNETSdk)</Visible>
-      <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
-    </SpecFlowFeatureFiles>
-    <SpecFlowFeatureFiles Update="Project\Tests\Features\PC_01_AddLevyPaye.feature">
-      <Visible>$(UsingMicrosoftNETSdk)</Visible>
-      <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
-    </SpecFlowFeatureFiles>
   </ItemGroup>
 
 </Project>
