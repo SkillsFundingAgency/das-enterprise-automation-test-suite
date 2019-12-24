@@ -13,8 +13,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private readonly FormCompletionHelper _formCompletionHelper;
         private readonly ScenarioContext _context;
         #endregion
+
         private By ConfirmDeleteOptions => By.CssSelector(".selection-button-radio");
-        private By ContinueButton => By.CssSelector(".button");
+        protected override By ContinueButton => By.CssSelector(".button");
 
         public ConfirmApprenticeDeletionPage(ScenarioContext context) : base(context)
         {
@@ -26,7 +27,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         internal ReviewYourCohortPage ConfirmDeleteAndSubmit()
         {
             _formCompletionHelper.SelectRadioOptionByForAttribute(ConfirmDeleteOptions, "DeleteConfirmed-True");
-            _formCompletionHelper.ClickElement(ContinueButton);
+            Continue();
             return new ReviewYourCohortPage(_context);
         }
     }

@@ -17,7 +17,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private readonly ScenarioContext _context;
         #endregion
 
-        private By ContinueButton => By.CssSelector(".button");
+        protected override By ContinueButton => By.CssSelector(".button");
 
         private By GoToHomePageRadioButton => By.CssSelector(".selection-button-radio");
 
@@ -31,7 +31,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         public HomePage GoToHomePage()
         {
             _formCompletionHelper.SelectRadioOptionByText(GoToHomePageRadioButton, "Go to the homepage");
-            _formCompletionHelper.ClickElement(ContinueButton);
+            Continue();
             return new HomePage(_context);
         }
     }

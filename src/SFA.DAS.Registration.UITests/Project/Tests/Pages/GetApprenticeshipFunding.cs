@@ -20,7 +20,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         private By DoNotAddPayeRadioButton => By.CssSelector("label[for=do-not-want-to-add-paye-scheme]");
 
-        private By ContinueButton => By.Id("submit-add-a-paye-scheme-button");
+        protected override By ContinueButton => By.Id("submit-add-a-paye-scheme-button");
 
         public GetApprenticeshipFunding(ScenarioContext context) : base(context)
         {
@@ -54,12 +54,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         private GetApprenticeshipFunding SelectDoNotAddPaye()
         {
             _formCompletionHelper.ClickElement(DoNotAddPayeRadioButton);
-            return this;
-        }
-
-        private GetApprenticeshipFunding Continue()
-        {
-            _formCompletionHelper.ClickElement(ContinueButton);
             return this;
         }
     }

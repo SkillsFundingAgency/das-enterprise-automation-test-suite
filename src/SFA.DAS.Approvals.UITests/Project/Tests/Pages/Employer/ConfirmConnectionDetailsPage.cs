@@ -13,8 +13,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private readonly ScenarioContext _context;
         #endregion
 
-
-        private By ContinueButton => By.CssSelector(".button");
+        protected override By ContinueButton => By.CssSelector(".button");
         private By ConnectWithReceivingEmpoyerOptions => By.CssSelector(".selection-button-radio");
         
         public ConfirmConnectionDetailsPage(ScenarioContext context) : base(context)
@@ -27,7 +26,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         public RequestSentConfirmPage SendTransferConnectionRequest()
         {
             _formCompletionHelper.SelectRadioOptionByText(ConnectWithReceivingEmpoyerOptions, "Yes, I want to send a request to connect");
-            _formCompletionHelper.ClickElement(ContinueButton);
+            Continue();
             return new RequestSentConfirmPage(_context);
         }
     }

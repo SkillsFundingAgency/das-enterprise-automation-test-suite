@@ -1,5 +1,4 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.Approvals.UITests.Project.Helpers;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.Configuration;
 using SFA.DAS.UI.FrameworkHelpers;
@@ -12,25 +11,17 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         protected override string PageTitle => "Choose an option";
 
         #region Helpers and Context
-        private readonly PageInteractionHelper _pageInteractionHelper;
         private readonly FormCompletionHelper _formCompletionHelper;
-        private readonly TableRowHelper _tableRowHelper;
         private readonly ScenarioContext _context;
-        private readonly ObjectContext _objectContext;
-        private readonly ApprenticeDataHelper _datahelper;
         #endregion
 
         private By CohortApproveOptions => By.CssSelector(".selection-button-radio");
-        private By ContinueButton => By.Id("paymentPlan");
+        protected override By ContinueButton => By.Id("paymentPlan");
 
         public ProviderChooseAnOptionPage(ScenarioContext context) : base(context)
         {
             _context = context;
-            _objectContext = context.Get<ObjectContext>();
-            _datahelper = context.Get<ApprenticeDataHelper>();
-            _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
-            _tableRowHelper = context.Get<TableRowHelper>();
             VerifyPage();
         }
 
@@ -61,7 +52,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private void SelectOption(string option)
         {
             _formCompletionHelper.SelectRadioOptionByForAttribute(CohortApproveOptions, option);
-            _formCompletionHelper.ClickElement(ContinueButton);
+            Continue();
         }
     }
 }

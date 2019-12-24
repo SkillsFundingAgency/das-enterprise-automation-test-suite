@@ -1,5 +1,4 @@
-﻿using System;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages;
@@ -11,9 +10,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
     public class SuccessfullyReservedFundingPage : ReservationIdBasePage
     {
         protected override string PageTitle => "You have successfully reserved funding for apprenticeship training";
-        private By SuccessMessage => By.CssSelector("govuk-panel--confirmation");
         private By AddApprenticeRadioButton => By.CssSelector("label[for=WhatsNext-add]");
-        private By ContinueButton => By.CssSelector(".govuk-button");
         private By GoToRadioButton => By.CssSelector(".govuk-radios__label");
 
         #region Helpers and Context
@@ -40,15 +37,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
             _formCompletionHelper.ClickElement(AddApprenticeRadioButton);
         }
 
-        private void ClickContinueButton()
-        {
-            _formCompletionHelper.ClickElement(ContinueButton);
-        }
-
         internal AddAnApprenitcePage AddApprentice()
         {
             ChooseToAddApprenticeRadioButton();
-            ClickContinueButton();
+            Continue();
             return new AddAnApprenitcePage(_context);
         }
 
@@ -58,11 +50,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
             return this;
         }
 
-
         internal AddApprenticeDetailsPage AddAnotherApprentice()
         {
             ChooseToAddApprenticeRadioButton();
-            ClickContinueButton();
+            Continue();
             return new AddApprenticeDetailsPage(_context);
         }
     }
