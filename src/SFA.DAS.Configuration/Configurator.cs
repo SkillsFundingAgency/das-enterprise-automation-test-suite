@@ -1,19 +1,19 @@
 ﻿using Microsoft.Extensions.Configuration;
 using System.IO;
 
-namespace SFA.DAS.UI.Framework.TestSupport
+namespace SFA.DAS.Configuration
 {
-    internal static class Configurator
+    public static class Configurator
     {
         private readonly static IConfigurationRoot _config;
 
         private readonly static IConfigurationRoot _hostingConfig;
 
-        internal readonly static bool IsVstsExecution;
+        public readonly static bool IsVstsExecution;
 
-        internal readonly static string EnvironmentName;
+        public readonly static string EnvironmentName;
 
-        internal readonly static string ProjectName;
+        public readonly static string ProjectName;
 
         static Configurator()
         {
@@ -29,7 +29,8 @@ namespace SFA.DAS.UI.Framework.TestSupport
         private static IConfigurationRoot InitializeConfig()
         {
             return ConfigurationBuilder()
-            .AddJsonFile("appsettings.json", true)
+            .AddJsonFile("appsettings.MongoDbConfig.json", true)
+            .AddJsonFile("appsettings.TimeOutConfig.json", true)
             .AddJsonFile("appsettings.BrowserStack.json", true)
             .AddJsonFile("appsettings.Project.json", true)
             .AddJsonFile("appsettings.Project.BrowserStack.json", true)

@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 
-namespace SFA.DAS.UI.Framework.TestSupport
+namespace SFA.DAS.Configuration
 {
     public class ConfigSection : IConfigSection
     {

@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFrameworks>netcoreapp2.2;netstandard2.0</TargetFrameworks>
   </PropertyGroup>
   
   <ItemGroup>
@@ -9,7 +9,7 @@
   </ItemGroup>
   
   <ItemGroup>
-    <None Update="appsettings.json">
+    <None Update="appsettings.MongoDbConfig.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
