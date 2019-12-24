@@ -44,6 +44,7 @@
   <ItemGroup>
     <ProjectReference Include="..\SFA.DAS.MongoDb.DataGenerator\SFA.DAS.MongoDb.DataGenerator.csproj" />
     <ProjectReference Include="..\SFA.DAS.UI.Framework\SFA.DAS.UI.Framework.csproj" />
+    <ProjectReference Include="..\SFA.DAS.Configuration\SFA.DAS.Configuration.csproj" />
   </ItemGroup>
 
 </Project>

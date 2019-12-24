@@ -22,6 +22,7 @@
 	<ProjectReference Include="..\SFA.DAS.RAA.DataGenerator\SFA.DAS.RAA.DataGenerator.csproj" />
 	<ProjectReference Include="..\SFA.DAS.Registration.UITests\SFA.DAS.Registration.UITests.csproj" />
 	<ProjectReference Include="..\SFA.DAS.UI.Framework\SFA.DAS.UI.Framework.csproj" />
+  <ProjectReference Include="..\SFA.DAS.Configuration\SFA.DAS.Configuration.csproj" />
   </ItemGroup>
 
   <ItemGroup>
