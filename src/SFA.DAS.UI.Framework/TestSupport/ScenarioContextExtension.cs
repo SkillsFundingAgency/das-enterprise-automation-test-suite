@@ -1,6 +1,5 @@
 ﻿using TechTalk.SpecFlow;
 using OpenQA.Selenium;
-using SFA.DAS.UI.FrameworkHelpers;
 using SFA.DAS.Configuration;
 
 namespace SFA.DAS.UI.Framework.TestSupport
@@ -19,7 +18,6 @@ namespace SFA.DAS.UI.Framework.TestSupport
         private const string TransfersProjectConfigKey = "transfersprojectconfigkey";
         private const string FATProjectConfigKey = "fatprojectconfigkey";
         private const string EPAOProjectConfigKey = "epaoprojectconfigkey";
-        private const string MongoDbConfigKey = "mongodbconfigkey";
         private const string WebDriverKey = "webdriverkey";
         #endregion
 
@@ -126,16 +124,6 @@ namespace SFA.DAS.UI.Framework.TestSupport
         public static void SetFAAConfig<T>(this ScenarioContext context, T value)
         {
             Set(context, value, FAAProjectConfigKey);
-        }
-
-        public static void SetMongoDbConfig(this ScenarioContext context, MongoDbConfig value)
-        {
-            Set(context, value, MongoDbConfigKey);
-        }
-
-        public static MongoDbConfig GetMongoDbConfig(this ScenarioContext context)
-        {
-            return Get<MongoDbConfig>(context, MongoDbConfigKey);
         }
 
         public static void SetEPAOConfig<T>(this ScenarioContext context, T value)
