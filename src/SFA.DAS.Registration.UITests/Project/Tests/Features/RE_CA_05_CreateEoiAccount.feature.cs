@@ -73,25 +73,35 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("RE_CA_05_Create EOI Account with PAYE Details")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
-        [NUnit.Framework.CategoryAttribute("eoiaccount")]
-        [NUnit.Framework.CategoryAttribute("regression")]
+        [NUnit.Framework.IgnoreAttribute("Ignored scenario")]
+        [NUnit.Framework.CategoryAttribute("//EOI")]
+        [NUnit.Framework.CategoryAttribute("functionality")]
+        [NUnit.Framework.CategoryAttribute("is")]
+        [NUnit.Framework.CategoryAttribute("being")]
+        [NUnit.Framework.CategoryAttribute("removed")]
+        [NUnit.Framework.CategoryAttribute("from")]
+        [NUnit.Framework.CategoryAttribute("09JAN2020")]
         public virtual void RE_CA_05_CreateEOIAccountWithPAYEDetails()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RE_CA_05_Create EOI Account with PAYE Details", null, new string[] {
-                        "addpayedetails",
-                        "eoiaccount",
-                        "regression"});
-#line 7
+                        "ignore",
+                        "//EOI",
+                        "functionality",
+                        "is",
+                        "being",
+                        "removed",
+                        "from",
+                        "09JAN2020"});
+#line 5
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 8
+#line 6
  testRunner.Given("I create an Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 9
+#line 7
  testRunner.When("I add paye details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 10
+#line 8
  testRunner.And("add eoi organisation details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 11
+#line 9
  testRunner.And("I do not sign the eoi agreement", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();

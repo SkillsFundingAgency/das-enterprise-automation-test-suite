@@ -15,7 +15,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private readonly ApprovalsConfig _config;
         #endregion
 
-        private By _ukprnField => By.CssSelector(".govuk-input");
+        private By UkprnField => By.CssSelector(".govuk-input");
 
         public AddTrainingProviderDetailsPage(ScenarioContext context): base(context)
         {
@@ -34,7 +34,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         private AddTrainingProviderDetailsPage EnterUkprn()
         {
-            _formCompletionHelper.EnterText(_ukprnField, _config.AP_ProviderUkprn);
+            _formCompletionHelper.EnterText(UkprnField, _config.AP_ProviderUkprn);
             return this;
         }
     }
