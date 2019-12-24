@@ -21,21 +21,20 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             VerifyPage();
         }
 
-
         private By ConfirmChangesOptions => By.CssSelector(".selection-button-radio");
-        private By ContinueButton => By.CssSelector(".button");
+        protected override By ContinueButton => By.CssSelector(".button");
 
         public EditedApprenticeDetailsPage SelectApproveChangesAndSubmit()
         {
             _formCompletionHelper.SelectRadioOptionByForAttribute(ConfirmChangesOptions, "changes-approve-true");
-            _formCompletionHelper.ClickElement(ContinueButton);
+            Continue();
             return new EditedApprenticeDetailsPage(_context);
         }
 
         public ApprenticeDetailsPage SelectRejectChangesAndSubmit()
         {
             _formCompletionHelper.SelectRadioOptionByForAttribute(ConfirmChangesOptions, "changes-approve-false");
-            _formCompletionHelper.ClickElement(ContinueButton);
+            Continue();
             return new ApprenticeDetailsPage(_context);
         }
     }

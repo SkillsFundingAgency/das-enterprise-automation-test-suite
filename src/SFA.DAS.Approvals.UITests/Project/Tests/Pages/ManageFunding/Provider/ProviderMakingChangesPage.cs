@@ -10,7 +10,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider
     {
         protected override string PageTitle => "You have successfully reserved funding for apprenticeship training";
 		private By GoToRadioButton => By.CssSelector(".govuk-radios__label");
-		private By ContinueButton => By.CssSelector(".govuk-button");
 
 		#region Helpers and Context
 		private readonly FormCompletionHelper _formCompletionHelper;
@@ -27,14 +26,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider
         internal ProviderHomePage GoToHomePage()
         {
             _formCompletionHelper.SelectRadioOptionByForAttribute(GoToRadioButton, "WhatsNext-home");
-            _formCompletionHelper.ClickElement(ContinueButton);
+            Continue();
             return new ProviderHomePage(_context);
         }
 
         internal ProviderAddApprenticeDetailsPage GoToAddApprenticeDetailsPage()
         {
             _formCompletionHelper.SelectRadioOptionByForAttribute(GoToRadioButton, "WhatsNext-add");
-            _formCompletionHelper.ClickElement(ContinueButton);
+            Continue();
             return new ProviderAddApprenticeDetailsPage(_context);
         }
 
@@ -43,6 +42,5 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider
             base.VerifySucessMessage();
             return this;
         }
-
     }
 }
