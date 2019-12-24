@@ -1,5 +1,4 @@
-﻿using SFA.DAS.PayeCreation.Project;
-using SFA.DAS.MongoDb.DataGenerator;
+﻿using SFA.DAS.MongoDb.DataGenerator;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -23,10 +22,7 @@ namespace SFA.DAS.PayeCreation.Project.Tests.StepDefinitions
         }
 
         [Given(@"I add non levy declarations")]
-        public void GivenIAddNonLevyDeclarations()
-        {
-            AddGatewayUsers();
-        }
+        public void GivenIAddNonLevyDeclarations() => AddGatewayUsers();
 
         [Given(@"I add levy declarations")]
         public void GivenIAddLevyDeclarations()
@@ -37,10 +33,6 @@ namespace SFA.DAS.PayeCreation.Project.Tests.StepDefinitions
             _mongoDbDataGenerator.AddLevyDeclarations(fraction, calculatedAt, levyDeclarations);
         }
 
-        private void AddGatewayUsers()
-        {
-            _mongoDbDataGenerator.AddGatewayUsers();
-        }
-
+        private void AddGatewayUsers() => _mongoDbDataGenerator.AddGatewayUsers();
     }
 }
