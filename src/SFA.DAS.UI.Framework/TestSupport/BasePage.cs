@@ -35,31 +35,18 @@ namespace SFA.DAS.UI.Framework.TestSupport
             _browser = objectContext.GetBrowser();
         }
 
-        protected bool VerifyPageAfterRefresh(By locator)
-        {
-            return VerifyPage(() => _pageInteractionHelper.VerifyPageAfterRefresh(locator));
-        }
+        protected bool VerifyPageAfterRefresh(By locator) => VerifyPage(() => _pageInteractionHelper.VerifyPageAfterRefresh(locator));
 
-        protected bool VerifyPage(Func<List<IWebElement>> func)
-        {
-            return VerifyPage(() => _pageInteractionHelper.VerifyPage(func, PageTitle));
-        }
+        protected bool VerifyPage(Func<List<IWebElement>> func) => VerifyPage(() => _pageInteractionHelper.VerifyPage(func, PageTitle));
 
-        protected bool VerifyPage(By locator)
-        {
-            return VerifyPage(() => _pageInteractionHelper.VerifyPage(locator));
-        }
+        protected bool VerifyPage(By locator) => VerifyPage(() => _pageInteractionHelper.VerifyPage(locator));
 
-        protected bool VerifyPage()
-        {
-            return VerifyPage(PageHeader, PageTitle);
-        }
+        protected bool VerifyPage() => VerifyPage(PageHeader, PageTitle);
 
-        protected bool VerifyPage(By locator, string text)
-        {
-            return VerifyPage(() => _pageInteractionHelper.VerifyPage(locator, text));
-        }
+        protected bool VerifyPage(By locator, string text) => VerifyPage(() => _pageInteractionHelper.VerifyPage(locator, text));
 
+        protected void Continue() => _formCompletionHelper.Click(ContinueButton);
+        
         private bool VerifyPage(Func<bool> func)
         {
             if (_frameworkConfig.TakeEveryPageScreenShot && !_browser.IsCloudExecution())
@@ -68,11 +55,6 @@ namespace SFA.DAS.UI.Framework.TestSupport
             }
 
             return func.Invoke();
-        }
-
-        protected void Continue()
-        {
-            _formCompletionHelper.Click(ContinueButton);
         }
     }
 }
