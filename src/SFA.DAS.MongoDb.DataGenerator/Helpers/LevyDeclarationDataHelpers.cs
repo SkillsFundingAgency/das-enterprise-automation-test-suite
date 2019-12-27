@@ -52,7 +52,6 @@ namespace SFA.DAS.MongoDb.DataGenerator.Helpers
                 int levythisMonth = levyDueYTD * (i + 1);
 
                 var levy = GetlevyDeclarations(date, levythisMonth, levyAllowanceForFullYear);
-                TestContext.Progress.WriteLine($"Levy Declarations: {string.Join(",", levy)}");
                 table.AddRow(levy);
             }
             var englishFractioncalculatedAt = DateTime.Now.AddMonths(-(noOfMonths + 1));

@@ -21,7 +21,7 @@ namespace SFA.DAS.PayeCreation.Project
         [BeforeScenario(Order = 22)]
         public void SetUpDataHelpers()
         {
-            var name = _context.ScenarioInfo.Tags.Contains("levypaye") ? "Levy" : "NonLevy";
+            var name = _context.ScenarioInfo.Tags.Contains("levypaye") ? "LE" : "NL";
 
             var dataHelper = new DataHelper(name);
 
