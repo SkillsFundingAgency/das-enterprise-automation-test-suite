@@ -6,6 +6,7 @@ using TechTalk.SpecFlow;
 using SFA.DAS.MongoDb.DataGenerator.Helpers;
 using NUnit.Framework;
 using SFA.DAS.Configuration;
+using System.Linq;
 
 namespace SFA.DAS.PayeCreation.Project.Tests.StepDefinitions
 {
@@ -34,7 +35,10 @@ namespace SFA.DAS.PayeCreation.Project.Tests.StepDefinitions
             AddGatewayUsers();
 
             var (fraction, calculatedAt, levyDeclarations) = LevyDeclarationDataHelper.LevyFunds(_payeCreationConfig.Duration, _payeCreationConfig.LevyPerMonth);
-            TestContext.Progress.WriteLine($"Levy Declarations: {_objectContext.GetGatewayPaye()} - {string.Join(",", levyDeclarations.Rows)}");
+            foreach(var item in levyDeclarations.Rows.ToList().Select(x => x.Values))
+            {
+                TestContext.Progress.WriteLine($"Levy Declarations: {_objectContext.GetGatewayPaye()} - {string.Join(",", item.Select(y => y))}");
+            }
             _mongoDbDataGenerator.AddLevyDeclarations(fraction, calculatedAt, levyDeclarations);
             
         }
