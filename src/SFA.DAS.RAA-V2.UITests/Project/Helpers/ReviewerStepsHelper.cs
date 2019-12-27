@@ -25,13 +25,7 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Helpers
             _config = context.GetRAAV2Config<RAAV2Config>();
         }
 
-        public void VerifyEmployerNameAndApprove(bool restart) => ReviewVacancy(restart).VerifyEmployerName().Approve();
-
-        public void VerifyDisabilityConfidenceAndApprove(bool restart) => ReviewVacancy(restart).VerifyDisabilityConfident().Approve();
-
-        private Reviewer_VacancyPreviewPage ReviewVacancy(bool restart) => GoToReviewerHomePage(restart).ReviewVacancy();
-
-        private Reviewer_HomePage GoToReviewerHomePage(bool restart)
+        public Reviewer_HomePage GoToReviewerHomePage(bool restart)
         {
             if (restart)
             {
@@ -49,5 +43,10 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Helpers
             return new SignInPage(_context)
                 .SubmitReviewerLoginDetails();
         }
+        public void VerifyEmployerNameAndApprove(bool restart) => ReviewVacancy(restart).VerifyEmployerName().Approve();
+
+        public void VerifyDisabilityConfidenceAndApprove(bool restart) => ReviewVacancy(restart).VerifyDisabilityConfident().Approve();
+
+        private Reviewer_VacancyPreviewPage ReviewVacancy(bool restart) => GoToReviewerHomePage(restart).ReviewVacancy();
     }
 }
