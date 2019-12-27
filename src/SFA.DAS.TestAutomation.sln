@@ -38,7 +38,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.RAA.DataGenerator",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.Configuration", "SFA.DAS.Configuration\SFA.DAS.Configuration.csproj", "{0B0C470B-9E1B-4A2A-90A6-7E656A6FEE8A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.PayeCreation.Tests", "SFA.DAS.PayeCreation\SFA.DAS.PayeCreation.Tests.csproj", "{10FB2B85-394F-4F16-AA16-9C0EDC757103}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.PayeCreation.Tests", "SFA.DAS.PayeCreation.Tests\SFA.DAS.PayeCreation.Tests.csproj", "{10FB2B85-394F-4F16-AA16-9C0EDC757103}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
