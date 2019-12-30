@@ -19,8 +19,6 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer
 
         protected override string Linktext => "Recruitment";
 
-        private By Filter => By.CssSelector("#Filter");
-
         private By SearchInput => By.CssSelector("#search-input");
 
         private By SearchButton => By.CssSelector("#search-submit-button");
@@ -46,13 +44,6 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer
         {
             formCompletionHelper.ClickLinkByText("Create vacancy");
             return new CreateVacancyPage(_context);
-        }
-
-        public ManageVacancyPage SearchLiveVacancy()
-        {
-            formCompletionHelper.ClickLinkByText("Live vacancies");
-            formCompletionHelper.SelectFromDropDownByValue(Filter, "Live");
-            return SearchAnyVacancy();
         }
 
         public ManageVacancyPage SearchAnyVacancy()

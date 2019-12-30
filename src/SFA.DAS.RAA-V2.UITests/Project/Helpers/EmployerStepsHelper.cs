@@ -18,6 +18,8 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Helpers
             _homePageStepsHelper = new HomePageStepsHelper(context);
         }
 
+        internal VacanciesPage CancelVacancy() => EnterVacancyTitle().CancelVacancy();
+
         internal void CreateOfflineVacancy(bool disabilityConfidence)
         {
             var employernamePage = SelectOrganisation();
@@ -134,12 +136,17 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Helpers
             return new RecruitmentHomePage(_context, true);
         }
 
-        private EmployerNamePage SelectOrganisation()
+        private ApprenticeshipTrainingPage EnterVacancyTitle()
         {
             return GoToRecruitmentHomePage()
                 .CreateANewVacancy()
                 .CreateNewVacancy()
-                .EnterVacancyTitle()
+                .EnterVacancyTitle();
+        }
+
+        private EmployerNamePage SelectOrganisation()
+        {
+            return EnterVacancyTitle()
                 .EnterTrainingTitle()
                 .ConfirmTrainingAndContinue()
                 .ChooseTrainingProvider()
