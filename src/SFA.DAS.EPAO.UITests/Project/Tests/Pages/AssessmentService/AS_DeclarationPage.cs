@@ -17,10 +17,6 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
             VerifyPage();
         }
 
-        public AS_WhatGradePage ClickConfirmInDeclarationPage()
-        {
-            Continue();
-            return new AS_WhatGradePage(_context);
-        }
+        public void ClickConfirmInDeclarationPage() => Continue();
     }
 }
