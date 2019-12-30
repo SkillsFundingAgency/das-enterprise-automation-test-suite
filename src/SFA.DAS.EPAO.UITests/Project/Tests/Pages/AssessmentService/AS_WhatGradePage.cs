@@ -18,6 +18,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
 
         #region Locators
         private By PassRadioButton => By.Id("Pass");
+        private By FailRadioButton => By.Id("Fail");
         #endregion
 
         public AS_WhatGradePage(ScenarioContext context) : base(context)
@@ -28,11 +29,20 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
             VerifyPage();
         }
 
-        public AS_AchievementDatePage SelectPassAndContinueInGradeSelectionPage()
+        public void SelectGradeAndEnterDate(string grade)
         {
-            _formCompletionHelper.ClickElement(() => _pageInteractionHelper.FindElement(PassRadioButton));
-            Continue();
-            return new AS_AchievementDatePage(_context);
+            if (grade == "Passed")
+            {
+                _formCompletionHelper.ClickElement(() => _pageInteractionHelper.FindElement(PassRadioButton));
+                Continue();
+                new AS_AchievementDatePage(_context).EnterGradeDateAndContinue();
+            }
+            else if (grade == "Failed")
+            {
+                _formCompletionHelper.ClickElement(() => _pageInteractionHelper.FindElement(FailRadioButton));
+                Continue();
+                new AS_ApprenticeFailedDatePage(_context).EnterGradeDateAndContinue();
+            }
         }
     }
 }
