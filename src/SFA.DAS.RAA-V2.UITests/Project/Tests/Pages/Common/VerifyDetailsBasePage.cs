@@ -10,11 +10,11 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Common
     {
         private readonly ObjectContext _objectContext;
 
-        protected abstract By EmployerName { get; }
+        protected virtual By EmployerName { get; }
 
-        protected abstract By EmployerNameInAboutTheEmployerSection { get; }
+        protected virtual By EmployerNameInAboutTheEmployerSection { get; }
 
-        protected abstract By DisabilityConfident { get; }
+        protected virtual By DisabilityConfident { get; }
 
         public VerifyDetailsBasePage(ScenarioContext context) : base(context)
         {
