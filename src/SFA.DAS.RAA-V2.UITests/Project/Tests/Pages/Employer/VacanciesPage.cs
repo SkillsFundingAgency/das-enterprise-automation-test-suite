@@ -33,10 +33,22 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer
 
         public ApprenticeshipTrainingPage EditAndSubmit()
         {
+            DraftVacancy();
+            return new ApprenticeshipTrainingPage(_context);
+        }
+
+        public VacancyPreviewPart2Page GoToVacancyPreviewPart2Page()
+        {
+            DraftVacancy();
+            return new VacancyPreviewPart2Page(_context);
+        }
+
+        private void DraftVacancy()
+        {
             _formCompletionHelper.SelectFromDropDownByValue(Filter, "Draft");
             _pageInteractionHelper.WaitforURLToChange($"Filter=Draft");
             _tableRowHelper.SelectRowFromTable("Edit and submit", _vacancyTitleDatahelper.VacancyTitle);
-            return new ApprenticeshipTrainingPage(_context);
         }
+
     }
 }

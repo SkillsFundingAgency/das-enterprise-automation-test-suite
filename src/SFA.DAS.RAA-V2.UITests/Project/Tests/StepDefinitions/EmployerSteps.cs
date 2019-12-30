@@ -9,8 +9,14 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.StepDefinitions
     {
         private readonly EmployerStepsHelper _employerStepsHelper;
         private VacanciesPage vacanciesPage;
-
+        private VacancyPreviewPart2Page _vacancyPreviewPart2Page;
         public EmployerSteps(ScenarioContext context) => _employerStepsHelper = new EmployerStepsHelper(context);
+
+        [Given(@"the Employer completes the first part of the journey")]
+        public void GivenTheEmployerCompletesTheFirstPartOfTheJourney() => _vacancyPreviewPart2Page = _employerStepsHelper.PreviewVacancy(string.Empty, true, false);
+
+        [When(@"the Employer saves the vacancy as a Draft")]
+        public void WhenTheEmployerSavesTheVacancyAsADraft() => vacanciesPage = _vacancyPreviewPart2Page.ReturnToDashboard();
 
         [When(@"Employer cancels after saving the title of the Vacancy")]
         public void WhenEmployerCancelsAfterSavingTheTitleOfTheVacancy() => vacanciesPage = _employerStepsHelper.CancelVacancy();
@@ -51,5 +57,7 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.StepDefinitions
         [Then(@"the vacancy is saved as a draft")]
         public void ThenTheVacancyIsSavedAsADraft() => vacanciesPage.EditAndSubmit();
 
+        [Then(@"Employer is able to open the draft and create the vacancy by filling the data for the second part")]
+        public void ThenEmployerIsAbleToOpenTheDraftAndCreateTheVacancyByFillingTheDataForTheSecondPart() => _employerStepsHelper.SubmitVacancy(vacanciesPage.GoToVacancyPreviewPart2Page(), true, false);
     }
 }
