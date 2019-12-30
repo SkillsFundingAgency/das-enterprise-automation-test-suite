@@ -34,7 +34,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.FAA.UITests", "SFA.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.EPAO.UITests", "SFA.DAS.EPAO.UITests\SFA.DAS.EPAO.UITests.csproj", "{FBCC5716-7238-436F-9F53-68B747D6B90C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SFA.DAS.RAA.DataGenerator", "SFA.DAS.RAA.DataGenerator\SFA.DAS.RAA.DataGenerator.csproj", "{86379061-BF96-404F-BB25-0497E760119A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.RAA.DataGenerator", "SFA.DAS.RAA.DataGenerator\SFA.DAS.RAA.DataGenerator.csproj", "{86379061-BF96-404F-BB25-0497E760119A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.Configuration", "SFA.DAS.Configuration\SFA.DAS.Configuration.csproj", "{0B0C470B-9E1B-4A2A-90A6-7E656A6FEE8A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.PayeCreation.Tests", "SFA.DAS.PayeCreation.Tests\SFA.DAS.PayeCreation.Tests.csproj", "{10FB2B85-394F-4F16-AA16-9C0EDC757103}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -121,6 +125,18 @@ Global
 		{86379061-BF96-404F-BB25-0497E760119A}.Development|Any CPU.Build.0 = Debug|Any CPU
 		{86379061-BF96-404F-BB25-0497E760119A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{86379061-BF96-404F-BB25-0497E760119A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0B0C470B-9E1B-4A2A-90A6-7E656A6FEE8A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B0C470B-9E1B-4A2A-90A6-7E656A6FEE8A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B0C470B-9E1B-4A2A-90A6-7E656A6FEE8A}.Development|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B0C470B-9E1B-4A2A-90A6-7E656A6FEE8A}.Development|Any CPU.Build.0 = Debug|Any CPU
+		{0B0C470B-9E1B-4A2A-90A6-7E656A6FEE8A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B0C470B-9E1B-4A2A-90A6-7E656A6FEE8A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{10FB2B85-394F-4F16-AA16-9C0EDC757103}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{10FB2B85-394F-4F16-AA16-9C0EDC757103}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{10FB2B85-394F-4F16-AA16-9C0EDC757103}.Development|Any CPU.ActiveCfg = Debug|Any CPU
+		{10FB2B85-394F-4F16-AA16-9C0EDC757103}.Development|Any CPU.Build.0 = Debug|Any CPU
+		{10FB2B85-394F-4F16-AA16-9C0EDC757103}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{10FB2B85-394F-4F16-AA16-9C0EDC757103}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -128,6 +144,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{AB621F7D-E209-4F98-B4E7-2A155C23A216} = {6CBA241C-2191-4B98-9FBD-E493554506AD}
 		{86379061-BF96-404F-BB25-0497E760119A} = {6CBA241C-2191-4B98-9FBD-E493554506AD}
+		{10FB2B85-394F-4F16-AA16-9C0EDC757103} = {6CBA241C-2191-4B98-9FBD-E493554506AD}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4B7E7F47-C08F-4B67-BB6A-FFCED573D7BF}

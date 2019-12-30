@@ -1,4 +1,4 @@
-﻿using SFA.DAS.UI.Framework.TestSupport;
+﻿using SFA.DAS.Configuration;
 
 namespace SFA.DAS.FAA.UITests.Project
 {

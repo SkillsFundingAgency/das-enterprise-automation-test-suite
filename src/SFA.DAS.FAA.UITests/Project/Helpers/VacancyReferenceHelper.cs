@@ -1,6 +1,6 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.FAA.UITests.Project;
-using SFA.DAS.UI.Framework.TestSupport;
+using SFA.DAS.Configuration;
 using SFA.DAS.UI.FrameworkHelpers;
 
 namespace SFA.DAS.FAA.UITests.Helpers

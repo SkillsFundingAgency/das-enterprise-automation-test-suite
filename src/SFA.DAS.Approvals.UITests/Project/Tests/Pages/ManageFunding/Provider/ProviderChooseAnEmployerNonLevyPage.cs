@@ -1,6 +1,7 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.Registration.UITests.Project;
 using SFA.DAS.UI.Framework.TestSupport;
+using SFA.DAS.Configuration;
 using SFA.DAS.UI.FrameworkHelpers;
 using System.Linq;
 using TechTalk.SpecFlow;

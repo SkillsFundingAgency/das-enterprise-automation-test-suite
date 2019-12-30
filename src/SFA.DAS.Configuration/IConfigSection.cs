@@ -1,4 +1,4 @@
-﻿namespace SFA.DAS.UI.Framework.TestSupport
+﻿namespace SFA.DAS.Configuration
 {
     public interface IConfigSection
     {

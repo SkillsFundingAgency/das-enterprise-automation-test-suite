@@ -1,5 +1,6 @@
 ﻿using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
+using SFA.DAS.Configuration;
 
 namespace SFA.DAS.UI.Framework.TestSupport
 {

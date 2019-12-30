@@ -5,6 +5,7 @@ using SFA.DAS.UI.FrameworkHelpers;
 using System;
 using System.Collections.Generic;
 using TechTalk.SpecFlow;
+using SFA.DAS.Configuration;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {

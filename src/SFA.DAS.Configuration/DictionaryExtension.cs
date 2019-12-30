@@ -1,10 +1,9 @@
 ﻿using System.Collections.Generic;
 
-namespace SFA.DAS.UI.Framework.TestSupport
+namespace SFA.DAS.Configuration
 {
     public static class DictionaryExtension
     {
-
         public static void Replace<T>(this Dictionary<string, object> dictionary, T value)
         {
             dictionary.Replace(typeof(T).FullName, value);

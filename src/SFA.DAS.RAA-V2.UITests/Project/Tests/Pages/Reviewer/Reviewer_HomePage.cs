@@ -1,6 +1,7 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.FAA.UITests.Project;
 using SFA.DAS.UI.Framework.TestSupport;
+using SFA.DAS.Configuration;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
@@ -30,6 +31,12 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Reviewer
             _objectContext = context.Get<ObjectContext>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
             VerifyPage();
+        }
+
+        public Reviewer_AnyVacancyPreviewPage ReviewNextVacancy()
+        {
+            _formCompletionHelper.Click(ReviewVacancyButton);
+            return new Reviewer_AnyVacancyPreviewPage(_context);
         }
 
         public Reviewer_VacancyPreviewPage ReviewVacancy()

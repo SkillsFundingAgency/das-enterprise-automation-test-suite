@@ -1,5 +1,5 @@
 ﻿using SFA.DAS.Approvals.UITests.Project.Helpers;
-using SFA.DAS.UI.Framework.TestSupport;
+using SFA.DAS.Configuration;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project

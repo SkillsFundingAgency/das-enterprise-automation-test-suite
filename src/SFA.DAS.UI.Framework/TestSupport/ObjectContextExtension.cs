@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using SFA.DAS.Configuration;
 
 namespace SFA.DAS.UI.Framework.TestSupport
 {

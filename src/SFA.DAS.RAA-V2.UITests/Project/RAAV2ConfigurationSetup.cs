@@ -1,4 +1,5 @@
-﻿using SFA.DAS.Registration.UITests.Project;
+﻿using SFA.DAS.Configuration;
+using SFA.DAS.Registration.UITests.Project;
 using SFA.DAS.UI.Framework.TestSupport;
 using TechTalk.SpecFlow;
 

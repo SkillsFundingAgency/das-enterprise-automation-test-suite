@@ -1,7 +1,6 @@
-﻿using SFA.DAS.UI.Framework.TestSupport;
-using TechTalk.SpecFlow;
+﻿using TechTalk.SpecFlow;
 
-namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
+namespace SFA.DAS.Configuration.BeforeScenario
 {
     [Binding]
     public class ObjectContextSetup

@@ -1,33 +1,29 @@
-﻿using Microsoft.Extensions.Configuration;
-using SFA.DAS.UI.Framework.TestSupport;
+﻿using SFA.DAS.UI.Framework.TestSupport;
+using SFA.DAS.Configuration;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
 {
     [Binding]
-    public class ConfigurationSetup
+    public class FrameworkConfigurationSetup
     {
         private readonly ScenarioContext _context;
-
-        private readonly IConfigurationRoot _configurationRoot;
 
         private readonly IConfigSection _configSection;
 
         private readonly ObjectContext _objectContext;
-        public ConfigurationSetup(ScenarioContext context)
+
+        public FrameworkConfigurationSetup(ScenarioContext context)
         {
             _context = context;
             _objectContext = context.Get<ObjectContext>();
-            _configurationRoot = Configurator.GetConfig();
-            _configSection = new ConfigSection(_configurationRoot);
+            _configSection = context.Get<IConfigSection>();
         }
         
-        [BeforeScenario(Order = 1)]
-        public void SetUpConfiguration()
+        [BeforeScenario(Order = 2)]
+        public void SetUpFrameworkConfiguration()
         {
-            _context.Set(_configSection);
-
             var configuration = new FrameworkConfig
             {
                 TimeOutConfig = _configSection.GetConfigSection<TimeOutConfig>(),
