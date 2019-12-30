@@ -22,10 +22,10 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
             _stepsHelper.LoginToAssessmentServiceApplication();
         }
 
-        [When(@"the User goes through certifying an Apprentice who has enrolled for '(.*)' standard")]
-        public void WhenTheUserGoesThroughCertifyingAnApprenticeWhoHasEnrolledForStandard(string enrolledStandards)
+        [When(@"the User goes through certifying an Apprentice as '(.*)' who has enrolled for '(.*)' standard")]
+        public void WhenTheUserGoesThroughCertifyingAnApprenticeAsWhoHasEnrolledForStandard(string grade, string enrolledStandard)
         {
-            _stepsHelper.CertifyApprentice(enrolledStandards);
+            _stepsHelper.CertifyApprentice(grade, enrolledStandard);
         }
 
         [Then(@"the Assessment is recorded and the User is able to navigate back to certifying another Apprentice")]
