@@ -25,10 +25,11 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
             VerifyPage();
         }
 
-        public void SelectLearningOptionAndContinue()
+        public AS_WhatGradePage SelectLearningOptionAndContinue()
         {
             _formCompletionHelper.SelectRadioOptionByForAttribute(RadioButton, "options_Overheadlines");
             Continue();
+            return new AS_WhatGradePage(_context);
         }
     }
 }
