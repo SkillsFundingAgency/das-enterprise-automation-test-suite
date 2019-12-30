@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace SFA.DAS.Configuration
+namespace SFA.DAS.ConfigurationBuilder
 {
     public class ObjectContext
     {

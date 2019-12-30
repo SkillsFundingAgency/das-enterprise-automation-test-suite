@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 
-namespace SFA.DAS.Configuration
+namespace SFA.DAS.ConfigurationBuilder
 {
     public class ConfigSection : IConfigSection
     {

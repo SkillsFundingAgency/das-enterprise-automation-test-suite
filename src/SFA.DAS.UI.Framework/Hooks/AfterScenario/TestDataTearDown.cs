@@ -7,7 +7,7 @@ using TechTalk.SpecFlow;
 using NUnit.Framework;
 using System.IO;
 using SFA.DAS.UI.FrameworkHelpers;
-using SFA.DAS.Configuration;
+using SFA.DAS.ConfigurationBuilder;
 
 namespace SFA.DAS.UI.Framework.Hooks.AfterScenario
 {

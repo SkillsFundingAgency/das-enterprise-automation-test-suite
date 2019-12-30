@@ -1,5 +1,5 @@
 ﻿using SFA.DAS.TestProject.UITests.Project.Tests.Pages;
-using SFA.DAS.Configuration;
+using SFA.DAS.ConfigurationBuilder;
 using TestContext = NUnit.Framework.TestContext;
 using TechTalk.SpecFlow;
 

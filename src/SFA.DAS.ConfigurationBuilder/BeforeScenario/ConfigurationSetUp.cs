@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.Configuration
+namespace SFA.DAS.ConfigurationBuilder
 {
     [Binding]
     public class ConfigurationSetup

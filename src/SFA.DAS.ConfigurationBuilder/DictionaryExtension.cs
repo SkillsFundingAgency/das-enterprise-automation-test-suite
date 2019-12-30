@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace SFA.DAS.Configuration
+namespace SFA.DAS.ConfigurationBuilder
 {
     public static class DictionaryExtension
     {

@@ -5,7 +5,7 @@ using System.Text;
 using TechTalk.SpecFlow;
 using SFA.DAS.MongoDb.DataGenerator.Helpers;
 using NUnit.Framework;
-using SFA.DAS.Configuration;
+using SFA.DAS.ConfigurationBuilder;
 using System.Linq;
 
 namespace SFA.DAS.PayeCreation.Project.Tests.StepDefinitions

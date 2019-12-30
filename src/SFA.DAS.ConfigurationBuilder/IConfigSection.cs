@@ -1,4 +1,4 @@
-﻿namespace SFA.DAS.Configuration
+﻿namespace SFA.DAS.ConfigurationBuilder
 {
     public interface IConfigSection
     {
