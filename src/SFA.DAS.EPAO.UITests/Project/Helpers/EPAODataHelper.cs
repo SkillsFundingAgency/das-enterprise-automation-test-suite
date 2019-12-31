@@ -17,12 +17,21 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
         }
 
-        public void ClickAddressFromAutoSuggestOptions(By PostCodeAutocompleteElements)
+        public void ClickARandomElementFromAutoSuggestOptions(By autoSuggestOptions)
         {
             _formCompletionHelper.ClickElement(() =>
             {
-                var postCodeAutocompleteAddresses = _pageInteractionHelper.FindElements(PostCodeAutocompleteElements);
-                return postCodeAutocompleteAddresses[_randomDataGenerator.GenerateRandomNumberBetweenTwoValues(0, postCodeAutocompleteAddresses.Count - 1)];
+                var autoSuggestOptionsList = _pageInteractionHelper.FindElements(autoSuggestOptions);
+                return autoSuggestOptionsList[_randomDataGenerator.GenerateRandomNumberBetweenTwoValues(0, autoSuggestOptionsList.Count - 1)];
+            });
+        }
+
+        public void ClickFirstElementFromAutoSuggestOptions(By autoSuggestOptions)
+        {
+            _formCompletionHelper.ClickElement(() =>
+            {
+                var autoSuggestOptionsList = _pageInteractionHelper.FindElements(autoSuggestOptions);
+                return autoSuggestOptionsList[0];
             });
         }
 

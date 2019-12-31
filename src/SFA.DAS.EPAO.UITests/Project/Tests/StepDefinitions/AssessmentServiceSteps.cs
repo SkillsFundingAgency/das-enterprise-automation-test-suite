@@ -28,6 +28,13 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
             _stepsHelper.CertifyApprentice(grade, enrolledStandard);
         }
 
+        [When(@"the User goes through certifying a Privately funded Apprentice")]
+        public void WhenTheUserGoesThroughCertifyingAPrivatelyFundedApprentice()
+        {
+            _stepsHelper.CertifyPrivatelyFundedApprentice();
+        }
+
+
         [Then(@"the Assessment is recorded and the User is able to navigate back to certifying another Apprentice")]
         public void ThenTheAssessmentIsRecordedAndTheUserIsAbleToNavigateBackToCertifyingAnotherApprentice()
         {

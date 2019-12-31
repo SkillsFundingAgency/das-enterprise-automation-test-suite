@@ -18,5 +18,11 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
         }
 
         public void ClickConfirmInDeclarationPage() => Continue();
+
+        public AS_ApprenticeGivenNamePage ClickConfirmInDeclarationPageForPrivatelyFundedApprentice()
+        {
+            Continue();
+            return new AS_ApprenticeGivenNamePage(_context);
+        }
     }
 }

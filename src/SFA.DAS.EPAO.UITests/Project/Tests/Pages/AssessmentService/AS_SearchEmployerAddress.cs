@@ -21,6 +21,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
         private By AddressSearchTextBox => By.Id("postcode-search");
         private By PostCodeAutocompleteElements => By.CssSelector(".ui-menu-item");
         private By SelectedAddressPanel => By.CssSelector(".js-address-panel");
+        private By EnterAddressManuallyLink => By.Id("enterAddressManually");
         #endregion
 
         public AS_SearchEmployerAddress(ScenarioContext context) : base(context)
@@ -34,7 +35,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
         public AS_SearchEmployerAddress SearchAndSelectEmployerAddress()
         {
             _formCompletionHelper.EnterText(AddressSearchTextBox, "CV1 2WT");
-            _ePAODataHelper.ClickAddressFromAutoSuggestOptions(PostCodeAutocompleteElements);
+            _ePAODataHelper.ClickARandomElementFromAutoSuggestOptions(PostCodeAutocompleteElements);
             VerifyPage(SelectedAddressPanel);
             return this;
         }
@@ -43,6 +44,12 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
         {
             Continue();
             return new AS_ConfirmAddressPage(_context);
+        }
+
+        public AS_AddEmployerAddress ClickEnterAddressManuallyLinkInSearchEmployerPage()
+        {
+            _formCompletionHelper.Click(EnterAddressManuallyLink);
+            return new AS_AddEmployerAddress(_context);
         }
     }
 }

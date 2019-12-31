@@ -35,5 +35,23 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
             else if (grade == "Failed")
                 new AS_CheckAndSubmitAssessmentPage(_context).ClickContinueInCheckAndSubmitAssessmentPage();
         }
+
+        public void CertifyPrivatelyFundedApprentice()
+        {
+            new AS_LoggedInHomePage(_context).ClickOnRecordAGrade()
+                .SearchPrivatelyFundedApprentice()
+                .ClickConfirmInDeclarationPageForPrivatelyFundedApprentice()
+                .EnterGivenNameAndContinue()
+                .SelectStandardAndContinue()
+                .SelectGradeForPrivatelyFundedAprrenticeAndContinue()
+                .EnterApprenticshipStartDateAndContinue()
+                .EnterUkprnAndContinue()
+                .EnterAchievementGradeDateForPrivatelyFundedApprenticeAndContinue()
+                .ClickEnterAddressManuallyLinkInSearchEmployerPage()
+                .EnterEmployerAddressAndContinue()
+                .ClickContinueInConfirmEmployerAddressPage()
+                .EnterRecipientDetailsAndContinue()
+                .ClickContinueInCheckAndSubmitAssessmentPage();
+        }
     }
 }

@@ -28,12 +28,31 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
             VerifyPage();
         }
 
-        public void EnterGradeDateAndContinue()
+        public void EnterAchievementGradeDateAndContinue()
         {
             _ePAODataHelper.EnterDate(DayTextBox, DateTime.Now.Day);
             _ePAODataHelper.EnterDate(MonthTextBox, DateTime.Now.Month);
             _ePAODataHelper.EnterDate(YearTextBox, DateTime.Now.Year);
             Continue();
         }
+
+        public AS_UkprnPage EnterApprenticshipStartDateAndContinue()
+        {
+            _ePAODataHelper.EnterDate(DayTextBox, DateTime.Now.Day);
+            _ePAODataHelper.EnterDate(MonthTextBox, DateTime.Now.Month);
+            _ePAODataHelper.EnterDate(YearTextBox, 2018);
+            Continue();
+            return new AS_UkprnPage(_context);
+        }
+
+        public AS_SearchEmployerAddress EnterAchievementGradeDateForPrivatelyFundedApprenticeAndContinue()
+        {
+            _ePAODataHelper.EnterDate(DayTextBox, DateTime.Now.Day);
+            _ePAODataHelper.EnterDate(MonthTextBox, DateTime.Now.Month);
+            _ePAODataHelper.EnterDate(YearTextBox, DateTime.Now.Year);
+            Continue();
+            return new AS_SearchEmployerAddress(_context);
+        }
+
     }
 }

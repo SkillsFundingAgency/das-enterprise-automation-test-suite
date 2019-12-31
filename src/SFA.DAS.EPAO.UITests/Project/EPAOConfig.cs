@@ -12,6 +12,10 @@
         public string EPAOApprenticeUlnWithMultipleStandards { get; set; }
         public string EPAOApprenticeNameWithAStandardHavingLearningOption { get; set; }
         public string EPAOApprenticeUlnWithAStandardHavingLearningOption { get; set; }
+        public string EPAOPrivatelyFundedApprenticeLastName { get; set; }
+        public string EPAOPrivatelyFundedApprenticeUln { get; set; }
+        public string EPAOPrivatelyFundedApprenticeGivenName { get; set; }
+        public string EPAOPrivatelyFundedUkprn { get; set; }
         public string EPAOAssessorDbConnectionString { get; set; }
     }
 }
