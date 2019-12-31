@@ -1,4 +1,4 @@
-﻿using SFA.DAS.Configuration;
+﻿using SFA.DAS.ConfigurationBuilder;
 
 namespace SFA.DAS.FAA.UITests.Project
 {

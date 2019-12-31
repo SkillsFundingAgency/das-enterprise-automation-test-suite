@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using System.IO;
 
-namespace SFA.DAS.Configuration
+namespace SFA.DAS.ConfigurationBuilder
 {
     public static class Configurator
     {
@@ -48,7 +48,7 @@ namespace SFA.DAS.Configuration
                 .AddEnvironmentVariables()
                 .Build();
 
-        private static IConfigurationBuilder ConfigurationBuilder() => new ConfigurationBuilder()
+        private static IConfigurationBuilder ConfigurationBuilder() => new Microsoft.Extensions.Configuration.ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory());
 
         private static bool TestsExecutionInVsts() => !string.IsNullOrEmpty(GetAgentMachineName());

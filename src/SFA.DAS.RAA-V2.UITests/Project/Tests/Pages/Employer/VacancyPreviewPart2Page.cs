@@ -20,11 +20,14 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer
         private By ThingsToConsider => By.CssSelector("a[data-automation='link-things-to-consider']");
         private By ContactDetails => By.CssSelector("a[data-automation='link-employer-contact-details']");
         private By Submit => By.CssSelector(".govuk-button[data-automation='submit-button']");
+        private By ReturnToDashboardLink => By.CssSelector("a[data-automation='dashboard-link']");
 
+        public VacancyPreviewPart2Page(ScenarioContext context) : base(context) => _context = context;
 
-        public VacancyPreviewPart2Page(ScenarioContext context) : base(context)
+        public VacanciesPage ReturnToDashboard()
         {
-            _context = context;
+            formCompletionHelper.Click(ReturnToDashboardLink);
+            return new VacanciesPage(_context);
         }
 
         public ShortDescriptionPage AddBriefOverview()

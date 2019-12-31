@@ -1,6 +1,6 @@
 ﻿using TechTalk.SpecFlow;
 
-namespace SFA.DAS.Configuration.BeforeScenario
+namespace SFA.DAS.ConfigurationBuilder.BeforeScenario
 {
     [Binding]
     public class ObjectContextSetup

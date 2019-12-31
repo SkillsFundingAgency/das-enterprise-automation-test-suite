@@ -2,7 +2,7 @@
 using SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Reviewer;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
-using SFA.DAS.Configuration;
+using SFA.DAS.ConfigurationBuilder;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2.UITests.Project.Helpers

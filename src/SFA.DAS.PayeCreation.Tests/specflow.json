@@ -6,7 +6,7 @@
     "feature": "en-GB"
   },
   "stepAssemblies": [
-    { "assembly": "SFA.DAS.Configuration" }
+    { "assembly": "SFA.DAS.ConfigurationBuilder" }
   ],
   "generator": {
     "allowRowTests" : false
