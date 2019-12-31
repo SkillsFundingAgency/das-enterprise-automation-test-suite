@@ -73,21 +73,19 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Features.Employer.CreateVacancyWi
         [NUnit.Framework.DescriptionAttribute("RV2_E_CVMD_01 - Create Vacancy with missing mandatory details")]
         [NUnit.Framework.CategoryAttribute("raa-v2")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("deleteVacancy")]
         public virtual void RV2_E_CVMD_01_CreateVacancyWithMissingMandatoryDetails()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV2_E_CVMD_01 - Create Vacancy with missing mandatory details", null, new string[] {
                         "raa-v2",
-                        "regression",
-                        "deleteVacancy"});
-#line 6
+                        "regression"});
+#line 5
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 7
+#line 6
 testRunner.Given("the Employer completes the first part of the journey", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 8
+#line 7
 testRunner.When("the Employer submits the vacancy", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 9
+#line 8
 testRunner.Then("appropriate message is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
