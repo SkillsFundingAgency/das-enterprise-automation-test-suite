@@ -8,18 +8,22 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.StepDefinitions
     public class EmployerSteps
     {
         private readonly EmployerStepsHelper _employerStepsHelper;
-        private VacanciesPage vacanciesPage;
+        private VacanciesPage _vacanciesPage;
         private VacancyPreviewPart2Page _vacancyPreviewPart2Page;
+
         public EmployerSteps(ScenarioContext context) => _employerStepsHelper = new EmployerStepsHelper(context);
 
         [Given(@"the Employer completes the first part of the journey")]
         public void GivenTheEmployerCompletesTheFirstPartOfTheJourney() => _vacancyPreviewPart2Page = _employerStepsHelper.PreviewVacancy(string.Empty, true, false);
 
-        [When(@"the Employer saves the vacancy as a Draft")]
-        public void WhenTheEmployerSavesTheVacancyAsADraft() => vacanciesPage = _vacancyPreviewPart2Page.ReturnToDashboard();
+        [When(@"the Employer saves the vacancy as a draft")]
+        public void WhenTheEmployerSavesTheVacancyAsADraft() => _vacanciesPage = _vacancyPreviewPart2Page.ReturnToDashboard();
 
         [When(@"Employer cancels after saving the title of the Vacancy")]
-        public void WhenEmployerCancelsAfterSavingTheTitleOfTheVacancy() => vacanciesPage = _employerStepsHelper.CancelVacancy();
+        public void WhenEmployerCancelsAfterSavingTheTitleOfTheVacancy() => _vacanciesPage = _employerStepsHelper.CancelVacancy();
+
+        [Then(@"the Employer can cancel deleting the draft vacancy")]
+        public void ThenTheEmployerCanCancelDeletingTheDraftVacancy() => _vacancyPreviewPart2Page = _vacanciesPage.GoToVacancyPreviewPart2Page().DeleteVacancy().NoDeleteVacancy();
 
         [Given(@"the Employer creates an offline vacancy with disability confidence")]
         public void GivenTheEmployerCreatesAnOfflineVacancyWithDisabilityConfidence() => _employerStepsHelper.CreateOfflineVacancy(true);
@@ -55,9 +59,13 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.StepDefinitions
         public void ThenTheEmployerCanEditTheVacancy() => _employerStepsHelper.EditVacancyDates();
 
         [Then(@"the vacancy is saved as a draft")]
-        public void ThenTheVacancyIsSavedAsADraft() => vacanciesPage.EditAndSubmit();
+        public void ThenTheVacancyIsSavedAsADraft() => _vacanciesPage.GoToApprenticeshipTrainingPage();
 
         [Then(@"Employer is able to open the draft and create the vacancy by filling the data for the second part")]
-        public void ThenEmployerIsAbleToOpenTheDraftAndCreateTheVacancyByFillingTheDataForTheSecondPart() => _employerStepsHelper.SubmitVacancy(vacanciesPage.GoToVacancyPreviewPart2Page(), true, false);
+        public void ThenEmployerIsAbleToOpenTheDraftAndCreateTheVacancyByFillingTheDataForTheSecondPart() => _employerStepsHelper.SubmitVacancy(_vacanciesPage.GoToVacancyPreviewPart2Page(), true, false);
+
+        [Then(@"the Employer is able to delete the draft vacancy")]
+        public void ThenTheEmployerIsAbleToDeleteTheDraftVacancy() => _employerStepsHelper.DeleteDraftVacancy(_vacancyPreviewPart2Page);
+
     }
 }

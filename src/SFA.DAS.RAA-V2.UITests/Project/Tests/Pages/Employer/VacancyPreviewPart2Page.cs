@@ -21,8 +21,15 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer
         private By ContactDetails => By.CssSelector("a[data-automation='link-employer-contact-details']");
         private By Submit => By.CssSelector(".govuk-button[data-automation='submit-button']");
         private By ReturnToDashboardLink => By.CssSelector("a[data-automation='dashboard-link']");
+        private By DeleteVacancyButton => By.CssSelector("a[data-automation='delete-button']");
 
         public VacancyPreviewPart2Page(ScenarioContext context) : base(context) => _context = context;
+
+        public DeleteVacancyQuestionPage DeleteVacancy()
+        {
+            formCompletionHelper.Click(DeleteVacancyButton);
+            return new DeleteVacancyQuestionPage(_context);
+        }
 
         public VacanciesPage ReturnToDashboard()
         {

@@ -31,7 +31,7 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer
             _vacancyTitleDatahelper = context.Get<VacancyTitleDatahelper>();
         }
 
-        public ApprenticeshipTrainingPage EditAndSubmit()
+        public ApprenticeshipTrainingPage GoToApprenticeshipTrainingPage()
         {
             DraftVacancy();
             return new ApprenticeshipTrainingPage(_context);
