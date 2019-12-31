@@ -18,6 +18,8 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Helpers
             _homePageStepsHelper = new HomePageStepsHelper(context);
         }
 
+        internal VacanciesPage DeleteDraftVacancy(VacancyPreviewPart2Page previewPage) => previewPage.DeleteVacancy().YesDeleteVacancy();
+
         internal VacanciesPage CancelVacancy() => EnterVacancyTitle().CancelVacancy();
 
         internal void CreateOfflineVacancy(bool disabilityConfidence)
