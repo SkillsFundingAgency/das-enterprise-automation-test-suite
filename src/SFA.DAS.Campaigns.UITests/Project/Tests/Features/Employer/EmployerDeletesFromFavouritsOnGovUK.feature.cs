@@ -18,20 +18,20 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Features.Employer
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.0.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("EmployerSaveFavouritesToGovUKAccount")]
-    public partial class EmployerSaveFavouritesToGovUKAccountFeature
+    [NUnit.Framework.DescriptionAttribute("EmployerDeletesFromFavouritsOnGovUK")]
+    public partial class EmployerDeletesFromFavouritsOnGovUKFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "EmployerSaveFavouritesToGovUKAccount.feature"
+#line 1 "EmployerDeletesFromFavouritsOnGovUK.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "EmployerSaveFavouritesToGovUKAccount", "\tAs an Employer\r\n\tI want to be able to navigate to Fire It Up home page\r\n\tSo that" +
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "EmployerDeletesFromFavouritsOnGovUK", "\tAs an Employer\r\n\tI want to be able to navigate to Fire It Up home page\r\n\tSo that" +
                     " I can use the benefits of Employer services and information ", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
@@ -71,11 +71,11 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Features.Employer
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("I want to be able Save my Favourite Short List to the GovUK Account")]
+        [NUnit.Framework.DescriptionAttribute("I want to be able Delete From My Favourite Short List On GovUK Account")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public virtual void IWantToBeAbleSaveMyFavouriteShortListToTheGovUKAccount()
+        public virtual void IWantToBeAbleDeleteFromMyFavouriteShortListOnGovUKAccount()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("I want to be able Save my Favourite Short List to the GovUK Account", null, new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("I want to be able Delete From My Favourite Short List On GovUK Account", null, new string[] {
                         "regression"});
 #line 7
 this.ScenarioInitialize(scenarioInfo);
@@ -102,6 +102,8 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Then("I Can Verify the Favourite Count for Provider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 18
  testRunner.And("I Can Save the Short list Favourite to my Gov>UK Account button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 19
+ testRunner.And("I Can Delete From My Favourites on Gov UK Short List", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }

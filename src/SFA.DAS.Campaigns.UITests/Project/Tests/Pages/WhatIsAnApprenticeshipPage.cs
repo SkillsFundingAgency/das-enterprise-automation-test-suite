@@ -57,6 +57,8 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
         private readonly By _differentTypesOfApprenticeshipsParagraph2 = By.XPath("//div[@class='page']/p[10]");
         private readonly By _differentTypesOfApprenticeshipsParagraph3 = By.XPath("//div[@class='page']/p[11]");
         private readonly By _differentTypesOfApprenticeshipsParagraph4 = By.XPath("//div[@class='page']/p[12]");
+        private readonly By _areApprenticeshipRightForYou =By.XPath("//a[@class='nav__link--top-level']");
+        private readonly By _whatIsAnApprenticeship =By.XPath("//a[@href='/apprentice/what-is-an-apprenticeship']");
         #endregion
 
         public WhatIsAnApprenticeshipPage(ScenarioContext context) : base(context)
@@ -116,5 +118,13 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
             _pageInteractionHelper.VerifyText(actualDifferentTypesOfApprenticeshipsParagraph4, ExpectedDifferentTypesOfApprenticeshipsParagraph4);
         }
 
+        public void FocusOnAreApprenticeshipRightForYou()
+        {
+            _pageInteractionHelper.FocusTheElement(_areApprenticeshipRightForYou);
+        }
+        public void FocusOnHowDoTheyWork()
+        {
+            _pageInteractionHelper.FocusTheElement(_whatIsAnApprenticeship);
+        }
     }
 }

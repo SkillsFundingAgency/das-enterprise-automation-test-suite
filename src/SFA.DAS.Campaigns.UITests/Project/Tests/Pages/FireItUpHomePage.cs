@@ -32,7 +32,8 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
         private readonly By _parentPage =By.Id("link-nav-parents");
         private readonly By _registerMyInterestButton =By.Id("btn-register-interest-header");
         private readonly By _cookieButton = By.Id("link-cookie-accept");
-        private readonly By _findAnApprenticeLink = By.Id("link-nav-app-step-2");
+        //private readonly By _findAnApprenticeLink = By.Id("link-nav-app-step-2");
+        private readonly By _findAnApprenticeLink = By.Id("link-nav-apprentice");
        // private readonly By _ApprenticesHeaderSupportText = By.XPath("(//div[@class='launcher__content']/child::p)[1]");
         private readonly By _ApprenticesHeaderSupportText = By.ClassName("launcher__heading");
        // private readonly By _EmployersHeaderSupportText = By.XPath("//div[@classname='launcher__heading'][contains(.,'Fire up your business with an apprentice')]");

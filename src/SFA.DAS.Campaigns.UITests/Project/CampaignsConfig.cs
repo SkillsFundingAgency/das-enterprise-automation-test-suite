@@ -8,5 +8,8 @@ namespace SFA.DAS.Campaigns.UITests.Project
     { 
         public string TwoDigitProjectCode { get; set; }
         public string CA_BaseUrl { get; set; }
+        public string EmployerUserName {get;set;}       
+        public string EmployerPassword { get; set; }
+
     }
 }

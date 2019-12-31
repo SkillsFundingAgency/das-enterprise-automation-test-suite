@@ -57,8 +57,10 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
         private readonly By _whatWillMyApprenticeshipCostMeHeader = By.Id("h3");
         private readonly By _whatWillMyApprenticeshipCostMeParagraph1 = By.XPath("//div[@class='page']/p[6]");
         private readonly By _whatWillMyApprenticeshipCostMeParagraph2 = By.XPath("//div[@class='page']/p[7]");
+       
+        private readonly By _howDoTheyWorkLink =By.XPath("//a[@href='/apprentice/what-is-an-apprenticeship']");
+         //private readonly By _howDoTheyWorkLink =By.XPath("//a[contains(span,'How do they work?']");
         #endregion
-
         public WhatAreTheBenefitsForMePage(ScenarioContext context) : base(context)
         {
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
@@ -119,6 +121,9 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
             _pageInteractionHelper.VerifyText(actualWhatWillMyApprenticeshipCostMeParagraph1, ExpectedWhatWillMyApprenticeshipCostMeParagraph1);
             _pageInteractionHelper.VerifyText(actualWhatWillMyApprenticeshipCostMeParagraph2, ExpectedWhatWillMyApprenticeshipCostMeParagraph2);
          }
-
+        public void FocusOnHowDoTheyWork()
+        {
+            _pageInteractionHelper.FocusTheElement(_howDoTheyWorkLink);
+        }
     }
 }
