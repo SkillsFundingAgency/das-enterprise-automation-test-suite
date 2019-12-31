@@ -90,5 +90,11 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer
             formCompletionHelper.Click(Submit);
             return new VacancyReferencePage(_context);
         }
+
+        public VacancyPreviewPart2WithErrorsPage SubmitVacancyWithMissingData()
+        {
+            formCompletionHelper.Click(Submit);
+            return new VacancyPreviewPart2WithErrorsPage(_context);
+        }
     }
 }
