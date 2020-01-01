@@ -16,6 +16,8 @@
         public string EPAOPrivatelyFundedApprenticeUln { get; set; }
         public string EPAOPrivatelyFundedApprenticeGivenName { get; set; }
         public string EPAOPrivatelyFundedUkprn { get; set; }
+        public string EPAOAlreadyAssessedApprenticeName { get; set; }
+        public string EPAOAlreadyAssessedApprenticeUln { get; set; }
         public string EPAOAssessorDbConnectionString { get; set; }
     }
 }

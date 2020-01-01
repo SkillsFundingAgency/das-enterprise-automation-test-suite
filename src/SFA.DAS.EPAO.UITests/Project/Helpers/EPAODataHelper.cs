@@ -26,12 +26,12 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
             });
         }
 
-        public void ClickFirstElementFromAutoSuggestOptions(By autoSuggestOptions)
+        public void ClickNthElementFromAutoSuggestOptions(By autoSuggestOptions, int nthElement)
         {
             _formCompletionHelper.ClickElement(() =>
             {
                 var autoSuggestOptionsList = _pageInteractionHelper.FindElements(autoSuggestOptions);
-                return autoSuggestOptionsList[0];
+                return autoSuggestOptionsList[nthElement];
             });
         }
 

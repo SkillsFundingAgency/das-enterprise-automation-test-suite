@@ -32,7 +32,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
         public AS_WhatGradePage SelectStandardAndContinue()
         {
             _formCompletionHelper.Click(StandardTextBox);
-            _ePAODataHelper.ClickFirstElementFromAutoSuggestOptions(AutoSuggestOptions);
+            _ePAODataHelper.ClickNthElementFromAutoSuggestOptions(AutoSuggestOptions, 0);
             Continue();
             return new AS_WhatGradePage(_context);
         }
