@@ -27,11 +27,11 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
             VerifyPage();
         }
 
-        public AS_SearchAndSelectStandard EnterGivenNameAndContinue()
+        public AS_SearchAndSelectStandardPage EnterGivenNameAndContinue()
         {
             _formCompletionHelper.EnterText(GivenNameTextBox, _ePAOConfig.EPAOPrivatelyFundedApprenticeGivenName);
             Continue();
-            return new AS_SearchAndSelectStandard(_context);
+            return new AS_SearchAndSelectStandardPage(_context);
         }
     }
 }

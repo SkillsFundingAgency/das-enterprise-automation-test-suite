@@ -31,5 +31,13 @@ namespace SFA.DAS.EPAO.UITests.Project
             var ePAOSqlDataHelper = new EPAOSqlDataHelper(_config, _sqlDatabaseConnectionHelper);
             _context.Set(ePAOSqlDataHelper);
         }
+
+        [BeforeScenario(Order = 32)]
+        public void SetUpHelpers()
+        {
+            var random = _context.Get<RandomDataGenerator>();
+            _context.Set(new EPAODataHelper());
+            _context.Set(new RandomElementHelper(random));
+        }
     }
 }

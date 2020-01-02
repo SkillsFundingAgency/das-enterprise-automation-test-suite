@@ -27,7 +27,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
             new AS_WhatGradePage(_context).SelectGradeAndEnterDate(grade);
 
             if (grade == "Passed")
-                new AS_SearchEmployerAddress(_context).SearchAndSelectEmployerAddress()
+                new AS_SearchEmployerAddressPage(_context).SearchAndSelectEmployerAddress()
                .ClickContinueInSearchEmployerAddressPage()
                .ClickContinueInConfirmEmployerAddressPage()
                .EnterRecipientDetailsAndContinue()
