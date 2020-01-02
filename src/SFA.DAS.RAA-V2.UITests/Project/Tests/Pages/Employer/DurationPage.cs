@@ -24,11 +24,11 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer
             _context = context;
         }
 
-        public WageTypePage EnterDuration(string duration, string weeklyHours)
+        public WageTypePage EnterDuration()
         {
-            formCompletionHelper.EnterText(Duration, duration);
+            formCompletionHelper.EnterText(Duration, dataHelper.Duration);
             formCompletionHelper.EnterText(WorkingWeekDescription, dataHelper.WorkkingWeek);
-            formCompletionHelper.EnterText(WeeklyHours, weeklyHours);
+            formCompletionHelper.EnterText(WeeklyHours, dataHelper.WeeklyHours);
             Continue();
             return new WageTypePage(_context);
         }

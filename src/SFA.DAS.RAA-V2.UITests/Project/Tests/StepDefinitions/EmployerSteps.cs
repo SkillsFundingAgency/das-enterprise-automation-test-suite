@@ -17,6 +17,9 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.StepDefinitions
 
         public EmployerSteps(ScenarioContext context) => _employerStepsHelper = new EmployerStepsHelper(context);
 
+        [Given(@"Employer selects '(.*)' in the first part of the journey")]
+        public void GivenEmployerSelectsInTheFirstPartOfTheJourney(string wageType) => _employerStepsHelper.CreateANewVacancy(wageType);
+
         [Given(@"the Employer completes the first part of the journey")]
         public void GivenTheEmployerCompletesTheFirstPartOfTheJourney() => _vacancyPreviewPart2Page = _employerStepsHelper.PreviewVacancy(string.Empty, true, false);
 
@@ -91,6 +94,11 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.StepDefinitions
             var actualMessages = _vacancyPreviewPart2WithErrorsPage.GetErrorMessages();
 
             Assert.IsTrue(expectedMessges.All(x => actualMessages.Contains(x)), $"Not all messages are found. {_employerStepsHelper.DeleteDraftVacancy(_vacancyPreviewPart2Page)}");
+        }
+        [Then(@"the Employer verify '(.*)' the wage option selected in the Preview page")]
+        public void ThenTheEmployerVerifyTheWageOptionSelectedInThePreviewPage(string wageType)
+        {
+            _employerStepsHelper.VerifyWageType(wageType);
         }
 
     }
