@@ -1,5 +1,8 @@
-﻿using SFA.DAS.RAA_V2.UITests.Project.Helpers;
+﻿using NUnit.Framework;
+using SFA.DAS.RAA_V2.UITests.Project.Helpers;
 using SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer;
+using System.Collections.Generic;
+using System.Linq;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2.UITests.Project.Tests.StepDefinitions
@@ -10,12 +13,16 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.StepDefinitions
         private readonly EmployerStepsHelper _employerStepsHelper;
         private VacanciesPage _vacanciesPage;
         private VacancyPreviewPart2Page _vacancyPreviewPart2Page;
+        private VacancyPreviewPart2WithErrorsPage _vacancyPreviewPart2WithErrorsPage;
 
         public EmployerSteps(ScenarioContext context) => _employerStepsHelper = new EmployerStepsHelper(context);
 
         [Given(@"the Employer completes the first part of the journey")]
         public void GivenTheEmployerCompletesTheFirstPartOfTheJourney() => _vacancyPreviewPart2Page = _employerStepsHelper.PreviewVacancy(string.Empty, true, false);
 
+        [When(@"the Employer submits the vacancy")]
+        public void WhenTheEmployerSubmitsTheVacancy() => _vacancyPreviewPart2WithErrorsPage = _vacancyPreviewPart2Page.SubmitVacancyWithMissingData();
+        
         [When(@"the Employer saves the vacancy as a draft")]
         public void WhenTheEmployerSavesTheVacancyAsADraft() => _vacanciesPage = _vacancyPreviewPart2Page.ReturnToDashboard();
 
@@ -66,6 +73,25 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.StepDefinitions
 
         [Then(@"the Employer is able to delete the draft vacancy")]
         public void ThenTheEmployerIsAbleToDeleteTheDraftVacancy() => _employerStepsHelper.DeleteDraftVacancy(_vacancyPreviewPart2Page);
+
+        [Then(@"appropriate message is displayed")]
+        public void ThenAppropriateMessageIsDisplayed()
+        {
+            List<string> expectedMessges = new List<string> 
+            { 
+                "You must provide an overview of the vacancy", 
+                "You must provide information on what the apprenticeship will involve", 
+                "You must provide information on the training to be provided", 
+                "You must provide information on what to expect at the end of the apprenticeship", 
+                "You must include a skill or quality", 
+                "You must add a qualification", 
+                "You must select an application method", 
+            };
+
+            var actualMessages = _vacancyPreviewPart2WithErrorsPage.GetErrorMessages();
+
+            Assert.IsTrue(expectedMessges.All(x => actualMessages.Contains(x)), $"Not all messages are found. {_employerStepsHelper.DeleteDraftVacancy(_vacancyPreviewPart2Page)}");
+        }
 
     }
 }
