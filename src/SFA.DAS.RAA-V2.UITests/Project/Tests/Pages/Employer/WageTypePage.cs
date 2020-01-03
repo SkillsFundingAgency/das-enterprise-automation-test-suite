@@ -13,6 +13,8 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer
 
         private By WageAdditionalInformation => By.CssSelector("#WageAdditionalInformation");
 
+        private By FixedWageYearlyAmount => By.CssSelector("#FixedWageYearlyAmount");
+
         public WageTypePage(ScenarioContext context) : base(context)
         {
             _context = context;
@@ -21,6 +23,24 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer
         public PreviewYourVacancyPage SelectNationalMinimumWage()
         {
             SelectRadioOptionByForAttribute("wage-type-national-minimum-wage");
+            return ContinueToPreviewYourVacancyPage();
+        }
+        
+        public PreviewYourVacancyPage SelectNationalMinimumWageForApprentices()
+        {
+            SelectRadioOptionByForAttribute("wage-type-national-minimum-wage-for-apprentices");
+            return ContinueToPreviewYourVacancyPage();
+        }
+        
+        public PreviewYourVacancyPage SelectFixedWageType()
+        {
+            SelectRadioOptionByForAttribute("wage-type-fixed");
+            formCompletionHelper.EnterText(FixedWageYearlyAmount, dataHelper.FixedWageYearlyAmount);
+            return ContinueToPreviewYourVacancyPage();
+        }
+
+        private PreviewYourVacancyPage ContinueToPreviewYourVacancyPage()
+        {
             formCompletionHelper.EnterText(WageAdditionalInformation, dataHelper.OptionalMessage);
             Continue();
             return new PreviewYourVacancyPage(_context);

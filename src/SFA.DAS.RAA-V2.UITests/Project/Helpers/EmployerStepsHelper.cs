@@ -69,6 +69,26 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Helpers
             SearchAnyVacancy().NavigateToViewVacancyPage().VerifyEmployerName();
         }
 
+        internal void CreateANewVacancy(string wageType)
+        {
+            var employernamePage = SelectOrganisation();
+
+            var locationPage = ChooseEmployerName(employernamePage, string.Empty);
+
+            var wageTypePage = locationPage.ChooseAddress(true)
+                .EnterImportantDates(false)
+                .EnterDuration();
+
+            var previewPage = ChooseWage(wageTypePage, wageType).PreviewVacancy();
+
+            SubmitVacancy(previewPage, true, false);
+        }
+
+        internal void VerifyWageType(string wageType)
+        {
+            SearchAnyVacancy().NavigateToViewVacancyPage().VerifyWageType(wageType);
+        }
+
         internal VacancyPreviewPart2Page PreviewVacancy(string employername, bool isEmployerAddress, bool disabilityConfidence)
         {
             var employernamePage = SelectOrganisation();
@@ -77,7 +97,7 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Helpers
 
             return locationPage.ChooseAddress(isEmployerAddress)
                 .EnterImportantDates(disabilityConfidence)
-                .EnterDuration("52", "40")
+                .EnterDuration()
                 .SelectNationalMinimumWage()
                 .PreviewVacancy();
         }
@@ -169,6 +189,19 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Helpers
                     return  employernamePage.ChooseExistingTradingName();
                 case "anonymous":
                     return employernamePage.ChooseAnonymous();
+            };
+        }
+
+        private PreviewYourVacancyPage ChooseWage(WageTypePage wageTypePage, string wageType)
+        {
+            switch (wageType)
+            {
+                case "National Minimum Wage":
+                    return wageTypePage.SelectNationalMinimumWage();
+                case "Fixed Wage Type":
+                    return wageTypePage.SelectFixedWageType();
+                default:
+                    return wageTypePage.SelectNationalMinimumWageForApprentices();
             };
         }
 

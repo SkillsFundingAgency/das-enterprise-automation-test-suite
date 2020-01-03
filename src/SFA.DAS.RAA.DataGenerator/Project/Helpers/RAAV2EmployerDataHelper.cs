@@ -60,8 +60,20 @@ namespace SFA.DAS.RAA.DataGenerator
 
         public string TrainingDetails { get; }
 
+        public string Duration => "52";
+
         public string WorkkingWeek { get; }
-        
+
+        public string WeeklyHours => "40";
+
+        public string FixedWageYearlyAmount => "10000";
+
+        public string NationalMinimumWage => "£9,048 - £17,076.80";
+
+        public string NationalMinimumWageForApprentices => "£8,112";
+
+        public string FixedWageForApprentices => "£10,000";
+
         public DateTime EditedVacancyClosing { get; }
 
         public DateTime EditedVacancyStart { get; }

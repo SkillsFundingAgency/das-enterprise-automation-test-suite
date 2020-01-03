@@ -17,6 +17,9 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.StepDefinitions
 
         public EmployerSteps(ScenarioContext context) => _employerStepsHelper = new EmployerStepsHelper(context);
 
+        [Given(@"Employer selects '(.*)' in the first part of the journey")]
+        public void GivenEmployerSelectsInTheFirstPartOfTheJourney(string wageType) => _employerStepsHelper.CreateANewVacancy(wageType);
+
         [Given(@"the Employer completes the first part of the journey")]
         public void GivenTheEmployerCompletesTheFirstPartOfTheJourney() => _vacancyPreviewPart2Page = _employerStepsHelper.PreviewVacancy(string.Empty, true, false);
 
@@ -74,18 +77,18 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.StepDefinitions
         [Then(@"the Employer is able to delete the draft vacancy")]
         public void ThenTheEmployerIsAbleToDeleteTheDraftVacancy() => _employerStepsHelper.DeleteDraftVacancy(_vacancyPreviewPart2Page);
 
-        [Then(@"appropriate message is displayed")]
-        public void ThenAppropriateMessageIsDisplayed()
+        [Then(@"error messages are displayed")]
+        public void ThenErrorMessagesAreDisplayed()
         {
-            List<string> expectedMessges = new List<string> 
-            { 
-                "You must provide an overview of the vacancy", 
-                "You must provide information on what the apprenticeship will involve", 
-                "You must provide information on the training to be provided", 
-                "You must provide information on what to expect at the end of the apprenticeship", 
-                "You must include a skill or quality", 
-                "You must add a qualification", 
-                "You must select an application method", 
+            List<string> expectedMessges = new List<string>
+            {
+                "You must provide an overview of the vacancy",
+                "You must provide information on what the apprenticeship will involve",
+                "You must provide information on the training to be provided",
+                "You must provide information on what to expect at the end of the apprenticeship",
+                "You must include a skill or quality",
+                "You must add a qualification",
+                "You must select an application method",
             };
 
             var actualMessages = _vacancyPreviewPart2WithErrorsPage.GetErrorMessages();
@@ -93,5 +96,10 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.StepDefinitions
             Assert.IsTrue(expectedMessges.All(x => actualMessages.Contains(x)), $"Not all messages are found. {_employerStepsHelper.DeleteDraftVacancy(_vacancyPreviewPart2Page)}");
         }
 
+        [Then(@"the Employer verify '(.*)' the wage option selected in the Preview page")]
+        public void ThenTheEmployerVerifyTheWageOptionSelectedInThePreviewPage(string wageType)
+        {
+            _employerStepsHelper.VerifyWageType(wageType);
+        }
     }
 }
