@@ -11,13 +11,15 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         private readonly ScenarioContext _context;
         private readonly AssessmentServiceStepsHelper _stepsHelper;
         private readonly EPAOConfig _ePAOConfig;
-        private AS_RecordAGradePage recordAGradePage;
+        private AS_RecordAGradePage _recordAGradePage;
+        private EPAODataHelper _epaoDataHelper;
 
         public AssessmentServiceSteps(ScenarioContext context)
         {
             _context = context;
             _stepsHelper = new AssessmentServiceStepsHelper(_context);
             _ePAOConfig = context.GetEPAOConfig<EPAOConfig>();
+            _epaoDataHelper = context.Get<EPAODataHelper>();
         }
 
         [Given(@"the User is logged into Assessment Service Application")]
@@ -38,7 +40,6 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
             _stepsHelper.CertifyPrivatelyFundedApprentice();
         }
 
-
         [Then(@"the Assessment is recorded and the User is able to navigate back to certifying another Apprentice")]
         public void ThenTheAssessmentIsRecordedAndTheUserIsAbleToNavigateBackToCertifyingAnotherApprentice()
         {
@@ -49,14 +50,66 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         public void WhenTheUserGoesThroughCertifyingAnAlreadyAssessedApprentice()
         {
             new AS_LoggedInHomePage(_context).ClickOnRecordAGrade();
-            recordAGradePage = new AS_RecordAGradePage(_context);
-            recordAGradePage.EnterApprentcieDetailsAndContinue(_ePAOConfig.EPAOAlreadyAssessedApprenticeName, _ePAOConfig.EPAOAlreadyAssessedApprenticeUln);
+            _recordAGradePage = new AS_RecordAGradePage(_context);
+            _recordAGradePage.EnterApprentcieDetailsAndContinue(_ePAOConfig.EPAOAlreadyAssessedApprenticeName, _ePAOConfig.EPAOAlreadyAssessedApprenticeUln);
         }
 
         [Then(@"'(.*)' message is displayed")]
         public void ThenMessageIsDisplayed(string errorMessage)
         {
-            recordAGradePage.VerifyErrorMessage(errorMessage);
+            _recordAGradePage.VerifyErrorMessage(errorMessage);
+        }
+
+        [Then(@"the '(.*)' is displayed")]
+        public void ThenErrorIsDisplayed(string errorMessage)
+        {
+            switch (errorMessage)
+            {
+                case "Family name and ULN missing error":
+                    _recordAGradePage.VerifyFamilyNameMissingErrorText();
+                    _recordAGradePage.VerifyULNMissingErrorText();
+                    break;
+                case "Family name missing error":
+                    _recordAGradePage.VerifyFamilyNameMissingErrorText();
+                    break;
+                case "ULN missing error":
+                    _recordAGradePage.VerifyULNMissingErrorText();
+                    break;
+                case "ULN validation error":
+                    _recordAGradePage.VerifyInvalidUlnErrorText();
+                    break;
+            }
+        }
+
+        [When(@"the User clicks on the continue button '(.*)'")]
+        public void WhenTheUserClicksOnTheContinueButton(string scenario)
+        {
+            _recordAGradePage = new AS_RecordAGradePage(_context);
+
+            switch (scenario)
+            {
+                case "with out entering Any details":
+                    _recordAGradePage.EnterApprentcieDetailsAndContinue("", "");
+                    break;
+                case "by entering valid Family name and blank ULN":
+                    _recordAGradePage.EnterApprentcieDetailsAndContinue(_ePAOConfig.EPAOApprenticeNameWithSingleStandard, "");
+                    break;
+                case "by entering blank Family name and Valid ULN":
+                    _recordAGradePage.EnterApprentcieDetailsAndContinue("", _ePAOConfig.EPAOApprenticeUlnWithSingleStandard);
+                    break;
+                case "by entering valid Family name but ULN less than 10 digits":
+                    _recordAGradePage.EnterApprentcieDetailsAndContinue(_ePAOConfig.EPAOApprenticeNameWithSingleStandard, _epaoDataHelper.Get9DigitRandomULN);
+                    break;
+                case "by entering valid Family name and Invalid ULN":
+                    _recordAGradePage.EnterApprentcieDetailsAndContinue(_ePAOConfig.EPAOApprenticeNameWithSingleStandard, _epaoDataHelper.Get10DigitRandomULN);
+                    break;
+            }
+        }
+
+        [Given(@"navigates to Assessment page")]
+        public void GivenNavigatesToAssessmentPage()
+        {
+            new AS_LoggedInHomePage(_context).ClickOnRecordAGrade();
         }
     }
 }
