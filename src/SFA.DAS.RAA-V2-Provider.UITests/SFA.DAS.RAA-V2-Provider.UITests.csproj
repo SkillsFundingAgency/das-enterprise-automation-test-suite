@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
@@ -22,6 +22,7 @@
   <ItemGroup>
     <ProjectReference Include="..\SFA.DAS.ConfigurationBuilder\SFA.DAS.ConfigurationBuilder.csproj" />
     <ProjectReference Include="..\SFA.DAS.FAA.UITests\SFA.DAS.FAA.UITests.csproj" />
+    <ProjectReference Include="..\SFA.DAS.RAA-V2-QA.UITests\SFA.DAS.RAA-V2-QA.UITests.csproj" />
     <ProjectReference Include="..\SFA.DAS.RAA.DataGenerator\SFA.DAS.RAA.DataGenerator.csproj" />
     <ProjectReference Include="..\SFA.DAS.Registration.UITests\SFA.DAS.Registration.UITests.csproj" />
     <ProjectReference Include="..\SFA.DAS.UI.Framework\SFA.DAS.UI.Framework.csproj" />
