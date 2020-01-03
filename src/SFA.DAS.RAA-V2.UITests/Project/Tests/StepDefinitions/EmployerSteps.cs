@@ -17,8 +17,8 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
 
         public EmployerSteps(ScenarioContext context) => _employerStepsHelper = new EmployerStepsHelper(context);
 
-        [Given(@"Employer selects '(.*)' in the first part of the journey")]
-        public void GivenEmployerSelectsInTheFirstPartOfTheJourney(string wageType) => _employerStepsHelper.CreateANewVacancy(wageType);
+        [When(@"Employer selects '(National Minimum Wage|National Minimum Wage For Apprentices|Fixed Wage Type)' in the first part of the journey")]
+        public void WhenEmployerSelectsInTheFirstPartOfTheJourney(string wageType) => _employerStepsHelper.CreateANewVacancy(wageType);
 
         [Given(@"the Employer completes the first part of the journey")]
         public void GivenTheEmployerCompletesTheFirstPartOfTheJourney() => _vacancyPreviewPart2Page = _employerStepsHelper.PreviewVacancy(string.Empty, true, false);
@@ -77,8 +77,8 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
         [Then(@"the Employer is able to delete the draft vacancy")]
         public void ThenTheEmployerIsAbleToDeleteTheDraftVacancy() => _employerStepsHelper.DeleteDraftVacancy(_vacancyPreviewPart2Page);
 
-        [Then(@"error messages are displayed")]
-        public void ThenErrorMessagesAreDisplayed()
+        [Then(@"submission errors displayed for not completing the mandatory information")]
+        public void ThenSubmissionErrorsDisplayedForNotCompletingTheMandatoryInformation()
         {
             List<string> expectedMessges = new List<string>
             {
@@ -94,12 +94,10 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
             var actualMessages = _vacancyPreviewPart2WithErrorsPage.GetErrorMessages();
 
             Assert.IsTrue(expectedMessges.All(x => actualMessages.Contains(x)), $"Not all messages are found. {_employerStepsHelper.DeleteDraftVacancy(_vacancyPreviewPart2Page)}");
+
         }
 
-        [Then(@"the Employer verify '(.*)' the wage option selected in the Preview page")]
-        public void ThenTheEmployerVerifyTheWageOptionSelectedInThePreviewPage(string wageType)
-        {
-            _employerStepsHelper.VerifyWageType(wageType);
-        }
+        [Then(@"the Employer verify '(National Minimum Wage For Apprentices|National Minimum Wage|Fixed Wage Type)' the wage option selected in the Preview page")]
+        public void ThenTheEmployerVerifyTheWageOptionSelectedInThePreviewPage(string wageType) => _employerStepsHelper.VerifyWageType(wageType);
     }
 }

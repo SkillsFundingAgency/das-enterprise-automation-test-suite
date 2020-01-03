@@ -35,13 +35,13 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer
             switch (wageType)
             {
                 case "National Minimum Wage":
-                    wageAmount = rAAV2EmployerdataHelper.NationalMinimumWage;
+                    wageAmount = rAAV2EmployerDataHelper.NationalMinimumWage;
                     break;
                 case "Fixed Wage Type":
-                    wageAmount = rAAV2EmployerdataHelper.FixedWageForApprentices;
+                    wageAmount = rAAV2EmployerDataHelper.FixedWageForApprentices;
                     break;
                 default:
-                    wageAmount = rAAV2EmployerdataHelper.NationalMinimumWageForApprentices;
+                    wageAmount = rAAV2EmployerDataHelper.NationalMinimumWageForApprentices;
                     break;
             };
 

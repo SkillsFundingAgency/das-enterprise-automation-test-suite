@@ -82,7 +82,7 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Features.WageOptions
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 6
-        testRunner.Given("Employer selects \'National Minimum Wage\' in the first part of the journey", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+        testRunner.When("Employer selects \'National Minimum Wage\' in the first part of the journey", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 7
         testRunner.Then("the Employer verify \'National Minimum Wage\' the wage option selected in the Previ" +
                     "ew page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
