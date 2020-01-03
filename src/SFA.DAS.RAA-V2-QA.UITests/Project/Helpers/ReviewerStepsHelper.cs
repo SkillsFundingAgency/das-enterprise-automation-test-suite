@@ -1,11 +1,11 @@
 ﻿using SFA.DAS.FAA.UITests.Project.Tests.Pages;
-using SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Reviewer;
+using SFA.DAS.RAA_V2_QA.UITests.Project.Tests.Pages.Reviewer;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using SFA.DAS.ConfigurationBuilder;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.RAA_V2.UITests.Project.Helpers
+namespace SFA.DAS.RAA_V2_QA.UITests.Project.Helpers
 {
     public class ReviewerStepsHelper
     {
@@ -13,7 +13,7 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Helpers
         private readonly ObjectContext _objectContext;
         private readonly RestartWebDriverHelper _helper;
         private readonly TabHelper _tabHelper;
-        private readonly RAAV2Config _config;
+        private readonly RAAV2QAConfig _config;
         private const string _applicationName = "Reviewer";
 
         public ReviewerStepsHelper(ScenarioContext context)
@@ -22,7 +22,7 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Helpers
             _objectContext = context.Get<ObjectContext>();
             _helper = new RestartWebDriverHelper(context);
             _tabHelper = context.Get<TabHelper>();
-            _config = context.GetRAAV2Config<RAAV2Config>();
+            _config = context.GetRAAV2QAConfig<RAAV2QAConfig>();
         }
 
         public Reviewer_HomePage GoToReviewerHomePage(bool restart)

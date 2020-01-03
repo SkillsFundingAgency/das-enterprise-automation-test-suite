@@ -5,7 +5,7 @@ using SFA.DAS.ConfigurationBuilder;
 using TechTalk.SpecFlow;
 using SFA.DAS.RAA.DataGenerator;
 
-namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Common
+namespace SFA.DAS.RAA_V2_QA.UITests.Project.Tests.Pages.Common
 {
     public abstract class VerifyDetailsBasePage : BasePage
     {
