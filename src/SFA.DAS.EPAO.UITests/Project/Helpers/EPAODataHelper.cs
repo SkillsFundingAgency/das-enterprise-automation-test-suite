@@ -1,31 +1,20 @@
-﻿using OpenQA.Selenium;
-using SFA.DAS.UI.FrameworkHelpers;
-using TechTalk.SpecFlow;
+﻿using System;
 
 namespace SFA.DAS.EPAO.UITests.Project.Helpers
 {
     public class EPAODataHelper
     {
-        private readonly RandomDataGenerator _randomDataGenerator;
-        private readonly FormCompletionHelper _formCompletionHelper;
-        private readonly PageInteractionHelper _pageInteractionHelper;
-
-        public EPAODataHelper(ScenarioContext context)
+        public EPAODataHelper()
         {
-            _randomDataGenerator = context.Get<RandomDataGenerator>();
-            _formCompletionHelper = context.Get<FormCompletionHelper>();
-            _pageInteractionHelper = context.Get<PageInteractionHelper>();
+            GetCurrentDay = DateTime.Now.Day;
+            GetCurrentMonth = DateTime.Now.Month;
+            GetCurrentYear = DateTime.Now.Year;
         }
 
-        public void ClickAddressFromAutoSuggestOptions(By PostCodeAutocompleteElements)
-        {
-            _formCompletionHelper.ClickElement(() =>
-            {
-                var postCodeAutocompleteAddresses = _pageInteractionHelper.FindElements(PostCodeAutocompleteElements);
-                return postCodeAutocompleteAddresses[_randomDataGenerator.GenerateRandomNumberBetweenTwoValues(0, postCodeAutocompleteAddresses.Count - 1)];
-            });
-        }
+        public int GetCurrentDay { get; }
 
-        public void EnterDate(By locator, int text) => _formCompletionHelper.EnterText(locator, text);
+        public int GetCurrentMonth { get; }
+
+        public int GetCurrentYear { get; }
     }
 }

@@ -35,14 +35,21 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
             {
                 _formCompletionHelper.ClickElement(() => _pageInteractionHelper.FindElement(PassRadioButton));
                 Continue();
-                new AS_AchievementDatePage(_context).EnterGradeDateAndContinue();
+                new AS_AchievementDatePage(_context).EnterAchievementGradeDateAndContinue();
             }
             else if (grade == "Failed")
             {
                 _formCompletionHelper.ClickElement(() => _pageInteractionHelper.FindElement(FailRadioButton));
                 Continue();
-                new AS_ApprenticeFailedDatePage(_context).EnterGradeDateAndContinue();
+                new AS_ApprenticeFailedDatePage(_context).EnterAchievementGradeDateAndContinue();
             }
+        }
+
+        public AS_ApprenticeshipStartDate SelectGradeForPrivatelyFundedAprrenticeAndContinue()
+        {
+            _formCompletionHelper.ClickElement(() => _pageInteractionHelper.FindElement(PassRadioButton));
+            Continue();
+            return new AS_ApprenticeshipStartDate(_context);
         }
     }
 }

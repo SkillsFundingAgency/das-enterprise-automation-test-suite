@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.EPAO.UITests.Project.Tests.Features.AssessmentService
+namespace SFA.DAS.EPAO.UITests.Project.Tests.Features.AssessmentService.CertifyApprentice
 {
     using TechTalk.SpecFlow;
     
@@ -18,20 +18,20 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Features.AssessmentService
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.0.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("EPAO_AS_CA_01")]
-    public partial class EPAO_AS_CA_01Feature
+    [NUnit.Framework.DescriptionAttribute("EPAO_AS_CA_02")]
+    public partial class EPAO_AS_CA_02Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "EPAO_AS_CA_01.feature"
+#line 1 "EPAO_AS_CA_02.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "EPAO_AS_CA_01", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "EPAO_AS_CA_02", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -70,15 +70,15 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Features.AssessmentService
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("EPAO_AS_CA_01A - Certify an Apprentice as Passed who has enrolled for a single st" +
-            "andard")]
+        [NUnit.Framework.DescriptionAttribute("EPAO_AS_CA_02 - Certify an Apprentice who has enrolled for a Standard with Additi" +
+            "onal Learning option")]
         [NUnit.Framework.CategoryAttribute("epao")]
         [NUnit.Framework.CategoryAttribute("assessmentservice")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public virtual void EPAO_AS_CA_01A_CertifyAnApprenticeAsPassedWhoHasEnrolledForASingleStandard()
+        public virtual void EPAO_AS_CA_02_CertifyAnApprenticeWhoHasEnrolledForAStandardWithAdditionalLearningOption()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EPAO_AS_CA_01A - Certify an Apprentice as Passed who has enrolled for a single st" +
-                    "andard", null, new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EPAO_AS_CA_02 - Certify an Apprentice who has enrolled for a Standard with Additi" +
+                    "onal Learning option", null, new string[] {
                         "epao",
                         "assessmentservice",
                         "regression"});
@@ -89,36 +89,8 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("the User is logged into Assessment Service Application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 8
  testRunner.When("the User goes through certifying an Apprentice as \'Passed\' who has enrolled for \'" +
-                    "single\' standard", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+                    "additional learning option\' standard", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 9
- testRunner.Then("the Assessment is recorded and the User is able to navigate back to certifying an" +
-                    "other Apprentice", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-            this.ScenarioCleanup();
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("EPAO_AS_CA_01B - Certify an Apprentice as Failed who has enrolled for a single st" +
-            "andard")]
-        [NUnit.Framework.CategoryAttribute("epao")]
-        [NUnit.Framework.CategoryAttribute("assessmentservice")]
-        [NUnit.Framework.CategoryAttribute("regression")]
-        public virtual void EPAO_AS_CA_01B_CertifyAnApprenticeAsFailedWhoHasEnrolledForASingleStandard()
-        {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EPAO_AS_CA_01B - Certify an Apprentice as Failed who has enrolled for a single st" +
-                    "andard", null, new string[] {
-                        "epao",
-                        "assessmentservice",
-                        "regression"});
-#line 14
-this.ScenarioInitialize(scenarioInfo);
-            this.ScenarioStart();
-#line 15
- testRunner.Given("the User is logged into Assessment Service Application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 16
- testRunner.When("the User goes through certifying an Apprentice as \'Failed\' who has enrolled for \'" +
-                    "single\' standard", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 17
  testRunner.Then("the Assessment is recorded and the User is able to navigate back to certifying an" +
                     "other Apprentice", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
