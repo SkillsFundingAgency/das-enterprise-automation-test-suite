@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Features.Employer.E2EJourney
+namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Features.ApplyVacancy
 {
     using TechTalk.SpecFlow;
     
@@ -18,20 +18,20 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Features.Employer.E2EJourney
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.0.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("RV2_E_E2E_01")]
-    public partial class RV2_E_E2E_01Feature
+    [NUnit.Framework.DescriptionAttribute("RV2_E_AV_01")]
+    public partial class RV2_E_AV_01Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "RV2_E_E2E_01.feature"
+#line 1 "RV2_E_AV_01.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "RV2_E_E2E_01", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "RV2_E_AV_01", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -70,31 +70,23 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Features.Employer.E2EJourney
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RV2_E_E2E_01 - Create vacancy with registered name, Approve, Apply and make Appli" +
-            "cation Successful")]
+        [NUnit.Framework.DescriptionAttribute("RV2_E_AV_01 - Create anonymous vacancy, Approve, Apply")]
         [NUnit.Framework.CategoryAttribute("raa-v2")]
-        [NUnit.Framework.CategoryAttribute("v2_e2e")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public virtual void RV2_E_E2E_01_CreateVacancyWithRegisteredNameApproveApplyAndMakeApplicationSuccessful()
+        public virtual void RV2_E_AV_01_CreateAnonymousVacancyApproveApply()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV2_E_E2E_01 - Create vacancy with registered name, Approve, Apply and make Appli" +
-                    "cation Successful", null, new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV2_E_AV_01 - Create anonymous vacancy, Approve, Apply", null, new string[] {
                         "raa-v2",
-                        "v2_e2e",
                         "regression"});
-#line 6
+#line 5
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
+#line 6
+ testRunner.Given("the Employer creates an anonymous vacancy", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 7
- testRunner.Given("the Employer creates a vacancy by using a registered name", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.When("the Reviewer Approves the vacancy", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 8
- testRunner.And("the Reviewer Approves the vacancy", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 9
- testRunner.When("the Applicant applies for a Vacancy in FAA", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 10
- testRunner.Then("Employer can make the application successful", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 11
- testRunner.And("the status of the Application is shown as \'successful\' in FAA", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Then("the Applicant can apply for a Vacancy in FAA", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

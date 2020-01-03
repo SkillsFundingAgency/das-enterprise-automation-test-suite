@@ -1,9 +1,9 @@
-﻿using SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer;
+﻿using SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer;
 using SFA.DAS.Registration.UITests.Project;
 using SFA.DAS.Registration.UITests.Project.Helpers;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.RAA_V2.UITests.Project.Helpers
+namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
 {
     public class EmployerStepsHelper
     {

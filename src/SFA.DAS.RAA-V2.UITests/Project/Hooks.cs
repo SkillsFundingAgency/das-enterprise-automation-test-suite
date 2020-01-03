@@ -4,7 +4,7 @@ using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.RAA_V2.UITests.Project
+namespace SFA.DAS.RAA_V2_Employer.UITests.Project
 {
     [Binding]
     public class Hooks

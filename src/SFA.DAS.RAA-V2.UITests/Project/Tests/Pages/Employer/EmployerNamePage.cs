@@ -1,11 +1,10 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.FAA.UITests.Project;
-using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer
+namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer
 {
     public class EmployerNamePage : RAAV2CSSBasePage
     {

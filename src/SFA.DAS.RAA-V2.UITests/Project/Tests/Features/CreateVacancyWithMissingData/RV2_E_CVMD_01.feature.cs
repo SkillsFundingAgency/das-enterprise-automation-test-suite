@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Features.Employer.OfflineVacancy
+namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Features.CreateVacancyWithMissingData
 {
     using TechTalk.SpecFlow;
     
@@ -18,20 +18,20 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Features.Employer.OfflineVacancy
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.0.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("RV2_E_OV_01")]
-    public partial class RV2_E_OV_01Feature
+    [NUnit.Framework.DescriptionAttribute("RV2_E_CVMD_01")]
+    public partial class RV2_E_CVMD_01Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "RV2_E_OV_01.feature"
+#line 1 "RV2_E_CVMD_01.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "RV2_E_OV_01", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "RV2_E_CVMD_01", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -70,25 +70,23 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Features.Employer.OfflineVacancy
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RV2_E_OV_01 - Creates offline vacancy with disability confidence and Reviewer app" +
-            "roves")]
+        [NUnit.Framework.DescriptionAttribute("RV2_E_CVMD_01 - Create Vacancy with missing mandatory details")]
         [NUnit.Framework.CategoryAttribute("raa-v2")]
-        [NUnit.Framework.CategoryAttribute("offlinevacancy")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public virtual void RV2_E_OV_01_CreatesOfflineVacancyWithDisabilityConfidenceAndReviewerApproves()
+        public virtual void RV2_E_CVMD_01_CreateVacancyWithMissingMandatoryDetails()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV2_E_OV_01 - Creates offline vacancy with disability confidence and Reviewer app" +
-                    "roves", null, new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV2_E_CVMD_01 - Create Vacancy with missing mandatory details", null, new string[] {
                         "raa-v2",
-                        "offlinevacancy",
                         "regression"});
-#line 6
+#line 5
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
+#line 6
+        testRunner.Given("the Employer completes the first part of the journey", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 7
- testRunner.Given("the Employer creates an offline vacancy with disability confidence", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+        testRunner.When("the Employer submits the vacancy", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 8
- testRunner.Then("the Reviewer verifies disability confident and approves the vacancy", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+        testRunner.Then("error messages are displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

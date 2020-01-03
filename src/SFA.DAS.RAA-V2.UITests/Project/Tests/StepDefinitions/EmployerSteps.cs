@@ -1,11 +1,11 @@
 ﻿using NUnit.Framework;
-using SFA.DAS.RAA_V2.UITests.Project.Helpers;
-using SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer;
+using SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers;
+using SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer;
 using System.Collections.Generic;
 using System.Linq;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.RAA_V2.UITests.Project.Tests.StepDefinitions
+namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
 {
     [Binding]
     public class EmployerSteps

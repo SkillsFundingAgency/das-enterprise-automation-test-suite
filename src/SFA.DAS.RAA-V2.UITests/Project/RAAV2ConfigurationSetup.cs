@@ -3,7 +3,7 @@ using SFA.DAS.Registration.UITests.Project;
 using SFA.DAS.UI.Framework.TestSupport;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.RAA_V2.UITests.Project
+namespace SFA.DAS.RAA_V2_Employer.UITests.Project
 {
     [Binding]
     public class RAAV2ConfigurationSetup

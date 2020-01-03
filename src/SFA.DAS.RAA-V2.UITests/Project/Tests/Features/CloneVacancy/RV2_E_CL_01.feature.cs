@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Features.Employer.CloneVacancy
+namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Features.CloneVacancy
 {
     using TechTalk.SpecFlow;
     
@@ -18,20 +18,20 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Features.Employer.CloneVacancy
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.0.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("RV2_E_CL_04")]
-    public partial class RV2_E_CL_04Feature
+    [NUnit.Framework.DescriptionAttribute("RV2_E_CL_01")]
+    public partial class RV2_E_CL_01Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "RV2_E_CL_04.feature"
+#line 1 "RV2_E_CL_01.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "RV2_E_CL_04", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "RV2_E_CL_01", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -70,13 +70,13 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Features.Employer.CloneVacancy
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RV2_E_CL_04 - Clone, Approve and Edit the vacancy")]
+        [NUnit.Framework.DescriptionAttribute("RV2_E_CL_01 - Clone a vacancy, Approve, Apply and make Application Successful")]
         [NUnit.Framework.CategoryAttribute("raa-v2")]
         [NUnit.Framework.CategoryAttribute("clonevacancy")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public virtual void RV2_E_CL_04_CloneApproveAndEditTheVacancy()
+        public virtual void RV2_E_CL_01_CloneAVacancyApproveApplyAndMakeApplicationSuccessful()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV2_E_CL_04 - Clone, Approve and Edit the vacancy", null, new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV2_E_CL_01 - Clone a vacancy, Approve, Apply and make Application Successful", null, new string[] {
                         "raa-v2",
                         "clonevacancy",
                         "regression"});
@@ -88,7 +88,11 @@ this.ScenarioInitialize(scenarioInfo);
 #line 8
  testRunner.And("the Reviewer Approves the vacancy", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 9
- testRunner.Then("the Employer can edit the vacancy", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.When("the Applicant applies for a Vacancy in FAA", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 10
+ testRunner.Then("Employer can make the application successful", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 11
+ testRunner.And("the status of the Application is shown as \'successful\' in FAA", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }

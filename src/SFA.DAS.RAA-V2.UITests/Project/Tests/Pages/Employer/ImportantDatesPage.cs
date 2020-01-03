@@ -3,7 +3,7 @@ using SFA.DAS.UI.FrameworkHelpers;
 using System;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer
+namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer
 {
     public class ImportantDatesPage : VacancyDatesBasePage
     {

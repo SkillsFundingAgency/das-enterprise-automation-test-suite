@@ -3,7 +3,7 @@ using SFA.DAS.RAA.DataGenerator;
 using SFA.DAS.RAA_V2_QA.UITests.Project.Tests.Pages.Common;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Pages.Employer
+namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer
 {
     public class ViewVacancyPage : VerifyDetailsBasePage
     {

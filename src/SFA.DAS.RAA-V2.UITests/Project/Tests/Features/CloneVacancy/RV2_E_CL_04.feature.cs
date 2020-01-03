@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Features.Employer.DraftVacancy
+namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Features.CloneVacancy
 {
     using TechTalk.SpecFlow;
     
@@ -18,20 +18,20 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Features.Employer.DraftVacancy
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.0.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("RV2_E_DV_02")]
-    public partial class RV2_E_DV_02Feature
+    [NUnit.Framework.DescriptionAttribute("RV2_E_CL_04")]
+    public partial class RV2_E_CL_04Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "RV2_E_DV_02.feature"
+#line 1 "RV2_E_CL_04.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "RV2_E_DV_02", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "RV2_E_CL_04", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -70,24 +70,25 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Features.Employer.DraftVacancy
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RV2_E_DV_02 - Resume Create Vacancy from Draft status")]
+        [NUnit.Framework.DescriptionAttribute("RV2_E_CL_04 - Clone, Approve and Edit the vacancy")]
         [NUnit.Framework.CategoryAttribute("raa-v2")]
+        [NUnit.Framework.CategoryAttribute("clonevacancy")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public virtual void RV2_E_DV_02_ResumeCreateVacancyFromDraftStatus()
+        public virtual void RV2_E_CL_04_CloneApproveAndEditTheVacancy()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV2_E_DV_02 - Resume Create Vacancy from Draft status", null, new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV2_E_CL_04 - Clone, Approve and Edit the vacancy", null, new string[] {
                         "raa-v2",
+                        "clonevacancy",
                         "regression"});
-#line 5
+#line 6
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 6
-testRunner.Given("the Employer completes the first part of the journey", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 7
-testRunner.When("the Employer saves the vacancy as a draft", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.Given("the Employer clones and creates a vacancy", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 8
-testRunner.Then("Employer is able to open the draft and create the vacancy by filling the data for" +
-                    " the second part", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("the Reviewer Approves the vacancy", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 9
+ testRunner.Then("the Employer can edit the vacancy", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
