@@ -20,6 +20,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
         #region Locators
         private By FamilyNameTextBox => By.Name("Surname");
         private By ULNTextBox => By.Name("Uln");
+        private By PrivatelyFundedCheckBox => By.CssSelector("label");
         #endregion
 
         public AS_RecordAGradePage(ScenarioContext context) : base(context)
@@ -33,32 +34,42 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
 
         public AS_ConfirmApprenticePage SearchApprentice(string enrolledStandard)
         {
-            string familyName=null, uLN=null;
-
             switch (enrolledStandard)
             {
                 case "single":
                     _ePAOSqlDataHelper.DeleteCertificate(_ePAOConfig.EPAOApprenticeUlnWithSingleStandard);
-                    familyName = _ePAOConfig.EPAOApprenticeNameWithSingleStandard; 
-                    uLN = _ePAOConfig.EPAOApprenticeUlnWithSingleStandard;
+                    EnterApprentcieDetailsAndContinue(_ePAOConfig.EPAOApprenticeNameWithSingleStandard, _ePAOConfig.EPAOApprenticeUlnWithSingleStandard);
                     break;
                 case "more than one":
                     _ePAOSqlDataHelper.DeleteCertificate(_ePAOConfig.EPAOApprenticeUlnWithMultipleStandards);
-                    familyName = _ePAOConfig.EPAOApprenticeNameWithMultipleStandards; 
-                    uLN = _ePAOConfig.EPAOApprenticeUlnWithMultipleStandards;
+                    EnterApprentcieDetailsAndContinue(_ePAOConfig.EPAOApprenticeNameWithMultipleStandards, _ePAOConfig.EPAOApprenticeUlnWithMultipleStandards);
                     break;
                 case "additional learning option":
                     _ePAOSqlDataHelper.DeleteCertificate(_ePAOConfig.EPAOApprenticeUlnWithAStandardHavingLearningOption);
-                    familyName = _ePAOConfig.EPAOApprenticeNameWithAStandardHavingLearningOption; 
-                    uLN = _ePAOConfig.EPAOApprenticeUlnWithAStandardHavingLearningOption;
+                    EnterApprentcieDetailsAndContinue(_ePAOConfig.EPAOApprenticeNameWithAStandardHavingLearningOption, _ePAOConfig.EPAOApprenticeUlnWithAStandardHavingLearningOption);
                     break;
             }
 
+            return new AS_ConfirmApprenticePage(_context);
+        }
+
+        public AS_DeclarationPage SearchPrivatelyFundedApprentice()
+        {
+            _ePAOSqlDataHelper.DeleteCertificate(_ePAOConfig.EPAOPrivatelyFundedApprenticeUln);
+            SelectPrivatelyFundedCheckBox();
+            EnterApprentcieDetailsAndContinue(_ePAOConfig.EPAOPrivatelyFundedApprenticeLastName, _ePAOConfig.EPAOPrivatelyFundedApprenticeUln);
+            return new AS_DeclarationPage(_context);
+        }
+
+        public void EnterApprentcieDetailsAndContinue(string familyName, string uLN)
+        {
             _formCompletionHelper.EnterText(FamilyNameTextBox, familyName);
             _formCompletionHelper.EnterText(ULNTextBox, uLN);
             Continue();
-
-            return new AS_ConfirmApprenticePage(_context);
         }
+
+        public void VerifyErrorMessage(string pageTitle) => VerifyPage(PageHeader, pageTitle);
+
+        private void SelectPrivatelyFundedCheckBox() => _formCompletionHelper.SelectRadioOptionByForAttribute(PrivatelyFundedCheckBox, "IsPrivatelyFunded");
     }
 }

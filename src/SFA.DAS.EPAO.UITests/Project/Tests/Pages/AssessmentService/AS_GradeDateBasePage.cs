@@ -3,6 +3,7 @@ using TechTalk.SpecFlow;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.EPAO.UITests.Project.Helpers;
 using System;
+using SFA.DAS.UI.FrameworkHelpers;
 
 namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
 {
@@ -13,6 +14,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
         #region Helpers and Context
         private readonly ScenarioContext _context;
         private readonly EPAODataHelper _ePAODataHelper;
+        private readonly FormCompletionHelper _formCompletionHelper;
         #endregion
 
         #region Locators
@@ -24,16 +26,36 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
         public AS_GradeDateBasePage(ScenarioContext context) : base(context)
         {
             _context = context;
-            _ePAODataHelper = new EPAODataHelper(_context);
+            _ePAODataHelper = context.Get<EPAODataHelper>();
+            _formCompletionHelper = context.Get<FormCompletionHelper>();
             VerifyPage();
         }
 
-        public void EnterGradeDateAndContinue()
+        public void EnterAchievementGradeDateAndContinue()
         {
-            _ePAODataHelper.EnterDate(DayTextBox, DateTime.Now.Day);
-            _ePAODataHelper.EnterDate(MonthTextBox, DateTime.Now.Month);
-            _ePAODataHelper.EnterDate(YearTextBox, DateTime.Now.Year);
+            _formCompletionHelper.EnterText(DayTextBox, _ePAODataHelper.GetCurrentDay);
+            _formCompletionHelper.EnterText(MonthTextBox, _ePAODataHelper.GetCurrentMonth);
+            _formCompletionHelper.EnterText(YearTextBox, _ePAODataHelper.GetCurrentYear);
             Continue();
         }
+
+        public AS_UkprnPage EnterApprenticshipStartDateAndContinue()
+        {
+            _formCompletionHelper.EnterText(DayTextBox, _ePAODataHelper.GetCurrentDay);
+            _formCompletionHelper.EnterText(MonthTextBox, _ePAODataHelper.GetCurrentMonth);
+            _formCompletionHelper.EnterText(YearTextBox, 2018);
+            Continue();
+            return new AS_UkprnPage(_context);
+        }
+
+        public AS_SearchEmployerAddressPage EnterAchievementGradeDateForPrivatelyFundedApprenticeAndContinue()
+        {
+            _formCompletionHelper.EnterText(DayTextBox, _ePAODataHelper.GetCurrentDay);
+            _formCompletionHelper.EnterText(MonthTextBox, _ePAODataHelper.GetCurrentMonth);
+            _formCompletionHelper.EnterText(YearTextBox, _ePAODataHelper.GetCurrentYear);
+            Continue();
+            return new AS_SearchEmployerAddressPage(_context);
+        }
+
     }
 }
