@@ -13,6 +13,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         private readonly EPAOConfig _ePAOConfig;
         private AS_RecordAGradePage _recordAGradePage;
         private EPAODataHelper _epaoDataHelper;
+        private AS_AchievementDatePage _achievementDatePage;
 
         public AssessmentServiceSteps(ScenarioContext context)
         {
@@ -107,9 +108,31 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         }
 
         [Given(@"navigates to Assessment page")]
-        public void GivenNavigatesToAssessmentPage()
+        public void GivenNavigatesToAssessmentPage() => new AS_LoggedInHomePage(_context).ClickOnRecordAGrade();
+
+        [Given(@"the User is on the Apprenticeship achievement date page")]
+        public void GivenTheUserIsOnTheApprenticeshipAchievementDatePage()
         {
-            new AS_LoggedInHomePage(_context).ClickOnRecordAGrade();
+            _stepsHelper.CertifyPrivatelyFundedApprentice(true);
+        }
+
+        [When(@"the User enters the date before the Year 2017")]
+        public void WhenTheUserEntersTheDateBeforeTheYear2017()
+        {
+            _achievementDatePage = new AS_AchievementDatePage(_context);
+            _achievementDatePage.EnterAchievementGradeDateForPrivatelyFundedApprenticeAndContinue(2016);
+        }
+
+        [When(@"the User enters the future date")]
+        public void WhenTheUserEntersTheFutureDate()
+        {
+            _achievementDatePage.EnterAchievementGradeDateForPrivatelyFundedApprenticeAndContinue(_epaoDataHelper.GetCurrentYear+1);
+        }
+
+        [Then(@"(.*) is displayed in the Apprenticeship achievement date page")]
+        public void ThenDateErrorIsDisplayedInTheApprenticeshipAchievementDatePage(string errorText)
+        {
+            _achievementDatePage.VerifyDateErrorText(errorText);
         }
     }
 }

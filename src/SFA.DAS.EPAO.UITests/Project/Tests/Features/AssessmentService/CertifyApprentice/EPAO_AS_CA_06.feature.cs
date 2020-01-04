@@ -18,20 +18,20 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Features.AssessmentService.CertifyA
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.0.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("EPAO_AS_CA_07")]
-    public partial class EPAO_AS_CA_07Feature
+    [NUnit.Framework.DescriptionAttribute("EPAO_AS_CA_06")]
+    public partial class EPAO_AS_CA_06Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "EPAO_AS_CA_07.feature"
+#line 1 "EPAO_AS_CA_06.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "EPAO_AS_CA_07", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "EPAO_AS_CA_06", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -70,13 +70,13 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Features.AssessmentService.CertifyA
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("EPAO_CA_07 - Attempt to certify an Apprentice with Invalid details")]
+        [NUnit.Framework.DescriptionAttribute("EPAO_CA_06 - Attempt to certify an Apprentice with Invalid details")]
         [NUnit.Framework.CategoryAttribute("epao")]
         [NUnit.Framework.CategoryAttribute("assessmentservice")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public virtual void EPAO_CA_07_AttemptToCertifyAnApprenticeWithInvalidDetails()
+        public virtual void EPAO_CA_06_AttemptToCertifyAnApprenticeWithInvalidDetails()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EPAO_CA_07 - Attempt to certify an Apprentice with Invalid details", null, new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EPAO_CA_06 - Attempt to certify an Apprentice with Invalid details", null, new string[] {
                         "epao",
                         "assessmentservice",
                         "regression"});

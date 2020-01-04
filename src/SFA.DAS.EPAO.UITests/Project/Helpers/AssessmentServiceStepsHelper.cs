@@ -6,6 +6,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
     public class AssessmentServiceStepsHelper
     {
         private readonly ScenarioContext _context;
+        private AS_AchievementDatePage _achievementDatePage;
 
         public AssessmentServiceStepsHelper(ScenarioContext context)
         {
@@ -36,7 +37,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
                 new AS_CheckAndSubmitAssessmentPage(_context).ClickContinueInCheckAndSubmitAssessmentPage();
         }
 
-        public void CertifyPrivatelyFundedApprentice()
+        public void CertifyPrivatelyFundedApprentice(bool invalidDate = false)
         {
             new AS_LoggedInHomePage(_context).ClickOnRecordAGrade()
                 .SearchPrivatelyFundedApprentice()
@@ -45,13 +46,19 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
                 .SelectStandardAndContinue()
                 .SelectGradeForPrivatelyFundedAprrenticeAndContinue()
                 .EnterApprenticshipStartDateAndContinue()
-                .EnterUkprnAndContinue()
-                .EnterAchievementGradeDateForPrivatelyFundedApprenticeAndContinue()
+                .EnterUkprnAndContinue();
+
+            _achievementDatePage = new AS_AchievementDatePage(_context);
+
+            if (!invalidDate)
+            {
+                _achievementDatePage.EnterAchievementGradeDateForPrivatelyFundedApprenticeAndContinue()
                 .ClickEnterAddressManuallyLinkInSearchEmployerPage()
                 .EnterEmployerAddressAndContinue()
                 .ClickContinueInConfirmEmployerAddressPage()
                 .EnterRecipientDetailsAndContinue()
                 .ClickContinueInCheckAndSubmitAssessmentPage();
+            }
         }
     }
 }

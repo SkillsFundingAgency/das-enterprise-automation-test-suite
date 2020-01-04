@@ -1,9 +1,9 @@
-﻿Feature: EPAO_AS_CA_07
+﻿Feature: EPAO_AS_CA_06
 
 @epao
 @assessmentservice
 @regression
-Scenario: EPAO_CA_07 - Attempt to certify an Apprentice with Invalid details
+Scenario: EPAO_CA_06 - Attempt to certify an Apprentice with Invalid details
 	Given the User is logged into Assessment Service Application
 	And navigates to Assessment page
 	When the User clicks on the continue button 'with out entering Any details'

@@ -70,13 +70,13 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Features.AssessmentService.CertifyA
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("EPAO_AS_CA_04 - Certify a privately funded Apprentice")]
+        [NUnit.Framework.DescriptionAttribute("EPAO_AS_CA_04A - Certify a privately funded Apprentice")]
         [NUnit.Framework.CategoryAttribute("epao")]
         [NUnit.Framework.CategoryAttribute("assessmentservice")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public virtual void EPAO_AS_CA_04_CertifyAPrivatelyFundedApprentice()
+        public virtual void EPAO_AS_CA_04A_CertifyAPrivatelyFundedApprentice()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EPAO_AS_CA_04 - Certify a privately funded Apprentice", null, new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EPAO_AS_CA_04A - Certify a privately funded Apprentice", null, new string[] {
                         "epao",
                         "assessmentservice",
                         "regression"});
@@ -90,6 +90,38 @@ this.ScenarioInitialize(scenarioInfo);
 #line 9
  testRunner.Then("the Assessment is recorded and the User is able to navigate back to certifying an" +
                     "other Apprentice", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("EPAO_CA_04B - Attempt to certify a privately funded Apprentice with Invalid date")]
+        [NUnit.Framework.CategoryAttribute("epao")]
+        [NUnit.Framework.CategoryAttribute("assessmentservice")]
+        [NUnit.Framework.CategoryAttribute("regression")]
+        public virtual void EPAO_CA_04B_AttemptToCertifyAPrivatelyFundedApprenticeWithInvalidDate()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EPAO_CA_04B - Attempt to certify a privately funded Apprentice with Invalid date", null, new string[] {
+                        "epao",
+                        "assessmentservice",
+                        "regression"});
+#line 14
+this.ScenarioInitialize(scenarioInfo);
+            this.ScenarioStart();
+#line 15
+ testRunner.Given("the User is logged into Assessment Service Application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 16
+ testRunner.And("the User is on the Apprenticeship achievement date page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 17
+ testRunner.When("the User enters the date before the Year 2017", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 18
+ testRunner.Then("\'An achievement date cannot be before 01 01 2017\' is displayed in the Apprentices" +
+                    "hip achievement date page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 19
+ testRunner.When("the User enters the future date", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 20
+ testRunner.Then("\'An achievement date cannot be in the future\' is displayed in the Apprenticeship " +
+                    "achievement date page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
