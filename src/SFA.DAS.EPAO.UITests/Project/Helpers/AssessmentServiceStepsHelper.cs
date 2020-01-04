@@ -6,7 +6,6 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
     public class AssessmentServiceStepsHelper
     {
         private readonly ScenarioContext _context;
-        private AS_AchievementDatePage _achievementDatePage;
 
         public AssessmentServiceStepsHelper(ScenarioContext context)
         {
@@ -48,11 +47,9 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
                 .EnterApprenticshipStartDateAndContinue()
                 .EnterUkprnAndContinue();
 
-            _achievementDatePage = new AS_AchievementDatePage(_context);
-
             if (!invalidDate)
             {
-                _achievementDatePage.EnterAchievementGradeDateForPrivatelyFundedApprenticeAndContinue()
+                new AS_AchievementDatePage(_context).EnterAchievementGradeDateForPrivatelyFundedApprenticeAndContinue()
                 .ClickEnterAddressManuallyLinkInSearchEmployerPage()
                 .EnterEmployerAddressAndContinue()
                 .ClickContinueInConfirmEmployerAddressPage()

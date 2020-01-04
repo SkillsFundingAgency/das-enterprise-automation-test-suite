@@ -60,11 +60,11 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
 
         public bool VerifyDateErrorText(string errorText) => _pageInteractionHelper.IsElementDisplayed(By.LinkText(errorText));
 
-        private void EnterDateFieldsAndContinue(bool invalidDate = false)
+        private void EnterDateFieldsAndContinue(bool invalidDateScenario = false)
         {
             _formCompletionHelper.EnterText(DayTextBox, _ePAODataHelper.GetCurrentDay);
             _formCompletionHelper.EnterText(MonthTextBox, _ePAODataHelper.GetCurrentMonth);
-            if (invalidDate) return;
+            if (invalidDateScenario) return;
             _formCompletionHelper.EnterText(YearTextBox, _ePAODataHelper.GetCurrentYear);
             Continue();
         }
