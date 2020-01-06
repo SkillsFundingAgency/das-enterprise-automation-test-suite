@@ -7,8 +7,6 @@
         public string Password { get; set; }
     }
 
-    public class RAAV2EmployerUser : LoginUser { }
-
     public class ProviderPermissionLevyUser : LoginUser { }
 
     public class AgreementNotSignedTransfersUser : LoginUser { }
