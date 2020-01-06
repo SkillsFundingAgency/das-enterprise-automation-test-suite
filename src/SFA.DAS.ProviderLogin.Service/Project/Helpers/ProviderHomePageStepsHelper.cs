@@ -28,7 +28,7 @@ namespace SFA.DAS.ProviderLogin.Service.Helpers
 
         public ProviderHomePage GoToProviderHomePage()
         {
-            return GoToProviderHomePage();
+            return GoToProviderHomePage(_login);
         }
 
         public ProviderHomePage GoToProviderHomePage(ProviderLoginUser login)
