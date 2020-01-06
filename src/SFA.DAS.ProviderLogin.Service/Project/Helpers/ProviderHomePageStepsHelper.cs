@@ -3,6 +3,7 @@ using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 using SFA.DAS.ProviderLogin.Service.Pages;
+using SFA.DAS.Login.Service.Helpers;
 
 namespace SFA.DAS.ProviderLogin.Service.Helpers
 {

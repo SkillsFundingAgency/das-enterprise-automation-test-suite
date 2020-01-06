@@ -6,6 +6,12 @@
 
         public string Password { get; set; }
     }
+    public class RAAV2EmployerUser : LoginUser { }
+
+    public class ProviderLoginUser : LoginUser
+    {
+        public string Ukprn { get; set; }
+    }
 
     public class ProviderPermissionLevyUser : LoginUser { }
 

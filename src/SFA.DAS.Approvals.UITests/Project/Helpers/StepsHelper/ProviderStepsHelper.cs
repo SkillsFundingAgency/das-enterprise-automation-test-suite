@@ -6,6 +6,7 @@ using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 using SFA.DAS.ProviderLogin.Service.Helpers;
 using SFA.DAS.ProviderLogin.Service;
+using SFA.DAS.Login.Service.Helpers;
 
 namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 {
