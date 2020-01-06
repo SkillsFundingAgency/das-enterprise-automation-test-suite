@@ -11,8 +11,6 @@ namespace SFA.DAS.RAA_V2_QA.UITests.Project.Tests.Pages.Common
     {
         private readonly ObjectContext _objectContext;
 
-        protected readonly RAAV2EmployerDataHelper rAAV2EmployerDataHelper;
-
         protected virtual By EmployerName { get; }
 
         protected virtual By EmployerNameInAboutTheEmployerSection { get; }
@@ -22,7 +20,6 @@ namespace SFA.DAS.RAA_V2_QA.UITests.Project.Tests.Pages.Common
         public VerifyDetailsBasePage(ScenarioContext context) : base(context)
         {
             _objectContext = context.Get<ObjectContext>();
-            rAAV2EmployerDataHelper = context.Get<RAAV2EmployerDataHelper>();
         }
 
         protected void VerifyEmployerName()

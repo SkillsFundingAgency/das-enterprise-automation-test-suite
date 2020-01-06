@@ -21,11 +21,13 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer
 
         #region Helpers and Context
         private readonly VacancyTitleDatahelper _titleDatahelper;
+        private readonly RAAV2EmployerDataHelper _rAAV2EmployerDataHelper;
         #endregion
 
         public ViewVacancyPage(ScenarioContext context) : base(context)
         {
             _titleDatahelper = context.Get<VacancyTitleDatahelper>();
+            _rAAV2EmployerDataHelper = context.Get<RAAV2EmployerDataHelper>();
             VerifyPage();
         }
 
@@ -35,13 +37,13 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer
             switch (wageType)
             {
                 case "National Minimum Wage":
-                    wageAmount = rAAV2EmployerDataHelper.NationalMinimumWage;
+                    wageAmount = _rAAV2EmployerDataHelper.NationalMinimumWage;
                     break;
                 case "Fixed Wage Type":
-                    wageAmount = rAAV2EmployerDataHelper.FixedWageForApprentices;
+                    wageAmount = _rAAV2EmployerDataHelper.FixedWageForApprentices;
                     break;
                 default:
-                    wageAmount = rAAV2EmployerDataHelper.NationalMinimumWageForApprentices;
+                    wageAmount = _rAAV2EmployerDataHelper.NationalMinimumWageForApprentices;
                     break;
             };
 
