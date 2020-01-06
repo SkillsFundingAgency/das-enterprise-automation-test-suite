@@ -8,6 +8,7 @@ using System.Text;
 using TechTalk.SpecFlow;
 using SFA.DAS.Login.Service.Helpers;
 using SFA.DAS.Login.Service;
+using SFA.DAS.ProviderLogin.Service;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 {
@@ -17,7 +18,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         private readonly ScenarioContext _context;
         private readonly ProviderStepsHelper _providerStepsHelper;
         private readonly EmployerPortalLoginHelper _loginHelper;
-        private readonly ApprovalsConfig _config;
+        private readonly ProviderConfig _config;
         private readonly ProviderLoginUser _login;
 		private ProviderAddApprenticeDetailsPage _providerAddApprenticeDetailsPage;
 		private ProviderReviewYourCohortPage _providerReviewYourCohortPage;
@@ -25,7 +26,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         public ProviderReservations(ScenarioContext context)
         {
             _context = context;
-            _config = context.GetApprovalsConfig<ApprovalsConfig>();
+            _config = context.GetProviderConfig<ProviderConfig>();
             _loginHelper = new EmployerPortalLoginHelper(_context);
             _providerStepsHelper = new ProviderStepsHelper(_context);
             _login = new ProviderLoginUser { Username = _config.UserId, Password = _config.Password, Ukprn = _config.Ukprn };

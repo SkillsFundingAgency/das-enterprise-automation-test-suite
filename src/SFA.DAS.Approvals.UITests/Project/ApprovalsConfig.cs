@@ -2,7 +2,7 @@
 
 namespace SFA.DAS.Approvals.UITests.Project
 {
-    public class ApprovalsConfig : ProviderLoginConfig
+    public class ApprovalsConfig
     {
         public string AP_EmployerConfirmIdentityCode { get; set; }
 
