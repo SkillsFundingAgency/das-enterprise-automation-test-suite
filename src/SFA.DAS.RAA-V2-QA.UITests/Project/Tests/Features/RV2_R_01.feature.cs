@@ -72,18 +72,20 @@ namespace SFA.DAS.RAA_V2_QA.UITests.Project.Tests.Features
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("RV2_R_01 - Reviewer approves next available vacancy on the dashboard")]
         [NUnit.Framework.CategoryAttribute("raa-v2")]
+        [NUnit.Framework.CategoryAttribute("raa-v2qa")]
         [NUnit.Framework.CategoryAttribute("regression")]
         public virtual void RV2_R_01_ReviewerApprovesNextAvailableVacancyOnTheDashboard()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV2_R_01 - Reviewer approves next available vacancy on the dashboard", null, new string[] {
                         "raa-v2",
+                        "raa-v2qa",
                         "regression"});
-#line 5
+#line 6
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 6
-testRunner.When("Reviewer is logged into QA Application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 7
+testRunner.When("Reviewer is logged into QA Application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 8
 testRunner.Then("the Reviewer is able to approve the next available vacancy", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();

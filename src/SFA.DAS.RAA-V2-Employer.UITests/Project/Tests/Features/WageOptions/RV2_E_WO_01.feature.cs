@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Features.WageOptions
+namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Features.WageOptions
 {
     using TechTalk.SpecFlow;
     
@@ -72,18 +72,20 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Features.WageOptions
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("RV2_E_WO_01 - Employer verifies ‘National Minimum Wage\' option")]
         [NUnit.Framework.CategoryAttribute("raa-v2")]
+        [NUnit.Framework.CategoryAttribute("raa-v2e")]
         [NUnit.Framework.CategoryAttribute("regression")]
         public virtual void RV2_E_WO_01_EmployerVerifiesNationalMinimumWageOption()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV2_E_WO_01 - Employer verifies ‘National Minimum Wage\' option", null, new string[] {
                         "raa-v2",
+                        "raa-v2e",
                         "regression"});
-#line 5
+#line 6
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 6
-        testRunner.When("Employer selects \'National Minimum Wage\' in the first part of the journey", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 7
+        testRunner.When("Employer selects \'National Minimum Wage\' in the first part of the journey", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 8
         testRunner.Then("the Employer verify \'National Minimum Wage\' the wage option selected in the Previ" +
                     "ew page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden

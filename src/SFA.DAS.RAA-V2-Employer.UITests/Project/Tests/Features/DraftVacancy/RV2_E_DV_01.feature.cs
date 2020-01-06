@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Features.DraftVacancy
+namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Features.DraftVacancy
 {
     using TechTalk.SpecFlow;
     
@@ -72,18 +72,20 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Features.DraftVacancy
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("RV2_E_DV_01 - Employer cancels creating Vacancy")]
         [NUnit.Framework.CategoryAttribute("raa-v2")]
+        [NUnit.Framework.CategoryAttribute("raa-v2e")]
         [NUnit.Framework.CategoryAttribute("regression")]
         public virtual void RV2_E_DV_01_EmployerCancelsCreatingVacancy()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV2_E_DV_01 - Employer cancels creating Vacancy", null, new string[] {
                         "raa-v2",
+                        "raa-v2e",
                         "regression"});
-#line 5
+#line 6
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 6
-testRunner.When("Employer cancels after saving the title of the Vacancy", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 7
+testRunner.When("Employer cancels after saving the title of the Vacancy", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 8
 testRunner.Then("the vacancy is saved as a draft", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
