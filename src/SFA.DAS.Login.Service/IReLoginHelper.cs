@@ -1,4 +1,4 @@
-﻿namespace SFA.DAS.Registration.UITests.Project.Helpers
+﻿namespace SFA.DAS.Login.Service
 {
     public interface IReLoginHelper
     {

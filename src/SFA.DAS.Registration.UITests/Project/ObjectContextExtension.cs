@@ -1,4 +1,5 @@
 ﻿using SFA.DAS.ConfigurationBuilder;
+using SFA.DAS.Login.Service;
 
 namespace SFA.DAS.Registration.UITests.Project
 {

@@ -1,4 +1,4 @@
-﻿namespace SFA.DAS.Approvals.UITests.Project
+﻿namespace SFA.DAS.ProviderLogin.Service
 {
     public abstract class ProviderLoginConfig
     {

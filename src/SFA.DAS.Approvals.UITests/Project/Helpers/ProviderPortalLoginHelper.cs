@@ -1,5 +1,5 @@
 ﻿using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
-using SFA.DAS.Registration.UITests.Project.Helpers;
+using SFA.DAS.Login.Service;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Helpers

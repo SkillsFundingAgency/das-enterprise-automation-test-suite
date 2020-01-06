@@ -1,4 +1,4 @@
-﻿using SFA.DAS.Registration.UITests.Project;
+﻿using SFA.DAS.Login.Service;
 
 namespace SFA.DAS.Approvals.UITests.Project
 {

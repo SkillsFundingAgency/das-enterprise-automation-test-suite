@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using TechTalk.SpecFlow;
+using SFA.DAS.Login.Service;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 {

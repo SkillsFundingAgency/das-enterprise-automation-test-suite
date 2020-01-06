@@ -1,4 +1,4 @@
-﻿namespace SFA.DAS.Registration.UITests.Project
+﻿namespace SFA.DAS.Login.Service
 {
     public abstract class LoginUser
     {

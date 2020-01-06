@@ -1,4 +1,5 @@
-﻿using SFA.DAS.Registration.UITests.Project.Helpers;
+﻿using SFA.DAS.Login.Service;
+using SFA.DAS.Registration.UITests.Project.Helpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions

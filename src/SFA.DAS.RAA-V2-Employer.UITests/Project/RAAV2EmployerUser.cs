@@ -1,5 +1,5 @@
 ﻿
-using SFA.DAS.Registration.UITests.Project;
+using SFA.DAS.Login.Service;
 
 namespace SFA.DAS.RAA_V2_Employer.UITests.Project
 {
