@@ -49,9 +49,4 @@
     </None>
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Project\Tests\Features\" />
-  </ItemGroup>
-
-
 </Project>
