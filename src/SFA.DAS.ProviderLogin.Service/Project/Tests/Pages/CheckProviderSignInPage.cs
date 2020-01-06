@@ -8,8 +8,6 @@ namespace SFA.DAS.ProviderLogin.Service.Pages
     {
         protected override By Identifier => By.Id("sfaLogin");
 
-        public CheckProviderSignInPage(ScenarioContext context) : base(context)
-        {
-        }
+        public CheckProviderSignInPage(ScenarioContext context) : base(context) { }
     }
 }

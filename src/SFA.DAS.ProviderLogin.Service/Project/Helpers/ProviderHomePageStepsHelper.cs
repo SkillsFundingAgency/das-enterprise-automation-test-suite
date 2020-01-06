@@ -14,6 +14,7 @@ namespace SFA.DAS.ProviderLogin.Service.Helpers
         private readonly ProviderConfig _config;
         private readonly ObjectContext _objectContext;
         private readonly ProviderPortalLoginHelper _loginHelper;
+        private readonly ProviderLoginUser _login;
 
         public ProviderHomePageStepsHelper(ScenarioContext context)
         {
@@ -22,6 +23,12 @@ namespace SFA.DAS.ProviderLogin.Service.Helpers
             _tabHelper = _context.Get<TabHelper>();
             _config = context.GetProviderConfig<ProviderConfig>();
             _loginHelper = new ProviderPortalLoginHelper(_context);
+            _login = new ProviderLoginUser { Username = _config.UserId, Password = _config.Password, Ukprn = _config.Ukprn };
+        }
+
+        public ProviderHomePage GoToProviderHomePage()
+        {
+            return GoToProviderHomePage();
         }
 
         public ProviderHomePage GoToProviderHomePage(ProviderLoginUser login)

@@ -10,9 +10,6 @@ namespace SFA.DAS.ProviderLogin.Service.Pages
 
         protected override By Identifier => By.CssSelector(".button-start");
 
-        public CheckProviderIndexPage(ScenarioContext context) : base(context)
-        {
-
-        }
+        public CheckProviderIndexPage(ScenarioContext context) : base(context) { }
     }
 }

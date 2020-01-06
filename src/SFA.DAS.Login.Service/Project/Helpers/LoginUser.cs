@@ -6,6 +6,7 @@
 
         public string Password { get; set; }
     }
+
     public class RAAV2EmployerUser : LoginUser { }
 
     public class ProviderLoginUser : LoginUser

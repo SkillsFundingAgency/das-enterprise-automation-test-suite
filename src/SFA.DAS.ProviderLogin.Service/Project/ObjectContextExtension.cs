@@ -7,7 +7,6 @@ namespace SFA.DAS.ProviderLogin.Service
         #region Constants
         private const string Ukprn = "ukprn";
         #endregion
-
         
         internal static void SetUkprn(this ObjectContext objectContext, string value)
         {

@@ -20,7 +20,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Then(@"the Employer can set create cohort and recruitment permissions")]
         public void ThenTheEmployerCanSetCreateCohortAndRecruitmentPermissions()
         {
-            _employerPermissionsStepsHelper.SetCreateCohortAndRecruitmentPermission(_approvalsConfig.AP_ProviderUkprn);
+            _employerPermissionsStepsHelper.SetCreateCohortAndRecruitmentPermission(_approvalsConfig.Ukprn);
         }
     }
 }

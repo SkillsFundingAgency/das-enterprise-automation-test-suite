@@ -1,11 +1,9 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
-using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 using SFA.DAS.ProviderLogin.Service.Helpers;
-using SFA.DAS.ProviderLogin.Service;
 using SFA.DAS.Login.Service.Helpers;
 
 namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
@@ -14,17 +12,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
     {
         private readonly ScenarioContext _context;
         private readonly ObjectContext _objectContext;
-        private readonly ApprovalsConfig _config;
         private readonly ProviderHomePageStepsHelper _providerHomePageStepsHelper;
         private readonly ReviewYourCohortStepsHelper _reviewYourCohortStepsHelper;
-        private readonly ProviderLoginUser _login;
 
 		public ProviderStepsHelper(ScenarioContext context)
         {
             _context = context;
             _objectContext = _context.Get<ObjectContext>();
-            _config = context.GetApprovalsConfig<ApprovalsConfig>();
-            _login = new ProviderLoginUser { Username = _config.AP_ProviderUserId, Password = _config.AP_ProviderPassword, Ukprn = _config.AP_ProviderUkprn };
             _providerHomePageStepsHelper = new ProviderHomePageStepsHelper(_context);
             _reviewYourCohortStepsHelper = new ReviewYourCohortStepsHelper(_context.Get<AssertHelper>());
         }
@@ -43,7 +37,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 
         public ApprovalsProviderHomePage GoToProviderHomePage()
         {
-            return GoToProviderHomePage(_login);
+            _providerHomePageStepsHelper.GoToProviderHomePage();
+
+            return new ApprovalsProviderHomePage(_context);
         }
 
         public ProviderAddApprenticeDetailsPage ProviderMakeReservation(ProviderLoginUser login)

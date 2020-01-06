@@ -2,10 +2,10 @@
 {
     public abstract class ProviderLoginConfig
     {
-        public string AP_ProviderUserId { get; set; }
+        public string UserId { get; set; }
 
-        public string AP_ProviderPassword { get; set; }
+        public string Password { get; set; }
 
-        public string AP_ProviderUkprn { get; set; }
+        public string Ukprn { get; set; }
     }
 }

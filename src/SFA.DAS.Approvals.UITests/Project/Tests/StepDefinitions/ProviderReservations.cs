@@ -28,7 +28,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _config = context.GetApprovalsConfig<ApprovalsConfig>();
             _loginHelper = new EmployerPortalLoginHelper(_context);
             _providerStepsHelper = new ProviderStepsHelper(_context);
-            _login = new ProviderLoginUser { Username = _config.AP_ProviderUserId, Password = _config.AP_ProviderPassword, Ukprn = _config.AP_ProviderUkprn };
+            _login = new ProviderLoginUser { Username = _config.UserId, Password = _config.Password, Ukprn = _config.Ukprn };
         }
 
         [Given(@"An Employer has given create reservation permission to a provider")]

@@ -1,16 +1,10 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
     <RootNamespace>SFA.DAS.ProviderLogin.Service</RootNamespace>
   </PropertyGroup>
   
-    <ItemGroup>
-    <Compile Include="..\NUnitConfigurator.cs" Link="NUnitConfigurator.cs">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Compile>
-  </ItemGroup>
-
   <ItemGroup>
     <Content Include="..\specflow.json" Link="specflow.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -24,16 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="appsettings.Environment.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="appsettings.Project.BrowserStack.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Update="appsettings.Project.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="SFA.DAS.ProviderLogin.Service.runtimeconfig.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>

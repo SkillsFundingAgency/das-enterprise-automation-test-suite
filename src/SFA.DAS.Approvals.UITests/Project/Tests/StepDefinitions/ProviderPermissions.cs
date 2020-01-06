@@ -54,9 +54,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
             organisationPage.GoToHomePage();
            
-            _employerPermissionsStepsHelper.SetCreateCohortPermission(_providerPermissionConfig.AP_ProviderUkprn);
+            _employerPermissionsStepsHelper.SetCreateCohortPermission(_providerPermissionConfig.Ukprn);
 
-            _providerLoginUser = ProviderLogin(_providerPermissionConfig.AP_ProviderUserId, _providerPermissionConfig.AP_ProviderPassword, _providerPermissionConfig.AP_ProviderUkprn);
+            _providerLoginUser = ProviderLogin(_providerPermissionConfig.UserId, _providerPermissionConfig.Password, _providerPermissionConfig.Ukprn);
         }
 
         [When(@"Employer revoke create cohort permission to a provider")]
@@ -115,7 +115,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             while (true)
             {
-                int accountId = _providerPermissionsDatahelper.GetAccountIdOfAProvider(_providerPermissionConfig.AP_ProviderUkprn);
+                int accountId = _providerPermissionsDatahelper.GetAccountIdOfAProvider(_providerPermissionConfig.Ukprn);
                 if (accountId == 0)
                 {
                     break;
@@ -129,7 +129,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
         private void RemovePermissionsInCosmosDatabase()
         {
-            CosmosActionsPerformerHelper.RemoveProviderPermissionDoc(_providerPermissionConfig.PermissionsCosmosUrl, _providerPermissionConfig.PermissionsCosmosDBKey, _providerPermissionConfig.PermissionsCosmosDatabaseName, _providerPermissionConfig.PermissionsCosmosCollectionName, Convert.ToInt64(_providerPermissionConfig.AP_ProviderUkprn));
+            CosmosActionsPerformerHelper.RemoveProviderPermissionDoc(_providerPermissionConfig.PermissionsCosmosUrl, _providerPermissionConfig.PermissionsCosmosDBKey, _providerPermissionConfig.PermissionsCosmosDatabaseName, _providerPermissionConfig.PermissionsCosmosCollectionName, Convert.ToInt64(_providerPermissionConfig.Ukprn));
         }
 
         private ProviderLoginUser ProviderLogin(string usename, string password, string ukprn)

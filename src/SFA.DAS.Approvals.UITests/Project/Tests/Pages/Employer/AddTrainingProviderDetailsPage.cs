@@ -34,7 +34,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         private AddTrainingProviderDetailsPage EnterUkprn()
         {
-            _formCompletionHelper.EnterText(UkprnField, _config.AP_ProviderUkprn);
+            _formCompletionHelper.EnterText(UkprnField, _config.Ukprn);
             return this;
         }
     }
