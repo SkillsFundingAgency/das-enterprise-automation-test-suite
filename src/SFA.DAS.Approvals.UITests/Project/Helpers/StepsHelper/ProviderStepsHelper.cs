@@ -4,6 +4,8 @@ using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
+using SFA.DAS.ProviderLogin.Service.Helpers;
+using SFA.DAS.ProviderLogin.Service;
 
 namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 {
@@ -15,7 +17,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
         private readonly ApprovalsConfig _config;
         private readonly ProviderPortalLoginHelper _loginHelper;
         private readonly ReviewYourCohortStepsHelper _reviewYourCohortStepsHelper;
-        private readonly ProviderLogin _login;
+        private readonly ProviderLoginUser _login;
 
 		public ProviderStepsHelper(ScenarioContext context)
         {
@@ -23,7 +25,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             _objectContext = _context.Get<ObjectContext>();
             _tabHelper = _context.Get<TabHelper>();
             _config = context.GetApprovalsConfig<ApprovalsConfig>();
-            _login = new ProviderLogin { Username = _config.AP_ProviderUserId, Password = _config.AP_ProviderPassword, Ukprn = _config.AP_ProviderUkprn };
+            _login = new ProviderLoginUser { Username = _config.AP_ProviderUserId, Password = _config.AP_ProviderPassword, Ukprn = _config.AP_ProviderUkprn };
             _loginHelper = new ProviderPortalLoginHelper(_context);
 			_reviewYourCohortStepsHelper = new ReviewYourCohortStepsHelper(_context.Get<AssertHelper>());
         }
@@ -38,7 +40,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             return GoToProviderHomePage(_login);
         }
 
-        public ProviderHomePage GoToProviderHomePage(ProviderLogin login)
+        public ProviderHomePage GoToProviderHomePage(ProviderLoginUser login)
         {
             _tabHelper.OpenInNewtab(_config.ProviderBaseUrl);
 
@@ -55,7 +57,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             return new ProviderHomePage(_context);
         }
 
-        public ProviderAddApprenticeDetailsPage ProviderMakeReservation(ProviderLogin login)
+        public ProviderAddApprenticeDetailsPage ProviderMakeReservation(ProviderLoginUser login)
         {
             return GoToProviderHomePage(login)
                    .GoToProviderGetFunding()

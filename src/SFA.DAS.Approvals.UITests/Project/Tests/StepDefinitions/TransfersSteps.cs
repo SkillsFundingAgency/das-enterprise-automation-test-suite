@@ -13,7 +13,7 @@ using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
 using NUnit.Framework;
 using SFA.DAS.UI.FrameworkHelpers;
 using SFA.DAS.ConfigurationBuilder;
-using SFA.DAS.Login.Service;
+using SFA.DAS.Login.Service.Helpers;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 {

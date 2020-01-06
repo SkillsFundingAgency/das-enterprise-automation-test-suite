@@ -1,5 +1,4 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using System;
 using TechTalk.SpecFlow;
@@ -19,7 +18,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         #endregion
 
         private By NumberOfCohortsForReview => By.CssSelector(".bold-xxlarge");
-        private By numberOfCohortsWithEmployers = By.XPath("(//h2[@class='bold-xxlarge'])[2]");
+        private By NumberOfCohortsWithEmployers => By.XPath("(//h2[@class='bold-xxlarge'])[2]");
 
         public ProviderYourCohortsPage(ScenarioContext context, bool navigate = false) : base(context, navigate)
         {
@@ -42,10 +41,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         internal ProviderCohortsWithEmployersPage GoToCohortsWithEmployers()
         {
-            var providerWithEmployerCohorts = Convert.ToInt32(_pageInteractionHelper.GetText(numberOfCohortsWithEmployers));
+            var providerWithEmployerCohorts = Convert.ToInt32(_pageInteractionHelper.GetText(NumberOfCohortsWithEmployers));
             if (providerWithEmployerCohorts > 0)
             {
-                _formCompletionHelper.ClickElement(numberOfCohortsWithEmployers);
+                _formCompletionHelper.ClickElement(NumberOfCohortsWithEmployers);
                 return new ProviderCohortsWithEmployersPage(_context);
             }
 

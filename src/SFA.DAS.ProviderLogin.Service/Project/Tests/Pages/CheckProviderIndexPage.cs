@@ -1,8 +1,8 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.Registration.UITests.Project.Tests.Pages;
+using SFA.DAS.Login.Service.Project.Tests.Pages;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
+namespace SFA.DAS.ProviderLogin.Service.Pages
 {
     public class CheckProviderIndexPage : CheckPage
     {

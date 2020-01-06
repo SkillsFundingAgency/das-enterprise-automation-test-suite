@@ -2,7 +2,8 @@
 using SFA.DAS.Approvals.UITests.Project.Helpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
-using SFA.DAS.Login.Service;
+using SFA.DAS.Login.Service.Helpers;
+using SFA.DAS.ProviderLogin.Service;
 using SFA.DAS.Registration.UITests.Project;
 using SFA.DAS.Registration.UITests.Project.Helpers;
 using SFA.DAS.UI.Framework.TestSupport;
@@ -24,7 +25,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         private readonly ProviderStepsHelper _providerStepsHelper;
         private readonly ProviderPermissionsDatahelper _providerPermissionsDatahelper;
         private readonly ProviderPermissionsConfig _providerPermissionConfig;
-        private ProviderLogin _providerLogin;
+        private ProviderLoginUser _providerLoginUser;
         private ProviderHomePage _providerHomePage;
 
         public ProviderPermissions(ScenarioContext context)
@@ -55,7 +56,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
            
             _employerPermissionsStepsHelper.SetCreateCohortPermission(_providerPermissionConfig.AP_ProviderUkprn);
 
-            _providerLogin = ProviderLogin(_providerPermissionConfig.AP_ProviderUserId, _providerPermissionConfig.AP_ProviderPassword, _providerPermissionConfig.AP_ProviderUkprn);
+            _providerLoginUser = ProviderLogin(_providerPermissionConfig.AP_ProviderUserId, _providerPermissionConfig.AP_ProviderPassword, _providerPermissionConfig.AP_ProviderUkprn);
         }
 
         [When(@"Employer revoke create cohort permission to a provider")]
@@ -105,7 +106,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
         private bool CreateCohortPermissionLinkIsDisplayed()
         {
-            _providerHomePage = _providerStepsHelper.GoToProviderHomePage(_providerLogin);
+            _providerHomePage = _providerStepsHelper.GoToProviderHomePage(_providerLoginUser);
 
             return _providerHomePage.CreateCohortPermissionLinkIsDisplayed();
         }
@@ -131,9 +132,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             CosmosActionsPerformerHelper.RemoveProviderPermissionDoc(_providerPermissionConfig.PermissionsCosmosUrl, _providerPermissionConfig.PermissionsCosmosDBKey, _providerPermissionConfig.PermissionsCosmosDatabaseName, _providerPermissionConfig.PermissionsCosmosCollectionName, Convert.ToInt64(_providerPermissionConfig.AP_ProviderUkprn));
         }
 
-        private ProviderLogin ProviderLogin(string usename, string password, string ukprn)
+        private ProviderLoginUser ProviderLogin(string usename, string password, string ukprn)
         {
-            return new ProviderLogin { Username = usename, Password = password, Ukprn = ukprn };
+            return new ProviderLoginUser { Username = usename, Password = password, Ukprn = ukprn };
         }
     }
 }

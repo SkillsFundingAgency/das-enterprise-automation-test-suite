@@ -1,8 +1,8 @@
-﻿using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
-using SFA.DAS.Login.Service;
+﻿using SFA.DAS.Login.Service.Helpers;
+using SFA.DAS.ProviderLogin.Service.Pages;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.Approvals.UITests.Project.Helpers
+namespace SFA.DAS.ProviderLogin.Service.Helpers
 {
     public class ProviderPortalLoginHelper : IReLoginHelper
     {
@@ -25,18 +25,18 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers
                     .IsPageDisplayed();
         }
 
-        public ProviderHomePage ReLogin(ProviderLogin login)
+        public ProviderHomePage ReLogin(ProviderLoginUser login)
         {
             return Login(new ProviderSiginPage(_context), login);
         }
 
-        public ProviderHomePage Login(ProviderLogin login)
+        public ProviderHomePage Login(ProviderLoginUser login)
         {
             return Login(new ProviderIndexPage(_context)
                     .StartNow(), login);
         }
 
-        public ProviderHomePage Login(ProviderSiginPage siginPage, ProviderLogin login)
+        public ProviderHomePage Login(ProviderSiginPage siginPage, ProviderLoginUser login)
         {
             return siginPage.SubmitValidLoginDetails(login);
         }

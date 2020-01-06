@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
+    <RootNamespace>SFA.DAS.ProviderLogin.Service</RootNamespace>
   </PropertyGroup>
   
     <ItemGroup>
