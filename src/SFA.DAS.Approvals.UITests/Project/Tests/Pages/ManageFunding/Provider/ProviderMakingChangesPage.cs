@@ -23,11 +23,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider
             VerifyPage();
         }
         
-        internal ProviderHomePage GoToHomePage()
+        internal ApprovalsProviderHomePage GoToHomePage()
         {
             _formCompletionHelper.SelectRadioOptionByForAttribute(GoToRadioButton, "WhatsNext-home");
             Continue();
-            return new ProviderHomePage(_context);
+            return new ApprovalsProviderHomePage(_context);
         }
 
         internal ProviderAddApprenticeDetailsPage GoToAddApprenticeDetailsPage()

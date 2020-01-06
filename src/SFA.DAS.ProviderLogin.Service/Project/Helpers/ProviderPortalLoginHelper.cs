@@ -4,11 +4,11 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ProviderLogin.Service.Helpers
 {
-    public class ProviderPortalLoginHelper : IReLoginHelper
+    internal class ProviderPortalLoginHelper : IReLoginHelper
     {
         private readonly ScenarioContext _context;
 
-        public ProviderPortalLoginHelper(ScenarioContext context)
+        internal ProviderPortalLoginHelper(ScenarioContext context)
         {
             _context = context;
         }
@@ -25,18 +25,18 @@ namespace SFA.DAS.ProviderLogin.Service.Helpers
                     .IsPageDisplayed();
         }
 
-        public ProviderHomePage ReLogin(ProviderLoginUser login)
+        internal ProviderHomePage ReLogin(ProviderLoginUser login)
         {
             return Login(new ProviderSiginPage(_context), login);
         }
 
-        public ProviderHomePage Login(ProviderLoginUser login)
+        internal ProviderHomePage Login(ProviderLoginUser login)
         {
             return Login(new ProviderIndexPage(_context)
                     .StartNow(), login);
         }
 
-        public ProviderHomePage Login(ProviderSiginPage siginPage, ProviderLoginUser login)
+        private ProviderHomePage Login(ProviderSiginPage siginPage, ProviderLoginUser login)
         {
             return siginPage.SubmitValidLoginDetails(login);
         }

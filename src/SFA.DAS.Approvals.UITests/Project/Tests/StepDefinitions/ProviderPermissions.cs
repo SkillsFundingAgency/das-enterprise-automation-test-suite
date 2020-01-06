@@ -26,7 +26,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         private readonly ProviderPermissionsDatahelper _providerPermissionsDatahelper;
         private readonly ProviderPermissionsConfig _providerPermissionConfig;
         private ProviderLoginUser _providerLoginUser;
-        private ProviderHomePage _providerHomePage;
+        private ApprovalsProviderHomePage _providerHomePage;
 
         public ProviderPermissions(ScenarioContext context)
         {

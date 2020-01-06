@@ -1,11 +1,12 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.Login.Service.Project.Tests.Pages;
 using SFA.DAS.UI.FrameworkHelpers;
 using System;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 {
-    public class ProviderYourCohortsPage : InterimProviderBasePage
+    public class ProviderYourCohortsPage : Navigate
     {
         protected override string PageTitle => "Your cohorts";
 
@@ -25,6 +26,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             _context = context;
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
+            VerifyPage();
         }
 
         public ProviderCohortsToReviewPage GoToCohortsToReviewPage()

@@ -13,9 +13,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
     {
         private readonly ScenarioContext _context;
         private readonly ObjectContext _objectContext;
-        private readonly TabHelper _tabHelper;
         private readonly ApprovalsConfig _config;
-        private readonly ProviderPortalLoginHelper _loginHelper;
+        private readonly ProviderHomePageStepsHelper _providerHomePageStepsHelper;
         private readonly ReviewYourCohortStepsHelper _reviewYourCohortStepsHelper;
         private readonly ProviderLoginUser _login;
 
@@ -23,38 +22,27 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
         {
             _context = context;
             _objectContext = _context.Get<ObjectContext>();
-            _tabHelper = _context.Get<TabHelper>();
             _config = context.GetApprovalsConfig<ApprovalsConfig>();
             _login = new ProviderLoginUser { Username = _config.AP_ProviderUserId, Password = _config.AP_ProviderPassword, Ukprn = _config.AP_ProviderUkprn };
-            _loginHelper = new ProviderPortalLoginHelper(_context);
-			_reviewYourCohortStepsHelper = new ReviewYourCohortStepsHelper(_context.Get<AssertHelper>());
+            _providerHomePageStepsHelper = new ProviderHomePageStepsHelper(_context);
+            _reviewYourCohortStepsHelper = new ReviewYourCohortStepsHelper(_context.Get<AssertHelper>());
         }
 
-        public ProviderHomePage NavigateToProviderHomePage()
+        internal ApprovalsProviderHomePage GoToProviderHomePage(ProviderLoginUser login)
         {
-            return new ProviderHomePage(_context, true);
+            _providerHomePageStepsHelper.GoToProviderHomePage(login);
+
+            return new ApprovalsProviderHomePage(_context);
         }
 
-        public ProviderHomePage GoToProviderHomePage()
+        public ApprovalsProviderHomePage NavigateToProviderHomePage()
+        {
+            return new ApprovalsProviderHomePage(_context, true);
+        }
+
+        public ApprovalsProviderHomePage GoToProviderHomePage()
         {
             return GoToProviderHomePage(_login);
-        }
-
-        public ProviderHomePage GoToProviderHomePage(ProviderLoginUser login)
-        {
-            _tabHelper.OpenInNewtab(_config.ProviderBaseUrl);
-
-            _objectContext.SetUkprn(login.Ukprn);
-
-            if (_loginHelper.IsSignInPageDisplayed())
-            {
-                return _loginHelper.ReLogin(login);
-            }
-            else if (_loginHelper.IsIndexPageDisplayed())
-            {
-                return _loginHelper.Login(login);
-            }
-            return new ProviderHomePage(_context);
         }
 
         public ProviderAddApprenticeDetailsPage ProviderMakeReservation(ProviderLoginUser login)
@@ -123,8 +111,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 
         public ProviderReviewYourCohortPage CurrentCohortDetails()
         {
-            return GoToProviderHomePage()
-                .GoToProviderYourCohortsPage()
+            GoToProviderHomePage();
+
+            return new ProviderYourCohortsPage(_context, true)
                 .GoToCohortsToReviewPage()
                 .SelectViewCurrentCohortDetails();
         }

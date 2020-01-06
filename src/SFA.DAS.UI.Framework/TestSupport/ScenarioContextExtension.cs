@@ -7,6 +7,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
     public static class ScenarioContextExtension
     {
         #region Constants
+        private const string ProviderConfigKey = "providerconfigkey";
         private const string TestProjectConfigKey = "testprojectconfigkey";
         private const string RegistrationProjectConfigKey = "registrationprojectconfigkey";
         private const string SupportConsoleProjectConfigKey = "supportconsoleprojectconfigkey";
@@ -34,6 +35,10 @@ namespace SFA.DAS.UI.Framework.TestSupport
         public static void SetApprovalsConfig<T>(this ScenarioContext context, T value)
         {
             Set(context, value, ApprovalsProjectConfigKey);
+        }
+        public static void SetProviderConfig<T>(this ScenarioContext context, T value)
+        {
+            Set(context, value, ProviderConfigKey);
         }
 
         public static void SetProviderPermissionConfig<T>(this ScenarioContext context, T value)
@@ -69,6 +74,11 @@ namespace SFA.DAS.UI.Framework.TestSupport
         public static T GetApprovalsConfig<T>(this ScenarioContext context)
         {
             return Get<T>(context, ApprovalsProjectConfigKey);
+        }
+
+        public static T GetProviderConfig<T>(this ScenarioContext context)
+        {
+            return Get<T>(context, ProviderConfigKey);
         }
 
         public static T GetProviderPermissionConfig<T>(this ScenarioContext context)
