@@ -36,7 +36,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
                 new AS_CheckAndSubmitAssessmentPage(_context).ClickContinueInCheckAndSubmitAssessmentPage();
         }
 
-        public void CertifyPrivatelyFundedApprentice()
+        public void CertifyPrivatelyFundedApprentice(bool invalidDateScenario = false)
         {
             new AS_LoggedInHomePage(_context).ClickOnRecordAGrade()
                 .SearchPrivatelyFundedApprentice()
@@ -45,13 +45,17 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
                 .SelectStandardAndContinue()
                 .SelectGradeForPrivatelyFundedAprrenticeAndContinue()
                 .EnterApprenticshipStartDateAndContinue()
-                .EnterUkprnAndContinue()
-                .EnterAchievementGradeDateForPrivatelyFundedApprenticeAndContinue()
+                .EnterUkprnAndContinue();
+
+            if (!invalidDateScenario)
+            {
+                new AS_AchievementDatePage(_context).EnterAchievementGradeDateForPrivatelyFundedApprenticeAndContinue()
                 .ClickEnterAddressManuallyLinkInSearchEmployerPage()
                 .EnterEmployerAddressAndContinue()
                 .ClickContinueInConfirmEmployerAddressPage()
                 .EnterRecipientDetailsAndContinue()
                 .ClickContinueInCheckAndSubmitAssessmentPage();
+            }
         }
     }
 }
