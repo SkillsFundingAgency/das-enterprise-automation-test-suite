@@ -36,7 +36,7 @@ namespace SFA.DAS.EPAO.UITests.Project
         public void SetUpHelpers()
         {
             var random = _context.Get<RandomDataGenerator>();
-            _context.Set(new EPAODataHelper());
+            _context.Set(new EPAODataHelper(random));
             _context.Set(new RandomElementHelper(random));
         }
     }

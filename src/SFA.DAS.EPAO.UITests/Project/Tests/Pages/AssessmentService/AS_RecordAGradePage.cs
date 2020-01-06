@@ -13,6 +13,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
         #region Helpers and Context
         private readonly ScenarioContext _context;
         private readonly FormCompletionHelper _formCompletionHelper;
+        private readonly PageInteractionHelper _pageInteractionHelper;
         private readonly EPAOConfig _ePAOConfig;
         private readonly EPAOSqlDataHelper _ePAOSqlDataHelper;
         #endregion
@@ -21,12 +22,16 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
         private By FamilyNameTextBox => By.Name("Surname");
         private By ULNTextBox => By.Name("Uln");
         private By PrivatelyFundedCheckBox => By.CssSelector("label");
+        private By FamilyNameMissingErrorText => By.LinkText("Enter the apprentice's family name");
+        private By ULNMissingErrorText => By.LinkText("Enter the apprentice's family name");
+        private By InvalidUlnErrorText => By.LinkText("The apprentice's ULN should contain exactly 10 numbers");
         #endregion
 
         public AS_RecordAGradePage(ScenarioContext context) : base(context)
         {
             _context = context;
             _formCompletionHelper = context.Get<FormCompletionHelper>();
+            _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _ePAOConfig = context.GetEPAOConfig<EPAOConfig>();
             _ePAOSqlDataHelper = context.Get<EPAOSqlDataHelper>();
             VerifyPage();
@@ -69,6 +74,12 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
         }
 
         public void VerifyErrorMessage(string pageTitle) => VerifyPage(PageHeader, pageTitle);
+
+        public bool VerifyFamilyNameMissingErrorText() => _pageInteractionHelper.IsElementDisplayed(FamilyNameMissingErrorText);
+
+        public bool VerifyULNMissingErrorText() => _pageInteractionHelper.IsElementDisplayed(ULNMissingErrorText);
+
+        public bool VerifyInvalidUlnErrorText() => _pageInteractionHelper.IsElementDisplayed(InvalidUlnErrorText);
 
         private void SelectPrivatelyFundedCheckBox() => _formCompletionHelper.SelectRadioOptionByForAttribute(PrivatelyFundedCheckBox, "IsPrivatelyFunded");
     }
