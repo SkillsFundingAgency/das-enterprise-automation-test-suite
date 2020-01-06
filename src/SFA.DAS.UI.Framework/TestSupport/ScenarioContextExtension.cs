@@ -36,6 +36,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
         {
             Set(context, value, ApprovalsProjectConfigKey);
         }
+
         public static void SetProviderConfig<T>(this ScenarioContext context, T value)
         {
             Set(context, value, ProviderConfigKey);

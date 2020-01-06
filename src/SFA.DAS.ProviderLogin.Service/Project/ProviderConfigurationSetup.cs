@@ -20,7 +20,7 @@ namespace SFA.DAS.ProviderLogin.Service
         public void SetUpProviderConfiguration()
         {
             var config = _configSection.GetConfigSection<ProviderConfig>();
-            _context.SetApprovalsConfig(config);
+            _context.SetProviderConfig(config);
         }
     }
 }
