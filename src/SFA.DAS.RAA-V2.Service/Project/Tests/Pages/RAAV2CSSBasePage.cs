@@ -10,12 +10,12 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
     {
         protected By RadioLabels => By.CssSelector(".govuk-radios__label");
 
-        protected readonly RAAV2EmployerDataHelper dataHelper;
+        protected readonly RAAV2DataHelper dataHelper;
         protected readonly FormCompletionHelper formCompletionHelper;
 
         public RAAV2CSSBasePage(ScenarioContext context) : base(context) 
         {
-            dataHelper = context.Get<RAAV2EmployerDataHelper>();
+            dataHelper = context.Get<RAAV2DataHelper>();
             formCompletionHelper = context.Get<FormCompletionHelper>();
             VerifyPage();
         }

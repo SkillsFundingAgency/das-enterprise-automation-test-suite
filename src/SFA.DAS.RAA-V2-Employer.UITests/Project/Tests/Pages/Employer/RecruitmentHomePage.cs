@@ -1,6 +1,7 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.RAA.DataGenerator;
 using SFA.DAS.RAA.DataGenerator.Project;
+using SFA.DAS.RAA_V2.Service.Project.Tests.Pages;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
@@ -11,7 +12,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer
     {
         #region Helpers and Context
         private readonly ScenarioContext _context;
-        private readonly RAAV2EmployerDataHelper _dataHelper;
+        private readonly RAAV2DataHelper _dataHelper;
         private readonly PageInteractionHelper _pageInteractionHelper;
         #endregion
 
@@ -29,7 +30,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer
         {
             _context = context;
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
-            _dataHelper = context.Get<RAAV2EmployerDataHelper>();
+            _dataHelper = context.Get<RAAV2DataHelper>();
         }
 
         public ManageVacancyPage SelectVacancy()

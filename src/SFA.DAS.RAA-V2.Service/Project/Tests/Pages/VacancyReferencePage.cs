@@ -1,23 +1,28 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.RAA.DataGenerator;
-using SFA.DAS.UI.FrameworkHelpers;
+using SFA.DAS.UI.Framework.TestSupport;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
+namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 {
-    public abstract class RAA_VacancyReferenceBasePage : RAA_HeaderSectionBasePage
+    public class VacancyReferencePage : BasePage
     {
+
+        protected override By PageHeader => VacancyReferenceNumber;
+
+
         #region Helpers and Context
-        protected readonly PageInteractionHelper pageInteractionHelper;
         private readonly VacancyReferenceHelper _vacancyReferenceHelper;
         #endregion
 
-        protected virtual By VacancyReferenceNumber { get; set; }
+        protected override string PageTitle => "VAC";
 
-        public RAA_VacancyReferenceBasePage(ScenarioContext context) : base(context)
+        protected By VacancyReferenceNumber => By.CssSelector(".govuk-panel--confirmation strong");
+
+        public VacancyReferencePage(ScenarioContext context) : base(context)
         {
-            pageInteractionHelper = context.Get<PageInteractionHelper>();
             _vacancyReferenceHelper = context.Get<VacancyReferenceHelper>();
+            VerifyPage();
         }
 
         public void SetVacancyReference()

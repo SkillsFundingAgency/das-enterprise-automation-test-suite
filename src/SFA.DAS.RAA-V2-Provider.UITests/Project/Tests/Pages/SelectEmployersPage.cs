@@ -1,5 +1,4 @@
-﻿using OpenQA.Selenium;
-using SFA.DAS.RAA.DataGenerator;
+﻿using SFA.DAS.RAA.DataGenerator;
 using SFA.DAS.RAA_V2.Service.Project.Tests.Pages;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
@@ -15,13 +14,13 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Tests.Pages
         private readonly FormCompletionHelper _formCompletionHelper;
         private readonly PageInteractionHelper _pageInteractionHelper;
         private readonly ScenarioContext _context;
-        private readonly RAAV2ProviderDataHelper _dataHelper;
+        private readonly RAAV2DataHelper _dataHelper;
         #endregion
 
         public SelectEmployersPage(ScenarioContext context) : base(context)
         {
             _context = context;
-            _dataHelper = context.Get<RAAV2ProviderDataHelper>();
+            _dataHelper = context.Get<RAAV2DataHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
         }

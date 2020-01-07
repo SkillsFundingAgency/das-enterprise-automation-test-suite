@@ -26,7 +26,8 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Tests.StepDefinitions
 
             new RecruitmentProviderHomePage(_context)
                 .RecruitApprentices()
-                .CreateVacancy();
+                .CreateVacancy()
+                .SelectEmployer();
         }
     }
 }
