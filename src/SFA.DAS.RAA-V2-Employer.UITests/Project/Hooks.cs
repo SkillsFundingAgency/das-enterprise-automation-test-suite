@@ -1,8 +1,8 @@
-﻿using SFA.DAS.FAA.UITests.Project;
-using SFA.DAS.RAA.DataGenerator;
+﻿using SFA.DAS.RAA.DataGenerator;
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
+using SFA.DAS.RAA.DataGenerator.Project;
 
 namespace SFA.DAS.RAA_V2_Employer.UITests.Project
 {

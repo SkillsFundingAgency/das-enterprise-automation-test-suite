@@ -1,5 +1,5 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.RAA_V2_QA.UITests.Project.Tests.Pages.Common;
+using SFA.DAS.RAA_V2.Service.Project.Tests.Pages;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Tests.Pages

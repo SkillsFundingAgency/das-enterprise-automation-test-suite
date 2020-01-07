@@ -3,6 +3,7 @@ using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
+using SFA.DAS.RAA.DataGenerator.Project;
 
 namespace SFA.DAS.FAA.UITests.Project.Helpers
 {
