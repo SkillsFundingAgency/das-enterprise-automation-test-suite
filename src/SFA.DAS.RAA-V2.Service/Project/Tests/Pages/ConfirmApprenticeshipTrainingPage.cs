@@ -21,5 +21,11 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
             Continue();
             return new ChooseTrainingProviderPage(_context);
         }
+
+        public ChooseNoOfPositionsPage ConfirmAndNavigateToNoOfPositionsPage()
+        {
+            Continue();
+            return new ChooseNoOfPositionsPage(_context);
+        }
     }
 }

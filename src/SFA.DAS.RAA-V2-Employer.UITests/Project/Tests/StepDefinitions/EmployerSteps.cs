@@ -15,7 +15,10 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
         private VacancyPreviewPart2Page _vacancyPreviewPart2Page;
         private VacancyPreviewPart2WithErrorsPage _vacancyPreviewPart2WithErrorsPage;
 
-        public EmployerSteps(ScenarioContext context) => _employerStepsHelper = new EmployerStepsHelper(context);
+        public EmployerSteps(ScenarioContext context) 
+        { 
+            _employerStepsHelper = new EmployerStepsHelper(context); 
+        }
 
         [When(@"Employer selects '(National Minimum Wage|National Minimum Wage For Apprentices|Fixed Wage Type)' in the first part of the journey")]
         public void WhenEmployerSelectsInTheFirstPartOfTheJourney(string wageType) => _employerStepsHelper.CreateANewVacancy(wageType);
