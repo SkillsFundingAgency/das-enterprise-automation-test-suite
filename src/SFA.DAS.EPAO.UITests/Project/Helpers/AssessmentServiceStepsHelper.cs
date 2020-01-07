@@ -1,4 +1,6 @@
-﻿using SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService;
+﻿using OpenQA.Selenium;
+using SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService;
+using SFA.DAS.UI.Framework.TestSupport;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EPAO.UITests.Project.Helpers
@@ -6,10 +8,14 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
     public class AssessmentServiceStepsHelper
     {
         private readonly ScenarioContext _context;
+        private readonly EPAOConfig _ePAOConfig;
+        private readonly IWebDriver _webDriver;
 
         public AssessmentServiceStepsHelper(ScenarioContext context)
         {
             _context = context;
+            _ePAOConfig = context.GetEPAOConfig<EPAOConfig>();
+            _webDriver = context.GetWebDriver();
         }
 
         public AS_LoggedInHomePage LoginToAssessmentServiceApplication() => new AS_LandingPage(_context).ClickStartButton().SignInWithValidDetails();
@@ -57,5 +63,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
                 .ClickContinueInCheckAndSubmitAssessmentPage();
             }
         }
+
+        public void NavigateToAssessmentServiceApplication() => _webDriver.Navigate().GoToUrl(_ePAOConfig.EPAOAssessmentServiceUrl);
     }
 }

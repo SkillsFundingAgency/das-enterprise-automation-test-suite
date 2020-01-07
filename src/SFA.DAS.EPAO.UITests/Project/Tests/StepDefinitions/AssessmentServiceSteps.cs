@@ -26,6 +26,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         [Given(@"the User is logged into Assessment Service Application")]
         public void GivenTheUserIsLoggedIntoAssessmentServiceApplication()
         {
+            _stepsHelper.NavigateToAssessmentServiceApplication();
             _stepsHelper.LoginToAssessmentServiceApplication();
         }
 
