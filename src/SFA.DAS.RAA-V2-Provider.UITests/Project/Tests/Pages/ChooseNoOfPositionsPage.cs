@@ -2,7 +2,7 @@
 using SFA.DAS.RAA_V2_QA.UITests.Project.Tests.Pages.Common;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer
+namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Tests.Pages
 {
     public class ChooseNoOfPositionsPage : RAAV2CSSBasePage
     {

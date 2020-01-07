@@ -15,6 +15,7 @@ namespace SFA.DAS.ProviderLogin.Service.Helpers
         private readonly ObjectContext _objectContext;
         private readonly ProviderPortalLoginHelper _loginHelper;
         private readonly ProviderLoginUser _login;
+        private readonly string _providerUrl;
 
         public ProviderHomePageStepsHelper(ScenarioContext context)
         {
@@ -22,18 +23,36 @@ namespace SFA.DAS.ProviderLogin.Service.Helpers
             _objectContext = _context.Get<ObjectContext>();
             _tabHelper = _context.Get<TabHelper>();
             _config = context.GetProviderConfig<ProviderConfig>();
+            _providerUrl = _config.ProviderBaseUrl;
             _loginHelper = new ProviderPortalLoginHelper(_context);
             _login = new ProviderLoginUser { Username = _config.UserId, Password = _config.Password, Ukprn = _config.Ukprn };
         }
 
         public ProviderHomePage GoToProviderHomePage()
         {
-            return GoToProviderHomePage(_login);
+            return GoToProviderHomePage(_login, false);
+        } 
+
+        public ProviderHomePage GoToProviderHomePageInNewTab()
+        {
+            return GoToProviderHomePageInNewTab(_login);
         }
 
-        public ProviderHomePage GoToProviderHomePage(ProviderLoginUser login)
+        public ProviderHomePage GoToProviderHomePageInNewTab(ProviderLoginUser login)
         {
-            _tabHelper.OpenInNewtab(_config.ProviderBaseUrl);
+            return GoToProviderHomePage(login, true);
+        }
+
+        private ProviderHomePage GoToProviderHomePage(ProviderLoginUser login, bool newTab)
+        {
+            if (newTab)
+            {
+                _tabHelper.OpenInNewTab(_providerUrl);
+            }
+            else
+            {
+                _tabHelper.GoToUrl(_providerUrl);
+            }
 
             _objectContext.SetUkprn(login.Ukprn);
 

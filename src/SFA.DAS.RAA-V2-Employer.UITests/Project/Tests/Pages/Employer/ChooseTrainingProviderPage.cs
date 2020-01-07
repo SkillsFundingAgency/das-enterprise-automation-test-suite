@@ -2,6 +2,7 @@
 using SFA.DAS.RAA.DataGenerator;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
+using SFA.DAS.RAA_V2_QA.UITests.Project.Tests.Pages.Common;
 
 namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer
 {

@@ -34,7 +34,7 @@ namespace SFA.DAS.RAA_V2_QA.UITests.Project.Helpers
             else
             {
                 _objectContext.SetCurrentApplicationName(_applicationName);
-                _tabHelper.OpenInNewtab(_config.RAAV2QABaseUrl);
+                _tabHelper.OpenInNewTab(_config.RAAV2QABaseUrl);
             }
 
             new IdamsPage(_context)

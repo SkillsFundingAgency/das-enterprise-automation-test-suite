@@ -1,7 +1,7 @@
 ﻿using TechTalk.SpecFlow;
 using SFA.DAS.RAA_V2_QA.UITests.Project.Tests.Pages.Common;
 
-namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer
+namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Tests.Pages
 {
     public class ConfirmApprenticeshipTrainingPage : RAAV2CSSBasePage
     {
@@ -17,10 +17,10 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer
             _context = context;
         }
 
-        public ChooseTrainingProviderPage ConfirmTrainingAndContinue()
+        public ChooseNoOfPositionsPage ConfirmTrainingAndContinue()
         {
             Continue();
-            return new ChooseTrainingProviderPage(_context);
+            return new ChooseNoOfPositionsPage(_context);
         }
     }
 }

@@ -4,6 +4,18 @@ using System.Collections.Generic;
 
 namespace SFA.DAS.RAA.DataGenerator
 {
+    public class RAAV2ProviderDataHelper : RandomElementHelper
+    {
+        private readonly RandomDataGenerator _randomDataGenerator;
+        private readonly VacancyTitleDatahelper _vacancyTitleDatahelper;
+
+        public RAAV2ProviderDataHelper(RandomDataGenerator randomDataGenerator, VacancyTitleDatahelper vacancyTitleDatahelper) : base(randomDataGenerator)
+        {
+            _randomDataGenerator = randomDataGenerator;
+            _vacancyTitleDatahelper = vacancyTitleDatahelper;
+        }
+    }
+
     public class RAAV2EmployerDataHelper : RandomElementHelper
     {
         private readonly RandomDataGenerator _randomDataGenerator;

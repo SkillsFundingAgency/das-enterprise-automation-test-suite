@@ -46,7 +46,7 @@ namespace SFA.DAS.FAA.UITests.Project.Helpers
             }
             else
             {
-                _tabHelper.OpenInNewtab(_config.FAABaseUrl);
+                _tabHelper.OpenInNewTab(_config.FAABaseUrl);
             }
 
             return new FAA_Indexpage(_context)
@@ -116,7 +116,7 @@ namespace SFA.DAS.FAA.UITests.Project.Helpers
         }
         private FAA_MyApplicationsHomePage OpenFAAHomePageinNewtab()
         {
-            _tabHelper.OpenInNewtab(_config.FAABaseUrl);
+            _tabHelper.OpenInNewTab(_config.FAABaseUrl);
 
             return new FAA_FindAnApprenticeshipHomePage(_context)
                 .MyApplications();

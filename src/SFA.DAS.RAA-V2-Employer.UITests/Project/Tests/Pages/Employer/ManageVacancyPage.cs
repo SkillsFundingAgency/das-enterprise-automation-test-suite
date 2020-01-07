@@ -45,7 +45,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer
 
         public ViewVacancyPage NavigateToViewVacancyPage()
         {
-            _tabHelper.OpenInNewtab(() => _formCompletionHelper.ClickLinkByText("View vacancy"));
+            _tabHelper.OpenInNewTab(() => _formCompletionHelper.ClickLinkByText("View vacancy"));
 
             return new ViewVacancyPage(_context);
         }

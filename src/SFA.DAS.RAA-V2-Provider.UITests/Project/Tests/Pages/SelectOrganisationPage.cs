@@ -2,7 +2,7 @@
 using TechTalk.SpecFlow;
 using SFA.DAS.RAA_V2_QA.UITests.Project.Tests.Pages.Common;
 
-namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer
+namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Tests.Pages
 {
     public class SelectOrganisationPage : RAAV2CSSBasePage
     {

@@ -1,11 +1,10 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.FAA.UITests.Project;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.ConfigurationBuilder;
 using TechTalk.SpecFlow;
-using SFA.DAS.RAA.DataGenerator;
+using SFA.DAS.RAA.DataGenerator.Project;
 
-namespace SFA.DAS.RAA_V2_QA.UITests.Project.Tests.Pages.Common
+namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 {
     public abstract class VerifyDetailsBasePage : BasePage
     {

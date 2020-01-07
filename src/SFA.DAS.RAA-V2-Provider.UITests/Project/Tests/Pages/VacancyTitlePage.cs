@@ -4,7 +4,7 @@ using SFA.DAS.ConfigurationBuilder;
 using TechTalk.SpecFlow;
 using SFA.DAS.RAA_V2_QA.UITests.Project.Tests.Pages.Common;
 
-namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer
+namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Tests.Pages
 {
     public class VacancyTitlePage : RAAV2CSSBasePage
     {
@@ -27,12 +27,6 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer
         {
             ChangeVacancyTitle();
             return new ApprenticeshipTrainingPage(_context);
-        }
-
-        public VacancyPreviewPart2Page UpdateVacancyTitle()
-        {
-            ChangeVacancyTitle();
-            return new VacancyPreviewPart2Page(_context);
         }
 
         private void ChangeVacancyTitle()

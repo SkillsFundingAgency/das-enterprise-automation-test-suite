@@ -3,7 +3,7 @@ using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 using SFA.DAS.RAA_V2_QA.UITests.Project.Tests.Pages.Common;
 
-namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer
+namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Tests.Pages
 {
     public class ApprenticeshipTrainingPage : RAAV2CSSBasePage
     {
@@ -31,12 +31,6 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer
             formCompletionHelper.ClickElement(() => { formCompletionHelper.EnterText(ProgrammeId, dataHelper.TrainingTitle); return _pageInteractionHelper.FindElement(FirstOption); });
             Continue();
             return new ConfirmApprenticeshipTrainingPage(_context);
-        }
-
-        public VacanciesPage CancelVacancy()
-        {
-            formCompletionHelper.Click(CancelLink);
-            return new VacanciesPage(_context);
         }
     }
 }

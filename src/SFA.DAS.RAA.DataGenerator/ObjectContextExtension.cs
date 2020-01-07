@@ -1,6 +1,6 @@
 ﻿using SFA.DAS.ConfigurationBuilder;
 
-namespace SFA.DAS.FAA.UITests.Project
+namespace SFA.DAS.RAA.DataGenerator.Project
 {
     public static class ObjectContextExtension
     {
