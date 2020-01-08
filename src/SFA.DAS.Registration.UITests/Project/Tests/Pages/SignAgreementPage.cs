@@ -57,5 +57,10 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             _formCompletionHelper.ClickElement(by);
             _formCompletionHelper.ClickElement(ContinueButton);
         }
+
+        public SignAgreementPage VerifySignAgreementPage()
+        {
+            return this;
+        }
     }
 }

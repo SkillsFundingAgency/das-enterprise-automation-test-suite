@@ -17,7 +17,7 @@ Scenario: RE_CA_06_Create Levy Account
 
 
 @addpayedetails
-Scenario: RE_CA_06_Create Levy Account for past n months
+Scenario: RE_CA_07_Create Levy Account for past n months
 	Given levy declarations is added for past 15 months with levypermonth as 10000
 	Given I create an Account
 	When I add paye details

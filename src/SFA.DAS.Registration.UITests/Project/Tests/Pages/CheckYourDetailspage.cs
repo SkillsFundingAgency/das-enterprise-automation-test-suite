@@ -29,10 +29,10 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             VerifyPage();
         }
 
-        public AboutYourAgreementPage ContinueToAboutYourAgreementPage()
+        public WhenDoYouWantToViewEmpAgreementPage ContinueToAboutYourAgreementPage()
         {
             Continue();
-            return new AboutYourAgreementPage(_context);
+            return new WhenDoYouWantToViewEmpAgreementPage(_context);
         }
 
         public EoiAboutYourAgreementPage ContinueToEoiAboutYourAgreementPage()
