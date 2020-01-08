@@ -19,16 +19,10 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Tests.StepDefinitions
         }
 
         [Given(@"the Provider creates a vacancy by using a registered name")]
-        public void GivenTheProviderCreatesAVacancyByUsingARegisteredName()
-        {
-            _providerStepsHelper.CreateANewVacancy();
-        }
+        public void GivenTheProviderCreatesAVacancyByUsingARegisteredName() => _providerStepsHelper.CreateANewVacancy();
 
         [Then(@"Provider can make the application successful")]
-        public void ThenProviderCanMakeTheApplicationSuccessful()
-        {
-            _providerStepsHelper.ApplicantSucessful();
-        }
+        public void ThenProviderCanMakeTheApplicationSuccessful() => _providerStepsHelper.ApplicantSucessful();
 
     }
 }
