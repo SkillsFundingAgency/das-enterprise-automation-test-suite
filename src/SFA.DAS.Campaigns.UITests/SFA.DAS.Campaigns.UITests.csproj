@@ -7,7 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Include="..\..\..\..\..\Source\Repos\das-enterprise-automation-test-suite\src\SFA.DAS.Campaigns.UITests\Project\Tests\StepDefinitions\VerifyTheYourApprenticeshipPageSteps.cs" Link="Project\Tests\StepDefinitions\VerifyTheYourApprenticeshipPageSteps.cs" />
     <Compile Include="..\NUnitConfigurator.cs" Link="NUnitConfigurator.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
