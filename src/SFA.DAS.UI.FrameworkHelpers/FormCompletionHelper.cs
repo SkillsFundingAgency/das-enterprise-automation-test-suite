@@ -28,6 +28,11 @@ namespace SFA.DAS.UI.FrameworkHelpers
             SelectRadioButton(_webDriver.FindElement(locator));
         }
 
+        public void RetryClickOnException(Func<IWebElement> element)
+        {
+            _retryHelper.RetryClickOnException(element);
+        }
+
         public void ClickElement(Func<IWebElement> element)
         {
             _retryHelper.RetryClickOnWebDriverException(element);
@@ -120,6 +125,14 @@ namespace SFA.DAS.UI.FrameworkHelpers
             }
         }
 
+        public void UnSelectCheckbox(IWebElement element)
+        {
+            if (element.Selected)
+            {
+                element.Click();
+            }
+        }
+
         public void SelectRadioOptionByForAttribute(By locator, string forAttribute)
         {
             IList<IWebElement> radios = _webDriver.FindElements(locator);
@@ -137,6 +150,11 @@ namespace SFA.DAS.UI.FrameworkHelpers
         private void ClickElementByText(By locator, String text)
         {
            ClickElement(() => GetElementByText(locator, text));
+        }
+
+        public void ClickLinkByText(By locator, string text)
+        {
+            ClickElementByText(locator, text);
         }
 
         public void ClickLinkByText(string text)
@@ -164,6 +182,11 @@ namespace SFA.DAS.UI.FrameworkHelpers
         public void SelectCheckBoxByText(string text)
         {
             ClickElementByText(CheckBoxCssSelector, text);
+        }
+
+        public void SelectCheckBoxByText(By locator, string text)
+        {
+            ClickElementByText(locator, text);
         }
     }
 }

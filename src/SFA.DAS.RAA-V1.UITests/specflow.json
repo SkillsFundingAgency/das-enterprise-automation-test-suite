@@ -6,7 +6,9 @@
     "feature": "en-GB"
   },
   "stepAssemblies": [
-    { "assembly": "SFA.DAS.UI.Framework" }
+    { "assembly": "SFA.DAS.UI.Framework" },
+    { "assembly": "SFA.DAS.ConfigurationBuilder" },
+    { "assembly": "SFA.DAS.FAA.UITests" }
   ],
   "generator": {
     "allowRowTests": false

@@ -1,5 +1,5 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.Approvals.UITests.Project.Helpers;
+using SFA.DAS.ProviderLogin.Service;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
@@ -11,23 +11,17 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         protected override string PageTitle => "Add training provider details";
 
         #region Helpers and Context
-        private readonly PageInteractionHelper _pageInteractionHelper;
         private readonly FormCompletionHelper _formCompletionHelper;
         private readonly ScenarioContext _context;
-        private readonly ApprovalsConfig _config;
-        private readonly ApprenticeDataHelper _dataHelper;
+        private readonly ProviderConfig _config;
         #endregion
 
-        private By ukprnField => By.Id("ProviderId");
-
-        private By continueButton => By.CssSelector(".button");
+        private By UkprnField => By.CssSelector(".govuk-input");
 
         public AddTrainingProviderDetailsPage(ScenarioContext context): base(context)
         {
             _context = context;
-            _config = context.GetApprovalsConfig<ApprovalsConfig>();
-            _dataHelper = context.Get<ApprenticeDataHelper>();
-            _pageInteractionHelper = context.Get<PageInteractionHelper>();
+            _config = context.GetProviderConfig<ProviderConfig>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
             VerifyPage();
         }
@@ -35,19 +29,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         public ConfirmTrainingProviderPage SubmitValidUkprn()
         {
             EnterUkprn();
-            return Continue();
+            Continue();
+            return new ConfirmTrainingProviderPage(_context);
         }
 
         private AddTrainingProviderDetailsPage EnterUkprn()
         {
-            _formCompletionHelper.EnterText(ukprnField, _config.AP_ProviderUkprn);
+            _formCompletionHelper.EnterText(UkprnField, _config.Ukprn);
             return this;
-        }
-
-        private ConfirmTrainingProviderPage Continue()
-        {
-            _formCompletionHelper.ClickElement(continueButton);
-            return new ConfirmTrainingProviderPage(_context);
         }
     }
 }

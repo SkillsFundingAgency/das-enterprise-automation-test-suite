@@ -1,27 +1,26 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
+    <RootNamespace>SFA.DAS.Approvals.UITests</RootNamespace>
     <IsPackable>false</IsPackable>
   </PropertyGroup>
   
   <ItemGroup>
     <Compile Include="..\NUnitConfigurator.cs" Link="NUnitConfigurator.cs" />
   </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="..\specflow.json" Link="specflow.json" />
-  </ItemGroup>
-
+  
   <ItemGroup>
     <PackageReference Include="NUnit3TestAdapter" Version="3.14.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.2.0" />
-    <PackageReference Include="Selenium.WebDriver.ChromeDriver" Version="77.0.3865.4000" />
+    <PackageReference Include="Selenium.WebDriver.ChromeDriver" Version="78.0.3904.10500" />
     <PackageReference Include="SpecFlow.Tools.MsBuild.Generation" Version="3.0.225" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\SFA.DAS.ConfigurationBuilder\SFA.DAS.ConfigurationBuilder.csproj" />
     <ProjectReference Include="..\SFA.DAS.Registration.UITests\SFA.DAS.Registration.UITests.csproj" />
+	<ProjectReference Include="..\SFA.DAS.ProviderLogin.Service\SFA.DAS.ProviderLogin.Service.csproj" />
     <ProjectReference Include="..\SFA.DAS.UI.Framework\SFA.DAS.UI.Framework.csproj" />
   </ItemGroup>
 
@@ -51,6 +50,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="Project\Helpers\SqlScripts\ProviderPermissionsDeleteAccount.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="specflow.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>

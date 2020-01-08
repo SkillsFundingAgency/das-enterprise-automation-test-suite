@@ -1,15 +1,9 @@
-﻿namespace SFA.DAS.Approvals.UITests.Project
+﻿using SFA.DAS.ProviderLogin.Service;
+
+namespace SFA.DAS.Approvals.UITests.Project
 {
-    public class ApprovalsConfig : ProviderLoginConfig
+    public class ApprovalsConfig
     {
-        public string ProviderBaseUrl { get; set; }
-
-        public string AP_ProviderAppNoDraftsUrl { get; set; }
-
-        public string AP_ProviderNoDraftCohortsLoginId { get; set; }
-
-        public string AP_ProviderNoDraftCohortsPassword { get; set; }
-
         public string AP_EmployerConfirmIdentityCode { get; set; }
 
         public string AP_SupportConsoleUrl { get; set; }

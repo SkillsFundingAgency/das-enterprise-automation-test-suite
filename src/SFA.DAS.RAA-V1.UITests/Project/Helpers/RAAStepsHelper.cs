@@ -1,6 +1,8 @@
-﻿using SFA.DAS.RAA_V1.UITests.Project.Tests.Pages;
+﻿using SFA.DAS.FAA.UITests.Project;
+using SFA.DAS.RAA_V1.UITests.Project.Tests.Pages;
 using SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA;
 using SFA.DAS.UI.Framework.TestSupport;
+using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
@@ -24,6 +26,12 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
             _helper = new RestartWebDriverHelper(context);
         }
 
+        public void GoToRAA()
+        {
+            _objectContext.SetCurrentApplicationName(_applicationName);
+            _tabHelper.GoToUrl(_config.RecruitBaseUrl);
+        }
+
         internal RAA_RecruitmentHomePage GoToRAAHomePage(bool restrat)
         {
             if (restrat)
@@ -38,11 +46,108 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
             return SubmitRecruitmentLoginDetails();
         }
 
+
         internal RAA_EmployerSelectionPage CreateANewVacancy()
         {
             GoToRAA();
             return SubmitRecruitmentLoginDetails()
                 .CreateANewVacancy();
+        }
+
+        internal RAA_EmployerInformationPage ChoosesTheEmployer(RAA_EmployerSelectionPage employerSelection, string location, string noOfpositions)
+        {
+            var raaEmployerInformation = employerSelection.SelectAnEmployer();
+
+            switch (location)
+            {
+                case "Use the main employer address":
+                    raaEmployerInformation = raaEmployerInformation.UseTheMainEmployerAddress(noOfpositions);
+                    break;
+
+                case "Add different location":
+                    raaEmployerInformation = raaEmployerInformation.AddDifferentLocation();
+                    break;
+                case "Set as a nationwide vacancy":
+                    raaEmployerInformation = raaEmployerInformation.SetAsANationWideVacancy(noOfpositions);
+                    break;
+            }
+
+            return raaEmployerInformation;
+        }
+
+        internal void ChooseAnonymous(RAA_EmployerInformationPage raaEmployerInformation, string answer)
+        {
+            switch (answer)
+            {
+                case "Yes":
+                    raaEmployerInformation.EmployerDoesNotWantToBeAnonymous();
+                    break;
+
+                case "No":
+                    raaEmployerInformation.EmployerWishesToBeAnonymous();
+                    break;
+            }
+        }
+
+        public void ProviderFillsOutTraineeshipDetails(string location, string disabilityConfident = "Yes", string applicationMethod = "Online", string postCode = "CV1 2WT")
+        {
+            switch (location)
+            {
+                case "Use the main employer address":
+                    break;
+
+                case "Add different location":
+                    AddMultipleVacancy(postCode);
+                    disabilityConfident = "No";
+                    break;
+
+                case "Set as a nationwide vacancy":
+                    break;
+            }
+
+            var enterTrainingDetails = EnterBasicVacancyDetails(VacancyType.Traineeship, disabilityConfident, applicationMethod);
+
+            var enterOpportunityDetails = EnterTrainingDetails(enterTrainingDetails);
+
+            var requirementsAndProspects = EnterOpportunityDetails(enterOpportunityDetails, "18");
+
+            EnterRequirementsAndExtraQuestions(requirementsAndProspects, applicationMethod);
+        }
+
+        internal void ProviderFillsOutApprenticeshipDetails(string location, string disabilityConfident, string applicationMethod, string apprenticeShip, string hoursPerWeek, string vacancyDuration, string wagetype, string postCode = "CV1 2WT")
+        {
+            switch (location)
+            {
+                case "Use the main employer address":
+                    break;
+
+                case "Add different location":
+                    AddMultipleVacancy(postCode);
+                    break;
+
+                case "Set as a nationwide vacancy":
+                    hoursPerWeek = "37";
+                    vacancyDuration = "52";
+                    break;
+            }
+
+            var enterTrainingDetails = EnterBasicVacancyDetails(VacancyType.Apprenticeship, disabilityConfident, applicationMethod);
+
+            var enterFurtherDetails = EnterTrainingDetails(enterTrainingDetails, apprenticeShip);
+
+            var requirementsAndProspects = EnterFurtherDetails(enterFurtherDetails, hoursPerWeek, vacancyDuration, wagetype);
+
+            EnterRequirementsAndExtraQuestions(requirementsAndProspects, applicationMethod);
+        }
+
+        private void EnterRequirementsAndExtraQuestions(RAA_RequirementsAndProspectsPage requirementsAndProspects, string applicationMethod)
+        {
+            EnterRequirementsAndProspects(requirementsAndProspects);
+
+            if (applicationMethod != "Offline")
+            {
+                EnterExtraQuestions();
+            }
         }
 
         internal RAA_EnterTrainingDetailsPage EnterBasicVacancyDetails()
@@ -94,7 +199,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
                    .EnterVacancyClosingDate()
                    .EnterPossibleStartDate()
                    .EnterVacancyDescription()
-                   .ClickSaveAndContinueButton();
+                   .SaveAndContinue();
         }
 
         internal RAA_RequirementsAndProspectsPage EnterFurtherDetails(RAA_EnterFurtherDetailsPage enterFurtherDetails)
@@ -102,20 +207,20 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
             return enterFurtherDetails
                    .EnterVacancyClosingDate()
                    .EnterPossibleStartDate()
-                   .ClickSaveAndContinueButton();
+                   .SaveAndContinue();
         }
 
-        internal RAA_RequirementsAndProspectsPage EnterFurtherDetails(RAA_EnterFurtherDetailsPage enterFurtherDetails, string hoursPerWeek, string vacancyDuration)
+        internal RAA_RequirementsAndProspectsPage EnterFurtherDetails(RAA_EnterFurtherDetailsPage enterFurtherDetails, string hoursPerWeek, string vacancyDuration, string wagetype)
         {
             return enterFurtherDetails
                    .EnterWorkingInformation()
                    .EnterHoursPerWeek(hoursPerWeek)
-                   .ClickApprenticeshipMinimumWage()
+                   .Wage(wagetype)
                    .EnterVacancyDuration(vacancyDuration)
                    .EnterVacancyClosingDate()
                    .EnterPossibleStartDate()
                    .EnterVacancyDescription()
-                   .ClickSaveAndContinueButton();
+                   .SaveAndContinue();
         }
 
         internal void EnterRequirementsAndProspects(RAA_RequirementsAndProspectsPage requirementsAndProspects)
@@ -133,7 +238,6 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
                     .ClickSaveAndContinue();
         }
 
-
         internal void EnterExtraQuestions()
         {
             new RAA_ExtraQuestionsPage(_context)
@@ -142,10 +246,10 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
                 .ClickPreviewVacancyButton();
         }
 
-        internal void AddMultipleVacancy()
+        internal void AddMultipleVacancy(string postCode)
         {
             new RAA_MultipleVacancyLocationPage(_context)
-                       .AddLocation("CV1 2WT")
+                       .AddLocation(postCode)
                        .EnterNumberOfVacancy()
                        .ClickAddAnotherLocationLink()
                        .AddLocation("BS16 4EA")
@@ -157,6 +261,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
         internal RAA_VacancyReferencePage ApproveVacanacy()
         {
             RAA_PreviewBasePage previewPage;
+
             if (_objectContext.IsApprenticeshipVacancyType())
             {
                 previewPage = new RAA_VacancyPreviewPage(_context);
@@ -166,29 +271,21 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
                 previewPage = new RAA_OppurtunityPreviewPage(_context);
             }
 
-            var vacancyReference = previewPage.ClickSubmitForApprovalButton();
+            var vacancyReferencepage = previewPage.ClickSubmitForApprovalButton();
 
-            var referenceNumber1 = vacancyReference.GetVacancyReference();
+            vacancyReferencepage.SetVacancyReference();
 
-            var referenceNumber = (referenceNumber1.Remove(0, 2)).TrimStart('0');
-
-            _objectContext.SetVacancyReference(referenceNumber);
-
-            return vacancyReference;
+            return vacancyReferencepage;
         }
+
         private RAA_RecruitmentHomePage SubmitRecruitmentLoginDetails()
         {
-            return new RAA_IndexPage(_context)
+            new RAA_IndexPage(_context)
                 .ClickOnSignInButton()
-                .RecruitStaffIdams()
+                .RecruitStaffIdams();
+
+            return new SignInPage(_context)
                 .SubmitRecruitmentLoginDetails();
-        }
-
-        private void GoToRAA()
-        {
-            _objectContext.SetCurrentApplicationName(_applicationName);
-
-            _tabHelper.GoToUrl(_config.RecruitBaseUrl);
-        }
+        }        
     }
 }

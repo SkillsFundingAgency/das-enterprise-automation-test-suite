@@ -31,7 +31,7 @@ namespace SFA.DAS.TestProject.UITests.Project.Tests.Features
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "SampleFeautureTwo", "\tAs a user\r\n\tI want to be able to navigate to DFE home page\r\n\tSo that I can see a" +
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "SampleFeautureTwo", "\tAs a user\r\n\tI want to be able to navigate to DFE home page\r\n\tSo that I can see a" +
                     "ll department services and information ", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
@@ -70,6 +70,12 @@ namespace SFA.DAS.TestProject.UITests.Project.Tests.Features
             testRunner.CollectScenarioErrors();
         }
         
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("User navigates to MoD home page from GOV.UK page")]
+        [NUnit.Framework.CategoryAttribute("testproject")]
+        [NUnit.Framework.TestCaseAttribute("Ministry of Defence", null)]
+        [NUnit.Framework.TestCaseAttribute("Department for Education", null)]
+        [NUnit.Framework.TestCaseAttribute("Income Tax", null)]
         public virtual void UserNavigatesToMoDHomePageFromGOV_UKPage(string searchLink, string[] exampleTags)
         {
             string[] @__tags = new string[] {
@@ -92,36 +98,6 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Then("the User should be on DFE home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("User navigates to MoD home page from GOV.UK page: Ministry of Defence")]
-        [NUnit.Framework.CategoryAttribute("testproject")]
-        public virtual void UserNavigatesToMoDHomePageFromGOV_UKPage_MinistryOfDefence()
-        {
-#line 7
-this.UserNavigatesToMoDHomePageFromGOV_UKPage("Ministry of Defence", ((string[])(null)));
-#line hidden
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("User navigates to MoD home page from GOV.UK page: Department for Education")]
-        [NUnit.Framework.CategoryAttribute("testproject")]
-        public virtual void UserNavigatesToMoDHomePageFromGOV_UKPage_DepartmentForEducation()
-        {
-#line 7
-this.UserNavigatesToMoDHomePageFromGOV_UKPage("Department for Education", ((string[])(null)));
-#line hidden
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("User navigates to MoD home page from GOV.UK page: Income Tax")]
-        [NUnit.Framework.CategoryAttribute("testproject")]
-        public virtual void UserNavigatesToMoDHomePageFromGOV_UKPage_IncomeTax()
-        {
-#line 7
-this.UserNavigatesToMoDHomePageFromGOV_UKPage("Income Tax", ((string[])(null)));
-#line hidden
         }
     }
 }

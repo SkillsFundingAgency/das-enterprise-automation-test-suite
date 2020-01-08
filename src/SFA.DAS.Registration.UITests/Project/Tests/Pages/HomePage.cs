@@ -10,7 +10,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         #region Helpers and Context
         private readonly RegexHelper _regexHelper;
-        private readonly ScenarioContext _context;
         #endregion
 
         private By PublicAccountIdLocator => By.CssSelector(".heading-secondary");
@@ -19,7 +18,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         internal HomePage(ScenarioContext context, bool navigate) : base(context, navigate)
         {
-            _context = context;
             _regexHelper = context.Get<RegexHelper>();
         }
 

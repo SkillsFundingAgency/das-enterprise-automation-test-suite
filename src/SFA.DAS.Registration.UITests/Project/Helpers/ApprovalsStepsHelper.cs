@@ -1,6 +1,6 @@
 ﻿using System;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages;
-using SFA.DAS.UI.Framework.TestSupport;
+using SFA.DAS.ConfigurationBuilder;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Registration.UITests.Project.Helpers
@@ -28,7 +28,7 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
                  .SearchForAnOrganisation()
                  .SelectYourOrganisation()
                  .ContinueToAboutYourAgreementPage()
-                 .ContinueWithAgreement()
+                 .SelectViewAgreementNowAndContinue()
                  .SignAgreement();
 
             var accountid = homePage.AccountId();
@@ -39,22 +39,22 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
 
         public HomePage AddNewAccountAndSignAnAgreement(HomePage homePage)
         {
-           homePage.GoToYourAccountsPage()
-                .AddNewAccount()
-                .ContinueToGGSignIn()
-                .SignInTo()
-                .SearchForAnOrganisation()
-                .SelectYourOrganisation()
-                .ContinueToAboutYourAgreementPage()
-                .ContinueWithAgreement()
-                .SignAgreement();
+            homePage.GoToYourAccountsPage()
+                 .AddNewAccount()
+                 .ContinueToGGSignIn()
+                 .SignInTo()
+                 .SearchForAnOrganisation()
+                 .SelectYourOrganisation()
+                 .ContinueToAboutYourAgreementPage()
+                 .SelectViewAgreementNowAndContinue()
+                 .SignAgreement();
 
             var accountid = homePage.AccountId();
             _objectContext.SetReceiverAccountId(accountid);
 
             var publicAccountid = homePage.PublicAccountId();
             _objectContext.SetReceiverPublicAccountId(publicAccountid);
-           
+
             return homePage;
         }
     }

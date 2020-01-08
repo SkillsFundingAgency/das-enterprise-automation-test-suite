@@ -1,6 +1,5 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.UI.Framework.TestSupport;
-using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
@@ -10,18 +9,16 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         protected override string PageTitle => "Using your Government Gateway details";
 
         #region Helpers and Context
-        private readonly FormCompletionHelper _formCompletionHelper;
         private readonly ScenarioContext _context;
         #endregion
 
-        private By ContinueButton => By.Id("agree_and_continue");
+        protected override By ContinueButton => By.Id("agree_and_continue");
 
         private By SetItUpLaterLink => By.CssSelector("a.button-link");
 
         public GatewayInformPage(ScenarioContext context) : base(context)
         {
             _context = context;
-            _formCompletionHelper = context.Get<FormCompletionHelper>();
             VerifyPage();
         }
 
@@ -29,12 +26,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         {
             Continue();
             return new GgSignInPage(_context);
-        }
-
-        private GatewayInformPage Continue()
-        {
-            _formCompletionHelper.ClickElement(ContinueButton);
-            return this;
         }
     }
 }

@@ -31,10 +31,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
             return new ApprenticeshipFundingIsAvailableToTrainAndAssessYourApprenticePage(_context);
         }
 
-        public MakingChangesPage ClickConfirmButton()
+        public SuccessfullyReservedFundingPage ClickConfirmButton()
         {
             _formCompletionHelper.ClickElement(ConfirmButton);
-            return new MakingChangesPage(_context);
+            return new SuccessfullyReservedFundingPage(_context);
         }
     }
 }

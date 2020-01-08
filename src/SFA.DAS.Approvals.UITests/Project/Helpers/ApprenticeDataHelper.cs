@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using SFA.DAS.UI.Framework.TestSupport;
+using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.UI.FrameworkHelpers;
 
 namespace SFA.DAS.Approvals.UITests.Project.Helpers

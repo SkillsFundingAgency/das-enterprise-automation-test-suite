@@ -7,7 +7,7 @@
   },
   "stepAssemblies": [
     { "assembly": "SFA.DAS.UI.Framework" },
-    { "assembly": "SFA.DAS.Registration.UITests" }
+    { "assembly": "SFA.DAS.ConfigurationBuilder" }
   ],
   "generator": {
     "allowRowTests" : false

@@ -1,5 +1,6 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.UI.Framework.TestSupport;
+using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.UI.FrameworkHelpers;
 using System.Linq;
 using System;
@@ -32,6 +33,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             _config = context.GetRegistrationConfig<RegistrationConfig>();
             VerifyPage();
         }
+
         public CheckYourDetailsPage SelectYourOrganisation()
         {
             _formCompletionHelper.ClickElement(SearchLinkUrl(_objectContext.GetOrganisationName()));

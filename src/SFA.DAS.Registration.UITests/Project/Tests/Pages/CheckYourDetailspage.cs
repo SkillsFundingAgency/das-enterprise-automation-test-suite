@@ -19,7 +19,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         private By ChangePayeDetails() => By.CssSelector("a[href=/accounts/amendPaye]");
 
-        private By ContinueButton => By.Id("continue");
+        protected override By ContinueButton => By.Id("continue");
 
         public CheckYourDetailsPage(ScenarioContext context) : base(context)
         {
@@ -29,21 +29,16 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             VerifyPage();
         }
 
-        public AboutYourAgreementPage ContinueToAboutYourAgreementPage()
+        public WhenDoYouWantToViewEmpAgreementPage ContinueToAboutYourAgreementPage()
         {
             Continue();
-            return new AboutYourAgreementPage(_context);
+            return new WhenDoYouWantToViewEmpAgreementPage(_context);
         }
 
         public EoiAboutYourAgreementPage ContinueToEoiAboutYourAgreementPage()
         {
             Continue();
             return new EoiAboutYourAgreementPage(_context);
-        }
-
-        private void Continue()
-        {
-            _formCompletionHelper.ClickElement(ContinueButton);
         }
     }
 }

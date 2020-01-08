@@ -3,18 +3,17 @@
 @raa-v1
 @v1_e2e
 @regression
-Scenario Outline: RV1_E2EAV_03 - Create, Approve and Apply for a Apprenticeship Vacancy
+@apprenticeshipvacancy
+Scenario Outline: RV1_E2EAV_03 - Create, Approve and Apply for a Apprenticeship Vacancy and make it Unsuccessful
 	Given the Provider initiates Create Apprenticeship Vacancy in Recruit
 	When the Provider chooses the employer '<location>','<NoOfPositions>'
 	And the Provider chooses their '<anonymity>'
 	And the Provider fills out details for an Offline Vacancy '<location>','<DisabilityConfident>','<ApplicationMethod>','<ApprenticeshipType>','<HoursPerWeek>','<VacancyDuration>'
 	Then Provider is able to submit the vacancy for approval
-	When the Reviewer initiates reviewing the Vacancy in Manage
-	Then the Reviewer is able to approve the Vacancy '<Changeteam>','<ChangeRole>'
+	Then the Reviewer approves the vacancy
 	When the Applicant apply for a Vacancy in FAA '<QualificationDetails>','<WorkExperience>','<TrainingCourse>'
-	Then the Provider is able to view the Applicant's application in Recruit
+	Then Provider can to make the application to be 'Unsuccessful'
 
-Examples:
-| location                      | anonymity | DisabilityConfident | ApplicationMethod | ApprenticeshipType | HoursPerWeek | VacancyDuration | Changeteam    | ChangeRole       | NoOfPositions | QualificationDetails | WorkExperience | TrainingCourse |
-| Use the main employer address | No        | No                  | Online            | Framework          | 42           | 52              | West Midlands | Vacancy reviewer | 2             | Yes                  | Yes            | Yes            |
-
+	Examples:
+		| location                      | anonymity | DisabilityConfident | ApplicationMethod | ApprenticeshipType | HoursPerWeek | VacancyDuration | NoOfPositions | QualificationDetails | WorkExperience | TrainingCourse |
+		| Use the main employer address | No        | No                  | Online            | Framework          | 42           | 52              | 2             | Yes                  | Yes            | Yes            |

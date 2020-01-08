@@ -1,6 +1,6 @@
-﻿using SFA.DAS.UI.Framework.TestSupport;
-using SFA.DAS.UI.FrameworkHelpers;
+﻿using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
+using SFA.DAS.ConfigurationBuilder;
 
 namespace SFA.DAS.UI.Framework.TestSupport
 {
@@ -20,7 +20,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
             var webDriver = _context.GetWebDriver();
             _context.Replace(new TabHelper(webDriver));
             var webDriverwaitHelper = new WebDriverWaitHelper(webDriver, _config.TimeOutConfig);
-            var retryHelper = new RetryHelper(webDriver);
+            var retryHelper = new RetryHelper(webDriver, _context.ScenarioInfo.Title);
             _context.Replace(new SqlDatabaseConnectionHelper());
             _context.Replace(new PageInteractionHelper(webDriver, webDriverwaitHelper, retryHelper));
             var formCompletionHelper = new FormCompletionHelper(webDriver, webDriverwaitHelper, retryHelper);
@@ -33,5 +33,4 @@ namespace SFA.DAS.UI.Framework.TestSupport
             _context.Replace(new ScreenShotTitleGenerator(0));
         }
     }
-
 }

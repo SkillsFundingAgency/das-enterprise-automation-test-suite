@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using TechTalk.SpecFlow;
 using NUnit.Framework;
 using System.IO;
+using SFA.DAS.UI.FrameworkHelpers;
+using SFA.DAS.ConfigurationBuilder;
 
 namespace SFA.DAS.UI.Framework.Hooks.AfterScenario
 {
@@ -30,10 +32,8 @@ namespace SFA.DAS.UI.Framework.Hooks.AfterScenario
 
                 DateTime dateTime = DateTime.Now;
 
-                string fileName = dateTime.ToString("HH-mm-ss")
-                       + "_"
-                       + _context.ScenarioInfo.Title
-                       + ".txt";
+                string fileName = ($"{dateTime.ToString("HH-mm-ss")}_{_context.ScenarioInfo.Title}.txt").RemoveSpace();
+
                 string directory = _objectContext.GetDirectory();
 
                 string filePath = Path.Combine(directory, fileName);

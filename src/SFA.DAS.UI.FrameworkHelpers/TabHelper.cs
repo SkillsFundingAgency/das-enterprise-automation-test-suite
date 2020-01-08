@@ -1,5 +1,6 @@
 ﻿using OpenQA.Selenium;
 using System;
+using System.Collections.ObjectModel;
 using System.Linq;
 
 namespace SFA.DAS.UI.FrameworkHelpers
@@ -13,22 +14,37 @@ namespace SFA.DAS.UI.FrameworkHelpers
             _webDriver = webDriver;
         }
 
-        public void OpenInNewtab(string url)
+        public ReadOnlyCollection<string> ExistingTabs()
         {
-            var existingTabs = _webDriver.WindowHandles;
+            return _webDriver.WindowHandles;
+        }
 
-            ((IJavaScriptExecutor)_webDriver).ExecuteScript($"window.open('{url}','_blank');");
+        public void OpenInNewtab(Action action)
+        {
+            var existingTabs = ExistingTabs();
 
-            var newtabs = _webDriver.WindowHandles;
+            action.Invoke();
+
+            var newtabs = ExistingTabs();
 
             var newtab = newtabs.Except(existingTabs).Single();
 
             _webDriver = _webDriver.SwitchTo().Window(newtab);
         }
 
+        public void OpenInNewtab(string url)
+        {
+            OpenInNewtab(() => ((IJavaScriptExecutor)_webDriver).ExecuteScript($"window.open('{url}','_blank');"));
+        }
+
         public void GoToUrl(string url)
         {
             _webDriver.Navigate().GoToUrl(url);
+        }
+
+        public void NavigateBrowserBack()
+        {
+            _webDriver.Navigate().Back();
         }
     }
 }

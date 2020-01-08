@@ -1,9 +1,9 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.FAA.UITests.Project;
 using SFA.DAS.RAA_V1.UITests.Project.Helpers;
-using SFA.DAS.UI.Framework.TestSupport;
+using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.UI.FrameworkHelpers;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using TechTalk.SpecFlow;
 
@@ -15,9 +15,10 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
+        private readonly RegexHelper _regexHelper;
         private readonly ObjectContext _objectContext;
-        private readonly RAADataHelper _dataHelper;
         private readonly PageInteractionHelper _pageInteractionHelper;
+        private RandomVacancyHelper _vacancyHelper;
         #endregion
 
         private By CreateANewVacancyButton => By.Id("new-vacancy-button");
@@ -29,25 +30,45 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         private By VacancyFilters => By.CssSelector(".column-one-quarter .bold-xsmall");
         private By NoOfVacancy => By.CssSelector(".bold-xlarge");
         private By CloneLink => By.CssSelector("a");
-
-        private By TableRows => By.CssSelector("tbody tr");
-
+        private By VacancyFilter => By.CssSelector(".column-one-quarter .vacancy-filter");
+        private By VacancyStatus => By.CssSelector(".bold-xsmall");
+        private By VacancyTables => By.CssSelector("#vacancies-table tbody tr");
         private By NextPage => By.CssSelector(".page-navigation__btn.next");
+        private By NoOfPagesCssSelector => By.CssSelector(".page-navigation__btn.next .counter");
 
-
-        public RAA_RecruitmentHomePage(ScenarioContext context) : base(context)
+        public RAA_RecruitmentHomePage(ScenarioContext context, bool navigate) : base(context, navigate)
         {
             _context = context;
             _objectContext = context.Get<ObjectContext>();
-            _dataHelper = context.Get<RAADataHelper>();
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
+            _regexHelper = context.Get<RegexHelper>();
+        }
+
+        public RAA_SearchCandidatesPage SearchCandidates()
+        {
+            formCompletionHelper.ClickLinkByText("Search candidates");
+            return new RAA_SearchCandidatesPage(_context);
+        }
+
+        public RAA_AdministratorFunctionsPage AdministratorFunctions()
+        {
+            NavigateToAdmin();
+            return new RAA_AdministratorFunctionsPage(_context);
         }
 
         public RAA_EmployerInformationPage CloneAVacancy()
         {
-            ApprenticeshipVacancyType();
-            return LiveVacancy()
-                .Clone();
+            SearchByVacancyTitleContains("Live");
+
+            IWebElement element()
+            {
+                var randomElement = RandomElementAt((str) => !str.Text.Contains("(Applications managed externally)"));
+                return _pageInteractionHelper.FindElements(randomElement, CloneLink).LastOrDefault();
+            }
+
+            formCompletionHelper.RetryClickOnException(element);
+
+            return new RAA_EmployerInformationPage(_context);
         }
 
         public RAA_EmployerSelectionPage CreateANewVacancy()
@@ -56,15 +77,76 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
             return new RAA_EmployerSelectionPage(_context);
         }
 
-        public RAA_VacancySummaryPage SearchByReferenceNumber()
+        public RAA_ClosedVacancyPreviewPage SearchClosedVacancy()
         {
+            SearchByReferenceNumber("Closed");
+            return new RAA_ClosedVacancyPreviewPage(_context);
+        }
+
+        public RAA_VacancySummaryPage SearchLiveVacancy()
+        {
+            SearchByReferenceNumber("Live");
+            return new RAA_VacancySummaryPage(_context);
+        }
+
+        public RAA_VacancyPreviewPage SearchLiveVacancyWithNoApplications()
+        {
+            SearchByReferenceNumber("Live");
+            return new RAA_VacancyPreviewPage(_context);
+        }
+
+        public RAA_PreviewBasePage SearchReferredVacancy()
+        {
+            SearchByReferenceNumber("Referred");
+
+            if (_objectContext.IsApprenticeshipVacancyType())
+            {
+                return new RAA_VacancyPreviewPage(_context);
+            }
+            else
+            {
+                return new RAA_OppurtunityPreviewPage(_context);
+            }
+        }
+
+        private void SearchByReferenceNumber(string vacancyType)
+        {
+            IWebElement func()
+            {
+                var filters = _pageInteractionHelper.FindElements(VacancyFilter);
+
+                foreach (var filter in filters)
+                {
+                    var status = _pageInteractionHelper.FindElement(filter, VacancyStatus);
+                    if (status.Text == vacancyType)
+                    {
+                        return _pageInteractionHelper.FindElement(filter, NoOfVacancy);
+                    }
+                }
+
+                return null;
+            }
+
             ApprenticeshipVacancyType();
 
             formCompletionHelper.SelectFromDropDownByValue(VacancySearchMode, "ReferenceNumber");
             formCompletionHelper.EnterText(VacancySearchText, _objectContext.GetVacancyReference());
             formCompletionHelper.ClickElement(() => _pageInteractionHelper.FindElement(SearchVacancy));
-            _pageInteractionHelper.WaitForElementToChange(NoOfVacancy, "1");
-            return GoToVacancySummary();
+            _pageInteractionHelper.WaitForElementToChange(func, AttributeHelper.InnerText, "1");
+            formCompletionHelper.ClickLinkByText(VacancyTitle, vacancyTitledataHelper.VacancyTitle);
+        }
+
+        private void SearchByVacancyTitleContains(string filter)
+        {
+            string filtertype(string x) => x == "New applications" ? "NewApplications" : x;
+            NavigateToHome();
+            ApprenticeshipVacancyType();
+            formCompletionHelper.SelectFromDropDownByValue(VacancySearchMode, "VacancyTitle");
+            var searchTerm = vacancyTitledataHelper.VacancyTitleDate.AddDays(-1).ToString("MMMyyyy");
+            formCompletionHelper.EnterText(VacancySearchText, $"{searchTerm}_");
+            formCompletionHelper.ClickElement(() => _pageInteractionHelper.FindElement(SearchVacancy));
+            formCompletionHelper.ClickLinkByText(VacancyFilters, filter);
+            _pageInteractionHelper.WaitforURLToChange($"FilterType={filtertype(filter)}");
         }
 
         private void ApprenticeshipVacancyType()
@@ -76,50 +158,11 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
             }
         }
 
-        private RAA_EmployerInformationPage Clone()
+        private IWebElement RandomElementAt(Func<IWebElement, bool> func)
         {
-            List<IWebElement> rows() => _pageInteractionHelper.FindElements(TableRows).ToList();
-            int randomLink = 0;
-            int count = 1;
+            _vacancyHelper = new RandomVacancyHelper(_pageInteractionHelper, formCompletionHelper, _objectContext);
 
-            while (count < 5)
-            {
-                for (int i = 1; i < rows().Count; i++)
-                {
-                    var tablerows = rows();
-                    randomLink = _dataHelper.CloneVacancy(tablerows);
-                    var text = _pageInteractionHelper.GetText(() => rows()[randomLink]);
-                    if (!text.Contains("(Applications managed externally)"))
-                    {
-                        break;
-                    }
-                    else
-                    {
-                        randomLink = 0;
-                    }
-                }
-                if (randomLink != 0)
-                {
-                    break;
-                }
-                formCompletionHelper.ClickElement(() => _pageInteractionHelper.FindElement(NextPage));
-                count++;
-            }
-
-            formCompletionHelper.ClickElement(() => _pageInteractionHelper.GetLinks(CloneLink, "Clone")[randomLink]);
-            return new RAA_EmployerInformationPage(_context);
-        }
-
-        private RAA_VacancySummaryPage GoToVacancySummary()
-        {
-            formCompletionHelper.ClickElement(() => _pageInteractionHelper.GetLink(VacancyTitle, _dataHelper.VacancyTitle));
-             return new RAA_VacancySummaryPage(_context);
-        }
-
-        protected RAA_RecruitmentHomePage LiveVacancy()
-        {
-            formCompletionHelper.ClickElement(() => _pageInteractionHelper.GetLink(VacancyFilters, "Live"));
-            return this;
+            return _vacancyHelper.RandomElementAt(func, VacancyTables, VacancyTitle, NextPage, NoOfPagesCssSelector);
         }
     }
 }

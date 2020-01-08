@@ -1,0 +1,14 @@
+﻿{
+  "bindingCulture": {
+    "feature": "en-GB"
+  },
+  "language": {
+    "feature": "en-GB"
+  },
+  "stepAssemblies": [
+    { "assembly": "SFA.DAS.UI.Framework" }
+  ],
+  "generator": {
+    "allowRowTests": false
+  }
+}

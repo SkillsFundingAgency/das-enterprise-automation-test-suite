@@ -12,6 +12,9 @@ using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
 using NUnit.Framework;
 using SFA.DAS.UI.FrameworkHelpers;
+using SFA.DAS.ConfigurationBuilder;
+using SFA.DAS.Login.Service.Helpers;
+using SFA.DAS.Login.Service;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 {
@@ -185,9 +188,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _employerStepsHelper.OpenRejectedCohort()
                 .SelectEditApprentice()
                 .EditApprenticePreApprovalAndSubmit()
-                .SelectContinueToApproval()
-                .SubmitApproveAndSendToTrainingProvider()
-                .SendInstructionsToProviderForAnApprovedCohort();
+                .EmployerFirstApproveAndNotifyTrainingProvider();
         }
 
         [When(@"Receiver sends a cohort to the provider for review and approval")]
@@ -195,10 +196,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             _objectContext.UpdateOrganisationName(_receiver);
 
-            _employerStepsHelper.OpenRejectedCohort()
-                .SelectContinueToApproval()
-                .SubmitSendToTrainingProviderForReview()
-                .SendInstructionsToProviderForCohortToBeReviewed();
+            _employerStepsHelper.OpenRejectedCohort().EmployerSendsToTrainingProviderForReview();
         }
 
         [When(@"Receiver approves the cohort")]

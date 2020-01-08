@@ -1,7 +1,7 @@
 ﻿using NUnit.Framework;
+using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.Registration.UITests.Project.Helpers;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages;
-using SFA.DAS.UI.Framework.TestSupport;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
@@ -12,7 +12,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         private readonly ScenarioContext _context;
         private GetApprenticeshipFunding getApprenticeshipFunding;
         private OrganisationSearchPage organistionSearchPage;
-        private AboutYourAgreementPage aboutYourAgreementPage;
+        private SignAgreementPage _signAgreementPage;
         private EoiAboutYourAgreementPage eoiAboutYourAgreementPage;
         private HomePage homePage;
         private readonly ObjectContext _objectContext;
@@ -53,10 +53,11 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         [When(@"add organisation details")]
         public void AddOrganisationDetails()
         {
-            aboutYourAgreementPage = organistionSearchPage
+            _signAgreementPage = organistionSearchPage
                 .SearchForAnOrganisation()
                 .SelectYourOrganisation()
-                .ContinueToAboutYourAgreementPage();
+                .ContinueToAboutYourAgreementPage()
+                .SelectViewAgreementNowAndContinue();
         }
 
         [When(@"add eoi organisation details")]
@@ -71,9 +72,10 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         [When(@"I sign the agreement")]
         public void SignTheAgreement()
         {
-            homePage = aboutYourAgreementPage
-                .ContinueWithAgreement()
+            homePage = _signAgreementPage
                 .SignAgreement();
+
+            homePage.VerifySucessSummary();
 
             SetAgreementId(homePage);
         }
@@ -81,8 +83,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         [When(@"I do not sign the agreement")]
         public void DoNotSignTheAgreement()
         {
-            homePage = aboutYourAgreementPage
-                .ContinueWithAgreement()
+            homePage = _signAgreementPage
                 .DoNotSignAgreement();
         }
 
@@ -107,8 +108,8 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         [Then(@"I will land in the Organisation Agreement page")]
         public void LandInTheOrganisationAgreementPage()
         {
-            aboutYourAgreementPage
-                .AboutYourAgreementPage();
+            _signAgreementPage
+                .VerifySignAgreementPage();
         }
 
         [Then(@"I will land in the User Home page")]
@@ -121,11 +122,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             _objectContext.SetAccountId(accountid);
         }
 
-        [Then(@"sucess message is displayed")]
-        public void SucessMessageIsDisplayed()
-        {
-            homePage.VerifySucessSummary();
-        }
         private HomePage SetAgreementId(HomePage homePage)
         {
             homePage
