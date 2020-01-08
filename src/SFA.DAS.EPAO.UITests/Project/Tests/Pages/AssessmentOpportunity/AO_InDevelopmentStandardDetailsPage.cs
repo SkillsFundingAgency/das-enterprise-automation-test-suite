@@ -12,7 +12,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentOpportunity
             VerifyPage();
         }
 
-        public AO_InDevelopmentStandardDetailsPage VerifyInDevelopmentStandardDetailsPage()
+        public AO_InDevelopmentStandardDetailsPage IsInDevelopmentStandardDetailsPageDisplayed()
         {
             return this;
         }

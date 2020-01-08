@@ -65,7 +65,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         [Then(@"the selected In-development standard detail page is displayed")]
         public void ThenTheSelectedInDevelopmentStandardDetailPageIsDisplayed()
         {
-            new AO_InDevelopmentStandardDetailsPage(_context).VerifyInDevelopmentStandardDetailsPage();
+            new AO_InDevelopmentStandardDetailsPage(_context).IsInDevelopmentStandardDetailsPageDisplayed();
         }
 
         [When(@"the User clicks on one of the standards listed under 'Proposed' tab to view it")]
@@ -78,7 +78,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         [Then(@"the selected Proposed standard detail page is displayed")]
         public void ThenTheSelectedProposedStandardDetailPageIsDisplayed()
         {
-            new AO_ProposedStandardDetailsPage(_context).VerifyInDevelopmentStandardDetailsPage();
+            new AO_ProposedStandardDetailsPage(_context).IsProposedStandardDetailsPageDisplayed();
         }
     }
 }
