@@ -126,11 +126,11 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RE_CA_06_Create Levy Account for past n months")]
+        [NUnit.Framework.DescriptionAttribute("RE_CA_07_Create Levy Account for past n months")]
         [NUnit.Framework.CategoryAttribute("addpayedetails")]
-        public virtual void RE_CA_06_CreateLevyAccountForPastNMonths()
+        public virtual void RE_CA_07_CreateLevyAccountForPastNMonths()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RE_CA_06_Create Levy Account for past n months", null, new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RE_CA_07_Create Levy Account for past n months", null, new string[] {
                         "addpayedetails"});
 #line 20
 this.ScenarioInitialize(scenarioInfo);

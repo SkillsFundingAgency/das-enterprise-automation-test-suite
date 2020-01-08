@@ -1,5 +1,4 @@
-﻿@registration
-Feature: RE_CA_05_CreateEoiAccount
+﻿Feature: RE_CA_05_CreateEoiAccount
 
 @ignore //EOI functionality is being removed from 09JAN2020
 Scenario: RE_CA_05_Create EOI Account with PAYE Details

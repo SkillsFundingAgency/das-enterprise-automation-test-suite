@@ -1,12 +1,12 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.UI.Framework.TestSupport;
+using SFA.DAS.Login.Service.Project.Tests.Pages;
 using SFA.DAS.UI.FrameworkHelpers;
 using System;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 {
-    public class ProviderYourCohortsPage : InterimProviderBasePage
+    public class ProviderYourCohortsPage : Navigate
     {
         protected override string PageTitle => "Your cohorts";
 
@@ -19,13 +19,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         #endregion
 
         private By NumberOfCohortsForReview => By.CssSelector(".bold-xxlarge");
-        private By numberOfCohortsWithEmployers = By.XPath("(//h2[@class='bold-xxlarge'])[2]");
+        private By NumberOfCohortsWithEmployers => By.XPath("(//h2[@class='bold-xxlarge'])[2]");
 
         public ProviderYourCohortsPage(ScenarioContext context, bool navigate = false) : base(context, navigate)
         {
             _context = context;
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
+            VerifyPage();
         }
 
         public ProviderCohortsToReviewPage GoToCohortsToReviewPage()
@@ -42,10 +43,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         internal ProviderCohortsWithEmployersPage GoToCohortsWithEmployers()
         {
-            var providerWithEmployerCohorts = Convert.ToInt32(_pageInteractionHelper.GetText(numberOfCohortsWithEmployers));
+            var providerWithEmployerCohorts = Convert.ToInt32(_pageInteractionHelper.GetText(NumberOfCohortsWithEmployers));
             if (providerWithEmployerCohorts > 0)
             {
-                _formCompletionHelper.ClickElement(numberOfCohortsWithEmployers);
+                _formCompletionHelper.ClickElement(NumberOfCohortsWithEmployers);
                 return new ProviderCohortsWithEmployersPage(_context);
             }
 

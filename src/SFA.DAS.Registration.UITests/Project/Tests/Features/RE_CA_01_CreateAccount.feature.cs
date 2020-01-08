@@ -72,11 +72,11 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RE_CA_01_01_Create Account without PAYE details")]
+        [NUnit.Framework.DescriptionAttribute("RE_CA_01A_Create Account without PAYE details")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public virtual void RE_CA_01_01_CreateAccountWithoutPAYEDetails()
+        public virtual void RE_CA_01A_CreateAccountWithoutPAYEDetails()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RE_CA_01_01_Create Account without PAYE details", null, new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RE_CA_01A_Create Account without PAYE details", null, new string[] {
                         "regression"});
 #line 5
 this.ScenarioInitialize(scenarioInfo);
@@ -90,12 +90,12 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RE_CA_01_02_Create Non Levy Account with PAYE Details")]
+        [NUnit.Framework.DescriptionAttribute("RE_CA_01B_Create Non Levy Account with PAYE Details")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("addpayedetails")]
-        public virtual void RE_CA_01_02_CreateNonLevyAccountWithPAYEDetails()
+        public virtual void RE_CA_01B_CreateNonLevyAccountWithPAYEDetails()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RE_CA_01_02_Create Non Levy Account with PAYE Details", null, new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RE_CA_01B_Create Non Levy Account with PAYE Details", null, new string[] {
                         "regression",
                         "addpayedetails"});
 #line 11

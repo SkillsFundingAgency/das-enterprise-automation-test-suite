@@ -33,6 +33,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             _config = context.GetRegistrationConfig<RegistrationConfig>();
             VerifyPage();
         }
+
         public CheckYourDetailsPage SelectYourOrganisation()
         {
             _formCompletionHelper.ClickElement(SearchLinkUrl(_objectContext.GetOrganisationName()));

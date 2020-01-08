@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Features.DraftVacancy
+namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Features.DraftVacancy
 {
     using TechTalk.SpecFlow;
     
@@ -72,22 +72,24 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Features.DraftVacancy
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("RV2_E_DV_03 - Delete draft vacancy")]
         [NUnit.Framework.CategoryAttribute("raa-v2")]
+        [NUnit.Framework.CategoryAttribute("raa-v2e")]
         [NUnit.Framework.CategoryAttribute("regression")]
         public virtual void RV2_E_DV_03_DeleteDraftVacancy()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV2_E_DV_03 - Delete draft vacancy", null, new string[] {
                         "raa-v2",
+                        "raa-v2e",
                         "regression"});
-#line 5
+#line 6
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 6
-testRunner.Given("the Employer completes the first part of the journey", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 7
-testRunner.When("the Employer saves the vacancy as a draft", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+testRunner.Given("the Employer completes the first part of the journey", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 8
-testRunner.Then("the Employer can cancel deleting the draft vacancy", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+testRunner.When("the Employer saves the vacancy as a draft", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 9
+testRunner.Then("the Employer can cancel deleting the draft vacancy", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 10
 testRunner.Then("the Employer is able to delete the draft vacancy", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();

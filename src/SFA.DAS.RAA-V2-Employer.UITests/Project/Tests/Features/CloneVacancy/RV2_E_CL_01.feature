@@ -1,6 +1,7 @@
 ﻿Feature: RV2_E_CL_01
 
 @raa-v2
+@raa-v2e
 @clonevacancy
 @regression
 Scenario: RV2_E_CL_01 - Clone a vacancy, Approve, Apply and make Application Successful

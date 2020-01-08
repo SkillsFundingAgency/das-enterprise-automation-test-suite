@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
-
+    <RootNamespace>SFA.DAS.MongoDb.DataGenerator</RootNamespace>
     <IsPackable>false</IsPackable>
   </PropertyGroup>
 
