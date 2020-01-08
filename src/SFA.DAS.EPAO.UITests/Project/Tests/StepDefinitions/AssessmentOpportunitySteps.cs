@@ -1,6 +1,8 @@
-﻿using OpenQA.Selenium;
+﻿using NUnit.Framework;
+using SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentOpportunity;
 using SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService;
 using SFA.DAS.UI.Framework.TestSupport;
+using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
@@ -10,53 +12,73 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
     {
         private readonly ScenarioContext _context;
         private readonly EPAOConfig _ePAOConfig;
-        private readonly IWebDriver _webDriver;
-
-        private AS_AchievementDatePage _achievementDatePage;
+        private readonly TabHelper _tabHelper;
+        private AO_HomePage _homePage;
 
         public AssessmentOpportunitySteps(ScenarioContext context)
         {
             _context = context;
             _ePAOConfig = context.GetEPAOConfig<EPAOConfig>();
-            _webDriver = context.GetWebDriver();
+            _tabHelper = context.Get<TabHelper>();
         }
 
         [When(@"the User visits the Assessment Opportunity Application")]
         public void WhenTheUserVisitsTheAssessmentOpportunityApplication()
         {
-            NavigateToAssessmentOpportunityApplication();
+            _tabHelper.GoToUrl(_ePAOConfig.EPAOAssessmentOpportunityFinderUrl);
+            _homePage = new AO_HomePage(_context);
         }
 
-        [Then(@"the Approved tab is displayed")]
-        public void ThenTheApprovedTabIsDisplayed()
+        [Then(@"the Approved tab is displayed and selected")]
+        public void ThenTheApprovedTabIsDisplayedAndSelected()
         {
-
+            _homePage.IsApprovedTabDisplayed();
+            Assert.AreEqual("Approved Standards", _homePage.GetApprovedTabHeaderText());
         }
 
-        [When(@"the User clicks on one of the standards listed under '(.*)' tab")]
-        public void WhenTheUserClicksOnOneOfTheStandardsListedUnderTab(string p0)
+        [When(@"the User clicks on one of the standards listed under 'Approved' tab to view it")]
+        public void WhenTheUserClicksOnOneOfTheStandardsListedUnderTab()
         {
-            
+            _homePage.ClickOnAbattoirWorkerApprovedStandardLink();
         }
 
-        [Then(@"the respective standard details page is displayed")]
-        public void ThenTheRespectiveStandardDetailsPageIsDisplayed()
+        [When(@"clicks on 'Apply to assess this Standard'")]
+        public void WhenTheUserClicksOnApplyToAssessThisStandard()
         {
-            
+            new AO_ApprovedStandardDetailsPage(_context).ClickApplyToThisStandardButton();
         }
 
-        [When(@"the User clicks on '(.*)'")]
-        public void WhenTheUserClicksOn(string p0)
+        [Then(@"the User is redirected to 'Assessment Service' application")]
+        public void ThenTheUserIsRedirectedToAssessmentServiceApplication()
         {
-            
+            _tabHelper.SwitchToTheNewTab();
+            new AS_LandingPage(_context).VerifyAS_LandingPage();
         }
 
-        [Then(@"the User is redirected to '(.*)' application")]
-        public void ThenTheUserIsRedirectedToApplication(string p0)
+        [When(@"the User clicks on one of the standards listed under 'In-development' tab to view it")]
+        public void WhenTheUserClicksOnOneOfTheStandardsListedUnderInDevelopmentTabToViewIt()
         {
-            
+            _homePage.ClickInDevelopmentTab()
+                .ClickOnBlacksmithInDevelopmentStandardLink();
         }
 
-        private void NavigateToAssessmentOpportunityApplication() => _webDriver.Navigate().GoToUrl(_ePAOConfig.EPAOAssessmentOpportunityFinderUrl);
+        [Then(@"the selected In-development standard detail page is displayed")]
+        public void ThenTheSelectedInDevelopmentStandardDetailPageIsDisplayed()
+        {
+            new AO_InDevelopmentStandardDetailsPage(_context).VerifyInDevelopmentStandardDetailsPage();
+        }
+
+        [When(@"the User clicks on one of the standards listed under 'Proposed' tab to view it")]
+        public void WhenTheUserClicksOnOneOfTheStandardsListedUnderProposedTabToViewIt()
+        {
+            _homePage.ClickInProposedTab()
+                .ClickOnEquineAthleteProposedStandard();
+        }
+
+        [Then(@"the selected Proposed standard detail page is displayed")]
+        public void ThenTheSelectedProposedStandardDetailPageIsDisplayed()
+        {
+            new AO_ProposedStandardDetailsPage(_context).VerifyInDevelopmentStandardDetailsPage();
+        }
     }
 }

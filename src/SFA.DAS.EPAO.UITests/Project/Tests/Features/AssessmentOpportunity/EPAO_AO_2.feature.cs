@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.Registration.UITests.Project.Tests.Features
+namespace SFA.DAS.EPAO.UITests.Project.Tests.Features.AssessmentOpportunity
 {
     using TechTalk.SpecFlow;
     
@@ -18,20 +18,20 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.0.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("RE_CA_05_CreateEoiAccount")]
-    public partial class RE_CA_05_CreateEoiAccountFeature
+    [NUnit.Framework.DescriptionAttribute("EPAO_AO_2")]
+    public partial class EPAO_AO_2Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "RE_CA_05_CreateEoiAccount.feature"
+#line 1 "EPAO_AO_2.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "RE_CA_05_CreateEoiAccount", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "EPAO_AO_2", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -70,37 +70,30 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RE_CA_05_Create EOI Account with PAYE Details")]
-        [NUnit.Framework.IgnoreAttribute("Ignored scenario")]
-        [NUnit.Framework.CategoryAttribute("//EOI")]
-        [NUnit.Framework.CategoryAttribute("functionality")]
-        [NUnit.Framework.CategoryAttribute("is")]
-        [NUnit.Framework.CategoryAttribute("being")]
-        [NUnit.Framework.CategoryAttribute("removed")]
-        [NUnit.Framework.CategoryAttribute("from")]
-        [NUnit.Framework.CategoryAttribute("09JAN2020")]
-        public virtual void RE_CA_05_CreateEOIAccountWithPAYEDetails()
+        [NUnit.Framework.DescriptionAttribute("EPAO_AO_2 - View an In-developement Standard in Assessment Opportunity Applicatio" +
+            "n")]
+        [NUnit.Framework.CategoryAttribute("epao")]
+        [NUnit.Framework.CategoryAttribute("assessmentservice")]
+        [NUnit.Framework.CategoryAttribute("assessmentopportunity")]
+        [NUnit.Framework.CategoryAttribute("regression")]
+        public virtual void EPAO_AO_2_ViewAnIn_DevelopementStandardInAssessmentOpportunityApplication()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RE_CA_05_Create EOI Account with PAYE Details", null, new string[] {
-                        "ignore",
-                        "//EOI",
-                        "functionality",
-                        "is",
-                        "being",
-                        "removed",
-                        "from",
-                        "09JAN2020"});
-#line 4
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EPAO_AO_2 - View an In-developement Standard in Assessment Opportunity Applicatio" +
+                    "n", null, new string[] {
+                        "epao",
+                        "assessmentservice",
+                        "assessmentopportunity",
+                        "regression"});
+#line 7
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 5
- testRunner.Given("I create an Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 6
- testRunner.When("I add paye details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 7
- testRunner.And("add eoi organisation details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 8
- testRunner.And("I do not sign the eoi agreement", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.When("the User visits the Assessment Opportunity Application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 9
+ testRunner.And("the User clicks on one of the standards listed under \'In-development\' tab to view" +
+                    " it", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 10
+ testRunner.Then("the selected In-development standard detail page is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

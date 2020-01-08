@@ -70,16 +70,14 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Features.AssessmentOpportunity
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("EPAO_AO_1 - Certify an Apprentice as Passed who has enrolled for a single standar" +
-            "d")]
+        [NUnit.Framework.DescriptionAttribute("EPAO_AO_1 - View an Approved Standard in Assessment Opportunity Application")]
         [NUnit.Framework.CategoryAttribute("epao")]
         [NUnit.Framework.CategoryAttribute("assessmentservice")]
         [NUnit.Framework.CategoryAttribute("assessmentopportunity")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public virtual void EPAO_AO_1_CertifyAnApprenticeAsPassedWhoHasEnrolledForASingleStandard()
+        public virtual void EPAO_AO_1_ViewAnApprovedStandardInAssessmentOpportunityApplication()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EPAO_AO_1 - Certify an Apprentice as Passed who has enrolled for a single standar" +
-                    "d", null, new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EPAO_AO_1 - View an Approved Standard in Assessment Opportunity Application", null, new string[] {
                         "epao",
                         "assessmentservice",
                         "assessmentopportunity",
@@ -90,14 +88,12 @@ this.ScenarioInitialize(scenarioInfo);
 #line 8
  testRunner.When("the User visits the Assessment Opportunity Application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 9
- testRunner.Then("the Approved tab is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the Approved tab is displayed and selected", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 10
- testRunner.When("the User clicks on one of the standards listed under \'Approved\' tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("the User clicks on one of the standards listed under \'Approved\' tab to view it", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 11
- testRunner.Then("the respective standard details page is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("clicks on \'Apply to assess this Standard\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 12
- testRunner.When("the User clicks on \'Apply to assess this Standard\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 13
  testRunner.Then("the User is redirected to \'Assessment Service\' application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();

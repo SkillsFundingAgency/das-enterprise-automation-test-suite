@@ -1,6 +1,7 @@
 ﻿using SFA.DAS.EPAO.UITests.Project.Helpers;
 using SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService;
 using SFA.DAS.UI.Framework.TestSupport;
+using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
@@ -14,6 +15,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         private AS_RecordAGradePage _recordAGradePage;
         private EPAODataHelper _epaoDataHelper;
         private AS_AchievementDatePage _achievementDatePage;
+        private readonly TabHelper _tabHelper;
 
         public AssessmentServiceSteps(ScenarioContext context)
         {
@@ -21,12 +23,13 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
             _stepsHelper = new AssessmentServiceStepsHelper(_context);
             _ePAOConfig = context.GetEPAOConfig<EPAOConfig>();
             _epaoDataHelper = context.Get<EPAODataHelper>();
+            _tabHelper = context.Get<TabHelper>();
         }
 
         [Given(@"the User is logged into Assessment Service Application")]
         public void GivenTheUserIsLoggedIntoAssessmentServiceApplication()
         {
-            _stepsHelper.NavigateToAssessmentServiceApplication();
+            _tabHelper.GoToUrl(_ePAOConfig.EPAOAssessmentServiceUrl);
             _stepsHelper.LoginToAssessmentServiceApplication();
         }
 
