@@ -10,6 +10,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
         #region Private Variables
         private readonly ScenarioContext _context;
         private readonly YourResultsPage yourResultsPage;
+        private RegisterMyInterestPage registerMyInterestPage;
         #endregion
 
         public StepDefinitionYourResultsPage(ScenarioContext context)
@@ -21,6 +22,8 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
         [Then(@"I click on first search result")]
         public void ClickOnFirstSearchResult()
         {
+            registerMyInterestPage = new RegisterMyInterestPage(_context);
+            registerMyInterestPage.RemoveTheAlertBanner();
             yourResultsPage.VerifyResultsPageHeader();
             TestContext.Progress.WriteLine("Navigating to Apprenticeship Summary page");
             yourResultsPage.ClickOnAnySerachResult();

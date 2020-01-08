@@ -21,10 +21,8 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
         #endregion
 
         #region Page Objects Elements
-        // Hd to use xpath because duplicate id were present on page
         private readonly By _actualSearchResultPageHeader = By.ClassName("heading-xl");
         private readonly By _actualSearchResultText =By.ClassName("das-search-results__header-results-header-text");
-
         private readonly By _firstNameField =By.XPath("(//input[@id='FirstName'])[2]");
         private readonly By _lastNameField =By.XPath("(//input[@id='LastName'])[2]");
         private readonly By _emailField =By.XPath("(//input[@id='Email'])[2]");

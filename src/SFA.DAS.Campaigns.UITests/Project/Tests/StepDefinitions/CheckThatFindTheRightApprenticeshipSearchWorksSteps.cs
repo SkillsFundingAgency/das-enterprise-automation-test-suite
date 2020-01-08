@@ -31,7 +31,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
         public void GivenILaunchFindTheRightApprenticeshipPage()
         {
             fireItUpHomePage = new FireItUpHomePage(_context);
-            fireItUpHomePage.LaunchEmployerMenu();
+           // fireItUpHomePage.LaunchEmployerMenu();
             TestContext.Progress.WriteLine("Navigating to Find the Right Apprenticeship page");
             fireItUpHomePage.ClickFindTheRightApprenticeshipPage();
         }

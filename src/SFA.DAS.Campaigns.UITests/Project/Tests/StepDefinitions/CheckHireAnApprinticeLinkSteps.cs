@@ -28,7 +28,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
         public void GivenILaunchHireAnApprenticePage()
         {
            fireItUpHomePage = new FireItUpHomePage(_context);
-            fireItUpHomePage.LaunchEmployerMenu();
+            fireItUpHomePage.FocusOnEmployerHowDoTheyWorkMenu();
             TestContext.Progress.WriteLine("Navigating to Hire An Apprentice page");
             fireItUpHomePage.ClicKHireAnApprenticeLink();
         }

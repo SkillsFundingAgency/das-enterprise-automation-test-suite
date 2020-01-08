@@ -45,7 +45,6 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
         [Given(@"I launch the Your Apprenticeship page")]
         public void LaunchYourApprenticeshipPage()
         {
-            fireItUpHomePage.LaunchApprenticeMenu();
             TestContext.Progress.WriteLine("Navigating to Your Apprenticeship page");
             fireItUpHomePage.ClickOnYourApprenticeshipLink();
         }
@@ -53,7 +52,6 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
         [Given(@"I launch the Assessment And Certification page")]
         public void LaunchAssessmentAndCertificationPage()
         {
-            fireItUpHomePage.LaunchApprenticeMenu();
             TestContext.Progress.WriteLine("Navigating to Assessment And Certification page");
             fireItUpHomePage.ClickOnAssessmentAndCertificationApprenticeLink();
         }
@@ -61,7 +59,6 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
         [Given(@"I launch the Interview page")]
         public void LaunchInterviewPage()
         {
-            fireItUpHomePage.LaunchApprenticeMenu();
             TestContext.Progress.WriteLine("Navigating to Interview page");
             fireItUpHomePage.ClickOnInterviewLink();
         }
@@ -69,7 +66,6 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
         [Given(@"I launch the Application page")]
         public void LaunchApplicationPage()
         {
-            fireItUpHomePage.LaunchApprenticeMenu();
             TestContext.Progress.WriteLine("Navigating to Application page");
             fireItUpHomePage.ClickOnApplicationLink();
         }
@@ -77,7 +73,6 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
         [Given(@"I launch the What Is An Apprenticeship page")]
         public void LaunchWhatIsAnApprenticeshipPage()
         {
-            fireItUpHomePage.LaunchApprenticeMenu();
             TestContext.Progress.WriteLine("Navigating to What Is An Apprenticeship page");
             fireItUpHomePage.ClickOnWhatIsAnApprenticeshipLink();
         }
@@ -103,6 +98,13 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
             TestContext.Progress.WriteLine("Navigating to Real Stories page");
             fireItUpHomePage.ClickOnRealStoriesLink();
         }
+        [Given(@"I click on th Employer option in the Menu header")]
+        public void GivenIClickOnThEmployerOptionInTheMenuHeader()
+        {
+            fireItUpHomePage.LaunchEmployerMenu();
+        }
+
+
 
     }
 }

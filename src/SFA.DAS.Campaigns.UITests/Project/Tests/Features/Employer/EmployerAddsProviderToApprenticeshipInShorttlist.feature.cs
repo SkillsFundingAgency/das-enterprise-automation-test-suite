@@ -83,22 +83,24 @@ this.ScenarioInitialize(scenarioInfo);
 #line 8
  testRunner.Given("I navigate to Fire It Up home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 9
- testRunner.And("I Launch Find The Right Apprenticeship page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("I click on th Employer option in the Menu header", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 10
- testRunner.Then("I Verify the title for Find The Right Apprenticeship  page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("I Launch Find The Right Apprenticeship page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 11
- testRunner.And("I Can Perform The Search on the Empty Field", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Then("I Verify the title for Find The Right Apprenticeship  page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 12
- testRunner.And("I Can Verify The Result Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("I Can Perform The Search on the Empty Field", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 13
- testRunner.And("I Can Add Apprenticeships From Search Result  List to Favourite Short List", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("I Can Verify The Result Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 14
- testRunner.And("I Can Click on the Favourite Icon with Apprenticeship", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("I Can Add Apprenticeships From Search Result  List to Favourite Short List", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 15
- testRunner.Then("I Can Add a Provider to an Apprenticeship in the Shortlist Favourite", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 16
  testRunner.And("I Can Click on the Favourite Icon with Apprenticeship", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 16
+ testRunner.Then("I Can Add a Provider to an Apprenticeship in the Shortlist Favourite", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 17
+ testRunner.And("I Can Click on the Favourite Icon with Apprenticeship", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 18
  testRunner.Then("I Can Verify the Favourite Count for Provider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();

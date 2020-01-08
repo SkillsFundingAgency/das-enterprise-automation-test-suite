@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.Campaigns.UITests.Project.Tests.Features.Employer
+namespace SFA.DAS.Campaigns.UITests.Project.Tests.Features.Apprenticeships
 {
     using TechTalk.SpecFlow;
     
@@ -18,21 +18,21 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Features.Employer
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.0.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("EmployerRemovesProviderFromTheApprenticeship")]
-    public partial class EmployerRemovesProviderFromTheApprenticeshipFeature
+    [NUnit.Framework.DescriptionAttribute("VerifyTheApplicationPage")]
+    public partial class VerifyTheApplicationPageFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "EmployerRemovesProviderFromTheApprenticeship.feature"
+#line 1 "VerifyTheApplicationPage.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "EmployerRemovesProviderFromTheApprenticeship", "\tAs an Employer\r\n\tI want to be able to navigate to Fire It Up home page\r\n\tSo that" +
-                    " I can use the benefits of Employer services and information ", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "VerifyTheApplicationPage", "\tAs a user\r\n\tI want to be able to navigate to Fire It Up home page\r\n\tSo that I ca" +
+                    "n use the benefits of apprentice services and information ", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -71,11 +71,11 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Features.Employer
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("I want to be able to Remove Apprenticeships from the Favourite Short List")]
+        [NUnit.Framework.DescriptionAttribute("Check all the links and content of APPLICATION screen")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public virtual void IWantToBeAbleToRemoveApprenticeshipsFromTheFavouriteShortList()
+        public virtual void CheckAllTheLinksAndContentOfAPPLICATIONScreen()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("I want to be able to Remove Apprenticeships from the Favourite Short List", null, new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Check all the links and content of APPLICATION screen", null, new string[] {
                         "regression"});
 #line 7
 this.ScenarioInitialize(scenarioInfo);
@@ -83,27 +83,21 @@ this.ScenarioInitialize(scenarioInfo);
 #line 8
  testRunner.Given("I navigate to Fire It Up home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 9
- testRunner.And("I click on th Employer option in the Menu header", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("I launch the Find An Apprentice page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 10
- testRunner.And("I Launch Find The Right Apprenticeship page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("I Focus on the link How Do They Work link", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 11
- testRunner.Then("I Verify the title for Find The Right Apprenticeship  page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("I launch the Application page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 12
- testRunner.And("I Can Perform The Search on the Empty Field", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Then("I verify the content under SO, YOU\'VE FOUND THE APPRENTICESHIP section", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 13
- testRunner.And("I Can Verify The Result Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("I verify the content under APPLY FOR THE JOB section", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 14
- testRunner.And("I Can Add Apprenticeships From Search Result  List to Favourite Short List", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("I verify the content under WAIT FOR THE APPLICATIONS section", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 15
- testRunner.And("I Can Click on the Favourite Icon with Apprenticeship", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("I verify the content under IF YOU’RE ON THE SHORTLIST section", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 16
- testRunner.Then("I Can Add a Provider to an Apprenticeship in the Shortlist Favourite", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 17
- testRunner.And("I Can Click on the Favourite Icon with Apprenticeship", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 18
- testRunner.Then("I Can Verify the Favourite Count for Provider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 19
- testRunner.And("I Can Remove Provider from the Shortlist Favourite", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("I verify the content under TRAINING PROVIDERS section", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }

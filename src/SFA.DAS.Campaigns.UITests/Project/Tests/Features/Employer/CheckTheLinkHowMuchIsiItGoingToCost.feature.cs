@@ -83,8 +83,10 @@ this.ScenarioInitialize(scenarioInfo);
 #line 8
   testRunner.Given("I navigate to Fire It Up home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 9
-  testRunner.And("I launch the How Much Is It Going To Cost? page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("I click on th Employer option in the Menu header", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 10
+  testRunner.And("I launch the How Much Is It Going To Cost? page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 11
   testRunner.Then("I verify the Title of How Much Is It Going To Cost? the page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();

@@ -22,7 +22,6 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
         #endregion
 
         #region Page Objects Elements
-        // Hd to use xpath because duplicate id were present on page
         private readonly By _helpShapeTheirCareerHeader = By.ClassName("heading-xl");
         private readonly By  _firstNameField =By.Id("FirstName");
         private readonly By _lastNameField =By.Id("LastName");
@@ -30,6 +29,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
         private readonly By _radioButtonApprentice=By.Id("rbApprentice");
         private readonly By _radioButtonEmployer=By.Id("rbEmployer");
         private readonly By _checkBoxTAndCs=By.Id("AcceptTandCs");
+        private readonly By _noIamHappyToStayOnThisPage = By.Id("alert-countries-stay");
         private readonly By _registerMyInterestButton = By.Id("btn-register-interest-complete");
         #endregion
         public RegisterMyInterestPage(ScenarioContext context): base(context)
@@ -65,6 +65,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
         }
         public RegisterMyInterestPage CheckTheTAndCsCheckBox()
         {
+           
             _formCompletionHelper.SelectRadioButton(_checkBoxTAndCs);
             return new RegisterMyInterestPage(_context);
         }
@@ -73,6 +74,12 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
         {
             _formCompletionHelper.ClickElement(_registerMyInterestButton);
             return new RegisterMyInterestSuccessPage(_context);
+        }
+
+        public RegisterMyInterestPage RemoveTheAlertBanner()
+        {
+            _formCompletionHelper.ClickElement(_noIamHappyToStayOnThisPage);
+            return new RegisterMyInterestPage(_context);
         }
     }
  }

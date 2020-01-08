@@ -32,9 +32,9 @@ namespace SFA.DAS.Campaigns.UITests
         public void GivenILaunchTheHowMuchIsItGoingToCostPage()
         {
             fireItUpHomePage = new FireItUpHomePage(_context);
-            fireItUpHomePage.LaunchEmployerMenu();
+            fireItUpHomePage.FocusOnEmployerHowDoTheyWorkMenu();
             TestContext.Progress.WriteLine("Navigating to How Much Cost Is It Going to Cost page");
-            fireItUpHomePage.ClickOnHowMuchIsItGoingToCostLink();
+            fireItUpHomePage.ClickOnFundingAnApprenticeshipLink();
         }
         
         [Then(@"I verify the Title of How Much Is It Going To Cost\? the page")]

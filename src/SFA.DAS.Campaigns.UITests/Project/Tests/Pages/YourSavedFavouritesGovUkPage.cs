@@ -21,7 +21,6 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
         #endregion
 
         #region Page Object Elements
-       // private readonly By _yourSavedFavouritesHeader =By.XPath("//hi[@class='govuk-heading-xl govuk-!-margin-top-3 govuk-!-margin-bottom-6']/span[1]");
         private readonly By _yourSavedFavouritesHeader =By.XPath("//span[@class='govuk-caption-xl']");
         private readonly By _apprenticeshipWithNumberHeading = By.XPath("//span[@class='fav-count-text']");
         private readonly By _removeAprrenticeshipAndProviderFromFavouriteLink = By.XPath("//a[@class='govuk-link app-task-list__training-provider-content']");

@@ -59,7 +59,6 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
         private readonly By _whatWillMyApprenticeshipCostMeParagraph2 = By.XPath("//div[@class='page']/p[7]");
        
         private readonly By _howDoTheyWorkLink =By.XPath("//a[@href='/apprentice/what-is-an-apprenticeship']");
-         //private readonly By _howDoTheyWorkLink =By.XPath("//a[contains(span,'How do they work?']");
         #endregion
         public WhatAreTheBenefitsForMePage(ScenarioContext context) : base(context)
         {

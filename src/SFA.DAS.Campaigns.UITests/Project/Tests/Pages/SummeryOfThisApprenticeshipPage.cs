@@ -21,7 +21,6 @@ namespace SFA.DAS.Campaigns.UITests
         #endregion
 
         #region Page Objects Elements
-        // Hd to use xpath because duplicate id were present on page
         private readonly By _actualSummaryHeader = By.XPath("//h2[@class='heading-l u!-margin-top-0']");
         private readonly By _postcode =By.Id("Postcode");
         private readonly By _providerSearchButton=By.Id("employer-provider-search");

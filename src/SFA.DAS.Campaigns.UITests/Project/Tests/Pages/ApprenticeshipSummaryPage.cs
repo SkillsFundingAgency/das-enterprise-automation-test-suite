@@ -25,9 +25,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
         #region Page Object Elements
         private readonly By _apprenticeshipSummaryHeader = By.XPath("(//div[@class='column-full']/child::h2)[1]");
         private readonly By _signInToApplyButton = By.Id("apply-button");
-        //private readonly By _vacancyTitle = By.Id("vacancy-title");
         private readonly By _vacancyTitle = By.Id("vacancy-title");
-        //private readonly By _vacancyTitle = By.ClassName("heading-xlarge");
         private readonly By _vacancyDescription = By.Id("vacancy-description");
         private readonly By _employerName = By.XPath("//h1[@id='vacancy-title']/span");
         private readonly By _possibleClosingDate = By.Id("vacancy-start-date");
@@ -37,7 +35,6 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
         {
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
-            //VerifyPage();
         }
 
         internal void ClickObSignInToApplyButton()

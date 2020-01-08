@@ -22,7 +22,6 @@ namespace SFA.DAS.Campaigns.UITests
         #endregion
 
         #region Page Objects Elements
-        // Hd to use xpath because duplicate id were present on page
         private readonly By _helpShapeTheirCareerHeader = By.ClassName("heading-xl");
         private readonly By _actualSummaryHeader = By.ClassName("heading-l");
         private readonly By _apprenticeship =By.XPath("(//a[@class='link das-search-result__heading-link'])[4]");

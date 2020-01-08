@@ -30,7 +30,7 @@ namespace SFA.DAS.Campaigns.UITests
         public void GivenILaunchPreparingAndMonitoringPage()
         {
             fireItUpHomePage = new FireItUpHomePage(_context);
-            fireItUpHomePage.LaunchEmployerMenu();
+            fireItUpHomePage.FocusOnEmployerHowDoTheyWorkMenu();
             TestContext.Progress.WriteLine("Navigating to Preparing And Monitoring page");
             fireItUpHomePage.ClickPreparingAndMonitoringLink();
         }

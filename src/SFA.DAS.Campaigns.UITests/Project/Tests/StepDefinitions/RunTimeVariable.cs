@@ -10,8 +10,6 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
         public static void SetAllRunTimeVariablesToNull()
         {
             _providerTitleStored = null;
-
-
         }
     }
     

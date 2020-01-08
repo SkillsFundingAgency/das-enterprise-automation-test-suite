@@ -5,5 +5,6 @@
 @regression
 Scenario: Check the link Hire An Apprentice Link
 	Given I navigate to Fire It Up home page
+	And I click on th Employer option in the Menu header
 	And I launch Hire An Apprentice page
 	Then I verify the title for Hire An Apprentice page

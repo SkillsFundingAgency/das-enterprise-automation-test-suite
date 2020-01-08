@@ -30,7 +30,7 @@ namespace SFA.DAS.Campaigns.UITests
         public void GivenILaunchChoosingATrainingProviderPage()
         {
             fireItUpHomePage = new FireItUpHomePage(_context);
-            fireItUpHomePage.LaunchEmployerMenu();
+            fireItUpHomePage.FocusOnEmployerSettingUpMenue();
             TestContext.Progress.WriteLine("Navigating to Choosing a Training Provider page");
             fireItUpHomePage.ClickChoosingATrainingProviderLink();
         }

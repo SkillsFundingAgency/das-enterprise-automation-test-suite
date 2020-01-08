@@ -46,7 +46,8 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
         public void GivenITickTheRadioButtonForIWantToBecomeAnApprentice()
         {
             registerMyInterestPage = new RegisterMyInterestPage(_context);
-            registerMyInterestPage.TickIWantToBecomeAnApprentice();
+            registerMyInterestPage.RemoveTheAlertBanner()
+                .TickIWantToBecomeAnApprentice();
         }
         
         [Given(@"I Tick The Check Box for To Recieve More Information Via Email")]

@@ -32,15 +32,9 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
         private readonly By _parentPage =By.Id("link-nav-parents");
         private readonly By _registerMyInterestButton =By.Id("btn-register-interest-header");
         private readonly By _cookieButton = By.Id("link-cookie-accept");
-        //private readonly By _findAnApprenticeLink = By.Id("link-nav-app-step-2");
         private readonly By _findAnApprenticeLink = By.Id("link-nav-apprentice");
-       // private readonly By _ApprenticesHeaderSupportText = By.XPath("(//div[@class='launcher__content']/child::p)[1]");
         private readonly By _ApprenticesHeaderSupportText = By.ClassName("launcher__heading");
-       // private readonly By _EmployersHeaderSupportText = By.XPath("//div[@classname='launcher__heading'][contains(.,'Fire up your business with an apprentice')]");
-      
         private readonly By _EmployersHeaderSupportText = By.XPath("//*[@classname='launcher__heading']//*[text()='Fire up your business with an apprentice']");
-        
-        //private readonly By _EmployersHeaderSupportText = By.XPath("(//div[@class='launcher__content']/child::p)[4]");
         private readonly By _yourApprenticeshipLink = By.Id("link-nav-app-step-5");
         private readonly By _assessmentAndCertificationApprenticeLink = By.Id("link-nav-app-step-6");
         private readonly By _inetrviewLink = By.Id("link-nav-app-step-4");
@@ -55,7 +49,11 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
         private readonly By _hireAnApprenticeLink =By.Id("link-nav-emp-step-4");
         private readonly By _preparingAndMonitoringLink =By.Id("link-nav-emp-step-5");
         private readonly By _assessmentAndCertificationEmployerLink =By.Id("link-nav-emp-step-6");
-        private readonly By _findTheRightApprenticeshipLink =By.Id("link-nav-emp-find-apprenticeship-training");
+        private readonly By _findTheRightApprenticeshipLink =By.Id("link-nav-employer-4");
+        private readonly By _howDoTheyWork = By.Id("link-nav-employer-2");
+        private readonly By _fundingAnApprenticeshipLink = By.Id("link-nav-emp-step-1");
+        private readonly By _settingUp = By.Id("link-nav-employer-3");
+        private readonly By _areApprenticeshipRightForYou = By.Id("link-nav-employer-1");
         #endregion
 
         public FireItUpHomePage(ScenarioContext context) : base(context)
@@ -63,8 +61,6 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
             _context=context;
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
-            base.VerifyPage(); // this verification is failing due a bug in the application. We will uncomment this in future
-
         }
 
         internal void ClickOnCookieContinueButton()
@@ -134,7 +130,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
 
          internal EmployerMenuOptionPage LaunchEmployerMenu()
          {
-            _pageInteractionHelper.FocusTheElement(_employerMenu);
+            _formCompletionHelper.ClickElement(_employerMenu);
             return new EmployerMenuOptionPage(_context);
          }
 
@@ -160,6 +156,11 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
             return new HireAnApprenticePage(_context);
         }
 
+        internal HowMuchIsItGoingToCostPage ClickOnFundingAnApprenticeshipLink()
+        {
+            _formCompletionHelper.ClickElement(_fundingAnApprenticeshipLink);
+            return new HowMuchIsItGoingToCostPage(_context);
+        }
         internal PreparingAndMonitoringPage ClickPreparingAndMonitoringLink()
         {
              _formCompletionHelper.ClickElement(_preparingAndMonitoringLink);
@@ -184,6 +185,23 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
         {
             _formCompletionHelper.ClickElement(_assessmentAndCertificationEmployerLink);
             return new EmployerAssessmentAndCertificationPage(_context);
+        }
+
+        internal EmployerMenuOptionPage FocusOnEmployerHowDoTheyWorkMenu()
+        {
+            _pageInteractionHelper.FocusTheElement(_howDoTheyWork);
+            return new EmployerMenuOptionPage(_context);
+        }
+
+        internal EmployerMenuOptionPage FocusOnEmployerSettingUpMenue()
+        {
+            _pageInteractionHelper.FocusTheElement(_settingUp);
+            return new EmployerMenuOptionPage(_context);
+        }
+        internal EmployerMenuOptionPage FocusOnEmployerAreApprenticeshipRightForYouMenue()
+        {
+            _pageInteractionHelper.FocusTheElement(_areApprenticeshipRightForYou);
+            return new EmployerMenuOptionPage(_context);
         }
     }
 }

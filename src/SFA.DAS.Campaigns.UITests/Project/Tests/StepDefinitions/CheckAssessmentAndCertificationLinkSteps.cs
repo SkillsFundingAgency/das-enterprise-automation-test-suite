@@ -29,7 +29,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
         public void GivenILaunchAssessmentAndCertificationPage()
         {
             fireItUpHomePage = new FireItUpHomePage(_context);
-            fireItUpHomePage.LaunchEmployerMenu();
+            fireItUpHomePage.FocusOnEmployerHowDoTheyWorkMenu();
             TestContext.Progress.WriteLine("Navigating to Assessment And Certification page");
             fireItUpHomePage.ClickOnAssessmentAndCertificationEmployerLink();
         }

@@ -28,14 +28,10 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
 
         #region Page Object Elements
         private readonly By _pageTitle = By.XPath("//h1[@class='heading-xl hero-heading__heading']");
-        //private readonly By _selectInterestDropDown = By.XPath("//div[@class='grid-column-two-thirds']//select[@id='Route']");
         private readonly By _selectInterestDropDown = By.Id("header-route");
-        //private readonly By _postCodeBox = By.XPath("//div[@class='grid-column-two-thirds']//input[@id='Postcode']");
         private readonly By _postCodeBox = By.Id("header-postcode");
-        //private readonly By _selectMilesDropDown = By.XPath("//div[@class='grid-column-two-thirds']//select[@id='Distance']");
         private readonly By _selectMilesDropDown = By.Id("header-distance");
-            private readonly By _searchButton = By.Id("search-apprenticeship");
-        // private readonly By _searchButton = By.XPath("//button[@class='button button-apprentice']");
+        private readonly By _searchButton = By.Id("search-apprenticeship");
         private readonly By _messageForInvalidPostcode = By.Id("header-postcode-error");
         private readonly By _messageForInvalidInterestSelection = By.Id("header-route-error");
         private readonly By _defaultValueFromInterestDropDown = By.Id("header-distance");

@@ -11,7 +11,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
         protected override string PageTitle => "";
         #region Constants
         private const string ExpectedPageTitle = "YOUR FAVOURITE APPRENTICESHIPS AND TRAINING PROVIDERS";
-        private const int FavouriteCount = 2;
+        private const int ExpectedFavouriteCount = 2;
         private const int _countAfterBinningOne = 1;
         private const int ExpectedProviderCount=3;
         private const int _countAftreBinningTwo=1;
@@ -52,8 +52,8 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
         public EmployerFavouritePage VerifyApprenticeshipFavouriteCount()
         {
             var favouriteCountString= _pageInteractionHelper.GetText(_favouriteCount);
-            int favouriteCount = int.Parse(favouriteCountString);
-            VerifyCount(FavouriteCount,favouriteCount);
+            int actualFavouriteCount = int.Parse(favouriteCountString);
+            VerifyCount(ExpectedFavouriteCount,actualFavouriteCount);
             return new EmployerFavouritePage(_context);
         }
 

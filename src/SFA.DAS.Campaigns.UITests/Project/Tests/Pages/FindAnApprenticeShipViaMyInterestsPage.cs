@@ -18,7 +18,6 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
         #region Helpers
         private readonly PageInteractionHelper _pageInteractionHelper;
         private readonly FormCompletionHelper _formCompletionHelper;
-       // private readonly FormCompletionCampaignsHelper _formCompletionCampaignsHelper;
         #endregion
 
         #region Page Object Elements

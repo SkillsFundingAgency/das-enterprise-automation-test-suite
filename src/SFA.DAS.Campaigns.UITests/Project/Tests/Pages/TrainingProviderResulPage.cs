@@ -26,8 +26,7 @@ namespace SFA.DAS.Campaigns.UITests
         #endregion
 
         #region Page Objects Elements
-        // Hd to use xpath because duplicate id were present on page
-        private readonly By _actaulProviderName=By.XPath("//h1[@class='heading-xl hero-heading__heading']");
+        private readonly By _actaulProviderName=By.XPath("//h1[@class='heading-xl hero-heading__heading hero-heading__heading-l']");
         private readonly By _actualProviderText = By.XPath("//div[@class='page']/p[1]");
         private readonly By _firstApprenticeship = By.XPath("//button[@class='das-search-result__favourite-button--unchecked']");
         private readonly By _secondApprenticeship = By.XPath("//button[@class='das-search-result__favourite-button--unchecked']");
@@ -86,7 +85,7 @@ namespace SFA.DAS.Campaigns.UITests
         }
         public TrainingProviderResulPage AddFavouriteShortList()
         {
-
+            
             _formCompletionHelper.ClickElement(_firstApprenticeship);
             _formCompletionHelper.ClickElement(_secondApprenticeship);
             return new TrainingProviderResulPage(_context);

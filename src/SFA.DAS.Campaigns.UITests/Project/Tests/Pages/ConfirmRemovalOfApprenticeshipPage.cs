@@ -21,7 +21,6 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
 
         #region Page Object Elements
         private readonly By _confirmRemovalOfApprenticeshipHeader =By.XPath("//hi[@class='govuk-heading-xl ']");
-        //private readonly By _yesRemoveApprenticeship = By.XPath("//input[contains(@name, 'confirmDelete')]");
         private readonly By _yesRemoveApprenticeship = By.Id("changed-name");
         private readonly By _noKeepApprenticeship = By.XPath("//input[@id='changed-name-2']");
         private readonly By _saveAndContinueButton = By.XPath("//button[@class='govuk-button']");

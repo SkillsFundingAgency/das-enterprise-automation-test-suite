@@ -34,6 +34,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
         #endregion
 
         #region Helpers
+        private readonly ScenarioContext _context;
         private readonly PageInteractionHelper _pageInteractionHelper;
         private readonly FormCompletionHelper _formCompletionHelper;
         private readonly PageInteractionCampaignsHelper _pageInteractionCampaignsHelper;
@@ -43,7 +44,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
 
         #region Page Object Elements
         private readonly By _pageTitle = By.XPath("//h1[@class='heading-xl hero-heading__heading']");
-        private readonly By _differentTypesOfApprebticeshipsLink = By.ClassName("hero__link");    
+        private readonly By _differentTypesOfApprebticeshipsLink = By.ClassName("hero__link");
         private readonly By _whatIsAnApprenticeshipParagraph1 = By.XPath("//div[@class='page']/p[1]");
         private readonly By _whatIsAnApprenticeshipParagraph2 = By.XPath("//div[@class='page']/p[2]");
         private readonly By _whatIsAnApprenticeshipParagraph3 = By.XPath("//div[@class='page']/p[3]");
@@ -57,12 +58,15 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
         private readonly By _differentTypesOfApprenticeshipsParagraph2 = By.XPath("//div[@class='page']/p[10]");
         private readonly By _differentTypesOfApprenticeshipsParagraph3 = By.XPath("//div[@class='page']/p[11]");
         private readonly By _differentTypesOfApprenticeshipsParagraph4 = By.XPath("//div[@class='page']/p[12]");
-        private readonly By _areApprenticeshipRightForYou =By.XPath("//a[@class='nav__link--top-level']");
-        private readonly By _whatIsAnApprenticeship =By.XPath("//a[@href='/apprentice/what-is-an-apprenticeship']");
+        private readonly By _areApprenticeshipRightForYou = By.XPath("//a[@class='nav__link--top-level']");
+        private readonly By _whatIsAnApprenticeship = By.XPath("//a[@href='/apprentice/what-is-an-apprenticeship']");
+        private readonly By _gettingStarted = By.XPath("//a[@href='/apprentice/your-apprenticeship']");
+        private readonly By _findApprenticeshipoption = By.Id("link-nav-apprentice-4");
         #endregion
 
         public WhatIsAnApprenticeshipPage(ScenarioContext context) : base(context)
         {
+            _context = context;
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
             _pageInteractionCampaignsHelper = context.Get<PageInteractionCampaignsHelper>();
@@ -125,6 +129,18 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
         public void FocusOnHowDoTheyWork()
         {
             _pageInteractionHelper.FocusTheElement(_whatIsAnApprenticeship);
+        }
+        public void FocusOnGettingStarted()
+        {
+            _pageInteractionHelper.FocusTheElement(_gettingStarted);
+        }
+
+
+
+        public FindAnApprenticeShipPage ClickOnFindAnApprenticeshipMenuOption()
+        {
+            _formCompletionHelper.ClickElement(_findApprenticeshipoption);
+            return new FindAnApprenticeShipPage(_context);
         }
     }
 }

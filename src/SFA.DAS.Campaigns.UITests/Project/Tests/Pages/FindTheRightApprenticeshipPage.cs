@@ -20,7 +20,6 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
         #endregion
 
         #region Page Objects Elements
-        // Hd to use xpath because duplicate id were present on page
         private readonly By _findTheRightApprenticeshipHeader = By.ClassName("heading-xl");
         private readonly By _apprenticeshipSearchField = By.Id("Keywords");
         private readonly By _employerApprenticeshipSearchButton =By.Id("employer-apprenticeship-search");

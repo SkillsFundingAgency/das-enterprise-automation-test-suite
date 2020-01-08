@@ -19,6 +19,7 @@ namespace SFA.DAS.Campaigns.UITests
         private ApprenticeshipSearchResultPage apprenticeshipSearchResultPage ;
         private SummeryOfThisApprenticeshipPage summeryOfThisApprenticeshipPage;
         private TrainingProviderResulPage trainingProviderResulPage;
+        RegisterMyInterestPage registerMyInterestPage;
         #endregion
         public EmployerAddsApprenticeshipToFavouriteShortListSteps(ScenarioContext context)
         {
@@ -29,6 +30,8 @@ namespace SFA.DAS.Campaigns.UITests
         [Then(@"I Can Add Apprenticeships From Search Result  List to Favourite Short List")]
         public void ThenICanAddApprenticeshipFromSearchResultListToFavouriteShortList()
         {
+            registerMyInterestPage = new RegisterMyInterestPage(_context);
+            registerMyInterestPage.RemoveTheAlertBanner();
             trainingProviderResulPage = new TrainingProviderResulPage(_context);
             trainingProviderResulPage.AddFavouriteShortList();
         }

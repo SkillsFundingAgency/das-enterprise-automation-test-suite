@@ -18,20 +18,20 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Features.Apprenticeships
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.0.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("VerifyWhatAreTheBenefitsForMe")]
-    public partial class VerifyWhatAreTheBenefitsForMeFeature
+    [NUnit.Framework.DescriptionAttribute("VerifyAssessmentAndCertificationPage")]
+    public partial class VerifyAssessmentAndCertificationPageFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "VerifyWhatAreTheBenefitsForMe.feature"
+#line 1 "VerifyAssessmentAndCertificationPage.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "VerifyWhatAreTheBenefitsForMe", "\tAs a user\r\n\tI want to be able to navigate to Fire It Up home page\r\n\tSo that I ca" +
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "VerifyAssessmentAndCertificationPage", "\tAs a user\r\n\tI want to be able to navigate to Fire It Up home page\r\n\tSo that I ca" +
                     "n use the benefits of apprentice services and information ", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
@@ -71,27 +71,25 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Features.Apprenticeships
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("User can find an apprentice from Apprenticeships home page")]
-        [NUnit.Framework.CategoryAttribute("regression")]
-        public virtual void UserCanFindAnApprenticeFromApprenticeshipsHomePage()
+        [NUnit.Framework.DescriptionAttribute("Check all the links and content of ASSESSMENT AND CERTIFICATION screen")]
+        public virtual void CheckAllTheLinksAndContentOfASSESSMENTANDCERTIFICATIONScreen()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User can find an apprentice from Apprenticeships home page", null, new string[] {
-                        "regression"});
-#line 7
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Check all the links and content of ASSESSMENT AND CERTIFICATION screen", null, ((string[])(null)));
+#line 6
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 8
+#line 7
  testRunner.Given("I navigate to Fire It Up home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 9
+#line 8
  testRunner.And("I launch the Find An Apprentice page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 9
+ testRunner.And("I Focus on the link Getting Started link", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 10
- testRunner.And("I Focus on the link Are Apprenticeship Right For You", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("I launch the Assessment And Certification page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 11
- testRunner.And("I launch the What Are The Benefits For Me page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Then("I verify the content under Get assured and get your certificate section", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 12
- testRunner.Then("I verify the content under WHAT ARE MY FUTURE PROSPECTS section", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 13
- testRunner.And("I verify the content under HOW MUCH CAN YOU EARN section", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Then("I verify the content under Complete your apprenticeship section", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

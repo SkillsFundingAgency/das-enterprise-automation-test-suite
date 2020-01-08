@@ -17,7 +17,6 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
             _context = context;
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
-           // VerifyPage();
         }
     }
 }

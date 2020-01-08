@@ -6,6 +6,7 @@
 @regression
 Scenario: I want to be able Delete From My Favourite Short List On GovUK Account
 	Given I navigate to Fire It Up home page
+	And I click on th Employer option in the Menu header
 	And I Launch Find The Right Apprenticeship page
 	Then I Verify the title for Find The Right Apprenticeship  page
 	And I Can Perform The Search on the Empty Field
