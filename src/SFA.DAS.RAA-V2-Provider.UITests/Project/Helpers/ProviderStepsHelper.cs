@@ -40,8 +40,7 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Helpers
                 .EnterVacancyTitle()
                 .EnterTrainingTitle()
                 .ConfirmAndNavigateToNoOfPositionsPage()
-                .ChooseNoOfPositions()
-                .SelectOrganisation();
+                .ChooseNoOfPositionsAndNavigateToEmployerNamePage();
         }
 
         private ManageVacancyPage SearchVacancy()

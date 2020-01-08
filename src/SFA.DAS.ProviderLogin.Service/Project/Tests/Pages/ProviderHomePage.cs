@@ -7,7 +7,7 @@ namespace SFA.DAS.ProviderLogin.Service.Pages
 {
     public class ProviderHomePage : InterimProviderBasePage
     {
-        protected override string PageTitle => _objectContext.GetUkprn();
+        protected override string PageTitle => objectContext.GetUkprn();
 
         protected override By PageHeader => By.CssSelector("#content .grey-text");
 
@@ -15,7 +15,6 @@ namespace SFA.DAS.ProviderLogin.Service.Pages
 
         #region Helpers and Context
         private readonly PageInteractionHelper _pageInteractionHelper;
-        private readonly ObjectContext _objectContext;
         #endregion
 
         protected By CreateACohortLink => By.LinkText("Create a cohort");
@@ -30,7 +29,6 @@ namespace SFA.DAS.ProviderLogin.Service.Pages
 
         public ProviderHomePage(ScenarioContext context, bool navigate = false) : base(context, navigate)
         {
-            _objectContext = context.Get<ObjectContext>();
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             VerifyPage();
         }
