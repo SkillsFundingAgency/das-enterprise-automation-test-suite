@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Features.OfflineVacancy
+namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Features.OfflineVacancy
 {
     using TechTalk.SpecFlow;
     
@@ -73,6 +73,7 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Features.OfflineVacancy
         [NUnit.Framework.DescriptionAttribute("RV2_E_OV_01 - Creates offline vacancy with disability confidence and Reviewer app" +
             "roves")]
         [NUnit.Framework.CategoryAttribute("raa-v2")]
+        [NUnit.Framework.CategoryAttribute("raa-v2e")]
         [NUnit.Framework.CategoryAttribute("offlinevacancy")]
         [NUnit.Framework.CategoryAttribute("regression")]
         public virtual void RV2_E_OV_01_CreatesOfflineVacancyWithDisabilityConfidenceAndReviewerApproves()
@@ -80,14 +81,15 @@ namespace SFA.DAS.RAA_V2.UITests.Project.Tests.Features.OfflineVacancy
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV2_E_OV_01 - Creates offline vacancy with disability confidence and Reviewer app" +
                     "roves", null, new string[] {
                         "raa-v2",
+                        "raa-v2e",
                         "offlinevacancy",
                         "regression"});
-#line 6
+#line 7
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 7
- testRunner.Given("the Employer creates an offline vacancy with disability confidence", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 8
+ testRunner.Given("the Employer creates an offline vacancy with disability confidence", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 9
  testRunner.Then("the Reviewer verifies disability confident and approves the vacancy", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();

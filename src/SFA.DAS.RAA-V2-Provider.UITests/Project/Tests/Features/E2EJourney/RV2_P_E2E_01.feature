@@ -1,7 +1,9 @@
 ﻿Feature: RV2_P_E2E_01
 
 @raa-v2
+@raa-v2p
 @v2_e2e
+@v2p_e2e
 @regression
 @ignore
 Scenario: RV2_P_E2E_01 - Create vacancy with registered name, Approve, Apply and make Application Successful

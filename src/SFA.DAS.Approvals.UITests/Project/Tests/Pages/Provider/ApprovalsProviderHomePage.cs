@@ -1,49 +1,22 @@
-﻿using OpenQA.Selenium;
-using SFA.DAS.Approvals.UITests.Project.Helpers;
-using SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider;
+﻿using SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider;
+using SFA.DAS.ProviderLogin.Service.Pages;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 {
-    public class ProviderHomePage : InterimProviderBasePage
+    public class ApprovalsProviderHomePage : ProviderHomePage
     {
-        protected override string PageTitle => objectContext.GetUkprn();
 
         #region Helpers and Context
-        private readonly PageInteractionHelper _pageInteractionHelper;
         private readonly FormCompletionHelper _formCompletionHelper;
         private readonly ScenarioContext _context;
-        private readonly ApprenticeDataHelper _dataHelper;
         #endregion
 
-        protected override By PageHeader => By.CssSelector("#content .grey-text");
-
-        protected override string Linktext => "Home";
-
-        private By ProviderManageYourApprenticesLink => By.LinkText("Manage your apprentices");
-
-        private By NotificationSettingsLink => By.LinkText("Notification settings");
-
-        private By CreateACohortLink => By.LinkText("Create a cohort");
-
-        private By GetFundingLink => By.LinkText("Get funding for non-levy employers");
-
-        private By ManageYourFundingLink => By.LinkText("Manage your funding reserved for non-levy employers");
-
-        private By SignOutLink => By.LinkText("Sign out");
-
-        public ProviderHomePage(ScenarioContext context, bool navigate = false) : base(context, navigate)
+        public ApprovalsProviderHomePage(ScenarioContext context, bool navigate = false) : base(context, navigate)
         {
             _context = context;
-            _dataHelper = context.Get<ApprenticeDataHelper>();
-            _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
-        }
-
-        internal void SignsOut()
-        {
-            _formCompletionHelper.ClickElement(SignOutLink);
         }
 
         public ProviderManageYourApprenticesPage GoToProviderManageYourApprenticePage()
@@ -56,11 +29,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         {
             _formCompletionHelper.ClickElement(NotificationSettingsLink);
             return new ProviderNotificationSettingsPage(_context);
-        }
-
-        public bool CreateCohortPermissionLinkIsDisplayed()
-        {
-            return _pageInteractionHelper.IsElementDisplayed(CreateACohortLink);
         }
 
         public ProviderChooseAnEmployerNonLevyPage GotoChooseAnEmployerNonLevyPage()

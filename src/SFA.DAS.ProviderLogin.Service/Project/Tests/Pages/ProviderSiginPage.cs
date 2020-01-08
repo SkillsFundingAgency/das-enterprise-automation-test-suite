@@ -1,9 +1,10 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.Login.Service.Helpers;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
+namespace SFA.DAS.ProviderLogin.Service.Pages
 {
     public class ProviderSiginPage : BasePage
     {
@@ -29,7 +30,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private By PasswordField => By.Id("password");
         private By SignInButton => By.XPath("//button[@value='Log in']");
 
-        public ProviderHomePage SubmitValidLoginDetails(ProviderLogin login)
+        public ProviderHomePage SubmitValidLoginDetails(ProviderLoginUser login)
         {
             EnterEmailAddress(login.Username)
             .EnterPassword(login.Password)

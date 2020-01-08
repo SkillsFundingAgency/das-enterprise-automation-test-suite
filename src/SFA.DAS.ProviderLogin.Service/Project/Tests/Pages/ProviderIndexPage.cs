@@ -6,9 +6,8 @@ using System.Collections.Generic;
 using System.Text;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
+namespace SFA.DAS.ProviderLogin.Service.Pages
 {
-
     public class ProviderIndexPage : BasePage
     {
         protected override string PageTitle => "Manage apprenticeships on behalf of employers";
@@ -17,7 +16,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private readonly PageInteractionHelper _pageInteractionHelper;
         private readonly FormCompletionHelper _formCompletionHelper;
         private readonly ScenarioContext _context;
-        private readonly ApprovalsConfig _config;
         #endregion
 
         private By StartNowButton => By.CssSelector(".button-start");
@@ -26,7 +24,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 		public ProviderIndexPage(ScenarioContext context):base(context)
         {
             _context = context;
-            _config = context.GetApprovalsConfig<ApprovalsConfig>();
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
             VerifyPage();

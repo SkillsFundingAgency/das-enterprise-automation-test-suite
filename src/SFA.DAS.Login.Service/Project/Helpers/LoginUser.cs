@@ -1,10 +1,17 @@
-﻿namespace SFA.DAS.Registration.UITests.Project
+﻿namespace SFA.DAS.Login.Service.Helpers
 {
     public abstract class LoginUser
     {
         public string Username { get; set; }
 
         public string Password { get; set; }
+    }
+
+    public class RAAV2EmployerUser : LoginUser { }
+
+    public class ProviderLoginUser : LoginUser
+    {
+        public string Ukprn { get; set; }
     }
 
     public class ProviderPermissionLevyUser : LoginUser { }

@@ -1,13 +1,14 @@
 ﻿using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
-using SFA.DAS.Registration.UITests.Project;
 using SFA.DAS.Registration.UITests.Project.Helpers;
 using SFA.DAS.UI.Framework.TestSupport;
-using SFA.DAS.ConfigurationBuilder;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using TechTalk.SpecFlow;
+using SFA.DAS.Login.Service.Helpers;
+using SFA.DAS.Login.Service;
+using SFA.DAS.ProviderLogin.Service;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 {
@@ -15,24 +16,20 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
     public class ProviderReservations
     {
         private readonly ScenarioContext _context;
-        private readonly ObjectContext _objectContext;
         private readonly ProviderStepsHelper _providerStepsHelper;
         private readonly EmployerPortalLoginHelper _loginHelper;
-        private readonly EmployerStepsHelper _employerStepsHelper;
-        private readonly ApprovalsConfig _config;
-        private readonly ProviderLogin _login;
+        private readonly ProviderConfig _config;
+        private readonly ProviderLoginUser _login;
 		private ProviderAddApprenticeDetailsPage _providerAddApprenticeDetailsPage;
 		private ProviderReviewYourCohortPage _providerReviewYourCohortPage;
 
         public ProviderReservations(ScenarioContext context)
         {
             _context = context;
-            _objectContext = context.Get<ObjectContext>();
-            _config = context.GetApprovalsConfig<ApprovalsConfig>();
+            _config = context.GetProviderConfig<ProviderConfig>();
             _loginHelper = new EmployerPortalLoginHelper(_context);
             _providerStepsHelper = new ProviderStepsHelper(_context);
-            _employerStepsHelper = new EmployerStepsHelper(_context);
-            _login = new ProviderLogin { Username = _config.AP_ProviderUserId, Password = _config.AP_ProviderPassword, Ukprn = _config.AP_ProviderUkprn };
+            _login = new ProviderLoginUser { Username = _config.UserId, Password = _config.Password, Ukprn = _config.Ukprn };
         }
 
         [Given(@"An Employer has given create reservation permission to a provider")]
