@@ -23,5 +23,12 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Tests.StepDefinitions
         {
             _providerStepsHelper.CreateANewVacancy();
         }
+
+        [Then(@"Provider can make the application successful")]
+        public void ThenProviderCanMakeTheApplicationSuccessful()
+        {
+            _providerStepsHelper.ApplicantSucessful();
+        }
+
     }
 }

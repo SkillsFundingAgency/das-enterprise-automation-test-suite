@@ -19,7 +19,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("RE_CA_05_CreateEoiAccount")]
-    [NUnit.Framework.CategoryAttribute("registration")]
     public partial class RE_CA_05_CreateEoiAccountFeature
     {
         
@@ -32,8 +31,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "RE_CA_05_CreateEoiAccount", null, ProgrammingLanguage.CSharp, new string[] {
-                        "registration"});
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "RE_CA_05_CreateEoiAccount", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -92,16 +90,16 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features
                         "removed",
                         "from",
                         "09JAN2020"});
-#line 5
+#line 4
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 6
+#line 5
  testRunner.Given("I create an Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 7
+#line 6
  testRunner.When("I add paye details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 8
+#line 7
  testRunner.And("add eoi organisation details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 9
+#line 8
  testRunner.And("I do not sign the eoi agreement", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();

@@ -67,7 +67,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
 
         internal void ApplicantUnSucessful() => NavigateToManageApplicant().MakeApplicantUnsucessful().NotifyApplicant();
 
-        internal void ApplicantSucessful() => NavigateToManageApplicant().MakeApplicantSucessful().NotifyApplicant();
+        internal void ApplicantSucessful() => _stepsHelper.ApplicantSucessful(SearchVacancy());
 
         internal void CreateANewVacancy(string employername, bool isEmployerAddress, bool optionalFields = false)
         {

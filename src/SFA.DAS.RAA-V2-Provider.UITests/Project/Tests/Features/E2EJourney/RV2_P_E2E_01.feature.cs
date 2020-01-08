@@ -91,6 +91,14 @@ this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 9
  testRunner.Given("the Provider creates a vacancy by using a registered name", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 10
+ testRunner.And("the Reviewer Approves the vacancy", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 11
+ testRunner.When("the Applicant applies for a Vacancy in FAA", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 12
+ testRunner.Then("Provider can make the application successful", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 13
+ testRunner.And("the status of the Application is shown as \'successful\' in FAA", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }

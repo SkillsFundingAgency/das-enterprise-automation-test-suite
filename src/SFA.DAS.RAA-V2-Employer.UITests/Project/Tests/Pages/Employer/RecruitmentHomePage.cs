@@ -1,44 +1,24 @@
-﻿using OpenQA.Selenium;
-using SFA.DAS.RAA.DataGenerator;
-using SFA.DAS.RAA.DataGenerator.Project;
-using SFA.DAS.RAA_V2.Service.Project.Tests.Pages;
+﻿using SFA.DAS.RAA_V2.Service.Project.Tests.Pages;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages;
-using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer
 {
-    public class RecruitmentHomePage : InterimBasePage
+    public class RecruitmentHomePage : InterimEmployerBasePage
     {
         #region Helpers and Context
         private readonly ScenarioContext _context;
-        private readonly RAAV2DataHelper _dataHelper;
-        private readonly PageInteractionHelper _pageInteractionHelper;
+        private readonly SearchVacancyPageHelper _searchVacancyPageHelper;
         #endregion
 
         protected override string PageTitle => "Recruitment";
 
         protected override string Linktext => "Recruitment";
 
-        private By SearchInput => By.CssSelector("#search-input");
-
-        private By SearchButton => By.CssSelector("#search-submit-button");
-
-        private By Manage => By.CssSelector("table tbody tr .govuk-link");
-
         public RecruitmentHomePage(ScenarioContext context, bool navigate = false) : base(context, navigate)
         {
             _context = context;
-            _pageInteractionHelper = context.Get<PageInteractionHelper>();
-            _dataHelper = context.Get<RAAV2DataHelper>();
-        }
-
-        public ManageVacancyPage SelectVacancy()
-        {
-            formCompletionHelper.ClickLinkByText("Live vacancies");
-            pageInteractionHelper.WaitforURLToChange($"filter=Live");
-            formCompletionHelper.ClickElement(() => _dataHelper.GetRandomElementFromListOfElements(_pageInteractionHelper.FindElements(Manage)));
-            return new ManageVacancyPage(_context);
+            _searchVacancyPageHelper = new SearchVacancyPageHelper(context);
         }
 
         public CreateVacancyPage CreateANewVacancy()
@@ -47,14 +27,8 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer
             return new CreateVacancyPage(_context);
         }
 
-        public ManageVacancyPage SearchAnyVacancy()
-        {
-            var vacRef = objectContext.GetVacancyReference();
-            formCompletionHelper.EnterText(SearchInput, vacRef);;
-            formCompletionHelper.Click(SearchButton);
-            pageInteractionHelper.WaitforURLToChange($"SearchTerm={vacRef}");
-            formCompletionHelper.Click(Manage);
-            return new ManageVacancyPage(_context);
-        }
+        public ManageVacancyPage SelectVacancy() => _searchVacancyPageHelper.SelectVacancy();
+
+        public ManageVacancyPage SearchAnyVacancy() => _searchVacancyPageHelper.SearchAnyVacancy();
     }
 }

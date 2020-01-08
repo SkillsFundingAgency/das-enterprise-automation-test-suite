@@ -6,7 +6,7 @@ using SFA.DAS.Login.Service.Project.Tests.Pages;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 {
-    public abstract class InterimBasePage : Navigate
+    public abstract class InterimEmployerBasePage : Navigate
     {
         #region Helpers and Context
         private readonly ScenarioContext _context;
@@ -27,7 +27,8 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         private By ChangeEmailAddressLink => By.LinkText("Change your email address");
 
         private By NotificationSettingsLink => By.LinkText("Notification settings");
-        public InterimBasePage(ScenarioContext context, bool navigate) : base(context, navigate)
+
+        public InterimEmployerBasePage(ScenarioContext context, bool navigate) : base(context, navigate)
         {
             _context = context;
             config = context.GetRegistrationConfig<RegistrationConfig>();

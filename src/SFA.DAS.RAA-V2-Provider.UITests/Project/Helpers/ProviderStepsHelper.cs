@@ -19,6 +19,8 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Helpers
             _stepsHelper = new StepsHelper(_context);
         }
 
+        internal void ApplicantSucessful() => _stepsHelper.ApplicantSucessful(SearchVacancy());
+
         internal void CreateANewVacancy()
         {
             var employernamePage = SelectOrganisation();
@@ -32,8 +34,7 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Helpers
         {
             _providerHomePageStepsHelper.GoToProviderHomePage();
 
-            return new RecruitmentProviderHomePage(_context)
-                .RecruitApprentices()
+            return new RecruitmentHomePage(_context, true)
                 .CreateVacancy()
                 .SelectEmployer()
                 .EnterVacancyTitle()
@@ -42,5 +43,14 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Helpers
                 .ChooseNoOfPositions()
                 .SelectOrganisation();
         }
+
+        private ManageVacancyPage SearchVacancy()
+        {
+            _providerHomePageStepsHelper.GoToProviderHomePageInNewTab();
+
+            return new RecruitmentHomePage(_context, true)
+                .SearchAnyVacancy();
+        }
+
     }
 }
