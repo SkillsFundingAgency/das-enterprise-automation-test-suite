@@ -30,5 +30,10 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
             _formCompletionHelper.Click(StartNowButton);
             return new AS_LoginPage(_context);
         }
+
+        public AS_LandingPage VerifyAS_LandingPage()
+        {
+            return this;
+        }
     }
 }
