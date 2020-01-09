@@ -1,4 +1,4 @@
-﻿Feature: RV2_P_E2E_01
+﻿Feature: RV2_P_E2E_02
 
 @raa-v2
 @raa-v2p

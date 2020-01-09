@@ -19,16 +19,15 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Tests.StepDefinitions
         }
 
         [Given(@"the Provider creates a vacancy by using a registered name")]
-        public void GivenTheProviderCreatesAVacancyByUsingARegisteredName() => _providerStepsHelper.CreateANewVacancy();
+        public void GivenTheProviderCreatesAVacancyByUsingARegisteredName() => _providerStepsHelper.CreateANewVacancy(string.Empty, true, false, true);
 
         [Then(@"Provider can make the application successful")]
         public void ThenProviderCanMakeTheApplicationSuccessful() => _providerStepsHelper.ApplicantSucessful();
 
         [Given(@"the Provider can create a vacancy by entering all the Optional fields")]
-        public void GivenTheProviderCanCreateAVacancyByEnteringAllTheOptionalFields()
-        {
-            throw new PendingStepException();
-        }
+        public void GivenTheProviderCanCreateAVacancyByEnteringAllTheOptionalFields() => _providerStepsHelper.CreateANewVacancy(string.Empty, true, false, true, true);
 
+        [Then(@"Provider can make the application unsuccessful")]
+        public void ThenProviderCanMakeTheApplicationUnsuccessful() => _providerStepsHelper.ApplicantUnSucessful();
     }
 }

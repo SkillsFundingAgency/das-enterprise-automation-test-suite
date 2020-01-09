@@ -14,6 +14,8 @@ namespace SFA.DAS.RAA_V2.Service.Project.Helpers
 
         public void ApplicantSucessful(ManageVacancyPage manageVacancyPage) => manageVacancyPage.NavigateToManageApplicant().MakeApplicantSucessful().NotifyApplicant();
 
+        public void ApplicantUnSucessful(ManageVacancyPage manageVacancyPage) => manageVacancyPage.NavigateToManageApplicant().MakeApplicantUnsucessful().NotifyApplicant();
+        
         public VacancyPreviewPart2Page PreviewVacancy(EmployerNamePage employernamePage, string employername, bool isEmployerAddress, bool disabilityConfidence)
         {
             var locationPage = ChooseEmployerName(employernamePage, employername);

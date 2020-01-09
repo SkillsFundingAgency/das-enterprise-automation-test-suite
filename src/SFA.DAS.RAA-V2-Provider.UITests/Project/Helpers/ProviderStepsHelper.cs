@@ -21,13 +21,15 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Helpers
 
         internal void ApplicantSucessful() => _stepsHelper.ApplicantSucessful(SearchVacancy());
 
-        internal void CreateANewVacancy()
+        internal void ApplicantUnSucessful() => _stepsHelper.ApplicantUnSucessful(SearchVacancy());
+
+        internal void CreateANewVacancy(string employername, bool isEmployerAddress, bool disabilityConfidence, bool isApplicationMethodFAA, bool optionalFields = false)
         {
             var employernamePage = SelectOrganisation();
 
-            var previewVacancy = _stepsHelper.PreviewVacancy(employernamePage, string.Empty, true, false);
+            var previewVacancy = _stepsHelper.PreviewVacancy(employernamePage, employername, isEmployerAddress, disabilityConfidence);
 
-            _stepsHelper.SubmitVacancy(previewVacancy, true, false);
+            _stepsHelper.SubmitVacancy(previewVacancy, isApplicationMethodFAA, optionalFields);
         }
 
         private EmployerNamePage SelectOrganisation()

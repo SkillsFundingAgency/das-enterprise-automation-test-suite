@@ -65,7 +65,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
 
         internal void CloseVacancy() => SearchVacancy().CloseVacancy().YesCloseThisVacancy();
 
-        internal void ApplicantUnSucessful() => NavigateToManageApplicant().MakeApplicantUnsucessful().NotifyApplicant();
+        internal void ApplicantUnSucessful() => _stepsHelper.ApplicantUnSucessful(SearchVacancy());
 
         internal void ApplicantSucessful() => _stepsHelper.ApplicantSucessful(SearchVacancy());
 
