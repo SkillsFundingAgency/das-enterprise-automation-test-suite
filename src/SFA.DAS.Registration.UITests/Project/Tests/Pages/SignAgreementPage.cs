@@ -1,5 +1,6 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.UI.Framework.TestSupport;
+using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
@@ -19,7 +20,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         private By DoNotWantToSignRadioButton => By.CssSelector("label[for=do-not-want-to-sign]");
 
-        private By ContinueButton => By.CssSelector("input.govuk-button, input.button");
+        protected override By ContinueButton => By.CssSelector("input.govuk-button, input.button");
 
         public SignAgreementPage(ScenarioContext context) : base(context)
         {
@@ -55,6 +56,11 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         {
             _formCompletionHelper.ClickElement(by);
             _formCompletionHelper.ClickElement(ContinueButton);
+        }
+
+        public SignAgreementPage VerifySignAgreementPage()
+        {
+            return this;
         }
     }
 }

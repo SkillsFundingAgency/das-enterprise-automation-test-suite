@@ -1,4 +1,5 @@
-﻿using SFA.DAS.UI.Framework.TestSupport;
+﻿using SFA.DAS.ConfigurationBuilder;
+using SFA.DAS.UI.Framework.TestSupport;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Campaigns.UITests.Project

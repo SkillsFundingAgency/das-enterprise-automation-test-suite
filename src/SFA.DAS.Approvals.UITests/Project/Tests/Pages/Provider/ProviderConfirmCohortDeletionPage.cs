@@ -9,7 +9,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
     {
         protected override string PageTitle => "Confirm cohort deletion";
         private By ConfirmDeleteOptions => By.CssSelector(".selection-button-radio");
-        private By ContinueButton => By.CssSelector(".button");
+        protected override By ContinueButton => By.CssSelector(".button");
 
         #region Helpers and Context
         private readonly FormCompletionHelper _formCompletionHelper;
@@ -26,7 +26,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         public ProviderDeleteCohortPage ConfirmDeleteAndSubmit()
         {
             _formCompletionHelper.SelectRadioOptionByForAttribute(ConfirmDeleteOptions, "DeleteConfirmed-True");
-            _formCompletionHelper.ClickElement(ContinueButton);
+            Continue();
             return new ProviderDeleteCohortPage(_context);
         }
     }

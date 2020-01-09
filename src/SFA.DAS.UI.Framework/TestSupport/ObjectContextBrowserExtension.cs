@@ -1,4 +1,5 @@
-﻿namespace SFA.DAS.UI.Framework.TestSupport
+﻿using SFA.DAS.ConfigurationBuilder;
+namespace SFA.DAS.UI.Framework.TestSupport
 {
     public static class ObjectContextBrowserExtension
     {

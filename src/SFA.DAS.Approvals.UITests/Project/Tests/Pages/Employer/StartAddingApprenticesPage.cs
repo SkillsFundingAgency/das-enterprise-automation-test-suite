@@ -8,31 +8,27 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
     public class StartAddingApprenticesPage : BasePage
     {
         protected override string PageTitle => "Start adding apprentices";
+        private By WhoAddsApprenticesOptions => By.CssSelector(".govuk-radios__label");
 
         #region Helpers and Context
         private readonly PageInteractionHelper _pageInteractionHelper;
         private readonly FormCompletionHelper _formCompletionHelper;
         private readonly ScenarioContext _context;
-        private readonly ApprovalsConfig _config;
         #endregion
 
         public StartAddingApprenticesPage(ScenarioContext context) : base(context)
         {
             _context = context;
-            _config = context.GetApprovalsConfig<ApprovalsConfig>();
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
             VerifyPage();
         }
-        private By WhoAddsApprenticesOptions => By.CssSelector(".selection-button-radio");
 
-        private By ContinueButton => By.CssSelector(".button");
-
-        public ReviewYourCohortPage EmployerAddsApprentices()
+        public AddApprenticeDetailsPage EmployerAddsApprentices()
         {
             EmployerAgreesToAdds();
             Continue();
-            return new ReviewYourCohortPage(_context);
+            return new AddApprenticeDetailsPage(_context);
         }
 
         public MessageForYourTrainingProviderPage EmployerSendsToProviderToAddApprentices()
@@ -44,19 +40,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         private StartAddingApprenticesPage EmployerAgreesToAdds()
         {
-            _formCompletionHelper.SelectRadioOptionByForAttribute(WhoAddsApprenticesOptions, "SelectedRoute-Employer");
+            _formCompletionHelper.SelectRadioOptionByText(WhoAddsApprenticesOptions, "I will add apprentices");
             return this;
         }
 
         private StartAddingApprenticesPage EmployerSendsToProviderToAdd()
         {
-            _formCompletionHelper.SelectRadioOptionByForAttribute(WhoAddsApprenticesOptions, "SelectedRoute-Provider");
+            _formCompletionHelper.SelectRadioOptionByText(WhoAddsApprenticesOptions, "I would like my provider to add apprentices");
             return this;
-        }
-
-        private void Continue()
-        {
-            _formCompletionHelper.ClickElement(ContinueButton);
         }
 
         public AddApprenticeDetailsPage NonLevyEmployerAddsApprentices()

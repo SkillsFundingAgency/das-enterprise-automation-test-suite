@@ -28,5 +28,13 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             _levyDeclarationHelper.AddLevyDeclarations(fraction, calculatedAt, table);
             _loginCredentialsHelper.SetIsLevy();
         }
+
+        [Given(@"levy declarations is added for past (.*) months with levypermonth as (.*)")]
+        public void GivenLevyDeclarationsIsAddedForPastMonthsWithLevypermonthAs(string duration, string levyPerMonth)
+        {
+            var (fraction, calculatedAt, levyDeclarations) = LevyDeclarationDataHelper.LevyFunds(duration, levyPerMonth);
+            _levyDeclarationHelper.AddLevyDeclarations(fraction, calculatedAt, levyDeclarations);
+            _loginCredentialsHelper.SetIsLevy();
+        }
     }
 }

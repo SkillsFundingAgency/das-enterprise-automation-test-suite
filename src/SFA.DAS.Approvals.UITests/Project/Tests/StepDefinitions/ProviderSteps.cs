@@ -7,11 +7,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
     [Binding]
     public class ProviderSteps
     {
+        private readonly ScenarioContext _context;
         private readonly ProviderStepsHelper _providerStepsHelper;
         private ProviderReviewYourCohortPage _providerReviewYourCohortPage;
 
-        public ProviderSteps(ScenarioContext context)
+		public ProviderSteps(ScenarioContext context)
         {
+            _context = context;
             _providerStepsHelper = new ProviderStepsHelper(context);
         }
 
@@ -61,7 +63,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             var providerHomePage = _providerStepsHelper.GoToProviderHomePage();
 
-            providerHomePage.GoToProviderYourCohortsPage()
+            new ProviderYourCohortsPage(_context, true)
                     .GoToCohortsWithEmployers()
                     .SelectViewCurrentCohortDetails();
         }

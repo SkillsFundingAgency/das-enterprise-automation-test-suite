@@ -1,23 +1,25 @@
 ﻿using TechTalk.SpecFlow;
 using OpenQA.Selenium;
-using SFA.DAS.UI.FrameworkHelpers;
+using SFA.DAS.ConfigurationBuilder;
 
 namespace SFA.DAS.UI.Framework.TestSupport
 {
     public static class ScenarioContextExtension
     {
         #region Constants
-        private const string TestProjectConfigKey = "testprojectconfig";
-        private const string RegistrationProjectConfigKey = "registrationprojectconfig";
-        private const string SupportConsoleProjectConfigKey = "SupportConsoleprojectconfig";
+        private const string ProviderConfigKey = "providerconfigkey";
+        private const string TestProjectConfigKey = "testprojectconfigkey";
+        private const string RegistrationProjectConfigKey = "registrationprojectconfigkey";
+        private const string SupportConsoleProjectConfigKey = "supportconsoleprojectconfigkey";
         private const string RAAV1ProjectConfigKey = "raav1projectconfigkey";
-        private const string ApprovalsProjectConfigKey = "approvalsprojectconfig";
+        private const string RAAV2QAProjectConfigKey = "raav2qaprojectconfigkey";
+        private const string ApprovalsProjectConfigKey = "approvalsprojectconfigkey";
+        private const string FAAProjectConfigKey = "faaprojectconfigkey";
         private const string ProviderPermissionConfigKey = "providerpermissionconfigkey";
-        private const string TransfersProjectConfigKey = "transfersprojectconfig";
+        private const string TransfersProjectConfigKey = "transfersprojectconfigkey";
         private const string FATProjectConfigKey = "fatprojectconfigkey";
-        private const string MongoDbConfigKey = "mongodbconfig";
-        private const string WebDriverKey = "webdriver";
-        private const string CampaignsConfigKey = "Campaignsprojectconfigkey";
+        private const string EPAOProjectConfigKey = "epaoprojectconfigkey";
+        private const string WebDriverKey = "webdriverkey";
         #endregion
 
         public static void SetTestProjectConfig<T>(this ScenarioContext context, T value)
@@ -33,6 +35,11 @@ namespace SFA.DAS.UI.Framework.TestSupport
         public static void SetApprovalsConfig<T>(this ScenarioContext context, T value)
         {
             Set(context, value, ApprovalsProjectConfigKey);
+        }
+
+        public static void SetProviderConfig<T>(this ScenarioContext context, T value)
+        {
+            Set(context, value, ProviderConfigKey);
         }
 
         public static void SetProviderPermissionConfig<T>(this ScenarioContext context, T value)
@@ -70,6 +77,11 @@ namespace SFA.DAS.UI.Framework.TestSupport
             return Get<T>(context, ApprovalsProjectConfigKey);
         }
 
+        public static T GetProviderConfig<T>(this ScenarioContext context)
+        {
+            return Get<T>(context, ProviderConfigKey);
+        }
+
         public static T GetProviderPermissionConfig<T>(this ScenarioContext context)
         {
             return Get<T>(context, ProviderPermissionConfigKey);
@@ -85,9 +97,24 @@ namespace SFA.DAS.UI.Framework.TestSupport
             return Get<T>(context, RAAV1ProjectConfigKey);
         }
 
+        public static T GetRAAV2QAConfig<T>(this ScenarioContext context)
+        {
+            return Get<T>(context, RAAV2QAProjectConfigKey);
+        }
+
+        public static T GetFAAConfig<T>(this ScenarioContext context)
+        {
+            return Get<T>(context, FAAProjectConfigKey);
+        }
+
         public static T GetSupportConsoleConfig<T>(this ScenarioContext context)
         {
             return Get<T>(context, SupportConsoleProjectConfigKey);
+        }
+
+        public static T GetEPAOConfig<T>(this ScenarioContext context)
+        {
+            return Get<T>(context, EPAOProjectConfigKey);
         }
 
         public static void SetSupportConsoleConfig<T>(this ScenarioContext context, T value)
@@ -100,14 +127,19 @@ namespace SFA.DAS.UI.Framework.TestSupport
             Set(context, value, RAAV1ProjectConfigKey);
         }
 
-        public static void SetMongoDbConfig(this ScenarioContext context, MongoDbConfig value)
+        public static void SetRAAV2QAConfig<T>(this ScenarioContext context, T value)
         {
-            Set(context, value, MongoDbConfigKey);
+            Set(context, value, RAAV2QAProjectConfigKey);
         }
 
-        public static MongoDbConfig GetMongoDbConfig(this ScenarioContext context)
+        public static void SetFAAConfig<T>(this ScenarioContext context, T value)
         {
-            return Get<MongoDbConfig>(context, MongoDbConfigKey);
+            Set(context, value, FAAProjectConfigKey);
+        }
+
+        public static void SetEPAOConfig<T>(this ScenarioContext context, T value)
+        {
+            Set(context, value, EPAOProjectConfigKey);
         }
 
         public static void SetWebDriver(this ScenarioContext context, IWebDriver webDriver)
@@ -133,16 +165,6 @@ namespace SFA.DAS.UI.Framework.TestSupport
         public static T Get<T>(ScenarioContext context, string key)
         {
             return context.Get<T>(key);
-        }
-
-        public static T GetCampaignsProjectConfig<T>(this ScenarioContext context)
-        {
-            return Get<T>(context, CampaignsConfigKey);
-        }
-
-        public static void SetCampaignsProjectConfig<T>(this ScenarioContext context, T value)
-        {
-            Set(context, value, CampaignsConfigKey);
         }
     }
 }

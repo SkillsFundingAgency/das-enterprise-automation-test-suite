@@ -1,4 +1,6 @@
 ﻿using NUnit.Framework;
+using SFA.DAS.FAA.UITests.Project;
+using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.RAA_V1.UITests.Project.Helpers;
 using SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA;
 using SFA.DAS.UI.Framework.TestSupport;
@@ -6,7 +8,6 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
 {
-
     [Binding]
     public class RAASteps
     {
@@ -16,8 +17,6 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
         private RAA_EnterFurtherDetailsPage _enterFurtherDetails;
         private RAA_EnterOpportunityDetailsPage _enterOpportunityDetails;
         private RAA_RequirementsAndProspectsPage _requirementsAndProspects;
-        private RAA_VacancyPreviewPage _vacancyPreviewPage;
-        private RAA_VacancySummaryPage _vacancySummaryPage;
         private RAA_VacancyLinkBasePage _vacancyLinkBasePage;
         private readonly RAAStepsHelper _raaStepsHelper;
         private readonly ObjectContext _objectContext;
@@ -30,58 +29,6 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
             _raaStepsHelper = new RAAStepsHelper(context);
         }
         
-        [Given(@"Provider views a vacancy which has (0|1) Applications")]
-        public void GivenProviderViewsAVacancyWhichHasApplications(int applications)
-        {
-            var homePage = _raaStepsHelper.GoToRAAHomePage(false);
-
-            switch (applications)
-            {
-                case 0:
-                    _vacancyPreviewPage = homePage.SelectLiveVacancyWithNoApplication();
-                    _vacancyPreviewPage.SetVacancyReference();
-                    _vacancyLinkBasePage = _vacancyPreviewPage;
-                    break;
-
-                case 1:
-                    _vacancySummaryPage = homePage.SelectLiveVacancyWithApplications();
-                    _vacancySummaryPage.SetVacancyReference();
-                    _vacancyLinkBasePage = _vacancySummaryPage;
-                    break;
-            }   
-        }
-
-        [Then(@"Provider is able to change the status of the new application to '(.*)'")]
-        public void ThenProviderIsAbleToChangeTheStatusOfTheNewApplicationTo(string newStatus)
-        {
-            _raaStepsHelper.GoToRAAHomePage(false)
-                            .SelectLiveVacancyWithNewApplications()
-                            .ViewApplication()
-                            .ChangeStatus(newStatus);
-        }
-
-        [Then(@"Provider is able to change the status of the In progress application to '(.*)'")]
-        public void ThenProviderIsAbleToChangeTheStatusOfTheInProgressApplicationTo(string newStatus)
-        {
-            _raaStepsHelper.GoToRAAHomePage(false)
-                            .SelectLiveVacancyWithNewApplications()
-                            .ViewApplication()
-                            .ChangeStatus("In progress")
-                            .ViewApplication()
-                            .ChangeStatus(newStatus);
-        }
-
-        [Given(@"Provider views a closed vacancy which has Applications")]
-        public void GivenProviderViewsAClosedVacancyWhichHasApplications()
-        {
-            _vacancySummaryPage = _raaStepsHelper.GoToRAAHomePage(false)
-                                    .SelectLiveVacancyWithApplications();
-
-            _vacancySummaryPage.SetVacancyReference();
-            _vacancyLinkBasePage = _vacancySummaryPage;
-            _vacancyLinkBasePage.CloseVacancy().CloseVacancy();
-        }
-
         [Then(@"Provider is able to archive vacancy")]
         public void ThenProviderIsAbleToArchiveVacancy()
         {
@@ -103,7 +50,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
         [Then(@"Provider is able to respond to candidates")]
         public void ThenProviderIsAbleToRespondToCandidates()
         {
-            _vacancyLinkBasePage.
+            new RAA_VacancySummaryPage(_context).
                 RespondToCandidates()
                 .ConfirmAndContinue()
                 .SendFeedback();
@@ -112,34 +59,61 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
         [Then(@"Provider is able to share vacancy application")]
         public void ThenProviderIsAbleToShareVacancyApplication()
         {
-            _vacancyLinkBasePage.
-                ShareApplications()
+            new RAA_VacancySummaryPage(_context)
+                .ShareApplications()
                 .Send();
         }
 
+        [Then(@"Provider is able to increase vacancy wage with no application")]
+        public void ThenProviderIsAbleToIncreaseVacancyWageWithNoApplication()
+        {
+            InIncreaseVacancyWage(new RAA_VacancyPreviewPage(_context));
+        }
 
         [Then(@"Provider is able to increase vacancy wage")]
         public void ThenProviderIsAbleToIncreaseVacancyWage()
         {
-            _vacancyLinkBasePage.
-                IncreaseWage()
-                .SaveAndReturn();
+            InIncreaseVacancyWage(new RAA_VacancySummaryPage(_context));
         }
 
+        private void InIncreaseVacancyWage(RAA_VacancyLinkBasePage linkBasePage)
+        {
+            linkBasePage.IncreaseWage().SaveAndReturn();
+        }
+
+        [Then(@"Provider is able to change vacancy dates with no application")]
+        public void ThenProviderIsAbleToChangeVacancyDatesWithNoApplication()
+        {
+            ChangeVacancyDate(new RAA_VacancyPreviewPage(_context));
+        }
 
         [Then(@"Provider is able to change vacancy dates")]
         public void ThenProviderIsAbleToChangeVacancyDates()
         {
-            _vacancyLinkBasePage
-                .ChangeVacancyDates()
-                .SaveAndContinue();
+            ChangeVacancyDate(new RAA_VacancySummaryPage(_context));
         }
 
+        private void ChangeVacancyDate(RAA_VacancyLinkBasePage linkBasePage)
+        {
+            linkBasePage.ChangeVacancyDates().SaveAndContinue();
+        }
+
+
+        [Then(@"Provider is able to close this vacancy with no application")]
+        public void ThenProviderIsAbleToCloseThisVacancyWithNoApplication()
+        {
+            CloseVacancy(new RAA_VacancyPreviewPage(_context));
+        }
 
         [Then(@"Provider is able to close this vacancy")]
         public void ThenProviderIsAbleToCloseThisVacancy()
         {
-            _vacancyLinkBasePage.CloseVacancy().CloseVacancy();
+            CloseVacancy(new RAA_VacancySummaryPage(_context));
+        }
+
+        private void CloseVacancy(RAA_VacancyLinkBasePage linkBasePage)
+        {
+            linkBasePage.CloseVacancy().CloseVacancy();
 
             new RAA_RecruitmentHomePage(_context, true)
                 .SearchClosedVacancy();
@@ -168,13 +142,19 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
         [When(@"an offline Vacancy details are filled out for a Traineeship for a different '(.*)'")]
         public void WhenAnOfflineVacancyDetailsAreFilledOutForATraineeshipForADifferent(string location)
         {
-            _raaStepsHelper.ProviderFillsOutTraineeshipDetails(location, "Offline");
+            _raaStepsHelper.ProviderFillsOutTraineeshipDetails(location, "Yes", "Offline");
         }
 
         [When(@"the Vacancy details are filled out for a Traineeship for a different '(.*)'")]
         public void WhenTheVacancyDetailsAreFilledOutForATraineeshipForADifferent(string location)
         {
             _raaStepsHelper.ProviderFillsOutTraineeshipDetails(location);
+        }
+
+        [When(@"the Vacancy details are filled out with Disability Confident as No for a Traineeship for a different '(.*)'")]
+        public void WhenTheVacancyDetailsAreFilledOutWithDisabilityConfidentAsNoForATraineeshipForADifferent(string location)
+        {
+            _raaStepsHelper.ProviderFillsOutTraineeshipDetails(location, "No");
         }
 
         [Given(@"the Provider initiates Create Apprenticeship Vacancy in Recruit")]
@@ -186,7 +166,6 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
         [When(@"the Provider chooses the employer '(.*)','(.*)'")]
         public void WhenTheProviderChoosesTheEmployer(string location, string noOfpositions)
         {
-
             _raaEmployerInformation = _raaStepsHelper.ChoosesTheEmployer(_employerSelection, location, noOfpositions);
         }
 
@@ -196,39 +175,51 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
             _raaStepsHelper.ChooseAnonymous(_raaEmployerInformation, answer);
         }
 
+        [When(@"the Provider fills out details based on WageType '(.*)','(.*)'")]
+        public void WhenTheProviderFillsOutDetailsBasedOnWageType(string location, string wageType)
+        {
+            _raaStepsHelper.ProviderFillsOutApprenticeshipDetails(location, "Yes", "Online", "Standard", "42", "52", wageType);
+        }
+
         [When(@"the Provider fills out details for an Offline Vacancy '(.*)','(.*)','(.*)','(.*)','(.*)','(.*)'")]
         public void WhenTheProviderFillsOutDetailsForAnOfflineVacancy(string location, string disabilityConfident, string applicationMethod, string apprenticeShip, string hoursPerWeek, string vacancyDuration)
         {
-            _raaStepsHelper.ProviderFillsOutDetails(location, disabilityConfident, applicationMethod, apprenticeShip, hoursPerWeek, vacancyDuration);
+            _raaStepsHelper.ProviderFillsOutApprenticeshipDetails(location, disabilityConfident, applicationMethod, apprenticeShip, hoursPerWeek, vacancyDuration, "National Minimum Wage for apprentices");
         }
 
         [Then(@"Provider is able to submit the vacancy for approval")]
-        public void ThenProviderIsAbleToSubmitTheVacancyForApproval()
-        {
-            _raaStepsHelper
-                .ApproveVacanacy()
-                .ExitFromWebsite();
-        }
+        public void ThenProviderIsAbleToSubmitTheVacancyForApproval() => _raaStepsHelper.ApproveVacanacy().ExitFromWebsite();
 
         [Then(@"the vacancy status should be Referred in Recruit")]
-        public void ThenTheVacancyStatusShouldBeReferredInRecruit()
-        {
-            var homePage = _raaStepsHelper.GoToRAAHomePage(true);
-
-            homePage.SearchReferredVacancy();
-
-            homePage.ExitFromWebsite();
-        }
-
+        public void ThenTheVacancyStatusShouldBeReferredInRecruit() => _raaStepsHelper.GoToRAAHomePage(true).SearchReferredVacancy().ExitFromWebsite();
 
         [Then(@"the vacancy status should be Live in Recruit")]
-        public void ThenTheVacancyStatusShouldBeInRecruit()
+        public void ThenTheVacancyStatusShouldBeInRecruit() => _raaStepsHelper.GoToRAAHomePage(true).SearchLiveVacancy().ExitFromWebsite();
+
+        [Then(@"the vacancy can be viewed anonymously")]
+        public void ThenTheVacancyCanBeViewedAnonymously() => _raaStepsHelper.GoToRAAHomePage(true).SearchLiveVacancy().AnonymousView();
+
+        [Then(@"Provider can to make the application to be '(.*)'")]
+        public void ThenProviderCanToMakeTheApplicationTo(string newStatus) 
         {
-            var homePage = _raaStepsHelper.GoToRAAHomePage(true);
+            var summaryPage = _raaStepsHelper.GoToRAAHomePage(true).SearchLiveVacancy();
 
-            homePage.SearchLiveVacancy();
+            ChangeStatus(summaryPage, newStatus);
+        }
 
-            homePage.ExitFromWebsite();
+        [Then(@"Provider is able to change the status of the In progress application to '(.*)'")]
+        public void ThenProviderIsAbleToChangeTheStatusOfTheInProgressApplicationTo(string newStatus)
+        {
+            var summaryPage = new RAA_VacancySummaryPage(_context);
+
+            summaryPage = ChangeStatus(summaryPage, "In progress");
+
+            ChangeStatus(summaryPage, newStatus);
+        }
+
+        private RAA_VacancySummaryPage ChangeStatus(RAA_VacancySummaryPage summaryPage, string newStatus)
+        {
+            return summaryPage.ViewApplication().ChangeStatus(newStatus);
         }
 
         private void CloneVacancy()

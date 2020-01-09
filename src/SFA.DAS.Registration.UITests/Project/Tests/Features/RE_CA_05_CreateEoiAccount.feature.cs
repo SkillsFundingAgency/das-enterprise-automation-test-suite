@@ -19,7 +19,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("RE_CA_05_CreateEoiAccount")]
-    [NUnit.Framework.CategoryAttribute("registration")]
     public partial class RE_CA_05_CreateEoiAccountFeature
     {
         
@@ -32,8 +31,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "RE_CA_05_CreateEoiAccount", null, ProgrammingLanguage.CSharp, new string[] {
-                        "registration"});
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "RE_CA_05_CreateEoiAccount", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -73,25 +71,35 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("RE_CA_05_Create EOI Account with PAYE Details")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
-        [NUnit.Framework.CategoryAttribute("eoiaccount")]
-        [NUnit.Framework.CategoryAttribute("regression")]
+        [NUnit.Framework.IgnoreAttribute("Ignored scenario")]
+        [NUnit.Framework.CategoryAttribute("//EOI")]
+        [NUnit.Framework.CategoryAttribute("functionality")]
+        [NUnit.Framework.CategoryAttribute("is")]
+        [NUnit.Framework.CategoryAttribute("being")]
+        [NUnit.Framework.CategoryAttribute("removed")]
+        [NUnit.Framework.CategoryAttribute("from")]
+        [NUnit.Framework.CategoryAttribute("09JAN2020")]
         public virtual void RE_CA_05_CreateEOIAccountWithPAYEDetails()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RE_CA_05_Create EOI Account with PAYE Details", null, new string[] {
-                        "addpayedetails",
-                        "eoiaccount",
-                        "regression"});
-#line 7
+                        "ignore",
+                        "//EOI",
+                        "functionality",
+                        "is",
+                        "being",
+                        "removed",
+                        "from",
+                        "09JAN2020"});
+#line 4
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 8
+#line 5
  testRunner.Given("I create an Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 9
+#line 6
  testRunner.When("I add paye details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 10
+#line 7
  testRunner.And("add eoi organisation details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 11
+#line 8
  testRunner.And("I do not sign the eoi agreement", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();

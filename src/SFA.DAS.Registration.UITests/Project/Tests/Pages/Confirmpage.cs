@@ -10,7 +10,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         protected override string PageTitle => "Confirm your identity";
 
         #region Helpers and Context
-        private readonly PageInteractionHelper _pageInteractionHelper;
         private readonly FormCompletionHelper _formCompletionHelper;
         private readonly ScenarioContext _context;
         private readonly RegistrationConfig _config;
@@ -18,7 +17,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         private By AccessCodeInput => By.Id("AccessCode");
 
-        private By ContinueButton => By.CssSelector("input.button");
+        protected override By ContinueButton => By.CssSelector("input.button");
 
         private By RequestAnotheEmailLink => By.CssSelector("input.link-button");
 
@@ -26,7 +25,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         {
             _context = context;
             _config = context.GetRegistrationConfig<RegistrationConfig>();
-            _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
             VerifyPage();
         }
@@ -41,12 +39,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         private ConfirmPage EnterAccessCode()
         {
             _formCompletionHelper.EnterText(AccessCodeInput, _config.RE_ConfirmCode);
-            return this;
-        }
-
-        private ConfirmPage Continue()
-        {
-            _formCompletionHelper.ClickElement(ContinueButton);
             return this;
         }
     }

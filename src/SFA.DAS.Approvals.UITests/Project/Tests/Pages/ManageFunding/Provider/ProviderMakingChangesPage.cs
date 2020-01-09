@@ -8,10 +8,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider
 {
     public class ProviderMakingChangesPage : ReservationIdBasePage
     {
-        protected override string PageTitle => "Making changes";
+        protected override string PageTitle => "You have successfully reserved funding for apprenticeship training";
+		private By GoToRadioButton => By.CssSelector(".govuk-radios__label");
 
-        #region Helpers and Context
-        private readonly FormCompletionHelper _formCompletionHelper;
+		#region Helpers and Context
+		private readonly FormCompletionHelper _formCompletionHelper;
         private readonly ScenarioContext _context;
         #endregion
 
@@ -21,20 +22,18 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider
             _formCompletionHelper = context.Get<FormCompletionHelper>();
             VerifyPage();
         }
-        private By GoToRadioButton => By.CssSelector(".govuk-radios__label");
-        private By ContinueButton => By.CssSelector(".govuk-button");
         
-        internal ProviderHomePage GoToHomePage()
+        internal ApprovalsProviderHomePage GoToHomePage()
         {
             _formCompletionHelper.SelectRadioOptionByForAttribute(GoToRadioButton, "WhatsNext-home");
-            _formCompletionHelper.ClickElement(ContinueButton);
-            return new ProviderHomePage(_context);
+            Continue();
+            return new ApprovalsProviderHomePage(_context);
         }
 
         internal ProviderAddApprenticeDetailsPage GoToAddApprenticeDetailsPage()
         {
             _formCompletionHelper.SelectRadioOptionByForAttribute(GoToRadioButton, "WhatsNext-add");
-            _formCompletionHelper.ClickElement(ContinueButton);
+            Continue();
             return new ProviderAddApprenticeDetailsPage(_context);
         }
 
@@ -43,6 +42,5 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider
             base.VerifySucessMessage();
             return this;
         }
-
     }
 }

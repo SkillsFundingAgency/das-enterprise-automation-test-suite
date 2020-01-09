@@ -15,12 +15,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private readonly ScenarioContext _context;
         private readonly ApprenticeCourseDataHelper _dataHelper;
         private readonly FormCompletionHelper _formCompletionHelper;
-        private readonly PageInteractionHelper _pageInteractionHelper;
         #endregion
 
         private By MonthField => By.Id("DateOfChange_Month");
         private By YearField => By.Id("DateOfChange_Year");
-        private By ContinueButton => By.CssSelector(".button");
+        protected override By ContinueButton => By.CssSelector(".button");
         private By NewStopDate_Month => By.Id("NewStopDate_Month");
         private By NewStopDate_Year => By.Id("NewStopDate_Year");
 
@@ -29,14 +28,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             _context = context;
             _dataHelper = context.Get<ApprenticeCourseDataHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
-            _pageInteractionHelper = context.Get<PageInteractionHelper>();
             VerifyPage();
         }
 
         public StopApprenticeshipPage EditStopDateToThisMonthAndSubmit()
         {
             EnterTheStopDate();
-            _formCompletionHelper.ClickElement(ContinueButton);
+            Continue();
             return new StopApprenticeshipPage(_context);
         }
 
@@ -44,7 +42,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         {
             _formCompletionHelper.EnterText(NewStopDate_Month, _dataHelper.CourseStartDate.Month);
             _formCompletionHelper.EnterText(NewStopDate_Year, _dataHelper.CourseStartDate.Year);
-            _formCompletionHelper.ClickElement(ContinueButton);
+            Continue();
             return new NewStopDateApprenticeDetailsPage(_context);
         }
 

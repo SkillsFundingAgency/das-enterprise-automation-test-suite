@@ -17,7 +17,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         #endregion
 
         private By MessageBox => By.Id("Message");
-        private By SendButton => By.CssSelector(".button");
+        private By SendButton => By.CssSelector(".govuk-button");
 
         public MessageForYourTrainingProviderPage(ScenarioContext context) : base(context)
         {

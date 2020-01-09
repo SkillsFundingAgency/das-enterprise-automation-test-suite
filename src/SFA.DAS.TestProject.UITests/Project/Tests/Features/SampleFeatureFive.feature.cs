@@ -31,7 +31,7 @@ namespace SFA.DAS.TestProject.UITests.Project.Tests.Features
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "SampleFeatureFive", "As a user\r\nI want to be able to navigate to DFE home page\r\nSo that I can see all " +
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "SampleFeatureFive", "As a user\r\nI want to be able to navigate to DFE home page\r\nSo that I can see all " +
                     "department services and information ", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }

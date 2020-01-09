@@ -1,4 +1,4 @@
-﻿using SFA.DAS.UI.Framework.TestSupport;
+﻿using SFA.DAS.ConfigurationBuilder;
 
 namespace SFA.DAS.Approvals.UITests.Project
 {
@@ -7,7 +7,6 @@ namespace SFA.DAS.Approvals.UITests.Project
         #region Constants
         private const string NoOfApprentices = "noofapprentices";
         private const string ApprenticeTotalCost = "apprenticetotalcost";
-        private const string Ukprn = "ukprn";
         private const string CohortReference = "cohortreference";
         private const string ApprenticeId = "apprenticeid";
         private const string ReservationId = "reservationid";
@@ -41,16 +40,6 @@ namespace SFA.DAS.Approvals.UITests.Project
         internal static void SetUln(this ObjectContext objectContext, string value)
         {
             objectContext.Set($"Uln_{value}", value);
-        }
-
-        internal static void SetUkprn(this ObjectContext objectContext, string value)
-        {
-            objectContext.Replace(Ukprn, value);
-        }
-        
-        internal static string GetUkprn(this ObjectContext objectContext)
-        {
-            return objectContext.Get(Ukprn);
         }
 
         internal static string GetApprenticeTotalCost(this ObjectContext objectContext)

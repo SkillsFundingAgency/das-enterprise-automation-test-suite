@@ -10,20 +10,15 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         protected override string PageTitle => "Training provider added";
 
         #region Helpers and Context
-        private readonly PageInteractionHelper _pageInteractionHelper;
         private readonly FormCompletionHelper _formCompletionHelper;
         private readonly ScenarioContext _context;
-        private readonly ApprovalsConfig _config;
         #endregion
 
         private By SetPermissionsOptions => By.CssSelector(".govuk-radios__label");
-        private By ContinueButton => By.CssSelector(".govuk-button");
 
         public TrainingProviderAddedPage(ScenarioContext context) : base(context)
         {
             _context = context;
-            _config = context.GetApprovalsConfig<ApprovalsConfig>();
-            _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
             VerifyPage();
         }
@@ -31,9 +26,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         public SetPermissionsPage SelectContinueInEmployerTrainingProviderAddedPage()
         {
             _formCompletionHelper.SelectRadioOptionByText(SetPermissionsOptions, "Set permissions for this training provider");
-            _formCompletionHelper.ClickElement(ContinueButton);
+            Continue();
             return new SetPermissionsPage(_context);
         }
     }
 }
-

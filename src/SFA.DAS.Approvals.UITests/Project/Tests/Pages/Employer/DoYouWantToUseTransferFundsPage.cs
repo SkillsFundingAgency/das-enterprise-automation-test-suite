@@ -8,9 +8,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
     public class DoYouWantToUseTransferFundsPage : BasePage
     {
         protected override string PageTitle => "Do you want to use transfer funds to pay for this training?";
+        private By CohortFundingOptions => By.CssSelector(".selection-button-radio");
+        protected override By ContinueButton => By.Id("submit-transfer-connection");
 
         #region Helpers and Context
-        private readonly PageInteractionHelper _pageInteractionHelper;
         private readonly FormCompletionHelper _formCompletionHelper;
         private readonly ScenarioContext _context;
         private readonly ApprovalsConfig _config;
@@ -21,21 +22,15 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         {
             _context = context;
             _config = context.GetApprovalsConfig<ApprovalsConfig>();
-            _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
             VerifyPage();
         }
 
-        private By CohortFundingOptions => By.CssSelector(".selection-button-radio");
-        private By ContinueButton => By.Id("submit-transfer-connection");
-
         internal AddTrainingProviderDetailsPage SelectYesIWantToUseTransferFunds()
         {
             _formCompletionHelper.SelectRadioOptionByText(CohortFundingOptions, "Yes, I will use transfer funds from ESFA LTD");
-            _formCompletionHelper.ClickElement(ContinueButton);
+            Continue();
             return new AddTrainingProviderDetailsPage(_context);
         }
-
     }
 }
-

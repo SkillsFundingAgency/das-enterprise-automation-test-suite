@@ -69,7 +69,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Features.E2EJourney.Apprenticeshi
             testRunner.CollectScenarioErrors();
         }
         
-        public virtual void RV1_E2EAV_04_CreateAnOfflineApprenticeshipVacancy(string location, string anonymity, string disabilityConfident, string applicationMethod, string apprenticeshipType, string hoursPerWeek, string vacancyDuration, string changeteam, string changeRole, string noOfPositions, string qualificationDetails, string workExperience, string trainingCourse, string[] exampleTags)
+        public virtual void RV1_E2EAV_04_CreateAnOfflineApprenticeshipVacancyAndApprove(string location, string anonymity, string disabilityConfident, string applicationMethod, string apprenticeshipType, string hoursPerWeek, string vacancyDuration, string changeteam, string changeRole, string noOfPositions, string qualificationDetails, string workExperience, string trainingCourse, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "raa-v1",
@@ -80,7 +80,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Features.E2EJourney.Apprenticeshi
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
             }
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV1_E2EAV_04 - Create an Offline Apprenticeship Vacancy", null, @__tags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV1_E2EAV_04 - Create an Offline Apprenticeship Vacancy and Approve", null, @__tags);
 #line 7
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
@@ -95,21 +95,23 @@ this.ScenarioInitialize(scenarioInfo);
                         "}\',\'{5}\'", location, disabilityConfident, applicationMethod, apprenticeshipType, hoursPerWeek, vacancyDuration), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 12
  testRunner.Then("Provider is able to submit the vacancy for approval", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 13
+    testRunner.Then("the Reviewer approves the vacancy", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RV1_E2EAV_04 - Create an Offline Apprenticeship Vacancy: Use the main employer ad" +
-            "dress")]
+        [NUnit.Framework.DescriptionAttribute("RV1_E2EAV_04 - Create an Offline Apprenticeship Vacancy and Approve: Use the main" +
+            " employer address")]
         [NUnit.Framework.CategoryAttribute("raa-v1")]
         [NUnit.Framework.CategoryAttribute("v1_e2e")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("apprenticeshipvacancy")]
-        public virtual void RV1_E2EAV_04_CreateAnOfflineApprenticeshipVacancy_UseTheMainEmployerAddress()
+        public virtual void RV1_E2EAV_04_CreateAnOfflineApprenticeshipVacancyAndApprove_UseTheMainEmployerAddress()
         {
 #line 7
-this.RV1_E2EAV_04_CreateAnOfflineApprenticeshipVacancy("Use the main employer address", "No", "No", "Offline", "Framework", "42", "52", "West Midlands", "Vacancy reviewer", "2", "Yes", "Yes", "Yes", ((string[])(null)));
+this.RV1_E2EAV_04_CreateAnOfflineApprenticeshipVacancyAndApprove("Use the main employer address", "No", "No", "Offline", "Framework", "42", "52", "West Midlands", "Vacancy reviewer", "2", "Yes", "Yes", "Yes", ((string[])(null)));
 #line hidden
         }
     }
