@@ -24,5 +24,11 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Tests.StepDefinitions
         [Then(@"Provider can make the application successful")]
         public void ThenProviderCanMakeTheApplicationSuccessful() => _providerStepsHelper.ApplicantSucessful();
 
+        [Given(@"the Provider can create a vacancy by entering all the Optional fields")]
+        public void GivenTheProviderCanCreateAVacancyByEnteringAllTheOptionalFields()
+        {
+            throw new PendingStepException();
+        }
+
     }
 }
