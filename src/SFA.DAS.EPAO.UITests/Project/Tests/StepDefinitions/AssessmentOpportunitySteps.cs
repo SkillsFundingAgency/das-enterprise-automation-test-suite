@@ -12,8 +12,8 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
     {
         private readonly ScenarioContext _context;
         private readonly EPAOConfig _ePAOConfig;
-        private readonly TabHelper _tabHelper;
         private AO_HomePage _homePage;
+        private readonly TabHelper _tabHelper;
 
         public AssessmentOpportunitySteps(ScenarioContext context)
         {
@@ -51,7 +51,6 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         [Then(@"the User is redirected to 'Assessment Service' application")]
         public void ThenTheUserIsRedirectedToAssessmentServiceApplication()
         {
-            _tabHelper.SwitchToTheNewTab();
             new AS_LandingPage(_context).VerifyAS_LandingPage();
         }
 

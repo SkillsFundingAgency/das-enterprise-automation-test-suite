@@ -11,6 +11,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentOpportunity
 
         #region Helpers and Context
         private readonly FormCompletionHelper _formCompletionHelper;
+        private readonly TabHelper _tabHelper;
         #endregion
 
         #region Locators
@@ -20,9 +21,10 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentOpportunity
         public AO_ApprovedStandardDetailsPage(ScenarioContext context) : base(context)
         {
             _formCompletionHelper = context.Get<FormCompletionHelper>();
+            _tabHelper = context.Get<TabHelper>();
             VerifyPage();
         }
 
-        public void ClickApplyToThisStandardButton() => _formCompletionHelper.Click(ApplyToAssessThisStandardButton);
+        public void ClickApplyToThisStandardButton() => _tabHelper.OpenInNewtab(() => _formCompletionHelper.Click(ApplyToAssessThisStandardButton));
     }
 }

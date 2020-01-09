@@ -47,6 +47,6 @@ namespace SFA.DAS.UI.FrameworkHelpers
             _webDriver.Navigate().Back();
         }
 
-        public void SwitchToTheNewTab() => _webDriver.SwitchTo().Window(_webDriver.WindowHandles[1]);
+        //public void SwitchToTheNewTab() => _webDriver.SwitchTo().Window(_webDriver.WindowHandles[1]);
     }
 }
