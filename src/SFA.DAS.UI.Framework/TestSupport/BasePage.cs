@@ -50,7 +50,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
         
         private bool VerifyPage(Func<bool> func)
         {
-            if (_frameworkConfig.TakeEveryPageScreenShot && !_browser.IsCloudExecution())
+            if (_frameworkConfig.IsVstsExecution && !_browser.IsCloudExecution())
             {
                 ScreenshotHelper.TakeScreenShot(_webDriver, _directory, _screenShotTitleGenerator.GetNextCount());
             }

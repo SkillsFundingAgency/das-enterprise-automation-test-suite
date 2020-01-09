@@ -28,7 +28,8 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
             {
                 TimeOutConfig = _configSection.GetConfigSection<TimeOutConfig>(),
                 BrowserStackSetting = _configSection.GetConfigSection<BrowserStackSetting>(),
-                TakeEveryPageScreenShot = Configurator.IsVstsExecution
+                IsVstsExecution = Configurator.IsVstsExecution,
+                DriverLocation = Configurator.DriverLocation
             };
 
             _context.Set(configuration);
