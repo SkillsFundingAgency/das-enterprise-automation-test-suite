@@ -7,6 +7,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
     public static class ScenarioContextExtension
     {
         #region Constants
+        private const string WebDriverKey = "webdriverkey";
         private const string ProviderConfigKey = "providerconfigkey";
         private const string TestProjectConfigKey = "testprojectconfigkey";
         private const string RegistrationProjectConfigKey = "registrationprojectconfigkey";
@@ -19,8 +20,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
         private const string TransfersProjectConfigKey = "transfersprojectconfigkey";
         private const string FATProjectConfigKey = "fatprojectconfigkey";
         private const string EPAOProjectConfigKey = "epaoprojectconfigkey";
-        private const string CampaignsConfigKey = "Campaignsprojectconfigkey";
-        private const string WebDriverKey = "webdriverkey";
+        private const string CampaignsConfigKey = "campaignsprojectconfigkey";
         #endregion
 
         public static void SetTestProjectConfig<T>(this ScenarioContext context, T value)
