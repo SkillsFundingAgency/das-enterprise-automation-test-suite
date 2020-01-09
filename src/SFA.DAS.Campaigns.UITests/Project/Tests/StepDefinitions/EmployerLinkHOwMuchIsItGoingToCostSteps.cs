@@ -1,7 +1,5 @@
-﻿using System;
-using SFA.DAS.UI.Framework.TestSupport;
+﻿using SFA.DAS.UI.Framework.TestSupport;
 using OpenQA.Selenium;
-using TechTalk.SpecFlow;
 using TechTalk.SpecFlow;
 using SFA.DAS.Campaigns.UITests.Project.Tests.Pages;
 using SFA.DAS.Campaigns.UITests.Project;
