@@ -19,6 +19,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
         private const string TransfersProjectConfigKey = "transfersprojectconfigkey";
         private const string FATProjectConfigKey = "fatprojectconfigkey";
         private const string EPAOProjectConfigKey = "epaoprojectconfigkey";
+        private const string CampaignsConfigKey = "Campaignsprojectconfigkey";
         private const string WebDriverKey = "webdriverkey";
         #endregion
 
@@ -116,6 +117,11 @@ namespace SFA.DAS.UI.Framework.TestSupport
         {
             return Get<T>(context, EPAOProjectConfigKey);
         }
+        
+        public static T GetCampaignsProjectConfig<T>(this ScenarioContext context)
+        {
+            return Get<T>(context, CampaignsConfigKey);
+        }
 
         public static void SetSupportConsoleConfig<T>(this ScenarioContext context, T value)
         {
@@ -141,6 +147,11 @@ namespace SFA.DAS.UI.Framework.TestSupport
         {
             Set(context, value, EPAOProjectConfigKey);
         }
+        
+        public static void SetCampaignsProjectConfig<T>(this ScenarioContext context, T value)
+        {
+            Set(context, value, CampaignsConfigKey);
+        }
 
         public static void SetWebDriver(this ScenarioContext context, IWebDriver webDriver)
         {
@@ -151,6 +162,11 @@ namespace SFA.DAS.UI.Framework.TestSupport
         {
             return Get<IWebDriver>(context, WebDriverKey);
         }
+        
+        public static T Get<T>(ScenarioContext context, string key)
+        {
+            return context.Get<T>(key);
+        }
 
         private static void Replace<T>(ScenarioContext context, T value, string key)
         {
@@ -160,11 +176,6 @@ namespace SFA.DAS.UI.Framework.TestSupport
         private static void Set<T>(ScenarioContext context, T value, string key)
         {
             context.Set(value, key);
-        }
-
-        public static T Get<T>(ScenarioContext context, string key)
-        {
-            return context.Get<T>(key);
         }
     }
 }
