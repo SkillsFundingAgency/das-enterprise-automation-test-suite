@@ -13,6 +13,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="..\specflow.json" Link="specflow.json" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="MongoDB.Bson" Version="2.9.1" />
     <PackageReference Include="MongoDB.Driver" Version="2.9.1" />
     <PackageReference Include="NUnit3TestAdapter" Version="3.11.0" />
@@ -26,19 +30,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Project\Tests\Features\Apprenticeships\ApprenticeFeature.feature.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>ApprenticeFeature.feature</DependentUpon>
-    </Compile>
-    <Compile Update="Project\Tests\Features\Employer\CheckThatFindTheRightApprenticeshipSearchWorks.feature.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>CheckThatFindTheRightApprenticeshipSearchWorks.feature</DependentUpon>
-    </Compile>
-  </ItemGroup>
-
-  <ItemGroup>
     <None Update="appsettings.Environment.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -48,18 +39,6 @@
     <None Update="appsettings.Project.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="specflow.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
 
-  <ItemGroup>
-    <SpecFlowFeatureFiles Update="Project\Tests\Features\Apprenticeships\ApprenticeFeature.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-    </SpecFlowFeatureFiles>
-    <SpecFlowFeatureFiles Update="Project\Tests\Features\Employer\CheckThatFindTheRightApprenticeshipSearchWorks.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-    </SpecFlowFeatureFiles>
-  </ItemGroup>
-
-  </Project>
+</Project>

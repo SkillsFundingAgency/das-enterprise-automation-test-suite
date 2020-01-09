@@ -17,7 +17,6 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
         private readonly FormCompletionHelper _formCompletionHelper;
         private readonly ScenarioContext _context;
         private readonly CampaignsConfig _config;
-        private readonly TabHelper _tabHelper;
         #endregion
 
         #region Page Object Elements
@@ -28,19 +27,16 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
         private readonly By _createAccountButton = By.XPath("//a[@class='button hero__panel-button']");
         #endregion
 
-
         public ManageApprenticeshipLoginPage(ScenarioContext context):base(context)
         {
             _context = context;
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
-            _tabHelper = context.Get<TabHelper>();
             _config = context.GetCampaignsProjectConfig<CampaignsConfig>();
         }
 
         public ManageApprenticeshipHomePage EmployerLogsIn()
         {
-            _tabHelper.SwitchToTheNewTab();
             SubmitLoginDetails(_config.EmployerUserName, _config.EmployerPassword);
             return new ManageApprenticeshipHomePage(_context);
         }
@@ -51,6 +47,5 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
             _formCompletionHelper.EnterText(_passwordField, password);
             _formCompletionHelper.ClickElement(_signInButton);
         }
-
     }
 }
