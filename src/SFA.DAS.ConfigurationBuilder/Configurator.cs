@@ -11,6 +11,8 @@ namespace SFA.DAS.ConfigurationBuilder
 
         public readonly static bool IsVstsExecution;
 
+        public readonly static string DriverLocation;
+
         public readonly static string EnvironmentName;
 
         public readonly static string ProjectName;
@@ -19,6 +21,7 @@ namespace SFA.DAS.ConfigurationBuilder
         {
             _hostingConfig = InitializeHostingConfig();
             IsVstsExecution = TestsExecutionInVsts();
+            DriverLocation = GetDriverLocation();
             EnvironmentName = GetEnvironmentName();
             ProjectName = GetProjectName();
             _config = InitializeConfig();
@@ -52,6 +55,12 @@ namespace SFA.DAS.ConfigurationBuilder
                 .SetBasePath(Directory.GetCurrentDirectory());
 
         private static bool TestsExecutionInVsts() => !string.IsNullOrEmpty(GetAgentMachineName());
+
+        private static string GetDriverLocation() => string.IsNullOrEmpty(GetAgentReleaseDirectory()) ? string.Empty : Path.Combine(GetAgentReleaseDirectory(), GetDefinitionName()); 
+
+        private static string GetAgentReleaseDirectory() => GetHostingConfigSection("AGENT_RELEASEDIRECTORY");
+
+        private static string GetDefinitionName() => GetHostingConfigSection("BUILD_DEFINITIONNAME");
 
         private static string GetAgentMachineName() => GetHostingConfigSection("AGENT_MACHINENAME");
 

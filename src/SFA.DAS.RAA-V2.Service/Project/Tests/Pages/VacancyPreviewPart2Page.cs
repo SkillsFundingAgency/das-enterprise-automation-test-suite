@@ -1,4 +1,6 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.ConfigurationBuilder;
+using SFA.DAS.RAA.DataGenerator.Project;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
@@ -9,8 +11,9 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
+        private readonly ObjectContext _objectContext;
         #endregion
-        
+
         private By BriefOverview => By.CssSelector("a[data-automation='link-overview']");
         private By VacancyDescription => By.CssSelector("a[data-automation='link-vacancy-description']");
         private By DesiredSkills => By.CssSelector("a[data-automation='link-skills']");
@@ -18,12 +21,17 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         private By EmployerDescription => By.CssSelector("a[data-automation='link-description']");
         private By ApplicationProcess => By.CssSelector("a[data-automation='link-application-method']");
         private By ThingsToConsider => By.CssSelector("a[data-automation='link-things-to-consider']");
-        private By ContactDetails => By.CssSelector("a[data-automation='link-employer-contact-details']");
+        private By EmployerContactDetails => By.CssSelector("a[data-automation='link-employer-contact-details']");
+        private By ProviderContactDetails => By.CssSelector("a.govuk-link.summary-link");
         private By Submit => By.CssSelector(".govuk-button[data-automation='submit-button']");
         private By ReturnToDashboardLink => By.CssSelector("a[data-automation='dashboard-link']");
         private By DeleteVacancyButton => By.CssSelector("a[data-automation='delete-button']");
 
-        public VacancyPreviewPart2Page(ScenarioContext context) : base(context) => _context = context;
+        public VacancyPreviewPart2Page(ScenarioContext context) : base(context)
+        {
+            _context = context;
+            _objectContext = context.Get<ObjectContext>();
+        }
 
         public DeleteVacancyQuestionPage DeleteVacancy()
         {
@@ -81,7 +89,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         public ContactDetailsPage AddContactDetails()
         {
-            formCompletionHelper.Click(ContactDetails);
+            formCompletionHelper.Click(ContactDetails());
             return new ContactDetailsPage(_context);
         }
 
@@ -96,5 +104,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
             formCompletionHelper.Click(Submit);
             return new VacancyPreviewPart2WithErrorsPage(_context);
         }
+
+        private By ContactDetails() => _objectContext.IsRAAV2Employer() ? EmployerContactDetails : ProviderContactDetails;
     }
 }
