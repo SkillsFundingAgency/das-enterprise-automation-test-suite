@@ -1,6 +1,7 @@
 ﻿using SFA.DAS.RAA_V2.Service.Project.Tests.Pages;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages;
 using TechTalk.SpecFlow;
+using SFA.DAS.RAA_V2.Service.Project.Helpers;
 
 namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer
 {
@@ -27,8 +28,8 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer
             return new CreateVacancyPage(_context);
         }
 
-        public ManageVacancyPage SelectVacancy() => _searchVacancyPageHelper.SelectVacancy();
+        public ManageVacancyPage SelectLiveVacancy() => _searchVacancyPageHelper.SelectLiveVacancy();
 
-        public ManageVacancyPage SearchAnyVacancy() => _searchVacancyPageHelper.SearchAnyVacancy();
+        public ManageVacancyPage SearchVacancyByVacancyReference() => _searchVacancyPageHelper.SearchVacancyByVacancyReference();
     }
 }

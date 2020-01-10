@@ -11,6 +11,7 @@ namespace SFA.DAS.RAA.DataGenerator.Project
         private const string VacancyType = "vacancytype";
         private const string FAARestart = "faarestart";
         private const string RAAV1 = "raav1";
+        private const string RAAV2Employer = "raav2employer";
         #endregion
 
         public static void SetApprenticeshipVacancyType(this ObjectContext objectContext)
@@ -21,6 +22,16 @@ namespace SFA.DAS.RAA.DataGenerator.Project
         public static bool IsApprenticeshipVacancyType(this ObjectContext objectContext)
         {
             return objectContext.KeyExists<bool>(VacancyType);
+        }
+
+        public static void SetRAAV2Employer(this ObjectContext objectContext)
+        {
+            objectContext.Set(RAAV2Employer, true);
+        }
+
+        public static bool IsRAAV2Employer(this ObjectContext objectContext)
+        {
+            return objectContext.KeyExists<bool>(RAAV2Employer);
         }
 
         public static void SetRAAV1(this ObjectContext objectContext)

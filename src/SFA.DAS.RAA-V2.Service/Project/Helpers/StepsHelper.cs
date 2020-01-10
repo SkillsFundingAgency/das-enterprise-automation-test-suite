@@ -12,8 +12,12 @@ namespace SFA.DAS.RAA_V2.Service.Project.Helpers
             _context = context;
         }
 
-        public void ApplicantSucessful(ManageVacancyPage manageVacancyPage) => manageVacancyPage.NavigateToManageApplicant().MakeApplicantSucessful().NotifyApplicant();
+        public void ApplicantSucessful(ManageVacancyPage manageVacancyPage) 
+            => manageVacancyPage.NavigateToManageApplicant().MakeApplicantSucessful().NotifyApplicant();
 
+        public void ApplicantUnsucessful(ManageVacancyPage manageVacancyPage) 
+            => manageVacancyPage.NavigateToManageApplicant().MakeApplicantUnsucessful().NotifyApplicant();
+        
         public VacancyPreviewPart2Page PreviewVacancy(EmployerNamePage employernamePage, string employername, bool isEmployerAddress, bool disabilityConfidence)
         {
             var locationPage = ChooseEmployerName(employernamePage, employername);
@@ -29,12 +33,12 @@ namespace SFA.DAS.RAA_V2.Service.Project.Helpers
         {
             switch (employername)
             {
-                default:
-                    return employernamePage.ChooseRegisteredName();
                 case "existing-trading-name":
                     return employernamePage.ChooseExistingTradingName();
                 case "anonymous":
                     return employernamePage.ChooseAnonymous();
+                default:
+                    return employernamePage.ChooseRegisteredName();
             };
         }
 

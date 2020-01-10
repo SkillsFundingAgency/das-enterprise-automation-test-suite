@@ -32,7 +32,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Helpers
             _dataHelper = context.Get<RAAV2DataHelper>();
         }
 
-        public ManageVacancyPage SelectVacancy()
+        public ManageVacancyPage SelectLiveVacancy()
         {
             _formCompletionHelper.ClickLinkByText("Live vacancies");
             _pageInteractionHelper.WaitforURLToChange($"filter=Live");
@@ -40,7 +40,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Helpers
             return new ManageVacancyPage(_context);
         }
 
-        public ManageVacancyPage SearchAnyVacancy()
+        public ManageVacancyPage SearchVacancyByVacancyReference()
         {
             var vacRef = _objectContext.GetVacancyReference();
             _formCompletionHelper.EnterText(SearchInput, vacRef); ;

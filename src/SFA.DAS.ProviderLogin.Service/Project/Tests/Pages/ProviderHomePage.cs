@@ -1,5 +1,4 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
@@ -20,8 +19,6 @@ namespace SFA.DAS.ProviderLogin.Service.Pages
         protected By CreateACohortLink => By.LinkText("Create a cohort");
 
         protected By ProviderManageYourApprenticesLink => By.LinkText("Manage your apprentices");
-
-        protected By NotificationSettingsLink => By.LinkText("Notification settings");
 
         protected By GetFundingLink => By.LinkText("Get funding for non-levy employers");
 

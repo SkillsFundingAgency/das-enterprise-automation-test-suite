@@ -21,35 +21,35 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Helpers
 
         internal void ApplicantSucessful() => _stepsHelper.ApplicantSucessful(SearchVacancy());
 
-        internal void CreateANewVacancy()
+        internal void ApplicantUnsucessful() => _stepsHelper.ApplicantUnsucessful(SearchVacancy());
+
+        internal void CreateANewVacancy(string employername, bool isEmployerAddress, bool disabilityConfidence, bool isApplicationMethodFAA, bool optionalFields = false)
         {
             var employernamePage = SelectOrganisation();
 
-            var previewVacancy = _stepsHelper.PreviewVacancy(employernamePage, string.Empty, true, false);
+            var previewVacancy = _stepsHelper.PreviewVacancy(employernamePage, employername, isEmployerAddress, disabilityConfidence);
 
-            _stepsHelper.SubmitVacancy(previewVacancy, true, false);
+            _stepsHelper.SubmitVacancy(previewVacancy, isApplicationMethodFAA, optionalFields);
         }
 
         private EmployerNamePage SelectOrganisation()
         {
-            _providerHomePageStepsHelper.GoToProviderHomePage();
-
-            return new RecruitmentHomePage(_context, true)
+            return GoToRecruitmentHomePage(false)
                 .CreateVacancy()
                 .SelectEmployer()
                 .EnterVacancyTitle()
                 .EnterTrainingTitle()
                 .ConfirmAndNavigateToNoOfPositionsPage()
-                .ChooseNoOfPositionsAndNavigateToEmployerNamePage();
+                .SubmitNoOfPositionsAndNavigateToEmployerNamePage();
         }
 
-        private ManageVacancyPage SearchVacancy()
+        private ManageVacancyPage SearchVacancy() => GoToRecruitmentHomePage(true).SearchVacancyByVacancyReference();
+
+        private RecruitmentHomePage GoToRecruitmentHomePage(bool newTab)
         {
-            _providerHomePageStepsHelper.GoToProviderHomePageInNewTab();
+            _providerHomePageStepsHelper.GoToProviderHomePage(newTab);
 
-            return new RecruitmentHomePage(_context, true)
-                .SearchAnyVacancy();
+            return new RecruitmentHomePage(_context, true);
         }
-
     }
 }
