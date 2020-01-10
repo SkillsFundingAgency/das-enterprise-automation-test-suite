@@ -11,7 +11,11 @@ namespace SFA.DAS.ConfigurationBuilder
 
         public readonly static bool IsVstsExecution;
 
-        public readonly static string DriverLocation;
+        public readonly static string ChromeWebDriver;
+
+        public readonly static string GeckoWebDriver;
+
+        public readonly static string IEWebDriver;
 
         public readonly static string EnvironmentName;
 
@@ -21,7 +25,9 @@ namespace SFA.DAS.ConfigurationBuilder
         {
             _hostingConfig = InitializeHostingConfig();
             IsVstsExecution = TestsExecutionInVsts();
-            DriverLocation = GetDriverLocation();
+            ChromeWebDriver = GetHostingConfigSection("ChromeWebDriver");
+            GeckoWebDriver = GetHostingConfigSection("GeckoWebDriver");
+            IEWebDriver = GetHostingConfigSection("IEWebDriver");
             EnvironmentName = GetEnvironmentName();
             ProjectName = GetProjectName();
             _config = InitializeConfig();
@@ -55,8 +61,6 @@ namespace SFA.DAS.ConfigurationBuilder
                 .SetBasePath(Directory.GetCurrentDirectory());
 
         private static bool TestsExecutionInVsts() => !string.IsNullOrEmpty(GetAgentMachineName());
-
-        private static string GetDriverLocation() => GetHostingConfigSection("ChromeWebDriver");
 
         private static string GetAgentMachineName() => GetHostingConfigSection("AGENT_MACHINENAME");
 

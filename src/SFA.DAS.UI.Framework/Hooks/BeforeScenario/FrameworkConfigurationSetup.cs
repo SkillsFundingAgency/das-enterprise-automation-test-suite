@@ -28,8 +28,7 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
             {
                 TimeOutConfig = _configSection.GetConfigSection<TimeOutConfig>(),
                 BrowserStackSetting = _configSection.GetConfigSection<BrowserStackSetting>(),
-                IsVstsExecution = Configurator.IsVstsExecution,
-                DriverLocation = Configurator.DriverLocation
+                IsVstsExecution = Configurator.IsVstsExecution
             };
 
             _context.Set(configuration);
@@ -41,6 +40,10 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
             var testExecutionConfig = _configSection.GetConfigSection<TestExecutionConfig>();
 
             _objectContext.SetBrowser(testExecutionConfig.Browser);
+
+            var driverLocationConfig = new DriverLocationConfig { ChromeWebDriver = Configurator.ChromeWebDriver, GeckoWebDriver = Configurator.GeckoWebDriver, IEWebDriver = Configurator.IEWebDriver };
+
+            _context.Set(driverLocationConfig);
         }
     }
 }

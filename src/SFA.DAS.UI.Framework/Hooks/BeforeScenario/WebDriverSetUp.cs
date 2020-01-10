@@ -18,6 +18,8 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
 
         private readonly FrameworkConfig _frameworkConfig;
 
+        private readonly DriverLocationConfig _driverLocationConfig;
+
         private const string ChromeDriverServiceName = "chromedriver.exe";
 
         private const string FirefoxDriverServiceName = "geckodriver.exe";
@@ -30,6 +32,7 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
             _objectContext = context.Get<ObjectContext>();
             _webDriverSetupHelper = new WebDriverSetupHelper(context);
             _frameworkConfig = context.Get<FrameworkConfig>();
+            _driverLocationConfig = context.Get<DriverLocationConfig>();
         }
 
         [BeforeScenario(Order = 3)]
@@ -55,16 +58,26 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
             }
         }
 
-        private string FindDriverServiceLocation(string executableName)
-        {
-            if (_frameworkConfig.IsVstsExecution)
-            {
-                return _frameworkConfig.DriverLocation;
-            }
+        private string FindDriverServiceLocation(string executableName) => _frameworkConfig.IsVstsExecution ? FindVstsDriverServiceLocation(executableName) : FindLocalDriverServiceLocation(executableName);
 
+        private string FindLocalDriverServiceLocation(string executableName)
+        {
             FileInfo[] file = Directory.GetParent(DriverPath).GetFiles(executableName, SearchOption.AllDirectories);
 
             return file.Length != 0 ? file[0].DirectoryName : DriverPath;
+        }
+
+        private string FindVstsDriverServiceLocation(string executableName)
+        {
+            switch (true)
+            {
+                case bool _ when (executableName == FirefoxDriverServiceName):
+                    return _driverLocationConfig.GeckoWebDriver;
+                case bool _ when (executableName == InternetExplorerDriverServiceName):
+                    return _driverLocationConfig.IEWebDriver;
+                default:
+                    return _driverLocationConfig.ChromeWebDriver;
+            }
         }
     }
 }

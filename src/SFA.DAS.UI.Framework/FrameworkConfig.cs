@@ -9,7 +9,5 @@ namespace SFA.DAS.UI.Framework
         public BrowserStackSetting BrowserStackSetting { get; internal set; }
 
         public bool IsVstsExecution { get; internal set; }
-
-        public string DriverLocation { get; internal set; }
     }
 }
