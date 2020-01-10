@@ -37,7 +37,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 
         public ApprovalsProviderHomePage GoToProviderHomePage()
         {
-            _providerHomePageStepsHelper.GoToProviderHomePageInNewTab();
+            _providerHomePageStepsHelper.GoToProviderHomePage(true);
 
             return new ApprovalsProviderHomePage(_context);
         }

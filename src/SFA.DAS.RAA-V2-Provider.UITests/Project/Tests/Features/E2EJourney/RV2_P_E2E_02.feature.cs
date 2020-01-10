@@ -90,7 +90,7 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Tests.Features.E2EJourney
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 9
- testRunner.Given("the Provider can create a vacancy by entering all the Optional fields", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("the Provider creates a vacancy by entering all the Optional fields", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 10
  testRunner.And("the Reviewer Approves the vacancy", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 11

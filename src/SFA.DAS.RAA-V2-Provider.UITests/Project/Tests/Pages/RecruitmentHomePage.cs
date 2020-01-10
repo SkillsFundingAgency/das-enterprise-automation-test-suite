@@ -34,8 +34,8 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Tests.Pages
             return new SelectEmployersPage(_context);
         }
 
-        public ManageVacancyPage SelectVacancy() => _searchVacancyPageHelper.SelectVacancy();
+        public ManageVacancyPage SelectLiveVacancy() => _searchVacancyPageHelper.SelectLiveVacancy();
 
-        public ManageVacancyPage SearchAnyVacancy() => _searchVacancyPageHelper.SearchAnyVacancy();
+        public ManageVacancyPage SearchVacancyByVacancyReference() => _searchVacancyPageHelper.SearchVacancyByVacancyReference();
     }
 }

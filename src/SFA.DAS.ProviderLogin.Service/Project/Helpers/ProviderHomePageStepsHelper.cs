@@ -28,9 +28,9 @@ namespace SFA.DAS.ProviderLogin.Service.Helpers
             _login = new ProviderLoginUser { Username = _config.UserId, Password = _config.Password, Ukprn = _config.Ukprn };
         }
 
-        public ProviderHomePage GoToProviderHomePage()
+        public ProviderHomePage GoToProviderHomePage(bool newTab)
         {
-            return GoToProviderHomePage(_login, false);
+            return GoToProviderHomePage(_login, newTab);
         } 
 
         public ProviderHomePage GoToProviderHomePageInNewTab()

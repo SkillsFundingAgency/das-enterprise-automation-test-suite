@@ -43,7 +43,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
         internal void CloneAVacancy()
         {
           var previewPage = GoToRecruitmentHomePage()
-                .SelectVacancy()
+                .SelectLiveVacancy()
                 .CloneVacancy()
                 .SelectYes()
                 .UpdateTitle()
@@ -65,7 +65,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
 
         internal void CloseVacancy() => SearchVacancy().CloseVacancy().YesCloseThisVacancy();
 
-        internal void ApplicantUnSucessful() => _stepsHelper.ApplicantUnSucessful(SearchVacancy());
+        internal void ApplicantUnsucessful() => _stepsHelper.ApplicantUnsucessful(SearchVacancy());
 
         internal void ApplicantSucessful() => _stepsHelper.ApplicantSucessful(SearchVacancy());
 
@@ -112,7 +112,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
             return SearchAnyVacancy();
         }
 
-        private ManageVacancyPage SearchAnyVacancy() => new RecruitmentHomePage(_context, true).SearchAnyVacancy();
+        private ManageVacancyPage SearchAnyVacancy() => new RecruitmentHomePage(_context, true).SearchVacancyByVacancyReference();
 
         private RecruitmentHomePage GoToRecruitmentHomePage()
         {
@@ -136,7 +136,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
                 .ConfirmTrainingAndContinue()
                 .ChooseTrainingProvider()
                 .ConfirmTrainingProviderAndContinue()
-                .ChooseNoOfPositions()
+                .SubmitNoOfPositions()
                 .SelectOrganisation();
         }
 

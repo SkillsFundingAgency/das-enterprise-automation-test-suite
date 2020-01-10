@@ -63,7 +63,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
         public void ThenEmployerCanMakeTheApplicationSuccessful() => _employerStepsHelper.ApplicantSucessful();
 
         [Then(@"Employer can make the application unsuccessful")]
-        public void ThenEmployerCanMakeTheApplicationUnsuccessful() => _employerStepsHelper.ApplicantUnSucessful();
+        public void ThenEmployerCanMakeTheApplicationUnsuccessful() => _employerStepsHelper.ApplicantUnsucessful();
 
         [Then(@"the Employer can close the vacancy")]
         public void ThenTheEmployerCanCloseTheVacancy() => _employerStepsHelper.CloseVacancy();
