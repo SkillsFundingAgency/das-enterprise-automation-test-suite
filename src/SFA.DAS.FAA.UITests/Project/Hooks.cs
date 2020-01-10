@@ -1,5 +1,4 @@
-﻿using SFA.DAS.FAA.UITests.Helpers;
-using SFA.DAS.RAA.DataGenerator;
+﻿using SFA.DAS.RAA.DataGenerator;
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.UI.FrameworkHelpers;
 using System.Linq;
