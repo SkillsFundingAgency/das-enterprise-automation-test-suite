@@ -35,15 +35,10 @@ namespace SFA.DAS.ProviderLogin.Service.Helpers
 
         public ProviderHomePage GoToProviderHomePageInNewTab()
         {
-            return GoToProviderHomePageInNewTab(_login);
+            return GoToProviderHomePage(_login, true);
         }
 
-        public ProviderHomePage GoToProviderHomePageInNewTab(ProviderLoginUser login)
-        {
-            return GoToProviderHomePage(login, true);
-        }
-
-        private ProviderHomePage GoToProviderHomePage(ProviderLoginUser login, bool newTab)
+        public ProviderHomePage GoToProviderHomePage(ProviderLoginUser login, bool newTab)
         {
             if (newTab)
             {
