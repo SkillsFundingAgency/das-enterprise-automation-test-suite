@@ -22,7 +22,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         private By ApplicationProcess => By.CssSelector("a[data-automation='link-application-method']");
         private By ThingsToConsider => By.CssSelector("a[data-automation='link-things-to-consider']");
         private By EmployerContactDetails => By.CssSelector("a[data-automation='link-employer-contact-details']");
-        private By ProviderContactDetails => By.CssSelector("a.govuk-link.summary-link");
+        private By ProviderContactDetails => By.CssSelector("a[data-automation='link-provider-contact-details']");
         private By Submit => By.CssSelector(".govuk-button[data-automation='submit-button']");
         private By ReturnToDashboardLink => By.CssSelector("a[data-automation='dashboard-link']");
         private By DeleteVacancyButton => By.CssSelector("a[data-automation='delete-button']");
