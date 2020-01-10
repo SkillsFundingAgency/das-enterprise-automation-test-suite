@@ -13,10 +13,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="..\specflow.json" Link="specflow.json" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="NUnit3TestAdapter" Version="3.13.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.2.0" />
     <PackageReference Include="Selenium.WebDriver.ChromeDriver" Version="78.0.3904.10500" />
@@ -39,6 +35,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="SFA.DAS.Campaigns.UITests.runtimeconfig.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="specflow.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>

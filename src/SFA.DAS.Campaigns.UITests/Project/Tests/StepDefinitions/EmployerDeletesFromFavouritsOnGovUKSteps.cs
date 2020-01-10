@@ -14,18 +14,12 @@ namespace SFA.DAS.Campaigns.UITests
         #region Private Variables
         private readonly CampaignsConfig _configuration;
         private readonly ScenarioContext _context;
-        private readonly IWebDriver _webDriver;
-        private FireItUpHomePage fireItUpHomePage;
-        private EmployerMenuOptionPage employerMenuOptionPage;
-        private EmployerFavouritePage employerFavouritePage ;
-        private ManageApprenticeshipHomePage manageApprenticeshipHomePage;
-        private ManageApprenticeshipLoginPage manageApprenticeshipLoginPage;
         private YourSavedFavouritesGovUkPage yourSavedFavouritesGovUkPage;
         #endregion
+
         public EmployerDeletesFromFavouritsOnGovUKSteps(ScenarioContext context)
         {
             _context = context;
-            _webDriver = context.Get<IWebDriver>("webdriver");
             _configuration = context.GetCampaignsProjectConfig<CampaignsConfig>();
         }
 

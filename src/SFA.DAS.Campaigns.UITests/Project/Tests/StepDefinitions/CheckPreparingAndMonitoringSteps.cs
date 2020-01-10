@@ -14,7 +14,6 @@ namespace SFA.DAS.Campaigns.UITests
         #region Private Variables
         private readonly CampaignsConfig _configuration;
         private readonly ScenarioContext _context;
-        private readonly IWebDriver _webDriver;
         private FireItUpHomePage fireItUpHomePage;
         private EmployerMenuOptionPage employerMenuOptionPage;
         private PreparingAndMonitoringPage preparingAndMonitoringPage;
@@ -22,7 +21,6 @@ namespace SFA.DAS.Campaigns.UITests
         public CheckPreparingAndMonitoringSteps(ScenarioContext context)
         {
             _context = context;
-            _webDriver = context.Get<IWebDriver>("webdriver");
             _configuration = context.GetCampaignsProjectConfig<CampaignsConfig>();
         }
 

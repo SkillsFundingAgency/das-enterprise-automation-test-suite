@@ -12,15 +12,12 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
         #region Private Variables
         private readonly CampaignsConfig _configuration;
         private readonly ScenarioContext _context;
-        private readonly IWebDriver _webDriver;
-        private FireItUpHomePage fireItUpHomePage;
-        private EmployerMenuOptionPage employerMenuOptionPage;
         private EmployerFavouritePage employerFavouritePage ;
         #endregion
+
         public EmployerViewsTheFavouriteContnetSteps(ScenarioContext context)
         {
             _context = context;
-            _webDriver = context.Get<IWebDriver>("webdriver");
             _configuration = context.GetCampaignsProjectConfig<CampaignsConfig>();
         }
 
@@ -37,18 +34,19 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
             employerFavouritePage= new EmployerFavouritePage(_context);
             employerFavouritePage.VerifyFavouritePageHeader();
         }
+
         [Then(@"I Can Verify the Favourite Count")]
         public void ThenICanVerifyTheFavouriteCount()
         {
            employerFavouritePage= new EmployerFavouritePage(_context);
            employerFavouritePage.VerifyApprenticeshipFavouriteCount();
         }
+
         [Then(@"I Can Verify the Favourite Count for Provider")]
         public void ThenICanVerifyTheFavouriteCountForProvider()
         {
             employerFavouritePage= new EmployerFavouritePage(_context);
             employerFavouritePage.VerifyProviderFavouriteCount();
         }
-
     }
 }

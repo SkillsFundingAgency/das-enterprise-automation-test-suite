@@ -3,6 +3,7 @@ using SFA.DAS.UI.Framework.TestSupport;
 using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 using TestContext = NUnit.Framework.TestContext;
+using SFA.DAS.UI.FrameworkHelpers;
 
 namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
 {
@@ -12,23 +13,22 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
         #region Private Variables
         private readonly CampaignsConfig _configuration;
         private readonly ScenarioContext _context;
-        private readonly IWebDriver _webDriver;
         private FireItUpHomePage fireItUpHomePage;
+        private readonly TabHelper _tabHelper;
         #endregion
 
         public StepDefinitionHomePage(ScenarioContext context)
         {
             _context = context;
-            _webDriver = context.Get<IWebDriver>("webdriver");
             _configuration = context.GetCampaignsProjectConfig<CampaignsConfig>();
+            _tabHelper = context.Get<TabHelper>();
         }
 
         [Given(@"I navigate to Fire It Up home page")]
         public void NavigateToGovUkHomePage()
         {
-            var url = _configuration.CA_BaseUrl;
+            _tabHelper.GoToUrl(_configuration.CA_BaseUrl);
             TestContext.Progress.WriteLine("Navigating to Fire It Up home page");
-            _webDriver.Url = url;
 
             fireItUpHomePage = new FireItUpHomePage(_context);
             fireItUpHomePage.ClickOnCookieContinueButton();

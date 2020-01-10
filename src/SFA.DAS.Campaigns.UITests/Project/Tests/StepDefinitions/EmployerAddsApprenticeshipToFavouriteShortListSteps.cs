@@ -13,20 +13,17 @@ namespace SFA.DAS.Campaigns.UITests
         #region Private Variables
         private readonly CampaignsConfig _configuration;
         private readonly ScenarioContext _context;
-        private readonly IWebDriver _webDriver;
-        private FireItUpHomePage fireItUpHomePage;
-        private EmployerMenuOptionPage employerMenuOptionPage;
-        private ApprenticeshipSearchResultPage apprenticeshipSearchResultPage ;
-        private SummeryOfThisApprenticeshipPage summeryOfThisApprenticeshipPage;
+        private ApprenticeshipSearchResultPage apprenticeshipSearchResultPage;
         private TrainingProviderResulPage trainingProviderResulPage;
         RegisterMyInterestPage registerMyInterestPage;
         #endregion
+
         public EmployerAddsApprenticeshipToFavouriteShortListSteps(ScenarioContext context)
         {
             _context = context;
-            _webDriver = context.Get<IWebDriver>("webdriver");
             _configuration = context.GetCampaignsProjectConfig<CampaignsConfig>();
         }
+
         [Then(@"I Can Add Apprenticeships From Search Result  List to Favourite Short List")]
         public void ThenICanAddApprenticeshipFromSearchResultListToFavouriteShortList()
         {
@@ -35,13 +32,12 @@ namespace SFA.DAS.Campaigns.UITests
             trainingProviderResulPage = new TrainingProviderResulPage(_context);
             trainingProviderResulPage.AddFavouriteShortList();
         }
+
         [Then(@"I Can Click on the Favourite Icon with Apprenticeship")]
         public void ThenICanClickOnTheFavouriteIconWithApprenticeship()
         {
-           apprenticeshipSearchResultPage = new ApprenticeshipSearchResultPage(_context);
+            apprenticeshipSearchResultPage = new ApprenticeshipSearchResultPage(_context);
             apprenticeshipSearchResultPage.ClickOnTheFavouriteIconWithApprenticeship();
-
         }
-
     }
 }

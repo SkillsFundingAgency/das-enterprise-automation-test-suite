@@ -9,23 +9,20 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
     [Binding]
     public class EmployerAddsApprenticeshiptoFavouriteSteps
     {
-         #region Private Variables
+        #region Private Variables
         private readonly CampaignsConfig _configuration;
         private readonly ScenarioContext _context;
         private readonly IWebDriver _webDriver;
-        private FireItUpHomePage fireItUpHomePage;
-        private EmployerMenuOptionPage employerMenuOptionPage;
-        private ApprenticeshipSearchResultPage apprenticeshipSearchResultPage ;
-        private SummeryOfThisApprenticeshipPage summeryOfThisApprenticeshipPage;
-        private TrainingProviderResulPage trainingProviderResulPage;
+        private ApprenticeshipSearchResultPage apprenticeshipSearchResultPage;
         private RegisterMyInterestPage registerMyInterestPage;
         #endregion
+
         public EmployerAddsApprenticeshiptoFavouriteSteps(ScenarioContext context)
         {
             _context = context;
-            _webDriver = context.Get<IWebDriver>("webdriver");
             _configuration = context.GetCampaignsProjectConfig<CampaignsConfig>();
         }
+
         [Then(@"I Can Add Apprenticeships From Search Result by Clicking On the Title")]
         public void ThenICanAddApprenticeshipsFromSearchResultByClickingOnTheTitle()
         {
@@ -38,7 +35,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
                 .VerifyProviderResult()
                 .ClickOnProviderTitleLink()
                 .VerifyTrainingProviderNameFromTitle();
- 
+
         }
     }
 }

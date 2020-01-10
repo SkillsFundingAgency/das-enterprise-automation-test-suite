@@ -13,26 +13,23 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
         #region Private Variables
         private readonly CampaignsConfig _configuration;
         private readonly ScenarioContext _context;
-        private readonly IWebDriver _webDriver;
         private FireItUpHomePage fireItUpHomePage;
-        private EmployerMenuOptionPage employerMenuOptionPage;
-        private AssessmentAndCertificationPage assessmentAndCertificationPage;
         private RegisterMyInterestPage  registerMyInterestPage;
         private RegisterMyInterestSuccessPage  registerMyInterestSuccessPage;
         #endregion
+
         public RegisterMyInterestSteps(ScenarioContext context)
         {
             _context = context;
-            _webDriver = context.Get<IWebDriver>("webdriver");
             _configuration = context.GetCampaignsProjectConfig<CampaignsConfig>();
         }
+
         [Given(@"I Click On The Register My Interest Button")]
         public void GivenIClickOnTheRegisterMyInterestButton()
         {
             fireItUpHomePage = new FireItUpHomePage(_context);
             fireItUpHomePage.LaunchRegisterMyInterestPage();
             TestContext.Progress.WriteLine("Navigating to Register My Interest page");
-            
         }
         
         [Given(@"I Enter My First Name, Last Name And Email")]

@@ -12,18 +12,14 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
         #region Private Variables
         private readonly CampaignsConfig _configuration;
         private readonly ScenarioContext _context;
-        private readonly IWebDriver _webDriver;
-        private FireItUpHomePage fireItUpHomePage;
-        private EmployerMenuOptionPage employerMenuOptionPage;
         private WhatIsAnApprenticeshipPage whatIsAnApprenticeshipPage;
         #endregion
+
         public VerifyThatYouCanSearchForAnyApprenticeshipSteps(ScenarioContext context)
         {
             _context = context;
-            _webDriver = context.Get<IWebDriver>("webdriver");
             _configuration = context.GetCampaignsProjectConfig<CampaignsConfig>();
         }
-
 
         [Given(@"I Click on Find An Apprenticeship option in the Menu Bar Header")]
         public void GivenIClickOnFindAnApprenticeshipOptionInTheMenuBarHeader()
