@@ -56,11 +56,7 @@ namespace SFA.DAS.ConfigurationBuilder
 
         private static bool TestsExecutionInVsts() => !string.IsNullOrEmpty(GetAgentMachineName());
 
-        private static string GetDriverLocation() => string.IsNullOrEmpty(GetAgentReleaseDirectory()) ? string.Empty : Path.Combine(GetAgentReleaseDirectory(), GetDefinitionName()); 
-
-        private static string GetAgentReleaseDirectory() => GetHostingConfigSection("AGENT_RELEASEDIRECTORY");
-
-        private static string GetDefinitionName() => GetHostingConfigSection("BUILD_DEFINITIONNAME");
+        private static string GetDriverLocation() => GetHostingConfigSection("ChromeWebDriver");
 
         private static string GetAgentMachineName() => GetHostingConfigSection("AGENT_MACHINENAME");
 

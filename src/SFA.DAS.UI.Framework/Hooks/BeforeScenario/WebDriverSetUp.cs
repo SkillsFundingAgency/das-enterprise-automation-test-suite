@@ -57,9 +57,14 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
 
         private string FindDriverServiceLocation(string executableName)
         {
+            if (_frameworkConfig.IsVstsExecution)
+            {
+                return _frameworkConfig.DriverLocation;
+            }
+
             FileInfo[] file = Directory.GetParent(DriverPath).GetFiles(executableName, SearchOption.AllDirectories);
 
-            return _frameworkConfig.IsVstsExecution ? Path.Combine(_frameworkConfig.DriverLocation, @"drop\tests\SFA.DAS.TestProject.UITests") : file.Length != 0 ? file[0].DirectoryName : DriverPath;
+            return file.Length != 0 ? file[0].DirectoryName : DriverPath;
         }
     }
 }
