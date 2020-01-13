@@ -39,6 +39,7 @@ steps:
   inputs:
     command: 'pack'
     projects: 'src/**/*.csproj'
+    packDirectory: '$(build.artifactstagingdirectory)/publish'
     arguments: '--configuration $(buildConfiguration) --no-restore'
 
 - task: DotNetCoreCLI@2
@@ -50,7 +51,15 @@ steps:
     projects: 'src/**/*Tests.csproj'
     arguments: '--configuration $(buildConfiguration) --output $(build.artifactstagingdirectory)/tests --no-restore --no-build'
 
+- task: ArchiveFiles@2
+  inputs:
+    rootFolderOrFile: '$(build.artifactstagingdirectory)/tests'
+    includeRootFolder: false
+    archiveType: 'zip'
+    archiveFile: '$(build.artifactstagingdirectory)/publish/tests.zip'
+    replaceExistingArchive: true
+
 - task: PublishBuildArtifacts@1
   displayName: 'Publish Artifact'
   inputs:
-    PathtoPublish: '$(build.artifactstagingdirectory)'
+    pathtoPublish: '$(build.artifactstagingdirectory)/publish'
