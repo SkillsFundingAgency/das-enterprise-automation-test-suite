@@ -17,7 +17,7 @@ namespace SFA.DAS.EPAO.UITests.Project
         }
 
         [BeforeScenario(Order = 2)]
-        public void SetUpSupportConsoleProjectConfiguration()
+        public void SetUpEPAOProjectConfiguration()
         {
             var config = _configSection.GetConfigSection<EPAOConfig>();
             _context.SetEPAOConfig(config);
