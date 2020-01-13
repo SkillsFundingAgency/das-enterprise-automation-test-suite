@@ -37,7 +37,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
 
             _stepsHelper.SubmitVacancy(previewPage, false, false);
 
-            SearchAnyVacancy().NavigateToViewVacancyPage().VerifyDisabilityConfident();
+            SearchVacancyByVacancyReference().NavigateToViewVacancyPage().VerifyDisabilityConfident();
         }
 
         internal void CloneAVacancy()
@@ -54,7 +54,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
 
         internal void EditVacancyDates() 
         {
-            SearchVacancy()
+            SearchVacancyByVacancyReferenceInNewTab()
                 .EditVacancy()
                 .EditVacancyCloseDate()
                 .EnterVacancyDates()
@@ -63,11 +63,11 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
                 .PublishVacancy();
         }
 
-        internal void CloseVacancy() => SearchVacancy().CloseVacancy().YesCloseThisVacancy();
+        internal void CloseVacancy() => SearchVacancyByVacancyReferenceInNewTab().CloseVacancy().YesCloseThisVacancy();
 
-        internal void ApplicantUnsucessful() => _stepsHelper.ApplicantUnsucessful(SearchVacancy());
+        internal void ApplicantUnsucessful() => _stepsHelper.ApplicantUnsucessful(SearchVacancyByVacancyReferenceInNewTab());
 
-        internal void ApplicantSucessful() => _stepsHelper.ApplicantSucessful(SearchVacancy());
+        internal void ApplicantSucessful() => _stepsHelper.ApplicantSucessful(SearchVacancyByVacancyReferenceInNewTab());
 
         internal void CreateANewVacancy(string employername, bool isEmployerAddress, bool optionalFields = false)
         {
@@ -75,7 +75,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
 
             _stepsHelper.SubmitVacancy(previewPage, true, optionalFields);
 
-            SearchAnyVacancy().NavigateToViewVacancyPage().VerifyEmployerName();
+            SearchVacancyByVacancyReference().NavigateToViewVacancyPage().VerifyEmployerName();
         }
 
         internal void CreateANewVacancy(string wageType)
@@ -84,19 +84,12 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
 
             var locationPage = _stepsHelper.ChooseEmployerName(employernamePage, string.Empty);
 
-            var wageTypePage = locationPage.ChooseAddress(true)
-                .EnterImportantDates(false)
-                .EnterDuration();
-
-            var previewPage = ChooseWage(wageTypePage, wageType).PreviewVacancy();
+            var previewPage = _stepsHelper.PreviewVacancy(locationPage, wageType);
 
             _stepsHelper.SubmitVacancy(previewPage, true, false);
         }
 
-        internal void VerifyWageType(string wageType)
-        {
-            SearchAnyVacancy().NavigateToViewVacancyPage().VerifyWageType(wageType);
-        }
+        internal void VerifyWageType(string wageType) => _stepsHelper.VerifyWageType(SearchVacancyByVacancyReference(), wageType);
 
         internal VacancyPreviewPart2Page PreviewVacancy(string employername, bool isEmployerAddress, bool disabilityConfidence)
         {
@@ -105,21 +98,23 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
             return _stepsHelper.PreviewVacancy(employernamePage, employername, isEmployerAddress, disabilityConfidence);
         }
 
-        private ManageVacancyPage SearchVacancy()
+        private ManageVacancyPage SearchVacancyByVacancyReferenceInNewTab()
         {
             _homePageStepsHelper.GotoEmployerHomePage();
 
-            return SearchAnyVacancy();
+            return SearchVacancyByVacancyReference();
         }
 
-        private ManageVacancyPage SearchAnyVacancy() => new RecruitmentHomePage(_context, true).SearchVacancyByVacancyReference();
+        private ManageVacancyPage SearchVacancyByVacancyReference() => NavigateToRecruitmentHomePage().SearchVacancyByVacancyReference();
 
         private RecruitmentHomePage GoToRecruitmentHomePage()
         {
             _loginhelper.Login(_context.GetUser<RAAV2EmployerUser>(), true);
 
-            return new RecruitmentHomePage(_context, true);
+            return NavigateToRecruitmentHomePage();
         }
+
+        private RecruitmentHomePage NavigateToRecruitmentHomePage() => new RecruitmentHomePage(_context, true);
 
         private ApprenticeshipTrainingPage EnterVacancyTitle()
         {
@@ -139,20 +134,5 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
                 .SubmitNoOfPositions()
                 .SelectOrganisation();
         }
-
-        private PreviewYourVacancyPage ChooseWage(WageTypePage wageTypePage, string wageType)
-        {
-            switch (wageType)
-            {
-                case "National Minimum Wage":
-                    return wageTypePage.SelectNationalMinimumWage();
-                case "Fixed Wage Type":
-                    return wageTypePage.SelectFixedWageType();
-                default:
-                    return wageTypePage.SelectNationalMinimumWageForApprentices();
-            };
-        }
-
-        private ManageApplicantPage NavigateToManageApplicant() => SearchVacancy().NavigateToManageApplicant();
     }
 }

@@ -7,10 +7,10 @@ namespace SFA.DAS.RAA_V2.Service.Project.Helpers
     {
         private readonly ScenarioContext _context;
 
-        public StepsHelper(ScenarioContext context)
-        {
-            _context = context;
-        }
+        public StepsHelper(ScenarioContext context) => _context = context;
+
+        public void VerifyWageType(ManageVacancyPage manageVacancyPage, string wageType)
+            => manageVacancyPage.NavigateToViewVacancyPage().VerifyWageType(wageType);
 
         public void ApplicantSucessful(ManageVacancyPage manageVacancyPage) 
             => manageVacancyPage.NavigateToManageApplicant().MakeApplicantSucessful().NotifyApplicant();
@@ -27,6 +27,28 @@ namespace SFA.DAS.RAA_V2.Service.Project.Helpers
                 .EnterDuration()
                 .SelectNationalMinimumWage()
                 .PreviewVacancy();
+        }
+
+        public VacancyPreviewPart2Page PreviewVacancy(ChooseApprenticeshipLocationPage locationPage, string wageType)
+        {
+            var wageTypePage = locationPage.ChooseAddress(true)
+                .EnterImportantDates(false)
+                .EnterDuration();
+
+            return ChooseWage(wageTypePage, wageType).PreviewVacancy();
+        }
+
+        private PreviewYourVacancyPage ChooseWage(WageTypePage wageTypePage, string wageType)
+        {
+            switch (wageType)
+            {
+                case "National Minimum Wage":
+                    return wageTypePage.SelectNationalMinimumWage();
+                case "Fixed Wage Type":
+                    return wageTypePage.SelectFixedWageType();
+                default:
+                    return wageTypePage.SelectNationalMinimumWageForApprentices();
+            };
         }
 
         public ChooseApprenticeshipLocationPage ChooseEmployerName(EmployerNamePage employernamePage, string employername)

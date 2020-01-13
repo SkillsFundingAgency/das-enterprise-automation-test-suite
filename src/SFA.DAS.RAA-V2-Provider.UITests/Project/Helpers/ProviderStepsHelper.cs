@@ -19,9 +19,22 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Helpers
             _stepsHelper = new StepsHelper(_context);
         }
 
-        internal void ApplicantSucessful() => _stepsHelper.ApplicantSucessful(SearchVacancy());
+        internal void ApplicantSucessful() => _stepsHelper.ApplicantSucessful(SearchVacancyByVacancyReference());
 
-        internal void ApplicantUnsucessful() => _stepsHelper.ApplicantUnsucessful(SearchVacancy());
+        internal void ApplicantUnsucessful() => _stepsHelper.ApplicantUnsucessful(SearchVacancyByVacancyReference());
+
+        internal void VerifyWageType(string wageType) => _stepsHelper.VerifyWageType(SearchVacancyByVacancyReference(), wageType);
+
+        internal void CreateANewVacancy(string wageType)
+        {
+            var employernamePage = SelectOrganisation();
+
+            var locationPage = _stepsHelper.ChooseEmployerName(employernamePage, string.Empty);
+
+            var previewPage = _stepsHelper.PreviewVacancy(locationPage, wageType);
+
+            _stepsHelper.SubmitVacancy(previewPage, true, false);
+        }
 
         internal void CreateANewVacancy(string employername, bool isEmployerAddress, bool disabilityConfidence, bool isApplicationMethodFAA, bool optionalFields = false)
         {
@@ -43,7 +56,7 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Helpers
                 .SubmitNoOfPositionsAndNavigateToEmployerNamePage();
         }
 
-        private ManageVacancyPage SearchVacancy() => GoToRecruitmentHomePage(true).SearchVacancyByVacancyReference();
+        private ManageVacancyPage SearchVacancyByVacancyReference() => GoToRecruitmentHomePage(true).SearchVacancyByVacancyReference();
 
         private RecruitmentHomePage GoToRecruitmentHomePage(bool newTab)
         {
