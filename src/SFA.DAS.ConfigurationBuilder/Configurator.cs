@@ -11,6 +11,12 @@ namespace SFA.DAS.ConfigurationBuilder
 
         public readonly static bool IsVstsExecution;
 
+        public readonly static string ChromeWebDriver;
+
+        public readonly static string GeckoWebDriver;
+
+        public readonly static string IEWebDriver;
+
         public readonly static string EnvironmentName;
 
         public readonly static string ProjectName;
@@ -19,6 +25,9 @@ namespace SFA.DAS.ConfigurationBuilder
         {
             _hostingConfig = InitializeHostingConfig();
             IsVstsExecution = TestsExecutionInVsts();
+            ChromeWebDriver = GetHostingConfigSection("ChromeWebDriver");
+            GeckoWebDriver = GetHostingConfigSection("GeckoWebDriver");
+            IEWebDriver = GetHostingConfigSection("IEWebDriver");
             EnvironmentName = GetEnvironmentName();
             ProjectName = GetProjectName();
             _config = InitializeConfig();

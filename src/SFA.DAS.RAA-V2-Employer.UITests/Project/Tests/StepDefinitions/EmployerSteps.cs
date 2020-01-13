@@ -1,6 +1,6 @@
 ﻿using NUnit.Framework;
+using SFA.DAS.RAA_V2.Service.Project.Tests.Pages;
 using SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers;
-using SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer;
 using System.Collections.Generic;
 using System.Linq;
 using TechTalk.SpecFlow;
@@ -15,7 +15,10 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
         private VacancyPreviewPart2Page _vacancyPreviewPart2Page;
         private VacancyPreviewPart2WithErrorsPage _vacancyPreviewPart2WithErrorsPage;
 
-        public EmployerSteps(ScenarioContext context) => _employerStepsHelper = new EmployerStepsHelper(context);
+        public EmployerSteps(ScenarioContext context) 
+        { 
+            _employerStepsHelper = new EmployerStepsHelper(context); 
+        }
 
         [When(@"Employer selects '(National Minimum Wage|National Minimum Wage For Apprentices|Fixed Wage Type)' in the first part of the journey")]
         public void WhenEmployerSelectsInTheFirstPartOfTheJourney(string wageType) => _employerStepsHelper.CreateANewVacancy(wageType);
@@ -60,7 +63,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
         public void ThenEmployerCanMakeTheApplicationSuccessful() => _employerStepsHelper.ApplicantSucessful();
 
         [Then(@"Employer can make the application unsuccessful")]
-        public void ThenEmployerCanMakeTheApplicationUnsuccessful() => _employerStepsHelper.ApplicantUnSucessful();
+        public void ThenEmployerCanMakeTheApplicationUnsuccessful() => _employerStepsHelper.ApplicantUnsucessful();
 
         [Then(@"the Employer can close the vacancy")]
         public void ThenTheEmployerCanCloseTheVacancy() => _employerStepsHelper.CloseVacancy();

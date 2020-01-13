@@ -25,7 +25,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 
         internal ApprovalsProviderHomePage GoToProviderHomePage(ProviderLoginUser login)
         {
-            _providerHomePageStepsHelper.GoToProviderHomePage(login);
+            _providerHomePageStepsHelper.GoToProviderHomePage(login, true);
 
             return new ApprovalsProviderHomePage(_context);
         }
@@ -37,7 +37,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 
         public ApprovalsProviderHomePage GoToProviderHomePage()
         {
-            _providerHomePageStepsHelper.GoToProviderHomePage();
+            _providerHomePageStepsHelper.GoToProviderHomePage(true);
 
             return new ApprovalsProviderHomePage(_context);
         }
