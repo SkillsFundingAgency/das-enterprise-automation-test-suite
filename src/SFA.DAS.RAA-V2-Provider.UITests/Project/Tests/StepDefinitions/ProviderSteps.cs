@@ -34,5 +34,8 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Tests.StepDefinitions
         [Then(@"the Provider verify '(National Minimum Wage For Apprentices|National Minimum Wage|Fixed Wage Type)' the wage option selected in the Preview page")]
         public void ThenTheProviderVerifyTheWageOptionSelectedInThePreviewPage(string wageType) => _providerStepsHelper.VerifyWageType(wageType);
 
+        [Then(@"Provider can view the refered vacancy")]
+        public void ThenProviderCanViewTheReferedVacancy() => _providerStepsHelper.ViewReferVacancy();
+
     }
 }

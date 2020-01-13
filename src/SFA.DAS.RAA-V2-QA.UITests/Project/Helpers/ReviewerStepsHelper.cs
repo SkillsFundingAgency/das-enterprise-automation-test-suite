@@ -43,7 +43,10 @@ namespace SFA.DAS.RAA_V2_QA.UITests.Project.Helpers
             return new SignInPage(_context)
                 .SubmitReviewerLoginDetails();
         }
+
         public void VerifyEmployerNameAndApprove(bool restart) => ReviewVacancy(restart).VerifyEmployerName().Approve();
+
+        public void Refer(bool restart) => ReviewVacancy(restart).Refer();
 
         public void VerifyDisabilityConfidenceAndApprove(bool restart) => ReviewVacancy(restart).VerifyDisabilityConfident().Approve();
 
