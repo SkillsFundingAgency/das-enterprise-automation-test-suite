@@ -18,6 +18,9 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Tests.StepDefinitions
             _providerStepsHelper = new ProviderStepsHelper(_context);
         }
 
+        [When(@"the Provider creates an Offline vacancy")]
+        public void WhenTheProviderCreatesAnOfflineVacancy() => _providerStepsHelper.CreateANewVacancy(string.Empty, true, false, false);
+
         [Given(@"the Provider creates a vacancy by using a registered name")]
         public void GivenTheProviderCreatesAVacancyByUsingARegisteredName() => _providerStepsHelper.CreateANewVacancy(string.Empty, true, false, true);
 
