@@ -5,7 +5,7 @@ using SFA.DAS.UI.FrameworkHelpers;
 
 namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
 {
-    class AS_WhichLearningOptionPage : BasePage
+    public class AS_WhichLearningOptionPage : BasePage
     {
         protected override string PageTitle => "Which learning option did the apprentice take?";
 
@@ -30,6 +30,12 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
             _formCompletionHelper.SelectRadioOptionByForAttribute(RadioButton, "options_Overheadlines");
             Continue();
             return new AS_WhatGradePage(_context);
+        }
+
+        public AS_CheckAndSubmitAssessmentPage ClickBackLink()
+        {
+            NavigateBack();
+            return new AS_CheckAndSubmitAssessmentPage(_context);
         }
     }
 }

@@ -70,15 +70,15 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Features.AssessmentService.CertifyA
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("EPAO_AS_CA_02 - Certify an Apprentice who has enrolled for a Standard with Additi" +
-            "onal Learning option")]
+        [NUnit.Framework.DescriptionAttribute("EPAO_AS_CA_02A - Certify an Apprentice who has enrolled for a Standard with Addit" +
+            "ional Learning option")]
         [NUnit.Framework.CategoryAttribute("epao")]
         [NUnit.Framework.CategoryAttribute("assessmentservice")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public virtual void EPAO_AS_CA_02_CertifyAnApprenticeWhoHasEnrolledForAStandardWithAdditionalLearningOption()
+        public virtual void EPAO_AS_CA_02A_CertifyAnApprenticeWhoHasEnrolledForAStandardWithAdditionalLearningOption()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EPAO_AS_CA_02 - Certify an Apprentice who has enrolled for a Standard with Additi" +
-                    "onal Learning option", null, new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EPAO_AS_CA_02A - Certify an Apprentice who has enrolled for a Standard with Addit" +
+                    "ional Learning option", null, new string[] {
                         "epao",
                         "assessmentservice",
                         "regression"});
@@ -93,6 +93,28 @@ this.ScenarioInitialize(scenarioInfo);
 #line 9
  testRunner.Then("the Assessment is recorded and the User is able to navigate back to certifying an" +
                     "other Apprentice", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("EPAO_AS_CA_02B - Verify Change links on the Confirm Assessment Page")]
+        [NUnit.Framework.CategoryAttribute("epao")]
+        [NUnit.Framework.CategoryAttribute("assessmentservice")]
+        [NUnit.Framework.CategoryAttribute("regression")]
+        public virtual void EPAO_AS_CA_02B_VerifyChangeLinksOnTheConfirmAssessmentPage()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EPAO_AS_CA_02B - Verify Change links on the Confirm Assessment Page", null, new string[] {
+                        "epao",
+                        "assessmentservice",
+                        "regression"});
+#line 14
+this.ScenarioInitialize(scenarioInfo);
+            this.ScenarioStart();
+#line 15
+ testRunner.When("the User is on the Confirm Assessment Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 16
+ testRunner.Then("the Change links navigate to the respective pages", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

@@ -30,8 +30,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
                 new AS_SearchEmployerAddressPage(_context).SearchAndSelectEmployerAddress()
                .ClickContinueInSearchEmployerAddressPage()
                .ClickContinueInConfirmEmployerAddressPage()
-               .EnterRecipientDetailsAndContinue()
-               .ClickContinueInCheckAndSubmitAssessmentPage();
+               .EnterRecipientDetailsAndContinue();
             else if (grade == "Failed")
                 new AS_CheckAndSubmitAssessmentPage(_context).ClickContinueInCheckAndSubmitAssessmentPage();
         }

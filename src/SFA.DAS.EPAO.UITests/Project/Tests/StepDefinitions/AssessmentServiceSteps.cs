@@ -16,6 +16,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         private EPAODataHelper _epaoDataHelper;
         private AS_AchievementDatePage _achievementDatePage;
         private readonly TabHelper _tabHelper;
+        private AS_CheckAndSubmitAssessmentPage aS_CheckAndSubmitAssessment;
 
         public AssessmentServiceSteps(ScenarioContext context)
         {
@@ -37,6 +38,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         public void WhenTheUserGoesThroughCertifyingAnApprenticeAsWhoHasEnrolledForStandard(string grade, string enrolledStandard)
         {
             _stepsHelper.CertifyApprentice(grade, enrolledStandard);
+            new AS_CheckAndSubmitAssessmentPage(_context).ClickContinueInCheckAndSubmitAssessmentPage();
         }
 
         [When(@"the User goes through certifying a Privately funded Apprentice")]
@@ -137,6 +139,27 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         public void ThenDateErrorIsDisplayedInTheApprenticeshipAchievementDatePage(string errorText)
         {
             _achievementDatePage.VerifyDateErrorText(errorText);
+        }
+
+        [When(@"the User is on the Confirm Assessment Page")]
+        public void WhenTheUserIsOnTheConfirmAssessmentPage()
+        {
+            GivenTheUserIsLoggedIntoAssessmentServiceApplication();
+            _stepsHelper.CertifyApprentice("Passed", "additional learning option");
+        }
+
+        [Then(@"the Change links navigate to the respective pages")]
+        public void ThenTheChangeLinksNavigateToTheRespectivePages()
+        {
+            aS_CheckAndSubmitAssessment = new AS_CheckAndSubmitAssessmentPage(_context);
+
+            aS_CheckAndSubmitAssessment.ClickGradeChangeLink().ClickBackLink();
+            aS_CheckAndSubmitAssessment.ClickOptionChangeLink().ClickBackLink();
+            aS_CheckAndSubmitAssessment.ClickAchievementDateChangeLink().ClickBackLink();
+            aS_CheckAndSubmitAssessment.ClickNameChangeLink().ClickBackLink();
+            aS_CheckAndSubmitAssessment.ClickDepartmentChangeLink().ClickBackLink();
+            aS_CheckAndSubmitAssessment.ClickOrganisationChangeLink().ClickBackLink();
+            aS_CheckAndSubmitAssessment.ClickCertificateAddressChangeLink().ClickBackLink();
         }
     }
 }
