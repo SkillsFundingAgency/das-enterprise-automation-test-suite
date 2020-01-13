@@ -9,14 +9,12 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Tests.StepDefinitions
     [Binding]
     public class ProviderSteps
     {
-        private readonly ScenarioContext _context;
         private readonly ProviderStepsHelper _providerStepsHelper;
 
-        public ProviderSteps(ScenarioContext context)
-        {
-            _context = context;
-            _providerStepsHelper = new ProviderStepsHelper(_context);
-        }
+        public ProviderSteps(ScenarioContext context) => _providerStepsHelper = new ProviderStepsHelper(context);
+
+        [When(@"Provider selects '(National Minimum Wage|National Minimum Wage For Apprentices|Fixed Wage Type)' in the first part of the journey")]
+        public void WhenProviderSelectsInTheFirstPartOfTheJourney(string wageType) => _providerStepsHelper.CreateANewVacancy(wageType);
 
         [When(@"the Provider creates an Offline vacancy")]
         public void WhenTheProviderCreatesAnOfflineVacancy() => _providerStepsHelper.CreateANewVacancy(string.Empty, true, false, false);
@@ -32,5 +30,9 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Tests.StepDefinitions
         
         [Then(@"Provider can make the application unsuccessful")]
         public void ThenProviderCanMakeTheApplicationUnsuccessful() => _providerStepsHelper.ApplicantUnsucessful();
+
+        [Then(@"the Provider verify '(National Minimum Wage For Apprentices|National Minimum Wage|Fixed Wage Type)' the wage option selected in the Preview page")]
+        public void ThenTheProviderVerifyTheWageOptionSelectedInThePreviewPage(string wageType) => _providerStepsHelper.VerifyWageType(wageType);
+
     }
 }

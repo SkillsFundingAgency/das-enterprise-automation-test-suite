@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Tests.Features.OfflineVacancy
+namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Tests.Features.WageOptions
 {
     using TechTalk.SpecFlow;
     
@@ -18,20 +18,20 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Tests.Features.OfflineVacancy
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.0.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("RV2_P_OV_01")]
-    public partial class RV2_P_OV_01Feature
+    [NUnit.Framework.DescriptionAttribute("RV2_P_WO_02")]
+    public partial class RV2_P_WO_02Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "RV2_P_OV_01.feature"
+#line 1 "RV2_P_WO_02.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "RV2_P_OV_01", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "RV2_P_WO_02", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -70,13 +70,13 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Tests.Features.OfflineVacancy
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RV2_P_OV_01 - Provider creates Offline vacancy and QA approves")]
+        [NUnit.Framework.DescriptionAttribute("RV2_P_WO_02 - Provider verifies ‘National Minimum Wage For Apprentices\' option")]
         [NUnit.Framework.CategoryAttribute("raa-v2")]
         [NUnit.Framework.CategoryAttribute("raa-v2p")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public virtual void RV2_P_OV_01_ProviderCreatesOfflineVacancyAndQAApproves()
+        public virtual void RV2_P_WO_02_ProviderVerifiesNationalMinimumWageForApprenticesOption()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV2_P_OV_01 - Provider creates Offline vacancy and QA approves", null, new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV2_P_WO_02 - Provider verifies ‘National Minimum Wage For Apprentices\' option", null, new string[] {
                         "raa-v2",
                         "raa-v2p",
                         "regression"});
@@ -84,9 +84,11 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Tests.Features.OfflineVacancy
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 7
-testRunner.When("the Provider creates an Offline vacancy", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+        testRunner.When("Provider selects \'National Minimum Wage For Apprentices\' in the first part of the" +
+                    " journey", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 8
-testRunner.Then("the Reviewer Approves the vacancy", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+        testRunner.Then("the Provider verify \'National Minimum Wage For Apprentices\' the wage option selec" +
+                    "ted in the Preview page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
