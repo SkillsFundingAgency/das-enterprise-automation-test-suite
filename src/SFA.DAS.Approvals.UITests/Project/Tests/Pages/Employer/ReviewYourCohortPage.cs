@@ -40,9 +40,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             VerifyPage();
         }
 
-        public EditApprenticePage SelectEditApprentice(int apprenticeNumber = 0)
+        public EditApprenticePage NavigateToApprenticeDetailsAndSelectEditApprentice(int apprenticeNumber = 0)
         {
-            var apprenticeDetailsLinks = TotalNoOfApprenticesReadyForReview();
+            var apprenticeDetailsLinks = GetTotalNoOfApprenticesReadyForReview();
             _formCompletionHelper.ClickElement(apprenticeDetailsLinks[apprenticeNumber]);
             
             var editApprenticeLinks = TotalNoOfEditableApprentices();
