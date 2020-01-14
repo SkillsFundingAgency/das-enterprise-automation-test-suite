@@ -42,12 +42,23 @@ namespace SFA.DAS.RAA_V2.Service.Project.Helpers
 
         public ManageVacancyPage SearchVacancyByVacancyReference()
         {
+            SearchVacancy();
+            return new ManageVacancyPage(_context);
+        }
+
+        public ReferVacancyPage SearchReferVacancy()
+        {
+            SearchVacancy();
+            return new ReferVacancyPage(_context);
+        }
+
+        private void SearchVacancy()
+        {
             var vacRef = _objectContext.GetVacancyReference();
             _formCompletionHelper.EnterText(SearchInput, vacRef); ;
             _formCompletionHelper.Click(SearchButton);
             _pageInteractionHelper.WaitforURLToChange($"SearchTerm={vacRef}");
             _formCompletionHelper.Click(Manage);
-            return new ManageVacancyPage(_context);
         }
     }
 }
