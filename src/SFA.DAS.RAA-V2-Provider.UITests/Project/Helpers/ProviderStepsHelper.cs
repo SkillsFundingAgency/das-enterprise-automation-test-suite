@@ -19,6 +19,8 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Helpers
             _stepsHelper = new StepsHelper(_context);
         }
 
+        internal void ViewReferVacancy() => GoToRecruitmentHomePage(true).SearchReferVacancy();
+
         internal void ApplicantSucessful() => _stepsHelper.ApplicantSucessful(SearchVacancyByVacancyReference());
 
         internal void ApplicantUnsucessful() => _stepsHelper.ApplicantUnsucessful(SearchVacancyByVacancyReference());
