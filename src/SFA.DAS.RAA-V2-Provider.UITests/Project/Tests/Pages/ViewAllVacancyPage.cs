@@ -11,7 +11,6 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Tests.Pages
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
-        private readonly PageInteractionHelper _pageInteractionHelper;
         private readonly FormCompletionHelper _formCompletionHelper;
         #endregion
 
@@ -20,7 +19,6 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Tests.Pages
         public ViewAllVacancyPage(ScenarioContext context) : base(context)
         {
             _context = context;
-            _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
             VerifyPage();
         }
