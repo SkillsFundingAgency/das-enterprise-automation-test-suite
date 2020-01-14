@@ -21,6 +21,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
 
         protected virtual By PageHeader => By.CssSelector(".govuk-heading-xl, .heading-xlarge, .govuk-heading-l, .govuk-panel__title");
         protected virtual By ContinueButton => By.CssSelector(".govuk-button");
+        protected virtual By BackLink => By.CssSelector(".govuk-back-link, .back-link");
 
         protected abstract string PageTitle { get; }
 
@@ -47,7 +48,9 @@ namespace SFA.DAS.UI.Framework.TestSupport
         protected bool VerifyPage(By locator, string text) => VerifyPage(() => _pageInteractionHelper.VerifyPage(locator, text));
 
         protected void Continue() => _formCompletionHelper.Click(ContinueButton);
-        
+
+        protected void NavigateBack() => _formCompletionHelper.Click(BackLink);
+
         private bool VerifyPage(Func<bool> func)
         {
             if (_frameworkConfig.IsVstsExecution && !_browser.IsCloudExecution())

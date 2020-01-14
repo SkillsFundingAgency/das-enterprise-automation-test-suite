@@ -15,6 +15,6 @@ Scenario: EPAO_CA_04B - Attempt to certify a privately funded Apprentice with In
 	Given the User is logged into Assessment Service Application
 	And the User is on the Apprenticeship achievement date page
 	When the User enters the date before the Year 2017
-	Then 'An achievement date cannot be before 01 01 2017' is displayed in the Apprenticeship achievement date page
+	Then An achievement date cannot be before 01 01 2017 is displayed in the Apprenticeship achievement date page
 	When the User enters the future date
-	Then 'An achievement date cannot be in the future' is displayed in the Apprenticeship achievement date page
+	Then An achievement date cannot be in the future is displayed in the Apprenticeship achievement date page
