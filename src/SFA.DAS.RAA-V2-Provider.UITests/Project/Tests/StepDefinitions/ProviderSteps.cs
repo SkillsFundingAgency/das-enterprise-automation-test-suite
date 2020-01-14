@@ -37,5 +37,8 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Tests.StepDefinitions
         [Then(@"Provider can view the refered vacancy")]
         public void ThenProviderCanViewTheReferedVacancy() => _providerStepsHelper.ViewReferVacancy();
 
+        [Then(@"the Provider creates anonymous vacancy through View all your vacancies page")]
+        public void ThenTheProviderCreatesAnonymousVacancyThroughViewAllYourVacanciesPage() => _providerStepsHelper.CreateVacancyViaViewAllVacancy("anonymous", true, false, true);
+
     }
 }
