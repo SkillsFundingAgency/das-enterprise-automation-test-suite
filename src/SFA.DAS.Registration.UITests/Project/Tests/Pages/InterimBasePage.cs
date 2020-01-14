@@ -3,6 +3,7 @@ using SFA.DAS.ConfigurationBuilder;
 using OpenQA.Selenium;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.Login.Service.Project.Tests.Pages;
+using SFA.DAS.UI.FrameworkHelpers;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 {
@@ -74,7 +75,8 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         public ManageApprenticeshipsServiceHelpPage GoToHelpPage()
         {
-            formCompletionHelper.ClickElement(HelpLink);
+            TabHelper _tabHelper = _context.Get<TabHelper>();
+            _tabHelper.OpenInNewtab(() => formCompletionHelper.ClickElement(HelpLink));
             return new ManageApprenticeshipsServiceHelpPage(_context);
         }
 

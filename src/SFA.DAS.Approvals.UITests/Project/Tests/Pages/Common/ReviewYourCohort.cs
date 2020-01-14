@@ -24,6 +24,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
         protected List<IWebElement> TotalNoOfEditableApprentices()
         {
             return pageInteractionHelper.GetLinks("Edit");
+
+        }
+
+        protected List<IWebElement> TotalNoOfApprenticesReadyForReview()
+        {
+            return pageInteractionHelper.GetLinks("Details");
         }
 
         public int TotalNoOfApprentices()
