@@ -32,7 +32,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         [Then(@"the Approved tab is displayed and selected")]
         public void ThenTheApprovedTabIsDisplayedAndSelected()
         {
-            _homePage.IsApprovedTabDisplayed();
+            Assert.IsTrue(_homePage.IsApprovedTabDisplayed(), "Approved tab not found");
             Assert.AreEqual("Approved Standards", _homePage.GetApprovedTabHeaderText());
         }
 

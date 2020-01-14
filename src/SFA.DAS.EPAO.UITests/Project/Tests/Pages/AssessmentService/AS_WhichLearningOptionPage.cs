@@ -1,11 +1,10 @@
 ﻿using TechTalk.SpecFlow;
-using SFA.DAS.UI.Framework.TestSupport;
 using OpenQA.Selenium;
 using SFA.DAS.UI.FrameworkHelpers;
 
 namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
 {
-    class AS_WhichLearningOptionPage : BasePage
+    public class AS_WhichLearningOptionPage : AS_BasePage
     {
         protected override string PageTitle => "Which learning option did the apprentice take?";
 
