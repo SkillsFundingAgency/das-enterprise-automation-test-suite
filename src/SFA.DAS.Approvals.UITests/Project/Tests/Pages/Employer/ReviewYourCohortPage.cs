@@ -35,8 +35,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             _formCompletionHelper = context.Get<FormCompletionHelper>();
             _dataHelper = context.Get<ApprenticeDataHelper>();
             var noOfApprentice = TotalNoOfApprentices();
-			//_pageTitle = noOfApprentice == 1 ? "Approve apprentice details" : $"Approve {noOfApprentice} apprentices' details";
-            _pageTitle = noOfApprentice == 1 ? "Approve apprentice details" : $"Apprentice details ready for review";
+	    _pageTitle = noOfApprentice == 1 ? "Approve apprentice details" : $"Approve {noOfApprentice} apprentices' details";
+            //_pageTitle = noOfApprentice == 1 ? "Approve apprentice details" : $"Apprentice details ready for review";
             VerifyPage();
         }
 
