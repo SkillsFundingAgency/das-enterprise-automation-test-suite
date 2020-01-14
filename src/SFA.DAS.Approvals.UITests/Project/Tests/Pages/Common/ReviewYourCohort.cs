@@ -27,7 +27,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
 
         }
 
-        protected List<IWebElement> TotalNoOfApprenticesReadyForReview()
+        protected List<IWebElement> GetTotalNoOfApprenticesReadyForReview()
         {
             return pageInteractionHelper.GetLinks("Details");
         }
