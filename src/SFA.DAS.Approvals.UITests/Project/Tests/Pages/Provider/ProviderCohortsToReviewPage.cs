@@ -2,6 +2,7 @@
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
+using OpenQA.Selenium;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 {
@@ -28,6 +29,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         {
             _tableRowHelper.SelectRowFromTable("Details", _objectContext.GetCohortReference());
             return new ProviderReviewYourCohortPage(_context);
-        }
+        }        
     }
 }

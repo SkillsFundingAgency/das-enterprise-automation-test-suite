@@ -82,7 +82,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             int totalApprentices = _reviewYourCohortPage.TotalNoOfApprentices();
             for (int i = 0; i < totalApprentices; i++)
             {
-                _reviewYourCohortPage = _reviewYourCohortPage.SelectEditApprentice(i)
+                _reviewYourCohortPage = _reviewYourCohortPage.NavigateToApprenticeDetailsAndSelectEditApprentice(i)
                     .EditApprenticePreApprovalAndSubmit();
             }
         }
@@ -93,7 +93,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             int totalApprentices = _reviewYourCohortPage.TotalNoOfApprentices();
             for (int i = 0; i < totalApprentices; i++)
             {
-                _reviewYourCohortPage = _reviewYourCohortPage.SelectEditApprentice(0)
+                _reviewYourCohortPage = _reviewYourCohortPage.NavigateToApprenticeDetailsAndSelectEditApprentice(0)
                      .SelectDeleteApprentice()
                     .ConfirmDeleteAndSubmit();
             }
