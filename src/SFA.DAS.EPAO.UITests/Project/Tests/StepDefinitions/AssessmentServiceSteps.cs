@@ -17,7 +17,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         private readonly EPAODataHelper _epaoDataHelper;
         private AS_RecordAGradePage _recordAGradePage;
         private AS_AchievementDatePage _achievementDatePage;
-        private AS_CheckAndSubmitAssessmentPage _checkAndSubmitAssessment;
+        private AS_CheckAndSubmitAssessmentPage _checkAndSubmitAssessmentPage;
         private AS_LoggedInHomePage _loggedInHomePage;
 
         public AssessmentServiceSteps(ScenarioContext context)
@@ -153,15 +153,15 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         [Then(@"the Change links navigate to the respective pages")]
         public void ThenTheChangeLinksNavigateToTheRespectivePages()
         {
-            _checkAndSubmitAssessment = new AS_CheckAndSubmitAssessmentPage(_context);
+            _checkAndSubmitAssessmentPage = new AS_CheckAndSubmitAssessmentPage(_context);
 
-            _checkAndSubmitAssessment.ClickGradeChangeLink().ClickBackLink();
-            _checkAndSubmitAssessment.ClickOptionChangeLink().ClickBackLink();
-            _checkAndSubmitAssessment.ClickAchievementDateChangeLink().ClickBackLink();
-            _checkAndSubmitAssessment.ClickNameChangeLink().ClickBackLink();
-            _checkAndSubmitAssessment.ClickDepartmentChangeLink().ClickBackLink();
-            _checkAndSubmitAssessment.ClickOrganisationChangeLink().ClickBackLink();
-            _checkAndSubmitAssessment.ClickCertificateAddressChangeLink().ClickBackLink();
+            _checkAndSubmitAssessmentPage = _checkAndSubmitAssessmentPage.ClickGradeChangeLink().ClickBackLink();
+            _checkAndSubmitAssessmentPage = _checkAndSubmitAssessmentPage.ClickOptionChangeLink().ClickBackLink();
+            _checkAndSubmitAssessmentPage = _checkAndSubmitAssessmentPage.ClickAchievementDateChangeLink().ClickBackLink();
+            _checkAndSubmitAssessmentPage = _checkAndSubmitAssessmentPage.ClickNameChangeLink().ClickBackLink();
+            _checkAndSubmitAssessmentPage = _checkAndSubmitAssessmentPage.ClickDepartmentChangeLink().ClickBackLink();
+            _checkAndSubmitAssessmentPage = _checkAndSubmitAssessmentPage.ClickOrganisationChangeLink().ClickBackLink();
+            _checkAndSubmitAssessmentPage = _checkAndSubmitAssessmentPage.ClickCertificateAddressChangeLink().ClickBackLink();
         }
 
         [When(@"the User navigates to the Completed assessments tab")]

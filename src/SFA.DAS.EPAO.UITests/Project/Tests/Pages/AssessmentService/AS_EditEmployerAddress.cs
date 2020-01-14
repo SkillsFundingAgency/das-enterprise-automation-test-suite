@@ -1,9 +1,8 @@
 ﻿using TechTalk.SpecFlow;
-using SFA.DAS.UI.Framework.TestSupport;
 
 namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
 {
-    public class AS_EditEmployerAddress : BasePage
+    public class AS_EditEmployerAddress : AS_BasePage
     {
         protected override string PageTitle => "Edit the employer's address";
         private readonly ScenarioContext _context;
@@ -12,12 +11,6 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
         {
             _context = context;
             VerifyPage();
-        }
-
-        public AS_CheckAndSubmitAssessmentPage ClickBackLink()
-        {
-            NavigateBack();
-            return new AS_CheckAndSubmitAssessmentPage(_context);
         }
     }
 }

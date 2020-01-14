@@ -1,13 +1,11 @@
 ﻿using OpenQA.Selenium;
 using TechTalk.SpecFlow;
-using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.EPAO.UITests.Project.Helpers;
-using System;
 using SFA.DAS.UI.FrameworkHelpers;
 
 namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
 {
-    public abstract class AS_GradeDateBasePage : BasePage
+    public abstract class AS_GradeDateBasePage : AS_BasePage
     {
         protected override By PageHeader => By.CssSelector(".govuk-fieldset__heading");
 
