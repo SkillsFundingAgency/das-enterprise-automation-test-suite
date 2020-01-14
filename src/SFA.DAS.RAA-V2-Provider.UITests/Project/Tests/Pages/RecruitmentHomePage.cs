@@ -21,11 +21,19 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Tests.Pages
 
         private By CreateVacancyLink => By.CssSelector("a[data-automation='create-vacancy']");
 
+        private By ViewAllVacancy => By.CssSelector($"a[href='/{ukprn}/vacancies/?filter=All']");
+
         public RecruitmentHomePage(ScenarioContext context, bool navigate = false) : base(context, navigate)
         {
             _context = context;
             _formCompletionHelper = context.Get<FormCompletionHelper>();
             _searchVacancyPageHelper = new SearchVacancyPageHelper(context);
+        }
+
+        public ViewAllVacancyPage GoToViewAllVacancyPage()
+        {
+            _formCompletionHelper.Click(ViewAllVacancy);
+            return new ViewAllVacancyPage(_context);
         }
 
         public SelectEmployersPage CreateVacancy()

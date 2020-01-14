@@ -6,7 +6,7 @@ namespace SFA.DAS.ProviderLogin.Service.Pages
 {
     public class ProviderHomePage : InterimProviderBasePage
     {
-        protected override string PageTitle => objectContext.GetUkprn();
+        protected override string PageTitle => ukprn;
 
         protected override By PageHeader => By.CssSelector("#content .grey-text");
 
