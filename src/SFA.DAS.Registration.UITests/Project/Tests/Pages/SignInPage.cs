@@ -27,8 +27,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         private By ForgottenYourPasswordLink => By.LinkText("Forgotten your password?");
 
-        private By BackLink => By.CssSelector(".link-back");
-
         public SignInPage(ScenarioContext context) : base(context)
         {
             _context = context;

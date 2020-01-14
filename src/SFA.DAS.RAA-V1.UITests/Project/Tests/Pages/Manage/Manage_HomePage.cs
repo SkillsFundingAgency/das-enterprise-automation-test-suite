@@ -1,5 +1,5 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.FAA.UITests.Project;
+using SFA.DAS.RAA.DataGenerator.Project;
 using SFA.DAS.ConfigurationBuilder;
 using System;
 using TechTalk.SpecFlow;

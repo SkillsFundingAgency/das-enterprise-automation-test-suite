@@ -19,7 +19,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
             return _webDriver.WindowHandles;
         }
 
-        public void OpenInNewtab(Action action)
+        public void OpenInNewTab(Action action)
         {
             var existingTabs = ExistingTabs();
 
@@ -32,9 +32,9 @@ namespace SFA.DAS.UI.FrameworkHelpers
             _webDriver = _webDriver.SwitchTo().Window(newtab);
         }
 
-        public void OpenInNewtab(string url)
+        public void OpenInNewTab(string url)
         {
-            OpenInNewtab(() => ((IJavaScriptExecutor)_webDriver).ExecuteScript($"window.open('{url}','_blank');"));
+            OpenInNewTab(() => ((IJavaScriptExecutor)_webDriver).ExecuteScript($"window.open('{url}','_blank');"));
         }
 
         public void GoToUrl(string url)

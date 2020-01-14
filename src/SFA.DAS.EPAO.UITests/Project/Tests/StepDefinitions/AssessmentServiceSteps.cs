@@ -1,4 +1,5 @@
-﻿using SFA.DAS.EPAO.UITests.Project.Helpers;
+﻿using NUnit.Framework;
+using SFA.DAS.EPAO.UITests.Project.Helpers;
 using SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
@@ -12,10 +13,12 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         private readonly ScenarioContext _context;
         private readonly AssessmentServiceStepsHelper _stepsHelper;
         private readonly EPAOConfig _ePAOConfig;
-        private AS_RecordAGradePage _recordAGradePage;
-        private EPAODataHelper _epaoDataHelper;
-        private AS_AchievementDatePage _achievementDatePage;
         private readonly TabHelper _tabHelper;
+        private readonly EPAODataHelper _epaoDataHelper;
+        private AS_RecordAGradePage _recordAGradePage;
+        private AS_AchievementDatePage _achievementDatePage;
+        private AS_CheckAndSubmitAssessmentPage _checkAndSubmitAssessmentPage;
+        private AS_LoggedInHomePage _loggedInHomePage;
 
         public AssessmentServiceSteps(ScenarioContext context)
         {
@@ -30,13 +33,14 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         public void GivenTheUserIsLoggedIntoAssessmentServiceApplication()
         {
             _tabHelper.GoToUrl(_ePAOConfig.EPAOAssessmentServiceUrl);
-            _stepsHelper.LoginToAssessmentServiceApplication();
+            _loggedInHomePage = _stepsHelper.LoginToAssessmentServiceApplication();
         }
 
         [When(@"the User goes through certifying an Apprentice as '(.*)' who has enrolled for '(.*)' standard")]
         public void WhenTheUserGoesThroughCertifyingAnApprenticeAsWhoHasEnrolledForStandard(string grade, string enrolledStandard)
         {
             _stepsHelper.CertifyApprentice(grade, enrolledStandard);
+            new AS_CheckAndSubmitAssessmentPage(_context).ClickContinueInCheckAndSubmitAssessmentPage();
         }
 
         [When(@"the User goes through certifying a Privately funded Apprentice")]
@@ -60,9 +64,9 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         }
 
         [Then(@"'(.*)' message is displayed")]
-        public void ThenMessageIsDisplayed(string errorMessage)
+        public void ThenErrorMessageIsDisplayed(string errorMessage)
         {
-            _recordAGradePage.VerifyErrorMessage(errorMessage);
+            Assert.AreEqual(_recordAGradePage.GetPageTitle(), errorMessage);
         }
 
         [Then(@"the '(.*)' is displayed")]
@@ -71,17 +75,17 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
             switch (errorMessage)
             {
                 case "Family name and ULN missing error":
-                    _recordAGradePage.VerifyFamilyNameMissingErrorText();
-                    _recordAGradePage.VerifyULNMissingErrorText();
+                    Assert.IsTrue(_recordAGradePage.VerifyFamilyNameMissingErrorText(), "FamilyName missing Error Text is incorrect");
+                    Assert.IsTrue(_recordAGradePage.VerifyULNMissingErrorText(), "ULN missing Error Text is incorrect");
                     break;
                 case "Family name missing error":
-                    _recordAGradePage.VerifyFamilyNameMissingErrorText();
+                    Assert.IsTrue(_recordAGradePage.VerifyFamilyNameMissingErrorText(), "FamilyName missing Error Text is incorrect");
                     break;
                 case "ULN missing error":
-                    _recordAGradePage.VerifyULNMissingErrorText();
+                    Assert.IsTrue(_recordAGradePage.VerifyULNMissingErrorText(), "ULN missing Error Text is incorrect");
                     break;
                 case "ULN validation error":
-                    _recordAGradePage.VerifyInvalidUlnErrorText();
+                    Assert.IsTrue(_recordAGradePage.VerifyInvalidUlnErrorText(), "ULN validation Error Text is incorrect");
                     break;
             }
         }
@@ -136,7 +140,40 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         [Then(@"(.*) is displayed in the Apprenticeship achievement date page")]
         public void ThenDateErrorIsDisplayedInTheApprenticeshipAchievementDatePage(string errorText)
         {
-            _achievementDatePage.VerifyDateErrorText(errorText);
+            Assert.AreEqual(_achievementDatePage.GetDateErrorText(), errorText);
+        }
+
+        [When(@"the User is on the Confirm Assessment Page")]
+        public void WhenTheUserIsOnTheConfirmAssessmentPage()
+        {
+            GivenTheUserIsLoggedIntoAssessmentServiceApplication();
+            _stepsHelper.CertifyApprentice("Passed", "additional learning option");
+        }
+
+        [Then(@"the Change links navigate to the respective pages")]
+        public void ThenTheChangeLinksNavigateToTheRespectivePages()
+        {
+            _checkAndSubmitAssessmentPage = new AS_CheckAndSubmitAssessmentPage(_context);
+
+            _checkAndSubmitAssessmentPage = _checkAndSubmitAssessmentPage.ClickGradeChangeLink().ClickBackLink();
+            _checkAndSubmitAssessmentPage = _checkAndSubmitAssessmentPage.ClickOptionChangeLink().ClickBackLink();
+            _checkAndSubmitAssessmentPage = _checkAndSubmitAssessmentPage.ClickAchievementDateChangeLink().ClickBackLink();
+            _checkAndSubmitAssessmentPage = _checkAndSubmitAssessmentPage.ClickNameChangeLink().ClickBackLink();
+            _checkAndSubmitAssessmentPage = _checkAndSubmitAssessmentPage.ClickDepartmentChangeLink().ClickBackLink();
+            _checkAndSubmitAssessmentPage = _checkAndSubmitAssessmentPage.ClickOrganisationChangeLink().ClickBackLink();
+            _checkAndSubmitAssessmentPage = _checkAndSubmitAssessmentPage.ClickCertificateAddressChangeLink().ClickBackLink();
+        }
+
+        [When(@"the User navigates to the Completed assessments tab")]
+        public void WhenTheUserNavigatesToTheCompletedAssessmentsTab()
+        {
+            _loggedInHomePage.ClickCompletedAssessmentsLink();
+        }
+
+        [Then(@"the User is able to view the history of the assessments")]
+        public void ThenTheUserIsAbleToViewTheHistoryOfTheAssessments()
+        {
+            new AS_CompletedAssessmentsPage(_context).VerifyTableHeaders();
         }
     }
 }

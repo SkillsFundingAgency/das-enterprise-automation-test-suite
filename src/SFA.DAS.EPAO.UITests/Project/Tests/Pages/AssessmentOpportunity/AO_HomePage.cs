@@ -33,7 +33,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentOpportunity
             VerifyPage();
         }
 
-        public void IsApprovedTabDisplayed() => _pageInteractionHelper.IsElementDisplayed(ApprovedTab);
+        public bool IsApprovedTabDisplayed() => _pageInteractionHelper.IsElementDisplayed(ApprovedTab);
 
         public string GetApprovedTabHeaderText() => _pageInteractionHelper.GetText(TabHeader);
 

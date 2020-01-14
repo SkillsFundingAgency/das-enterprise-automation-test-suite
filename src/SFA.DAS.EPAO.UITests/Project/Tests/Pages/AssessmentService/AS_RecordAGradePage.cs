@@ -23,7 +23,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
         private By ULNTextBox => By.Name("Uln");
         private By PrivatelyFundedCheckBox => By.CssSelector("label");
         private By FamilyNameMissingErrorText => By.LinkText("Enter the apprentice's family name");
-        private By ULNMissingErrorText => By.LinkText("Enter the apprentice's family name");
+        private By ULNMissingErrorText => By.LinkText("Enter the apprentice's ULN");
         private By InvalidUlnErrorText => By.LinkText("The apprentice's ULN should contain exactly 10 numbers");
         #endregion
 
@@ -80,6 +80,8 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
         public bool VerifyULNMissingErrorText() => _pageInteractionHelper.IsElementDisplayed(ULNMissingErrorText);
 
         public bool VerifyInvalidUlnErrorText() => _pageInteractionHelper.IsElementDisplayed(InvalidUlnErrorText);
+
+        public string GetPageTitle() => _pageInteractionHelper.GetText(PageHeader);
 
         private void SelectPrivatelyFundedCheckBox() => _formCompletionHelper.SelectRadioOptionByForAttribute(PrivatelyFundedCheckBox, "IsPrivatelyFunded");
     }

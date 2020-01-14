@@ -3,7 +3,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 {
-    public class AboutYourAgreementPage : InterimBasePage
+    public class AboutYourAgreementPage : InterimEmployerBasePage
     {
         protected override string PageTitle => "About your agreement";
 

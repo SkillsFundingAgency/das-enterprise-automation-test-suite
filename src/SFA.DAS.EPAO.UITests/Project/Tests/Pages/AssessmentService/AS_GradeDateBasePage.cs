@@ -1,13 +1,11 @@
 ﻿using OpenQA.Selenium;
 using TechTalk.SpecFlow;
-using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.EPAO.UITests.Project.Helpers;
-using System;
 using SFA.DAS.UI.FrameworkHelpers;
 
 namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
 {
-    public abstract class AS_GradeDateBasePage : BasePage
+    public abstract class AS_GradeDateBasePage : AS_BasePage
     {
         protected override By PageHeader => By.CssSelector(".govuk-fieldset__heading");
 
@@ -22,6 +20,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
         private By DayTextBox => By.Id("Day");
         private By MonthTextBox => By.Id("Month");
         private By YearTextBox => By.Id("Year");
+        private By DateError => By.Id("Day-error");
         #endregion
 
         public AS_GradeDateBasePage(ScenarioContext context) : base(context)
@@ -58,7 +57,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
             Continue();
         }
 
-        public bool VerifyDateErrorText(string errorText) => _pageInteractionHelper.IsElementDisplayed(By.LinkText(errorText));
+        public string GetDateErrorText() => _pageInteractionHelper.GetText(DateError);
 
         private void EnterDateFieldsAndContinue(bool invalidDateScenario = false)
         {
