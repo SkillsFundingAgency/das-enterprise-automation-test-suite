@@ -77,26 +77,24 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.Provider
             "vy EOI employers")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("nonlevyeoiproviderscenarios")]
-        [NUnit.Framework.CategoryAttribute("providermakesreservationfornonlevyemployers")]
         public virtual void AP_Pro_03ProviderMakesReservationAddsEditsAndDeletesApprenticeForNon_LevyEOIEmployers()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_Pro_03 Provider makes reservation adds edits and deletes apprentice for non-le" +
                     "vy EOI employers", null, new string[] {
                         "regression",
-                        "nonlevyeoiproviderscenarios",
-                        "providermakesreservationfornonlevyemployers"});
-#line 10
+                        "nonlevyeoiproviderscenarios"});
+#line 9
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 11
+#line 10
  testRunner.Given("An Employer has given create reservation permission to a provider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 12
+#line 11
  testRunner.Then("Provider can make a reservation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 13
+#line 12
  testRunner.And("Provider can add an apprentice", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 14
+#line 13
  testRunner.And("Provider can edit an apprentice", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 15
+#line 14
  testRunner.And("Provider can delete an apprentice", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
