@@ -6,13 +6,18 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
     public class AssessmentServiceStepsHelper
     {
         private readonly ScenarioContext _context;
+        private AS_LoggedInHomePage _loggedInHomePage;
 
         public AssessmentServiceStepsHelper(ScenarioContext context)
         {
             _context = context;
         }
 
-        public AS_LoggedInHomePage LoginToAssessmentServiceApplication() => new AS_LandingPage(_context).ClickStartButton().SignInWithValidDetails();
+        public AS_LoggedInHomePage LoginToAssessmentServiceApplication(string user)
+        {
+            _loggedInHomePage = new AS_LandingPage(_context).ClickStartButton().SignInWithValidDetails(user);
+            return new AS_LoggedInHomePage(_context);
+        }
 
         public void CertifyApprentice(string grade, string enrolledStandard)
         {
@@ -53,6 +58,15 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
                 .EnterRecipientDetailsAndContinue()
                 .ClickContinueInCheckAndSubmitAssessmentPage();
             }
+        }
+
+        public void RemoveChangeOrgDetailsPermissionForTheUser()
+        {
+            _loggedInHomePage.ClickManageUsersLink()
+                .ClickManageUserNameLink()
+                .ClickEditUserPermissionLink()
+                .UnSelectChangeOrganisationDetailsCheckBox()
+                .ClickSaveButton();
         }
     }
 }

@@ -28,10 +28,23 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
             VerifyPage();
         }
 
-        public AS_LoggedInHomePage SignInWithValidDetails()
+        public AS_LoggedInHomePage SignInWithValidDetails(string user)
         {
-            _formCompletionHelper.EnterText(EmailAddressTextBox, _config.EPAOAssessorLoginUsername);
-            _formCompletionHelper.EnterText(PasswordTextBox, _config.EPAOAssessorLoginPassword);
+            string userName, password;
+
+            if (user.Equals("Assessor User"))
+            {
+                userName = _config.EPAOAssessorLoginUsername;
+                password = _config.EPAOAssessorLoginPassword;
+            }
+            else
+            {
+                userName = _config.EPAOManageUserLoginUsername; 
+                password = _config.EPAOManageUserLoginPassword;
+            }
+                
+            _formCompletionHelper.EnterText(EmailAddressTextBox, userName);
+            _formCompletionHelper.EnterText(PasswordTextBox, password);
             Continue();
             return new AS_LoggedInHomePage(_context);
         }
