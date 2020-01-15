@@ -162,33 +162,20 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 
         private ReviewYourCohortPage AddApprentices(ReviewYourCohortPage employerReviewYourCohortPage, int numberOfApprentices)
         {
-            int noOfApprentice = 1;
-            string apprenticeTotalCost = string.Empty;
-
 			for (int i = 1; i < numberOfApprentices; i++)
             {
-                var x = AddAnApprentice(employerReviewYourCohortPage, i);
-                noOfApprentice = x.noOfApprentice;
-                apprenticeTotalCost = x.apprenticeTotalCost;
+                employerReviewYourCohortPage
+                    .SelectAddAnApprentice()
+                    .SubmitValidApprenticeDetails(false);
             }
+            string apprenticeTotalCost = _reviewYourCohortStepsHelper.ApprenticeTotalCost(employerReviewYourCohortPage);
+
+            int noOfApprentice = _reviewYourCohortStepsHelper.NoOfApprentice(employerReviewYourCohortPage, numberOfApprentices);
 
             _objectContext.SetNoOfApprentices(noOfApprentice);
             _objectContext.SetApprenticeTotalCost(apprenticeTotalCost);
 
             return employerReviewYourCohortPage;
-        }
-
-        private (int noOfApprentice, string apprenticeTotalCost) AddAnApprentice(ReviewYourCohortPage employerReviewYourCohortPage, int count)
-        {
-            employerReviewYourCohortPage
-                .SelectAddAnApprentice()
-                .SubmitValidApprenticeDetails(false);
-
-            string apprenticeTotalCost = _reviewYourCohortStepsHelper.ApprenticeTotalCost(employerReviewYourCohortPage);
-
-            int noOfApprentice = _reviewYourCohortStepsHelper.NoOfApprentice(employerReviewYourCohortPage, count);
-
-            return (noOfApprentice, apprenticeTotalCost);
         }
 
         private CohortSentYourTrainingProviderPage EmployerCreateCohort(bool isTransfersFunds)
