@@ -165,7 +165,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             int noOfApprentice = 1;
             string apprenticeTotalCost = string.Empty;
 
-			for (int i = 2; i <= numberOfApprentices; i++)
+			for (int i = 1; i < numberOfApprentices; i++)
             {
                 var x = AddAnApprentice(employerReviewYourCohortPage, i);
                 noOfApprentice = x.noOfApprentice;
