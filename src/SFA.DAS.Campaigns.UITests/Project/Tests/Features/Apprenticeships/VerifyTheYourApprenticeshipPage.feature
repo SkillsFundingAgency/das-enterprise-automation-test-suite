@@ -3,6 +3,7 @@
 	As a math idiot
 	I want to be told the sum of two numbers
 
+@campaigns
 @regression
 Scenario: Check all the links and content of YOUR APPRENTICESHIP screen
 	Given I navigate to Fire It Up home page

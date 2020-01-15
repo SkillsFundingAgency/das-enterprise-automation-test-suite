@@ -3,6 +3,7 @@
 	I want to be able to navigate to Fire It Up home page
 	So that I can use the benefits of Employer services and information 
 
+@campaigns
 @regression
 Scenario: I want to be able Delete From My Favourite Short List On GovUK Account
 	Given I navigate to Fire It Up home page
