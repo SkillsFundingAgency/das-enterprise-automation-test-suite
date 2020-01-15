@@ -30,10 +30,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             return new ApprovalsProviderHomePage(_context);
         }
 
-        public ApprovalsProviderHomePage NavigateToProviderHomePage()
-        {
-            return new ApprovalsProviderHomePage(_context, true);
-        }
+        public ApprovalsProviderHomePage NavigateToProviderHomePage() => new ApprovalsProviderHomePage(_context, true);
 
         public ApprovalsProviderHomePage GoToProviderHomePage()
         {
