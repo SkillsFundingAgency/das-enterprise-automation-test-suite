@@ -3,6 +3,8 @@
 	I want to be able to navigate to Fire It Up home page
 	So that I can use the benefits of apprentice services and information 
 
+@campaign
+@regression
 Scenario: Check all the links and content of ASSESSMENT AND CERTIFICATION screen
 	Given I navigate to Fire It Up home page
 	And I launch the Find An Apprentice page

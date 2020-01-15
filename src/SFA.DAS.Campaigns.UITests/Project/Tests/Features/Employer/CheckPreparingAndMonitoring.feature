@@ -4,6 +4,7 @@
 	So that I can use the benefits of Employer services and information 
 
 
+@campaign
 @regression
 Scenario: Check the Preparing And Monitoring Link
 	Given I navigate to Fire It Up home page

@@ -3,6 +3,7 @@
 	I want to be able to navigate to Fire It Up home page
 	So that I can Register My Interest
 
+@campaign
 @regression
 Scenario: User Wants To Register My Interest on The Fire It Up Site
 	Given I navigate to Fire It Up home page
