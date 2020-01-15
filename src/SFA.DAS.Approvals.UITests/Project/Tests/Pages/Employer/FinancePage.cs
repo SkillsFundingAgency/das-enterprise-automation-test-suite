@@ -4,7 +4,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
-    public class FinancePage : InterimBasePage
+    public class FinancePage : InterimEmployerBasePage
     {
         protected override string Linktext => "Finance";
 

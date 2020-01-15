@@ -5,6 +5,7 @@ using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.UI.FrameworkHelpers;
 using System;
 using TechTalk.SpecFlow;
+using SFA.DAS.RAA.DataGenerator.Project;
 
 namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 {

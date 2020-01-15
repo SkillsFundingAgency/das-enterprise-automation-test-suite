@@ -25,6 +25,6 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentOpportunity
             VerifyPage();
         }
 
-        public void ClickApplyToThisStandardButton() => _tabHelper.OpenInNewtab(() => _formCompletionHelper.Click(ApplyToAssessThisStandardButton));
+        public void ClickApplyToThisStandardButton() => _tabHelper.OpenInNewTab(() => _formCompletionHelper.Click(ApplyToAssessThisStandardButton));
     }
 }

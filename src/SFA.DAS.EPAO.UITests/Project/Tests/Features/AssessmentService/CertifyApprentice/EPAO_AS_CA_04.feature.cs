@@ -115,13 +115,13 @@ this.ScenarioInitialize(scenarioInfo);
 #line 17
  testRunner.When("the User enters the date before the Year 2017", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 18
- testRunner.Then("\'An achievement date cannot be before 01 01 2017\' is displayed in the Apprentices" +
-                    "hip achievement date page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("An achievement date cannot be before 01 01 2017 is displayed in the Apprenticeshi" +
+                    "p achievement date page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 19
  testRunner.When("the User enters the future date", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 20
- testRunner.Then("\'An achievement date cannot be in the future\' is displayed in the Apprenticeship " +
-                    "achievement date page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("An achievement date cannot be in the future is displayed in the Apprenticeship ac" +
+                    "hievement date page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

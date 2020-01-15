@@ -1,11 +1,10 @@
 ﻿using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 using SFA.DAS.UI.FrameworkHelpers;
-using SFA.DAS.UI.Framework.TestSupport;
 
 namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
 {
-    public class AS_WhatGradePage : BasePage
+    public class AS_WhatGradePage : AS_BasePage
     {
         protected override string PageTitle => "What grade did the apprentice achieve?";
         protected override By PageHeader => By.CssSelector(".govuk-fieldset__heading");

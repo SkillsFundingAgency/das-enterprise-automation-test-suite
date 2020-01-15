@@ -7,7 +7,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
 {
     public class AS_LoggedInHomePage : BasePage
     {
-        protected override string PageTitle => "";
+        protected override string PageTitle => ""; //There is NO Title on this page
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
@@ -17,6 +17,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
 
         #region Locators
         private By RecordAGradeLink => By.Id("Record a grade");
+        private By CompletedAssessmentsLink  => By.Id("Completed assessments");
         #endregion
 
         public AS_LoggedInHomePage(ScenarioContext context) : base(context)
@@ -30,6 +31,12 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
         {
             _formCompletionHelper.Click(RecordAGradeLink);
             return new AS_RecordAGradePage(_context);
+        }
+
+        public AS_CompletedAssessmentsPage ClickCompletedAssessmentsLink()
+        {
+            _formCompletionHelper.Click(CompletedAssessmentsLink);
+            return new AS_CompletedAssessmentsPage(_context);
         }
     }
 }

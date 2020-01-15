@@ -1,6 +1,8 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.RAA_V2_QA.UITests.Project.Tests.Pages.Common;
+using SFA.DAS.RAA_V2.Service.Project.Tests.Pages;
 using SFA.DAS.UI.FrameworkHelpers;
+using System.Collections.Generic;
+using System.Linq;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2_QA.UITests.Project.Tests.Pages.Reviewer
@@ -12,7 +14,11 @@ namespace SFA.DAS.RAA_V2_QA.UITests.Project.Tests.Pages.Reviewer
         private readonly FormCompletionHelper _formCompletionHelper;
         #endregion
 
-        protected By ErrorsCheckboxs => By.Name("SelectedAutomatedQaResults");
+        private By ErrorsCheckboxes => By.Name("SelectedAutomatedQaResults");
+
+        private By ReviewerComment => By.CssSelector("#ReviewerComment");
+
+        private By TitleFieldIdentifiers => By.CssSelector("#SelectedFieldIdentifiers-Title");
 
         protected By SubmitButton => By.CssSelector("#submit-button");
 
@@ -24,7 +30,7 @@ namespace SFA.DAS.RAA_V2_QA.UITests.Project.Tests.Pages.Reviewer
 
         public void Approve()
         {
-            var errors = _pageInteractionHelper.FindElements(ErrorsCheckboxs);
+            var errors = ErrorsCheckboxElements();
 
             foreach (var error in errors)
             {
@@ -34,5 +40,19 @@ namespace SFA.DAS.RAA_V2_QA.UITests.Project.Tests.Pages.Reviewer
             _formCompletionHelper.Click(SubmitButton);
         }
 
+        public void Refer()
+        {
+            var errors = ErrorsCheckboxElements();
+
+            if (errors.Count == 0)
+            {
+                _formCompletionHelper.SelectCheckBox(_pageInteractionHelper.FindElement(TitleFieldIdentifiers));
+            }
+
+            _formCompletionHelper.EnterText(ReviewerComment, "Refered");
+            _formCompletionHelper.Click(SubmitButton);
+        }
+
+        private List<IWebElement> ErrorsCheckboxElements() => _pageInteractionHelper.FindElements(ErrorsCheckboxes).ToList();
     }
 }

@@ -4,7 +4,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 {
-    public class HomePage : InterimBasePage
+    public class HomePage : InterimEmployerBasePage
     {
         protected override string PageTitle => objectContext.GetOrganisationName();
 
