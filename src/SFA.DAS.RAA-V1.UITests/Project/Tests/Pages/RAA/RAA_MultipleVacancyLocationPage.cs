@@ -33,7 +33,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         {
             formCompletionHelper.ClickElement(() => 
             {
-                formCompletionHelper.EnterText(EnterVacancyPostCode, postcode);
+                formCompletionHelper.EnterGently(EnterVacancyPostCode, postcode);
                 var postCodeResult = _pageInteractionHelper.FindElements(PostCodeResult);
                 if (postCodeResult.Count == 0)
                 {

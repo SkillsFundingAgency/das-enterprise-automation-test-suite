@@ -60,6 +60,21 @@ namespace SFA.DAS.UI.FrameworkHelpers
             element.SendKeys(text);
         }
 
+        public void EnterGently(IWebElement element, string text)
+        {
+            element.Clear();
+            foreach (var letter in text.ToCharArray())
+            {
+                element.SendKeys(letter.ToString());
+            }
+        }
+
+        public void EnterGently(By locator, string text)
+        {
+            _webDriverWaitHelper.WaitForElementToBeDisplayed(locator);
+            EnterGently(_webDriver.FindElement(locator), text);
+        }
+
         public void EnterText(By locator, string text)
         {
             _webDriverWaitHelper.WaitForElementToBeDisplayed(locator);
