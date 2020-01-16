@@ -20,7 +20,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         private AS_AchievementDatePage _achievementDatePage;
         private AS_CheckAndSubmitAssessmentPage _checkAndSubmitAssessmentPage;
         private AS_LoggedInHomePage _loggedInHomePage;
-        private AS_OrganisationDetailsPage _OrganisationDetailsPage;
+        private AS_OrganisationDetailsPage _organisationDetailsPage;
 
         public AssessmentServiceSteps(ScenarioContext context)
         {
@@ -136,7 +136,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         [When(@"the User enters the future date")]
         public void WhenTheUserEntersTheFutureDate()
         {
-            _achievementDatePage.EnterAchievementGradeDateForPrivatelyFundedApprenticeAndContinue(_epaoDataHelper.GetCurrentYear+1);
+            _achievementDatePage.EnterAchievementGradeDateForPrivatelyFundedApprenticeAndContinue(_epaoDataHelper.GetCurrentYear + 1);
         }
 
         [Then(@"(.*) is displayed in the Apprenticeship achievement date page")]
@@ -145,7 +145,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
             Assert.AreEqual(_achievementDatePage.GetDateErrorText(), errorText);
         }
 
-        [When(@"the .* is on the Confirm Assessment Page")]
+        [When(@"the (.*) is on the Confirm Assessment Page")]
         public void WhenTheUserIsOnTheConfirmAssessmentPage(string user)
         {
             GivenTheUserIsLoggedIntoAssessmentServiceApplication(user);
@@ -189,22 +189,14 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         [Then(@"the User is able to change the Registered details")]
         public void ThenTheUserIsAbleToChangeTheRegisteredDetails()
         {
-            _OrganisationDetailsPage = new AS_OrganisationDetailsPage(_context);
+            _organisationDetailsPage = new AS_OrganisationDetailsPage(_context);
 
-            _OrganisationDetailsPage = _OrganisationDetailsPage.ClickPhoneNumberChangeLink()
-                .EnterRandomPhoneNumberAndClickUpdate()
-                .ClickConfirmButtonInConfirmPhoneNumberPage()
-                .ClickViewOrganisationDetailsLink();
-
-            _OrganisationDetailsPage = _OrganisationDetailsPage.ClickEmailChangeLink()
-                .EnterRandomEmailAndClickChange()
-                .ClickConfirmButtonInConfirmEmailAddressPage()
-                .ClickViewOrganisationDetailsLink();
-
-            _OrganisationDetailsPage = _OrganisationDetailsPage.ClickWebsiteChangeLink()
-                .EnterRandomWebsiteAddressAndClickUpdate()
-                .ClickConfirmButtonInConfirmWebsiteAddressPage()
-                .ClickViewOrganisationDetailsLink();
+            _organisationDetailsPage = _stepsHelper.ChangeContactName(_organisationDetailsPage, "Secondary");
+            _organisationDetailsPage = _stepsHelper.ChangeContactName(_organisationDetailsPage, "Primary");
+            _organisationDetailsPage = _stepsHelper.ChangePhoneNumber(_organisationDetailsPage);
+            _organisationDetailsPage = _stepsHelper.ChangeAddress(_organisationDetailsPage);
+            _organisationDetailsPage = _stepsHelper.ChangeEmailAddress(_organisationDetailsPage);
+            _organisationDetailsPage = _stepsHelper.ChangeWebsiteAddress(_organisationDetailsPage);
         }
     }
 }

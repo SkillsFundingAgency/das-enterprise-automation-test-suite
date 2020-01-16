@@ -17,6 +17,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
             Get10DigitRandomNumber = _randomDataGenerator.GenerateRandomNumber(10);
             GetRandomEmail = GetDataTimeValue() + "@mailinator.com";
             GetRandomWebsiteAddress = "http://www.TEST_" + GetDataTimeValue() + ".com";
+            GetRandomAddressLine1 = _randomDataGenerator.GenerateRandomNumber(3);
         }
 
         public int GetCurrentDay { get; }
@@ -32,6 +33,8 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
         public string GetRandomEmail { get; }
 
         public string GetRandomWebsiteAddress { get; }
+
+        public string GetRandomAddressLine1 { get; }
 
         private string GetDataTimeValue()
         {
