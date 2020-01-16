@@ -20,9 +20,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private readonly string _pageTitle;
         #endregion
 
-        private By SaveAndContinueButton => By.ClassName("finishEditingBtn");
-        private By ContinueToApprovalButton => By.ClassName("finishEditingBtn");
-        private By RadioOptions => By.CssSelector(".govuk-radios__label");
         private By ApproveMessage => By.CssSelector("#approve-details");
 		private By ReviewMessage => By.CssSelector("#send-details");
 		private By SaveSubmit => By.CssSelector(".govuk-button");
@@ -66,7 +63,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
 		public ApprenticeDetailsApprovedAndSentToTrainingProviderPage EmployerFirstApproveAndNotifyTrainingProvider()
 		{
-			_formCompletionHelper.SelectRadioOptionByForAttribute(RadioOptions, "radio-approve");
+			SelectRadioOptionByForAttribute("radio-approve");
 			_formCompletionHelper.EnterText(ApproveMessage, _dataHelper.MessageToProvider);
 			_formCompletionHelper.Click(SaveSubmit);
 			return new ApprenticeDetailsApprovedAndSentToTrainingProviderPage(_context);
@@ -74,7 +71,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
 		public NotificationSentToTrainingProviderPage EmployerSendsToTrainingProviderForReview()
         {
-            _formCompletionHelper.SelectRadioOptionByForAttribute(RadioOptions, "radio-send");
+            SelectRadioOptionByForAttribute("radio-send");
 			_formCompletionHelper.EnterText(ReviewMessage, _dataHelper.MessageToProvider);
             _formCompletionHelper.Click(SaveSubmit);
             return new NotificationSentToTrainingProviderPage(_context);
@@ -82,12 +79,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
 		public ApprenticeDetailsApprovedPage EmployerDoesSecondApproval()
         {
-            _formCompletionHelper.SelectRadioOptionByForAttribute(RadioOptions, "radio-approve");
+            SelectRadioOptionByForAttribute("radio-approve");
             _formCompletionHelper.Click(SaveSubmit);
             return new ApprenticeDetailsApprovedPage(_context);
         }
 
-        public ConfirmCohortDeletionPage SelectDeleteCohort()
+        public ConfirmCohortDeletionPage SelectDeleteThisGroup()
         {
             _formCompletionHelper.ClickLinkByText("Delete this group");
             return new ConfirmCohortDeletionPage(_context);

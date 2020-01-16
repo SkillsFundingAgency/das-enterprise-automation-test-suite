@@ -14,10 +14,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider
         private readonly ScenarioContext _context;
         #endregion
 
-        private By ConfirmEmployerOptions => By.CssSelector(".govuk-radios__label");
-        private By SaveAndContinueButton => By.CssSelector(".govuk-button");
-
-
         public ProviderConfirmEmployerNonLevyPage(ScenarioContext context) : base(context)
         {
             _context = context;
@@ -27,8 +23,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider
         
         internal ProviderApprenticeshipTrainingPage ConfirmNonLevyEmployer()
         {
-            _formCompletionHelper.SelectRadioOptionByForAttribute(ConfirmEmployerOptions, "confirm-yes");
-            _formCompletionHelper.ClickElement(SaveAndContinueButton);
+            SelectRadioOptionByForAttribute("confirm-yes");
+            Continue();
             return new ProviderApprenticeshipTrainingPage(_context);
         }
     }

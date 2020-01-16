@@ -91,7 +91,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         public void EmployerIsAbleToDeleteAllApprenticesBeforeApproval()
         {
             int totalApprentices = _reviewYourCohortPage.TotalNoOfApprentices();
-            for (int i = 0; i < totalApprentices; i++)
+            for (int i = 0; i < totalApprentices - 1; i++)
             {
                 _reviewYourCohortPage = _reviewYourCohortPage.SelectEditApprentice(0)
                      .SelectDeleteApprentice()
@@ -102,7 +102,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Then(@"Employer is able to delete the cohort before approval")]
         public void ThenEmployerIsAbleToDeleteTheCohortBeforeApproval()
         {
-            _reviewYourCohortPage.SelectDeleteCohort()
+            _reviewYourCohortPage.SelectDeleteThisGroup()
                 .ConfirmDeleteAndSubmit();
         }
 

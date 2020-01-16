@@ -21,9 +21,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider
         #endregion
 
         private By CourseSearch => By.CssSelector("#course-search, #SelectedCourseId");
-        private By Options => By.CssSelector(".govuk-radios__label");
-        private By SaveAndContinueButton => By.CssSelector(".govuk-button");
-
+        
         public ProviderApprenticeshipTrainingPage(ScenarioContext context) : base(context)
         {
             _context = context;
@@ -36,13 +34,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider
         {
             _formCompletionHelper.EnterText(CourseSearch, "Software Developer - Level 4");
 
-            var option = _pageInteractionHelper.FindElements(Options).LastOrDefault();
+            var option = _pageInteractionHelper.FindElements(RadioLabels).LastOrDefault();
 
             _formCompletionHelper.ClickElement(option);
 
             SetCourseDate(_pageInteractionHelper.GetText(option));
 
-            _formCompletionHelper.ClickElement(SaveAndContinueButton);
+            Continue();
 
             return new ProviderCheckYourInformationPage(_context);
         }
