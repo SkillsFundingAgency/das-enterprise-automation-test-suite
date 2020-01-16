@@ -7,15 +7,15 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
     public class ConfirmApprenticeDeletionPage : BasePage
     {
-        protected override string PageTitle => "Confirm apprentice deletion";
+        protected override string PageTitle => "Delete the apprentice";
 
         #region Helpers and Context
         private readonly FormCompletionHelper _formCompletionHelper;
         private readonly ScenarioContext _context;
         #endregion
 
-        private By ConfirmDeleteOptions => By.CssSelector(".selection-button-radio");
-        protected override By ContinueButton => By.CssSelector(".button");
+        private By ConfirmDeleteOptions => By.CssSelector(".govuk-radios__label");
+        protected override By ContinueButton => By.CssSelector(".govuk-button");
 
         public ConfirmApprenticeDeletionPage(ScenarioContext context) : base(context)
         {
@@ -26,7 +26,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         internal ReviewYourCohortPage ConfirmDeleteAndSubmit()
         {
-            _formCompletionHelper.SelectRadioOptionByForAttribute(ConfirmDeleteOptions, "DeleteConfirmed-True");
+            _formCompletionHelper.SelectRadioOptionByForAttribute(ConfirmDeleteOptions, "confirmDelete-true");
             Continue();
             return new ReviewYourCohortPage(_context);
         }
