@@ -36,9 +36,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
 
         public string GetRandomAddressLine1 { get; }
 
-        private string GetDataTimeValue()
-        {
-            return DateTime.Now.ToString("ddMMMyyyy_HHmmss").ToUpper();
-        }
+        private string GetDataTimeValue() => DateTime.Now.ToString("ddMMMyyyy_HHmmss").ToUpper();
+        
     }
 }
