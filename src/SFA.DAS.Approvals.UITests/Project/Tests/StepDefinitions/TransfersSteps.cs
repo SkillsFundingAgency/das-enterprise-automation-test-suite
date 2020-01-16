@@ -186,7 +186,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _objectContext.UpdateOrganisationName(_receiver);
 
             _employerStepsHelper.OpenRejectedCohort()
-                .SelectEditApprentice()
+                .NavigateToApprenticeDetailsAndSelectEditApprentice()
                 .EditApprenticePreApprovalAndSubmit()
                 .EmployerFirstApproveAndNotifyTrainingProvider();
         }
