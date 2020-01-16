@@ -96,6 +96,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
         private ChromeDriver ChromeDriver(List<string> arguments)
         {
             arguments.Add("no-sandbox");
+            arguments.Add("ignore-certificate-errors");
             return new ChromeDriver(_objectContext.GetChromeDriverLocation(),
                                                  AddArguments(arguments),
                                                  TimeSpan.FromMinutes(_frameworkConfig.TimeOutConfig.CommandTimeout));
