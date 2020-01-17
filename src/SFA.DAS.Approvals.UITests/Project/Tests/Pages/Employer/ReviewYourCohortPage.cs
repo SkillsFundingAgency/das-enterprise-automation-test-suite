@@ -35,14 +35,18 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             _formCompletionHelper = context.Get<FormCompletionHelper>();
             _dataHelper = context.Get<ApprenticeDataHelper>();
             var noOfApprentice = TotalNoOfApprentices();
-			_pageTitle = noOfApprentice == 1 ? "Approve apprentice details" : $"Approve {noOfApprentice} apprentices' details";
+	    _pageTitle = noOfApprentice == 1 ? "Approve apprentice details" : $"Approve {noOfApprentice} apprentices' details";
+            //_pageTitle = noOfApprentice == 1 ? "Approve apprentice details" : $"Apprentice details ready for review";
             VerifyPage();
         }
 
-        public EditApprenticePage SelectEditApprentice(int apprenticeNumber = 0)
+        public EditApprenticePage NavigateToApprenticeDetailsAndSelectEditApprentice(int apprenticeNumber = 0)
         {
-			var editApprenticeLinks = TotalNoOfEditableApprentices();
-			_formCompletionHelper.ClickElement(editApprenticeLinks[apprenticeNumber]);
+            var apprenticeDetailsLinks = GetTotalNoOfApprenticesReadyForReview();
+            _formCompletionHelper.ClickElement(apprenticeDetailsLinks[apprenticeNumber]);
+            
+            var editApprenticeLinks = TotalNoOfEditableApprentices();
+            _formCompletionHelper.ClickElement(editApprenticeLinks[apprenticeNumber]);
 			return new EditApprenticePage(_context);
         }
 

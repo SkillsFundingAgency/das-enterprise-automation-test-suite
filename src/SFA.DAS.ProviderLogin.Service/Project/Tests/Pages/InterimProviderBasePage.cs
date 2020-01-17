@@ -10,7 +10,7 @@ namespace SFA.DAS.ProviderLogin.Service.Pages
     {
         #region Helpers and Context
         private readonly FormCompletionHelper _formCompletionHelper;
-        protected readonly ObjectContext objectContext;
+        protected readonly string ukprn;
         #endregion
         
         protected By NotificationSettingsLink => By.LinkText("Notification settings");
@@ -19,8 +19,8 @@ namespace SFA.DAS.ProviderLogin.Service.Pages
 
         public InterimProviderBasePage(ScenarioContext context, bool navigate = false) : base(context, navigate)
         {
-            objectContext = context.Get<ObjectContext>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
+            ukprn = context.Get<ObjectContext>().GetUkprn();
             VerifyPage();
         }
 

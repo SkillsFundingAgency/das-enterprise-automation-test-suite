@@ -7,7 +7,6 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Tests.Pages
 {
     public class SelectEmployersPage : RAAV2CSSBasePage
     {
-
         protected override string PageTitle => "Which of your employers do you want to create a vacancy for?";
 
         #region Helpers and Context

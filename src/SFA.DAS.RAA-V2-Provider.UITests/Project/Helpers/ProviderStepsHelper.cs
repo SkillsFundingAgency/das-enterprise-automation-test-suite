@@ -42,15 +42,32 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Helpers
         {
             var employernamePage = SelectOrganisation();
 
+            PreviewVacancy(employernamePage, employername, isEmployerAddress, disabilityConfidence, isApplicationMethodFAA, optionalFields);
+        }
+
+        internal void CreateVacancyViaViewAllVacancy(string employername, bool isEmployerAddress, bool disabilityConfidence, bool isApplicationMethodFAA, bool optionalFields = false)
+        {
+            var employernamePage = SelectOrganisation(CreateVacancyViaViewAllVacancy());
+
+            PreviewVacancy(employernamePage, employername, isEmployerAddress, disabilityConfidence, isApplicationMethodFAA, optionalFields);
+        }
+
+        private void PreviewVacancy(EmployerNamePage employernamePage, string employername, bool isEmployerAddress, bool disabilityConfidence, bool isApplicationMethodFAA, bool optionalFields = false)
+        {
             var previewVacancy = _stepsHelper.PreviewVacancy(employernamePage, employername, isEmployerAddress, disabilityConfidence);
 
             _stepsHelper.SubmitVacancy(previewVacancy, isApplicationMethodFAA, optionalFields);
         }
 
-        private EmployerNamePage SelectOrganisation()
+        private SelectEmployersPage CreateVacancy() => GoToRecruitmentHomePage(false).CreateVacancy();
+
+        private SelectEmployersPage CreateVacancyViaViewAllVacancy() => GoToRecruitmentHomePage(false).GoToViewAllVacancyPage().CreateVacancy();
+
+        private EmployerNamePage SelectOrganisation() => SelectOrganisation(CreateVacancy());
+
+        private EmployerNamePage SelectOrganisation(SelectEmployersPage selectEmployers)
         {
-            return GoToRecruitmentHomePage(false)
-                .CreateVacancy()
+            return selectEmployers
                 .SelectEmployer()
                 .EnterVacancyTitle()
                 .EnterTrainingTitle()

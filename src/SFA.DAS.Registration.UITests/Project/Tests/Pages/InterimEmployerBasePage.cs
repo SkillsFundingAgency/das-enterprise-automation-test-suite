@@ -3,6 +3,7 @@ using SFA.DAS.ConfigurationBuilder;
 using OpenQA.Selenium;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.Login.Service.Project.Tests.Pages;
+using SFA.DAS.UI.FrameworkHelpers;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 {
@@ -12,6 +13,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         private readonly ScenarioContext _context;
         protected readonly RegistrationConfig config;
         protected readonly ObjectContext objectContext;
+        protected readonly TabHelper _tabHelper;
         #endregion
 
         private By SettingsLink => By.LinkText("Settings");
@@ -33,6 +35,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             _context = context;
             config = context.GetRegistrationConfig<RegistrationConfig>();
             objectContext = context.Get<ObjectContext>();
+            _tabHelper = _context.Get<TabHelper>();
             VerifyPage();
         }
 
@@ -75,7 +78,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         public ManageApprenticeshipsServiceHelpPage GoToHelpPage()
         {
-            formCompletionHelper.ClickElement(HelpLink);
+            _tabHelper.OpenInNewTab(() => formCompletionHelper.ClickElement(HelpLink));
             return new ManageApprenticeshipsServiceHelpPage(_context);
         }
 
