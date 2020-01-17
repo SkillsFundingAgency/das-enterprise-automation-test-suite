@@ -7,7 +7,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
     public class ConfirmTrainingProviderUnderPermissionsPage : BasePage
     {
-        protected override string PageTitle => "Add training provider details";
+        protected override string PageTitle => "Confirm training provider";
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
