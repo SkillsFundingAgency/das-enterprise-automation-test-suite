@@ -16,8 +16,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
 
         public AS_LoggedInHomePage LoginToAssessmentServiceApplication(string user)
         {
-            _loggedInHomePage = new AS_LandingPage(_context).ClickStartButton().SignInWithValidDetails(user);
-            return new AS_LoggedInHomePage(_context);
+            return _loggedInHomePage = new AS_LandingPage(_context).ClickStartButton().SignInWithValidDetails(user);   
         }
 
         public void CertifyApprentice(string grade, string enrolledStandard)

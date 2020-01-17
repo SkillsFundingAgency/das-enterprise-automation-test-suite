@@ -30,18 +30,8 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
 
         public AS_LoggedInHomePage SignInWithValidDetails(string user)
         {
-            string userName, password;
-
-            if (user.Equals("Assessor User"))
-            {
-                userName = _config.EPAOAssessorLoginUsername;
-                password = _config.EPAOAssessorLoginPassword;
-            }
-            else
-            {
-                userName = _config.EPAOManageUserLoginUsername; 
-                password = _config.EPAOManageUserLoginPassword;
-            }
+            string userName = user == "Assessor User" ? _config.EPAOAssessorLoginUsername : _config.EPAOManageUserLoginUsername;
+            string password = user == "Assessor User" ? _config.EPAOAssessorLoginPassword : _config.EPAOManageUserLoginPassword;
                 
             _formCompletionHelper.EnterText(EmailAddressTextBox, userName);
             _formCompletionHelper.EnterText(PasswordTextBox, password);
