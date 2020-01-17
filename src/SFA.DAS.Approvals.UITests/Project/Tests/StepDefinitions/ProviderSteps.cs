@@ -53,9 +53,18 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             var providerReviewYourCohortPage = _providerStepsHelper.EditApprentice();
 
-            providerReviewYourCohortPage.SelectSaveAndContinue()
-                .SubmitApproveAndSendToEmployerForApproval()
-                .SendInstructionsToEmployerForAnApprovedCohort();
+            if (_context.ScenarioInfo.Title.Contains("NUA"))
+            {
+                providerReviewYourCohortPage.SelectSaveAndContinue()
+                    .SubmitSendToEmployerToReview()
+                    .SendInstructionsToEmployerForCohortToReview();
+            }
+            else
+            {
+                providerReviewYourCohortPage.SelectSaveAndContinue()
+                    .SubmitApproveAndSendToEmployerForApproval()
+                    .SendInstructionsToEmployerForAnApprovedCohort();
+            }
         }
 
         [Then(@"Provider is able to view the cohort with employer")]
