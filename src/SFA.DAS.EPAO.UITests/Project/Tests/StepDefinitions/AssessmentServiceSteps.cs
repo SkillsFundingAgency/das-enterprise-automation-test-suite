@@ -1,6 +1,7 @@
 ﻿using NUnit.Framework;
 using SFA.DAS.EPAO.UITests.Project.Helpers;
 using SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService;
+using SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.OrganisationDetails;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
@@ -19,6 +20,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         private AS_AchievementDatePage _achievementDatePage;
         private AS_CheckAndSubmitAssessmentPage _checkAndSubmitAssessmentPage;
         private AS_LoggedInHomePage _loggedInHomePage;
+        private AS_OrganisationDetailsPage _organisationDetailsPage;
 
         public AssessmentServiceSteps(ScenarioContext context)
         {
@@ -29,11 +31,11 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
             _tabHelper = context.Get<TabHelper>();
         }
 
-        [Given(@"the User is logged into Assessment Service Application")]
-        public void GivenTheUserIsLoggedIntoAssessmentServiceApplication()
+        [Given(@"the (.*) is logged into Assessment Service Application")]
+        public void GivenTheUserIsLoggedIntoAssessmentServiceApplication(string user)
         {
             _tabHelper.GoToUrl(_ePAOConfig.EPAOAssessmentServiceUrl);
-            _loggedInHomePage = _stepsHelper.LoginToAssessmentServiceApplication();
+            _loggedInHomePage = _stepsHelper.LoginToAssessmentServiceApplication(user);
         }
 
         [When(@"the User goes through certifying an Apprentice as '(.*)' who has enrolled for '(.*)' standard")]
@@ -107,10 +109,10 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
                     _recordAGradePage.EnterApprentcieDetailsAndContinue("", _ePAOConfig.EPAOApprenticeUlnWithSingleStandard);
                     break;
                 case "by entering valid Family name but ULN less than 10 digits":
-                    _recordAGradePage.EnterApprentcieDetailsAndContinue(_ePAOConfig.EPAOApprenticeNameWithSingleStandard, _epaoDataHelper.Get9DigitRandomULN);
+                    _recordAGradePage.EnterApprentcieDetailsAndContinue(_ePAOConfig.EPAOApprenticeNameWithSingleStandard, _epaoDataHelper.Get9DigitRandomNumber);
                     break;
                 case "by entering valid Family name and Invalid ULN":
-                    _recordAGradePage.EnterApprentcieDetailsAndContinue(_ePAOConfig.EPAOApprenticeNameWithSingleStandard, _epaoDataHelper.Get10DigitRandomULN);
+                    _recordAGradePage.EnterApprentcieDetailsAndContinue(_ePAOConfig.EPAOApprenticeNameWithSingleStandard, _epaoDataHelper.Get10DigitRandomNumber);
                     break;
             }
         }
@@ -134,7 +136,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         [When(@"the User enters the future date")]
         public void WhenTheUserEntersTheFutureDate()
         {
-            _achievementDatePage.EnterAchievementGradeDateForPrivatelyFundedApprenticeAndContinue(_epaoDataHelper.GetCurrentYear+1);
+            _achievementDatePage.EnterAchievementGradeDateForPrivatelyFundedApprenticeAndContinue(_epaoDataHelper.GetCurrentYear + 1);
         }
 
         [Then(@"(.*) is displayed in the Apprenticeship achievement date page")]
@@ -143,10 +145,10 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
             Assert.AreEqual(_achievementDatePage.GetDateErrorText(), errorText);
         }
 
-        [When(@"the User is on the Confirm Assessment Page")]
-        public void WhenTheUserIsOnTheConfirmAssessmentPage()
+        [When(@"the (.*) is on the Confirm Assessment Page")]
+        public void WhenTheUserIsOnTheConfirmAssessmentPage(string user)
         {
-            GivenTheUserIsLoggedIntoAssessmentServiceApplication();
+            GivenTheUserIsLoggedIntoAssessmentServiceApplication(user);
             _stepsHelper.CertifyApprentice("Passed", "additional learning option");
         }
 
@@ -174,6 +176,27 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         public void ThenTheUserIsAbleToViewTheHistoryOfTheAssessments()
         {
             new AS_CompletedAssessmentsPage(_context).VerifyTableHeaders();
+        }
+
+        [When(@"the User navigates to Organisation details page")]
+        public void WhenTheUserNavigatesToOrganisationDetailsPage()
+        {
+            _stepsHelper.RemoveChangeOrgDetailsPermissionForTheUser();
+            _loggedInHomePage.ClickOrganisationDetailsTopMenuLink();
+            new AS_ChangeOrganisationDetailsPage(_context).ClickAccessButton();
+        }
+
+        [Then(@"the User is able to change the Registered details")]
+        public void ThenTheUserIsAbleToChangeTheRegisteredDetails()
+        {
+            _organisationDetailsPage = new AS_OrganisationDetailsPage(_context);
+
+            _organisationDetailsPage = _stepsHelper.ChangeContactName(_organisationDetailsPage, "Secondary");
+            _organisationDetailsPage = _stepsHelper.ChangeContactName(_organisationDetailsPage, "Primary");
+            _organisationDetailsPage = _stepsHelper.ChangePhoneNumber(_organisationDetailsPage);
+            _organisationDetailsPage = _stepsHelper.ChangeAddress(_organisationDetailsPage);
+            _organisationDetailsPage = _stepsHelper.ChangeEmailAddress(_organisationDetailsPage);
+            _organisationDetailsPage = _stepsHelper.ChangeWebsiteAddress(_organisationDetailsPage);
         }
     }
 }

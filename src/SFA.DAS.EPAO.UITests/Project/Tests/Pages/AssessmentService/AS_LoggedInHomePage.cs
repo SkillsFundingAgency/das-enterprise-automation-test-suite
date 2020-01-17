@@ -2,6 +2,7 @@
 using TechTalk.SpecFlow;
 using SFA.DAS.UI.FrameworkHelpers;
 using SFA.DAS.UI.Framework.TestSupport;
+using SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.ManageUsers;
 
 namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
 {
@@ -17,7 +18,9 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
 
         #region Locators
         private By RecordAGradeLink => By.Id("Record a grade");
-        private By CompletedAssessmentsLink  => By.Id("Completed assessments");
+        private By CompletedAssessmentsTopMenuLink => By.Id("Completed assessments");
+        private By OrganisationDetailsTopMenuLink => By.LinkText("Organisation details");
+        private By ManageUsersLink => By.LinkText("Manage users");
         #endregion
 
         public AS_LoggedInHomePage(ScenarioContext context) : base(context)
@@ -35,8 +38,19 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
 
         public AS_CompletedAssessmentsPage ClickCompletedAssessmentsLink()
         {
-            _formCompletionHelper.Click(CompletedAssessmentsLink);
+            _formCompletionHelper.Click(CompletedAssessmentsTopMenuLink);
             return new AS_CompletedAssessmentsPage(_context);
+        }
+
+        public void ClickOrganisationDetailsTopMenuLink()
+        {
+            _formCompletionHelper.Click(OrganisationDetailsTopMenuLink);
+        }
+
+        public AS_UsersPage ClickManageUsersLink()
+        {
+            _formCompletionHelper.Click(ManageUsersLink);
+            return new AS_UsersPage(_context);
         }
     }
 }

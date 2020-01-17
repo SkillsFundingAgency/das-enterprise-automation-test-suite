@@ -15,11 +15,11 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
         #endregion
 
         #region Locators
-        private By ApprenticeColumnLabel => By.XPath("(//th[@class='govuk-table__header'])[1]");
-        private By ULNColumnLabel => By.XPath("(//th[@class='govuk-table__header'])[2]");
-        private By EmployerColumnLabel => By.XPath("(//th[@class='govuk-table__header'])[3]");
-        private By TrainingProviderColumnLabel => By.XPath("(//th[@class='govuk-table__header'])[4]");
-        private By DateRequestedColumnLabel => By.XPath("(//th[@class='govuk-table__header'])[5]");
+        private By ApprenticeColumnLabel => By.XPath("//th[contains(text(),'Apprentice')]");
+        private By ULNColumnLabel => By.XPath("//th[contains(text(),'ULN')]");
+        private By EmployerColumnLabel => By.XPath("//th[contains(text(),'Employer')]");
+        private By TrainingProviderColumnLabel => By.XPath("//th[contains(text(),'Training provider')]");
+        private By DateRequestedColumnLabel => By.XPath("//th[contains(text(),'Date requested')]");
         #endregion
 
         public AS_CompletedAssessmentsPage(ScenarioContext context) : base(context)
