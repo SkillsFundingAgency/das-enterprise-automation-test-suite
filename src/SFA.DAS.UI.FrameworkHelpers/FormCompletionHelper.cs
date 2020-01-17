@@ -135,17 +135,25 @@ namespace SFA.DAS.UI.FrameworkHelpers
         public void SelectCheckBox(IWebElement element)
         {
             if(element.Displayed && !element.Selected)
-            {
                 element.Click();
-            }
         }
 
         public void UnSelectCheckbox(IWebElement element)
         {
             if (element.Selected)
-            {
                 element.Click();
-            }
+        }
+
+        public void UnSelectCheckbox(By locator)
+        {
+            IWebElement element = _webDriver.FindElement(locator);
+            UnSelectCheckbox(element);
+        }
+
+        public void SelectCheckbox(By locator)
+        {
+            IWebElement element = _webDriver.FindElement(locator);
+            SelectCheckBox(element);
         }
 
         public void SelectRadioOptionByForAttribute(By locator, string forAttribute)

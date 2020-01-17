@@ -18,10 +18,10 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
         private By GradeChangeLink => By.XPath("//a[@href='/certificate/grade?redirecttocheck=true']");
         private By OptionChangeLink => By.XPath("//a[@href='/certificate/option?redirecttocheck=true']");
         private By AchievementDateChangeLink => By.XPath("//a[@href='/certificate/date?redirecttocheck=true']");
-        private By NameChangeLink => By.XPath("(//a[@href='/certificate/recipient?redirecttocheck=true'])[1]");
-        private By DepartmentChangeLink => By.XPath("(//a[@href='/certificate/recipient?redirecttocheck=true'])[2]");
-        private By OrganisationChangeLink => By.XPath("(//a[@href='/certificate/address?redirecttocheck=true&edit=true'])[1]");
-        private By AddressChangeLink => By.XPath("(//a[@href='/certificate/address?redirecttocheck=true&edit=true'])[2]");
+        private By NameChangeLink => By.XPath("//dt[contains(text(), 'Name')]/../dd/a");
+        private By DepartmentChangeLink => By.XPath("//dt[contains(text(), 'Department')]/../dd/a");
+        private By OrganisationChangeLink => By.XPath("//dt[contains(text(), 'Organisation')]/../dd/a");
+        private By AddressChangeLink => By.XPath("//dt[contains(text(), 'Address')]/../dd/a");
         #endregion
 
         public AS_CheckAndSubmitAssessmentPage(ScenarioContext context) : base(context)
