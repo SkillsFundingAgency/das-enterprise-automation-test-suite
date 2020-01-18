@@ -9,8 +9,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider
     public class ProviderMakingChangesPage : ReservationIdBasePage
     {
         protected override string PageTitle => "You have successfully reserved funding for apprenticeship training";
-		private By GoToRadioButton => By.CssSelector(".govuk-radios__label");
-
+		
 		#region Helpers and Context
 		private readonly FormCompletionHelper _formCompletionHelper;
         private readonly ScenarioContext _context;
@@ -25,14 +24,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider
         
         internal ApprovalsProviderHomePage GoToHomePage()
         {
-            _formCompletionHelper.SelectRadioOptionByForAttribute(GoToRadioButton, "WhatsNext-home");
+            SelectRadioOptionByForAttribute("WhatsNext-home");
             Continue();
             return new ApprovalsProviderHomePage(_context);
         }
 
         internal ProviderAddApprenticeDetailsPage GoToAddApprenticeDetailsPage()
         {
-            _formCompletionHelper.SelectRadioOptionByForAttribute(GoToRadioButton, "WhatsNext-add");
+            SelectRadioOptionByForAttribute("WhatsNext-add");
             Continue();
             return new ProviderAddApprenticeDetailsPage(_context);
         }

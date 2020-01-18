@@ -9,6 +9,7 @@ using TechTalk.SpecFlow;
 using SFA.DAS.Login.Service.Helpers;
 using SFA.DAS.Login.Service;
 using SFA.DAS.ProviderLogin.Service;
+using SFA.DAS.ConfigurationBuilder;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 {
@@ -16,6 +17,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
     public class ProviderReservations
     {
         private readonly ScenarioContext _context;
+        private readonly ObjectContext _objectContext;
         private readonly ProviderStepsHelper _providerStepsHelper;
         private readonly EmployerPortalLoginHelper _loginHelper;
         private readonly ProviderConfig _config;
@@ -26,6 +28,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         public ProviderReservations(ScenarioContext context)
         {
             _context = context;
+            _objectContext = context.Get<ObjectContext>();
             _config = context.GetProviderConfig<ProviderConfig>();
             _loginHelper = new EmployerPortalLoginHelper(_context);
             _providerStepsHelper = new ProviderStepsHelper(_context);
@@ -36,6 +39,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         public void GivenAnEmployerHasGivenCreateReservationPermissionToAProvider()
         {
             var homePage = _loginHelper.Login(_context.GetUser<EoiUser>());
+
+            _objectContext.SetProviderMakesReservationForNonLevyEmployers();
 
             homePage.GoToYourOrganisationsAndAgreementsPage()
                 .SetAgreementId();

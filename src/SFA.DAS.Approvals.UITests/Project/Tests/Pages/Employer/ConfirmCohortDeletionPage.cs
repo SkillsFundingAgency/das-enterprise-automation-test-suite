@@ -7,24 +7,23 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
     public class ConfirmCohortDeletionPage : BasePage
     {
-        protected override string PageTitle => "Confirm cohort deletion";
-        
-        #region Helpers and Context
-        private readonly FormCompletionHelper _formCompletionHelper;
-        #endregion
+        protected override string PageTitle => "Confirm deletion";
 
-        private By ConfirmDeleteOptions => By.CssSelector(".selection-button-radio");
-        protected override By ContinueButton => By.CssSelector(".button");
+        #region Helpers and Context
+        private readonly ScenarioContext _context;
+        #endregion
 
         public ConfirmCohortDeletionPage(ScenarioContext context) : base(context)
         {
-            _formCompletionHelper = context.Get<FormCompletionHelper>();
+            _context = context;
+            VerifyPage();
         }
 
-        public void ConfirmDeleteAndSubmit()
+        public YourCohortRequestsPage ConfirmDeleteAndSubmit()
         {
-            _formCompletionHelper.SelectRadioOptionByForAttribute(ConfirmDeleteOptions, "Data_DeleteConfirmed-True");
+            SelectRadioOptionByForAttribute("confirm-yes");
             Continue();
+            return new YourCohortRequestsPage(_context);
         }
     }
 }
