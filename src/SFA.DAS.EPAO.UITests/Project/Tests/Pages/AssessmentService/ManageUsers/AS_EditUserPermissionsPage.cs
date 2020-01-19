@@ -13,18 +13,33 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.ManageUsers
         #region Locators
         private By SaveButton => By.LinkText("Edit user permissions");
         private By ChangeOrganisationDetailsCheckBox => By.Id("PrivilegeViewModels[0].Selected");
+        private By ChangPipelineCheckBox => By.Id("PrivilegeViewModels[1].Selected");
+        private By ChangeCompletedAssessmentsCheckBox => By.Id("PrivilegeViewModels[2].Selected");
+        private By ChangeApplyForAStandardCheckBox => By.Id("PrivilegeViewModels[3].Selected");
+        private By ChangeManageUsersCheckBox => By.Id("PrivilegeViewModels[4].Selected");
+        private By ChangeRecordGradesCheckBox => By.Id("PrivilegeViewModels[5].Selected");
         #endregion
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
         private readonly FormCompletionHelper _formCompletionHelper;
+        private readonly PageInteractionHelper _pageInteractionHelper;
         #endregion
 
         public AS_EditUserPermissionsPage(ScenarioContext context) : base(context)
         {
             _context = context;
             _formCompletionHelper = context.Get<FormCompletionHelper>();
+            _pageInteractionHelper = context.Get<PageInteractionHelper>();
             VerifyPage();
+        }
+
+        public bool IsChangeOrganisationDetailsCheckBoxSelected() => _pageInteractionHelper.GetCheckboxStatus(ChangeOrganisationDetailsCheckBox);
+
+        public AS_UserDetailsPage ClickSaveButton()
+        {
+            Continue();
+            return new AS_UserDetailsPage(_context);
         }
 
         public AS_EditUserPermissionsPage UnSelectChangeOrganisationDetailsCheckBox()
@@ -33,10 +48,15 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.ManageUsers
             return this;
         }
 
-        public AS_UserDetailsPage ClickSaveButton()
+        public AS_EditUserPermissionsPage ClickOnAllPermissionCheckBoxes()
         {
-            Continue();
-            return new AS_UserDetailsPage(_context);
+            _formCompletionHelper.ClickWithoutRetryHelper(ChangeOrganisationDetailsCheckBox);
+            _formCompletionHelper.ClickWithoutRetryHelper(ChangPipelineCheckBox);
+            _formCompletionHelper.ClickWithoutRetryHelper(ChangeCompletedAssessmentsCheckBox);
+            _formCompletionHelper.ClickWithoutRetryHelper(ChangeApplyForAStandardCheckBox);
+            _formCompletionHelper.ClickWithoutRetryHelper(ChangeManageUsersCheckBox);
+            _formCompletionHelper.ClickWithoutRetryHelper(ChangeRecordGradesCheckBox);
+            return this;
         }
     }
 }

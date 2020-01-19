@@ -54,6 +54,12 @@ namespace SFA.DAS.UI.FrameworkHelpers
             ClickElement(locator);
         }
 
+        public void ClickWithoutRetryHelper(By locator)
+        {
+            _webDriverWaitHelper.WaitForElementToBePresent(locator);
+            _webDriver.FindElement(locator).Click();
+        }
+
         public void EnterText(IWebElement element, string text)
         {
             element.Clear();
@@ -117,7 +123,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
             SelectElement(element).SelectByText(text);
         }
 
-        public void SelectCheckBox(IWebElement element)
+        public void SelectCheckbox(IWebElement element)
         {
             if(element.Displayed && !element.Selected)
                 element.Click();
@@ -138,7 +144,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
         public void SelectCheckbox(By locator)
         {
             IWebElement element = _webDriver.FindElement(locator);
-            SelectCheckBox(element);
+            SelectCheckbox(element);
         }
 
         public void SelectRadioOptionByForAttribute(By locator, string forAttribute)
