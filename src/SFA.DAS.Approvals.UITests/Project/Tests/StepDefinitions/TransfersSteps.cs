@@ -52,10 +52,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         }
 
         [Given(@"We have a Sender with sufficient levy funds")]
-        public void GivenWeHaveASenderWithSufficientLevyFunds()
-        {
-            LoginAsSender();
-        }
+        public void GivenWeHaveASenderWithSufficientLevyFunds() => LoginAsSender();
 
         [Given(@"We have a Sender with sufficient levy funds without signing an agreement")]
         public void GivenWeHaveASenderWithSufficientLevyFundsWithoutSigningAnAgreement()
@@ -162,10 +159,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         }
 
         [When(@"Provider approves the cohort")]
-        public void WhenProviderApprovesTheCohort()
-        {
-            _providerStepsHelper.Approve();
-        }
+        public void WhenProviderApprovesTheCohort() => _providerStepsHelper.Approve();
 
         [When(@"Provider approves the cohort and sends to recevier for approval")]
         public void WhenProviderApprovesTheCohortAndSendsToRecevierForApproval()
@@ -186,7 +180,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _objectContext.UpdateOrganisationName(_receiver);
 
             _employerStepsHelper.OpenRejectedCohort()
-                .NavigateToApprenticeDetailsAndSelectEditApprentice()
+                .SelectEditApprentice()
                 .EditApprenticePreApprovalAndSubmit()
                 .EmployerFirstApproveAndNotifyTrainingProvider();
         }
@@ -249,9 +243,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             Login();
         }
 
-        private void Login()
-        {
-            _homePage = _multipleAccountsLoginHelper.Login(_context.GetUser<TransfersUser>(), true);
-        }
+        private void Login() => _homePage = _multipleAccountsLoginHelper.Login(_context.GetUser<TransfersUser>(), true);
     }
 }

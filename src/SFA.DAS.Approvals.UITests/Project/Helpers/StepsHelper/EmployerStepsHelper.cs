@@ -25,25 +25,16 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             _employerReservationStepsHelper = new MFEmployerStepsHelper(_context);
         }
 
-        public void Approve()
-        {
-            EmployerReviewCohort()
-                .EmployerDoesSecondApproval();
-        }
+        public void Approve() => EmployerReviewCohort().EmployerDoesSecondApproval();
 
-        internal ReviewYourCohortPage OpenRejectedCohort()
-        {
-            return GoToEmployerApprenticesHomePage()
+        internal ReviewYourCohortPage OpenRejectedCohort() => 
+            GoToEmployerApprenticesHomePage()
               .ClickYourCohortsLink()
               .GoToCohortsReadyForReview()
               .SelectViewCurrentCohortDetails();
-        }
 
-        internal ManageYourApprenticesPage GoToManageYourApprenticesPage()
-        {
-            return GoToEmployerApprenticesHomePage()
-                    .ClickManageYourApprenticesLink();
-        }
+
+        internal ManageYourApprenticesPage GoToManageYourApprenticesPage() => GoToEmployerApprenticesHomePage().ClickManageYourApprenticesLink();
 
         internal ApprenticesHomePage GoToEmployerApprenticesHomePage()
         {
@@ -52,17 +43,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             return new ApprenticesHomePage(_context, true);
         }
 
-        internal void RejectTransfersRequest()
-        {
-            OpenTransferRequestDetailsPage()
-                .RejectTransferRequest();
-        }
+        internal void RejectTransfersRequest() => OpenTransferRequestDetailsPage().RejectTransferRequest();
 
-        internal void ApproveTransfersRequest()
-        {
-            OpenTransferRequestDetailsPage()
-                .ApproveTransferRequest();
-        }
+        internal void ApproveTransfersRequest() => OpenTransferRequestDetailsPage().ApproveTransferRequest();
 
         internal EditedApprenticeDetailsPage ApproveChangesAndSubmit(ApprenticeDetailsPage apprenticeDetailsPage)
         {
@@ -87,17 +70,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                 .SelectYesAndConfirm();
         }
 
-        internal ApprenticeDetailsPage ViewCurrentApprenticeDetails()
-        {
-            return GoToManageYourApprenticesPage()
-                    .SelectViewCurrentApprenticeDetails();
-        }
+        internal ApprenticeDetailsPage ViewCurrentApprenticeDetails() => GoToManageYourApprenticesPage().SelectViewCurrentApprenticeDetails();
 
-        internal EditApprenticePage EditApprenticeDetailsPagePostApproval()
-        {
-            return ViewCurrentApprenticeDetails()
-                .ClickEditApprenticeDetailsLink();
-        }
+        internal EditApprenticePage EditApprenticeDetailsPagePostApproval() => ViewCurrentApprenticeDetails().ClickEditApprenticeDetailsLink();
 
         internal ReviewYourCohortPage EmployerReviewCohort()
         {
@@ -132,10 +107,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             return EmployerApproveAndSendToProvider(ReviewYourCohortPage);
         }
 
-        internal void SetCohortReference(string cohortReference)
-        {
-            _objectContext.SetCohortReference(cohortReference);
-        }
+        internal void SetCohortReference(string cohortReference) => _objectContext.SetCohortReference(cohortReference);
 
         private StartAddingApprenticesPage ConfirmProviderDetailsAreCorrect(ApprenticesHomePage apprenticesHomePage)
         {
@@ -162,33 +134,15 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 
         private ReviewYourCohortPage AddApprentices(ReviewYourCohortPage employerReviewYourCohortPage, int numberOfApprentices)
         {
-            int noOfApprentice = 1;
-            string apprenticeTotalCost = string.Empty;
-
-			for (int i = 2; i <= numberOfApprentices; i++)
+			for (int i = 1; i < numberOfApprentices; i++)
             {
-                var x = AddAnApprentice(employerReviewYourCohortPage, i);
-                noOfApprentice = x.noOfApprentice;
-                apprenticeTotalCost = x.apprenticeTotalCost;
+                employerReviewYourCohortPage.SelectAddAnApprentice().SubmitValidApprenticeDetails(false);
             }
 
-            _objectContext.SetNoOfApprentices(noOfApprentice);
-            _objectContext.SetApprenticeTotalCost(apprenticeTotalCost);
+            _objectContext.SetNoOfApprentices(_reviewYourCohortStepsHelper.NoOfApprentice(employerReviewYourCohortPage, numberOfApprentices));
+            _objectContext.SetApprenticeTotalCost(_reviewYourCohortStepsHelper.ApprenticeTotalCost(employerReviewYourCohortPage));
 
             return employerReviewYourCohortPage;
-        }
-
-        private (int noOfApprentice, string apprenticeTotalCost) AddAnApprentice(ReviewYourCohortPage employerReviewYourCohortPage, int count)
-        {
-            employerReviewYourCohortPage
-                .SelectAddAnApprentice()
-                .SubmitValidApprenticeDetails(false);
-
-            string apprenticeTotalCost = _reviewYourCohortStepsHelper.ApprenticeTotalCost(employerReviewYourCohortPage);
-
-            int noOfApprentice = _reviewYourCohortStepsHelper.NoOfApprentice(employerReviewYourCohortPage, count);
-
-            return (noOfApprentice, apprenticeTotalCost);
         }
 
         private CohortSentYourTrainingProviderPage EmployerCreateCohort(bool isTransfersFunds)

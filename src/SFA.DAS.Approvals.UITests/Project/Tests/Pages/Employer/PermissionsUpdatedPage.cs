@@ -11,21 +11,18 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         protected override string PageTitle => "Permissions updated";
 
         #region Helpers and Context
-        private readonly FormCompletionHelper _formCompletionHelper;
         private readonly ScenarioContext _context;
         #endregion
 
         public PermissionsUpdatedPage(ScenarioContext context) : base(context)
         {
             _context = context;
-            _formCompletionHelper = context.Get<FormCompletionHelper>();
             VerifyPage();
         }
-        private By GoToHomePageOptions => By.CssSelector(".govuk-radios__label");
-
+        
         internal HomePage GoToHomePage()
         {
-            _formCompletionHelper.SelectRadioOptionByForAttribute(GoToHomePageOptions, "choice-3");
+            SelectRadioOptionByForAttribute("choice-3");
             Continue();
             return new HomePage(_context);
         }

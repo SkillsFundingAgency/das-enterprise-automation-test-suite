@@ -8,9 +8,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
     public class ReservationSuccessfullyDeletedPage : BasePage
     {
         protected override string PageTitle => "Reservation successfully deleted";
-        private By ReturnToManangeReservationRadioButton => By.CssSelector(".govuk-radios__label");
-        private By ConfirmButton => By.CssSelector(".govuk-button");
-
+        
         #region Helpers and Context
         private readonly PageInteractionHelper _pageInteractionHelper;
         private readonly FormCompletionHelper _formCompletionHelper;
@@ -27,13 +25,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
 
         public ReservationSuccessfullyDeletedPage ChooseReturnToManageReservationRadioButton()
         {
-            _formCompletionHelper.SelectRadioOptionByForAttribute(ReturnToManangeReservationRadioButton, "Manage");
+            SelectRadioOptionByForAttribute("Manage");
             return new ReservationSuccessfullyDeletedPage(_context);
         }
 
         public YourFundingReservationsPage ClickConfirmButton()
         {
-            _formCompletionHelper.ClickElement(ConfirmButton);
+            Continue();
             return new YourFundingReservationsPage(_context);
         }
     }
