@@ -1,5 +1,4 @@
 ﻿using TechTalk.SpecFlow;
-using OpenQA.Selenium;
 using SFA.DAS.UI.FrameworkHelpers;
 using SFA.DAS.UI.Framework.TestSupport;
 
@@ -11,54 +10,49 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.Organisatio
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
-        private readonly FormCompletionHelper _formCompletionHelper;
         private readonly PageInteractionHelper _pageInteractionHelper;
-        #endregion
-
-        #region Locators
-        private By ContactNameChangeLink => By.CssSelector("a[href='/Organisation/SelectOrChangeContactName']");
-        private By PhoneNumberChangeLink => By.CssSelector("a[href='/Organisation/ChangePhoneNumber']");
-        private By AddressChangeLink => By.CssSelector("a[href='/Organisation/ChangeAddress']");
-        private By EmailChangeLink => By.CssSelector("a[href='/Organisation/ChangeEmail']");
-        private By WebsiteChangeLink => By.CssSelector("a[href='/Organisation/ChangeWebsite']");
         #endregion
 
         public AS_OrganisationDetailsPage(ScenarioContext context) : base(context)
         {
             _context = context;
-            _formCompletionHelper = context.Get<FormCompletionHelper>();
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             VerifyPage();
         }
 
         public AS_ChangeContactNamePage ClickContactNameChangeLink()
         {
-            _formCompletionHelper.ClickElement(() => _pageInteractionHelper.GetLinkByHref("SelectOrChangeContactName"));
+            ClickLinkByHref("SelectOrChangeContactName");
             return new AS_ChangeContactNamePage(_context);
         }
 
         public AS_ChangePhoneNumberPage ClickPhoneNumberChangeLink()
         {
-            _formCompletionHelper.ClickElement(() => _pageInteractionHelper.GetLinkByHref("ChangePhoneNumber"));
+            ClickLinkByHref("ChangePhoneNumber");
             return new AS_ChangePhoneNumberPage(_context);
         }
 
         public AS_ChangeAddressPage ClickAddressChangeLink()
         {
-            _formCompletionHelper.ClickElement(() => _pageInteractionHelper.GetLinkByHref("ChangeAddress"));
+            ClickLinkByHref("ChangeAddress");
             return new AS_ChangeAddressPage(_context);
         }
 
         public AS_ChangeEmailPage ClickEmailChangeLink()
         {
-            _formCompletionHelper.ClickElement(() => _pageInteractionHelper.GetLinkByHref("ChangeEmail"));
+            ClickLinkByHref("ChangeEmail");
             return new AS_ChangeEmailPage(_context);
         }
 
         public AS_ChangeWebsitePage ClickWebsiteChangeLink()
         {
-            _formCompletionHelper.ClickElement(() => _pageInteractionHelper.GetLinkByHref("ChangeWebsite"));
+            ClickLinkByHref("ChangeWebsite");
             return new AS_ChangeWebsitePage(_context);
+        }
+
+        private void ClickLinkByHref(string href)
+        {
+            _pageInteractionHelper.GetLinkByHref(href).Click();
         }
     }
 
