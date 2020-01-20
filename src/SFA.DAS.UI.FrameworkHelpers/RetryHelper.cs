@@ -91,7 +91,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
             return webElement;
         }
 
-        internal void RetryOnElementClickInterceptedException(IWebElement element, bool moveToElement)
+        internal void RetryOnElementClickInterceptedException(IWebElement element)
         {
 
             Action beforeAction = null, afterAction = null;
@@ -121,17 +121,16 @@ namespace SFA.DAS.UI.FrameworkHelpers
                      using (var testcontext = new NUnit.Framework.Internal.TestExecutionContext.IsolatedContext())
                      {
                          beforeAction?.Invoke();
-                         ClickEvent(element, moveToElement).Invoke();
+                         ClickEvent(element).Invoke();
                          afterAction?.Invoke();
                      }
                  });
         }
 
-        private Action ClickEvent(IWebElement element, bool moveToElement) => moveToElement ? MoveToElement(element) : DoNotMoveToElement(element);
-
-        private Action MoveToElement(IWebElement element) => () => new Actions(_webDriver).MoveToElement(element).Click(element).Perform();
-
-        private Action DoNotMoveToElement(IWebElement element) => () => new Actions(_webDriver).Click(element).Perform();
+        private Action ClickEvent(IWebElement element)
+        {
+            return () => new Actions(_webDriver).MoveToElement(element).Click(element).Perform();
+        }
 
         private static TimeSpan[] TimeOut => new[]
         {
