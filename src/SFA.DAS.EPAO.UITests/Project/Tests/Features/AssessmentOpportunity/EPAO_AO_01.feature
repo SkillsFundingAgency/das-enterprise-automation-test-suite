@@ -1,10 +1,10 @@
-﻿Feature: EPAO_AO_1
+﻿Feature: EPAO_AO_01
 
 @epao
 @assessmentservice
 @assessmentopportunity
 @regression
-Scenario: EPAO_AO_1 - View an Approved Standard in Assessment Opportunity Application
+Scenario: EPAO_AO_01 - View an Approved Standard in Assessment Opportunity Application
 	When the User visits the Assessment Opportunity Application
 	Then the Approved tab is displayed and selected
 	When the User clicks on one of the standards listed under 'Approved' tab to view it

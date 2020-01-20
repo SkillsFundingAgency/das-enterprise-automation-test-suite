@@ -22,10 +22,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         public void WaitForElementToChange(By locator, string text) => _webDriverWaitHelper.TextToBePresentInElementLocated(locator, text);
 
-        public void WaitForElementToChange(By locator, string attribute, string value)
-        {
-            WaitForElementToChange(() => FindElement(locator), attribute, value);
-        }
+        public void WaitForElementToChange(By locator, string attribute, string value) => WaitForElementToChange(() => FindElement(locator), attribute, value);
 
         public void WaitForElementToChange(Func<IWebElement> element, string attribute, string value)
         {
@@ -63,10 +60,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
             return VerifyPage(func);
         }
 
-        public bool VerifyPage(By locator)
-        {
-            return VerifyPage(Func(locator));
-        }
+        public bool VerifyPage(By locator) => VerifyPage(Func(locator));
 
         public bool VerifyPage(By locator, string expected)
         {
@@ -95,10 +89,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
             return _retryHelper.RetryOnException(Func(locator), beforeAction, retryAction);
         }
 
-        public void Verify(Func<bool> func, Action beforeAction)
-        {
-            _retryHelper.RetryOnException(func, beforeAction);
-        }
+        public void Verify(Func<bool> func, Action beforeAction) => _retryHelper.RetryOnException(func, beforeAction);
 
         private bool VerifyPage(Func<bool> func)
         {
@@ -263,5 +254,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
                 throw new Exception($"Page verification failed:{locator.ToString()} is not found");
             };
         }
+
+        public bool GetElementSelectedStatus(By locator) => FindElement(locator).Selected;
     }
 }

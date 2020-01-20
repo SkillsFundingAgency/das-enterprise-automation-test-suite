@@ -21,6 +21,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
         private By CompletedAssessmentsTopMenuLink => By.Id("Completed assessments");
         private By OrganisationDetailsTopMenuLink => By.LinkText("Organisation details");
         private By ManageUsersLink => By.LinkText("Manage users");
+        private By HomeTopMenuLink => By.Id("Home");
         #endregion
 
         public AS_LoggedInHomePage(ScenarioContext context) : base(context)
@@ -51,6 +52,12 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
         {
             _formCompletionHelper.Click(ManageUsersLink);
             return new AS_UsersPage(_context);
+        }
+
+        public AS_LoggedInHomePage ClickHomeTopMenuLink()
+        {
+            _formCompletionHelper.Click(HomeTopMenuLink);
+            return this;
         }
     }
 }
