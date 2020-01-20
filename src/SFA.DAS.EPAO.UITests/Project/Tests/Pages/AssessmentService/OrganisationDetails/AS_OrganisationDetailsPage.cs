@@ -12,6 +12,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.Organisatio
         #region Helpers and Context
         private readonly ScenarioContext _context;
         private readonly FormCompletionHelper _formCompletionHelper;
+        private readonly PageInteractionHelper _pageInteractionHelper;
         #endregion
 
         #region Locators
@@ -26,36 +27,37 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.Organisatio
         {
             _context = context;
             _formCompletionHelper = context.Get<FormCompletionHelper>();
+            _pageInteractionHelper = context.Get<PageInteractionHelper>();
             VerifyPage();
         }
 
         public AS_ChangeContactNamePage ClickContactNameChangeLink()
         {
-            _formCompletionHelper.ClickLinkByText(ContactNameChangeLink, "Change");
+            _formCompletionHelper.ClickElement(() => _pageInteractionHelper.FindElement(ContactNameChangeLink));
             return new AS_ChangeContactNamePage(_context);
         }
 
         public AS_ChangePhoneNumberPage ClickPhoneNumberChangeLink()
         {
-            _formCompletionHelper.ClickLinkByText(PhoneNumberChangeLink, "Change");
+            _formCompletionHelper.ClickElement(() => _pageInteractionHelper.FindElement(PhoneNumberChangeLink));
             return new AS_ChangePhoneNumberPage(_context);
         }
 
         public AS_ChangeAddressPage ClickAddressChangeLink()
         {
-            _formCompletionHelper.ClickLinkByText(AddressChangeLink, "Change");
+            _formCompletionHelper.ClickElement(() => _pageInteractionHelper.FindElement(AddressChangeLink));
             return new AS_ChangeAddressPage(_context);
         }
 
         public AS_ChangeEmailPage ClickEmailChangeLink()
         {
-            _formCompletionHelper.ClickLinkByText(EmailChangeLink, "Change");
+            _formCompletionHelper.ClickElement(() => _pageInteractionHelper.FindElement(EmailChangeLink));
             return new AS_ChangeEmailPage(_context);
         }
 
         public AS_ChangeWebsitePage ClickWebsiteChangeLink()
         {
-            _formCompletionHelper.ClickLinkByText(WebsiteChangeLink, "Change");
+            _formCompletionHelper.ClickElement(() => _pageInteractionHelper.FindElement(WebsiteChangeLink));
             return new AS_ChangeWebsitePage(_context);
         }
     }
