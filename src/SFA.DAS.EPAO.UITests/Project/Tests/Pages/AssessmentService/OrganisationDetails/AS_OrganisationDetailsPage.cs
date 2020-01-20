@@ -33,31 +33,31 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.Organisatio
 
         public AS_ChangeContactNamePage ClickContactNameChangeLink()
         {
-            _formCompletionHelper.ClickElement(() => _pageInteractionHelper.FindElement(ContactNameChangeLink));
+            _formCompletionHelper.ClickElement(() => _pageInteractionHelper.GetLinkByHref("SelectOrChangeContactName"));
             return new AS_ChangeContactNamePage(_context);
         }
 
         public AS_ChangePhoneNumberPage ClickPhoneNumberChangeLink()
         {
-            _formCompletionHelper.ClickElement(() => _pageInteractionHelper.FindElement(PhoneNumberChangeLink));
+            _formCompletionHelper.ClickElement(() => _pageInteractionHelper.GetLinkByHref("ChangePhoneNumber"));
             return new AS_ChangePhoneNumberPage(_context);
         }
 
         public AS_ChangeAddressPage ClickAddressChangeLink()
         {
-            _formCompletionHelper.ClickElement(() => _pageInteractionHelper.FindElement(AddressChangeLink));
+            _formCompletionHelper.ClickElement(() => _pageInteractionHelper.GetLinkByHref("ChangeAddress"));
             return new AS_ChangeAddressPage(_context);
         }
 
         public AS_ChangeEmailPage ClickEmailChangeLink()
         {
-            _formCompletionHelper.ClickElement(() => _pageInteractionHelper.FindElement(EmailChangeLink));
+            _formCompletionHelper.ClickElement(() => _pageInteractionHelper.GetLinkByHref("ChangeEmail"));
             return new AS_ChangeEmailPage(_context);
         }
 
         public AS_ChangeWebsitePage ClickWebsiteChangeLink()
         {
-            _formCompletionHelper.ClickElement(() => _pageInteractionHelper.FindElement(WebsiteChangeLink));
+            _formCompletionHelper.ClickElement(() => _pageInteractionHelper.GetLinkByHref("ChangeWebsite"));
             return new AS_ChangeWebsitePage(_context);
         }
     }
