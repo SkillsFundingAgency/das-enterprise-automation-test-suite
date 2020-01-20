@@ -54,7 +54,8 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.Organisatio
 
         private void ClickLinkByHref(string href)
         {
-            _formCompletionHelper.ClickElement(_pageInteractionHelper.GetLinkByHref(href));
+            //links are Intercepted by Help menu.
+            _formCompletionHelper.ClickInterceptedElement(_pageInteractionHelper.GetLinkByHref(href));
         }
     }
 

@@ -40,7 +40,12 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         public void ClickElement(IWebElement element)
         {
-            _retryHelper.RetryOnElementClickInterceptedException(element);
+            _retryHelper.RetryOnElementClickInterceptedException(element, true);
+        }
+
+        public void ClickInterceptedElement(IWebElement element)
+        {
+            _retryHelper.RetryOnElementClickInterceptedException(element, false);
         }
 
         public void ClickElement(By locator)
