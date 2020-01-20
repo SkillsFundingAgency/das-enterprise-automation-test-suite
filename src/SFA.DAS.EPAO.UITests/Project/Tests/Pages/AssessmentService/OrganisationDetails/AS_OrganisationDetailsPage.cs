@@ -10,12 +10,14 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.Organisatio
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
+        private readonly FormCompletionHelper _formCompletionHelper;
         private readonly PageInteractionHelper _pageInteractionHelper;
         #endregion
 
         public AS_OrganisationDetailsPage(ScenarioContext context) : base(context)
         {
             _context = context;
+            _formCompletionHelper = context.Get<FormCompletionHelper>();
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             VerifyPage();
         }
@@ -52,7 +54,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.Organisatio
 
         private void ClickLinkByHref(string href)
         {
-            _pageInteractionHelper.GetLinkByHref(href).Click();
+            _formCompletionHelper.ClickElement(_pageInteractionHelper.GetLinkByHref(href));
         }
     }
 
