@@ -24,7 +24,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         private AS_OrganisationDetailsPage _organisationDetailsPage;
         private AS_EditUserPermissionsPage _editUserPermissionsPage;
         private AS_UserDetailsPage _userDetailsPage;
-        private bool _arePermissionsSelected;
+        private bool _permissionsSelected;
         private string _newUserEmailId;
 
         public AssessmentServiceSteps(ScenarioContext context)
@@ -211,17 +211,20 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
                 .ClickPermissionsEditUserLink()
                 .ClickEditUserPermissionLink();
 
-            _arePermissionsSelected = _editUserPermissionsPage.IsChangeOrganisationDetailsCheckBoxSelected();
+            _permissionsSelected = _editUserPermissionsPage.IsChangeOrganisationDetailsCheckBoxSelected();
 
-            _userDetailsPage = _editUserPermissionsPage.ClickOnAllPermissionCheckBoxes().ClickSaveButton();
+            if (_permissionsSelected)
+                _userDetailsPage = _editUserPermissionsPage.UnSelectAllPermissionCheckBoxes().ClickSaveButton();
+            else
+                _userDetailsPage = _editUserPermissionsPage.SelectAllPermissionCheckBoxes().ClickSaveButton();
 
-            _arePermissionsSelected = _arePermissionsSelected ? false : true;
+            _permissionsSelected = _permissionsSelected ? false : true;
         }
 
         [Then(@"the User is able to change the permissions")]
         public void ThenTheUserIsAbleToChangeThePermissions()
         {
-            if (_arePermissionsSelected)
+            if (_permissionsSelected)
             {
                 Assert.IsTrue(_userDetailsPage.IsViewDashboardPermissionDisplayed(), "default 'View dashboard' " + AddAssertResultText(true));
                 Assert.IsTrue(_userDetailsPage.IsChangeOrganisationDetailsPersmissionDisplayed(), "'Change organisation details' " + AddAssertResultText(true));

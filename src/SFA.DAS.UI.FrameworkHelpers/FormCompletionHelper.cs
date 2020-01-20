@@ -54,12 +54,6 @@ namespace SFA.DAS.UI.FrameworkHelpers
             ClickElement(locator);
         }
 
-        public void ClickWithoutRetryHelper(By locator)
-        {
-            _webDriverWaitHelper.WaitForElementToBePresent(locator);
-            _webDriver.FindElement(locator).Click();
-        }
-
         public void EnterText(IWebElement element, string text)
         {
             element.Clear();
@@ -125,7 +119,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         public void SelectCheckbox(IWebElement element)
         {
-            if(element.Displayed && !element.Selected)
+            if(!element.Selected)
                 element.Click();
         }
 

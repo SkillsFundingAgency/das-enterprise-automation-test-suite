@@ -48,14 +48,25 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.ManageUsers
             return this;
         }
 
-        public AS_EditUserPermissionsPage ClickOnAllPermissionCheckBoxes()
+        public AS_EditUserPermissionsPage SelectAllPermissionCheckBoxes()
         {
-            _formCompletionHelper.ClickWithoutRetryHelper(ChangeOrganisationDetailsCheckBox);
-            _formCompletionHelper.ClickWithoutRetryHelper(ChangPipelineCheckBox);
-            _formCompletionHelper.ClickWithoutRetryHelper(ChangeCompletedAssessmentsCheckBox);
-            _formCompletionHelper.ClickWithoutRetryHelper(ChangeApplyForAStandardCheckBox);
-            _formCompletionHelper.ClickWithoutRetryHelper(ChangeManageUsersCheckBox);
-            _formCompletionHelper.ClickWithoutRetryHelper(ChangeRecordGradesCheckBox);
+            _formCompletionHelper.SelectCheckbox(ChangeOrganisationDetailsCheckBox);
+            _formCompletionHelper.SelectCheckbox(ChangPipelineCheckBox);
+            _formCompletionHelper.SelectCheckbox(ChangeCompletedAssessmentsCheckBox);
+            _formCompletionHelper.SelectCheckbox(ChangeApplyForAStandardCheckBox);
+            _formCompletionHelper.SelectCheckbox(ChangeManageUsersCheckBox);
+            _formCompletionHelper.SelectCheckbox(ChangeRecordGradesCheckBox);
+            return this;
+        }
+
+        public AS_EditUserPermissionsPage UnSelectAllPermissionCheckBoxes()
+        {
+            _formCompletionHelper.UnSelectCheckbox(ChangeOrganisationDetailsCheckBox);
+            _formCompletionHelper.UnSelectCheckbox(ChangPipelineCheckBox);
+            _formCompletionHelper.UnSelectCheckbox(ChangeCompletedAssessmentsCheckBox);
+            _formCompletionHelper.UnSelectCheckbox(ChangeApplyForAStandardCheckBox);
+            _formCompletionHelper.UnSelectCheckbox(ChangeManageUsersCheckBox);
+            _formCompletionHelper.UnSelectCheckbox(ChangeRecordGradesCheckBox);
             return this;
         }
     }

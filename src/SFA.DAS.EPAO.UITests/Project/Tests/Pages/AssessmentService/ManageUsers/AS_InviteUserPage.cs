@@ -40,19 +40,19 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.ManageUsers
             _formCompletionHelper.EnterText(GivenNameTextBox, "Test Given Name");
             _formCompletionHelper.EnterText(FamilyNameTextBox, "Test Family Name");
             _formCompletionHelper.EnterText(EmailTextBox, newUserEmailId);
-            ClickOnAllPermissionCheckBoxes();
+            SelectAllPermissionCheckBoxes();
             Continue();
             return newUserEmailId;
         }
 
-        private void ClickOnAllPermissionCheckBoxes()
+        private void SelectAllPermissionCheckBoxes()
         {
-            _formCompletionHelper.ClickWithoutRetryHelper(ChangeOrganisationDetailsCheckBox);
-            _formCompletionHelper.ClickWithoutRetryHelper(ChangPipelineCheckBox);
-            _formCompletionHelper.ClickWithoutRetryHelper(ChangeCompletedAssessmentsCheckBox);
-            _formCompletionHelper.ClickWithoutRetryHelper(ChangeApplyForAStandardCheckBox);
-            _formCompletionHelper.ClickWithoutRetryHelper(ChangeManageUsersCheckBox);
-            _formCompletionHelper.ClickWithoutRetryHelper(ChangeRecordGradesCheckBox);
+            _formCompletionHelper.SelectCheckbox(ChangeOrganisationDetailsCheckBox);
+            _formCompletionHelper.SelectCheckbox(ChangPipelineCheckBox);
+            _formCompletionHelper.SelectCheckbox(ChangeCompletedAssessmentsCheckBox);
+            _formCompletionHelper.SelectCheckbox(ChangeApplyForAStandardCheckBox);
+            _formCompletionHelper.SelectCheckbox(ChangeManageUsersCheckBox);
+            _formCompletionHelper.SelectCheckbox(ChangeRecordGradesCheckBox);
         }
     }
 }
