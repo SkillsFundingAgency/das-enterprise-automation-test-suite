@@ -16,11 +16,11 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.Organisatio
         #endregion
 
         #region Locators
-        private By ContactNameChangeLink => By.XPath("//a[@href='/Organisation/SelectOrChangeContactName']");
-        private By PhoneNumberChangeLink => By.XPath("//a[@href='/Organisation/ChangePhoneNumber']");
-        private By AddressChangeLink => By.XPath("//a[@href='/Organisation/ChangeAddress']");
-        private By EmailChangeLink => By.XPath("//a[@href='/Organisation/ChangeEmail']");
-        private By WebsiteChangeLink => By.XPath("//a[@href='/Organisation/ChangeWebsite']");
+        private By ContactNameChangeLink => By.CssSelector("a[href='/Organisation/SelectOrChangeContactName']");
+        private By PhoneNumberChangeLink => By.CssSelector("a[href='/Organisation/ChangePhoneNumber']");
+        private By AddressChangeLink => By.CssSelector("a[href='/Organisation/ChangeAddress']");
+        private By EmailChangeLink => By.CssSelector("a[href='/Organisation/ChangeEmail']");
+        private By WebsiteChangeLink => By.CssSelector("a[href='/Organisation/ChangeWebsite']");
         #endregion
 
         public AS_OrganisationDetailsPage(ScenarioContext context) : base(context)
