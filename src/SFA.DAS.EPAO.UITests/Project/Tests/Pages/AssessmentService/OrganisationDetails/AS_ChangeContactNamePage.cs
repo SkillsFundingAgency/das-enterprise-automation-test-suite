@@ -28,11 +28,11 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.Organisatio
             VerifyPage();
         }
 
-        public AS_ConfirmContactNamePage SelectContactNameRadioButtonAndClickSave(string selection)
+        public AS_ConfirmContactNamePage SelectContactNameRadioButtonAndClickSave()
         {
-            var radionButton = selection.Equals("Primary") ? PrimaryContactNameRadioButton : SecondaryContactNameRadioButton;
+            var radioButtonToClick = _pageInteractionHelper.GetElementSelectedStatus(PrimaryContactNameRadioButton) ? SecondaryContactNameRadioButton : PrimaryContactNameRadioButton;
+            _formCompletionHelper.ClickElement(() => _pageInteractionHelper.FindElement(radioButtonToClick));
 
-            _formCompletionHelper.ClickElement(() => _pageInteractionHelper.FindElement(radionButton));
             Continue();
             return new AS_ConfirmContactNamePage(_context);
         }

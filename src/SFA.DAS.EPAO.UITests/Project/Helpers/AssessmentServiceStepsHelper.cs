@@ -69,10 +69,10 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
                 .ClickSaveButton();
         }
 
-        public AS_OrganisationDetailsPage ChangeContactName(AS_OrganisationDetailsPage organisationDetailsPage, string selection)
+        public AS_OrganisationDetailsPage ChangeContactName(AS_OrganisationDetailsPage organisationDetailsPage)
         {
             return organisationDetailsPage.ClickContactNameChangeLink()
-                .SelectContactNameRadioButtonAndClickSave(selection)
+                .SelectContactNameRadioButtonAndClickSave()
                 .ClickConfirmButtonInConfirmContactNamePage()
                 .ClickViewOrganisationDetailsLink();
         }

@@ -34,7 +34,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.ManageUsers
             VerifyPage();
         }
 
-        public bool IsChangeOrganisationDetailsCheckBoxSelected() => _pageInteractionHelper.GetCheckboxStatus(ChangeOrganisationDetailsCheckBox);
+        public bool IsChangeOrganisationDetailsCheckBoxSelected() => _pageInteractionHelper.GetElementSelectedStatus(ChangeOrganisationDetailsCheckBox);
 
         public AS_UserDetailsPage ClickSaveButton()
         {

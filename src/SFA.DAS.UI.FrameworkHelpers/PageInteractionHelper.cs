@@ -264,7 +264,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
             };
         }
 
-        public bool GetCheckboxStatus(By locator)
+        public bool GetElementSelectedStatus(By locator)
         {
             IWebElement element = _webDriver.FindElement(locator);
             return element.Selected ? true : false;

@@ -196,8 +196,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         {
             _organisationDetailsPage = new AS_OrganisationDetailsPage(_context);
 
-            _organisationDetailsPage = _stepsHelper.ChangeContactName(_organisationDetailsPage, "Secondary");
-            _organisationDetailsPage = _stepsHelper.ChangeContactName(_organisationDetailsPage, "Primary");
+            _organisationDetailsPage = _stepsHelper.ChangeContactName(_organisationDetailsPage);
             _organisationDetailsPage = _stepsHelper.ChangePhoneNumber(_organisationDetailsPage);
             _organisationDetailsPage = _stepsHelper.ChangeAddress(_organisationDetailsPage);
             _organisationDetailsPage = _stepsHelper.ChangeEmailAddress(_organisationDetailsPage);
