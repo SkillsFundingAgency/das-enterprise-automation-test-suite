@@ -127,7 +127,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
                  });
         }
 
-        private Action ClickEvent(IWebElement element, bool moveToElement) => moveToElement ? MoveToElement(element) : DoNotMoveToElement(element);
+        private Action ClickEvent(IWebElement element, bool moveToElement = true) => moveToElement ? MoveToElement(element) : DoNotMoveToElement(element);
 
         private Action MoveToElement(IWebElement element) => () => new Actions(_webDriver).MoveToElement(element).Click(element).Perform();
 
