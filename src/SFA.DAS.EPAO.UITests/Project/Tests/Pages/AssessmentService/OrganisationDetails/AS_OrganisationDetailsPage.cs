@@ -31,31 +31,31 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.Organisatio
 
         public AS_ChangeContactNamePage ClickContactNameChangeLink()
         {
-            _formCompletionHelper.Click(ContactNameChangeLink);
+            _formCompletionHelper.ClickLinkByText(ContactNameChangeLink, "Change");
             return new AS_ChangeContactNamePage(_context);
         }
 
         public AS_ChangePhoneNumberPage ClickPhoneNumberChangeLink()
         {
-            _formCompletionHelper.Click(PhoneNumberChangeLink);
+            _formCompletionHelper.ClickLinkByText(PhoneNumberChangeLink, "Change");
             return new AS_ChangePhoneNumberPage(_context);
         }
 
         public AS_ChangeAddressPage ClickAddressChangeLink()
         {
-            _formCompletionHelper.Click(AddressChangeLink);
+            _formCompletionHelper.ClickLinkByText(AddressChangeLink, "Change");
             return new AS_ChangeAddressPage(_context);
         }
 
         public AS_ChangeEmailPage ClickEmailChangeLink()
         {
-            _formCompletionHelper.Click(EmailChangeLink);
+            _formCompletionHelper.ClickLinkByText(EmailChangeLink, "Change");
             return new AS_ChangeEmailPage(_context);
         }
 
         public AS_ChangeWebsitePage ClickWebsiteChangeLink()
         {
-            _formCompletionHelper.Click(WebsiteChangeLink);
+            _formCompletionHelper.ClickLinkByText(WebsiteChangeLink, "Change");
             return new AS_ChangeWebsitePage(_context);
         }
     }
