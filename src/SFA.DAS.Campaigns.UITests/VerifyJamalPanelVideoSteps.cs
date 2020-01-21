@@ -16,7 +16,7 @@ namespace SFA.DAS.Campaigns.UITests
         private readonly ScenarioContext _context;
         private readonly TabHelper _tabHelper;
         private FireItUpHomePage fireItUpHomePage;
-        private jamalTheCallingPage JamalTheCallingPage;
+        private JamalTheCallingPage jamalTheCallingPage;
         #endregion
 
         public VerifyJamalPanelVideoSteps(ScenarioContext context)
