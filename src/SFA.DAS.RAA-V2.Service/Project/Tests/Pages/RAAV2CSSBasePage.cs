@@ -20,7 +20,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         protected new RAAV2CSSBasePage SelectRadioOptionByForAttribute(string value)
         {
-            SelectRadioOptionByForAttribute(value);
+            base.SelectRadioOptionByForAttribute(value);
             return this;
         }
     }
