@@ -6,8 +6,6 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
     {
         protected override string PageTitle => "What is the date the apprentice failed?";
 
-        public AS_ApprenticeFailedDatePage(ScenarioContext context) : base(context)
-        {
-        }
+        public AS_ApprenticeFailedDatePage(ScenarioContext context) : base(context) { }
     }
 }

@@ -1,20 +1,12 @@
 ﻿using TechTalk.SpecFlow;
 using OpenQA.Selenium;
-using SFA.DAS.UI.FrameworkHelpers;
-using SFA.DAS.UI.Framework.TestSupport;
-using SFA.DAS.EPAO.UITests.Project.Helpers;
 
 namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.OrganisationDetails
 {
-    public class AS_ChangeAddressPage : BasePage
+    public class AS_ChangeAddressPage : EPAO_BasePage
     {
         protected override string PageTitle => "Change address";
-
-        #region Helpers and Context
         private readonly ScenarioContext _context;
-        private readonly FormCompletionHelper _formCompletionHelper;
-        private readonly EPAODataHelper _ePAODataHelper;
-        #endregion
 
         #region Locators
         private By SearchForANewAddressLink => By.Id("searchAgain");
@@ -28,35 +20,33 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.Organisatio
         public AS_ChangeAddressPage(ScenarioContext context) : base(context)
         {
             _context = context;
-            _formCompletionHelper = context.Get<FormCompletionHelper>();
-            _ePAODataHelper = context.Get<EPAODataHelper>();
             VerifyPage();
         }
 
         public AS_ChangeAddressPage ClickSearchForANewAddressLink()
         {
-            _formCompletionHelper.Click(SearchForANewAddressLink);
+            formCompletionHelper.Click(SearchForANewAddressLink);
             return this;
         }
 
         public AS_ChangeAddressPage ClickEnterTheAddressManuallyLink()
         {
-            _formCompletionHelper.Click(EnterTheAddressManuallyLink);
+            formCompletionHelper.Click(EnterTheAddressManuallyLink);
             return this;
         }
 
         public AS_ConfirmContactAddressPage EnterEmployerAddressAndClickChangeAddressButton()
         {
-            _formCompletionHelper.EnterText(AddressLine1TextBox, _ePAODataHelper.GetRandomAddressLine1);
-            _formCompletionHelper.EnterText(AddressLine2TextBox, "QuintonRoad");
-            _formCompletionHelper.EnterText(TownOrCityTextBox, "Coventry");
-            _formCompletionHelper.EnterText(PostCodeTextBox, "CV1 2WT");
+            formCompletionHelper.EnterText(AddressLine1TextBox, dataHelper.GetRandomAddressLine1);
+            formCompletionHelper.EnterText(AddressLine2TextBox, "QuintonRoad");
+            formCompletionHelper.EnterText(TownOrCityTextBox, "Coventry");
+            formCompletionHelper.EnterText(PostCodeTextBox, "CV1 2WT");
             Continue();
             return new AS_ConfirmContactAddressPage(_context);
         }
     }
 
-    public class AS_ConfirmContactAddressPage : BasePage
+    public class AS_ConfirmContactAddressPage : EPAO_BasePage
     {
         protected override string PageTitle => "Confirm contact address";
         private readonly ScenarioContext _context;

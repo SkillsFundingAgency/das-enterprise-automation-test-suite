@@ -1,19 +1,13 @@
 ﻿using OpenQA.Selenium;
 using TechTalk.SpecFlow;
-using SFA.DAS.UI.FrameworkHelpers;
-using SFA.DAS.UI.Framework.TestSupport;
 
 namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
 {
-    public class AS_SearchEmployerAddressPage : BasePage
+    public class AS_SearchEmployerAddressPage : EPAO_BasePage
     {
         protected override string PageTitle => "Search for the employer's address";
         protected override By PageHeader => By.CssSelector(".js-search-address-heading");
-
-        #region Helpers and Context
         private readonly ScenarioContext _context;
-        private readonly FormCompletionHelper _formCompletionHelper;
-        #endregion
 
         #region Locators
         private By AddressSearchTextBox => By.Id("postcode-search");
@@ -25,7 +19,6 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
         public AS_SearchEmployerAddressPage(ScenarioContext context) : base(context)
         {
             _context = context;
-            _formCompletionHelper = context.Get<FormCompletionHelper>();
             VerifyPage();
         }
 
@@ -37,7 +30,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
 
         public AS_AddEmployerAddress ClickEnterAddressManuallyLinkInSearchEmployerPage()
         {
-            _formCompletionHelper.Click(EnterAddressManuallyLink);
+            formCompletionHelper.Click(EnterAddressManuallyLink);
             return new AS_AddEmployerAddress(_context);
         }
     }

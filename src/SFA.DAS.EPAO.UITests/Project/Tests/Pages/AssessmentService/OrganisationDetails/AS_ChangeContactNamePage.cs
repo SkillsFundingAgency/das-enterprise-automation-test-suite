@@ -1,19 +1,12 @@
 ﻿using TechTalk.SpecFlow;
 using OpenQA.Selenium;
-using SFA.DAS.UI.FrameworkHelpers;
-using SFA.DAS.UI.Framework.TestSupport;
 
 namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.OrganisationDetails
 {
-    public class AS_ChangeContactNamePage : BasePage
+    public class AS_ChangeContactNamePage : EPAO_BasePage
     {
         protected override string PageTitle => "Change contact name";
-
-        #region Helpers and Context
         private readonly ScenarioContext _context;
-        private readonly FormCompletionHelper _formCompletionHelper;
-        private readonly PageInteractionHelper _pageInteractionHelper;
-        #endregion
 
         #region Locators
         private By PrimaryContactNameRadioButton => By.XPath("//label[contains(text(),'Mr Preprod Epao0007')]/../input");
@@ -23,22 +16,20 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.Organisatio
         public AS_ChangeContactNamePage(ScenarioContext context) : base(context)
         {
             _context = context;
-            _formCompletionHelper = context.Get<FormCompletionHelper>();
-            _pageInteractionHelper = context.Get<PageInteractionHelper>();
             VerifyPage();
         }
 
         public AS_ConfirmContactNamePage SelectContactNameRadioButtonAndClickSave()
         {
-            var radioButtonToClick = _pageInteractionHelper.GetElementSelectedStatus(PrimaryContactNameRadioButton) ? SecondaryContactNameRadioButton : PrimaryContactNameRadioButton;
-            _formCompletionHelper.ClickElement(() => _pageInteractionHelper.FindElement(radioButtonToClick));
+            var radioButtonToClick = pageInteractionHelper.GetElementSelectedStatus(PrimaryContactNameRadioButton) ? SecondaryContactNameRadioButton : PrimaryContactNameRadioButton;
+            formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(radioButtonToClick));
 
             Continue();
             return new AS_ConfirmContactNamePage(_context);
         }
     }
 
-    public class AS_ConfirmContactNamePage : BasePage
+    public class AS_ConfirmContactNamePage : EPAO_BasePage
     {
         protected override string PageTitle => "Confirm contact name";
         private readonly ScenarioContext _context;

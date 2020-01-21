@@ -1,20 +1,12 @@
 ﻿using OpenQA.Selenium;
 using TechTalk.SpecFlow;
-using SFA.DAS.EPAO.UITests.Project.Helpers;
-using SFA.DAS.UI.FrameworkHelpers;
 
 namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
 {
-    public abstract class AS_GradeDateBasePage : AS_BasePage
+    public abstract class AS_GradeDateBasePage : EPAO_BasePage
     {
         protected override By PageHeader => By.CssSelector(".govuk-fieldset__heading");
-
-        #region Helpers and Context
         private readonly ScenarioContext _context;
-        private readonly EPAODataHelper _ePAODataHelper;
-        private readonly FormCompletionHelper _formCompletionHelper;
-        private readonly PageInteractionHelper _pageInteractionHelper;
-        #endregion
 
         #region Locators
         private By DayTextBox => By.Id("Day");
@@ -26,9 +18,6 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
         public AS_GradeDateBasePage(ScenarioContext context) : base(context)
         {
             _context = context;
-            _ePAODataHelper = context.Get<EPAODataHelper>();
-            _formCompletionHelper = context.Get<FormCompletionHelper>();
-            _pageInteractionHelper = context.Get<PageInteractionHelper>();
             VerifyPage();
         }
 
@@ -53,18 +42,18 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
         public void EnterAchievementGradeDateForPrivatelyFundedApprenticeAndContinue(int year)
         {
             EnterDateFieldsAndContinue(true);
-            _formCompletionHelper.EnterText(YearTextBox, year);
+            formCompletionHelper.EnterText(YearTextBox, year);
             Continue();
         }
 
-        public string GetDateErrorText() => _pageInteractionHelper.GetText(DateError);
+        public string GetDateErrorText() => pageInteractionHelper.GetText(DateError);
 
         private void EnterDateFieldsAndContinue(bool invalidDateScenario = false)
         {
-            _formCompletionHelper.EnterText(DayTextBox, _ePAODataHelper.GetCurrentDay);
-            _formCompletionHelper.EnterText(MonthTextBox, _ePAODataHelper.GetCurrentMonth);
+            formCompletionHelper.EnterText(DayTextBox, dataHelper.GetCurrentDay);
+            formCompletionHelper.EnterText(MonthTextBox, dataHelper.GetCurrentMonth);
             if (invalidDateScenario) return;
-            _formCompletionHelper.EnterText(YearTextBox, _ePAODataHelper.GetCurrentYear);
+            formCompletionHelper.EnterText(YearTextBox, dataHelper.GetCurrentYear);
             Continue();
         }
     }

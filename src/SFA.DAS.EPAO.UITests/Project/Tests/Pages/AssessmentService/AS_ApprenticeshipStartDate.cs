@@ -6,8 +6,6 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
     {
         protected override string PageTitle => "What is the apprenticeship start date?";
 
-        public AS_ApprenticeshipStartDate(ScenarioContext context) : base(context)
-        {
-        }
+        public AS_ApprenticeshipStartDate(ScenarioContext context) : base(context) { }
     }
 }

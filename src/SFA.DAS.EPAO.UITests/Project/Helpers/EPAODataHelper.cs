@@ -3,11 +3,11 @@ using System;
 
 namespace SFA.DAS.EPAO.UITests.Project.Helpers
 {
-    public class EPAODataHelper
+    public class EPAODataHelper : RandomElementHelper
     {
         private readonly RandomDataGenerator _randomDataGenerator;
 
-        public EPAODataHelper (RandomDataGenerator randomDataGenerator)
+        public EPAODataHelper(RandomDataGenerator randomDataGenerator) : base(randomDataGenerator)
         {
             _randomDataGenerator = randomDataGenerator;
             GetCurrentDay = DateTime.Now.Day;
@@ -36,6 +36,6 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
 
         public string GetRandomAddressLine1 { get; }
 
-        private string GetDateTimeValue() => DateTime.Now.ToString("ddMMMyyyy_HHmmss").ToUpper(); 
+        private string GetDateTimeValue() => DateTime.Now.ToString("ddMMMyyyy_HHmmss").ToUpper();
     }
 }
