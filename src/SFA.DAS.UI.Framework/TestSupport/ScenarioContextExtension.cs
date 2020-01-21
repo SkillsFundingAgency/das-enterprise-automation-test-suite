@@ -11,6 +11,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
         private const string ProviderConfigKey = "providerconfigkey";
         private const string TestProjectConfigKey = "testprojectconfigkey";
         private const string RegistrationProjectConfigKey = "registrationprojectconfigkey";
+        private const string RoatpProjectConfigKey = "roatpprojectconfigkey";
         private const string SupportConsoleProjectConfigKey = "supportconsoleprojectconfigkey";
         private const string RAAV1ProjectConfigKey = "raav1projectconfigkey";
         private const string RAAV2QAProjectConfigKey = "raav2qaprojectconfigkey";
@@ -23,6 +24,10 @@ namespace SFA.DAS.UI.Framework.TestSupport
         private const string CampaignsConfigKey = "campaignsprojectconfigkey";
         #endregion
 
+        public static void SetRoatpConfig<T>(this ScenarioContext context, T value)
+        {
+            Set(context, value, RoatpProjectConfigKey);
+        }
         public static void SetTestProjectConfig<T>(this ScenarioContext context, T value)
         {
             Set(context, value, TestProjectConfigKey);
@@ -56,6 +61,11 @@ namespace SFA.DAS.UI.Framework.TestSupport
         public static void SetFATConfig<T>(this ScenarioContext context, T value)
         {
             Set(context, value, FATProjectConfigKey);
+        }
+
+        public static T GetRoatpConfig<T>(this ScenarioContext context)
+        {
+            return Get<T>(context, RoatpProjectConfigKey);
         }
 
         public static T GetFATConfig<T>(this ScenarioContext context)
