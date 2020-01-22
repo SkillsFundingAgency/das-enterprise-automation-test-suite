@@ -17,9 +17,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private readonly ApprovalsConfig _config;
         #endregion
 
-        private By NumberofCohortsForReview => By.CssSelector(".block-one .bold-xxlarge");
+        private By NumberofCohortsForReview => By.CssSelector("a[href*='review'] span[class*='das-card-figure']");
         private By NumberOfTransferRejectedCohorts => By.CssSelector(".block-one .bold-xxlarge");
-        private By NumberOfDraftCohorts => By.CssSelector(".block-three .bold-xxlarge");
+        private By NumberOfDraftCohorts => By.CssSelector("a[href*='draft'] span[class*='das-card-figure']");
 
         public YourCohortRequestsPage(ScenarioContext context) : base(context)
         {
