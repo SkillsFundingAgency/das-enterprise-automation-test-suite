@@ -71,19 +71,21 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Features.E2EJourney
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("RP_E2E_01_MainRoute-Company")]
+        [NUnit.Framework.CategoryAttribute("rpe2e01")]
         public virtual void RP_E2E_01_MainRoute_Company()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_E2E_01_MainRoute-Company", null, ((string[])(null)));
-#line 3
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_E2E_01_MainRoute-Company", null, new string[] {
+                        "rpe2e01"});
+#line 5
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 4
-testRunner.Given("the provider initates an application as main route company", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 5
-testRunner.When("the provider completes Your Organisation section", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 6
-testRunner.And("the provider completes Criminal and Compliance section", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.Given("the provider initates an application as main route company", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 7
+testRunner.When("the provider completes Your Organisation section", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 8
+testRunner.And("the provider completes Criminal and Compliance section", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 9
 testRunner.Then("the provider completes Finish section", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
