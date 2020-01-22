@@ -1,16 +1,14 @@
 ﻿using TechTalk.SpecFlow;
 using OpenQA.Selenium;
-using SFA.DAS.UI.FrameworkHelpers;
-using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.EPAO.UITests.Project.Helpers;
 
 namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.ManageUsers
 {
-    public class AS_InviteUserPage : BasePage
+    public class AS_InviteUserPage : EPAO_BasePage
     {
         protected override string PageTitle => "Invite user";
 
-        #region 
+        #region Locators
         private By GivenNameTextBox => By.Id("GivenName");
         private By FamilyNameTextBox => By.Id("FamilyName");
         private By EmailTextBox => By.Id("Email");
@@ -22,24 +20,17 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.ManageUsers
         private By ChangeRecordGradesCheckBox => By.Id("PrivilegesViewModel.PrivilegeViewModels[5].Selected");
         #endregion
 
-        #region Helpers and Context
-        private readonly FormCompletionHelper _formCompletionHelper;
-        private readonly PageInteractionHelper _pageInteractionHelper;
-        #endregion
-
         public AS_InviteUserPage(ScenarioContext context) : base(context)
         {
-            _formCompletionHelper = context.Get<FormCompletionHelper>();
-            _pageInteractionHelper = context.Get<PageInteractionHelper>();
             VerifyPage();
         }
 
         public string EnterUserDetailsAndSendInvite(EPAODataHelper dataHelper)
         {
             var newUserEmailId = dataHelper.GetRandomEmail;
-            _formCompletionHelper.EnterText(GivenNameTextBox, "Test Given Name");
-            _formCompletionHelper.EnterText(FamilyNameTextBox, "Test Family Name");
-            _formCompletionHelper.EnterText(EmailTextBox, newUserEmailId);
+            formCompletionHelper.EnterText(GivenNameTextBox, "Test Given Name");
+            formCompletionHelper.EnterText(FamilyNameTextBox, "Test Family Name");
+            formCompletionHelper.EnterText(EmailTextBox, newUserEmailId);
             SelectAllPermissionCheckBoxes();
             Continue();
             return newUserEmailId;
@@ -47,12 +38,12 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.ManageUsers
 
         private void SelectAllPermissionCheckBoxes()
         {
-            _formCompletionHelper.SelectCheckbox(ChangeOrganisationDetailsCheckBox);
-            _formCompletionHelper.SelectCheckbox(ChangPipelineCheckBox);
-            _formCompletionHelper.SelectCheckbox(ChangeCompletedAssessmentsCheckBox);
-            _formCompletionHelper.SelectCheckbox(ChangeApplyForAStandardCheckBox);
-            _formCompletionHelper.SelectCheckbox(ChangeManageUsersCheckBox);
-            _formCompletionHelper.SelectCheckbox(ChangeRecordGradesCheckBox);
+            formCompletionHelper.SelectCheckbox(ChangeOrganisationDetailsCheckBox);
+            formCompletionHelper.SelectCheckbox(ChangPipelineCheckBox);
+            formCompletionHelper.SelectCheckbox(ChangeCompletedAssessmentsCheckBox);
+            formCompletionHelper.SelectCheckbox(ChangeApplyForAStandardCheckBox);
+            formCompletionHelper.SelectCheckbox(ChangeManageUsersCheckBox);
+            formCompletionHelper.SelectCheckbox(ChangeRecordGradesCheckBox);
         }
     }
 }

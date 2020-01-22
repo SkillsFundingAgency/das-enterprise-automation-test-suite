@@ -1,24 +1,15 @@
 ﻿using TechTalk.SpecFlow;
-using SFA.DAS.UI.FrameworkHelpers;
-using SFA.DAS.UI.Framework.TestSupport;
 
 namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.OrganisationDetails
 {
-    public class AS_OrganisationDetailsPage : BasePage
+    public class AS_OrganisationDetailsPage : EPAO_BasePage
     {
         protected override string PageTitle => "Organisation details";
-
-        #region Helpers and Context
         private readonly ScenarioContext _context;
-        private readonly FormCompletionHelper _formCompletionHelper;
-        private readonly PageInteractionHelper _pageInteractionHelper;
-        #endregion
 
         public AS_OrganisationDetailsPage(ScenarioContext context) : base(context)
         {
             _context = context;
-            _formCompletionHelper = context.Get<FormCompletionHelper>();
-            _pageInteractionHelper = context.Get<PageInteractionHelper>();
             VerifyPage();
         }
 
@@ -55,11 +46,11 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.Organisatio
         private void ClickLinkByHref(string href)
         {
             //links are Intercepted by Help menu.
-            _formCompletionHelper.ClickInterceptedElement(_pageInteractionHelper.GetLinkByHref(href));
+            formCompletionHelper.ClickInterceptedElement(pageInteractionHelper.GetLinkByHref(href));
         }
     }
 
-    public class AS_ChangeOrganisationDetailsPage : BasePage
+    public class AS_ChangeOrganisationDetailsPage : EPAO_BasePage
     {
         protected override string PageTitle => "Change organisation details";
         private readonly ScenarioContext _context;
