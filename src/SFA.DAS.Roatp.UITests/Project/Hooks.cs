@@ -5,6 +5,7 @@ using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using TechTalk.SpecFlow;
 
@@ -45,7 +46,8 @@ namespace SFA.DAS.Roatp.UITests.Project
         [BeforeScenario(Order = 33), Scope(Tag = "rpe2e01")]
         public void ClearDownDataHelpers()
         {
-            var (email, ukprn) = _applyDataHelpers.GetApplyData(_applyDataHelpers.Rpe2e01);
+            var tag = _context.ScenarioInfo.Tags.ToList().First(x => x.StartsWith("rp"));
+            var (email, ukprn) = _applyDataHelpers.GetApplyData(tag);
 
             _objectContext.SetEmail(email);
             _objectContext.SetUkprn(ukprn);
@@ -56,10 +58,6 @@ namespace SFA.DAS.Roatp.UITests.Project
         }
         
         [BeforeScenario(Order = 34)]
-        public void Navigate()
-        {
-            var url = _config.AdminBaseUrl;
-            _webDriver.Navigate().GoToUrl(url);
-        }
+        public void Navigate() => _webDriver.Navigate().GoToUrl(_config.ApplyBaseUrl);
     }
 }

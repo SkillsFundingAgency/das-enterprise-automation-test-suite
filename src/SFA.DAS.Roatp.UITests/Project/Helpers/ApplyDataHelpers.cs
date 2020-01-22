@@ -14,8 +14,6 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers
         private const string emailkey = "emailkey";
         private const string ukprnkey = "ukprnkey";
 
-        internal string Rpe2e01 => "rpe2e01";
-
         public ApplyDataHelpers(RandomDataGenerator randomDataGenerator)
         {
             _randomDataGenerator = randomDataGenerator;
@@ -25,15 +23,17 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers
 
         public (string email, string ukprn) GetApplyData(string key)
         {
-            var keyValuePair = _applyDatas.GetValueOrDefault(key);
+            var keyValuePair = FindKeyValuePairs(key);
             var email = keyValuePair.First(x => x.Key == emailkey).Value;
             var ukprn = keyValuePair.First(x => x.Key == ukprnkey).Value;
             return (email, ukprn);
         }
 
+        private List<KeyValuePair<string, string>> FindKeyValuePairs(string key) => _applyDatas.TryGetValue(key, out var keyValuePair) ? keyValuePair : throw new KeyNotFoundException($"Can not find data for key {key}");
+
         private void AddApplyDatahelpers()
         {
-            _applyDatas.Add(Rpe2e01, 
+            _applyDatas.Add("rpe2e01", 
                 new List<KeyValuePair<string, string>> 
                 { 
                     new KeyValuePair<string, string>(emailkey, "sudhakar.chinoor+roatp2@digital.education.gov.uk"),
