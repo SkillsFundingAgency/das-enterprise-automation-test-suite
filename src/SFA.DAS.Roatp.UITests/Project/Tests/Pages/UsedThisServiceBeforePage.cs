@@ -11,8 +11,6 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
         private readonly ScenarioContext _context;
         #endregion
 
-        private By FirstTimeSignInNoOption => By.Id("FirstTimeSignin-No");
-        
         public UsedThisServiceBeforePage(ScenarioContext context) : base(context)
         {
             _context = context;
@@ -21,7 +19,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
 
         public ApplySignInPage SelectingNoOptionForFirstTimeSignInAndContinue()
         {
-            formCompletionHelper.ClickElement(FirstTimeSignInNoOption);
+            formCompletionHelper.SelectRadioOptionByForAttribute(RadioLabels, "FirstTimeSignin-No");
             Continue();
             return new ApplySignInPage(_context);
         }

@@ -1,4 +1,5 @@
-﻿using SFA.DAS.UI.FrameworkHelpers;
+﻿using SFA.DAS.ConfigurationBuilder;
+using SFA.DAS.UI.FrameworkHelpers;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -7,56 +8,63 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers
 {
     public class ClearDownDataHelpers
     {
+        private readonly ObjectContext _objectContext;
         private readonly SqlDatabaseConnectionHelper _sqlDatabase;
-        public readonly string _roatpDatabaseConnectionString;
-        public readonly string _applyDatabaseConnectionString;
-        public readonly string _qnaDatabaseConnectionString;
+        private readonly string _roatpDatabaseConnectionString;
+        private readonly string _applyDatabaseConnectionString;
+        private readonly string _qnaDatabaseConnectionString;
+        
+        private string Emptyguid => Guid.Empty.ToString();
 
-        public ClearDownDataHelpers(RoatpConfig roatpConfig, SqlDatabaseConnectionHelper sqlDatabase)
+        public ClearDownDataHelpers(ObjectContext objectContext, RoatpConfig roatpConfig, SqlDatabaseConnectionHelper sqlDatabase)
         {
+            _objectContext = objectContext;
             _sqlDatabase = sqlDatabase;
             _roatpDatabaseConnectionString = roatpConfig.RoatpDatabaseConnectionString;
             _applyDatabaseConnectionString = roatpConfig.ApplyDatabaseConnectionString;
             _qnaDatabaseConnectionString = roatpConfig.QnaDatabaseConnectionString;
         }
 
-        public void DeleteTrainingProvider(String ukprn)
+        public void DeleteTrainingProvider()
         {
-            String DeleteProviderQuery = $"DELETE FROM Organisations WHERE UKPRN ='{ukprn}'";
+            var DeleteProviderQuery = $"DELETE FROM Organisations WHERE UKPRN ='{_objectContext.GetUkprn()}'";
             _sqlDatabase.ExecuteSqlCommand(DeleteProviderQuery, _roatpDatabaseConnectionString);
         }
-        public string ClearDownDataFromApply(String email)
+
+        public string ClearDownDataFromApply()
         {
-            String GetApplicationIdQuery = $"SELECT ApplicationId from dbo.Apply a " +
+            var GetApplicationIdQuery = $"SELECT ApplicationId from dbo.Apply a " +
                                            $"inner join Contacts c on a.OrganisationId = c.ApplyOrganisationID " +
-                                           $"where c.Email ='{email}' ";
+                                           $"where c.Email ='{_objectContext.GetEmail()}' ";
 
             var queryResult = _sqlDatabase.ReadDataFromDataBase(GetApplicationIdQuery, _applyDatabaseConnectionString);
 
-            if (queryResult == null || queryResult.Count == 0)
-            {
-                return Guid.Empty.ToString();
-            }
+            return (queryResult == null || queryResult.Count == 0) ? Emptyguid : ClearDownDataFromApply(queryResult);
+        }
 
-            String applicationId = queryResult[0][0].ToString();
+        private string ClearDownDataFromApply(List<object[]> queryResult)
+        {
+            var applicationId = queryResult[0][0].ToString();
 
-            String DeleteDataFromApplyQuery = $"DECLARE @OrganisationID UNIQUEIDENTIFIER; DECLARE @Email VARCHAR(256) ; SET @Email = '{email}'	;" +
+            var DeleteDataFromApplyQuery = $"DECLARE @OrganisationID UNIQUEIDENTIFIER; DECLARE @Email VARCHAR(256) ; SET @Email = '{_objectContext.GetEmail()}'	;" +
                 $"SELECT @OrganisationID = ApplyOrganisationId FROM dbo.Contacts WHERE Email = @Email ;" +
                 $"DELETE FROM dbo.Apply WHERE ApplicationId = '{applicationId}' ;" +
                 $"UPDATE dbo.Contacts SET ApplyOrganisationID = NULL WHERE Email = @Email ;" +
                 $"DELETE FROM dbo.Organisations WHERE Id = @OrganisationID ;";
+            
             _sqlDatabase.ExecuteSqlCommand(DeleteDataFromApplyQuery, _applyDatabaseConnectionString);
 
             return applicationId;
         }
-        public void ClearDownDataFromQna(string applicationId)
+
+        public int ClearDownDataFromQna(string applicationId)
         {
-            String DeleteDataFromQnaQuery =
+            var DeleteDataFromQnaQuery =
                 $"DELETE FROM ApplicationSections WHERE applicationid = '{applicationId}'" +
                 $"DELETE FROM ApplicationSequences WHERE applicationid = '{applicationId}' " +
                 $"DELETE FROM Applications WHERE id = '{applicationId}' ;";
 
-            _sqlDatabase.ExecuteSqlCommand(DeleteDataFromQnaQuery, _qnaDatabaseConnectionString);
+            return applicationId == Emptyguid ? 0 : _sqlDatabase.ExecuteSqlCommand(DeleteDataFromQnaQuery, _qnaDatabaseConnectionString);
         }
     }
 }

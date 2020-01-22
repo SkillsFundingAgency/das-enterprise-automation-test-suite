@@ -18,8 +18,7 @@ namespace SFA.DAS.Roatp.UITests.Project
         private readonly ObjectContext _objectContext;
         private readonly IWebDriver _webDriver;
         private readonly RoatpConfig _config;
-        private readonly SqlDatabaseConnectionHelper _sqlDatabaseConnectionHelper;
-        private ClearDownDataHelpers _clearDownDataHelpers;
+        private readonly ClearDownDataHelpers _clearDownDataHelpers;
         private ApplyDataHelpers _applyDataHelpers;
 
         public Hooks(ScenarioContext context)
@@ -28,22 +27,18 @@ namespace SFA.DAS.Roatp.UITests.Project
             _objectContext = context.Get<ObjectContext>();
             _webDriver = context.GetWebDriver();
             _config = context.GetRoatpConfig<RoatpConfig>();
-            _sqlDatabaseConnectionHelper = context.Get<SqlDatabaseConnectionHelper>();
+            var sqlDatabaseConnectionHelper = context.Get<SqlDatabaseConnectionHelper>();
+            _clearDownDataHelpers = new ClearDownDataHelpers(_objectContext, _config, sqlDatabaseConnectionHelper);
         }
 
         [BeforeScenario(Order = 32)]
-        public void SetUpHelpers()
+        public void SetUpHelpers() 
         {
-            _clearDownDataHelpers = new ClearDownDataHelpers(_config, _sqlDatabaseConnectionHelper);
-
-            _context.Set(_clearDownDataHelpers);
-
-            var random = _context.Get<RandomDataGenerator>();
-
-            _applyDataHelpers = new ApplyDataHelpers(random);
+            _applyDataHelpers = new ApplyDataHelpers(_context.Get<RandomDataGenerator>());
+            _context.Set(_applyDataHelpers); 
         }
 
-        [BeforeScenario(Order = 33), Scope(Tag = "rpe2e01")]
+        [BeforeScenario(Order = 33)]
         public void ClearDownDataHelpers()
         {
             var tag = _context.ScenarioInfo.Tags.ToList().First(x => x.StartsWith("rp"));
@@ -52,7 +47,7 @@ namespace SFA.DAS.Roatp.UITests.Project
             _objectContext.SetEmail(email);
             _objectContext.SetUkprn(ukprn);
 
-            var applicationId = _clearDownDataHelpers.ClearDownDataFromApply(email);
+            var applicationId = _clearDownDataHelpers.ClearDownDataFromApply();
 
             _clearDownDataHelpers.ClearDownDataFromQna(applicationId);
         }
