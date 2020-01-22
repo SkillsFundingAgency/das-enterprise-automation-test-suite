@@ -1,18 +1,12 @@
 ﻿using TechTalk.SpecFlow;
-using SFA.DAS.UI.Framework.TestSupport;
 using OpenQA.Selenium;
-using SFA.DAS.UI.FrameworkHelpers;
 
 namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
 {
-    public class AS_ConfirmApprenticePage : BasePage
+    public class AS_ConfirmApprenticePage : EPAO_BasePage
     {
         protected override string PageTitle => "Confirm this is the correct apprentice";
-
-        #region Helpers and Context
         private readonly ScenarioContext _context;
-        private readonly FormCompletionHelper _formCompletionHelper;
-        #endregion
 
         #region Locators
         private By RadioButton => By.CssSelector("label");
@@ -21,7 +15,6 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
         public AS_ConfirmApprenticePage(ScenarioContext context) : base(context)
         {
             _context = context;
-            _formCompletionHelper = context.Get<FormCompletionHelper>();
             VerifyPage();
         }
 
@@ -44,12 +37,12 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
 
         private void SelectStandardWithAdditionalLearningOption()
         {
-            _formCompletionHelper.SelectRadioOptionByForAttribute(RadioButton, "standard_6");
+            formCompletionHelper.SelectRadioOptionByForAttribute(RadioButton, "standard_6");
         }
 
         private void SelectFirstStandardFromMultipleOptions()
         {
-            _formCompletionHelper.SelectRadioOptionByForAttribute(RadioButton, "standard_122");
+            formCompletionHelper.SelectRadioOptionByForAttribute(RadioButton, "standard_122");
         }
     }
 }

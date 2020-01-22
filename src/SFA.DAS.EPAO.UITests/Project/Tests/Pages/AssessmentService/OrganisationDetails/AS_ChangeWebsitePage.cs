@@ -1,20 +1,12 @@
 ﻿using TechTalk.SpecFlow;
 using OpenQA.Selenium;
-using SFA.DAS.UI.FrameworkHelpers;
-using SFA.DAS.UI.Framework.TestSupport;
-using SFA.DAS.EPAO.UITests.Project.Helpers;
 
 namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.OrganisationDetails
 {
-    public class AS_ChangeWebsitePage : BasePage
+    public class AS_ChangeWebsitePage : EPAO_BasePage
     {
         protected override string PageTitle => "Change website address";
-
-        #region Helpers and Context
         private readonly ScenarioContext _context;
-        private readonly FormCompletionHelper _formCompletionHelper;
-        private readonly EPAODataHelper _ePAODataHelper;
-        #endregion
 
         #region Locators
         private By WebsiteAddressTextBox => By.Id("WebsiteLink");
@@ -23,20 +15,18 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.Organisatio
         public AS_ChangeWebsitePage(ScenarioContext context) : base(context)
         {
             _context = context;
-            _formCompletionHelper = context.Get<FormCompletionHelper>();
-            _ePAODataHelper = context.Get<EPAODataHelper>();
             VerifyPage();
         }
 
         public AS_ConfirmWebsiteAddressPage EnterRandomWebsiteAddressAndClickUpdate()
         {
-            _formCompletionHelper.EnterText(WebsiteAddressTextBox, _ePAODataHelper.GetRandomWebsiteAddress);
+            formCompletionHelper.EnterText(WebsiteAddressTextBox, dataHelper.GetRandomWebsiteAddress);
             Continue();
             return new AS_ConfirmWebsiteAddressPage(_context);
         }
     }
 
-    public class AS_ConfirmWebsiteAddressPage : BasePage
+    public class AS_ConfirmWebsiteAddressPage : EPAO_BasePage
     {
         protected override string PageTitle => "Confirm website address";
         private readonly ScenarioContext _context;

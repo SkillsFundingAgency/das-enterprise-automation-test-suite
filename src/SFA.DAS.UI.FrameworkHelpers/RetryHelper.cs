@@ -91,9 +91,8 @@ namespace SFA.DAS.UI.FrameworkHelpers
             return webElement;
         }
 
-        internal void RetryOnElementClickInterceptedException(IWebElement element)
+        internal void RetryOnElementClickInterceptedException(IWebElement element, bool useAction)
         {
-
             Action beforeAction = null, afterAction = null;
             Policy
                  .Handle<ElementClickInterceptedException>()
@@ -121,16 +120,17 @@ namespace SFA.DAS.UI.FrameworkHelpers
                      using (var testcontext = new NUnit.Framework.Internal.TestExecutionContext.IsolatedContext())
                      {
                          beforeAction?.Invoke();
-                         ClickEvent(element).Invoke();
+                         ClickEvent(element, useAction).Invoke();
                          afterAction?.Invoke();
                      }
                  });
         }
 
-        private Action ClickEvent(IWebElement element)
-        {
-            return () => new Actions(_webDriver).MoveToElement(element).Click(element).Perform();
-        }
+        private Action ClickEvent(IWebElement element, bool useAction) => useAction ? ClickEvent(element) : Click(element);
+
+        private Action ClickEvent(IWebElement element) => () => new Actions(_webDriver).MoveToElement(element).Click(element).Perform();
+
+        private Action Click(IWebElement element) => () => element.Click();
 
         private static TimeSpan[] TimeOut => new[]
         {

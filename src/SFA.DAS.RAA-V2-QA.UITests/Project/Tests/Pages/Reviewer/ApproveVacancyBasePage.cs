@@ -46,7 +46,7 @@ namespace SFA.DAS.RAA_V2_QA.UITests.Project.Tests.Pages.Reviewer
 
             if (errors.Count == 0)
             {
-                _formCompletionHelper.SelectCheckBox(_pageInteractionHelper.FindElement(TitleFieldIdentifiers));
+                _formCompletionHelper.SelectCheckbox(_pageInteractionHelper.FindElement(TitleFieldIdentifiers));
             }
 
             _formCompletionHelper.EnterText(ReviewerComment, "Refered");

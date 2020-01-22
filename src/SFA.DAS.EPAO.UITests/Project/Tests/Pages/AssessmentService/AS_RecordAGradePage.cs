@@ -1,22 +1,14 @@
 ﻿using OpenQA.Selenium;
 using TechTalk.SpecFlow;
-using SFA.DAS.UI.FrameworkHelpers;
-using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.EPAO.UITests.Project.Helpers;
 
 namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
 {
-    public class AS_RecordAGradePage : BasePage
+    public class AS_RecordAGradePage : EPAO_BasePage
     {
         protected override string PageTitle => "Record a grade";
-
-        #region Helpers and Context
         private readonly ScenarioContext _context;
-        private readonly FormCompletionHelper _formCompletionHelper;
-        private readonly PageInteractionHelper _pageInteractionHelper;
-        private readonly EPAOConfig _ePAOConfig;
         private readonly EPAOSqlDataHelper _ePAOSqlDataHelper;
-        #endregion
 
         #region Locators
         private By FamilyNameTextBox => By.Name("Surname");
@@ -30,9 +22,6 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
         public AS_RecordAGradePage(ScenarioContext context) : base(context)
         {
             _context = context;
-            _formCompletionHelper = context.Get<FormCompletionHelper>();
-            _pageInteractionHelper = context.Get<PageInteractionHelper>();
-            _ePAOConfig = context.GetEPAOConfig<EPAOConfig>();
             _ePAOSqlDataHelper = context.Get<EPAOSqlDataHelper>();
             VerifyPage();
         }
@@ -42,16 +31,16 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
             switch (enrolledStandard)
             {
                 case "single":
-                    _ePAOSqlDataHelper.DeleteCertificate(_ePAOConfig.EPAOApprenticeUlnWithSingleStandard);
-                    EnterApprentcieDetailsAndContinue(_ePAOConfig.EPAOApprenticeNameWithSingleStandard, _ePAOConfig.EPAOApprenticeUlnWithSingleStandard);
+                    _ePAOSqlDataHelper.DeleteCertificate(ePAOConfig.EPAOApprenticeUlnWithSingleStandard);
+                    EnterApprentcieDetailsAndContinue(ePAOConfig.EPAOApprenticeNameWithSingleStandard, ePAOConfig.EPAOApprenticeUlnWithSingleStandard);
                     break;
                 case "more than one":
-                    _ePAOSqlDataHelper.DeleteCertificate(_ePAOConfig.EPAOApprenticeUlnWithMultipleStandards);
-                    EnterApprentcieDetailsAndContinue(_ePAOConfig.EPAOApprenticeNameWithMultipleStandards, _ePAOConfig.EPAOApprenticeUlnWithMultipleStandards);
+                    _ePAOSqlDataHelper.DeleteCertificate(ePAOConfig.EPAOApprenticeUlnWithMultipleStandards);
+                    EnterApprentcieDetailsAndContinue(ePAOConfig.EPAOApprenticeNameWithMultipleStandards, ePAOConfig.EPAOApprenticeUlnWithMultipleStandards);
                     break;
                 case "additional learning option":
-                    _ePAOSqlDataHelper.DeleteCertificate(_ePAOConfig.EPAOApprenticeUlnWithAStandardHavingLearningOption);
-                    EnterApprentcieDetailsAndContinue(_ePAOConfig.EPAOApprenticeNameWithAStandardHavingLearningOption, _ePAOConfig.EPAOApprenticeUlnWithAStandardHavingLearningOption);
+                    _ePAOSqlDataHelper.DeleteCertificate(ePAOConfig.EPAOApprenticeUlnWithAStandardHavingLearningOption);
+                    EnterApprentcieDetailsAndContinue(ePAOConfig.EPAOApprenticeNameWithAStandardHavingLearningOption, ePAOConfig.EPAOApprenticeUlnWithAStandardHavingLearningOption);
                     break;
             }
 
@@ -60,29 +49,29 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
 
         public AS_DeclarationPage SearchPrivatelyFundedApprentice()
         {
-            _ePAOSqlDataHelper.DeleteCertificate(_ePAOConfig.EPAOPrivatelyFundedApprenticeUln);
+            _ePAOSqlDataHelper.DeleteCertificate(ePAOConfig.EPAOPrivatelyFundedApprenticeUln);
             SelectPrivatelyFundedCheckBox();
-            EnterApprentcieDetailsAndContinue(_ePAOConfig.EPAOPrivatelyFundedApprenticeLastName, _ePAOConfig.EPAOPrivatelyFundedApprenticeUln);
+            EnterApprentcieDetailsAndContinue(ePAOConfig.EPAOPrivatelyFundedApprenticeLastName, ePAOConfig.EPAOPrivatelyFundedApprenticeUln);
             return new AS_DeclarationPage(_context);
         }
 
         public void EnterApprentcieDetailsAndContinue(string familyName, string uLN)
         {
-            _formCompletionHelper.EnterText(FamilyNameTextBox, familyName);
-            _formCompletionHelper.EnterText(ULNTextBox, uLN);
+            formCompletionHelper.EnterText(FamilyNameTextBox, familyName);
+            formCompletionHelper.EnterText(ULNTextBox, uLN);
             Continue();
         }
 
         public void VerifyErrorMessage(string pageTitle) => VerifyPage(PageHeader, pageTitle);
 
-        public bool VerifyFamilyNameMissingErrorText() => _pageInteractionHelper.IsElementDisplayed(FamilyNameMissingErrorText);
+        public bool VerifyFamilyNameMissingErrorText() => pageInteractionHelper.IsElementDisplayed(FamilyNameMissingErrorText);
 
-        public bool VerifyULNMissingErrorText() => _pageInteractionHelper.IsElementDisplayed(ULNMissingErrorText);
+        public bool VerifyULNMissingErrorText() => pageInteractionHelper.IsElementDisplayed(ULNMissingErrorText);
 
-        public bool VerifyInvalidUlnErrorText() => _pageInteractionHelper.IsElementDisplayed(InvalidUlnErrorText);
+        public bool VerifyInvalidUlnErrorText() => pageInteractionHelper.IsElementDisplayed(InvalidUlnErrorText);
 
-        public string GetPageTitle() => _pageInteractionHelper.GetText(PageHeader);
+        public string GetPageTitle() => pageInteractionHelper.GetText(PageHeader);
 
-        private void SelectPrivatelyFundedCheckBox() => _formCompletionHelper.SelectRadioOptionByForAttribute(PrivatelyFundedCheckBox, "IsPrivatelyFunded");
+        private void SelectPrivatelyFundedCheckBox() => formCompletionHelper.SelectRadioOptionByForAttribute(PrivatelyFundedCheckBox, "IsPrivatelyFunded");
     }
 }
