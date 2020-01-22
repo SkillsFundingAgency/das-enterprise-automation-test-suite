@@ -19,7 +19,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
 
         public ApplySignInPage SelectingNoOptionForFirstTimeSignInAndContinue()
         {
-            formCompletionHelper.SelectRadioOptionByForAttribute(RadioLabels, "FirstTimeSignin-No");
+            SelectRadioOptionByForAttribute("FirstTimeSignin-No");
             Continue();
             return new ApplySignInPage(_context);
         }

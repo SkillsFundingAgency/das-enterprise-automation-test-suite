@@ -22,7 +22,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
 
         public EnterUkprnPage AcceptAndContinue()
         {
-            formCompletionHelper.ClickElement(YesButton);
+            SelectRadioOptionByForAttribute("ConditionsAccepted-Yes");
             Continue();
             return new EnterUkprnPage(_context);
         }

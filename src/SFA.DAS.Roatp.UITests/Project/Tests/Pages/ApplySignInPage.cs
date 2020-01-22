@@ -6,7 +6,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
 {
     public class ApplySignInPage : RoatpBasePage
     {
-        protected override string PageTitle => "Is this your first time using the apprenticeship service (AS) sign in?";
+        protected override string PageTitle => "Sign in to Apprenticeship assessment service";
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
