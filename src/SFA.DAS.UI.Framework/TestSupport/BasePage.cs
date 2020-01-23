@@ -41,6 +41,8 @@ namespace SFA.DAS.UI.Framework.TestSupport
 
         protected bool VerifyPage(Func<List<IWebElement>> func) => VerifyPage(() => _pageInteractionHelper.VerifyPage(func, PageTitle));
 
+        protected bool VerifyElement(Func<IWebElement> func, string text) => VerifyPage(() => _pageInteractionHelper.VerifyPage(func, text));
+
         protected bool VerifyPage(By locator) => VerifyPage(() => _pageInteractionHelper.VerifyPage(locator));
 
         protected bool VerifyPage() => VerifyPage(PageHeader, PageTitle);

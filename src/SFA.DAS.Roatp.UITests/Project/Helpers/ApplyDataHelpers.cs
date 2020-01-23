@@ -6,6 +6,13 @@ using System.Text;
 
 namespace SFA.DAS.Roatp.UITests.Project.Helpers
 {
+    public static class StatusHelper
+    {
+        internal static string StatusCompleted => "COMPLETED";
+
+        internal static string StatusNext => "NEXT";
+    }
+
     public class ApplyDataHelpers
     {
         private readonly RandomDataGenerator _randomDataGenerator;
@@ -37,7 +44,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers
                 new List<KeyValuePair<string, string>> 
                 { 
                     new KeyValuePair<string, string>(emailkey, "sudhakar.chinoor+roatp2@digital.education.gov.uk"),
-                    new KeyValuePair<string, string>(ukprnkey, "10037678"),
+                    new KeyValuePair<string, string>(ukprnkey, "10047117"),
                 });
         }
     }

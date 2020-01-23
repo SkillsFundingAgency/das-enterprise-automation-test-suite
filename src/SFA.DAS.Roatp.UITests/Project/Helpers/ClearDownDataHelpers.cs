@@ -46,10 +46,12 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers
         {
             var applicationId = queryResult[0][0].ToString();
 
-            var DeleteDataFromApplyQuery = $"DECLARE @OrganisationID UNIQUEIDENTIFIER; DECLARE @Email VARCHAR(256) ; SET @Email = '{_objectContext.GetEmail()}'	;" +
-                $"SELECT @OrganisationID = ApplyOrganisationId FROM dbo.Contacts WHERE Email = @Email ;" +
+            var email = _objectContext.GetEmail();
+
+            var DeleteDataFromApplyQuery = $"DECLARE @OrganisationID UNIQUEIDENTIFIER ;" +
+                $"SELECT @OrganisationID = ApplyOrganisationId FROM dbo.Contacts WHERE Email = '{email}' ;" +
                 $"DELETE FROM dbo.Apply WHERE ApplicationId = '{applicationId}' ;" +
-                $"UPDATE dbo.Contacts SET ApplyOrganisationID = NULL WHERE Email = @Email ;" +
+                $"UPDATE dbo.Contacts SET ApplyOrganisationID = NULL WHERE Email = '{email}' ;" +
                 $"DELETE FROM dbo.Organisations WHERE Id = @OrganisationID ;";
             
             _sqlDatabase.ExecuteSqlCommand(DeleteDataFromApplyQuery, _applyDatabaseConnectionString);

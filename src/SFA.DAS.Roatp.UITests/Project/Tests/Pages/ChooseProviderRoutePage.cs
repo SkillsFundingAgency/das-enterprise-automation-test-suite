@@ -11,8 +11,6 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
         private readonly ScenarioContext _context;
         #endregion
 
-        private By MainProvider => By.Id("route-1");
-
         public ChooseProviderRoutePage(ScenarioContext context) : base(context)
         {
             _context = context;
@@ -21,7 +19,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
 
         public ApplicationOverviewPage SelectApplicationRouteAsMain()
         {
-            formCompletionHelper.ClickElement(MainProvider);
+            SelectRadioOptionByForAttribute("route-1");
             Continue();
             return new ApplicationOverviewPage(_context);
         }

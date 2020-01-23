@@ -30,7 +30,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers
             enterUkprnPage.EnterOrgTypeCompanyProvidersUkprn()
                 .ClickConfirmAndContinue()
                 .SelectApplicationRouteAsMain()
-                .VerifyProviderRouteStatus();
+                .VerifyIntroductionStatus(StatusHelper.StatusNext);
         }
     }
 }
