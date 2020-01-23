@@ -23,8 +23,8 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
 
         public ApplicationOverviewPage SelectPublicServiceMutalAndShelterdWorkshopAndContinue()
         {
-            formCompletionHelper.ClickElement(PublicServiceMutualRadio);
-            formCompletionHelper.ClickElement(ShelteredWorkshopRadio);
+            formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(PublicServiceMutualRadio));
+            formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(ShelteredWorkshopRadio));
             Continue();
             return new ApplicationOverviewPage(_context);
         }
