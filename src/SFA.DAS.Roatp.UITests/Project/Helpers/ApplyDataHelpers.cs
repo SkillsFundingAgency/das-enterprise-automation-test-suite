@@ -7,9 +7,9 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers
         public ApplyDataHelpers(RandomDataGenerator randomDataGenerator)
         {
             CompanyNumber = randomDataGenerator.GenerateRandomNumber(8);
-            CompanyName = $"{CompanyNumber}_EnterpriseTestDemo";
+            CompanyName = $"{CompanyNumber}EnterpriseTestDemo";
             IocNumber = randomDataGenerator.GenerateRandomAlphanumericString(8);
-            Website = $"www.{CompanyName}.co.uk";
+            Website = $"www.company.co.uk";
         }
 
         public string CompanyNumber { get; }
