@@ -16,11 +16,11 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
         #endregion
 
         #region Constants
-        private const string ExpectedTheCallingHeader = "";
+        private const string ExpectedTheCallingHeader = "#THECALLING";
         #endregion
 
         #region Page Objects Elements
-        private readonly By _hireAnApprenticeHeader = By.ClassName("heading-xl");
+        private readonly By _theCallingHeader = By.XPath("//h1[@class='thecalling-site-heading']");
         #endregion
 
         public JamalTheCallingPage(ScenarioContext context) : base(context)
@@ -29,6 +29,14 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
         }
+
+        internal JamalTheCallingPage VerifyJamalCallingPage()
+        {
+
+            _pageInteractionHelper.VerifyText(_theCallingHeader, ExpectedTheCallingHeader);
+            return new JamalTheCallingPage(_context);
+        }
+
 
     }
 }

@@ -88,8 +88,6 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("I launch the Jamal page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 11
  testRunner.Then("I verify the content on jamal Panel", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 12
- testRunner.And("I can play the first video on the screen", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }

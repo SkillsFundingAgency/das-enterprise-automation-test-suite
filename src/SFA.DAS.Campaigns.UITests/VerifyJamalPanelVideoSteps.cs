@@ -37,7 +37,7 @@ namespace SFA.DAS.Campaigns.UITests
         public void ThenIVerifyTheContentOnJamalPanel()
         {
            jamalTheCallingPage = new JamalTheCallingPage(_context);
-
+            jamalTheCallingPage.VerifyJamalCallingPage();
         }
     }
 }
