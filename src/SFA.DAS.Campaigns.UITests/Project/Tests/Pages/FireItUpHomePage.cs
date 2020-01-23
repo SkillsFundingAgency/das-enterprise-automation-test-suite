@@ -22,6 +22,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
         #region Helpers
         private readonly PageInteractionHelper _pageInteractionHelper;
         private readonly FormCompletionHelper _formCompletionHelper;
+        private  RegisterMyInterestPage registerMyInterestPage;
         private readonly ScenarioContext _context;
         #endregion
 
@@ -54,6 +55,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
         private readonly By _fundingAnApprenticeshipLink = By.Id("link-nav-emp-step-1");
         private readonly By _settingUp = By.Id("link-nav-employer-3");
         private readonly By _areApprenticeshipRightForYou = By.Id("link-nav-employer-1");
+        private readonly By _theCallingLink = By.XPath("//div[@class='thecalling-section__panel']/div[1]/h2");
         #endregion
 
         public FireItUpHomePage(ScenarioContext context) : base(context)
@@ -202,6 +204,13 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
         {
             _pageInteractionHelper.FocusTheElement(_areApprenticeshipRightForYou);
             return new EmployerMenuOptionPage(_context);
+        }
+        internal JamalTheCallingPage ClickOnTheCallingLink()
+        {
+            registerMyInterestPage = new RegisterMyInterestPage(_context);
+            registerMyInterestPage.RemoveTheAlertBanner();
+            _formCompletionHelper.ClickElement(_theCallingLink);
+            return new JamalTheCallingPage(_context);
         }
     }
 }

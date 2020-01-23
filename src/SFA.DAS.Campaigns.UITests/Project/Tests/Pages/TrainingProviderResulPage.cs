@@ -20,14 +20,15 @@ namespace SFA.DAS.Campaigns.UITests
         #endregion
 
         #region Constant
-        private const string ExpectedProviderText = "There are";
+        private const string ExpectedProviderText = "We've found";
         private const string ProviderPostCode = "CV1 4HS";
         
         #endregion
 
         #region Page Objects Elements
         private readonly By _actaulProviderName=By.XPath("//h1[@class='heading-xl hero-heading__heading hero-heading__heading-l']");
-        private readonly By _actualProviderText = By.XPath("//div[@class='page']/p[1]");
+        private readonly By _actualProviderText = By.XPath("//div[@class='das-search-results__header']/p");
+        private readonly By _providerCount = By.Id("fat-tp-search-result-count");
         private readonly By _firstApprenticeship = By.XPath("//button[@class='das-search-result__favourite-button--unchecked']");
         private readonly By _secondApprenticeship = By.XPath("//button[@class='das-search-result__favourite-button--unchecked']");
         private readonly By _firstProvider = By.XPath("//button[@class='das-search-result__favourite-button--unchecked']");
@@ -55,28 +56,30 @@ namespace SFA.DAS.Campaigns.UITests
 
         public void ExtractNumber()
         {
-         bool testflag = false;
-        String _providerResultString = _pageInteractionHelper.GetText(_actualProviderText);
-        string  _providerCount = "";
-        char[] singleChar = _providerResultString.ToCharArray();
-        foreach (char ch in singleChar)
-        {
-            if (char.IsDigit(ch))
-            {
+            // bool testflag = false;
+            String _providerResultString = _pageInteractionHelper.GetText(_providerCount);
+         
+            //string  _providerCount = "";
+            //char[] singleChar = _providerResultString.ToCharArray();
+            //foreach (char ch in singleChar)
+            //{
+            //    if (char.IsDigit(ch))
+            //    {
 
-                _providerCount = _providerCount + ch.ToString();
-                    testflag  = true;
-            }
-            else 
-            {
-                if (testflag)
-                    {
-                        break;
-                    }
-            }
-        }
+            //        _providerCount = _providerCount + ch.ToString();
+            //            testflag  = true;
+            //    }
+            //    else 
+            //    {
+            //        if (testflag)
+            //            {
+            //                break;
+            //            }
+            //    }
+            //}
 
-        int _numberOfProviders = Convert.ToInt32( _providerCount);
+        
+        int _numberOfProviders = int.Parse(_providerResultString);
         if (_numberOfProviders <= 0)
             {
                 throw new Exception("No Provider found");

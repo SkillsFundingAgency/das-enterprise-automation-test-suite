@@ -21,7 +21,9 @@ namespace SFA.DAS.Campaigns.UITests
         #endregion
 
         #region Page Objects Elements
-        private readonly By _actualSummaryHeader = By.XPath("//h2[@class='heading-l u!-margin-top-0']");
+        // private readonly By _actualSummaryHeader = By.XPath("//h2[@class='heading-l u!-margin-top-0']");
+        private readonly By _actualSummaryHeader = By.XPath("//h2[ contains( text(),  'Summary of this apprenticeship')]");
+
         private readonly By _postcode =By.Id("Postcode");
         private readonly By _providerSearchButton=By.Id("employer-provider-search");
         #endregion
