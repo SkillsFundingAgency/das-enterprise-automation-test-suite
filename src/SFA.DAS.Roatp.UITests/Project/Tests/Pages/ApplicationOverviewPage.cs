@@ -117,11 +117,10 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
                 {
                     if (tasklist.FindElement(TaskSection).Text.ContainsCompareCaseInsensitive(sectionName))
                     {
-                        var tasks = tasklist.FindElements(TaskItems);
+                        var tasks = tasklist.FindElements(TaskItem);
                         foreach (var task in tasks)
                         {
-                            var taskelement = task.FindElement(TaskItem);
-                            if (taskelement.Text.ContainsCompareCaseInsensitive(taskName))
+                            if (task.Text.ContainsCompareCaseInsensitive(taskName))
                             {
                                 return task.FindElement(childelement);
                             }
