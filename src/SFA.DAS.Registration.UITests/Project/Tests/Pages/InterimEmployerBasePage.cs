@@ -28,7 +28,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         private By ChangeEmailAddressLink => By.LinkText("Change your email address");
 
-        private By NotificationSettingsLink => By.LinkText("Notification settings");
+        private By NotificationSettingsLink => By.LinkText("Notifications settings");
 
         public InterimEmployerBasePage(ScenarioContext context, bool navigate) : base(context, navigate)
         {
