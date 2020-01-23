@@ -39,7 +39,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
                 foreach (var task in tasks)
                 {
                     var taskelement = task.FindElement(TaskListName);
-                    if (pageInteractionHelper.GetText(TaskListName).CompareToIgnoreCase(taskName))
+                    if (taskelement.Text.ContainsCompareCaseInsensitive(taskName))
                     {
                         return childelement == null ? taskelement : task.FindElement(childelement);
                     }
