@@ -16,7 +16,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private readonly ApprovalsConfig _config;
         #endregion
 
-        private By SetCreateCohortPermissionsOptions => By.CssSelector(".govuk-radios__label");
         private By SetPermissionsButton => By.CssSelector(".govuk-button");
 
         public SetPermissionsPage(ScenarioContext context) : base(context)
@@ -67,12 +66,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         private SetPermissionsPage CreateCohortPermissions(bool set)
         {
-            _formCompletionHelper.SelectRadioOptionByForAttribute(SetCreateCohortPermissionsOptions, set ? "operation-0-yes": "operation-0-no");
+            SelectRadioOptionByForAttribute(set ? "operation-0-yes": "operation-0-no");
             return this;
         }
+
         private SetPermissionsPage CreateRecruitmentPermissions(bool set)
         {
-            _formCompletionHelper.SelectRadioOptionByForAttribute(SetCreateCohortPermissionsOptions, set ? "operation-1-yes" : "operation-1-no");
+            SelectRadioOptionByForAttribute(set ? "operation-1-yes" : "operation-1-no");
             return this;
         }
 

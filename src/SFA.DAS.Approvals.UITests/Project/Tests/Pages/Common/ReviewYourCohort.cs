@@ -15,25 +15,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
 
         protected virtual By TotalCost => By.CssSelector(".dynamic-cost-display .bold-xlarge, .govuk-table__cell > strong");
 
+        public ReviewYourCohort(ScenarioContext context) : base(context) => pageInteractionHelper = context.Get<PageInteractionHelper>();
 
-        public ReviewYourCohort(ScenarioContext context) : base(context)
-        {
-            pageInteractionHelper = context.Get<PageInteractionHelper>();
-        }
+        protected List<IWebElement> TotalNoOfEditableApprentices() => pageInteractionHelper.GetLinks("Edit");
 
-        protected List<IWebElement> TotalNoOfEditableApprentices()
-        {
-            return pageInteractionHelper.GetLinks("Edit");
-        }
+        public int TotalNoOfApprentices() => TotalNoOfEditableApprentices().Count;
 
-        public int TotalNoOfApprentices()
-        {
-            return TotalNoOfEditableApprentices().Count;
-        }
-
-        public string ApprenticeTotalCost()
-        {
-            return pageInteractionHelper.GetText(TotalCost);
-        }
+        public string ApprenticeTotalCost() => pageInteractionHelper.GetText(TotalCost);
     }
 }

@@ -4,7 +4,7 @@
 	I want to be able to navigate to Fire It Up home page
 	So that I can use the benefits of apprentice services and information 
 
-@campaign
+@campaigns
 @regression
 Scenario: User can find an apprentice from Apprenticeships home page
 		Given I navigate to Fire It Up home page

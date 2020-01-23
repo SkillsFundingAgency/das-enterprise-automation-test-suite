@@ -1,7 +1,10 @@
-﻿using OpenQA.Selenium;
+﻿using NUnit.Framework;
+using OpenQA.Selenium;
 using SFA.DAS.RAA.DataGenerator;
 using SFA.DAS.UI.FrameworkHelpers;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
@@ -13,6 +16,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         #region Helpers and Context
         private readonly PageInteractionHelper _pageInteractionHelper;
         private readonly RAAV1DataHelper _raadataHelper;
+        private readonly string _scenarioTitle;
         #endregion
 
         private By EnterVacancyPostCode => By.Id("postcode-search");
@@ -27,18 +31,29 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         {
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _raadataHelper = context.Get<RAAV1DataHelper>();
+            _scenarioTitle = context.ScenarioInfo.Title;
         }
 
         public RAA_MultipleVacancyLocationPage AddLocation(string postcode)
         {
-            formCompletionHelper.EnterText(EnterVacancyPostCode, postcode);
-            
-            formCompletionHelper.ClickElement(() => 
+            List<IWebElement> postCodeResult() => _pageInteractionHelper.FindElements(PostCodeResult);
+            foreach (var letter in postcode.ToCharArray())
             {
-                var randomAddress = _pageInteractionHelper.FindElements(PostCodeResult);
-                return _raadataHelper.GetRandomElementFromListOfElements(randomAddress);
-            });
-            
+                formCompletionHelper.SendKeys(EnterVacancyPostCode, letter.ToString());
+                if (postCodeResult().Count == 0)
+                {
+                    continue;
+                }
+                try
+                {
+                    formCompletionHelper.ClickElement(() => _raadataHelper.GetRandomElementFromListOfElements(postCodeResult()));
+                    break;
+                }
+                catch (Exception ex)
+                {
+                    TestContext.Progress.WriteLine($"{Environment.NewLine}Scenario Title : {_scenarioTitle}{Environment.NewLine}Exception : {ex.Message}");
+                }
+            }
             return this;
         }
 

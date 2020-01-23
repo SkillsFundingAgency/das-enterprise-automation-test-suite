@@ -1,7 +1,8 @@
 ﻿using SFA.DAS.Login.Service;
 using SFA.DAS.Login.Service.Helpers;
+using SFA.DAS.RAA_V2.Service.Project.Helpers;
+using SFA.DAS.RAA_V2.Service.Project.Tests.Pages;
 using SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer;
-using SFA.DAS.Registration.UITests.Project;
 using SFA.DAS.Registration.UITests.Project.Helpers;
 using TechTalk.SpecFlow;
 
@@ -12,12 +13,18 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
         private readonly ScenarioContext _context;
         private readonly EmployerPortalLoginHelper _loginhelper;
         private readonly HomePageStepsHelper _homePageStepsHelper;
-
+        private readonly StepsHelper _stepsHelper;
         public EmployerStepsHelper(ScenarioContext context)
         {
             _context = context;
             _loginhelper = new EmployerPortalLoginHelper(context);
             _homePageStepsHelper = new HomePageStepsHelper(context);
+            _stepsHelper = new StepsHelper(context);
+        }
+
+        internal void SubmitVacancy(VacancyPreviewPart2Page previewPage, bool isApplicationMethodFAA, bool optionalFields)
+        {
+            _stepsHelper.SubmitVacancy(previewPage, isApplicationMethodFAA, optionalFields);
         }
 
         internal VacanciesPage DeleteDraftVacancy(VacancyPreviewPart2Page previewPage) => previewPage.DeleteVacancy().YesDeleteVacancy();
@@ -28,26 +35,26 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
         {
             var previewPage = PreviewVacancy(string.Empty, true, disabilityConfidence);
 
-            SubmitVacancy(previewPage, false, false);
+            _stepsHelper.SubmitVacancy(previewPage, false, false);
 
-            SearchAnyVacancy().NavigateToViewVacancyPage().VerifyDisabilityConfident();
+            SearchVacancyByVacancyReference().NavigateToViewVacancyPage().VerifyDisabilityConfident();
         }
 
         internal void CloneAVacancy()
         {
           var previewPage = GoToRecruitmentHomePage()
-                .SelectVacancy()
+                .SelectLiveVacancy()
                 .CloneVacancy()
                 .SelectYes()
                 .UpdateTitle()
                 .UpdateVacancyTitle();
 
-            SubmitVacancy(previewPage);
+            _stepsHelper.SubmitVacancy(previewPage);
         }
 
         internal void EditVacancyDates() 
         {
-            SearchVacancy()
+            SearchVacancyByVacancyReferenceInNewTab()
                 .EditVacancy()
                 .EditVacancyCloseDate()
                 .EnterVacancyDates()
@@ -56,100 +63,58 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
                 .PublishVacancy();
         }
 
-        internal void CloseVacancy() => SearchVacancy().CloseVacancy().YesCloseThisVacancy();
+        internal void CloseVacancy() => SearchVacancyByVacancyReferenceInNewTab().CloseVacancy().YesCloseThisVacancy();
 
-        internal void ApplicantUnSucessful() => NavigateToManageApplicant().MakeApplicantUnsucessful().NotifyApplicant();
+        internal void ApplicantUnsucessful() => _stepsHelper.ApplicantUnsucessful(SearchVacancyByVacancyReferenceInNewTab());
 
-        internal void ApplicantSucessful() => NavigateToManageApplicant().MakeApplicantSucessful().NotifyApplicant();
+        internal void ApplicantSucessful() => _stepsHelper.ApplicantSucessful(SearchVacancyByVacancyReferenceInNewTab());
 
         internal void CreateANewVacancy(string employername, bool isEmployerAddress, bool optionalFields = false)
         {
             var previewPage = PreviewVacancy(employername, isEmployerAddress, false);
 
-            SubmitVacancy(previewPage, true, optionalFields);
+            _stepsHelper.SubmitVacancy(previewPage, true, optionalFields);
 
-            SearchAnyVacancy().NavigateToViewVacancyPage().VerifyEmployerName();
+            SearchVacancyByVacancyReference().NavigateToViewVacancyPage().VerifyEmployerName();
         }
 
         internal void CreateANewVacancy(string wageType)
         {
             var employernamePage = SelectOrganisation();
 
-            var locationPage = ChooseEmployerName(employernamePage, string.Empty);
+            var locationPage = _stepsHelper.ChooseEmployerName(employernamePage, string.Empty);
 
-            var wageTypePage = locationPage.ChooseAddress(true)
-                .EnterImportantDates(false)
-                .EnterDuration();
+            var previewPage = _stepsHelper.PreviewVacancy(locationPage, wageType);
 
-            var previewPage = ChooseWage(wageTypePage, wageType).PreviewVacancy();
-
-            SubmitVacancy(previewPage, true, false);
+            _stepsHelper.SubmitVacancy(previewPage, true, false);
         }
 
-        internal void VerifyWageType(string wageType)
-        {
-            SearchAnyVacancy().NavigateToViewVacancyPage().VerifyWageType(wageType);
-        }
+        internal void VerifyWageType(string wageType) => _stepsHelper.VerifyWageType(SearchVacancyByVacancyReference(), wageType);
 
         internal VacancyPreviewPart2Page PreviewVacancy(string employername, bool isEmployerAddress, bool disabilityConfidence)
         {
             var employernamePage = SelectOrganisation();
 
-            var locationPage = ChooseEmployerName(employernamePage, employername);
-
-            return locationPage.ChooseAddress(isEmployerAddress)
-                .EnterImportantDates(disabilityConfidence)
-                .EnterDuration()
-                .SelectNationalMinimumWage()
-                .PreviewVacancy();
+            return _stepsHelper.PreviewVacancy(employernamePage, employername, isEmployerAddress, disabilityConfidence);
         }
 
-        internal void SubmitVacancy(VacancyPreviewPart2Page previewPage, bool isApplicationMethodFAA, bool optionalFields)
-        {
-            previewPage = EnterMandatoryFields(previewPage, isApplicationMethodFAA);
-
-            previewPage = optionalFields ? EnterOptionalFields(previewPage) : previewPage;
-
-            SubmitVacancy(previewPage);
-        }
-
-        private void SubmitVacancy(VacancyPreviewPart2Page previewPage) => previewPage.SubmitVacancy().SetVacancyReference();
-
-        private ManageVacancyPage SearchVacancy()
+        private ManageVacancyPage SearchVacancyByVacancyReferenceInNewTab()
         {
             _homePageStepsHelper.GotoEmployerHomePage();
 
-            return SearchAnyVacancy();
+            return SearchVacancyByVacancyReference();
         }
 
-        private ManageVacancyPage SearchAnyVacancy() => new RecruitmentHomePage(_context, true).SearchAnyVacancy();
-
-        private VacancyPreviewPart2Page EnterMandatoryFields(VacancyPreviewPart2Page previewPage, bool isApplicationMethodFAA)
-        {
-            previewPage
-                .AddBriefOverview()
-                .EnterBriefOverview()
-                .AddDescription()
-                .EnterDescription()
-                .AddSkills()
-                .SelectSkill()
-                .AddQualifications()
-                .EnterQualifications()
-                .ConfirmQualifications()
-                .AddApplicationProcess()
-                .ApplicationMethod(isApplicationMethodFAA)
-                .AddEmployerDescription()
-                .EnterEmployerDescription();
-
-            return new VacancyCompletedAllSectionsPage(_context);
-        }
+        private ManageVacancyPage SearchVacancyByVacancyReference() => NavigateToRecruitmentHomePage().SearchVacancyByVacancyReference();
 
         private RecruitmentHomePage GoToRecruitmentHomePage()
         {
             _loginhelper.Login(_context.GetUser<RAAV2EmployerUser>(), true);
 
-            return new RecruitmentHomePage(_context, true);
+            return NavigateToRecruitmentHomePage();
         }
+
+        private RecruitmentHomePage NavigateToRecruitmentHomePage() => new RecruitmentHomePage(_context, true);
 
         private ApprenticeshipTrainingPage EnterVacancyTitle()
         {
@@ -166,47 +131,8 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
                 .ConfirmTrainingAndContinue()
                 .ChooseTrainingProvider()
                 .ConfirmTrainingProviderAndContinue()
-                .ChooseNoOfPositions()
+                .SubmitNoOfPositions()
                 .SelectOrganisation();
         }
-
-        private VacancyPreviewPart2Page EnterOptionalFields(VacancyPreviewPart2Page previewPage)
-        {
-            previewPage
-                .AddThingsToConsider()
-                .EnterThingsToConsider()
-                .AddContactDetails()
-                .EnterContactDetails();
-
-            return new VacancyCompletedAllSectionsPage(_context);
-        }
-
-        private ChooseApprenticeshipLocationPage ChooseEmployerName(EmployerNamePage employernamePage, string employername)
-        {
-            switch (employername)
-            {
-                default:
-                    return employernamePage.ChooseRegisteredName();
-                case "existing-trading-name":
-                    return  employernamePage.ChooseExistingTradingName();
-                case "anonymous":
-                    return employernamePage.ChooseAnonymous();
-            };
-        }
-
-        private PreviewYourVacancyPage ChooseWage(WageTypePage wageTypePage, string wageType)
-        {
-            switch (wageType)
-            {
-                case "National Minimum Wage":
-                    return wageTypePage.SelectNationalMinimumWage();
-                case "Fixed Wage Type":
-                    return wageTypePage.SelectFixedWageType();
-                default:
-                    return wageTypePage.SelectNationalMinimumWageForApprentices();
-            };
-        }
-
-        private ManageApplicantPage NavigateToManageApplicant() => SearchVacancy().NavigateToManageApplicant();
     }
 }

@@ -25,19 +25,16 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 
         internal ApprovalsProviderHomePage GoToProviderHomePage(ProviderLoginUser login)
         {
-            _providerHomePageStepsHelper.GoToProviderHomePage(login);
+            _providerHomePageStepsHelper.GoToProviderHomePage(login, true);
 
             return new ApprovalsProviderHomePage(_context);
         }
 
-        public ApprovalsProviderHomePage NavigateToProviderHomePage()
-        {
-            return new ApprovalsProviderHomePage(_context, true);
-        }
+        public ApprovalsProviderHomePage NavigateToProviderHomePage() => new ApprovalsProviderHomePage(_context, true);
 
         public ApprovalsProviderHomePage GoToProviderHomePage()
         {
-            _providerHomePageStepsHelper.GoToProviderHomePage();
+            _providerHomePageStepsHelper.GoToProviderHomePage(true);
 
             return new ApprovalsProviderHomePage(_context);
         }

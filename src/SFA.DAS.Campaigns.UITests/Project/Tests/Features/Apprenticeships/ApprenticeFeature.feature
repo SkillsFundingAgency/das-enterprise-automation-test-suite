@@ -4,7 +4,7 @@
 	I want to be able to navigate to Fire It Up home page
 	So that I can use the benefits of apprentice services and information 
 
-	@campaign
+	@campaigns
 	@regression
 	Scenario: User can see a valid message when no apprentice results found
 		Given I navigate to Fire It Up home page
@@ -16,7 +16,7 @@
 		And I click on Serach button
 		Then I can verify the content of no matching results page
 
-	@campaign
+	@campaigns
 	@regression
 	Scenario Outline: Application should show default value for Miles DropDown and valid error messages for invalid postcode and interest selection
 		Given I navigate to Fire It Up home page

@@ -1,5 +1,8 @@
-﻿using SFA.DAS.EPAO.UITests.Project.Helpers;
+﻿using NUnit.Framework;
+using SFA.DAS.EPAO.UITests.Project.Helpers;
 using SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService;
+using SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.ManageUsers;
+using SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.OrganisationDetails;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
@@ -12,31 +15,39 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         private readonly ScenarioContext _context;
         private readonly AssessmentServiceStepsHelper _stepsHelper;
         private readonly EPAOConfig _ePAOConfig;
-        private AS_RecordAGradePage _recordAGradePage;
-        private EPAODataHelper _epaoDataHelper;
-        private AS_AchievementDatePage _achievementDatePage;
         private readonly TabHelper _tabHelper;
+        private readonly EPAODataHelper _dataHelper;
+        private AS_RecordAGradePage _recordAGradePage;
+        private AS_AchievementDatePage _achievementDatePage;
+        private AS_CheckAndSubmitAssessmentPage _checkAndSubmitAssessmentPage;
+        private AS_LoggedInHomePage _loggedInHomePage;
+        private AS_OrganisationDetailsPage _organisationDetailsPage;
+        private AS_EditUserPermissionsPage _editUserPermissionsPage;
+        private AS_UserDetailsPage _userDetailsPage;
+        private bool _permissionsSelected;
+        private string _newUserEmailId;
 
         public AssessmentServiceSteps(ScenarioContext context)
         {
             _context = context;
             _stepsHelper = new AssessmentServiceStepsHelper(_context);
             _ePAOConfig = context.GetEPAOConfig<EPAOConfig>();
-            _epaoDataHelper = context.Get<EPAODataHelper>();
+            _dataHelper = context.Get<EPAODataHelper>();
             _tabHelper = context.Get<TabHelper>();
         }
 
-        [Given(@"the User is logged into Assessment Service Application")]
-        public void GivenTheUserIsLoggedIntoAssessmentServiceApplication()
+        [Given(@"the (.*) is logged into Assessment Service Application")]
+        public void GivenTheUserIsLoggedIntoAssessmentServiceApplication(string user)
         {
             _tabHelper.GoToUrl(_ePAOConfig.EPAOAssessmentServiceUrl);
-            _stepsHelper.LoginToAssessmentServiceApplication();
+            _loggedInHomePage = _stepsHelper.LoginToAssessmentServiceApplication(user);
         }
 
         [When(@"the User goes through certifying an Apprentice as '(.*)' who has enrolled for '(.*)' standard")]
         public void WhenTheUserGoesThroughCertifyingAnApprenticeAsWhoHasEnrolledForStandard(string grade, string enrolledStandard)
         {
             _stepsHelper.CertifyApprentice(grade, enrolledStandard);
+            new AS_CheckAndSubmitAssessmentPage(_context).ClickContinueInCheckAndSubmitAssessmentPage();
         }
 
         [When(@"the User goes through certifying a Privately funded Apprentice")]
@@ -60,9 +71,9 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         }
 
         [Then(@"'(.*)' message is displayed")]
-        public void ThenMessageIsDisplayed(string errorMessage)
+        public void ThenErrorMessageIsDisplayed(string errorMessage)
         {
-            _recordAGradePage.VerifyErrorMessage(errorMessage);
+            Assert.AreEqual(_recordAGradePage.GetPageTitle(), errorMessage);
         }
 
         [Then(@"the '(.*)' is displayed")]
@@ -71,17 +82,17 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
             switch (errorMessage)
             {
                 case "Family name and ULN missing error":
-                    _recordAGradePage.VerifyFamilyNameMissingErrorText();
-                    _recordAGradePage.VerifyULNMissingErrorText();
+                    Assert.IsTrue(_recordAGradePage.VerifyFamilyNameMissingErrorText(), "FamilyName missing Error Text is incorrect");
+                    Assert.IsTrue(_recordAGradePage.VerifyULNMissingErrorText(), "ULN missing Error Text is incorrect");
                     break;
                 case "Family name missing error":
-                    _recordAGradePage.VerifyFamilyNameMissingErrorText();
+                    Assert.IsTrue(_recordAGradePage.VerifyFamilyNameMissingErrorText(), "FamilyName missing Error Text is incorrect");
                     break;
                 case "ULN missing error":
-                    _recordAGradePage.VerifyULNMissingErrorText();
+                    Assert.IsTrue(_recordAGradePage.VerifyULNMissingErrorText(), "ULN missing Error Text is incorrect");
                     break;
                 case "ULN validation error":
-                    _recordAGradePage.VerifyInvalidUlnErrorText();
+                    Assert.IsTrue(_recordAGradePage.VerifyInvalidUlnErrorText(), "ULN validation Error Text is incorrect");
                     break;
             }
         }
@@ -103,10 +114,10 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
                     _recordAGradePage.EnterApprentcieDetailsAndContinue("", _ePAOConfig.EPAOApprenticeUlnWithSingleStandard);
                     break;
                 case "by entering valid Family name but ULN less than 10 digits":
-                    _recordAGradePage.EnterApprentcieDetailsAndContinue(_ePAOConfig.EPAOApprenticeNameWithSingleStandard, _epaoDataHelper.Get9DigitRandomULN);
+                    _recordAGradePage.EnterApprentcieDetailsAndContinue(_ePAOConfig.EPAOApprenticeNameWithSingleStandard, _dataHelper.Get9DigitRandomNumber);
                     break;
                 case "by entering valid Family name and Invalid ULN":
-                    _recordAGradePage.EnterApprentcieDetailsAndContinue(_ePAOConfig.EPAOApprenticeNameWithSingleStandard, _epaoDataHelper.Get10DigitRandomULN);
+                    _recordAGradePage.EnterApprentcieDetailsAndContinue(_ePAOConfig.EPAOApprenticeNameWithSingleStandard, _dataHelper.Get10DigitRandomNumber);
                     break;
             }
         }
@@ -130,13 +141,132 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         [When(@"the User enters the future date")]
         public void WhenTheUserEntersTheFutureDate()
         {
-            _achievementDatePage.EnterAchievementGradeDateForPrivatelyFundedApprenticeAndContinue(_epaoDataHelper.GetCurrentYear+1);
+            _achievementDatePage.EnterAchievementGradeDateForPrivatelyFundedApprenticeAndContinue(_dataHelper.GetCurrentYear + 1);
         }
 
         [Then(@"(.*) is displayed in the Apprenticeship achievement date page")]
         public void ThenDateErrorIsDisplayedInTheApprenticeshipAchievementDatePage(string errorText)
         {
-            _achievementDatePage.VerifyDateErrorText(errorText);
+            Assert.AreEqual(_achievementDatePage.GetDateErrorText(), errorText);
+        }
+
+        [When(@"the (.*) is on the Confirm Assessment Page")]
+        public void WhenTheUserIsOnTheConfirmAssessmentPage(string user)
+        {
+            GivenTheUserIsLoggedIntoAssessmentServiceApplication(user);
+            _stepsHelper.CertifyApprentice("Passed", "additional learning option");
+        }
+
+        [Then(@"the Change links navigate to the respective pages")]
+        public void ThenTheChangeLinksNavigateToTheRespectivePages()
+        {
+            _checkAndSubmitAssessmentPage = new AS_CheckAndSubmitAssessmentPage(_context);
+
+            _checkAndSubmitAssessmentPage = _checkAndSubmitAssessmentPage.ClickGradeChangeLink().ClickBackLink();
+            _checkAndSubmitAssessmentPage = _checkAndSubmitAssessmentPage.ClickOptionChangeLink().ClickBackLink();
+            _checkAndSubmitAssessmentPage = _checkAndSubmitAssessmentPage.ClickAchievementDateChangeLink().ClickBackLink();
+            _checkAndSubmitAssessmentPage = _checkAndSubmitAssessmentPage.ClickNameChangeLink().ClickBackLink();
+            _checkAndSubmitAssessmentPage = _checkAndSubmitAssessmentPage.ClickDepartmentChangeLink().ClickBackLink();
+            _checkAndSubmitAssessmentPage = _checkAndSubmitAssessmentPage.ClickOrganisationChangeLink().ClickBackLink();
+            _checkAndSubmitAssessmentPage = _checkAndSubmitAssessmentPage.ClickCertificateAddressChangeLink().ClickBackLink();
+        }
+
+        [When(@"the User navigates to the Completed assessments tab")]
+        public void WhenTheUserNavigatesToTheCompletedAssessmentsTab()
+        {
+            _loggedInHomePage.ClickCompletedAssessmentsLink();
+        }
+
+        [Then(@"the User is able to view the history of the assessments")]
+        public void ThenTheUserIsAbleToViewTheHistoryOfTheAssessments()
+        {
+            new AS_CompletedAssessmentsPage(_context).VerifyTableHeaders();
+        }
+
+        [When(@"the User navigates to Organisation details page")]
+        public void WhenTheUserNavigatesToOrganisationDetailsPage()
+        {
+            _stepsHelper.RemoveChangeOrgDetailsPermissionForTheUser();
+            _loggedInHomePage.ClickOrganisationDetailsTopMenuLink();
+            new AS_ChangeOrganisationDetailsPage(_context).ClickAccessButton();
+        }
+
+        [Then(@"the User is able to change the Registered details")]
+        public void ThenTheUserIsAbleToChangeTheRegisteredDetails()
+        {
+            _organisationDetailsPage = new AS_OrganisationDetailsPage(_context);
+
+            _organisationDetailsPage = _stepsHelper.ChangeContactName(_organisationDetailsPage);
+            _organisationDetailsPage = _stepsHelper.ChangePhoneNumber(_organisationDetailsPage);
+            _organisationDetailsPage = _stepsHelper.ChangeAddress(_organisationDetailsPage);
+            _organisationDetailsPage = _stepsHelper.ChangeEmailAddress(_organisationDetailsPage);
+            _organisationDetailsPage = _stepsHelper.ChangeWebsiteAddress(_organisationDetailsPage);
+        }
+
+        [When(@"the User initiates editing permissions of another user")]
+        public void WhenTheUserInitiatesEditingPermissionsOfAnotherUser()
+        {
+            _editUserPermissionsPage = _loggedInHomePage.ClickManageUsersLink()
+                .ClickPermissionsEditUserLink()
+                .ClickEditUserPermissionLink();
+
+            _permissionsSelected = _editUserPermissionsPage.IsChangeOrganisationDetailsCheckBoxSelected();
+
+            if (_permissionsSelected)
+                _userDetailsPage = _editUserPermissionsPage.UnSelectAllPermissionCheckBoxes().ClickSaveButton();
+            else
+                _userDetailsPage = _editUserPermissionsPage.SelectAllPermissionCheckBoxes().ClickSaveButton();
+
+            _permissionsSelected = _permissionsSelected ? false : true;
+        }
+
+        [Then(@"the User is able to change the permissions")]
+        public void ThenTheUserIsAbleToChangeThePermissions()
+        {
+            if (_permissionsSelected)
+            {
+                Assert.IsTrue(_userDetailsPage.IsViewDashboardPermissionDisplayed(), "default 'View dashboard' " + AddAssertResultText(true));
+                Assert.IsTrue(_userDetailsPage.IsChangeOrganisationDetailsPersmissionDisplayed(), "'Change organisation details' " + AddAssertResultText(true));
+                Assert.IsTrue(_userDetailsPage.IsPipelinePermissionDisplayed(), "'Pipeline' " + AddAssertResultText(true));
+                Assert.IsTrue(_userDetailsPage.IsCompletedAssessmentsPermissionDisplayed(), "'Completed assessments' " + AddAssertResultText(true));
+                Assert.IsTrue(_userDetailsPage.IsApplyForAStandardPermissionDisplayed(), "'Apply for a Standard' " + AddAssertResultText(true));
+                Assert.IsTrue(_userDetailsPage.IsManageUsersPermissionDisplayed(), "'Manage users' " + AddAssertResultText(true));
+                Assert.IsTrue(_userDetailsPage.IsRecordGradesPermissionDisplayed(), "'Record grades and issue certificates' " + AddAssertResultText(true));
+            }
+            else
+            {
+                Assert.IsTrue(_userDetailsPage.IsViewDashboardPermissionDisplayed(), "default 'View dashboard' " + AddAssertResultText(true));
+                Assert.IsFalse(_userDetailsPage.IsChangeOrganisationDetailsPersmissionDisplayed(), "'Change organisation details' " + AddAssertResultText(false));
+                Assert.IsFalse(_userDetailsPage.IsPipelinePermissionDisplayed(), "'Pipeline' permission is displayed in 'User details' " + AddAssertResultText(false));
+                Assert.IsFalse(_userDetailsPage.IsCompletedAssessmentsPermissionDisplayed(), "'Completed assessments' " + AddAssertResultText(false));
+                Assert.IsFalse(_userDetailsPage.IsApplyForAStandardPermissionDisplayed(), "'Apply for a Standard' " + AddAssertResultText(false));
+                Assert.IsFalse(_userDetailsPage.IsManageUsersPermissionDisplayed(), "'Manage users' " + AddAssertResultText(false));
+                Assert.IsFalse(_userDetailsPage.IsRecordGradesPermissionDisplayed(), "'Record grades and issue certificates' " + AddAssertResultText(false));
+            }
+        }
+
+        private string AddAssertResultText(bool condition) => condition ? "permission selected is not shown in 'User details' page" : "permission selected is not shown in 'User details' page";
+
+        [When(@"the User initiates inviting a new user journey")]
+        public void WhenTheUserInitiatesInvitingANewUserJourney()
+        {
+            _newUserEmailId = _stepsHelper.InviteAUser(_loggedInHomePage, _dataHelper);
+        }
+
+        [Then(@"a new User is invited and able to initiate inviting another user")]
+        public void ThenANewUserIsInvitedAndAbleToInitiateInvitingAnotherUser()
+        {
+            new AS_UserInvitedPage(_context).ClickInviteSomeoneElseLink();
+        }
+
+        [Then(@"the User can remove newly invited user")]
+        public void ThenTheUserCanRemoveNewlyInvitedUser()
+        {
+            _loggedInHomePage.ClickHomeTopMenuLink()
+                .ClickManageUsersLink()
+                .ClickOnNewlyAddedUserLink(_newUserEmailId)
+                .ClicRemoveThisUserLinkInUserDetailPage()
+                .ClickRemoveUserButtonInRemoveUserPage();
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using SFA.DAS.FAA.UITests.Project;
+﻿using SFA.DAS.RAA.DataGenerator.Project;
 using SFA.DAS.RAA_V1.UITests.Project.Helpers;
 using SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.Manage;
 using SFA.DAS.ConfigurationBuilder;

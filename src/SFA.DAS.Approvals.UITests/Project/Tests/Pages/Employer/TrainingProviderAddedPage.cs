@@ -14,8 +14,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private readonly ScenarioContext _context;
         #endregion
 
-        private By SetPermissionsOptions => By.CssSelector(".govuk-radios__label");
-
         public TrainingProviderAddedPage(ScenarioContext context) : base(context)
         {
             _context = context;
@@ -25,7 +23,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         public SetPermissionsPage SelectContinueInEmployerTrainingProviderAddedPage()
         {
-            _formCompletionHelper.SelectRadioOptionByText(SetPermissionsOptions, "Set permissions for this training provider");
+            _formCompletionHelper.SelectRadioOptionByText(RadioLabels, "Set permissions for this training provider");
             Continue();
             return new SetPermissionsPage(_context);
         }

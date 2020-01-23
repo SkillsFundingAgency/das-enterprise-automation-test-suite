@@ -37,7 +37,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
 
         public ManageApprenticeshipLoginPage ClickonCreateAccountButton()
         {
-            _tabHelper.OpenInNewtab(() => _formCompletionHelper.ClickElement(_createAccountButton));
+            _tabHelper.OpenInNewTab(() => _formCompletionHelper.ClickElement(_createAccountButton));
             return new ManageApprenticeshipLoginPage(_context);
         }
     }

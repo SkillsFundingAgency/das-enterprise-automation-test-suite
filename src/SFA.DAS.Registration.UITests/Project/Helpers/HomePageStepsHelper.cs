@@ -25,7 +25,7 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
 
         public HomePage GotoEmployerHomePage()
         {
-            _tabHelper.OpenInNewtab(_registrationConfig.EmployerApprenticeshipServiceBaseURL);
+            _tabHelper.OpenInNewTab(_registrationConfig.EmployerApprenticeshipServiceBaseURL);
 
             if (_loginHelper.IsSignInPageDisplayed())
             {

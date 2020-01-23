@@ -3,7 +3,7 @@
 	I want to be able to navigate to Fire It Up home page
 	So that I can As a Parent get the relevant information on Apprenticeships
 
-@campaign
+@campaigns
 @regression
 Scenario: Check the Parent Link
 	Given I navigate to Fire It Up home page
