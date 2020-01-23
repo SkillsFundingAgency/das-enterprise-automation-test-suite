@@ -12,7 +12,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions
     {
         private readonly ScenarioContext _context;
         private readonly End2EndStepsHelper _end2EndStepsHelper;
-        private TermsConditionsMakingApplicationPage _termsConditionsMakingApplicationPage;
+        private ApplicationOverviewPage _overviewPage;
         private EnterUkprnPage _enterUkprnPage;
 
         public End2EndSteps(ScenarioContext context)
@@ -24,11 +24,13 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions
         [Given(@"the provider initates an application as main route company")]
         public void GivenTheProviderInitatesAnApplicationAsMainRouteCompany()
         {
-            _termsConditionsMakingApplicationPage = _end2EndStepsHelper.SubmitValidUserDetails();
+            var termsConditionsMakingApplicationPage = _end2EndStepsHelper.SubmitValidUserDetails();
 
-            _enterUkprnPage = _end2EndStepsHelper.AcceptAndContinue(_termsConditionsMakingApplicationPage);
+            _enterUkprnPage = _end2EndStepsHelper.AcceptAndContinue(termsConditionsMakingApplicationPage);
 
-            _end2EndStepsHelper.CompleteProviderRouteSection(_enterUkprnPage);
+            _overviewPage =  _end2EndStepsHelper.CompleteProviderRouteSection(_enterUkprnPage);
+
+            _overviewPage = _end2EndStepsHelper.CompleteYourOrganisationSection(_overviewPage);
         }
     }
 }

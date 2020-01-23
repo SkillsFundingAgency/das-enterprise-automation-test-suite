@@ -28,7 +28,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers
         public void DeleteTrainingProvider()
         {
             var DeleteProviderQuery = $"DELETE FROM Organisations WHERE UKPRN ='{_objectContext.GetUkprn()}'";
-            _sqlDatabasehelper.ExecuteSqlCommand(DeleteProviderQuery, _roatpDatabaseConnectionString);
+            _sqlDatabasehelper.ExecuteSqlCommand(_roatpDatabaseConnectionString, DeleteProviderQuery);
         }
 
         public string ClearDownDataFromApply()
@@ -66,7 +66,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers
                 $"DELETE FROM ApplicationSequences WHERE applicationid = '{applicationId}' " +
                 $"DELETE FROM Applications WHERE id = '{applicationId}' ;";
 
-            return applicationId == Emptyguid ? 0 : _sqlDatabasehelper.ExecuteSqlCommand(DeleteDataFromQnaQuery, _qnaDatabaseConnectionString);
+            return applicationId == Emptyguid ? 0 : _sqlDatabasehelper.ExecuteSqlCommand(_qnaDatabaseConnectionString, DeleteDataFromQnaQuery);
         }
     }
 }

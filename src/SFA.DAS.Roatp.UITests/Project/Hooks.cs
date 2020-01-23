@@ -19,7 +19,7 @@ namespace SFA.DAS.Roatp.UITests.Project
         private readonly IWebDriver _webDriver;
         private readonly RoatpConfig _config;
         private readonly ClearDownDataHelpers _clearDownDataHelpers;
-        private ApplyDataHelpers _applyDataHelpers;
+        private ApplyUkprnDataHelpers _applyUkprnDataHelpers;
 
         public Hooks(ScenarioContext context)
         {
@@ -34,15 +34,18 @@ namespace SFA.DAS.Roatp.UITests.Project
         [BeforeScenario(Order = 32)]
         public void SetUpHelpers() 
         {
-            _applyDataHelpers = new ApplyDataHelpers(_context.Get<RandomDataGenerator>());
-            _context.Set(_applyDataHelpers); 
+            _applyUkprnDataHelpers = new ApplyUkprnDataHelpers();
+            _context.Set(_applyUkprnDataHelpers);
+
+            var applydatahelpers = new ApplyDataHelpers(_context.Get<RandomDataGenerator>());
+            _context.Set(applydatahelpers);
         }
 
         [BeforeScenario(Order = 33)]
         public void ClearDownDataHelpers()
         {
             var tag = _context.ScenarioInfo.Tags.ToList().First(x => x.StartsWith("rp"));
-            var (email, ukprn) = _applyDataHelpers.GetApplyData(tag);
+            var (email, ukprn) = _applyUkprnDataHelpers.GetApplyData(tag);
 
             _objectContext.SetEmail(email);
             _objectContext.SetUkprn(ukprn);

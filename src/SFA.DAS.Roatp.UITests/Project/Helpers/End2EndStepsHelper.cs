@@ -25,12 +25,67 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers
 
         internal EnterUkprnPage AcceptAndContinue(TermsConditionsMakingApplicationPage page) => page.AcceptAndContinue();
 
-        internal void CompleteProviderRouteSection(EnterUkprnPage enterUkprnPage)
+        internal ApplicationOverviewPage CompleteProviderRouteSection(EnterUkprnPage enterUkprnPage)
         {
-            enterUkprnPage.EnterOrgTypeCompanyProvidersUkprn()
+            return enterUkprnPage.EnterOrgTypeCompanyProvidersUkprn()
                 .ClickConfirmAndContinue()
                 .SelectApplicationRouteAsMain()
                 .VerifyIntroductionStatus(StatusHelper.StatusNext);
+        }
+
+        internal ApplicationOverviewPage CompleteYourOrganisationSection(ApplicationOverviewPage applicationOverviewPage)
+        {
+            applicationOverviewPage = CompleteYourOrganisationSection_1(applicationOverviewPage);
+            applicationOverviewPage = CompleteYourOrganisationSection_2(applicationOverviewPage);
+            applicationOverviewPage = CompleteYourOrganisationSection_3(applicationOverviewPage);
+            applicationOverviewPage = CompleteYourOrganisationSection_4(applicationOverviewPage);
+            applicationOverviewPage = CompleteYourOrganisationSection_5(applicationOverviewPage);
+            return applicationOverviewPage;
+        }
+
+        internal ApplicationOverviewPage CompleteYourOrganisationSection_1(ApplicationOverviewPage applicationOverviewPage)
+        {
+            return applicationOverviewPage
+                .AccessIntroductionWhatYouWillNeedSection()
+                .VerifyIntorductionForMainAndEmployerAndContinue()
+                .VerifyIntroductionStatus(StatusHelper.StatusCompleted);
+        }
+
+        internal ApplicationOverviewPage CompleteYourOrganisationSection_2(ApplicationOverviewPage applicationOverviewPage)
+        {
+            return applicationOverviewPage
+                .AccessYourOrganisationSectionForOrgTypeCompany()
+                .SelectYesForUltimateParentCompanyAndContinue()
+                .EnterParentCompanyDetailsAndContinue()
+                .EnterIcoRegistrationNumberAndContinue()
+                .EneterWebsiteAndContinue()
+                .SelectMaximumTradingPeriodAndContinue()
+                .VerifyOrganisationInformation(StatusHelper.StatusCompleted);
+        }
+
+        internal ApplicationOverviewPage CompleteYourOrganisationSection_3(ApplicationOverviewPage applicationOverviewPage)
+        {
+            return applicationOverviewPage.AccessTellUSWhosInControlSection()
+                .ConfirmWhosInContorlAndContinue()
+                .VerifyTellUsWhosInControlStatus(StatusHelper.StatusCompleted);
+        }
+
+        internal ApplicationOverviewPage CompleteYourOrganisationSection_4(ApplicationOverviewPage applicationOverviewPage)
+        {
+            return applicationOverviewPage.AccessDescribeYourOrganisationsForOrgTypeCharity()
+                .SelectIndependentTrainingProviderAndContinue()
+                .SelectPublicServiceMutalAndShelterdWorkshopAndContinue()
+                .VerifyDescribeYourOrganisationStatus(StatusHelper.StatusCompleted);
+        }
+
+        internal ApplicationOverviewPage CompleteYourOrganisationSection_5(ApplicationOverviewPage applicationOverviewPage)
+        {
+            return applicationOverviewPage.AccessExperienceAndAccreditationsSection()
+                .SelectYesForFundedbyOFSAndContinue()
+                .SelectNoForITTAndContinue()
+                .SelectNoForFullOfstedInspectionAndContinue()
+                .SelectNoForMonitoringVisitAndContinue()
+                .VerifyExperienceAndAccreditationsStatus(StatusHelper.StatusCompleted);
         }
     }
 }
