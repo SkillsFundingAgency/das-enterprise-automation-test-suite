@@ -8,7 +8,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
     public class StartAddingApprenticesPage : BasePage
     {
         protected override string PageTitle => "Start adding apprentices";
-        private By WhoAddsApprenticesOptions => By.CssSelector(".govuk-radios__label");
 
         #region Helpers and Context
         private readonly PageInteractionHelper _pageInteractionHelper;
@@ -40,13 +39,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         private StartAddingApprenticesPage EmployerAgreesToAdds()
         {
-            _formCompletionHelper.SelectRadioOptionByText(WhoAddsApprenticesOptions, "I will add apprentices");
+            _formCompletionHelper.SelectRadioOptionByText(RadioLabels, "I will add apprentices");
             return this;
         }
 
         private StartAddingApprenticesPage EmployerSendsToProviderToAdd()
         {
-            _formCompletionHelper.SelectRadioOptionByText(WhoAddsApprenticesOptions, "I would like my provider to add apprentices");
+            _formCompletionHelper.SelectRadioOptionByText(RadioLabels, "I would like my provider to add apprentices");
             return this;
         }
 

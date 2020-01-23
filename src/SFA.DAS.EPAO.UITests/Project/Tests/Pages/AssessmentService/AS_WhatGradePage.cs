@@ -1,19 +1,13 @@
 ﻿using OpenQA.Selenium;
 using TechTalk.SpecFlow;
-using SFA.DAS.UI.FrameworkHelpers;
 
 namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
 {
-    public class AS_WhatGradePage : AS_BasePage
+    public class AS_WhatGradePage : EPAO_BasePage
     {
         protected override string PageTitle => "What grade did the apprentice achieve?";
         protected override By PageHeader => By.CssSelector(".govuk-fieldset__heading");
-
-        #region Helpers and Context
         private readonly ScenarioContext _context;
-        private readonly FormCompletionHelper _formCompletionHelper;
-        private readonly PageInteractionHelper _pageInteractionHelper;
-        #endregion
 
         #region Locators
         private By PassRadioButton => By.Id("Pass");
@@ -23,8 +17,6 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
         public AS_WhatGradePage(ScenarioContext context) : base(context)
         {
             _context = context;
-            _formCompletionHelper = context.Get<FormCompletionHelper>();
-            _pageInteractionHelper = context.Get<PageInteractionHelper>();
             VerifyPage();
         }
 
@@ -32,13 +24,13 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
         {
             if (grade == "Passed")
             {
-                _formCompletionHelper.ClickElement(() => _pageInteractionHelper.FindElement(PassRadioButton));
+                formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(PassRadioButton));
                 Continue();
                 new AS_AchievementDatePage(_context).EnterAchievementGradeDateAndContinue();
             }
             else if (grade == "Failed")
             {
-                _formCompletionHelper.ClickElement(() => _pageInteractionHelper.FindElement(FailRadioButton));
+                formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(FailRadioButton));
                 Continue();
                 new AS_ApprenticeFailedDatePage(_context).EnterAchievementGradeDateAndContinue();
             }
@@ -46,7 +38,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
 
         public AS_ApprenticeshipStartDate SelectGradeForPrivatelyFundedAprrenticeAndContinue()
         {
-            _formCompletionHelper.ClickElement(() => _pageInteractionHelper.FindElement(PassRadioButton));
+            formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(PassRadioButton));
             Continue();
             return new AS_ApprenticeshipStartDate(_context);
         }

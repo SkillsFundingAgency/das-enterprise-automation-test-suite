@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.EPAO.UITests.Project.Tests.Features.AssessmentOpportunity
+namespace SFA.DAS.EPAO.UITests.Project.Tests.Features.ManageUsers
 {
     using TechTalk.SpecFlow;
     
@@ -18,20 +18,20 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Features.AssessmentOpportunity
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.0.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("EPAO_AO_1")]
-    public partial class EPAO_AO_1Feature
+    [NUnit.Framework.DescriptionAttribute("EPAO_AS_MU_02")]
+    public partial class EPAO_AS_MU_02Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "EPAO_AO_1.feature"
+#line 1 "EPAO_AS_MU_02.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "EPAO_AO_1", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "EPAO_AS_MU_02", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -70,31 +70,27 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Features.AssessmentOpportunity
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("EPAO_AO_1 - View an Approved Standard in Assessment Opportunity Application")]
+        [NUnit.Framework.DescriptionAttribute("EPAO_AS_MU_02 - Invite and Remove a User")]
         [NUnit.Framework.CategoryAttribute("epao")]
         [NUnit.Framework.CategoryAttribute("assessmentservice")]
-        [NUnit.Framework.CategoryAttribute("assessmentopportunity")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public virtual void EPAO_AO_1_ViewAnApprovedStandardInAssessmentOpportunityApplication()
+        public virtual void EPAO_AS_MU_02_InviteAndRemoveAUser()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EPAO_AO_1 - View an Approved Standard in Assessment Opportunity Application", null, new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EPAO_AS_MU_02 - Invite and Remove a User", null, new string[] {
                         "epao",
                         "assessmentservice",
-                        "assessmentopportunity",
                         "regression"});
-#line 7
+#line 6
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
+#line 7
+ testRunner.Given("the Manage User is logged into Assessment Service Application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 8
- testRunner.When("the User visits the Assessment Opportunity Application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("the User initiates inviting a new user journey", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 9
- testRunner.Then("the Approved tab is displayed and selected", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("a new User is invited and able to initiate inviting another user", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 10
- testRunner.When("the User clicks on one of the standards listed under \'Approved\' tab to view it", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 11
- testRunner.And("clicks on \'Apply to assess this Standard\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 12
- testRunner.Then("the User is redirected to \'Assessment Service\' application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("the User can remove newly invited user", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }

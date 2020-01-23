@@ -10,22 +10,18 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         protected override string PageTitle => "Confirm training provider";
 
         #region Helpers and Context
-        private readonly FormCompletionHelper _formCompletionHelper;
         private readonly ScenarioContext _context;
         #endregion
-
-        private By ConfirmProviderDetailsOptions => By.CssSelector(".govuk-radios__label");
 
         public ConfirmTrainingProviderPage(ScenarioContext context): base(context)
         {
             _context = context;
-            _formCompletionHelper = context.Get<FormCompletionHelper>();
             VerifyPage();
         }
 
         public StartAddingApprenticesPage ConfirmProviderDetailsAreCorrect()
         {
-            _formCompletionHelper.SelectRadioOptionByForAttribute(ConfirmProviderDetailsOptions, "UseThisProvider");
+            SelectRadioOptionByForAttribute("UseThisProvider");
             Continue();
             return new StartAddingApprenticesPage(_context);
         }

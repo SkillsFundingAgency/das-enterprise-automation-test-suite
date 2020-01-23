@@ -14,7 +14,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private readonly ScenarioContext _context;
         #endregion
 
-        private By CohortApproveOptions => By.CssSelector(".govuk-radios__label");
         protected override By ContinueButton => By.CssSelector("#submitCohort button");
 
         public ApproveApprenticeDetailsPage(ScenarioContext context) : base(context)
@@ -40,7 +39,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         private ApproveApprenticeDetailsPage SelectCohortApproveOptions(string value)
         {
-            _formCompletionHelper.SelectRadioOptionByForAttribute(CohortApproveOptions, value);
+            SelectRadioOptionByForAttribute(value);
             return this;
         }
     }

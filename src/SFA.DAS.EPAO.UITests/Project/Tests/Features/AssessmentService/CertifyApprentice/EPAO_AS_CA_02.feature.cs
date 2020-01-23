@@ -86,7 +86,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Features.AssessmentService.CertifyA
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 7
- testRunner.Given("the User is logged into Assessment Service Application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("the Assessor User is logged into Assessment Service Application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 8
  testRunner.When("the User goes through certifying an Apprentice as \'Passed\' who has enrolled for \'" +
                     "additional learning option\' standard", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
@@ -112,7 +112,7 @@ this.ScenarioInitialize(scenarioInfo);
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 15
- testRunner.When("the User is on the Confirm Assessment Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("the Assessor User is on the Confirm Assessment Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 16
  testRunner.Then("the Change links navigate to the respective pages", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden

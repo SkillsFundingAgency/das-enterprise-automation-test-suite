@@ -8,8 +8,6 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 {
     public abstract class RAAV2CSSBasePage : BasePage
     {
-        protected By RadioLabels => By.CssSelector(".govuk-radios__label");
-
         protected readonly RAAV2DataHelper dataHelper;
         protected readonly FormCompletionHelper formCompletionHelper;
 
@@ -20,9 +18,9 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
             VerifyPage();
         }
 
-        protected RAAV2CSSBasePage SelectRadioOptionByForAttribute(string value)
+        protected new RAAV2CSSBasePage SelectRadioOptionByForAttribute(string value)
         {
-            formCompletionHelper.SelectRadioOptionByForAttribute(RadioLabels, value);
+            base.SelectRadioOptionByForAttribute(value);
             return this;
         }
     }

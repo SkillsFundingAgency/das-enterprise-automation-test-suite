@@ -16,7 +16,7 @@ Note: This framework is built with all standard libraries and ready to write new
 
 ## How to use User secrets
 1. Navigate to "%APPDATA%/Microsoft" Create Directory "UserSecrets" if you don't find it.
-2. Create a folder under "%APPDATA%/Microsoft/UserSecrets" folder in the format <ProjectName>_<EnvironmentName>_Secrets. You can get project name and environment name from "appsettings.Environment.json" file under your respective project(s). f.i. For Registration project, you will see below data in "appsettings.Environment.json" file, so create the folder as "Registration_PP" (without the quotes)
+2. Create a folder under "%APPDATA%/Microsoft/UserSecrets" folder in the format <ProjectName>_<EnvironmentName>_Secrets. You can get project name and environment name from "appsettings.Environment.json" file under your respective project(s). f.i. For Registration project, you will see below data in "appsettings.Environment.json" file, so create the folder as "Registration_PP_Secrets" (without the quotes)
 ```json
 {
   "local_EnvironmentName": "PP",

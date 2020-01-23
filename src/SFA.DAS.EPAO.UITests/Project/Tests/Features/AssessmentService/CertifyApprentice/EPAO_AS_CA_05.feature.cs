@@ -84,7 +84,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Features.AssessmentService.CertifyA
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 7
- testRunner.Given("the User is logged into Assessment Service Application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("the Assessor User is logged into Assessment Service Application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 8
  testRunner.When("the User goes through certifying an already assessed Apprentice", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 9
