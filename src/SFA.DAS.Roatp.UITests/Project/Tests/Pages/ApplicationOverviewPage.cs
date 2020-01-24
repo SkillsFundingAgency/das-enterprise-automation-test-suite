@@ -20,7 +20,8 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
         private string YourOrganisation_3 => "Tell us who's in control";
         private string YourOrganisation_4 => "Describe your organisation";
         private string YourOrganisation_5 => "Experience and accreditation";
-
+        
+        private string FinancialEvidence => "Financial evidence";
         private string FinancialEvidence_1 => "Introduction and what you'll need";
         private string FinancialEvidence_2 => "Your organisation's financial evidence";
         private string FinancialEvidence_3 => "Your UK ultimate parent company's financial evidence";
@@ -29,8 +30,6 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
         private By TaskLists => By.CssSelector(".app-task-list > li");
 
         private By TaskSection => By.CssSelector(".app-task-list__section");
-
-        private By TaskItems => By.CssSelector(".app-task-list__items");
 
         private By TaskItem => By.CssSelector(".app-task-list__item");
 
@@ -43,6 +42,46 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
             _context = context;
             VerifyPage();
         }
+
+        #region Section2
+
+        public ApplicationOverviewPage VerifyIntroductionStatus_Section2(string status)
+        {
+            VerifyElement(GetTaskStatusElement(FinancialEvidence, FinancialEvidence_1), status);
+            return this;
+        }
+
+        public ApplicationOverviewPage VerifyYourOrganisationsFinancialEvidence_Section2(string status)
+        {
+            VerifyElement(GetTaskStatusElement(FinancialEvidence, FinancialEvidence_2), status);
+            return this;
+        }
+
+        public ApplicationOverviewPage VerifyYourUkUltimateParentCompany_Section3(string status)
+        {
+            VerifyElement(GetTaskStatusElement(FinancialEvidence, FinancialEvidence_3), status);
+            return this;
+        }
+
+        public FinancialHealthAssessmentPage Access_Section2_IntroductionWhatYouwillNeed()
+        {
+            formCompletionHelper.ClickElement(GetTaskLinkElement(FinancialEvidence, FinancialEvidence_1));
+            return new FinancialHealthAssessmentPage(_context);
+        }
+
+        public AnnualTurnoverPage Access_Section2_YourOrganisationsFinancialEvidence()
+        {
+            formCompletionHelper.ClickElement(GetTaskLinkElement(FinancialEvidence, FinancialEvidence_2));
+            return new AnnualTurnoverPage(_context);
+        }
+
+        public ConsolidatedFinancialStatementsPage Access_Section2_YourUkUltimateParentCompanyFinancialEvidence()
+        {
+            formCompletionHelper.ClickElement(GetTaskLinkElement(FinancialEvidence, FinancialEvidence_3));
+            return new ConsolidatedFinancialStatementsPage(_context);
+        }
+
+        #endregion
 
         #region Seciton1
         public ApplicationOverviewPage VerifyIntroductionStatus(string status)

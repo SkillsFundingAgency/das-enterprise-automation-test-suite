@@ -82,7 +82,9 @@ this.ScenarioInitialize(scenarioInfo);
 #line 6
 testRunner.Given("the provider initates an application as main route company", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 7
-testRunner.When("the provider completes Your Organisation section", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+testRunner.When("the provider completes Your organisation section", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 8
+testRunner.When("the provider completes Financial evidence section", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
             this.ScenarioCleanup();
         }

@@ -9,10 +9,12 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers
     public class End2EndStepsHelper
     {
         private readonly ScenarioContext _context;
+        private readonly YourOrganisationSectionHelper yourOrganisationSectionHelper;
 
         public End2EndStepsHelper(ScenarioContext context)
         {
             _context = context;
+            yourOrganisationSectionHelper = new YourOrganisationSectionHelper();
         }
 
         internal TermsConditionsMakingApplicationPage SubmitValidUserDetails()
@@ -35,57 +37,35 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers
 
         internal ApplicationOverviewPage CompleteYourOrganisationSection(ApplicationOverviewPage applicationOverviewPage)
         {
-            applicationOverviewPage = CompleteYourOrganisationSection_1(applicationOverviewPage);
-            applicationOverviewPage = CompleteYourOrganisationSection_2(applicationOverviewPage);
-            applicationOverviewPage = CompleteYourOrganisationSection_3(applicationOverviewPage);
-            applicationOverviewPage = CompleteYourOrganisationSection_4(applicationOverviewPage);
-            applicationOverviewPage = CompleteYourOrganisationSection_5(applicationOverviewPage);
+            applicationOverviewPage = yourOrganisationSectionHelper.CompleteYourOrganisationSection_1(applicationOverviewPage);
+            applicationOverviewPage = yourOrganisationSectionHelper.CompleteYourOrganisationSection_2(applicationOverviewPage);
+            applicationOverviewPage = yourOrganisationSectionHelper.CompleteYourOrganisationSection_3(applicationOverviewPage);
+            applicationOverviewPage = yourOrganisationSectionHelper.CompleteYourOrganisationSection_4(applicationOverviewPage);
+            applicationOverviewPage = yourOrganisationSectionHelper.CompleteYourOrganisationSection_5(applicationOverviewPage);
             return applicationOverviewPage;
         }
 
-        internal ApplicationOverviewPage CompleteYourOrganisationSection_1(ApplicationOverviewPage applicationOverviewPage)
+        internal ApplicationOverviewPage CompleteFinancialEvidence(ApplicationOverviewPage applicationOverviewPage)
         {
-            return applicationOverviewPage
-                .AccessIntroductionWhatYouWillNeedSection()
-                .VerifyIntorductionForMainAndEmployerAndContinue()
-                .VerifyIntroductionStatus(StatusHelper.StatusCompleted);
-        }
-
-        internal ApplicationOverviewPage CompleteYourOrganisationSection_2(ApplicationOverviewPage applicationOverviewPage)
-        {
-            return applicationOverviewPage
-                .AccessYourOrganisationSectionForOrgTypeCompany()
-                .SelectYesForUltimateParentCompanyAndContinue()
-                .EnterParentCompanyDetailsAndContinue()
-                .EnterIcoRegistrationNumberAndContinue()
-                .EneterWebsiteAndContinue()
-                .SelectMaximumTradingPeriodAndContinue()
-                .VerifyOrganisationInformation(StatusHelper.StatusCompleted);
-        }
-
-        internal ApplicationOverviewPage CompleteYourOrganisationSection_3(ApplicationOverviewPage applicationOverviewPage)
-        {
-            return applicationOverviewPage.AccessTellUSWhosInControlSection()
-                .ConfirmWhosInContorlAndContinue()
-                .VerifyTellUsWhosInControlStatus(StatusHelper.StatusCompleted);
-        }
-
-        internal ApplicationOverviewPage CompleteYourOrganisationSection_4(ApplicationOverviewPage applicationOverviewPage)
-        {
-            return applicationOverviewPage.AccessDescribeYourOrganisationsForOrgTypeCharity()
-                .SelectIndependentTrainingProviderAndContinue()
-                .SelectPublicServiceMutalAndShelterdWorkshopAndContinue()
-                .VerifyDescribeYourOrganisationStatus(StatusHelper.StatusCompleted);
-        }
-
-        internal ApplicationOverviewPage CompleteYourOrganisationSection_5(ApplicationOverviewPage applicationOverviewPage)
-        {
-            return applicationOverviewPage.AccessExperienceAndAccreditationsSection()
-                .SelectYesForFundedbyOFSAndContinue()
-                .SelectNoForITTAndContinue()
-                .SelectNoForFullOfstedInspectionAndContinue()
-                .SelectNoForMonitoringVisitAndContinue()
-                .VerifyExperienceAndAccreditationsStatus(StatusHelper.StatusCompleted);
+            return applicationOverviewPage.Access_Section2_IntroductionWhatYouwillNeed()
+                .ContinueOnFinancialHealthAssessment()
+                .VerifyIntroductionStatus_Section2(StatusHelper.StatusCompleted)
+                .Access_Section2_YourOrganisationsFinancialEvidence()
+                .SelectYesOnAnnualTurnOverAndContinue()
+                .SelectNoOnFundingFromEsfaAndContinue()
+                .EnterInputsForFinancialEvidenceAndContinue()
+                .SelectNoForLatestFullFinancialForTwelveMonthsAndContinue()
+                .ClickYesForFinancialStatementsCoveringAnyPeriodAndContinue()
+                .ContinueOnWhatYouNeedToUploadForFinancialStatementsAndManagementAccounts()
+                .UploadFinancialFileAndContinue()
+                .UploadManagementAccountsFileAndContinue()
+                .SelectAnEmployeeInYourOrganisationOnWhoPreparedAnswersAndUploadPageAndContinue()
+                .VerifyYourOrganisationsFinancialEvidence_Section2(StatusHelper.StatusCompleted)
+                .Access_Section2_YourUkUltimateParentCompanyFinancialEvidence()
+                .ClickNoOnConsolidatedFinancialStatements()
+                .ClickNoOnOtherSubsidiaryCompanies()
+                .UploadFullFinancialStatementsForTwelveMonthsAndContinue()
+                .VerifyYourUkUltimateParentCompany_Section3(StatusHelper.StatusCompleted);
         }
     }
 }

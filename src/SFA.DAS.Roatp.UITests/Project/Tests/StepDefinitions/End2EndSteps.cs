@@ -31,11 +31,18 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions
             _overviewPage =  _end2EndStepsHelper.CompleteProviderRouteSection(_enterUkprnPage);
         }
 
-        [When(@"the provider completes Your Organisation section")]
+        [When(@"the provider completes Your organisation section")]
         public void WhenTheProviderCompletesYourOrganisationSection()
         {
             _overviewPage = _end2EndStepsHelper.CompleteYourOrganisationSection(_overviewPage);
         }
+
+        [When(@"the provider completes Financial evidence section")]
+        public void WhenTheProviderCompletesFinancialEvidenceSection()
+        {
+            _overviewPage = _end2EndStepsHelper.CompleteFinancialEvidence(_overviewPage);
+        }
+
 
     }
 }

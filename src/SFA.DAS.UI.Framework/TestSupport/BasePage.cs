@@ -53,6 +53,8 @@ namespace SFA.DAS.UI.Framework.TestSupport
 
         protected void SelectRadioOptionByForAttribute(string value) => _formCompletionHelper.SelectRadioOptionByForAttribute(RadioLabels, value);
 
+        protected void SelectRadioOptionByText(string value) => _formCompletionHelper.SelectRadioOptionByText(RadioLabels, value);
+
         protected void NavigateBack() => _formCompletionHelper.Click(BackLink);
 
         private bool VerifyPage(Func<bool> func)
