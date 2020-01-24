@@ -29,8 +29,13 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions
             _enterUkprnPage = _end2EndStepsHelper.AcceptAndContinue(termsConditionsMakingApplicationPage);
 
             _overviewPage =  _end2EndStepsHelper.CompleteProviderRouteSection(_enterUkprnPage);
+        }
 
+        [When(@"the provider completes Your Organisation section")]
+        public void WhenTheProviderCompletesYourOrganisationSection()
+        {
             _overviewPage = _end2EndStepsHelper.CompleteYourOrganisationSection(_overviewPage);
         }
+
     }
 }
