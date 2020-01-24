@@ -11,7 +11,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
         private readonly ScenarioContext _context;
         #endregion
 
-        private By AnEmployeeInYourOrganisationCheckbox => By.Id("option_0");
+        private By AnEmployeeInYourOrganisationCheckbox => By.CssSelector("input[type='checkbox'][value='An employee in your organisation']");
 
 
         public WhoPreparedAnswersAndUploadPage(ScenarioContext context) : base(context)
@@ -22,7 +22,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
 
         public ApplicationOverviewPage SelectAnEmployeeInYourOrganisationOnWhoPreparedAnswersAndUploadPageAndContinue()
         {
-            formCompletionHelper.ClickElement(AnEmployeeInYourOrganisationCheckbox);
+            formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(AnEmployeeInYourOrganisationCheckbox));
             Continue();
             return new ApplicationOverviewPage(_context);
         }
