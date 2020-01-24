@@ -8,11 +8,11 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => "Upload your organisation's financial statements covering any period within the last 12 months";
 
+        protected override By PageHeader => By.TagName("h2");
+
         #region Helpers and Context
         private readonly ScenarioContext _context;
         #endregion
-
-        private By ChooseFile => By.ClassName("govuk-file-upload");
 
         public UploadOrganisationsFinancialPage(ScenarioContext context) : base(context)
         {
@@ -22,9 +22,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
 
         public UploadOrganisationsManagementAccountsPage UploadFinancialFileAndContinue()
         {
-            string File = AppDomain.CurrentDomain.BaseDirectory + "Project\\Helpers\\UploadFiles\\" + "Sample.pdf";
-            formCompletionHelper.EnterText(ChooseFile, File);
-            Continue();
+            UploadFile();
             return new UploadOrganisationsManagementAccountsPage(_context);
         }
 
