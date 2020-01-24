@@ -5,26 +5,12 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
 {
-    public class ApplicationOverviewPage : RoatpBasePage
+    public partial class ApplicationOverviewPage : RoatpBasePage
     {
         protected override string PageTitle => "Application overview";
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
-        #endregion
-
-        #region Questions
-        private string Yourorganisation => "Your organisation";
-        private string YourOrganisation_1 => "Introduction and what you'll need";
-        private string YourOrganisation_2 => "Organisation information";
-        private string YourOrganisation_3 => "Tell us who's in control";
-        private string YourOrganisation_4 => "Describe your organisation";
-        private string YourOrganisation_5 => "Experience and accreditation";
-        
-        private string FinancialEvidence => "Financial evidence";
-        private string FinancialEvidence_1 => "Introduction and what you'll need";
-        private string FinancialEvidence_2 => "Your organisation's financial evidence";
-        private string FinancialEvidence_3 => "Your UK ultimate parent company's financial evidence";
         #endregion
 
         private By TaskLists => By.CssSelector(".app-task-list > li");
@@ -42,106 +28,6 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
             _context = context;
             VerifyPage();
         }
-
-        #region Section2
-
-        public ApplicationOverviewPage VerifyIntroductionStatus_Section2(string status)
-        {
-            VerifyElement(GetTaskStatusElement(FinancialEvidence, FinancialEvidence_1), status);
-            return this;
-        }
-
-        public ApplicationOverviewPage VerifyYourOrganisationsFinancialEvidence_Section2(string status)
-        {
-            VerifyElement(GetTaskStatusElement(FinancialEvidence, FinancialEvidence_2), status);
-            return this;
-        }
-
-        public ApplicationOverviewPage VerifyYourUkUltimateParentCompany_Section3(string status)
-        {
-            VerifyElement(GetTaskStatusElement(FinancialEvidence, FinancialEvidence_3), status);
-            return this;
-        }
-
-        public FinancialHealthAssessmentPage Access_Section2_IntroductionWhatYouwillNeed()
-        {
-            formCompletionHelper.ClickElement(GetTaskLinkElement(FinancialEvidence, FinancialEvidence_1));
-            return new FinancialHealthAssessmentPage(_context);
-        }
-
-        public AnnualTurnoverPage Access_Section2_YourOrganisationsFinancialEvidence()
-        {
-            formCompletionHelper.ClickElement(GetTaskLinkElement(FinancialEvidence, FinancialEvidence_2));
-            return new AnnualTurnoverPage(_context);
-        }
-
-        public ConsolidatedFinancialStatementsPage Access_Section2_YourUkUltimateParentCompanyFinancialEvidence()
-        {
-            formCompletionHelper.ClickElement(GetTaskLinkElement(FinancialEvidence, FinancialEvidence_3));
-            return new ConsolidatedFinancialStatementsPage(_context);
-        }
-
-        #endregion
-
-        #region Seciton1
-        public ApplicationOverviewPage VerifyIntroductionStatus(string status)
-        {
-            VerifyElement(GetTaskStatusElement(Yourorganisation, YourOrganisation_1), status);
-            return this;
-        }
-
-        public ApplicationOverviewPage VerifyOrganisationInformation(string status)
-        {
-            VerifyElement(GetTaskStatusElement(Yourorganisation, YourOrganisation_2), status);
-            return this;
-        }
-
-        public ApplicationOverviewPage VerifyTellUsWhosInControlStatus(string status)
-        {
-            VerifyElement(GetTaskStatusElement(Yourorganisation, YourOrganisation_3), status);
-            return this;
-        }
-
-        public ApplicationOverviewPage VerifyDescribeYourOrganisationStatus(string status)
-        {
-            VerifyElement(GetTaskStatusElement(Yourorganisation, YourOrganisation_4), status);
-            return this;
-        }
-
-        public ApplicationOverviewPage VerifyExperienceAndAccreditationsStatus(string status)
-        {
-            VerifyElement(GetTaskStatusElement(Yourorganisation, YourOrganisation_5), status);
-            return this;
-        }
-
-        public YourOrganisationPage AccessIntroductionWhatYouWillNeedSection()
-        {
-            formCompletionHelper.ClickElement(GetTaskLinkElement(Yourorganisation, YourOrganisation_1));
-            return new YourOrganisationPage(_context);
-        }
-
-        public UltimateParentCompanyPage AccessYourOrganisationSectionForOrgTypeCompany()
-        {
-            formCompletionHelper.ClickElement(GetTaskLinkElement(Yourorganisation, YourOrganisation_2));
-            return new UltimateParentCompanyPage(_context);
-        }
-        public ConfrimWhosInControlPage AccessTellUSWhosInControlSection()
-        {
-            formCompletionHelper.ClickElement(GetTaskLinkElement(Yourorganisation, YourOrganisation_3));
-            return new ConfrimWhosInControlPage(_context);
-        }
-        public WhatIsYourOrganisationPage AccessDescribeYourOrganisationsForOrgTypeCharity()
-        {
-            formCompletionHelper.ClickElement(GetTaskLinkElement(Yourorganisation, YourOrganisation_4));
-            return new WhatIsYourOrganisationPage(_context);
-        }
-        public FundedByTheOfficeForStudentsPage AccessExperienceAndAccreditationsSection()
-        {
-            formCompletionHelper.ClickElement(GetTaskLinkElement(Yourorganisation, YourOrganisation_5));
-            return new FundedByTheOfficeForStudentsPage(_context);
-        }
-
-        #endregion
 
         private Func<IWebElement> GetTaskLinkElement(string sectionName, string taskName) => GetTaskElement(sectionName, taskName, TaskName);
 
