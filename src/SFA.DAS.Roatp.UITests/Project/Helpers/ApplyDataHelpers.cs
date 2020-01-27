@@ -33,6 +33,9 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers
             WhosInControlBankruptInLastThreeYears = randomDataGenerator.GenerateRandomAlphabeticString(20);
         }
 
+        public string FullName =>  "George Smith";
+        public string Email =>  "test.demo@digital.education.gov.uk";
+        public string ContactNumber => "1234567890";
         public string CompanyNumber { get; }
         public string CompanyName { get; }
         public string IocNumber { get; }

@@ -7,6 +7,35 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
     public partial class ApplicationOverviewPage : RoatpBasePage
     {
         //Access Section
+        #region Section4
+
+        public ProtectingYourApprenticesPage Access_Section4_IntroductionWhatYouWillNeed()
+        {
+            formCompletionHelper.ClickElement(GetTaskLinkElement(ProtectingYourApprentices, ProtectingYourApprentices_1));
+            return new ProtectingYourApprenticesPage(_context);
+        }
+        public ContinuityPlanForApprenticeshipTrainingPage Access_Section4_ContinuityPlanForApprenticeshipTraining()
+        {
+            formCompletionHelper.ClickElement(GetTaskLinkElement(ProtectingYourApprentices, ProtectingYourApprentices_2));
+            return new ContinuityPlanForApprenticeshipTrainingPage(_context);
+        }
+        public EqualityAndDiversityPolicyPage Access_Section4_EqualityAndDiversityPolicy()
+        {
+            formCompletionHelper.ClickElement(GetTaskLinkElement(ProtectingYourApprentices, ProtectingYourApprentices_3));
+            return new EqualityAndDiversityPolicyPage(_context);
+        }
+        public SafeguardingPolicyPage Access_Section4_SafeguardingPolicy()
+        {
+            formCompletionHelper.ClickElement(GetTaskLinkElement(ProtectingYourApprentices, ProtectingYourApprentices_4));
+            return new SafeguardingPolicyPage(_context);
+        }
+        public HealthAndSafetyPolicyPage Access_Section4_HealthAndSafetyPolicy()
+        {
+            formCompletionHelper.ClickElement(GetTaskLinkElement(ProtectingYourApprentices, ProtectingYourApprentices_5));
+            return new HealthAndSafetyPolicyPage(_context);
+        }
+        #endregion
+
 
         #region Section3
 

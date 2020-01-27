@@ -1,0 +1,24 @@
+﻿using TechTalk.SpecFlow;
+
+namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
+{
+    public class HealthAndSafetyPolicyPage : RoatpBasePage
+    {
+        protected override string PageTitle => "Upload your organisation's health and safety policy";
+
+        #region Helpers and Context
+        private readonly ScenarioContext _context;
+        #endregion
+
+        public HealthAndSafetyPolicyPage(ScenarioContext context) : base(context)
+        {
+            _context = context;
+            VerifyPage();
+        }
+        public OverallResponsibilityForHealthAndSafetyPage HealthAndSafetyPolicyFileUploadAndContinue()
+        {
+            UploadFile();
+            return new OverallResponsibilityForHealthAndSafetyPage(_context);
+        }
+    }
+}
