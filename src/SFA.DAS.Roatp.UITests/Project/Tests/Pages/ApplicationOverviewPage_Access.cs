@@ -6,7 +6,44 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
 {
     public partial class ApplicationOverviewPage : RoatpBasePage
     {
-        //Access Section
+        #region Section5
+        public ReadinessToEngagePage Access_Section5_IntroductionWhatYouwillNeed()
+        {
+            formCompletionHelper.ClickElement(GetTaskLinkElement(ReadinessToEngage, ReadinessToEngage_1));
+            return new ReadinessToEngagePage(_context);
+        }
+        public OrganisationEngagedWithEmployersToDeliverApprenticeshipPage Access_Section5_EngagingWithEmployers()
+        {
+            formCompletionHelper.ClickElement(GetTaskLinkElement(ReadinessToEngage, ReadinessToEngage_2));
+            return new OrganisationEngagedWithEmployersToDeliverApprenticeshipPage(_context);
+        }
+        public UploadCompliantsPolicyPage Access_section5_ComplaintsPolicy()
+        {
+            formCompletionHelper.ClickElement(GetTaskLinkElement(ReadinessToEngage, ReadinessToEngage_3));
+            return new UploadCompliantsPolicyPage(_context);
+        }
+        public UploadContractForServiceTemplatePage Access_Section5_ContractForservicesTemplate()
+        {
+            formCompletionHelper.ClickElement(GetTaskLinkElement(ReadinessToEngage, ReadinessToEngage_4));
+            return new UploadContractForServiceTemplatePage(_context);
+        }
+        public UploadCommitmentStatementTemplatePage Access_Section5_CommitmentStatementTemplate()
+        {
+            formCompletionHelper.ClickElement(GetTaskLinkElement(ReadinessToEngage, ReadinessToEngage_5));
+            return new UploadCommitmentStatementTemplatePage(_context);
+        }
+        public OrganisationsProcessForInitialAssessementsPage Access_Section5_PriorLearningOfApprentices()
+        {
+            formCompletionHelper.ClickElement(GetTaskLinkElement(ReadinessToEngage, ReadinessToEngage_6));
+            return new OrganisationsProcessForInitialAssessementsPage(_context);
+        }
+        public OrganisationExpectToUseSubcontractorsPage Access_Section5_WorkingWithSubContractors()
+        {
+            formCompletionHelper.ClickElement(GetTaskLinkElement(ReadinessToEngage, ReadinessToEngage_7));
+            return new OrganisationExpectToUseSubcontractorsPage(_context);
+        }
+        #endregion
+
         #region Section4
 
         public ProtectingYourApprenticesPage Access_Section4_IntroductionWhatYouWillNeed()

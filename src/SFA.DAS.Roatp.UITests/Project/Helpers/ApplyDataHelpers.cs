@@ -31,10 +31,14 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers
             WhosInControlContractWithdrawnWithPublicBody = randomDataGenerator.GenerateRandomAlphabeticString(20);
             WhosInControlBreachTaxSocialSecurity = randomDataGenerator.GenerateRandomAlphabeticString(20);
             WhosInControlBankruptInLastThreeYears = randomDataGenerator.GenerateRandomAlphabeticString(20);
+            ManagingRelationshipWithEmployers = randomDataGenerator.GenerateRandomAlphabeticString(20);
+            OrganisationPromoteApprenticeships = randomDataGenerator.GenerateRandomAlphabeticString(20);
+            OrganisationProcessForInitialTraning = randomDataGenerator.GenerateRandomAlphabeticString(20);
+            ProcessToAssessEnglishAndMaths = = randomDataGenerator.GenerateRandomAlphabeticString(20);
         }
 
-        public string FullName =>  "George Smith";
-        public string Email =>  "test.demo@digital.education.gov.uk";
+        public string FullName => "George Smith";
+        public string Email => "test.demo@digital.education.gov.uk";
         public string ContactNumber => "1234567890";
         public string CompanyNumber { get; }
         public string CompanyName { get; }
@@ -59,6 +63,10 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers
         public string WhosInControlContractWithdrawnWithPublicBody { get; }
         public string WhosInControlBreachTaxSocialSecurity { get; }
         public string WhosInControlBankruptInLastThreeYears { get; }
+        public string ManagingRelationshipWithEmployers { get; }
+        public string OrganisationPromoteApprenticeships { get; }
+        public string OrganisationProcessForInitialTraning { get; }
+        public string ProcessToAssessEnglishAndMaths { get; }
         public string GenerateRandomNumber(int length) => _randomDataGenerator.GenerateRandomNumber(length);
         
 
