@@ -55,5 +55,40 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers
             applicationOverviewPage = _financialEvidenceSectionHelper.CompleteFinancialEvidence_3(applicationOverviewPage);
             return applicationOverviewPage;
         }
+
+        internal ApplicationOverviewPage CompletesCriminalAndComplianceSection(ApplicationOverviewPage applicationOverviewPage)
+        {
+            return applicationOverviewPage;
+        }
+
+        internal ApplicationOverviewPage CompletesProtectingYourApprenticesSection(ApplicationOverviewPage applicationOverviewPage)
+        {
+            return applicationOverviewPage;
+        }
+
+        internal ApplicationOverviewPage CompletesReadinessToEngageSection(ApplicationOverviewPage applicationOverviewPage)
+        {
+            return applicationOverviewPage;
+        }
+
+        internal ApplicationOverviewPage CompletesPlanningApprenticeshipTrainingSection(ApplicationOverviewPage applicationOverviewPage)
+        {
+            return applicationOverviewPage;
+        }
+
+        internal ApplicationOverviewPage CompletesDeliveringApprenticeshipTrainingSection(ApplicationOverviewPage applicationOverviewPage)
+        {
+            return applicationOverviewPage;
+        }
+
+        internal ApplicationOverviewPage CompletesEvaluatingApprenticeshipTrainingSection(ApplicationOverviewPage applicationOverviewPage)
+        {
+            return applicationOverviewPage;
+        }
+
+        internal ApplicationOverviewPage CompletesFinishSection(ApplicationOverviewPage applicationOverviewPage)
+        {
+            return applicationOverviewPage;
+        }
     }
 }

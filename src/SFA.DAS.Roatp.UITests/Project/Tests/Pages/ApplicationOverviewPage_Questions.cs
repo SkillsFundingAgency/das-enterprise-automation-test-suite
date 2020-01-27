@@ -47,13 +47,14 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
         private string PlanningApprenticeshipTraining => "Planning apprenticeship training";
         private string PlanningApprenticeshipTraining_1 => "Introduction and what you'll need";
         private string PlanningApprenticeshipTraining_2 => "Type of apprenticeship training";
-        private string PlanningApprenticeshipTraining_3 => "Supporting apprenticesNOT REQUIRED";
+        private string PlanningApprenticeshipTraining_3 => "Supporting apprentices";
         private string PlanningApprenticeshipTraining_4 => "Forecasting starts";
         private string PlanningApprenticeshipTraining_5 => "Off the job training";
-        private string PlanningApprenticeshipTraining_ => "Where will your apprentices be trained";
+        private string PlanningApprenticeshipTraining_6 => "Where will your apprentices be trained";
 
         private string DeliveringApprenticeshipTraining => "Delivering apprenticeship training";
         private string DeliveringApprenticeshipTraining_1 => "Introduction and what you'll need";
+
         private string EvaluatingApprenticeshipTraining => "Evaluating apprenticeship training";
         private string EvaluatingApprenticeshipTraining_1 => "Introduction and what you'll need";
         private string EvaluatingApprenticeshipTraining_2 => "Process for evaluating the quality of training delivered";

@@ -43,6 +43,46 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions
             _overviewPage = _end2EndStepsHelper.CompleteFinancialEvidence(_overviewPage);
         }
 
+        [When(@"the provider completes Criminal and Compliance section")]
+        public void WhenTheProviderCompletesCriminalAndComplianceSection()
+        {
+            _overviewPage = _end2EndStepsHelper.CompletesCriminalAndComplianceSection(_overviewPage);
+        }
 
+        [When(@"the provider completes Protecting your apprentices section")]
+        public void WhenTheProviderCompletesProtectingYourApprenticesSection()
+        {
+            _overviewPage = _end2EndStepsHelper.CompletesProtectingYourApprenticesSection(_overviewPage);
+        }
+
+        [When(@"the provider completes Readiness to engage section")]
+        public void WhenTheProviderCompletesReadinessToEngageSection()
+        {
+            _overviewPage = _end2EndStepsHelper.CompletesReadinessToEngageSection(_overviewPage);
+        }
+
+        [When(@"the provider completes Planning apprenticeship training section")]
+        public void WhenTheProviderCompletesPlanningApprenticeshipTrainingSection()
+        {
+            _overviewPage = _end2EndStepsHelper.CompletesPlanningApprenticeshipTrainingSection(_overviewPage);
+        }
+
+        [When(@"the provider completes Delivering apprenticeship training section")]
+        public void WhenTheProviderCompletesDeliveringApprenticeshipTrainingSection()
+        {
+            _overviewPage = _end2EndStepsHelper.CompletesDeliveringApprenticeshipTrainingSection(_overviewPage);
+        }
+
+        [When(@"the provider completes Evaluating apprenticeship training section")]
+        public void WhenTheProviderCompletesEvaluatingApprenticeshipTrainingSection()
+        {
+            _overviewPage = _end2EndStepsHelper.CompletesEvaluatingApprenticeshipTrainingSection(_overviewPage);
+        }
+
+        [Then(@"the provider completes Finish section")]
+        public void ThenTheProviderCompletesFinishSection()
+        {
+            _overviewPage = _end2EndStepsHelper.CompletesFinishSection(_overviewPage);
+        }
     }
 }
