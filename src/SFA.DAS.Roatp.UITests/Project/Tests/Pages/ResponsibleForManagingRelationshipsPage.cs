@@ -47,7 +47,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
         }
         public ApplicationOverviewPage EnterTextRegardingOrganisationPromoteApprenticeshipsToEmployerAndContinue()
         {
-            formCompletionHelper.EnterText(LongTextArea, applydataHelpers.OrganisationPromoteApprenticeships));
+            formCompletionHelper.EnterText(LongTextArea, applydataHelpers.OrganisationPromoteApprenticeships);
             Continue();
             return new ApplicationOverviewPage(_context);
         }

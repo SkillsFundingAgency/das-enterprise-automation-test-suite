@@ -34,7 +34,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers
             ManagingRelationshipWithEmployers = randomDataGenerator.GenerateRandomAlphabeticString(20);
             OrganisationPromoteApprenticeships = randomDataGenerator.GenerateRandomAlphabeticString(20);
             OrganisationProcessForInitialTraning = randomDataGenerator.GenerateRandomAlphabeticString(20);
-            ProcessToAssessEnglishAndMaths = = randomDataGenerator.GenerateRandomAlphabeticString(20);
+            ProcessToAssessEnglishAndMaths = randomDataGenerator.GenerateRandomAlphabeticString(20);
         }
 
         public string FullName => "George Smith";
