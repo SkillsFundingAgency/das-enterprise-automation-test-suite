@@ -1,0 +1,31 @@
+﻿using OpenQA.Selenium;
+using TechTalk.SpecFlow;
+
+namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
+{
+    public class ContractTerminatedByPublicBodyPage : RoatpBasePage
+    {
+        protected override string PageTitle => "Has your organisation had a contract terminated early by a public body in the last 3 years?";
+
+        #region Helpers and Context
+        private readonly ScenarioContext _context;
+        #endregion
+
+
+        private By LongTextArea_ContractTerminatedByPublicBody => By.Id("CC-22.1");
+
+        public ContractTerminatedByPublicBodyPage(ScenarioContext context) : base(context)
+        {
+            _context = context;
+            VerifyPage();
+        }
+
+        public WithdrawnFromAContractWithPublicBodyPage SelectYesAndEnterInformationForContractTerminatedByPublicBodyAndContinue()
+        {
+            SelectRadioOptionByText("Yes");
+            formCompletionHelper.EnterText(LongTextArea_ContractTerminatedByPublicBody, applydataHelpers.ContractTerminatedByPublicBody);
+            Continue();
+            return new WithdrawnFromAContractWithPublicBodyPage(_context);
+        }
+    }
+}

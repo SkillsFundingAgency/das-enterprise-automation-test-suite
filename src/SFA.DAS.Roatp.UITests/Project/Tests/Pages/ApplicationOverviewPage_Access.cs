@@ -8,6 +8,32 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
     {
         //Access Section
 
+        #region Section3
+
+        public CriminalAndComplianceChecksPage Access_Section3_IntroductionWhatYouwillNeed()
+        {
+            formCompletionHelper.ClickElement(GetTaskLinkElement(CriminalAndComplianceChecks, CriminalAndComplianceChecks_1));
+            return new CriminalAndComplianceChecksPage(_context);
+        }
+
+        public CompositionWithCreditorsPage Access_Section3_ChecksOnYourOrganisation()
+        {
+            formCompletionHelper.ClickElement(GetTaskLinkElement(CriminalAndComplianceChecks, CriminalAndComplianceChecks_2));
+            return new CompositionWithCreditorsPage(_context);
+        }
+        public WhosInControlCriminalAndComplianceChecksPage Access_Section3_IntroductionWhatYouWillNeedStatusWhosInControl()
+        {
+            formCompletionHelper.ClickElement(GetTaskLinkElement(CriminalAndComplianceChecks, CriminalAndComplianceChecks_3));
+            return new WhosInControlCriminalAndComplianceChecksPage(_context);
+        }
+        public WhosInControlUnspentCriminalConvictionsPage Access_Section3_ChecksOnWhosInControlOfYourOrganisation()
+        {
+            formCompletionHelper.ClickElement(GetTaskLinkElement(CriminalAndComplianceChecks, CriminalAndComplianceChecks_4));
+            return new WhosInControlUnspentCriminalConvictionsPage(_context);
+        }
+
+        #endregion
+
         #region Section2
 
         public FinancialHealthAssessmentPage Access_Section2_IntroductionWhatYouwillNeed()
