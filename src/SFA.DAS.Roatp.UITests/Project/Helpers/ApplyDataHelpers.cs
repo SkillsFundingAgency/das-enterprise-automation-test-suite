@@ -42,6 +42,9 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers
             EngageWithEPAO = randomDataGenerator.GenerateRandomAlphabeticString(20);
             EngageWithAwardingBodies = randomDataGenerator.GenerateRandomAlphabeticString(20);
             OffTheJobTraining = randomDataGenerator.GenerateRandomAlphabeticString(20);
+            EvaluatingQualityOfTrainingDelivered = randomDataGenerator.GenerateRandomAlphabeticString(20);
+            ImprovementsUsingProcessForEvaluating = randomDataGenerator.GenerateRandomAlphabeticString(20);
+            ReviewProcessForEvaluatingTheQualityOfTraining = randomDataGenerator.GenerateRandomAlphabeticString(20);
         }
 
         public string FullName => "George Smith";
@@ -82,6 +85,9 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers
         public string EngageWithEPAO { get; }
         public string EngageWithAwardingBodies { get; }
         public string OffTheJobTraining { get; }
+        public string EvaluatingQualityOfTrainingDelivered {get;}
+        public string ImprovementsUsingProcessForEvaluating { get; }
+        public string ReviewProcessForEvaluatingTheQualityOfTraining { get; }
         public string GenerateRandomNumber(int length) => _randomDataGenerator.GenerateRandomNumber(length);
         
 

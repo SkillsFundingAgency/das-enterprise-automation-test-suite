@@ -6,6 +6,67 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
 {
     public partial class ApplicationOverviewPage : RoatpBasePage
     {
+        #region Section9
+
+        public PermissionsFromEveryoneNamedPage Access_Section9_ApplicationPermissionChecks()
+        {
+            formCompletionHelper.ClickElement(GetTaskLinkElement(Finish, Finish_1));
+            return new PermissionsFromEveryoneNamedPage(_context);
+        }
+        public CommercialInConfidenceInformationPage Access_Section9_CommercialInConfidenceInformation()
+        {
+            formCompletionHelper.ClickElement(GetTaskLinkElement(Finish, Finish_2));
+            return new CommercialInConfidenceInformationPage(_context);
+        }
+        public TermsAndConditionsSubmittingApplicationPage Access_Section9_TermsAndConditions()
+        {
+            formCompletionHelper.ClickElement(GetTaskLinkElement(Finish, Finish_3));
+            return new TermsAndConditionsSubmittingApplicationPage(_context);
+        }
+        public SubmitApplicationPage Access_Section9_SubmitApplication()
+        {
+            formCompletionHelper.ClickElement(GetTaskLinkElement(Finish, Finish_4));
+            return new SubmitApplicationPage(_context);
+        }
+
+        #endregion
+
+
+        #region Section8
+
+        public EvaluatingApprenticeshipTrainingPage Access_Section8_IntroductionWhatYouwillNeed()
+        {
+            formCompletionHelper.ClickElement(GetTaskLinkElement(EvaluatingApprenticeshipTraining, EvaluatingApprenticeshipTraining_1));
+            return new EvaluatingApprenticeshipTrainingPage(_context);
+        }
+        public ProcessOfEvaluatingTheQualityOfTrainingDeliveredPage Access_Section8_ProcessForEvaluatingTheQualityOfTrainingDelivered()
+        {
+            formCompletionHelper.ClickElement(GetTaskLinkElement(EvaluatingApprenticeshipTraining, EvaluatingApprenticeshipTraining_2));
+            return new ProcessOfEvaluatingTheQualityOfTrainingDeliveredPage(_context);
+        }
+        public ProcessOfEvaluatingTheQualityOfApprenticshipTrainingPage Access_Section8_ProcessForEvaluatingTheQualityOfApprenticeshipTraining()
+        {
+            formCompletionHelper.ClickElement(GetTaskLinkElement(EvaluatingApprenticeshipTraining, EvaluatingApprenticeshipTraining_3));
+            return new ProcessOfEvaluatingTheQualityOfApprenticshipTrainingPage(_context);
+        }
+        public SystemsAndProcessesToCollectApprenticeshipDataPage Access_Section8_SystemsAndProcessesToCollectApprenticeshipDataForMainAndEmpoyerRoute()
+        {
+            formCompletionHelper.ClickElement(GetTaskLinkElement(EvaluatingApprenticeshipTraining, EvaluatingApprenticeshipTraining_4));
+            return new SystemsAndProcessesToCollectApprenticeshipDataPage(_context);
+        }
+
+        #endregion
+
+        #region Section7
+
+        public DeliveringApprenticeshipTrainingPage Access_Section7_IntroductionWhatYouwillNeed()
+        {
+            formCompletionHelper.ClickElement(GetTaskLinkElement(DeliveringApprenticeshipTraining, DeliveringApprenticeshipTraining_1));
+            return new DeliveringApprenticeshipTrainingPage(_context);
+        }
+
+        #endregion
+
         #region Section6
 
         public PlanningApprenticeshipTrainingPage Access_Section6_IntroductionWhatYouwillNeed()

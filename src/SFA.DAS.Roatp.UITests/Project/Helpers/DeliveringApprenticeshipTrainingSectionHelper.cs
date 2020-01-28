@@ -6,7 +6,9 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers
     {
         internal ApplicationOverviewPage CompleteDeliveringApprenticeshipTraining_1(ApplicationOverviewPage applicationOverviewPage)
         {
-            return applicationOverviewPage;
+            return applicationOverviewPage.Access_Section7_IntroductionWhatYouwillNeed()
+                .ClickSaveAndContinue()
+                .VerifyIntroductionStatus_Section7(StatusHelper.StatusCompleted);
         }
     }
 }
