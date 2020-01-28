@@ -6,6 +6,38 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
 {
     public partial class ApplicationOverviewPage : RoatpBasePage
     {
+        #region Section6
+
+        public PlanningApprenticeshipTrainingPage Access_Section6_IntroductionWhatYouwillNeed()
+        {
+            formCompletionHelper.ClickElement(GetTaskLinkElement(PlanningApprenticeshipTraining, PlanningApprenticeshipTraining_1));
+            return new PlanningApprenticeshipTrainingPage(_context);
+        }
+
+        public TypeOfApprenticeshipTrainingPage Access_Section6_TypeOfApprenticeshipTraining()
+        {
+            formCompletionHelper.ClickElement(GetTaskLinkElement(PlanningApprenticeshipTraining, PlanningApprenticeshipTraining_2));
+            return new TypeOfApprenticeshipTrainingPage(_context);
+        }
+
+        public ForecastInFirst12MonthsPage Access_Section6_ForeCastingStarts()
+        {
+            formCompletionHelper.ClickElement(GetTaskLinkElement(PlanningApprenticeshipTraining, PlanningApprenticeshipTraining_4));
+            return new ForecastInFirst12MonthsPage(_context);
+        }
+        public WhatTeachingMethodsPage Access_Section6_OffTheJobTraining()
+        {
+            formCompletionHelper.ClickElement(GetTaskLinkElement(PlanningApprenticeshipTraining, PlanningApprenticeshipTraining_5));
+            return new WhatTeachingMethodsPage(_context);
+        }
+        public WhereWillApprenticesBeTrainedPage Access_Section6_WhereWillYourApprenticesBeTrained()
+        {
+            formCompletionHelper.ClickElement(GetTaskLinkElement(PlanningApprenticeshipTraining, PlanningApprenticeshipTraining_6));
+            return new WhereWillApprenticesBeTrainedPage(_context);
+        }
+        #endregion
+
+
         #region Section5
         public ReadinessToEngagePage Access_Section5_IntroductionWhatYouwillNeed()
         {

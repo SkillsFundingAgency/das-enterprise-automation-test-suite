@@ -12,6 +12,9 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers
             CompanyName = $"{CompanyNumber}EnterpriseTestDemo";
             IocNumber = randomDataGenerator.GenerateRandomAlphanumericString(8);
             Website = $"www.company.co.uk";
+            BuildingAndStreet = randomDataGenerator.GenerateRandomNumber(3);
+            TownOrCity = randomDataGenerator.GenerateRandomAlphabeticString(10);
+            County = randomDataGenerator.GenerateRandomAlphabeticString(5);
             CompositionWithCreditots = randomDataGenerator.GenerateRandomAlphabeticString(20);
             PayBackFundsLastThreeYears = randomDataGenerator.GenerateRandomAlphabeticString(20);
             ContractTerminatedByPublicBody = randomDataGenerator.GenerateRandomAlphabeticString(20);
@@ -35,11 +38,19 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers
             OrganisationPromoteApprenticeships = randomDataGenerator.GenerateRandomAlphabeticString(20);
             OrganisationProcessForInitialTraning = randomDataGenerator.GenerateRandomAlphabeticString(20);
             ProcessToAssessEnglishAndMaths = randomDataGenerator.GenerateRandomAlphabeticString(20);
+            ReadytoDeliverTraining = randomDataGenerator.GenerateRandomAlphabeticString(20);
+            EngageWithEPAO = randomDataGenerator.GenerateRandomAlphabeticString(20);
+            EngageWithAwardingBodies = randomDataGenerator.GenerateRandomAlphabeticString(20);
+            OffTheJobTraining = randomDataGenerator.GenerateRandomAlphabeticString(20);
         }
 
         public string FullName => "George Smith";
         public string Email => "test.demo@digital.education.gov.uk";
         public string ContactNumber => "1234567890";
+        public string BuildingAndStreet { get; }
+        public string TownOrCity { get; }
+        public string County { get; }
+        public string Postcode => "CV22 4NX";
         public string CompanyNumber { get; }
         public string CompanyName { get; }
         public string IocNumber { get; }
@@ -67,6 +78,10 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers
         public string OrganisationPromoteApprenticeships { get; }
         public string OrganisationProcessForInitialTraning { get; }
         public string ProcessToAssessEnglishAndMaths { get; }
+        public string ReadytoDeliverTraining { get; }
+        public string EngageWithEPAO { get; }
+        public string EngageWithAwardingBodies { get; }
+        public string OffTheJobTraining { get; }
         public string GenerateRandomNumber(int length) => _randomDataGenerator.GenerateRandomNumber(length);
         
 
