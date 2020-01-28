@@ -30,26 +30,4 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
             return new PromoteApprentcieshipsToEmployersPage(_context);
         }
     }
-    public class PromoteApprentcieshipsToEmployersPage : RoatpBasePage
-    {
-        protected override string PageTitle => "How will your organisation promote apprenticeships to employers?";
-
-        private By LongTextArea => By.Id("RTE-23");
-
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public PromoteApprentcieshipsToEmployersPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
-        public ApplicationOverviewPage EnterTextRegardingOrganisationPromoteApprenticeshipsToEmployerAndContinue()
-        {
-            formCompletionHelper.EnterText(LongTextArea, applydataHelpers.OrganisationPromoteApprenticeships);
-            Continue();
-            return new ApplicationOverviewPage(_context);
-        }
-    }
 }
