@@ -40,7 +40,10 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         public void GivenTheUserIsLoggedIntoAssessmentServiceApplication(string user)
         {
             _tabHelper.GoToUrl(_ePAOConfig.EPAOAssessmentServiceUrl);
-            _loggedInHomePage = _stepsHelper.LoginToAssessmentServiceApplication(user);
+            if (user.Equals("Apply User"))
+                new AS_LandingPage(_context).ClickStartButton().SignInAsApplyUser();
+            else
+                _loggedInHomePage = _stepsHelper.LoginToAssessmentServiceApplication(user);
         }
 
         [When(@"the User goes through certifying an Apprentice as '(.*)' who has enrolled for '(.*)' standard")]
