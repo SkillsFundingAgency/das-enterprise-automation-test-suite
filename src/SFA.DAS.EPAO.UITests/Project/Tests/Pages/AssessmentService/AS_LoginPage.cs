@@ -1,5 +1,5 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.OrganisationDetailsSectionPages;
+using SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.PreamblePages;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
@@ -30,12 +30,12 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
             return new AS_LoggedInHomePage(_context);
         }
 
-        public AP_OD1_SearchForYourOrganisationPage SignInAsApplyUser()
+        public AP_PR1_SearchForYourOrganisationPage SignInAsApplyUser()
         {
             userName = ePAOConfig.EPAOApplyUserLoginUsername;
             password = ePAOConfig.EPAOApplyUserLoginPassword;
             EnterLoginDetails(userName, password);
-            return new AP_OD1_SearchForYourOrganisationPage(_context);
+            return new AP_PR1_SearchForYourOrganisationPage(_context);
         }
 
         public void EnterLoginDetails(string userName, string password)

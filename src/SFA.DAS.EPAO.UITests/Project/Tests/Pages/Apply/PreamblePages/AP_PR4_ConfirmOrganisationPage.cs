@@ -1,13 +1,13 @@
 ﻿using TechTalk.SpecFlow;
 
-namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.OrganisationDetailsSectionPages
+namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.PreamblePages
 {
-    public class AP_OD4_ConfirmOrganisationPage : EPAO_BasePage
+    public class AP_PR4_ConfirmOrganisationPage : EPAO_BasePage
     {
         protected override string PageTitle => "Confirm organisation";
         private readonly ScenarioContext _context;
 
-        public AP_OD4_ConfirmOrganisationPage(ScenarioContext context) : base(context)
+        public AP_PR4_ConfirmOrganisationPage(ScenarioContext context) : base(context)
         {
             _context = context;
             VerifyPage();

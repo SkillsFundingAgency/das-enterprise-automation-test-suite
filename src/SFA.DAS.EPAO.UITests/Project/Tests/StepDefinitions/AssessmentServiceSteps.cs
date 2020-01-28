@@ -117,10 +117,10 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
                     _recordAGradePage.EnterApprentcieDetailsAndContinue("", _ePAOConfig.EPAOApprenticeUlnWithSingleStandard);
                     break;
                 case "by entering valid Family name but ULN less than 10 digits":
-                    _recordAGradePage.EnterApprentcieDetailsAndContinue(_ePAOConfig.EPAOApprenticeNameWithSingleStandard, _dataHelper.Get9DigitRandomNumber);
+                    _recordAGradePage.EnterApprentcieDetailsAndContinue(_ePAOConfig.EPAOApprenticeNameWithSingleStandard, _dataHelper.GetRandomNumber(9));
                     break;
                 case "by entering valid Family name and Invalid ULN":
-                    _recordAGradePage.EnterApprentcieDetailsAndContinue(_ePAOConfig.EPAOApprenticeNameWithSingleStandard, _dataHelper.Get10DigitRandomNumber);
+                    _recordAGradePage.EnterApprentcieDetailsAndContinue(_ePAOConfig.EPAOApprenticeNameWithSingleStandard, _dataHelper.GetRandomNumber(11));
                     break;
             }
         }

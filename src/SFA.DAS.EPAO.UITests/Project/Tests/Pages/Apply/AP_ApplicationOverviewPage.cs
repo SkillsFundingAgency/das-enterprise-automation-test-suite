@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.DeclarationsSection;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply
@@ -20,15 +21,24 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply
             VerifyPage();
         }
 
-        public void ClickSubmitInApplicationOverviewPage()
-        {
-            Continue();
-        }
-
-        public AP_OrganisationDetailsPage ClickGoToOrganisationDetailsLinkInApplicationOverviewPage()
+        public AP_OrganisationDetailsBasePage ClickGoToOrganisationDetailsLinkInApplicationOverviewPage()
         {
             formCompletionHelper.Click(GoToOrganisationDetailsLink);
-            return new AP_OrganisationDetailsPage(_context);
+            return new AP_OrganisationDetailsBasePage(_context);
         }
+
+        public AP_DeclarationsBasePage ClickGoToDeclarationsLinkInApplicationOverviewPage()
+        {
+            formCompletionHelper.Click(GoToDeclarationsLink);
+            return new AP_DeclarationsBasePage(_context);
+        }
+
+        //public ClickGoToFinancialHealthAssessmentLinkInApplicationOverviewPage()
+        //{
+        //    formCompletionHelper.Click(GoToFinancialHealthAssessmentLink);
+        //    return new (_context);
+        //}
+
+        public void ClickSubmitInApplicationOverviewPage() => Continue();
     }
 }
