@@ -45,7 +45,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
                         var tasks = tasklist.FindElements(TaskItem);
                         foreach (var task in tasks)
                         {
-                            if (task.Text.ContainsCompareCaseInsensitive(taskName))
+                            if (task.Text.ContainsCompareCaseInsensitive(taskName) && (childelement == TaskStatus ? true : !task.Text.ContainsCompareCaseInsensitive("COMPLETED")))
                             {
                                 return task.FindElement(childelement);
                             }

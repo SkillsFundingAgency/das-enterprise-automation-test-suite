@@ -1,10 +1,13 @@
-﻿using TechTalk.SpecFlow;
+﻿using OpenQA.Selenium;
+using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
 {
     public class ContinuityPlanForApprenticeshipTrainingPage : RoatpBasePage
     {
         protected override string PageTitle => "Upload your organisation's continuity plan for apprenticeship training";
+
+        protected override By PageHeader => By.CssSelector(".govuk-label-wrapper");
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
