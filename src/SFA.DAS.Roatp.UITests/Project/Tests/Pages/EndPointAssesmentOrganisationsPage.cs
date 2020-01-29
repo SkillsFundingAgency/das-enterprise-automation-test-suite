@@ -7,6 +7,8 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => "How will your organisation engage with end-point assessment organisations (EPAO's)?";
 
+        protected override By PageHeader => By.CssSelector(".govuk-label-wrapper");
+
         #region Helpers and Context
         private readonly ScenarioContext _context;
         #endregion

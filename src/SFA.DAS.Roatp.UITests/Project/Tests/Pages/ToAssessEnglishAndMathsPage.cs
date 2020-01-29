@@ -7,6 +7,8 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => "What is your organisation's process to assess English and maths qualifications for apprentices?";
 
+        protected override By PageHeader => By.CssSelector(".govuk-label-wrapper");
+
         #region Helpers and Context
         private readonly ScenarioContext _context;
         #endregion

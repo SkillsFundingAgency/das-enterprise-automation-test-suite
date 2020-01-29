@@ -7,6 +7,8 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => "How is your organisation ensuring it's ready to deliver training in apprenticeship standards?";
 
+        protected override By PageHeader => By.CssSelector(".govuk-label-wrapper");
+
         #region Helpers and Context
         private readonly ScenarioContext _context;
         #endregion

@@ -7,6 +7,8 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => "Enter the website link for your organisation's complaints policy";
 
+        protected override By PageHeader => By.CssSelector(".govuk-label-wrapper");
+
         #region Helpers and Context
         private readonly ScenarioContext _context;
         #endregion
