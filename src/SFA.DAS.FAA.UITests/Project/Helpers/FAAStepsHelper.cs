@@ -66,9 +66,15 @@ namespace SFA.DAS.FAA.UITests.Project.Helpers
 
         public void CreateFAAAccount(FAA_CreateAnAccountPage accountCreationPage)
         {
-            accountCreationPage.SubmitAccountCreationDetails();
+            accountCreationPage.SubmitAccountCreationDetails()
+                .EnterActivationCode()
+                .ClickSaveAndContinue()
+                .VerifyPhoneNumberVerificationText()
+                .EnterVerificationCode()
+                .VerifySuccessfulVerificationText();
+            
         }
-
+                
         public void WithdrawVacancy()
         {
             SearchByReferenceNumber()
