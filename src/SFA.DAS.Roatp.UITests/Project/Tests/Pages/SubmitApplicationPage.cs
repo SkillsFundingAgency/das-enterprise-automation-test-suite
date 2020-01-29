@@ -18,12 +18,11 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
             VerifyPage();
         }
 
-        public ApplicationOverviewPage ConfirmAllAnswersAndSubmitApplication()
+        public ApplicationSubmittedPage ConfirmAllAnswersAndSubmitApplication()
         {
             formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(ConfirmCheckBox));
             Continue();
-            return new ApplicationOverviewPage(_context);
+            return new ApplicationSubmittedPage(_context);
         }
     }
-
 }

@@ -2,7 +2,7 @@
 
 namespace SFA.DAS.Roatp.UITests.Project.Helpers
 {
-    public class FinancialEvidenceSectionHelper
+    public class FinancialEvidence_Section2_Helper
     {
         internal ApplicationOverviewPage CompleteFinancialEvidence_1(ApplicationOverviewPage applicationOverviewPage)
         {

@@ -2,7 +2,7 @@
 
 namespace SFA.DAS.Roatp.UITests.Project.Helpers
 {
-    public class ReadinessToEngageSectionHelper
+    public class ReadinessToEngage_Section5_Helper
     {
         internal ApplicationOverviewPage CompleteReadinessToEngage_1(ApplicationOverviewPage applicationOverviewPage)
         {

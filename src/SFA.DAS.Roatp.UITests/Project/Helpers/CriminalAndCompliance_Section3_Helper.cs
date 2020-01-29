@@ -2,7 +2,7 @@
 
 namespace SFA.DAS.Roatp.UITests.Project.Helpers
 {
-    public class CriminalAndComplianceSectionHelper
+    public class CriminalAndCompliance_Section3_Helper
     {
         internal ApplicationOverviewPage CompleteCriminalAndCompliance_1(ApplicationOverviewPage applicationOverviewPage)
         {

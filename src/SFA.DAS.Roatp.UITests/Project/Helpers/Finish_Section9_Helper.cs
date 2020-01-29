@@ -2,7 +2,7 @@
 
 namespace SFA.DAS.Roatp.UITests.Project.Helpers
 {
-    public class FinishSectionHelper
+    public class Finish_Section9_Helper
     {
         internal ApplicationOverviewPage CompleteFinish_1(ApplicationOverviewPage applicationOverviewPage)
         {
@@ -25,11 +25,11 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers
                 .SelectYesAgreeTermsAndContionsOfJoiingRoatpAndContinue()
                 .VerifyTermsAndConditions_Section9(StatusHelper.StatusCompleted);
         }
-        internal ApplicationOverviewPage CompleteFinish_4(ApplicationOverviewPage applicationOverviewPage)
+        internal ApplicationSubmittedPage CompleteFinish_4(ApplicationOverviewPage applicationOverviewPage)
         {
             return applicationOverviewPage.Access_Section9_SubmitApplication()
                 .ConfirmAllAnswersAndSubmitApplication()
-                .VerifySubmitApplication_Section9(StatusHelper.StatusCompleted);
+                .SetApplicationReference();
         }
     }
 }

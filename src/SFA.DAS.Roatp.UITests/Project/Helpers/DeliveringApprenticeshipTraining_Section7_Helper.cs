@@ -2,7 +2,7 @@
 
 namespace SFA.DAS.Roatp.UITests.Project.Helpers
 {
-    public class DeliveringApprenticeshipTrainingSectionHelper
+    public class DeliveringApprenticeshipTraining_Section7_Helper
     {
         internal ApplicationOverviewPage CompleteDeliveringApprenticeshipTraining_1(ApplicationOverviewPage applicationOverviewPage)
         {

@@ -9,28 +9,28 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers
     public class End2EndStepsHelper
     {
         private readonly ScenarioContext _context;
-        private readonly YourOrganisationSectionHelper _yourOrganisationSectionHelper;
-        private readonly FinancialEvidenceSectionHelper _financialEvidenceSectionHelper;
-        private readonly CriminalAndComplianceSectionHelper _criminalAndComplianceSectionHelper;
-        private readonly ProtectingYourApprenticesSectionHelper _protectingYourApprenticesSectionHelper;
-        private readonly ReadinessToEngageSectionHelper _readinessToEngageSectionHelper;
-        private readonly PlanningApprenticeshipTrainingSectionHelper _planningApprenticeshipTrainingSectionHelper;
-        private readonly DeliveringApprenticeshipTrainingSectionHelper _deliveringApprenticeshipTrainingSectionHelper;
-        private readonly EvaluatingApprenticeshipTrainingSectionHelper _evaluatingApprenticeshipTrainingSectionHelper;
-        private readonly FinishSectionHelper _finishSectionHelper;
+        private readonly YourOrganisation_Section1_Helper _yourOrganisationSectionHelper;
+        private readonly FinancialEvidence_Section2_Helper _financialEvidenceSectionHelper;
+        private readonly CriminalAndCompliance_Section3_Helper _criminalAndComplianceSectionHelper;
+        private readonly ProtectingYourApprentices_Section4_Helper _protectingYourApprenticesSectionHelper;
+        private readonly ReadinessToEngage_Section5_Helper _readinessToEngageSectionHelper;
+        private readonly PlanningApprenticeshipTraining_Section6_Helper _planningApprenticeshipTrainingSectionHelper;
+        private readonly DeliveringApprenticeshipTraining_Section7_Helper _deliveringApprenticeshipTrainingSectionHelper;
+        private readonly EvaluatingApprenticeshipTraining_Section8_Helper _evaluatingApprenticeshipTrainingSectionHelper;
+        private readonly Finish_Section9_Helper _finishSectionHelper;
 
         public End2EndStepsHelper(ScenarioContext context)
         {
             _context = context;
-            _yourOrganisationSectionHelper = new YourOrganisationSectionHelper();
-            _financialEvidenceSectionHelper = new FinancialEvidenceSectionHelper();
-            _criminalAndComplianceSectionHelper = new CriminalAndComplianceSectionHelper();
-            _protectingYourApprenticesSectionHelper = new ProtectingYourApprenticesSectionHelper();
-            _readinessToEngageSectionHelper = new ReadinessToEngageSectionHelper();
-            _planningApprenticeshipTrainingSectionHelper = new PlanningApprenticeshipTrainingSectionHelper();
-            _deliveringApprenticeshipTrainingSectionHelper = new DeliveringApprenticeshipTrainingSectionHelper();
-            _evaluatingApprenticeshipTrainingSectionHelper = new EvaluatingApprenticeshipTrainingSectionHelper();
-            _finishSectionHelper = new FinishSectionHelper();
+            _yourOrganisationSectionHelper = new YourOrganisation_Section1_Helper();
+            _financialEvidenceSectionHelper = new FinancialEvidence_Section2_Helper();
+            _criminalAndComplianceSectionHelper = new CriminalAndCompliance_Section3_Helper();
+            _protectingYourApprenticesSectionHelper = new ProtectingYourApprentices_Section4_Helper();
+            _readinessToEngageSectionHelper = new ReadinessToEngage_Section5_Helper();
+            _planningApprenticeshipTrainingSectionHelper = new PlanningApprenticeshipTraining_Section6_Helper();
+            _deliveringApprenticeshipTrainingSectionHelper = new DeliveringApprenticeshipTraining_Section7_Helper();
+            _evaluatingApprenticeshipTrainingSectionHelper = new EvaluatingApprenticeshipTraining_Section8_Helper();
+            _finishSectionHelper = new Finish_Section9_Helper();
         }
 
         internal TermsConditionsMakingApplicationPage SubmitValidUserDetails()
@@ -52,7 +52,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers
                 .VerifyIntroductionStatus(StatusHelper.StatusNext);
         }
 
-        internal ApplicationOverviewPage CompleteYourOrganisationSection(ApplicationOverviewPage applicationOverviewPage)
+        internal ApplicationOverviewPage CompleteYourOrganisation_Section1(ApplicationOverviewPage applicationOverviewPage)
         {
             applicationOverviewPage = _yourOrganisationSectionHelper.CompleteYourOrganisationSection_1(applicationOverviewPage);
             applicationOverviewPage = _yourOrganisationSectionHelper.CompleteYourOrganisationSection_2(applicationOverviewPage);
@@ -62,7 +62,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers
             return applicationOverviewPage;
         }
 
-        internal ApplicationOverviewPage CompleteFinancialEvidence(ApplicationOverviewPage applicationOverviewPage)
+        internal ApplicationOverviewPage CompleteFinancialEvidence_Section2(ApplicationOverviewPage applicationOverviewPage)
         {
             applicationOverviewPage = _financialEvidenceSectionHelper.CompleteFinancialEvidence_1(applicationOverviewPage);
             applicationOverviewPage = _financialEvidenceSectionHelper.CompleteFinancialEvidence_2(applicationOverviewPage);
@@ -70,7 +70,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers
             return applicationOverviewPage;
         }
 
-        internal ApplicationOverviewPage CompletesCriminalAndComplianceSection(ApplicationOverviewPage applicationOverviewPage)
+        internal ApplicationOverviewPage CompletesCriminalAndCompliance_Section3(ApplicationOverviewPage applicationOverviewPage)
         {
             applicationOverviewPage = _criminalAndComplianceSectionHelper.CompleteCriminalAndCompliance_1(applicationOverviewPage);
             applicationOverviewPage = _criminalAndComplianceSectionHelper.CompleteCriminalAndCompliance_2(applicationOverviewPage);
@@ -79,7 +79,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers
             return applicationOverviewPage;
         }
 
-        internal ApplicationOverviewPage CompletesProtectingYourApprenticesSection(ApplicationOverviewPage applicationOverviewPage)
+        internal ApplicationOverviewPage CompletesProtectingYourApprentices_Section4(ApplicationOverviewPage applicationOverviewPage)
         {
             applicationOverviewPage = _protectingYourApprenticesSectionHelper.CompleteProtectingYourApprentices_1(applicationOverviewPage);
             applicationOverviewPage = _protectingYourApprenticesSectionHelper.CompleteProtectingYourApprentices_2(applicationOverviewPage);
@@ -89,7 +89,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers
             return applicationOverviewPage;
         }
 
-        internal ApplicationOverviewPage CompletesReadinessToEngageSection(ApplicationOverviewPage applicationOverviewPage)
+        internal ApplicationOverviewPage CompletesReadinessToEngage_Section5(ApplicationOverviewPage applicationOverviewPage)
         {
             applicationOverviewPage = _readinessToEngageSectionHelper.CompleteReadinessToEngage_1(applicationOverviewPage);
             applicationOverviewPage = _readinessToEngageSectionHelper.CompleteReadinessToEngage_2(applicationOverviewPage);
@@ -101,7 +101,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers
             return applicationOverviewPage;
         }
 
-        internal ApplicationOverviewPage CompletesPlanningApprenticeshipTrainingSection(ApplicationOverviewPage applicationOverviewPage)
+        internal ApplicationOverviewPage CompletesPlanningApprenticeshipTraining_Section6(ApplicationOverviewPage applicationOverviewPage)
         {
             applicationOverviewPage = _planningApprenticeshipTrainingSectionHelper.CompletePlanningApprenticeshipTraining_1(applicationOverviewPage);
             applicationOverviewPage = _planningApprenticeshipTrainingSectionHelper.CompletePlanningApprenticeshipTraining_2(applicationOverviewPage);
@@ -112,13 +112,13 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers
             return applicationOverviewPage;
         }
 
-        internal ApplicationOverviewPage CompletesDeliveringApprenticeshipTrainingSection(ApplicationOverviewPage applicationOverviewPage)
+        internal ApplicationOverviewPage CompletesDeliveringApprenticeshipTraining_Section7(ApplicationOverviewPage applicationOverviewPage)
         {
             applicationOverviewPage = _deliveringApprenticeshipTrainingSectionHelper.CompleteDeliveringApprenticeshipTraining_1(applicationOverviewPage);
             return applicationOverviewPage;
         }
 
-        internal ApplicationOverviewPage CompletesEvaluatingApprenticeshipTrainingSection(ApplicationOverviewPage applicationOverviewPage)
+        internal ApplicationOverviewPage CompletesEvaluatingApprenticeshipTraining_Section8(ApplicationOverviewPage applicationOverviewPage)
         {
             applicationOverviewPage = _evaluatingApprenticeshipTrainingSectionHelper.CompleteEvaluatingApprenticeshipTraining_1(applicationOverviewPage);
             applicationOverviewPage = _evaluatingApprenticeshipTrainingSectionHelper.CompleteEvaluatingApprenticeshipTraining_2(applicationOverviewPage);
@@ -127,13 +127,12 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers
             return applicationOverviewPage;
         }
 
-        internal ApplicationOverviewPage CompletesFinishSection(ApplicationOverviewPage applicationOverviewPage)
+        internal ApplicationSubmittedPage CompletesFinish_Section9(ApplicationOverviewPage applicationOverviewPage)
         {
             applicationOverviewPage = _finishSectionHelper.CompleteFinish_1(applicationOverviewPage);
             applicationOverviewPage = _finishSectionHelper.CompleteFinish_2(applicationOverviewPage);
             applicationOverviewPage = _finishSectionHelper.CompleteFinish_3(applicationOverviewPage);
-            applicationOverviewPage = _finishSectionHelper.CompleteFinish_4(applicationOverviewPage);
-            return applicationOverviewPage;
+            return _finishSectionHelper.CompleteFinish_4(applicationOverviewPage);
         }
     }
 }
