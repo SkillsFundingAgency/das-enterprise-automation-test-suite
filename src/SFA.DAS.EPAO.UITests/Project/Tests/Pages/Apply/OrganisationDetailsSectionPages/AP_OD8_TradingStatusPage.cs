@@ -1,5 +1,4 @@
-﻿using OpenQA.Selenium;
-using TechTalk.SpecFlow;
+﻿using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.OrganisationDetailsSectionPages
 {
@@ -7,10 +6,6 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.OrganisationDetailsSect
     {
         protected override string PageTitle => "What's your trading status?";
         private readonly ScenarioContext _context;
-
-        #region Locators
-        private By YesRadioButton => By.Id("CD-16");
-        #endregion
 
         public AP_OD8_TradingStatusPage(ScenarioContext context) : base(context)
         {
@@ -20,7 +15,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.OrganisationDetailsSect
 
         public AP_OD9_CompanyNumberPage SelectPubliLimitedCompanyOptionAndContinueInTradingStatusPage()
         {
-            formCompletionHelper.SelectRadioButton(pageInteractionHelper.FindElement(YesRadioButton));
+            formCompletionHelper.SelectRadioOptionByForAttribute(RadioButton, "CD-16");
             Continue();
             return new AP_OD9_CompanyNumberPage(_context);
         }

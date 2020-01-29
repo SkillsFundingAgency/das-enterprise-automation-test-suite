@@ -9,7 +9,6 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.OrganisationDetailsSect
         private readonly ScenarioContext _context;
 
         #region Locators
-        private By YesRadioButton => By.Id("CD-26");
         private By CharityNumberTextbox => By.Id("CD-26.1");
         #endregion
 
@@ -21,7 +20,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.OrganisationDetailsSect
 
         public AP_OD13_RegisterOfRemovedTrusteesPage EnterCharityDetailsAndContinueInRegisteredCharityPage()
         {
-            formCompletionHelper.SelectRadioButton(pageInteractionHelper.FindElement(YesRadioButton));
+            formCompletionHelper.SelectRadioOptionByForAttribute(RadioButton, "CD-26");
             formCompletionHelper.EnterText(CharityNumberTextbox, dataHelper.GetRandomNumber(8));
             Continue();
             return new AP_OD13_RegisterOfRemovedTrusteesPage(_context);

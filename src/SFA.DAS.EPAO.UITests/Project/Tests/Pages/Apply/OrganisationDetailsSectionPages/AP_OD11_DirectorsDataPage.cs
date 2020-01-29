@@ -1,5 +1,4 @@
-﻿using OpenQA.Selenium;
-using TechTalk.SpecFlow;
+﻿using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.OrganisationDetailsSectionPages
 {
@@ -7,10 +6,6 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.OrganisationDetailsSect
     {
         protected override string PageTitle => "Directors data";
         private readonly ScenarioContext _context;
-
-        #region Locators
-        private By NoRadioButton => By.Id("CD-22_1");
-        #endregion
 
         public AP_OD11_DirectorsDataPage(ScenarioContext context) : base(context)
         {
@@ -20,7 +15,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.OrganisationDetailsSect
 
         public AP_DAD_1_AuthoriserDetailsPage SelectNoOptionAndContinueInDirectorsDataPage()
         {
-            formCompletionHelper.SelectRadioButton(pageInteractionHelper.FindElement(NoRadioButton));
+            formCompletionHelper.SelectRadioOptionByForAttribute(RadioButton, "CD-22_1");
             Continue();
             return new AP_DAD_1_AuthoriserDetailsPage(_context);
         }

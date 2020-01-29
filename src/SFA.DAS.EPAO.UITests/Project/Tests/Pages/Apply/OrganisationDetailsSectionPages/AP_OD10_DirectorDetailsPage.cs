@@ -14,6 +14,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.OrganisationDetailsSect
         private By YearTextbox => By.Id("CD-20_Year");
         private By NumberOfSharesTextbox => By.Id("CD-21");
         private By SaveAndAddAnotherLink => By.XPath("//button[text()='Save and add another']");
+        private By SaveAndContinueButton => By.XPath("//button[text()='Save and continue']");
         #endregion
 
         public AP_OD10_DirectorDetailsPage(ScenarioContext context) : base(context)
@@ -29,7 +30,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.OrganisationDetailsSect
             formCompletionHelper.EnterText(YearTextbox, dataHelper.GetCurrentYear - 30);
             formCompletionHelper.EnterText(NumberOfSharesTextbox, dataHelper.GetRandomNumber(3));
             formCompletionHelper.Click(SaveAndAddAnotherLink);
-            Continue();
+            formCompletionHelper.Click(SaveAndContinueButton);
             return new AP_OD11_DirectorsDataPage(_context);
         }
     }

@@ -21,13 +21,15 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
             _applicationOverviewPage = new AP_PR1_SearchForYourOrganisationPage(_context).EnterOrgNameAndSearchInSearchForYourOrgPage()
                 .ClickOrgLinkFromSearchResultsForPage()
                 .SelectTrainingProviderRadioButtonAndContinueInSelectOrgTypePage()
-                .ClickConfirmAndApplyButtonInConfirmOrgPage();
+                .ClickConfirmAndApplyButtonInConfirmOrgPage()
+                .ClickAcceptAndContinueInDeclarationPage();
         }
 
         [When(@"organisation details section")]
         public void WhenOrganisationDetailsSection()
         {
-            _applicationOverviewPage = _applicationOverviewPage.ClickGoToOrganisationDetailsLinkInApplicationOverviewPage()
+            _applicationOverviewPage = _applicationOverviewPage
+                .ClickGoToOrganisationDetailsLinkInApplicationOverviewPage()
                 .ClickTradingNameLinkInOrganisationDetailsPage()
                 .GiveATradingNameAndContinueInTradingNamePage()
                 .SelectYesAndContinueInUseYourTradingNameOnTheRegisterPage()

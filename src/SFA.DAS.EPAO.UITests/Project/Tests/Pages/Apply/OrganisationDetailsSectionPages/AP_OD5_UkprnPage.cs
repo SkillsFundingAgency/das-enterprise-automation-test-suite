@@ -9,7 +9,6 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.OrganisationDetailsSect
         private readonly ScenarioContext _context;
 
         #region Locators
-        private By YesRadioButton => By.Id("CD-12");
         private By UkprnTextbox => By.Id("CD-12.1");
         #endregion
 
@@ -21,8 +20,8 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.OrganisationDetailsSect
 
         public AP_OD6_OverallExecutiveMgtPage EnterUkprnAndContinueInDoYouHaveAUkprnPage()
         {
-            formCompletionHelper.SelectRadioButton(pageInteractionHelper.FindElement(YesRadioButton));
-            formCompletionHelper.EnterText(UkprnTextbox, dataHelper.GetRandomNumber(10));
+            formCompletionHelper.SelectRadioOptionByForAttribute(RadioButton, "CD-12");
+            formCompletionHelper.EnterText(UkprnTextbox, dataHelper.GetRandomNumber(8));
             Continue();
             return new AP_OD6_OverallExecutiveMgtPage(_context);
         }

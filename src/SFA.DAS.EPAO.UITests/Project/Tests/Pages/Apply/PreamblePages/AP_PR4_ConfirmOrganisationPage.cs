@@ -13,10 +13,10 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.PreamblePages
             VerifyPage();
         }
 
-        public AP_ApplicationOverviewPage ClickConfirmAndApplyButtonInConfirmOrgPage()
+        public AP_PR5_DeclarationPage ClickConfirmAndApplyButtonInConfirmOrgPage()
         {
             Continue();
-            return new AP_ApplicationOverviewPage(_context);
+            return new AP_PR5_DeclarationPage(_context);
         }
     }
 }

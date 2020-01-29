@@ -9,7 +9,6 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.OrganisationDetailsSect
         private readonly ScenarioContext _context;
 
         #region Locators
-        private By YesRadioButton => By.Id("CD-30");
         private By TradingNameTextbox => By.Id("CD-30.1");
         #endregion
 
@@ -21,7 +20,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.OrganisationDetailsSect
 
         public AP_OD2_UseTradingNameOnRegisterPage GiveATradingNameAndContinueInTradingNamePage()
         {
-            formCompletionHelper.SelectRadioButton(pageInteractionHelper.FindElement(YesRadioButton));
+            formCompletionHelper.SelectRadioOptionByForAttribute(RadioButton, "CD-30");
             formCompletionHelper.EnterText(TradingNameTextbox, dataHelper.GetRandomAlphabeticString(10));
             Continue();
             return new AP_OD2_UseTradingNameOnRegisterPage(_context);

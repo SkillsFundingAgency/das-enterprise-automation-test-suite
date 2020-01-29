@@ -10,8 +10,6 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.OrganisationDetailsSect
 
         #region Locators
         private By FullNameTextbox => By.Id("CD-13");
-        private By YesRadioButton => By.Id("CD-14");
-        private By UkprnTextbox => By.Id("CD-12.1");
         private By PostitionDetailsTextbox => By.Id("CD-14.1");
         #endregion
 
@@ -24,7 +22,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.OrganisationDetailsSect
         public AP_OD7_OfqualRecognitionNumberPage EnterDetailsAndContinueInOEMPage()
         {
             formCompletionHelper.EnterText(FullNameTextbox, dataHelper.GetRandomAlphabeticString(20));
-            formCompletionHelper.SelectRadioButton(pageInteractionHelper.FindElement(YesRadioButton));
+            formCompletionHelper.SelectRadioOptionByForAttribute(RadioButton, "CD-14");
             formCompletionHelper.EnterText(PostitionDetailsTextbox, dataHelper.GetRandomAlphabeticString(50));
             Continue();
             return new AP_OD7_OfqualRecognitionNumberPage(_context);

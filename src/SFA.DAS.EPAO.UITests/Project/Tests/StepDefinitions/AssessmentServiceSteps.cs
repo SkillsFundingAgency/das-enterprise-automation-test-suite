@@ -24,6 +24,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         private AS_OrganisationDetailsPage _organisationDetailsPage;
         private AS_EditUserPermissionsPage _editUserPermissionsPage;
         private AS_UserDetailsPage _userDetailsPage;
+        private readonly EPAOSqlDataHelper _ePAOSqlDataHelper;
         private bool _permissionsSelected;
         private string _newUserEmailId;
 
@@ -34,6 +35,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
             _ePAOConfig = context.GetEPAOConfig<EPAOConfig>();
             _dataHelper = context.Get<EPAODataHelper>();
             _tabHelper = context.Get<TabHelper>();
+            _ePAOSqlDataHelper = context.Get<EPAOSqlDataHelper>();
         }
 
         [Given(@"the (.*) is logged into Assessment Service Application")]
@@ -41,7 +43,10 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         {
             _tabHelper.GoToUrl(_ePAOConfig.EPAOAssessmentServiceUrl);
             if (user.Equals("Apply User"))
+            {
+                _ePAOSqlDataHelper.ResetApplyUser(_ePAOConfig.EPAOApplyUserLoginUsername);
                 new AS_LandingPage(_context).ClickStartButton().SignInAsApplyUser();
+            }
             else
                 _loggedInHomePage = _stepsHelper.LoginToAssessmentServiceApplication(user);
         }
