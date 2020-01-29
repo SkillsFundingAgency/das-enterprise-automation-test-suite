@@ -9,11 +9,14 @@ namespace SFA.DAS.UI.FrameworkHelpers
         private const string LowerCaseAlphabets = "abcdefghijklmnopqrstuvwxyz";
         private const string UpperCaseAlphabets = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         private const string Numbers = "0123456789";
+        private const string WholeNumbers = "123456789";
         private const string SpecialChars = "!@£$%^&*()_+{}:<>?-=[];',./";
 
         public string GenerateRandomAlphabeticString(int length) => GenerateRandomString(Alphabets, length);
 
         public string GenerateRandomNumber(int length) => GenerateRandomString(Numbers, length);
+
+        public string GenerateRandomWholeNumber(int length) => GenerateRandomString(WholeNumbers, length);
 
         public string GenerateRandomAlphanumericString(int length) => GenerateRandomString(Alphabets + Numbers, length);
 
