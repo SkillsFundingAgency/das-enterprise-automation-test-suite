@@ -19,13 +19,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.DeclarationsSection
             VerifyPage();
         }
 
-        public AP_ApplicationOverviewPage ClickReturnToApplicationOverviewButton()
-        {
-            Continue();
-            return new AP_ApplicationOverviewPage(_context);
-        }
-
-        public AP_DAD_1_AuthoriserDetailsPage ClickNameAndJobTitleLinkInDeclarationsPage()
+        public AP_DAD_1_AuthoriserDetailsPage ClickNameAndJobTitleLinkInDeclarationsBasePage()
         {
             formCompletionHelper.Click(NameAndJobTitleLink);
             return new AP_DAD_1_AuthoriserDetailsPage(_context);

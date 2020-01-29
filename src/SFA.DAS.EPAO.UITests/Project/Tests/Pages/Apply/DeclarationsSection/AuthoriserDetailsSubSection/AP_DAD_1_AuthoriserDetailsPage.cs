@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.DeclarationsSection.MandatoryExclusionSubSection;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.DeclarationsSection.AuthoriserDetailsSubSection
@@ -9,7 +10,8 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.DeclarationsSection.Aut
         private readonly ScenarioContext _context;
 
         #region Locators
-        private By CharityNumberTextbox => By.Id("CD-26.1");
+        private By NameTextbox => By.Id("W_DEL-01");
+        private By JobTitleTextbox => By.Id("W_DEL-02");
         #endregion
 
         public AP_DAD_1_AuthoriserDetailsPage(ScenarioContext context) : base(context)
@@ -18,12 +20,12 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.DeclarationsSection.Aut
             VerifyPage();
         }
 
-        public void EnterCharityDetailsAndContinueInRegisteredCharityPage()
+        public AP_DME_1_CriminalConvictionsPage EnterDetailsAndContinueInAuthoriserDetailsPagePage()
         {
-            //formCompletionHelper.SelectRadioButton(pageInteractionHelper.FindElement(YesRadioButton));
-            formCompletionHelper.EnterText(CharityNumberTextbox, dataHelper.GetRandomNumber(8));
+            formCompletionHelper.EnterText(NameTextbox, dataHelper.GetRandomAlphabeticString(20));
+            formCompletionHelper.EnterText(JobTitleTextbox, dataHelper.GetRandomAlphabeticString(10));
             Continue();
-            //return new AP_OD14_RegisterOfRemovedTrusteesPage(_context);
+            return new AP_DME_1_CriminalConvictionsPage(_context);
         }
     }
 }

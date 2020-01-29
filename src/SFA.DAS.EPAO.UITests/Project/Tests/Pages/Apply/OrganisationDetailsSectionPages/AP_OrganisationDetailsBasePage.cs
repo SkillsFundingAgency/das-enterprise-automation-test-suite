@@ -19,13 +19,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply
             VerifyPage();
         }
 
-        public AP_ApplicationOverviewPage ClickReturnToApplicationOverviewButton()
-        {
-            Continue();
-            return new AP_ApplicationOverviewPage(_context);
-        }
-
-        public AP_OD1_TradingNamePage ClickTradingNameLinkInOrganisationDetailsPage()
+        public AP_OD1_TradingNamePage ClickTradingNameLinkInOrganisationDetailsBasePage()
         {
             formCompletionHelper.Click(TradingNameLink);
             return new AP_OD1_TradingNamePage(_context);

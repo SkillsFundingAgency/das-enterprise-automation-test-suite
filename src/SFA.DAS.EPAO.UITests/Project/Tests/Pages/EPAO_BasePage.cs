@@ -1,5 +1,6 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.EPAO.UITests.Project.Helpers;
+using SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply;
 using SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
@@ -31,6 +32,12 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages
         {
             NavigateBack();
             return new AS_CheckAndSubmitAssessmentPage(_context);
+        }
+
+        public AP_ApplicationOverviewPage ClickReturnToApplicationOverviewButton()
+        {
+            Continue();
+            return new AP_ApplicationOverviewPage(_context);
         }
     }
 }

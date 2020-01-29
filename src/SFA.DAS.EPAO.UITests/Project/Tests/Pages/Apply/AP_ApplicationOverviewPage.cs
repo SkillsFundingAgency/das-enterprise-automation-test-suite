@@ -1,5 +1,6 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.DeclarationsSection;
+using SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.FinancialHealthAssessmentSection;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply
@@ -33,11 +34,11 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply
             return new AP_DeclarationsBasePage(_context);
         }
 
-        //public ClickGoToFinancialHealthAssessmentLinkInApplicationOverviewPage()
-        //{
-        //    formCompletionHelper.Click(GoToFinancialHealthAssessmentLink);
-        //    return new (_context);
-        //}
+        public FHABasePage ClickGoToFinancialHealthAssessmentLinkInApplicationOverviewPage()
+        {
+            formCompletionHelper.Click(GoToFinancialHealthAssessmentLink);
+            return new FHABasePage(_context);
+        }
 
         public void ClickSubmitInApplicationOverviewPage() => Continue();
     }
