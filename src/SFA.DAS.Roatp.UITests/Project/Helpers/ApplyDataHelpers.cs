@@ -88,8 +88,6 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers
         public string EvaluatingQualityOfTrainingDelivered {get;}
         public string ImprovementsUsingProcessForEvaluating { get; }
         public string ReviewProcessForEvaluatingTheQualityOfTraining { get; }
-        public string GenerateRandomNumber(int length) => _randomDataGenerator.GenerateRandomNumber(length);
-        
-
+        public string GenerateRandomWholeNumber(int length) => _randomDataGenerator.GenerateRandomWholeNumber(length);
     }
 }
