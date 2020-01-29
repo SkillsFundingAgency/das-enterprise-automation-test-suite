@@ -6,6 +6,7 @@ using SFA.DAS.UI.FrameworkHelpers;
 using System;
 using TechTalk.SpecFlow;
 using SFA.DAS.RAA.DataGenerator.Project;
+using FluentAssertions;
 
 namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 {
@@ -21,6 +22,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
         private readonly VacancyTitleDatahelper _dataHelper;
         private readonly TabHelper _tabHelper;
         private readonly FAAConfig _config;
+        private readonly FAADataHelper _faadataHelper;
         #endregion
 
         private By SearchField => By.Id("SearchField");
@@ -33,6 +35,9 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 
         private By ApprenticeshipLevel => By.Id("apprenticeship-level");
 
+        private By VerifyPhoneNumberText => By.Id("InfoMessageText");
+        private By VerifyYourNumber => By.LinkText("verify your number");
+
         public FAA_ApprenticeSearchPage(ScenarioContext context) : base(context)
         {
             _context = context;
@@ -42,6 +47,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
             _dataHelper = context.Get<VacancyTitleDatahelper>();
             _tabHelper = context.Get<TabHelper>();
             _config = context.GetFAAConfig<FAAConfig>();
+            _faadataHelper = context.Get<FAADataHelper>();
             VerifyPage();
         }
 
@@ -84,5 +90,15 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 
             return new FAA_ApprenticeSummaryPage(_context);
         }
+
+        public FAA_PhoneNumberVerificationPage VerifyPhoneNumberVerificationText()
+        {
+           string verificationText =  _pageInteractionHelper.GetText(VerifyPhoneNumberText);
+            verificationText.Should().Contain(_faadataHelper.PhoneNumberVerificationText);
+            _formCompletionHelper.Click(VerifyYourNumber);
+            return new FAA_PhoneNumberVerificationPage(_context);
+        }
+
+
     }
 }
