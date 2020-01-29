@@ -1,19 +1,12 @@
 ﻿using OpenQA.Selenium;
 using TechTalk.SpecFlow;
-using SFA.DAS.UI.FrameworkHelpers;
-using SFA.DAS.UI.Framework.TestSupport;
 
 namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
 {
-    public class AS_LoginPage : BasePage
+    public class AS_LoginPage : EPAO_BasePage
     {
         protected override string PageTitle => "Sign in to Apprenticeship assessment service";
-
-        #region Helpers and Context
         private readonly ScenarioContext _context;
-        private readonly FormCompletionHelper _formCompletionHelper;
-        private readonly EPAOConfig _config;
-        #endregion
 
         #region Locators
         private By EmailAddressTextBox => By.Id("Username");
@@ -23,18 +16,16 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
         public AS_LoginPage(ScenarioContext context) : base(context)
         {
             _context = context;
-            _formCompletionHelper = context.Get<FormCompletionHelper>();
-            _config = context.GetEPAOConfig<EPAOConfig>();
             VerifyPage();
         }
 
         public AS_LoggedInHomePage SignInWithValidDetails(string user)
         {
-            string userName = user == "Assessor User" ? _config.EPAOAssessorLoginUsername : _config.EPAOManageUserLoginUsername;
-            string password = user == "Assessor User" ? _config.EPAOAssessorLoginPassword : _config.EPAOManageUserLoginPassword;
-                
-            _formCompletionHelper.EnterText(EmailAddressTextBox, userName);
-            _formCompletionHelper.EnterText(PasswordTextBox, password);
+            string userName = user == "Assessor User" ? ePAOConfig.EPAOAssessorLoginUsername : ePAOConfig.EPAOManageUserLoginUsername;
+            string password = user == "Assessor User" ? ePAOConfig.EPAOAssessorLoginPassword : ePAOConfig.EPAOManageUserLoginPassword;
+
+            formCompletionHelper.EnterText(EmailAddressTextBox, userName);
+            formCompletionHelper.EnterText(PasswordTextBox, password);
             Continue();
             return new AS_LoggedInHomePage(_context);
         }

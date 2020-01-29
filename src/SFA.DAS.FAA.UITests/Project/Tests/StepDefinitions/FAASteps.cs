@@ -19,7 +19,8 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.StepDefinitions
         [When(@"an Applicant initiates Account creation journey")]
         public void WhenAnApplicantInitiatesAccountCreationJourney() => accountCreationPage = _faaStepsHelper.StartFAAAccountCreation();
 
-        [Then(@"the Applicant is able to create a FAA Account")]
+        [Then(@"the Applicant is able to create a FAA Account")]      
+        
         public void ThenTheApplicantIsAbleToCreateAFAAAccount() => _faaStepsHelper.CreateFAAAccount(accountCreationPage);
 
         [Then(@"the status of the Application is shown as '(successful|unsuccessful)' in FAA")]
@@ -28,6 +29,12 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.StepDefinitions
             var actualStatus = _faaStepsHelper.GetApplicationStatus();
 
             StringAssert.Contains(expectedStatus, actualStatus);
+        }
+
+        [Then(@"the Applicant should be told that Email is already registered")]
+        public void ThenTheApplicantShouldBeToldThatEmailIsAlreadyRegistered() 
+        {
+            accountCreationPage.SubmitAccountCreationDetailsWithRegisteredEmail();
         }
     }
 }
