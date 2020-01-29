@@ -6,7 +6,7 @@ using SFA.DAS.UI.FrameworkHelpers;
 using System;
 using TechTalk.SpecFlow;
 using SFA.DAS.RAA.DataGenerator.Project;
-using FluentAssertions;
+
 
 namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 {
@@ -26,15 +26,10 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
         #endregion
 
         private By SearchField => By.Id("SearchField");
-
         protected By KeyWord => By.Id("Keywords");
-
         private By Location => By.Id("Location");
-
         private By Distance => By.Id("loc-within");
-
         private By ApprenticeshipLevel => By.Id("apprenticeship-level");
-
         private By VerifyPhoneNumberText => By.Id("InfoMessageText");
         private By VerifyYourNumber => By.LinkText("verify your number");
 
@@ -85,20 +80,15 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
             {
                 var uri = new Uri(new Uri(_config.FAABaseUrl), $"apprenticeship/{vacancyRef}");
                 _tabHelper.GoToUrl(uri.AbsoluteUri);
-            }
-            
-
+            } 
             return new FAA_ApprenticeSummaryPage(_context);
         }
 
         public FAA_PhoneNumberVerificationPage VerifyPhoneNumberVerificationText()
-        {
-           string verificationText =  _pageInteractionHelper.GetText(VerifyPhoneNumberText);
-            verificationText.Should().Contain(_faadataHelper.PhoneNumberVerificationText);
+        {           
+            _pageInteractionHelper.VerifyText(VerifyPhoneNumberText, _faadataHelper.PhoneNumberVerificationText);           
             _formCompletionHelper.Click(VerifyYourNumber);
             return new FAA_PhoneNumberVerificationPage(_context);
         }
-
-
     }
 }

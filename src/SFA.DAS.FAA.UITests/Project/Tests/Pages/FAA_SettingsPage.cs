@@ -1,5 +1,4 @@
-﻿using FluentAssertions;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.RAA.DataGenerator;
 using SFA.DAS.UI.Framework.TestSupport;
@@ -33,10 +32,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 
         public void VerifySuccessfulVerificationText()
         {
-            string  messageText = _pageInteractionHelper.GetText(SuccessfulMobileVerificationText);
-            messageText.Should().Contain(_dataHelper.SuccessfulPhoneVerificationText);
+            _pageInteractionHelper.VerifyText(SuccessfulMobileVerificationText, _dataHelper.SuccessfulPhoneVerificationText);
         }
-
-
     }
 }

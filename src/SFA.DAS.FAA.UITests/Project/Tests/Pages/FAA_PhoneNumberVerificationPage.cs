@@ -36,7 +36,5 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
             _formCompletionHelper.Click(VerifyNumber);
             return new FAA_SettingsPage(_context);
         }
-
-        
     }
 }

@@ -1,5 +1,4 @@
-﻿using FluentAssertions;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 using SFA.DAS.RAA.DataGenerator;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
@@ -91,8 +90,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 
         public void CheckTheValidationMessagesForAlreadyRegisteredEmail()
         {
-            string message = _pageInteractionHelper.GetText(RegisteredEmailErrorMessage);
-            message.Should().Contain(_dataHelper.CreateAccountWithRegisteredEmailErrorMessage);
+            _pageInteractionHelper.VerifyText(RegisteredEmailErrorMessage, _dataHelper.CreateAccountWithRegisteredEmailErrorMessage);            
         }
     }
 }
