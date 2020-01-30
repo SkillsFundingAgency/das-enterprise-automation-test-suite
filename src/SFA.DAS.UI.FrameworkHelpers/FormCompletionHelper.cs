@@ -121,7 +121,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
             if (radioToSelect != null)
                 ClickElement(radioToSelect);
         }
-
+        
         public void SelectRadioOptionByText(By locator, String text) => ClickElementByText(locator, text);
 
         private void ClickElementByText(By locator, String text) => ClickElement(() => GetElementByText(locator, text));
