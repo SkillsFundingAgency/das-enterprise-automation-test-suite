@@ -73,7 +73,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers
             var now = DateTime.Now;
             DateTime RandomStartDate()
             {
-                var start = new DateTime(now.Year, now.Month + 1, now.Day);
+                var start = now.AddMonths(1);
                 int range = (_nextAcademicYearStartDate - start).Days - 1;
                 return start.AddDays(new Random().Next(range));
             }
