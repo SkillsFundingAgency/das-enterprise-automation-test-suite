@@ -43,14 +43,29 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers
 
         internal EnterUkprnPage AcceptAndContinue(TermsConditionsMakingApplicationPage page) => page.AcceptAndContinue();
 
-        internal ApplicationOverviewPage CompleteProviderRouteSection(EnterUkprnPage enterUkprnPage)
+        internal ApplicationOverviewPage CompleteProviderMainRouteSection(EnterUkprnPage enterUkprnPage)
         {
-            return enterUkprnPage
-                .EnterOrgTypeCompanyProvidersUkprn()
-                .ClickConfirmAndContinue()
+            return ConfirmUkprn(enterUkprnPage)
                 .SelectApplicationRouteAsMain()
                 .VerifyIntroductionStatus(StatusHelper.StatusNext);
         }
+
+        internal ApplicationOverviewPage CompleteProviderCharityRouteSection(EnterUkprnPage enterUkprnPage)
+        {
+            return ConfirmUkprn(enterUkprnPage)
+                .SelectApplicationRouteAsEmployer()
+                .SelectYesForLevyPayingEmployerAndContinue()
+                .VerifyIntroductionStatus(StatusHelper.StatusNext);
+        }
+
+        internal ApplicationOverviewPage CompleteYourOrganisation_Section1_Charity(ApplicationOverviewPage applicationOverviewPage)
+        {
+            applicationOverviewPage = _yourOrganisationSectionHelper.CompleteYourOrganisationSection_1(applicationOverviewPage);
+            applicationOverviewPage = _yourOrganisationSectionHelper.CompleteYourOrganisationSection_2_Charity(applicationOverviewPage);
+            
+            return applicationOverviewPage;
+        }
+
 
         internal ApplicationOverviewPage CompleteYourOrganisation_Section1(ApplicationOverviewPage applicationOverviewPage)
         {
@@ -134,5 +149,8 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers
             applicationOverviewPage = _finishSectionHelper.CompleteFinish_3(applicationOverviewPage);
             return _finishSectionHelper.CompleteFinish_4(applicationOverviewPage);
         }
+
+        private ChooseProviderRoutePage ConfirmUkprn(EnterUkprnPage enterUkprnPage) => enterUkprnPage.EnterOrgTypeCompanyProvidersUkprn().ClickConfirmAndContinue();
+
     }
 }

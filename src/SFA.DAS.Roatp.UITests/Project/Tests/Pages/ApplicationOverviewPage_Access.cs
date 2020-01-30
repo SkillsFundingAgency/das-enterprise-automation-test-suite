@@ -228,6 +228,11 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
             formCompletionHelper.ClickElement(GetTaskLinkElement(Yourorganisation, YourOrganisation_2));
             return new UltimateParentCompanyPage(_context);
         }
+        public IcoRegistrationNumberPage AccessYourOrganisationSectionForOrgTypeNotACompany()
+        {
+            formCompletionHelper.ClickElement(GetTaskLinkElement(Yourorganisation, YourOrganisation_2));
+            return new IcoRegistrationNumberPage(_context);
+        }
         public ConfrimWhosInControlPage AccessTellUSWhosInControlSection()
         {
             formCompletionHelper.ClickElement(GetTaskLinkElement(Yourorganisation, YourOrganisation_3));

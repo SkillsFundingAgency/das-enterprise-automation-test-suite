@@ -12,6 +12,16 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers
                 .VerifyIntroductionStatus(StatusHelper.StatusCompleted);
         }
 
+        internal ApplicationOverviewPage CompleteYourOrganisationSection_2_Charity(ApplicationOverviewPage applicationOverviewPage)
+        {
+            return applicationOverviewPage
+               .AccessYourOrganisationSectionForOrgTypeNotACompany()
+                .EnterIcoRegistrationNumberAndContinue()
+                .EneterWebsiteAndContinue()
+                .SelectMaximumTradingPeriodAndContinue()
+                .VerifyOrganisationInformation(StatusHelper.StatusCompleted);
+        }
+
         internal ApplicationOverviewPage CompleteYourOrganisationSection_2(ApplicationOverviewPage applicationOverviewPage)
         {
             return applicationOverviewPage

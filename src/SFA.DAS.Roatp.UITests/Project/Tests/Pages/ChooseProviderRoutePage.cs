@@ -3,6 +3,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
 {
+
     public class ChooseProviderRoutePage : RoatpBasePage
     {
         protected override string PageTitle => "Choose your organisation's provider route";
@@ -23,6 +24,19 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
             Continue();
             return new ApplicationOverviewPage(_context);
         }
-    }
 
+        public LevyPayingEmployerPage SelectApplicationRouteAsEmployer()
+        {
+            SelectRadioOptionByForAttribute("route-2");
+            Continue();
+            return new LevyPayingEmployerPage(_context);
+        }
+
+        public ApplicationOverviewPage SelectApplicationRouteAsSupporting()
+        {
+            SelectRadioOptionByForAttribute("route-3");
+            Continue();
+            return new ApplicationOverviewPage(_context);
+        }
+    }
 }
