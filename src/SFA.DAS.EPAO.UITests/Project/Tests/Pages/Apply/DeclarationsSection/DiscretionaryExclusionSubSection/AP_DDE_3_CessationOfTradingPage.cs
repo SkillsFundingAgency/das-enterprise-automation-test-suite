@@ -15,7 +15,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.DeclarationsSection.Dis
 
         public AP_DDE_4_IncorrectTaxReturnsPage SelectNoOptionAndContinueInCessationOfTradingPage()
         {
-            formCompletionHelper.SelectRadioOptionByForAttribute(RadioButton, "M_DEL-21_1");
+            formCompletionHelper.SelectRadioOptionByForAttribute(RadioButton, "A_DEL-21_1");
             Continue();
             return new AP_DDE_4_IncorrectTaxReturnsPage(_context);
         }

@@ -15,7 +15,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.DeclarationsSection.Dis
 
         public AP_DDE_7_ContractsYouHaveWithdrawnFromPage SelectNoOptionAndContinueInContractsWithdrawnFromYouPage()
         {
-            formCompletionHelper.SelectRadioOptionByForAttribute(RadioButton, "M_DEL-24_1");
+            formCompletionHelper.SelectRadioOptionByForAttribute(RadioButton, "A_DEL-24_1");
             Continue();
             return new AP_DDE_7_ContractsYouHaveWithdrawnFromPage(_context);
         }

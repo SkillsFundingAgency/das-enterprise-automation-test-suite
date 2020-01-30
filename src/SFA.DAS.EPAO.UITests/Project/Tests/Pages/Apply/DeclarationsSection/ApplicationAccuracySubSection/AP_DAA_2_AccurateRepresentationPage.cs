@@ -15,7 +15,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.DeclarationsSection.App
 
         public AP_DAA_3_AgreementOnTheRegisterPage SelectYesOptionAndContinueInAccurateRepresentationPage()
         {
-            formCompletionHelper.SelectRadioOptionByForAttribute(RadioButton, "M_DEL-29");
+            formCompletionHelper.SelectRadioOptionByForAttribute(RadioButton, "A_DEL-29");
             Continue();
             return new AP_DAA_3_AgreementOnTheRegisterPage(_context);
         }

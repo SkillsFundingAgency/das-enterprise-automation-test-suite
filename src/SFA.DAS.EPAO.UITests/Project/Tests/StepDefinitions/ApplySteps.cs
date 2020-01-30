@@ -59,6 +59,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
                 .SelectNoOptionAndContinueInFinancialConvictionsPage()
                 .SelectNoOptionAndContinueInCounterTerrorismPage()
                 .SelectNoOptionAndContinueInOtherCriminalConvictionsPage()
+                .SelectNoOptionInTaxAndSocialSecurityIrregularitiesPage()
                 .SelectNoOptionAndContinueInBankruptcyAndInsolvencyPage()
                 .SelectNoOptionAndContinueInCessationOfTradingPage()
                 .SelectNoOptionAndContinueInTheIncorrectTaxReturnsPage()
