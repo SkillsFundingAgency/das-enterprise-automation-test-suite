@@ -12,12 +12,15 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
         #region Helpers and Context
         private readonly ScenarioContext _context;
         #endregion
+
         private By LongTextArea_ReadytoDeliverTraining => By.Id("PAT-30");
+
         public ReadyToDeliverTrainingPage(ScenarioContext context) : base(context)
         {
             _context = context;
             VerifyPage();
         }
+
         public EndPointAssesmentOrganisationsPage EnterTextRegardingReadyToDeliverTrainingAndContinue()
         {
             formCompletionHelper.EnterText(LongTextArea_ReadytoDeliverTraining, applydataHelpers.ReadytoDeliverTraining);

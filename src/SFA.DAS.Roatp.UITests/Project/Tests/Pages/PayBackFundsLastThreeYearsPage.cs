@@ -18,6 +18,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
             _context = context;
             VerifyPage();
         }
+
         public ContractTerminatedByPublicBodyPage SelectYesEnterInformationForFailedToPayFundsAndContinue()
         {
             SelectRadioOptionByText("Yes");
@@ -26,5 +27,4 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
             return new ContractTerminatedByPublicBodyPage(_context);
         }
     }
-
 }

@@ -13,6 +13,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
         #endregion
 
         private By EnterUsername => By.Id("Username");
+
         private By EnterPassword => By.Id("Password");
 
         public ApplySignInPage(ScenarioContext context) : base(context)
@@ -20,6 +21,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
             _context = context;
             VerifyPage();
         }
+
         public TermsConditionsMakingApplicationPage SubmitValidUserDetails()
         {
             formCompletionHelper.EnterText(EnterUsername, objectContext.GetEmail());

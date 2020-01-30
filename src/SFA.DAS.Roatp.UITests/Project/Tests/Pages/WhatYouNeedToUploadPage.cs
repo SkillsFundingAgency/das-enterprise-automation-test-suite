@@ -15,11 +15,11 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
             _context = context;
             VerifyPage();
         }
+
         public UploadOrganisationsFinancialPage ContinueOnWhatYouNeedToUploadForFinancialStatementsAndManagementAccounts()
         {
             Continue();
             return new UploadOrganisationsFinancialPage(_context);
         }
-
     }
 }

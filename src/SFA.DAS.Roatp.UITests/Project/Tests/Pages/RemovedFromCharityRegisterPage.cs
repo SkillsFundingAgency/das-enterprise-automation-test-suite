@@ -10,8 +10,6 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
         #region Helpers and Context
         private readonly ScenarioContext _context;
         #endregion
-
-
         private By LongTextArea_RemovedFromCharityRegister => By.Id("CC-27.1");
 
         public RemovedFromCharityRegisterPage(ScenarioContext context) : base(context)

@@ -10,12 +10,15 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
         #region Helpers and Context
         private readonly ScenarioContext _context;
         #endregion
+
         private By LearningSupportAndWrittenAssignmentsChekbox => By.Id("option_2");
+
         public WhatTeachingMethodsPage(ScenarioContext context) : base(context)
         {
             _context = context;
             VerifyPage();
         }
+
         public OfftheJobTrainingIsRelevantPage SelectLearningSupportAndWrritenAssignmentsAndContinue()
         {
             formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(LearningSupportAndWrittenAssignmentsChekbox));
@@ -23,5 +26,4 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
             return new OfftheJobTrainingIsRelevantPage(_context);
         }
     }
-
 }

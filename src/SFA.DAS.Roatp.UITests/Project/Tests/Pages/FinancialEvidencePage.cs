@@ -41,6 +41,5 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
             Continue();
             return new LatestFullFinancialForTwelveMonthsPage(_context);
         }
-
     }
 }

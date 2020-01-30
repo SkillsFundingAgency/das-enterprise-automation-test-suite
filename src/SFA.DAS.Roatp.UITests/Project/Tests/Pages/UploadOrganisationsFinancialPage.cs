@@ -25,6 +25,5 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
             UploadFile();
             return new UploadOrganisationsManagementAccountsPage(_context);
         }
-
     }
 }

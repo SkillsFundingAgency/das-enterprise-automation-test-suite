@@ -12,8 +12,11 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
         #endregion
 
         private By SignOutButton => By.LinkText("Sign out");
+
         private By YesButton => By.Id("ConditionsAccepted-Yes");
+
         private By NoButton => By.Id("ConditionsAccepted-No");
+
         public TermsConditionsMakingApplicationPage(ScenarioContext context) : base(context)
         {
             _context = context;
@@ -26,17 +29,10 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
             Continue();
             return new EnterUkprnPage(_context);
         }
-        //public NotAcceptTermsConditionsPage DoNotAcceptTermsConditions()
-        //{
-        //    formCompletionHelper.ClickElement(NoButton);
-        //    Continue();
-        //    return new NotAcceptTermsConditionsPage(_context);
-        //}
+
         public void ClickSignout()
         {
             formCompletionHelper.ClickElement(SignOutButton);
         }
     }
-
-
 }

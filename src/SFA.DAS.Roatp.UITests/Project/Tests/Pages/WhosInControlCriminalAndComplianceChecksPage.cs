@@ -15,11 +15,11 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
             _context = context;
             VerifyPage();
         }
+
         public ApplicationOverviewPage ClickSaveAndContinue()
         {
             Continue();
             return new ApplicationOverviewPage(_context);
         }
     }
-
 }

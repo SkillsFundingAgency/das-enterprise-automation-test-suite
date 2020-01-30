@@ -18,6 +18,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
             _context = context;
             VerifyPage();
         }
+
         public TradingPeriodPage EneterWebsiteAndContinue()
         {
             SelectRadioOptionByForAttribute("YO-40");

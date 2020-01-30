@@ -11,7 +11,6 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
         private readonly ScenarioContext _context;
         #endregion
 
-
         private By LongTextArea_InvestigatedDueToWhistleBlowingIssues => By.Id("CC-29.1");
 
         public InvestigatedDueToWhistleBlowingIssuesPage(ScenarioContext context) : base(context)

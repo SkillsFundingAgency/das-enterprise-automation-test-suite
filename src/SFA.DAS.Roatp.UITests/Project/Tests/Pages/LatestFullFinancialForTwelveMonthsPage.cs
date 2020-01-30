@@ -22,6 +22,5 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
             Continue();
             return new FinanicialStatementsCoveringAnyPeriodPage(_context);
         }
-
     }
 }

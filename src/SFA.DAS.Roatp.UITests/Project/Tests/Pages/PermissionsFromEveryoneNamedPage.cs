@@ -15,6 +15,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
             _context = context;
             VerifyPage();
         }
+
         public CheckedWithEveryonePage SelectYesForPermissionsAndContinue()
         {
             SelectRadioOptionByText("Yes");
@@ -22,5 +23,4 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
             return new CheckedWithEveryonePage(_context);
         }
     }
-
 }

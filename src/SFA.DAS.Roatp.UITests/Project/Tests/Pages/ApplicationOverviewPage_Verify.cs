@@ -12,7 +12,6 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
         public ApplicationOverviewPage VerifyApplicationPermissions_Section9(string status) => Verify_Section9(Finish_1, status);
         public ApplicationOverviewPage VerifyCommercialInformation_Section9(string status) => Verify_Section9(Finish_2, status);
         public ApplicationOverviewPage VerifyTermsAndConditions_Section9(string status) => Verify_Section9(Finish_3, status);
-        public ApplicationOverviewPage VerifySubmitApplication_Section9(string status) => Verify_Section9(Finish_4, status);
         #endregion
 
         #region Section8

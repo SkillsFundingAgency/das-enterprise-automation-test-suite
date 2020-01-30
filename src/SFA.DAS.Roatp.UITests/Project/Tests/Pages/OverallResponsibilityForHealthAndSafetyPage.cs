@@ -12,7 +12,9 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
         #endregion
 
         private By FullName => By.Id("PYA-55");
+
         private By Email => By.Id("PYA-56");
+
         private By ContactNumber => By.Id("PYA-57");
 
         public OverallResponsibilityForHealthAndSafetyPage(ScenarioContext context) : base(context)
@@ -20,6 +22,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
             _context = context;
             VerifyPage();
         }
+
         public ApplicationOverviewPage EnterDetailsOfHealthAndSafetyPerson()
         {
             formCompletionHelper.EnterText(FullName, applydataHelpers.FullName);

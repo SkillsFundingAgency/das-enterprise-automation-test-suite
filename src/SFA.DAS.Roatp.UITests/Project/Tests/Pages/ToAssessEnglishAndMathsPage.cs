@@ -20,6 +20,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
             _context = context;
             VerifyPage();
         }
+
         public ApplicationOverviewPage EnterTextRegardingProcessToAssessEnglishAndMathsAndContinue()
         {
             formCompletionHelper.EnterText(LongTextArea, applydataHelpers.ProcessToAssessEnglishAndMaths);
@@ -27,5 +28,4 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
             return new ApplicationOverviewPage(_context);
         }
     }
-
 }

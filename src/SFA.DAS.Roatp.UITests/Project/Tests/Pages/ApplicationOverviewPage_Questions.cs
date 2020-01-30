@@ -6,8 +6,6 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
 {
     public partial class ApplicationOverviewPage : RoatpBasePage
     {
-        //Questions 
-
         #region Questions
         private string Yourorganisation => "Your organisation";
         private string YourOrganisation_1 => "Introduction and what you'll need";
@@ -66,6 +64,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
         private string Finish_2 => "'Commercial in confidence' information";
         private string Finish_3 => "Terms and conditions";
         private string Finish_4 => "Submit application";
+
         #endregion
 
     }

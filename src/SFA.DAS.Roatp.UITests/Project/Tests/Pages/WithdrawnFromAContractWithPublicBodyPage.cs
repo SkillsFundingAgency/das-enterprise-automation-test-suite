@@ -11,7 +11,6 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
         private readonly ScenarioContext _context;
         #endregion
 
-
         private By LongTextArea_WithdrawnFromAContractWithPublicBody => By.Id("CC-23.1");
 
         public WithdrawnFromAContractWithPublicBodyPage(ScenarioContext context) : base(context)

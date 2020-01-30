@@ -12,7 +12,9 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
         #region Helpers and Context
         private readonly ScenarioContext _context;
         #endregion
+
         private By LongTextArea => By.Id("RTE-71");
+
         public CarryOutDueDiligencePage(ScenarioContext context) : base(context)
         {
             _context = context;

@@ -12,7 +12,9 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
         #endregion
 
         private By StandardsCheckBox => By.Id("option_0");
+
         private By FrameworksCheckBox => By.Id("option_1");
+
         private By partFrameWorksCheckBox => By.Id("option_3");
 
         public TypeOfApprenticeshipTrainingPage(ScenarioContext context) : base(context)
@@ -28,6 +30,5 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
             Continue();
             return new ReadyToDeliverTrainingPage(_context);
         }
-
     }
 }

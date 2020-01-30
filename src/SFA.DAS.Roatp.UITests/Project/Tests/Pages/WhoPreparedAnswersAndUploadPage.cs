@@ -13,7 +13,6 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
 
         private By AnEmployeeInYourOrganisationCheckbox => By.CssSelector("input[type='checkbox'][value='An employee in your organisation']");
 
-
         public WhoPreparedAnswersAndUploadPage(ScenarioContext context) : base(context)
         {
             _context = context;

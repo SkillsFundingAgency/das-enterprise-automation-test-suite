@@ -10,12 +10,15 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
         #region Helpers and Context
         private readonly ScenarioContext _context;
         #endregion
+
         private By OneTrainerBetween10OrLessAoorenticesRadio => By.Id("PAT-643");
+
         public TypicalRatioOfStaffPage(ScenarioContext context) : base(context)
         {
             _context = context;
             VerifyPage();
         }
+
         public ApplicationOverviewPage SelectOneTrainerBetween10OrLessApprenticesAndContinue()
         {
             formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(OneTrainerBetween10OrLessAoorenticesRadio));
@@ -23,5 +26,4 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
             return new ApplicationOverviewPage(_context);
         }
     }
-
 }

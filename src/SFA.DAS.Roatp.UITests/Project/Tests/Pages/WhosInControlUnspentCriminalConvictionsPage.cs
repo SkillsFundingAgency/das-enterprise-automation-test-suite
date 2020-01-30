@@ -12,6 +12,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
         #endregion
 
         private By LongTextArea_UnspentCriminalConvictionsOrganisations => By.Id("CC-40.1");
+
         private By LongTextArea_UnspentCriminalConvictionsSoleTrader => By.Id("CC-41.1");
 
         public WhosInControlUnspentCriminalConvictionsPage(ScenarioContext context) : base(context)

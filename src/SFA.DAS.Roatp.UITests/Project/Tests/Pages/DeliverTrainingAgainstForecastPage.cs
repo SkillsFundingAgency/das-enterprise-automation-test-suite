@@ -10,12 +10,15 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
         #region Helpers and Context
         private readonly ScenarioContext _context;
         #endregion
+
         private By WithinFirstThreeMonthsRadio => By.Id("PAT-641");
+
         public DeliverTrainingAgainstForecastPage(ScenarioContext context) : base(context)
         {
             _context = context;
             VerifyPage();
         }
+
         public RecruitNewStaffPage SelectWithinTheFirstThreeMonthAndContinue()
         {
             formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(WithinFirstThreeMonthsRadio));

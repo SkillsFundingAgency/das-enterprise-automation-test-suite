@@ -12,6 +12,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
         #endregion
 
         private By LongTextArea_WhosInControlFailedToPayBackFundsOrganisations => By.Id("CC-50.1");
+
         private By LongTextArea_WhosInControlFailedToPayBackFundsSoleTrader => By.Id("CC-51.1");
 
         public WhosInControlFailedToPayBackFundsPage(ScenarioContext context) : base(context)

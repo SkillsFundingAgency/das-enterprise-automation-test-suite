@@ -18,11 +18,11 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
             _context = context;
             VerifyPage();
         }
+
         public ApplicationOverviewPage OrganisationsCommitmentStatementTemplateFileUploadAndContinue()
         {
             UploadFile();
             return new ApplicationOverviewPage(_context);
         }
     }
-
 }

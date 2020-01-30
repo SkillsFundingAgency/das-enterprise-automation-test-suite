@@ -20,6 +20,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
             _context = context;
             VerifyPage();
         }
+
         public ApplicationOverviewPage EnterTextRegardingOrganisationPromoteApprenticeshipsToEmployerAndContinue()
         {
             formCompletionHelper.EnterText(LongTextArea, applydataHelpers.OrganisationPromoteApprenticeships);

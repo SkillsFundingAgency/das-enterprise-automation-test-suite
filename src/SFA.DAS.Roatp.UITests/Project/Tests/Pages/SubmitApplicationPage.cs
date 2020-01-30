@@ -10,6 +10,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
         #region Helpers and Context
         private readonly ScenarioContext _context;
         #endregion
+
         private By ConfirmCheckBox => By.Id("ConfirmSubmitApplication");
 
         public SubmitApplicationPage(ScenarioContext context) : base(context)

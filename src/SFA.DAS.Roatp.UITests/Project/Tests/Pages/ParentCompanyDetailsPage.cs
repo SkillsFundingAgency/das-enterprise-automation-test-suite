@@ -12,6 +12,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
         #endregion
 
         private By CompanyNumberField => By.Id("YO-21");
+
         private By CompanyNameField => By.Id("YO-22");
 
         public ParentCompanyDetailsPage(ScenarioContext context) : base(context)
@@ -19,6 +20,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
             _context = context;
             VerifyPage();
         }
+
         public IcoRegistrationNumberPage EnterParentCompanyDetailsAndContinue()
         {
             formCompletionHelper.EnterText(CompanyNumberField, applydataHelpers.CompanyNumber);

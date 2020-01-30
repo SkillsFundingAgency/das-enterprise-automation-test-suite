@@ -12,6 +12,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
         #endregion
 
         private By LongTextArea_WhosInControlContractTerminatedByPublicBodyOrganisations => By.Id("CC-80.1");
+
         private By LongTextArea_WhosInControlContractTerminatedByPublicBodySoleTrader => By.Id("CC-81.1");
 
         public WhosInControlContractTerminatedByPublicBodyPage(ScenarioContext context) : base(context)
