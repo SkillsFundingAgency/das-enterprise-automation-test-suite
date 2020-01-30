@@ -82,13 +82,15 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         {
             _applicationOverviewPage = _applicationOverviewPage
                 .ClickGoToFinancialHealthAssessmentLinkInApplicationOverviewPage()
+                .ClickFHALinkInFHABasePage()
+                .UploadFileAndContinueInFinancialHealthPage()
                 .ClickReturnToApplicationOverviewButton();
         }
 
         [Then(@"the application is allowed to be submitted")]
         public void ThenTheApplicationIsAllowedToBeSubmitted()
         {
-
+            _applicationOverviewPage.ClickSubmitInApplicationOverviewPage();
         }
     }
 }

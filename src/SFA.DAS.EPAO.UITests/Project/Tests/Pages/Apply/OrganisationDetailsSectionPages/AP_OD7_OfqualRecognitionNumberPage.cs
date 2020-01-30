@@ -20,7 +20,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.OrganisationDetailsSect
 
         public AP_OD8_TradingStatusPage EnterDetailsAndContinueInOfqualRecognitionNumberPage()
         {
-            formCompletionHelper.SelectRadioOptionByForAttribute(RadioButton, "CD-15");
+            SelectRadioOptionByForAttribute("CD-15");
             formCompletionHelper.EnterText(OfqualRecognitionNumberTextbox, dataHelper.GetRandomNumber(6));
             Continue();
             return new AP_OD8_TradingStatusPage(_context);

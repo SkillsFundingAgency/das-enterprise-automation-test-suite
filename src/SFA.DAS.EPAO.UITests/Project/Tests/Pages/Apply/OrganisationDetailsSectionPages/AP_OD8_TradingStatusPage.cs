@@ -15,7 +15,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.OrganisationDetailsSect
 
         public AP_OD9_CompanyNumberPage SelectPubliLimitedCompanyOptionAndContinueInTradingStatusPage()
         {
-            formCompletionHelper.SelectRadioOptionByForAttribute(RadioButton, "CD-16");
+            SelectRadioOptionByForAttribute("CD-16");
             Continue();
             return new AP_OD9_CompanyNumberPage(_context);
         }

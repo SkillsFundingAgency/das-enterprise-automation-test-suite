@@ -15,7 +15,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.OrganisationDetailsSect
 
         public AP_DAD_1_AuthoriserDetailsPage SelectNoOptionAndContinueInDirectorsDataPage()
         {
-            formCompletionHelper.SelectRadioOptionByForAttribute(RadioButton, "CD-22_1");
+            SelectRadioOptionByForAttribute("CD-22_1");
             Continue();
             return new AP_DAD_1_AuthoriserDetailsPage(_context);
         }

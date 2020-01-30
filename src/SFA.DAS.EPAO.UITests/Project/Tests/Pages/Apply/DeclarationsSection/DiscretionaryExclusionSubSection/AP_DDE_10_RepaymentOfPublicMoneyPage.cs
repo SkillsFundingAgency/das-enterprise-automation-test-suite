@@ -15,7 +15,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.DeclarationsSection.Dis
 
         public AP_DDE_11_PublicbodyFundsAndContractsPage SelectNoOptionAndContinueInRepaymentOfPublicMoneyPage()
         {
-            formCompletionHelper.SelectRadioOptionByForAttribute(RadioButton, "A_DEL-28_1");
+            SelectRadioOptionByForAttribute("A_DEL-28_1");
             Continue();
             return new AP_DDE_11_PublicbodyFundsAndContractsPage(_context);
         }

@@ -15,7 +15,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.DeclarationsSection.Dis
 
         public AP_DDE_3_CessationOfTradingPage SelectNoOptionAndContinueInBankruptcyAndInsolvencyPage()
         {
-            formCompletionHelper.SelectRadioOptionByForAttribute(RadioButton, "D_DEL-14_1");
+            SelectRadioOptionByForAttribute("D_DEL-14_1");
             Continue();
             return new AP_DDE_3_CessationOfTradingPage(_context);
         }

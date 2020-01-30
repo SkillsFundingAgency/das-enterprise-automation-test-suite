@@ -15,7 +15,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.OrganisationDetailsSect
 
         public AP_OD3_ContactDetailsPage SelectYesAndContinueInUseYourTradingNameOnTheRegisterPage()
         {
-            formCompletionHelper.SelectRadioOptionByForAttribute(RadioButton, "CD-01");
+            SelectRadioOptionByForAttribute("CD-01");
             Continue();
             return new AP_OD3_ContactDetailsPage(_context);
         }

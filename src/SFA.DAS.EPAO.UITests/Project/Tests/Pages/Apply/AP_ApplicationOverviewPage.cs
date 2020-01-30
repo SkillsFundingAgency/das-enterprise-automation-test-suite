@@ -34,12 +34,16 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply
             return new AP_DeclarationsBasePage(_context);
         }
 
-        public FHABasePage ClickGoToFinancialHealthAssessmentLinkInApplicationOverviewPage()
+        public AP_FHABasePage ClickGoToFinancialHealthAssessmentLinkInApplicationOverviewPage()
         {
             formCompletionHelper.Click(GoToFinancialHealthAssessmentLink);
-            return new FHABasePage(_context);
+            return new AP_FHABasePage(_context);
         }
 
-        public void ClickSubmitInApplicationOverviewPage() => Continue();
+        public AP_ApplicationSubmittedPage ClickSubmitInApplicationOverviewPage()
+        {
+            Continue();
+            return new AP_ApplicationSubmittedPage(_context);
+        }
     }
 }

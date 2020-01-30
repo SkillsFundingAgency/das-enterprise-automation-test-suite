@@ -15,7 +15,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.DeclarationsSection.App
 
         public AP_DeclarationsBasePage SelectYesOptionAndContinueInAgreementOnTheRegisterPage()
         {
-            formCompletionHelper.SelectRadioOptionByForAttribute(RadioButton, "A_DEL-30");
+            SelectRadioOptionByForAttribute("A_DEL-30");
             Continue();
             return new AP_DeclarationsBasePage(_context);
         }

@@ -16,7 +16,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.DeclarationsSection.Man
 
         public AP_DDE_1_TaxAndSocialSecurityIrregularitiesPage SelectNoOptionAndContinueInOtherCriminalConvictionsPage()
         {
-            formCompletionHelper.SelectRadioOptionByForAttribute(RadioButton, "M_DEL-12_1");
+            SelectRadioOptionByForAttribute("M_DEL-12_1");
             Continue();
             return new AP_DDE_1_TaxAndSocialSecurityIrregularitiesPage(_context);
         }

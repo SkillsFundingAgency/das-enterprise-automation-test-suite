@@ -16,8 +16,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages
         protected readonly EPAODataHelper dataHelper;
         protected readonly EPAOConfig ePAOConfig;
 
-        protected override By PageHeader => By.CssSelector(".govuk-heading-xl, .heading-xlarge, .govuk-fieldset__heading");
-        protected By RadioButton => By.CssSelector("label");
+        protected override By PageHeader => By.CssSelector(".govuk-heading-xl, .heading-xlarge, .govuk-heading-l, .govuk-panel__title, .govuk-fieldset__heading");
 
         public EPAO_BasePage(ScenarioContext context) : base(context)
         {

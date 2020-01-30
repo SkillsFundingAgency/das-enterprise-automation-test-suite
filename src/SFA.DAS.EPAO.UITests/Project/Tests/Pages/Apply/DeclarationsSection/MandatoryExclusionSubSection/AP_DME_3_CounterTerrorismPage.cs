@@ -15,7 +15,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.DeclarationsSection.Man
 
         public AP_DME_4_OtherCriminalConvictionsPage SelectNoOptionAndContinueInCounterTerrorismPage()
         {
-            formCompletionHelper.SelectRadioOptionByForAttribute(RadioButton, "M_DEL-11_1");
+            SelectRadioOptionByForAttribute("M_DEL-11_1");
             Continue();
             return new AP_DME_4_OtherCriminalConvictionsPage(_context);
         }

@@ -20,7 +20,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.OrganisationDetailsSect
 
         public AP_OD2_UseTradingNameOnRegisterPage GiveATradingNameAndContinueInTradingNamePage()
         {
-            formCompletionHelper.SelectRadioOptionByForAttribute(RadioButton, "CD-30");
+            SelectRadioOptionByForAttribute("CD-30");
             formCompletionHelper.EnterText(TradingNameTextbox, dataHelper.GetRandomAlphabeticString(10));
             Continue();
             return new AP_OD2_UseTradingNameOnRegisterPage(_context);

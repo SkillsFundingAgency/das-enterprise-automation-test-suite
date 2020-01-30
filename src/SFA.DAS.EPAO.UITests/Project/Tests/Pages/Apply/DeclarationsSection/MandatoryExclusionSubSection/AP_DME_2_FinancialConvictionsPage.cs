@@ -15,7 +15,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.DeclarationsSection.Man
 
         public AP_DME_3_CounterTerrorismPage SelectNoOptionAndContinueInFinancialConvictionsPage()
         {
-            formCompletionHelper.SelectRadioOptionByForAttribute(RadioButton, "M_DEL-10_1");
+            SelectRadioOptionByForAttribute("M_DEL-10_1");
             Continue();
             return new AP_DME_3_CounterTerrorismPage(_context);
         }

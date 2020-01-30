@@ -20,7 +20,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.OrganisationDetailsSect
 
         public AP_OD13_RegisterOfRemovedTrusteesPage EnterCharityDetailsAndContinueInRegisteredCharityPage()
         {
-            formCompletionHelper.SelectRadioOptionByForAttribute(RadioButton, "CD-26");
+            SelectRadioOptionByForAttribute("CD-26");
             formCompletionHelper.EnterText(CharityNumberTextbox, dataHelper.GetRandomNumber(8));
             Continue();
             return new AP_OD13_RegisterOfRemovedTrusteesPage(_context);

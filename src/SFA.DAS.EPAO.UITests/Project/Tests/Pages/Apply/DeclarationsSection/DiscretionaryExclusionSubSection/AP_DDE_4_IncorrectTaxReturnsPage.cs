@@ -15,7 +15,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.DeclarationsSection.Dis
 
         public AP_DDE_5_HmrcChallengesPage SelectNoOptionAndContinueInTheIncorrectTaxReturnsPage()
         {
-            formCompletionHelper.SelectRadioOptionByForAttribute(RadioButton, "A_DEL-22_1");
+            SelectRadioOptionByForAttribute("A_DEL-22_1");
             Continue();
             return new AP_DDE_5_HmrcChallengesPage(_context);
         }

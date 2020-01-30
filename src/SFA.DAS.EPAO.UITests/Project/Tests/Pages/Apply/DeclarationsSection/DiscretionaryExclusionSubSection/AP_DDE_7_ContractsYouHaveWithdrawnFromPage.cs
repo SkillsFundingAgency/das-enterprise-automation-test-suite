@@ -15,7 +15,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.DeclarationsSection.Dis
 
         public AP_DDE_8_OrganisationRemovalFromRegistersPage SelectNoOptionAndContinueInContractsYouHaveWithdrawnFromPage()
         {
-            formCompletionHelper.SelectRadioOptionByForAttribute(RadioButton, "A_DEL-25_1");
+            SelectRadioOptionByForAttribute("A_DEL-25_1");
             Continue();
             return new AP_DDE_8_OrganisationRemovalFromRegistersPage(_context);
         }

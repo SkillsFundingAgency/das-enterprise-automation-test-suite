@@ -15,7 +15,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.OrganisationDetailsSect
 
         public AP_OrganisationDetailsBasePage SelectNoOptionAndContinueInRegisterOfRemovedTrusteesPage()
         {
-            formCompletionHelper.SelectRadioOptionByForAttribute(RadioButton, "CD-27_1");
+            SelectRadioOptionByForAttribute("CD-27_1");
             Continue();
             return new AP_OrganisationDetailsBasePage(_context);
         }

@@ -16,7 +16,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.DeclarationsSection.Dis
 
         public AP_DAA_1_FalseDeclarationsPage SelectNoOptionAndContinueInLegalDisputePage()
         {
-            formCompletionHelper.SelectRadioOptionByForAttribute(RadioButton, "A_DEL-30_1");
+            SelectRadioOptionByForAttribute("A_DEL-30_1");
             Continue();
             return new AP_DAA_1_FalseDeclarationsPage(_context);
         }

@@ -15,7 +15,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.DeclarationsSection.Dis
 
         public AP_DDE_2_BankruptcyAndInsolvencyPage SelectNoOptionInTaxAndSocialSecurityIrregularitiesPage()
         {
-            formCompletionHelper.SelectRadioOptionByForAttribute(RadioButton, "D_DEL-13_1");
+            SelectRadioOptionByForAttribute("D_DEL-13_1");
             Continue();
             return new AP_DDE_2_BankruptcyAndInsolvencyPage(_context);
         }

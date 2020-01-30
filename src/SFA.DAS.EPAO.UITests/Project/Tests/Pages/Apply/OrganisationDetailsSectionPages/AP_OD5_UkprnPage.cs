@@ -20,7 +20,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.OrganisationDetailsSect
 
         public AP_OD6_OverallExecutiveMgtPage EnterUkprnAndContinueInDoYouHaveAUkprnPage()
         {
-            formCompletionHelper.SelectRadioOptionByForAttribute(RadioButton, "CD-12");
+            SelectRadioOptionByForAttribute("CD-12");
             formCompletionHelper.EnterText(UkprnTextbox, dataHelper.GetRandomNumber(8));
             Continue();
             return new AP_OD6_OverallExecutiveMgtPage(_context);
