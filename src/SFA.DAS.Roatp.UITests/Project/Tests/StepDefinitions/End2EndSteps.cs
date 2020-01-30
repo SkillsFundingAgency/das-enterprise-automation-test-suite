@@ -14,7 +14,6 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions
         private readonly End2EndStepsHelper _end2EndStepsHelper;
         private ApplicationOverviewPage _overviewPage;
         private ApplicationSubmittedPage _applicationSubmittedPage;
-        private EnterUkprnPage _enterUkprnPage;
 
         public End2EndSteps(ScenarioContext context)
         {
@@ -22,20 +21,40 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions
             _end2EndStepsHelper = new End2EndStepsHelper(_context);
         }
 
-        [Given(@"the provider initates an application as main route company")]
-        public void GivenTheProviderInitatesAnApplicationAsMainRouteCompany()
+        private EnterUkprnPage AcceptTermsAndCondition()
         {
             var termsConditionsMakingApplicationPage = _end2EndStepsHelper.SubmitValidUserDetails();
 
-            _enterUkprnPage = _end2EndStepsHelper.AcceptAndContinue(termsConditionsMakingApplicationPage);
-
-            _overviewPage =  _end2EndStepsHelper.CompleteProviderRouteSection(_enterUkprnPage);
+            return _end2EndStepsHelper.AcceptAndContinue(termsConditionsMakingApplicationPage);
         }
+
+        [Given(@"the provider initates an application as main route company")]
+        public void GivenTheProviderInitatesAnApplicationAsMainRouteCompany()
+        {
+            var enterUkprnPage = AcceptTermsAndCondition();
+
+            _overviewPage =  _end2EndStepsHelper.CompleteProviderMainRouteSection(enterUkprnPage);
+        }
+
+        [Given(@"the provider initates an application as employer route charity")]
+        public void GivenTheProviderInitatesAnApplicationAsEmployerRouteCharity()
+        {
+            var enterUkprnPage = AcceptTermsAndCondition();
+
+            _overviewPage = _end2EndStepsHelper.CompleteProviderCharityRouteSection(enterUkprnPage);
+        }
+
 
         [When(@"the provider completes Your organisation section")]
         public void WhenTheProviderCompletesYourOrganisationSection()
         {
             _overviewPage = _end2EndStepsHelper.CompleteYourOrganisation_Section1(_overviewPage);
+        }
+
+        [When(@"the provider completes Your organisation section for charity")]
+        public void WhenTheProviderCompletesYourOrganisationSectionForCharity()
+        {
+            _overviewPage = _end2EndStepsHelper.CompleteYourOrganisation_Section1_Charity(_overviewPage);
         }
 
         [When(@"the provider completes Financial evidence section")]
