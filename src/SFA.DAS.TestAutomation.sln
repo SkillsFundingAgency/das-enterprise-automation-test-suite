@@ -11,6 +11,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Framework", "Framework", "{FC4EA916-845D-4BCB-9F27-F95C653AB289}"
 	ProjectSection(SolutionItems) = preProject
 		NUnitConfigurator.cs = NUnitConfigurator.cs
+		Sample.pdf = Sample.pdf
 		specflow.json = specflow.json
 	EndProjectSection
 EndProject
@@ -52,7 +53,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{47
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.RAA-V2.Service", "SFA.DAS.RAA-V2.Service\SFA.DAS.RAA-V2.Service.csproj", "{CB73B0EC-E0B7-4586-99E3-ADBE71CD2219}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SFA.DAS.Roatp.UITests", "SFA.DAS.Roatp.UITests\SFA.DAS.Roatp.UITests.csproj", "{88DA7118-3A27-4CA2-B1C4-71B9422D7EF3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.Roatp.UITests", "SFA.DAS.Roatp.UITests\SFA.DAS.Roatp.UITests.csproj", "{88DA7118-3A27-4CA2-B1C4-71B9422D7EF3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
