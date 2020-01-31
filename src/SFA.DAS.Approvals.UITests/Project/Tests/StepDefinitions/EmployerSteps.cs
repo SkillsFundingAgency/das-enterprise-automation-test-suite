@@ -129,8 +129,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _employerStepsHelper.EmployerCreateCohortAndSendsToProvider(false);
         }
 
-        [When(@"the Employer adds (\d) cohort and sends to provider")]
-        public void WhenTheEmployerAddsCohortAndSendsToProvider(int numberOfApprentices)
+        [When(@"the Employer adds (\d) apprentices and sends to provider")]
+        public void WhenTheEmployerAddsApprenticesAndSendsToProvider(int numberOfApprentices)
         {
             _reviewYourCohortPage = _employerStepsHelper.EmployerAddApprentice(numberOfApprentices, false);
 
