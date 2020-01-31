@@ -18,7 +18,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
 
         public FullOfstedInspectionPage SelectNoForITTAndContinue()
         {
-            SelectRadioOptionByForAttribute("YO-240_1");
+            SelectRadioOptionByText("No");
             Continue();
             return new FullOfstedInspectionPage(_context);
         }

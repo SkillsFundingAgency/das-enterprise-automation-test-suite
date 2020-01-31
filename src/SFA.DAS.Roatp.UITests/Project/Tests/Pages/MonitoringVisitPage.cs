@@ -18,7 +18,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
 
         public ApplicationOverviewPage SelectNoForMonitoringVisitAndContinue()
         {
-            SelectRadioOptionByForAttribute("YO-290_1");
+            SelectRadioOptionByText("No");
             Continue();
             return new ApplicationOverviewPage(_context);
 

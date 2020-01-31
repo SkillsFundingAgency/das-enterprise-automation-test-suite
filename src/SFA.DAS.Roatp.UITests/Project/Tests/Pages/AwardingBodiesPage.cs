@@ -28,5 +28,12 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
             Continue();
             return new ContactAboutTheApprenticeshipsPage(_context);
         }
+
+        public ApplicationOverviewPage EnterTextForEngageAndWorkWithAwardingBodiesEmployerRouteAndContinue()
+        {
+            formCompletionHelper.EnterText(LongTextArea_EngageWithAwardingBodies, applydataHelpers.EngageWithAwardingBodies);
+            Continue();
+            return new ApplicationOverviewPage(_context);
+        }
     }
 }

@@ -16,9 +16,13 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
             VerifyPage();
         }
 
-        public WhatYouNeedToUploadPage ClickYesForFinancialStatementsCoveringAnyPeriodAndContinue()
+        public WhatYouNeedToUploadPage ClickYesForFinancialStatementsCoveringAnyPeriodAndContinue() => FinancialStatementsCoveringAnyPeriodAndContinue("Yes");
+
+        public WhatYouNeedToUploadPage ClickNoForFinancialStatementsCoveringAnyPeriodAndContinue() => FinancialStatementsCoveringAnyPeriodAndContinue("No");
+
+        private WhatYouNeedToUploadPage FinancialStatementsCoveringAnyPeriodAndContinue(string option)
         {
-            SelectRadioOptionByText("Yes");
+            SelectRadioOptionByText(option);
             Continue();
             return new WhatYouNeedToUploadPage(_context);
         }

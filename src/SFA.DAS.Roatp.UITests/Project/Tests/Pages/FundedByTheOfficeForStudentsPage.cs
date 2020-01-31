@@ -18,7 +18,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
 
         public InitialTeacherTrainingPage SelectYesForFundedbyOFSAndContinue()
         {
-            SelectRadioOptionByForAttribute("YO-235");
+            SelectRadioOptionByText("Yes");
             Continue();
             return new InitialTeacherTrainingPage(_context);
         }

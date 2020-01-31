@@ -28,6 +28,22 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers
                 .VerifyYourOrganisationsFinancialEvidence_Section2(StatusHelper.StatusCompleted);
         }
 
+        internal ApplicationOverviewPage CompleteFinancialEvidence_2_ForNoUltimateParentCompany(ApplicationOverviewPage applicationOverviewPage)
+        {
+            return applicationOverviewPage
+                .Access_Section2_YourOrganisationsFinancialEvidence()
+                .SelectYesOnAnnualTurnOverAndContinue()
+                .SelectNoOnFundingFromEsfaAndContinue()
+                .EnterInputsForFinancialEvidenceAndContinue()
+                .SelectNoForLatestFullFinancialForTwelveMonthsAndContinue()
+                .ClickNoForFinancialStatementsCoveringAnyPeriodAndContinue()
+                .ContinueOnWhatYouNeedToUploadForManagementAccounts()
+                .UploadManagementAccountsFileAndContinue()
+                .SelectAnEmployeeInYourOrganisationOnWhoPreparedAnswersAndUploadPageAndContinue()
+                .VerifyYourOrganisationsFinancialEvidence_Section2(StatusHelper.StatusCompleted);
+        }
+
+
         internal ApplicationOverviewPage CompleteFinancialEvidence_3(ApplicationOverviewPage applicationOverviewPage)
         {
             return applicationOverviewPage

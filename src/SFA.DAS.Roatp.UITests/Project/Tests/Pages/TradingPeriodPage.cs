@@ -18,7 +18,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
 
         public ApplicationOverviewPage SelectMaximumTradingPeriodAndContinue()
         {
-            SelectRadioOptionByForAttribute("YO-50_3");
+            SelectRadioOptionByText("More than 23 months");
             Continue();
             return new ApplicationOverviewPage(_context);
         }
