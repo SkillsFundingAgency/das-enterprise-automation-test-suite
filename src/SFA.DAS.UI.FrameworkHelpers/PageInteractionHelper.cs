@@ -60,13 +60,11 @@ namespace SFA.DAS.UI.FrameworkHelpers
             return VerifyPage(func);
         }
 
-        public bool VerifyPage(By locator) => VerifyPage(Func(locator));
-
-        public bool VerifyPage(By locator, string expected)
+        public bool VerifyPage(Func<IWebElement> element, string expected)
         {
             bool func()
             {
-                var actual = GetText(locator);
+                var actual = GetText(element);
                 if (actual.Contains(expected))
                 {
                     return true;
@@ -79,6 +77,10 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
             return VerifyPage(func);
         }
+
+        public bool VerifyPage(By locator) => VerifyPage(Func(locator));
+
+        public bool VerifyPage(By locator, string expected) => VerifyPage(() => FindElement(locator), expected);
 
         public bool VerifyPageAfterRefresh(By locator)
         {

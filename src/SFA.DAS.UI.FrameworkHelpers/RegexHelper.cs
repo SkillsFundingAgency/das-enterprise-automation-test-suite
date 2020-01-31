@@ -24,6 +24,13 @@ namespace SFA.DAS.UI.FrameworkHelpers
             return match.Success ? TrimAnySpace(Regex.Replace(match.Value, @"Account ID:", string.Empty)) : text;
         }
 
+        public string GetApplicationReference(string value)
+        {
+            Match match = Regex.Match(value, @"[0-9]{6}");
+
+            return match.Success ? TrimAnySpace(match.Value) : value;
+        }
+
         public string GetCohortReference(string value)
         {
             Match match = Regex.Match(value, @"[A-Z0-9]{6}");
