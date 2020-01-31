@@ -6,7 +6,6 @@
         public string AdminUserName { get; set; }
         public string AdminPassword { get; set; }
         public string ApplyBaseUrl { get; set; }
-        public string ApplyUserName { get; set; }
         public string ApplyPassword { get; set; }
         public string RoatpDatabaseConnectionString { get; set; }
         public string ApplyDatabaseConnectionString{ get; set; }

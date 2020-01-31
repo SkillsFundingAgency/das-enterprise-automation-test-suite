@@ -1,5 +1,4 @@
 ﻿using TechTalk.SpecFlow;
-using OpenQA.Selenium;
 
 namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
 {
@@ -7,10 +6,6 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
     {
         protected override string PageTitle => "Confirm this is the correct apprentice";
         private readonly ScenarioContext _context;
-
-        #region Locators
-        private By RadioButton => By.CssSelector("label");
-        #endregion
 
         public AS_ConfirmApprenticePage(ScenarioContext context) : base(context)
         {
@@ -37,12 +32,12 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
 
         private void SelectStandardWithAdditionalLearningOption()
         {
-            formCompletionHelper.SelectRadioOptionByForAttribute(RadioButton, "standard_6");
+            SelectRadioOptionByForAttribute("standard_6");
         }
 
         private void SelectFirstStandardFromMultipleOptions()
         {
-            formCompletionHelper.SelectRadioOptionByForAttribute(RadioButton, "standard_122");
+            SelectRadioOptionByForAttribute("standard_122");
         }
     }
 }

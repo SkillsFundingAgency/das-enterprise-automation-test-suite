@@ -1,4 +1,6 @@
-﻿using SFA.DAS.EPAO.UITests.Project.Helpers;
+﻿using OpenQA.Selenium;
+using SFA.DAS.EPAO.UITests.Project.Helpers;
+using SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply;
 using SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
@@ -14,6 +16,8 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages
         protected readonly EPAODataHelper dataHelper;
         protected readonly EPAOConfig ePAOConfig;
 
+        protected override By PageHeader => By.CssSelector(".govuk-heading-xl, .heading-xlarge, .govuk-heading-l, .govuk-panel__title, .govuk-fieldset__heading");
+
         public EPAO_BasePage(ScenarioContext context) : base(context)
         {
             _context = context;
@@ -27,6 +31,12 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages
         {
             NavigateBack();
             return new AS_CheckAndSubmitAssessmentPage(_context);
+        }
+
+        public AP_ApplicationOverviewPage ClickReturnToApplicationOverviewButton()
+        {
+            Continue();
+            return new AP_ApplicationOverviewPage(_context);
         }
     }
 }
