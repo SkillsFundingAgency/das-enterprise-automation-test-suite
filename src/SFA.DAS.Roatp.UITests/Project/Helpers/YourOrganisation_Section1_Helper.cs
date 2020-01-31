@@ -14,49 +14,73 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers
 
         internal ApplicationOverviewPage CompleteYourOrganisationSection_2_Charity(ApplicationOverviewPage applicationOverviewPage)
         {
-            return applicationOverviewPage
-               .AccessYourOrganisationSectionForOrgTypeNotACompany()
-                .EnterIcoRegistrationNumberAndContinue()
-                .EneterWebsiteAndContinue()
-                .SelectMaximumTradingPeriodAndContinue()
-                .VerifyOrganisationInformation(StatusHelper.StatusCompleted);
+            return CompleteYourOrganisationSection_2(applicationOverviewPage
+               .AccessYourOrganisationSectionForOrgTypeNotACompany());
+                
         }
 
         internal ApplicationOverviewPage CompleteYourOrganisationSection_2(ApplicationOverviewPage applicationOverviewPage)
         {
-            return applicationOverviewPage
+            return CompleteYourOrganisationSection_2(applicationOverviewPage
                 .AccessYourOrganisationSectionForOrgTypeCompany()
                 .SelectYesForUltimateParentCompanyAndContinue()
-                .EnterParentCompanyDetailsAndContinue()
-                .EnterIcoRegistrationNumberAndContinue()
-                .EneterWebsiteAndContinue()
-                .SelectMaximumTradingPeriodAndContinue()
-                .VerifyOrganisationInformation(StatusHelper.StatusCompleted);
+                .EnterParentCompanyDetailsAndContinue());
         }
 
         internal ApplicationOverviewPage CompleteYourOrganisationSection_3(ApplicationOverviewPage applicationOverviewPage)
         {
-            return applicationOverviewPage.AccessTellUSWhosInControlSection()
+            return applicationOverviewPage
+                .AccessTellUSWhosInControlSection()
                 .ConfirmWhosInContorlAndContinue()
                 .VerifyTellUsWhosInControlStatus(StatusHelper.StatusCompleted);
         }
 
+        internal ApplicationOverviewPage CompleteYourOrganisationSection_3_Charity(ApplicationOverviewPage applicationOverviewPage)
+        {
+            return applicationOverviewPage
+                .AccessTellUSWhosInControlSectionForOrgTypeCharity()
+                .ConfirmTrusteesAndContinue()
+                .EnterDateOfBirthForTrusteesForCharity();
+        }
+
         internal ApplicationOverviewPage CompleteYourOrganisationSection_4(ApplicationOverviewPage applicationOverviewPage)
         {
-            return applicationOverviewPage.AccessDescribeYourOrganisationsForOrgTypeCharity()
+            return applicationOverviewPage
+                .AccessDescribeYourOrganisationsForOrgTypeCharity()
                 .SelectIndependentTrainingProviderAndContinue()
                 .SelectPublicServiceMutalAndShelterdWorkshopAndContinue()
                 .VerifyDescribeYourOrganisationStatus(StatusHelper.StatusCompleted);
         }
+        
+        internal ApplicationOverviewPage CompleteYourOrganisationSection_4_OrgTypeNoneOfTheAbove(ApplicationOverviewPage applicationOverviewPage)
+        {
+            return applicationOverviewPage
+                .AccessDescribeYourOrganisationsForOrgTypeCharity()
+                .SelectNoneOfTheAboveAndContinue()
+                .SelectInYourOrganisationAndContinue()
+                .SelectPublicServiceMutalAndShelterdWorkshopAndContinue()
+                .VerifyDescribeYourOrganisationStatus(StatusHelper.StatusCompleted);
+        }
+        
 
         internal ApplicationOverviewPage CompleteYourOrganisationSection_5(ApplicationOverviewPage applicationOverviewPage)
         {
-            return applicationOverviewPage.AccessExperienceAndAccreditationsSection()
+            return applicationOverviewPage
+                .AccessExperienceAndAccreditationsSection()
                 .SelectYesForFundedbyOFSAndContinue()
                 .SelectNoForITTAndContinue()
                 .SelectNoForFullOfstedInspectionAndContinue()
                 .SelectNoForMonitoringVisitAndContinue()
                 .VerifyExperienceAndAccreditationsStatus(StatusHelper.StatusCompleted);
+        }
+
+        private ApplicationOverviewPage CompleteYourOrganisationSection_2(IcoRegistrationNumberPage icoRegistrationNumberPage)
+        {
+            return icoRegistrationNumberPage
+                .EnterIcoRegistrationNumberAndContinue()
+                .EneterWebsiteAndContinue()
+                .SelectMaximumTradingPeriodAndContinue()
+                .VerifyOrganisationInformation(StatusHelper.StatusCompleted);
         }
     }
 }

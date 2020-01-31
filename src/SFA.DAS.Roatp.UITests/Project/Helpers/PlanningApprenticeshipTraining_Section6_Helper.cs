@@ -20,9 +20,24 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers
                 .EnterContactDetailsAndContinue()
                 .VerifyTypeOfTrainning_Section6(StatusHelper.StatusCompleted);
         }
+        internal ApplicationOverviewPage CompletePlanningApprenticeshipTraining_2_Charity(ApplicationOverviewPage applicationOverviewPage)
+        {
+            return applicationOverviewPage
+                .Access_Section6_TypeOfApprenticeshipTraining()
+                .SelectFrameworksOnlyAndContinue()
+                .SelectYesForTransitionFromFrameworksToStandardsAndContinue()
+                .EnterTextForTransitionFromFramewordsToStandardsAndContinueEmployerRoute()
+                .EnterTextRegardingEngageWithEPAOandContinue()
+                .EnterTextForEngageAndWorkWithAwardingBodiesEmployerRouteAndContinue()
+                .VerifyTypeOfTrainning_Section6(StatusHelper.StatusCompleted);
+        }
         internal ApplicationOverviewPage CompletePlanningApprenticeshipTraining_3(ApplicationOverviewPage applicationOverviewPage)
         {
-            return applicationOverviewPage;
+            return applicationOverviewPage.Access_Section6_SupportingApprentices()
+                .EnterTextForHowOrgEnsureApprenticesAreSupportedAndContinue()
+                .SelectThroughAMentorAndOTherAndContinue()
+                .EnterTextForOtherWaysToSupportApprenticesAndContinue()
+                .VerifySupporting_Section6(StatusHelper.StatusCompleted);
         }
         internal ApplicationOverviewPage CompletePlanningApprenticeshipTraining_4(ApplicationOverviewPage applicationOverviewPage)
         {

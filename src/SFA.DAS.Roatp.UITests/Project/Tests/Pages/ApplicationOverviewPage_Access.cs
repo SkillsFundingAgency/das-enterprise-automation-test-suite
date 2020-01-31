@@ -1,9 +1,88 @@
-﻿using System;
+﻿using OpenQA.Selenium;
+using System;
 using System.Collections.Generic;
 using System.Text;
+using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
 {
+    public class OtherWaysToSupportApprenticesPage : RoatpBasePage
+    {
+        protected override string PageTitle => "What other ways will your organisation use to support its apprentices?";
+
+        #region Helpers and Context
+        private readonly ScenarioContext _context;
+        #endregion
+
+        private By LongTextArea_OtherWaysToSupportApprentices => By.Id("PAT-632");
+
+        public OtherWaysToSupportApprenticesPage(ScenarioContext context) : base(context)
+        {
+            _context = context;
+            VerifyPage();
+        }
+
+        public ApplicationOverviewPage EnterTextForOtherWaysToSupportApprenticesAndContinue()
+        {
+            formCompletionHelper.EnterText(LongTextArea_OtherWaysToSupportApprentices, applydataHelpers.OtherWaysToSupportApprentices);
+            Continue();
+            return new ApplicationOverviewPage(_context);
+        }
+    }
+
+    public class HowOrganisationSupportApprenticesPage : RoatpBasePage
+    {
+        protected override string PageTitle => "How will your organisation support its apprentices?";
+
+        #region Helpers and Context
+        private readonly ScenarioContext _context;
+        #endregion
+
+        private By ThroughAMentorCheckBox => By.Id("option_0");
+        private By OtherCheckbox => By.Id("option_4");
+
+        public HowOrganisationSupportApprenticesPage(ScenarioContext context) : base(context)
+        {
+            _context = context;
+            VerifyPage();
+        }
+
+        public OtherWaysToSupportApprenticesPage SelectThroughAMentorAndOTherAndContinue()
+        {
+            formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(ThroughAMentorCheckBox));
+            formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(OtherCheckbox));
+            Continue();
+            return new OtherWaysToSupportApprenticesPage(_context);
+        }
+    }
+
+    public class EnsureApprenticesSupportedPage : RoatpBasePage
+    {
+        protected override string PageTitle => "How will your organisation ensure apprentices are supported during their apprenticeship training?";
+
+        protected override By PageHeader => By.CssSelector(".govuk-label-wrapper");
+
+
+        #region Helpers and Context
+        private readonly ScenarioContext _context;
+        #endregion
+
+        private By LongTextArea_HowApprenticesAreSupported => By.Id("PAT-630");
+
+        public EnsureApprenticesSupportedPage(ScenarioContext context) : base(context)
+        {
+            _context = context;
+            VerifyPage();
+        }
+
+        public HowOrganisationSupportApprenticesPage EnterTextForHowOrgEnsureApprenticesAreSupportedAndContinue()
+        {
+            formCompletionHelper.EnterText(LongTextArea_HowApprenticesAreSupported, applydataHelpers.LongTextArea_HowApprenticesAreSupported);
+            Continue();
+            return new HowOrganisationSupportApprenticesPage(_context);
+        }
+    }
+
     public partial class ApplicationOverviewPage : RoatpBasePage
     {
         #region Section9
@@ -79,6 +158,12 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
         {
             formCompletionHelper.ClickElement(GetTaskLinkElement(PlanningApprenticeshipTraining, PlanningApprenticeshipTraining_2));
             return new TypeOfApprenticeshipTrainingPage(_context);
+        }
+
+        public EnsureApprenticesSupportedPage Access_Section6_SupportingApprentices()
+        {
+            formCompletionHelper.ClickElement(GetTaskLinkElement(PlanningApprenticeshipTraining, PlanningApprenticeshipTraining_3));
+            return new EnsureApprenticesSupportedPage(_context);
         }
 
         public ForecastInFirst12MonthsPage Access_Section6_ForeCastingStarts()
@@ -238,6 +323,11 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
             formCompletionHelper.ClickElement(GetTaskLinkElement(Yourorganisation, YourOrganisation_3));
             return new ConfrimWhosInControlPage(_context);
         }
+        public ConfirmTrusteesPage AccessTellUSWhosInControlSectionForOrgTypeCharity()
+        {
+            formCompletionHelper.ClickElement(GetTaskLinkElement(Yourorganisation, YourOrganisation_3));
+            return new ConfirmTrusteesPage(_context);
+        }
         public WhatIsYourOrganisationPage AccessDescribeYourOrganisationsForOrgTypeCharity()
         {
             formCompletionHelper.ClickElement(GetTaskLinkElement(Yourorganisation, YourOrganisation_4));
@@ -252,3 +342,5 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
         #endregion
     }
 }
+
+

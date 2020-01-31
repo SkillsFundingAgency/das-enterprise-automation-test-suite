@@ -22,5 +22,11 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
             Continue();
             return new DescribeYourOrganisationPage(_context);
         }
+        public TrainApprenticesPage SelectNoneOfTheAboveAndContinue()
+        {
+            SelectRadioOptionByText("None of the above");
+            Continue();
+            return new TrainApprenticesPage(_context);
+        }
     }
 }

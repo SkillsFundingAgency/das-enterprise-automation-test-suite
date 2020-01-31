@@ -44,7 +44,6 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions
             _overviewPage = _end2EndStepsHelper.CompleteProviderCharityRouteSection(enterUkprnPage);
         }
 
-
         [When(@"the provider completes Your organisation section")]
         public void WhenTheProviderCompletesYourOrganisationSection()
         {
@@ -61,6 +60,12 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions
         public void WhenTheProviderCompletesFinancialEvidenceSection()
         {
             _overviewPage = _end2EndStepsHelper.CompleteFinancialEvidence_Section2(_overviewPage);
+        }
+
+        [When(@"the provider completes Financial Evidence section for no ultimate parent company")]
+        public void WhenTheProviderCompletesFinancialEvidenceSectionForNoUltimateParentCompany()
+        {
+            _overviewPage = _end2EndStepsHelper.CompleteFinancialEvidence_Section2_ForNoUltimateParentCompany(_overviewPage);
         }
 
         [When(@"the provider completes Criminal and Compliance section")]
@@ -81,11 +86,24 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions
             _overviewPage = _end2EndStepsHelper.CompletesReadinessToEngage_Section5(_overviewPage);
         }
 
+        [When(@"the provider completes Readiness to engage section for charity")]
+        public void WhenTheProviderCompletesReadinessToEngageSectionForCharity()
+        {
+            _overviewPage = _end2EndStepsHelper.CompletesReadinessToEngage_Section5_Charity(_overviewPage);
+        }
+
         [When(@"the provider completes Planning apprenticeship training section")]
         public void WhenTheProviderCompletesPlanningApprenticeshipTrainingSection()
         {
             _overviewPage = _end2EndStepsHelper.CompletesPlanningApprenticeshipTraining_Section6(_overviewPage);
         }
+
+        [When(@"the provider completes Planning apprenticeship training section for charity")]
+        public void WhenTheProviderCompletesPlanningApprenticeshipTrainingSectionForCharity()
+        {
+            _overviewPage = _end2EndStepsHelper.CompletesPlanningApprenticeshipTraining_Section6_Charity(_overviewPage);
+        }
+
 
         [When(@"the provider completes Delivering apprenticeship training section")]
         public void WhenTheProviderCompletesDeliveringApprenticeshipTrainingSection()
