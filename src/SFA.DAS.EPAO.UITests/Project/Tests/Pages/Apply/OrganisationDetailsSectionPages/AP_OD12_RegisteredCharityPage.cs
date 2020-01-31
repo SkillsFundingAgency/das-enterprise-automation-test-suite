@@ -3,7 +3,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.OrganisationDetailsSectionPages
 {
-    public class AP_DAD_1_AuthoriserDetailsPage : EPAO_BasePage
+    public class AP_OD_12_RegisteredCharityPage : EPAO_BasePage
     {
         protected override string PageTitle => "Is your organisation a registered charity?";
         private readonly ScenarioContext _context;
@@ -12,7 +12,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.OrganisationDetailsSect
         private By CharityNumberTextbox => By.Id("CD-26.1");
         #endregion
 
-        public AP_DAD_1_AuthoriserDetailsPage(ScenarioContext context) : base(context)
+        public AP_OD_12_RegisteredCharityPage(ScenarioContext context) : base(context)
         {
             _context = context;
             VerifyPage();

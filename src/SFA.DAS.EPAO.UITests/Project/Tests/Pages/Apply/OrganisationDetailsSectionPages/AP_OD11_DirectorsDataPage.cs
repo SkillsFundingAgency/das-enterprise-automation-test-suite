@@ -13,11 +13,11 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.OrganisationDetailsSect
             VerifyPage();
         }
 
-        public AP_DAD_1_AuthoriserDetailsPage SelectNoOptionAndContinueInDirectorsDataPage()
+        public AP_OD_12_RegisteredCharityPage SelectNoOptionAndContinueInDirectorsDataPage()
         {
             SelectRadioOptionByForAttribute("CD-22_1");
             Continue();
-            return new AP_DAD_1_AuthoriserDetailsPage(_context);
+            return new AP_OD_12_RegisteredCharityPage(_context);
         }
     }
 }

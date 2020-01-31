@@ -2,12 +2,12 @@
 
 namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.DeclarationsSection.MandatoryExclusionSubSection
 {
-    public class AP_DDE_1_FinancialConvictionsPage : EPAO_BasePage
+    public class AP_DME_2_FinancialConvictionsPage : EPAO_BasePage
     {
         protected override string PageTitle => "Financial convictions";
         private readonly ScenarioContext _context;
 
-        public AP_DDE_1_FinancialConvictionsPage(ScenarioContext context) : base(context)
+        public AP_DME_2_FinancialConvictionsPage(ScenarioContext context) : base(context)
         {
             _context = context;
             VerifyPage();

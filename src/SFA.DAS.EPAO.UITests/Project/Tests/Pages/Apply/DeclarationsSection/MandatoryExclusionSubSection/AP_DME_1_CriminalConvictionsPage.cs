@@ -13,11 +13,11 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.DeclarationsSection.Man
             VerifyPage();
         }
 
-        public AP_DDE_1_FinancialConvictionsPage SelectNoOptionAndContinueInCriminalConvictionsPage()
+        public AP_DME_2_FinancialConvictionsPage SelectNoOptionAndContinueInCriminalConvictionsPage()
         {
             SelectRadioOptionByForAttribute("M_DEL-09_1");
             Continue();
-            return new AP_DDE_1_FinancialConvictionsPage(_context);
+            return new AP_DME_2_FinancialConvictionsPage(_context);
         }
     }
 }
