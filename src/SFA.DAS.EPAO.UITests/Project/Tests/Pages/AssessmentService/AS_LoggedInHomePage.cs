@@ -15,13 +15,11 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
         private By OrganisationDetailsTopMenuLink => By.LinkText("Organisation details");
         private By ManageUsersLink => By.LinkText("Manage users");
         private By HomeTopMenuLink => By.Id("Home");
+        private By SignedInUserNameText => By.CssSelector(".das-user-panel__content");
+        private By SignOutLink => By.XPath("//a[@href='/Account/SignOut']");
         #endregion
 
-        public AS_LoggedInHomePage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage(RecordAGradeLink);
-        }
+        public AS_LoggedInHomePage(ScenarioContext context) : base(context) => _context = context;
 
         public AS_RecordAGradePage ClickOnRecordAGrade()
         {
@@ -50,6 +48,14 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
         {
             formCompletionHelper.Click(HomeTopMenuLink);
             return this;
+        }
+
+        public bool VerifySignedInUserName(string expectedText) => pageInteractionHelper.VerifyText(SignedInUserNameText, expectedText);
+
+        public AS_SignedOutPage ClickSignOutLink()
+        {
+            formCompletionHelper.Click(SignOutLink);
+            return new AS_SignedOutPage(_context);
         }
     }
 }
