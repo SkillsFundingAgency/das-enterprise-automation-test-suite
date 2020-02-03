@@ -11,7 +11,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         protected readonly RAAV2DataHelper dataHelper;
         protected readonly FormCompletionHelper formCompletionHelper;
 
-        protected virtual By ContinueButton => By.CssSelector(".save-button");
+        protected override By ContinueButton => By.CssSelector(".save-button");
 
         public RAAV2CSSBasePage(ScenarioContext context) : base(context) 
         {
@@ -25,7 +25,5 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
             base.SelectRadioOptionByForAttribute(value);
             return this;
         }
-
-        protected void Continue() => formCompletionHelper.Click(ContinueButton);
     }
 }
