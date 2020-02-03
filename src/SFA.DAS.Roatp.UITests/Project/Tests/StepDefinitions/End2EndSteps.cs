@@ -44,6 +44,15 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions
             _overviewPage = _end2EndStepsHelper.CompleteProviderCharityRouteSection(enterUkprnPage);
         }
 
+        [Given(@"the provider initates an application as supporting route soletrader")]
+        public void GivenTheProviderInitatesAnApplicationAsSupportingRouteSoletrader()
+        {
+            var enterUkprnPage = AcceptTermsAndCondition();
+
+            _overviewPage = _end2EndStepsHelper.CompleteProviderSupportRouteSection(enterUkprnPage);
+        }
+
+
         [When(@"the provider completes Your organisation section")]
         public void WhenTheProviderCompletesYourOrganisationSection()
         {
@@ -56,6 +65,13 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions
             _overviewPage = _end2EndStepsHelper.CompleteYourOrganisation_Section1_Charity(_overviewPage);
         }
 
+        [When(@"the provider completes Your organisation section for supporting route")]
+        public void WhenTheProviderCompletesYourOrganisationSectionForSupportingRoute()
+        {
+            _overviewPage = _end2EndStepsHelper.CompleteYourOrganisation_Section1_Support(_overviewPage);
+        }
+
+
         [When(@"the provider completes Financial evidence section")]
         public void WhenTheProviderCompletesFinancialEvidenceSection()
         {
@@ -67,6 +83,13 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions
         {
             _overviewPage = _end2EndStepsHelper.CompleteFinancialEvidence_Section2_ForNoUltimateParentCompany(_overviewPage);
         }
+
+        [When(@"the provider completes Financial Evidence section for supporting route")]
+        public void WhenTheProviderCompletesFinancialEvidenceSectionForSupportingRoute()
+        {
+            _overviewPage = _end2EndStepsHelper.CompleteFinancialEvidence_Section2_ForSupportingRoute(_overviewPage);
+        }
+
 
         [When(@"the provider completes Criminal and Compliance section")]
         public void WhenTheProviderCompletesCriminalAndComplianceSection()

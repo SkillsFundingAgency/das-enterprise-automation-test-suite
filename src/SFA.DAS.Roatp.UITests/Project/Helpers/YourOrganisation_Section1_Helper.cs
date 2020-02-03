@@ -8,11 +8,11 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers
         {
             return applicationOverviewPage
                 .AccessIntroductionWhatYouWillNeedSection()
-                .VerifyIntorductionForMainAndEmployerAndContinue()
+                .VerifyIntorductionAndContinue()
                 .VerifyIntroductionStatus(StatusHelper.StatusCompleted);
         }
 
-        internal ApplicationOverviewPage CompleteYourOrganisationSection_2_Charity(ApplicationOverviewPage applicationOverviewPage)
+        internal ApplicationOverviewPage CompleteYourOrganisationSection_2_NotACompany(ApplicationOverviewPage applicationOverviewPage)
         {
             return CompleteYourOrganisationSection_2(applicationOverviewPage
                .AccessYourOrganisationSectionForOrgTypeNotACompany());
@@ -40,7 +40,16 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers
             return applicationOverviewPage
                 .AccessTellUSWhosInControlSectionForOrgTypeCharity()
                 .ConfirmTrusteesAndContinue()
-                .EnterDateOfBirthForTrusteesForCharity();
+                .EnterDateOfBirth();
+        }
+
+        internal ApplicationOverviewPage CompleteYourOrganisationSection_3_Support(ApplicationOverviewPage applicationOverviewPage)
+        {
+            return applicationOverviewPage
+                .AccessTellUsWhosInControlSectionForSoleTrader()
+                .SelectSoleTraderAndContinue()
+                .EnterDateOfBirth()
+                .VerifyTellUsWhosInControlStatus(StatusHelper.StatusCompleted);
         }
 
         internal ApplicationOverviewPage CompleteYourOrganisationSection_4(ApplicationOverviewPage applicationOverviewPage)
@@ -61,7 +70,15 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers
                 .SelectPublicServiceMutalAndShelterdWorkshopAndContinue()
                 .VerifyDescribeYourOrganisationStatus(StatusHelper.StatusCompleted);
         }
-        
+
+        internal ApplicationOverviewPage CompleteYourOrganisationSection_4_OrgTypeGTA(ApplicationOverviewPage applicationOverviewPage)
+        {
+            return applicationOverviewPage
+                .AccessDescribeYourOrganisationsForOrgTypeCharity()
+                .SelectGroupTrainingAssociationAndContinue()
+                .SelectPublicServiceMutalAndShelterdWorkshopAndContinue()
+                .VerifyDescribeYourOrganisationStatus(StatusHelper.StatusCompleted);
+        }
 
         internal ApplicationOverviewPage CompleteYourOrganisationSection_5(ApplicationOverviewPage applicationOverviewPage)
         {
@@ -71,6 +88,16 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers
                 .SelectNoForITTAndContinue()
                 .SelectNoForFullOfstedInspectionAndContinue()
                 .SelectNoForMonitoringVisitAndContinue()
+                .VerifyExperienceAndAccreditationsStatus(StatusHelper.StatusCompleted);
+        }
+
+        internal ApplicationOverviewPage CompleteYourOrganisationSection_5_Support(ApplicationOverviewPage applicationOverviewPage)
+        {
+            return applicationOverviewPage
+                .AccessExperienceAndAccreditationsSectionForSupportingRoute()
+                .SelectYesForFundedbyOFSAndContinueForSupportingRoute()
+                .SelectYesForOrgDeliveredApprenticeshipTrainingAsSubcontractor()
+                .UploadLegallyBindingContractAndContinue()
                 .VerifyExperienceAndAccreditationsStatus(StatusHelper.StatusCompleted);
         }
 

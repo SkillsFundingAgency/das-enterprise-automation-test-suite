@@ -20,7 +20,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
             VerifyPage(WarningContent);
         }
 
-        public ApplicationOverviewPage VerifyIntorductionForMainAndEmployerAndContinue()
+        public ApplicationOverviewPage VerifyIntorductionAndContinue()
         {
             Continue();
             return new ApplicationOverviewPage(_context);

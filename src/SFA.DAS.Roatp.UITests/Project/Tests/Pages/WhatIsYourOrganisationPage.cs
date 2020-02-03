@@ -18,7 +18,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
 
         public DescribeYourOrganisationPage SelectIndependentTrainingProviderAndContinue()
         {
-            SelectRadioOptionByForAttribute("YO-140_5");
+            SelectRadioOptionByText("An Independent Training Provider");
             Continue();
             return new DescribeYourOrganisationPage(_context);
         }
@@ -27,6 +27,12 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
             SelectRadioOptionByText("None of the above");
             Continue();
             return new TrainApprenticesPage(_context);
+        }
+        public DescribeYourOrganisationPage SelectGroupTrainingAssociationAndContinue()
+        {
+            SelectRadioOptionByText("A Group Training Association");
+            Continue();
+            return new DescribeYourOrganisationPage(_context);
         }
     }
 }
