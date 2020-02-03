@@ -84,7 +84,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers
         {
             return applicationOverviewPage
                 .AccessExperienceAndAccreditationsSection()
-                .SelectYesForFundedbyOFSAndContinue()
+                .SelectNoForFundedbyOFSAndContinue()
                 .SelectNoForITTAndContinue()
                 .SelectNoForFullOfstedInspectionAndContinue()
                 .SelectNoForMonitoringVisitAndContinue()

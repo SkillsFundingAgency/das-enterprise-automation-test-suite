@@ -27,5 +27,11 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
             SelectYesAndContinue();
             return new ApprenticeshipTrainingAsSubcontractorPage(_context);
         }
+
+        public InitialTeacherTrainingPage SelectNoForFundedbyOFSAndContinue()
+        {
+            SelectNoAndContinue();
+            return new InitialTeacherTrainingPage(_context);
+        }
     }
 }

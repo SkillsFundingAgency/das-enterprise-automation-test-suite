@@ -96,7 +96,8 @@ this.ScenarioInitialize(scenarioInfo);
 #line 13
  testRunner.And("the provider does not require to complete Readiness to engage section", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 14
- testRunner.And("the provider completes Planning apprenticeship training section for charity", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("the provider completes Planning apprenticeship training section for supporting ro" +
+                    "ute", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 15
  testRunner.And("the provider completes Delivering apprenticeship training section", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 16

@@ -12,6 +12,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
         #endregion
 
         private By LongTetArea_TransitionFromFrameWorksToStandardsForEmployerRoute => By.Id("PAT-52");
+        private By LongTextArea_TransitionFromFrameWorksToStandards => By.Id("PAT-62");
 
         public TransitionFromFrameworksToStandardPage(ScenarioContext context) : base(context)
         {
@@ -24,6 +25,13 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
             formCompletionHelper.EnterText(LongTetArea_TransitionFromFrameWorksToStandardsForEmployerRoute, applydataHelpers.TransitionFromFrameWorksToStandardsForEmployerRoute);
             Continue();
             return new EndPointAssesmentOrganisationsPage(_context);
+        }
+
+        public ApplicationOverviewPage EnterTextForTransitionFromFramewordsToStandardsAndContinueSupportingRoute()
+        {
+            formCompletionHelper.EnterText(LongTextArea_TransitionFromFrameWorksToStandards, applydataHelpers.TransitionFromFrameWorksToStandards);
+            Continue();
+            return new ApplicationOverviewPage(_context);
         }
     }
 }

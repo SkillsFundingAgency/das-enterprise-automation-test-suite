@@ -201,7 +201,11 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers
             return applicationOverviewPage;
         }
 
-        
+        internal ApplicationOverviewPage CompletesPlanningApprenticeshipTraining_Section6_SupportingRoute(ApplicationOverviewPage applicationOverviewPage)
+        {
+            return applicationOverviewPage;
+        }
+
         internal ApplicationOverviewPage CompletesDeliveringApprenticeshipTraining_Section7(ApplicationOverviewPage applicationOverviewPage)
         {
             applicationOverviewPage = _deliveringApprenticeshipTrainingSectionHelper.CompleteDeliveringApprenticeshipTraining_1(applicationOverviewPage);

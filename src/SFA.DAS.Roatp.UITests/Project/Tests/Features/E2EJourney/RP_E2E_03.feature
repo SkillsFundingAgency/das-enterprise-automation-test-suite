@@ -11,7 +11,7 @@ Scenario: RP_E2E_03_SupportingRoute-Soletrader
 	And the provider completes Criminal and Compliance section
 	And the provider completes Protecting your apprentices section for supporting route
 	And the provider does not require to complete Readiness to engage section
-	And the provider completes Planning apprenticeship training section for charity
+	And the provider completes Planning apprenticeship training section for supporting route
 	And the provider completes Delivering apprenticeship training section
 	And the provider completes Evaluating apprenticeship training section
 	Then the provider completes Finish section
