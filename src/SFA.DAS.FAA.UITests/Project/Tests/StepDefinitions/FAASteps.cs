@@ -19,10 +19,10 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.StepDefinitions
         [When(@"an Applicant initiates Account creation journey")]
         [Given(@"an Applicant initiates Account creation journey")]
         public void WhenAnApplicantInitiatesAccountCreationJourney() => accountCreationPage = _faaStepsHelper.StartFAAAccountCreation();
-
-        [Then(@"Applicant should be redirected to Activation Page when Login With Unactivated email")]
-        public void ThenApplicantShouldBeRedirectedToActivationPageWhenLoginWithUnactivatedEmail() => _faaStepsHelper.CreateFAAAccountWithNoActivation(accountCreationPage);
-
+        
+        [Then(@"Applicant is redirected to Activation Page when Login With Unactivated email")]
+        public void ThenApplicantIsRedirectedToActivationPageWhenLoginWithUnactivatedEmail() => _faaStepsHelper.CreateFAAAccountWithNoActivation(accountCreationPage);
+                       
         [Then(@"the Applicant is able to create a FAA Account")]
         [When(@"the Applicant is able to create a FAA Account")]
 

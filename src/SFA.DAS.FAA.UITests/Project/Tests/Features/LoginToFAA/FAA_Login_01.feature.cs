@@ -71,19 +71,20 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Features.LoginToFAA
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("FAA_Login_01 -  Login to FAA with Unactivated registered Email")]
-        [NUnit.Framework.CategoryAttribute("mytag")]
+        [NUnit.Framework.CategoryAttribute("raa-v1")]
+        [NUnit.Framework.CategoryAttribute("regression")]
         public virtual void FAA_Login_01_LoginToFAAWithUnactivatedRegisteredEmail()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("FAA_Login_01 -  Login to FAA with Unactivated registered Email", null, new string[] {
-                        "mytag"});
-#line 5
+                        "raa-v1",
+                        "regression"});
+#line 6
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 6
- testRunner.Given("an Applicant initiates Account creation journey", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 7
- testRunner.Then("Applicant should be redirected to Activation Page when Login With Unactivated ema" +
-                    "il", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.When("an Applicant initiates Account creation journey", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 8
+ testRunner.Then("Applicant is redirected to Activation Page when Login With Unactivated email", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
