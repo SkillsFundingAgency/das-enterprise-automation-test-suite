@@ -70,13 +70,13 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Features.Apply
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("EPAO_AP_02A - Validate SignIn and SignOut")]
+        [NUnit.Framework.DescriptionAttribute("EPAO_AP_02 - Create Account")]
         [NUnit.Framework.CategoryAttribute("epao")]
         [NUnit.Framework.CategoryAttribute("epaoapply")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public virtual void EPAO_AP_02A_ValidateSignInAndSignOut()
+        public virtual void EPAO_AP_02_CreateAccount()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EPAO_AP_02A - Validate SignIn and SignOut", null, new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EPAO_AP_02 - Create Account", null, new string[] {
                         "epao",
                         "epaoapply",
                         "regression"});
@@ -84,33 +84,9 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Features.Apply
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 7
- testRunner.When("the Apply User is logged into Assessment Service Application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("the Apply User initiates Create Account journey", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 8
- testRunner.Then("the User Name is displayed in the Logged In Home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 9
- testRunner.And("the Apply User is able to Signout from the application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-            this.ScenarioCleanup();
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("EPAO_AP_02B - Validate Organisation Search funcationality")]
-        [NUnit.Framework.CategoryAttribute("epao")]
-        [NUnit.Framework.CategoryAttribute("epaoapply")]
-        [NUnit.Framework.CategoryAttribute("regression")]
-        public virtual void EPAO_AP_02B_ValidateOrganisationSearchFuncationality()
-        {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EPAO_AP_02B - Validate Organisation Search funcationality", null, new string[] {
-                        "epao",
-                        "epaoapply",
-                        "regression"});
-#line 14
-this.ScenarioInitialize(scenarioInfo);
-            this.ScenarioStart();
-#line 15
- testRunner.When("the Apply User is logged into Assessment Service Application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 16
- testRunner.Then("the Apply User is able to Signout from the application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the Apply User is able to Create an Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

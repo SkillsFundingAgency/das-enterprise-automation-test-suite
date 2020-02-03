@@ -117,5 +117,14 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
 
         [Then(@"the Apply User is able to Create an Account")]
         public void ThenTheApplyUserIsAbleToCreateAnAccount() => _createAnAccountPage.EnterAccountDetailsAndClickCreateAccount();
+
+        [Then(@"no matches are shown for Organisation searches with Invalid search term")]
+        public void ThenNoMatchesAreShownForOrganisationSearchesWithInvalidSearchTerm()
+        {
+            new AP_PR1_SearchForYourOrganisationPage(_context).EnterInvalidOrgNameAndSearchInSearchForYourOrgPage("asfasfasdfasdf")
+                            .VerifyInvalidSearchResultText()
+                            .EnterInvalidOrgNameAndSearchInSearchResultsForPage("54678900")
+                            .EnterInvalidOrgNameAndSearchInSearchResultsForPage("EPA01");
+        }
     }
 }
