@@ -8,7 +8,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers
     public class ApplyUkprnDataHelpers
     {
         private readonly Dictionary<string, List<KeyValuePair<string, string>>> _applyDatas;
-        
+
         private const string emailkey = "emailkey";
         private const string ukprnkey = "ukprnkey";
 
@@ -30,9 +30,9 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers
 
         private void AddApplyDatahelpers()
         {
-            _applyDatas.Add("rpe2e01", 
-                new List<KeyValuePair<string, string>> 
-                { 
+            _applyDatas.Add("rpe2e01",
+                new List<KeyValuePair<string, string>>
+                {
                     new KeyValuePair<string, string>(emailkey, "sudhakar.chinoor+roatp2@digital.education.gov.uk"),
                     new KeyValuePair<string, string>(ukprnkey, "10047117"),
                 });
@@ -42,6 +42,12 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers
                 {
                     new KeyValuePair<string, string>(emailkey, "sudhakar.chinoor+employer@digital.education.gov.uk"),
                     new KeyValuePair<string, string>(ukprnkey, "10061310"),
+                });
+            _applyDatas.Add("rpe2e03",
+                new List<KeyValuePair<string, string>>
+                {
+                    new KeyValuePair<string, string>(emailkey, ""),
+                    new KeyValuePair<string, string>(ukprnkey, ""),
                 });
         }
     }
