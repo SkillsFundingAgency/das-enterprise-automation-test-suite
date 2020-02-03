@@ -20,7 +20,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers
         internal ApplicationOverviewPage CompleteEvaluatingApprenticeshipTraining_3(ApplicationOverviewPage applicationOverviewPage)
         {
             return applicationOverviewPage.Access_Section8_ProcessForEvaluatingTheQualityOfApprenticeshipTraining()
-                .yesAndContinue()
+                .YesAndContinue()
                 .EnterTextRegardingOrganisationReviewAndContinue()
                 .VerifyQualityOfTheTraining_Section8(StatusHelper.StatusCompleted);
         }

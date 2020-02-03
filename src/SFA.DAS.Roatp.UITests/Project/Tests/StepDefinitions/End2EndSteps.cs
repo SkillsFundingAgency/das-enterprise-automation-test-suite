@@ -70,7 +70,6 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions
             _overviewPage = _end2EndStepsHelper.CompleteYourOrganisation_Section1_Support(_overviewPage);
         }
 
-
         [When(@"the provider completes Financial evidence section")]
         public void WhenTheProviderCompletesFinancialEvidenceSection()
         {
@@ -154,6 +153,13 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions
         {
             _overviewPage = _end2EndStepsHelper.CompletesEvaluatingApprenticeshipTraining_Section8(_overviewPage);
         }
+
+        [When(@"the provider completes Evaluating apprenticeship training section for supporting route")]
+        public void WhenTheProviderCompletesEvaluatingApprenticeshipTrainingSectionForSupportingRoute()
+        {
+            _overviewPage = _end2EndStepsHelper.CompletesEvaluatingApprenticeshipTraining_Section8_SupportingRoute(_overviewPage);
+        }
+
 
         [Then(@"the provider completes Finish section")]
         public void ThenTheProviderCompletesFinishSection()
