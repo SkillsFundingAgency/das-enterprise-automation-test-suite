@@ -92,9 +92,9 @@ this.ScenarioInitialize(scenarioInfo);
 #line 11
  testRunner.And("the provider completes Criminal and Compliance section", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 12
- testRunner.And("the provider completes Protecting your apprentices section", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("the provider completes Protecting your apprentices section for supporting route", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 13
- testRunner.And("the provider completes Readiness to engage section for charity", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("the provider does not require to complete Readiness to engage section", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 14
  testRunner.And("the provider completes Planning apprenticeship training section for charity", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 15

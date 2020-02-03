@@ -4,6 +4,8 @@
     {
         internal static string StatusCompleted => "COMPLETED";
 
+        internal static string NotRequired => "NOT REQUIRED";
+
         internal static string StatusNext => "NEXT";
     }
 }
