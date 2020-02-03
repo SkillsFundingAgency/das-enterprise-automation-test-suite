@@ -10,3 +10,4 @@ Scenario: I want to be able to view the Favourite content
 	And I click on th Employer option in the Menu header
 	And I Click on the Favourite Icon
 	Then I Can Verify the Favourite Header
+	And I can Verify that there are no Items in the list

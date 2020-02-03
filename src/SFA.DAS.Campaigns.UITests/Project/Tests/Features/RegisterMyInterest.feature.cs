@@ -72,12 +72,12 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Features
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("User Wants To Register My Interest on The Fire It Up Site")]
-        [NUnit.Framework.CategoryAttribute("campaign")]
+        [NUnit.Framework.CategoryAttribute("campaigns")]
         [NUnit.Framework.CategoryAttribute("regression")]
         public virtual void UserWantsToRegisterMyInterestOnTheFireItUpSite()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User Wants To Register My Interest on The Fire It Up Site", null, new string[] {
-                        "campaign",
+                        "campaigns",
                         "regression"});
 #line 8
 this.ScenarioInitialize(scenarioInfo);

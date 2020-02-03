@@ -72,12 +72,12 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Features.Parents
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Check the Parent Link")]
-        [NUnit.Framework.CategoryAttribute("campaign")]
+        [NUnit.Framework.CategoryAttribute("campaigns")]
         [NUnit.Framework.CategoryAttribute("regression")]
         public virtual void CheckTheParentLink()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Check the Parent Link", null, new string[] {
-                        "campaign",
+                        "campaigns",
                         "regression"});
 #line 8
 this.ScenarioInitialize(scenarioInfo);

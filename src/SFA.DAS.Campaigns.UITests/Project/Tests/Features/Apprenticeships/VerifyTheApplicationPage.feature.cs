@@ -72,12 +72,12 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Features.Apprenticeships
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Check all the links and content of APPLICATION screen")]
-        [NUnit.Framework.CategoryAttribute("campaign")]
+        [NUnit.Framework.CategoryAttribute("campaigns")]
         [NUnit.Framework.CategoryAttribute("regression")]
         public virtual void CheckAllTheLinksAndContentOfAPPLICATIONScreen()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Check all the links and content of APPLICATION screen", null, new string[] {
-                        "campaign",
+                        "campaigns",
                         "regression"});
 #line 8
 this.ScenarioInitialize(scenarioInfo);

@@ -72,12 +72,12 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Features.Employer
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("I want to be able to Add Apprenticeships to the Favourite Short List")]
-        [NUnit.Framework.CategoryAttribute("campaign")]
+        [NUnit.Framework.CategoryAttribute("campaigns")]
         [NUnit.Framework.CategoryAttribute("regression")]
         public virtual void IWantToBeAbleToAddApprenticeshipsToTheFavouriteShortList()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("I want to be able to Add Apprenticeships to the Favourite Short List", null, new string[] {
-                        "campaign",
+                        "campaigns",
                         "regression"});
 #line 8
 this.ScenarioInitialize(scenarioInfo);
