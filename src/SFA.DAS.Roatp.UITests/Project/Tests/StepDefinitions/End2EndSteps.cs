@@ -137,6 +137,11 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions
             _overviewPage = _end2EndStepsHelper.CompletesPlanningApprenticeshipTraining_Section6_Charity(_overviewPage);
         }
 
+        [When(@"the provider completes Planning apprenticeship training section for supporting route")]
+        public void WhenTheProviderCompletesPlanningApprenticeshipTrainingSectionForSupportingRoute()
+        {
+            _overviewPage = _end2EndStepsHelper.CompletesPlanningApprenticeshipTraining_Section6_SupportingRoute(_overviewPage);
+        }
 
         [When(@"the provider completes Delivering apprenticeship training section")]
         public void WhenTheProviderCompletesDeliveringApprenticeshipTrainingSection()

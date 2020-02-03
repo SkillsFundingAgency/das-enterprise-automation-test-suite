@@ -47,6 +47,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers
             ImprovementsUsingProcessForEvaluating = randomDataGenerator.GenerateRandomAlphabeticString(20);
             ReviewProcessForEvaluatingTheQualityOfTraining = randomDataGenerator.GenerateRandomAlphabeticString(20);
             TransitionFromFrameWorksToStandardsForEmployerRoute = randomDataGenerator.GenerateRandomAlphabeticString(20);
+            TransitionFromFrameWorksToStandards = randomDataGenerator.GenerateRandomAlphabeticString(20);
             LongTextArea_HowApprenticesAreSupported = randomDataGenerator.GenerateRandomAlphabeticString(20);
             OtherWaysToSupportApprentices = randomDataGenerator.GenerateRandomAlphabeticString(20);
         }
@@ -94,6 +95,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers
         public string ImprovementsUsingProcessForEvaluating { get; }
         public string ReviewProcessForEvaluatingTheQualityOfTraining { get; }
         public string TransitionFromFrameWorksToStandardsForEmployerRoute { get; }
+        public string TransitionFromFrameWorksToStandards { get; }
         public string LongTextArea_HowApprenticesAreSupported { get; }
         public string OtherWaysToSupportApprentices { get; }
         public string GenerateRandomWholeNumber(int length) => _randomDataGenerator.GenerateRandomWholeNumber(length);

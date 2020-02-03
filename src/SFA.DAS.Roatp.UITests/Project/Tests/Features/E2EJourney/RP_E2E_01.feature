@@ -7,6 +7,7 @@
 Scenario: RP_E2E_01_MainRoute-Company
 	Given the provider initates an application as main route company
 	When the provider completes Your organisation section
+	And the provider completes Financial evidence section
 	And the provider completes Criminal and Compliance section
 	And the provider completes Protecting your apprentices section
 	And the provider completes Readiness to engage section
