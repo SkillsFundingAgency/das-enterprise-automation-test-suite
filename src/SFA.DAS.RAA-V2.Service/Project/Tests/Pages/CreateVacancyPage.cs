@@ -1,4 +1,5 @@
-﻿using SFA.DAS.UI.FrameworkHelpers;
+﻿using OpenQA.Selenium;
+using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 
@@ -8,6 +9,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
     {
         protected override string PageTitle => "Create vacancy";
 
+        private By ContinueButton = By.CssSelector("[data-automation='continue-button']");
         #region Helpers and Context
         private readonly PageInteractionHelper _pageInteractionHelper;
         private readonly ScenarioContext _context;
@@ -22,7 +24,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         public VacancyTitlePage CreateNewVacancy()
         {
             SelectRadioOptionByForAttribute("create-new");
-            Continue();
+            formCompletionHelper.Click(ContinueButton);
             return new VacancyTitlePage(_context);
         }
     }

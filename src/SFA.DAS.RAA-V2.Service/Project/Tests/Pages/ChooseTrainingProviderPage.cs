@@ -19,6 +19,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         private By FirstOption => By.CssSelector("#TrainingProviderSearch__option--0");
 
+        private By Continue = By.CssSelector("[data-automation='btn-continue']");
         public ChooseTrainingProviderPage(ScenarioContext context) : base(context)
         {
             _context = context;
@@ -32,7 +33,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
             formCompletionHelper.ClickElement(() => { formCompletionHelper.EnterText(TrainingProviderSearch, _dataHelper.Provider); return _pageInteractionHelper.FindElement(FirstOption); });
 
-            Continue();
+            formCompletionHelper.Click(Continue);
 
             return new ConfirmTrainingProviderPage(_context);
             

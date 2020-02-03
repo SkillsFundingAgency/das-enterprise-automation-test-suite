@@ -1,4 +1,5 @@
-﻿using TechTalk.SpecFlow;
+﻿using OpenQA.Selenium;
+using TechTalk.SpecFlow;
 
 
 namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
@@ -7,8 +8,10 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
     {
         protected override string PageTitle => "Preview your vacancy";
 
+        private By PreviewButton => By.CssSelector("[data-automation='link-continue']");
+        
         #region Helpers and Context
-        private readonly ScenarioContext _context;
+        private readonly ScenarioContext _context;        
         #endregion
 
         public PreviewYourVacancyPage(ScenarioContext context) : base(context)
@@ -18,7 +21,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         public VacancyPreviewPart2Page PreviewVacancy()
         {
-            Continue();
+            formCompletionHelper.Click(PreviewButton);
             return new VacancyPreviewPart2Page(_context);
         }
     }

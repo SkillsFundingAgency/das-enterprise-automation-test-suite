@@ -10,6 +10,8 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         protected override By PageHeader => By.CssSelector(".govuk-fieldset__heading");
 
+        private  By Continue => By.CssSelector("input[type='submit'][value='Continue']");
+
         #region Helpers and Context
         private readonly ScenarioContext _context;
         #endregion
@@ -22,7 +24,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         public ManageCloseVacancyPage YesCloseThisVacancy()
         {
             SelectRadioOptionByForAttribute("close-yes");
-            Continue();
+            formCompletionHelper.Click(Continue);
             return new ManageCloseVacancyPage(_context);
         }
     }

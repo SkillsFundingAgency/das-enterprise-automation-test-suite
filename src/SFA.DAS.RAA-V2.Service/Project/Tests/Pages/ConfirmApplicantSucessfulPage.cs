@@ -1,4 +1,5 @@
-﻿using TechTalk.SpecFlow;
+﻿using OpenQA.Selenium;
+using TechTalk.SpecFlow;
 
 
 namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
@@ -6,6 +7,8 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
     public class ConfirmApplicantSucessfulPage : RAAV2CSSBasePage
     {
         protected override string PageTitle => "Are you sure you want to tell this applicant that they have been accepted?";
+
+        private By Continue => By.CssSelector("input[type='submit'][value='Continue']");
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
@@ -19,7 +22,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         public ApplicationSuccessfulPage NotifyApplicant()
         {
             SelectRadioOptionByForAttribute("notify-candidate-yes");
-            Continue();
+            formCompletionHelper.Click(Continue);
             return new ApplicationSuccessfulPage(_context);
         }
     }    

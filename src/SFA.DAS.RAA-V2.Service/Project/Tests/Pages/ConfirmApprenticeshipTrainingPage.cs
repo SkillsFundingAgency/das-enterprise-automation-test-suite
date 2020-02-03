@@ -1,4 +1,5 @@
-﻿using TechTalk.SpecFlow;
+﻿using OpenQA.Selenium;
+using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 {
@@ -11,6 +12,8 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         #endregion
 
+        private By ConfirmAndContinue = By.CssSelector("[data-automation='btn-continue']");
+
         public ConfirmApprenticeshipTrainingPage(ScenarioContext context) : base(context)
         {
             _context = context;
@@ -18,13 +21,13 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         public ChooseTrainingProviderPage ConfirmTrainingAndContinue()
         {
-            Continue();
+            formCompletionHelper.Click(ConfirmAndContinue);
             return new ChooseTrainingProviderPage(_context);
         }
 
         public SubmitNoOfPositionsPage ConfirmAndNavigateToNoOfPositionsPage()
         {
-            Continue();
+            formCompletionHelper.Click(ConfirmAndContinue); 
             return new SubmitNoOfPositionsPage(_context);
         }
     }
