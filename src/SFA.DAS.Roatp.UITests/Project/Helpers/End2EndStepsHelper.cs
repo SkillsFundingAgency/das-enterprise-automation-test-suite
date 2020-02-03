@@ -138,6 +138,27 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers
             return applicationOverviewPage;
         }
 
+        internal ApplicationOverviewPage CompletesProtectingYourApprentices_Section4_SupportingRoute(ApplicationOverviewPage applicationOverviewPage)
+        {
+            applicationOverviewPage = _protectingYourApprenticesSectionHelper.CompleteProtectingYourApprentices_1(applicationOverviewPage);
+            applicationOverviewPage = _protectingYourApprenticesSectionHelper.CompleteProtectingYourApprentices_3(applicationOverviewPage);
+            applicationOverviewPage = _protectingYourApprenticesSectionHelper.CompleteProtectingYourApprentices_4(applicationOverviewPage);
+            applicationOverviewPage = _protectingYourApprenticesSectionHelper.CompleteProtectingYourApprentices_5(applicationOverviewPage);
+            return applicationOverviewPage;
+        }
+
+        internal ApplicationOverviewPage NotRequiredReadinessToEngage_Section5(ApplicationOverviewPage applicationOverviewPage)
+        {
+            applicationOverviewPage = applicationOverviewPage.VerifyIntroductionStatus_Section5(StatusHelper.NotRequired);
+            applicationOverviewPage = applicationOverviewPage.VerifyEngaging_Section5(StatusHelper.NotRequired);
+            applicationOverviewPage = applicationOverviewPage.VerifyComplaints_Section5(StatusHelper.NotRequired);
+            applicationOverviewPage = applicationOverviewPage.VerifyContract_Section5(StatusHelper.NotRequired);
+            applicationOverviewPage = applicationOverviewPage.VerifyCommitment_Section5(StatusHelper.NotRequired);
+            applicationOverviewPage = applicationOverviewPage.VerifyPriorLearning_Section5(StatusHelper.NotRequired);
+            applicationOverviewPage = applicationOverviewPage.VerifyWorkingWithSubcontractors_Section5(StatusHelper.NotRequired);
+            return applicationOverviewPage;
+        }
+
         internal ApplicationOverviewPage CompletesReadinessToEngage_Section5(ApplicationOverviewPage applicationOverviewPage)
         {
             applicationOverviewPage = _readinessToEngageSectionHelper.CompleteReadinessToEngage_1(applicationOverviewPage);

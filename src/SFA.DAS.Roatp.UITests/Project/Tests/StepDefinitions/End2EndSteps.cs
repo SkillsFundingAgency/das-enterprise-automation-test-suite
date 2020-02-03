@@ -52,7 +52,6 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions
             _overviewPage = _end2EndStepsHelper.CompleteProviderSupportRouteSection(enterUkprnPage);
         }
 
-
         [When(@"the provider completes Your organisation section")]
         public void WhenTheProviderCompletesYourOrganisationSection()
         {
@@ -90,7 +89,6 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions
             _overviewPage = _end2EndStepsHelper.CompleteFinancialEvidence_Section2_ForSupportingRoute(_overviewPage);
         }
 
-
         [When(@"the provider completes Criminal and Compliance section")]
         public void WhenTheProviderCompletesCriminalAndComplianceSection()
         {
@@ -101,6 +99,18 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions
         public void WhenTheProviderCompletesProtectingYourApprenticesSection()
         {
             _overviewPage = _end2EndStepsHelper.CompletesProtectingYourApprentices_Section4(_overviewPage);
+        }
+
+        [When(@"the provider completes Protecting your apprentices section for supporting route")]
+        public void WhenTheProviderCompletesProtectingYourApprenticesSectionForSupportingRoute()
+        {
+            _overviewPage = _end2EndStepsHelper.CompletesProtectingYourApprentices_Section4_SupportingRoute(_overviewPage);
+        }
+
+        [When(@"the provider does not require to complete Readiness to engage section")]
+        public void WhenTheProviderDoesNotRequireToCompleteReadinessToEngageSection()
+        {
+            _overviewPage = _end2EndStepsHelper.NotRequiredReadinessToEngage_Section5(_overviewPage);
         }
 
         [When(@"the provider completes Readiness to engage section")]
