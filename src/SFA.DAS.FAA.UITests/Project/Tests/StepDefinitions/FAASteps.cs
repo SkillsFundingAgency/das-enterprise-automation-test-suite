@@ -9,8 +9,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.StepDefinitions
     public class FAASteps
     {
         private readonly FAAStepsHelper _faaStepsHelper;
-        private FAA_CreateAnAccountPage accountCreationPage;
-        private FAA_SignInPage faaSignInPage;
+        private FAA_CreateAnAccountPage accountCreationPage;        
 
         public FAASteps(ScenarioContext context) => _faaStepsHelper = new FAAStepsHelper(context);
 
