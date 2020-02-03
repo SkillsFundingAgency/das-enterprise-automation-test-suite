@@ -39,6 +39,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         }
 
         [Given(@"the (.*) is logged into Assessment Service Application")]
+        [When(@"the (.*) is logged into Assessment Service Application")]
         public void GivenTheUserIsLoggedIntoAssessmentServiceApplication(string user)
         {
             _tabHelper.GoToUrl(_ePAOConfig.EPAOAssessmentServiceUrl);

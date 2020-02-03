@@ -92,5 +92,12 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         {
             _applicationOverviewPage.ClickSubmitInApplicationOverviewPage();
         }
+
+        [Then(@"the Apply User is able to Signout from the application")]
+        public void ThenTheApplyUserIsAbleToSignoutFromTheApplication()
+        {
+            
+        }
+
     }
 }
