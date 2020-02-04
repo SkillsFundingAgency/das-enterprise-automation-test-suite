@@ -21,6 +21,5 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
             SelectYesAndContinue();
             return new LegallyBindingContractPage(_context);
         }
-
     }
 }

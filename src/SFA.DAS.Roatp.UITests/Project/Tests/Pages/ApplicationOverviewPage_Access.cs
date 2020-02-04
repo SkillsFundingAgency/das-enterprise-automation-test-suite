@@ -264,11 +264,6 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
             formCompletionHelper.ClickElement(GetTaskLinkElement(Yourorganisation, YourOrganisation_5));
             return new FundedByTheOfficeForStudentsPage(_context);
         }
-        public FundedByTheOfficeForStudentsPage AccessExperienceAndAccreditationsSectionForSupportingRoute()
-        {
-            formCompletionHelper.ClickElement(GetTaskLinkElement(Yourorganisation, YourOrganisation_5));
-            return new FundedByTheOfficeForStudentsPage(_context);
-        }
         #endregion
     }
 }

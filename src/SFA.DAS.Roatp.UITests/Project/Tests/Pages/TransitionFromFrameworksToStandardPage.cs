@@ -7,12 +7,13 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => "How will your organisation transition from apprenticeship frameworks to apprenticeship standards?";
 
+        protected override By PageHeader => By.CssSelector(".govuk-label-wrapper");
+
         #region Helpers and Context
         private readonly ScenarioContext _context;
         #endregion
 
-        private By LongTetArea_TransitionFromFrameWorksToStandardsForEmployerRoute => By.Id("PAT-52");
-        private By LongTextArea_TransitionFromFrameWorksToStandards => By.Id("PAT-62");
+        private By LongTextArea => By.CssSelector(".govuk-fieldset .govuk-textarea");
 
         public TransitionFromFrameworksToStandardPage(ScenarioContext context) : base(context)
         {
@@ -22,14 +23,14 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
 
         public EndPointAssesmentOrganisationsPage EnterTextForTransitionFromFramewordsToStandardsAndContinueEmployerRoute()
         {
-            formCompletionHelper.EnterText(LongTetArea_TransitionFromFrameWorksToStandardsForEmployerRoute, applydataHelpers.TransitionFromFrameWorksToStandardsForEmployerRoute);
+            formCompletionHelper.EnterText(LongTextArea, applydataHelpers.TransitionFromFrameWorksToStandardsForEmployerRoute);
             Continue();
             return new EndPointAssesmentOrganisationsPage(_context);
         }
 
         public ApplicationOverviewPage EnterTextForTransitionFromFramewordsToStandardsAndContinueSupportingRoute()
         {
-            formCompletionHelper.EnterText(LongTextArea_TransitionFromFrameWorksToStandards, applydataHelpers.TransitionFromFrameWorksToStandards);
+            formCompletionHelper.EnterText(LongTextArea, applydataHelpers.TransitionFromFrameWorksToStandards);
             Continue();
             return new ApplicationOverviewPage(_context);
         }
