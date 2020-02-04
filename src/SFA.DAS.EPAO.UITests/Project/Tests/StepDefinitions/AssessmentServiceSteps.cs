@@ -35,19 +35,19 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
             _ePAOSqlDataHelper = context.Get<EPAOSqlDataHelper>();
         }
 
-        [Given(@"the (.*) is logged into Assessment Service Application")]
-        [When(@"the (.*) is logged into Assessment Service Application")]
+        [Given(@"the (Assessor User|Manage User|Apply User) is logged into Assessment Service Application")]
+        [When(@"the (Assessor User|Manage User|Apply User) is logged into Assessment Service Application")]
         public void GivenTheUserIsLoggedIntoAssessmentServiceApplication(string user)
         {
             _stepsHelper.LaunchAssessmentServiceApplication();
 
-            if (user.Equals("Apply User"))
+            if (user.Equals("Assessor User") || user.Equals("Manage User"))
+                _loggedInHomePage = _stepsHelper.LoginToAssessmentServiceApplication(user);
+            else if (user.Equals("Apply User"))
             {
                 _ePAOSqlDataHelper.ResetApplyUser(_ePAOConfig.EPAOApplyUserLoginUsername);
                 new AS_LandingPage(_context).ClickStartButton().SignInAsApplyUser();
             }
-            else
-                _loggedInHomePage = _stepsHelper.LoginToAssessmentServiceApplication(user);
         }
 
         [When(@"the User goes through certifying an Apprentice as '(.*)' who has enrolled for '(.*)' standard")]

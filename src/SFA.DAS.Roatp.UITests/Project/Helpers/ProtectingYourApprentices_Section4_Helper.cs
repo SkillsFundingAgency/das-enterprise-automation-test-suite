@@ -11,6 +11,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers
                 .VerifyIntroductionStatus_Section4(StatusHelper.StatusCompleted);
                 
         }
+
         internal ApplicationOverviewPage CompleteProtectingYourApprentices_2(ApplicationOverviewPage applicationOverviewPage)
         {
             return applicationOverviewPage.Access_Section4_ContinuityPlanForApprenticeshipTraining()
@@ -38,6 +39,5 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers
                 .EnterDetailsOfHealthAndSafetyPerson()
                 .VerifyHealthAndSafety_Section4(StatusHelper.StatusCompleted);
         }
-
     }
 }

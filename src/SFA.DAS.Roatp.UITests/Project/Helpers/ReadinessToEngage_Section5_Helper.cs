@@ -10,6 +10,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers
                 .ClickSaveAndContinue()
                 .VerifyIntroductionStatus_Section5(StatusHelper.StatusCompleted);
         }
+
         internal ApplicationOverviewPage CompleteReadinessToEngage_2(ApplicationOverviewPage applicationOverviewPage)
         {
             return applicationOverviewPage.Access_Section5_EngagingWithEmployers()
@@ -19,6 +20,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers
                 .EnterTextRegardingOrganisationPromoteApprenticeshipsToEmployerAndContinue()
                 .VerifyEngaging_Section5(StatusHelper.StatusCompleted);
         }
+
         internal ApplicationOverviewPage CompleteReadinessToEngage_3(ApplicationOverviewPage applicationOverviewPage)
         {
             return applicationOverviewPage.Access_section5_ComplaintsPolicy()
@@ -26,18 +28,21 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers
                 .EnterWebsitelinkandContinue()
                 .VerifyComplaints_Section5(StatusHelper.StatusCompleted);
         }
+
         internal ApplicationOverviewPage CompleteReadinessToEngage_4(ApplicationOverviewPage applicationOverviewPage)
         {
             return applicationOverviewPage.Access_Section5_ContractForservicesTemplate()
                 .ContractForServicesTemplateFileUploadAndContinue()
                 .VerifyContract_Section5(StatusHelper.StatusCompleted);
         }
+
         internal ApplicationOverviewPage CompleteReadinessToEngage_5(ApplicationOverviewPage applicationOverviewPage)
         {
             return applicationOverviewPage.Access_Section5_CommitmentStatementTemplate()
                 .OrganisationsCommitmentStatementTemplateFileUploadAndContinue()
                 .VerifyCommitment_Section5(StatusHelper.StatusCompleted);
         }
+
         internal ApplicationOverviewPage CompleteReadinessToEngage_6(ApplicationOverviewPage applicationOverviewPage)
         {
             return applicationOverviewPage.Access_Section5_PriorLearningOfApprentices()
@@ -45,6 +50,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers
                 .EnterTextRegardingProcessToAssessEnglishAndMathsAndContinue()
                 .VerifyPriorLearning_Section5(StatusHelper.StatusCompleted);
         }
+
         internal ApplicationOverviewPage CompleteReadinessToEngage_7(ApplicationOverviewPage applicationOverviewPage)
         {
             return applicationOverviewPage.Access_Section5_WorkingWithSubContractors()
