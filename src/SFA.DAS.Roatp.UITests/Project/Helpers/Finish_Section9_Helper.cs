@@ -12,12 +12,14 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers
                 .SelectYesForPermissionFromOrganisationAndContinue()
                 .VerifyApplicationPermissions_Section9(StatusHelper.StatusCompleted);
         }
+
         internal ApplicationOverviewPage CompleteFinish_2(ApplicationOverviewPage applicationOverviewPage)
         {
             return applicationOverviewPage.Access_Section9_CommercialInConfidenceInformation()
                 .SelectYesForCommercialInConfidenceInformationAndContinue()
                 .VerifyCommercialInformation_Section9(StatusHelper.StatusCompleted);
         }
+
         internal ApplicationOverviewPage CompleteFinish_3(ApplicationOverviewPage applicationOverviewPage)
         {
             return applicationOverviewPage.Access_Section9_TermsAndConditions()
@@ -25,6 +27,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers
                 .SelectYesAgreeTermsAndContionsOfJoiingRoatpAndContinue()
                 .VerifyTermsAndConditions_Section9(StatusHelper.StatusCompleted);
         }
+
         internal ApplicationSubmittedPage CompleteFinish_4(ApplicationOverviewPage applicationOverviewPage)
         {
             return applicationOverviewPage.Access_Section9_SubmitApplication()

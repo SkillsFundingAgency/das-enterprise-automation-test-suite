@@ -10,6 +10,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers
                 .ClickSaveAndContinue()
                 .VerifyIntroductionStatus_Section6(StatusHelper.StatusCompleted);
         }
+
         internal ApplicationOverviewPage CompletePlanningApprenticeshipTraining_2(ApplicationOverviewPage applicationOverviewPage)
         {
             return applicationOverviewPage.Access_Section6_TypeOfApprenticeshipTraining()
@@ -20,10 +21,12 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers
                 .EnterContactDetailsAndContinue()
                 .VerifyTypeOfTrainning_Section6(StatusHelper.StatusCompleted);
         }
+
         internal ApplicationOverviewPage CompletePlanningApprenticeshipTraining_3(ApplicationOverviewPage applicationOverviewPage)
         {
             return applicationOverviewPage;
         }
+
         internal ApplicationOverviewPage CompletePlanningApprenticeshipTraining_4(ApplicationOverviewPage applicationOverviewPage)
         {
             return applicationOverviewPage.Access_Section6_ForeCastingStarts()
@@ -33,6 +36,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers
                 .SelectOneTrainerBetween10OrLessApprenticesAndContinue()
                 .VerifyForecasting_Section6(StatusHelper.StatusCompleted);
         }
+
         internal ApplicationOverviewPage CompletePlanningApprenticeshipTraining_5(ApplicationOverviewPage applicationOverviewPage)
         {
             return applicationOverviewPage.Access_Section6_OffTheJobTraining()
@@ -40,6 +44,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers
                 .EnterTextForOffTheJobTrainingIsRelevantAndContinue()
                 .VerifyOffTheJobTrainning_Section6(StatusHelper.StatusCompleted);
         }
+
         internal ApplicationOverviewPage CompletePlanningApprenticeshipTraining_6(ApplicationOverviewPage applicationOverviewPage)
         {
             return applicationOverviewPage.Access_Section6_WhereWillYourApprenticesBeTrained()

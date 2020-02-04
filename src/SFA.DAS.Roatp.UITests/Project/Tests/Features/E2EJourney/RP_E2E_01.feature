@@ -1,6 +1,5 @@
 ﻿Feature: RP_E2E_01
 
-
 @rpe2e01
 @roatp
 @regression
@@ -14,4 +13,3 @@ Scenario: RP_E2E_01_MainRoute-Company
 	And the provider completes Delivering apprenticeship training section
 	And the provider completes Evaluating apprenticeship training section
 	Then the provider completes Finish section
-
