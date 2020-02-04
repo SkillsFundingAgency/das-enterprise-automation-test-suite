@@ -1,5 +1,8 @@
-﻿using SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply;
+﻿using SFA.DAS.EPAO.UITests.Project.Helpers;
+using SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply;
 using SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.PreamblePages;
+using SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService;
+using SFA.DAS.UI.Framework.TestSupport;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
@@ -9,10 +12,15 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
     {
         private readonly ScenarioContext _context;
         private AP_ApplicationOverviewPage _applicationOverviewPage;
+        private AS_CreateAnAccountPage _createAnAccountPage;
+        private readonly EPAOConfig _config;
+        private readonly AssessmentServiceStepsHelper _stepsHelper;
 
         public ApplySteps(ScenarioContext context)
         {
             _context = context;
+            _config = context.GetEPAOConfig<EPAOConfig>();
+            _stepsHelper = new AssessmentServiceStepsHelper(_context);
         }
 
         [When(@"the Apply User completes preamble journey")]
@@ -74,7 +82,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
                 .SelectYesOptionAndContinueInFalseDeclarationsPage()
                 .SelectYesOptionAndContinueInAccurateRepresentationPage()
                 .SelectYesOptionAndContinueInAgreementOnTheRegisterPage()
-                .ClickReturnToApplicationOverviewButton();      
+                .ClickReturnToApplicationOverviewButton();
         }
 
         [When(@"the Apply User completes the FHA section")]
@@ -88,9 +96,35 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         }
 
         [Then(@"the application is allowed to be submitted")]
-        public void ThenTheApplicationIsAllowedToBeSubmitted()
+        public void ThenTheApplicationIsAllowedToBeSubmitted() => _applicationOverviewPage.ClickSubmitInApplicationOverviewPage();
+
+        [Then(@"the User Name is displayed in the Logged In Home page")]
+        public void ThenTheUserNameIsDisplayedInTheLoggedInHomePage() => new AS_LoggedInHomePage(_context).VerifySignedInUserName(_config.EPAOApplyUserFullName);
+
+        [Then(@"the Apply User is able to Signout from the application")]
+        public void ThenTheApplyUserIsAbleToSignoutFromTheApplication()
         {
-            _applicationOverviewPage.ClickSubmitInApplicationOverviewPage();
+            new AS_LoggedInHomePage(_context).ClickSignOutLink()
+                .ClickReturnToAssessmentServiceLink();
+        }
+
+        [When(@"the Apply User initiates Create Account journey")]
+        public void WhenTheApplyUserInitiatesCreateAccountJourney()
+        {
+            _createAnAccountPage = _stepsHelper.LaunchAssessmentServiceApplication()
+             .ClickCreateAnAccountLink();
+        }
+
+        [Then(@"the Apply User is able to Create an Account")]
+        public void ThenTheApplyUserIsAbleToCreateAnAccount() => _createAnAccountPage.EnterAccountDetailsAndClickCreateAccount();
+
+        [Then(@"no matches are shown for Organisation searches with Invalid search term")]
+        public void ThenNoMatchesAreShownForOrganisationSearchesWithInvalidSearchTerm()
+        {
+            new AP_PR1_SearchForYourOrganisationPage(_context).EnterInvalidOrgNameAndSearchInSearchForYourOrgPage("asfasfasdfasdf")
+                            .VerifyInvalidSearchResultText()
+                            .EnterInvalidOrgNameAndSearchInSearchResultsForPage("54678900")
+                            .EnterInvalidOrgNameAndSearchInSearchResultsForPage("EPA01");
         }
     }
 }

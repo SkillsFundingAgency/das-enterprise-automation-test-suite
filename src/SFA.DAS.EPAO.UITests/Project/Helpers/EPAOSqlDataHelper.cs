@@ -23,6 +23,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
         public void ResetApplyUser(string applyUserEmail)
         {
             var organisationId = GetDataFromDb($"SELECT OrganisationId from Contacts where Email = '{applyUserEmail}'");
+            if (organisationId.Equals("")) return;
             ExecuteSqlCommand($"UPDATE Contacts SET OrganisationID = null WHERE Email = '{applyUserEmail}'");
             ExecuteSqlCommand($"DELETE from Apply where OrganisationId = '{organisationId}'");
         }

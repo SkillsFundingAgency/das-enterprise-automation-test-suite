@@ -4,7 +4,6 @@ using SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService;
 using SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.ManageUsers;
 using SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.OrganisationDetails;
 using SFA.DAS.UI.Framework.TestSupport;
-using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
@@ -15,7 +14,6 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         private readonly ScenarioContext _context;
         private readonly AssessmentServiceStepsHelper _stepsHelper;
         private readonly EPAOConfig _ePAOConfig;
-        private readonly TabHelper _tabHelper;
         private readonly EPAODataHelper _dataHelper;
         private AS_RecordAGradePage _recordAGradePage;
         private AS_AchievementDatePage _achievementDatePage;
@@ -34,14 +32,15 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
             _stepsHelper = new AssessmentServiceStepsHelper(_context);
             _ePAOConfig = context.GetEPAOConfig<EPAOConfig>();
             _dataHelper = context.Get<EPAODataHelper>();
-            _tabHelper = context.Get<TabHelper>();
             _ePAOSqlDataHelper = context.Get<EPAOSqlDataHelper>();
         }
 
         [Given(@"the (.*) is logged into Assessment Service Application")]
+        [When(@"the (.*) is logged into Assessment Service Application")]
         public void GivenTheUserIsLoggedIntoAssessmentServiceApplication(string user)
         {
-            _tabHelper.GoToUrl(_ePAOConfig.EPAOAssessmentServiceUrl);
+            _stepsHelper.LaunchAssessmentServiceApplication();
+
             if (user.Equals("Apply User"))
             {
                 _ePAOSqlDataHelper.ResetApplyUser(_ePAOConfig.EPAOApplyUserLoginUsername);
