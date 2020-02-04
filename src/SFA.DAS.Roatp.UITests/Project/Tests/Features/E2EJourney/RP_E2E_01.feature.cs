@@ -80,28 +80,28 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Features.E2EJourney
                         "rpe2e01",
                         "roatp",
                         "regression"});
-#line 7
+#line 6
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 8
+#line 7
  testRunner.Given("the provider initates an application as main route company", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 9
+#line 8
  testRunner.When("the provider completes Your organisation section", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 10
+#line 9
  testRunner.And("the provider completes Financial evidence section", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 11
+#line 10
  testRunner.And("the provider completes Criminal and Compliance section", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 12
+#line 11
  testRunner.And("the provider completes Protecting your apprentices section", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 13
+#line 12
  testRunner.And("the provider completes Readiness to engage section", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 14
+#line 13
  testRunner.And("the provider completes Planning apprenticeship training section", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 15
+#line 14
  testRunner.And("the provider completes Delivering apprenticeship training section", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 16
+#line 15
  testRunner.And("the provider completes Evaluating apprenticeship training section", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 17
+#line 16
  testRunner.Then("the provider completes Finish section", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
