@@ -68,7 +68,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers
 
         internal ApplicationOverviewPage CompleteYourOrganisation_Section1_Support(ApplicationOverviewPage applicationOverviewPage)
         {
-            applicationOverviewPage = _yourOrganisationSectionHelper.CompleteYourOrganisationSection_1(applicationOverviewPage);
+            applicationOverviewPage = _yourOrganisationSectionHelper.CompleteYourOrganisationSection_1_SupportRoute(applicationOverviewPage);
             applicationOverviewPage = _yourOrganisationSectionHelper.CompleteYourOrganisationSection_2_NotACompany(applicationOverviewPage);
             applicationOverviewPage = _yourOrganisationSectionHelper.CompleteYourOrganisationSection_3_Support(applicationOverviewPage);
             applicationOverviewPage = _yourOrganisationSectionHelper.CompleteYourOrganisationSection_4_OrgTypeGTA(applicationOverviewPage);

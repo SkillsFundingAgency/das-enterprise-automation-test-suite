@@ -18,7 +18,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
 
         public SoleTraderDOBPage SelectSoleTraderAndContinue()
         {
-            SelectRadioOptionByText("Soletrader");
+            SelectRadioOptionByText("Sole trader");
             Continue();
             return new SoleTraderDOBPage(_context);
         }
