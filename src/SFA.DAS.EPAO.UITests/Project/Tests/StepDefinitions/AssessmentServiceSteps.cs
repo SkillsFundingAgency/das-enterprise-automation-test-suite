@@ -35,8 +35,8 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
             _ePAOSqlDataHelper = context.Get<EPAOSqlDataHelper>();
         }
 
-        [Given(@"the (Assessor User||Manage User||Apply User) is logged into Assessment Service Application")]
-        [When(@"the (Assessor User||Manage User||Apply User) is logged into Assessment Service Application")]
+        [Given(@"the (Assessor User|Manage User|Apply User) is logged into Assessment Service Application")]
+        [When(@"the (Assessor User|Manage User|Apply User) is logged into Assessment Service Application")]
         public void GivenTheUserIsLoggedIntoAssessmentServiceApplication(string user)
         {
             _stepsHelper.LaunchAssessmentServiceApplication();
