@@ -1,4 +1,6 @@
-﻿using TechTalk.SpecFlow;
+﻿using OpenQA.Selenium;
+using System.Linq;
+using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
 {
@@ -10,6 +12,8 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
         private readonly ScenarioContext _context;
         #endregion
 
+        private By TradingRadioInputs => By.CssSelector(".govuk-radios__input");
+
         public TradingPeriodPage(ScenarioContext context) : base(context)
         {
             _context = context;
@@ -18,7 +22,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
 
         public ApplicationOverviewPage SelectMaximumTradingPeriodAndContinue()
         {
-            SelectRadioOptionByText("More than 23 months");
+            formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElements(TradingRadioInputs).LastOrDefault());
             Continue();
             return new ApplicationOverviewPage(_context);
         }
