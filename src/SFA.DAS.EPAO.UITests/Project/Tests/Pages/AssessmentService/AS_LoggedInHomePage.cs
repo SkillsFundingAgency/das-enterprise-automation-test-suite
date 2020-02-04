@@ -1,42 +1,61 @@
 ﻿using OpenQA.Selenium;
 using TechTalk.SpecFlow;
-using SFA.DAS.UI.FrameworkHelpers;
-using SFA.DAS.UI.Framework.TestSupport;
+using SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.ManageUsers;
 
 namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
 {
-    public class AS_LoggedInHomePage : BasePage
+    public class AS_LoggedInHomePage : EPAO_BasePage
     {
         protected override string PageTitle => ""; //There is NO Title on this page
-
-        #region Helpers and Context
         private readonly ScenarioContext _context;
-        private readonly FormCompletionHelper _formCompletionHelper;
-
-        #endregion
 
         #region Locators
         private By RecordAGradeLink => By.Id("Record a grade");
-        private By CompletedAssessmentsLink  => By.Id("Completed assessments");
+        private By CompletedAssessmentsTopMenuLink => By.Id("Completed assessments");
+        private By OrganisationDetailsTopMenuLink => By.LinkText("Organisation details");
+        private By ManageUsersLink => By.LinkText("Manage users");
+        private By HomeTopMenuLink => By.Id("Home");
+        private By SignedInUserNameText => By.CssSelector(".das-user-panel__content");
+        private By SignOutLink => By.XPath("//a[@href='/Account/SignOut']");
         #endregion
 
-        public AS_LoggedInHomePage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            _formCompletionHelper = context.Get<FormCompletionHelper>();
-            VerifyPage(RecordAGradeLink);
-        }
+        public AS_LoggedInHomePage(ScenarioContext context) : base(context) => _context = context;
 
         public AS_RecordAGradePage ClickOnRecordAGrade()
         {
-            _formCompletionHelper.Click(RecordAGradeLink);
+            formCompletionHelper.Click(RecordAGradeLink);
             return new AS_RecordAGradePage(_context);
         }
 
         public AS_CompletedAssessmentsPage ClickCompletedAssessmentsLink()
         {
-            _formCompletionHelper.Click(CompletedAssessmentsLink);
+            formCompletionHelper.Click(CompletedAssessmentsTopMenuLink);
             return new AS_CompletedAssessmentsPage(_context);
+        }
+
+        public void ClickOrganisationDetailsTopMenuLink()
+        {
+            formCompletionHelper.Click(OrganisationDetailsTopMenuLink);
+        }
+
+        public AS_UsersPage ClickManageUsersLink()
+        {
+            formCompletionHelper.Click(ManageUsersLink);
+            return new AS_UsersPage(_context);
+        }
+
+        public AS_LoggedInHomePage ClickHomeTopMenuLink()
+        {
+            formCompletionHelper.Click(HomeTopMenuLink);
+            return this;
+        }
+
+        public bool VerifySignedInUserName(string expectedText) => pageInteractionHelper.VerifyText(SignedInUserNameText, expectedText);
+
+        public AS_SignedOutPage ClickSignOutLink()
+        {
+            formCompletionHelper.Click(SignOutLink);
+            return new AS_SignedOutPage(_context);
         }
     }
 }

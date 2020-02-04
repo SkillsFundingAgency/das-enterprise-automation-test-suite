@@ -3,28 +3,36 @@ using System;
 
 namespace SFA.DAS.EPAO.UITests.Project.Helpers
 {
-    public class EPAODataHelper
+    public class EPAODataHelper : RandomElementHelper
     {
         private readonly RandomDataGenerator _randomDataGenerator;
 
-        public EPAODataHelper (RandomDataGenerator randomDataGenerator)
+        public EPAODataHelper(RandomDataGenerator randomDataGenerator) : base(randomDataGenerator)
         {
             _randomDataGenerator = randomDataGenerator;
             GetCurrentDay = DateTime.Now.Day;
             GetCurrentMonth = DateTime.Now.Month;
             GetCurrentYear = DateTime.Now.Year;
-            Get9DigitRandomULN = _randomDataGenerator.GenerateRandomNumber(9);
-            Get10DigitRandomULN = _randomDataGenerator.GenerateRandomNumber(10);
+            GetTownName = "Coventry";
+            GetCountyName = "Warwick";
+            GetPostCode = "CV1 2WT";
+            GetRandomEmail = GetDateTimeValue() + "@mailinator.com";
+            GetRandomWebsiteAddress = "http://www.TEST_" + GetDateTimeValue() + ".com";
         }
 
         public int GetCurrentDay { get; }
-
         public int GetCurrentMonth { get; }
-
         public int GetCurrentYear { get; }
+        public string GetTownName { get; }
+        public string GetCountyName { get; }
+        public string GetPostCode { get; }
+        public string GetRandomEmail { get; }
+        public string GetRandomWebsiteAddress { get; }
 
-        public string Get9DigitRandomULN { get; }
+        public string GetRandomNumber(int length) => _randomDataGenerator.GenerateRandomNumber(length);
 
-        public string Get10DigitRandomULN { get; }
+        public string GetRandomAlphabeticString(int length) => _randomDataGenerator.GenerateRandomAlphabeticString(length);
+
+        private string GetDateTimeValue() => DateTime.Now.ToString("ddMMMyyyy_HHmmss").ToUpper();
     }
 }

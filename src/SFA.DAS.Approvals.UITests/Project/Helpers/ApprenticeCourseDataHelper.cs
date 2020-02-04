@@ -34,7 +34,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers
             _nextAcademicYearStartDate = GetNextAcademicYearStartDate(_currentAcademicYearStartDate);
             _nextAcademicYearEndDate = GetAcademicYearEndDate(_nextAcademicYearStartDate);
             CourseStartDate = GenerateCourseStartDate();
-            CourseEndDate = GetCourseEndDate();
             Course = randomCourseHelper.RandomCourse();
         }
 
@@ -49,9 +48,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers
 
         public int CourseDurationInMonths => 15;
 
-        public DateTime CourseStartDate { get; }
+        public DateTime CourseStartDate { get; internal set; }
 
-        public DateTime CourseEndDate { get; }
+        public DateTime CourseEndDate => CourseStartDate.AddMonths(CourseDurationInMonths);
 
         private DateTime GenerateCourseStartDate()
         {
@@ -74,7 +73,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers
             var now = DateTime.Now;
             DateTime RandomStartDate()
             {
-                var start = new DateTime(now.Year, now.Month + 1, now.Day);
+                var start = now.AddMonths(1);
                 int range = (_nextAcademicYearStartDate - start).Days - 1;
                 return start.AddDays(new Random().Next(range));
             }
@@ -85,11 +84,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers
         private bool IsThisMonthAndYear(DateTime dateTime)
         {
             return dateTime.Month == DateTime.Now.Month && dateTime.Year == DateTime.Now.Year;
-        }
-
-        private DateTime GetCourseEndDate()
-        {
-            return CourseStartDate.AddMonths(CourseDurationInMonths);
         }
 
         private DateTime GetCurrentAcademicYearStartDate()

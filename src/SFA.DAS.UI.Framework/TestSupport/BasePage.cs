@@ -22,7 +22,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
         protected virtual By PageHeader => By.CssSelector(".govuk-heading-xl, .heading-xlarge, .govuk-heading-l, .govuk-panel__title");
         protected virtual By ContinueButton => By.CssSelector(".govuk-button");
         protected virtual By BackLink => By.CssSelector(".govuk-back-link, .back-link");
-
+        protected virtual By RadioLabels => By.CssSelector(".govuk-radios__label");
         protected abstract string PageTitle { get; }
 
         public BasePage(ScenarioContext context)
@@ -41,6 +41,8 @@ namespace SFA.DAS.UI.Framework.TestSupport
 
         protected bool VerifyPage(Func<List<IWebElement>> func) => VerifyPage(() => _pageInteractionHelper.VerifyPage(func, PageTitle));
 
+        protected bool VerifyElement(Func<IWebElement> func, string text) => VerifyPage(() => _pageInteractionHelper.VerifyPage(func, text));
+
         protected bool VerifyPage(By locator) => VerifyPage(() => _pageInteractionHelper.VerifyPage(locator));
 
         protected bool VerifyPage() => VerifyPage(PageHeader, PageTitle);
@@ -48,6 +50,10 @@ namespace SFA.DAS.UI.Framework.TestSupport
         protected bool VerifyPage(By locator, string text) => VerifyPage(() => _pageInteractionHelper.VerifyPage(locator, text));
 
         protected void Continue() => _formCompletionHelper.Click(ContinueButton);
+
+        protected void SelectRadioOptionByForAttribute(string value) => _formCompletionHelper.SelectRadioOptionByForAttribute(RadioLabels, value);
+
+        protected void SelectRadioOptionByText(string value) => _formCompletionHelper.SelectRadioOptionByText(RadioLabels, value);
 
         protected void NavigateBack() => _formCompletionHelper.Click(BackLink);
 

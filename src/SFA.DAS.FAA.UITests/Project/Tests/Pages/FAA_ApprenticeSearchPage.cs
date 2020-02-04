@@ -7,6 +7,7 @@ using System;
 using TechTalk.SpecFlow;
 using SFA.DAS.RAA.DataGenerator.Project;
 
+
 namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 {
     public class FAA_ApprenticeSearchPage : FAA_SearchVacancyBasePage
@@ -21,17 +22,16 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
         private readonly VacancyTitleDatahelper _dataHelper;
         private readonly TabHelper _tabHelper;
         private readonly FAAConfig _config;
+        private readonly FAADataHelper _faadataHelper;
         #endregion
 
         private By SearchField => By.Id("SearchField");
-
         protected By KeyWord => By.Id("Keywords");
-
         private By Location => By.Id("Location");
-
         private By Distance => By.Id("loc-within");
-
         private By ApprenticeshipLevel => By.Id("apprenticeship-level");
+        private By VerifyPhoneNumberText => By.Id("InfoMessageText");
+        private By VerifyYourNumber => By.LinkText("verify your number");
 
         public FAA_ApprenticeSearchPage(ScenarioContext context) : base(context)
         {
@@ -42,6 +42,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
             _dataHelper = context.Get<VacancyTitleDatahelper>();
             _tabHelper = context.Get<TabHelper>();
             _config = context.GetFAAConfig<FAAConfig>();
+            _faadataHelper = context.Get<FAADataHelper>();
             VerifyPage();
         }
 
@@ -79,10 +80,15 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
             {
                 var uri = new Uri(new Uri(_config.FAABaseUrl), $"apprenticeship/{vacancyRef}");
                 _tabHelper.GoToUrl(uri.AbsoluteUri);
-            }
-            
-
+            } 
             return new FAA_ApprenticeSummaryPage(_context);
+        }
+
+        public FAA_PhoneNumberVerificationPage VerifyPhoneNumberVerificationText()
+        {           
+            _pageInteractionHelper.VerifyText(VerifyPhoneNumberText, _faadataHelper.PhoneNumberVerificationText);           
+            _formCompletionHelper.Click(VerifyYourNumber);
+            return new FAA_PhoneNumberVerificationPage(_context);
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿@approvals
 Feature: AP_TR_03_TransfersApprovalJourney
 
+@CV-487
 @inprogress
 @transfersscenarios
 @liveapprentice

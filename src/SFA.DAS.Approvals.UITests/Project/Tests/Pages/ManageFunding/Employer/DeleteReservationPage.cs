@@ -8,8 +8,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
     public class DeleteReservationPage : BasePage
     {
         protected override string PageTitle => "Delete Reservation";
-        private By DeleteReservationRadioButton => By.CssSelector(".govuk-radios__label");
-        private By ConfirmButton => By.CssSelector(".govuk-button");
 
         #region Helpers and Context
         private readonly PageInteractionHelper _pageInteractionHelper;
@@ -27,13 +25,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
 
         public DeleteReservationPage ChooseDeleteReservationRadioButton()
         {
-            _formCompletionHelper.SelectRadioOptionByForAttribute(DeleteReservationRadioButton, "Delete");
+            SelectRadioOptionByForAttribute("Delete");
             return new DeleteReservationPage(_context);
         }
 
         public ReservationSuccessfullyDeletedPage ClickConfirmButton()
         {
-            _formCompletionHelper.ClickElement(ConfirmButton);
+            Continue();
             return new ReservationSuccessfullyDeletedPage(_context);
         }
     }

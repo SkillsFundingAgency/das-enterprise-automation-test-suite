@@ -1,19 +1,14 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.PreamblePages;
 using TechTalk.SpecFlow;
-using SFA.DAS.UI.FrameworkHelpers;
-using SFA.DAS.UI.Framework.TestSupport;
 
 namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
 {
-    public class AS_LoginPage : BasePage
+    public class AS_LoginPage : EPAO_BasePage
     {
         protected override string PageTitle => "Sign in to Apprenticeship assessment service";
-
-        #region Helpers and Context
         private readonly ScenarioContext _context;
-        private readonly FormCompletionHelper _formCompletionHelper;
-        private readonly EPAOConfig _config;
-        #endregion
+        string userName, password;
 
         #region Locators
         private By EmailAddressTextBox => By.Id("Username");
@@ -23,17 +18,31 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
         public AS_LoginPage(ScenarioContext context) : base(context)
         {
             _context = context;
-            _formCompletionHelper = context.Get<FormCompletionHelper>();
-            _config = context.GetEPAOConfig<EPAOConfig>();
             VerifyPage();
         }
 
-        public AS_LoggedInHomePage SignInWithValidDetails()
+        public AS_LoggedInHomePage SignInWithValidDetails(string user)
         {
-            _formCompletionHelper.EnterText(EmailAddressTextBox, _config.EPAOAssessorLoginUsername);
-            _formCompletionHelper.EnterText(PasswordTextBox, _config.EPAOAssessorLoginPassword);
-            Continue();
+            userName = user == "Assessor User" ? ePAOConfig.EPAOAssessorLoginUsername : ePAOConfig.EPAOManageUserLoginUsername;
+            password = user == "Assessor User" ? ePAOConfig.EPAOAssessorLoginPassword : ePAOConfig.EPAOManageUserLoginPassword;
+
+            EnterLoginDetails(userName, password);
             return new AS_LoggedInHomePage(_context);
+        }
+
+        public AP_PR1_SearchForYourOrganisationPage SignInAsApplyUser()
+        {
+            userName = ePAOConfig.EPAOApplyUserLoginUsername;
+            password = ePAOConfig.EPAOApplyUserLoginPassword;
+            EnterLoginDetails(userName, password);
+            return new AP_PR1_SearchForYourOrganisationPage(_context);
+        }
+
+        public void EnterLoginDetails(string userName, string password)
+        {
+            formCompletionHelper.EnterText(EmailAddressTextBox, userName);
+            formCompletionHelper.EnterText(PasswordTextBox, password);
+            Continue();
         }
     }
 }

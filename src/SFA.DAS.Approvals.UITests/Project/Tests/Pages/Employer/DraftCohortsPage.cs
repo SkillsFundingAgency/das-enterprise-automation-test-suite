@@ -7,7 +7,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
     public class DraftCohortsPage : BasePage
     {
-        protected override string PageTitle => "Draft cohorts";
+        protected override string PageTitle => "Draft apprentice details";
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
