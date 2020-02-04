@@ -1,5 +1,7 @@
 ﻿using SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService;
 using SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.OrganisationDetails;
+using SFA.DAS.UI.Framework.TestSupport;
+using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EPAO.UITests.Project.Helpers
@@ -8,10 +10,20 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
     {
         private readonly ScenarioContext _context;
         private AS_LoggedInHomePage _loggedInHomePage;
+        private readonly TabHelper _tabHelper;
+        private EPAOConfig _ePAOConfig;
 
         public AssessmentServiceStepsHelper(ScenarioContext context)
         {
             _context = context;
+            _tabHelper = context.Get<TabHelper>();
+            _ePAOConfig = context.GetEPAOConfig<EPAOConfig>();
+        }
+
+        public AS_LandingPage LaunchAssessmentServiceApplication()
+        {
+            _tabHelper.GoToUrl(_ePAOConfig.EPAOAssessmentServiceUrl);
+            return new AS_LandingPage(_context);
         }
 
         public AS_LoggedInHomePage LoginToAssessmentServiceApplication(string user)

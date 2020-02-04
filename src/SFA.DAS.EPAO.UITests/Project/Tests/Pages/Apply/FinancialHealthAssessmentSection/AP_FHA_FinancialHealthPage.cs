@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.UI.Framework;
 using System;
 using TechTalk.SpecFlow;
 
@@ -8,6 +9,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.FinancialHealthAssessme
     {
         protected override string PageTitle => "Financial health";
         private readonly ScenarioContext _context;
+        private readonly FrameworkConfig _frameworkConfig;
 
         #region Locators
         private By ChooseFileOption => By.Id("FHA-01");
@@ -17,11 +19,12 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.FinancialHealthAssessme
         {
             _context = context;
             VerifyPage();
+            _frameworkConfig = context.Get<FrameworkConfig>();
         }
 
         public AP_FHABasePage UploadFileAndContinueInFinancialHealthPage()
         {
-            string File = AppDomain.CurrentDomain.BaseDirectory + "Project\\Helpers\\UploadFiles\\" + "Sample.pdf";
+            string File = AppDomain.CurrentDomain.BaseDirectory + _frameworkConfig.SampleFileName;
             formCompletionHelper.EnterText(ChooseFileOption, File);
             Continue();
             return new AP_FHABasePage(_context);
