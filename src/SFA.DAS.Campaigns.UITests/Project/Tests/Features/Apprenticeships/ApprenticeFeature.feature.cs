@@ -72,12 +72,12 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Features.Apprenticeships
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("User can see a valid message when no apprentice results found")]
-        [NUnit.Framework.CategoryAttribute("campaign")]
+        [NUnit.Framework.CategoryAttribute("campaigns")]
         [NUnit.Framework.CategoryAttribute("regression")]
         public virtual void UserCanSeeAValidMessageWhenNoApprenticeResultsFound()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User can see a valid message when no apprentice results found", null, new string[] {
-                        "campaign",
+                        "campaigns",
                         "regression"});
 #line 9
  this.ScenarioInitialize(scenarioInfo);
@@ -105,7 +105,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Features.Apprenticeships
         public virtual void ApplicationShouldShowDefaultValueForMilesDropDownAndValidErrorMessagesForInvalidPostcodeAndInterestSelection(string selectInterest, string postcode, string[] exampleTags)
         {
             string[] @__tags = new string[] {
-                    "campaign",
+                    "campaigns",
                     "regression"};
             if ((exampleTags != null))
             {
@@ -143,7 +143,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Features.Apprenticeships
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Application should show default value for Miles DropDown and valid error messages" +
             " for invalid postcode and interest selection: Variant 0")]
-        [NUnit.Framework.CategoryAttribute("campaign")]
+        [NUnit.Framework.CategoryAttribute("campaigns")]
         [NUnit.Framework.CategoryAttribute("regression")]
         public virtual void ApplicationShouldShowDefaultValueForMilesDropDownAndValidErrorMessagesForInvalidPostcodeAndInterestSelection_Variant0()
         {
@@ -155,7 +155,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Features.Apprenticeships
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Application should show default value for Miles DropDown and valid error messages" +
             " for invalid postcode and interest selection: Variant 1")]
-        [NUnit.Framework.CategoryAttribute("campaign")]
+        [NUnit.Framework.CategoryAttribute("campaigns")]
         [NUnit.Framework.CategoryAttribute("regression")]
         public virtual void ApplicationShouldShowDefaultValueForMilesDropDownAndValidErrorMessagesForInvalidPostcodeAndInterestSelection_Variant1()
         {
@@ -167,7 +167,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Features.Apprenticeships
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Application should show default value for Miles DropDown and valid error messages" +
             " for invalid postcode and interest selection: Variant 2")]
-        [NUnit.Framework.CategoryAttribute("campaign")]
+        [NUnit.Framework.CategoryAttribute("campaigns")]
         [NUnit.Framework.CategoryAttribute("regression")]
         public virtual void ApplicationShouldShowDefaultValueForMilesDropDownAndValidErrorMessagesForInvalidPostcodeAndInterestSelection_Variant2()
         {

@@ -27,8 +27,6 @@ namespace SFA.DAS.Campaigns.UITests
         [Then(@"I Can Add Apprenticeships From Search Result  List to Favourite Short List")]
         public void ThenICanAddApprenticeshipFromSearchResultListToFavouriteShortList()
         {
-            registerMyInterestPage = new RegisterMyInterestPage(_context);
-            registerMyInterestPage.RemoveTheAlertBanner();
             trainingProviderResulPage = new TrainingProviderResulPage(_context);
             trainingProviderResulPage.AddFavouriteShortList();
         }

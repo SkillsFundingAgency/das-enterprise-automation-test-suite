@@ -15,6 +15,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
         private readonly ScenarioContext _context;
         private FireItUpHomePage fireItUpHomePage;
         private readonly TabHelper _tabHelper;
+        private RegisterMyInterestPage registerMyInterestPage;
         #endregion
 
         public StepDefinitionHomePage(ScenarioContext context)
@@ -33,6 +34,8 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
             fireItUpHomePage = new FireItUpHomePage(_context);
             fireItUpHomePage.ClickOnCookieContinueButton();
             fireItUpHomePage.VerifyApprenticesHeaderSupportText();
+            registerMyInterestPage = new RegisterMyInterestPage(_context);
+            registerMyInterestPage.RemoveTheAlertBanner();
         }
 
         [Given(@"I launch the Find An Apprentice page")]

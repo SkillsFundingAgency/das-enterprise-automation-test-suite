@@ -11,6 +11,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
         protected override string PageTitle => "";
         #region Constants
         private const string ExpectedPageTitle = "YOUR FAVOURITE APPRENTICESHIPS AND TRAINING PROVIDERS";
+        private const string ExpectedyouHaveNotAddedItemsInBasket = "YOU HAVEN'T ADDED ANY FAVOURITES YET";
         private const int ExpectedFavouriteCount = 2;
         private const int _countAfterBinningOne = 1;
         private const int ExpectedProviderCount=3;
@@ -24,7 +25,8 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
         #endregion
 
         #region Page Object Elements
-        private readonly By _pageTitle = By.XPath("//h1[@class='hero-heading__heading heading-xl']");
+        private readonly By _pageTitle = By.XPath("//h1[@class='hero-heading__heading heading-xl hero-heading__heading-l']");
+        private readonly By _youHaveNotAddedItemsInBasket = By.XPath("//div[@class='das-basket__empty']/h2");
         private readonly By _favouriteIcon = By.XPath("//span[@class='favourites-link__text']");
         private readonly By _favouriteCount = By.XPath("//span[@class='favourites-link__count']");
         private readonly By _firstApprenticeshipBin =By.XPath("//button[@class='das-basket__item-delete']");
@@ -62,6 +64,13 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
             _pageInteractionHelper.VerifyText(_pageTitle,ExpectedPageTitle);
             return new EmployerFavouritePage(_context);
         }
+
+        public EmployerFavouritePage VerifyThatNoItemsAreinTheBasket()
+        {
+            _pageInteractionHelper.VerifyText(_youHaveNotAddedItemsInBasket, ExpectedyouHaveNotAddedItemsInBasket);
+            return new EmployerFavouritePage(_context);
+        }
+
 
         public EmployerFavouritePage RemoveAnApprenticeshipFromTheShortlist()
         {

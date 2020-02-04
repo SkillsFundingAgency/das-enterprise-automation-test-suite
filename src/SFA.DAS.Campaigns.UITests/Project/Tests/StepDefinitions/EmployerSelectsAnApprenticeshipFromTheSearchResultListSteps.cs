@@ -28,8 +28,6 @@ namespace SFA.DAS.Campaigns.UITests
         [Then(@"I Can Select An Apprenticeship From Search Result  List")]
         public void ThenICanSelectAnApprenticeshipFromSearchResultList()
         {
-           registerMyInterestPage = new RegisterMyInterestPage(_context);
-           registerMyInterestPage.RemoveTheAlertBanner();
            apprenticeshipSearchResultPage = new ApprenticeshipSearchResultPage (_context);
            apprenticeshipSearchResultPage .SelectTheApprenticeshipFromSearchResult();
 

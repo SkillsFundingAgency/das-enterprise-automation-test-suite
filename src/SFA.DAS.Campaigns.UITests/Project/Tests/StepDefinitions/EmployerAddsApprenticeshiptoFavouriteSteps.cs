@@ -26,8 +26,6 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
         [Then(@"I Can Add Apprenticeships From Search Result by Clicking On the Title")]
         public void ThenICanAddApprenticeshipsFromSearchResultByClickingOnTheTitle()
         {
-            registerMyInterestPage = new RegisterMyInterestPage(_context);
-            registerMyInterestPage.RemoveTheAlertBanner();
             apprenticeshipSearchResultPage = new ApprenticeshipSearchResultPage(_context);
             apprenticeshipSearchResultPage.SelectTheApprenticeshipFromSearchResult()
                 .EnterProviderPostCode()

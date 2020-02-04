@@ -18,4 +18,6 @@ Scenario: I want to be able Save my Favourite Short List to the GovUK Account
 	And I Can Click on the Favourite Icon with Apprenticeship
 	Then I Can Verify the Favourite Count for Provider
 	And I Can Save the Short list Favourite to my Gov>UK Account button
+	
+
 
