@@ -142,7 +142,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
             NavigateToHome();
             ApprenticeshipVacancyType();
             formCompletionHelper.SelectFromDropDownByValue(VacancySearchMode, "VacancyTitle");
-            var searchTerm = vacancyTitledataHelper.VacancyTitleDate.AddDays(-1).ToString("MMMyyyy");
+            var searchTerm = vacancyTitledataHelper.VacancyTitleDate.AddDays(-10).ToString("MMMyyyy");
             formCompletionHelper.EnterText(VacancySearchText, $"{searchTerm}_");
             formCompletionHelper.ClickElement(() => _pageInteractionHelper.FindElement(SearchVacancy));
             formCompletionHelper.ClickLinkByText(VacancyFilters, filter);

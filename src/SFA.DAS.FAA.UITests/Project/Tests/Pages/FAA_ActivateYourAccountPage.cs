@@ -14,16 +14,19 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
         private readonly ScenarioContext _context;
         private readonly FAADataHelper _dataHelper;
         private readonly FormCompletionHelper _formCompletionHelper;
+        private readonly PageInteractionHelper _pageInteractionHelper;
         #endregion
 
         private By ActivationCode => By.Id("ActivationCode");
         private By ActivateAccount => By.Id("activate-button");
-
+        private By SignOut => By.Id("signout-link");
+        
         public FAA_ActivateYourAccountPage(ScenarioContext context) : base(context)
         {
             _context = context;
             _dataHelper = context.Get<FAADataHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
+            _pageInteractionHelper = context.Get<PageInteractionHelper>();
             VerifyPage();
         }
 
@@ -32,6 +35,12 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
             _formCompletionHelper.EnterText(ActivationCode, _dataHelper.ActivationCode);
             _formCompletionHelper.Click(ActivateAccount);
             return new FAA_ActivateYourAccountPage2(_context);
+        }
+
+        public FAA_SignInPage ClickSignOut()
+        {
+            _formCompletionHelper.Click(SignOut);
+            return new FAA_SignInPage(_context);
         }
     }
 }

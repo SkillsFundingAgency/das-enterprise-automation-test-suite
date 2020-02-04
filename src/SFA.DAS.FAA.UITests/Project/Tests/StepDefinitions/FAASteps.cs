@@ -9,7 +9,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.StepDefinitions
     public class FAASteps
     {
         private readonly FAAStepsHelper _faaStepsHelper;
-        private FAA_CreateAnAccountPage accountCreationPage;
+        private FAA_CreateAnAccountPage accountCreationPage;        
 
         public FAASteps(ScenarioContext context) => _faaStepsHelper = new FAAStepsHelper(context);
 
@@ -17,17 +17,21 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.StepDefinitions
         public void WhenTheApplicantWithdrawTheApplication() => _faaStepsHelper.WithdrawVacancy();
 
         [When(@"an Applicant initiates Account creation journey")]
+        [Given(@"an Applicant initiates Account creation journey")]
         public void WhenAnApplicantInitiatesAccountCreationJourney() => accountCreationPage = _faaStepsHelper.StartFAAAccountCreation();
-
-        [Then(@"the Applicant is able to create a FAA Account")]      
         
+        [Then(@"Applicant is redirected to Activation Page when Login With Unactivated email")]
+        public void ThenApplicantIsRedirectedToActivationPageWhenLoginWithUnactivatedEmail() => _faaStepsHelper.CreateFAAAccountWithNoActivation(accountCreationPage);
+                       
+        [Then(@"the Applicant is able to create a FAA Account")]
+        [When(@"the Applicant is able to create a FAA Account")]
+
         public void ThenTheApplicantIsAbleToCreateAFAAAccount() => _faaStepsHelper.CreateFAAAccount(accountCreationPage);
 
         [Then(@"the status of the Application is shown as '(successful|unsuccessful)' in FAA")]
         public void ThenTheStatusOfTheApplicationIsShownAsInFAA(string expectedStatus)
         {
             var actualStatus = _faaStepsHelper.GetApplicationStatus();
-
             StringAssert.Contains(expectedStatus, actualStatus);
         }
 
@@ -35,6 +39,6 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.StepDefinitions
         public void ThenTheApplicantShouldBeToldThatEmailIsAlreadyRegistered() 
         {
             accountCreationPage.SubmitAccountCreationDetailsWithRegisteredEmail();
-        }
+        }        
     }
 }

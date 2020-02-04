@@ -14,12 +14,22 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
             _connectionString = ePAOConfig.EPAOAssessorDbConnectionString;
         }
 
-        public void DeleteCertificate(String uln)
+        public void DeleteCertificate(string uln)
         {
             ExecuteSqlCommand($"DELETE FROM [CertificateLogs] WHERE CertificateId IN (SELECT Id FROM [Certificates] WHERE ULN = '{uln}')");
             ExecuteSqlCommand($"DELETE FROM [Certificates] WHERE ULN = '{uln}'");
         }
 
+        public void ResetApplyUser(string applyUserEmail)
+        {
+            var organisationId = GetDataFromDb($"SELECT OrganisationId from Contacts where Email = '{applyUserEmail}'");
+            if (organisationId.Equals("")) return;
+            ExecuteSqlCommand($"UPDATE Contacts SET OrganisationID = null WHERE Email = '{applyUserEmail}'");
+            ExecuteSqlCommand($"DELETE from Apply where OrganisationId = '{organisationId}'");
+        }
+
         private void ExecuteSqlCommand(string queryToExecute) => _sqlDatabase.ExecuteSqlCommand(_connectionString, queryToExecute);
+
+        private string GetDataFromDb(string queryToExecute) => Convert.ToString(_sqlDatabase.ReadDataFromDataBase(queryToExecute, _connectionString)[0][0]);
     }
 }

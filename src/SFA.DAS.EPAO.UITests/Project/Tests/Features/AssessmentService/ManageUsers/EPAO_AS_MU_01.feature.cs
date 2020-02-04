@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.EPAO.UITests.Project.Tests.Features.ManageUsers
+namespace SFA.DAS.EPAO.UITests.Project.Tests.Features.AssessmentService.ManageUsers
 {
     using TechTalk.SpecFlow;
     

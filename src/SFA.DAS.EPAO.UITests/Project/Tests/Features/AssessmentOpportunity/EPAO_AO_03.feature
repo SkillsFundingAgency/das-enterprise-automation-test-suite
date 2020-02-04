@@ -1,7 +1,6 @@
 ﻿Feature: EPAO_AO_03
 
 @epao
-@assessmentservice
 @assessmentopportunity
 @regression
 Scenario: EPAO_AO_03 - View an Proposed Standard in Assessment Opportunity Application
