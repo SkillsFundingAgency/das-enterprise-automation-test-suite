@@ -72,12 +72,12 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Features.Apprenticeships
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("User can find an apprentice from Apprenticeships home page")]
-        [NUnit.Framework.CategoryAttribute("campaign")]
+        [NUnit.Framework.CategoryAttribute("campaigns")]
         [NUnit.Framework.CategoryAttribute("regression")]
         public virtual void UserCanFindAnApprenticeFromApprenticeshipsHomePage()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User can find an apprentice from Apprenticeships home page", null, new string[] {
-                        "campaign",
+                        "campaigns",
                         "regression"});
 #line 8
  this.ScenarioInitialize(scenarioInfo);

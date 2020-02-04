@@ -72,12 +72,12 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Features.Employer
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("I want to be able to view the Favourite content")]
-        [NUnit.Framework.CategoryAttribute("campaign")]
+        [NUnit.Framework.CategoryAttribute("campaigns")]
         [NUnit.Framework.CategoryAttribute("regression")]
         public virtual void IWantToBeAbleToViewTheFavouriteContent()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("I want to be able to view the Favourite content", null, new string[] {
-                        "campaign",
+                        "campaigns",
                         "regression"});
 #line 8
 this.ScenarioInitialize(scenarioInfo);
@@ -90,6 +90,8 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("I Click on the Favourite Icon", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 12
  testRunner.Then("I Can Verify the Favourite Header", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 13
+ testRunner.And("I can Verify that there are no Items in the list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }

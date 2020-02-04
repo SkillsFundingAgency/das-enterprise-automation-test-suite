@@ -207,8 +207,6 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
         }
         internal JamalTheCallingPage ClickOnTheCallingLink()
         {
-            registerMyInterestPage = new RegisterMyInterestPage(_context);
-            registerMyInterestPage.RemoveTheAlertBanner();
             _formCompletionHelper.ClickElement(_theCallingLink);
             return new JamalTheCallingPage(_context);
         }

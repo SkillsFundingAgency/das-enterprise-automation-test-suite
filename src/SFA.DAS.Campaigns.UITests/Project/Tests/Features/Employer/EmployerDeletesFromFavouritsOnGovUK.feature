@@ -19,4 +19,5 @@ Scenario: I want to be able Delete From My Favourite Short List On GovUK Account
 	Then I Can Verify the Favourite Count for Provider
 	And I Can Save the Short list Favourite to my Gov>UK Account button
 	And I Can Delete From My Favourites on Gov UK Short List
-
+	And I can Switch to Basket  view using the url
+	And I can Verify that there are no Items in the list

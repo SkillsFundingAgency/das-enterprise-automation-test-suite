@@ -34,6 +34,12 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
             employerFavouritePage= new EmployerFavouritePage(_context);
             employerFavouritePage.VerifyFavouritePageHeader();
         }
+        [Then(@"I can Verify that there are no Items in the list")]
+        public void ThenICanVerifyThatThereAreNoItemsInTheList()
+        {
+            employerFavouritePage = new EmployerFavouritePage(_context);
+            employerFavouritePage.VerifyThatNoItemsAreinTheBasket();
+        }
 
         [Then(@"I Can Verify the Favourite Count")]
         public void ThenICanVerifyTheFavouriteCount()
