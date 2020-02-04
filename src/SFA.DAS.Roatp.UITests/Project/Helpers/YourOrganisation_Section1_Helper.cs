@@ -8,7 +8,15 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers
         {
             return applicationOverviewPage
                 .AccessIntroductionWhatYouWillNeedSection()
-                .VerifyIntorductionAndContinue()
+                .VerifyIntroductionAndContinue()
+                .VerifyIntroductionStatus(StatusHelper.StatusCompleted);
+        }
+
+        internal ApplicationOverviewPage CompleteYourOrganisationSection_1_SupportRoute(ApplicationOverviewPage applicationOverviewPage)
+        {
+            return applicationOverviewPage
+                .AccessIntroductionWhatYouWillNeedSection()
+                .VerifyIntroductionForSupportingAndContinue()
                 .VerifyIntroductionStatus(StatusHelper.StatusCompleted);
         }
 
