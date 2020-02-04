@@ -11,6 +11,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers
                 .ClickSaveAndContinue()
                 .VerifyIntroductionStatus_Section3(StatusHelper.StatusCompleted);
         }
+
         internal ApplicationOverviewPage CompleteCriminalAndCompliance_2(ApplicationOverviewPage applicationOverviewPage)
         {
             return applicationOverviewPage.Access_Section3_ChecksOnYourOrganisation()
@@ -27,12 +28,14 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers
                 .SelectYesEnterInformationForSubjectToInsolvencyOrWindingUpProceedingsAndContinue()
                 .VerifyChecksOnYourOrganisations_Section3(StatusHelper.StatusCompleted);
         }
+
         internal ApplicationOverviewPage CompleteCriminalAndCompliance_3(ApplicationOverviewPage applicationOverviewPage)
         {
             return applicationOverviewPage.Access_Section3_IntroductionWhatYouWillNeedStatusWhosInControl()
                 .ClickSaveAndContinue()
                 .VerifyIntroductionStatusControl_Section3(StatusHelper.StatusCompleted);
         }
+
         internal ApplicationOverviewPage CompleteCriminalAndCompliance_4(ApplicationOverviewPage applicationOverviewPage)
         {
             return applicationOverviewPage.Access_Section3_ChecksOnWhosInControlOfYourOrganisation()
@@ -46,6 +49,5 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers
                 .SelectYesEnterInformationForBankruptAndContinue()
                 .VerifyCheckWhoIsInControl_Section3(StatusHelper.StatusCompleted);
         }
-
     }
 }
