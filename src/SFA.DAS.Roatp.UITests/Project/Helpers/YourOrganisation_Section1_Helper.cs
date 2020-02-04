@@ -102,8 +102,8 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers
         internal ApplicationOverviewPage CompleteYourOrganisationSection_5_Support(ApplicationOverviewPage applicationOverviewPage)
         {
             return applicationOverviewPage
-                .AccessExperienceAndAccreditationsSectionForSupportingRoute()
-                .SelectYesForFundedbyOFSAndContinueForSupportingRoute()
+                .AccessExperienceAndAccreditationsSection()
+                .SelectNoForFundedbyOFSAndContinueForSupportingRoute()
                 .SelectYesForOrgDeliveredApprenticeshipTrainingAsSubcontractor()
                 .UploadLegallyBindingContractAndContinue()
                 .VerifyExperienceAndAccreditationsStatus(StatusHelper.StatusCompleted);

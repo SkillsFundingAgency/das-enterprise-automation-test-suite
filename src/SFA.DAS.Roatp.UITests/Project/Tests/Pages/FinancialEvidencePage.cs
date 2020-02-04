@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using System.Linq;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
@@ -11,15 +12,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
         private readonly ScenarioContext _context;
         #endregion
 
-        private By TotalAnnualTurnOver => By.CssSelector("#FH-140");
-        private By TotalDepreciationCharges => By.CssSelector("#FH-150");
-        private By TotalProfitAndLoss => By.CssSelector("#FH-160");
-        private By TotalDividends => By.CssSelector("#FH-170");
-        private By TotalCurrentAssets => By.CssSelector("#FH-180");
-        private By TotalCurrentLiabilities => By.CssSelector("#FH-190");
-        private By TotalBorrowings => By.CssSelector("#FH-200");
-        private By TotalnetAssets => By.CssSelector("#FH-210");
-        private By TotalIntangibleAssets => By.CssSelector("#FH-220");
+        private By InputNumbers => By.CssSelector(".govuk-input[type='number']");
 
         public FinancialEvidencePage(ScenarioContext context) : base(context)
         {
@@ -29,15 +22,13 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
 
         public LatestFullFinancialForTwelveMonthsPage EnterInputsForFinancialEvidenceAndContinue()
         {
-            formCompletionHelper.EnterText(TotalAnnualTurnOver, applydataHelpers.GenerateRandomWholeNumber(4));
-            formCompletionHelper.EnterText(TotalDepreciationCharges, applydataHelpers.GenerateRandomWholeNumber(4));
-            formCompletionHelper.EnterText(TotalProfitAndLoss, applydataHelpers.GenerateRandomWholeNumber(4));
-            formCompletionHelper.EnterText(TotalDividends, applydataHelpers.GenerateRandomWholeNumber(4));
-            formCompletionHelper.EnterText(TotalCurrentAssets, applydataHelpers.GenerateRandomWholeNumber(4));
-            formCompletionHelper.EnterText(TotalCurrentLiabilities, applydataHelpers.GenerateRandomWholeNumber(4));
-            formCompletionHelper.EnterText(TotalBorrowings, applydataHelpers.GenerateRandomWholeNumber(4));
-            formCompletionHelper.EnterText(TotalnetAssets, applydataHelpers.GenerateRandomWholeNumber(4));
-            formCompletionHelper.EnterText(TotalIntangibleAssets, applydataHelpers.GenerateRandomWholeNumber(4));
+            var inputNumbersFields = pageInteractionHelper.FindElements(InputNumbers).ToList();
+
+            foreach (var inputNumber in inputNumbersFields)
+            {
+                formCompletionHelper.EnterText(inputNumber, applydataHelpers.GenerateRandomWholeNumber(4));
+            }
+
             Continue();
             return new LatestFullFinancialForTwelveMonthsPage(_context);
         }
