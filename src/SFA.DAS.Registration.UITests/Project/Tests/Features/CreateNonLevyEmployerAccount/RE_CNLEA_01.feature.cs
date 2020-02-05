@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.Registration.UITests.Project.Tests.Features
+namespace SFA.DAS.Registration.UITests.Project.Tests.Features.CreateNonLevyEmployerAccount
 {
     using TechTalk.SpecFlow;
     
@@ -18,22 +18,20 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.0.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("RE_CA_01_CreateAccount")]
-    [NUnit.Framework.CategoryAttribute("registration")]
-    public partial class RE_CA_01_CreateAccountFeature
+    [NUnit.Framework.DescriptionAttribute("RE_CNLEA_01")]
+    public partial class RE_CNLEA_01Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "RE_CA_01_CreateAccount.feature"
+#line 1 "RE_CNLEA_01.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "RE_CA_01_CreateAccount", null, ProgrammingLanguage.CSharp, new string[] {
-                        "registration"});
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "RE_CNLEA_01", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -72,44 +70,28 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RE_CA_01A_Create Account without PAYE details")]
+        [NUnit.Framework.DescriptionAttribute("RE_CNLEA_01_Create a NonLevy Employer Account and Not Sign the Agreement")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public virtual void RE_CA_01A_CreateAccountWithoutPAYEDetails()
-        {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RE_CA_01A_Create Account without PAYE details", null, new string[] {
-                        "regression"});
-#line 5
-this.ScenarioInitialize(scenarioInfo);
-            this.ScenarioStart();
-#line 6
- testRunner.Given("I create an Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 7
- testRunner.Then("I do not add paye details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-            this.ScenarioCleanup();
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RE_CA_01B_Create Non Levy Account with PAYE Details")]
-        [NUnit.Framework.CategoryAttribute("regression")]
+        [NUnit.Framework.CategoryAttribute("registration")]
         [NUnit.Framework.CategoryAttribute("addpayedetails")]
-        public virtual void RE_CA_01B_CreateNonLevyAccountWithPAYEDetails()
+        public virtual void RE_CNLEA_01_CreateANonLevyEmployerAccountAndNotSignTheAgreement()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RE_CA_01B_Create Non Levy Account with PAYE Details", null, new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RE_CNLEA_01_Create a NonLevy Employer Account and Not Sign the Agreement", null, new string[] {
                         "regression",
+                        "registration",
                         "addpayedetails"});
-#line 11
+#line 6
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 12
+#line 7
  testRunner.Given("I create an Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 13
+#line 8
  testRunner.When("I add paye details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 14
+#line 9
  testRunner.And("add organisation details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 15
+#line 10
  testRunner.When("I do not sign the agreement", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 16
+#line 11
  testRunner.Then("I will land in the User Home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();

@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.Registration.UITests.Project.Tests.Features
+namespace SFA.DAS.Registration.UITests.Project.Tests.Features.CreateNonLevyEmployerAccount
 {
     using TechTalk.SpecFlow;
     
@@ -18,22 +18,20 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.0.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("RE_EA_01_ExistingLevyAccount")]
-    [NUnit.Framework.CategoryAttribute("registration")]
-    public partial class RE_EA_01_ExistingLevyAccountFeature
+    [NUnit.Framework.DescriptionAttribute("RE_CNLEA_03")]
+    public partial class RE_CNLEA_03Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "RE_EA_01_ExistingLevyAccount.feature"
+#line 1 "RE_CNLEA_03.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "RE_EA_01_ExistingLevyAccount", null, ProgrammingLanguage.CSharp, new string[] {
-                        "registration"});
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "RE_CNLEA_03", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -72,37 +70,27 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RE_EA_01_01_Existing Levy Account")]
+        [NUnit.Framework.DescriptionAttribute("RE_CNLEA_03_Create a NonLevy Account and Sign Agreement")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public virtual void RE_EA_01_01_ExistingLevyAccount()
+        [NUnit.Framework.CategoryAttribute("registration")]
+        [NUnit.Framework.CategoryAttribute("addpayedetails")]
+        public virtual void RE_CNLEA_03_CreateANonLevyAccountAndSignAgreement()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RE_EA_01_01_Existing Levy Account", null, new string[] {
-                        "regression"});
-#line 5
-this.ScenarioInitialize(scenarioInfo);
-            this.ScenarioStart();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RE_CNLEA_03_Create a NonLevy Account and Sign Agreement", null, new string[] {
+                        "regression",
+                        "registration",
+                        "addpayedetails"});
 #line 6
- testRunner.Given("the Employer login using existing levy account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 7
- testRunner.Then("I will land in the User Home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-            this.ScenarioCleanup();
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RE_EA_01_02_Existing NonLevy Account")]
-        [NUnit.Framework.CategoryAttribute("regression")]
-        public virtual void RE_EA_01_02_ExistingNonLevyAccount()
-        {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RE_EA_01_02_Existing NonLevy Account", null, new string[] {
-                        "regression"});
-#line 10
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 11
- testRunner.Given("the Employer login using existing non levy account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 12
- testRunner.Then("I will land in the User Home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 7
+ testRunner.Given("I create an Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 8
+ testRunner.When("I add paye details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 9
+ testRunner.And("add organisation details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 10
+ testRunner.And("I sign the agreement", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
