@@ -21,5 +21,17 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
             Continue();
             return new UploadOrganisationsFinancialPage(_context);
         }
+
+        public UploadOrganisationsManagementAccountsPage ContinueOnWhatYouNeedToUploadForManagementAccounts()
+        {
+            Continue();
+            return new UploadOrganisationsManagementAccountsPage(_context);
+        }
+
+        public UploadManagementAccountsCoveringThreeMonths ContinueOnWhatYouNeedToUploadForManagementAccountsCoveringThreeMonths()
+        {
+            Continue();
+            return new UploadManagementAccountsCoveringThreeMonths(_context);
+        }
     }
 }

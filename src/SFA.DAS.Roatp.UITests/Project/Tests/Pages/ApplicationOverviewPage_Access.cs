@@ -81,6 +81,12 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
             return new TypeOfApprenticeshipTrainingPage(_context);
         }
 
+        public EnsureApprenticesSupportedPage Access_Section6_SupportingApprentices()
+        {
+            formCompletionHelper.ClickElement(GetTaskLinkElement(PlanningApprenticeshipTraining, PlanningApprenticeshipTraining_3));
+            return new EnsureApprenticesSupportedPage(_context);
+        }
+
         public ForecastInFirst12MonthsPage Access_Section6_ForeCastingStarts()
         {
             formCompletionHelper.ClickElement(GetTaskLinkElement(PlanningApprenticeshipTraining, PlanningApprenticeshipTraining_4));
@@ -228,10 +234,25 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
             formCompletionHelper.ClickElement(GetTaskLinkElement(Yourorganisation, YourOrganisation_2));
             return new UltimateParentCompanyPage(_context);
         }
+        public IcoRegistrationNumberPage AccessYourOrganisationSectionForOrgTypeNotACompany()
+        {
+            formCompletionHelper.ClickElement(GetTaskLinkElement(Yourorganisation, YourOrganisation_2));
+            return new IcoRegistrationNumberPage(_context);
+        }
         public ConfrimWhosInControlPage AccessTellUSWhosInControlSection()
         {
             formCompletionHelper.ClickElement(GetTaskLinkElement(Yourorganisation, YourOrganisation_3));
             return new ConfrimWhosInControlPage(_context);
+        }
+        public ConfirmTrusteesPage AccessTellUSWhosInControlSectionForOrgTypeCharity()
+        {
+            formCompletionHelper.ClickElement(GetTaskLinkElement(Yourorganisation, YourOrganisation_3));
+            return new ConfirmTrusteesPage(_context);
+        }
+        public OrganisationTypePage AccessTellUsWhosInControlSectionForSoleTrader()
+        {
+            formCompletionHelper.ClickElement(GetTaskLinkElement(Yourorganisation, YourOrganisation_3));
+            return new OrganisationTypePage(_context);
         }
         public WhatIsYourOrganisationPage AccessDescribeYourOrganisationsForOrgTypeCharity()
         {
@@ -243,7 +264,8 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
             formCompletionHelper.ClickElement(GetTaskLinkElement(Yourorganisation, YourOrganisation_5));
             return new FundedByTheOfficeForStudentsPage(_context);
         }
-
         #endregion
     }
 }
+
+
