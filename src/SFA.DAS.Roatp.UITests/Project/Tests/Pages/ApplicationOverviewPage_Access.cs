@@ -1,4 +1,13 @@
-﻿using System;
+﻿using SFA.DAS.Roatp.UITests.Project.Tests.Pages.CriminalAndCompliance_Section3;
+using SFA.DAS.Roatp.UITests.Project.Tests.Pages.DeliveringApprenticeshipTraining_Section7;
+using SFA.DAS.Roatp.UITests.Project.Tests.Pages.EvaluatingApprenticeshipTraining_Section8;
+using SFA.DAS.Roatp.UITests.Project.Tests.Pages.FinancialEvidence_Section2;
+using SFA.DAS.Roatp.UITests.Project.Tests.Pages.Finish_Section9;
+using SFA.DAS.Roatp.UITests.Project.Tests.Pages.PlanningApprenticeshipTraining_Section6;
+using SFA.DAS.Roatp.UITests.Project.Tests.Pages.ProtectingYourApprentices_Section4;
+using SFA.DAS.Roatp.UITests.Project.Tests.Pages.ReadinessToEngage_Section5;
+using SFA.DAS.Roatp.UITests.Project.Tests.Pages.YourOrganisation_Section1;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
