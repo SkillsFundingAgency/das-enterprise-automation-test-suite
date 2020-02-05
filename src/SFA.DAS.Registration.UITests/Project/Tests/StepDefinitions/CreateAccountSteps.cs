@@ -13,7 +13,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         private GetApprenticeshipFunding getApprenticeshipFunding;
         private OrganisationSearchPage organistionSearchPage;
         private SignAgreementPage _signAgreementPage;
-        private EoiAboutYourAgreementPage eoiAboutYourAgreementPage;
         private HomePage homePage;
         private readonly ObjectContext _objectContext;
         private readonly RegistrationDatahelpers _dataHelper;
@@ -60,15 +59,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
                 .SelectViewAgreementNowAndContinue();
         }
 
-        [When(@"add eoi organisation details")]
-        public void AddEoiOrganisationDetails()
-        {
-            eoiAboutYourAgreementPage = organistionSearchPage
-                .SearchForAnOrganisation()
-                .SelectYourOrganisation()
-                .ContinueToEoiAboutYourAgreementPage();
-        }
-
         [When(@"I sign the agreement")]
         public void SignTheAgreement()
         {
@@ -84,24 +74,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         public void DoNotSignTheAgreement()
         {
             homePage = _signAgreementPage
-                .DoNotSignAgreement();
-        }
-
-        [When(@"I sign the eoi agreement")]
-        public void WhenISignTheEoiAgreement()
-        {
-            homePage = eoiAboutYourAgreementPage
-                .ContinueWithEoiAgreement()
-                .SignAgreement();
-
-            SetAgreementId(homePage);
-        }
-
-        [When(@"I do not sign the eoi agreement")]
-        public void DoNotSignTheEoiAgreement()
-        {
-            homePage = eoiAboutYourAgreementPage
-                .ContinueWithEoiAgreement()
                 .DoNotSignAgreement();
         }
 
@@ -130,6 +102,5 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
 
             return new HomePage(_context, true);
         }
-
     }
 }

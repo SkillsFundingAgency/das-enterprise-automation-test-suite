@@ -28,11 +28,5 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         {
             _loginhelper.Login(_context.GetUser<NonLevyUser>(), false);
         }
-
-        [Given(@"the Employer login using existing eoi account")]
-        public void GivenTheEmployerLoginUsingExistingEoiAccount()
-        {
-            _loginhelper.Login(_context.GetUser<EoiUser>(), false);
-        }
     }
 }
