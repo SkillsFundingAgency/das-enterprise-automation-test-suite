@@ -1,4 +1,5 @@
 ﻿using SFA.DAS.Roatp.UITests.Project.Tests.Pages;
+using SFA.DAS.Roatp.UITests.Project.Tests.Pages.YourOrganisation_Section1;
 
 namespace SFA.DAS.Roatp.UITests.Project.Helpers
 {
@@ -23,8 +24,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers
         internal ApplicationOverviewPage CompleteYourOrganisationSection_2_NotACompany(ApplicationOverviewPage applicationOverviewPage)
         {
             return CompleteYourOrganisationSection_2(applicationOverviewPage
-               .AccessYourOrganisationSectionForOrgTypeNotACompany());
-                
+               .AccessYourOrganisationSectionForOrgTypeNotACompany());  
         }
 
         internal ApplicationOverviewPage CompleteYourOrganisationSection_2(ApplicationOverviewPage applicationOverviewPage)
