@@ -26,6 +26,12 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
             _tabHelper = context.Get<TabHelper>();
         }
 
+        [Given(@"the QA reviewer logged in to the manage application")]
+        public void GivenTheQAReviewerLoggedInToTheManageApplication()
+        {
+            _manage_HomePage = _manageStepsHelper.GoToManageHomePage(true);
+        }
+
         [Given(@"the reviewer logged in to the manage application")]
         public void GivenTheReviewerLoggedInToTheManageApplication()
         {
@@ -44,6 +50,12 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
             manage_SearchForACandidatePage = manage_HelpdeskAdviserPage.SearchForACandidate();
         }
 
+        [Then(@"the reviewer is able to search and select a New candidate")]
+        public void ThenTheReviewerIsAbleToSearchAndSelectANewCandidate() => _manageStepsHelper.SearchForANewCandidate();
+        
+        [Then(@"the Candidate is removed from the Manage")]
+        public void ThenTheCandidateIsRemovedFromTheManage() => _manageStepsHelper.SearchDeletedCandidate();
+        
         [Then(@"view the candidate's applications")]
         public void ThenViewTheCandidatesApplications()
         {

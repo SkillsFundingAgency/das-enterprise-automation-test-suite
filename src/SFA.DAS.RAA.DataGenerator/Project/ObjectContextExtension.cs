@@ -11,7 +11,7 @@ namespace SFA.DAS.RAA.DataGenerator.Project
         private const string VacancyType = "vacancytype";
         private const string FAARestart = "faarestart";
         private const string RAAV1 = "raav1";
-        private const string RAAV2Employer = "raav2employer";
+        private const string RAAV2Employer = "raav2employer";        
         #endregion
 
         public static void SetApprenticeshipVacancyType(this ObjectContext objectContext)

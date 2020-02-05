@@ -9,8 +9,8 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.StepDefinitions
     public class FAASteps
     {
         private readonly FAAStepsHelper _faaStepsHelper;
-        private FAA_CreateAnAccountPage accountCreationPage;        
-
+        private FAA_CreateAnAccountPage accountCreationPage;
+        
         public FAASteps(ScenarioContext context) => _faaStepsHelper = new FAAStepsHelper(context);
 
         [When(@"the Applicant withdraw the application")]
@@ -27,7 +27,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.StepDefinitions
         [When(@"the Applicant is able to create a FAA Account")]
 
         public void ThenTheApplicantIsAbleToCreateAFAAAccount() => _faaStepsHelper.CreateFAAAccount(accountCreationPage);
-
+        
         [Then(@"the status of the Application is shown as '(successful|unsuccessful)' in FAA")]
         public void ThenTheStatusOfTheApplicationIsShownAsInFAA(string expectedStatus)
         {
@@ -39,6 +39,16 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.StepDefinitions
         public void ThenTheApplicantShouldBeToldThatEmailIsAlreadyRegistered() 
         {
             accountCreationPage.SubmitAccountCreationDetailsWithRegisteredEmail();
-        }        
+        }
+
+        [When(@"Applicant Deletes the FAA Account")]
+        public void WhenApplicantDeletesTheFAAAccount() 
+        {
+            _faaStepsHelper.GoToNewAccountFAAHomePage()
+                .GoToSettings()
+                .DeleteYourAccount()
+                .DeleteAccount()
+                .ConfirmAccountDeletion();            
+        }
     }
 }

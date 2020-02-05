@@ -286,6 +286,22 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
 
             return new SignInPage(_context)
                 .SubmitRecruitmentLoginDetails();
-        }        
+        }   
+        
+        public void SearchDeletedCandidate()
+        {
+            GoToRAAHomePage(true)
+                .SearchCandidates()
+                .SearchDeletedCandidate();
+        }
+
+        public void SearchNewCandidate()
+        {
+            GoToRAAHomePage(false)
+                .SearchCandidates()
+                .SearchNewCandidate()
+                .SelectACandidate()
+                .ExitFromRAA();
+        }
     }
 }

@@ -7,7 +7,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.StepDefinitions
     public class FAAApplySteps
     {
         private readonly FAAStepsHelper _faaStepsHelper;
-
+        
         public FAAApplySteps(ScenarioContext context)
         {
             _faaStepsHelper = new FAAStepsHelper(context);
@@ -25,5 +25,11 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.StepDefinitions
         {
             _faaStepsHelper.ApplyForAVacancy(qualificationdetails, workExperience, trainingCourse);
         }
+
+        [When(@"the Applicant apply for a Vacancy in New FAA Account '(.*)','(.*)','(.*)'")]
+        public void WhenTheApplicantApplyForAVacancyInNewFAAAccount(string qualificationdetails, string workExperience, string trainingCourse)
+        {
+            _faaStepsHelper.ApplyForAVacancyInNewAccount(qualificationdetails, workExperience, trainingCourse);
+        } 
     }
 }

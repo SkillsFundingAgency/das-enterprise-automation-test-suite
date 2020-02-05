@@ -14,18 +14,25 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => "Settings";
 
+        private By UsernameField => By.CssSelector("#EmailAddress");
+        private By PasswordField => By.CssSelector("#Password");
+        private By FindAnApprenticeshipLink => By.LinkText("Find an apprenticeship");
+        private By SuccessfulMobileVerificationText => By.Id("SuccessMessageText");
+        private By DeleteYourAccountLink => By.LinkText("Delete your account");
+        private By DeleteAccountButton => By.Id("delete-account-button");
+
         #region Helpers and Context
         private readonly PageInteractionHelper _pageInteractionHelper;
+        private readonly FormCompletionHelper _formCompletionHelper;
         private readonly ScenarioContext _context;     
         private readonly FAADataHelper _dataHelper;
         #endregion
-
-        private By SuccessfulMobileVerificationText => By.Id("SuccessMessageText");
-
+    
         public FAA_SettingsPage(ScenarioContext context) : base(context)
         {
             _context = context;
-            _pageInteractionHelper = context.Get<PageInteractionHelper>();            
+            _pageInteractionHelper = context.Get<PageInteractionHelper>();
+            _formCompletionHelper = context.Get<FormCompletionHelper>();
             _dataHelper = context.Get<FAADataHelper>();
             VerifyPage();
         }
@@ -33,6 +40,21 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
         public void VerifySuccessfulVerificationText()
         {
             _pageInteractionHelper.VerifyText(SuccessfulMobileVerificationText, _dataHelper.SuccessfulPhoneVerificationText);
+        }
+
+        public FAA_ApprenticeSearchPage ClickFindAnApprenticeshipLink()
+        {
+            _formCompletionHelper.Click(FindAnApprenticeshipLink);
+            return new FAA_ApprenticeSearchPage(_context);
+        }
+
+        public FAA_ConfirmAccountDeletionPage DeleteYourAccount()
+        {
+            _formCompletionHelper.Click(DeleteYourAccountLink);
+            _formCompletionHelper.EnterText(UsernameField, _dataHelper.EmailId);
+            _formCompletionHelper.EnterText(PasswordField, _dataHelper.Password);
+            _formCompletionHelper.Click(DeleteAccountButton);
+            return new FAA_ConfirmAccountDeletionPage(_context);
         }
     }
 }

@@ -26,6 +26,8 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 
         private By CreateAnAccountLink => By.Id("create-account-link");
 
+        private By AccountDeletionInfo => By.Id("SuccessMessageText");
+
         public FAA_SignInPage(ScenarioContext context) : base(context)
         {
             _context = context;
@@ -44,6 +46,14 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
             return new FAA_MyApplicationsHomePage(_context);
         }
 
+        public FAA_MyApplicationsHomePage SubmitNewAccountLoginDetails()
+        {
+            _formCompletionHelper.EnterText(UsernameField, _dataHelper.EmailId);
+            _formCompletionHelper.EnterText(PasswordField, _dataHelper.Password);
+            _formCompletionHelper.ClickElement(SignInButton);
+            return new FAA_MyApplicationsHomePage(_context);
+        }
+
         public FAA_ActivateYourAccountPage SubmitUnactivatedLoginDetails()
         {
             _formCompletionHelper.EnterText(UsernameField, _dataHelper.EmailId);
@@ -56,6 +66,11 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
         {
             _formCompletionHelper.Click(CreateAnAccountLink);
             return new FAA_CreateAnAccountPage(_context);
+        }
+
+        public void ConfirmAccountDeletion()
+        {
+            _PageInteractionhelper.VerifyText(AccountDeletionInfo,"Your account has been deleted");
         }
     }
 }
