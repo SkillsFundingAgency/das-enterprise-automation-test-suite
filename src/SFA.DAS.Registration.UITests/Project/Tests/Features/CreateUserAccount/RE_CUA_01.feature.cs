@@ -70,21 +70,21 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features.CreateUserAccount
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RE_CUA_01_Create a User Account")]
+        [NUnit.Framework.DescriptionAttribute("RE_CUA_01_Create an User Account and Skip adding PAYE")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("registration")]
-        public virtual void RE_CUA_01_CreateAUserAccount()
+        public virtual void RE_CUA_01_CreateAnUserAccountAndSkipAddingPAYE()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RE_CUA_01_Create a User Account", null, new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RE_CUA_01_Create an User Account and Skip adding PAYE", null, new string[] {
                         "regression",
                         "registration"});
 #line 5
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 6
- testRunner.Given("I create an Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.When("an User Account is created", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 7
- testRunner.Then("I do not add paye details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("My Account Home page is displayed when PAYE details are not added", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

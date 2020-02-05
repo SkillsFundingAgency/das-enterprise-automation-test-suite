@@ -24,8 +24,9 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             _dataHelper = context.Get<RegistrationDatahelpers>();
         }
 
-        [Given(@"I create an Account")]
-        public void CreateAnAccount()
+        [Given(@"an User Account is created")]
+        [When(@"an User Account is created")]
+        public void AnUserAccountIsCreated()
         {
             TestContext.Progress.WriteLine($"Email : {_dataHelper.RandomEmail}");
 
@@ -35,13 +36,13 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
                 .ContinueToGetApprenticeshipFunding();
         }
 
-        [Then(@"I do not add paye details")]
+        [Then(@"My Account Home page is displayed when PAYE details are not added")]
         public void DoNotAddPayeDetails()
         {
            getApprenticeshipFunding.DoNotAddPaye();
         }
 
-        [When(@"I add paye details")]
+        [When(@"the User adds PAYE details")]
         public void AddPayeDetails()
         {
             organistionSearchPage = getApprenticeshipFunding
@@ -49,7 +50,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
                 .SignInTo();
         }
 
-        [When(@"add organisation details")]
+        [When(@"adds Organisation details")]
         public void AddOrganisationDetails()
         {
             _signAgreementPage = organistionSearchPage
@@ -59,7 +60,8 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
                 .SelectViewAgreementNowAndContinue();
         }
 
-        [When(@"I sign the agreement")]
+        [When(@"the Employer is able to Sign the Agreement")]
+        [Then(@"the Employer is able to Sign the Agreement")]
         public void SignTheAgreement()
         {
             homePage = _signAgreementPage
@@ -70,22 +72,22 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             SetAgreementId(homePage);
         }
 
-        [When(@"I do not sign the agreement")]
+        [When(@"the Employer does not sign the Agreement")]
         public void DoNotSignTheAgreement()
         {
             homePage = _signAgreementPage
                 .DoNotSignAgreement();
         }
 
-        [Then(@"I will land in the Organisation Agreement page")]
+        [Then(@"the Employer lands on the Organisation Agreement page")]
         public void LandInTheOrganisationAgreementPage()
         {
             _signAgreementPage
                 .VerifySignAgreementPage();
         }
 
-        [Then(@"I will land in the User Home page")]
-        public void ThenIWillLandInTheUserHomePage()
+        [Then(@"the Employer Home page is displayed")]
+        public void TheEmployerHomePageIsDisplayed()
         {
             var accountid = new HomePage(_context)
                 .HomePage()

@@ -4,9 +4,9 @@
 @registration
 @addpayedetails
 Scenario: RE_CLEA_01_Create a Levy Account
-	Given levy declarations is added for past 15 months with levypermonth as 10000
-	Given I create an Account
-	When I add paye details
-	And add organisation details
-	When I do not sign the agreement
-	Then I will land in the User Home page
+	Given levy declarations are added for the past 15 months with levypermonth as 10000
+	And an User Account is created
+	When the User adds PAYE details
+	And adds Organisation details
+	And the Employer does not sign the Agreement
+	Then the Employer Home page is displayed
