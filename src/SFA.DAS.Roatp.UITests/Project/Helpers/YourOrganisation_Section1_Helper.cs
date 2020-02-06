@@ -48,7 +48,8 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers
             return applicationOverviewPage
                 .AccessTellUSWhosInControlSectionForOrgTypeCharity()
                 .ConfirmTrusteesAndContinue()
-                .EnterDateOfBirth();
+                .EnterDateOfBirth()
+                .VerifyTellUsWhosInControlStatus(StatusHelper.StatusCompleted);
         }
 
         internal ApplicationOverviewPage CompleteYourOrganisationSection_3_Support(ApplicationOverviewPage applicationOverviewPage)
@@ -88,7 +89,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers
                 .VerifyDescribeYourOrganisationStatus(StatusHelper.StatusCompleted);
         }
 
-        internal ApplicationOverviewPage CompleteYourOrganisationSection_5(ApplicationOverviewPage applicationOverviewPage)
+        internal ApplicationOverviewPage CompleteYourOrganisationSection_5_NoToAll(ApplicationOverviewPage applicationOverviewPage)
         {
             return applicationOverviewPage
                 .AccessExperienceAndAccreditationsSection()
