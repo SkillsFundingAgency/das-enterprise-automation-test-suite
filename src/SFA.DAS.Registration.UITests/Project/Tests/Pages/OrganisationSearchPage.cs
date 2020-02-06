@@ -1,38 +1,21 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.UI.Framework.TestSupport;
-using SFA.DAS.ConfigurationBuilder;
-using SFA.DAS.UI.FrameworkHelpers;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 {
-    public class OrganisationSearchPage : BasePage
+    public class OrganisationSearchPage : RegistrationBasePage
     {
         protected override string PageTitle => "Search for your organisation";
-
-        #region Helpers and Context
-        private readonly PageInteractionHelper _pageInteractionHelper;
-        private readonly FormCompletionHelper _formCompletionHelper;
         private readonly ScenarioContext _context;
-        private readonly RegistrationConfig _config;
-        private readonly ObjectContext _objectContext;
-        #endregion
 
+        #region Locators
         private By SearchInput => By.Id("searchTerm");
-
         private By SearchButton => By.CssSelector("input.govuk-button");
-
+        #endregion
 
         public OrganisationSearchPage(ScenarioContext context) : base(context)
         {
             _context = context;
-            _objectContext = context.Get<ObjectContext>();
-            _config = context.GetRegistrationConfig<RegistrationConfig>();
-            _pageInteractionHelper = context.Get<PageInteractionHelper>();
-            _formCompletionHelper = context.Get<FormCompletionHelper>();
             VerifyPage();
         }
 
@@ -40,19 +23,18 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         {
             EnterOrganisationName()
                 .Search();
-                return new SelectYourOrganisationPage(_context);
+            return new SelectYourOrganisationPage(_context);
         }
-
 
         private OrganisationSearchPage EnterOrganisationName()
         {
-            _formCompletionHelper.EnterText(SearchInput, _objectContext.GetOrganisationName());
+            formCompletionHelper.EnterText(SearchInput, objectContext.GetOrganisationName());
             return this;
         }
 
         private OrganisationSearchPage Search()
         {
-            _formCompletionHelper.ClickElement(SearchButton);
+            formCompletionHelper.ClickElement(SearchButton);
             return this;
         }
     }

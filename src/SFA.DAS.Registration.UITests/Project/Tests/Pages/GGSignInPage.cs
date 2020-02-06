@@ -1,42 +1,31 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.MongoDb.DataGenerator;
-using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.ConfigurationBuilder;
-using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 {
-    public class GgSignInPage : BasePage
+    public class GgSignInPage : RegistrationBasePage
     {
         protected override string PageTitle => "Sign in";
-
-        #region Helpers and Context
-        private readonly PageInteractionHelper _pageInteractionHelper;
-        private readonly FormCompletionHelper _formCompletionHelper;
+        protected override By PageHeader => By.CssSelector(".content__body h1");
         private readonly ScenarioContext _context;
-        private readonly RegistrationConfig _config;
         private readonly string _gatewayid;
         private readonly string _gatewaypassword;
-        #endregion
 
+        #region Locators
         private By UserIdInput => By.Id("userId");
-
         private By PasswordInput => By.Id("password");
-
         private By SignInButton => By.CssSelector("input.button");
+        #endregion
 
         public GgSignInPage(ScenarioContext context) : base(context)
         {
             _context = context;
-            _config = context.GetRegistrationConfig<RegistrationConfig>();
-            _pageInteractionHelper = context.Get<PageInteractionHelper>();
-            _formCompletionHelper = context.Get<FormCompletionHelper>();
             _gatewayid = context.Get<ObjectContext>().GetGatewayId();
             _gatewaypassword = context.Get<ObjectContext>().GetGatewayPassword();
             VerifyPage();
         }
-        protected override By PageHeader => By.CssSelector(".content__body h1");
 
         public OrganisationSearchPage SignInTo()
         {
@@ -48,19 +37,19 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         private GgSignInPage EnterUserID()
         {
-            _formCompletionHelper.EnterText(UserIdInput, _gatewayid);
+            formCompletionHelper.EnterText(UserIdInput, _gatewayid);
             return this;
         }
 
         private GgSignInPage EnterUserPassword()
         {
-            _formCompletionHelper.EnterText(PasswordInput, _gatewaypassword);
+            formCompletionHelper.EnterText(PasswordInput, _gatewaypassword);
             return this;
         }
 
         private GgSignInPage SignIn()
         {
-            _formCompletionHelper.ClickElement(SignInButton);
+            formCompletionHelper.ClickElement(SignInButton);
             return this;
         }
     }

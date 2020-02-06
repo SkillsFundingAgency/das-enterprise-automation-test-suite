@@ -1,33 +1,22 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.UI.Framework.TestSupport;
-using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 {
-    public class GetApprenticeshipFunding : BasePage
+    public class GetApprenticeshipFunding : RegistrationBasePage
     {
         protected override string PageTitle => "Add a PAYE Scheme";
-
-        #region Helpers and Context
-        private readonly PageInteractionHelper _pageInteractionHelper;
-        private readonly FormCompletionHelper _formCompletionHelper;
         private readonly ScenarioContext _context;
-        private readonly RegistrationConfig _config;
-        #endregion
 
+        #region Locators
         private By AddPayeRadioButton => By.CssSelector("label[for=want-to-add-paye-scheme]");
-
         private By DoNotAddPayeRadioButton => By.CssSelector("label[for=do-not-want-to-add-paye-scheme]");
-
         protected override By ContinueButton => By.Id("submit-add-a-paye-scheme-button");
+        #endregion
 
         public GetApprenticeshipFunding(ScenarioContext context) : base(context)
         {
             _context = context;
-            _config = context.GetRegistrationConfig<RegistrationConfig>();
-            _pageInteractionHelper = context.Get<PageInteractionHelper>();
-            _formCompletionHelper = context.Get<FormCompletionHelper>();
             VerifyPage();
         }
 
@@ -47,13 +36,13 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         private GetApprenticeshipFunding SelectAddPaye()
         {
-            _formCompletionHelper.ClickElement(AddPayeRadioButton);
+            formCompletionHelper.ClickElement(AddPayeRadioButton);
             return this;
         }
 
         private GetApprenticeshipFunding SelectDoNotAddPaye()
         {
-            _formCompletionHelper.ClickElement(DoNotAddPayeRadioButton);
+            formCompletionHelper.ClickElement(DoNotAddPayeRadioButton);
             return this;
         }
     }

@@ -1,15 +1,11 @@
 ﻿using TechTalk.SpecFlow;
-using SFA.DAS.UI.Framework.TestSupport;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 {
-    public class ManageApprenticeshipsServiceHelpPage : BasePage
+    public class ManageApprenticeshipsServiceHelpPage : RegistrationBasePage
     {
         protected override string PageTitle => "Help articles";
 
-        public ManageApprenticeshipsServiceHelpPage(ScenarioContext context) : base(context)
-        {
-            VerifyPage();
-        }
+        public ManageApprenticeshipsServiceHelpPage(ScenarioContext context) : base(context) => VerifyPage();
     }
 }
