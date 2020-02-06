@@ -59,6 +59,14 @@ steps:
     archiveFile: '$(build.artifactstagingdirectory)/publish/tests.zip'
     replaceExistingArchive: true
 
+- task: CopyFiles@2
+  displayName: 'Copy Files to: $(build.artifactstagingdirectory)'
+  inputs:
+    Contents: |     
+     src\**\*.ps1     
+    TargetFolder: '$(build.artifactstagingdirectory)/'
+    OverWrite: true
+
 - task: PublishBuildArtifacts@1
   displayName: 'Publish Artifact'
   inputs:
