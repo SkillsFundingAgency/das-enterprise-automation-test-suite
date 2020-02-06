@@ -48,7 +48,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions
         [Then(@"the provider completes Experience and Accreditations section by selecting No to all")]
         public void ThenTheProviderCompletesExperienceAndAccreditationsSectionBySelectingNoToAll()
         {
-            _overviewPage = _yourOrganisationSectionHelper.CompleteYourOrganisationSection_5(_overviewPage);
+            _overviewPage = _yourOrganisationSectionHelper.CompleteYourOrganisationSection_5_NoToAll(_overviewPage);
         }
 
     }
