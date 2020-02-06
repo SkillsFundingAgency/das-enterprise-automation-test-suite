@@ -55,7 +55,7 @@ steps:
   displayName: 'Copy Files to: $(build.artifactstagingdirectory)'
   inputs:
     Contents: |     
-     src/**/*.ps1     
+     src\*.ps1     
     TargetFolder: '$(build.artifactstagingdirectory)/'
     OverWrite: true
 
