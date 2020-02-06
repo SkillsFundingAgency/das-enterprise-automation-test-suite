@@ -11,9 +11,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer
     {
         #region Helpers and Context
         private readonly ScenarioContext _context;
-        private readonly SearchVacancyPageHelper _searchVacancyPageHelper;
-        private readonly PageInteractionHelper _pageInteractionHelper;
-        private readonly FormCompletionHelper _formCompletionHelper;
+        private readonly SearchVacancyPageHelper _searchVacancyPageHelper;        
         #endregion
 
         protected override string PageTitle => "Recruitment";
@@ -25,8 +23,6 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer
         {
             _context = context;
             _searchVacancyPageHelper = new SearchVacancyPageHelper(context);
-            _pageInteractionHelper = context.Get<PageInteractionHelper>();
-            _formCompletionHelper = context.Get<FormCompletionHelper>();
         }
 
         public CreateVacancyPage CreateANewVacancy()
@@ -38,9 +34,9 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer
 
         private RecruitmentHomePage AcceptCookies()
         {
-            if (_pageInteractionHelper.IsElementDisplayed(AcceptCookieButton))
+            if (pageInteractionHelper.IsElementDisplayed(AcceptCookieButton))
             {
-                _formCompletionHelper.Click(AcceptCookieButton);
+                formCompletionHelper.Click(AcceptCookieButton);
             }
             return this;
         }
