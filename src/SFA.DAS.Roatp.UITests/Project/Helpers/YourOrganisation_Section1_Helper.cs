@@ -48,7 +48,8 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers
             return applicationOverviewPage
                 .AccessTellUSWhosInControlSectionForOrgTypeCharity()
                 .ConfirmTrusteesAndContinue()
-                .EnterDateOfBirth();
+                .EnterDateOfBirth()
+                .VerifyTellUsWhosInControlStatus(StatusHelper.StatusCompleted);
         }
 
         internal ApplicationOverviewPage CompleteYourOrganisationSection_3_Support(ApplicationOverviewPage applicationOverviewPage)
