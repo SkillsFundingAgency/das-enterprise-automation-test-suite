@@ -31,12 +31,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             return new HomePage(_context);
         }
 
-        public HomePage GoToHomePage()
-        {
-            NavigateTo(config.RE_OrganisationName);
-            return new HomePage(_context);
-        }
-
         private void NavigateTo(string organisationName)
         {
             formCompletionHelper.ClickElement(SearchLinkUrl(organisationName));
