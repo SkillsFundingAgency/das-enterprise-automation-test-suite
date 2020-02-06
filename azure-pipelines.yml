@@ -55,8 +55,8 @@ steps:
   displayName: 'Copy Files to: $(build.artifactstagingdirectory)'
   inputs:
     Contents: |     
-     src\*.ps1     
-    TargetFolder: '$(build.artifactstagingdirectory)/'
+     src\**\*.ps1     
+    TargetFolder: '$(build.artifactstagingdirectory)/publish'
     OverWrite: true
 
 - task: ArchiveFiles@2
