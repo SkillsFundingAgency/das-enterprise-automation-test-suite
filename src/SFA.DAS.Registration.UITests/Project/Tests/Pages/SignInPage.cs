@@ -61,7 +61,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             .SignIn();
         }
 
-
         private SignInPage EnterEmailAddress(string username)
         {
             _formCompletionHelper.EnterText(EmailAddressInput, username);

@@ -34,11 +34,5 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             Continue();
             return new WhenDoYouWantToViewEmpAgreementPage(_context);
         }
-
-        public EoiAboutYourAgreementPage ContinueToEoiAboutYourAgreementPage()
-        {
-            Continue();
-            return new EoiAboutYourAgreementPage(_context);
-        }
     }
 }

@@ -13,7 +13,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         private GetApprenticeshipFunding getApprenticeshipFunding;
         private OrganisationSearchPage organistionSearchPage;
         private SignAgreementPage _signAgreementPage;
-        private EoiAboutYourAgreementPage eoiAboutYourAgreementPage;
         private HomePage homePage;
         private readonly ObjectContext _objectContext;
         private readonly RegistrationDatahelpers _dataHelper;
@@ -25,8 +24,9 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             _dataHelper = context.Get<RegistrationDatahelpers>();
         }
 
-        [Given(@"I create an Account")]
-        public void CreateAnAccount()
+        [Given(@"an User Account is created")]
+        [When(@"an User Account is created")]
+        public void AnUserAccountIsCreated()
         {
             TestContext.Progress.WriteLine($"Email : {_dataHelper.RandomEmail}");
 
@@ -36,13 +36,13 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
                 .ContinueToGetApprenticeshipFunding();
         }
 
-        [Then(@"I do not add paye details")]
+        [Then(@"My Account Home page is displayed when PAYE details are not added")]
         public void DoNotAddPayeDetails()
         {
            getApprenticeshipFunding.DoNotAddPaye();
         }
 
-        [When(@"I add paye details")]
+        [When(@"the User adds PAYE details")]
         public void AddPayeDetails()
         {
             organistionSearchPage = getApprenticeshipFunding
@@ -50,7 +50,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
                 .SignInTo();
         }
 
-        [When(@"add organisation details")]
+        [When(@"adds Organisation details")]
         public void AddOrganisationDetails()
         {
             _signAgreementPage = organistionSearchPage
@@ -60,16 +60,8 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
                 .SelectViewAgreementNowAndContinue();
         }
 
-        [When(@"add eoi organisation details")]
-        public void AddEoiOrganisationDetails()
-        {
-            eoiAboutYourAgreementPage = organistionSearchPage
-                .SearchForAnOrganisation()
-                .SelectYourOrganisation()
-                .ContinueToEoiAboutYourAgreementPage();
-        }
-
-        [When(@"I sign the agreement")]
+        [When(@"the Employer is able to Sign the Agreement")]
+        [Then(@"the Employer is able to Sign the Agreement")]
         public void SignTheAgreement()
         {
             homePage = _signAgreementPage
@@ -80,40 +72,22 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             SetAgreementId(homePage);
         }
 
-        [When(@"I do not sign the agreement")]
+        [When(@"the Employer does not sign the Agreement")]
         public void DoNotSignTheAgreement()
         {
             homePage = _signAgreementPage
                 .DoNotSignAgreement();
         }
 
-        [When(@"I sign the eoi agreement")]
-        public void WhenISignTheEoiAgreement()
-        {
-            homePage = eoiAboutYourAgreementPage
-                .ContinueWithEoiAgreement()
-                .SignAgreement();
-
-            SetAgreementId(homePage);
-        }
-
-        [When(@"I do not sign the eoi agreement")]
-        public void DoNotSignTheEoiAgreement()
-        {
-            homePage = eoiAboutYourAgreementPage
-                .ContinueWithEoiAgreement()
-                .DoNotSignAgreement();
-        }
-
-        [Then(@"I will land in the Organisation Agreement page")]
+        [Then(@"the Employer lands on the Organisation Agreement page")]
         public void LandInTheOrganisationAgreementPage()
         {
             _signAgreementPage
                 .VerifySignAgreementPage();
         }
 
-        [Then(@"I will land in the User Home page")]
-        public void ThenIWillLandInTheUserHomePage()
+        [Then(@"the Employer Home page is displayed")]
+        public void TheEmployerHomePageIsDisplayed()
         {
             var accountid = new HomePage(_context)
                 .HomePage()
@@ -130,6 +104,5 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
 
             return new HomePage(_context, true);
         }
-
     }
 }

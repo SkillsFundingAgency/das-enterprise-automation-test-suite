@@ -70,13 +70,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.NonLevy
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("AP_NL_E2E_03 Provider approves and then the non-levy EOI Employer approves the co" +
-            "hort")]
+        [NUnit.Framework.DescriptionAttribute("AP_NL_E2E_03 Provider approves and then the non-levy Employer approves the cohort" +
+            "")]
         [NUnit.Framework.CategoryAttribute("approvals")]
-        public virtual void AP_NL_E2E_03ProviderApprovesAndThenTheNon_LevyEOIEmployerApprovesTheCohort()
+        public virtual void AP_NL_E2E_03ProviderApprovesAndThenTheNon_LevyEmployerApprovesTheCohort()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_NL_E2E_03 Provider approves and then the non-levy EOI Employer approves the co" +
-                    "hort", null, new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_NL_E2E_03 Provider approves and then the non-levy Employer approves the cohort" +
+                    "", null, new string[] {
                         "approvals"});
 #line 4
 this.ScenarioInitialize(scenarioInfo);

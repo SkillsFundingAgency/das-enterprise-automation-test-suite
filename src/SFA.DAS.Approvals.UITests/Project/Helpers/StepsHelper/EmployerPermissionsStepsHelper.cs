@@ -1,5 +1,4 @@
-﻿using System;
-using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
+﻿using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages;
 using TechTalk.SpecFlow;
 
@@ -12,14 +11,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
         public EmployerPermissionsStepsHelper(ScenarioContext context)
         {
             _context = context;
-        }
-
-        public HomePage SetCreateCohortAndRecruitmentPermission(string ukprn)
-        {
-            return GoToSetProviderPermissionsPage(ukprn)
-                .SetCreateCohortAndRecruitmentPermissions()
-                .ConfirmTrainingProviderPermissions()
-                .GoToHomePage();
         }
 
         public HomePage SetCreateCohortPermission(string ukprn)

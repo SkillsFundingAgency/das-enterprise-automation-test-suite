@@ -32,8 +32,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.Provider
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "AP_Pro_03_ProviderAddsReservationAddEditDeleteApprentice", "\tAs a valid provider user \r\n\tI want to be able to get funding for a non-levy EOI " +
-                    "employer\r\n\tSo that provider can book courses for a certain training period", ProgrammingLanguage.CSharp, new string[] {
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "AP_Pro_03_ProviderAddsReservationAddEditDeleteApprentice", "\tAs a valid provider user \r\n\tI want to be able to get funding for a non-levy empl" +
+                    "oyer\r\n\tSo that provider can book courses for a certain training period", ProgrammingLanguage.CSharp, new string[] {
                         "approvals"});
             testRunner.OnFeatureStart(featureInfo);
         }
@@ -74,15 +74,15 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.Provider
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("AP_Pro_03 Provider makes reservation adds edits and deletes apprentice for non-le" +
-            "vy EOI employers")]
+            "vy employer")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("nonlevyeoiproviderscenarios")]
-        public virtual void AP_Pro_03ProviderMakesReservationAddsEditsAndDeletesApprenticeForNon_LevyEOIEmployers()
+        [NUnit.Framework.CategoryAttribute("nonlevyproviderscenarios")]
+        public virtual void AP_Pro_03ProviderMakesReservationAddsEditsAndDeletesApprenticeForNon_LevyEmployer()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_Pro_03 Provider makes reservation adds edits and deletes apprentice for non-le" +
-                    "vy EOI employers", null, new string[] {
+                    "vy employer", null, new string[] {
                         "regression",
-                        "nonlevyeoiproviderscenarios"});
+                        "nonlevyproviderscenarios"});
 #line 9
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();

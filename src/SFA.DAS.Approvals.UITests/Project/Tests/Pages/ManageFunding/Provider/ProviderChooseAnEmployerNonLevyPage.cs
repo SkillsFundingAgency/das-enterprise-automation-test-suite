@@ -30,7 +30,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider
             VerifyPage();
         }
 
-        internal ProviderConfirmEmployerNonLevyPage ChooseAnEmployerNonLevyEOI()
+        internal ProviderConfirmEmployerNonLevyPage ChooseAnEmployerNonLevy()
         {
             _tableRowHelper.SelectRowFromTable("Select", _objectContext.GetAgreementId());
             return new ProviderConfirmEmployerNonLevyPage(_context);
