@@ -7,7 +7,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
     {
         protected override string PageTitle => "Confirm the training provider";
 
-        private  By ConfirmAndContinueButton => By.CssSelector("[data-automation='btn-continue']");
+        protected override  By ContinueButton => By.CssSelector("[data-automation='btn-continue']");
         #region Helpers and Context
         private readonly ScenarioContext _context;
 
@@ -20,7 +20,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         public SubmitNoOfPositionsPage ConfirmTrainingProviderAndContinue()
         {
-            formCompletionHelper.Click(ConfirmAndContinueButton);
+            Continue();
             return new SubmitNoOfPositionsPage(_context);
         }
     }

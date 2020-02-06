@@ -12,7 +12,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         #endregion
 
-        private By ConfirmAndContinue = By.CssSelector("[data-automation='btn-continue']");
+        protected override By ContinueButton => By.CssSelector("[data-automation='btn-continue']");
 
         public ConfirmApprenticeshipTrainingPage(ScenarioContext context) : base(context)
         {
@@ -21,13 +21,13 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         public ChooseTrainingProviderPage ConfirmTrainingAndContinue()
         {
-            formCompletionHelper.Click(ConfirmAndContinue);
+            Continue();
             return new ChooseTrainingProviderPage(_context);
         }
 
         public SubmitNoOfPositionsPage ConfirmAndNavigateToNoOfPositionsPage()
         {
-            formCompletionHelper.Click(ConfirmAndContinue); 
+            Continue(); 
             return new SubmitNoOfPositionsPage(_context);
         }
     }

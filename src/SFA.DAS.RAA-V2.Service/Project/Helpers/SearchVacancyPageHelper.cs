@@ -55,7 +55,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Helpers
         private void SearchVacancy()
         {
             var vacRef = _objectContext.GetVacancyReference();
-            _formCompletionHelper.EnterText(SearchInput, vacRef); ;
+            _formCompletionHelper.EnterText(SearchInput, vacRef); 
             _formCompletionHelper.Click(SearchButton);
             _pageInteractionHelper.WaitforURLToChange($"SearchTerm={vacRef}");
             _formCompletionHelper.Click(Manage);

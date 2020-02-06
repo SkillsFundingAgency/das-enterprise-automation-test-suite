@@ -9,7 +9,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
     {
         protected override string PageTitle => "Create vacancy";
 
-        private By ContinueButton = By.CssSelector("[data-automation='continue-button']");
+        protected override By ContinueButton => By.CssSelector("[data-automation='continue-button']");
         #region Helpers and Context
         private readonly PageInteractionHelper _pageInteractionHelper;
         private readonly ScenarioContext _context;
@@ -24,7 +24,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         public VacancyTitlePage CreateNewVacancy()
         {
             SelectRadioOptionByForAttribute("create-new");
-            formCompletionHelper.Click(ContinueButton);
+            Continue();
             return new VacancyTitlePage(_context);
         }
     }

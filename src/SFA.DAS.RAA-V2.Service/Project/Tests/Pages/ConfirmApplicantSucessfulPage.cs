@@ -8,7 +8,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
     {
         protected override string PageTitle => "Are you sure you want to tell this applicant that they have been accepted?";
 
-        private By Continue => By.CssSelector("input[type='submit'][value='Continue']");
+        protected override By ContinueButton => By.CssSelector("input[type='submit'][value='Continue']");
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
@@ -22,7 +22,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         public ApplicationSuccessfulPage NotifyApplicant()
         {
             SelectRadioOptionByForAttribute("notify-candidate-yes");
-            formCompletionHelper.Click(Continue);
+            Continue();
             return new ApplicationSuccessfulPage(_context);
         }
     }    

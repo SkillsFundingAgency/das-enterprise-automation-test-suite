@@ -8,7 +8,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
     {
         protected override string PageTitle => "Preview your vacancy";
 
-        private By PreviewButton => By.CssSelector("[data-automation='link-continue']");
+        protected override By ContinueButton => By.CssSelector("[data-automation='link-continue']");
         
         #region Helpers and Context
         private readonly ScenarioContext _context;        
@@ -21,7 +21,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         public VacancyPreviewPart2Page PreviewVacancy()
         {
-            formCompletionHelper.Click(PreviewButton);
+            Continue();
             return new VacancyPreviewPart2Page(_context);
         }
     }
