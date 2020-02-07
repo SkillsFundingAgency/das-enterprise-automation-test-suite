@@ -19,23 +19,38 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             VerifyPage();
         }
 
-        public SelectYourOrganisationPage SearchForAnOrganisation()
+        public SelectYourOrganisationPage SearchForAnOrganisation(string orgType = null)
         {
-            EnterOrganisationName()
-                .Search();
-            return new SelectYourOrganisationPage(_context);
-        }
+            switch (orgType)
+            {
+                case "Company":
+                    EnterAndSetOrgName(registrationDataHelper.CompanyTypeOrg);
+                    break;
+                case "PublicSector":
+                    EnterAndSetOrgName(registrationDataHelper.PublicSectorTypeOrg);
+                    break;
+                case "Charity":
+                    EnterAndSetOrgName(registrationDataHelper.CharityTypeOrg);
+                    break;
+                default:
+                    EnterAndSetOrgName(objectContext.GetOrganisationName());
+                    break;
+            }
 
-        private OrganisationSearchPage EnterOrganisationName()
-        {
-            formCompletionHelper.EnterText(SearchInput, objectContext.GetOrganisationName());
-            return this;
+            Search();
+            return new SelectYourOrganisationPage(_context);
         }
 
         private OrganisationSearchPage Search()
         {
             formCompletionHelper.ClickElement(SearchButton);
             return this;
+        }
+
+        private void EnterAndSetOrgName(string orgName)
+        {
+            formCompletionHelper.EnterText(SearchInput, orgName);
+            objectContext.UpdateOrganisationName(orgName);
         }
     }
 }

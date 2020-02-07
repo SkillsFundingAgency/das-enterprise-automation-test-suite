@@ -16,9 +16,24 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             VerifyPage();
         }
 
-        public CheckYourDetailsPage SelectYourOrganisation()
+        public CheckYourDetailsPage SelectYourOrganisation(string orgType = null)
         {
-            formCompletionHelper.ClickElement(SearchLinkUrl(objectContext.GetOrganisationName()));
+            switch (orgType)
+            {
+                case "Company":
+                    formCompletionHelper.ClickElement(SearchLinkUrl(registrationDataHelper.CompanyTypeOrg));
+                    break;
+                case "PublicSector":
+                    formCompletionHelper.ClickElement(SearchLinkUrl(registrationDataHelper.PublicSectorTypeOrg));
+                    break;
+                case "Charity":
+                    formCompletionHelper.ClickElement(SearchLinkUrl(registrationDataHelper.CharityTypeOrg));
+                    break;
+                default:
+                    formCompletionHelper.ClickElement(SearchLinkUrl(objectContext.GetOrganisationName()));
+                    break;
+            }
+
             return new CheckYourDetailsPage(_context);
         }
 

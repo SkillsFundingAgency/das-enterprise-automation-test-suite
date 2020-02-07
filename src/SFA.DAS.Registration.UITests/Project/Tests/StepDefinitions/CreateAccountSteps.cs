@@ -39,7 +39,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         [Then(@"My Account Home page is displayed when PAYE details are not added")]
         public void DoNotAddPayeDetails()
         {
-           getApprenticeshipFunding.DoNotAddPaye();
+            getApprenticeshipFunding.DoNotAddPaye();
         }
 
         [When(@"the User adds PAYE details")]
@@ -51,17 +51,19 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         }
 
         [When(@"adds Organisation details")]
-        public void AddOrganisationDetails()
+        [When(@"adds (Company|PublicSector|Charity) Type Organisation details")]
+        public void AddOrganisationDetails(string orgType)
         {
             _signAgreementPage = organistionSearchPage
-                .SearchForAnOrganisation()
-                .SelectYourOrganisation()
+                .SearchForAnOrganisation(orgType)
+                .SelectYourOrganisation(orgType)
                 .ContinueToAboutYourAgreementPage()
                 .SelectViewAgreementNowAndContinue();
         }
 
         [When(@"the Employer is able to Sign the Agreement")]
         [Then(@"the Employer is able to Sign the Agreement")]
+        [When(@"the Employer Signs the Agreement")]
         public void SignTheAgreement()
         {
             homePage = _signAgreementPage
