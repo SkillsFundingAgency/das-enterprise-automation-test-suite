@@ -15,7 +15,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         #endregion
 
         private By Title => By.CssSelector("#Title");
-
+        
         public VacancyTitlePage(ScenarioContext context) : base(context)
         {
             _context = context;
