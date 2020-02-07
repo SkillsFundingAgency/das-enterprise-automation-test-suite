@@ -51,8 +51,10 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         }
 
         [When(@"adds Organisation details")]
+        public void AddOrganisationDetails() => AddOrganisationTypeDetails();
+
         [When(@"adds (Company|PublicSector|Charity) Type Organisation details")]
-        public void AddOrganisationDetails(string orgType)
+        public void AddOrganisationTypeDetails(string orgType = null)
         {
             _signAgreementPage = organistionSearchPage
                 .SearchForAnOrganisation(orgType)
