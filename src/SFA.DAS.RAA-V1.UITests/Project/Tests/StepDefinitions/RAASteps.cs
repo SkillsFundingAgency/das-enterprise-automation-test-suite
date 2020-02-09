@@ -83,8 +83,22 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
         [Then(@"Provider is able to change vacancy dates with no application")]
         public void ThenProviderIsAbleToChangeVacancyDatesWithNoApplication()
         {
-            ChangeVacancyDate(new RAA_VacancyPreviewPage(_context));
+            if (_objectContext.IsApprenticeshipVacancyType())
+            {
+                ChangeVacancyDate(new RAA_VacancyPreviewPage(_context));
+            }
+
+            else
+            {
+                ChangeVacancyDate(new RAA_OppurtunityPreviewPage(_context));
+            }
         }
+
+        //[Then(@"Provider is able to change traineeship vacancy dates with no application")]
+        //public void ThenProviderIsAbleToChangeTraineeshipVacancyDatesWithNoApplication()
+        //{
+        //    ChangeTraineeshipVacancyDate(new RAA_OppurtunityPreviewPage(_context));
+        //}
 
         [Then(@"Provider is able to change vacancy dates")]
         public void ThenProviderIsAbleToChangeVacancyDates()
@@ -92,11 +106,15 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
             ChangeVacancyDate(new RAA_VacancySummaryPage(_context));
         }
 
+        //public void ThenProviderIsAbleToChangeVacancyDates()
+        //{
+        //    ChangeVacancyDate(new RAA_VacancySummaryPage(_context));
+        //}
+
         private void ChangeVacancyDate(RAA_VacancyLinkBasePage linkBasePage)
         {
             linkBasePage.ChangeVacancyDates().SaveAndContinue();
         }
-
 
         [Then(@"Provider is able to close this vacancy with no application")]
         public void ThenProviderIsAbleToCloseThisVacancyWithNoApplication()
