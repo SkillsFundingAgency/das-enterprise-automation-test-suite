@@ -10,6 +10,8 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         protected override string PageTitle => "About you";
 
+        private By SaveStatus = By.CssSelector("button[type='submit'][class='govuk-button']");
+        
         #region Helpers and Context
         private readonly ScenarioContext _context;
         #endregion
@@ -24,7 +26,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         public ConfirmApplicantSucessfulPage MakeApplicantSucessful()
         {
             SelectRadioOptionByForAttribute("outcome-successful");
-            Continue();
+            formCompletionHelper.Click(SaveStatus);
             return new ConfirmApplicantSucessfulPage(_context);
         }
 
@@ -32,7 +34,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         {
             SelectRadioOptionByForAttribute("outcome-unsuccessful");
             formCompletionHelper.EnterText(CandidateFeedback, dataHelper.OptionalMessage);
-            Continue();
+            formCompletionHelper.Click(SaveStatus);
             return new ConfirmApplicantUnsucessfulPage(_context);
         }
     }

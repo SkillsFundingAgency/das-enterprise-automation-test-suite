@@ -1,4 +1,5 @@
-﻿using SFA.DAS.UI.FrameworkHelpers;
+﻿using OpenQA.Selenium;
+using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 
