@@ -72,14 +72,14 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Features.Section1_Yourorganisation
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("RP_S1_03_SoleTraderOrNonlimitedPartnership - Supporting - Org- A Group Training A" +
             "ssociation")]
-        [NUnit.Framework.CategoryAttribute("rps102")]
+        [NUnit.Framework.CategoryAttribute("rps103")]
         [NUnit.Framework.CategoryAttribute("roatp")]
         [NUnit.Framework.CategoryAttribute("regression")]
         public virtual void RP_S1_03_SoleTraderOrNonlimitedPartnership_Supporting_Org_AGroupTrainingAssociation()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_S1_03_SoleTraderOrNonlimitedPartnership - Supporting - Org- A Group Training A" +
                     "ssociation", null, new string[] {
-                        "rps102",
+                        "rps103",
                         "roatp",
                         "regression"});
 #line 6
