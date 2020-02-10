@@ -2,6 +2,7 @@
 using SFA.DAS.MongoDb.DataGenerator;
 using SFA.DAS.ConfigurationBuilder;
 using TechTalk.SpecFlow;
+using System;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 {
@@ -17,6 +18,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         private By UserIdInput => By.Id("userId");
         private By PasswordInput => By.Id("password");
         private By SignInButton => By.CssSelector("input.button");
+        private By ErrorMessageText => By.Id("errors");
         #endregion
 
         public GgSignInPage(ScenarioContext context) : base(context)
@@ -35,15 +37,31 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             return new OrganisationSearchPage(_context);
         }
 
-        private GgSignInPage EnterUserID()
+        public GgSignInPage SignInWithInvalidDetails()
         {
-            formCompletionHelper.EnterText(UserIdInput, _gatewayid);
+            EnterUserID(registrationDataHelper.RandomAlphaNumericString(10)).
+                EnterUserPassword(registrationDataHelper.RandomAlphaNumericString(10)).
+                SignIn();
             return this;
         }
 
-        private GgSignInPage EnterUserPassword()
+        public string GetErrorMessage() => pageInteractionHelper.GetText(ErrorMessageText);
+
+        private GgSignInPage EnterUserID(string id = null)
         {
-            formCompletionHelper.EnterText(PasswordInput, _gatewaypassword);
+            if (String.IsNullOrEmpty(id))
+                id = _gatewayid;
+
+            formCompletionHelper.EnterText(UserIdInput, id);
+            return this;
+        }
+
+        private GgSignInPage EnterUserPassword(string password = null)
+        {
+            if (String.IsNullOrEmpty(password))
+                password = _gatewaypassword;
+
+            formCompletionHelper.EnterText(PasswordInput, password);
             return this;
         }
 
