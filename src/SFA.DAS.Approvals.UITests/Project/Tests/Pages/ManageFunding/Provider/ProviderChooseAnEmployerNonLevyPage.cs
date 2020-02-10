@@ -42,7 +42,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider
 
             if (rows.Count == 0)
             {
-                throw new System.Exception("Create Cohort Link is displayed but no employer found");
+                throw new System.Exception("Test Exception: Create Cohort Link is displayed but no employer found");
             }
             else
             {
