@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace SFA.DAS.Registration.UITests.Project.Helpers
+﻿namespace SFA.DAS.Registration.UITests.Project.Helpers
 {
     public class RegistrationDatahelpers
     {
@@ -13,7 +9,9 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
         }
 
         public string RandomEmail { get; }
-
         public string Password { get; }
+        public string CompanyTypeOrg => "AUTOMATION & OPTIMISATION LTD";
+        public string PublicSectorTypeOrg => "Royal School Hampstead";
+        public string CharityTypeOrg => "ALLHALLOWS CHARITY";
     }
 }

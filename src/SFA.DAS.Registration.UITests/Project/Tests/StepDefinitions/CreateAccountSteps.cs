@@ -3,6 +3,7 @@ using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.Registration.UITests.Project.Helpers;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages;
 using TechTalk.SpecFlow;
+using static SFA.DAS.RAA_V1.UITests.Project.Helpers.EnumHelper;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
 {
@@ -39,7 +40,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         [Then(@"My Account Home page is displayed when PAYE details are not added")]
         public void DoNotAddPayeDetails()
         {
-           getApprenticeshipFunding.DoNotAddPaye();
+            getApprenticeshipFunding.DoNotAddPaye();
         }
 
         [When(@"the User adds PAYE details")]
@@ -51,17 +52,21 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         }
 
         [When(@"adds Organisation details")]
-        public void AddOrganisationDetails()
+        public void AddOrganisationDetails() => AddOrganisationTypeDetails(OrgType.Default);
+
+        [When(@"adds (Company|PublicSector|Charity) Type Organisation details")]
+        public void AddOrganisationTypeDetails(OrgType orgType)
         {
             _signAgreementPage = organistionSearchPage
-                .SearchForAnOrganisation()
-                .SelectYourOrganisation()
+                .SearchForAnOrganisation(orgType)
+                .SelectYourOrganisation(orgType)
                 .ContinueToAboutYourAgreementPage()
                 .SelectViewAgreementNowAndContinue();
         }
 
         [When(@"the Employer is able to Sign the Agreement")]
         [Then(@"the Employer is able to Sign the Agreement")]
+        [When(@"the Employer Signs the Agreement")]
         public void SignTheAgreement()
         {
             homePage = _signAgreementPage

@@ -6,19 +6,14 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
     public class AboutYourAgreementPage : InterimEmployerBasePage
     {
         protected override string PageTitle => "About your agreement";
-
-        #region Helpers and Context
         private readonly ScenarioContext _context;
+
+        #region Locators
+        private By AgreementButton => By.CssSelector("input.govuk-button");
+        protected override string Linktext => "Your organisations and agreements";
         #endregion
 
-        private By AgreementButton => By.CssSelector("input.govuk-button");
-
-        protected override string Linktext => "Your organisations and agreements";
-
-        public AboutYourAgreementPage(ScenarioContext context, bool navigate = false) : base(context, navigate)
-        {
-            _context = context;
-        }
+        public AboutYourAgreementPage(ScenarioContext context, bool navigate = false) : base(context, navigate) => _context = context;
 
         public SignAgreementPage ContinueWithAgreement()
         {
