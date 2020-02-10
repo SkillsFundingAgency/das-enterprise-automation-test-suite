@@ -10,10 +10,11 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         protected override By PageHeader => By.CssSelector(".govuk-fieldset__heading");
 
+        protected override By ContinueButton => By.CssSelector("input[type='submit'][value='Continue']");
+
         #region Helpers and Context
         private readonly ScenarioContext _context;
         #endregion
-
         public CloseVacancyPage(ScenarioContext context) : base(context)
         {
             _context = context;
