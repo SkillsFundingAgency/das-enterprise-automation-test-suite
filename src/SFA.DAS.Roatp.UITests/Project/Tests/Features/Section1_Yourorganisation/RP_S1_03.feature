@@ -1,6 +1,6 @@
 ﻿Feature: RP_S1_03
 
-@rps102
+@rps103
 @roatp
 @regression
 Scenario: RP_S1_03_SoleTraderOrNonlimitedPartnership - Supporting - Org- A Group Training Association
