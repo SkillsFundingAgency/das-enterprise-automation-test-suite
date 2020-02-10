@@ -16,10 +16,9 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
             VerifyPage();
         }
 
-        public ReviewProcessForEvaluatingTheQualityOfTrainingPage yesAndContinue()
+        public ReviewProcessForEvaluatingTheQualityOfTrainingPage YesAndContinue()
         {
-            SelectRadioOptionByText("Yes");
-            Continue();
+            SelectYesAndContinue();
             return new ReviewProcessForEvaluatingTheQualityOfTrainingPage(_context);
         }
     }

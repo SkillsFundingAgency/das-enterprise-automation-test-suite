@@ -18,9 +18,26 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
 
         public InitialTeacherTrainingPage SelectYesForFundedbyOFSAndContinue()
         {
-            SelectRadioOptionByForAttribute("YO-235");
-            Continue();
+            SelectYesAndContinue();
             return new InitialTeacherTrainingPage(_context);
+        }
+
+        public ApprenticeshipTrainingAsSubcontractorPage SelectYesForFundedbyOFSAndContinueForSupportingRoute()
+        {
+            SelectYesAndContinue();
+            return new ApprenticeshipTrainingAsSubcontractorPage(_context);
+        }
+
+        public InitialTeacherTrainingPage SelectNoForFundedbyOFSAndContinue()
+        {
+            SelectNoAndContinue();
+            return new InitialTeacherTrainingPage(_context);
+        }
+
+        public ApprenticeshipTrainingAsSubcontractorPage SelectNoForFundedbyOFSAndContinueForSupportingRoute()
+        {
+            SelectNoAndContinue();
+            return new ApprenticeshipTrainingAsSubcontractorPage(_context);
         }
     }
 }

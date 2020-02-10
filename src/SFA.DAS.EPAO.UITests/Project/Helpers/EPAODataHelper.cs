@@ -13,9 +13,6 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
             GetCurrentDay = DateTime.Now.Day;
             GetCurrentMonth = DateTime.Now.Month;
             GetCurrentYear = DateTime.Now.Year;
-            GetTownName = "Coventry";
-            GetCountyName = "Warwick";
-            GetPostCode = "CV1 2WT";
             GetRandomEmail = GetDateTimeValue() + "@mailinator.com";
             GetRandomWebsiteAddress = "http://www.TEST_" + GetDateTimeValue() + ".com";
         }
@@ -23,11 +20,14 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
         public int GetCurrentDay { get; }
         public int GetCurrentMonth { get; }
         public int GetCurrentYear { get; }
-        public string GetTownName { get; }
-        public string GetCountyName { get; }
-        public string GetPostCode { get; }
         public string GetRandomEmail { get; }
         public string GetRandomWebsiteAddress { get; }
+        public string GetTownName => "Coventry";
+        public string GetCountyName => "Warwick";
+        public string GetPostCode => "CV1 2WT";
+        public string InvalidOrgNameWithAlphabets => "asfasfasdfasdf";
+        public string InvalidOrgNameWithNumbers => "54678900";
+        public string InvalidOrgNameWithAWord => "EPA01";
 
         public string GetRandomNumber(int length) => _randomDataGenerator.GenerateRandomNumber(length);
 

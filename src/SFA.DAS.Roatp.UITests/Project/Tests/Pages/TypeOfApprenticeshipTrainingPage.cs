@@ -30,5 +30,12 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
             Continue();
             return new ReadyToDeliverTrainingPage(_context);
         }
+
+        public OfferingApprenticeshipFrameworksPage SelectFrameworksOnlyAndContinue()
+        {
+            formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(FrameworksCheckBox));
+            Continue();
+            return new OfferingApprenticeshipFrameworksPage(_context);
+        }
     }
 }

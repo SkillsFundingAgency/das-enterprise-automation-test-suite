@@ -10,6 +10,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers
                 .ClickSaveAndContinue()
                 .VerifyIntroductionStatus_Section8(StatusHelper.StatusCompleted);
         }
+
         internal ApplicationOverviewPage CompleteEvaluatingApprenticeshipTraining_2(ApplicationOverviewPage applicationOverviewPage)
         {
             return applicationOverviewPage.Access_Section8_ProcessForEvaluatingTheQualityOfTrainingDelivered()
@@ -17,13 +18,15 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers
                 .EnterTextRegardingOrganisationImprovementsUsingEvaluatingTheQualityOfTrainingAndContinue()
                 .VerifyQualityOfTheTrainingDeleivered_Section8(StatusHelper.StatusCompleted);
         }
+
         internal ApplicationOverviewPage CompleteEvaluatingApprenticeshipTraining_3(ApplicationOverviewPage applicationOverviewPage)
         {
             return applicationOverviewPage.Access_Section8_ProcessForEvaluatingTheQualityOfApprenticeshipTraining()
-                .yesAndContinue()
+                .YesAndContinue()
                 .EnterTextRegardingOrganisationReviewAndContinue()
                 .VerifyQualityOfTheTraining_Section8(StatusHelper.StatusCompleted);
         }
+
         internal ApplicationOverviewPage CompleteEvaluatingApprenticeshipTraining_4(ApplicationOverviewPage applicationOverviewPage)
         {
             return applicationOverviewPage.Access_Section8_SystemsAndProcessesToCollectApprenticeshipDataForMainAndEmpoyerRoute()

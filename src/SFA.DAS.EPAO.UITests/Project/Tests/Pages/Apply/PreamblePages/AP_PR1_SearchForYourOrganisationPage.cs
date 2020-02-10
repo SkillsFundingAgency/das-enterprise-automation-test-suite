@@ -10,6 +10,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.PreamblePages
 
         #region Locators
         private By SearchTextBox => By.Id("SearchString");
+        private By InvalidSearchResultText => By.CssSelector(".govuk-heading-l");
         #endregion
 
         public AP_PR1_SearchForYourOrganisationPage(ScenarioContext context) : base(context)
@@ -21,6 +22,13 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.PreamblePages
         public AP_PR2_SearchResultsForPage EnterOrgNameAndSearchInSearchForYourOrgPage()
         {
             formCompletionHelper.EnterText(SearchTextBox, "Brunel");
+            Continue();
+            return new AP_PR2_SearchResultsForPage(_context);
+        }
+
+        public AP_PR2_SearchResultsForPage EnterInvalidOrgNameAndSearchInSearchForYourOrgPage(string searchTerm)
+        {
+            formCompletionHelper.EnterText(SearchTextBox, searchTerm);
             Continue();
             return new AP_PR2_SearchResultsForPage(_context);
         }

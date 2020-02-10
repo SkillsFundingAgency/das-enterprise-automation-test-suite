@@ -1,6 +1,8 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.UI.FrameworkHelpers;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
@@ -37,22 +39,25 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
         {
             return () =>
             {
+                IEnumerable<IWebElement> tasks = new List<IWebElement>();
                 var taskLists = pageInteractionHelper.FindElements(TaskLists);
                 foreach(var tasklist in taskLists)
                 {
                     if (tasklist.FindElement(TaskSection).Text.ContainsCompareCaseInsensitive(sectionName))
                     {
-                        var tasks = tasklist.FindElements(TaskItem);
+                        tasks = tasklist.FindElements(TaskItem);
                         foreach (var task in tasks)
                         {
-                            if (task.Text.ContainsCompareCaseInsensitive(taskName) && (childelement == TaskStatus ? true : !task.Text.ContainsCompareCaseInsensitive("COMPLETED")))
+                            if (task.Text.ContainsCompareCaseInsensitive(taskName) && (childelement == TaskStatus ? true : (!task.Text.ContainsCompareCaseInsensitive("COMPLETED") && (!task.Text.ContainsCompareCaseInsensitive("NOT REQUIRED")))))
                             {
                                 return task.FindElement(childelement);
                             }
                         }
                     }
                 }
-                throw new NotFoundException($"can not find task element inside '{sectionName}' with text '{taskName}'");
+                var mesage = $"Expected :{Environment.NewLine}'{childelement.ToString()}' with task name - '{taskName}' under - '{sectionName}' section.{Environment.NewLine}" +
+                             $"Actual :{Environment.NewLine}{string.Join($"{Environment.NewLine}", tasks.Select(x => x.Text))}";
+                throw new NotFoundException(mesage);
             };
         }
     }
