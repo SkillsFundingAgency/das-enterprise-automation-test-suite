@@ -1,20 +1,16 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.UI.Framework.TestSupport;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 {
-    public class GatewayInformPage : BasePage
+    public class GatewayInformPage : RegistrationBasePage
     {
         protected override string PageTitle => "Using your Government Gateway details";
-
-        #region Helpers and Context
         private readonly ScenarioContext _context;
-        #endregion
-
+        
+        #region Locators
         protected override By ContinueButton => By.Id("agree_and_continue");
-
-        private By SetItUpLaterLink => By.CssSelector("a.button-link");
+        #endregion
 
         public GatewayInformPage(ScenarioContext context) : base(context)
         {

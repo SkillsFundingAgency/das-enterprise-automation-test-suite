@@ -7,25 +7,19 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => "Your organisations and agreements";
 
+        #region Locators
         protected override string Linktext => "Your organisations and agreements";
-
         private By TransferStatus => By.ClassName("transfers-status");
-
         private By AgreementId => By.CssSelector("table tbody tr td[data-label='Agreement ID']");
+        #endregion
 
-        public YourOrganisationsAndAgreementsPage(ScenarioContext context, bool navigate = false) : base(context, navigate)
-        {
-        }
+        public YourOrganisationsAndAgreementsPage(ScenarioContext context, bool navigate = false) : base(context, navigate) { }
 
-        public string GetTransfersStatus()
-        {
-            return pageInteractionHelper.GetText(TransferStatus);
-        }
+        public string GetTransfersStatus() => pageInteractionHelper.GetText(TransferStatus);
 
         public void SetAgreementId()
         {
             var agreementId = pageInteractionHelper.GetText(AgreementId);
-
             objectContext.SetAgreementId(agreementId);
         }
     }
