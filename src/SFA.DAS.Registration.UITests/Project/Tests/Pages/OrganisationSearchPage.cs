@@ -1,5 +1,6 @@
 ﻿using OpenQA.Selenium;
 using TechTalk.SpecFlow;
+using static SFA.DAS.RAA_V1.UITests.Project.Helpers.EnumHelper;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 {
@@ -19,20 +20,20 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             VerifyPage();
         }
 
-        public SelectYourOrganisationPage SearchForAnOrganisation(string orgType = null)
+        public SelectYourOrganisationPage SearchForAnOrganisation(OrgType orgType = OrgType.Default)
         {
             switch (orgType)
             {
-                case "Company":
+                case OrgType.Company:
                     EnterAndSetOrgName(registrationDataHelper.CompanyTypeOrg);
                     break;
-                case "PublicSector":
+                case OrgType.PublicSector:
                     EnterAndSetOrgName(registrationDataHelper.PublicSectorTypeOrg);
                     break;
-                case "Charity":
+                case OrgType.Charity:
                     EnterAndSetOrgName(registrationDataHelper.CharityTypeOrg);
                     break;
-                default:
+                case OrgType.Default:
                     EnterAndSetOrgName(objectContext.GetOrganisationName());
                     break;
             }

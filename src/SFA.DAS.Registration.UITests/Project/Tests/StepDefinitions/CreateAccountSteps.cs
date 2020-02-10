@@ -3,6 +3,7 @@ using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.Registration.UITests.Project.Helpers;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages;
 using TechTalk.SpecFlow;
+using static SFA.DAS.RAA_V1.UITests.Project.Helpers.EnumHelper;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
 {
@@ -51,10 +52,10 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         }
 
         [When(@"adds Organisation details")]
-        public void AddOrganisationDetails() => AddOrganisationTypeDetails();
+        public void AddOrganisationDetails() => AddOrganisationTypeDetails(OrgType.Default);
 
         [When(@"adds (Company|PublicSector|Charity) Type Organisation details")]
-        public void AddOrganisationTypeDetails(string orgType = null)
+        public void AddOrganisationTypeDetails(OrgType orgType)
         {
             _signAgreementPage = organistionSearchPage
                 .SearchForAnOrganisation(orgType)
