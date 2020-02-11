@@ -29,7 +29,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
                 }
                 i++;
             }
-            throw new System.Exception($"Test Exception: Could not find link with text {byLinkText} using key {byKey}");
+            throw new System.Exception($"Test Exception: Could not find link with text '{byLinkText}' using key '{byKey}'");
         }
     }
 }
