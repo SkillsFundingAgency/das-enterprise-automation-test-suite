@@ -43,7 +43,16 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers
 
         internal ApplicationOverviewPage CompleteDeliveringApprenticeshipTraining_6(ApplicationOverviewPage applicationOverviewPage)
         {
-            return applicationOverviewPage;
+            return applicationOverviewPage.Access_Section7_YourSectorsAndEmployees()
+                .NavigateToChooseYourOrganisationSectors()
+                .SelectSectors()
+                .NavigateToMostExperiencedEmployeePage()
+                .EnterDetails()
+                .EnterExperienceDetails()
+                .SelectTypeOfApprenticeship()
+                .EnterDetails()
+                .ContinueToApplicationOverviewPage()
+                .VerifyYourSectorsAndEmployees_Section7(StatusHelper.StatusCompleted);
         }
 
         internal ApplicationOverviewPage CompleteDeliveringApprenticeshipTraining_7(ApplicationOverviewPage applicationOverviewPage)

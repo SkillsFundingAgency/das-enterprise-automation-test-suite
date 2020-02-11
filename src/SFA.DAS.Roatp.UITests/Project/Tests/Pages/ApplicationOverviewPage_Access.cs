@@ -96,10 +96,10 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
             formCompletionHelper.ClickElement(GetTaskLinkElement(DeliveringApprenticeshipTraining, DeliveringApprenticeshipTraining_5));
             return new TellUsWhoHasOverallAccountabilityPage(_context);
         }
-        public TellUsWhoHasOverallAccountabilityPage Access_Section7_YourSectorsAndEmployees()
+        public YourSectorsAndEmployeesPage Access_Section7_YourSectorsAndEmployees()
         {
             formCompletionHelper.ClickElement(GetTaskLinkElement(DeliveringApprenticeshipTraining, DeliveringApprenticeshipTraining_6));
-            return new TellUsWhoHasOverallAccountabilityPage(_context);
+            return new YourSectorsAndEmployeesPage(_context);
         }
         public TellUsWhoHasOverallAccountabilityPage Access_Section7_PolicyForProfessionalDevelopment()
         {
