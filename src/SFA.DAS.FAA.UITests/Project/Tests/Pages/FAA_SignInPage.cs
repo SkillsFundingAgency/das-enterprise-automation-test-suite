@@ -38,26 +38,18 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
             VerifyPage(UsernameField);
         }
 
-        public FAA_MyApplicationsHomePage SubmitValidLoginDetails()
+        public FAA_MyApplicationsHomePage SubmitValidLoginDetails(string emailId, string password)
         {
-            _formCompletionHelper.EnterText(UsernameField, _config.FAAUserName);
-            _formCompletionHelper.EnterText(PasswordField, _config.FAAPassword);
+            _formCompletionHelper.EnterText(UsernameField, emailId);
+            _formCompletionHelper.EnterText(PasswordField, password);
             _formCompletionHelper.ClickElement(SignInButton);
             return new FAA_MyApplicationsHomePage(_context);
         }
 
-        public FAA_MyApplicationsHomePage SubmitNewAccountLoginDetails()
+        public FAA_ActivateYourAccountPage SubmitUnactivatedLoginDetails(string emailId,string password)
         {
-            _formCompletionHelper.EnterText(UsernameField, _dataHelper.EmailId);
-            _formCompletionHelper.EnterText(PasswordField, _dataHelper.Password);
-            _formCompletionHelper.ClickElement(SignInButton);
-            return new FAA_MyApplicationsHomePage(_context);
-        }
-
-        public FAA_ActivateYourAccountPage SubmitUnactivatedLoginDetails()
-        {
-            _formCompletionHelper.EnterText(UsernameField, _dataHelper.EmailId);
-            _formCompletionHelper.EnterText(PasswordField, _dataHelper.Password);
+            _formCompletionHelper.EnterText(UsernameField, emailId);
+            _formCompletionHelper.EnterText(PasswordField, password);
             _formCompletionHelper.ClickElement(SignInButton);
             return new FAA_ActivateYourAccountPage(_context);
         }
@@ -70,7 +62,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 
         public void ConfirmAccountDeletion()
         {
-            _PageInteractionhelper.VerifyText(AccountDeletionInfo,"Your account has been deleted");
+            _PageInteractionhelper.VerifyText(AccountDeletionInfo,"Your account has been deleted"); 
         }
     }
 }

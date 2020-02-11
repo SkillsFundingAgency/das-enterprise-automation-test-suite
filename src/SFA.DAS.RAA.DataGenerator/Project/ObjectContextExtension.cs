@@ -11,12 +11,32 @@ namespace SFA.DAS.RAA.DataGenerator.Project
         private const string VacancyType = "vacancytype";
         private const string FAARestart = "faarestart";
         private const string RAAV1 = "raav1";
-        private const string RAAV2Employer = "raav2employer";        
+        private const string RAAV2Employer = "raav2employer";
+        private const string FAALoginWithNewAccountUsername = "faaLoginWithNewAccountusername";
+        private const string FAALoginWithNewAccountPassword = "faaLoginWithNewAccountpassword";
+        private const string FAALoginWithNewAccountFirstname = "faaLoginWithNewAccountfirstname";
+        private const string FAALoginWithNewAccountLastname  = "faaLoginWithNewAccountlastname";
         #endregion
 
         public static void SetApprenticeshipVacancyType(this ObjectContext objectContext)
         {
             objectContext.Set(VacancyType, true);
+        }
+
+        public static void SetFAANewAccount(this ObjectContext objectContext, string username, string password, string firstname, string lastname)
+        {
+            objectContext.Set(FAALoginWithNewAccountUsername, username);
+            objectContext.Set(FAALoginWithNewAccountPassword, password);
+            objectContext.Set(FAALoginWithNewAccountFirstname, firstname);
+            objectContext.Set(FAALoginWithNewAccountLastname, lastname);
+        }
+
+        public static (string username, string password, string firstname, string lastname) GetFAANewAccount(this ObjectContext objectContext)
+        {
+            return (objectContext.Get(FAALoginWithNewAccountUsername), 
+                objectContext.Get(FAALoginWithNewAccountPassword),
+                objectContext.Get(FAALoginWithNewAccountFirstname),
+                objectContext.Get(FAALoginWithNewAccountLastname));
         }
 
         public static bool IsApprenticeshipVacancyType(this ObjectContext objectContext)

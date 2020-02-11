@@ -44,7 +44,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.StepDefinitions
         [When(@"Applicant Deletes the FAA Account")]
         public void WhenApplicantDeletesTheFAAAccount() 
         {
-            _faaStepsHelper.GoToNewAccountFAAHomePage()
+            _faaStepsHelper.GoToFAAHomePage()
                 .GoToSettings()
                 .DeleteYourAccount()
                 .DeleteAccount()

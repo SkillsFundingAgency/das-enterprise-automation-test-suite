@@ -1,6 +1,7 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.RAA.DataGenerator;
+using SFA.DAS.RAA.DataGenerator.Project;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using System;
@@ -16,7 +17,6 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 
         private By UsernameField => By.CssSelector("#EmailAddress");
         private By PasswordField => By.CssSelector("#Password");
-        private By FindAnApprenticeshipLink => By.LinkText("Find an apprenticeship");
         private By SuccessfulMobileVerificationText => By.Id("SuccessMessageText");
         private By DeleteYourAccountLink => By.LinkText("Delete your account");
         private By DeleteAccountButton => By.Id("delete-account-button");
@@ -24,13 +24,15 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
         #region Helpers and Context
         private readonly PageInteractionHelper _pageInteractionHelper;
         private readonly FormCompletionHelper _formCompletionHelper;
-        private readonly ScenarioContext _context;     
+        private readonly ScenarioContext _context;
+        private readonly ObjectContext _objectcontext;
         private readonly FAADataHelper _dataHelper;
         #endregion
     
         public FAA_SettingsPage(ScenarioContext context) : base(context)
         {
             _context = context;
+            _objectcontext = context.Get<ObjectContext>();
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
             _dataHelper = context.Get<FAADataHelper>();
@@ -42,17 +44,12 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
             _pageInteractionHelper.VerifyText(SuccessfulMobileVerificationText, _dataHelper.SuccessfulPhoneVerificationText);
         }
 
-        public FAA_ApprenticeSearchPage ClickFindAnApprenticeshipLink()
-        {
-            _formCompletionHelper.Click(FindAnApprenticeshipLink);
-            return new FAA_ApprenticeSearchPage(_context);
-        }
-
         public FAA_ConfirmAccountDeletionPage DeleteYourAccount()
         {
+            var (username, password, _ , _) = _objectcontext.GetFAANewAccount();
             _formCompletionHelper.Click(DeleteYourAccountLink);
-            _formCompletionHelper.EnterText(UsernameField, _dataHelper.EmailId);
-            _formCompletionHelper.EnterText(PasswordField, _dataHelper.Password);
+            _formCompletionHelper.EnterText(UsernameField, username);
+            _formCompletionHelper.EnterText(PasswordField, password);
             _formCompletionHelper.Click(DeleteAccountButton);
             return new FAA_ConfirmAccountDeletionPage(_context);
         }

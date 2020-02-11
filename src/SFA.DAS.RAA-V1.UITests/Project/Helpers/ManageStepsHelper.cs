@@ -52,21 +52,10 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
             return new SignInPage(_context).SubmitManageLoginDetails();
         }
 
-        public void SearchForANewCandidate()
-        {
-            GoToManageHomePage(true)            
-               .HelpdeskAdviser()
-               .SearchForACandidate()
-               .SearchNewCandidate()
-               .ViewApplications();
-        }
+        public void SearchForACandidate() => Search().ViewApplications();
 
-        public void SearchDeletedCandidate()
-        {
-            GoToManageHomePage(true)
-                .HelpdeskAdviser()
-                .SearchForACandidate()
-                .SearchDeletedCandidate();                
-        }
+        public void SearchForDeletedCandidate() => Search().VerifyCandidateDeletion();
+
+        private Manage_SearchForACandidatePage Search() => GoToManageHomePage(true).HelpdeskAdviser().SearchForACandidate().Search();
     }
 }

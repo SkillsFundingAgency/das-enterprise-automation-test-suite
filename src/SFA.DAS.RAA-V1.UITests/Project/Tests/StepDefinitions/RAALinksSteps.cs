@@ -14,22 +14,15 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
             _context = context;
             _raaStepsHelper = new RAAStepsHelper(context);
         }
-
+        
         [Then(@"the Provider is able to search and select a Candidate")]
-        public void ThenTheProviderIsAbleToSearchAndSelectACandidate()
-        {
-            _raaStepsHelper.GoToRAAHomePage(false)
-                .SearchCandidates()
-                .Search()
-                .SelectACandidate();
-        }
+        public void ThenTheProviderIsAbleToSearchAndSelectACandidate() => _raaStepsHelper.SelectACandidate();
 
-        [Then(@"the Provider is able to search and select a New Candidate")]
-        public void ThenTheProviderIsAbleToSearchAndSelectANewCandidate() => _raaStepsHelper.SearchNewCandidate();
-        
+
         [Then(@"the Candidate is removed from the Recruit")]
-        public void ThenTheCandidateIsRemovedFromTheRecruit() => _raaStepsHelper.SearchDeletedCandidate();
+        public void ThenTheCandidateIsRemovedFromTheRecruit() => _raaStepsHelper.SearchForDeletedCandidate();
         
+       
         [Then(@"the provider can reach Provider Users")]
         public void ThenTheProviderCanReachProviderUsers()
         {

@@ -38,7 +38,7 @@ namespace SFA.DAS.RAA.DataGenerator
             DOB_Year = _randomDataGenerator.GenerateRandomDobYear();
             EmailId = _randomDataGenerator.GenerateRandomEmail();
             PhoneNumber = _randomDataGenerator.GenerateRandomNumber(10);
-            Password = _randomDataGenerator.GenerateRandomPassword(4,4,1,1);
+            Password = _randomDataGenerator.GenerateRandomPassword(4, 4, 1, 1);
         }
 
         public string EducationSchoolOrCollege { get; }

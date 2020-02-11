@@ -7,16 +7,9 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
     {
         protected override string PageTitle => "Applications";
 
-        private By SignOut => By.Id("signout-link");        
-
         public RAA_CandidateApplicationPage(ScenarioContext context) : base(context)
         {
             
-        }
-
-        public void ExitFromRAA()
-        {
-            formCompletionHelper.Click(SignOut);
         }
     }
 }
