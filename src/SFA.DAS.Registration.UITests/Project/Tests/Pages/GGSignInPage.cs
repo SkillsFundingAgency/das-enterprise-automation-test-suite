@@ -17,6 +17,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         private By UserIdInput => By.Id("userId");
         private By PasswordInput => By.Id("password");
         private By SignInButton => By.CssSelector("input.button");
+        private By ErrorMessageText => By.Id("errors");
         #endregion
 
         public GgSignInPage(ScenarioContext context) : base(context)
@@ -29,28 +30,23 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         public OrganisationSearchPage SignInTo()
         {
-            EnterUserID().
-                EnterUserPassword().
-                SignIn();
+            EnterLoginDetailsAndSignIn(_gatewayid, _gatewaypassword);
             return new OrganisationSearchPage(_context);
         }
 
-        private GgSignInPage EnterUserID()
+        public GgSignInPage SignInWithInvalidDetails()
         {
-            formCompletionHelper.EnterText(UserIdInput, _gatewayid);
+            EnterLoginDetailsAndSignIn(registrationDataHelper.InvalidGGId, registrationDataHelper.InvalidGGPassword);
             return this;
         }
 
-        private GgSignInPage EnterUserPassword()
-        {
-            formCompletionHelper.EnterText(PasswordInput, _gatewaypassword);
-            return this;
-        }
+        public string GetErrorMessage() => pageInteractionHelper.GetText(ErrorMessageText);
 
-        private GgSignInPage SignIn()
+        private void EnterLoginDetailsAndSignIn(string id, string password)
         {
+            formCompletionHelper.EnterText(UserIdInput, id);
+            formCompletionHelper.EnterText(PasswordInput, password);
             formCompletionHelper.ClickElement(SignInButton);
-            return this;
         }
     }
 }

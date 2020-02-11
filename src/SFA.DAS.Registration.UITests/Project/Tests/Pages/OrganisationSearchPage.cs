@@ -42,6 +42,13 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             return new SelectYourOrganisationPage(_context);
         }
 
+        public SelectYourOrganisationPage SearchForAnOrganisation(string orgName)
+        {
+            EnterAndSetOrgName(orgName);
+            Search();
+            return new SelectYourOrganisationPage(_context);
+        }
+
         private OrganisationSearchPage Search()
         {
             formCompletionHelper.ClickElement(SearchButton);

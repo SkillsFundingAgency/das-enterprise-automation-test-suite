@@ -19,11 +19,11 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             VerifyPage();
         }
 
-        public GetApprenticeshipFunding ContinueToGetApprenticeshipFunding()
+        public AddAPAYESchemePage ContinueToGetApprenticeshipFunding()
         {
             EnterAccessCode()
                    .Continue();
-            return new GetApprenticeshipFunding(_context);
+            return new AddAPAYESchemePage(_context);
         }
 
         private ConfirmPage EnterAccessCode()
