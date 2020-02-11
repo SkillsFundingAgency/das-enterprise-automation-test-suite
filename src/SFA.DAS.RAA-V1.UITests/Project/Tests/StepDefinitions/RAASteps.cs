@@ -94,22 +94,11 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
             }
         }
 
-        //[Then(@"Provider is able to change traineeship vacancy dates with no application")]
-        //public void ThenProviderIsAbleToChangeTraineeshipVacancyDatesWithNoApplication()
-        //{
-        //    ChangeTraineeshipVacancyDate(new RAA_OppurtunityPreviewPage(_context));
-        //}
-
         [Then(@"Provider is able to change vacancy dates")]
         public void ThenProviderIsAbleToChangeVacancyDates()
         {
             ChangeVacancyDate(new RAA_VacancySummaryPage(_context));
         }
-
-        //public void ThenProviderIsAbleToChangeVacancyDates()
-        //{
-        //    ChangeVacancyDate(new RAA_VacancySummaryPage(_context));
-        //}
 
         private void ChangeVacancyDate(RAA_VacancyLinkBasePage linkBasePage)
         {

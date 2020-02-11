@@ -54,12 +54,12 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
         {
             _formCompletionHelper.Click(SignOutCss);
         }
-        public void VerifyVacancySuccessfulNotification()
+        private void VerifyVacancySuccessfulNotification()
         {
             _PageIntercationHelper.VerifyText(NotificationText, "Your application for "+_dataHelper.VacancyTitle+" has been successful."); 
         }
 
-        public void VerifyVacancyUnsuccessfulNotification()
+        private void VerifyVacancyUnsuccessfulNotification()
         {
             _PageIntercationHelper.VerifyText(NotificationText, "Your application for "+_dataHelper.VacancyTitle+" has been unsuccessful.");
         }
@@ -70,10 +70,11 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
             _formCompletionHelper.Click(DismissNotification);
         }
 
-        public  void DismissUnsuccessfulNotification()
+        public  FAA_MyApplicationsHomePage DismissUnsuccessfulNotification()
         {
             VerifyVacancyUnsuccessfulNotification();
             _formCompletionHelper.Click(DismissNotification);
+            return this;
         }
 
         public FAA_YourFeedbackPage ReadFeedback()

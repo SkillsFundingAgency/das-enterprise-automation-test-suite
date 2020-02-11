@@ -99,9 +99,7 @@ namespace SFA.DAS.FAA.UITests.Project.Helpers
                     break;
 
                 case "Unsccessful":
-                    GoToFAAHomePage().DismissUnsuccessfulNotification();
-                    FAA_YourFeedbackPage _faaYourFeedbackPage = new FAA_YourFeedbackPage(_context);
-                    _faaYourFeedbackPage.VerifyReadFeedbackText();
+                    GoToFAAHomePage().DismissUnsuccessfulNotification().ReadFeedback().VerifyReadFeedbackText();
                     break;
             }
         }

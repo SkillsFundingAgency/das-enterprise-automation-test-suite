@@ -1,7 +1,4 @@
 ﻿Feature: RV1_CTVD_01
-	In order to avoid silly mistakes
-	As a math idiot
-	I want to be told the sum of two numbers
 
 @raa-v1
 @v1_e2e
