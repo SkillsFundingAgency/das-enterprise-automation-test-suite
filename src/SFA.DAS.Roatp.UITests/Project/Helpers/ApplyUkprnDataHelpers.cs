@@ -7,14 +7,14 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers
 {
     public class ApplyUkprnDataHelpers
     {
-        private readonly Dictionary<string, List<KeyValuePair<string, string>>> _applyDatas;
+        private readonly Dictionary<string, List<KeyValuePair<string, string>>> _applyData;
 
         private const string emailkey = "emailkey";
         private const string ukprnkey = "ukprnkey";
 
         public ApplyUkprnDataHelpers()
         {
-            _applyDatas = new Dictionary<string, List<KeyValuePair<string, string>>>();
+            _applyData = new Dictionary<string, List<KeyValuePair<string, string>>>();
             AddApplyDatahelpers();
         }
 
@@ -26,71 +26,71 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers
             return (email, ukprn);
         }
 
-        private List<KeyValuePair<string, string>> FindKeyValuePairs(string key) => _applyDatas.TryGetValue(key, out var keyValuePair) ? keyValuePair : throw new KeyNotFoundException($"Can not find data for key {key}");
+        private List<KeyValuePair<string, string>> FindKeyValuePairs(string key) => _applyData.TryGetValue(key, out var keyValuePair) ? keyValuePair : throw new KeyNotFoundException($"Can not find data for key {key}");
 
         private void AddApplyDatahelpers()
         {
-            _applyDatas.Add("rpe2e01",
+            _applyData.Add("rpe2e01",
                 new List<KeyValuePair<string, string>>
                 {
                     new KeyValuePair<string, string>(emailkey, "sudhakar.chinoor+roatp2@digital.education.gov.uk"),
                     new KeyValuePair<string, string>(ukprnkey, "10047117"),
                 });
-            _applyDatas.Add("rpe2e02",
+            _applyData.Add("rpe2e02",
                 new List<KeyValuePair<string, string>>
                 {
                     new KeyValuePair<string, string>(emailkey, "sudhakar.chinoor+employer@digital.education.gov.uk"),
                     new KeyValuePair<string, string>(ukprnkey, "10061310"),
                 });
-            _applyDatas.Add("rpe2e03",
+            _applyData.Add("rpe2e03",
                 new List<KeyValuePair<string, string>>
                 {
                     new KeyValuePair<string, string>(emailkey, "sudhakar.chinoor+supporting@digital.education.gov.uk"),
                     new KeyValuePair<string, string>(ukprnkey, "10083833"),
                 });
-            _applyDatas.Add("rps101",
+            _applyData.Add("rps101",
                 new List<KeyValuePair<string, string>>
                 {
                     new KeyValuePair<string, string>(emailkey, "sudhakar.chinoor+D1@digital.education.gov.uk"),
                     new KeyValuePair<string, string>(ukprnkey, "10022702"),
                 });
-            _applyDatas.Add("rps102",
+            _applyData.Add("rps102",
                 new List<KeyValuePair<string, string>>
                 {
                     new KeyValuePair<string, string>(emailkey, "sudhakar.chinoor+D2@digital.education.gov.uk"),
                     new KeyValuePair<string, string>(ukprnkey, "10048654"),
                 });
-            _applyDatas.Add("rps103",
+            _applyData.Add("rps103",
                 new List<KeyValuePair<string, string>>
                 {
                     new KeyValuePair<string, string>(emailkey, "sudhakar.chinoor+D3@digital.education.gov.uk"),
                     new KeyValuePair<string, string>(ukprnkey, "10063781"),
                 });
-            _applyDatas.Add("rps104",
+            _applyData.Add("rps104",
                 new List<KeyValuePair<string, string>>
                 {
                     new KeyValuePair<string, string>(emailkey, ""),
                     new KeyValuePair<string, string>(ukprnkey, ""),
                 });
-            _applyDatas.Add("rps105",
+            _applyData.Add("rps105",
                 new List<KeyValuePair<string, string>>
                 {
                     new KeyValuePair<string, string>(emailkey, ""),
                     new KeyValuePair<string, string>(ukprnkey, ""),
                 });
-            _applyDatas.Add("rps106",
+            _applyData.Add("rps106",
                 new List<KeyValuePair<string, string>>
                 {
                     new KeyValuePair<string, string>(emailkey, ""),
                     new KeyValuePair<string, string>(ukprnkey, ""),
                 });
-            _applyDatas.Add("rps107",
+            _applyData.Add("rps107",
                 new List<KeyValuePair<string, string>>
                 {
                     new KeyValuePair<string, string>(emailkey, ""),
                     new KeyValuePair<string, string>(ukprnkey, ""),
                 });
-            _applyDatas.Add("rps108",
+            _applyData.Add("rps108",
                 new List<KeyValuePair<string, string>>
                 {
                     new KeyValuePair<string, string>(emailkey, ""),
