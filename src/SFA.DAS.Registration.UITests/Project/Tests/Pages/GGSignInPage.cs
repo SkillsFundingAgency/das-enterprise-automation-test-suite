@@ -2,7 +2,6 @@
 using SFA.DAS.MongoDb.DataGenerator;
 using SFA.DAS.ConfigurationBuilder;
 using TechTalk.SpecFlow;
-using System;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 {
@@ -31,44 +30,23 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         public OrganisationSearchPage SignInTo()
         {
-            EnterUserID().
-                EnterUserPassword().
-                SignIn();
+            EnterLoginDetailsAndSignIn(_gatewayid, _gatewaypassword);
             return new OrganisationSearchPage(_context);
         }
 
         public GgSignInPage SignInWithInvalidDetails()
         {
-            EnterUserID(registrationDataHelper.RandomAlphaNumericString(10)).
-                EnterUserPassword(registrationDataHelper.RandomAlphaNumericString(10)).
-                SignIn();
+            EnterLoginDetailsAndSignIn(registrationDataHelper.InvalidGGId, registrationDataHelper.InvalidGGPassword);
             return this;
         }
 
         public string GetErrorMessage() => pageInteractionHelper.GetText(ErrorMessageText);
 
-        private GgSignInPage EnterUserID(string id = null)
+        private void EnterLoginDetailsAndSignIn(string id, string password)
         {
-            if (String.IsNullOrEmpty(id))
-                id = _gatewayid;
-
             formCompletionHelper.EnterText(UserIdInput, id);
-            return this;
-        }
-
-        private GgSignInPage EnterUserPassword(string password = null)
-        {
-            if (String.IsNullOrEmpty(password))
-                password = _gatewaypassword;
-
             formCompletionHelper.EnterText(PasswordInput, password);
-            return this;
-        }
-
-        private GgSignInPage SignIn()
-        {
             formCompletionHelper.ClickElement(SignInButton);
-            return this;
         }
     }
 }

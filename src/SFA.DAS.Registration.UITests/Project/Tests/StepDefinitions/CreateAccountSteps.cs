@@ -90,7 +90,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         [When(@"enters an Invalid Company number for Org search")]
         public void WhenEntersAnInvalidCompanyNumberForOrgSearch()
         {
-            _selectYourOrganisationPage = _organistionSearchPage.SearchForAnOrganisation(_registrationDataHelper.RandomNumericString(10));
+            _selectYourOrganisationPage = _organistionSearchPage.SearchForAnOrganisation(_registrationDataHelper.InvalidCompanyNumber);
         }
 
         [Then(@"the '(.*)' message is shown")]
