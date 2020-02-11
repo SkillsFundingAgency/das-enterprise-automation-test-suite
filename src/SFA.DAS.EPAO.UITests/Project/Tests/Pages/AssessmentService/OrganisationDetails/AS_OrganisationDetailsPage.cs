@@ -5,6 +5,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.Organisatio
     public class AS_OrganisationDetailsPage : EPAO_BasePage
     {
         protected override string PageTitle => "Organisation details";
+
         private readonly ScenarioContext _context;
 
         public AS_OrganisationDetailsPage(ScenarioContext context) : base(context)
@@ -43,16 +44,13 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.Organisatio
             return new AS_ChangeWebsitePage(_context);
         }
 
-        private void ClickLinkByHref(string href)
-        {
-            //links are Intercepted by Help menu.
-            formCompletionHelper.ClickInterceptedElement(pageInteractionHelper.GetLinkByHref(href));
-        }
+        private void ClickLinkByHref(string href) => formCompletionHelper.ClickInterceptedElement(pageInteractionHelper.GetLinkByHref(href));
     }
 
     public class AS_ChangeOrganisationDetailsPage : EPAO_BasePage
     {
         protected override string PageTitle => "Change organisation details";
+
         private readonly ScenarioContext _context;
 
         public AS_ChangeOrganisationDetailsPage(ScenarioContext context) : base(context)

@@ -24,12 +24,12 @@ namespace SFA.DAS.UI.FrameworkHelpers
             {
                 if (tableRow.Text.Contains(byKey))
                 {
-                    _formCompletionHelper.ClickElement(links[i]);
+                    _formCompletionHelper.ClickInterceptedElement(links[i]);
                     return;
                 }
                 i++;
             }
-            throw new System.Exception($"Test Exception: Could not find link with text {byLinkText} using key {byKey}");
+            throw new System.Exception($"Test Exception: Could not find link with text '{byLinkText}' using key '{byKey}'");
         }
     }
 }
