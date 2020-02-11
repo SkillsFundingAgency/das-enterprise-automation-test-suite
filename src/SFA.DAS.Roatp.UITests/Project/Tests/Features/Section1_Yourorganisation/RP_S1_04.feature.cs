@@ -70,13 +70,13 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Features.Section1_Yourorganisation
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RP_S1_02_CharityAndCompany - Main - Org AEI - HEI")]
+        [NUnit.Framework.DescriptionAttribute("RP_S1_04_CharityAndCompany - Main - Org AEI - HEI")]
         [NUnit.Framework.CategoryAttribute("rps104")]
         [NUnit.Framework.CategoryAttribute("roatp")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public virtual void RP_S1_02_CharityAndCompany_Main_OrgAEI_HEI()
+        public virtual void RP_S1_04_CharityAndCompany_Main_OrgAEI_HEI()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_S1_02_CharityAndCompany - Main - Org AEI - HEI", null, new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_S1_04_CharityAndCompany - Main - Org AEI - HEI", null, new string[] {
                         "rps104",
                         "roatp",
                         "regression"});

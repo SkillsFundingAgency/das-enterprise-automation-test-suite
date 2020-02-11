@@ -5,7 +5,7 @@
 @rps104
 @roatp
 @regression
-Scenario: RP_S1_02_CharityAndCompany - Main - Org AEI - HEI 
+Scenario: RP_S1_04_CharityAndCompany - Main - Org AEI - HEI 
 	Given the provider initates an application as main route company
 	Then the provider completes Introduction and what you'll need section for main and employer route
 	And the provider completes Organisation Information section for company
