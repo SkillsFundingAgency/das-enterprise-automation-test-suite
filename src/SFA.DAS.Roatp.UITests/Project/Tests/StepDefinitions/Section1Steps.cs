@@ -109,8 +109,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions
         [Then(@"the provider completes Experience and Accreditations section by selecting GradeTypeRequiresImprovement")]
         public void ThenTheProviderCompletesExperienceAndAccreditationsSectionBySelectingGradeTypeRequiresImprovement()
         {
-            throw new PendingStepException();
+            _overviewPage = _yourOrganisationSectionHelper.CompleteYourOrganisationSection_5_GradeTypeRequiresImprovement(_overviewPage);
         }
-
     }
 }
