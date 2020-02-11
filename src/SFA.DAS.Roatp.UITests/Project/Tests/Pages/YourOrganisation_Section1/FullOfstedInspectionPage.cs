@@ -18,9 +18,14 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.YourOrganisation_Section1
 
         public MonitoringVisitPage SelectNoForFullOfstedInspectionAndContinue()
         {
-            SelectRadioOptionByText("No");
-            Continue();
+            SelectNoAndContinue();
             return new MonitoringVisitPage(_context);
+        }
+
+        public GradeInOfstedInspectionPage SelectYesForFullOfstedInspectionAndContinue()
+        {
+            SelectYesAndContinue();
+            return new GradeInOfstedInspectionPage(_context);
         }
     }
 }
