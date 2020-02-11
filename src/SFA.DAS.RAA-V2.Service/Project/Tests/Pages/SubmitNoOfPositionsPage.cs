@@ -14,7 +14,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         #endregion
 
         private By NumberOfPositions => By.CssSelector("#NumberOfPositions");
-
+        
         public SubmitNoOfPositionsPage(ScenarioContext context) : base(context)
         {
             _context = context;

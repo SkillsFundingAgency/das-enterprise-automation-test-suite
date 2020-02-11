@@ -1,4 +1,5 @@
 ﻿using SFA.DAS.Roatp.UITests.Project.Tests.Pages;
+using SFA.DAS.Roatp.UITests.Project.Tests.Pages.Finish_Section9;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -82,7 +83,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers
             applicationOverviewPage = _yourOrganisationSectionHelper.CompleteYourOrganisationSection_2_NotACompany(applicationOverviewPage);
             applicationOverviewPage = _yourOrganisationSectionHelper.CompleteYourOrganisationSection_3_Charity(applicationOverviewPage);
             applicationOverviewPage = _yourOrganisationSectionHelper.CompleteYourOrganisationSection_4_OrgTypeNoneOfTheAbove(applicationOverviewPage);
-            applicationOverviewPage = _yourOrganisationSectionHelper.CompleteYourOrganisationSection_5(applicationOverviewPage);
+            applicationOverviewPage = _yourOrganisationSectionHelper.CompleteYourOrganisationSection_5_NoToAll(applicationOverviewPage);
             return applicationOverviewPage;
         }
 
@@ -93,7 +94,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers
             applicationOverviewPage = _yourOrganisationSectionHelper.CompleteYourOrganisationSection_2(applicationOverviewPage);
             applicationOverviewPage = _yourOrganisationSectionHelper.CompleteYourOrganisationSection_3(applicationOverviewPage);
             applicationOverviewPage = _yourOrganisationSectionHelper.CompleteYourOrganisationSection_4(applicationOverviewPage);
-            applicationOverviewPage = _yourOrganisationSectionHelper.CompleteYourOrganisationSection_5(applicationOverviewPage);
+            applicationOverviewPage = _yourOrganisationSectionHelper.CompleteYourOrganisationSection_5_NoToAll(applicationOverviewPage);
             return applicationOverviewPage;
         }
 

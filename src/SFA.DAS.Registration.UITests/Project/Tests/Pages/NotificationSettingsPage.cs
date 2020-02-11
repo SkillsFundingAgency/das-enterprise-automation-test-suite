@@ -5,24 +5,16 @@ using SFA.DAS.UI.FrameworkHelpers;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 {
-    public class NotificationSettingsPage : BasePage
+    public class NotificationSettingsPage : RegistrationBasePage
     {
         protected override string PageTitle => "Notification Settings";
-        
-        #region Helpers and Context
-        private readonly FormCompletionHelper _formCompletionHelper;
-        private readonly PageInteractionHelper _pageInteractionHelper;
-        #endregion
 
-        public NotificationSettingsPage(ScenarioContext context) : base(context)
-        {
-            _formCompletionHelper = context.Get<FormCompletionHelper>();
-            _pageInteractionHelper = context.Get<PageInteractionHelper>();
-            VerifyPage();
-        }
-
+        #region Locators
         private By NotificationOptions => By.CssSelector(".selection-button-radio");
         private By UpdateButton => By.CssSelector(".button");
+        #endregion
+
+        public NotificationSettingsPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public NotificationSettingsPage ChooseToReceiveEmails()
         {
@@ -38,13 +30,13 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         public bool IsSettingsUpdated()
         {
-            return _pageInteractionHelper.IsElementDisplayed(By.CssSelector(".success-summary"));
+            return pageInteractionHelper.IsElementDisplayed(By.CssSelector(".success-summary"));
         }
 
         private NotificationSettingsPage SelectReceiveEmailsOptions(string option)
         {
-            _formCompletionHelper.SelectRadioOptionByForAttribute(NotificationOptions, option);
-            _formCompletionHelper.ClickElement(UpdateButton);
+            formCompletionHelper.SelectRadioOptionByForAttribute(NotificationOptions, option);
+            formCompletionHelper.ClickElement(UpdateButton);
             return this;
         }
     }

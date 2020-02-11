@@ -36,7 +36,6 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers
                     new KeyValuePair<string, string>(emailkey, "sudhakar.chinoor+roatp2@digital.education.gov.uk"),
                     new KeyValuePair<string, string>(ukprnkey, "10047117"),
                 });
-
             _applyDatas.Add("rpe2e02",
                 new List<KeyValuePair<string, string>>
                 {
@@ -48,6 +47,54 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers
                 {
                     new KeyValuePair<string, string>(emailkey, "sudhakar.chinoor+supporting@digital.education.gov.uk"),
                     new KeyValuePair<string, string>(ukprnkey, "10083833"),
+                });
+            _applyDatas.Add("rps101",
+                new List<KeyValuePair<string, string>>
+                {
+                    new KeyValuePair<string, string>(emailkey, "sudhakar.chinoor+D1@digital.education.gov.uk"),
+                    new KeyValuePair<string, string>(ukprnkey, "10022702"),
+                });
+            _applyDatas.Add("rps102",
+                new List<KeyValuePair<string, string>>
+                {
+                    new KeyValuePair<string, string>(emailkey, "sudhakar.chinoor+D2@digital.education.gov.uk"),
+                    new KeyValuePair<string, string>(ukprnkey, "10048654"),
+                });
+            _applyDatas.Add("rps103",
+                new List<KeyValuePair<string, string>>
+                {
+                    new KeyValuePair<string, string>(emailkey, "sudhakar.chinoor+D3@digital.education.gov.uk"),
+                    new KeyValuePair<string, string>(ukprnkey, "10063781"),
+                });
+            _applyDatas.Add("rps104",
+                new List<KeyValuePair<string, string>>
+                {
+                    new KeyValuePair<string, string>(emailkey, ""),
+                    new KeyValuePair<string, string>(ukprnkey, ""),
+                });
+            _applyDatas.Add("rps105",
+                new List<KeyValuePair<string, string>>
+                {
+                    new KeyValuePair<string, string>(emailkey, ""),
+                    new KeyValuePair<string, string>(ukprnkey, ""),
+                });
+            _applyDatas.Add("rps106",
+                new List<KeyValuePair<string, string>>
+                {
+                    new KeyValuePair<string, string>(emailkey, ""),
+                    new KeyValuePair<string, string>(ukprnkey, ""),
+                });
+            _applyDatas.Add("rps107",
+                new List<KeyValuePair<string, string>>
+                {
+                    new KeyValuePair<string, string>(emailkey, ""),
+                    new KeyValuePair<string, string>(ukprnkey, ""),
+                });
+            _applyDatas.Add("rps108",
+                new List<KeyValuePair<string, string>>
+                {
+                    new KeyValuePair<string, string>(emailkey, ""),
+                    new KeyValuePair<string, string>(ukprnkey, ""),
                 });
         }
     }

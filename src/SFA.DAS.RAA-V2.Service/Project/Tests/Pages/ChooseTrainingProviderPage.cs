@@ -19,6 +19,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         private By FirstOption => By.CssSelector("#TrainingProviderSearch__option--0");
 
+        protected override By ContinueButton => By.CssSelector("[data-automation='btn-continue']");
         public ChooseTrainingProviderPage(ScenarioContext context) : base(context)
         {
             _context = context;

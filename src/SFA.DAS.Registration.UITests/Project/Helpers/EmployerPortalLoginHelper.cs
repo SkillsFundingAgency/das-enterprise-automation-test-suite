@@ -62,9 +62,9 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
             return homePage;
         }
 
-        public HomePage Login(EoiUser eoiUser)
+        public HomePage Login(NonLevyUser nonLevyUser)
         {
-            return Login(eoiUser, false);
+            return Login(nonLevyUser, false);
         }
     }
 }

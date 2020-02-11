@@ -17,22 +17,16 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             _loginhelper = new EmployerPortalLoginHelper(context);
         }
 
-        [Given(@"the Employer login using existing levy account")]
-        public void GivenTheEmployerLoginUsingExistingLevyAccount()
+        [Given(@"the Employer logins using existing Levy Account")]
+        public void GivenTheEmployerLoginsUsingExistingLevyAccount()
         {
             _loginhelper.Login(_context.GetUser<LevyUser>(), true);
         }
 
-        [Given(@"the Employer login using existing non levy account")]
-        public void GivenTheEmployerLoginUsingExistingNonLevyAccount()
+        [Given(@"the Employer logins using existing NonLevy Account")]
+        public void GivenTheEmployerLoginsUsingExistingNonLevyAccount()
         {
             _loginhelper.Login(_context.GetUser<NonLevyUser>(), false);
-        }
-
-        [Given(@"the Employer login using existing eoi account")]
-        public void GivenTheEmployerLoginUsingExistingEoiAccount()
-        {
-            _loginhelper.Login(_context.GetUser<EoiUser>(), false);
         }
     }
 }

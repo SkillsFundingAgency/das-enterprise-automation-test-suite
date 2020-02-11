@@ -13,4 +13,4 @@ Scenario: RP_E2E_01_MainRoute-Company
 	And the provider completes Planning apprenticeship training section
 	And the provider completes Delivering apprenticeship training section
 	And the provider completes Evaluating apprenticeship training section
-	Then the provider completes Finish section
+	#Then the provider completes Finish section

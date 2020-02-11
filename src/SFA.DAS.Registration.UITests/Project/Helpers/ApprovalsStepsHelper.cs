@@ -1,5 +1,4 @@
-﻿using System;
-using SFA.DAS.Registration.UITests.Project.Tests.Pages;
+﻿using SFA.DAS.Registration.UITests.Project.Tests.Pages;
 using SFA.DAS.ConfigurationBuilder;
 using TechTalk.SpecFlow;
 
