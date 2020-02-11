@@ -84,7 +84,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.NonLevy
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 6
- testRunner.Given("the Employer login using existing eoi account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("the Employer logins using existing NonLevy Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 7
  testRunner.When("the Employer uses the reservation to create and approve 2 cohort and sends to pro" +
                     "vider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");

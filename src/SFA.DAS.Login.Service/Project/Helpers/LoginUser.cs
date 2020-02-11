@@ -24,7 +24,5 @@
 
     public class NonLevyUser : LoginUser { }
 
-    public class EoiUser : LoginUser { }
-
     public class LoggedInUser : LoginUser { }
 }

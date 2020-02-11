@@ -84,7 +84,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.Provider
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 6
- testRunner.Given("the Employer login using existing levy account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("the Employer logins using existing Levy Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 7
  testRunner.When("the Employer create a cohort and send to provider to add apprentices", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 8

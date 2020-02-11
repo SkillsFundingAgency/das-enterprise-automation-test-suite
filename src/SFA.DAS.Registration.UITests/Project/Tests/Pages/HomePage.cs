@@ -7,25 +7,20 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
     public class HomePage : InterimEmployerBasePage
     {
         protected override string PageTitle => objectContext.GetOrganisationName();
-
-        #region Helpers and Context
+        protected override string Linktext => "Home";
         private readonly RegexHelper _regexHelper;
-        #endregion
 
+        #region Locators
         private By PublicAccountIdLocator => By.CssSelector(".heading-secondary");
-
         private By SucessSummary => By.CssSelector(".success-summary");
+        #endregion
 
         internal HomePage(ScenarioContext context, bool navigate) : base(context, navigate)
         {
             _regexHelper = context.Get<RegexHelper>();
         }
 
-        public HomePage(ScenarioContext context) : this(context, false)
-        {
-        }
-
-        protected override string Linktext => "Home";
+        public HomePage(ScenarioContext context) : this(context, false) { }
 
         public void VerifySucessSummary()
         {

@@ -39,13 +39,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
                    .Update();
         }
 
-        internal ConfirmTrainingProviderPermissionsPage SetCreateCohortAndRecruitmentPermissions()
-        {
-            return CreateCohortPermissions(true)
-                   .CreateRecruitmentPermissions(true)
-                   .Update();
-        }
-
         internal ConfirmTrainingProviderPermissionsPage UnSetCreateCohortAndRecruitmentPermissions()
         {
             return CreateCohortPermissions(false)

@@ -13,7 +13,6 @@ namespace SFA.DAS.Login.Service.Project.Tests.Pages
         #endregion
 
         protected By GlobalNavLink => By.CssSelector("#global-nav-links li a, #navigation li a");
-       
 
         protected abstract string Linktext { get; }
 

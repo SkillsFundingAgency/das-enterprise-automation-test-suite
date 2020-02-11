@@ -1,16 +1,11 @@
-﻿using OpenQA.Selenium;
-using SFA.DAS.UI.Framework.TestSupport;
-using TechTalk.SpecFlow;
+﻿using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 {
-    public class MyAccountWithOutPaye : BasePage
+    public class MyAccountWithOutPaye : RegistrationBasePage
     {
         protected override string PageTitle => "MY ACCOUNT";
 
-        public MyAccountWithOutPaye(ScenarioContext context) : base(context)
-        {
-            VerifyPage();
-        }
+        public MyAccountWithOutPaye(ScenarioContext context) : base(context) => VerifyPage();
     }
 }

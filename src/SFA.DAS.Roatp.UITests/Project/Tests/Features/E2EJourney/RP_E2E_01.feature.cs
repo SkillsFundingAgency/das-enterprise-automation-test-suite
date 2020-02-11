@@ -101,8 +101,6 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("the provider completes Delivering apprenticeship training section", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 15
  testRunner.And("the provider completes Evaluating apprenticeship training section", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 16
- testRunner.Then("the provider completes Finish section", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

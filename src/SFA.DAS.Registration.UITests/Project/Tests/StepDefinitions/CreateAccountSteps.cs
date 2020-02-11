@@ -3,6 +3,7 @@ using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.Registration.UITests.Project.Helpers;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages;
 using TechTalk.SpecFlow;
+using static SFA.DAS.RAA_V1.UITests.Project.Helpers.EnumHelper;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
 {
@@ -10,110 +11,123 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
     public class CreateAccountSteps
     {
         private readonly ScenarioContext _context;
-        private GetApprenticeshipFunding getApprenticeshipFunding;
-        private OrganisationSearchPage organistionSearchPage;
-        private SignAgreementPage _signAgreementPage;
-        private EoiAboutYourAgreementPage eoiAboutYourAgreementPage;
-        private HomePage homePage;
         private readonly ObjectContext _objectContext;
-        private readonly RegistrationDatahelpers _dataHelper;
+        private readonly RegistrationDatahelpers _registrationDataHelper;
+        private HomePage _homePage;
+        private AddAPAYESchemePage _addAPAYESchemePage;
+        private GgSignInPage _gGSignInPage;
+        private OrganisationSearchPage _organistionSearchPage;
+        private SelectYourOrganisationPage _selectYourOrganisationPage;
+        private SignAgreementPage _signAgreementPage;
 
         public CreateAccountSteps(ScenarioContext context)
         {
             _context = context;
             _objectContext = _context.Get<ObjectContext>();
-            _dataHelper = context.Get<RegistrationDatahelpers>();
+            _registrationDataHelper = context.Get<RegistrationDatahelpers>();
         }
 
-        [Given(@"I create an Account")]
-        public void CreateAnAccount()
+        [Given(@"an User Account is created")]
+        [When(@"an User Account is created")]
+        public void AnUserAccountIsCreated()
         {
-            TestContext.Progress.WriteLine($"Email : {_dataHelper.RandomEmail}");
+            TestContext.Progress.WriteLine($"Email : {_registrationDataHelper.RandomEmail}");
 
-            getApprenticeshipFunding = new IndexPage(_context)
+            _addAPAYESchemePage = new IndexPage(_context)
                 .CreateAccount()
                 .Register()
                 .ContinueToGetApprenticeshipFunding();
         }
 
-        [Then(@"I do not add paye details")]
+        [Then(@"My Account Home page is displayed when PAYE details are not added")]
         public void DoNotAddPayeDetails()
         {
-           getApprenticeshipFunding.DoNotAddPaye();
+            _addAPAYESchemePage.DoNotAddPaye();
         }
 
-        [When(@"I add paye details")]
+        [When(@"the User adds PAYE details")]
+        [When(@"the User adds valid PAYE details")]
         public void AddPayeDetails()
         {
-            organistionSearchPage = getApprenticeshipFunding
+            _organistionSearchPage = _addAPAYESchemePage
                 .AddPaye().ContinueToGGSignIn()
                 .SignInTo();
         }
 
-        [When(@"add organisation details")]
-        public void AddOrganisationDetails()
+        [When(@"the User adds Invalid PAYE details")]
+        public void WhenTheUserAddsInvalidPAYEDetails()
         {
-            _signAgreementPage = organistionSearchPage
-                .SearchForAnOrganisation()
-                .SelectYourOrganisation()
+            _gGSignInPage = _addAPAYESchemePage
+                .AddPaye().ContinueToGGSignIn()
+                .SignInWithInvalidDetails();
+        }
+
+        [Then(@"the '(.*)' error message is shown")]
+        public void ThenTheErrorMessageIsShown(string error)
+        {
+            Assert.AreEqual(error, _gGSignInPage.GetErrorMessage());
+        }
+
+        [When(@"the User adds valid PAYE details on Gateway Sign In Page")]
+        public void WhenTheUserAddsValidPAYEDetailsOnGatewaySignInPage()
+        {
+            _organistionSearchPage = _gGSignInPage.SignInTo();
+        }
+
+        [When(@"adds Organisation details")]
+        public void AddOrganisationDetails() => AddOrganisationTypeDetails(OrgType.Default);
+
+        [When(@"adds (Company|PublicSector|Charity) Type Organisation details")]
+        public void AddOrganisationTypeDetails(OrgType orgType)
+        {
+            _signAgreementPage = _organistionSearchPage
+                .SearchForAnOrganisation(orgType)
+                .SelectYourOrganisation(orgType)
                 .ContinueToAboutYourAgreementPage()
                 .SelectViewAgreementNowAndContinue();
         }
 
-        [When(@"add eoi organisation details")]
-        public void AddEoiOrganisationDetails()
+        [When(@"enters an Invalid Company number for Org search")]
+        public void WhenEntersAnInvalidCompanyNumberForOrgSearch()
         {
-            eoiAboutYourAgreementPage = organistionSearchPage
-                .SearchForAnOrganisation()
-                .SelectYourOrganisation()
-                .ContinueToEoiAboutYourAgreementPage();
+            _selectYourOrganisationPage = _organistionSearchPage.SearchForAnOrganisation(_registrationDataHelper.InvalidCompanyNumber);
         }
 
-        [When(@"I sign the agreement")]
+        [Then(@"the '(.*)' message is shown")]
+        public void ThenTheMessageIsShown(string resultMessage)
+        {
+            Assert.AreEqual(resultMessage, _selectYourOrganisationPage.GetSearchResultsText());
+        }
+
+        [When(@"the Employer is able to Sign the Agreement")]
+        [Then(@"the Employer is able to Sign the Agreement")]
+        [When(@"the Employer Signs the Agreement")]
         public void SignTheAgreement()
         {
-            homePage = _signAgreementPage
+            _homePage = _signAgreementPage
                 .SignAgreement();
 
-            homePage.VerifySucessSummary();
+            _homePage.VerifySucessSummary();
 
-            SetAgreementId(homePage);
+            SetAgreementId(_homePage);
         }
 
-        [When(@"I do not sign the agreement")]
+        [When(@"the Employer does not sign the Agreement")]
         public void DoNotSignTheAgreement()
         {
-            homePage = _signAgreementPage
+            _homePage = _signAgreementPage
                 .DoNotSignAgreement();
         }
 
-        [When(@"I sign the eoi agreement")]
-        public void WhenISignTheEoiAgreement()
-        {
-            homePage = eoiAboutYourAgreementPage
-                .ContinueWithEoiAgreement()
-                .SignAgreement();
-
-            SetAgreementId(homePage);
-        }
-
-        [When(@"I do not sign the eoi agreement")]
-        public void DoNotSignTheEoiAgreement()
-        {
-            homePage = eoiAboutYourAgreementPage
-                .ContinueWithEoiAgreement()
-                .DoNotSignAgreement();
-        }
-
-        [Then(@"I will land in the Organisation Agreement page")]
+        [Then(@"the Employer lands on the Organisation Agreement page")]
         public void LandInTheOrganisationAgreementPage()
         {
             _signAgreementPage
                 .VerifySignAgreementPage();
         }
 
-        [Then(@"I will land in the User Home page")]
-        public void ThenIWillLandInTheUserHomePage()
+        [Then(@"the Employer Home page is displayed")]
+        public void TheEmployerHomePageIsDisplayed()
         {
             var accountid = new HomePage(_context)
                 .HomePage()
@@ -130,6 +144,5 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
 
             return new HomePage(_context, true);
         }
-
     }
 }
