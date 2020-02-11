@@ -5,7 +5,7 @@ using SFA.DAS.MongoDb.DataGenerator;
 using SFA.DAS.MongoDb.DataGenerator.Helpers;
 using SFA.DAS.Registration.UITests.Project.Helpers;
 using SFA.DAS.UI.Framework.TestSupport;
-using System;
+using SFA.DAS.UI.FrameworkHelpers;
 using System.Collections.Generic;
 using System.Linq;
 using TechTalk.SpecFlow;
@@ -43,10 +43,11 @@ namespace SFA.DAS.Registration.UITests.Project
         public void SetUpDataHelpers()
         {
             var dataHelper = new DataHelper(_config.TwoDigitProjectCode);
-
             _objectContext.SetDataHelper(dataHelper);
 
-            _registrationDatahelpers = new RegistrationDatahelpers(dataHelper.GatewayUsername, _config.RE_AccountPassword);
+            var randomDataGenerator = _context.Get<RandomDataGenerator>();
+
+            _registrationDatahelpers = new RegistrationDatahelpers(dataHelper.GatewayUsername, _config.RE_AccountPassword, randomDataGenerator);
 
             _context.Set(_registrationDatahelpers);
 

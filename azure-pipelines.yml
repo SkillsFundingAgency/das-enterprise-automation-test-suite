@@ -51,6 +51,14 @@ steps:
     projects: 'src/**/*Tests.csproj'
     arguments: '--configuration $(buildConfiguration) --output $(build.artifactstagingdirectory)/tests --no-restore --no-build'
 
+- task: CopyFiles@2
+  displayName: 'Copy Files to: $(build.artifactstagingdirectory)'
+  inputs:
+    Contents: |     
+     src/**/*.ps1
+    TargetFolder: '$(build.artifactstagingdirectory)/publish'
+    OverWrite: true
+
 - task: ArchiveFiles@2
   inputs:
     rootFolderOrFile: '$(build.artifactstagingdirectory)/tests'

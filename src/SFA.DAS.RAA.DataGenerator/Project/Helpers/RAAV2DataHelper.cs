@@ -26,8 +26,8 @@ namespace SFA.DAS.RAA.DataGenerator
             WorkkingWeek = _randomDataGenerator.GenerateRandomAlphabeticString(15);
             VacancyClosing = DateTime.Today.AddMonths(2).AddDays(3);
             VacancyStart = VacancyClosing.AddMonths(1).AddDays(1);
-            EditedVacancyClosing = VacancyStart.AddMonths(2).AddDays(3);
-            EditedVacancyStart = EditedVacancyClosing.AddMonths(1).AddDays(1);
+            EditedVacancyClosing = VacancyStart.AddDays(14);
+            EditedVacancyStart = EditedVacancyClosing.AddDays(14);
             DesiredQualificationsSubject = _randomDataGenerator.GenerateRandomAlphabeticString(8);
             OptionalMessage = _randomDataGenerator.GenerateRandomAlphabeticString(30);
         }
@@ -98,15 +98,14 @@ namespace SFA.DAS.RAA.DataGenerator
 
         private List<string> AvailableTraining => new List<string> 
         {
-            "Aerospace Engineer (degree), Level 6 (Degree with honours)",
+            "Aerospace Engineer, Level 6 (Degree with honours)",
             "Agriculture: Agriculture, Level 3 (A level)",
             "Broadcast production assistant, Level 3 (A level)",
             "Construction Building: Maintenance Operations, Level 2 (GCSE)",
             "Event Assistant, Level 3 (A level)",
             "Financial services administrator, Level 3 (A level)",
             "Groundworker, Level 2 (GCSE)",
-            "Healthcare support worker, Level 2 (GCSE)",
-            "IT Solutions Technician, Level 3 (A level)",
+            "Healthcare support worker, Level 2 (GCSE)",            
             "Junior journalist, Level 3 (A level)",
             "Software Development Technician, Level 3 (A level)",
             "Software tester, Level 4 (Higher national certificate)",

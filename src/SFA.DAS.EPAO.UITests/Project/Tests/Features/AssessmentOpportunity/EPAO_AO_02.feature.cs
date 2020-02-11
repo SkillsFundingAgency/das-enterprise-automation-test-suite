@@ -73,7 +73,6 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Features.AssessmentOpportunity
         [NUnit.Framework.DescriptionAttribute("EPAO_AO_02 - View an In-developement Standard in Assessment Opportunity Applicati" +
             "on")]
         [NUnit.Framework.CategoryAttribute("epao")]
-        [NUnit.Framework.CategoryAttribute("assessmentservice")]
         [NUnit.Framework.CategoryAttribute("assessmentopportunity")]
         [NUnit.Framework.CategoryAttribute("regression")]
         public virtual void EPAO_AO_02_ViewAnIn_DevelopementStandardInAssessmentOpportunityApplication()
@@ -81,18 +80,17 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Features.AssessmentOpportunity
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EPAO_AO_02 - View an In-developement Standard in Assessment Opportunity Applicati" +
                     "on", null, new string[] {
                         "epao",
-                        "assessmentservice",
                         "assessmentopportunity",
                         "regression"});
-#line 7
+#line 6
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 8
+#line 7
  testRunner.When("the User visits the Assessment Opportunity Application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 9
+#line 8
  testRunner.And("the User clicks on one of the standards listed under \'In-development\' tab to view" +
                     " it", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 10
+#line 9
  testRunner.Then("the selected In-development standard detail page is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();

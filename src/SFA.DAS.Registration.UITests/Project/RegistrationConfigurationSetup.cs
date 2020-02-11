@@ -32,9 +32,6 @@ namespace SFA.DAS.Registration.UITests.Project
             var nonLevyUser = _configSection.GetConfigSection<NonLevyUser>();
             _context.SetUser(nonLevyUser);
 
-            var eoiUser = _configSection.GetConfigSection<EoiUser>();
-            _context.SetUser(eoiUser);
-
             var mongoDbconfig = _configSection.GetConfigSection<MongoDbConfig>();
             _context.SetMongoDbConfig(mongoDbconfig);
         }

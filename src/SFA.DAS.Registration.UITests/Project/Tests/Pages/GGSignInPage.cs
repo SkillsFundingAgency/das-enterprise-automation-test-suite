@@ -1,67 +1,52 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.MongoDb.DataGenerator;
-using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.ConfigurationBuilder;
-using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 {
-    public class GgSignInPage : BasePage
+    public class GgSignInPage : RegistrationBasePage
     {
         protected override string PageTitle => "Sign in";
-
-        #region Helpers and Context
-        private readonly PageInteractionHelper _pageInteractionHelper;
-        private readonly FormCompletionHelper _formCompletionHelper;
+        protected override By PageHeader => By.CssSelector(".content__body h1");
         private readonly ScenarioContext _context;
-        private readonly RegistrationConfig _config;
         private readonly string _gatewayid;
         private readonly string _gatewaypassword;
-        #endregion
 
+        #region Locators
         private By UserIdInput => By.Id("userId");
-
         private By PasswordInput => By.Id("password");
-
         private By SignInButton => By.CssSelector("input.button");
+        private By ErrorMessageText => By.Id("errors");
+        #endregion
 
         public GgSignInPage(ScenarioContext context) : base(context)
         {
             _context = context;
-            _config = context.GetRegistrationConfig<RegistrationConfig>();
-            _pageInteractionHelper = context.Get<PageInteractionHelper>();
-            _formCompletionHelper = context.Get<FormCompletionHelper>();
             _gatewayid = context.Get<ObjectContext>().GetGatewayId();
             _gatewaypassword = context.Get<ObjectContext>().GetGatewayPassword();
             VerifyPage();
         }
-        protected override By PageHeader => By.CssSelector(".content__body h1");
 
         public OrganisationSearchPage SignInTo()
         {
-            EnterUserID().
-                EnterUserPassword().
-                SignIn();
+            EnterLoginDetailsAndSignIn(_gatewayid, _gatewaypassword);
             return new OrganisationSearchPage(_context);
         }
 
-        private GgSignInPage EnterUserID()
+        public GgSignInPage SignInWithInvalidDetails()
         {
-            _formCompletionHelper.EnterText(UserIdInput, _gatewayid);
+            EnterLoginDetailsAndSignIn(registrationDataHelper.InvalidGGId, registrationDataHelper.InvalidGGPassword);
             return this;
         }
 
-        private GgSignInPage EnterUserPassword()
-        {
-            _formCompletionHelper.EnterText(PasswordInput, _gatewaypassword);
-            return this;
-        }
+        public string GetErrorMessage() => pageInteractionHelper.GetText(ErrorMessageText);
 
-        private GgSignInPage SignIn()
+        private void EnterLoginDetailsAndSignIn(string id, string password)
         {
-            _formCompletionHelper.ClickElement(SignInButton);
-            return this;
+            formCompletionHelper.EnterText(UserIdInput, id);
+            formCompletionHelper.EnterText(PasswordInput, password);
+            formCompletionHelper.ClickElement(SignInButton);
         }
     }
 }

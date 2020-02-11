@@ -16,26 +16,22 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         protected readonly TabHelper _tabHelper;
         #endregion
 
+        #region Locators
         private By SettingsLink => By.LinkText("Settings");
-
         private By YourAccountsLink => By.LinkText("Your accounts");
-
         private By HelpLink => By.LinkText("Help");
-
         private By RenameAccountLink => By.LinkText("Rename account");
-
         private By ChangePasswordLink => By.LinkText("Change your password");
-
         private By ChangeEmailAddressLink => By.LinkText("Change your email address");
-
         private By NotificationSettingsLink => By.LinkText("Notifications settings");
+        #endregion
 
         public InterimEmployerBasePage(ScenarioContext context, bool navigate) : base(context, navigate)
         {
             _context = context;
+            _tabHelper = _context.Get<TabHelper>();
             config = context.GetRegistrationConfig<RegistrationConfig>();
             objectContext = context.Get<ObjectContext>();
-            _tabHelper = _context.Get<TabHelper>();
             VerifyPage();
         }
 

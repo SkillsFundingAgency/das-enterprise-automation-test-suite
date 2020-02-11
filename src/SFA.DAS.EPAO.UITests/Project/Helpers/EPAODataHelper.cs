@@ -13,28 +13,25 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
             GetCurrentDay = DateTime.Now.Day;
             GetCurrentMonth = DateTime.Now.Month;
             GetCurrentYear = DateTime.Now.Year;
-            Get9DigitRandomNumber = _randomDataGenerator.GenerateRandomNumber(9);
-            Get10DigitRandomNumber = _randomDataGenerator.GenerateRandomNumber(10);
             GetRandomEmail = GetDateTimeValue() + "@mailinator.com";
             GetRandomWebsiteAddress = "http://www.TEST_" + GetDateTimeValue() + ".com";
-            GetRandomAddressLine1 = _randomDataGenerator.GenerateRandomNumber(3);
         }
 
         public int GetCurrentDay { get; }
-
         public int GetCurrentMonth { get; }
-
         public int GetCurrentYear { get; }
-
-        public string Get9DigitRandomNumber { get; }
-
-        public string Get10DigitRandomNumber { get; }
-
         public string GetRandomEmail { get; }
-
         public string GetRandomWebsiteAddress { get; }
+        public string GetTownName => "Coventry";
+        public string GetCountyName => "Warwick";
+        public string GetPostCode => "CV1 2WT";
+        public string InvalidOrgNameWithAlphabets => "asfasfasdfasdf";
+        public string InvalidOrgNameWithNumbers => "54678900";
+        public string InvalidOrgNameWithAWord => "EPA01";
 
-        public string GetRandomAddressLine1 { get; }
+        public string GetRandomNumber(int length) => _randomDataGenerator.GenerateRandomNumber(length);
+
+        public string GetRandomAlphabeticString(int length) => _randomDataGenerator.GenerateRandomAlphabeticString(length);
 
         private string GetDateTimeValue() => DateTime.Now.ToString("ddMMMyyyy_HHmmss").ToUpper();
     }

@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.RAA.DataGenerator;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
@@ -13,6 +14,8 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
         private readonly FormCompletionHelper _formCompletionHelper;
         private readonly ScenarioContext _context;
         private readonly FAAConfig _config;
+        private readonly FAADataHelper _dataHelper;
+        private readonly PageInteractionHelper _PageInteractionhelper;
         #endregion
 
         private By UsernameField => By.CssSelector("#EmailAddress");
@@ -28,6 +31,8 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
             _context = context;
             _formCompletionHelper = context.Get<FormCompletionHelper>();
             _config = context.GetFAAConfig<FAAConfig>();
+            _dataHelper = context.Get<FAADataHelper>();
+            _PageInteractionhelper = context.Get<PageInteractionHelper>();
             VerifyPage(UsernameField);
         }
 
@@ -37,6 +42,14 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
             _formCompletionHelper.EnterText(PasswordField, _config.FAAPassword);
             _formCompletionHelper.ClickElement(SignInButton);
             return new FAA_MyApplicationsHomePage(_context);
+        }
+
+        public FAA_ActivateYourAccountPage SubmitUnactivatedLoginDetails()
+        {
+            _formCompletionHelper.EnterText(UsernameField, _dataHelper.EmailId);
+            _formCompletionHelper.EnterText(PasswordField, _dataHelper.Password);
+            _formCompletionHelper.ClickElement(SignInButton);
+            return new FAA_ActivateYourAccountPage(_context);
         }
 
         public FAA_CreateAnAccountPage ClickCreateAnAccountLink()

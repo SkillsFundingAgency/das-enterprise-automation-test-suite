@@ -4,7 +4,7 @@ A Levy employer can view, edit and delete all the apprentice and cohort before c
 @approvals
 @regression
 Scenario: AP_EmpDC_01 Employer view edit and delete apprentices and cohort
-	Given the Employer login using existing levy account
+	Given the Employer logins using existing Levy Account
 	And Employer adds 2 apprentices to current cohort
 	Then Employer is able to view saved cohort from Draft
 	And Employer is able to edit all apprentices before approval

@@ -54,7 +54,7 @@ namespace SFA.DAS.FAA.UITests.Project.Helpers
                 .GoToSignInPage()
                 .SubmitValidLoginDetails();
         }
-
+        
         public FAA_CreateAnAccountPage StartFAAAccountCreation()
         {
             _tabHelper.GoToUrl(_config.FAABaseUrl);
@@ -66,9 +66,22 @@ namespace SFA.DAS.FAA.UITests.Project.Helpers
 
         public void CreateFAAAccount(FAA_CreateAnAccountPage accountCreationPage)
         {
-            accountCreationPage.SubmitAccountCreationDetails();
+            accountCreationPage.SubmitAccountCreationDetails()
+                .EnterActivationCode()
+                .ClickSaveAndContinue()
+                .VerifyPhoneNumberVerificationText()
+                .EnterVerificationCode()
+                .VerifySuccessfulVerificationText();
+            
         }
 
+        public void CreateFAAAccountWithNoActivation(FAA_CreateAnAccountPage accountCreationPage)
+        {
+            accountCreationPage.SubmitAccountCreationDetails()
+                .ClickSignOut()
+                .SubmitUnactivatedLoginDetails();
+        }
+                  
         public void WithdrawVacancy()
         {
             SearchByReferenceNumber()

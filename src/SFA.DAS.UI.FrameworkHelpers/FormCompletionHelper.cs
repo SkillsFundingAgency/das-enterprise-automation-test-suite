@@ -28,6 +28,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         public void ClickElement(IWebElement element) => _retryHelper.RetryOnElementClickInterceptedException(element, true);
 
+        //links are Intercepted by Help menu.
         public void ClickInterceptedElement(IWebElement element) => _retryHelper.RetryOnElementClickInterceptedException(element, false);
 
         public void ClickElement(By locator)
@@ -121,7 +122,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
             if (radioToSelect != null)
                 ClickElement(radioToSelect);
         }
-
+        
         public void SelectRadioOptionByText(By locator, String text) => ClickElementByText(locator, text);
 
         private void ClickElementByText(By locator, String text) => ClickElement(() => GetElementByText(locator, text));

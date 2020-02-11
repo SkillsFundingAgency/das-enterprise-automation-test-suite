@@ -1,31 +1,20 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.UI.Framework.TestSupport;
-using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 {
-    public class CheckYourDetailsPage : BasePage
+    public class CheckYourDetailsPage : RegistrationBasePage
     {
         protected override string PageTitle => "Check your details";
-
-        #region Helpers and Context
-        private readonly PageInteractionHelper _pageInteractionHelper;
-        private readonly FormCompletionHelper _formCompletionHelper;
         private readonly ScenarioContext _context;
-        #endregion
 
-        private By ChangeOrganisationName() => By.CssSelector("a[href=/accounts/organisations]");
-
-        private By ChangePayeDetails() => By.CssSelector("a[href=/accounts/amendPaye]");
-
+        #region Locators
         protected override By ContinueButton => By.Id("continue");
+        #endregion
 
         public CheckYourDetailsPage(ScenarioContext context) : base(context)
         {
             _context = context;
-            _pageInteractionHelper = context.Get<PageInteractionHelper>();
-            _formCompletionHelper = context.Get<FormCompletionHelper>();
             VerifyPage();
         }
 
@@ -33,12 +22,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         {
             Continue();
             return new WhenDoYouWantToViewEmpAgreementPage(_context);
-        }
-
-        public EoiAboutYourAgreementPage ContinueToEoiAboutYourAgreementPage()
-        {
-            Continue();
-            return new EoiAboutYourAgreementPage(_context);
         }
     }
 }
