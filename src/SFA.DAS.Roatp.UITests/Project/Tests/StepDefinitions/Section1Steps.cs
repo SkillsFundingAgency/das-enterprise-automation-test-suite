@@ -67,9 +67,8 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions
         [Then(@"the provider completes Tell us who's in control section for charity and company")]
         public void ThenTheProviderCompletesTellUsWhosInControlSectionForCharityAndCompany()
         {
-            _overviewPage = _yourOrganisationSectionHelper.CompleteYourOrganisationSection_3_Charity(_overviewPage);
+            _overviewPage = _yourOrganisationSectionHelper.CompleteYourOrganisationSection_3_CharityAndCompany(_overviewPage);
         }
-
 
         [Then(@"the provider completes Describe your organisation section as OrgTypeNoneOfTheAbove")]
         public void ThenTheProviderCompletesDescribeYourOrganisationSectionAsOrgTypeNoneOfTheAbove()
