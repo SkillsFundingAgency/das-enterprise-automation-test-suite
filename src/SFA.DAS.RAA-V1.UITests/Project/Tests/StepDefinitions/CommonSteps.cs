@@ -66,7 +66,6 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
             _applyForVacancy = true;
         }
 
-
         [Given(@"the apprenticeship vacancy is Live in Recruit with no application")]
         public void GivenTheApprenticeshipVacancyIsLiveInRecruitWithNoApplication()
         {
@@ -74,7 +73,6 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
             AddApprenticeshipVacancy();
             _applyForVacancy = true;
         }
-
 
         [Given(@"the apprenticeship vacancy is Live in Recruit with an application")]
         public void GivenTheApprenticeshipVacancyIsLiveInRecruitWithAnApplication()
@@ -87,7 +85,6 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
         {
             AddTraineeshipVacancy();
         }
-
 
         [Given(@"the apprenticeship vacancy is Live in Recruit near '(.*)'")]
         public void GivenTheApprenticeshipVacancyIsLiveInRecruitNear(string postCode)

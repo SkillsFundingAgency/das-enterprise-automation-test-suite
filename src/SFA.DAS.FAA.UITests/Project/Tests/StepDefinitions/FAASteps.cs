@@ -58,7 +58,5 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.StepDefinitions
         {
             _faaStepsHelper.FindATraineeship().SearchByReferenceNumber().VerifyNewDates();
         }
-
-
     }
 }

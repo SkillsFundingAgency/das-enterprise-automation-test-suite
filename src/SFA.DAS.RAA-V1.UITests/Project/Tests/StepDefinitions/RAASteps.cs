@@ -87,7 +87,6 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
             {
                 ChangeVacancyDate(new RAA_VacancyPreviewPage(_context));
             }
-
             else
             {
                 ChangeVacancyDate(new RAA_OppurtunityPreviewPage(_context));
