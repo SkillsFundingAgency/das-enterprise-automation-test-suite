@@ -123,9 +123,11 @@ namespace SFA.DAS.UI.FrameworkHelpers
                 ClickElement(radioToSelect);
         }
         
-        public void SelectRadioOptionByText(By locator, String text) => ClickElementByText(locator, text);
+        public void SelectRadioOptionByText(By locator, string text) => ClickElementByText(locator, text);
 
-        private void ClickElementByText(By locator, String text) => ClickElement(() => GetElementByText(locator, text));
+        public void EnterTextByLabel(By labellocator, string labeltext, string text) => EnterText(GetElementByText(labellocator, labeltext).FindElement(InputCssSelector), text);
+
+        private void ClickElementByText(By locator, string text) => ClickElement(() => GetElementByText(locator, text));
 
         public void ClickLinkByText(By locator, string text) => ClickElementByText(locator, text);
 

@@ -74,6 +74,40 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
             return new DeliveringApprenticeshipTrainingPage(_context);
         }
 
+        public TellUsWhoHasOverallAccountabilityPage Access_Section7_OverallAccountability()
+        {
+            formCompletionHelper.ClickElement(GetTaskLinkElement(DeliveringApprenticeshipTraining, DeliveringApprenticeshipTraining_2));
+            return new TellUsWhoHasOverallAccountabilityPage(_context);
+        }
+
+        public OrganisationManagementHierarchyPage Access_Section7_ManagementHierarchy()
+        {
+            formCompletionHelper.ClickElement(GetTaskLinkElement(DeliveringApprenticeshipTraining, DeliveringApprenticeshipTraining_3));
+            return new OrganisationManagementHierarchyPage(_context);
+        }
+
+        public UploadManagementExpectationsForQualitypage Access_Section7_QualityAndHighStandards()
+        {
+            formCompletionHelper.ClickElement(GetTaskLinkElement(DeliveringApprenticeshipTraining, DeliveringApprenticeshipTraining_4));
+            return new UploadManagementExpectationsForQualitypage(_context);
+        }
+        public TellUsWhoHasOverallAccountabilityPage Access_Section7_DevelopingAndDelivering()
+        {
+            formCompletionHelper.ClickElement(GetTaskLinkElement(DeliveringApprenticeshipTraining, DeliveringApprenticeshipTraining_5));
+            return new TellUsWhoHasOverallAccountabilityPage(_context);
+        }
+        public TellUsWhoHasOverallAccountabilityPage Access_Section7_YourSectorsAndEmployees()
+        {
+            formCompletionHelper.ClickElement(GetTaskLinkElement(DeliveringApprenticeshipTraining, DeliveringApprenticeshipTraining_6));
+            return new TellUsWhoHasOverallAccountabilityPage(_context);
+        }
+        public TellUsWhoHasOverallAccountabilityPage Access_Section7_PolicyForProfessionalDevelopment()
+        {
+            formCompletionHelper.ClickElement(GetTaskLinkElement(DeliveringApprenticeshipTraining, DeliveringApprenticeshipTraining_7));
+            return new TellUsWhoHasOverallAccountabilityPage(_context);
+        }
+        
+
         #endregion
 
         #region Section6
