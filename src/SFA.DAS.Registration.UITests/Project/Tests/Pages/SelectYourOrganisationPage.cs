@@ -9,7 +9,10 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         protected override string PageTitle => "Select your organisation";
         private readonly ScenarioContext _context;
 
+        #region Locators
         private By OrganisationLink() => By.CssSelector("button[type=submit]");
+        private By SearchResultsText => By.Id("inline-search-hint");
+        #endregion
 
         public SelectYourOrganisationPage(ScenarioContext context) : base(context)
         {
@@ -37,6 +40,8 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
             return new CheckYourDetailsPage(_context);
         }
+
+        public string GetSearchResultsText() => pageInteractionHelper.GetText(SearchResultsText);
 
         private IWebElement SearchLinkUrl(string searchText) => pageInteractionHelper.GetLink(OrganisationLink(), searchText);
     }

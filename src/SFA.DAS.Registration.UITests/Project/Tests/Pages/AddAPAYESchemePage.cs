@@ -3,7 +3,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 {
-    public class GetApprenticeshipFunding : RegistrationBasePage
+    public class AddAPAYESchemePage : RegistrationBasePage
     {
         protected override string PageTitle => "Add a PAYE Scheme";
         private readonly ScenarioContext _context;
@@ -14,7 +14,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         protected override By ContinueButton => By.Id("submit-add-a-paye-scheme-button");
         #endregion
 
-        public GetApprenticeshipFunding(ScenarioContext context) : base(context)
+        public AddAPAYESchemePage(ScenarioContext context) : base(context)
         {
             _context = context;
             VerifyPage();
@@ -34,13 +34,13 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             return new MyAccountWithOutPaye(_context);
         }
 
-        private GetApprenticeshipFunding SelectAddPaye()
+        private AddAPAYESchemePage SelectAddPaye()
         {
             formCompletionHelper.ClickElement(AddPayeRadioButton);
             return this;
         }
 
-        private GetApprenticeshipFunding SelectDoNotAddPaye()
+        private AddAPAYESchemePage SelectDoNotAddPaye()
         {
             formCompletionHelper.ClickElement(DoNotAddPayeRadioButton);
             return this;
