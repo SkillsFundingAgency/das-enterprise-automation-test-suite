@@ -48,7 +48,10 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers
 
         internal ApplicationOverviewPage CompleteDeliveringApprenticeshipTraining_5_EmployerRoute(ApplicationOverviewPage applicationOverviewPage)
         {
-            return applicationOverviewPage;
+            return applicationOverviewPage.Access_Section7_DevelopingAndDelivering()
+                .SelectNo()
+                .SelectNo()
+                .VerifyDevelopingAndDelivering_Section7(StatusHelper.StatusCompleted);
         }
 
         internal ApplicationOverviewPage CompleteDeliveringApprenticeshipTraining_5_SupportingRoute(ApplicationOverviewPage applicationOverviewPage)
