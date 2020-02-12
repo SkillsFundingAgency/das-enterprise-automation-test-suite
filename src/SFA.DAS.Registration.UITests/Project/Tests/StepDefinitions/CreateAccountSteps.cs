@@ -19,6 +19,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         private OrganisationSearchPage _organistionSearchPage;
         private SelectYourOrganisationPage _selectYourOrganisationPage;
         private SignAgreementPage _signAgreementPage;
+        private OrganisationHasBeenAddedPage _organisationHasBeenAddedPage;
 
         public CreateAccountSteps(ScenarioContext context)
         {
@@ -129,10 +130,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         [Then(@"the Employer Home page is displayed")]
         public void TheEmployerHomePageIsDisplayed()
         {
-            var accountid = new HomePage(_context)
-                .HomePage()
-                .AccountId();
-
+            var accountid = _homePage.AccountId();
             _objectContext.SetAccountId(accountid);
         }
 
@@ -143,6 +141,24 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
                  .SetAgreementId();
 
             return new HomePage(_context, true);
+        }
+
+        [When(@"the Employer initiates adding another Org of (Company|PublicSector|Charity) Type")]
+        public void WhenTheEmployerInitiatesAddingAnotherOrgOfPublicSectorType(OrgType orgType)
+        {
+            _homePage.GoToYourOrganisationsAndAgreementsPage()
+                .ClickAddNewOrganisationButton()
+                .SearchForAnOrganisation(orgType)
+                .SelectYourOrganisation(orgType)
+                .ClickYesContinueButton();
+        }
+
+        [Then(@"the new Org added is shown in the Account Organisations list")]
+        public void ThenTheNewOrgAddedIsShownInTheAccountOrganisationsList()
+        {
+            _organisationHasBeenAddedPage
+                .GoToYourOrganisationsAndAgreementsPage()
+                .FindOrgInTheListAndClickSignAgreementLink();
         }
     }
 }
