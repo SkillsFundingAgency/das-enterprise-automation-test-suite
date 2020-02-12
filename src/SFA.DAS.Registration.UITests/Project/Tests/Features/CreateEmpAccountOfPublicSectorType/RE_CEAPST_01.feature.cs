@@ -70,13 +70,15 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features.CreateEmpAccountOf
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RE_CEAPST_01_Create an Employer Account with Public Sector Type Organisation")]
+        [NUnit.Framework.DescriptionAttribute("RE_CEAPST_01_Create an Employer Account with Public Sector Type Org and verify Ad" +
+            "ding the same Org again")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("registration")]
         [NUnit.Framework.CategoryAttribute("addpayedetails")]
-        public virtual void RE_CEAPST_01_CreateAnEmployerAccountWithPublicSectorTypeOrganisation()
+        public virtual void RE_CEAPST_01_CreateAnEmployerAccountWithPublicSectorTypeOrgAndVerifyAddingTheSameOrgAgain()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RE_CEAPST_01_Create an Employer Account with Public Sector Type Organisation", null, new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RE_CEAPST_01_Create an Employer Account with Public Sector Type Org and verify Ad" +
+                    "ding the same Org again", null, new string[] {
                         "regression",
                         "registration",
                         "addpayedetails"});
@@ -93,6 +95,10 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("the Employer Signs the Agreement", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 11
  testRunner.Then("the Employer Home page is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 12
+ testRunner.When("the Employer initiates adding another same Org of PublicSector Type again", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 13
+ testRunner.Then("\'Already added\' message should be shown to the User", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
