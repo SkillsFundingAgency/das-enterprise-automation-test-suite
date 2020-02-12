@@ -13,6 +13,8 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.DeliveringApprenticeshipTrai
         private readonly ScenarioContext _context;
         #endregion
 
+        private By OnTheJob => By.CssSelector("input[value='On the job']");
+
         public HowHaveTheyDeliveredTrainingToApprenticesPage(ScenarioContext context) : base(context)
         {
             _context = context;
@@ -21,12 +23,11 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.DeliveringApprenticeshipTrai
 
         public YourSectorsAndEmployeesPage EnterDetails()
         {
-            SelectCheckboxByText("On the job");
+            formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(OnTheJob));
             SelectRadioOptionByText("No experience");
             SelectRadioOptionByText("No training delivered");
             Continue();
             return new YourSectorsAndEmployeesPage(_context);
         }
-
     }
 }
