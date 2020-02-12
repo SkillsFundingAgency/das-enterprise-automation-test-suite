@@ -42,11 +42,6 @@
     <None Update="specflow.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Project\Tests\Features\E2EJourney\ChangeVacancyStatus\Traineeships\CloseVacancy\" />
-    <Folder Include="Project\Tests\Features\E2EJourney\ChangeVacancyStatus\Traineeships\ShareApplications\" />
-  </ItemGroup>
+  </ItemGroup> 
 
 </Project>
