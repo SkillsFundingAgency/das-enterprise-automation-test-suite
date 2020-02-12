@@ -17,7 +17,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
         #region Helpers and Context
         private readonly PageInteractionHelper _pageInteractionHelper;
         private readonly ScenarioContext _context;     
-        private readonly FAADataHelper _dataHelper;
+        private readonly FAADataHelper _dataHelper;        
         #endregion
 
         private By SuccessfulMobileVerificationText => By.Id("SuccessMessageText");
@@ -33,6 +33,6 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
         public void VerifySuccessfulVerificationText()
         {
             _pageInteractionHelper.VerifyText(SuccessfulMobileVerificationText, _dataHelper.SuccessfulPhoneVerificationText);
-        }
+        }        
     }
 }
