@@ -21,7 +21,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.DeliveringApprenticeshipTrai
 
         public YourSectorsAndEmployeesPage EnterDetails()
         {
-            SelectRadioOptionByText("On the job");
+            SelectCheckboxByText("On the job");
             SelectRadioOptionByText("No experience");
             SelectRadioOptionByText("No training delivered");
             Continue();

@@ -1,10 +1,13 @@
-﻿using TechTalk.SpecFlow;
+﻿using OpenQA.Selenium;
+using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.DeliveringApprenticeshipTraining_Section7
 {
     public class ChooseYourOrganisationSectorsPage : RoatpBasePage
     {
-        protected override string PageTitle => "Your sectors and employees";
+        protected override string PageTitle => "What sectors will your organisation offer apprenticeship training in?";
+
+        protected override By PageHeader => By.CssSelector(".govuk-label-wrapper");
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
