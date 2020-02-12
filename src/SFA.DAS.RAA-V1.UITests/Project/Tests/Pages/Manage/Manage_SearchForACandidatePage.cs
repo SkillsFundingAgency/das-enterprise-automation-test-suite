@@ -20,7 +20,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.Manage
 
         private By LastName => By.Id("SearchViewModel_LastName");
 
-        private By NoCandidateInfo = By.XPath("//div [@class ='form-group']/ul");
+        private By NoCandidateInfo = By.CssSelector(".form-group");
 
         public Manage_SearchForACandidatePage(ScenarioContext context) : base(context)
         {
