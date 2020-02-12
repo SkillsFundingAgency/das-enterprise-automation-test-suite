@@ -13,8 +13,8 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.YourOrganisation_Section1
 
         private By FullNameField => By.Id("PersonInControlName");
 
-        private By MonthField => By.XPath("(//input[@class='govuk-input govuk-date-input__input govuk-input--width-2 '])[1]");
-        private By YearField => By.XPath("(//input[@class='govuk-input govuk-date-input__input govuk-input--width-4 '])[1]");
+        private By MonthField => By.CssSelector("#PersonInControlDobMonth");
+        private By YearField => By.CssSelector("#PersonInControlDobYear");
 
         public WhoIsInControlOfYourOrganisationPage(ScenarioContext context) : base(context)
         {
