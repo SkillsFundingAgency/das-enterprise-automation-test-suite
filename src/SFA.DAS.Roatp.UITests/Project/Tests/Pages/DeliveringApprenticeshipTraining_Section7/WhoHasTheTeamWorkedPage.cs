@@ -29,6 +29,5 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.DeliveringApprenticeshipTrai
             Continue();
             return new HowHasTheTeamWorkedWithOrganisationsPage(_context);
         }
-       
     }
 }

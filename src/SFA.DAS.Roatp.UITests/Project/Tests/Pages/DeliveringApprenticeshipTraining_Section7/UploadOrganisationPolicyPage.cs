@@ -1,7 +1,7 @@
 ﻿using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
+namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.DeliveringApprenticeshipTraining_Section7
 {
     public class UploadOrganisationPolicyPage : RoatpBasePage
     {
@@ -18,7 +18,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
             _context = context;
             VerifyPage();
         }
-       
+
         public GiveAnExampleToImproveEmployeesPage UploadOrganisationPolicyAndContinue()
         {
             UploadFile();
@@ -26,5 +26,3 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
         }
     }
 }
-
-
