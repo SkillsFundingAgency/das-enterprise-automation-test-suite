@@ -287,6 +287,11 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
             formCompletionHelper.ClickElement(GetTaskLinkElement(Yourorganisation, YourOrganisation_3));
             return new ConfrimWhosInControlPage(_context);
         }
+        public WhoIsInControlOfYourOrganisationPage AccessTellUsWhosInControlSectionForCHManualEntryTrue()
+        {
+            formCompletionHelper.ClickElement(GetTaskLinkElement(Yourorganisation, YourOrganisation_3));
+            return new WhoIsInControlOfYourOrganisationPage(_context);
+        }
         public ConfirmTrusteesPage AccessTellUSWhosInControlSectionForOrgTypeCharity()
         {
             formCompletionHelper.ClickElement(GetTaskLinkElement(Yourorganisation, YourOrganisation_3));

@@ -70,6 +70,12 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions
             _overviewPage = _yourOrganisationSectionHelper.CompleteYourOrganisationSection_3_CharityAndCompany(_overviewPage);
         }
 
+        [Then(@"the provider completes Tell us who's in control section for Government Statue")]
+        public void ThenTheProviderCompletesTellUsWhosInControlSectionForGovernmentStatue()
+        {
+            _overviewPage = _yourOrganisationSectionHelper.CompleteYourOrganisationSection_3_GovernmentStatue(_overviewPage);
+        }
+
         [Then(@"the provider completes Describe your organisation section as OrgTypeNoneOfTheAbove")]
         public void ThenTheProviderCompletesDescribeYourOrganisationSectionAsOrgTypeNoneOfTheAbove()
         {
@@ -94,6 +100,13 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions
             _overviewPage = _yourOrganisationSectionHelper.CompleteYourOrganisationSection_4_OrgTypeAEI(_overviewPage);
         }
 
+        [Then(@"the provider completes Describe your organisation section")]
+        public void ThenTheProviderCompletesDescribeYourOrganisationSection()
+        {
+            _overviewPage = _yourOrganisationSectionHelper.CompleteYourOrganisationSection_4_OrgTypeAcadamy(_overviewPage);
+        }
+
+
         [Then(@"the provider completes Experience and Accreditations section by selecting No to all")]
         public void ThenTheProviderCompletesExperienceAndAccreditationsSectionBySelectingNoToAll()
         {
@@ -110,6 +123,12 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions
         public void ThenTheProviderCompletesExperienceAndAccreditationsSectionBySelectingGradeTypeRequiresImprovement()
         {
             _overviewPage = _yourOrganisationSectionHelper.CompleteYourOrganisationSection_5_GradeTypeRequiresImprovement(_overviewPage);
+        }
+
+        [Then(@"the provider completes Experience and Accreditations section by selecting GradeOutstanding")]
+        public void ThenTheProviderCompletesExperienceAndAccreditationsSectionBySelectingGradeOutstanding()
+        {
+            _overviewPage = _yourOrganisationSectionHelper.CompleteYourOrganisationSection_5_GradeOutstanding(_overviewPage);
         }
     }
 }
