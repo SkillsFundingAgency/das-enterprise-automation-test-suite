@@ -91,20 +91,20 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
             formCompletionHelper.ClickElement(GetTaskLinkElement(DeliveringApprenticeshipTraining, DeliveringApprenticeshipTraining_4));
             return new UploadManagementExpectationsForQualitypage(_context);
         }
-        public TellUsWhoHasOverallAccountabilityPage Access_Section7_DevelopingAndDelivering()
+        public DoesYourOrganisationHaveATeamPage  Access_Section7_DevelopingAndDelivering()
         {
             formCompletionHelper.ClickElement(GetTaskLinkElement(DeliveringApprenticeshipTraining, DeliveringApprenticeshipTraining_5));
-            return new TellUsWhoHasOverallAccountabilityPage(_context);
+            return new DoesYourOrganisationHaveATeamPage(_context);
         }
         public YourSectorsAndEmployeesPage Access_Section7_YourSectorsAndEmployees()
         {
             formCompletionHelper.ClickElement(GetTaskLinkElement(DeliveringApprenticeshipTraining, DeliveringApprenticeshipTraining_6));
             return new YourSectorsAndEmployeesPage(_context);
         }
-        public TellUsWhoHasOverallAccountabilityPage Access_Section7_PolicyForProfessionalDevelopment()
+        public UploadOrganisationPolicyPage Access_Section7_PolicyForProfessionalDevelopment()
         {
             formCompletionHelper.ClickElement(GetTaskLinkElement(DeliveringApprenticeshipTraining, DeliveringApprenticeshipTraining_7));
-            return new TellUsWhoHasOverallAccountabilityPage(_context);
+            return new UploadOrganisationPolicyPage(_context);
         }
         
 

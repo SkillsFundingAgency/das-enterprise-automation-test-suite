@@ -1,6 +1,6 @@
 ﻿using TechTalk.SpecFlow;
 
-namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
+namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.DeliveringApprenticeshipTraining_Section7
 {
     public class ConfirmOrganisationManagementHierarchy : RoatpBasePage
     {

@@ -1,11 +1,11 @@
 ﻿using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
+namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.DeliveringApprenticeshipTraining_Section7
 {
-    public class TellUsWhoHasOverallAccountabilityPage : RoatpBasePage
+    public class WhoIsResposibleToMaintainExpectationsPage : RoatpBasePage
     {
-        protected override string PageTitle => "Tell us who has overall accountability for apprenticeships in your organisation";
+        protected override string PageTitle => "Tell us who's responsible for maintaining these expectations for quality and high standards in apprenticeship training";
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
@@ -13,19 +13,19 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
 
         protected By LabelCssSelector => By.CssSelector(".govuk-form-group");
 
-        public TellUsWhoHasOverallAccountabilityPage(ScenarioContext context) : base(context)
+        public WhoIsResposibleToMaintainExpectationsPage(ScenarioContext context) : base(context)
         {
             _context = context;
             VerifyPage();
         }
 
-        public ApplicationOverviewPage EnterDetails()
+        public HowAreTheyCommunicatedToEmployeesPage EnterDetails()
         {
             formCompletionHelper.EnterTextByLabel(LabelCssSelector, "Full name", applydataHelpers.FullName);
             formCompletionHelper.EnterTextByLabel(LabelCssSelector, "Email", applydataHelpers.Email);
             formCompletionHelper.EnterTextByLabel(LabelCssSelector, "Contact number", applydataHelpers.ContactNumber);
             Continue();
-            return new ApplicationOverviewPage(_context);
+            return new HowAreTheyCommunicatedToEmployeesPage(_context);
         }
 
     }

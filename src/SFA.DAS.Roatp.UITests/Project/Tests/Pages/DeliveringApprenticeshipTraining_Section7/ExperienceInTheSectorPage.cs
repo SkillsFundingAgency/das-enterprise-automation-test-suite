@@ -2,7 +2,7 @@
 using System.Linq;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
+namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.DeliveringApprenticeshipTraining_Section7
 {
     public class ExperienceInTheSectorPage : RoatpBasePage
     {
@@ -25,7 +25,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
             SelectRadioOptionByText("No experience");
 
             var options = pageInteractionHelper.FindElements(NoOption).Where(x => x.Text.Contains("No"));
-            
+
             foreach (var item in options)
             {
                 formCompletionHelper.ClickElement(item);

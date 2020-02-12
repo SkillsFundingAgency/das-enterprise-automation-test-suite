@@ -4,9 +4,9 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
 {
-    public class ApplySignInPage : RoatpBasePage
+    public class SignInToApplyPage : RoatpBasePage
     {
-        protected override string PageTitle => "Sign in to Apprenticeship assessment service";
+        protected override string PageTitle => "Sign in to Apply to join the register of apprenticeship training providers service";
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
@@ -16,7 +16,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
 
         private By EnterPassword => By.Id("Password");
 
-        public ApplySignInPage(ScenarioContext context) : base(context)
+        public SignInToApplyPage(ScenarioContext context) : base(context)
         {
             _context = context;
             VerifyPage();

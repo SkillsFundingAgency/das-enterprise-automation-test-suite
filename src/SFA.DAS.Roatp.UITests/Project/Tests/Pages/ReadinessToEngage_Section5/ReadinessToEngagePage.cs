@@ -4,7 +4,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.ReadinessToEngage_Section5
 {
     public class ReadinessToEngagePage : RoatpBasePage
     {
-        protected override string PageTitle => "Introduction and what you'll need";
+        protected override string PageTitle => "Readiness to engage";
 
         #region Helpers and Context
         private readonly ScenarioContext _context;

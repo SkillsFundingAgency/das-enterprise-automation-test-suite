@@ -1,6 +1,6 @@
 ﻿using TechTalk.SpecFlow;
 
-namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
+namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.DeliveringApprenticeshipTraining_Section7
 {
     public class ChooseYourOrganisationSectorsPage : RoatpBasePage
     {
@@ -16,9 +16,9 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
             VerifyPage();
         }
 
-        public YourSectorsAndEmployeesPage SelectSectors()
+        public YourSectorsAndEmployeesPage SelectSectors(string sector)
         {
-            SelectCheckboxByText("Digital");
+            SelectCheckboxByText(sector);
             Continue();
             return new YourSectorsAndEmployeesPage(_context);
         }

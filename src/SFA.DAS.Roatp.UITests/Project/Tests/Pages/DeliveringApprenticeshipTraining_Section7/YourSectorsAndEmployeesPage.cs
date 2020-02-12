@@ -1,6 +1,6 @@
 ﻿using TechTalk.SpecFlow;
 
-namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
+namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.DeliveringApprenticeshipTraining_Section7
 {
     public class YourSectorsAndEmployeesPage : RoatpBasePage
     {
@@ -22,9 +22,9 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
             return new ChooseYourOrganisationSectorsPage(_context);
         }
 
-        public MostExperiencedEmployeePage NavigateToMostExperiencedEmployeePage()
+        public MostExperiencedEmployeePage NavigateToMostExperiencedEmployeePage(string sector)
         {
-            formCompletionHelper.ClickLinkByText("Digital");
+            formCompletionHelper.ClickLinkByText(sector);
             return new MostExperiencedEmployeePage(_context);
         }
 

@@ -17,11 +17,11 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
             VerifyPage();
         }
 
-        public ApplySignInPage SelectingNoOptionForFirstTimeSignInAndContinue()
+        public SignInToApplyPage SelectingNoOptionForFirstTimeSignInAndContinue()
         {
             SelectRadioOptionByForAttribute("FirstTimeSignin-No");
             Continue();
-            return new ApplySignInPage(_context);
+            return new SignInToApplyPage(_context);
         }
     }
 }

@@ -36,17 +36,22 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers
                 .VerifyQualityAndHighStandards_Section7(StatusHelper.StatusCompleted);
         }
 
-        internal ApplicationOverviewPage CompleteDeliveringApprenticeshipTraining_5(ApplicationOverviewPage applicationOverviewPage)
+        internal ApplicationOverviewPage CompleteDeliveringApprenticeshipTraining_5_MainProvider(ApplicationOverviewPage applicationOverviewPage)
         {
-            return applicationOverviewPage;
+            return applicationOverviewPage.Access_Section7_DevelopingAndDelivering()
+                .SelectYes()
+                .SelectBothOptions()
+                .EnterHowHasTheTeamWorked()
+                .EnterDetailsOfTheManager()
+                .VerifyDevelopingAndDelivering_Section7(StatusHelper.StatusCompleted);
         }
 
         internal ApplicationOverviewPage CompleteDeliveringApprenticeshipTraining_6(ApplicationOverviewPage applicationOverviewPage)
         {
             return applicationOverviewPage.Access_Section7_YourSectorsAndEmployees()
                 .NavigateToChooseYourOrganisationSectors()
-                .SelectSectors()
-                .NavigateToMostExperiencedEmployeePage()
+                .SelectSectors("Digital")
+                .NavigateToMostExperiencedEmployeePage("Digital")
                 .EnterDetails()
                 .EnterExperienceDetails()
                 .SelectTypeOfApprenticeship()
@@ -57,7 +62,11 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers
 
         internal ApplicationOverviewPage CompleteDeliveringApprenticeshipTraining_7(ApplicationOverviewPage applicationOverviewPage)
         {
-            return applicationOverviewPage;
+            return applicationOverviewPage.Access_Section7_PolicyForProfessionalDevelopment()
+                .UploadOrganisationPolicyAndContinue()
+                .EnterAnExampleToImproveEmployees()
+                .EnterAnExampleToMaintainEmployee()
+                .VerifyPolicyForProfessionalDevelopment_Section7(StatusHelper.StatusCompleted);
         }
 
     }
