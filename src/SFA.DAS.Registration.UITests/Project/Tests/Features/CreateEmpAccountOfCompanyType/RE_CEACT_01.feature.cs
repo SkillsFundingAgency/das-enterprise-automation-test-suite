@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.Registration.UITests.Project.Tests.Features.CreateEmployerAccountWithCompanyTypeOrg
+namespace SFA.DAS.Registration.UITests.Project.Tests.Features.CreateEmpAccountOfCompanyType
 {
     using TechTalk.SpecFlow;
     
@@ -70,13 +70,15 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features.CreateEmployerAcco
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RE_CEACT_01_Create an Employer Account with CompanyType Organisation")]
+        [NUnit.Framework.DescriptionAttribute("RE_CEACT_01_Create an Employer Account with CompanyType Organisation and Add anot" +
+            "her Org of PublicSector Type")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("registration")]
         [NUnit.Framework.CategoryAttribute("addpayedetails")]
-        public virtual void RE_CEACT_01_CreateAnEmployerAccountWithCompanyTypeOrganisation()
+        public virtual void RE_CEACT_01_CreateAnEmployerAccountWithCompanyTypeOrganisationAndAddAnotherOrgOfPublicSectorType()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RE_CEACT_01_Create an Employer Account with CompanyType Organisation", null, new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RE_CEACT_01_Create an Employer Account with CompanyType Organisation and Add anot" +
+                    "her Org of PublicSector Type", null, new string[] {
                         "regression",
                         "registration",
                         "addpayedetails"});
@@ -93,6 +95,10 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("the Employer Signs the Agreement", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 11
  testRunner.Then("the Employer Home page is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 12
+ testRunner.When("the Employer initiates adding another Org of PublicSector Type", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 13
+ testRunner.Then("the new Org added is shown in the Account Organisations list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
