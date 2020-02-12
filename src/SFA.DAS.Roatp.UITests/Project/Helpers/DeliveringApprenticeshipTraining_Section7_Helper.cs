@@ -36,7 +36,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers
                 .VerifyQualityAndHighStandards_Section7(StatusHelper.StatusCompleted);
         }
 
-        internal ApplicationOverviewPage CompleteDeliveringApprenticeshipTraining_5_MainProvider(ApplicationOverviewPage applicationOverviewPage)
+        internal ApplicationOverviewPage CompleteDeliveringApprenticeshipTraining_5_MainRoute(ApplicationOverviewPage applicationOverviewPage)
         {
             return applicationOverviewPage.Access_Section7_DevelopingAndDelivering()
                 .SelectYes()
@@ -44,6 +44,16 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers
                 .EnterHowHasTheTeamWorked()
                 .EnterDetailsOfTheManager()
                 .VerifyDevelopingAndDelivering_Section7(StatusHelper.StatusCompleted);
+        }
+
+        internal ApplicationOverviewPage CompleteDeliveringApprenticeshipTraining_5_EmployerRoute(ApplicationOverviewPage applicationOverviewPage)
+        {
+            return applicationOverviewPage;
+        }
+
+        internal ApplicationOverviewPage CompleteDeliveringApprenticeshipTraining_5_SupportingRoute(ApplicationOverviewPage applicationOverviewPage)
+        {
+            return applicationOverviewPage;
         }
 
         internal ApplicationOverviewPage CompleteDeliveringApprenticeshipTraining_6(ApplicationOverviewPage applicationOverviewPage)

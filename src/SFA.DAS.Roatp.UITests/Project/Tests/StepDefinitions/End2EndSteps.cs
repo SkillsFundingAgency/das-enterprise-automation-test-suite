@@ -143,10 +143,22 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions
             _overviewPage = _end2EndStepsHelper.CompletesPlanningApprenticeshipTraining_Section6_SupportingRoute(_overviewPage);
         }
 
-        [When(@"the provider completes Delivering apprenticeship training section")]
-        public void WhenTheProviderCompletesDeliveringApprenticeshipTrainingSection()
+        [When(@"the provider completes Delivering apprenticeship training section for main route")]
+        public void WhenTheProviderCompletesDeliveringApprenticeshipTrainingSectionForMainRoute()
         {
-            _overviewPage = _end2EndStepsHelper.CompletesDeliveringApprenticeshipTraining_Section7(_overviewPage);
+            _overviewPage = _end2EndStepsHelper.CompletesDeliveringApprenticeshipTraining_Section7_MainRoute(_overviewPage);
+        }
+
+        [When(@"the provider completes Delivering apprenticeship training section for employer route")]
+        public void WhenTheProviderCompletesDeliveringApprenticeshipTrainingSectionForEmployerRoute()
+        {
+            _overviewPage = _end2EndStepsHelper.CompletesDeliveringApprenticeshipTraining_Section7_EmployerRoute(_overviewPage);
+        }
+
+        [When(@"the provider completes Delivering apprenticeship training section for supporting route")]
+        public void WhenTheProviderCompletesDeliveringApprenticeshipTrainingSectionForSupportingRoute()
+        {
+            _overviewPage = _end2EndStepsHelper.CompletesDeliveringApprenticeshipTraining_Section7_SupportingRoute(_overviewPage);
         }
 
         [When(@"the provider completes Evaluating apprenticeship training section")]
