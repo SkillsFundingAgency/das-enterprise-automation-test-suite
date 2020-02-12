@@ -58,6 +58,14 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
             AddApprenticeshipVacancy(table.CreateInstance<RAATableData>());
         }
 
+        [Given(@"the traineeship vacancy is Live in Recruit with no application")]
+        public void GivenTheTraineeshipVacancyIsLiveInRecruitWithNoApplication()
+        {
+            _applyForVacancy = false;
+            AddTraineeshipVacancy();
+            _applyForVacancy = true;
+        }
+
         [Given(@"the apprenticeship vacancy is Live in Recruit with no application")]
         public void GivenTheApprenticeshipVacancyIsLiveInRecruitWithNoApplication()
         {
@@ -66,11 +74,16 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
             _applyForVacancy = true;
         }
 
-
         [Given(@"the apprenticeship vacancy is Live in Recruit with an application")]
         public void GivenTheApprenticeshipVacancyIsLiveInRecruitWithAnApplication()
         {
             AddApprenticeshipVacancy();
+        }
+
+        [Given(@"the traineeship vacancy is Live in Recruit with an application")]
+        public void GivenTheTraineeshipVacancyIsLiveInRecruitWithAnApplication()
+        {
+            AddTraineeshipVacancy();
         }
 
         [Given(@"the apprenticeship vacancy is Live in Recruit near '(.*)'")]
@@ -117,6 +130,13 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
         {
             _exitFromWebsite = false;
             AddApprenticeshipVacancy(TestData("CV3 5JJ"));
+            _exitFromWebsite = true;
+        }
+
+        private void AddTraineeshipVacancy()
+        {
+            _exitFromWebsite = false;
+            AddTraineeshipVacancy(TestData("CV3 5JJ"));
             _exitFromWebsite = true;
         }
 

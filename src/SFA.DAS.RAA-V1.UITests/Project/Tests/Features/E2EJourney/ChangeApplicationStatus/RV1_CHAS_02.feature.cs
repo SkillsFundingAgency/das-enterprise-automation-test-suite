@@ -88,6 +88,8 @@ this.ScenarioInitialize(scenarioInfo);
 #line 9
  testRunner.Then("Provider is able to change the status of the In progress application to \'Successf" +
                     "ul\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 10
+ testRunner.And("the candidate is able to dismiss the Notifications in FAA \'Successful\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
