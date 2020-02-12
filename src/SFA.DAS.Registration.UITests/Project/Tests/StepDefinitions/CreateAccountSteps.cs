@@ -146,7 +146,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         [When(@"the Employer initiates adding another Org of (Company|PublicSector|Charity) Type")]
         public void WhenTheEmployerInitiatesAddingAnotherOrgOfPublicSectorType(OrgType orgType)
         {
-            _homePage.GoToYourOrganisationsAndAgreementsPage()
+            _organisationHasBeenAddedPage = _homePage.GoToYourOrganisationsAndAgreementsPage()
                 .ClickAddNewOrganisationButton()
                 .SearchForAnOrganisation(orgType)
                 .SelectYourOrganisation(orgType)
@@ -157,8 +157,8 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         public void ThenTheNewOrgAddedIsShownInTheAccountOrganisationsList()
         {
             _organisationHasBeenAddedPage
-                .GoToYourOrganisationsAndAgreementsPage()
-                .FindOrgInTheListAndClickSignAgreementLink();
+            .GoToYourOrganisationsAndAgreementsPage()
+            .VerifyNewlyAddedOrgIsPresent();
         }
     }
 }
