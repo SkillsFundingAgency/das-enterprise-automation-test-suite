@@ -88,8 +88,8 @@ this.ScenarioInitialize(scenarioInfo);
 #line 7
  testRunner.Given("the provider initates an application as supporting route soletrader", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 8
- testRunner.Then("I should be able to verify Introduction and what you\'ll need content for supporti" +
-                    "ng route", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the provider completes Introduction and what you\'ll need content for supporting r" +
+                    "oute", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 9
  testRunner.And("the provider completes Organisation Information section for charity", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 10
