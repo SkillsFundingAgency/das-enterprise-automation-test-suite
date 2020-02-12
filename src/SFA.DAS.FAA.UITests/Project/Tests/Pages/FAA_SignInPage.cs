@@ -40,18 +40,21 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 
         public FAA_MyApplicationsHomePage SubmitValidLoginDetails(string emailId, string password)
         {
-            _formCompletionHelper.EnterText(UsernameField, emailId);
-            _formCompletionHelper.EnterText(PasswordField, password);
-            _formCompletionHelper.ClickElement(SignInButton);
+            FAASignIn(emailId, password);
             return new FAA_MyApplicationsHomePage(_context);
         }
 
         public FAA_ActivateYourAccountPage SubmitUnactivatedLoginDetails(string emailId,string password)
         {
+            FAASignIn(emailId, password);
+            return new FAA_ActivateYourAccountPage(_context);
+        }
+
+        private void FAASignIn(string emailId, string password)
+        {
             _formCompletionHelper.EnterText(UsernameField, emailId);
             _formCompletionHelper.EnterText(PasswordField, password);
             _formCompletionHelper.ClickElement(SignInButton);
-            return new FAA_ActivateYourAccountPage(_context);
         }
 
         public FAA_CreateAnAccountPage ClickCreateAnAccountLink()

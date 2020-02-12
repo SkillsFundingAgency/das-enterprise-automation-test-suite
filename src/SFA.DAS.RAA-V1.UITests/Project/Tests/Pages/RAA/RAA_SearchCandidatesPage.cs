@@ -27,8 +27,6 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
 
         private By SelectCandidateLinks => By.CssSelector("a");
 
-        private By SignOut => By.Id("signout-link");
-
         public RAA_SearchCandidatesPage(ScenarioContext context) : base(context)
         {
             _context = context;

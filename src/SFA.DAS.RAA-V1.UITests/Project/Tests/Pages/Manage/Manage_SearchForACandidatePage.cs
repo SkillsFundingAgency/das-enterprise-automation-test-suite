@@ -13,7 +13,6 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.Manage
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
-        private readonly FAADataHelper _dataHelper;
         private readonly ObjectContext _objectcontext;
         #endregion
         private By FirstName => By.Id("SearchViewModel_FirstName");
@@ -25,7 +24,6 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.Manage
         public Manage_SearchForACandidatePage(ScenarioContext context) : base(context)
         {
             _context = context;
-            _dataHelper = context.Get<FAADataHelper>();
             _objectcontext = context.Get<ObjectContext>();
         }
 
