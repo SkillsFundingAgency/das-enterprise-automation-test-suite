@@ -14,4 +14,3 @@ Scenario: RP_E2E_02_EmployerRoute-Charity
 	And the provider completes Delivering apprenticeship training section for employer route
 	And the provider completes Evaluating apprenticeship training section
 	Then the provider completes Finish section
-
