@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.Registration.UITests.Project.Tests.Features.CreateEmployerAccountWithCompanyTypeOrg
+namespace SFA.DAS.Registration.UITests.Project.Tests.Features.CreateEmpAccountOfPublicSectorType
 {
     using TechTalk.SpecFlow;
     
@@ -18,20 +18,20 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features.CreateEmployerAcco
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.0.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("RE_CEACT_02")]
-    public partial class RE_CEACT_02Feature
+    [NUnit.Framework.DescriptionAttribute("RE_CEAPST_01")]
+    public partial class RE_CEAPST_01Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "RE_CEACT_02.feature"
+#line 1 "RE_CEAPST_01.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "RE_CEACT_02", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "RE_CEAPST_01", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -70,15 +70,13 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features.CreateEmployerAcco
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RE_CEACT_02_Verify Invalid PAYE and Company number entry during Employer Account " +
-            "creation")]
+        [NUnit.Framework.DescriptionAttribute("RE_CEAPST_01_Create an Employer Account with Public Sector Type Organisation")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("registration")]
         [NUnit.Framework.CategoryAttribute("addpayedetails")]
-        public virtual void RE_CEACT_02_VerifyInvalidPAYEAndCompanyNumberEntryDuringEmployerAccountCreation()
+        public virtual void RE_CEAPST_01_CreateAnEmployerAccountWithPublicSectorTypeOrganisation()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RE_CEACT_02_Verify Invalid PAYE and Company number entry during Employer Account " +
-                    "creation", null, new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RE_CEAPST_01_Create an Employer Account with Public Sector Type Organisation", null, new string[] {
                         "regression",
                         "registration",
                         "addpayedetails"});
@@ -88,15 +86,13 @@ this.ScenarioInitialize(scenarioInfo);
 #line 7
  testRunner.When("an User Account is created", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 8
- testRunner.And("the User adds Invalid PAYE details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("the User adds PAYE details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 9
- testRunner.Then("the \'Bad user name or password\' error message is shown", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("adds PublicSector Type Organisation details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 10
- testRunner.When("the User adds valid PAYE details on Gateway Sign In Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.And("the Employer Signs the Agreement", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 11
- testRunner.And("enters an Invalid Company number for Org search", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 12
- testRunner.Then("the \'0 results found\' message is shown", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the Employer Home page is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
