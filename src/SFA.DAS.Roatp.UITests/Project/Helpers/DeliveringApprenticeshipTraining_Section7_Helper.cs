@@ -40,8 +40,8 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers
         {
             return applicationOverviewPage.Access_Section7_DevelopingAndDelivering()
                 .SelectYes()
-                .SelectBothOptions()
-                .EnterHowHasTheTeamWorked()
+                .SelectOrganisations()
+                .EnterHowHasTheTeamOrPersonWorked()
                 .EnterDetailsOfTheManager()
                 .VerifyDevelopingAndDelivering_Section7(StatusHelper.StatusCompleted);
         }
@@ -56,7 +56,12 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers
 
         internal ApplicationOverviewPage CompleteDeliveringApprenticeshipTraining_5_SupportingRoute(ApplicationOverviewPage applicationOverviewPage)
         {
-            return applicationOverviewPage;
+            return applicationOverviewPage.Access_Section7_DevelopingAndDelivering_Support()
+                .SelectYes()
+                .SelectEmployersOptions()
+                .EnterHowHasTheTeamOrPersonWorked()
+                .EnterDetailsOfTheManagerPerson()
+                .VerifyDevelopingAndDelivering_Section7(StatusHelper.StatusCompleted);
         }
 
         internal ApplicationOverviewPage CompleteDeliveringApprenticeshipTraining_6(ApplicationOverviewPage applicationOverviewPage)
@@ -81,6 +86,5 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers
                 .EnterAnExampleToMaintainEmployee()
                 .VerifyPolicyForProfessionalDevelopment_Section7(StatusHelper.StatusCompleted);
         }
-
     }
 }

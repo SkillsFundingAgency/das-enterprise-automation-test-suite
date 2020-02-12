@@ -3,10 +3,8 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.DeliveringApprenticeshipTraining_Section7
 {
-    public class HowHasTheTeamWorkedPage : RoatpBasePage
+    public abstract class HowHasTheTeamOrPersonWorked : RoatpBasePage
     {
-        protected override string PageTitle => "How has the team worked with other organisations and employers to develop and deliver training?";
-
         protected override By PageHeader => By.CssSelector(".govuk-label-wrapper");
 
         #region Helpers and Context
@@ -15,19 +13,17 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.DeliveringApprenticeshipTrai
 
         private By LongTextArea => By.CssSelector("textarea");
 
-        public HowHasTheTeamWorkedPage(ScenarioContext context) : base(context)
+        public HowHasTheTeamOrPersonWorked(ScenarioContext context) : base(context)
         {
             _context = context;
             VerifyPage();
         }
 
-        public TellUsWhoIsTheManagerPage EnterHowHasTheTeamWorked()
+        public TellUsWhoIsTheManagerPage EnterHowHasTheTeamOrPersonWorked()
         {
-            formCompletionHelper.EnterText(LongTextArea, applydataHelpers.HowHasTheTeamWorked);
+            formCompletionHelper.EnterText(LongTextArea, applydataHelpers.HowHasTheTeamOrPersonWorked);
             Continue();
             return new TellUsWhoIsTheManagerPage(_context);
         }
     }
 }
-
-

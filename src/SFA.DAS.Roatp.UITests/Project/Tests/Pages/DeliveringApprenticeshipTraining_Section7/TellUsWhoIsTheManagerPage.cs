@@ -26,7 +26,12 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.DeliveringApprenticeshipTrai
             Continue();
             return new ApplicationOverviewPage(_context);
         }
+
+        public ApplicationOverviewPage EnterDetailsOfTheManagerPerson()
+        {
+            formCompletionHelper.EnterText(FullName, applydataHelpers.FullName);
+            SelectYesAndContinue();
+            return new ApplicationOverviewPage(_context);
+        }
     }
 }
-
-

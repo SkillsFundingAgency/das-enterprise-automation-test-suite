@@ -30,5 +30,3 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
         }
     }
 }
-
-

@@ -16,15 +16,19 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.DeliveringApprenticeshipTrai
             VerifyPage();
         }
 
-        public HowHasTheTeamWorkedPage SelectBothOptions()
+        public HowHasTheTeamWorkedWithBothPage SelectBothOptions()
         {
             SelectRadioOptionByText("Both other organisations and employers");
             Continue();
-            return new HowHasTheTeamWorkedPage(_context);
+            return new HowHasTheTeamWorkedWithBothPage(_context);
         }
 
-
+        public HowHasTheTeamWorkedWithOrganisationsPage SelectOrganisations()
+        {
+            SelectRadioOptionByText("Other Organisations");
+            Continue();
+            return new HowHasTheTeamWorkedWithOrganisationsPage(_context);
+        }
+       
     }
 }
-
-

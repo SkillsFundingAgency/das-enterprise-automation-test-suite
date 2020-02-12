@@ -173,7 +173,6 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions
             _overviewPage = _end2EndStepsHelper.CompletesEvaluatingApprenticeshipTraining_Section8_SupportingRoute(_overviewPage);
         }
 
-
         [Then(@"the provider completes Finish section")]
         public void ThenTheProviderCompletesFinishSection()
         {

@@ -96,6 +96,11 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
             formCompletionHelper.ClickElement(GetTaskLinkElement(DeliveringApprenticeshipTraining, DeliveringApprenticeshipTraining_5));
             return new DoesYourOrganisationHaveATeamPage(_context);
         }
+        public DoesYourOrganisationHaveSomeonePage Access_Section7_DevelopingAndDelivering_Support()
+        {
+            formCompletionHelper.ClickElement(GetTaskLinkElement(DeliveringApprenticeshipTraining, DeliveringApprenticeshipTraining_5));
+            return new DoesYourOrganisationHaveSomeonePage(_context);
+        }
         public YourSectorsAndEmployeesPage Access_Section7_YourSectorsAndEmployees()
         {
             formCompletionHelper.ClickElement(GetTaskLinkElement(DeliveringApprenticeshipTraining, DeliveringApprenticeshipTraining_6));
