@@ -130,7 +130,10 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         [Then(@"the Employer Home page is displayed")]
         public void TheEmployerHomePageIsDisplayed()
         {
-            var accountid = _homePage.AccountId();
+            var accountid = new HomePage(_context)
+                .HomePage()
+                .AccountId();
+
             _objectContext.SetAccountId(accountid);
         }
 
