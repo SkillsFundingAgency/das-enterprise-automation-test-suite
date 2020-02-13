@@ -21,5 +21,10 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.YourOrganisation_Section1
             SelectNoAndContinue();
             return new ShortOfstedInspectionPage(_context);
         }
+        public MaintainedFundingFromAnEducationAgencyPage SelectYesForGradeWithinThreeYearsAndContinue()
+        {
+            SelectYesAndContinue();
+            return new MaintainedFundingFromAnEducationAgencyPage(_context);
+        }
     }
 }

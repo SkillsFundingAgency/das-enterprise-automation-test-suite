@@ -205,6 +205,20 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers
                .VerifyExperienceAndAccreditationsStatus(StatusHelper.StatusCompleted);
         }
 
+        internal ApplicationOverviewPage CompleteYourOrganisationSection_5_Ofsted(ApplicationOverviewPage applicationOverviewPage)
+        {
+            return applicationOverviewPage.AccessExperienceAndAccreditationsSection()
+                .SelectYesForFundedbyOFSAndContinue()
+                .SelectYesForITTAndContinue()
+                .SelectNoForPGTAAndContinue()
+                .SelectYesForFullOfstedInspectionAndContinue()
+                .SelectYesForGradeInFullOfstedInspectionAndContinue()
+                .SelecOutstandingAndContinue()
+                .SelectYesForGradeWithinThreeYearsAndContinue()
+                .SelectYesForGradeMaintainedFromEducationAgencyAndContinue()
+                .VerifyExperienceAndAccreditationsStatus(StatusHelper.StatusCompleted);
+        }
+
         private ApplicationOverviewPage CompleteYourOrganisationSection_2(IcoRegistrationNumberPage icoRegistrationNumberPage)
         {
             return icoRegistrationNumberPage
