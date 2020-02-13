@@ -115,6 +115,5 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions
 
             return _end2EndStepsHelper.AcceptAndContinue(termsConditionsMakingApplicationPage);
         }
-
     }
 }
