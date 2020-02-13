@@ -15,11 +15,19 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.YourOrganisation_Section1
             _context = context;
             VerifyPage();
         }
+
         public DescribeYourOrganisationPage SelectHigherEducationInstituteAndContinue()
         {
             SelectRadioOptionByText("Higher Education Institute");
             Continue();
             return new DescribeYourOrganisationPage(_context);
+        }
+
+        public AlreadyRegisteredWithEsfaPage SelectAcademyAndContinue()
+        {
+            SelectRadioOptionByText("Academy");
+            Continue();
+            return new AlreadyRegisteredWithEsfaPage(_context);
         }
     }
 }
