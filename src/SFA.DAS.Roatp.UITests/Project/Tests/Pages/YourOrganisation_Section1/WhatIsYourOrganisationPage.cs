@@ -46,5 +46,11 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.YourOrganisation_Section1
             Continue();
             return new DescribeYourOrganisationPage(_context);
         }
+        public TypeOfBodyPage SelectPublicBodyAndContinue()
+        { 
+            SelectRadioOptionByText("A public body");
+            Continue();
+            return new TypeOfBodyPage(_context);
+        }
     }
 }

@@ -65,6 +65,9 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions
         [Then(@"the provider completes Describe your organisation section as OrgTypeATP")]
         public void ThenTheProviderCompletesDescribeYourOrganisationSectionAsOrgTypeATP() => _overviewPage = _yourOrganisationSectionHelper.CompleteYourOrganisationSection_4_OrgTypeATP(_overviewPage);
 
+        [Then(@"the provider completes Describe your organisation section as OrgTypePublicBody")]
+        public void ThenTheProviderCompletesDescribeYourOrganisationSectionAsOrgTypePublicBody() => _overviewPage = _yourOrganisationSectionHelper.CompleteYourOrganisationSection_4_OrgTypePublicBody(_overviewPage);
+
         [Then(@"the provider completes Experience and Accreditations section by selecting No to all")]
         public void ThenTheProviderCompletesExperienceAndAccreditationsSectionBySelectingNoToAll() => _overviewPage = _yourOrganisationSectionHelper.CompleteYourOrganisationSection_5_NoToAll(_overviewPage);
 

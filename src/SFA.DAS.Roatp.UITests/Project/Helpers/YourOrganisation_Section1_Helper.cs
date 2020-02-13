@@ -138,6 +138,15 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers
                 .VerifyDescribeYourOrganisationStatus(StatusHelper.StatusCompleted);
         }
 
+        internal ApplicationOverviewPage CompleteYourOrganisationSection_4_OrgTypePublicBody(ApplicationOverviewPage applicationOverviewPage)
+        {
+            return applicationOverviewPage.AccessDescribeYourOrganisationsForOrgTypeCharity()
+                    .SelectPublicBodyAndContinue()
+                    .SelectGovernmentDepartmentAndContinue()
+                    .SelectPublicServiceMutalAndShelterdWorkshopAndContinue()
+                    .VerifyDescribeYourOrganisationStatus(StatusHelper.StatusCompleted);
+        }
+        
         internal ApplicationOverviewPage CompleteYourOrganisationSection_5_NoToAll(ApplicationOverviewPage applicationOverviewPage)
         {
             return applicationOverviewPage
