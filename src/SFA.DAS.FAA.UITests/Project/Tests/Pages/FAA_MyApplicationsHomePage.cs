@@ -17,7 +17,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
         private readonly VacancyTitleDatahelper _dataHelper;
         #endregion
         
-        private By FindAnApprenticeshipLink => By.Id("find-apprenticeship-link");
+        private By FindAnApprenticeshipLink => By.LinkText("Find an apprenticeship");
 
         private By FindTraineeshipLink => By.Id("find-traineeship-link");
 
@@ -28,6 +28,8 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
         private By DismissNotification => By.LinkText("Dismiss this message");
 
         private By ReadFeedbackLink => By.LinkText("Read feedback");
+
+        private By Settings => By.LinkText("Settings");
 
         public FAA_MyApplicationsHomePage(ScenarioContext context) : base(context)
         {
@@ -50,6 +52,11 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
             return new FAA_TraineeshipSearchPage(_context);
         }
 
+        public FAA_SettingsPage GoToSettings()
+        {
+            _formCompletionHelper.Click(Settings);
+            return new FAA_SettingsPage(_context);
+        }
         public void ClickSignOut()
         {
             _formCompletionHelper.Click(SignOutCss);
