@@ -21,6 +21,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
         private readonly FormCompletionHelper _formCompletionHelper;
         private readonly PageInteractionHelper _pageInteractionHelper;
         private readonly RAAV1DataHelper _raaV1dataHelper;
+        private readonly RegexHelper _regexHelper;
         #endregion
 
         private By ApplyButton => By.Id("apply-button");
@@ -35,6 +36,8 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 
         private By StartDate => By.Id("vacancy-start-date");
 
+        private By VacancyWage => By.Id("vacancy-wage");
+
         public FAA_ApprenticeSummaryPage(ScenarioContext context) : base(context)
         {
             _context = context;
@@ -43,6 +46,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
             _raaV1dataHelper = context.Get<RAAV1DataHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
+            _regexHelper = context.Get<RegexHelper>();
             VerifyPage();
             if (!_objectContext.IsRAAV1()) { VerifyEmployerDetails(); }
         }
@@ -76,6 +80,16 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 
             _pageInteractionHelper.VerifyText(ClosingDate, "Closing date: " + actualClosingDate + "");
             _pageInteractionHelper.VerifyText(StartDate,actualStartDate);
+        }
+
+        public void VerifyNewWages()
+        {
+            string displayedWageFAA = _pageInteractionHelper.GetText(VacancyWage);
+            string[] wageRange = displayedWageFAA.Split('-');
+            string minWage =_regexHelper.GetVacancyCurrentWage(wageRange[0]);
+            string maxWage = _regexHelper.GetVacancyCurrentWage(wageRange[1]);
+            _pageInteractionHelper.VerifyText(minWage, _objectContext.GetMinWage());
+            _pageInteractionHelper.VerifyText(maxWage, _objectContext.GetMaxWage());
         }
     }
 }

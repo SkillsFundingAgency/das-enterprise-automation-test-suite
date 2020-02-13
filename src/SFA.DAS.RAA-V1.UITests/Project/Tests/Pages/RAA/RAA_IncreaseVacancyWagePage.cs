@@ -1,4 +1,7 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.ConfigurationBuilder;
+using SFA.DAS.RAA.DataGenerator;
+using SFA.DAS.RAA.DataGenerator.Project;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
@@ -12,6 +15,8 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         private readonly ScenarioContext _context;
         private RegexHelper _regexHelper;
         private readonly PageInteractionHelper _pageInteractionHelper;
+        private readonly RAAV1DataHelper _raaV1DataHelper;
+        private readonly ObjectContext _objectContext;
         #endregion
 
         private By CurrentWage => By.CssSelector("#vacancy-wage");
@@ -26,6 +31,8 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
             _context = context;
             _regexHelper = context.Get<RegexHelper>();
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
+            _raaV1DataHelper = context.Get<RAAV1DataHelper>();
+            _objectContext = context.Get<ObjectContext>();
         }
 
         public RAA_IncreaseVacancyWagePreviewPage SaveAndReturn()
@@ -50,6 +57,13 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
             newMinWage = newMinWage == 0 ? 200 : (newMinWage + dataHelper.RandomNumber);
 
             int newMaxWage = newMinWage + dataHelper.RandomNumber;
+
+            _objectContext.SetMinWage(newMinWage.ToString());
+            _objectContext.SetMaxWage(newMaxWage.ToString());
+
+
+            //_raaV1DataHelper.NewCustomMinWagePerWeek = newMinWage.ToString();
+            //_raaV1DataHelper.NewCustomMaxWagePerWeek = newMaxWage.ToString();
 
             formCompletionHelper.EnterText(AmountLowerBound, newMinWage.ToString());
 

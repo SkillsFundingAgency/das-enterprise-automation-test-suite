@@ -53,6 +53,13 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.StepDefinitions
             _faaStepsHelper.FindAnApprenticeship().SearchByReferenceNumber().VerifyNewDates();
         }
 
+        [Then(@"the Wage is changed in FAA")]
+        public void ThenTheWageIsChangedInFAA()
+        {
+            _faaStepsHelper.FindAnApprenticeship().SearchByReferenceNumber().VerifyNewWages();
+        }
+
+
         [Then(@"the Trainneship Vacancy dates is changed in FAA")]
         public void ThenTheTrainneshipVacancyDatesIsChangedInFAA()
         {
