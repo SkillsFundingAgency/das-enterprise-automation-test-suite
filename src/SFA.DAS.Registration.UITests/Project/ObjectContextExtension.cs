@@ -32,12 +32,12 @@ namespace SFA.DAS.Registration.UITests.Project
 
         public static void SetOrganisationName(this ObjectContext objectContext, string organisationName)
         {
-            objectContext.Set(OrganisationNameKey, organisationName.ToUpper());
+            objectContext.Set(OrganisationNameKey, organisationName);
         }
 
         public static void UpdateOrganisationName(this ObjectContext objectContext, string organisationName)
         {
-            objectContext.Update(OrganisationNameKey, organisationName.ToUpper());
+            objectContext.Update(OrganisationNameKey, organisationName);
         }
 
         internal static void SetReceiverAccountId(this ObjectContext objectContext, string value)

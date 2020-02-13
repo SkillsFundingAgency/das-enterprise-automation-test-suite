@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Features.E2EJourney.ChangeVacancyStatus.ChangeVacancyDates
+namespace SFA.DAS.Registration.UITests.Project.Tests.Features.CreateEmpAccountOfCompanyType
 {
     using TechTalk.SpecFlow;
     
@@ -18,20 +18,20 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Features.E2EJourney.ChangeVacancy
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.0.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("RV1_CVSD_01")]
-    public partial class RV1_CVSD_01Feature
+    [NUnit.Framework.DescriptionAttribute("RE_CEACT_02")]
+    public partial class RE_CEACT_02Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "RV1_CVSD_01.feature"
+#line 1 "RE_CEACT_02.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "RV1_CVSD_01", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "RE_CEACT_02", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -70,25 +70,33 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Features.E2EJourney.ChangeVacancy
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RV1_CVSD_01 - Change Vacancy dates which has NO Applications")]
-        [NUnit.Framework.CategoryAttribute("raa-v1")]
+        [NUnit.Framework.DescriptionAttribute("RE_CEACT_02_Verify Invalid PAYE and Company number entry during Employer Account " +
+            "creation")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("apprenticeshipvacancy")]
-        public virtual void RV1_CVSD_01_ChangeVacancyDatesWhichHasNOApplications()
+        [NUnit.Framework.CategoryAttribute("registration")]
+        [NUnit.Framework.CategoryAttribute("addpayedetails")]
+        public virtual void RE_CEACT_02_VerifyInvalidPAYEAndCompanyNumberEntryDuringEmployerAccountCreation()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV1_CVSD_01 - Change Vacancy dates which has NO Applications", null, new string[] {
-                        "raa-v1",
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RE_CEACT_02_Verify Invalid PAYE and Company number entry during Employer Account " +
+                    "creation", null, new string[] {
                         "regression",
-                        "apprenticeshipvacancy"});
+                        "registration",
+                        "addpayedetails"});
 #line 6
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 7
- testRunner.Given("the apprenticeship vacancy is Live in Recruit with no application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.When("an User Account is created", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 8
- testRunner.Then("Provider is able to change vacancy dates with no application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("the User adds Invalid PAYE details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 9
- testRunner.And("the Vacancy dates is changed in FAA", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Then("the \'Bad user name or password\' error message is shown", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 10
+ testRunner.When("the User adds valid PAYE details on Gateway Sign In Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 11
+ testRunner.And("enters an Invalid Company number for Org search", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 12
+ testRunner.Then("the \'0 results found\' message is shown", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

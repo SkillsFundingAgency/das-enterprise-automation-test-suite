@@ -23,6 +23,8 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 
         #region Helpers and Context
         private readonly PageInteractionHelper _pageInteractionHelper;
+        private readonly ScenarioContext _context;     
+        private readonly FAADataHelper _dataHelper;        
         private readonly FormCompletionHelper _formCompletionHelper;
         private readonly ScenarioContext _context;
         private readonly ObjectContext _objectcontext;
@@ -42,6 +44,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
         public void VerifySuccessfulVerificationText()
         {
             _pageInteractionHelper.VerifyText(SuccessfulMobileVerificationText, _dataHelper.SuccessfulPhoneVerificationText);
+        }        
         }
 
         public FAA_ConfirmAccountDeletionPage DeleteYourAccount()

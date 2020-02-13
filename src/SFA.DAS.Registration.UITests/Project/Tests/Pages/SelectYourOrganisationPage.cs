@@ -43,6 +43,9 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         public string GetSearchResultsText() => pageInteractionHelper.GetText(SearchResultsText);
 
+        public bool VerifyOrgAlreadyAddedMessage(string orgName) =>
+            pageInteractionHelper.VerifyText(pageInteractionHelper.GetText(By.XPath($"//p[text()='{orgName}']/following-sibling::p")), "Already added");
+
         private IWebElement SearchLinkUrl(string searchText) => pageInteractionHelper.GetLink(OrganisationLink(), searchText);
     }
 }

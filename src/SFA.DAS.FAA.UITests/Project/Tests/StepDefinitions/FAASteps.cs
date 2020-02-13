@@ -41,6 +41,25 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.StepDefinitions
             accountCreationPage.SubmitAccountCreationDetailsWithRegisteredEmail();
         }
 
+        [Then(@"the candidate is able to dismiss the Notifications in FAA '(Successful|Unsuccessful)'")]
+        public void ThenTheCandidateIsAbleToDismissTheNotificationsInFAA(string expectedStatus)
+        {
+            _faaStepsHelper.DismissNotification(expectedStatus);
+        }
+
+        [Then(@"the Vacancy dates is changed in FAA")]
+        public void ThenTheVacancyDatesIsChangedInFAA()
+        {
+            _faaStepsHelper.FindAnApprenticeship().SearchByReferenceNumber().VerifyNewDates();
+        }
+
+        [Then(@"the Trainneship Vacancy dates is changed in FAA")]
+        public void ThenTheTrainneshipVacancyDatesIsChangedInFAA()
+        {
+            _faaStepsHelper.FindATraineeship().SearchByReferenceNumber().VerifyNewDates();
+        }
+        }
+
         [When(@"Applicant Deletes the FAA Account")]
         public void WhenApplicantDeletesTheFAAAccount() 
         {

@@ -94,6 +94,20 @@ namespace SFA.DAS.FAA.UITests.Project.Helpers
                 .YesWithdraw();
         }
 
+        public void DismissNotification(string status)
+        {
+            switch(status)
+            {
+                case "Successful":
+                    GoToFAAHomePage().DismissSuccessfulNotification();
+                    break;
+
+                case "Unsccessful":
+                    GoToFAAHomePage().DismissUnsuccessfulNotification().ReadFeedback().VerifyReadFeedbackText();
+                    break;
+            }
+        }
+
         public void ApplyForAVacancy(string qualificationdetails, string workExperience, string trainingCourse)
         {     
             var applicationFormPage = SearchByReferenceNumber().Apply();            

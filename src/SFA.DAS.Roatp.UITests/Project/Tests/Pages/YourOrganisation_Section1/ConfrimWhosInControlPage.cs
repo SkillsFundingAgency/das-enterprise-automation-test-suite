@@ -21,5 +21,11 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.YourOrganisation_Section1
             Continue();
             return new ApplicationOverviewPage(_context);
         }
+
+        public ConfirmTrusteesPage ConfirmWhosInContorlAndContinueToTrusteesPage()
+        {
+            Continue();
+            return new ConfirmTrusteesPage(_context);
+        }
     }
 }

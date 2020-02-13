@@ -27,8 +27,8 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions
             _overviewPage = _yourOrganisationSectionHelper.CompleteYourOrganisationSection_1(_overviewPage);
         }
 
-        [Then(@"I should be able to verify Introduction and what you'll need content for supporting route")]
-        public void ThenIShouldBeAbleToVerifyIntroductionAndWhatYoullNeedContentForSupportingRoute()
+        [Then(@"the provider completes Introduction and what you'll need content for supporting route")]
+        public void ThenTheProviderCompletesIntroductionAndWhatYoullNeedContentForSupportingRoute()
         {
             _overviewPage = new ApplicationOverviewPage(_context);
             _overviewPage = _yourOrganisationSectionHelper.CompleteYourOrganisationSection_1_SupportRoute(_overviewPage);
@@ -64,6 +64,12 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions
             _overviewPage = _yourOrganisationSectionHelper.CompleteYourOrganisationSection_3_Support(_overviewPage);
         }
 
+        [Then(@"the provider completes Tell us who's in control section for charity and company")]
+        public void ThenTheProviderCompletesTellUsWhosInControlSectionForCharityAndCompany()
+        {
+            _overviewPage = _yourOrganisationSectionHelper.CompleteYourOrganisationSection_3_CharityAndCompany(_overviewPage);
+        }
+
         [Then(@"the provider completes Describe your organisation section as OrgTypeNoneOfTheAbove")]
         public void ThenTheProviderCompletesDescribeYourOrganisationSectionAsOrgTypeNoneOfTheAbove()
         {
@@ -82,6 +88,12 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions
             _overviewPage = _yourOrganisationSectionHelper.CompleteYourOrganisationSection_4_OrgTypeGTA(_overviewPage);
         }
 
+        [Then(@"the provider completes Describe your organisation section as OrgTypeAEI")]
+        public void ThenTheProviderCompletesDescribeYourOrganisationSectionAsOrgTypeAEI()
+        {
+            _overviewPage = _yourOrganisationSectionHelper.CompleteYourOrganisationSection_4_OrgTypeAEI(_overviewPage);
+        }
+
         [Then(@"the provider completes Experience and Accreditations section by selecting No to all")]
         public void ThenTheProviderCompletesExperienceAndAccreditationsSectionBySelectingNoToAll()
         {
@@ -92,6 +104,12 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions
         public void ThenTheProviderCompletesExperienceAndAccreditationsSectionBySelectingYesToSubcontractorTraining()
         {
             _overviewPage = _yourOrganisationSectionHelper.CompleteYourOrganisationSection_5_Support(_overviewPage);
+        }
+
+        [Then(@"the provider completes Experience and Accreditations section by selecting GradeTypeRequiresImprovement")]
+        public void ThenTheProviderCompletesExperienceAndAccreditationsSectionBySelectingGradeTypeRequiresImprovement()
+        {
+            _overviewPage = _yourOrganisationSectionHelper.CompleteYourOrganisationSection_5_GradeTypeRequiresImprovement(_overviewPage);
         }
     }
 }

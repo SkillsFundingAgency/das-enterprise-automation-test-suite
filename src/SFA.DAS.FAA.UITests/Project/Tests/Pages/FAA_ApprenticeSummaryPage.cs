@@ -5,6 +5,8 @@ using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 using SFA.DAS.RAA.DataGenerator.Project;
+using System;
+using System.Globalization;
 
 namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 {
@@ -17,6 +19,8 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
         private readonly ObjectContext _objectContext;
         private readonly VacancyTitleDatahelper _dataHelper;
         private readonly FormCompletionHelper _formCompletionHelper;
+        private readonly PageInteractionHelper _pageInteractionHelper;
+        private readonly RAAV1DataHelper _raaV1dataHelper;
         #endregion
 
         private By ApplyButton => By.Id("apply-button");
@@ -27,12 +31,18 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 
         private By EmployerNameInAboutTheEmployerSection => By.Id("vacancy-employer-name");
 
+        private By ClosingDate => By.Id("vacancy-closing-date");
+
+        private By StartDate => By.Id("vacancy-start-date");
+
         public FAA_ApprenticeSummaryPage(ScenarioContext context) : base(context)
         {
             _context = context;
             _objectContext = context.Get<ObjectContext>();
             _dataHelper = context.Get<VacancyTitleDatahelper>();
+            _raaV1dataHelper = context.Get<RAAV1DataHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
+            _pageInteractionHelper = context.Get<PageInteractionHelper>();
             VerifyPage();
             if (!_objectContext.IsRAAV1()) { VerifyEmployerDetails(); }
         }
@@ -54,6 +64,18 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
             var empName = _objectContext.GetEmployerName();
             VerifyPage(EmployerName, empName);
             VerifyPage(EmployerNameInAboutTheEmployerSection, empName);
+        }
+
+        public void VerifyNewDates()
+        {
+            DateTime Date = _raaV1dataHelper.NewVacancyClosing;
+            string actualClosingDate = Date.ToString("dd MMM yyyy");
+
+            DateTime PossibleStartDate = _raaV1dataHelper.NewVacancyStart;
+            string actualStartDate = PossibleStartDate.ToString("dd MMM yyyy");
+
+            _pageInteractionHelper.VerifyText(ClosingDate, "Closing date: " + actualClosingDate + "");
+            _pageInteractionHelper.VerifyText(StartDate,actualStartDate);
         }
     }
 }

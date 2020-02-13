@@ -52,6 +52,16 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers
                 .VerifyTellUsWhosInControlStatus(StatusHelper.StatusCompleted);
         }
 
+        internal ApplicationOverviewPage CompleteYourOrganisationSection_3_CharityAndCompany(ApplicationOverviewPage applicationOverviewPage)
+        {
+            return applicationOverviewPage
+                .AccessTellUSWhosInControlSection()
+                .ConfirmWhosInContorlAndContinueToTrusteesPage()
+                .ConfirmTrusteesAndContinue()
+                .EnterDateOfBirth()
+                .VerifyTellUsWhosInControlStatus(StatusHelper.StatusCompleted);
+        }
+
         internal ApplicationOverviewPage CompleteYourOrganisationSection_3_Support(ApplicationOverviewPage applicationOverviewPage)
         {
             return applicationOverviewPage
@@ -89,6 +99,15 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers
                 .VerifyDescribeYourOrganisationStatus(StatusHelper.StatusCompleted);
         }
 
+        internal ApplicationOverviewPage CompleteYourOrganisationSection_4_OrgTypeAEI(ApplicationOverviewPage applicationOverviewPage)
+        {
+            return applicationOverviewPage
+                .AccessDescribeYourOrganisationsForOrgTypeCharity()
+                .SelectEducationalInstituteAndContinue()
+                .SelectHigherEducationInstituteAndContinue()
+                .SelectPublicServiceMutalAndShelterdWorkshopAndContinue();
+        }
+
         internal ApplicationOverviewPage CompleteYourOrganisationSection_5_NoToAll(ApplicationOverviewPage applicationOverviewPage)
         {
             return applicationOverviewPage
@@ -109,6 +128,18 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers
                 .UploadLegallyBindingContractAndContinue()
                 .VerifyExperienceAndAccreditationsStatus(StatusHelper.StatusCompleted);
         }
+        internal ApplicationOverviewPage CompleteYourOrganisationSection_5_GradeTypeRequiresImprovement(ApplicationOverviewPage applicationOverviewPage)
+        {
+            return applicationOverviewPage.AccessExperienceAndAccreditationsSection()
+                .SelectYesForFundedbyOFSAndContinue()
+                .SelectYesForITTAndContinue()
+                .SelectNoForPGTAAndContinue()
+                .SelectYesForFullOfstedInspectionAndContinue()
+                .SelectYesForGradeInFullOfstedInspectionAndContinue()
+                .SelecRequiresImprovementAndContinue()
+                .SelecForoverallEffectivenessGradeRequiresImprovementAndContinue();
+        }
+        
 
         private ApplicationOverviewPage CompleteYourOrganisationSection_2(IcoRegistrationNumberPage icoRegistrationNumberPage)
         {
