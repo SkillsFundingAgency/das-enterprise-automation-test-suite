@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.Campaigns.UITests.Project.Helpers;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
@@ -13,6 +14,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
         private readonly FormCompletionHelper _formCompletionHelper;
         private readonly ScenarioContext _context;
         private readonly RandomDataGenerator _randomDataGenerator;
+
         #endregion
 
         #region Constants
@@ -27,6 +29,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
         private readonly By _lastNameField =By.Id("LastName");
         private readonly By _emailField =By.Id("Email");
         private readonly By _radioButtonApprentice=By.Id("rbApprentice");
+        private readonly By _radioButtonEmployAnApprentice = By.Id("rbEmployer");
         private readonly By _radioButtonEmployer=By.Id("rbEmployer");
         private readonly By _checkBoxTAndCs=By.Id("AcceptTandCs");
         private readonly By _noIamHappyToStayOnThisPage = By.Id("alert-countries-stay");
@@ -39,17 +42,18 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
             _formCompletionHelper = context.Get<FormCompletionHelper>();
             _randomDataGenerator = context.Get<RandomDataGenerator>();
 
+
          }
 
          public RegisterMyInterestPage EnterDetail()
          {
-            string _first = _randomDataGenerator.GenerateRandomAlphabeticString(4);
-            string _lastchar =_randomDataGenerator.GenerateRandomAlphabeticString(4);
+            var runTimeVariable = new RunTimevariable();
             string _email = _randomDataGenerator.GenerateRandomEmail();
             _pageInteractionHelper.IsElementDisplayed(_firstNameField);
-            _formCompletionHelper.EnterText(_firstNameField,FirstName + _first);
-            _formCompletionHelper.EnterText(_lastNameField,LastName + _lastchar);
+            _formCompletionHelper.EnterText(_firstNameField, runTimeVariable.GetEmployerFirstname(FirstName));
+            _formCompletionHelper.EnterText(_lastNameField, runTimeVariable.GetEmployerLastname(LastName));
             _formCompletionHelper.EnterText(_emailField, _email);
+
             return new RegisterMyInterestPage(_context);
          }    
         public RegisterMyInterestPage TickIWantToBecomeAnApprentice()
@@ -58,10 +62,10 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
             return new RegisterMyInterestPage(_context);
         }
 
-        public RegisterMyInterestPage TickIWantToEmployAnApprentice()
+        public ThanksForSubScribingPage TickIWantToEmployAnApprentice()
         {
-            _formCompletionHelper.SelectRadioButton(_radioButtonApprentice);
-            return new RegisterMyInterestPage(_context);
+            _formCompletionHelper.SelectRadioButton(_radioButtonEmployAnApprentice);
+            return new ThanksForSubScribingPage(_context);
         }
         public RegisterMyInterestPage CheckTheTAndCsCheckBox()
         {

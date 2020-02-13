@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.Campaigns.UITests.Project.Tests.Features
+namespace SFA.DAS.Campaigns.UITests.Project.Tests.Features.RegisterMyInterest
 {
     using TechTalk.SpecFlow;
     
@@ -18,20 +18,20 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Features
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.0.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("RegisterMyInterest")]
-    public partial class RegisterMyInterestFeature
+    [NUnit.Framework.DescriptionAttribute("RegisterMyInterestEmployer")]
+    public partial class RegisterMyInterestEmployerFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "RegisterMyInterest.feature"
+#line 1 "RegisterMyInterestEmployer.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "RegisterMyInterest", "\tAs a user\r\n\tI want to be able to navigate to Fire It Up home page\r\n\tSo that I ca" +
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "RegisterMyInterestEmployer", "\tAs a user\r\n\tI want to be able to navigate to Fire It Up home page\r\n\tSo that I ca" +
                     "n Register My Interest", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
@@ -71,12 +71,12 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("User Wants To Register My Interest on The Fire It Up Site")]
+        [NUnit.Framework.DescriptionAttribute("Employer Wants To Register My Interest on The Fire It Up Site")]
         [NUnit.Framework.CategoryAttribute("campaigns")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public virtual void UserWantsToRegisterMyInterestOnTheFireItUpSite()
+        public virtual void EmployerWantsToRegisterMyInterestOnTheFireItUpSite()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User Wants To Register My Interest on The Fire It Up Site", null, new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Employer Wants To Register My Interest on The Fire It Up Site", null, new string[] {
                         "campaigns",
                         "regression"});
 #line 8
@@ -89,13 +89,13 @@ this.ScenarioInitialize(scenarioInfo);
 #line 11
  testRunner.And("I Enter My First Name, Last Name And Email", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 12
- testRunner.And("I Tick The Radio Button For I Want to Become An Apprentice", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("I Tick The Radio Button For I Want toEmploy An Apprentice", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 13
  testRunner.And("I Tick The Check Box for To Recieve More Information Via Email", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 14
  testRunner.And("I Click The Register My Interest Button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 15
- testRunner.Then("I Should Recieve a Success Message", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("I ShouldN navigate to Thanks for Subscribing Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

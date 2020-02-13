@@ -16,6 +16,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
         private FireItUpHomePage fireItUpHomePage;
         private RegisterMyInterestPage  registerMyInterestPage;
         private RegisterMyInterestSuccessPage  registerMyInterestSuccessPage;
+        private ThanksForSubScribingPage thanksForSubScribingPage;
         #endregion
 
         public RegisterMyInterestSteps(ScenarioContext context)
@@ -45,7 +46,23 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
             registerMyInterestPage = new RegisterMyInterestPage(_context);
             registerMyInterestPage.TickIWantToBecomeAnApprentice();
         }
-        
+
+        [Given(@"I Tick The Radio Button For I Want toEmploy An Apprentice")]
+        public void GivenITickTheRadioButtonForIWantToEmployAnApprentice()
+        {
+            registerMyInterestPage = new RegisterMyInterestPage(_context);
+            registerMyInterestPage.TickIWantToEmployAnApprentice();
+        }
+
+        [Then(@"I ShouldN navigate to Thanks for Subscribing Page")]
+        public void ThenIShouldNNavigateToThanksForSubscribingPage()
+        {
+            thanksForSubScribingPage = new ThanksForSubScribingPage(_context);
+            thanksForSubScribingPage.VerifyThanksForSubScribingPage()
+                .VerifyEmployerName();
+        }
+
+
         [Given(@"I Tick The Check Box for To Recieve More Information Via Email")]
         public void GivenITickTheCheckBoxForToRecieveMoreInformationViaEmail()
         {
