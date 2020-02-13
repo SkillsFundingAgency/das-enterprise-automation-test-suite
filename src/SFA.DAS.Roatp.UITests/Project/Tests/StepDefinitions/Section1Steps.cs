@@ -62,6 +62,9 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions
         [Then(@"the provider completes Describe your organisation section")]
         public void ThenTheProviderCompletesDescribeYourOrganisationSection() => _overviewPage = _yourOrganisationSectionHelper.CompleteYourOrganisationSection_4_OrgTypeAcadamy(_overviewPage);
 
+        [Then(@"the provider completes Describe your organisation section as OrgTypeATP")]
+        public void ThenTheProviderCompletesDescribeYourOrganisationSectionAsOrgTypeATP() => _overviewPage = _yourOrganisationSectionHelper.CompleteYourOrganisationSection_4_OrgTypeATP(_overviewPage);
+
         [Then(@"the provider completes Experience and Accreditations section by selecting No to all")]
         public void ThenTheProviderCompletesExperienceAndAccreditationsSectionBySelectingNoToAll() => _overviewPage = _yourOrganisationSectionHelper.CompleteYourOrganisationSection_5_NoToAll(_overviewPage);
 
@@ -73,5 +76,9 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions
 
         [Then(@"the provider completes Experience and Accreditations section by selecting GradeOutstanding")]
         public void ThenTheProviderCompletesExperienceAndAccreditationsSectionBySelectingGradeOutstanding() => _overviewPage = _yourOrganisationSectionHelper.CompleteYourOrganisationSection_5_GradeOutstanding(_overviewPage);
+
+        [Then(@"the provider completes Experience and Accreditations section by selecting Yes to PGTA")]
+        public void ThenTheProviderCompletesExperienceAndAccreditationsSectionBySelectingYesToPGTA() => _overviewPage = _yourOrganisationSectionHelper.CompleteYourOrganisationSection_5_YesToPGTA(_overviewPage);
+
     }
 }

@@ -129,6 +129,15 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers
                 .VerifyDescribeYourOrganisationStatus(StatusHelper.StatusCompleted);
         }
 
+        internal ApplicationOverviewPage CompleteYourOrganisationSection_4_OrgTypeATP(ApplicationOverviewPage applicationOverviewPage)
+        {
+            return applicationOverviewPage
+                .AccessDescribeYourOrganisationsForOrgTypeCharity()
+                .SelectAnApprenticeshipTrainingAgencyAndContinue()
+                .SelectPublicServiceMutalAndShelterdWorkshopAndContinue()
+                .VerifyDescribeYourOrganisationStatus(StatusHelper.StatusCompleted);
+        }
+
         internal ApplicationOverviewPage CompleteYourOrganisationSection_5_NoToAll(ApplicationOverviewPage applicationOverviewPage)
         {
             return applicationOverviewPage
@@ -174,9 +183,18 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers
                 .SelectNoForGradeWithinThreeYearsAndContinue()
                 .SelectYesForShortOFstedInspectionWithinThreeYearsAndContinue()
                 .SelectYesForGradeMaintainedAndContinue()
-                .SelectYesForGradeMaintainedFromEducationAgencyAndContinue();
+                .SelectYesForGradeMaintainedFromEducationAgencyAndContinue()
+                .VerifyExperienceAndAccreditationsStatus(StatusHelper.StatusCompleted);
         }
 
+        internal ApplicationOverviewPage CompleteYourOrganisationSection_5_YesToPGTA(ApplicationOverviewPage applicationOverviewPage)
+        {
+            return applicationOverviewPage.AccessExperienceAndAccreditationsSection()
+               .SelectYesForFundedbyOFSAndContinue()
+               .SelectYesForITTAndContinue()
+               .SelectYesForPGTAAndContinue()
+               .VerifyExperienceAndAccreditationsStatus(StatusHelper.StatusCompleted);
+        }
 
         private ApplicationOverviewPage CompleteYourOrganisationSection_2(IcoRegistrationNumberPage icoRegistrationNumberPage)
         {

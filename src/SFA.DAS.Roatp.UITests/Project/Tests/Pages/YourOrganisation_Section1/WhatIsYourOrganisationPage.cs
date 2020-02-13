@@ -15,6 +15,13 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.YourOrganisation_Section1
             _context = context;
             VerifyPage();
         }
+
+        public DescribeYourOrganisationPage SelectAnApprenticeshipTrainingAgencyAndContinue()
+        {
+            SelectRadioOptionByText("An Apprenticeship Training Agency");
+            Continue();
+            return new DescribeYourOrganisationPage(_context);
+        }
         public TypeOfEducationalInstitutePage SelectEducationalInstituteAndContinue()
         { 
             SelectRadioOptionByText("An educational institute");
