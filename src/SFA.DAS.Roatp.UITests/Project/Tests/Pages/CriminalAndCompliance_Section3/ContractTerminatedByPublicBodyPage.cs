@@ -19,12 +19,12 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.CriminalAndCompliance_Sectio
             VerifyPage();
         }
 
-        public WithdrawnFromAContractWithRoToPage SelectYesAndEnterInformationForContractTerminatedByPublicBodyAndContinue()
+        public WithdrawnFromAContractWithPublicBodyPage SelectYesAndEnterInformationForContractTerminatedByPublicBodyAndContinue()
         {
             SelectRadioOptionByText("Yes");
             formCompletionHelper.EnterText(LongTextArea_ContractTerminatedByPublicBody, applydataHelpers.ContractTerminatedByPublicBody);
             Continue();
-            return new WithdrawnFromAContractWithRoToPage(_context);
+            return new WithdrawnFromAContractWithPublicBodyPage(_context);
         }
     }
 }

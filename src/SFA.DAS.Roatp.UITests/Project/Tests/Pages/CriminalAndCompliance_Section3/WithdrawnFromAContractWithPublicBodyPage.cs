@@ -19,10 +19,10 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.CriminalAndCompliance_Sectio
             VerifyPage();
         }
 
-        public WithdrawnFromAContractWithPublicBodyPage SelectNoForWithdrawnFromAContractWithRoTo()
+        public FundingRemovedFromEducationBodiesPage SelectNoForWithdrawnFromAContractWithRoTo()
         {
             SelectNoAndContinue();
-            return new WithdrawnFromAContractWithPublicBodyPage(_context);
+            return new FundingRemovedFromEducationBodiesPage(_context);
         }
     }
 
@@ -42,12 +42,12 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.CriminalAndCompliance_Sectio
             VerifyPage();
         }
 
-        public FundingRemovedFromEducationBodiesPage SelectYesEnterInformationForContractWithdrawnWithPublicBody()
+        public WithdrawnFromAContractWithRoToPage SelectYesEnterInformationForContractWithdrawnWithPublicBody()
         {
             SelectRadioOptionByText("Yes");
             formCompletionHelper.EnterText(LongTextArea_WithdrawnFromAContractWithPublicBody, applydataHelpers.WithdrawnFromAContractWithPublicBody);
             Continue();
-            return new FundingRemovedFromEducationBodiesPage(_context);
+            return new WithdrawnFromAContractWithRoToPage(_context);
         }
     }
 }
