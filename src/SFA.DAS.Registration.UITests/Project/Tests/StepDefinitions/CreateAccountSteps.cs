@@ -147,14 +147,16 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         }
 
         [When(@"the Employer initiates adding another Org of (Company|PublicSector|Charity) Type")]
-        public void WhenTheEmployerInitiatesAddingAnotherOrgOfPublicSectorType(OrgType orgType)
+        public void WhenTheEmployerInitiatesAddingAnotherOrgType(OrgType orgType)
         {
-            _organisationHasBeenAddedPage = _homePage.GoToYourOrganisationsAndAgreementsPage()
-                .ClickAddNewOrganisationButton()
-                .SearchForAnOrganisation(orgType)
+            _organisationHasBeenAddedPage = SearchForAnotherOrg(orgType)
                 .SelectYourOrganisation(orgType)
                 .ClickYesContinueButton();
         }
+
+        [When(@"the Employer initiates adding another same Org of (Company|PublicSector|Charity) Type again")]
+        public void WhenTheEmployerInitiatesAddingAnotherSameOrgTypeAgain(OrgType orgType) =>
+            _selectYourOrganisationPage = SearchForAnotherOrg(orgType);
 
         [Then(@"the new Org added is shown in the Account Organisations list")]
         public void ThenTheNewOrgAddedIsShownInTheAccountOrganisationsList()
@@ -162,6 +164,17 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             _organisationHasBeenAddedPage
             .GoToYourOrganisationsAndAgreementsPage()
             .VerifyNewlyAddedOrgIsPresent();
+        }
+
+        [Then(@"'Already added' message should be shown to the User")]
+        public void ThenMessageShouldBeShownToTheUser() => 
+            _selectYourOrganisationPage.VerifyOrgAlreadyAddedMessage(_registrationDataHelper.PublicSectorTypeOrg);
+
+        private SelectYourOrganisationPage SearchForAnotherOrg(OrgType orgType)
+        {
+            return _homePage.GoToYourOrganisationsAndAgreementsPage()
+                .ClickAddNewOrganisationButton()
+                .SearchForAnOrganisation(orgType);
         }
     }
 }
