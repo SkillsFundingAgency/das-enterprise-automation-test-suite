@@ -58,8 +58,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.StepDefinitions
         {
             _faaStepsHelper.FindATraineeship().SearchByReferenceNumber().VerifyNewDates();
         }
-        }
-
+        
         [When(@"Applicant Deletes the FAA Account")]
         public void WhenApplicantDeletesTheFAAAccount() 
         {

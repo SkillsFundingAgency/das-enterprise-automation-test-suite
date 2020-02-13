@@ -12,7 +12,6 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
     {
         private Manage_HomePage _manage_HomePage;
         private Manage_EnterBasicVacancyDetailsPage _manage_EnterBasicVacancyDetailsPage;
-        private Manage_HelpdeskAdviserPage manage_HelpdeskAdviserPage;
         private Manage_AdminFunctionsPage _manage_AdminFunctionsPage;
         private readonly ManageStepsHelper _manageStepsHelper;
         private readonly ObjectContext _objectContext;
