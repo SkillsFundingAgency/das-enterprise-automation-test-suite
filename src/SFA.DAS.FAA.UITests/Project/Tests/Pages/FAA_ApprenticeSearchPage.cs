@@ -83,7 +83,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
             } 
             return new FAA_ApprenticeSummaryPage(_context);
         }
-
+        
         public FAA_PhoneNumberVerificationPage VerifyPhoneNumberVerificationText()
         {           
             _pageInteractionHelper.VerifyText(VerifyPhoneNumberText, _faadataHelper.PhoneNumberVerificationText);           

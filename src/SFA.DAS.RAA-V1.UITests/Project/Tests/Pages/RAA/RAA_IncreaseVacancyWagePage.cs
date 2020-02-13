@@ -58,12 +58,8 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
 
             int newMaxWage = newMinWage + dataHelper.RandomNumber;
 
-            _objectContext.SetMinWage(newMinWage.ToString());
-            _objectContext.SetMaxWage(newMaxWage.ToString());
-
-
-            //_raaV1DataHelper.NewCustomMinWagePerWeek = newMinWage.ToString();
-            //_raaV1DataHelper.NewCustomMaxWagePerWeek = newMaxWage.ToString();
+            _raaV1DataHelper.NewCustomMinWagePerWeek = newMinWage.ToString();
+            _raaV1DataHelper.NewCustomMaxWagePerWeek = newMaxWage.ToString();
 
             formCompletionHelper.EnterText(AmountLowerBound, newMinWage.ToString());
 

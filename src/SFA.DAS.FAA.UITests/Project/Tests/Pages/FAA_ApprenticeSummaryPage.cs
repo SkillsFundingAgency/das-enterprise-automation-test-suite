@@ -88,8 +88,8 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
             string[] wageRange = displayedWageFAA.Split('-');
             string minWage =_regexHelper.GetVacancyCurrentWage(wageRange[0]);
             string maxWage = _regexHelper.GetVacancyCurrentWage(wageRange[1]);
-            _pageInteractionHelper.VerifyText(minWage, _objectContext.GetMinWage());
-            _pageInteractionHelper.VerifyText(maxWage, _objectContext.GetMaxWage());
+            _pageInteractionHelper.VerifyText(minWage,_raaV1dataHelper.NewCustomMinWagePerWeek);
+            _pageInteractionHelper.VerifyText(maxWage,_raaV1dataHelper.NewCustomMaxWagePerWeek);
         }
     }
 }

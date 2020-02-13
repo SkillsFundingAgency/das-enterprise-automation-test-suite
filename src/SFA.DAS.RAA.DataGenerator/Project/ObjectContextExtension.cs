@@ -65,26 +65,7 @@ namespace SFA.DAS.RAA.DataGenerator.Project
         {
             return objectContext.Get(VacancyReference);
         }
-
-        public static void SetMinWage(this ObjectContext objectContext, string value)
-        {
-            objectContext.Set(MinWage, value);
-        }
-
-        public static string GetMinWage(this ObjectContext objectContext)
-        {
-            return objectContext.Get(MinWage);
-        }
-
-        public static void SetMaxWage(this ObjectContext objectContext, string value)
-        {
-            objectContext.Set(MaxWage, value);
-        }
-
-        public static string GetMaxWage(this ObjectContext objectContext)
-        {
-            return objectContext.Get(MaxWage);
-        }
+        
         public static void SetVacancyTitle(this ObjectContext objectContext, string value)
         {
             objectContext.Replace(VacancyTitle, value);
