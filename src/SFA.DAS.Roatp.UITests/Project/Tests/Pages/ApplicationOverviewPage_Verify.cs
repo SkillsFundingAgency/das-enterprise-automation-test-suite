@@ -23,6 +23,12 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
 
         #region Section7
         public ApplicationOverviewPage VerifyIntroductionStatus_Section7(string status) => Verify_Section7(DeliveringApprenticeshipTraining_1, status);
+        public ApplicationOverviewPage VerifyOverallAccountability_Section7(string status) => Verify_Section7(DeliveringApprenticeshipTraining_2, status);
+        public ApplicationOverviewPage VerifyManagementHierarchy_Section7(string status) => Verify_Section7(DeliveringApprenticeshipTraining_3, status);
+        public ApplicationOverviewPage VerifyQualityAndHighStandards_Section7(string status) => Verify_Section7(DeliveringApprenticeshipTraining_4, status);
+        public ApplicationOverviewPage VerifyDevelopingAndDelivering_Section7(string status) => Verify_Section7(DeliveringApprenticeshipTraining_5, status);
+        public ApplicationOverviewPage VerifyYourSectorsAndEmployees_Section7(string status) => Verify_Section7(DeliveringApprenticeshipTraining_6, status);
+        public ApplicationOverviewPage VerifyPolicyForProfessionalDevelopment_Section7(string status) => Verify_Section7(DeliveringApprenticeshipTraining_7, status);
         #endregion
 
         #region Section6

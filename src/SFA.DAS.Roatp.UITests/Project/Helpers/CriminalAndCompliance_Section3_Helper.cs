@@ -19,6 +19,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers
                 .SelectYesEnterInformationForFailedToPayFundsAndContinue()
                 .SelectYesAndEnterInformationForContractTerminatedByPublicBodyAndContinue()
                 .SelectYesEnterInformationForContractWithdrawnWithPublicBody()
+                .SelectNoForWithdrawnFromAContractWithRoTo()
                 .SelectYesEnterInformationForFundingRemovedFromEducationBodiesAndContinue()
                 .SelectYesEnterInformationForFundingRemovedFromEducationBodies()
                 .SelectYesEnterInformationForWithdrawlfromITTAccreditationAndContinue()
