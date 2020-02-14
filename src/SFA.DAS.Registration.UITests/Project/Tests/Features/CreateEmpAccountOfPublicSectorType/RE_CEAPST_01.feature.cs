@@ -98,7 +98,7 @@ this.ScenarioInitialize(scenarioInfo);
 #line 12
  testRunner.When("the Employer initiates adding another same Org of PublicSector Type again", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 13
- testRunner.Then("\'Already added\' message should be shown to the User", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("\'Already added\' message is shown to the User", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
