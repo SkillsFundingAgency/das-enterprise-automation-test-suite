@@ -44,6 +44,8 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers
 
         internal EnterUkprnPage AcceptAndContinue(TermsConditionsMakingApplicationPage page) => page.AcceptAndContinue();
 
+        internal NotAcceptTermsConditionsPage DoNotAcceptTermsConditions(TermsConditionsMakingApplicationPage page) => page.DoNotAcceptTermsConditions();
+
         internal ApplicationOverviewPage CompleteProviderMainRouteSection(EnterUkprnPage enterUkprnPage)
         {
             return ConfirmUkprn(enterUkprnPage)

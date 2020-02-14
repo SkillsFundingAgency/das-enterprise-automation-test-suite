@@ -22,6 +22,14 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions
             _end2EndStepsHelper = new End2EndStepsHelper(_context);
         }
 
+        [Then(@"the provider do not accept the Terms and conditions")]
+        public void ThenTheProviderDoNotAcceptTheTermsAndConditions()
+        {
+            var termsConditionsMakingApplicationPage = _end2EndStepsHelper.SubmitValidUserDetails();
+
+            _end2EndStepsHelper.DoNotAcceptTermsConditions(termsConditionsMakingApplicationPage);
+        }
+
         [Given(@"the provider initates an application as main route company")]
         public void GivenTheProviderInitatesAnApplicationAsMainRouteCompany()
         {

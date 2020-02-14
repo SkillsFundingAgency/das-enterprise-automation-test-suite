@@ -13,10 +13,6 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
 
         private By SignOutButton => By.LinkText("Sign out");
 
-        private By YesButton => By.Id("ConditionsAccepted-Yes");
-
-        private By NoButton => By.Id("ConditionsAccepted-No");
-
         public TermsConditionsMakingApplicationPage(ScenarioContext context) : base(context)
         {
             _context = context;
@@ -28,6 +24,13 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
             SelectRadioOptionByForAttribute("ConditionsAccepted-Yes");
             Continue();
             return new EnterUkprnPage(_context);
+        }
+
+        public NotAcceptTermsConditionsPage DoNotAcceptTermsConditions()
+        {
+            SelectRadioOptionByForAttribute("ConditionsAccepted-No");
+            Continue();
+            return new NotAcceptTermsConditionsPage(_context);
         }
 
         public void ClickSignout()
