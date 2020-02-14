@@ -11,5 +11,7 @@
         public string RE_ConfirmCode { get; set; }
 
         public string RE_OrganisationName { get; set; }
+
+        public string RE_AccountsDbConnectionString { get; set; }
     }
 }

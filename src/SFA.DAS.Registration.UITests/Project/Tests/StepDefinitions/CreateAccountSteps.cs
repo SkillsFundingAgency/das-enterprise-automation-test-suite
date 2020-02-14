@@ -20,12 +20,14 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         private SelectYourOrganisationPage _selectYourOrganisationPage;
         private SignAgreementPage _signAgreementPage;
         private OrganisationHasBeenAddedPage _organisationHasBeenAddedPage;
+        private readonly RegistrationSqlDataHelper _registrationSqlDataHelper;
 
         public CreateAccountSteps(ScenarioContext context)
         {
             _context = context;
             _objectContext = _context.Get<ObjectContext>();
             _registrationDataHelper = context.Get<RegistrationDatahelpers>();
+            _registrationSqlDataHelper = context.Get<RegistrationSqlDataHelper>();
         }
 
         [Given(@"an User Account is created")]
@@ -167,7 +169,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         }
 
         [Then(@"'Already added' message is shown to the User")]
-        public void ThenAlreadyAddedMessageIsShownToTheUser() => 
+        public void ThenAlreadyAddedMessageIsShownToTheUser() =>
             _selectYourOrganisationPage.VerifyOrgAlreadyAddedMessage(_registrationDataHelper.PublicSectorTypeOrg);
 
         private SelectYourOrganisationPage SearchForAnotherOrg(OrgType orgType)
@@ -176,5 +178,13 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
                 .ClickAddNewOrganisationButton()
                 .SearchForAnOrganisation(orgType);
         }
+
+        [Then(@"ApprenticeshipEmployerType in Account table is marked as (.*)")]
+        public void ThenApprenticeshipEmployerTypeInAccountTableIsMarkedAs(string expectedApprenticeshipEmployerType)
+        {
+            var actualApprenticeshipEmployerType = _registrationSqlDataHelper.GetAccountApprenticeshipEmployerType(_registrationDataHelper.RandomEmail);
+            Assert.AreEqual(expectedApprenticeshipEmployerType, actualApprenticeshipEmployerType);
+        }
+
     }
 }
