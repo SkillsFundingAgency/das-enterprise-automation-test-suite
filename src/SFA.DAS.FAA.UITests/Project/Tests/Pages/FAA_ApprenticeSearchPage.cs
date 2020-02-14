@@ -83,7 +83,32 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
             } 
             return new FAA_ApprenticeSummaryPage(_context);
         }
-        
+
+        public BasePage SearchByReferenceNumbers()
+        {
+            
+            var vacancyRef = _objectContext.GetVacancyReference();
+
+            if (_objectContext.IsRAAV1())
+            {
+                _formCompletionHelper.SelectFromDropDownByValue(SearchField, "ReferenceNumber");
+                _formCompletionHelper.EnterText(KeyWord, vacancyRef);
+
+                base.SearchByReferenceNumber();
+            }
+            else
+            {
+                var uri = new Uri(new Uri(_config.FAABaseUrl), $"apprenticeship/{vacancyRef}");
+                _tabHelper.GoToUrl(uri.AbsoluteUri);
+            }
+
+            if(_objectContext.IsApprenticeshipClosed())
+            {
+                return new FAA_ApprenticeshipNotAvailablePage(_context);
+            }
+            return new FAA_ApprenticeSummaryPage(_context);
+        }
+
         public FAA_PhoneNumberVerificationPage VerifyPhoneNumberVerificationText()
         {           
             _pageInteractionHelper.VerifyText(VerifyPhoneNumberText, _faadataHelper.PhoneNumberVerificationText);           

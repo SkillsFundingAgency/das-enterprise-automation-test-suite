@@ -3,6 +3,7 @@ using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.UI.FrameworkHelpers;
 using System.Linq;
 using TechTalk.SpecFlow;
+using SFA.DAS.RAA.DataGenerator.Project;
 
 namespace SFA.DAS.FAA.UITests.Project
 {
@@ -10,10 +11,13 @@ namespace SFA.DAS.FAA.UITests.Project
     public class Hooks
     {
         private readonly ScenarioContext _context;
+        private readonly ObjectContext _objectContext;
 
         public Hooks(ScenarioContext context)
         {
             _context = context;
+
+            _objectContext = context.Get<ObjectContext>();
         }
 
         [BeforeScenario(Order = 32)]
@@ -34,6 +38,13 @@ namespace SFA.DAS.FAA.UITests.Project
             var pageInteractionHelper = _context.Get<PageInteractionHelper>();
 
             _context.Set(new VacancyReferenceHelper(pageInteractionHelper, objectContext, regexHelper));
+        }
+
+        [BeforeScenario("apprenticeshipclosed", Order = 35)]
+
+        public void IsApprenticeshipClosed()
+        {
+            _objectContext.SetApprenticeshipClosed();
         }
     }
 }
