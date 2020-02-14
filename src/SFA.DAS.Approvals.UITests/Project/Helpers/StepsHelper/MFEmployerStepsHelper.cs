@@ -66,5 +66,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             }
             return yourFundingReservationsPage;
         }
+
+        public DynamicHomePage ClickToReserveFunding(ReserveFundingToTrainAndAssessAnApprenticePage reserveFundingToTrainAndAssessAnApprenticePag)
+        {
+            return reserveFundingToTrainAndAssessAnApprenticePage
+        }
+
     }
 }
