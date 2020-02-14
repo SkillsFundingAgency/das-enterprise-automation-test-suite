@@ -18,7 +18,6 @@ namespace SFA.DAS.FAA.UITests.Project
         public Hooks(ScenarioContext context)
         {
             _context = context;
-
             _objectContext = context.Get<ObjectContext>();
         }
 
