@@ -62,13 +62,19 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.StepDefinitions
         [Then(@"the Vacancy is not found on FAA")]
         public void ThenTheVacancyIsIsNotFoundOnFAA()
         {
-            _faaStepsHelper.FindAnApprenticeship().SearchByReferenceNumbers();
+            _faaStepsHelper.FindAnApprenticeship().SearchClosedVacancy();
         }
 
         [Then(@"the Trainneship Vacancy dates is changed in FAA")]
         public void ThenTheTrainneshipVacancyDatesIsChangedInFAA()
         {
             _faaStepsHelper.FindATraineeship().SearchByReferenceNumber().VerifyNewDates();
+        }
+
+        [Then(@"the Traineeship Vacancy is not found on FAA")]
+        public void ThenTheTraineeshipVacancyIsNotFoundOnFAA()
+        {
+            _faaStepsHelper.FindATraineeship().SearchClosedVacancy();
         }
     }
 }

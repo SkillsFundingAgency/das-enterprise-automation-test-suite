@@ -39,12 +39,5 @@ namespace SFA.DAS.FAA.UITests.Project
 
             _context.Set(new VacancyReferenceHelper(pageInteractionHelper, objectContext, regexHelper));
         }
-
-        [BeforeScenario("apprenticeshipclosed", Order = 35)]
-
-        public void IsApprenticeshipClosed()
-        {
-            _objectContext.SetApprenticeshipClosed();
-        }
     }
 }

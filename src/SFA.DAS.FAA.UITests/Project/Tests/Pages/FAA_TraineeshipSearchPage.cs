@@ -32,12 +32,24 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 
         public new FAA_ApprenticeSummaryPage SearchByReferenceNumber()
         {
+            SearchVacancyInFAA();
+            return new FAA_ApprenticeSummaryPage(_context);
+        }
+
+        public FAA_TraineeshipNotAvailablePage SearchClosedVacancy()
+        {
+            SearchVacancyInFAA();
+            return new FAA_TraineeshipNotAvailablePage(_context);
+        }
+
+        private void SearchVacancyInFAA()
+        {
             _formCompletionHelper.EnterText(Location, string.Empty);
             _formCompletionHelper.Click(Search);
             _formCompletionHelper.EnterText(ReferenceNumber, _objectContext.GetVacancyReference());
             base.SearchByReferenceNumber();
-            return new FAA_ApprenticeSummaryPage(_context);
         }
+        
 
         public FAA_TraineeshipSearchResultsPage SearchForAVacancy(string location)
         {
