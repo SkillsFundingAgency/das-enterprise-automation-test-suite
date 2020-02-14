@@ -10,4 +10,4 @@ Scenario: RE_CEAPST_01_Create an Employer Account with Public Sector Type Org an
 	And the Employer Signs the Agreement
 	Then the Employer Home page is displayed
 	When the Employer initiates adding another same Org of PublicSector Type again
-	Then 'Already added' message should be shown to the User
+	Then 'Already added' message is shown to the User

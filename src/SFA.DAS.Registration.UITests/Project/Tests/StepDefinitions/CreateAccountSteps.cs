@@ -166,8 +166,8 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             .VerifyNewlyAddedOrgIsPresent();
         }
 
-        [Then(@"'Already added' message should be shown to the User")]
-        public void ThenMessageShouldBeShownToTheUser() => 
+        [Then(@"'Already added' message is shown to the User")]
+        public void ThenAlreadyAddedMessageIsShownToTheUser() => 
             _selectYourOrganisationPage.VerifyOrgAlreadyAddedMessage(_registrationDataHelper.PublicSectorTypeOrg);
 
         private SelectYourOrganisationPage SearchForAnotherOrg(OrgType orgType)
