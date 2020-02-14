@@ -9,8 +9,8 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.StepDefinitions
     public class FAASteps
     {
         private readonly FAAStepsHelper _faaStepsHelper;
-        private FAA_CreateAnAccountPage accountCreationPage;        
-
+        private FAA_CreateAnAccountPage accountCreationPage;
+        
         public FAASteps(ScenarioContext context) => _faaStepsHelper = new FAAStepsHelper(context);
 
         [When(@"the Applicant withdraw the application")]
@@ -27,7 +27,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.StepDefinitions
         [When(@"the Applicant is able to create a FAA Account")]
 
         public void ThenTheApplicantIsAbleToCreateAFAAAccount() => _faaStepsHelper.CreateFAAAccount(accountCreationPage);
-
+        
         [Then(@"the status of the Application is shown as '(successful|unsuccessful)' in FAA")]
         public void ThenTheStatusOfTheApplicationIsShownAsInFAA(string expectedStatus)
         {
@@ -69,6 +69,16 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.StepDefinitions
         public void ThenTheTrainneshipVacancyDatesIsChangedInFAA()
         {
             _faaStepsHelper.FindATraineeship().SearchByReferenceNumber().VerifyNewDates();
+        }
+        
+        [When(@"Applicant Deletes the FAA Account")]
+        public void WhenApplicantDeletesTheFAAAccount() 
+        {
+            _faaStepsHelper.GoToFAAHomePage()
+                .GoToSettings()
+                .DeleteYourAccount()
+                .DeleteAccount()
+                .ConfirmAccountDeletion();            
         }
 
         [Then(@"the Traineeship Vacancy is not found on FAA")]
