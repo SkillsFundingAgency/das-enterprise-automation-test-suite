@@ -18,11 +18,11 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
             VerifyPage();
         }
 
-        public ApplicationOverviewPage SelectApplicationRouteAsMain()
+        public TermsConditionsMakingApplicationPage SelectApplicationRouteAsMain()
         {
             SelectRadioOptionByForAttribute("route-1");
             Continue();
-            return new ApplicationOverviewPage(_context);
+            return new TermsConditionsMakingApplicationPage(_context);
         }
 
         public LevyPayingEmployerPage SelectApplicationRouteAsEmployer()
@@ -32,11 +32,11 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
             return new LevyPayingEmployerPage(_context);
         }
 
-        public ApplicationOverviewPage SelectApplicationRouteAsSupporting()
+        public TermsConditionsMakingApplicationPage SelectApplicationRouteAsSupporting()
         {
             SelectRadioOptionByForAttribute("route-3");
             Continue();
-            return new ApplicationOverviewPage(_context);
+            return new TermsConditionsMakingApplicationPage(_context);
         }
     }
 }

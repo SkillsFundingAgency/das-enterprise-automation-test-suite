@@ -218,6 +218,11 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
             formCompletionHelper.ClickElement(GetTaskLinkElement(ProtectingYourApprentices, ProtectingYourApprentices_5));
             return new HealthAndSafetyPolicyPage(_context);
         }
+        public ActingAsASubContractorPage Access_Section4_ActingAsASubContractor()
+        {
+            formCompletionHelper.ClickElement(GetTaskLinkElement(ProtectingYourApprentices, ProtectingYourApprentices_6));
+            return new ActingAsASubContractorPage(_context);
+        }
         #endregion
 
 
