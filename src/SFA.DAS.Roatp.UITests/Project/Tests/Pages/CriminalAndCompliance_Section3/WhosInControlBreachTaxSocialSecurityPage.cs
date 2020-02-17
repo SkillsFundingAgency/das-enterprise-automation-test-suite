@@ -3,6 +3,28 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.CriminalAndCompliance_Section3
 {
+    public class IsAnyOneControlOfRemovedTrusteePage : RoatpBasePage
+    {
+        protected override string PageTitle => "Register of Removed Trustees?";
+
+        #region Helpers and Context
+        private readonly ScenarioContext _context;
+        #endregion
+
+        public IsAnyOneControlOfRemovedTrusteePage(ScenarioContext context) : base(context)
+        {
+            _context = context;
+            VerifyPage();
+        }
+
+        public WhosInControlBankruptInLastThreeYearsPage SelectNo()
+        {
+            SelectNoAndContinue();
+            return new WhosInControlBankruptInLastThreeYearsPage(_context);
+        }
+    }
+
+
     public class WhosInControlBreachTaxSocialSecurityPage : RoatpBasePage
     {
         protected override string PageTitle => "breached tax payments or social security contributions in the last 3 years?";
@@ -21,13 +43,13 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.CriminalAndCompliance_Sectio
             VerifyPage();
         }
 
-        public WhosInControlBankruptInLastThreeYearsPage SelectYesEnterInformationForBreachingTaxandSocialSecurityContributionsAndContinue()
+        public IsAnyOneControlOfRemovedTrusteePage SelectYesEnterInformationForBreachingTaxandSocialSecurityContributionsAndContinue()
         {
             SelectRadioOptionByText("Yes");
             var field = pageInteractionHelper.IsElementDisplayed(LongTextArea_WhosInControlBreachTaxSocialSecurityOrganisations) ? LongTextArea_WhosInControlBreachTaxSocialSecurityOrganisations : LongTextArea_WhosInControlBreachTaxSocialSecuritySoleTrader;
             formCompletionHelper.EnterText(field, applydataHelpers.WhosInControlBreachTaxSocialSecurity);
             Continue();
-            return new WhosInControlBankruptInLastThreeYearsPage(_context);
+            return new IsAnyOneControlOfRemovedTrusteePage(_context);
         }
     }
 }
