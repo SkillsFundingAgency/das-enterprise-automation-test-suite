@@ -141,6 +141,15 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             return new HomePage(_context, true);
         }
 
+        [When(@"an Employer Account with (Company|PublicSector|Charity) Type Org is created")]
+        public void GivenAnEmployerAccountWithCompanyTypeOrgIsCreated(OrgType orgType)
+        {
+            AnUserAccountIsCreated();
+            AddPayeDetails();
+            AddOrganisationTypeDetails(orgType);
+            SignTheAgreement();
+        }
+
         [When(@"the Employer initiates adding another Org of (Company|PublicSector|Charity) Type")]
         public void WhenTheEmployerInitiatesAddingAnotherOrgType(OrgType orgType)
         {

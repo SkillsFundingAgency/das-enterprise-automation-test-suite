@@ -27,6 +27,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             _loginCredentialsHelper.SetIsLevy();
         }
 
+        [When(@"levy declarations are added for the past (.*) months with levypermonth as (.*)")]
         [Given(@"levy declarations are added for the past (.*) months with levypermonth as (.*)")]
         public void GivenLevyDeclarationsIsAddedForPastMonthsWithLevypermonthAs(string duration, string levyPerMonth)
         {
