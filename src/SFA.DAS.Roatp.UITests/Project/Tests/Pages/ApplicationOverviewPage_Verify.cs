@@ -56,6 +56,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
         public ApplicationOverviewPage VerifyEquality_Section4(string status) => Verify_Section4(ProtectingYourApprentices_3, status);
         public ApplicationOverviewPage VerifySafeguarding_Section4(string status) => Verify_Section4(ProtectingYourApprentices_4, status);
         public ApplicationOverviewPage VerifyHealthAndSafety_Section4(string status) => Verify_Section4(ProtectingYourApprentices_5, status);
+        public ApplicationOverviewPage VerifyActingAsASubContractor(string status) => Verify_Section4(ProtectingYourApprentices_6, status);
         #endregion
 
         #region Section3

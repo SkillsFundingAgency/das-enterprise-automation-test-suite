@@ -32,6 +32,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
         private string ProtectingYourApprentices_3 => "Equality and diversity policy";
         private string ProtectingYourApprentices_4 => "Safeguarding and Prevent duty policy";
         private string ProtectingYourApprentices_5 => "Health and safety policy";
+        private string ProtectingYourApprentices_6 => "Acting as a subcontractor";
 
         private string ReadinessToEngage => "Readiness to engage";
         private string ReadinessToEngage_1 => "Introduction and what you'll need";

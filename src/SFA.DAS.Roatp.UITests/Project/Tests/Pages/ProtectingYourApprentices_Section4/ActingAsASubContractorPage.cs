@@ -3,9 +3,9 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.ProtectingYourApprentices_Section4
 {
-    public class ContinuityPlanForApprenticeshipTrainingPage : RoatpBasePage
+    public class ActingAsASubContractorPage : RoatpBasePage
     {
-        protected override string PageTitle => "Upload your organisation's continuity plan for apprenticeship training";
+        protected override string PageTitle => "When acting as a subcontractor, will your organisation follow its lead provider's policies and plans?";
 
         protected override By PageHeader => By.CssSelector(".govuk-label-wrapper");
 
@@ -13,16 +13,17 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.ProtectingYourApprentices_Se
         private readonly ScenarioContext _context;
         #endregion
 
-        public ContinuityPlanForApprenticeshipTrainingPage(ScenarioContext context) : base(context)
+        public ActingAsASubContractorPage(ScenarioContext context) : base(context)
         {
             _context = context;
             VerifyPage();
         }
 
-        public ApplicationOverviewPage ContinuityPlanFileUploadAndContinue()
+        public ApplicationOverviewPage SelectYes()
         {
-            UploadFile();
+            SelectYesAndContinue();
             return new ApplicationOverviewPage(_context);
         }
+
     }
 }

@@ -100,6 +100,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers
             applicationOverviewPage = _protectingYourApprenticesSectionHelper.CompleteProtectingYourApprentices_3(applicationOverviewPage);
             applicationOverviewPage = _protectingYourApprenticesSectionHelper.CompleteProtectingYourApprentices_4(applicationOverviewPage);
             applicationOverviewPage = _protectingYourApprenticesSectionHelper.CompleteProtectingYourApprentices_5(applicationOverviewPage);
+            applicationOverviewPage = _protectingYourApprenticesSectionHelper.CompleteProtectingYourApprentices_6(applicationOverviewPage);
             return applicationOverviewPage;
         }
 
@@ -109,6 +110,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers
             applicationOverviewPage = _protectingYourApprenticesSectionHelper.CompleteProtectingYourApprentices_3(applicationOverviewPage);
             applicationOverviewPage = _protectingYourApprenticesSectionHelper.CompleteProtectingYourApprentices_4(applicationOverviewPage);
             applicationOverviewPage = _protectingYourApprenticesSectionHelper.CompleteProtectingYourApprentices_5(applicationOverviewPage);
+            applicationOverviewPage = _protectingYourApprenticesSectionHelper.CompleteProtectingYourApprentices_6(applicationOverviewPage);
             return applicationOverviewPage;
         }
 
