@@ -69,7 +69,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
 
         protected void EnterLongTextAreaAndContinue(string text)
         {
-            formCompletionHelper.EnterText(ChooseFile, text);
+            formCompletionHelper.EnterText(LongTextArea, text);
             Continue();
         }
 
