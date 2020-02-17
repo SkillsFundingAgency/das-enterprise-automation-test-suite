@@ -11,8 +11,6 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.CriminalAndCompliance_Sectio
         private readonly ScenarioContext _context;
         #endregion
 
-        private By LongTextArea_InvoluntaryWithdrawlFromITTAccreditation => By.Id("CC-26.1");
-
         public InvoluntaryWithdrawlFromITTAccreditationPage(ScenarioContext context) : base(context)
         {
             _context = context;
@@ -22,8 +20,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.CriminalAndCompliance_Sectio
         public RemovedFromCharityRegisterPage SelectYesEnterInformationForWithdrawlfromITTAccreditationAndContinue()
         {
             SelectRadioOptionByText("Yes");
-            formCompletionHelper.EnterText(LongTextArea_InvoluntaryWithdrawlFromITTAccreditation, applydataHelpers.InvoluntaryWithdrawlFromITTAccreditation);
-            Continue();
+            EnterLongTextAreaAndContinue(applydataHelpers.InvoluntaryWithdrawlFromITTAccreditation);
             return new RemovedFromCharityRegisterPage(_context);
         }
     }

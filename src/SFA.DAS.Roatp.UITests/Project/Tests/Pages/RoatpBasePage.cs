@@ -16,13 +16,14 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
+        private readonly FrameworkConfig _frameworkConfig;
         protected readonly ObjectContext objectContext;
         protected readonly PageInteractionHelper pageInteractionHelper;
         protected readonly FormCompletionHelper formCompletionHelper;
         protected readonly ApplyUkprnDataHelpers applyUkprnDataHelpers;
         protected readonly ApplyDataHelpers applydataHelpers;
         protected readonly RoatpConfig roatpConfig;
-        private readonly FrameworkConfig _frameworkConfig;
+
         #endregion
 
         private By ChooseFile => By.ClassName("govuk-file-upload");
@@ -33,16 +34,18 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
 
         private By Year => By.CssSelector("input[id*='Year']");
 
+        protected virtual By LongTextArea => By.CssSelector(".govuk-fieldset .govuk-textarea");
+
         public RoatpBasePage(ScenarioContext context) : base(context)
         {
             _context = context;
+            _frameworkConfig = context.Get<FrameworkConfig>();
             objectContext = context.Get<ObjectContext>();
             formCompletionHelper = context.Get<FormCompletionHelper>();
             pageInteractionHelper = context.Get<PageInteractionHelper>();
             applyUkprnDataHelpers = context.Get<ApplyUkprnDataHelpers>();
             applydataHelpers = context.Get<ApplyDataHelpers>();
             roatpConfig = context.GetRoatpConfig<RoatpConfig>();
-            _frameworkConfig = context.Get<FrameworkConfig>();
         }
 
         protected void UploadFile()
@@ -61,6 +64,12 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
         protected void SelectNoAndContinue()
         {
             SelectRadioOptionByText("No");
+            Continue();
+        }
+
+        protected void EnterLongTextAreaAndContinue(string text)
+        {
+            formCompletionHelper.EnterText(ChooseFile, text);
             Continue();
         }
 

@@ -11,10 +11,6 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.CriminalAndCompliance_Sectio
         private readonly ScenarioContext _context;
         #endregion
 
-        private By LongTextArea_WhosInControlContractWithdrawnWithPublicBodyOrganisations => By.Id("CC-90.1");
-
-        private By LongTextArea_WhosInControlContractWithdrawnWithPublicBodySoleTrader => By.Id("CC-91.1");
-
         public WhosInControlContractWithdrawnWithPublicBodyPage(ScenarioContext context) : base(context)
         {
             _context = context;
@@ -24,9 +20,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.CriminalAndCompliance_Sectio
         public WhosInControlBreachTaxSocialSecurityPage SelectYesEnterInformationForContractWithdrawnWithPublicBodyAndContinue()
         {
             SelectRadioOptionByText("Yes");
-            var field = pageInteractionHelper.IsElementDisplayed(LongTextArea_WhosInControlContractWithdrawnWithPublicBodyOrganisations) ? LongTextArea_WhosInControlContractWithdrawnWithPublicBodyOrganisations : LongTextArea_WhosInControlContractWithdrawnWithPublicBodySoleTrader;
-            formCompletionHelper.EnterText(field, applydataHelpers.WhosInControlContractWithdrawnWithPublicBody);
-            Continue();
+            EnterLongTextAreaAndContinue(applydataHelpers.WhosInControlContractWithdrawnWithPublicBody);
             return new WhosInControlBreachTaxSocialSecurityPage(_context);
         }
     }

@@ -13,8 +13,6 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.PlanningApprenticeshipTraini
         private readonly ScenarioContext _context;
         #endregion
 
-        private By LongTextArea_EngageWithEPAO => By.Id("PAT-900");
-
         public EndPointAssesmentOrganisationsPage(ScenarioContext context) : base(context)
         {
             _context = context;
@@ -23,8 +21,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.PlanningApprenticeshipTraini
 
         public AwardingBodiesPage EnterTextRegardingEngageWithEPAOandContinue()
         {
-            formCompletionHelper.EnterText(LongTextArea_EngageWithEPAO, applydataHelpers.EngageWithEPAO);
-            Continue();
+            EnterLongTextAreaAndContinue(applydataHelpers.EngageWithEPAO);
             return new AwardingBodiesPage(_context);
         }
     }

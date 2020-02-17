@@ -12,8 +12,6 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.CriminalAndCompliance_Sectio
         private readonly ScenarioContext _context;
         #endregion
 
-        private By LongTextArea_PayBackFundsLastThreeYears => By.Id("CC-21.1");
-
         public PayBackFundsLastThreeYearsPage(ScenarioContext context) : base(context)
         {
             _context = context;
@@ -23,8 +21,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.CriminalAndCompliance_Sectio
         public ContractTerminatedByPublicBodyPage SelectYesEnterInformationForFailedToPayFundsAndContinue()
         {
             SelectRadioOptionByText("Yes");
-            formCompletionHelper.EnterText(LongTextArea_PayBackFundsLastThreeYears, applydataHelpers.PayBackFundsLastThreeYears);
-            Continue();
+            EnterLongTextAreaAndContinue(applydataHelpers.PayBackFundsLastThreeYears);
             return new ContractTerminatedByPublicBodyPage(_context);
         }
     }

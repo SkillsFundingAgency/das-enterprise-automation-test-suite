@@ -34,8 +34,6 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.CriminalAndCompliance_Sectio
         private readonly ScenarioContext _context;
         #endregion
 
-        private By LongTextArea_WithdrawnFromAContractWithPublicBody => By.Id("CC-23.1");
-
         public WithdrawnFromAContractWithPublicBodyPage(ScenarioContext context) : base(context)
         {
             _context = context;
@@ -45,8 +43,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.CriminalAndCompliance_Sectio
         public WithdrawnFromAContractWithRoToPage SelectYesEnterInformationForContractWithdrawnWithPublicBody()
         {
             SelectRadioOptionByText("Yes");
-            formCompletionHelper.EnterText(LongTextArea_WithdrawnFromAContractWithPublicBody, applydataHelpers.WithdrawnFromAContractWithPublicBody);
-            Continue();
+            EnterLongTextAreaAndContinue(applydataHelpers.WithdrawnFromAContractWithPublicBody);
             return new WithdrawnFromAContractWithRoToPage(_context);
         }
     }
