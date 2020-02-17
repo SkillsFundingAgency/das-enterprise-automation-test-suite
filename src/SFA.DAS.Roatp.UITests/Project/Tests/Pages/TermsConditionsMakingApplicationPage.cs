@@ -5,7 +5,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
 {
     public class TermsConditionsMakingApplicationPage : RoatpBasePage
     {
-        protected override string PageTitle => "Do you agree to the terms and conditions of making an application?";
+        protected override string PageTitle => "Do you accept the conditions of acceptance for the RoATP?";
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
@@ -19,11 +19,11 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
             VerifyPage();
         }
 
-        public EnterUkprnPage AcceptAndContinue()
+        public ApplicationOverviewPage AcceptAndContinue()
         {
             SelectRadioOptionByForAttribute("ConditionsAccepted-Yes");
             Continue();
-            return new EnterUkprnPage(_context);
+            return new ApplicationOverviewPage(_context);
         }
 
         public NotAcceptTermsConditionsPage DoNotAcceptTermsConditions()

@@ -16,11 +16,11 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
             VerifyPage();
         }
 
-        public ApplicationOverviewPage SelectYesForLevyPayingEmployerAndContinue()
+        public TermsConditionsMakingApplicationPage SelectYesForLevyPayingEmployerAndContinue()
         {
             SelectRadioOptionByText("Yes");
             Continue();
-            return new ApplicationOverviewPage(_context);
+            return new TermsConditionsMakingApplicationPage(_context);
         }
     }
 }

@@ -34,7 +34,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers
             _finishSectionHelper = new Finish_Section9_Helper();
         }
 
-        internal TermsConditionsMakingApplicationPage SubmitValidUserDetails()
+        internal EnterUkprnPage SubmitValidUserDetails()
         {
             return new ServiceStartPage(_context)
                 .ClickApplyNow()
@@ -42,14 +42,13 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers
                 .SubmitValidUserDetails();
         }
 
-        internal EnterUkprnPage AcceptAndContinue(TermsConditionsMakingApplicationPage page) => page.AcceptAndContinue();
-
-        internal NotAcceptTermsConditionsPage DoNotAcceptTermsConditions(TermsConditionsMakingApplicationPage page) => page.DoNotAcceptTermsConditions();
+        internal NotAcceptTermsConditionsPage DoNotAcceptTermsConditions(EnterUkprnPage page) => ConfirmUkprn(page).SelectApplicationRouteAsMain().DoNotAcceptTermsConditions();
 
         internal ApplicationOverviewPage CompleteProviderMainRouteSection(EnterUkprnPage enterUkprnPage)
         {
             return ConfirmUkprn(enterUkprnPage)
                 .SelectApplicationRouteAsMain()
+                .AcceptAndContinue()
                 .VerifyIntroductionStatus(StatusHelper.StatusNext);
         }
 
@@ -58,6 +57,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers
             return ConfirmUkprn(enterUkprnPage)
                 .SelectApplicationRouteAsEmployer()
                 .SelectYesForLevyPayingEmployerAndContinue()
+                .AcceptAndContinue()
                 .VerifyIntroductionStatus(StatusHelper.StatusNext);
         }
 
@@ -65,8 +65,8 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers
         {
             return ConfirmUkprn(enterUkprnPage)
                 .SelectApplicationRouteAsSupporting()
+                .AcceptAndContinue()
                 .VerifyIntroductionStatus(StatusHelper.StatusNext);
-
         }
 
         internal ApplicationOverviewPage CompleteYourOrganisation_Section1_Support(ApplicationOverviewPage applicationOverviewPage)
@@ -273,6 +273,5 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers
         }
 
         private ChooseProviderRoutePage ConfirmUkprn(EnterUkprnPage enterUkprnPage) => enterUkprnPage.EnterOrgTypeCompanyProvidersUkprn().ClickConfirmAndContinue();
-
     }
 }
