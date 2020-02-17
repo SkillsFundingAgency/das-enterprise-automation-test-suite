@@ -58,7 +58,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         public void WhenTheUserClicksOnOneOfTheStandardsListedUnderInDevelopmentTabToViewIt()
         {
             _homePage.ClickInDevelopmentTab()
-                .ClickOnBlacksmithInDevelopmentStandardLink();
+                .ClickOnInDevelopmentStandardLink();
         }
 
         [Then(@"the selected In-development standard detail page is displayed")]

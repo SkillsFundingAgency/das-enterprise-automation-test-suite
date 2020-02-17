@@ -5,6 +5,8 @@ using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
+using SFA.DAS.FAA.UITests.Project;
+using SFA.DAS.RAA.DataGenerator;
 
 namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
 {
@@ -16,7 +18,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
         private readonly TabHelper _tabHelper;
         private readonly RestartWebDriverHelper _helper;
         private const string _applicationName = "Recruit";
-
+        
         public RAAStepsHelper(ScenarioContext context)
         {
             _context = context;
@@ -286,6 +288,10 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
 
             return new SignInPage(_context)
                 .SubmitRecruitmentLoginDetails();
-        }        
+        }   
+        
+        public void SelectACandidate() => Search().SelectACandidate();
+        public void SearchForDeletedCandidate() => Search().VerifyCandidateDeletion();
+        private RAA_SearchCandidatesPage Search() => GoToRAAHomePage(true).SearchCandidates().Search();
     }
 }

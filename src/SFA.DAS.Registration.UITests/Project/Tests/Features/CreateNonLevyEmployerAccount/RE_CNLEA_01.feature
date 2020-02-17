@@ -9,3 +9,4 @@ Scenario: RE_CNLEA_01_Create a NonLevy Employer Account and Not Sign the Agreeme
 	And adds Organisation details
 	And the Employer does not sign the Agreement
 	Then the Employer Home page is displayed
+	And ApprenticeshipEmployerType in Account table is marked as 0

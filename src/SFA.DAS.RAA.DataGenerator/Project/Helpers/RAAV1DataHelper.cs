@@ -31,6 +31,8 @@ namespace SFA.DAS.RAA.DataGenerator
             CustomMaxWagePerWeek = (int.Parse(FixedWagePerWeek) + _randomDataGenerator.GenerateRandomNumberBetweenTwoValues(50, 100)).ToString();
             VacancyClosing = DateTime.Today.AddMonths(2).AddDays(3);
             VacancyStart = VacancyClosing.AddMonths(1).AddDays(1);
+            NewVacancyClosing = VacancyClosing.AddDays(15);
+            NewVacancyStart = NewVacancyClosing.AddDays(15);
             DesiredSkills = _randomDataGenerator.GenerateRandomAlphabeticString(18);
             PersonalQualities = _randomDataGenerator.GenerateRandomAlphabeticString(20);
             DesiredQualifications = _randomDataGenerator.GenerateRandomAlphabeticString(24);
@@ -87,6 +89,10 @@ namespace SFA.DAS.RAA.DataGenerator
         public string CustomMaxWagePerWeek { get; }
 
         public DateTime VacancyClosing { get; }
+
+        public DateTime NewVacancyClosing { get; }
+
+        public DateTime NewVacancyStart { get; }
 
         public DateTime VacancyStart { get; }
 
