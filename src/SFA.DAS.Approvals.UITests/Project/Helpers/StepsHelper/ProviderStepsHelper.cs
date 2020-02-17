@@ -14,6 +14,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
         private readonly ObjectContext _objectContext;
         private readonly ProviderHomePageStepsHelper _providerHomePageStepsHelper;
         private readonly ReviewYourCohortStepsHelper _reviewYourCohortStepsHelper;
+        private readonly ProviderManageYourApprenticesPage _providerManageYourApprenticesPage;
 
 		public ProviderStepsHelper(ScenarioContext context)
         {
@@ -204,5 +205,20 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 
             return providerReviewYourCohortPage;
         }
+
+        public ProviderManageYourApprenticesPage FilterAndPaginate(string filterselection)
+        {
+         ProviderManageYourApprenticesPage _providerManageYourApprenticesPage = new ProviderManageYourApprenticesPage(_context);
+        _providerManageYourApprenticesPage.FilterPagination(filterselection);
+            return new ProviderManageYourApprenticesPage(_context);
+        }
+
+        public bool VerifyDownloadAllLinkIsDisplayed()
+        {
+            ProviderManageYourApprenticesPage _providerManageYourApprenticesPage = new ProviderManageYourApprenticesPage(_context);
+            return _providerManageYourApprenticesPage.DownloadAllDataLinkIsDisplayed();
+            
+        }
+
     }
 }

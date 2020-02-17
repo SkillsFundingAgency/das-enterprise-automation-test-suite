@@ -31,6 +31,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private By SearchButton => By.CssSelector(".das-search-form__button");
         private By ApprenticeInfoRow => By.CssSelector("tbody tr");
         private By ViewApprenticeFullName => By.PartialLinkText(_dataHelper.ApprenticeFullName);
+        private By SelectFilterDropdown => By.Id("selectedStatus");
+        private By ApplyFilter => By.CssSelector(".govuk-button");
+        private By ClearSearchAndFilters => By.PartialLinkText("Clear search");
+        private By DownloadAllDataLink => By.PartialLinkText("Download all data");
 
         private By NextPageLink => By.PartialLinkText("Next");
 
@@ -69,5 +73,20 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
                 }
             }
         }
+
+        public ProviderManageYourApprenticesPage FilterPagination(string filterText)
+        {
+            _formCompletionHelper.SelectFromDropDownByText(SelectFilterDropdown, filterText);
+            _formCompletionHelper.ClickElement(ApplyFilter);
+            _formCompletionHelper.ClickElement(NextPageLink);
+            _formCompletionHelper.ClickElement(ClearSearchAndFilters);
+            return this;
+        }
+        public bool DownloadAllDataLinkIsDisplayed()
+        {
+            return _pageInteractionHelper.IsElementDisplayed(DownloadAllDataLink);
+        }
+
+       
     }
 }
