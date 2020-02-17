@@ -1,8 +1,5 @@
 ﻿using MongoDB.Bson;
-using MongoDB.Driver;
 using SFA.DAS.UI.FrameworkHelpers;
-using System;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace SFA.DAS.MongoDb.DataGenerator.Helpers
