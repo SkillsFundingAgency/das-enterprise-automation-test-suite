@@ -13,26 +13,28 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions
     {
         private readonly ScenarioContext _context;
         private readonly End2EndStepsHelper _end2EndStepsHelper;
+        private readonly SelectRouteStepsHelper _selectRouteStepsHelper;
         private ApplicationOverviewPage _overviewPage;
         private ApplicationSubmittedPage _applicationSubmittedPage;
 
         public End2EndSteps(ScenarioContext context)
         {
             _context = context;
-            _end2EndStepsHelper = new End2EndStepsHelper(_context);
+            _end2EndStepsHelper = new End2EndStepsHelper();
+            _selectRouteStepsHelper = new SelectRouteStepsHelper(_context);
         }
 
         [Then(@"the provider do not accept the Terms and conditions")]
-        public void ThenTheProviderDoNotAcceptTheTermsAndConditions() => _end2EndStepsHelper.DoNotAcceptTermsConditions(SubmitValidUserDetails());
+        public void ThenTheProviderDoNotAcceptTheTermsAndConditions() => _selectRouteStepsHelper.DoNotAcceptTermsConditions();
 
         [Given(@"the provider initates an application as main route company")]
-        public void GivenTheProviderInitatesAnApplicationAsMainRouteCompany() => _overviewPage =  _end2EndStepsHelper.CompleteProviderMainRouteSection(SubmitValidUserDetails());
+        public void GivenTheProviderInitatesAnApplicationAsMainRouteCompany() => _overviewPage = _selectRouteStepsHelper.CompleteProviderMainRouteSection();
 
         [Given(@"the provider initates an application as employer route charity")]
-        public void GivenTheProviderInitatesAnApplicationAsEmployerRouteCharity() => _overviewPage = _end2EndStepsHelper.CompleteProviderCharityRouteSection(SubmitValidUserDetails());
+        public void GivenTheProviderInitatesAnApplicationAsEmployerRouteCharity() => _overviewPage = _selectRouteStepsHelper.CompleteProviderCharityRouteSection();
 
         [Given(@"the provider initates an application as supporting route soletrader")]
-        public void GivenTheProviderInitatesAnApplicationAsSupportingRouteSoletrader() => _overviewPage = _end2EndStepsHelper.CompleteProviderSupportRouteSection(SubmitValidUserDetails());
+        public void GivenTheProviderInitatesAnApplicationAsSupportingRouteSoletrader() => _overviewPage = _selectRouteStepsHelper.CompleteProviderSupportRouteSection();
 
         [When(@"the provider completes Your organisation section")]
         public void WhenTheProviderCompletesYourOrganisationSection() => _overviewPage = _end2EndStepsHelper.CompleteYourOrganisation_Section1(_overviewPage);
@@ -96,7 +98,5 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions
 
         [Then(@"the provider completes Finish section")]
         public void ThenTheProviderCompletesFinishSection() => _applicationSubmittedPage = _end2EndStepsHelper.CompletesFinish_Section9(_overviewPage);
-
-        private EnterUkprnPage SubmitValidUserDetails() => _end2EndStepsHelper.SubmitValidUserDetails();
     }
 }

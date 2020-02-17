@@ -85,6 +85,5 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions
 
         [Then(@"the provider completes Experience and Accreditations section by meeting all Ofsted Requirements")]
         public void ThenTheProviderCompletesExperienceAndAccreditationsSectionByMeetingAllOfstedRequirements() => _overviewPage = _yourOrganisationSectionHelper.CompleteYourOrganisationSection_5_Ofsted(_overviewPage);
-
     }
 }
