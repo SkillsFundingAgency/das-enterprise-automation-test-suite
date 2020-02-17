@@ -10,6 +10,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         #region Locators
         protected override By ContinueButton => By.Id("continue");
+        private By YesContinueButton => By.CssSelector("input.button");
         #endregion
 
         public CheckYourDetailsPage(ScenarioContext context) : base(context)
@@ -22,6 +23,12 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         {
             Continue();
             return new WhenDoYouWantToViewEmpAgreementPage(_context);
+        }
+
+        public OrganisationHasBeenAddedPage ClickYesContinueButton()
+        {
+            formCompletionHelper.Click(YesContinueButton);
+            return new OrganisationHasBeenAddedPage(_context);
         }
     }
 }

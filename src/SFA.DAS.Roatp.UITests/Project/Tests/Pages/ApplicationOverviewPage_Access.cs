@@ -74,6 +74,45 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
             return new DeliveringApprenticeshipTrainingPage(_context);
         }
 
+        public TellUsWhoHasOverallAccountabilityPage Access_Section7_OverallAccountability()
+        {
+            formCompletionHelper.ClickElement(GetTaskLinkElement(DeliveringApprenticeshipTraining, DeliveringApprenticeshipTraining_2));
+            return new TellUsWhoHasOverallAccountabilityPage(_context);
+        }
+
+        public OrganisationManagementHierarchyPage Access_Section7_ManagementHierarchy()
+        {
+            formCompletionHelper.ClickElement(GetTaskLinkElement(DeliveringApprenticeshipTraining, DeliveringApprenticeshipTraining_3));
+            return new OrganisationManagementHierarchyPage(_context);
+        }
+
+        public UploadManagementExpectationsForQualitypage Access_Section7_QualityAndHighStandards()
+        {
+            formCompletionHelper.ClickElement(GetTaskLinkElement(DeliveringApprenticeshipTraining, DeliveringApprenticeshipTraining_4));
+            return new UploadManagementExpectationsForQualitypage(_context);
+        }
+        public DoesYourOrganisationHaveATeamPage  Access_Section7_DevelopingAndDelivering()
+        {
+            formCompletionHelper.ClickElement(GetTaskLinkElement(DeliveringApprenticeshipTraining, DeliveringApprenticeshipTraining_5));
+            return new DoesYourOrganisationHaveATeamPage(_context);
+        }
+        public DoesYourOrganisationHaveSomeonePage Access_Section7_DevelopingAndDelivering_Support()
+        {
+            formCompletionHelper.ClickElement(GetTaskLinkElement(DeliveringApprenticeshipTraining, DeliveringApprenticeshipTraining_5));
+            return new DoesYourOrganisationHaveSomeonePage(_context);
+        }
+        public YourSectorsAndEmployeesPage Access_Section7_YourSectorsAndEmployees()
+        {
+            formCompletionHelper.ClickElement(GetTaskLinkElement(DeliveringApprenticeshipTraining, DeliveringApprenticeshipTraining_6));
+            return new YourSectorsAndEmployeesPage(_context);
+        }
+        public UploadOrganisationPolicyPage Access_Section7_PolicyForProfessionalDevelopment()
+        {
+            formCompletionHelper.ClickElement(GetTaskLinkElement(DeliveringApprenticeshipTraining, DeliveringApprenticeshipTraining_7));
+            return new UploadOrganisationPolicyPage(_context);
+        }
+        
+
         #endregion
 
         #region Section6
@@ -253,6 +292,11 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
             formCompletionHelper.ClickElement(GetTaskLinkElement(Yourorganisation, YourOrganisation_3));
             return new ConfrimWhosInControlPage(_context);
         }
+        public WhoIsInControlOfYourOrganisationPage AccessTellUsWhosInControlSectionForCHManualEntryTrue()
+        {
+            formCompletionHelper.ClickElement(GetTaskLinkElement(Yourorganisation, YourOrganisation_3));
+            return new WhoIsInControlOfYourOrganisationPage(_context);
+        }
         public ConfirmTrusteesPage AccessTellUSWhosInControlSectionForOrgTypeCharity()
         {
             formCompletionHelper.ClickElement(GetTaskLinkElement(Yourorganisation, YourOrganisation_3));
@@ -276,5 +320,3 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
         #endregion
     }
 }
-
-

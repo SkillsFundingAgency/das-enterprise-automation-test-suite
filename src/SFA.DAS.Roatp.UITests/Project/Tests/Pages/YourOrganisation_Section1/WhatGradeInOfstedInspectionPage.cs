@@ -22,5 +22,13 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.YourOrganisation_Section1
             Continue();
             return new WhatGradeInOfstedInspectionOverallEffectivenessPage(_context);
         }
+
+        public GradeWithin3YearsPage SelecOutstandingAndContinue()
+        {
+            
+            SelectRadioOptionByText("Outstanding");
+            Continue();
+            return new GradeWithin3YearsPage(_context);
+        }
     }
 }

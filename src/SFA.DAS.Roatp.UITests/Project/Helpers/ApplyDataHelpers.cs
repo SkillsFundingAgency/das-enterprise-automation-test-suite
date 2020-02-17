@@ -50,10 +50,16 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers
             TransitionFromFrameWorksToStandards = randomDataGenerator.GenerateRandomAlphabeticString(20);
             LongTextArea_HowApprenticesAreSupported = randomDataGenerator.GenerateRandomAlphabeticString(20);
             OtherWaysToSupportApprentices = randomDataGenerator.GenerateRandomAlphabeticString(20);
+            HowExpectationsAreMonitored = randomDataGenerator.GenerateRandomAlphabeticString(20); 
+            HowAreTheyCommunicatedToEmployees = randomDataGenerator.GenerateRandomAlphabeticString(20);
+            ExampleToImproveEmployees = randomDataGenerator.GenerateRandomAlphabeticString(20);
+            ExampleToMaintainEmployees = randomDataGenerator.GenerateRandomAlphabeticString(20);
+            HowHasTheTeamOrPersonWorked = randomDataGenerator.GenerateRandomAlphabeticString(20);
         }
 
         public DateTime Dob(int x) => DateTime.Now.AddYears((-40 + x));
         public string FullName => "George Smith";
+        public string JobRole => "Employee";
         public string Email => "test.demo@digital.education.gov.uk";
         public string ContactNumber => "1234567890";
         public string BuildingAndStreet { get; }
@@ -98,6 +104,11 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers
         public string TransitionFromFrameWorksToStandards { get; }
         public string LongTextArea_HowApprenticesAreSupported { get; }
         public string OtherWaysToSupportApprentices { get; }
+        public string HowExpectationsAreMonitored { get; }
+        public string HowAreTheyCommunicatedToEmployees { get; }
+        public string ExampleToImproveEmployees { get; }
+        public string ExampleToMaintainEmployees { get; }
+        public string HowHasTheTeamOrPersonWorked { get; }
         public string GenerateRandomWholeNumber(int length) => _randomDataGenerator.GenerateRandomWholeNumber(length);
     }
 }

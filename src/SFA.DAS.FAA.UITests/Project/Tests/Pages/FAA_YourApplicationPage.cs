@@ -8,7 +8,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
     public class FAA_YourApplicationPage : BasePage
     {
         protected override string PageTitle => "Your application";
-
+         
         #region Helpers and Context
         private readonly ScenarioContext _context;
         private readonly FormCompletionHelper _formCompletionHelper;

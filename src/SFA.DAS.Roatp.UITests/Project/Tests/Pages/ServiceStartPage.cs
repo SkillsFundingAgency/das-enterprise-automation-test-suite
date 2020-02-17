@@ -8,7 +8,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
 {
     public class ServiceStartPage : RoatpBasePage
     {
-        protected override string PageTitle => "Apply to join the register of apprenticeship training providers";
+        protected override string PageTitle => "Register of apprenticeship training providers";
         
         #region Helpers and Context
         private readonly ScenarioContext _context;

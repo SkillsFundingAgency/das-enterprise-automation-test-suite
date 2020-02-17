@@ -8,8 +8,8 @@ namespace SFA.DAS.RAA.DataGenerator
         private readonly RandomDataGenerator _randomDataGenerator;
 
         public FAADataHelper(RandomDataGenerator randomDataGenerator) : base(randomDataGenerator)
-        {
-            var datetime = DateTime.Now;
+        {            
+            var datetime = DateTime.Now;            
             _randomDataGenerator = randomDataGenerator;
             EducationSchoolOrCollege = _randomDataGenerator.GenerateRandomAlphabeticString(10);
             YearsAttended = datetime.AddYears(-1);
@@ -38,9 +38,9 @@ namespace SFA.DAS.RAA.DataGenerator
             DOB_Year = _randomDataGenerator.GenerateRandomDobYear();
             EmailId = _randomDataGenerator.GenerateRandomEmail();
             PhoneNumber = _randomDataGenerator.GenerateRandomNumber(10);
-            Password = _randomDataGenerator.GenerateRandomPassword(4,4,1,1);
+            Password = _randomDataGenerator.GenerateRandomPassword(4, 4, 1, 1);
         }
-
+                
         public string EducationSchoolOrCollege { get; }
 
         public DateTime YearsAttended { get; }

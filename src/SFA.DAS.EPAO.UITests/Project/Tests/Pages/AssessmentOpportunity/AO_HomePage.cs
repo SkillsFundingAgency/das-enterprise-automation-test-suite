@@ -14,7 +14,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentOpportunity
         private By ProposedTab => By.Id("tab_proposed");
         private By TabHeader => By.CssSelector(".govuk-heading-m");
         private By AbattoirWorkerApprovedStandardLink => By.LinkText("Abattoir worker");
-        private By BlacksmithInDevelopmentStandardLink => By.LinkText("Blacksmith");
+        private By BookbinderInDevelopmentStandardLink => By.LinkText("Bookbinder");
         private By EquineAthleteProposedStandard => By.LinkText("Equine Athlete");
         #endregion
 
@@ -40,9 +40,9 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentOpportunity
             return this;
         }
 
-        public AO_InDevelopmentStandardDetailsPage ClickOnBlacksmithInDevelopmentStandardLink()
+        public AO_InDevelopmentStandardDetailsPage ClickOnInDevelopmentStandardLink()
         {
-            formCompletionHelper.Click(BlacksmithInDevelopmentStandardLink);
+            formCompletionHelper.Click(BookbinderInDevelopmentStandardLink);
             return new AO_InDevelopmentStandardDetailsPage(_context);
         }
 

@@ -7,7 +7,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.StepDefinitions
     public class FAAApplySteps
     {
         private readonly FAAStepsHelper _faaStepsHelper;
-
+        
         public FAAApplySteps(ScenarioContext context)
         {
             _faaStepsHelper = new FAAStepsHelper(context);

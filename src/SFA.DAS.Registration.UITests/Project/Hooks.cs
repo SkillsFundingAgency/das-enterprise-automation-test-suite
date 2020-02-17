@@ -23,12 +23,14 @@ namespace SFA.DAS.Registration.UITests.Project
         private RegistrationDatahelpers _registrationDatahelpers;
         private LoginCredentialsHelper _loginCredentialsHelper;
         private MongoDbDataGenerator _mongoDbDataGenerator;
+        private readonly SqlDatabaseConnectionHelper _sqlDatabaseConnectionHelper;
 
         public Hooks(ScenarioContext context)
         {
             _context = context;
             _webDriver = context.GetWebDriver();
             _config = context.GetRegistrationConfig<RegistrationConfig>();
+            _sqlDatabaseConnectionHelper = context.Get<SqlDatabaseConnectionHelper>();
             _objectContext = context.Get<ObjectContext>();
         }
 
@@ -46,16 +48,16 @@ namespace SFA.DAS.Registration.UITests.Project
             _objectContext.SetDataHelper(dataHelper);
 
             var randomDataGenerator = _context.Get<RandomDataGenerator>();
-
             _registrationDatahelpers = new RegistrationDatahelpers(dataHelper.GatewayUsername, _config.RE_AccountPassword, randomDataGenerator);
-
             _context.Set(_registrationDatahelpers);
 
             _loginCredentialsHelper = new LoginCredentialsHelper(_objectContext);
-
             _context.Set(_loginCredentialsHelper);
 
             _objectContext.SetOrganisationName(_config.RE_OrganisationName);
+
+            var registrationSqlDataHelper = new RegistrationSqlDataHelper(_config, _sqlDatabaseConnectionHelper);
+            _context.Set(registrationSqlDataHelper);
         }
 
         [BeforeScenario(Order = 23)]

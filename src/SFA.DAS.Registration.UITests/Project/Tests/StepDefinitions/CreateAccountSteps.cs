@@ -19,12 +19,15 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         private OrganisationSearchPage _organistionSearchPage;
         private SelectYourOrganisationPage _selectYourOrganisationPage;
         private SignAgreementPage _signAgreementPage;
+        private OrganisationHasBeenAddedPage _organisationHasBeenAddedPage;
+        private readonly RegistrationSqlDataHelper _registrationSqlDataHelper;
 
         public CreateAccountSteps(ScenarioContext context)
         {
             _context = context;
             _objectContext = _context.Get<ObjectContext>();
             _registrationDataHelper = context.Get<RegistrationDatahelpers>();
+            _registrationSqlDataHelper = context.Get<RegistrationSqlDataHelper>();
         }
 
         [Given(@"an User Account is created")]
@@ -144,5 +147,44 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
 
             return new HomePage(_context, true);
         }
+
+        [When(@"the Employer initiates adding another Org of (Company|PublicSector|Charity) Type")]
+        public void WhenTheEmployerInitiatesAddingAnotherOrgType(OrgType orgType)
+        {
+            _organisationHasBeenAddedPage = SearchForAnotherOrg(orgType)
+                .SelectYourOrganisation(orgType)
+                .ClickYesContinueButton();
+        }
+
+        [When(@"the Employer initiates adding another same Org of (Company|PublicSector|Charity) Type again")]
+        public void WhenTheEmployerInitiatesAddingAnotherSameOrgTypeAgain(OrgType orgType) =>
+            _selectYourOrganisationPage = SearchForAnotherOrg(orgType);
+
+        [Then(@"the new Org added is shown in the Account Organisations list")]
+        public void ThenTheNewOrgAddedIsShownInTheAccountOrganisationsList()
+        {
+            _organisationHasBeenAddedPage
+            .GoToYourOrganisationsAndAgreementsPage()
+            .VerifyNewlyAddedOrgIsPresent();
+        }
+
+        [Then(@"'Already added' message is shown to the User")]
+        public void ThenAlreadyAddedMessageIsShownToTheUser() =>
+            _selectYourOrganisationPage.VerifyOrgAlreadyAddedMessage(_registrationDataHelper.PublicSectorTypeOrg);
+
+        private SelectYourOrganisationPage SearchForAnotherOrg(OrgType orgType)
+        {
+            return _homePage.GoToYourOrganisationsAndAgreementsPage()
+                .ClickAddNewOrganisationButton()
+                .SearchForAnOrganisation(orgType);
+        }
+
+        [Then(@"ApprenticeshipEmployerType in Account table is marked as (.*)")]
+        public void ThenApprenticeshipEmployerTypeInAccountTableIsMarkedAs(string expectedApprenticeshipEmployerType)
+        {
+            var actualApprenticeshipEmployerType = _registrationSqlDataHelper.GetAccountApprenticeshipEmployerType(_registrationDataHelper.RandomEmail);
+            Assert.AreEqual(expectedApprenticeshipEmployerType, actualApprenticeshipEmployerType);
+        }
+
     }
 }
