@@ -122,13 +122,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
                 .DoNotSignAgreement();
         }
 
-        [Then(@"the Employer lands on the Organisation Agreement page")]
-        public void LandInTheOrganisationAgreementPage()
-        {
-            _signAgreementPage
-                .VerifySignAgreementPage();
-        }
-
         [Then(@"the Employer Home page is displayed")]
         public void TheEmployerHomePageIsDisplayed()
         {
