@@ -36,23 +36,20 @@ namespace SFA.DAS.MongoDb.DataGenerator.Helpers
         private static (DateTime calculatedAt, Table levyDeclarations) GetlevyDeclarations(string duration, string levyPerMonth)
         {
             var table = GetTableHeader();
-
             int.TryParse(duration, out int noOfMonths);
-            noOfMonths = noOfMonths == 0 ? 15 : noOfMonths;
+            int.TryParse(levyPerMonth, out int monthlyLevy);
 
-            int.TryParse(levyPerMonth, out int levyDueYTD);
-            levyDueYTD = levyDueYTD == 0 ? 10000 : levyDueYTD;
-
-            int levyAllowanceForFullYear = levyDueYTD * noOfMonths;
+            int levyAllowanceForFullYear = monthlyLevy * noOfMonths;
 
             for (int i = 0; i < noOfMonths; i++)
             {
                 var date = DateTime.Now.AddMonths(i - noOfMonths);
-                int levythisMonth = levyDueYTD * (i + 1);
+                int levythisMonth = monthlyLevy * (i + 1);
 
                 var levy = GetlevyDeclarations(date, levythisMonth, levyAllowanceForFullYear);
                 table.AddRow(levy);
             }
+
             var englishFractioncalculatedAt = DateTime.Now.AddMonths(-(noOfMonths + 1));
             return (englishFractioncalculatedAt, table);
         }
