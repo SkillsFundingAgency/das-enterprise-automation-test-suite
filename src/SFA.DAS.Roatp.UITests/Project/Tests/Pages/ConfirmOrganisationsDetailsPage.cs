@@ -21,5 +21,11 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
             Continue();
             return new ChooseProviderRoutePage(_context);
         }
+
+        public AlreadyOnRoatpPage ClickConfirmAndContinueForProviderOnRoatp()
+        {
+            Continue();
+            return new AlreadyOnRoatpPage(_context);
+        }
     }
 }
