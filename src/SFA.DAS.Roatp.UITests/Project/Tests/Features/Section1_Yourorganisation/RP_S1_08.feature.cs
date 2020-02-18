@@ -73,12 +73,14 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Features.Section1_Yourorganisation
         [NUnit.Framework.DescriptionAttribute("RP_S1_08_Company - Main - Org- ITP - Meeting All Ofstead Requirements")]
         [NUnit.Framework.CategoryAttribute("rps108")]
         [NUnit.Framework.CategoryAttribute("roatp")]
+        [NUnit.Framework.CategoryAttribute("roatps1")]
         [NUnit.Framework.CategoryAttribute("regression")]
         public virtual void RP_S1_08_Company_Main_Org_ITP_MeetingAllOfsteadRequirements()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_S1_08_Company - Main - Org- ITP - Meeting All Ofstead Requirements", null, new string[] {
                         "rps108",
                         "roatp",
+                        "roatps1",
                         "regression"});
 #line 7
 this.ScenarioInitialize(scenarioInfo);

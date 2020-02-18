@@ -2,6 +2,7 @@
 
 @rps101
 @roatp
+@roatps1
 @regression
 Scenario: RP_S1_01_Charity - Employer - Org-None of the above
     Given the provider initates an application as employer route charity

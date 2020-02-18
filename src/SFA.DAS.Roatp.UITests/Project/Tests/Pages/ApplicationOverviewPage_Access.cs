@@ -22,15 +22,15 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
             formCompletionHelper.ClickElement(GetTaskLinkElement(Finish, Finish_1));
             return new PermissionsFromEveryoneNamedPage(_context);
         }
-        public CommercialInConfidenceInformationPage Access_Section9_CommercialInConfidenceInformation()
+        public InLineWithInstituteForApprenticeshipPage Access_Section9_QualityStatement()
         {
             formCompletionHelper.ClickElement(GetTaskLinkElement(Finish, Finish_2));
-            return new CommercialInConfidenceInformationPage(_context);
+            return new InLineWithInstituteForApprenticeshipPage(_context);
         }
-        public TermsAndConditionsSubmittingApplicationPage Access_Section9_TermsAndConditions()
+        public CompletesAllPostApplicationTasksPage Access_Section9_PostApplicationTasks()
         {
             formCompletionHelper.ClickElement(GetTaskLinkElement(Finish, Finish_3));
-            return new TermsAndConditionsSubmittingApplicationPage(_context);
+            return new CompletesAllPostApplicationTasksPage(_context);
         }
         public SubmitApplicationPage Access_Section9_SubmitApplication()
         {
@@ -39,7 +39,6 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
         }
 
         #endregion
-
 
         #region Section8
 
@@ -224,7 +223,6 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
             return new ActingAsASubContractorPage(_context);
         }
         #endregion
-
 
         #region Section3
 

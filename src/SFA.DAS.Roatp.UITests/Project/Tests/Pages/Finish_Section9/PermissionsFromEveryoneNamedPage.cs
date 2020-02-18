@@ -18,8 +18,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.Finish_Section9
 
         public CheckedWithEveryonePage SelectYesForPermissionsAndContinue()
         {
-            SelectRadioOptionByText("Yes");
-            Continue();
+            SelectYesAndContinue();
             return new CheckedWithEveryonePage(_context);
         }
     }

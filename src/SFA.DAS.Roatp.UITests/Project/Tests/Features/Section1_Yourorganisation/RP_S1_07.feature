@@ -2,6 +2,7 @@
 
 @rps107
 @roatp
+@roatps1
 @regression
 Scenario: RP_S1_07_CharityAndCompany - Main - Org PublicBody - GovtDept - Exempt from FHA
     Given the provider initates an application as main route company

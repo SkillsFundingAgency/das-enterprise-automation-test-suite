@@ -5,7 +5,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.DeliveringApprenticeshipTrai
 {
     public class HowAreTheyCommunicatedToEmployeesPage : RoatpBasePage
     {
-        protected override string PageTitle => "How are these quality and high standards in apprenticeship training communicated to employees?";
+        protected override string PageTitle => "How are these expectations for quality and high standards in apprenticeship training communicated to employees?";
 
         protected override By PageHeader => By.CssSelector(".govuk-label-wrapper");
 

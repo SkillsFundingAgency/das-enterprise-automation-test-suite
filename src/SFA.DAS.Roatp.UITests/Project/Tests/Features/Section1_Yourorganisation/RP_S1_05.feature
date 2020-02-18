@@ -2,6 +2,7 @@
 
 @rps105
 @roatp
+@roatps1
 @regression
 Scenario: RP_S1_05_Government Statute - Employer - ShortOfsteadInspection
     Given the provider initates an application as employer route charity

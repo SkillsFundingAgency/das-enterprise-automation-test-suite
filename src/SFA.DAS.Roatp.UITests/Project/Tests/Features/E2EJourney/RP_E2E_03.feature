@@ -3,6 +3,7 @@
 
 @rpe2e03
 @roatp
+@roatpe2e
 @regression
 Scenario: RP_E2E_03_SupportingRoute-Soletrader
 	Given the provider initates an application as supporting route soletrader
@@ -14,4 +15,4 @@ Scenario: RP_E2E_03_SupportingRoute-Soletrader
 	And the provider completes Planning apprenticeship training section for supporting route
 	And the provider completes Delivering apprenticeship training section for supporting route
 	And the provider completes Evaluating apprenticeship training section for supporting route
-	Then the provider completes Finish section
+	Then the provider completes Finish section for supporting route
