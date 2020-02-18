@@ -11,8 +11,6 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.CriminalAndCompliance_Sectio
         private readonly ScenarioContext _context;
         #endregion
 
-        private By LongTextArea_ContractTerminatedByPublicBody => By.Id("CC-22.1");
-
         public ContractTerminatedByPublicBodyPage(ScenarioContext context) : base(context)
         {
             _context = context;
@@ -22,8 +20,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.CriminalAndCompliance_Sectio
         public WithdrawnFromAContractWithPublicBodyPage SelectYesAndEnterInformationForContractTerminatedByPublicBodyAndContinue()
         {
             SelectRadioOptionByText("Yes");
-            formCompletionHelper.EnterText(LongTextArea_ContractTerminatedByPublicBody, applydataHelpers.ContractTerminatedByPublicBody);
-            Continue();
+            EnterLongTextAreaAndContinue(applydataHelpers.ContractTerminatedByPublicBody);
             return new WithdrawnFromAContractWithPublicBodyPage(_context);
         }
     }

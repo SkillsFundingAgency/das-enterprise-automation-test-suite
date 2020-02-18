@@ -12,9 +12,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.DeliveringApprenticeshipTrai
         #region Helpers and Context
         private readonly ScenarioContext _context;
         #endregion
-
-        private By LongTextArea => By.CssSelector("textarea");
-
+        
         public HowAreTheyCommunicatedToEmployeesPage(ScenarioContext context) : base(context)
         {
             _context = context;
@@ -23,8 +21,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.DeliveringApprenticeshipTrai
 
         public ApplicationOverviewPage EnterHowAreTheyCommunicatedToEmployees()
         {
-            formCompletionHelper.EnterText(LongTextArea, applydataHelpers.HowAreTheyCommunicatedToEmployees);
-            Continue();
+            EnterLongTextAreaAndContinue(applydataHelpers.HowAreTheyCommunicatedToEmployees);
             return new ApplicationOverviewPage(_context);
         }
     }

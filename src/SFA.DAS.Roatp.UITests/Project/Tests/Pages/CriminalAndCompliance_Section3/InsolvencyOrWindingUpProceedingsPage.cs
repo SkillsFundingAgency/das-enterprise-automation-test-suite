@@ -11,9 +11,6 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.CriminalAndCompliance_Sectio
         private readonly ScenarioContext _context;
         #endregion
 
-
-        private By LongTextArea_InsolvencyOrWindingUpProceedings => By.Id("CC-30.1");
-
         public InsolvencyOrWindingUpProceedingsPage(ScenarioContext context) : base(context)
         {
             _context = context;
@@ -23,8 +20,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.CriminalAndCompliance_Sectio
         public ApplicationOverviewPage SelectYesEnterInformationForSubjectToInsolvencyOrWindingUpProceedingsAndContinue()
         {
             SelectRadioOptionByText("Yes");
-            formCompletionHelper.EnterText(LongTextArea_InsolvencyOrWindingUpProceedings, applydataHelpers.InsolvencyOrWindingUpProceedings);
-            Continue();
+            EnterLongTextAreaAndContinue(applydataHelpers.InsolvencyOrWindingUpProceedings);
             return new ApplicationOverviewPage(_context);
         }
     }

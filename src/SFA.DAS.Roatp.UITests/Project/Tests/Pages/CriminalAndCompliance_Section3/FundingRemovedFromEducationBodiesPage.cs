@@ -11,8 +11,6 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.CriminalAndCompliance_Sectio
         private readonly ScenarioContext _context;
         #endregion
 
-        private By LongTextArea_FundingRemovedFromEducationBodies => By.Id("CC-24.1");
-
         public FundingRemovedFromEducationBodiesPage(ScenarioContext context) : base(context)
         {
             _context = context;
@@ -22,8 +20,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.CriminalAndCompliance_Sectio
         public RemovedFromProfessionalOrTradeRegistersPage SelectYesEnterInformationForFundingRemovedFromEducationBodiesAndContinue()
         {
             SelectRadioOptionByText("Yes");
-            formCompletionHelper.EnterText(LongTextArea_FundingRemovedFromEducationBodies, applydataHelpers.FundingRemovedFromEducationBodies);
-            Continue();
+            EnterLongTextAreaAndContinue(applydataHelpers.FundingRemovedFromEducationBodies);
             return new RemovedFromProfessionalOrTradeRegistersPage(_context);
         }
     }

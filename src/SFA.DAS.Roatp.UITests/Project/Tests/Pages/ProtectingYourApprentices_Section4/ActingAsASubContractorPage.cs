@@ -7,8 +7,6 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.ProtectingYourApprentices_Se
     {
         protected override string PageTitle => "When acting as a subcontractor, will your organisation follow its lead provider's policies and plans?";
 
-        protected override By PageHeader => By.CssSelector(".govuk-label-wrapper");
-
         #region Helpers and Context
         private readonly ScenarioContext _context;
         #endregion
@@ -24,6 +22,5 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.ProtectingYourApprentices_Se
             SelectYesAndContinue();
             return new ApplicationOverviewPage(_context);
         }
-
     }
 }

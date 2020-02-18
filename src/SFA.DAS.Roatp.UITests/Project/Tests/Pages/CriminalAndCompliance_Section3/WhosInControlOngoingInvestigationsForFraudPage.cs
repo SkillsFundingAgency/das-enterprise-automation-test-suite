@@ -11,10 +11,6 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.CriminalAndCompliance_Sectio
         private readonly ScenarioContext _context;
         #endregion
 
-        private By LongTextArea_WhosInControlOngoingInvestigationsForFraudOrganisations => By.Id("CC-70.1");
-
-        private By LongTextArea_WhosInControlOngoingInvestigationsForFraudSoleTrader => By.Id("CC-71.1");
-
         public WhosInControlOngoingInvestigationsForFraudPage(ScenarioContext context) : base(context)
         {
             _context = context;
@@ -24,9 +20,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.CriminalAndCompliance_Sectio
         public WhosInControlContractTerminatedByPublicBodyPage SelectYesEnterInformationForOngoingInvestigationForFraudAndContinue()
         {
             SelectRadioOptionByText("Yes");
-            var field = pageInteractionHelper.IsElementDisplayed(LongTextArea_WhosInControlOngoingInvestigationsForFraudOrganisations) ? LongTextArea_WhosInControlOngoingInvestigationsForFraudOrganisations : LongTextArea_WhosInControlOngoingInvestigationsForFraudSoleTrader;
-            formCompletionHelper.EnterText(field, applydataHelpers.WhosInControlOngoingInvestigationsForFraud);
-            Continue();
+            EnterLongTextAreaAndContinue(applydataHelpers.WhosInControlOngoingInvestigationsForFraud);
             return new WhosInControlContractTerminatedByPublicBodyPage(_context);
         }
     }

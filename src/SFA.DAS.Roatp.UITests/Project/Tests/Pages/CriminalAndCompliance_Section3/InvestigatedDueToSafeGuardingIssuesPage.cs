@@ -11,8 +11,6 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.CriminalAndCompliance_Sectio
         private readonly ScenarioContext _context;
         #endregion
 
-        private By LongTextArea_InvestigatedDueToSafeGuardingIssues => By.Id("CC-28.1");
-
         public InvestigatedDueToSafeGuardingIssuesPage(ScenarioContext context) : base(context)
         {
             _context = context;
@@ -22,8 +20,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.CriminalAndCompliance_Sectio
         public InvestigatedDueToWhistleBlowingIssuesPage SelectYesEnterInformationForInvestigatedDueToSafeGuardingIssuesAndContinue()
         {
             SelectRadioOptionByText("Yes");
-            formCompletionHelper.EnterText(LongTextArea_InvestigatedDueToSafeGuardingIssues, applydataHelpers.InvestigatedDueToSafeGuardingIssues);
-            Continue();
+            EnterLongTextAreaAndContinue(applydataHelpers.InvestigatedDueToSafeGuardingIssues);
             return new InvestigatedDueToWhistleBlowingIssuesPage(_context);
         }
     }

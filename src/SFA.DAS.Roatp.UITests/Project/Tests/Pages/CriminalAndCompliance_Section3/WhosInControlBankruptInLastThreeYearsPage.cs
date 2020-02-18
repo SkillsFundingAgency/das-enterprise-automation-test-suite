@@ -11,9 +11,6 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.CriminalAndCompliance_Sectio
         private readonly ScenarioContext _context;
         #endregion
 
-        private By LongTextArea_WhosInControlBankruptInLastThreeYearsOrganisations => By.Id("CC-110.1");
-        private By LongTextArea_WhosInControlBankruptInLastThreeYearsSoleTrader => By.Id("CC-111.1");
-
         public WhosInControlBankruptInLastThreeYearsPage(ScenarioContext context) : base(context)
         {
             _context = context;
@@ -23,9 +20,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.CriminalAndCompliance_Sectio
         public ApplicationOverviewPage SelectYesEnterInformationForBankruptAndContinue()
         {
             SelectRadioOptionByText("Yes");
-            var field = pageInteractionHelper.IsElementDisplayed(LongTextArea_WhosInControlBankruptInLastThreeYearsOrganisations) ? LongTextArea_WhosInControlBankruptInLastThreeYearsOrganisations : LongTextArea_WhosInControlBankruptInLastThreeYearsSoleTrader;
-            formCompletionHelper.EnterText(field, applydataHelpers.WhosInControlBankruptInLastThreeYears);
-            Continue();
+            EnterLongTextAreaAndContinue(applydataHelpers.WhosInControlBankruptInLastThreeYears);
             return new ApplicationOverviewPage(_context);
         }
     }

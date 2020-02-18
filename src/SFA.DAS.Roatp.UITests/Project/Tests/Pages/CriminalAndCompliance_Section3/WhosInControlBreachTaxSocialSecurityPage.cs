@@ -11,23 +11,17 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.CriminalAndCompliance_Sectio
         private readonly ScenarioContext _context;
         #endregion
 
-        private By LongTextArea_WhosInControlBreachTaxSocialSecurityOrganisations => By.Id("CC-100.1");
-
-        private By LongTextArea_WhosInControlBreachTaxSocialSecuritySoleTrader => By.Id("CC-101.1");
-
         public WhosInControlBreachTaxSocialSecurityPage(ScenarioContext context) : base(context)
         {
             _context = context;
             VerifyPage();
         }
 
-        public WhosInControlBankruptInLastThreeYearsPage SelectYesEnterInformationForBreachingTaxandSocialSecurityContributionsAndContinue()
+        public IsAnyOneControlOfRemovedTrusteePage SelectYesEnterInformationForBreachingTaxandSocialSecurityContributionsAndContinue()
         {
             SelectRadioOptionByText("Yes");
-            var field = pageInteractionHelper.IsElementDisplayed(LongTextArea_WhosInControlBreachTaxSocialSecurityOrganisations) ? LongTextArea_WhosInControlBreachTaxSocialSecurityOrganisations : LongTextArea_WhosInControlBreachTaxSocialSecuritySoleTrader;
-            formCompletionHelper.EnterText(field, applydataHelpers.WhosInControlBreachTaxSocialSecurity);
-            Continue();
-            return new WhosInControlBankruptInLastThreeYearsPage(_context);
+            EnterLongTextAreaAndContinue(applydataHelpers.WhosInControlBreachTaxSocialSecurity);
+            return new IsAnyOneControlOfRemovedTrusteePage(_context);
         }
     }
 }

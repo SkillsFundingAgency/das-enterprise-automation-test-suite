@@ -11,8 +11,6 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.CriminalAndCompliance_Sectio
         private readonly ScenarioContext _context;
         #endregion
 
-        private By LongTextArea_InvestigatedDueToWhistleBlowingIssues => By.Id("CC-29.1");
-
         public InvestigatedDueToWhistleBlowingIssuesPage(ScenarioContext context) : base(context)
         {
             _context = context;
@@ -22,8 +20,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.CriminalAndCompliance_Sectio
         public InsolvencyOrWindingUpProceedingsPage SelectYesEnterInformationForInvestigatedDueToWhistleBlowingAndContinue()
         {
             SelectRadioOptionByText("Yes");
-            formCompletionHelper.EnterText(LongTextArea_InvestigatedDueToWhistleBlowingIssues, applydataHelpers.InvestigatedDueToWhistleBlowingIssues);
-            Continue();
+            EnterLongTextAreaAndContinue(applydataHelpers.InvestigatedDueToWhistleBlowingIssues);
             return new InsolvencyOrWindingUpProceedingsPage(_context);
         }
     }

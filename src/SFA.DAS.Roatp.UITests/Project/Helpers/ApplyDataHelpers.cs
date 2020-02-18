@@ -48,7 +48,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers
             ReviewProcessForEvaluatingTheQualityOfTraining = randomDataGenerator.GenerateRandomAlphabeticString(20);
             TransitionFromFrameWorksToStandardsForEmployerRoute = randomDataGenerator.GenerateRandomAlphabeticString(20);
             TransitionFromFrameWorksToStandards = randomDataGenerator.GenerateRandomAlphabeticString(20);
-            LongTextArea_HowApprenticesAreSupported = randomDataGenerator.GenerateRandomAlphabeticString(20);
+            HowApprenticesAreSupported = randomDataGenerator.GenerateRandomAlphabeticString(20);
             OtherWaysToSupportApprentices = randomDataGenerator.GenerateRandomAlphabeticString(20);
             HowExpectationsAreMonitored = randomDataGenerator.GenerateRandomAlphabeticString(20); 
             HowAreTheyCommunicatedToEmployees = randomDataGenerator.GenerateRandomAlphabeticString(20);
@@ -102,7 +102,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers
         public string ReviewProcessForEvaluatingTheQualityOfTraining { get; }
         public string TransitionFromFrameWorksToStandardsForEmployerRoute { get; }
         public string TransitionFromFrameWorksToStandards { get; }
-        public string LongTextArea_HowApprenticesAreSupported { get; }
+        public string HowApprenticesAreSupported { get; }
         public string OtherWaysToSupportApprentices { get; }
         public string HowExpectationsAreMonitored { get; }
         public string HowAreTheyCommunicatedToEmployees { get; }
