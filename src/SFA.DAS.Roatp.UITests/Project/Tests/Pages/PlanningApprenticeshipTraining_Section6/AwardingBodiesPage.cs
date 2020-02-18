@@ -9,12 +9,9 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.PlanningApprenticeshipTraini
 
         protected override By PageHeader => By.CssSelector(".govuk-label-wrapper");
 
-
         #region Helpers and Context
         private readonly ScenarioContext _context;
         #endregion
-
-        private By LongTextArea_EngageWithAwardingBodies => By.Id("PAT-800");
 
         public AwardingBodiesPage(ScenarioContext context) : base(context)
         {
@@ -24,15 +21,13 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.PlanningApprenticeshipTraini
 
         public ContactAboutTheApprenticeshipsPage EnterTextForEngageAndWorkWithAwardingBodiesMainRouteAndContinue()
         {
-            formCompletionHelper.EnterText(LongTextArea_EngageWithAwardingBodies, applydataHelpers.EngageWithAwardingBodies);
-            Continue();
+            EnterLongTextAreaAndContinue(applydataHelpers.EngageWithAwardingBodies);
             return new ContactAboutTheApprenticeshipsPage(_context);
         }
 
         public ApplicationOverviewPage EnterTextForEngageAndWorkWithAwardingBodiesEmployerRouteAndContinue()
         {
-            formCompletionHelper.EnterText(LongTextArea_EngageWithAwardingBodies, applydataHelpers.EngageWithAwardingBodies);
-            Continue();
+            EnterLongTextAreaAndContinue(applydataHelpers.EngageWithAwardingBodies);
             return new ApplicationOverviewPage(_context);
         }
     }

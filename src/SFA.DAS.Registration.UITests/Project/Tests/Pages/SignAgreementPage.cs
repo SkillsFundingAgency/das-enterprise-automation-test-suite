@@ -32,11 +32,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             return new HomePage(_context);
         }
 
-        public SignAgreementPage VerifySignAgreementPage()
-        {
-            return this;
-        }
-
         private void Sign()
         {
             Continue(WantToSignRadioButton);

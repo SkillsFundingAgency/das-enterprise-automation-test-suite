@@ -13,8 +13,6 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.DeliveringApprenticeshipTrai
         private readonly ScenarioContext _context;
         #endregion
 
-        private By LongTextArea => By.CssSelector("textarea");
-
         public GiveAnExampleToMaintainEmployeesPage(ScenarioContext context) : base(context)
         {
             _context = context;
@@ -23,8 +21,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.DeliveringApprenticeshipTrai
 
         public ApplicationOverviewPage EnterAnExampleToMaintainEmployee()
         {
-            formCompletionHelper.EnterText(LongTextArea, applydataHelpers.ExampleToMaintainEmployees);
-            Continue();
+            EnterLongTextAreaAndContinue(applydataHelpers.ExampleToMaintainEmployees);
             return new ApplicationOverviewPage(_context);
         }
     }

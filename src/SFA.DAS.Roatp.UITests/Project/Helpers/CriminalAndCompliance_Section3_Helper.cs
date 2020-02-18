@@ -47,6 +47,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers
                 .SelectYesEnterInformationForContractTerminatedByPublicBodyAndContinue()
                 .SelectYesEnterInformationForContractWithdrawnWithPublicBodyAndContinue()
                 .SelectYesEnterInformationForBreachingTaxandSocialSecurityContributionsAndContinue()
+                .SelectNo()
                 .SelectYesEnterInformationForBankruptAndContinue()
                 .VerifyCheckWhoIsInControl_Section3(StatusHelper.StatusCompleted);
         }

@@ -1,5 +1,4 @@
-﻿using NUnit.Framework;
-using System;
+﻿using System;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.MongoDb.DataGenerator.Helpers

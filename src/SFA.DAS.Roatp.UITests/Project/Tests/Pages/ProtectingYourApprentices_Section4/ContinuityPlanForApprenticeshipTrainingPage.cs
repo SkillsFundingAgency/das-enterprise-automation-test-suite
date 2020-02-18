@@ -24,7 +24,5 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.ProtectingYourApprentices_Se
             UploadFile();
             return new ApplicationOverviewPage(_context);
         }
-
     }
-
 }

@@ -39,5 +39,11 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers
                 .EnterDetailsOfHealthAndSafetyPerson()
                 .VerifyHealthAndSafety_Section4(StatusHelper.StatusCompleted);
         }
+        internal ApplicationOverviewPage CompleteProtectingYourApprentices_6(ApplicationOverviewPage applicationOverviewPage)
+        {
+            return applicationOverviewPage.Access_Section4_ActingAsASubContractor()
+                .SelectYes()
+                .VerifyActingAsASubContractor(StatusHelper.StatusCompleted);
+        }
     }
 }

@@ -3,13 +3,11 @@ using SFA.DAS.Roatp.UITests.Project.Tests.Pages.Finish_Section9;
 using System;
 using System.Collections.Generic;
 using System.Text;
-using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Roatp.UITests.Project.Helpers
 {
     public class End2EndStepsHelper
     {
-        private readonly ScenarioContext _context;
         private readonly YourOrganisation_Section1_Helper _yourOrganisationSectionHelper;
         private readonly FinancialEvidence_Section2_Helper _financialEvidenceSectionHelper;
         private readonly CriminalAndCompliance_Section3_Helper _criminalAndComplianceSectionHelper;
@@ -20,9 +18,8 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers
         private readonly EvaluatingApprenticeshipTraining_Section8_Helper _evaluatingApprenticeshipTrainingSectionHelper;
         private readonly Finish_Section9_Helper _finishSectionHelper;
 
-        public End2EndStepsHelper(ScenarioContext context)
+        public End2EndStepsHelper()
         {
-            _context = context;
             _yourOrganisationSectionHelper = new YourOrganisation_Section1_Helper();
             _financialEvidenceSectionHelper = new FinancialEvidence_Section2_Helper();
             _criminalAndComplianceSectionHelper = new CriminalAndCompliance_Section3_Helper();
@@ -32,39 +29,6 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers
             _deliveringApprenticeshipTrainingSectionHelper = new DeliveringApprenticeshipTraining_Section7_Helper();
             _evaluatingApprenticeshipTrainingSectionHelper = new EvaluatingApprenticeshipTraining_Section8_Helper();
             _finishSectionHelper = new Finish_Section9_Helper();
-        }
-
-        internal TermsConditionsMakingApplicationPage SubmitValidUserDetails()
-        {
-            return new ServiceStartPage(_context)
-                .ClickApplyNow()
-                .SelectingNoOptionForFirstTimeSignInAndContinue()
-                .SubmitValidUserDetails();
-        }
-
-        internal EnterUkprnPage AcceptAndContinue(TermsConditionsMakingApplicationPage page) => page.AcceptAndContinue();
-
-        internal ApplicationOverviewPage CompleteProviderMainRouteSection(EnterUkprnPage enterUkprnPage)
-        {
-            return ConfirmUkprn(enterUkprnPage)
-                .SelectApplicationRouteAsMain()
-                .VerifyIntroductionStatus(StatusHelper.StatusNext);
-        }
-
-        internal ApplicationOverviewPage CompleteProviderCharityRouteSection(EnterUkprnPage enterUkprnPage)
-        {
-            return ConfirmUkprn(enterUkprnPage)
-                .SelectApplicationRouteAsEmployer()
-                .SelectYesForLevyPayingEmployerAndContinue()
-                .VerifyIntroductionStatus(StatusHelper.StatusNext);
-        }
-
-        internal ApplicationOverviewPage CompleteProviderSupportRouteSection(EnterUkprnPage enterUkprnPage)
-        {
-            return ConfirmUkprn(enterUkprnPage)
-                .SelectApplicationRouteAsSupporting()
-                .VerifyIntroductionStatus(StatusHelper.StatusNext);
-
         }
 
         internal ApplicationOverviewPage CompleteYourOrganisation_Section1_Support(ApplicationOverviewPage applicationOverviewPage)
@@ -113,7 +77,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers
             return applicationOverviewPage;
         }
 
-        internal ApplicationOverviewPage  CompleteFinancialEvidence_Section2_ForSupportingRoute(ApplicationOverviewPage applicationOverviewPage)
+        internal ApplicationOverviewPage CompleteFinancialEvidence_Section2_ForSupportingRoute(ApplicationOverviewPage applicationOverviewPage)
         {
             applicationOverviewPage = _financialEvidenceSectionHelper.CompleteFinancialEvidence_1(applicationOverviewPage);
             applicationOverviewPage = _financialEvidenceSectionHelper.CompleteFinancialEvidence_2_ForSupportingRoute(applicationOverviewPage);
@@ -136,6 +100,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers
             applicationOverviewPage = _protectingYourApprenticesSectionHelper.CompleteProtectingYourApprentices_3(applicationOverviewPage);
             applicationOverviewPage = _protectingYourApprenticesSectionHelper.CompleteProtectingYourApprentices_4(applicationOverviewPage);
             applicationOverviewPage = _protectingYourApprenticesSectionHelper.CompleteProtectingYourApprentices_5(applicationOverviewPage);
+            applicationOverviewPage = _protectingYourApprenticesSectionHelper.CompleteProtectingYourApprentices_6(applicationOverviewPage);
             return applicationOverviewPage;
         }
 
@@ -145,6 +110,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers
             applicationOverviewPage = _protectingYourApprenticesSectionHelper.CompleteProtectingYourApprentices_3(applicationOverviewPage);
             applicationOverviewPage = _protectingYourApprenticesSectionHelper.CompleteProtectingYourApprentices_4(applicationOverviewPage);
             applicationOverviewPage = _protectingYourApprenticesSectionHelper.CompleteProtectingYourApprentices_5(applicationOverviewPage);
+            applicationOverviewPage = _protectingYourApprenticesSectionHelper.CompleteProtectingYourApprentices_6(applicationOverviewPage);
             return applicationOverviewPage;
         }
 
@@ -232,7 +198,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers
             applicationOverviewPage = _deliveringApprenticeshipTrainingSectionHelper.CompleteDeliveringApprenticeshipTraining_7(applicationOverviewPage);
             return applicationOverviewPage;
         }
-        
+
         internal ApplicationOverviewPage CompletesDeliveringApprenticeshipTraining_Section7_SupportingRoute(ApplicationOverviewPage applicationOverviewPage)
         {
             applicationOverviewPage = _deliveringApprenticeshipTrainingSectionHelper.CompleteDeliveringApprenticeshipTraining_1(applicationOverviewPage);
@@ -261,7 +227,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers
             applicationOverviewPage = _evaluatingApprenticeshipTrainingSectionHelper.CompleteEvaluatingApprenticeshipTraining_3(applicationOverviewPage);
             return applicationOverviewPage;
         }
-        
+
         internal ApplicationSubmittedPage CompletesFinish_Section9(ApplicationOverviewPage applicationOverviewPage)
         {
             applicationOverviewPage = _finishSectionHelper.CompleteFinish_1(applicationOverviewPage);
@@ -269,8 +235,5 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers
             applicationOverviewPage = _finishSectionHelper.CompleteFinish_3(applicationOverviewPage);
             return _finishSectionHelper.CompleteFinish_4(applicationOverviewPage);
         }
-
-        private ChooseProviderRoutePage ConfirmUkprn(EnterUkprnPage enterUkprnPage) => enterUkprnPage.EnterOrgTypeCompanyProvidersUkprn().ClickConfirmAndContinue();
-
     }
 }

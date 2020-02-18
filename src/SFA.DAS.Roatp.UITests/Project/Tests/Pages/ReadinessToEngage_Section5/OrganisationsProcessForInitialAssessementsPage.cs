@@ -13,8 +13,6 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.ReadinessToEngage_Section5
         private readonly ScenarioContext _context;
         #endregion
 
-        private By LongTextArea => By.Id("RTE-60");
-
         public OrganisationsProcessForInitialAssessementsPage(ScenarioContext context) : base(context)
         {
             _context = context;
@@ -23,8 +21,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.ReadinessToEngage_Section5
 
         public ToAssessEnglishAndMathsPage EnterTextRegardingOrganisationProcessForInitialTraningAndContinue()
         {
-            formCompletionHelper.EnterText(LongTextArea, applydataHelpers.OrganisationProcessForInitialTraning);
-            Continue();
+            EnterLongTextAreaAndContinue(applydataHelpers.OrganisationProcessForInitialTraning);
             return new ToAssessEnglishAndMathsPage(_context);
         }
     }

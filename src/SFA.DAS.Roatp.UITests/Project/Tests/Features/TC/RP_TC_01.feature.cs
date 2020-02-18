@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.Registration.UITests.Project.Tests.Features.CreateNonLevyEmployerAccount
+namespace SFA.DAS.Roatp.UITests.Project.Tests.Features.TC
 {
     using TechTalk.SpecFlow;
     
@@ -18,20 +18,20 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features.CreateNonLevyEmplo
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.0.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("RE_CNLEA_03")]
-    public partial class RE_CNLEA_03Feature
+    [NUnit.Framework.DescriptionAttribute("RP_TC_01")]
+    public partial class RP_TC_01Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "RE_CNLEA_03.feature"
+#line 1 "RP_TC_01.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "RE_CNLEA_03", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "RP_TC_01", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -70,25 +70,21 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features.CreateNonLevyEmplo
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RE_CNLEA_03_Create an Employer Account with levy declarations as 0")]
+        [NUnit.Framework.DescriptionAttribute("RP_TC_01_Do Not Accept the Terms and Conditions")]
+        [NUnit.Framework.CategoryAttribute("rptc01")]
+        [NUnit.Framework.CategoryAttribute("roatp")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("registration")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
-        public virtual void RE_CNLEA_03_CreateAnEmployerAccountWithLevyDeclarationsAs0()
+        public virtual void RP_TC_01_DoNotAcceptTheTermsAndConditions()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RE_CNLEA_03_Create an Employer Account with levy declarations as 0", null, new string[] {
-                        "regression",
-                        "registration",
-                        "addpayedetails"});
-#line 6
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_TC_01_Do Not Accept the Terms and Conditions", null, new string[] {
+                        "rptc01",
+                        "roatp",
+                        "regression"});
+#line 7
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 7
- testRunner.When("an Employer Account with Company Type Org is created", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 8
- testRunner.And("levy declarations are added for the past 15 months with levypermonth as 0", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 9
- testRunner.Then("ApprenticeshipEmployerType in Account table is marked as 0", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+testRunner.Then("the provider do not accept the Terms and conditions", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

@@ -13,8 +13,6 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.EvaluatingApprenticeshipTrai
         private readonly ScenarioContext _context;
         #endregion
 
-        private By LongTextArea_ImprovementsUsingProcessForEvaluating => By.Id("EAT-21");
-
         public ImprovementsUsingProcessForEvaluatingPage(ScenarioContext context) : base(context)
         {
             _context = context;
@@ -23,8 +21,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.EvaluatingApprenticeshipTrai
 
         public ApplicationOverviewPage EnterTextRegardingOrganisationImprovementsUsingEvaluatingTheQualityOfTrainingAndContinue()
         {
-            formCompletionHelper.EnterText(LongTextArea_ImprovementsUsingProcessForEvaluating, applydataHelpers.ImprovementsUsingProcessForEvaluating);
-            Continue();
+            EnterLongTextAreaAndContinue(applydataHelpers.ImprovementsUsingProcessForEvaluating);
             return new ApplicationOverviewPage(_context);
         }
     }

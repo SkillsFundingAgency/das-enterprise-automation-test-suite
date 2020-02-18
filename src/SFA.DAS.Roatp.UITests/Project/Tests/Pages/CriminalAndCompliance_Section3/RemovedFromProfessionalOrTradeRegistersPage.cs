@@ -11,8 +11,6 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.CriminalAndCompliance_Sectio
         private readonly ScenarioContext _context;
         #endregion
 
-        private By LongTextArea_RemovedFromProfessionalOrTradeRegisters => By.Id("CC-25.1");
-
         public RemovedFromProfessionalOrTradeRegistersPage(ScenarioContext context) : base(context)
         {
             _context = context;
@@ -22,8 +20,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.CriminalAndCompliance_Sectio
         public InvoluntaryWithdrawlFromITTAccreditationPage SelectYesEnterInformationForFundingRemovedFromEducationBodies()
         {
             SelectRadioOptionByText("Yes");
-            formCompletionHelper.EnterText(LongTextArea_RemovedFromProfessionalOrTradeRegisters, applydataHelpers.RemovedFromProfessionalOrTradeRegisters);
-            Continue();
+            EnterLongTextAreaAndContinue(applydataHelpers.RemovedFromProfessionalOrTradeRegisters);
             return new InvoluntaryWithdrawlFromITTAccreditationPage(_context);
         }
     }

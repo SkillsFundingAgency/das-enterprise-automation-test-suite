@@ -70,13 +70,13 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features.CreateNonLevyEmplo
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RE_CNLEA_02_Create a NonLevy Account and land on the Agreement Page")]
+        [NUnit.Framework.DescriptionAttribute("RE_CNLEA_02_Create a NonLevy Employer Account and Not Sign the Agreement")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("registration")]
         [NUnit.Framework.CategoryAttribute("addpayedetails")]
-        public virtual void RE_CNLEA_02_CreateANonLevyAccountAndLandOnTheAgreementPage()
+        public virtual void RE_CNLEA_02_CreateANonLevyEmployerAccountAndNotSignTheAgreement()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RE_CNLEA_02_Create a NonLevy Account and land on the Agreement Page", null, new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RE_CNLEA_02_Create a NonLevy Employer Account and Not Sign the Agreement", null, new string[] {
                         "regression",
                         "registration",
                         "addpayedetails"});
@@ -90,7 +90,11 @@ this.ScenarioInitialize(scenarioInfo);
 #line 9
  testRunner.And("adds Organisation details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 10
- testRunner.Then("the Employer lands on the Organisation Agreement page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("the Employer does not sign the Agreement", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 11
+ testRunner.Then("the Employer Home page is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 12
+ testRunner.And("ApprenticeshipEmployerType in Account table is marked as 0", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }

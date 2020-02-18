@@ -21,12 +21,12 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
             VerifyPage();
         }
 
-        public TermsConditionsMakingApplicationPage SubmitValidUserDetails()
+        public EnterUkprnPage SubmitValidUserDetails()
         {
             formCompletionHelper.EnterText(EnterUsername, objectContext.GetEmail());
             formCompletionHelper.EnterText(EnterPassword, roatpConfig.ApplyPassword);
             Continue();
-            return new TermsConditionsMakingApplicationPage(_context);
+            return new EnterUkprnPage(_context);
         }
     }
 }

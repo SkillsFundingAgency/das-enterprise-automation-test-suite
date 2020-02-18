@@ -13,8 +13,6 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.PlanningApprenticeshipTraini
         private readonly ScenarioContext _context;
         #endregion
 
-        private By LongTextArea_OffTheJobTraining => By.Id("PAT-651");
-
         public OfftheJobTrainingIsRelevantPage(ScenarioContext context) : base(context)
         {
             _context = context;
@@ -23,8 +21,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.PlanningApprenticeshipTraini
 
         public ApplicationOverviewPage EnterTextForOffTheJobTrainingIsRelevantAndContinue()
         {
-            formCompletionHelper.EnterText(LongTextArea_OffTheJobTraining, applydataHelpers.OffTheJobTraining);
-            Continue();
+            EnterLongTextAreaAndContinue(applydataHelpers.OffTheJobTraining);
             return new ApplicationOverviewPage(_context);
         }
     }

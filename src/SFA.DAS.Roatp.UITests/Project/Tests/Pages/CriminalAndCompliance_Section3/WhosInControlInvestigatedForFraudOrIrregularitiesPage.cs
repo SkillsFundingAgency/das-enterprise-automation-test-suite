@@ -11,10 +11,6 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.CriminalAndCompliance_Sectio
         private readonly ScenarioContext _context;
         #endregion
 
-        private By LongTextArea_WhosInControlInvestigatedForFraudorIrregularitiesOrganisations => By.Id("CC-60.1");
-
-        private By LongTextArea_WhosInControlInvestigatedForFraudorIrregularitiesSoleTrader => By.Id("CC-61.1");
-
         public WhosInControlInvestigatedForFraudOrIrregularitiesPage(ScenarioContext context) : base(context)
         {
             _context = context;
@@ -24,9 +20,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.CriminalAndCompliance_Sectio
         public WhosInControlOngoingInvestigationsForFraudPage SelectYesEnterInformationForFraudOrIrregularities()
         {
             SelectRadioOptionByText("Yes");
-            var field = pageInteractionHelper.IsElementDisplayed(LongTextArea_WhosInControlInvestigatedForFraudorIrregularitiesOrganisations) ? LongTextArea_WhosInControlInvestigatedForFraudorIrregularitiesOrganisations : LongTextArea_WhosInControlInvestigatedForFraudorIrregularitiesSoleTrader;
-            formCompletionHelper.EnterText(field, applydataHelpers.WhosInControlInvestigatedForFraudorIrregularities);
-            Continue();
+            EnterLongTextAreaAndContinue(applydataHelpers.WhosInControlInvestigatedForFraudorIrregularities);
             return new WhosInControlOngoingInvestigationsForFraudPage(_context);
         }
     }
