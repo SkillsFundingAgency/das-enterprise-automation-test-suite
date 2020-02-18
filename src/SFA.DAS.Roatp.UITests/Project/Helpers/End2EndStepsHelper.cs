@@ -235,6 +235,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers
             applicationOverviewPage = _finishSectionHelper.CompleteFinish_3(applicationOverviewPage);
             return _finishSectionHelper.CompleteFinish_4(applicationOverviewPage);
         }
+
         internal ApplicationSubmittedPage CompletesFinish_Section9_SupportingRoute(ApplicationOverviewPage applicationOverviewPage)
         {
             applicationOverviewPage = _finishSectionHelper.CompleteFinish_1(applicationOverviewPage);
