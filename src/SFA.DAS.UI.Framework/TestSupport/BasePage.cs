@@ -36,8 +36,9 @@ namespace SFA.DAS.UI.Framework.TestSupport
             var objectContext = context.Get<ObjectContext>();
             _directory = objectContext.GetDirectory();
             _browser = objectContext.GetBrowser();
+            TakeScreenShot();
         }
-
+        
         protected bool VerifyPageAfterRefresh(By locator) => VerifyPage(() => _pageInteractionHelper.VerifyPageAfterRefresh(locator));
 
         protected bool VerifyPage(Func<List<IWebElement>> func) => VerifyPage(() => _pageInteractionHelper.VerifyPage(func, PageTitle));
@@ -60,14 +61,12 @@ namespace SFA.DAS.UI.Framework.TestSupport
 
         protected void NavigateBack() => _formCompletionHelper.Click(BackLink);
 
-        private bool VerifyPage(Func<bool> func)
+        private bool VerifyPage(Func<bool> func) => func.Invoke();
+
+        private void TakeScreenShot()
         {
             if (_frameworkConfig.IsVstsExecution && !_browser.IsCloudExecution())
-            {
                 ScreenshotHelper.TakeScreenShot(_webDriver, _directory, _screenShotTitleGenerator.GetNextCount());
-            }
-
-            return func.Invoke();
         }
     }
 }
