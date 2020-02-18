@@ -18,7 +18,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers
         {
             return applicationOverviewPage.Access_Section9_QualityStatement()
                 .SelectYesForInLineWithInstituteForApprenticeshipAndContinue()
-                .VerifyCommercialInformation_Section9(StatusHelper.StatusCompleted);
+                .VerifyQualityStatement_Section9(StatusHelper.StatusCompleted);
         }
 
         internal ApplicationOverviewPage CompleteFinish_3(ApplicationOverviewPage applicationOverviewPage)
