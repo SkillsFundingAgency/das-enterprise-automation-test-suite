@@ -43,7 +43,8 @@ namespace SFA.DAS.MongoDb.DataGenerator.Helpers
                     { "levyAllowanceForFullYear", declaration.LevyAllowanceForFullYear  }
                 });
             }
-            BsonDocument levydeclaration  = new BsonDocument
+
+            BsonDocument levydeclaration = new BsonDocument
             {
                 { "empref",mongoDbDatahelper.EmpRef},
                 { "declarations", declarations}

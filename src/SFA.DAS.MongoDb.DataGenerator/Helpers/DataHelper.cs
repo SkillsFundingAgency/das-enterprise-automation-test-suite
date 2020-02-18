@@ -25,7 +25,7 @@ namespace SFA.DAS.MongoDb.DataGenerator.Helpers
         public string GatewayUsername { get; }
 
         public string GatewayPassword { get; }
-       
+
         private string GenerateRandomUserName()
         {
             return $"{TwoDigitProjectCode}_Test_{NextNumber}_{_dateTime.ToString("ddMMMyyyy_HHmmss")}{EmpRefDigits}";

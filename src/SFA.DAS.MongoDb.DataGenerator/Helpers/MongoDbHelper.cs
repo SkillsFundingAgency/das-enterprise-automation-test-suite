@@ -9,7 +9,7 @@ namespace SFA.DAS.MongoDb.DataGenerator.Helpers
         private readonly MongoDbConnectionHelper _connectionHelper;
         private readonly IMongoDbDataGenerator _dataGenerator;
         private readonly string _collectionName;
-        
+
         public MongoDbHelper(MongoDbConnectionHelper connectionHelper, IMongoDbDataGenerator datagenerator)
         {
             _connectionHelper = connectionHelper;
