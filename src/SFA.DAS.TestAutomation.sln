@@ -55,6 +55,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.RAA-V2.Service", "S
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.Roatp.UITests", "SFA.DAS.Roatp.UITests\SFA.DAS.Roatp.UITests.csproj", "{88DA7118-3A27-4CA2-B1C4-71B9422D7EF3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SFA.DAS.EmployerFinance.UITests", "SFA.DAS.EmployerFinance.UITests\SFA.DAS.EmployerFinance.UITests.csproj", "{AF4BC26D-0BC2-4F9F-ACCC-3717981A457E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -188,6 +190,12 @@ Global
 		{88DA7118-3A27-4CA2-B1C4-71B9422D7EF3}.Development|Any CPU.Build.0 = Debug|Any CPU
 		{88DA7118-3A27-4CA2-B1C4-71B9422D7EF3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{88DA7118-3A27-4CA2-B1C4-71B9422D7EF3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF4BC26D-0BC2-4F9F-ACCC-3717981A457E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF4BC26D-0BC2-4F9F-ACCC-3717981A457E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF4BC26D-0BC2-4F9F-ACCC-3717981A457E}.Development|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF4BC26D-0BC2-4F9F-ACCC-3717981A457E}.Development|Any CPU.Build.0 = Debug|Any CPU
+		{AF4BC26D-0BC2-4F9F-ACCC-3717981A457E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF4BC26D-0BC2-4F9F-ACCC-3717981A457E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
