@@ -18,20 +18,20 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Features.PreambleJourney
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.0.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("RP_PJ_01")]
-    public partial class RP_PJ_01Feature
+    [NUnit.Framework.DescriptionAttribute("RP_PJ_03")]
+    public partial class RP_PJ_03Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "RP_PJ_01.feature"
+#line 1 "RP_PJ_03.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "RP_PJ_01", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "RP_PJ_03", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -70,15 +70,15 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Features.PreambleJourney
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RP_PJ_01_OnRoatpAsEmployer-CharityAndCompany - Route as Main")]
-        [NUnit.Framework.CategoryAttribute("rppj01")]
+        [NUnit.Framework.DescriptionAttribute("RP_PJ_03_Company with PSC\'s but no Directors - Route as Main")]
+        [NUnit.Framework.CategoryAttribute("rppj03")]
         [NUnit.Framework.CategoryAttribute("roatp")]
         [NUnit.Framework.CategoryAttribute("roatppj")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public virtual void RP_PJ_01_OnRoatpAsEmployer_CharityAndCompany_RouteAsMain()
+        public virtual void RP_PJ_03_CompanyWithPSCsButNoDirectors_RouteAsMain()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_PJ_01_OnRoatpAsEmployer-CharityAndCompany - Route as Main", null, new string[] {
-                        "rppj01",
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_PJ_03_Company with PSC\'s but no Directors - Route as Main", null, new string[] {
+                        "rppj03",
                         "roatp",
                         "roatppj",
                         "regression"});
@@ -86,10 +86,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Features.PreambleJourney
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 8
- testRunner.Given("the provider initates an application as employer who is already on Roatp as emplo" +
-                    "yer", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 9
- testRunner.Then("the provider can change the route as main provider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Given("the provider initates an application as main route company", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
             this.ScenarioCleanup();
         }
