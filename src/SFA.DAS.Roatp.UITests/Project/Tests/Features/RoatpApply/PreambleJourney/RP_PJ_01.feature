@@ -2,6 +2,7 @@
 
 @rppj01
 @roatp
+@roatpapply
 @roatppj
 @regression
 Scenario: RP_PJ_01_OnRoatpAsEmployer-CharityAndCompany - Route as Main 

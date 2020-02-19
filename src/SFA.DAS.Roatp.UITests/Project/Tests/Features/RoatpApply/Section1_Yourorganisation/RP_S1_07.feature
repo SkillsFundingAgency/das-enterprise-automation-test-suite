@@ -2,8 +2,10 @@
 
 @rps107
 @roatp
+@roatpapply
 @roatps1
 @regression
+# Organisation Type is A public body And Type of public body is Govt Department
 Scenario: RP_S1_07_CharityAndCompany - Main - Org PublicBody - GovtDept - Exempt from FHA
     Given the provider initates an application as main route company
     Then the provider completes Introduction and what you'll need section for main and employer route

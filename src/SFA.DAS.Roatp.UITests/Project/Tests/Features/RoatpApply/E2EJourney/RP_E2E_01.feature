@@ -2,6 +2,7 @@
 
 @rpe2e01
 @roatp
+@roatpapply
 @roatpe2e
 @regression
 Scenario: RP_E2E_01_MainRoute-Company

@@ -73,6 +73,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Features.RoatpApply.E2EJourney
         [NUnit.Framework.DescriptionAttribute("RP_E2E_03_SupportingRoute-Soletrader")]
         [NUnit.Framework.CategoryAttribute("rpe2e03")]
         [NUnit.Framework.CategoryAttribute("roatp")]
+        [NUnit.Framework.CategoryAttribute("roatpapply")]
         [NUnit.Framework.CategoryAttribute("roatpe2e")]
         [NUnit.Framework.CategoryAttribute("regression")]
         public virtual void RP_E2E_03_SupportingRoute_Soletrader()
@@ -80,6 +81,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Features.RoatpApply.E2EJourney
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_E2E_03_SupportingRoute-Soletrader", null, new string[] {
                         "rpe2e03",
                         "roatp",
+                        "roatpapply",
                         "roatpe2e",
                         "regression"});
 #line 8

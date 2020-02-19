@@ -1,6 +1,7 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.Roatp.UITests.Project.Helpers;
+using SFA.DAS.Roatp.UITests.Project.Helpers.RoatpApply;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using System;
@@ -42,21 +43,28 @@ namespace SFA.DAS.Roatp.UITests.Project
         }
 
         [BeforeScenario(Order = 33)]
-        public void ClearDownDataHelpers()
+        public void GetData()
         {
-            // every scenario should only have one tag which starts with rp, which is mapped to the test data.
+            // every scenario (apply and admin) should only have one tag which starts with rp, which is mapped to the test data.
             var tag = _context.ScenarioInfo.Tags.ToList().Single(x => x.StartsWith("rp"));
-            var (email, ukprn) = _applyUkprnDataHelpers.GetApplyData(tag);
+            var (email, ukprn) = _applyUkprnDataHelpers.GetRoatpData(tag);
 
             _objectContext.SetEmail(email);
             _objectContext.SetUkprn(ukprn);
-
-            var applicationId = _clearDownDataHelpers.ClearDownDataFromApply();
-
-            _clearDownDataHelpers.ClearDownDataFromQna(applicationId);
         }
-        
-        [BeforeScenario(Order = 34)]
-        public void Navigate() => _webDriver.Navigate().GoToUrl(_config.ApplyBaseUrl);
+
+        [BeforeScenario(Order = 34), Scope(Tag = "roatpapply")]
+        public void ClearDownApplyData() => _clearDownDataHelpers.ClearDownDataFromQna(_clearDownDataHelpers.ClearDownDataFromApply());
+
+        [BeforeScenario(Order = 34), Scope(Tag = "roatpadmin")]
+        public void ClearDownAdminData() => _clearDownDataHelpers.DeleteTrainingProvider();
+
+        [BeforeScenario(Order = 35), Scope(Tag = "roatpapply")]
+        public void NavigateToRoatpApply() => GoToUrl(_config.ApplyBaseUrl);
+
+        [BeforeScenario(Order = 35), Scope(Tag = "roatpadmin")]
+        public void NavigateToRoatpAdmin() => GoToUrl(_config.AdminBaseUrl);
+
+        private void GoToUrl(string url) => _webDriver.Navigate().GoToUrl(url);
     }
 }

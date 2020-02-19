@@ -73,6 +73,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Features.RoatpApply.Section1_Youro
         [NUnit.Framework.DescriptionAttribute("RP_S1_08_Company - Main - Org- ITP - Meeting All Ofstead Requirements")]
         [NUnit.Framework.CategoryAttribute("rps108")]
         [NUnit.Framework.CategoryAttribute("roatp")]
+        [NUnit.Framework.CategoryAttribute("roatpapply")]
         [NUnit.Framework.CategoryAttribute("roatps1")]
         [NUnit.Framework.CategoryAttribute("regression")]
         public virtual void RP_S1_08_Company_Main_Org_ITP_MeetingAllOfsteadRequirements()
@@ -80,23 +81,24 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Features.RoatpApply.Section1_Youro
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_S1_08_Company - Main - Org- ITP - Meeting All Ofstead Requirements", null, new string[] {
                         "rps108",
                         "roatp",
+                        "roatpapply",
                         "roatps1",
                         "regression"});
-#line 7
+#line 9
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 8
+#line 10
     testRunner.Given("the provider initates an application as main route company", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 9
+#line 11
     testRunner.Then("the provider completes Introduction and what you\'ll need section for main and emp" +
                     "loyer route", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 10
-    testRunner.And("the provider completes Organisation Information section for company", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 11
-    testRunner.And("the provider completes Tell us who\'s in control section", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 12
-    testRunner.And("the provider completes Describe your organisation section as OrgTypeITP", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+    testRunner.And("the provider completes Organisation Information section for company", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 13
+    testRunner.And("the provider completes Tell us who\'s in control section", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 14
+    testRunner.And("the provider completes Describe your organisation section as OrgTypeITP", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 15
     testRunner.And("the provider completes Experience and Accreditations section by meeting all Ofste" +
                     "d Requirements", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden

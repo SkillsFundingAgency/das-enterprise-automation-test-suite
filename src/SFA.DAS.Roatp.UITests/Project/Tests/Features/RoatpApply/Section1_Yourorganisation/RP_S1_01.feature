@@ -2,6 +2,7 @@
 
 @rps101
 @roatp
+@roatpapply
 @roatps1
 @regression
 Scenario: RP_S1_01_Charity - Employer - Org-None of the above

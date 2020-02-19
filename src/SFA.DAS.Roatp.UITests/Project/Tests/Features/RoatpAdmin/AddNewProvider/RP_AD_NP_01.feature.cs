@@ -73,20 +73,22 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Features.RoatpAdmin.AddNewProvider
         [NUnit.Framework.DescriptionAttribute("RP_AD_NP_01_Add A New Training Provider as Main Provider")]
         [NUnit.Framework.CategoryAttribute("rpadnp01")]
         [NUnit.Framework.CategoryAttribute("roatp")]
-        [NUnit.Framework.CategoryAttribute("roatpad")]
+        [NUnit.Framework.CategoryAttribute("roatpadmin")]
         [NUnit.Framework.CategoryAttribute("regression")]
         public virtual void RP_AD_NP_01_AddANewTrainingProviderAsMainProvider()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_AD_NP_01_Add A New Training Provider as Main Provider", null, new string[] {
                         "rpadnp01",
                         "roatp",
-                        "roatpad",
+                        "roatpadmin",
                         "regression"});
 #line 7
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 8
- testRunner.Given("the provider initates an application as main route company", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+testRunner.Given("the admin initates an application as main route company", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 9
+testRunner.And("the provider status should be set to On-Boarding", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }

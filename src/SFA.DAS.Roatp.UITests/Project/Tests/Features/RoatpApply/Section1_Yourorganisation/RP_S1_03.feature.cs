@@ -74,6 +74,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Features.RoatpApply.Section1_Youro
             "ssociation")]
         [NUnit.Framework.CategoryAttribute("rps103")]
         [NUnit.Framework.CategoryAttribute("roatp")]
+        [NUnit.Framework.CategoryAttribute("roatpapply")]
         [NUnit.Framework.CategoryAttribute("roatps1")]
         [NUnit.Framework.CategoryAttribute("regression")]
         public virtual void RP_S1_03_SoleTraderOrNonlimitedPartnership_Supporting_Org_AGroupTrainingAssociation()
@@ -82,23 +83,24 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Features.RoatpApply.Section1_Youro
                     "ssociation", null, new string[] {
                         "rps103",
                         "roatp",
+                        "roatpapply",
                         "roatps1",
                         "regression"});
-#line 7
+#line 8
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 8
- testRunner.Given("the provider initates an application as supporting route soletrader", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 9
+ testRunner.Given("the provider initates an application as supporting route soletrader", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 10
  testRunner.Then("the provider completes Introduction and what you\'ll need content for supporting r" +
                     "oute", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 10
- testRunner.And("the provider completes Organisation Information section for charity", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 11
-    testRunner.And("the provider completes Tell us who\'s in control section for sole trader", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("the provider completes Organisation Information section for charity", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 12
-    testRunner.And("the provider completes Describe your organisation section as OrgTypeGTA", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+    testRunner.And("the provider completes Tell us who\'s in control section for sole trader", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 13
+    testRunner.And("the provider completes Describe your organisation section as OrgTypeGTA", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 14
     testRunner.And("the provider completes Experience and Accreditations section by selecting Yes to " +
                     "Subcontractor training", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden

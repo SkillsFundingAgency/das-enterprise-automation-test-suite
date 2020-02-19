@@ -25,11 +25,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers
             _qnaDatabaseConnectionString = roatpConfig.QnaDatabaseConnectionString;
         }
 
-        public void DeleteTrainingProvider()
-        {
-            var DeleteProviderQuery = $"DELETE FROM Organisations WHERE UKPRN ='{_objectContext.GetUkprn()}'";
-            _sqlDatabasehelper.ExecuteSqlCommand(_roatpDatabaseConnectionString, DeleteProviderQuery);
-        }
+        public void DeleteTrainingProvider() => _sqlDatabasehelper.ExecuteSqlCommand(_roatpDatabaseConnectionString, $"DELETE FROM Organisations WHERE UKPRN ='{_objectContext.GetUkprn()}'");
 
         public string ClearDownDataFromApply()
         {

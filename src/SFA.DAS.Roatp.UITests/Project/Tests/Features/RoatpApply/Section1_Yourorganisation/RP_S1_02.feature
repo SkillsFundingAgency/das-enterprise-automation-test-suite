@@ -2,6 +2,7 @@
 
 @rps102
 @roatp
+@roatpapply
 @roatps1
 @regression
 Scenario: RP_S1_02_Company - Main - Org- Independent Training Provider

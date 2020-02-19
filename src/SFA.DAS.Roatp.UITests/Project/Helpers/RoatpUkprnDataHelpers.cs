@@ -19,7 +19,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers
             AddAdminDatahelpers();
         }
 
-        public (string email, string ukprn) GetApplyData(string key)
+        public (string email, string ukprn) GetRoatpData(string key)
         {
             var keyValuePair = FindKeyValuePairs(key);
             var email = keyValuePair.First(x => x.Key == emailkey).Value;

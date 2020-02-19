@@ -1,8 +1,8 @@
 ﻿Feature: RP_E2E_03
 
-
 @rpe2e03
 @roatp
+@roatpapply
 @roatpe2e
 @regression
 Scenario: RP_E2E_03_SupportingRoute-Soletrader

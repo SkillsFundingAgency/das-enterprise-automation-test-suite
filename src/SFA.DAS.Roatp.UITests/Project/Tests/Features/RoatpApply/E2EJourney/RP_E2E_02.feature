@@ -2,6 +2,7 @@
 
 @rpe2e02
 @roatp
+@roatpapply
 @roatpe2e
 @regression
 Scenario: RP_E2E_02_EmployerRoute-Charity

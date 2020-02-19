@@ -2,6 +2,7 @@
 
 @rps105
 @roatp
+@roatpapply
 @roatps1
 @regression
 Scenario: RP_S1_05_Government Statute - Employer - ShortOfsteadInspection

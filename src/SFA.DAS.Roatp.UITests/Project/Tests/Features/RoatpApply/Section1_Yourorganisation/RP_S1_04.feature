@@ -1,11 +1,12 @@
 ﻿Feature: RP_S1_04
 
 
-# Organisation Type is An Educational Institute And Type of Educational institue is Higher Eduction Institute
 @rps104
 @roatp
+@roatpapply
 @roatps1
 @regression
+# Organisation Type is An Educational Institute And Type of Educational institue is Higher Eduction Institute
 Scenario: RP_S1_04_CharityAndCompany - Main - Org AEI - HEI 
 	Given the provider initates an application as main route company
 	Then the provider completes Introduction and what you'll need section for main and employer route

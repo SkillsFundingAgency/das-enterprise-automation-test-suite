@@ -2,6 +2,7 @@
 
 @rppj03
 @roatp
+@roatpapply
 @roatppj
 @regression
 Scenario: RP_PJ_03_Company with PSC's but no Directors - Route as Main

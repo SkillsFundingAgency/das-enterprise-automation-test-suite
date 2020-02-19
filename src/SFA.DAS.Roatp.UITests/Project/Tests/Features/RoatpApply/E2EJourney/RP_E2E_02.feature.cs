@@ -73,6 +73,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Features.RoatpApply.E2EJourney
         [NUnit.Framework.DescriptionAttribute("RP_E2E_02_EmployerRoute-Charity")]
         [NUnit.Framework.CategoryAttribute("rpe2e02")]
         [NUnit.Framework.CategoryAttribute("roatp")]
+        [NUnit.Framework.CategoryAttribute("roatpapply")]
         [NUnit.Framework.CategoryAttribute("roatpe2e")]
         [NUnit.Framework.CategoryAttribute("regression")]
         public virtual void RP_E2E_02_EmployerRoute_Charity()
@@ -80,31 +81,32 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Features.RoatpApply.E2EJourney
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_E2E_02_EmployerRoute-Charity", null, new string[] {
                         "rpe2e02",
                         "roatp",
+                        "roatpapply",
                         "roatpe2e",
                         "regression"});
-#line 7
+#line 8
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 8
- testRunner.Given("the provider initates an application as employer route charity", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 9
- testRunner.When("the provider completes Your organisation section for charity", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.Given("the provider initates an application as employer route charity", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 10
- testRunner.And("the provider completes Financial Evidence section for no ultimate parent company", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.When("the provider completes Your organisation section for charity", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 11
- testRunner.And("the provider completes Criminal and Compliance section", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("the provider completes Financial Evidence section for no ultimate parent company", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 12
- testRunner.And("the provider completes Protecting your apprentices section", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("the provider completes Criminal and Compliance section", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 13
- testRunner.And("the provider completes Readiness to engage section for charity", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("the provider completes Protecting your apprentices section", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 14
- testRunner.And("the provider completes Planning apprenticeship training section for charity", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("the provider completes Readiness to engage section for charity", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 15
+ testRunner.And("the provider completes Planning apprenticeship training section for charity", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 16
  testRunner.And("the provider completes Delivering apprenticeship training section for employer ro" +
                     "ute", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 16
- testRunner.And("the provider completes Evaluating apprenticeship training section", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 17
+ testRunner.And("the provider completes Evaluating apprenticeship training section", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 18
  testRunner.Then("the provider completes Finish section", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();

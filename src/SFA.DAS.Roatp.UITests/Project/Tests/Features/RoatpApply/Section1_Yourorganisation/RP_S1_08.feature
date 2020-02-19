@@ -2,8 +2,10 @@
 
 @rps108
 @roatp
+@roatpapply
 @roatps1
 @regression
+# Organisation Type is An Independent Training Provider
 Scenario: RP_S1_08_Company - Main - Org- ITP - Meeting All Ofstead Requirements
     Given the provider initates an application as main route company
     Then the provider completes Introduction and what you'll need section for main and employer route

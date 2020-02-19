@@ -2,6 +2,7 @@
 
 @rps103
 @roatp
+@roatpapply
 @roatps1
 @regression
 Scenario: RP_S1_03_SoleTraderOrNonlimitedPartnership - Supporting - Org- A Group Training Association

@@ -73,6 +73,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Features.RoatpApply.PreambleJourne
         [NUnit.Framework.DescriptionAttribute("RP_PJ_03_Company with PSC\'s but no Directors - Route as Main")]
         [NUnit.Framework.CategoryAttribute("rppj03")]
         [NUnit.Framework.CategoryAttribute("roatp")]
+        [NUnit.Framework.CategoryAttribute("roatpapply")]
         [NUnit.Framework.CategoryAttribute("roatppj")]
         [NUnit.Framework.CategoryAttribute("regression")]
         public virtual void RP_PJ_03_CompanyWithPSCsButNoDirectors_RouteAsMain()
@@ -80,12 +81,13 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Features.RoatpApply.PreambleJourne
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_PJ_03_Company with PSC\'s but no Directors - Route as Main", null, new string[] {
                         "rppj03",
                         "roatp",
+                        "roatpapply",
                         "roatppj",
                         "regression"});
-#line 7
+#line 8
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 8
+#line 9
  testRunner.Given("the provider initates an application as main route company", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
             this.ScenarioCleanup();
