@@ -73,20 +73,22 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Features.PreambleJourney
         [NUnit.Framework.DescriptionAttribute("RP_PJ_01_OnRoatpAsEmployer-CharityAndCompany - Route as Main")]
         [NUnit.Framework.CategoryAttribute("rppj01")]
         [NUnit.Framework.CategoryAttribute("roatp")]
+        [NUnit.Framework.CategoryAttribute("roatppj")]
         [NUnit.Framework.CategoryAttribute("regression")]
         public virtual void RP_PJ_01_OnRoatpAsEmployer_CharityAndCompany_RouteAsMain()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_PJ_01_OnRoatpAsEmployer-CharityAndCompany - Route as Main", null, new string[] {
                         "rppj01",
                         "roatp",
+                        "roatppj",
                         "regression"});
-#line 6
+#line 7
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 7
+#line 8
  testRunner.Given("the provider initates an application as employer who is already on Roatp as emplo" +
                     "yer", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 8
+#line 9
  testRunner.Then("the provider can change the route as main provider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
