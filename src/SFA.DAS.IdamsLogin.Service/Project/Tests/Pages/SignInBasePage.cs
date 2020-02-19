@@ -3,7 +3,7 @@ using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
+namespace SFA.DAS.IdamsLogin.Service.Project.Tests.Pages
 {
     public abstract class SignInBasePage : BasePage
     {
