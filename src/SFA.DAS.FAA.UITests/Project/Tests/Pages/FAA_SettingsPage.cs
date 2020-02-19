@@ -20,6 +20,10 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
         private By SuccessfulMobileVerificationText => By.Id("SuccessMessageText");
         private By DeleteYourAccountLink => By.LinkText("Delete your account");
         private By DeleteAccountButton => By.Id("delete-account-button");
+        private By PhoneNumberField => By.Id("PhoneNumber");
+        private By Postcode_Address => By.Id("Address_Postcode");
+        private By ChangeEmailIdLink => By.Id("settings-change-username");
+        private By UpdateDetailsButton => By.Id("update-details-button");
 
         #region Helpers and Context
         private readonly PageInteractionHelper _pageInteractionHelper;
@@ -53,6 +57,14 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
             _formCompletionHelper.EnterText(PasswordField, password);
             _formCompletionHelper.Click(DeleteAccountButton);
             return new FAA_ConfirmAccountDeletionPage(_context);
+        }
+
+        public FAA_ChangeYourEmailAddressPage ChangeThePersonalSettings()
+        {
+            _formCompletionHelper.EnterText(Postcode_Address, _dataHelper.NewPostCode);
+            _formCompletionHelper.Click(UpdateDetailsButton);
+            _formCompletionHelper.Click(ChangeEmailIdLink);
+            return new FAA_ChangeYourEmailAddressPage(_context);
         }
     }
 }

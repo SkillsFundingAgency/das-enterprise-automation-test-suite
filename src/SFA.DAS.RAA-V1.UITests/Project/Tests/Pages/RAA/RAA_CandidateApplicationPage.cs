@@ -7,9 +7,22 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
     {
         protected override string PageTitle => "Applications";
 
+        private By CandidateDetails => By.Id("details-content-0");
+
+        private By CandidateSummary => By.CssSelector(".summary");
+
+
         public RAA_CandidateApplicationPage(ScenarioContext context) : base(context)
         {
-            
+            VerifyPage();
+        }
+
+        public void VerifyUpdatedCandidateDetails()
+        {
+            formCompletionHelper.Click(CandidateSummary);
+            pageInteractionHelper.VerifyText(CandidateDetails, faaDataHelper.NewAddress);
+            pageInteractionHelper.VerifyText(CandidateDetails, faaDataHelper.PhoneNumber);
+            pageInteractionHelper.VerifyText(CandidateDetails, faaDataHelper.ChangedEmailId);
         }
     }
 }

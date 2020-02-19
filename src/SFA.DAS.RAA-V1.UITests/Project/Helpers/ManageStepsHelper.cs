@@ -57,5 +57,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
         public void SearchForDeletedCandidate() => Search().VerifyCandidateDeletion();
 
         private Manage_SearchForACandidatePage Search() => GoToManageHomePage(true).HelpdeskAdviser().SearchForACandidate().Search();
+
+        public void VerifyUpdatedCandidateDetails() => Search().VerifyUpdatedCandidateDetails();
     }
 }

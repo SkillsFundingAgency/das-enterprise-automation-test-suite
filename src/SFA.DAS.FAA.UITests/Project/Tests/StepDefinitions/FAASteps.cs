@@ -68,5 +68,15 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.StepDefinitions
                 .DeleteAccount()
                 .ConfirmAccountDeletion();            
         }
+
+        [When(@"the Candidate changes Personal Settings")]
+        public void WhenTheCandidateChangesPersonalSettings()
+        {
+            _faaStepsHelper.GoToFAAHomePage()
+                .GoToSettings()
+                .ChangeThePersonalSettings()
+                .ChangeEmailAddress()
+                .ConfirmEmailAddressUpdate();                
+        }
     }
 }
