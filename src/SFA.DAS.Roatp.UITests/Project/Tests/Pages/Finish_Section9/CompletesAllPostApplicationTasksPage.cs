@@ -16,10 +16,10 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.Finish_Section9
             VerifyPage();
         }
 
-        public TermsAndConditionsSubmittingApplicationPage SelectYesToCompletesAllPostApplicationTasksAndContinue()
+        public ApplicationOverviewPage SelectYesToCompletesAllPostApplicationTasksAndContinue()
         {
             SelectYesAndContinue();
-            return new TermsAndConditionsSubmittingApplicationPage(_context);
+            return new ApplicationOverviewPage(_context);
         }
     }
 }
