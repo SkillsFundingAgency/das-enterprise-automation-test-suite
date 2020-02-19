@@ -11,20 +11,12 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
 {
-    public abstract class RoatpApplyBasePage : BasePage
+    public abstract class RoatpApplyBasePage : RoatpBasePage
     {
-        protected override By PageHeader => By.TagName("h1");
-
         #region Helpers and Context
         private readonly ScenarioContext _context;
         private readonly FrameworkConfig _frameworkConfig;
-        protected readonly ObjectContext objectContext;
-        protected readonly PageInteractionHelper pageInteractionHelper;
-        protected readonly FormCompletionHelper formCompletionHelper;
-        protected readonly RoatpUkprnDataHelpers roatpUkprnDataHelpers;
         protected readonly ApplyDataHelpers applydataHelpers;
-        protected readonly RoatpConfig roatpConfig;
-
         #endregion
 
         private By ChooseFile => By.ClassName("govuk-file-upload");
@@ -41,12 +33,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
         {
             _context = context;
             _frameworkConfig = context.Get<FrameworkConfig>();
-            objectContext = context.Get<ObjectContext>();
-            formCompletionHelper = context.Get<FormCompletionHelper>();
-            pageInteractionHelper = context.Get<PageInteractionHelper>();
-            roatpUkprnDataHelpers = context.Get<RoatpUkprnDataHelpers>();
             applydataHelpers = context.Get<ApplyDataHelpers>();
-            roatpConfig = context.GetRoatpConfig<RoatpConfig>();
         }
 
         protected void UploadFile()

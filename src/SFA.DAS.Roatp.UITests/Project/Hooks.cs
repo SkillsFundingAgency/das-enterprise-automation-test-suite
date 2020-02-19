@@ -1,6 +1,7 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.Roatp.UITests.Project.Helpers;
+using SFA.DAS.Roatp.UITests.Project.Helpers.RoatpAdmin;
 using SFA.DAS.Roatp.UITests.Project.Helpers.RoatpApply;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
@@ -38,8 +39,9 @@ namespace SFA.DAS.Roatp.UITests.Project
             _applyUkprnDataHelpers = new RoatpUkprnDataHelpers();
             _context.Set(_applyUkprnDataHelpers);
 
-            var applydatahelpers = new ApplyDataHelpers(_context.Get<RandomDataGenerator>());
-            _context.Set(applydatahelpers);
+            _context.Set(new ApplyDataHelpers(_context.Get<RandomDataGenerator>()));
+
+            _context.Set(new AdminDataHelpers());
         }
 
         [BeforeScenario(Order = 33)]

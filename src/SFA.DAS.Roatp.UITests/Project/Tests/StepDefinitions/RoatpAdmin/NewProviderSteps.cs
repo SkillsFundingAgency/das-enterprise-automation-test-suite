@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpAdmin;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using TechTalk.SpecFlow;
@@ -18,7 +19,9 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpAdmin
         [Given(@"the admin initates an application as main route company")]
         public void GivenTheAdminInitatesAnApplicationAsMainRouteCompany()
         {
-            throw new PendingStepException();
+            new ServiceStartPage(_context).ClickStartNow().LoginToAccess1Staff();
+
+            new SignInPage(_context).SignInWithValidDetails().AddANewTrainingProvider().EnterUkprn();
         }
 
     }

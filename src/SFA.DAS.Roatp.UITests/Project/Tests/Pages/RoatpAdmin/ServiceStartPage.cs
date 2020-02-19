@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.IdamsLogin.Service.Project.Tests.Pages;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -22,9 +23,10 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpAdmin
             VerifyPage();
         }
 
-        public void ClickStartNow()
+        public IdamsPage ClickStartNow()
         {
             formCompletionHelper.ClickElement(StartNow);
+            return new IdamsPage(_context);
         }
     }
 }

@@ -31,7 +31,12 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers
 
         private void AddAdminDatahelpers()
         {
-
+            _applyData.Add("rpadnp01",
+            new List<KeyValuePair<string, string>>
+            {
+                   new KeyValuePair<string, string>(emailkey, ""),
+                   new KeyValuePair<string, string>(ukprnkey, "10023959"),
+            });
         }
 
         private void AddApplyDatahelpers()
