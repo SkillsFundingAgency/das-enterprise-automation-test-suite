@@ -19,16 +19,17 @@
 
   <ItemGroup>
     <ProjectReference Include="..\SFA.DAS.ConfigurationBuilder\SFA.DAS.ConfigurationBuilder.csproj" />
+    <ProjectReference Include="..\SFA.DAS.RAA-V2-Employer.UITests\SFA.DAS.RAA-V2-Employer.UITests.csproj" />
     <ProjectReference Include="..\SFA.DAS.Registration.UITests\SFA.DAS.Registration.UITests.csproj" />
 	<ProjectReference Include="..\SFA.DAS.ProviderLogin.Service\SFA.DAS.ProviderLogin.Service.csproj" />
     <ProjectReference Include="..\SFA.DAS.UI.Framework\SFA.DAS.UI.Framework.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Project\Tests\Features\DynamicHomPage\ReserveFunding\DH_01_ReserveFunding.feature.cs">
+    <Compile Update="Project\Tests\Features\DynamicHomPage\ReserveFundingToAddAnAppretices\DH_01_ReserveFundingToAddAnApprentices.feature.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
-      <DependentUpon>DH_01_ReserveFunding.feature</DependentUpon>
+      <DependentUpon>DH_01_ReserveFundingToAddAnApprentices.feature</DependentUpon>
     </Compile>
   </ItemGroup>
 
@@ -66,9 +67,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <SpecFlowFeatureFiles Update="Project\Tests\Features\DynamicHomPage\ReserveFunding\DH_01_ReserveFunding.feature">
+    <SpecFlowFeatureFiles Update="Project\Tests\Features\DynamicHomPage\ReserveFundingToAddAnAppretices\DH_01_ReserveFundingToAddAnApprentices.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>DH_01_ReserveFunding.feature.cs</LastGenOutput>
+      <LastGenOutput>DH_01_ReserveFundingToAddAnApprentices.feature.cs</LastGenOutput>
     </SpecFlowFeatureFiles>
   </ItemGroup>
 

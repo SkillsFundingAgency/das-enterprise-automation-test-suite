@@ -1,6 +1,9 @@
-﻿using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
+﻿using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common;
+using SFA.DAS.Approvals.UITests.Project.Tests.Pages.DynamicHomePage;
+using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer;
 using SFA.DAS.Registration.UITests.Project.Helpers;
+using SFA.DAS.Registration.UITests.Project.Tests.Pages;
 using System;
 using TechTalk.SpecFlow;
 
@@ -23,6 +26,27 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             var yourFundingReservationsPage = GoToManageFunding();
             return yourFundingReservationsPage.ClickReserveMoreFundingLink();
         }
+        public DoYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage GoToReserveFundingFromHomePage()
+        {
+            var reserveFunding = ClickReserveFundingLinkFromHomePagePanel();
+            return reserveFunding.ClickReserveFundingButton();
+        }
+
+        public AddAnApprenitcePage GoToAddAnApprentices()
+        {
+            var addAnAppretices = ContinueToAddAnApprentices();
+            return addAnAppretices.ClickNoRadioButtonTakesToAddAnApprentices();
+        }
+
+        public DoYouNeedToCreateAnAdverForThisApprenticeshipPage ContinueToAddAnApprentices()
+        {
+            return new DynamicHomePage(_context).ClickContinueToCreateAdvertOrAddAnApprentices();
+        }
+
+        public ReserveFundingToTrainAndAssessAnApprenticePage ClickReserveFundingLinkFromHomePagePanel()
+        {
+            return new DynamicHomePage(_context).ClickToReserveFunding();
+        }
 
         public SuccessfullyReservedFundingPage CreateReservation(DoYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage doYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage)
         {
@@ -35,6 +59,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                 .ClickYesReserveFundingNowRadioButton()
                 .ClickConfirmButton();
         }
+
+        public HomePage GoToDynamicHomePage()
+        {
+            return new SuccessfullyReservedFundingPage(_context).GoToHomePage();
+        }
+
 
         public AddAnApprenitcePage AddAnApprentice(SuccessfullyReservedFundingPage successfullyReservedFundingPage)
         {
@@ -66,11 +96,5 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             }
             return yourFundingReservationsPage;
         }
-
-        public DynamicHomePage ClickToReserveFunding(ReserveFundingToTrainAndAssessAnApprenticePage reserveFundingToTrainAndAssessAnApprenticePag)
-        {
-            return reserveFundingToTrainAndAssessAnApprenticePage
-        }
-
     }
 }

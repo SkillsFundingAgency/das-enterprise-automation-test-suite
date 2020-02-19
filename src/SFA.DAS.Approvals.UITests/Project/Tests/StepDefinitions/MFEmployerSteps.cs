@@ -25,6 +25,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             _context = context;
             _reservationStepsHelper = new MFEmployerStepsHelper(context);
+            _successfullyReservedFundingPage = new SuccessfullyReservedFundingPage(context);
         }
 
         [When(@"the Employer reserves funding for an apprenticeship course")]
