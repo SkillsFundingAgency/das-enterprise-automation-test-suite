@@ -2,6 +2,7 @@
 
 @rpe2e01
 @roatp
+@roatpe2e
 @regression
 Scenario: RP_E2E_01_MainRoute-Company
 	Given the provider initates an application as main route company

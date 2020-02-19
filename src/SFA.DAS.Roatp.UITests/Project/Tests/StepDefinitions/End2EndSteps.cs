@@ -98,5 +98,8 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions
 
         [Then(@"the provider completes Finish section")]
         public void ThenTheProviderCompletesFinishSection() => _applicationSubmittedPage = _end2EndStepsHelper.CompletesFinish_Section9(_overviewPage);
+
+        [Then(@"the provider completes Finish section for supporting route")]
+        public void ThenTheProviderCompletesFinishSectionForSupportingRoute() => _applicationSubmittedPage = _end2EndStepsHelper.CompletesFinish_Section9_SupportingRoute(_overviewPage);
     }
 }

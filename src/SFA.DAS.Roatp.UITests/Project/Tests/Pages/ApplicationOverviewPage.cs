@@ -39,13 +39,13 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
         {
             return () =>
             {
-                IEnumerable<IWebElement> tasks = new List<IWebElement>();
-                var taskLists = pageInteractionHelper.FindElements(TaskLists);
+                List<IWebElement> tasks = new List<IWebElement>();
+                var taskLists = pageInteractionHelper.FindElements(TaskLists).ToList();
                 foreach(var tasklist in taskLists)
                 {
                     if (tasklist.FindElement(TaskSection).Text.ContainsCompareCaseInsensitive(sectionName))
                     {
-                        tasks = tasklist.FindElements(TaskItem);
+                        tasks = tasklist.FindElements(TaskItem).ToList();
                         foreach (var task in tasks)
                         {
                             if (task.Text.ContainsCompareCaseInsensitive(taskName) && (childelement == TaskStatus ? true : (!task.Text.ContainsCompareCaseInsensitive("COMPLETED") && (!task.Text.ContainsCompareCaseInsensitive("NOT REQUIRED")))))

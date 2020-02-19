@@ -4,7 +4,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.Finish_Section9
 {
     public class TermsAndConditionsSubmittingApplicationPage : RoatpBasePage
     {
-        protected override string PageTitle => "Do you agree to the terms and conditions of submitting an application?";
+        protected override string PageTitle => "Do you agree to the terms and conditions of joining and staying on the RoATP?";
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
@@ -16,11 +16,10 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.Finish_Section9
             VerifyPage();
         }
 
-        public TermsAndConditionsOfJoiningRoatpPage SelectYesAgreeTermsAndContionsOfSubmittingAnApplicataionAndContinue()
+        public ApplicationOverviewPage SelectYesAgreeTermsAndContionsOfSubmittingAnApplicataionAndContinue()
         {
-            SelectRadioOptionByText("Yes");
-            Continue();
-            return new TermsAndConditionsOfJoiningRoatpPage(_context);
+            SelectYesAndContinue();
+            return new ApplicationOverviewPage(_context);
         }
     }
 }

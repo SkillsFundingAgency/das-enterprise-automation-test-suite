@@ -54,13 +54,14 @@ namespace SFA.DAS.UI.FrameworkHelpers
                });
         }
 
-        internal void RetryClickOnWebDriverException(Func<IWebElement> element)
+        internal void RetryClickOnWebDriverException(Func<IWebElement> element, Action retryAction = null)
         {
             Policy
                 .Handle<WebDriverException>()
                 .WaitAndRetry(TimeOut, (exception, timeSpan, retryCount, context) =>
                 {
                     Report(retryCount, exception);
+                    retryAction?.Invoke();
                 })
                .Execute(() =>
                {
@@ -71,7 +72,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
                });
         }
 
-        internal T RetryOnWebDriverException<T>(Func<T> element)
+        internal T RetryOnWebDriverException<T>(Func<T> element, Action retryAction = null)
         {
             T webElement = default(T);
             Policy
@@ -79,6 +80,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
                 .WaitAndRetry(TimeOut, (exception, timeSpan, retryCount, context) =>
                 {
                     Report(retryCount, exception);
+                    retryAction?.Invoke();
                 })
                 .Execute(() =>
                 {

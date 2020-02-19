@@ -2,6 +2,7 @@
 
 @rpe2e02
 @roatp
+@roatpe2e
 @regression
 Scenario: RP_E2E_02_EmployerRoute-Charity
 	Given the provider initates an application as employer route charity

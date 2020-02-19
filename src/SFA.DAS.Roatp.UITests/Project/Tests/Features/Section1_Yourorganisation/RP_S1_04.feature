@@ -4,6 +4,7 @@
 # Organisation Type is An Educational Institute And Type of Educational institue is Higher Eduction Institute
 @rps104
 @roatp
+@roatps1
 @regression
 Scenario: RP_S1_04_CharityAndCompany - Main - Org AEI - HEI 
 	Given the provider initates an application as main route company
