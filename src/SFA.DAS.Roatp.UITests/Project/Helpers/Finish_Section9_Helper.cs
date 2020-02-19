@@ -25,7 +25,6 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers
         {
             return applicationOverviewPage.Access_Section9_PostApplicationTasks()
                 .SelectYesToCompletesAllPostApplicationTasksAndContinue()
-                .SelectYesAgreeTermsAndContionsOfSubmittingAnApplicataionAndContinue()
                 .VerifyTermsAndConditions_Section9(StatusHelper.StatusCompleted);
         }
 
