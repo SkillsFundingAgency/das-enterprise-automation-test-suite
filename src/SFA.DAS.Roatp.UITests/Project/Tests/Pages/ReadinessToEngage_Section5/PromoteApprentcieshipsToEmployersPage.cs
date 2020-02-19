@@ -9,8 +9,6 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.ReadinessToEngage_Section5
 
         protected override By PageHeader => By.CssSelector(".govuk-label-wrapper");
 
-        private By LongTextArea => By.Id("RTE-23");
-
         #region Helpers and Context
         private readonly ScenarioContext _context;
         #endregion
@@ -23,8 +21,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.ReadinessToEngage_Section5
 
         public ApplicationOverviewPage EnterTextRegardingOrganisationPromoteApprenticeshipsToEmployerAndContinue()
         {
-            formCompletionHelper.EnterText(LongTextArea, applydataHelpers.OrganisationPromoteApprenticeships);
-            Continue();
+            EnterLongTextAreaAndContinue(applydataHelpers.OrganisationPromoteApprenticeships);
             return new ApplicationOverviewPage(_context);
         }
     }

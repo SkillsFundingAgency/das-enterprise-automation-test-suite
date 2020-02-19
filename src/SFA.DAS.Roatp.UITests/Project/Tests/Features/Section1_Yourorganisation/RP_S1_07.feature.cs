@@ -73,28 +73,30 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Features.Section1_Yourorganisation
         [NUnit.Framework.DescriptionAttribute("RP_S1_07_CharityAndCompany - Main - Org PublicBody - GovtDept - Exempt from FHA")]
         [NUnit.Framework.CategoryAttribute("rps107")]
         [NUnit.Framework.CategoryAttribute("roatp")]
+        [NUnit.Framework.CategoryAttribute("roatps1")]
         [NUnit.Framework.CategoryAttribute("regression")]
         public virtual void RP_S1_07_CharityAndCompany_Main_OrgPublicBody_GovtDept_ExemptFromFHA()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_S1_07_CharityAndCompany - Main - Org PublicBody - GovtDept - Exempt from FHA", null, new string[] {
                         "rps107",
                         "roatp",
+                        "roatps1",
                         "regression"});
-#line 6
+#line 7
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 7
-    testRunner.Given("the provider initates an application as main route company", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 8
+    testRunner.Given("the provider initates an application as main route company", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 9
     testRunner.Then("the provider completes Introduction and what you\'ll need section for main and emp" +
                     "loyer route", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 9
-    testRunner.And("the provider completes Organisation Information section for company", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 10
-    testRunner.And("the provider completes Tell us who\'s in control section for charity and company", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+    testRunner.And("the provider completes Organisation Information section for company", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 11
-    testRunner.And("the provider completes Describe your organisation section as OrgTypePublicBody", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+    testRunner.And("the provider completes Tell us who\'s in control section for charity and company", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 12
+    testRunner.And("the provider completes Describe your organisation section as OrgTypePublicBody", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 13
     testRunner.And("the provider completes Experience and Accreditations section by selecting No to a" +
                     "ll", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden

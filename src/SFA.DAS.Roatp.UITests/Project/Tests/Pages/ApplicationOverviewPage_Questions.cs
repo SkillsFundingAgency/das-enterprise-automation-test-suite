@@ -32,6 +32,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
         private string ProtectingYourApprentices_3 => "Equality and diversity policy";
         private string ProtectingYourApprentices_4 => "Safeguarding and Prevent duty policy";
         private string ProtectingYourApprentices_5 => "Health and safety policy";
+        private string ProtectingYourApprentices_6 => "Acting as a subcontractor";
 
         private string ReadinessToEngage => "Readiness to engage";
         private string ReadinessToEngage_1 => "Introduction and what you'll need";
@@ -68,12 +69,10 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
 
         private string Finish => "Finish";
         private string Finish_1 => "Application permissions and checks";
-        private string Finish_2 => "'Commercial in confidence' information";
-        private string Finish_3 => "Terms and conditions";
+        private string Finish_2 => "Quality statement";
+        private string Finish_3 => "Post application tasks";
         private string Finish_4 => "Submit application";
 
         #endregion
-
     }
-
 }

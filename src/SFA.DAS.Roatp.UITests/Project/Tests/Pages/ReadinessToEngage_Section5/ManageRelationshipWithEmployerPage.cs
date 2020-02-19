@@ -9,8 +9,6 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.ReadinessToEngage_Section5
 
         protected override By PageHeader => By.TagName("h2");
 
-        private By LongTextArea => By.Id("RTE-21");
-
         #region Helpers and Context
         private readonly ScenarioContext _context;
         #endregion
@@ -23,8 +21,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.ReadinessToEngage_Section5
 
         public ResponsibleForManagingRelationshipsPage EnterTextForManagingRelationshipWithEmployersAndContinue()
         {
-            formCompletionHelper.EnterText(LongTextArea, applydataHelpers.ManagingRelationshipWithEmployers);
-            Continue();
+            EnterLongTextAreaAndContinue(applydataHelpers.ManagingRelationshipWithEmployers);
             return new ResponsibleForManagingRelationshipsPage(_context);
         }
     }

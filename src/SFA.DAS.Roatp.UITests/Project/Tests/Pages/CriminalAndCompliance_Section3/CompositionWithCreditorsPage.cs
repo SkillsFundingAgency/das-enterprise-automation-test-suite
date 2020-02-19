@@ -11,8 +11,6 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.CriminalAndCompliance_Sectio
         private readonly ScenarioContext _context;
         #endregion
 
-        private By LongTextArea_CompositionWithCreditots => By.Id("CC-20.1");
-
         public CompositionWithCreditorsPage(ScenarioContext context) : base(context)
         {
             _context = context;
@@ -22,8 +20,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.CriminalAndCompliance_Sectio
         public PayBackFundsLastThreeYearsPage SelectYesForCompositionWithCreditorsAndContinue()
         {
             SelectRadioOptionByText("Yes");
-            formCompletionHelper.EnterText(LongTextArea_CompositionWithCreditots, applydataHelpers.CompositionWithCreditots);
-            Continue();
+            EnterLongTextAreaAndContinue(applydataHelpers.CompositionWithCreditots);
             return new PayBackFundsLastThreeYearsPage(_context);
         }
     }

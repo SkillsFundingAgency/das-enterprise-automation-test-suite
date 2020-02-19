@@ -5,16 +5,14 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.DeliveringApprenticeshipTrai
 {
     public class HowAreTheyCommunicatedToEmployeesPage : RoatpBasePage
     {
-        protected override string PageTitle => "How are these quality and high standards in apprenticeship training communicated to employees?";
+        protected override string PageTitle => "How are these expectations for quality and high standards in apprenticeship training communicated to employees?";
 
         protected override By PageHeader => By.CssSelector(".govuk-label-wrapper");
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
         #endregion
-
-        private By LongTextArea => By.CssSelector("textarea");
-
+        
         public HowAreTheyCommunicatedToEmployeesPage(ScenarioContext context) : base(context)
         {
             _context = context;
@@ -23,8 +21,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.DeliveringApprenticeshipTrai
 
         public ApplicationOverviewPage EnterHowAreTheyCommunicatedToEmployees()
         {
-            formCompletionHelper.EnterText(LongTextArea, applydataHelpers.HowAreTheyCommunicatedToEmployees);
-            Continue();
+            EnterLongTextAreaAndContinue(applydataHelpers.HowAreTheyCommunicatedToEmployees);
             return new ApplicationOverviewPage(_context);
         }
     }

@@ -20,7 +20,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.PreamblePages
 
         public AP_PR4_ConfirmOrganisationPage SelectTrainingProviderRadioButtonAndContinueInSelectOrgTypePage()
         {
-            formCompletionHelper.SelectRadioButton(pageInteractionHelper.FindElement(TrainingProviderRadioButton));
+            formCompletionHelper.ClickElement(pageInteractionHelper.FindElement(TrainingProviderRadioButton));
             Continue();
             return new AP_PR4_ConfirmOrganisationPage(_context);
         }

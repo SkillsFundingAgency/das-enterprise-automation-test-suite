@@ -13,8 +13,6 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.DeliveringApprenticeshipTrai
         private readonly ScenarioContext _context;
         #endregion
 
-        private By LongTextArea => By.CssSelector("textarea");
-
         public HowExpectationsAreMonitoredPage(ScenarioContext context) : base(context)
         {
             _context = context;
@@ -23,8 +21,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.DeliveringApprenticeshipTrai
 
         public WhoIsResposibleToMaintainExpectationsPage EnterTextForHowExpectationsAreMonitored()
         {
-            formCompletionHelper.EnterText(LongTextArea, applydataHelpers.HowExpectationsAreMonitored);
-            Continue();
+            EnterLongTextAreaAndContinue(applydataHelpers.HowExpectationsAreMonitored);
             return new WhoIsResposibleToMaintainExpectationsPage(_context);
         }
     }

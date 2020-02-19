@@ -11,10 +11,6 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.CriminalAndCompliance_Sectio
         private readonly ScenarioContext _context;
         #endregion
 
-        private By LongTextArea_WhosInControlContractTerminatedByPublicBodyOrganisations => By.Id("CC-80.1");
-
-        private By LongTextArea_WhosInControlContractTerminatedByPublicBodySoleTrader => By.Id("CC-81.1");
-
         public WhosInControlContractTerminatedByPublicBodyPage(ScenarioContext context) : base(context)
         {
             _context = context;
@@ -24,9 +20,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.CriminalAndCompliance_Sectio
         public WhosInControlContractWithdrawnWithPublicBodyPage SelectYesEnterInformationForContractTerminatedByPublicBodyAndContinue()
         {
             SelectRadioOptionByText("Yes");
-            var field = pageInteractionHelper.IsElementDisplayed(LongTextArea_WhosInControlContractTerminatedByPublicBodyOrganisations) ? LongTextArea_WhosInControlContractTerminatedByPublicBodyOrganisations : LongTextArea_WhosInControlContractTerminatedByPublicBodySoleTrader;
-            formCompletionHelper.EnterText(field, applydataHelpers.WhosInControlContractTerminatedByPublicBody);
-            Continue();
+            EnterLongTextAreaAndContinue(applydataHelpers.WhosInControlContractTerminatedByPublicBody);
             return new WhosInControlContractWithdrawnWithPublicBodyPage(_context);
         }
     }

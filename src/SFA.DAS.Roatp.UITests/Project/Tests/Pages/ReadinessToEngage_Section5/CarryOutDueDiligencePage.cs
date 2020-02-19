@@ -13,8 +13,6 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.ReadinessToEngage_Section5
         private readonly ScenarioContext _context;
         #endregion
 
-        private By LongTextArea => By.Id("RTE-71");
-
         public CarryOutDueDiligencePage(ScenarioContext context) : base(context)
         {
             _context = context;
@@ -23,8 +21,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.ReadinessToEngage_Section5
 
         public ApplicationOverviewPage EnterTextForManagingRelationshipWithEmployersAndContinue()
         {
-            formCompletionHelper.EnterText(LongTextArea, applydataHelpers.ManagingRelationshipWithEmployers);
-            Continue();
+            EnterLongTextAreaAndContinue(applydataHelpers.ManagingRelationshipWithEmployers);
             return new ApplicationOverviewPage(_context);
         }
     }

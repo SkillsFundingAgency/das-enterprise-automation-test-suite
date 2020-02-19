@@ -3,6 +3,7 @@
 
 @rps106
 @roatp
+@roatps1
 @regression
 Scenario: RP_S1_06_Company - Main - Org ATA - PGTA
     Given the provider initates an application as main route company

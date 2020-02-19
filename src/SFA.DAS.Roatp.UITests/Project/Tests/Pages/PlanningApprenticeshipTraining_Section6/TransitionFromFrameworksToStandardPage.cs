@@ -13,8 +13,6 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.PlanningApprenticeshipTraini
         private readonly ScenarioContext _context;
         #endregion
 
-        private By LongTextArea => By.CssSelector(".govuk-fieldset .govuk-textarea");
-
         public TransitionFromFrameworksToStandardPage(ScenarioContext context) : base(context)
         {
             _context = context;
@@ -23,15 +21,13 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.PlanningApprenticeshipTraini
 
         public EndPointAssesmentOrganisationsPage EnterTextForTransitionFromFramewordsToStandardsAndContinueEmployerRoute()
         {
-            formCompletionHelper.EnterText(LongTextArea, applydataHelpers.TransitionFromFrameWorksToStandardsForEmployerRoute);
-            Continue();
+            EnterLongTextAreaAndContinue(applydataHelpers.TransitionFromFrameWorksToStandardsForEmployerRoute);
             return new EndPointAssesmentOrganisationsPage(_context);
         }
 
         public ApplicationOverviewPage EnterTextForTransitionFromFramewordsToStandardsAndContinueSupportingRoute()
         {
-            formCompletionHelper.EnterText(LongTextArea, applydataHelpers.TransitionFromFrameWorksToStandards);
-            Continue();
+            EnterLongTextAreaAndContinue(applydataHelpers.TransitionFromFrameWorksToStandards);
             return new ApplicationOverviewPage(_context);
         }
     }

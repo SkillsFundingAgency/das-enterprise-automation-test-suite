@@ -14,8 +14,6 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.PlanningApprenticeshipTraini
         private readonly ScenarioContext _context;
         #endregion
 
-        private By LongTextArea_HowApprenticesAreSupported => By.Id("PAT-630");
-
         public EnsureApprenticesSupportedPage(ScenarioContext context) : base(context)
         {
             _context = context;
@@ -24,8 +22,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.PlanningApprenticeshipTraini
 
         public HowOrganisationSupportApprenticesPage EnterTextForHowOrgEnsureApprenticesAreSupportedAndContinue()
         {
-            formCompletionHelper.EnterText(LongTextArea_HowApprenticesAreSupported, applydataHelpers.LongTextArea_HowApprenticesAreSupported);
-            Continue();
+            EnterLongTextAreaAndContinue(applydataHelpers.HowApprenticesAreSupported);
             return new HowOrganisationSupportApprenticesPage(_context);
         }
     }

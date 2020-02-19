@@ -11,8 +11,6 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.DeliveringApprenticeshipTrai
         private readonly ScenarioContext _context;
         #endregion
 
-        private By LongTextArea => By.CssSelector("textarea");
-
         public HowHasTheTeamOrPersonWorked(ScenarioContext context) : base(context)
         {
             _context = context;
@@ -21,8 +19,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.DeliveringApprenticeshipTrai
 
         public TellUsWhoIsTheManagerPage EnterHowHasTheTeamOrPersonWorked()
         {
-            formCompletionHelper.EnterText(LongTextArea, applydataHelpers.HowHasTheTeamOrPersonWorked);
-            Continue();
+            EnterLongTextAreaAndContinue(applydataHelpers.HowHasTheTeamOrPersonWorked);
             return new TellUsWhoIsTheManagerPage(_context);
         }
     }

@@ -13,8 +13,6 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.PlanningApprenticeshipTraini
         private readonly ScenarioContext _context;
         #endregion
 
-        private By LongTextArea_ReadytoDeliverTraining => By.Id("PAT-30");
-
         public ReadyToDeliverTrainingPage(ScenarioContext context) : base(context)
         {
             _context = context;
@@ -23,8 +21,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.PlanningApprenticeshipTraini
 
         public EndPointAssesmentOrganisationsPage EnterTextRegardingReadyToDeliverTrainingAndContinue()
         {
-            formCompletionHelper.EnterText(LongTextArea_ReadytoDeliverTraining, applydataHelpers.ReadytoDeliverTraining);
-            Continue();
+            EnterLongTextAreaAndContinue(applydataHelpers.ReadytoDeliverTraining);
             return new EndPointAssesmentOrganisationsPage(_context);
         }
     }

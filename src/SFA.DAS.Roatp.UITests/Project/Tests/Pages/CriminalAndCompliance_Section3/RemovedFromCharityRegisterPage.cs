@@ -10,7 +10,6 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.CriminalAndCompliance_Sectio
         #region Helpers and Context
         private readonly ScenarioContext _context;
         #endregion
-        private By LongTextArea_RemovedFromCharityRegister => By.Id("CC-27.1");
 
         public RemovedFromCharityRegisterPage(ScenarioContext context) : base(context)
         {
@@ -21,8 +20,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.CriminalAndCompliance_Sectio
         public InvestigatedDueToSafeGuardingIssuesPage SelectYesAndEnterInformationForRemovedFromCharityRegister()
         {
             SelectRadioOptionByText("Yes");
-            formCompletionHelper.EnterText(LongTextArea_RemovedFromCharityRegister, applydataHelpers.RemovedFromCharityRegister);
-            Continue();
+            EnterLongTextAreaAndContinue(applydataHelpers.RemovedFromCharityRegister);
             return new InvestigatedDueToSafeGuardingIssuesPage(_context);
         }
     }
