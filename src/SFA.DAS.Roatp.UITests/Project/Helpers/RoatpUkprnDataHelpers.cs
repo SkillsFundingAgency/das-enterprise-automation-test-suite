@@ -5,17 +5,18 @@ using System.Text;
 
 namespace SFA.DAS.Roatp.UITests.Project.Helpers
 {
-    public class ApplyUkprnDataHelpers
+    public class RoatpUkprnDataHelpers
     {
         private readonly Dictionary<string, List<KeyValuePair<string, string>>> _applyData;
 
         private const string emailkey = "emailkey";
         private const string ukprnkey = "ukprnkey";
 
-        public ApplyUkprnDataHelpers()
+        public RoatpUkprnDataHelpers()
         {
             _applyData = new Dictionary<string, List<KeyValuePair<string, string>>>();
             AddApplyDatahelpers();
+            AddAdminDatahelpers();
         }
 
         public (string email, string ukprn) GetApplyData(string key)
@@ -27,6 +28,11 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers
         }
 
         private List<KeyValuePair<string, string>> FindKeyValuePairs(string key) => _applyData.TryGetValue(key, out var keyValuePair) ? keyValuePair : throw new KeyNotFoundException($"Can not find data for key {key}");
+
+        private void AddAdminDatahelpers()
+        {
+
+        }
 
         private void AddApplyDatahelpers()
         {

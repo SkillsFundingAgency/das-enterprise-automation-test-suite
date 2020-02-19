@@ -19,7 +19,7 @@ namespace SFA.DAS.Roatp.UITests.Project
         private readonly IWebDriver _webDriver;
         private readonly RoatpConfig _config;
         private readonly ClearDownDataHelpers _clearDownDataHelpers;
-        private ApplyUkprnDataHelpers _applyUkprnDataHelpers;
+        private RoatpUkprnDataHelpers _applyUkprnDataHelpers;
 
         public Hooks(ScenarioContext context)
         {
@@ -34,7 +34,7 @@ namespace SFA.DAS.Roatp.UITests.Project
         [BeforeScenario(Order = 32)]
         public void SetUpHelpers() 
         {
-            _applyUkprnDataHelpers = new ApplyUkprnDataHelpers();
+            _applyUkprnDataHelpers = new RoatpUkprnDataHelpers();
             _context.Set(_applyUkprnDataHelpers);
 
             var applydatahelpers = new ApplyDataHelpers(_context.Get<RandomDataGenerator>());

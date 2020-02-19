@@ -20,7 +20,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
         protected readonly ObjectContext objectContext;
         protected readonly PageInteractionHelper pageInteractionHelper;
         protected readonly FormCompletionHelper formCompletionHelper;
-        protected readonly ApplyUkprnDataHelpers applyUkprnDataHelpers;
+        protected readonly RoatpUkprnDataHelpers roatpUkprnDataHelpers;
         protected readonly ApplyDataHelpers applydataHelpers;
         protected readonly RoatpConfig roatpConfig;
 
@@ -43,7 +43,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
             objectContext = context.Get<ObjectContext>();
             formCompletionHelper = context.Get<FormCompletionHelper>();
             pageInteractionHelper = context.Get<PageInteractionHelper>();
-            applyUkprnDataHelpers = context.Get<ApplyUkprnDataHelpers>();
+            roatpUkprnDataHelpers = context.Get<RoatpUkprnDataHelpers>();
             applydataHelpers = context.Get<ApplyDataHelpers>();
             roatpConfig = context.GetRoatpConfig<RoatpConfig>();
         }
