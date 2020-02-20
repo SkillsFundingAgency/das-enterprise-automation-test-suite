@@ -34,8 +34,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 
         public ApprenticesHomePage GoToAddAnApprentices()
         {
-            var addAnAppretices = ContinueToAddAnApprentices();
-            return addAnAppretices.ClickNoRadioButtonTakesToAddAnApprentices();
+            var addAnApprentices = ContinueToAddAnApprentices();
+            return addAnApprentices.ClickNoRadioButtonTakesToAddAnApprentices();
         }
 
         public DoYouNeedToCreateAnAdverForThisApprenticeshipPage ContinueToAddAnApprentices()
