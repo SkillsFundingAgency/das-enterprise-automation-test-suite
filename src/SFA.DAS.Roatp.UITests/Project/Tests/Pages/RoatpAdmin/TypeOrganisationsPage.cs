@@ -20,7 +20,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpAdmin
             _context = context;
         }
 
-        public ApplicationDateDeterminedPage SubmitIndependentTrainingProvider()
+        public ApplicationDateDeterminedPage SubmitOrganisationType()
         {
             formCompletionHelper.ClickElement(() => admindataHelpers.GetRandomElementFromListOfElements(pageInteractionHelper.FindElements(RadioInputs)));
             Continue();

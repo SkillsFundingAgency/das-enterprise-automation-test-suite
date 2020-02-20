@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.Roatp.UITests.Project.Tests.Features.RoatpApply.TC
+namespace SFA.DAS.Roatp.UITests.Project.Tests.Features.RoatpAdmin.AddNewProvider
 {
     using TechTalk.SpecFlow;
     
@@ -18,20 +18,20 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Features.RoatpApply.TC
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.0.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("RP_TC_01")]
-    public partial class RP_TC_01Feature
+    [NUnit.Framework.DescriptionAttribute("RP_AD_NP_03")]
+    public partial class RP_AD_NP_03Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "RP_TC_01.feature"
+#line 1 "RP_AD_NP_03.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "RP_TC_01", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "RP_AD_NP_03", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -70,23 +70,27 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Features.RoatpApply.TC
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RP_TC_01_Do Not Accept the Terms and Conditions")]
-        [NUnit.Framework.CategoryAttribute("rptc01")]
+        [NUnit.Framework.DescriptionAttribute("RP_AD_NP_03_Add A New Training Provider as Supporting Provider")]
+        [NUnit.Framework.CategoryAttribute("rpadnp03")]
         [NUnit.Framework.CategoryAttribute("roatp")]
-        [NUnit.Framework.CategoryAttribute("roatpapply")]
+        [NUnit.Framework.CategoryAttribute("roatpadmin")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public virtual void RP_TC_01_DoNotAcceptTheTermsAndConditions()
+        public virtual void RP_AD_NP_03_AddANewTrainingProviderAsSupportingProvider()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_TC_01_Do Not Accept the Terms and Conditions", null, new string[] {
-                        "rptc01",
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_AD_NP_03_Add A New Training Provider as Supporting Provider", null, new string[] {
+                        "rpadnp03",
                         "roatp",
-                        "roatpapply",
+                        "roatpadmin",
                         "regression"});
 #line 7
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 8
- testRunner.Then("the provider do not accept the Terms and conditions", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Given("the admin initates an application as Supporting provider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 9
+ testRunner.Then("Organisation is successfully Added to the Register", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 10
+ testRunner.And("the provider status should be set to Active", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
