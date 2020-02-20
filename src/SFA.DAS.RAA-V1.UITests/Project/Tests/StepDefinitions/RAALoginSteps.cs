@@ -65,7 +65,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
         {
             new RAA_IndexPage(_context)
              .ClickOnSignInButton()
-             .RecruitStaffIdams();
+             .LoginToPireanPreprod();
 
             return new SignInPage(_context);
         }

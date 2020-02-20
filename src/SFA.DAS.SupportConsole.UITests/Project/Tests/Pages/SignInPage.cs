@@ -1,40 +1,30 @@
-﻿using OpenQA.Selenium;
-using TechTalk.SpecFlow;
-using SFA.DAS.UI.FrameworkHelpers;
+﻿using SFA.DAS.IdamsLogin.Service.Project.Tests.Pages;
 using SFA.DAS.UI.Framework.TestSupport;
+using System;
+using System.Collections.Generic;
+using System.Text;
+using TechTalk.SpecFlow;
 
 namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
 {
-    public class SignInPage : BasePage
+    public class SignInPage : SignInBasePage
     {
         protected override string PageTitle => "ESFA Sign in";
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
-        private readonly FormCompletionHelper _formCompletionHelper;
         private readonly SupportConsoleConfig _config;
-        #endregion
-
-        #region Locators
-        protected override By PageHeader => By.XPath("//h1");
-        private By UserName => By.Id("username");
-        private By Password => By.Id("password");
-        private By SignInButton => By.CssSelector("button.pull-left");
         #endregion
 
         public SignInPage(ScenarioContext context) : base(context)
         {
             _context = context;
-            _formCompletionHelper = context.Get<FormCompletionHelper>();
             _config = context.GetSupportConsoleConfig<SupportConsoleConfig>();
-            VerifyPage();
         }
 
         public SearchHomePage SignInWithValidDetails()
         {
-            _formCompletionHelper.EnterText(UserName, _config.SupportConsoleLoginUsername);
-            _formCompletionHelper.EnterText(Password, _config.SupportConsoleLoginPassword);
-            _formCompletionHelper.Click(SignInButton);
+            SubmitValidLoginDetails(_config.SupportConsoleLoginUsername, _config.SupportConsoleLoginPassword);
             return new SearchHomePage(_context);
         }
     }
