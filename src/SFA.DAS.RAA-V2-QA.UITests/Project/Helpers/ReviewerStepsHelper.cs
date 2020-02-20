@@ -4,6 +4,7 @@ using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using SFA.DAS.ConfigurationBuilder;
 using TechTalk.SpecFlow;
+using SFA.DAS.IdamsLogin.Service.Project.Tests.Pages;
 
 namespace SFA.DAS.RAA_V2_QA.UITests.Project.Helpers
 {
@@ -38,7 +39,7 @@ namespace SFA.DAS.RAA_V2_QA.UITests.Project.Helpers
             }
 
             new IdamsPage(_context)
-               .ManageStaffIdams();
+               .LoginToAccess1Staff();
 
             return new SignInPage(_context)
                 .SubmitReviewerLoginDetails();

@@ -70,13 +70,13 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features.CreateNonLevyEmplo
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RE_CNLEA_03_Create a NonLevy Account and Sign Agreement")]
+        [NUnit.Framework.DescriptionAttribute("RE_CNLEA_03_Create an Employer Account with levy declarations as 0")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("registration")]
         [NUnit.Framework.CategoryAttribute("addpayedetails")]
-        public virtual void RE_CNLEA_03_CreateANonLevyAccountAndSignAgreement()
+        public virtual void RE_CNLEA_03_CreateAnEmployerAccountWithLevyDeclarationsAs0()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RE_CNLEA_03_Create a NonLevy Account and Sign Agreement", null, new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RE_CNLEA_03_Create an Employer Account with levy declarations as 0", null, new string[] {
                         "regression",
                         "registration",
                         "addpayedetails"});
@@ -84,13 +84,11 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features.CreateNonLevyEmplo
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 7
- testRunner.When("an User Account is created", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("an Employer Account with Company Type Org is created", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 8
- testRunner.And("the User adds PAYE details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("levy declarations are added for the past 15 months with levypermonth as 0", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 9
- testRunner.And("adds Organisation details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 10
- testRunner.Then("the Employer is able to Sign the Agreement", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("ApprenticeshipEmployerType in Account table is marked as 0", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
