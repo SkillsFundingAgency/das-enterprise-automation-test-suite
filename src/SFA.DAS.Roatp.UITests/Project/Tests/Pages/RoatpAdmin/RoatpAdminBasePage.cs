@@ -13,12 +13,12 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpAdmin
     public abstract class RoatpAdminBasePage : RoatpBasePage
     {
         #region Helpers and Context
-        protected readonly AdminDataHelpers admindataHelpers;
+        protected readonly RoatpAdminDataHelpers admindataHelpers;
         #endregion
 
         public RoatpAdminBasePage(ScenarioContext context) : base(context)
         {
-            admindataHelpers = context.Get<AdminDataHelpers>();
+            admindataHelpers = context.Get<RoatpAdminDataHelpers>();
         }
     }
 }

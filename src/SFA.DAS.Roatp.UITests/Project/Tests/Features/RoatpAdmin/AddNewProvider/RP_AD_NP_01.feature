@@ -6,4 +6,5 @@
 @regression
 Scenario: RP_AD_NP_01_Add A New Training Provider as Main Provider
 Given the admin initates an application as main route company
+Then Organisation is successfully Added to the Register
 And the provider status should be set to On-Boarding

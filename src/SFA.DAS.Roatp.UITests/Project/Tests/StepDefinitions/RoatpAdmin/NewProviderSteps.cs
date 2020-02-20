@@ -10,6 +10,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpAdmin
     public class NewProviderSteps
     {
         private readonly ScenarioContext _context;
+        private RoatpAdminHomePage _roatpAdminHomePage;
 
         public NewProviderSteps(ScenarioContext context)
         {
@@ -19,10 +20,27 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpAdmin
         [Given(@"the admin initates an application as main route company")]
         public void GivenTheAdminInitatesAnApplicationAsMainRouteCompany()
         {
-            new ServiceStartPage(_context).ClickStartNow().LoginToAccess1Staff();
-
-            new SignInPage(_context).SignInWithValidDetails().AddANewTrainingProvider().EnterUkprn();
+            GotoRoatpAdminHomePage()
+                .AddANewTrainingProvider()
+                .EnterUkprn()
+                .ConfirmOrganisationsDetails()
+                .SubmitProviderTypeMain()
+                .SubmitIndependentTrainingProvider()
+                .EnterDob()
+                .ConfirmOrganisationsDetails();
         }
 
+        [Then(@"Organisation is successfully Added to the Register")]
+        public void ThenOrganisationIsSuccessfullyAddedToTheRegister() => _roatpAdminHomePage.VerifyNewProviderHasBeenAdded();
+
+        [Then(@"the provider status should be set to On-Boarding")]
+        public void ThenTheProviderStatusShouldBeSetToOn_Boarding() => _roatpAdminHomePage.SearchTrainingProvider().VerifyMainAndEmployerTypeStatus();
+
+        private RoatpAdminHomePage GotoRoatpAdminHomePage()
+        {
+            new ServiceStartPage(_context).ClickStartNow().LoginToAccess1Staff();
+
+            return _roatpAdminHomePage = new SignInPage(_context).SignInWithValidDetails();
+        }
     }
 }

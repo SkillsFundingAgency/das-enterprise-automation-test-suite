@@ -1,0 +1,26 @@
+﻿using OpenQA.Selenium;
+using TechTalk.SpecFlow;
+
+namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpAdmin
+{
+    public class ResultsFoundPage : RoatpAdminBasePage
+    {
+        protected override string PageTitle => "found for";
+
+        #region Helpers and Context
+        private readonly ScenarioContext _context;
+        #endregion
+
+        private By OnBoardingStatus => By.XPath("//span[text()='On-boarding']");
+
+        private string MainAndEmployerStatus => "ON-BOARDING";
+
+        public ResultsFoundPage(ScenarioContext context) : base(context)
+        {
+            _context = context;
+        }
+
+        public bool VerifyMainAndEmployerTypeStatus() => pageInteractionHelper.VerifyText(OnBoardingStatus, MainAndEmployerStatus);
+
+    }
+}

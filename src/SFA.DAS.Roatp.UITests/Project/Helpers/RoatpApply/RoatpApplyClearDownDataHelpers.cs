@@ -4,28 +4,24 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace SFA.DAS.Roatp.UITests.Project.Helpers
+namespace SFA.DAS.Roatp.UITests.Project.Helpers.RoatpApply
 {
-    public class ClearDownDataHelpers
+    public class RoatpApplyClearDownDataHelpers
     {
         private readonly ObjectContext _objectContext;
         private readonly SqlDatabaseConnectionHelper _sqlDatabasehelper;
-        private readonly string _roatpDatabaseConnectionString;
         private readonly string _applyDatabaseConnectionString;
         private readonly string _qnaDatabaseConnectionString;
-        
+
         private string Emptyguid => Guid.Empty.ToString();
 
-        public ClearDownDataHelpers(ObjectContext objectContext, RoatpConfig roatpConfig, SqlDatabaseConnectionHelper sqlDatabasehelper)
+        public RoatpApplyClearDownDataHelpers(ObjectContext objectContext, RoatpConfig roatpConfig, SqlDatabaseConnectionHelper sqlDatabasehelper)
         {
             _objectContext = objectContext;
             _sqlDatabasehelper = sqlDatabasehelper;
-            _roatpDatabaseConnectionString = roatpConfig.RoatpDatabaseConnectionString;
             _applyDatabaseConnectionString = roatpConfig.ApplyDatabaseConnectionString;
             _qnaDatabaseConnectionString = roatpConfig.QnaDatabaseConnectionString;
         }
-
-        public void DeleteTrainingProvider() => _sqlDatabasehelper.ExecuteSqlCommand(_roatpDatabaseConnectionString, $"DELETE FROM Organisations WHERE UKPRN ='{_objectContext.GetUkprn()}'");
 
         public string ClearDownDataFromApply()
         {
@@ -35,7 +31,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers
 
             var queryResult = _sqlDatabasehelper.ReadDataFromDataBase(applicationIdQuery, _applyDatabaseConnectionString);
 
-            return (queryResult == null || queryResult.Count == 0) ? Emptyguid : ClearDownDataFromApply(queryResult);
+            return queryResult == null || queryResult.Count == 0 ? Emptyguid : ClearDownDataFromApply(queryResult);
         }
 
         private string ClearDownDataFromApply(List<object[]> queryResult)

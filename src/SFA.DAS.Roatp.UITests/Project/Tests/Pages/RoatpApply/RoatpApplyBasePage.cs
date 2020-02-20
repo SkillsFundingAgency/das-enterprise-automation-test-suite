@@ -16,7 +16,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
         #region Helpers and Context
         private readonly ScenarioContext _context;
         private readonly FrameworkConfig _frameworkConfig;
-        protected readonly ApplyDataHelpers applydataHelpers;
+        protected readonly RoatpApplyDataHelpers applydataHelpers;
         #endregion
 
         private By ChooseFile => By.ClassName("govuk-file-upload");
@@ -33,7 +33,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
         {
             _context = context;
             _frameworkConfig = context.Get<FrameworkConfig>();
-            applydataHelpers = context.Get<ApplyDataHelpers>();
+            applydataHelpers = context.Get<RoatpApplyDataHelpers>();
         }
 
         protected void UploadFile()

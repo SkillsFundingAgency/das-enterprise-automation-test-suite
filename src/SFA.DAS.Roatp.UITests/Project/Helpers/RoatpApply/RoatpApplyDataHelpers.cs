@@ -3,10 +3,10 @@ using System;
 
 namespace SFA.DAS.Roatp.UITests.Project.Helpers.RoatpApply
 {
-    public class ApplyDataHelpers
+    public class RoatpApplyDataHelpers
     {
         private readonly RandomDataGenerator _randomDataGenerator;
-        public ApplyDataHelpers(RandomDataGenerator randomDataGenerator)
+        public RoatpApplyDataHelpers(RandomDataGenerator randomDataGenerator)
         {
             _randomDataGenerator = randomDataGenerator;
             CompanyNumber = randomDataGenerator.GenerateRandomNumber(8);

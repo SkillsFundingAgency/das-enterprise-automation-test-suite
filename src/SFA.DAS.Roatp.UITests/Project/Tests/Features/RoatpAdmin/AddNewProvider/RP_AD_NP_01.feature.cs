@@ -88,6 +88,8 @@ this.ScenarioInitialize(scenarioInfo);
 #line 8
 testRunner.Given("the admin initates an application as main route company", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 9
+testRunner.Then("Organisation is successfully Added to the Register", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 10
 testRunner.And("the provider status should be set to On-Boarding", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();

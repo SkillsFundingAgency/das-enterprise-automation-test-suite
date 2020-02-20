@@ -2,9 +2,9 @@
 
 namespace SFA.DAS.Roatp.UITests.Project.Helpers.RoatpAdmin
 {
-    public class AdminDataHelpers
+    public class RoatpAdminDataHelpers
     {
-        public AdminDataHelpers()
+        public RoatpAdminDataHelpers()
         {
 
         }

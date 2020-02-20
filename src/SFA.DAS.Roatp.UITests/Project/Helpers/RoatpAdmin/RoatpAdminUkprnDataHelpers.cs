@@ -1,0 +1,21 @@
+﻿using System.Collections.Generic;
+
+namespace SFA.DAS.Roatp.UITests.Project.Helpers.RoatpAdmin
+{
+    public class RoatpAdminUkprnDataHelpers : RoatpUkprnDataHelpers
+    {
+        public RoatpAdminUkprnDataHelpers() : base() => AddAdminDatahelpers();
+
+        public (string providername, string ukprn) GetRoatpAdminData(string key) => GetAdminData(FindKeyValuePairs(_adminData, key), providernamekey, ukprnkey);
+
+        private void AddAdminDatahelpers()
+        {
+            _adminData.Add("rpadnp01",
+            new List<KeyValuePair<string, string>>
+            {
+                   new KeyValuePair<string, string>(providernamekey, "BUSINESS CONTINUITY TRAINING LIMITED"),
+                   new KeyValuePair<string, string>(ukprnkey, "10023959"),
+            });
+        }
+    }
+}

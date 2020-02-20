@@ -15,6 +15,8 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpAdmin
 
         private By Confirmation => By.CssSelector(".govuk-panel--confirmation");
 
+        private By ProviderSearch => By.Id("SearchTerm");
+
         public RoatpAdminHomePage(ScenarioContext context) : base(context)
         {
             _context = context;
@@ -27,5 +29,12 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpAdmin
         }
 
         public bool VerifyNewProviderHasBeenAdded() => pageInteractionHelper.VerifyText(Confirmation, "has been added");
+
+        public ResultsFoundPage SearchTrainingProvider()
+        {
+            formCompletionHelper.EnterText(ProviderSearch, objectContext.GetProviderName());
+            Continue();
+            return new ResultsFoundPage(_context);
+        }
     }
 }
