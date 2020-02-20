@@ -5,7 +5,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpAdmin
 {
     public class ResultsFoundPage : RoatpAdminBasePage
     {
-        protected override string PageTitle => "found for";
+        protected override string PageTitle => $"found for '{objectContext.GetProviderName()}'";
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
@@ -27,6 +27,5 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpAdmin
         public bool VerifyMainAndEmployerTypeStatus() => pageInteractionHelper.VerifyText(OnBoardingStatus, MainAndEmployerStatus);
 
         public bool VerifySupportingProviderTypeStatus() => pageInteractionHelper.VerifyText(ActiveStatus, SupportingStatus);
-
     }
 }
