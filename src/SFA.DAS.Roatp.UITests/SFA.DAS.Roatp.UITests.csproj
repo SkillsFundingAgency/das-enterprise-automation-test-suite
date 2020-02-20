@@ -55,4 +55,17 @@
     </None>
   </ItemGroup>
 
+
+  <ItemGroup>
+    <SpecFlowFeatureFiles Update="Project\Tests\Features\PreambleJourney\RP_PJ_01.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+    </SpecFlowFeatureFiles>
+    <SpecFlowFeatureFiles Update="Project\Tests\Features\PreambleJourney\RP_PJ_02.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+    </SpecFlowFeatureFiles>
+    <SpecFlowFeatureFiles Update="Project\Tests\Features\PreambleJourney\RP_PJ_03.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+    </SpecFlowFeatureFiles>
+  </ItemGroup>
+
 </Project>

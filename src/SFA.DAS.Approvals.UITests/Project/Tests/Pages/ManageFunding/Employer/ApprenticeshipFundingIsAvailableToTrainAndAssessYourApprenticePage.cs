@@ -9,7 +9,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
     {
         protected override string PageTitle => "Apprenticeship funding is available to train and assess your apprentice";
         private By YesReserveFundingNowRadioButton => By.CssSelector("label[for=Reserve]");
-        private By ConfirmButton => By.CssSelector(".govuk-button");
+        private By ConfirmButton => By.CssSelector("main button");
 
         #region Helpers and Context
         private readonly PageInteractionHelper _pageInteractionHelper;

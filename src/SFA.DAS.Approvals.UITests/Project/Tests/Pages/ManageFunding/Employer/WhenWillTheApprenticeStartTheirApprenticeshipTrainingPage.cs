@@ -8,7 +8,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
     public class WhenWillTheApprenticeStartTheirApprenticeshipTrainingPage : BasePage
     {
         protected override string PageTitle => "When will the apprentice start their apprenticeship training?";
-
+        protected override By ContinueButton => By.CssSelector("main button");
         #region Helpers and Context
         private readonly PageInteractionHelper _pageInteractionHelper;
         private readonly FormCompletionHelper _formCompletionHelper;

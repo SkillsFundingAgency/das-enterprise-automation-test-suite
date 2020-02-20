@@ -1,12 +1,12 @@
 ﻿@dynamicHomePage
 Feature: DH_01_ReservesFundingToAddAnApprentices
-As a Non Levy Employer, I want to reserves funding form dynamic homepage
-So that, I can add an apprentice
+As a Non Levy Employer, I want to add an apprentices after reserves funding from dynamic homepage
+
 
 @regression
 @dynamichomepage
 @addpayedetails
-Scenario: DH_01 Employer reserves funding from homepage journey
+Scenario: DH_01 Employer reserves funding to add an apprentices from dynamic homepage journey
 	When an User Account is created
 	And the User adds PAYE details
 	And adds Organisation details

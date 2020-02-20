@@ -12,7 +12,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
         private By TrainingCourseContainer => By.Id("SelectedCourseId");
 
         private By StandardCourseOption => By.Id("SelectedCourseId__option--0");
-        private By SaveAndContinueButton => By.CssSelector(".govuk-button");
+        private By SaveAndContinueButton => By.CssSelector("main button");
 
         #region Helpers and Context
         private readonly PageInteractionHelper _pageInteractionHelper;
