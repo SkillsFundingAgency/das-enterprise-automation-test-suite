@@ -10,7 +10,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
 
         #region Section9
         public ApplicationOverviewPage VerifyApplicationPermissions_Section9(string status) => Verify_Section9(Finish_1, status);
-        public ApplicationOverviewPage VerifyCommercialInformation_Section9(string status) => Verify_Section9(Finish_2, status);
+        public ApplicationOverviewPage VerifyQualityStatement_Section9(string status) => Verify_Section9(Finish_2, status);
         public ApplicationOverviewPage VerifyTermsAndConditions_Section9(string status) => Verify_Section9(Finish_3, status);
         #endregion
 
@@ -92,8 +92,8 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
 
         private ApplicationOverviewPage VerifySections(string sectionName, string taskName, string status)
         {
-            VerifyElement(GetTaskStatusElement(sectionName, taskName), status);
-            return this;
+            VerifyElement(GetTaskStatusElement(sectionName, taskName), status, () => formCompletionHelper.ClickLinkByText("Application overview"));
+            return new ApplicationOverviewPage(_context);
         }
     }
 }

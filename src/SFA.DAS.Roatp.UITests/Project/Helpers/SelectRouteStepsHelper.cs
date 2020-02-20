@@ -15,16 +15,21 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers
 
         internal ApplicationOverviewPage CompleteProviderCharityRouteSection() => AcceptAndContinue(ConfirmUkprn().SelectApplicationRouteAsEmployer().SelectYesForLevyPayingEmployerAndContinue());
 
+        internal AlreadyOnRoatpPage CompleteProviderCharityRouteWhoisAlreayOnRoatp() => ConfirmUkprnForProviderOnRoatp();
+
         internal ApplicationOverviewPage CompleteProviderSupportRouteSection() => AcceptAndContinue(ConfirmUkprn().SelectApplicationRouteAsSupporting());
 
-        private ChooseProviderRoutePage ConfirmUkprn()
+        private ChooseProviderRoutePage ConfirmUkprn() => ConfirmOrganisationsDetailsPage().ClickConfirmAndContinue();
+
+        private AlreadyOnRoatpPage ConfirmUkprnForProviderOnRoatp() => ConfirmOrganisationsDetailsPage().ClickConfirmAndContinueForProviderOnRoatp();
+
+        private ConfirmOrganisationsDetailsPage ConfirmOrganisationsDetailsPage()
         {
             return new ServiceStartPage(_context)
                 .ClickApplyNow()
                 .SelectingNoOptionForFirstTimeSignInAndContinue()
                 .SubmitValidUserDetails()
-                .EnterOrgTypeCompanyProvidersUkprn()
-                .ClickConfirmAndContinue();
+                .EnterOrgTypeCompanyProvidersUkprn();
         }
 
         private ApplicationOverviewPage AcceptAndContinue(TermsConditionsMakingApplicationPage page) => page.AcceptAndContinue().VerifyIntroductionStatus(StatusHelper.StatusNext);

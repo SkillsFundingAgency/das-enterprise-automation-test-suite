@@ -30,6 +30,24 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers
 
         private void AddApplyDatahelpers()
         {
+            _applyData.Add("rppj01",
+                new List<KeyValuePair<string, string>>
+                {
+                    new KeyValuePair<string, string>(emailkey, "sudhakar.chinoor+C4@digital.education.gov.uk"),
+                    new KeyValuePair<string, string>(ukprnkey, "10033140"),
+                });
+            _applyData.Add("rppj02",
+                new List<KeyValuePair<string, string>>
+                {
+                    new KeyValuePair<string, string>(emailkey, "sudhakar.chinoor+C7@digital.education.gov.uk"),
+                    new KeyValuePair<string, string>(ukprnkey, "10048867"),
+                });
+            _applyData.Add("rppj03",
+                new List<KeyValuePair<string, string>>
+                {
+                    new KeyValuePair<string, string>(emailkey, "sudhakar.chinoor+C8@digital.education.gov.uk"),
+                    new KeyValuePair<string, string>(ukprnkey, "10064416"),
+                });
             _applyData.Add("rptc01",
                 new List<KeyValuePair<string, string>>
                 {

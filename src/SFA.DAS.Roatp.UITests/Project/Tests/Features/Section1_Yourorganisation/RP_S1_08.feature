@@ -1,8 +1,8 @@
 ﻿Feature: RP_S1_08
 
-
 @rps108
 @roatp
+@roatps1
 @regression
 Scenario: RP_S1_08_Company - Main - Org- ITP - Meeting All Ofstead Requirements
     Given the provider initates an application as main route company

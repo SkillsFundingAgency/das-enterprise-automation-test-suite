@@ -11,7 +11,9 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.Finish_Section9
         private readonly ScenarioContext _context;
         #endregion
 
-        private By ConfirmCheckBox => By.Id("ConfirmSubmitApplication");
+        private By ConfirmSubmitApplication => By.Id("ConfirmSubmitApplication");
+
+        private By ConfirmFurtherInfoSubmitApplication => By.Id("ConfirmFurtherInfoSubmitApplication");
 
         public SubmitApplicationPage(ScenarioContext context) : base(context)
         {
@@ -21,7 +23,8 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.Finish_Section9
 
         public ApplicationSubmittedPage ConfirmAllAnswersAndSubmitApplication()
         {
-            formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(ConfirmCheckBox));
+            formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(ConfirmSubmitApplication));
+            formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(ConfirmFurtherInfoSubmitApplication));
             Continue();
             return new ApplicationSubmittedPage(_context);
         }

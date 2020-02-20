@@ -60,11 +60,11 @@ namespace SFA.DAS.UI.FrameworkHelpers
             return VerifyPage(func);
         }
 
-        public bool VerifyPage(Func<IWebElement> element, string expected)
+        public bool VerifyPage(Func<IWebElement> element, string expected, Action retryAction = null)
         {
             bool func()
             {
-                var actual = GetText(element);
+                var actual = GetText(element, retryAction);
                 if (actual.Contains(expected))
                 {
                     return true;
@@ -211,7 +211,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         public string GetText(By locator) => GetText(() => FindElement(locator));
 
-        public string GetText(Func<IWebElement> element) => _retryHelper.RetryOnWebDriverException<string>(() => element().Text);
+        public string GetText(Func<IWebElement> element, Action retryAction = null) => _retryHelper.RetryOnWebDriverException<string>(() => element().Text, retryAction);
 
         public string GetTextFromPlaceholderAttributeOfAnElement(By by) => FindElement(by).GetAttribute(AttributeHelper.Placeholder);
 
