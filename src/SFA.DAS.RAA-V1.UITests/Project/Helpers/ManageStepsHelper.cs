@@ -47,7 +47,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
 
             new Manage_IndexPage(_context)
                .ClickAgencyButton()
-               .ManageStaffIdams();
+               .LoginToAccess1Staff();
 
             return new SignInPage(_context).SubmitManageLoginDetails();
         }

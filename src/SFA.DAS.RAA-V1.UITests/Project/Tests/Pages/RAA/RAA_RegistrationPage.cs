@@ -8,7 +8,6 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
 {
     public class RAA_RegistrationPage : BasePage
     {
-
         protected override By PageHeader => By.CssSelector(".pageTitle");
 
         protected override string PageTitle => "Registration";
