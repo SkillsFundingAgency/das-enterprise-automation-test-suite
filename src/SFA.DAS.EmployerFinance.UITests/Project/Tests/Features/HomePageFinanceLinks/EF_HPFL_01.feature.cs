@@ -73,14 +73,14 @@ namespace SFA.DAS.EmployerFinance.UITests.Project.Tests.Features.HomePageFinance
         [NUnit.Framework.DescriptionAttribute("EF_HPFL_01 - Validate Home Page Finance section for a NonLevy User who has Signed" +
             " Agreement")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("registration")]
+        [NUnit.Framework.CategoryAttribute("employerfinance")]
         [NUnit.Framework.CategoryAttribute("addpayedetails")]
         public virtual void EF_HPFL_01_ValidateHomePageFinanceSectionForANonLevyUserWhoHasSignedAgreement()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EF_HPFL_01 - Validate Home Page Finance section for a NonLevy User who has Signed" +
                     " Agreement", null, new string[] {
                         "regression",
-                        "registration",
+                        "employerfinance",
                         "addpayedetails"});
 #line 6
 this.ScenarioInitialize(scenarioInfo);

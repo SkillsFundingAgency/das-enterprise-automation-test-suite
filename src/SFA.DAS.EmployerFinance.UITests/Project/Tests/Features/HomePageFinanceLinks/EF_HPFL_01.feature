@@ -1,7 +1,7 @@
 ﻿Feature: EF_HPFL_01
 
 @regression
-@registration
+@employerfinance
 @addpayedetails
 Scenario: EF_HPFL_01 - Validate Home Page Finance section for a NonLevy User who has Signed Agreement
 	When an Employer creates a Non Levy Account and Signs the Agreement
