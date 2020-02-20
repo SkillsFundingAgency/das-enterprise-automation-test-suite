@@ -1,4 +1,5 @@
-﻿using SFA.DAS.EmployerFinance.UITests.Project.Tests.Pages;
+﻿using SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer;
+using SFA.DAS.EmployerFinance.UITests.Project.Tests.Pages;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EmployerFinance.UITests.Project.Tests.StepDefinitions
@@ -9,6 +10,8 @@ namespace SFA.DAS.EmployerFinance.UITests.Project.Tests.StepDefinitions
         private readonly ScenarioContext _context;
         private HomePageFinancesSectionPage _homePageFinancesSectionPage;
         private ReserveFundingToTrainAnApprenticePage _reserveFundingToTrainAnApprenticePage;
+        private YourFundingReservationsHomePage _yourFundingReservationsHomePage;
+        private FinancePage _financePage;
 
         public EmployerFinanceSteps(ScenarioContext context)
         {
@@ -29,31 +32,34 @@ namespace SFA.DAS.EmployerFinance.UITests.Project.Tests.StepDefinitions
         }
 
         [When(@"the Employer clicks on (Check funding availability and make a reservation|Your funding reservations|Your finances) link")]
-        public void WhenTheEmployerClicksOnLink(string link)
+        public void WhenTheEmployerClicksOnLink(string linkText)
         {
-            switch (link)
+            switch (linkText)
             {
                 case "Check funding availability and make a reservation":
-                    _reserveFundingToTrainAnApprenticePage = _homePageFinancesSectionPage.ClickCheckFundingAvailabilityLink(link);
+                    _reserveFundingToTrainAnApprenticePage = _homePageFinancesSectionPage.ClickCheckFundingAvailabilityLink(linkText);
                     break;
                 case "Your funding reservations":
+                    _yourFundingReservationsHomePage = _homePageFinancesSectionPage.ClickOnYourFundingReservationsLink(linkText);
                     break;
                 case "Your finances":
-                        break;
+                    _financePage = _homePageFinancesSectionPage.ClickOnYourFinancesLink(linkText);
+                    break;
             }
         }
 
         [Then(@"'Reserve funding to train' page is displayed")]
         public void ThenPageIsDisplayed() => _reserveFundingToTrainAnApprenticePage.GoToHomePage();
 
-        //[Then(@"'(.*)' page is displayed with '(.*)' message")]
-        //public void ThenPageIsDisplayedWithMessage(string p0, string p1)
-        //{
-        //}
+        [Then(@"'Your funding reservations' page is displayed")]
+        public void ThenYourFundingReservationsPageIsDisplayed() => _yourFundingReservationsHomePage.IsPageDisplayed().GoToHomePage();
 
-        //[Then(@"'(.*)' page is displayed with '(.*)','(.*)' and '(.*)' links")]
-        //public void ThenPageIsDisplayedWithAndLinks(string p0, string p1, string p2, string p3)
-        //{
-        //}
+        [Then(@"'Finance' page is displayed with (View transactions), (Download transactions) and (Transfers) links")]
+        public void ThenFinancePageIsDisplayedWithRespectiveLinks(string viewTransactionsLink, string downloadTransactionsLink, string transfersLink)
+        {
+            _financePage.IsViewTransactionsLinkPresent(viewTransactionsLink)
+                .IsViewTransactionsLinkPresent(downloadTransactionsLink)
+                .IsTransfersLinkPresent(transfersLink);
+        }
     }
 }

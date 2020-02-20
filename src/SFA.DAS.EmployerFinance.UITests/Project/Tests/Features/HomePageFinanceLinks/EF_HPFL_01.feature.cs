@@ -97,6 +97,15 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.When("the Employer clicks on Check funding availability and make a reservation link", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 11
  testRunner.Then("\'Reserve funding to train\' page is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 12
+ testRunner.When("the Employer clicks on Your funding reservations link", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 13
+ testRunner.Then("\'Your funding reservations\' page is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 14
+ testRunner.When("the Employer clicks on Your finances link", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 15
+ testRunner.Then("\'Finance\' page is displayed with View transactions, Download transactions and Tra" +
+                    "nsfers links", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
