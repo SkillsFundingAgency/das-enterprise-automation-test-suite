@@ -86,7 +86,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Features.RoatpApply.TC
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 8
-testRunner.Then("the provider do not accept the Terms and conditions", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the provider do not accept the Terms and conditions", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

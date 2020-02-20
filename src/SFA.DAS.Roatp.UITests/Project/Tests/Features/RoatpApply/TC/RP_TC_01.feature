@@ -5,4 +5,4 @@
 @roatpapply
 @regression
 Scenario: RP_TC_01_Do Not Accept the Terms and Conditions
-Then the provider do not accept the Terms and conditions
+	Then the provider do not accept the Terms and conditions
