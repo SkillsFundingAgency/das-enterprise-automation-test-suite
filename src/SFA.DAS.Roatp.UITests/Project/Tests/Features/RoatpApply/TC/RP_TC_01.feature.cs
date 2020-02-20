@@ -73,12 +73,14 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Features.RoatpApply.TC
         [NUnit.Framework.DescriptionAttribute("RP_TC_01_Do Not Accept the Terms and Conditions")]
         [NUnit.Framework.CategoryAttribute("rptc01")]
         [NUnit.Framework.CategoryAttribute("roatp")]
+        [NUnit.Framework.CategoryAttribute("roatpapply")]
         [NUnit.Framework.CategoryAttribute("regression")]
         public virtual void RP_TC_01_DoNotAcceptTheTermsAndConditions()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_TC_01_Do Not Accept the Terms and Conditions", null, new string[] {
                         "rptc01",
                         "roatp",
+                        "roatpapply",
                         "regression"});
 #line 7
 this.ScenarioInitialize(scenarioInfo);
