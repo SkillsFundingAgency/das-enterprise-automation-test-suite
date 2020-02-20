@@ -51,9 +51,5 @@ namespace SFA.DAS.Roatp.UITests.Project
 
         [BeforeScenario(Order = 34)]
         public void ClearDownAdminData() => _adminClearDownDataHelpers.DeleteTrainingProvider();
-
-        [BeforeScenario(Order = 35)]
-        public void NavigateToRoatpAdmin() => _webDriver.Navigate().GoToUrl(_config.AdminBaseUrl);
-
     }
 }

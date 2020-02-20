@@ -1,18 +1,18 @@
 ﻿using SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpAdmin;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpAdmin
 {
     [Binding]
-    public class NewProviderSteps
+    public class RoatpAdminSteps
     {
         private readonly ScenarioContext _context;
         private RoatpAdminHomePage _roatpAdminHomePage;
 
-        public NewProviderSteps(ScenarioContext context) => _context = context;
+        public RoatpAdminSteps(ScenarioContext context) => _context = context;
+
+        [Then(@"the admin can download list of training providers")]
+        public void ThenTheAdminCanDownloadListOfTrainingProviders() => GoToRoatpAdminHomePage().DownloadRegister();
 
         [Given(@"the admin initates an application as (Main provider|Employer provider|Supporting provider)")]
         public void GivenTheAdminInitatesAnApplication(string providerType) => InitatesAnApplication(providerType);
@@ -28,11 +28,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpAdmin
 
         private void InitatesAnApplication(string providerType)
         {
-            new ServiceStartPage(_context).ClickStartNow().LoginToAccess1Staff();
-
-            _roatpAdminHomePage = new SignInPage(_context).SignInWithValidDetails();
-
-            _roatpAdminHomePage
+            GoToRoatpAdminHomePage()
                 .AddANewTrainingProvider()
                 .EnterUkprn()
                 .ConfirmOrganisationsDetails()
@@ -40,6 +36,13 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpAdmin
                 .SubmitOrganisationType()
                 .EnterDob()
                 .ConfirmOrganisationsDetails();
+        }
+
+        private RoatpAdminHomePage GoToRoatpAdminHomePage()
+        {
+            new ServiceStartPage(_context).ClickStartNow().LoginToAccess1Staff();
+
+            return _roatpAdminHomePage = new SignInPage(_context).SignInWithValidDetails();
         }
     }
 }
