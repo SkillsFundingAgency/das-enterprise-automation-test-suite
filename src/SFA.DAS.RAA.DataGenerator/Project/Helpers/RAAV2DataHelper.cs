@@ -68,7 +68,7 @@ namespace SFA.DAS.RAA.DataGenerator
 
         public string FixedWageYearlyAmount => "10000";
 
-        public string NationalMinimumWage => "£9,048 - £17,076.80";
+        public string NationalMinimumWage => "£9,464 - £18,137.60";
 
         public string NationalMinimumWageForApprentices => "£8,112";
 
@@ -98,7 +98,7 @@ namespace SFA.DAS.RAA.DataGenerator
 
         private List<string> AvailableTraining => new List<string> 
         {
-            "Aerospace Engineer, Level 6 (Degree with honours)",
+            "Aerospace Engineer (degree), Level 6 (Degree with honours)",
             "Agriculture: Agriculture, Level 3 (A level)",
             "Broadcast production assistant, Level 3 (A level)",
             "Construction Building: Maintenance Operations, Level 2 (GCSE)",
