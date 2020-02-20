@@ -16,6 +16,18 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.RoatpAdmin
                    new KeyValuePair<string, string>(providernamekey, "BUSINESS CONTINUITY TRAINING LIMITED"),
                    new KeyValuePair<string, string>(ukprnkey, "10023959"),
             });
+            _adminData.Add("rpadnp02",
+            new List<KeyValuePair<string, string>>
+            {
+                    new KeyValuePair<string, string>(providernamekey, "LOCUS INTERNATIONAL LIMITED"),
+                    new KeyValuePair<string, string>(ukprnkey, "10036913"),
+            });
+            _adminData.Add("rpadnp03",
+            new List<KeyValuePair<string, string>>
+            {
+                    new KeyValuePair<string, string>(providernamekey, ""),
+                    new KeyValuePair<string, string>(ukprnkey, ""),
+            });
         }
     }
 }

@@ -18,9 +18,9 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpAdmin
             _context = context;
         }
 
-        public TypeOrganisationsPage SubmitProviderTypeMain()
+        public TypeOrganisationsPage SubmitProviderType(string providerType)
         {
-            SelectRadioOptionByText("Main provider");
+            SelectRadioOptionByText(providerType);
             Continue();
             return new TypeOrganisationsPage(_context);
         }

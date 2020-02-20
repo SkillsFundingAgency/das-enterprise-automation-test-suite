@@ -13,7 +13,11 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpAdmin
 
         private By OnBoardingStatus => By.XPath("//span[text()='On-boarding']");
 
+        private By ActiveStatus => By.XPath("//span[text()='Active']");
+
         private string MainAndEmployerStatus => "ON-BOARDING";
+
+        private string SupportingStatus => "ACTIVE";
 
         public ResultsFoundPage(ScenarioContext context) : base(context)
         {
@@ -21,6 +25,8 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpAdmin
         }
 
         public bool VerifyMainAndEmployerTypeStatus() => pageInteractionHelper.VerifyText(OnBoardingStatus, MainAndEmployerStatus);
+
+        public bool VerifySupportingProviderTypeStatus() => pageInteractionHelper.VerifyText(ActiveStatus, SupportingStatus);
 
     }
 }

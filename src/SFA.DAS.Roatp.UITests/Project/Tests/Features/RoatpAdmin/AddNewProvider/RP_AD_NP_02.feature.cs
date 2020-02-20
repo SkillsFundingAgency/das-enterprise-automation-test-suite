@@ -18,20 +18,20 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Features.RoatpAdmin.AddNewProvider
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.0.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("RP_AD_NP_01")]
-    public partial class RP_AD_NP_01Feature
+    [NUnit.Framework.DescriptionAttribute("RP_AD_NP_02")]
+    public partial class RP_AD_NP_02Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "RP_AD_NP_01.feature"
+#line 1 "RP_AD_NP_02.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "RP_AD_NP_01", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "RP_AD_NP_02", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -70,15 +70,15 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Features.RoatpAdmin.AddNewProvider
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RP_AD_NP_01_Add A New Training Provider as Main Provider")]
-        [NUnit.Framework.CategoryAttribute("rpadnp01")]
+        [NUnit.Framework.DescriptionAttribute("RP_AD_NP_02_Add A New Training Provider as Employer Provider")]
+        [NUnit.Framework.CategoryAttribute("rpadnp02")]
         [NUnit.Framework.CategoryAttribute("roatp")]
         [NUnit.Framework.CategoryAttribute("roatpadmin")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public virtual void RP_AD_NP_01_AddANewTrainingProviderAsMainProvider()
+        public virtual void RP_AD_NP_02_AddANewTrainingProviderAsEmployerProvider()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_AD_NP_01_Add A New Training Provider as Main Provider", null, new string[] {
-                        "rpadnp01",
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_AD_NP_02_Add A New Training Provider as Employer Provider", null, new string[] {
+                        "rpadnp02",
                         "roatp",
                         "roatpadmin",
                         "regression"});
@@ -86,7 +86,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Features.RoatpAdmin.AddNewProvider
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 8
-testRunner.Given("the admin initates an application as Main provider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+testRunner.Given("the admin initates an application as Employer provider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 9
 testRunner.Then("Organisation is successfully Added to the Register", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 10
