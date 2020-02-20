@@ -32,7 +32,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             return reserveFunding.ClickReserveFundingButton();
         }
 
-        public ApprenticesHomePage GoToAddAnApprentices()
+        public AddAnApprenitcePage GoToAddAnApprentices()
         {
             var addAnApprentices = ContinueToAddAnApprentices();
             return addAnApprentices.ClickNoRadioButtonTakesToAddAnApprentices();

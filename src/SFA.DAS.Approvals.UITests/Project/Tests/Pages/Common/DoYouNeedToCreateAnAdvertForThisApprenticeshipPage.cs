@@ -29,11 +29,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
             VerifyPage();
         }
 
-        public ApprenticesHomePage ClickNoRadioButtonTakesToAddAnApprentices()
+        public AddAnApprenitcePage ClickNoRadioButtonTakesToAddAnApprentices()
         {
             _formCompletionHelper.ClickElement(NoRadioButtonOption);
             Continue();
-            return new ApprenticesHomePage(_context);
+            return new AddAnApprenitcePage(_context);
         }
         public RecruitmentHomePage ClickYesRadioButtonTakesToRecruitment()
         {
