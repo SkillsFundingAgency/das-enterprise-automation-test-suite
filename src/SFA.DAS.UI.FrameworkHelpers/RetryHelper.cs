@@ -135,8 +135,8 @@ namespace SFA.DAS.UI.FrameworkHelpers
         private static TimeSpan[] TimeOut => new[]
         {
             TimeSpan.FromSeconds(1),
-            TimeSpan.FromSeconds(2),
-            TimeSpan.FromSeconds(3)
+            TimeSpan.FromSeconds(3),
+            TimeSpan.FromSeconds(5)
         };
 
         private (Action beforeAction, Action afterAction) ResizeWindow()
