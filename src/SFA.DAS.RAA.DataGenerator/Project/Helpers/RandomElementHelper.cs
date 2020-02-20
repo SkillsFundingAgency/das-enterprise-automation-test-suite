@@ -13,11 +13,6 @@ namespace SFA.DAS.RAA.DataGenerator
             _randomDataGenerator = randomDataGenerator;
         }
 
-        public IWebElement GetRandomElementFromListOfElements(List<IWebElement> elements)
-        {
-            var randomNumber = _randomDataGenerator.GenerateRandomNumberBetweenTwoValues(0, elements.Count - 1);
-
-            return elements[randomNumber];
-        }
+        public IWebElement GetRandomElementFromListOfElements(List<IWebElement> elements) => _randomDataGenerator.GetRandomElementFromListOfElements(elements);
     }
 }
