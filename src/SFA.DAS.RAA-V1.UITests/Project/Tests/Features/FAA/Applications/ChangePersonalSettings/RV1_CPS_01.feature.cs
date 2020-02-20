@@ -99,6 +99,12 @@ this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 3
 this.FeatureBackground();
+#line 12
+ testRunner.Given("the apprenticeship vacancy is Live in Recruit with an application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 13
+ testRunner.Then("the Provider is able to search and select a Candidate", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 14
+ testRunner.And("the reviewer is able to search and select a candidate", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 15
  testRunner.When("the Candidate changes Personal Settings", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 16

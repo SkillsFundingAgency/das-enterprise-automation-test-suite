@@ -57,7 +57,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.Manage
 
         public void VerifyUpdatedCandidateDetails()
         {
-            pageInteractionHelper.VerifyText(CandidateAddress, _faaDataHelper.NewAddress);            
+            pageInteractionHelper.VerifyText(CandidateAddress, _faaDataHelper.NewPostCode);            
         }
     }
 }

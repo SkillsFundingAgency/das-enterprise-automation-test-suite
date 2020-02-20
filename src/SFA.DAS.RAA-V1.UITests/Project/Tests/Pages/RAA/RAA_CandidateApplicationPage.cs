@@ -19,10 +19,10 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
 
         public void VerifyUpdatedCandidateDetails()
         {
+            string changedEmailId = (faaDataHelper.ChangedEmailId).ToLower();
             formCompletionHelper.Click(CandidateSummary);
-            pageInteractionHelper.VerifyText(CandidateDetails, faaDataHelper.NewAddress);
-            pageInteractionHelper.VerifyText(CandidateDetails, faaDataHelper.PhoneNumber);
-            pageInteractionHelper.VerifyText(CandidateDetails, faaDataHelper.ChangedEmailId);
+            pageInteractionHelper.VerifyText(CandidateDetails, faaDataHelper.NewPostCode);
+            pageInteractionHelper.VerifyText(CandidateDetails, changedEmailId);
         }
     }
 }
