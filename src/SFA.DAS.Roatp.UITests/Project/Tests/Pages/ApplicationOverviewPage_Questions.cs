@@ -69,12 +69,10 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
 
         private string Finish => "Finish";
         private string Finish_1 => "Application permissions and checks";
-        private string Finish_2 => "'Commercial in confidence' information";
-        private string Finish_3 => "Terms and conditions";
+        private string Finish_2 => "Quality statement";
+        private string Finish_3 => "Post application tasks";
         private string Finish_4 => "Submit application";
 
         #endregion
-
     }
-
 }

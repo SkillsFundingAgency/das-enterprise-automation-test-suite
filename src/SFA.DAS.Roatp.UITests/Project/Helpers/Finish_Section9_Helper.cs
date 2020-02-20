@@ -16,16 +16,15 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers
 
         internal ApplicationOverviewPage CompleteFinish_2(ApplicationOverviewPage applicationOverviewPage)
         {
-            return applicationOverviewPage.Access_Section9_CommercialInConfidenceInformation()
-                .SelectYesForCommercialInConfidenceInformationAndContinue()
-                .VerifyCommercialInformation_Section9(StatusHelper.StatusCompleted);
+            return applicationOverviewPage.Access_Section9_QualityStatement()
+                .SelectYesForInLineWithInstituteForApprenticeshipAndContinue()
+                .VerifyQualityStatement_Section9(StatusHelper.StatusCompleted);
         }
 
         internal ApplicationOverviewPage CompleteFinish_3(ApplicationOverviewPage applicationOverviewPage)
         {
-            return applicationOverviewPage.Access_Section9_TermsAndConditions()
-                .SelectYesAgreeTermsAndContionsOfSubmittingAnApplicataionAndContinue()
-                .SelectYesAgreeTermsAndContionsOfJoiingRoatpAndContinue()
+            return applicationOverviewPage.Access_Section9_PostApplicationTasks()
+                .SelectYesToCompletesAllPostApplicationTasksAndContinue()
                 .VerifyTermsAndConditions_Section9(StatusHelper.StatusCompleted);
         }
 

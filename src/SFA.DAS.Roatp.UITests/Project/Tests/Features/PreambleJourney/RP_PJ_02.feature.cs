@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.Roatp.UITests.Project.Tests.Features.E2EJourney
+namespace SFA.DAS.Roatp.UITests.Project.Tests.Features.PreambleJourney
 {
     using TechTalk.SpecFlow;
     
@@ -18,20 +18,20 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Features.E2EJourney
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.0.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("RP_E2E_01")]
-    public partial class RP_E2E_01Feature
+    [NUnit.Framework.DescriptionAttribute("RP_PJ_02")]
+    public partial class RP_PJ_02Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "RP_E2E_01.feature"
+#line 1 "RP_PJ_02.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "RP_E2E_01", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "RP_PJ_02", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -70,41 +70,23 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Features.E2EJourney
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RP_E2E_01_MainRoute-Company")]
-        [NUnit.Framework.CategoryAttribute("rpe2e01")]
+        [NUnit.Framework.DescriptionAttribute("RP_PJ_02_Company without Directors or PSC\'s - Route as Main")]
+        [NUnit.Framework.CategoryAttribute("rppj02")]
         [NUnit.Framework.CategoryAttribute("roatp")]
-        [NUnit.Framework.CategoryAttribute("roatpe2e")]
+        [NUnit.Framework.CategoryAttribute("roatppj")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public virtual void RP_E2E_01_MainRoute_Company()
+        public virtual void RP_PJ_02_CompanyWithoutDirectorsOrPSCs_RouteAsMain()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_E2E_01_MainRoute-Company", null, new string[] {
-                        "rpe2e01",
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_PJ_02_Company without Directors or PSC\'s - Route as Main", null, new string[] {
+                        "rppj02",
                         "roatp",
-                        "roatpe2e",
+                        "roatppj",
                         "regression"});
 #line 7
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 8
  testRunner.Given("the provider initates an application as main route company", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 9
- testRunner.When("the provider completes Your organisation section", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 10
- testRunner.And("the provider completes Financial evidence section", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 11
- testRunner.And("the provider completes Criminal and Compliance section", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 12
- testRunner.And("the provider completes Protecting your apprentices section", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 13
- testRunner.And("the provider completes Readiness to engage section", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 14
- testRunner.And("the provider completes Planning apprenticeship training section", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 15
- testRunner.And("the provider completes Delivering apprenticeship training section for main route", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 16
- testRunner.And("the provider completes Evaluating apprenticeship training section", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 17
- testRunner.Then("the provider completes Finish section", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

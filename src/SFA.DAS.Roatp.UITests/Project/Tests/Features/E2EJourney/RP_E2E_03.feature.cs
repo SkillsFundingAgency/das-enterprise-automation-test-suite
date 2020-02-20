@@ -73,39 +73,41 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Features.E2EJourney
         [NUnit.Framework.DescriptionAttribute("RP_E2E_03_SupportingRoute-Soletrader")]
         [NUnit.Framework.CategoryAttribute("rpe2e03")]
         [NUnit.Framework.CategoryAttribute("roatp")]
+        [NUnit.Framework.CategoryAttribute("roatpe2e")]
         [NUnit.Framework.CategoryAttribute("regression")]
         public virtual void RP_E2E_03_SupportingRoute_Soletrader()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_E2E_03_SupportingRoute-Soletrader", null, new string[] {
                         "rpe2e03",
                         "roatp",
+                        "roatpe2e",
                         "regression"});
-#line 7
+#line 8
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 8
- testRunner.Given("the provider initates an application as supporting route soletrader", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 9
- testRunner.When("the provider completes Your organisation section for supporting route", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.Given("the provider initates an application as supporting route soletrader", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 10
- testRunner.And("the provider completes Financial Evidence section for supporting route", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.When("the provider completes Your organisation section for supporting route", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 11
- testRunner.And("the provider completes Criminal and Compliance section", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("the provider completes Financial Evidence section for supporting route", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 12
- testRunner.And("the provider completes Protecting your apprentices section for supporting route", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("the provider completes Criminal and Compliance section", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 13
- testRunner.And("the provider does not require to complete Readiness to engage section", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("the provider completes Protecting your apprentices section for supporting route", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 14
+ testRunner.And("the provider does not require to complete Readiness to engage section", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 15
  testRunner.And("the provider completes Planning apprenticeship training section for supporting ro" +
                     "ute", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 15
+#line 16
  testRunner.And("the provider completes Delivering apprenticeship training section for supporting " +
                     "route", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 16
+#line 17
  testRunner.And("the provider completes Evaluating apprenticeship training section for supporting " +
                     "route", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 17
- testRunner.Then("the provider completes Finish section", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 18
+ testRunner.Then("the provider completes Finish section for supporting route", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

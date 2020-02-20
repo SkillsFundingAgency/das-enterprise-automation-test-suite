@@ -2,6 +2,7 @@
 
 @rps103
 @roatp
+@roatps1
 @regression
 Scenario: RP_S1_03_SoleTraderOrNonlimitedPartnership - Supporting - Org- A Group Training Association
 	Given the provider initates an application as supporting route soletrader

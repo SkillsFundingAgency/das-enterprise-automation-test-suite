@@ -44,7 +44,8 @@ namespace SFA.DAS.Roatp.UITests.Project
         [BeforeScenario(Order = 33)]
         public void ClearDownDataHelpers()
         {
-            var tag = _context.ScenarioInfo.Tags.ToList().First(x => x.StartsWith("rp"));
+            // every scenario should only have one tag which starts with rp, which is mapped to the test data.
+            var tag = _context.ScenarioInfo.Tags.ToList().Single(x => x.StartsWith("rp"));
             var (email, ukprn) = _applyUkprnDataHelpers.GetApplyData(tag);
 
             _objectContext.SetEmail(email);
