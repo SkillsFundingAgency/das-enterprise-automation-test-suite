@@ -19,6 +19,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpAdmin
         public RoatpAdminBasePage(ScenarioContext context) : base(context)
         {
             admindataHelpers = context.Get<RoatpAdminDataHelpers>();
+            VerifyPage();
         }
     }
 }

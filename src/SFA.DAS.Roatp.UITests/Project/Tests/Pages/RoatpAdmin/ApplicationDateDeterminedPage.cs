@@ -13,7 +13,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpAdmin
 
         protected override By ContinueButton => By.CssSelector(".govuk-button[value='Continue']");
 
-        private By Day => By.CssSelector("'#Day");
+        private By Day => By.CssSelector("#Day");
 
         private By Month => By.CssSelector("#Month");
 

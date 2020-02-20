@@ -1,10 +1,6 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.ConfigurationBuilder;
-using SFA.DAS.Roatp.UITests.Project.Helpers;
 using SFA.DAS.Roatp.UITests.Project.Helpers.RoatpApply;
 using SFA.DAS.UI.Framework;
-using SFA.DAS.UI.Framework.TestSupport;
-using SFA.DAS.UI.FrameworkHelpers;
 using System;
 using System.Linq;
 using TechTalk.SpecFlow;
@@ -17,6 +13,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
         private readonly ScenarioContext _context;
         private readonly FrameworkConfig _frameworkConfig;
         protected readonly RoatpApplyDataHelpers applydataHelpers;
+        protected readonly RoatpApplyUkprnDataHelpers roatpUkprnDataHelpers;
         #endregion
 
         private By ChooseFile => By.ClassName("govuk-file-upload");
@@ -34,6 +31,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
             _context = context;
             _frameworkConfig = context.Get<FrameworkConfig>();
             applydataHelpers = context.Get<RoatpApplyDataHelpers>();
+            roatpUkprnDataHelpers = context.Get<RoatpApplyUkprnDataHelpers>();
         }
 
         protected void UploadFile()

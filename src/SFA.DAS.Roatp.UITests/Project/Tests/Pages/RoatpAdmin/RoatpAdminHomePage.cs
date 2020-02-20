@@ -28,7 +28,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpAdmin
             return new OrganisationUkprnPage(_context);
         }
 
-        public bool VerifyNewProviderHasBeenAdded() => pageInteractionHelper.VerifyText(Confirmation, "has been added");
+        public bool VerifyNewProviderHasBeenAdded() => pageInteractionHelper.VerifyText(Confirmation, $"{objectContext.GetProviderName()} has been added");
 
         public ResultsFoundPage SearchTrainingProvider()
         {

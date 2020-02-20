@@ -9,7 +9,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpAdmin
 {
     public class ServiceStartPage : RoatpAdminBasePage
     {
-        protected override string PageTitle => "Register of apprenticeship training providers";
+        protected override string PageTitle => "ESFA admin services";
 
         #region Helpers and Context
         private readonly ScenarioContext _context;

@@ -5,7 +5,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpAdmin
 {
     public class ProviderRoutePage : RoatpAdminBasePage
     {
-        protected override string PageTitle => "Choose a provider route for";
+        protected override string PageTitle => $"Choose a provider route for {objectContext.GetProviderName()}";
 
         #region Helpers and Context
         private readonly ScenarioContext _context;

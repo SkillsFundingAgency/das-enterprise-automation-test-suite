@@ -35,7 +35,7 @@ namespace SFA.DAS.Roatp.UITests.Project
             _adminUkprnDataHelpers = new RoatpAdminUkprnDataHelpers();
             _context.Set(_adminUkprnDataHelpers);
 
-            _context.Set(new RoatpAdminDataHelpers());
+            _context.Set(new RoatpAdminDataHelpers(_context.Get<RandomDataGenerator>()));
         }
 
         [BeforeScenario(Order = 33)]
