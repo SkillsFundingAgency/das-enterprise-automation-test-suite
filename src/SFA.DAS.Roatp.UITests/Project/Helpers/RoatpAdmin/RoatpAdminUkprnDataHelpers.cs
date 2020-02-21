@@ -10,30 +10,36 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.RoatpAdmin
 
         private void AddAdminDatahelpers()
         {
+            _adminData.Add("rpadsp02",
+               new List<KeyValuePair<string, string>>
+               {
+                   new KeyValuePair<string, string>(providernamekey, "BARNARDO'S"),
+                   new KeyValuePair<string, string>(ukprnkey, "10000532"),
+               });
             _adminData.Add("rpadsp01",
-            new List<KeyValuePair<string, string>>
-            {
+               new List<KeyValuePair<string, string>>
+               {
                    new KeyValuePair<string, string>(providernamekey, "360 GSP COLLEGE LIMITED"),
                    new KeyValuePair<string, string>(ukprnkey, ""),
-            });
+               });
             _adminData.Add("rpadnp01",
-            new List<KeyValuePair<string, string>>
-            {
+               new List<KeyValuePair<string, string>>
+               {
                    new KeyValuePair<string, string>(providernamekey, "BUSINESS CONTINUITY TRAINING LIMITED"),
                    new KeyValuePair<string, string>(ukprnkey, "10023959"),
-            });
+               });
             _adminData.Add("rpadnp02",
-            new List<KeyValuePair<string, string>>
-            {
+               new List<KeyValuePair<string, string>>
+               {
                     new KeyValuePair<string, string>(providernamekey, "LOCUS INTERNATIONAL LIMITED"),
                     new KeyValuePair<string, string>(ukprnkey, "10036913"),
-            });
+               });
             _adminData.Add("rpadnp03",
-            new List<KeyValuePair<string, string>>
-            {
+               new List<KeyValuePair<string, string>>
+               {
                     new KeyValuePair<string, string>(providernamekey, "OLMEC"),
                     new KeyValuePair<string, string>(ukprnkey, "10033872"),
-            });
+               });
         }
     }
 }

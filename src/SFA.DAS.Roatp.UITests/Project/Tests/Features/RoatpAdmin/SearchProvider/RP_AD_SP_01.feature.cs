@@ -70,14 +70,14 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Features.RoatpAdmin.SearchProvider
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RP_AD_SP_01_Verify Search and check Update links")]
+        [NUnit.Framework.DescriptionAttribute("RP_AD_SP_01_Verify Update links")]
         [NUnit.Framework.CategoryAttribute("rpadsp01")]
         [NUnit.Framework.CategoryAttribute("roatp")]
         [NUnit.Framework.CategoryAttribute("roatpadmin")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public virtual void RP_AD_SP_01_VerifySearchAndCheckUpdateLinks()
+        public virtual void RP_AD_SP_01_VerifyUpdateLinks()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_AD_SP_01_Verify Search and check Update links", null, new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_AD_SP_01_Verify Update links", null, new string[] {
                         "rpadsp01",
                         "roatp",
                         "roatpadmin",
@@ -86,11 +86,9 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Features.RoatpAdmin.SearchProvider
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 8
-testRunner.When("the admin searches for a provider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+testRunner.When("the admin searches for a provider by provider name", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 9
-testRunner.Then("the admin should be taken to the provider name result page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 10
-testRunner.And("the admin can acess all the Update links", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.Then("the admin can acess all the Update links", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

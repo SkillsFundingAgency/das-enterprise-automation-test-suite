@@ -74,6 +74,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Features.RoatpAdmin.AddNewProvider
         [NUnit.Framework.CategoryAttribute("rpadnp02")]
         [NUnit.Framework.CategoryAttribute("roatp")]
         [NUnit.Framework.CategoryAttribute("roatpadmin")]
+        [NUnit.Framework.CategoryAttribute("deletetrainingprovider")]
         [NUnit.Framework.CategoryAttribute("regression")]
         public virtual void RP_AD_NP_02_AddANewTrainingProviderAsEmployerProvider()
         {
@@ -81,15 +82,16 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Features.RoatpAdmin.AddNewProvider
                         "rpadnp02",
                         "roatp",
                         "roatpadmin",
+                        "deletetrainingprovider",
                         "regression"});
-#line 7
+#line 8
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 8
- testRunner.Given("the admin initates an application as Employer provider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 9
- testRunner.Then("Organisation is successfully Added to the Register", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Given("the admin initates an application as Employer provider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 10
+ testRunner.Then("Organisation is successfully Added to the Register", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 11
  testRunner.And("the provider status should be set to On-Boarding", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();

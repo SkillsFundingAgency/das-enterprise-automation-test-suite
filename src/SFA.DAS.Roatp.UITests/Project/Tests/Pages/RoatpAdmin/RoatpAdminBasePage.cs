@@ -21,5 +21,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpAdmin
             admindataHelpers = context.Get<RoatpAdminDataHelpers>();
             VerifyPage();
         }
+
+        protected void Back() => formCompletionHelper.ClickLinkByText("Back");
     }
 }

@@ -12,7 +12,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpAdmin
 
         public ResultsFoundPage ClickBackLink()
         {
-            formCompletionHelper.ClickLinkByText("Back");
+            Back();
             return new ResultsFoundPage(_context);
         }
     }

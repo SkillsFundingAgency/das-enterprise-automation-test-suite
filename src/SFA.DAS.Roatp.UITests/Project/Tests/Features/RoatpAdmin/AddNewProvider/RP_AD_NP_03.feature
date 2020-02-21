@@ -3,6 +3,7 @@
 @rpadnp03
 @roatp
 @roatpadmin
+@deletetrainingprovider
 @regression
 Scenario: RP_AD_NP_03_Add A New Training Provider as Supporting Provider
 	Given the admin initates an application as Supporting provider

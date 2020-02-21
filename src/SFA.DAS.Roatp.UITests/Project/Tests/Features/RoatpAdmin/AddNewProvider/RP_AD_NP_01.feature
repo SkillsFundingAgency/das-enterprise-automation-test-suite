@@ -3,6 +3,7 @@
 @rpadnp01
 @roatp
 @roatpadmin
+@deletetrainingprovider
 @regression
 Scenario: RP_AD_NP_01_Add A New Training Provider as Main Provider
 	Given the admin initates an application as Main provider
