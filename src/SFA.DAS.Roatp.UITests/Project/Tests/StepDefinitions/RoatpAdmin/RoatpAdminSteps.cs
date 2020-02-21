@@ -8,8 +8,28 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpAdmin
     {
         private readonly ScenarioContext _context;
         private RoatpAdminHomePage _roatpAdminHomePage;
+        private ResultsFoundPage _resultsFoundPage;
 
         public RoatpAdminSteps(ScenarioContext context) => _context = context;
+
+        [When(@"the admin searches for a provider")]
+        public void WhenTheAdminSearchesForAProvider() => _resultsFoundPage = GoToRoatpAdminHomePage().SearchTrainingProvider();
+
+        [Then(@"the admin should be taken to the provider name result page")]
+        public void ThenTheAdminShouldBeTakenToTheProviderNameResultPage() => _resultsFoundPage.VerifySearchResultByProviderName();
+
+        [Then(@"the admin can acess all the Update links")]
+        public void ThenTheAdminCanAcessAllTheUpdateLinks()
+        {
+            _resultsFoundPage = _resultsFoundPage.ClickChangeLegalNameLink()
+            .ClickBackLink()
+            .ClickChangeUkprnLink()
+            .ClickBackLink()
+            .ClickChangeStatusLink()
+            .ClickBackLink()
+            .ClickChangeProviderTypeLink()
+            .ClickBackLink();
+        }
 
         [Then(@"the admin can download list of training providers")]
         public void ThenTheAdminCanDownloadListOfTrainingProviders() => GoToRoatpAdminHomePage().DownloadRegister();

@@ -10,6 +10,12 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.RoatpAdmin
 
         private void AddAdminDatahelpers()
         {
+            _adminData.Add("rpadsp01",
+            new List<KeyValuePair<string, string>>
+            {
+                   new KeyValuePair<string, string>(providernamekey, "360 GSP COLLEGE LIMITED"),
+                   new KeyValuePair<string, string>(ukprnkey, ""),
+            });
             _adminData.Add("rpadnp01",
             new List<KeyValuePair<string, string>>
             {

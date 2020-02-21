@@ -19,10 +19,33 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpAdmin
 
         private string SupportingStatus => "ACTIVE";
 
-        public ResultsFoundPage(ScenarioContext context) : base(context)
+        public ResultsFoundPage(ScenarioContext context) : base(context) => _context = context;
+
+        public ChangeLegalNamePage ClickChangeLegalNameLink()
         {
-            _context = context;
+            formCompletionHelper.ClickElement(() => pageInteractionHelper.GetLinkByHref("change-legal-name"));
+            return new ChangeLegalNamePage(_context);
         }
+
+        public ChangeUkprnPage ClickChangeUkprnLink()
+        {
+            formCompletionHelper.ClickElement(() => pageInteractionHelper.GetLinkByHref("change-ukprn"));
+            return new ChangeUkprnPage(_context);
+        }
+
+        public ChangeStatusPage ClickChangeStatusLink()
+        {
+            formCompletionHelper.ClickElement(() => pageInteractionHelper.GetLinkByHref("change-status"));
+            return new ChangeStatusPage(_context);
+        }
+
+        public ChangeProviderTypePage ClickChangeProviderTypeLink()
+        {
+            formCompletionHelper.ClickElement(() => pageInteractionHelper.GetLinkByHref("change-provider-type"));
+            return new ChangeProviderTypePage(_context);
+        }
+
+        public void VerifySearchResultByProviderName() => pageInteractionHelper.VerifyText(PageHeader, $"1 result found for '{objectContext.GetProviderName()}'");
 
         public bool VerifyMainAndEmployerTypeStatus() => pageInteractionHelper.VerifyText(OnBoardingStatus, MainAndEmployerStatus);
 
