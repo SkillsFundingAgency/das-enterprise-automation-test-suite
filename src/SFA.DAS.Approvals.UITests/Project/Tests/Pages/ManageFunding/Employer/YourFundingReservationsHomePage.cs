@@ -21,10 +21,5 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
             formCompletionHelper.ClickElement(YourFundingReservationsLink);
             return new YourFundingReservationsPage(_context);
         }
-
-        public YourFundingReservationsHomePage IsPageDisplayed()
-        {
-            return this;
-        }
     }
 }

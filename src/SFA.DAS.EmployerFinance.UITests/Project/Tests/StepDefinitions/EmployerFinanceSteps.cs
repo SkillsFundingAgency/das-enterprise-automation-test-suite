@@ -1,5 +1,4 @@
-﻿using SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer;
-using SFA.DAS.EmployerFinance.UITests.Project.Tests.Pages;
+﻿using SFA.DAS.EmployerFinance.UITests.Project.Tests.Pages;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EmployerFinance.UITests.Project.Tests.StepDefinitions
@@ -9,8 +8,6 @@ namespace SFA.DAS.EmployerFinance.UITests.Project.Tests.StepDefinitions
     {
         private readonly ScenarioContext _context;
         private HomePageFinancesSectionPage _homePageFinancesSectionPage;
-        private ReserveFundingToTrainAnApprenticePage _reserveFundingToTrainAnApprenticePage;
-        private YourFundingReservationsHomePage _yourFundingReservationsHomePage;
         private FinancePage _financePage;
 
         public EmployerFinanceSteps(ScenarioContext context)
@@ -31,16 +28,18 @@ namespace SFA.DAS.EmployerFinance.UITests.Project.Tests.StepDefinitions
             _homePageFinancesSectionPage = _homePageFinancesSectionPage.VerifyYourFinancesSectionLinks(linkText1, linkText2);
         }
 
-        [When(@"the Employer clicks on (Check funding availability and make a reservation|Your funding reservations|Your finances) link")]
-        public void WhenTheEmployerClicksOnLink(string linkText)
+        [Then(@"Employer is able to navigate the (Check the funding availability and make a reservation) link on the Home Page")]
+        [Then(@"Employer is able to navigate the (Your funding reservations) link from 'Finances' section on the Home Page")]
+        [When(@"Employer navigates the (Your finances) link from 'Finances' section on the Home Page")]
+        public void ThenEmployerIsAbleToNavigateTheCheckTheFundingAvailabilityAndMakeAReservationLinkOnTheHomePage(string linkText)
         {
             switch (linkText)
             {
                 case "Check funding availability and make a reservation":
-                    _reserveFundingToTrainAnApprenticePage = _homePageFinancesSectionPage.ClickCheckFundingAvailabilityLink(linkText);
+                    _homePageFinancesSectionPage.ClickCheckFundingAvailabilityLink(linkText).GoToHomePage();
                     break;
                 case "Your funding reservations":
-                    _yourFundingReservationsHomePage = _homePageFinancesSectionPage.ClickOnYourFundingReservationsLink(linkText);
+                    _homePageFinancesSectionPage.ClickOnYourFundingReservationsLink(linkText).GoToHomePage();
                     break;
                 case "Your finances":
                     _financePage = _homePageFinancesSectionPage.ClickOnYourFinancesLink(linkText);
@@ -48,17 +47,11 @@ namespace SFA.DAS.EmployerFinance.UITests.Project.Tests.StepDefinitions
             }
         }
 
-        [Then(@"'Reserve funding to train' page is displayed")]
-        public void ThenPageIsDisplayed() => _reserveFundingToTrainAnApprenticePage.GoToHomePage();
-
-        [Then(@"'Your funding reservations' page is displayed")]
-        public void ThenYourFundingReservationsPageIsDisplayed() => _yourFundingReservationsHomePage.IsPageDisplayed().GoToHomePage();
-
         [Then(@"'Finance' page is displayed with (View transactions), (Download transactions) and (Transfers) links")]
         public void ThenFinancePageIsDisplayedWithRespectiveLinks(string viewTransactionsLink, string downloadTransactionsLink, string transfersLink)
         {
             _financePage.IsViewTransactionsLinkPresent(viewTransactionsLink)
-                .IsViewTransactionsLinkPresent(downloadTransactionsLink)
+                .IsDownloadTransactionsLinkPresent(downloadTransactionsLink)
                 .IsTransfersLinkPresent(transfersLink);
         }
     }

@@ -94,16 +94,15 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("Your funding reservations and Your finances links are displayed in the Finances s" +
                     "ection", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 10
- testRunner.When("the Employer clicks on Check funding availability and make a reservation link", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.And("Employer is able to navigate the Check the funding availability and make a reserv" +
+                    "ation link on the Home Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 11
- testRunner.Then("\'Reserve funding to train\' page is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("Employer is able to navigate the Your funding reservations link from \'Finances\' s" +
+                    "ection on the Home Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 12
- testRunner.When("the Employer clicks on Your funding reservations link", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("Employer navigates the Your finances link from \'Finances\' section on the Home Pag" +
+                    "e", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 13
- testRunner.Then("\'Your funding reservations\' page is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 14
- testRunner.When("the Employer clicks on Your finances link", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 15
  testRunner.Then("\'Finance\' page is displayed with View transactions, Download transactions and Tra" +
                     "nsfers links", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden

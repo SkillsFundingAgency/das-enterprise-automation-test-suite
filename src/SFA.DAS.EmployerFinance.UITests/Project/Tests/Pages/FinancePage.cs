@@ -17,19 +17,19 @@ namespace SFA.DAS.EmployerFinance.UITests.Project.Tests.Pages
 
         public FinancePage IsViewTransactionsLinkPresent(string viewTransactionsLinkText)
         {
-            pageInteractionHelper.IsElementDisplayed(ViewTransactionsLink(viewTransactionsLinkText));
+            VerifyPage(ViewTransactionsLink(viewTransactionsLinkText));
             return this;
         }
 
         public FinancePage IsDownloadTransactionsLinkPresent(string downloadTransactionsLinkText)
         {
-            pageInteractionHelper.IsElementDisplayed(DownloadTransactionsLink(downloadTransactionsLinkText));
+            VerifyPage(DownloadTransactionsLink(downloadTransactionsLinkText));
             return this;
         }
 
         public FinancePage IsTransfersLinkPresent(string transfersLinkText)
         {
-            pageInteractionHelper.IsElementDisplayed(TransfersLink(transfersLinkText));
+            VerifyPage(TransfersLink(transfersLinkText));
             return this;
         }
     }

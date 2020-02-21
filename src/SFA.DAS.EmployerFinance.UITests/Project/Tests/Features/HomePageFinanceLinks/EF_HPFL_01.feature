@@ -7,9 +7,7 @@ Scenario: EF_HPFL_01 - Validate Home Page Finance section for a NonLevy User who
 	When an Employer creates a Non Levy Account and Signs the Agreement
 	Then Check funding availability and make a reservation link is displayed on the Employer Home Page
 	And  Your funding reservations and Your finances links are displayed in the Finances section
-	When the Employer clicks on Check funding availability and make a reservation link
-	Then 'Reserve funding to train' page is displayed
-	When the Employer clicks on Your funding reservations link
-	Then 'Your funding reservations' page is displayed
-	When the Employer clicks on Your finances link
+	And Employer is able to navigate the Check the funding availability and make a reservation link on the Home Page
+	And Employer is able to navigate the Your funding reservations link from 'Finances' section on the Home Page
+	When Employer navigates the Your finances link from 'Finances' section on the Home Page
 	Then 'Finance' page is displayed with View transactions, Download transactions and Transfers links
