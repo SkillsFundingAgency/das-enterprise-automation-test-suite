@@ -29,7 +29,7 @@ namespace SFA.DAS.MongoDb.DataGenerator
             objectContext.Update(DataHelperKey, dataHelper);
         }
 
-        public static void SetGatewayCreds(this ObjectContext objectContext, string gatewayid,string gatewaypassword, string paye)
+        public static void SetGatewayCreds(this ObjectContext objectContext, string gatewayid, string gatewaypassword, string paye)
         {
             objectContext.Replace(GatewayIdKey, gatewayid);
             objectContext.Replace(GatewayPasswordKey, gatewaypassword);
