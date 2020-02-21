@@ -141,8 +141,11 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             return new HomePage(_context, true);
         }
 
+        [When(@"an Employer creates a Non Levy Account and Signs the Agreement")]
+        public void GivenAnEmployerCreatesANonLevyAccountAndSignsTheAgreement() => GivenAnEmployerAccountWithSpecifiedTypeOrgIsCreated(OrgType.Company);
+
         [When(@"an Employer Account with (Company|PublicSector|Charity) Type Org is created")]
-        public void GivenAnEmployerAccountWithCompanyTypeOrgIsCreated(OrgType orgType)
+        public void GivenAnEmployerAccountWithSpecifiedTypeOrgIsCreated(OrgType orgType)
         {
             AnUserAccountIsCreated();
             AddPayeDetails();
