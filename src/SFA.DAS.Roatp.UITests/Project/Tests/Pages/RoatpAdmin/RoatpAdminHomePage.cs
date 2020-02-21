@@ -28,6 +28,12 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpAdmin
             return new OrganisationUkprnPage(_context);
         }
 
+        public RoatpAdminHomePage DownloadRegister()
+        {
+            formCompletionHelper.ClickLinkByText("Download list of training providers");
+            return new RoatpAdminHomePage(_context);
+        }
+
         public bool VerifyNewProviderHasBeenAdded() => pageInteractionHelper.VerifyText(Confirmation, $"{objectContext.GetProviderName()} has been added");
 
         public ResultsFoundPage SearchTrainingProvider()
