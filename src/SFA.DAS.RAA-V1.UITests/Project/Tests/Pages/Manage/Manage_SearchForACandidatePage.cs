@@ -15,6 +15,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.Manage
         private readonly ScenarioContext _context;
         private readonly ObjectContext _objectcontext;
         #endregion
+
         private By FirstName => By.Id("SearchViewModel_FirstName");
 
         private By LastName => By.Id("SearchViewModel_LastName");
