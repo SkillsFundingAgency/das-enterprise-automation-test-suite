@@ -20,7 +20,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
         private readonly VacancyTitleDatahelper _dataHelper;
         private readonly FormCompletionHelper _formCompletionHelper;
         private readonly PageInteractionHelper _pageInteractionHelper;
-        private readonly RAAV1DataHelper _raaV1dataHelper;
+        private readonly FAADataHelper _faadataHelper;
         #endregion
 
         private By ApplyButton => By.Id("apply-button");
@@ -40,9 +40,9 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
             _context = context;
             _objectContext = context.Get<ObjectContext>();
             _dataHelper = context.Get<VacancyTitleDatahelper>();
-            _raaV1dataHelper = context.Get<RAAV1DataHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
+            _faadataHelper = context.Get<FAADataHelper>();
             VerifyPage();
             if (!_objectContext.IsRAAV1()) { VerifyEmployerDetails(); }
         }
@@ -68,10 +68,11 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 
         public void VerifyNewDates()
         {
-            DateTime Date = _raaV1dataHelper.NewVacancyClosing;
+
+            DateTime Date = _faadataHelper.NewVacancyClosing;
             string actualClosingDate = Date.ToString("dd MMM yyyy");
 
-            DateTime PossibleStartDate = _raaV1dataHelper.NewVacancyStart;
+            DateTime PossibleStartDate = _faadataHelper.NewVacancyStart;
             string actualStartDate = PossibleStartDate.ToString("dd MMM yyyy");
 
             _pageInteractionHelper.VerifyText(ClosingDate, "Closing date: " + actualClosingDate + "");
