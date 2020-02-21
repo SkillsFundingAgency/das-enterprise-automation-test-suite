@@ -3,6 +3,7 @@
 @rpadnp02
 @roatp
 @roatpadmin
+@deletetrainingprovider
 @regression
 Scenario: RP_AD_NP_02_Add A New Training Provider as Employer Provider
 	Given the admin initates an application as Employer provider
