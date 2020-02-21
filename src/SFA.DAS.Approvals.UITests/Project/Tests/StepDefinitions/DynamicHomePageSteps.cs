@@ -17,7 +17,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             _context = context;
             _reservationStepsHelper = new MFEmployerStepsHelper(context);
-            _dynamicHomePage = new DynamicHomePage(context);
         }
 
         [When(@"the Employer reserves funding for an apprenticeship course from reserved panel")]
@@ -31,6 +30,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         public void ThenTheNewReservedFundingPanelIsShownToEmployerOnTheHomepage()
         {
             _reservationStepsHelper.GoToDynamicHomePage();
+            _dynamicHomePage = new DynamicHomePage(_context);
             _dynamicHomePage.VerifyReserveFundingPanel();
         }
         [Then(@"the employer continue to add an apprentices for reserved funding")]

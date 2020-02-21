@@ -18,7 +18,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
         protected override string PageTitle => "Do you need to create an advert for this apprenticeship?";
         protected override By PageHeader => By.Id("heading-continue-setup-create-advert");
         protected override By ContinueButton => By.Id("accept");
-        private By YesRadioButtonOption => By.Id("choice1-yes");
         private By NoRadioButtonOption => By.Id("choice2-no");
         #endregion
 
@@ -34,12 +33,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
             _formCompletionHelper.ClickElement(NoRadioButtonOption);
             Continue();
             return new AddAnApprenitcePage(_context);
-        }
-        public RecruitmentHomePage ClickYesRadioButtonTakesToRecruitment()
-        {
-            _formCompletionHelper.ClickElement(YesRadioButtonOption);
-            Continue();
-            return new RecruitmentHomePage(_context);
         }
     }
 }
