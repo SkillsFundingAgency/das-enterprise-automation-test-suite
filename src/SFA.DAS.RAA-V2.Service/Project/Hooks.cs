@@ -23,13 +23,9 @@ namespace SFA.DAS.RAA_V2.Service.Project
         {
             var random = _context.Get<RandomDataGenerator>();
 
-            var regexhelper = _context.Get<RegexHelper>();
-
             var vacancyTitleDatahelper = _context.Get<VacancyTitleDatahelper>();
 
-            _context.Set(new RAAV2DataHelper(random, vacancyTitleDatahelper)); 
-            
-            _context.Set(new RAAV1DataHelper(random, regexhelper));
+            _context.Set(new RAAV2DataHelper(random, vacancyTitleDatahelper));             
 
             _objectContext.SetApprenticeshipVacancyType();
         }
