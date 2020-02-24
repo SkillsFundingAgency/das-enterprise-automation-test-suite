@@ -19,8 +19,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
         private readonly ObjectContext _objectContext;
         private readonly VacancyTitleDatahelper _dataHelper;
         private readonly FormCompletionHelper _formCompletionHelper;
-        private readonly PageInteractionHelper _pageInteractionHelper;
-        
+        private readonly PageInteractionHelper _pageInteractionHelper;        
         private readonly RegexHelper _regexHelper;
         private readonly FAADataHelper _faaDataHelper;
         #endregion
@@ -74,10 +73,10 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
         public void VerifyNewDates()
         {
 
-            DateTime Date = _faadataHelper.NewVacancyClosing;
+            DateTime Date = _faaDataHelper.NewVacancyClosing;
             string actualClosingDate = Date.ToString("dd MMM yyyy");
 
-            DateTime PossibleStartDate = _faadataHelper.NewVacancyStart;
+            DateTime PossibleStartDate = _faaDataHelper.NewVacancyStart;
             string actualStartDate = PossibleStartDate.ToString("dd MMM yyyy");
 
             _pageInteractionHelper.VerifyText(ClosingDate, "Closing date: " + actualClosingDate + "");
