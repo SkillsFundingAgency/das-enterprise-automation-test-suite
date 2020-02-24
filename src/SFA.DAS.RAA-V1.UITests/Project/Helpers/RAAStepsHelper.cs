@@ -254,7 +254,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
                        .AddLocation(postCode)
                        .EnterNumberOfVacancy()
                        .ClickAddAnotherLocationLink()
-                       .AddLocation("BS16 4EA")
+                       .AddLocation("NN2 6XR")
                        .EnterNumberOfVacancy2()
                        .EnterAdditionalLocationInformation()
                        .ClickSaveAndContinue();

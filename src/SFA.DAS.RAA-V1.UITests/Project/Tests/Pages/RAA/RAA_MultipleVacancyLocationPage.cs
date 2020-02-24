@@ -50,7 +50,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
                 }
                 try
                 {
-                    formCompletionHelper.ClickWebElement(postCodeResult[1]);
+                    formCompletionHelper.ClickWebElement(postCodeResult[0]);
                     break;
                 }
                 catch (Exception ex)
