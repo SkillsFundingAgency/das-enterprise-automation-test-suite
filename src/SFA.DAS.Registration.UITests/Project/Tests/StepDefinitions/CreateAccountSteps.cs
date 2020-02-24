@@ -163,11 +163,18 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             DoNotSignTheAgreement();
         }
 
-        private void CreateUserAccountAndAddOrg(OrgType orgType)
+        [When(@"an Employer creates a Levy Account and Signs the Agreement")]
+        public void GivenAnEmployerCreatesALevyAccountAndSignsTheAgreement()
         {
-            AnUserAccountIsCreated();
-            AddPayeDetails();
-            AddOrganisationTypeDetails(orgType);
+            AddLevyDeclarations();
+            GivenAnEmployerAccountWithSpecifiedTypeOrgIsCreatedAndAgeementIsSigned(OrgType.Company);
+        }
+
+        [When(@"an Employer creates a Levy Account and not Signs the Agreement during registration")]
+        public void WhenAnEmployerCreatesALevyAccountAndNotSignsTheAgreementDuringRegistration()
+        {
+            AddLevyDeclarations();
+            GivenAnEmployerAccountWithSpecifiedTypeOrgIsCreatedAndAgeementIsNotSigned(OrgType.Company);
         }
 
         [When(@"the Employer initiates adding another Org of (Company|PublicSector|Charity) Type")]
@@ -215,5 +222,14 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
                 .ClickContinueToYourAgreementButtonInAboutYourAgreementPage()
                 .SignAgreement();
         }
+
+        private void CreateUserAccountAndAddOrg(OrgType orgType)
+        {
+            AnUserAccountIsCreated();
+            AddPayeDetails();
+            AddOrganisationTypeDetails(orgType);
+        }
+
+        private void AddLevyDeclarations() => new BackgroundDataSteps(_context).GivenLevyDeclarationsIsAddedForPastMonthsWithLevypermonthAs("5", "10000");
     }
 }

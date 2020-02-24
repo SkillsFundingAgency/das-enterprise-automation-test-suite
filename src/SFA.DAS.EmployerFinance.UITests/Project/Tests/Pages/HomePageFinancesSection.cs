@@ -24,9 +24,15 @@ namespace SFA.DAS.EmployerFinance.UITests.Project.Tests.Pages
             return this;
         }
 
-        public HomePageFinancesSection VerifyYourFinancesSectionLinks()
+        public HomePageFinancesSection VerifyYourFinancesSectionLinksForANonLevyUser()
         {
             pageInteractionHelper.VerifyPage(YourFundingReservationsLink);
+            pageInteractionHelper.VerifyPage(YourFinancesLink);
+            return this;
+        }
+
+        public HomePageFinancesSection VerifyYourFinancesSectionLinksForALevyUser()
+        {
             pageInteractionHelper.VerifyPage(YourFinancesLink);
             return this;
         }

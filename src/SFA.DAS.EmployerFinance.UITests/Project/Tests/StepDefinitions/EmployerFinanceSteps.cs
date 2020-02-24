@@ -16,10 +16,13 @@ namespace SFA.DAS.EmployerFinance.UITests.Project.Tests.StepDefinitions
         public void ThenLinkIsDisplayedOnTheEmployerHomePage() => _homePageFinancesSectionPage = new HomePageFinancesSection(_context).VerifyFundingAvailabilityLink();
 
         [Then(@"'Your funding reservations' and 'Your finances' links are displayed in the Finances section")]
-        public void ThenAndLinksAreDisplayedInTheFinancesSection() => _homePageFinancesSectionPage = _homePageFinancesSectionPage.VerifyYourFinancesSectionLinks();
+        public void ThenAndLinksAreDisplayedInTheFinancesSection() => _homePageFinancesSectionPage = _homePageFinancesSectionPage.VerifyYourFinancesSectionLinksForANonLevyUser();
 
-        [When(@"the employer navigates to Your finances Page")]
-        public void WhenTheEmployerNavigatesToYourFinancesPage() => _financePage = _homePageFinancesSectionPage.NavigateToFinancePage();
+        [Then(@"'Your finances' link is displayed in the Finances section")]
+        public void ThenLinkIsDisplayedInTheFinancesSection() => _homePageFinancesSectionPage = new HomePageFinancesSection(_context).VerifyYourFinancesSectionLinksForALevyUser();
+
+        [When(@"the Employer navigates to 'Finance' Page")]
+        public void WhenTheEmployerNavigatesFinancePage() => _financePage = _homePageFinancesSectionPage.NavigateToFinancePage();
 
         [Then(@"'View transactions', 'Download transactions' and 'Transfers' links are displayed")]
         public void ThenAndLinksAreDisplayed() => _financePage.IsViewTransactionsLinkPresent().IsDownloadTransactionsLinkPresent().IsTransfersLinkPresent();
