@@ -20,11 +20,9 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         public void SelectRadioButton(IWebElement element) => ClickElement(element);
 
-        public void SelectRadioButton(By locator) => SelectRadioButton(_webDriver.FindElement(locator));
-
         public void RetryClickOnException(Func<IWebElement> element) => _retryHelper.RetryClickOnException(element);
 
-        public void ClickElement(Func<IWebElement> element) => _retryHelper.RetryClickOnWebDriverException(element);
+        public void ClickElement(Func<IWebElement> element, Action retryAction = null) => _retryHelper.RetryClickOnWebDriverException(element, retryAction);
 
         public void ClickElement(IWebElement element) => _retryHelper.RetryOnElementClickInterceptedException(element, true);
 

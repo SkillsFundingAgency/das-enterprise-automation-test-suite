@@ -4,7 +4,6 @@ using SFA.DAS.RAA.DataGenerator;
 using SFA.DAS.UI.FrameworkHelpers;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA

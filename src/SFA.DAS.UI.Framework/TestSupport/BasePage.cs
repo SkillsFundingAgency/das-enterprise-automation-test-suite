@@ -36,19 +36,20 @@ namespace SFA.DAS.UI.Framework.TestSupport
             var objectContext = context.Get<ObjectContext>();
             _directory = objectContext.GetDirectory();
             _browser = objectContext.GetBrowser();
+            TakeScreenShot();
         }
+        
+        protected bool VerifyPageAfterRefresh(By locator) => _pageInteractionHelper.VerifyPageAfterRefresh(locator);
 
-        protected bool VerifyPageAfterRefresh(By locator) => VerifyPage(() => _pageInteractionHelper.VerifyPageAfterRefresh(locator));
+        protected bool VerifyPage(Func<List<IWebElement>> func) => _pageInteractionHelper.VerifyPage(func, PageTitle);
 
-        protected bool VerifyPage(Func<List<IWebElement>> func) => VerifyPage(() => _pageInteractionHelper.VerifyPage(func, PageTitle));
+        protected bool VerifyElement(Func<IWebElement> func, string text, Action retryAction) => _pageInteractionHelper.VerifyPage(func, text, retryAction);
 
-        protected bool VerifyElement(Func<IWebElement> func, string text) => VerifyPage(() => _pageInteractionHelper.VerifyPage(func, text));
-
-        protected bool VerifyPage(By locator) => VerifyPage(() => _pageInteractionHelper.VerifyPage(locator));
+        protected bool VerifyPage(By locator) => _pageInteractionHelper.VerifyPage(locator);
 
         protected bool VerifyPage() => VerifyPage(PageHeader, PageTitle);
 
-        protected bool VerifyPage(By locator, string text) => VerifyPage(() => _pageInteractionHelper.VerifyPage(locator, text));
+        protected bool VerifyPage(By locator, string text) => _pageInteractionHelper.VerifyPage(locator, text);
 
         protected void Continue() => _formCompletionHelper.Click(ContinueButton);
 
@@ -60,14 +61,10 @@ namespace SFA.DAS.UI.Framework.TestSupport
 
         protected void NavigateBack() => _formCompletionHelper.Click(BackLink);
 
-        private bool VerifyPage(Func<bool> func)
+        private void TakeScreenShot()
         {
             if (_frameworkConfig.IsVstsExecution && !_browser.IsCloudExecution())
-            {
                 ScreenshotHelper.TakeScreenShot(_webDriver, _directory, _screenShotTitleGenerator.GetNextCount());
-            }
-
-            return func.Invoke();
         }
     }
 }
