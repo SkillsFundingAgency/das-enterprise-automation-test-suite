@@ -1,9 +1,10 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.Registration.UITests.Project.Tests.Pages;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EmployerFinance.UITests.Project.Tests.Pages
 {
-    public class FinancePage : EmployerFinanceBasePage
+    public class FinancePage : HomePage
     {
         protected override string PageTitle => "Finance";
 
