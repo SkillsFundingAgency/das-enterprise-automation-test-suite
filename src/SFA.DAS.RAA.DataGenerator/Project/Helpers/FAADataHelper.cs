@@ -10,7 +10,7 @@ namespace SFA.DAS.RAA.DataGenerator
         public FAADataHelper(RandomDataGenerator randomDataGenerator) : base(randomDataGenerator)
         {            
             var datetime = DateTime.Now;            
-            _randomDataGenerator = randomDataGenerator;
+            _randomDataGenerator = randomDataGenerator;            
             EducationSchoolOrCollege = _randomDataGenerator.GenerateRandomAlphabeticString(10);
             YearsAttended = datetime.AddYears(-1);
             QualificationYear = YearsAttended.Year.ToString();
@@ -43,8 +43,17 @@ namespace SFA.DAS.RAA.DataGenerator
             PhoneNumber = _randomDataGenerator.GenerateRandomNumber(10);
             NewPhoneNumber = _randomDataGenerator.GenerateRandomNumber(10);
             Password = _randomDataGenerator.GenerateRandomPassword(4, 4, 1, 1);
+            VacancyClosing = DateTime.Today.AddMonths(2).AddDays(3);
+            NewVacancyClosing = VacancyClosing.AddDays(15);
+            NewVacancyStart = NewVacancyClosing.AddDays(15);
         }
-                
+
+        public DateTime NewVacancyClosing { get; }
+
+        public DateTime NewVacancyStart { get; }
+
+        public DateTime VacancyClosing { get; }
+
         public string EducationSchoolOrCollege { get; }
 
         public DateTime YearsAttended { get; }

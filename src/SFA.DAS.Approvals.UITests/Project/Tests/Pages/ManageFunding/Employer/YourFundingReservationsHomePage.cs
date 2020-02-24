@@ -6,8 +6,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
 {
     public class YourFundingReservationsHomePage : HomePage
     {
-        private ScenarioContext _context;
+        protected override string PageTitle => "Your funding reservations";
         private By YourFundingReservationsLink => By.LinkText("Your funding reservations");
+        private ScenarioContext _context;
 
         public YourFundingReservationsHomePage(ScenarioContext context) : base(context)
         {

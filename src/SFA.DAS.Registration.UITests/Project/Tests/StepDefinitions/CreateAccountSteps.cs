@@ -122,13 +122,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
                 .DoNotSignAgreement();
         }
 
-        [Then(@"the Employer lands on the Organisation Agreement page")]
-        public void LandInTheOrganisationAgreementPage()
-        {
-            _signAgreementPage
-                .VerifySignAgreementPage();
-        }
-
         [Then(@"the Employer Home page is displayed")]
         public void TheEmployerHomePageIsDisplayed()
         {
@@ -146,6 +139,18 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
                  .SetAgreementId();
 
             return new HomePage(_context, true);
+        }
+
+        [When(@"an Employer creates a Non Levy Account and Signs the Agreement")]
+        public void GivenAnEmployerCreatesANonLevyAccountAndSignsTheAgreement() => GivenAnEmployerAccountWithSpecifiedTypeOrgIsCreated(OrgType.Company);
+
+        [When(@"an Employer Account with (Company|PublicSector|Charity) Type Org is created")]
+        public void GivenAnEmployerAccountWithSpecifiedTypeOrgIsCreated(OrgType orgType)
+        {
+            AnUserAccountIsCreated();
+            AddPayeDetails();
+            AddOrganisationTypeDetails(orgType);
+            SignTheAgreement();
         }
 
         [When(@"the Employer initiates adding another Org of (Company|PublicSector|Charity) Type")]

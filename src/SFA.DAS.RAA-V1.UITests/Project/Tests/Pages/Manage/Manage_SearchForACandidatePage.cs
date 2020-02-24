@@ -16,6 +16,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.Manage
         private readonly ObjectContext _objectcontext;
         private readonly FAADataHelper _faaDataHelper;
         #endregion
+
         private By FirstName => By.Id("SearchViewModel_FirstName");
 
         private By LastName => By.Id("SearchViewModel_LastName");
