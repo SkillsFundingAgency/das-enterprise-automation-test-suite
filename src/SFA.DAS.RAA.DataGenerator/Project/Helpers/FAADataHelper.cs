@@ -40,7 +40,11 @@ namespace SFA.DAS.RAA.DataGenerator
             PhoneNumber = _randomDataGenerator.GenerateRandomNumber(10);
             Password = _randomDataGenerator.GenerateRandomPassword(4, 4, 1, 1);
         }
-                
+        
+        public string NewCustomMinWagePerWeek { get; set; }
+
+        public string NewCustomMaxWagePerWeek { get; set; }
+
         public string EducationSchoolOrCollege { get; }
 
         public DateTime YearsAttended { get; }

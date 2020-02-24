@@ -86,11 +86,7 @@ namespace SFA.DAS.RAA.DataGenerator
 
         public string CustomMinWagePerWeek { get; }
 
-        public string CustomMaxWagePerWeek { get; }
-
-        public string NewCustomMinWagePerWeek { get; set; }
-
-        public string NewCustomMaxWagePerWeek { get; set; }        
+        public string CustomMaxWagePerWeek { get; }    
 
         public DateTime VacancyClosing { get; }
 

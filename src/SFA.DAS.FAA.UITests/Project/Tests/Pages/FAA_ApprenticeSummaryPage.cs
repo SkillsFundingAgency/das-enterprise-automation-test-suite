@@ -22,6 +22,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
         private readonly PageInteractionHelper _pageInteractionHelper;
         private readonly RAAV1DataHelper _raaV1dataHelper;
         private readonly RegexHelper _regexHelper;
+        private readonly FAADataHelper _faaDataHelper;
         #endregion
 
         private By ApplyButton => By.Id("apply-button");
@@ -47,6 +48,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
             _formCompletionHelper = context.Get<FormCompletionHelper>();
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _regexHelper = context.Get<RegexHelper>();
+            _faaDataHelper = context.Get<FAADataHelper>();
             VerifyPage();
             if (!_objectContext.IsRAAV1()) { VerifyEmployerDetails(); }
         }
@@ -88,8 +90,8 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
             string[] wageRange = displayedWageFAA.Split('-');
             string minWage =_regexHelper.GetVacancyCurrentWage(wageRange[0]);
             string maxWage = _regexHelper.GetVacancyCurrentWage(wageRange[1]);
-            _pageInteractionHelper.VerifyText(minWage,_raaV1dataHelper.NewCustomMinWagePerWeek);
-            _pageInteractionHelper.VerifyText(maxWage,_raaV1dataHelper.NewCustomMaxWagePerWeek);
+            _pageInteractionHelper.VerifyText(minWage,_faaDataHelper.NewCustomMinWagePerWeek);
+            _pageInteractionHelper.VerifyText(maxWage,_faaDataHelper.NewCustomMaxWagePerWeek);
         }
     }
 }
