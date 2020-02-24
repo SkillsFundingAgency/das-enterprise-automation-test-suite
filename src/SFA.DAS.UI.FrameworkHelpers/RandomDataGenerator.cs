@@ -1,4 +1,6 @@
-﻿using System;
+﻿using OpenQA.Selenium;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace SFA.DAS.UI.FrameworkHelpers
@@ -60,6 +62,13 @@ namespace SFA.DAS.UI.FrameworkHelpers
                 randomUln = (long.Parse(randomUln) + 1).ToString();
             }
             throw new Exception("Unable to generate ULN");
+        }
+
+        public IWebElement GetRandomElementFromListOfElements(List<IWebElement> elements)
+        {
+            var randomNumber = GenerateRandomNumberBetweenTwoValues(0, elements.Count - 1);
+
+            return elements[randomNumber];
         }
 
         private bool IsValidCheckSum(string uln)
