@@ -28,7 +28,7 @@ namespace SFA.DAS.EmployerFinance.UITests.Project.Tests.StepDefinitions
             _homePageFinancesSectionPage = _homePageFinancesSectionPage.VerifyYourFinancesSectionLinks(linkText1, linkText2);
         }
 
-        [Then(@"Employer is able to navigate the (Check the funding availability and make a reservation) link on the Home Page")]
+        [Then(@"Employer is able to navigate the (Check funding availability and make a reservation) link on the Home Page")]
         [Then(@"Employer is able to navigate the (Your funding reservations) link from 'Finances' section on the Home Page")]
         [When(@"Employer navigates the (Your finances) link from 'Finances' section on the Home Page")]
         public void ThenEmployerIsAbleToNavigateTheCheckTheFundingAvailabilityAndMakeAReservationLinkOnTheHomePage(string linkText)

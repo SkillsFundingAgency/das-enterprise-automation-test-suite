@@ -18,20 +18,20 @@ namespace SFA.DAS.EmployerFinance.UITests.Project.Tests.Features.HomePageFinance
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.0.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("EF_HPFL_01")]
-    public partial class EF_HPFL_01Feature
+    [NUnit.Framework.DescriptionAttribute("EF_HPFL_02")]
+    public partial class EF_HPFL_02Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "EF_HPFL_01.feature"
+#line 1 "EF_HPFL_02.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "EF_HPFL_01", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "EF_HPFL_02", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -70,15 +70,15 @@ namespace SFA.DAS.EmployerFinance.UITests.Project.Tests.Features.HomePageFinance
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("EF_HPFL_01 - Validate Home Page Finance section for a NonLevy User who has Signed" +
-            " Agreement")]
+        [NUnit.Framework.DescriptionAttribute("EF_HPFL_02 - Validate Home Page Finance section for a NonLevy User who has not Si" +
+            "gned the Agreement")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("employerfinance")]
         [NUnit.Framework.CategoryAttribute("addpayedetails")]
-        public virtual void EF_HPFL_01_ValidateHomePageFinanceSectionForANonLevyUserWhoHasSignedAgreement()
+        public virtual void EF_HPFL_02_ValidateHomePageFinanceSectionForANonLevyUserWhoHasNotSignedTheAgreement()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EF_HPFL_01 - Validate Home Page Finance section for a NonLevy User who has Signed" +
-                    " Agreement", null, new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EF_HPFL_02 - Validate Home Page Finance section for a NonLevy User who has not Si" +
+                    "gned the Agreement", null, new string[] {
                         "regression",
                         "employerfinance",
                         "addpayedetails"});
@@ -86,23 +86,26 @@ namespace SFA.DAS.EmployerFinance.UITests.Project.Tests.Features.HomePageFinance
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 7
- testRunner.When("an Employer creates a Non Levy Account and Signs the Agreement", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("an Employer creates a Non Levy Account and not Signs the Agreement during registr" +
+                    "ation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 8
+ testRunner.And("Signs the Agreement from Account HomePage Panel", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 9
  testRunner.Then("Check funding availability and make a reservation link is displayed on the Employ" +
                     "er Home Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 9
+#line 10
  testRunner.And("Your funding reservations and Your finances links are displayed in the Finances s" +
                     "ection", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 10
+#line 11
  testRunner.And("Employer is able to navigate the Check funding availability and make a reservatio" +
                     "n link on the Home Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 11
+#line 12
  testRunner.And("Employer is able to navigate the Your funding reservations link from \'Finances\' s" +
                     "ection on the Home Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 12
+#line 13
  testRunner.When("Employer navigates the Your finances link from \'Finances\' section on the Home Pag" +
                     "e", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 13
+#line 14
  testRunner.Then("\'Finance\' page is displayed with View transactions, Download transactions and Tra" +
                     "nsfers links", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
