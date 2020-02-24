@@ -142,15 +142,39 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         }
 
         [When(@"an Employer creates a Non Levy Account and Signs the Agreement")]
-        public void GivenAnEmployerCreatesANonLevyAccountAndSignsTheAgreement() => GivenAnEmployerAccountWithSpecifiedTypeOrgIsCreated(OrgType.Company);
+        public void GivenAnEmployerCreatesANonLevyAccountAndSignsTheAgreement() =>
+            GivenAnEmployerAccountWithSpecifiedTypeOrgIsCreatedAndAgeementIsSigned(OrgType.Company);
 
-        [When(@"an Employer Account with (Company|PublicSector|Charity) Type Org is created")]
-        public void GivenAnEmployerAccountWithSpecifiedTypeOrgIsCreated(OrgType orgType)
+        [When(@"an Employer creates a Non Levy Account and not Signs the Agreement during registration")]
+        public void WhenAnEmployerCreatesANonLevyAccountAndNotSignsTheAgreementDuringRegistration() =>
+            GivenAnEmployerAccountWithSpecifiedTypeOrgIsCreatedAndAgeementIsNotSigned(OrgType.Company);
+
+        [When(@"an Employer Account with (Company|PublicSector|Charity) Type Org is created and agreement is Signed")]
+        public void GivenAnEmployerAccountWithSpecifiedTypeOrgIsCreatedAndAgeementIsSigned(OrgType orgType)
         {
-            AnUserAccountIsCreated();
-            AddPayeDetails();
-            AddOrganisationTypeDetails(orgType);
+            CreateUserAccountAndAddOrg(orgType);
             SignTheAgreement();
+        }
+
+        [When(@"an Employer Account with (Company|PublicSector|Charity) Type Org is created and agreement is Not Signed")]
+        public void GivenAnEmployerAccountWithSpecifiedTypeOrgIsCreatedAndAgeementIsNotSigned(OrgType orgType)
+        {
+            CreateUserAccountAndAddOrg(orgType);
+            DoNotSignTheAgreement();
+        }
+
+        [When(@"an Employer creates a Levy Account and Signs the Agreement")]
+        public void GivenAnEmployerCreatesALevyAccountAndSignsTheAgreement()
+        {
+            AddLevyDeclarations();
+            GivenAnEmployerAccountWithSpecifiedTypeOrgIsCreatedAndAgeementIsSigned(OrgType.Company);
+        }
+
+        [When(@"an Employer creates a Levy Account and not Signs the Agreement during registration")]
+        public void WhenAnEmployerCreatesALevyAccountAndNotSignsTheAgreementDuringRegistration()
+        {
+            AddLevyDeclarations();
+            GivenAnEmployerAccountWithSpecifiedTypeOrgIsCreatedAndAgeementIsNotSigned(OrgType.Company);
         }
 
         [When(@"the Employer initiates adding another Org of (Company|PublicSector|Charity) Type")]
@@ -191,5 +215,21 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             Assert.AreEqual(expectedApprenticeshipEmployerType, actualApprenticeshipEmployerType);
         }
 
+        [When(@"Signs the Agreement from Account HomePage Panel")]
+        public void WhenSignsTheAgreementFromAccountHomePagePanel()
+        {
+            _homePage.ClickAcceptYourAgreementLinkInHomePagePanel()
+                .ClickContinueToYourAgreementButtonInAboutYourAgreementPage()
+                .SignAgreement();
+        }
+
+        private void CreateUserAccountAndAddOrg(OrgType orgType)
+        {
+            AnUserAccountIsCreated();
+            AddPayeDetails();
+            AddOrganisationTypeDetails(orgType);
+        }
+
+        private void AddLevyDeclarations() => new BackgroundDataSteps(_context).GivenLevyDeclarationsIsAddedForPastMonthsWithLevypermonthAs("5", "10000");
     }
 }

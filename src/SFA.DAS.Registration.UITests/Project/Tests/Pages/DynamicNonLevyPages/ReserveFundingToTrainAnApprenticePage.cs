@@ -1,9 +1,9 @@
-﻿using OpenQA.Selenium;
+﻿using SFA.DAS.UI.Framework.TestSupport;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.EmployerFinance.UITests.Project.Tests.Pages
+namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 {
-    class ReserveFundingToTrainAnApprenticePage : EmployerFinanceBasePage
+    public class ReserveFundingToTrainAnApprenticePage : BasePage
     {
         protected override string PageTitle => "Reserve funding to train and assess an apprentice";
 
