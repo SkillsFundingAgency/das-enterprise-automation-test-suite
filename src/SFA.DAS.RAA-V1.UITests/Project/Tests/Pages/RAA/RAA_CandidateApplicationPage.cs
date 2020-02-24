@@ -17,12 +17,19 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
             VerifyPage();
         }
 
-        public void VerifyUpdatedCandidateDetails()
+        public void VerifyUpdatedCandidateDetails(string changingField)
         {
-            string changedEmailId = (faaDataHelper.ChangedEmailId).ToLower();
             formCompletionHelper.Click(CandidateSummary);
-            pageInteractionHelper.VerifyText(CandidateDetails, faaDataHelper.NewPostCode);
-            pageInteractionHelper.VerifyText(CandidateDetails, changedEmailId);
+            if (changingField == "EmailId")
+            {
+                string changedEmailId = (faaDataHelper.ChangedEmailId).ToLower();
+                pageInteractionHelper.VerifyText(CandidateDetails, faaDataHelper.NewPostCode);
+                pageInteractionHelper.VerifyText(CandidateDetails, changedEmailId);
+            }
+            else
+            {
+                pageInteractionHelper.VerifyText(CandidateDetails, faaDataHelper.NewPhoneNumber);
+            }
         }
     }
 }

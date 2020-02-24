@@ -59,12 +59,19 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
             return new FAA_ConfirmAccountDeletionPage(_context);
         }
 
-        public FAA_ChangeYourEmailAddressPage ChangeThePersonalSettings()
+        public FAA_ChangeYourEmailAddressPage ChangeTheEmailIdSettings()
         {
             _formCompletionHelper.EnterText(Postcode_Address, _dataHelper.NewPostCode);
             _formCompletionHelper.Click(UpdateDetailsButton);
             _formCompletionHelper.Click(ChangeEmailIdLink);
             return new FAA_ChangeYourEmailAddressPage(_context);
+        }
+
+        public FAA_PhoneNumberVerificationPage ChangePhoneNumberSettings()
+        {
+            _formCompletionHelper.EnterText(PhoneNumberField, _dataHelper.NewPhoneNumber);
+            _formCompletionHelper.Click(UpdateDetailsButton);
+            return new FAA_PhoneNumberVerificationPage(_context);
         }
     }
 }

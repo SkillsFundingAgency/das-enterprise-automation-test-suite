@@ -69,14 +69,10 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.StepDefinitions
                 .ConfirmAccountDeletion();            
         }
 
-        [When(@"the Candidate changes Personal Settings")]
-        public void WhenTheCandidateChangesPersonalSettings()
+        [When(@"the Candidate changes Personal Settings '(PhoneNumber|EmailId)'")]
+        public void WhenTheCandidateChangesPersonalSettings(string changingField)
         {
-            _faaStepsHelper.GoToFAAHomePage()
-                .GoToSettings()
-                .ChangeThePersonalSettings()
-                .ChangeEmailAddress()
-                .ConfirmEmailAddressUpdate();                
+            _faaStepsHelper.ChangePersonalSettings(changingField);
         }
     }
 }

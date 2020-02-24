@@ -293,7 +293,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
         public RAA_CandidateApplicationPage SelectACandidate() => Search().SelectACandidate();
         public void SearchForDeletedCandidate() => Search().VerifyCandidateDeletion();
         private RAA_SearchCandidatesPage Search() => GoToRAAHomePage(true).SearchCandidates().Search();
-        public void VerifyCandidateUpdatedDetails() => SelectACandidate().VerifyUpdatedCandidateDetails();
+        public void VerifyCandidateUpdatedDetails(string changedField) => SelectACandidate().VerifyUpdatedCandidateDetails(changedField);
 
     }
 }

@@ -18,20 +18,20 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Features.FAA.Applications.ChangeP
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.0.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("RV1_CPS_01")]
-    public partial class RV1_CPS_01Feature
+    [NUnit.Framework.DescriptionAttribute("RV1_CPS_02")]
+    public partial class RV1_CPS_02Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "RV1_CPS_01.feature"
+#line 1 "RV1_CPS_02.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "RV1_CPS_01", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "RV1_CPS_02", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -80,16 +80,16 @@ testRunner.Then("the Applicant is able to create a FAA Account", ((string)(null)
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RV1_CPS_01 - Changing emailId and address in FAA and checking the changes in Recr" +
-            "uit and Manage")]
+        [NUnit.Framework.DescriptionAttribute("RV1_CPS_01 - Changing PhoneNumber in FAA and checking the changes in Recruit and " +
+            "Manage")]
         [NUnit.Framework.CategoryAttribute("raa-v1")]
         [NUnit.Framework.CategoryAttribute("apprenticeshipvacancy")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("FAALoginNewCredentials")]
-        public virtual void RV1_CPS_01_ChangingEmailIdAndAddressInFAAAndCheckingTheChangesInRecruitAndManage()
+        public virtual void RV1_CPS_01_ChangingPhoneNumberInFAAAndCheckingTheChangesInRecruitAndManage()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV1_CPS_01 - Changing emailId and address in FAA and checking the changes in Recr" +
-                    "uit and Manage", null, new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV1_CPS_01 - Changing PhoneNumber in FAA and checking the changes in Recruit and " +
+                    "Manage", null, new string[] {
                         "raa-v1",
                         "apprenticeshipvacancy",
                         "regression",
@@ -100,11 +100,9 @@ this.ScenarioInitialize(scenarioInfo);
 #line 3
 this.FeatureBackground();
 #line 15
- testRunner.When("the Candidate changes Personal Settings \'EmailId\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("the Candidate changes Personal Settings \'PhoneNumber\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 16
- testRunner.Then("the Candidate details is updated in Recruit \'EmailId\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 17
- testRunner.And("the Candidate details is updated in Manage", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Then("the Candidate details is updated in Recruit \'PhoneNumber\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
