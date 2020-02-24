@@ -88,23 +88,15 @@ this.ScenarioInitialize(scenarioInfo);
 #line 7
  testRunner.When("an Employer creates a Non Levy Account and Signs the Agreement", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 8
- testRunner.Then("Check funding availability and make a reservation link is displayed on the Employ" +
-                    "er Home Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("\'Check funding availability and make a reservation\' link is displayed on the Empl" +
+                    "oyer Home Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 9
- testRunner.And("Your funding reservations and Your finances links are displayed in the Finances s" +
-                    "ection", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("\'Your funding reservations\' and \'Your finances\' links are displayed in the Financ" +
+                    "es section", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 10
- testRunner.And("Employer is able to navigate the Check funding availability and make a reservatio" +
-                    "n link on the Home Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.When("the employer navigates to Your finances Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 11
- testRunner.And("Employer is able to navigate the Your funding reservations link from \'Finances\' s" +
-                    "ection on the Home Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 12
- testRunner.When("Employer navigates the Your finances link from \'Finances\' section on the Home Pag" +
-                    "e", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 13
- testRunner.Then("\'Finance\' page is displayed with View transactions, Download transactions and Tra" +
-                    "nsfers links", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("\'View transactions\', \'Download transactions\' and \'Transfers\' links are displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

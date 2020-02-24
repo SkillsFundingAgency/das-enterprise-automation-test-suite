@@ -8,6 +8,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => objectContext.GetOrganisationName();
         protected override string Linktext => "Home";
+
         private readonly RegexHelper _regexHelper;
         private ScenarioContext _context;
 
@@ -16,6 +17,11 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         private By SucessSummary => By.CssSelector(".success-summary");
         private By AcceptYourAgreementLink => By.LinkText("Accept your agreement");
         #endregion
+
+        protected By FundingAvailabilityLink => By.LinkText("Check funding availability and make a reservation");
+        protected By YourFundingReservationsLink => By.LinkText("Your funding reservations");
+        protected By YourFinancesLink => By.LinkText("Your finances");
+
 
         internal HomePage(ScenarioContext context, bool navigate) : base(context, navigate)
         {
