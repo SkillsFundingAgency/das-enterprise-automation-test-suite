@@ -73,6 +73,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Features.RoatpAdmin.DownloadProvid
         [NUnit.Framework.DescriptionAttribute("RP_AD_DP_01_Download List of Training Providers and Fat File")]
         [NUnit.Framework.CategoryAttribute("rpaddp01")]
         [NUnit.Framework.CategoryAttribute("roatp")]
+        [NUnit.Framework.CategoryAttribute("roatpadmin")]
         [NUnit.Framework.CategoryAttribute("notestdata")]
         [NUnit.Framework.CategoryAttribute("regression")]
         public virtual void RP_AD_DP_01_DownloadListOfTrainingProvidersAndFatFile()
@@ -80,12 +81,13 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Features.RoatpAdmin.DownloadProvid
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_AD_DP_01_Download List of Training Providers and Fat File", null, new string[] {
                         "rpaddp01",
                         "roatp",
+                        "roatpadmin",
                         "notestdata",
                         "regression"});
-#line 7
+#line 8
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 8
+#line 9
  testRunner.Then("the admin can download list of training providers", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
