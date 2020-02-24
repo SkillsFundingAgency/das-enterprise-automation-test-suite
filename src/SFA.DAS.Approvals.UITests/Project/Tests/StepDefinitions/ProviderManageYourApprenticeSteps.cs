@@ -18,10 +18,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         public ProviderSelectsFilterAndPaginationOnManageYourApprenticePageSteps(ScenarioContext context)
         {
             _context = context;
-            _providerStepsHelper = new ProviderStepsHelper(context);
-            
+            _providerStepsHelper = new ProviderStepsHelper(context);   
         }
-        
 
         [Given(@"A Provider has navigated to Manage your apprentice page")]
         public void GivenAProviderHasNavigatedToManageYourApprenticePage()
@@ -40,8 +38,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         public void ThenTheProviderIsPresentedWithFirstPagewithNoFiltersApplied()
         {           
             var linkDisplayed = _providerStepsHelper.VerifyDownloadAllLinkIsDisplayed();
-
-            Assert.IsTrue(linkDisplayed, "Download all data");
 
             Assert.IsTrue(linkDisplayed, "Download all data");
         }

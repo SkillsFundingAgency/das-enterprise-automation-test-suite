@@ -82,11 +82,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             _formCompletionHelper.ClickElement(ClearSearchAndFilters);
             return this;
         }
+
         public bool DownloadAllDataLinkIsDisplayed()
         {
             return _pageInteractionHelper.IsElementDisplayed(DownloadAllDataLink);
         }
-
-       
     }
 }
