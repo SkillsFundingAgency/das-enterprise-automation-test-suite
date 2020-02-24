@@ -39,7 +39,7 @@ Scenario Outline: RV1_AVWO_02 - Post Apprenticeship Vacancy Based On Location an
 @regression
 @apprenticeshipvacancy
 @hema
-  Scenario Outline: RV1_AVWO_03 - Post Apprenticeship Vacancy Based On Location and Wage
+  Scenario Outline: RV1_AVWO_04 - Post Apprenticeship Vacancy Based On Location and Wage
 	Given the Provider initiates Create Apprenticeship Vacancy in Recruit
 	When the Provider chooses the employer '<location>','<NoOfPositions>'
 	And the Provider chooses their 'Yes'
@@ -56,7 +56,7 @@ Scenario Outline: RV1_AVWO_02 - Post Apprenticeship Vacancy Based On Location an
 @regression
 @apprenticeshipvacancy
 @hema
-  Scenario Outline: RV1_AVWO_04 - Post Apprenticeship Vacancy Based On Location and Wage
+  Scenario Outline: RV1_AVWO_05 - Post Apprenticeship Vacancy Based On Location and Wage
 	Given the Provider initiates Create Apprenticeship Vacancy in Recruit
 	When the Provider chooses the employer '<location>','<NoOfPositions>'
 	And the Provider chooses their 'Yes'
