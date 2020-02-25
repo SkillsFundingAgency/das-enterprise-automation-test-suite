@@ -40,6 +40,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
 
             foreach (var letter in postcodes[1].ToCharArray())
             {
+                _pageInteractionHelper.AnyElements(PostCodeResult);
                 List<IWebElement> postCodeResult = _pageInteractionHelper.FindElements(PostCodeResult);
                 if (postCodeResult.Count == 0)
                 {
@@ -48,7 +49,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
                 }
                 try
                 {
-                    formCompletionHelper.ClickInterceptedElement(postCodeResult[0]);
+                    formCompletionHelper.ClickElement(postCodeResult[0]);
                     break;
                 }
                 catch (Exception ex)
