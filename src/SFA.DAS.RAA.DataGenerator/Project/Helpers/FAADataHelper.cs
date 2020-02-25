@@ -50,6 +50,11 @@ namespace SFA.DAS.RAA.DataGenerator
 
         public DateTime VacancyClosing { get; }
 
+        
+        public string NewCustomMinWagePerWeek { get; set; }
+
+        public string NewCustomMaxWagePerWeek { get; set; }
+
         public string EducationSchoolOrCollege { get; }
 
         public DateTime YearsAttended { get; }

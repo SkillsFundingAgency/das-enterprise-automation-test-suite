@@ -53,6 +53,18 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.StepDefinitions
             _faaStepsHelper.FindAnApprenticeship().SearchByReferenceNumber().VerifyNewDates();
         }
 
+        [Then(@"the Wage is changed in FAA")]
+        public void ThenTheWageIsChangedInFAA()
+        {
+            _faaStepsHelper.FindAnApprenticeship().SearchByReferenceNumber().VerifyNewWages();
+        }
+
+        [Then(@"the Vacancy is not found on FAA")]
+        public void ThenTheVacancyIsIsNotFoundOnFAA()
+        {
+            _faaStepsHelper.FindAnApprenticeship().SearchClosedVacancy();
+        }
+
         [Then(@"the Trainneship Vacancy dates is changed in FAA")]
         public void ThenTheTrainneshipVacancyDatesIsChangedInFAA()
         {
@@ -67,6 +79,12 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.StepDefinitions
                 .DeleteYourAccount()
                 .DeleteAccount()
                 .ConfirmAccountDeletion();            
+        }
+
+        [Then(@"the Traineeship Vacancy is not found on FAA")]
+        public void ThenTheTraineeshipVacancyIsNotFoundOnFAA()
+        {
+            _faaStepsHelper.FindATraineeship().SearchClosedVacancy();
         }
     }
 }

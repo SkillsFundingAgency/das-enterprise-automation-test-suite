@@ -99,16 +99,16 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RV1_AVWO_02 - Post Apprenticeship Vacancy Based On Location and Wage: Add differe" +
-            "nt location")]
+        [NUnit.Framework.DescriptionAttribute("RV1_AVWO_02 - Post Apprenticeship Vacancy Based On Location and Wage: Set as a na" +
+            "tionwide vacancy")]
         [NUnit.Framework.CategoryAttribute("raa-v1")]
         [NUnit.Framework.CategoryAttribute("v1_e2e")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("apprenticeshipvacancy")]
-        public virtual void RV1_AVWO_02_PostApprenticeshipVacancyBasedOnLocationAndWage_AddDifferentLocation()
+        public virtual void RV1_AVWO_02_PostApprenticeshipVacancyBasedOnLocationAndWage_SetAsANationwideVacancy()
         {
 #line 7
-this.RV1_AVWO_02_PostApprenticeshipVacancyBasedOnLocationAndWage("Add different location", "Fixed wage", "3", ((string[])(null)));
+this.RV1_AVWO_02_PostApprenticeshipVacancyBasedOnLocationAndWage("Set as a nationwide vacancy", "Fixed wage", "3", ((string[])(null)));
 #line hidden
         }
     }
