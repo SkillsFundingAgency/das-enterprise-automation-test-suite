@@ -34,6 +34,28 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.RoatpApply
             return queryResult == null || queryResult.Count == 0 ? Emptyguid : ClearDownDataFromApply(queryResult);
         }
 
+        public int ClearDownDataFromQna(string applicationId)
+        {
+            var DeleteDataFromQnaQuery =
+                $"DELETE FROM ApplicationSections WHERE applicationid = '{applicationId}'" +
+                $"DELETE FROM ApplicationSequences WHERE applicationid = '{applicationId}' " +
+                $"DELETE FROM Applications WHERE id = '{applicationId}' ;";
+
+            return applicationId == Emptyguid ? 0 : _sqlDatabasehelper.ExecuteSqlCommand(_qnaDatabaseConnectionString, DeleteDataFromQnaQuery);
+        }
+
+        public int WhiteListProviders()
+        {
+            var insertWhiteListProviderQuery = 
+                $"IF NOT EXISTS(SELECT * FROM WhitelistedProviders WHERE [UKPRN] = {_objectContext.GetUkprn()}) " +
+                $"BEGIN " +
+                $"INSERT INTO WhitelistedProviders([UKPRN]) VALUES({_objectContext.GetUkprn()}) " +
+                $"END";
+
+            return _sqlDatabasehelper.ExecuteSqlCommand(_applyDatabaseConnectionString, insertWhiteListProviderQuery);
+        }
+
+
         private string ClearDownDataFromApply(List<object[]> queryResult)
         {
             var email = _objectContext.GetEmail();
@@ -51,14 +73,6 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.RoatpApply
             return applicationId;
         }
 
-        public int ClearDownDataFromQna(string applicationId)
-        {
-            var DeleteDataFromQnaQuery =
-                $"DELETE FROM ApplicationSections WHERE applicationid = '{applicationId}'" +
-                $"DELETE FROM ApplicationSequences WHERE applicationid = '{applicationId}' " +
-                $"DELETE FROM Applications WHERE id = '{applicationId}' ;";
 
-            return applicationId == Emptyguid ? 0 : _sqlDatabasehelper.ExecuteSqlCommand(_qnaDatabaseConnectionString, DeleteDataFromQnaQuery);
-        }
     }
 }

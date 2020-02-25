@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Features.E2EJourney.ChangeVacancyStatus.IncreaseWage
+namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Features.FAA.Applications.ChangePersonalSettings
 {
     using TechTalk.SpecFlow;
     
@@ -18,20 +18,20 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Features.E2EJourney.ChangeVacancy
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.0.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("RV1_IVSW_01")]
-    public partial class RV1_IVSW_01Feature
+    [NUnit.Framework.DescriptionAttribute("RV1_CPS_02")]
+    public partial class RV1_CPS_02Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "RV1_IVSW_01.feature"
+#line 1 "RV1_CPS_02.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "RV1_IVSW_01", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "RV1_CPS_02", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -69,26 +69,46 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Features.E2EJourney.ChangeVacancy
             testRunner.CollectScenarioErrors();
         }
         
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RV1_IVSW_01 - Increase Vacancy Wage dates which has NO Applications")]
-        [NUnit.Framework.CategoryAttribute("raa-v1")]
-        [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("apprenticeshipvacancy")]
-        public virtual void RV1_IVSW_01_IncreaseVacancyWageDatesWhichHasNOApplications()
+        public virtual void FeatureBackground()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV1_IVSW_01 - Increase Vacancy Wage dates which has NO Applications", null, new string[] {
+#line 3
+#line 4
+testRunner.When("an Applicant initiates Account creation journey", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 5
+testRunner.Then("the Applicant is able to create a FAA Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("RV1_CPS_01 - Changing PhoneNumber in FAA and checking the changes in Recruit and " +
+            "Manage")]
+        [NUnit.Framework.CategoryAttribute("raa-v1")]
+        [NUnit.Framework.CategoryAttribute("apprenticeshipvacancy")]
+        [NUnit.Framework.CategoryAttribute("regression")]
+        [NUnit.Framework.CategoryAttribute("FAALoginNewCredentials")]
+        public virtual void RV1_CPS_01_ChangingPhoneNumberInFAAAndCheckingTheChangesInRecruitAndManage()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV1_CPS_01 - Changing PhoneNumber in FAA and checking the changes in Recruit and " +
+                    "Manage", null, new string[] {
                         "raa-v1",
+                        "apprenticeshipvacancy",
                         "regression",
-                        "apprenticeshipvacancy"});
-#line 6
+                        "FAALoginNewCredentials"});
+#line 11
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 7
- testRunner.Given("the apprenticeship vacancy is Live in Recruit with no application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 8
- testRunner.Then("Provider is able to increase vacancy wage with no application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 9
- testRunner.And("the Wage is changed in FAA", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 3
+this.FeatureBackground();
+#line 12
+ testRunner.Given("the apprenticeship vacancy is Live in Recruit with an application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 13
+ testRunner.Then("the Provider is able to search and select a Candidate", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 14
+ testRunner.And("the reviewer is able to search and select a candidate", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 15
+ testRunner.When("the Candidate changes Personal Settings \'PhoneNumber\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 16
+ testRunner.Then("the Candidate details is updated in Recruit \'PhoneNumber\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

@@ -31,7 +31,9 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
         [Then(@"the Candidate is removed from the Manage")]
         public void ThenTheCandidateIsRemovedFromTheRecruit() => _manageStepsHelper.SearchForDeletedCandidate();
 
-
+        [Then(@"the Candidate details is updated in Manage")]
+        public void ThenTheCandidateDetailsIsUpdatedInManage() => _manageStepsHelper.VerifyUpdatedCandidateDetails();
+        
         [Then(@"the Reviewer approves the vacancy")]
         public void ThenTheReviewerApprovesTheVacancy()
         {

@@ -16,7 +16,7 @@ namespace SFA.DAS.FAA.UITests.Project.Helpers
         private readonly TabHelper _tabHelper;
         private readonly FAADataHelper _faaDataHelper;
         private readonly ObjectContext _objectContext;
-        private const string _applicationName = "FindApprenticeship";       
+        private const string _applicationName = "FindApprenticeship";           
         
         public FAAStepsHelper(ScenarioContext context)
         {
@@ -157,5 +157,18 @@ namespace SFA.DAS.FAA.UITests.Project.Helpers
             return new FAA_FindAnApprenticeshipHomePage(_context)
                 .MyApplications();
         }
+
+        public void ChangePersonalSettings(string changingField)
+        {
+            if (changingField == "EmailId")
+            {
+                GoToSettingsPage().ChangeTheEmailIdSettings().ChangeEmailAddress().ConfirmEmailAddressUpdate();
+            }
+            else
+            {
+                GoToSettingsPage().ChangePhoneNumberSettings().EnterVerificationCode().VerifySuccessfulVerificationText();
+            }
+        }
+        private FAA_SettingsPage GoToSettingsPage() => GoToFAAHomePage().GoToSettings();
     }
 }
