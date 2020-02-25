@@ -78,10 +78,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                 .ClickSaveAndContinueButton();
         }
 
-        public YourFundingReservationsPage GoToManageFunding()
-        {
-            return new YourFundingReservationsHomePage(_context).OpenYourFundingReservations();
-        }
+        public YourFundingReservationsPage GoToManageFunding() => new YourFundingReservationsHomePage(_context).OpenYourFundingReservations();
 
         public YourFundingReservationsPage DeleteAllUnusedFunding()
         {

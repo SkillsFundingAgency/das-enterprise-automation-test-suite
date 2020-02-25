@@ -36,9 +36,13 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpAdmin
 
         public bool VerifyNewProviderHasBeenAdded() => pageInteractionHelper.VerifyText(Confirmation, $"{objectContext.GetProviderName()} has been added");
 
-        public ResultsFoundPage SearchTrainingProvider()
+        public ResultsFoundPage SearchTrainingProviderByName() => SearchTrainingProvider(objectContext.GetProviderName());
+
+        public ResultsFoundPage SearchTrainingProviderByUkprn() => SearchTrainingProvider(objectContext.GetUkprn());
+
+        public ResultsFoundPage SearchTrainingProvider(string text)
         {
-            formCompletionHelper.EnterText(ProviderSearch, objectContext.GetProviderName());
+            formCompletionHelper.EnterText(ProviderSearch, text);
             Continue();
             return new ResultsFoundPage(_context);
         }
