@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.Registration.UITests.Project.Tests.Features.CreateEmpAccountOfCharityType_NL
+namespace SFA.DAS.Registration.UITests.Project.Tests.Features.CreateEmpAccountOfCharityType_NonLevy
 {
     using TechTalk.SpecFlow;
     
@@ -90,8 +90,8 @@ this.ScenarioInitialize(scenarioInfo);
 #line 8
  testRunner.And("the Employer initiates adding another Org of Charity Type", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 9
- testRunner.Then("the address details and registered charity number are displayed in the \'Check you" +
-                    "r details\' page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the details of the Charity Type Org added are displayed in the \'Check your detail" +
+                    "s\' page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

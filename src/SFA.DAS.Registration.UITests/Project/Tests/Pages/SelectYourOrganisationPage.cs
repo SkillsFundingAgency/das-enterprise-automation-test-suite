@@ -42,6 +42,12 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             return new CheckYourDetailsPage(_context);
         }
 
+        public FindOrganisationAddressPage SelectYourOrganisation(string orgName)
+        {
+            formCompletionHelper.ClickElement(SearchLinkUrl(orgName));
+            return new FindOrganisationAddressPage(_context);
+        }
+
         public string GetSearchResultsText() => pageInteractionHelper.GetText(SearchResultsText);
 
         public bool VerifyOrgAlreadyAddedMessage(string orgName) =>

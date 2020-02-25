@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.Registration.UITests.Project.Tests.Features.CreateEmpAccountOfPublicSectorType_NL
+namespace SFA.DAS.Registration.UITests.Project.Tests.Features.CreateEmpAccountOfPublicSectorType_NonLevy
 {
     using TechTalk.SpecFlow;
     
