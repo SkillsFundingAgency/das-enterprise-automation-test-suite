@@ -28,7 +28,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
         }
         public DoYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage GoToReserveFundingFromHomePage()
         {
-            var reserveFunding = ClickReserveFundingLinkFromHomePagePanel();
+            var reserveFunding = ClickStartNowButtonOnHomePagePanelToSetUpAnApprentice();
             return reserveFunding.ClickReserveFundingButton();
         }
 
@@ -43,7 +43,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             return new DynamicHomePage(_context).ClickContinueToCreateAdvertOrAddAnApprentices();
         }
 
-        public ReserveFundingToTrainAndAssessAnApprenticePage ClickReserveFundingLinkFromHomePagePanel()
+        public ReserveFundingToTrainAndAssessAnApprenticePage ClickStartNowButtonOnHomePagePanelToSetUpAnApprentice()
         {
             return new DynamicHomePage(_context).ClickToReserveFunding();
         }

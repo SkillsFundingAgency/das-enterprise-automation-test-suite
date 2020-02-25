@@ -19,11 +19,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.DynamicHomePage
 
         #region
         private const string ContinueSettingUpAnApprenticeshipPanelText = "Continue setting up an apprenticeship";
+        private const string SetUpAnApprenticeshipPanelText = "Set up an apprenticeship";
         private By ContinueSettingUpAnApprenticeship => By.Id("call-to-action-continue-setting-up-an-apprenticeship");
-        private By CheckFundingAvailabilityAndMakeaReservation => By.LinkText("Check funding availability and make a reservation");
+        private By SetUpAnApprenticeship => By.Id("set-up-an-apprenticeship");
         protected override string PageTitle => "Home";
         protected override By PageHeader => By.LinkText("Home");
         protected override By ContinueButton => By.LinkText("Continue");
+        private By StartNowButton => By.LinkText("Start now");
         #endregion
 
         public DynamicHomePage(ScenarioContext context) : base(context)
@@ -36,7 +38,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.DynamicHomePage
         
         public ReserveFundingToTrainAndAssessAnApprenticePage ClickToReserveFunding()
         {
-            _formCompletionHelper.ClickElement(CheckFundingAvailabilityAndMakeaReservation);
+            _formCompletionHelper.ClickElement(StartNowButton);
             return new ReserveFundingToTrainAndAssessAnApprenticePage(_context);
         }
 
@@ -48,6 +50,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.DynamicHomePage
         public void VerifyReserveFundingPanel()
         {
             _pageInteractionHelper.VerifyText(ContinueSettingUpAnApprenticeship, ContinueSettingUpAnApprenticeshipPanelText);
+        }
+        public void VerifySetUpAnApprenticeshipPanel()
+        {
+            _pageInteractionHelper.VerifyText(SetUpAnApprenticeship, SetUpAnApprenticeshipPanelText);
         }
 
     }
