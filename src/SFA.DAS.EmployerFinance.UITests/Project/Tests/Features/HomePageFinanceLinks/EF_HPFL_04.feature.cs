@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.Roatp.UITests.Project.Tests.Features.RoatpAdmin.SearchProvider
+namespace SFA.DAS.EmployerFinance.UITests.Project.Tests.Features.HomePageFinanceLinks
 {
     using TechTalk.SpecFlow;
     
@@ -18,20 +18,20 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Features.RoatpAdmin.SearchProvider
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.0.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("RP_AD_SP_02")]
-    public partial class RP_AD_SP_02Feature
+    [NUnit.Framework.DescriptionAttribute("EF_HPFL_04")]
+    public partial class EF_HPFL_04Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "RP_AD_SP_02.feature"
+#line 1 "EF_HPFL_04.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "RP_AD_SP_02", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "EF_HPFL_04", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -70,33 +70,32 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Features.RoatpAdmin.SearchProvider
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RP_AD_SP_02_Verify Search For Training Provider")]
-        [NUnit.Framework.CategoryAttribute("rpadsp02")]
-        [NUnit.Framework.CategoryAttribute("roatp")]
-        [NUnit.Framework.CategoryAttribute("roatpadmin")]
+        [NUnit.Framework.DescriptionAttribute("EF_HPFL_04 - Validate Home Page Finance section for a Levy User who has Not Signe" +
+            "d the Agreement")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public virtual void RP_AD_SP_02_VerifySearchForTrainingProvider()
+        [NUnit.Framework.CategoryAttribute("employerfinance")]
+        [NUnit.Framework.CategoryAttribute("addpayedetails")]
+        public virtual void EF_HPFL_04_ValidateHomePageFinanceSectionForALevyUserWhoHasNotSignedTheAgreement()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_AD_SP_02_Verify Search For Training Provider", null, new string[] {
-                        "rpadsp02",
-                        "roatp",
-                        "roatpadmin",
-                        "regression"});
-#line 7
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EF_HPFL_04 - Validate Home Page Finance section for a Levy User who has Not Signe" +
+                    "d the Agreement", null, new string[] {
+                        "regression",
+                        "employerfinance",
+                        "addpayedetails"});
+#line 6
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
+#line 7
+ testRunner.When("an Employer creates a Levy Account and not Signs the Agreement during registratio" +
+                    "n", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 8
-testRunner.When("the admin searches for a provider by provider name", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.And("Signs the Agreement from Account HomePage Panel", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 9
-testRunner.Then("the admin should be taken to one provider name result found page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("\'Your finances\' link is displayed in the Finances section", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 10
-testRunner.When("the admin searches for a provider by ukprn", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("the Employer navigates to \'Finance\' Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 11
-testRunner.Then("the admin should be taken to one provider ukprn result found page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 12
-testRunner.When("the admin searches for a provider by partial provider name", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 13
-testRunner.Then("the admin should be taken to multiple results found page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("\'View transactions\', \'Download transactions\' and \'Transfers\' links are displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

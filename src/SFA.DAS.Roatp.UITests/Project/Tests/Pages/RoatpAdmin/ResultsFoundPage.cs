@@ -15,6 +15,10 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpAdmin
 
         private By ActiveStatus => By.XPath("//span[text()='Active']");
 
+        private By ProviderType => By.XPath("(//dd[@class='govuk-summary-list__value'])[4]");
+
+        private By OrganisationType = By.XPath("(//dd[@class='govuk-summary-list__value'])[5]");
+
         private By RefineSearch => By.LinkText("Refine search");
 
         private string MainAndEmployerStatus => "ON-BOARDING";
@@ -22,6 +26,10 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpAdmin
         private string SupportingStatus => "ACTIVE";
 
         public ResultsFoundPage(ScenarioContext context) : base(context) => _context = context;
+
+        public void VerifyProvideType(string providerType) => pageInteractionHelper.VerifyText(ProviderType, providerType);
+
+        public void VerifyOrganisationType() => pageInteractionHelper.VerifyText(OrganisationType, objectContext.GetOrganisationType());
 
         public RoatpAdminHomePage GetRoatpAdminHomePage()
         {
@@ -51,6 +59,36 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpAdmin
         {
             formCompletionHelper.ClickElement(() => pageInteractionHelper.GetLinkByHref("change-provider-type"));
             return new ChangeProviderTypePage(_context);
+        }
+
+        public ChangeOrganisationTypePage ClickChangeOrganisationTypeLink()
+        {
+            formCompletionHelper.ClickElement(() => pageInteractionHelper.GetLinkByHref("change-organisation-type"));
+            return new ChangeOrganisationTypePage(_context);
+        }
+
+        public ChangeTradingNamePage ClickChangeTradingNameLink()
+        {
+            formCompletionHelper.ClickElement(() => pageInteractionHelper.GetLinkByHref("change-trading-name"));
+            return new ChangeTradingNamePage(_context);
+        }
+
+        public ChangeCompanyNumberPage ClickChangeCompanyNumberLink()
+        {
+            formCompletionHelper.ClickElement(() => pageInteractionHelper.GetLinkByHref("change-company-number"));
+            return new ChangeCompanyNumberPage(_context);
+        }
+
+        public ChangeCharityRegistrationNumberPage ClickChangeCharityNumberLink()
+        {
+            formCompletionHelper.ClickElement(() => pageInteractionHelper.GetLinkByHref("change-charity-registration-number"));
+            return new ChangeCharityRegistrationNumberPage(_context);
+        }
+
+        public ChangeApplicationDateDeterminedPage ClickChangeApplicationDateDeterminedLink()
+        {
+            formCompletionHelper.ClickElement(() => pageInteractionHelper.GetLinkByHref("change-application-date-determined"));
+            return new ChangeApplicationDateDeterminedPage(_context);
         }
 
         public bool VerifyMultipleMatchingResults() => pageInteractionHelper.VerifyPage(RefineSearch);

@@ -7,10 +7,10 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 {
-    public class ProviderManageYourApprenticesPage : BasePage
+    public class OldProviderManageYourApprenticesPage : BasePage
     {
         protected override string PageTitle => "Manage your apprentices";
-
+        
         #region Helpers and Context
         private readonly PageInteractionHelper _pageInteractionHelper;
         private readonly FormCompletionHelper _formCompletionHelper;
@@ -18,7 +18,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private readonly ApprenticeDataHelper _dataHelper;
         #endregion
 
-        public ProviderManageYourApprenticesPage(ScenarioContext context) : base(context)
+        public OldProviderManageYourApprenticesPage(ScenarioContext context) : base(context)
         {
             _context = context;
             _dataHelper = context.Get<ApprenticeDataHelper>();
@@ -27,18 +27,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             VerifyPage();
         }
 
-        private By ApprenticeSearchField => By.Id("searchTerm");
-        private By SearchButton => By.CssSelector(".das-search-form__button");
+        private By ApprenticeSearchField => By.Id("search-input");
+        private By SearchButton => By.CssSelector(".submit-search");
         private By ApprenticeInfoRow => By.CssSelector("tbody tr");
-        private By ViewApprenticeFullName => By.PartialLinkText(_dataHelper.ApprenticeFullName);
-        private By SelectFilterDropdown => By.Id("selectedStatus");
-        private By ApplyFilter => By.CssSelector(".govuk-button");
-        private By ClearSearchAndFilters => By.PartialLinkText("Clear search");
-        private By DownloadAllDataLink => By.PartialLinkText("Download all data");
-
+        private By ViewApprenticeDetailsLink => By.LinkText("View");
         private By NextPageLink => By.PartialLinkText("Next");
 
-        private ProviderManageYourApprenticesPage SearchForApprenntice(string apprenticeName)
+        private OldProviderManageYourApprenticesPage SearchForApprenntice(string apprenticeName)
         {
             _formCompletionHelper.EnterText(ApprenticeSearchField, apprenticeName);
             _formCompletionHelper.ClickElement(SearchButton);
@@ -51,14 +46,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             while (true)
             {
                 var apprenticeRows = _pageInteractionHelper.FindElements(ApprenticeInfoRow);
-                var detailsLinks = _pageInteractionHelper.FindElement(ViewApprenticeFullName);
+                var detailsLinks = _pageInteractionHelper.FindElements(ViewApprenticeDetailsLink);
 
                 int i = 0;
                 foreach (IWebElement apprenticeRow in apprenticeRows)
                 {
                     if (apprenticeRow.Text.Contains(_dataHelper.ApprenticeFullName))
                     {
-                        _formCompletionHelper.ClickElement(detailsLinks);
+                        _formCompletionHelper.ClickElement(detailsLinks[i]);
                         return new ProviderApprenticeDetailsPage(_context);
                     }
                     i++;
@@ -72,20 +67,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
                     throw new Exception("Apprentice with - " + _dataHelper.ApprenticeFullName + " - name is not found");
                 }
             }
-        }
-
-        public ProviderManageYourApprenticesPage FilterPagination(string filterText)
-        {
-            _formCompletionHelper.SelectFromDropDownByText(SelectFilterDropdown, filterText);
-            _formCompletionHelper.ClickElement(ApplyFilter);
-            _formCompletionHelper.ClickElement(NextPageLink);
-            _formCompletionHelper.ClickElement(ClearSearchAndFilters);
-            return this;
-        }
-
-        public bool DownloadAllDataLinkIsDisplayed()
-        {
-            return _pageInteractionHelper.IsElementDisplayed(DownloadAllDataLink);
         }
     }
 }
