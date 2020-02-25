@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.Roatp.UITests.Project.Tests.Features.RoatpAdmin.DownloadProvider
+namespace SFA.DAS.EmployerFinance.UITests.Project.Tests.Features.HomePageFinanceLinks
 {
     using TechTalk.SpecFlow;
     
@@ -18,20 +18,20 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Features.RoatpAdmin.DownloadProvid
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.0.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("RP_AD_DP_01")]
-    public partial class RP_AD_DP_01Feature
+    [NUnit.Framework.DescriptionAttribute("EF_HPFL_03")]
+    public partial class EF_HPFL_03Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "RP_AD_DP_01.feature"
+#line 1 "EF_HPFL_03.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "RP_AD_DP_01", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "EF_HPFL_03", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -70,25 +70,29 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Features.RoatpAdmin.DownloadProvid
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RP_AD_DP_01_Download List of Training Providers and Fat File")]
-        [NUnit.Framework.CategoryAttribute("rpaddp01")]
-        [NUnit.Framework.CategoryAttribute("roatp")]
-        [NUnit.Framework.CategoryAttribute("roatpadmin")]
-        [NUnit.Framework.CategoryAttribute("notestdata")]
+        [NUnit.Framework.DescriptionAttribute("EF_HPFL_03 - Validate Home Page Finance section for a Levy User who has Signed th" +
+            "e Agreement")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public virtual void RP_AD_DP_01_DownloadListOfTrainingProvidersAndFatFile()
+        [NUnit.Framework.CategoryAttribute("employerfinance")]
+        [NUnit.Framework.CategoryAttribute("addpayedetails")]
+        public virtual void EF_HPFL_03_ValidateHomePageFinanceSectionForALevyUserWhoHasSignedTheAgreement()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_AD_DP_01_Download List of Training Providers and Fat File", null, new string[] {
-                        "rpaddp01",
-                        "roatp",
-                        "roatpadmin",
-                        "notestdata",
-                        "regression"});
-#line 8
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EF_HPFL_03 - Validate Home Page Finance section for a Levy User who has Signed th" +
+                    "e Agreement", null, new string[] {
+                        "regression",
+                        "employerfinance",
+                        "addpayedetails"});
+#line 6
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
+#line 7
+ testRunner.When("an Employer creates a Levy Account and Signs the Agreement", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 8
+ testRunner.Then("\'Your finances\' link is displayed in the Finances section", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 9
- testRunner.Then("the admin can download list of training providers", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.When("the Employer navigates to \'Finance\' Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 10
+ testRunner.Then("\'View transactions\', \'Download transactions\' and \'Transfers\' links are displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

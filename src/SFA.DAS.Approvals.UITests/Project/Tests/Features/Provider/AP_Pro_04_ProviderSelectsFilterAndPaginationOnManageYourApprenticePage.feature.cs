@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.Roatp.UITests.Project.Tests.Features.RoatpAdmin.DownloadProvider
+namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.Provider
 {
     using TechTalk.SpecFlow;
     
@@ -18,20 +18,20 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Features.RoatpAdmin.DownloadProvid
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.0.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("RP_AD_DP_01")]
-    public partial class RP_AD_DP_01Feature
+    [NUnit.Framework.DescriptionAttribute("AP_Pro_04_ProviderSelectsFilterAndPaginationOnManageYourApprenticePage")]
+    public partial class AP_Pro_04_ProviderSelectsFilterAndPaginationOnManageYourApprenticePageFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "RP_AD_DP_01.feature"
+#line 1 "AP_Pro_04_ProviderSelectsFilterAndPaginationOnManageYourApprenticePage.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "RP_AD_DP_01", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "AP_Pro_04_ProviderSelectsFilterAndPaginationOnManageYourApprenticePage", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -70,25 +70,23 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Features.RoatpAdmin.DownloadProvid
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RP_AD_DP_01_Download List of Training Providers and Fat File")]
-        [NUnit.Framework.CategoryAttribute("rpaddp01")]
-        [NUnit.Framework.CategoryAttribute("roatp")]
-        [NUnit.Framework.CategoryAttribute("roatpadmin")]
-        [NUnit.Framework.CategoryAttribute("notestdata")]
+        [NUnit.Framework.DescriptionAttribute("AP_Pro_04 Provider Selects Filter And Pagination")]
+        [NUnit.Framework.CategoryAttribute("approvals")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public virtual void RP_AD_DP_01_DownloadListOfTrainingProvidersAndFatFile()
+        public virtual void AP_Pro_04ProviderSelectsFilterAndPagination()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_AD_DP_01_Download List of Training Providers and Fat File", null, new string[] {
-                        "rpaddp01",
-                        "roatp",
-                        "roatpadmin",
-                        "notestdata",
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_Pro_04 Provider Selects Filter And Pagination", null, new string[] {
+                        "approvals",
                         "regression"});
-#line 8
+#line 5
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 9
- testRunner.Then("the admin can download list of training providers", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 6
+ testRunner.Given("A Provider has navigated to Manage your apprentice page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 7
+ testRunner.When("the provider filters by \'Live\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 8
+ testRunner.Then("the provider is presented with first page with no filters applied", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

@@ -30,7 +30,6 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpAdmin
         [Then(@"the admin should be taken to one provider ukprn result found page")]
         public void ThenTheAdminShouldBeTakenToOneProviderUkprnResultFoundPage() => _resultsFoundPage.VerifyOneProviderUkprnResultFound();
 
-
         [Then(@"the admin can acess all the Update links")]
         public void ThenTheAdminCanAcessAllTheUpdateLinks()
         {
@@ -41,6 +40,16 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpAdmin
             .ClickChangeStatusLink()
             .ClickBackLink()
             .ClickChangeProviderTypeLink()
+            .ClickBackLink()
+            .ClickChangeOrganisationTypeLink()
+            .ClickBackLink()
+            .ClickChangeTradingNameLink()
+            .ClickBackLink()
+            .ClickChangeCompanyNumberLink()
+            .ClickBackLink()
+            .ClickChangeCharityNumberLink()
+            .ClickBackLink()
+            .ClickChangeApplicationDateDeterminedLink()
             .ClickBackLink();
         }
 
@@ -48,7 +57,27 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpAdmin
         public void ThenTheAdminCanDownloadListOfTrainingProviders() => GoToRoatpAdminHomePage().DownloadRegister();
 
         [Given(@"the admin initates an application as (Main provider|Employer provider|Supporting provider)")]
-        public void GivenTheAdminInitatesAnApplication(string providerType) => InitatesAnApplication(providerType);
+        public void GivenTheAdminInitatesAnApplication(string providerType) => _roatpAdminHomePage = InitatesAnApplication(providerType);
+
+        [When(@"the admin update the provider details")]
+        public void WhenTheAdminUpdateTheProviderDetails()
+        {
+            _resultsFoundPage = _resultsFoundPage
+                .ClickChangeProviderTypeLink()
+                .ConfirmNewProviderTypeAsEmloyer()
+                .ClickChangeOrganisationTypeLink()
+                .ConfirmNewOrganisationType();
+        }
+
+        [Then(@"changes made are reflected on provider page")]
+        public void ThenChangesMadeAreReflectedOnProviderPage()
+        {
+            _resultsFoundPage.VerifyProvideType("Employer");
+
+            _resultsFoundPage.VerifyOrganisationType();
+
+            _resultsFoundPage = _resultsFoundPage.ClickChangeProviderTypeLink().ConfirmNewProviderTypeAsMain();
+        }
 
         [Then(@"Organisation is successfully Added to the Register")]
         public void ThenOrganisationIsSuccessfullyAddedToTheRegister() => _roatpAdminHomePage.VerifyNewProviderHasBeenAdded();
@@ -59,9 +88,9 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpAdmin
         [Then(@"the provider status should be set to Active")]
         public void ThenTheProviderStatusShouldBeSetToActive() => _roatpAdminHomePage.SearchTrainingProviderByName().VerifySupportingProviderTypeStatus();
 
-        private void InitatesAnApplication(string providerType)
+        private RoatpAdminHomePage InitatesAnApplication(string providerType)
         {
-            GoToRoatpAdminHomePage()
+            return GoToRoatpAdminHomePage()
                 .AddANewTrainingProvider()
                 .EnterUkprn()
                 .ConfirmOrganisationsDetails()
@@ -75,7 +104,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpAdmin
         {
             new ServiceStartPage(_context).ClickStartNow().LoginToAccess1Staff();
 
-            return _roatpAdminHomePage = new SignInPage(_context).SignInWithValidDetails();
+            return new SignInPage(_context).SignInWithValidDetails();
         }
 
         private RoatpAdminHomePage GoToRoatpAdminHomePage(ResultsFoundPage resultsFoundPage) => resultsFoundPage.GetRoatpAdminHomePage();
