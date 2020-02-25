@@ -35,6 +35,11 @@ namespace SFA.DAS.UI.FrameworkHelpers
             ClickElement(_webDriver.FindElement(locator));
         }
 
+        public void ClickWebElement(IWebElement element)
+        {
+            element.Click();
+        }
+
         public void Click(By locator) => ClickElement(locator);
 
         public void EnterText(IWebElement element, string text)

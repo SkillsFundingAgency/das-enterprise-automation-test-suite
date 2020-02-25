@@ -128,15 +128,15 @@ this.FeatureBackground();
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("FAA_DA_01  - create a new account in FAA, apply for a vacancy and Delete the Acco" +
-            "unt: Add different location")]
+            "unt: Set as a nationwide vacancy")]
         [NUnit.Framework.CategoryAttribute("raa-v1")]
         [NUnit.Framework.CategoryAttribute("apprenticeshipvacancy")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("FAALoginNewCredentials")]
-        public virtual void FAA_DA_01_CreateANewAccountInFAAApplyForAVacancyAndDeleteTheAccount_AddDifferentLocation()
+        public virtual void FAA_DA_01_CreateANewAccountInFAAApplyForAVacancyAndDeleteTheAccount_SetAsANationwideVacancy()
         {
 #line 10
-this.FAA_DA_01_CreateANewAccountInFAAApplyForAVacancyAndDeleteTheAccount("Add different location", "Yes", "Yes", "Online", "Standard", "42", "52", "3", "No", "Yes", "No", ((string[])(null)));
+this.FAA_DA_01_CreateANewAccountInFAAApplyForAVacancyAndDeleteTheAccount("Set as a nationwide vacancy", "Yes", "Yes", "Online", "Standard", "42", "52", "3", "No", "Yes", "No", ((string[])(null)));
 #line hidden
         }
     }

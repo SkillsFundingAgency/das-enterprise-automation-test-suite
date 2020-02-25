@@ -22,5 +22,5 @@ Scenario Outline: FAA_DA_01  - create a new account in FAA, apply for a vacancy 
 	And the Candidate is removed from the Manage 
 
 	Examples:
-		| location               | anonymity | DisabilityConfident | ApplicationMethod | ApprenticeshipType | HoursPerWeek | VacancyDuration | NoOfPositions | QualificationDetails | WorkExperience | TrainingCourse | 
-		| Add different location | Yes       | Yes                 | Online            | Standard           | 42           | 52              | 3             | No                   | Yes            | No             | 
+		| location					  | anonymity | DisabilityConfident | ApplicationMethod | ApprenticeshipType | HoursPerWeek | VacancyDuration | NoOfPositions | QualificationDetails | WorkExperience | TrainingCourse | 
+		| Set as a nationwide vacancy | Yes       | Yes                 | Online            | Standard           | 42           | 52              | 3             | No                   | Yes            | No             | 

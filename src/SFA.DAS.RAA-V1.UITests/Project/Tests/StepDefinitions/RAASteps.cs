@@ -107,7 +107,14 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
         [Then(@"Provider is able to close this vacancy with no application")]
         public void ThenProviderIsAbleToCloseThisVacancyWithNoApplication()
         {
-            CloseVacancy(new RAA_VacancyPreviewPage(_context));
+            if (_objectContext.IsApprenticeshipVacancyType())
+            {
+                CloseVacancy(new RAA_VacancyPreviewPage(_context));
+            }
+            else
+            {
+                CloseVacancy(new RAA_OppurtunityPreviewPage(_context));
+            }
         }
 
         [Then(@"Provider is able to close this vacancy")]
@@ -149,7 +156,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
         {
             _raaStepsHelper.ProviderFillsOutTraineeshipDetails(location, "Yes", "Offline");
         }
-
+        
         [When(@"the Vacancy details are filled out for a Traineeship for a different '(.*)'")]
         public void WhenTheVacancyDetailsAreFilledOutForATraineeshipForADifferent(string location)
         {
