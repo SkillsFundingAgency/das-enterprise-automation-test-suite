@@ -7,14 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Project\Tests\Features\E2EJourney\ChangeVacancyStatus\Traineeships\NewFolder1\**" />
-    <EmbeddedResource Remove="Project\Tests\Features\E2EJourney\ChangeVacancyStatus\Traineeships\NewFolder1\**" />
-    <None Remove="Project\Tests\Features\E2EJourney\ChangeVacancyStatus\Traineeships\NewFolder1\**" />
-    <SpecFlowFeatureFiles Remove="Project\Tests\Features\E2EJourney\ChangeVacancyStatus\Traineeships\NewFolder1\**" />
-    <SpecFlowObsoleteCodeBehindFiles Remove="Project\Tests\Features\E2EJourney\ChangeVacancyStatus\Traineeships\NewFolder1\**" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Compile Include="..\NUnitConfigurator.cs" Link="NUnitConfigurator.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
