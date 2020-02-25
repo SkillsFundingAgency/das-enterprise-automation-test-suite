@@ -13,14 +13,14 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         private readonly ScenarioContext _context;
         private readonly ObjectContext _objectContext;
         private readonly RegistrationDatahelpers _registrationDataHelper;
+        private readonly RegistrationSqlDataHelper _registrationSqlDataHelper;
         private HomePage _homePage;
         private AddAPAYESchemePage _addAPAYESchemePage;
         private GgSignInPage _gGSignInPage;
         private OrganisationSearchPage _organistionSearchPage;
         private SelectYourOrganisationPage _selectYourOrganisationPage;
         private SignAgreementPage _signAgreementPage;
-        private OrganisationHasBeenAddedPage _organisationHasBeenAddedPage;
-        private readonly RegistrationSqlDataHelper _registrationSqlDataHelper;
+        private CheckYourDetailsPage _checkYourDetailsPage;
 
         public CreateAccountSteps(ScenarioContext context)
         {
@@ -180,26 +180,34 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         [When(@"the Employer initiates adding another Org of (Company|PublicSector|Charity) Type")]
         public void WhenTheEmployerInitiatesAddingAnotherOrgType(OrgType orgType)
         {
-            _organisationHasBeenAddedPage = SearchForAnotherOrg(orgType)
-                .SelectYourOrganisation(orgType)
-                .ClickYesContinueButton();
+            _checkYourDetailsPage = SearchForAnotherOrg(orgType)
+                .SelectYourOrganisation(orgType);
         }
 
-        [When(@"the Employer initiates adding another same Org of (Company|PublicSector|Charity) Type again")]
-        public void WhenTheEmployerInitiatesAddingAnotherSameOrgTypeAgain(OrgType orgType) =>
+        [When(@"the Employer initiates adding same Org of (Company|PublicSector|Charity) Type again")]
+        public void WhenTheEmployerInitiatesAddingSameOrgTypeAgain(OrgType orgType) =>
             _selectYourOrganisationPage = SearchForAnotherOrg(orgType);
 
         [Then(@"the new Org added is shown in the Account Organisations list")]
         public void ThenTheNewOrgAddedIsShownInTheAccountOrganisationsList()
         {
-            _organisationHasBeenAddedPage
-            .GoToYourOrganisationsAndAgreementsPage()
-            .VerifyNewlyAddedOrgIsPresent();
+            _checkYourDetailsPage
+                .ClickYesContinueButton()
+                .GoToYourOrganisationsAndAgreementsPage()
+                .VerifyNewlyAddedOrgIsPresent();
         }
 
         [Then(@"'Already added' message is shown to the User")]
         public void ThenAlreadyAddedMessageIsShownToTheUser() =>
             _selectYourOrganisationPage.VerifyOrgAlreadyAddedMessage(_registrationDataHelper.PublicSectorTypeOrg);
+
+        [Then(@"the address details and registered charity number are displayed in the 'Check your details' page")]
+        public void ThenTheAddressDetailsAndRegisteredCharityNumberAreDisplayedInTheCheckYourDetailsPage()
+        {
+            Assert.AreEqual(_registrationDataHelper.CharityTypeOrg1Name, _checkYourDetailsPage.GetOrganisationName().Trim());
+            Assert.AreEqual(_registrationDataHelper.CharityTypeOrg1Address, _checkYourDetailsPage.GetOrganisationAddress().Trim());
+            Assert.AreEqual(_registrationDataHelper.CharityTypeOrg1Number, _checkYourDetailsPage.GetOrganisationNumber().Trim());
+        }
 
         private SelectYourOrganisationPage SearchForAnotherOrg(OrgType orgType)
         {
