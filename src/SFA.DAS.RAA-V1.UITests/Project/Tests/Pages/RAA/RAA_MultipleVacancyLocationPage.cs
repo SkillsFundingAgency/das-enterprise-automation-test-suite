@@ -36,7 +36,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         public RAA_MultipleVacancyLocationPage AddLocation(string postcode)
         {
             String[] Postcodes = postcode.Split(" ");
-            string postCode1 = Postcodes[0];
+            string postCode1 = Postcodes[0] + " ";
             string postCode2 = Postcodes[1];
             formCompletionHelper.EnterText(EnterVacancyPostCode, postCode1);
 

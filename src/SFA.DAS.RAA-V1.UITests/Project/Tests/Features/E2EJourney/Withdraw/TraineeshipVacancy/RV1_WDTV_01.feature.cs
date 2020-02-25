@@ -106,13 +106,13 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RV1_WDTV_01 - Withdraw Traineeship Vacancy: Add different location")]
+        [NUnit.Framework.DescriptionAttribute("RV1_WDTV_01 - Withdraw Traineeship Vacancy: Set as a nationwide vacancy")]
         [NUnit.Framework.CategoryAttribute("raa-v1")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public virtual void RV1_WDTV_01_WithdrawTraineeshipVacancy_AddDifferentLocation()
+        public virtual void RV1_WDTV_01_WithdrawTraineeshipVacancy_SetAsANationwideVacancy()
         {
 #line 5
-this.RV1_WDTV_01_WithdrawTraineeshipVacancy("Add different location", "No", "No", "No", ((string[])(null)));
+this.RV1_WDTV_01_WithdrawTraineeshipVacancy("Set as a nationwide vacancy", "No", "No", "No", ((string[])(null)));
 #line hidden
         }
     }

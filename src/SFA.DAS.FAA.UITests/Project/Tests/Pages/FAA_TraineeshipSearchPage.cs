@@ -1,5 +1,6 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.ConfigurationBuilder;
+using SFA.DAS.RAA.DataGenerator;
 using SFA.DAS.RAA.DataGenerator.Project;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
@@ -52,7 +53,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
         
 
         public FAA_TraineeshipSearchResultsPage SearchForAVacancy(string location)
-        {
+        {            
             _formCompletionHelper.EnterText(Location, location);
             _formCompletionHelper.Click(Search);
             _pageInteractionHelper.WaitforURLToChange("/traineeships/search?Hash=");

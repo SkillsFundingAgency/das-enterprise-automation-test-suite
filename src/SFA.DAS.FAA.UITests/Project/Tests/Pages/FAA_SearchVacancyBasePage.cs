@@ -49,7 +49,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
             var urlChange = distance.Contains("miles") ? distance.Split(" ")[0] : "0";
 
             _pageInteractionHelper.WaitforURLToChange($"WithinDistance={urlChange}");
-        }
+        }        
 
     }
 }

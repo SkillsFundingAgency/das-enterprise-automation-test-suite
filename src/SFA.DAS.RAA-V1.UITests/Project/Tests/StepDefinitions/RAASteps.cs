@@ -156,7 +156,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
         {
             _raaStepsHelper.ProviderFillsOutTraineeshipDetails(location, "Yes", "Offline");
         }
-
+        
         [When(@"the Vacancy details are filled out for a Traineeship for a different '(.*)'")]
         public void WhenTheVacancyDetailsAreFilledOutForATraineeshipForADifferent(string location)
         {
