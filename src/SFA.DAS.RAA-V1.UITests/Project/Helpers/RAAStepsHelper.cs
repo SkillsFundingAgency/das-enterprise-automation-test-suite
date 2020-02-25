@@ -5,8 +5,6 @@ using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
-using SFA.DAS.FAA.UITests.Project;
-using SFA.DAS.RAA.DataGenerator;
 
 namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
 {
@@ -291,8 +289,11 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
         }   
         
         public RAA_CandidateApplicationPage SelectACandidate() => Search().SelectACandidate();
+
         public void SearchForDeletedCandidate() => Search().VerifyCandidateDeletion();
+
         private RAA_SearchCandidatesPage Search() => GoToRAAHomePage(true).SearchCandidates().Search();
+
         public void VerifyCandidateUpdatedDetails(string changedField) => SelectACandidate().VerifyUpdatedCandidateDetails(changedField);
 
     }

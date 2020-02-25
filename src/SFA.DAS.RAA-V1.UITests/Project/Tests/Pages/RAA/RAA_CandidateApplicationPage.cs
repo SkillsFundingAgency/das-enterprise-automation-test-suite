@@ -12,10 +12,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         private By CandidateSummary => By.CssSelector(".summary");
 
 
-        public RAA_CandidateApplicationPage(ScenarioContext context) : base(context)
-        {
-            VerifyPage();
-        }
+        public RAA_CandidateApplicationPage(ScenarioContext context) : base(context) { }
 
         public void VerifyUpdatedCandidateDetails(string changingField)
         {
