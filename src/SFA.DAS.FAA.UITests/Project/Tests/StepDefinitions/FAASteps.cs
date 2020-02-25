@@ -80,6 +80,12 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.StepDefinitions
                 .DeleteAccount()
                 .ConfirmAccountDeletion();            
         }
+      
+        [When(@"the Candidate changes Personal Settings '(PhoneNumber|EmailId)'")]
+        public void WhenTheCandidateChangesPersonalSettings(string changingField)
+        {
+            _faaStepsHelper.ChangePersonalSettings(changingField);
+        }
 
         [Then(@"the Traineeship Vacancy is not found on FAA")]
         public void ThenTheTraineeshipVacancyIsNotFoundOnFAA()
