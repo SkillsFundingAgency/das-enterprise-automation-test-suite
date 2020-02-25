@@ -4,10 +4,6 @@
 @registration
 @addpayedetails
 Scenario: RE_CEACMPT_01_Create an Employer Account with CompanyType Organisation and Add another Org of PublicSector Type
-	When an User Account is created
-	And the User adds PAYE details
-	And adds Company Type Organisation details
-	And the Employer Signs the Agreement
-	Then the Employer Home page is displayed
+	When an Employer Account with Company Type Org is created and agreement is Signed
 	When the Employer initiates adding another Org of PublicSector Type
 	Then the new Org added is shown in the Account Organisations list
