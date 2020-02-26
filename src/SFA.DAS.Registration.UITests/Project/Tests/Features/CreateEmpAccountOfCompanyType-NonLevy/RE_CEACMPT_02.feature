@@ -1,9 +1,9 @@
-﻿Feature: RE_CEACT_02
+﻿Feature: RE_CEACMPT_02
 
 @regression
 @registration
 @addpayedetails
-Scenario: RE_CEACT_02_Verify Invalid PAYE and Company number entry during Employer Account creation
+Scenario: RE_CEACMPT_02_Verify Invalid PAYE and Company number entry during Employer Account creation
 	When an User Account is created
 	And the User adds Invalid PAYE details
 	Then the 'Bad user name or password' error message is shown
