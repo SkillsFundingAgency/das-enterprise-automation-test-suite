@@ -18,8 +18,8 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         private readonly string _scenarioTitle;
         #endregion
 
-        private By EnterVacancyPostCode => By.Id("postcode-search");
-        private By PostCodeResult => By.CssSelector(".ui-menu-item");
+        private By EnterVacancyLocation => By.Id("postcode-search");
+        private By AddressResults => By.CssSelector(".ui-menu-item");
         private By NumberOfVacancy => By.Id("addresses_0__numberofpositions");
         private By NumberOfVacancy2 => By.Id("addresses_1__numberofpositions");
         private By AdditionalLocationInformation => By.Id("AdditionalLocationInformation");
@@ -33,31 +33,19 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
             _scenarioTitle = context.ScenarioInfo.Title;
         }
 
-        public RAA_MultipleVacancyLocationPage AddLocation(string postcode)
+        public RAA_MultipleVacancyLocationPage AddLocation(string text)
         {
-            List<IWebElement> postCodeResult() => _pageInteractionHelper.FindElements(PostCodeResult);
+            List<IWebElement> addressResults() => _pageInteractionHelper.FindElements(AddressResults);
 
-            var postcodes = postcode.Split(" ");
-            formCompletionHelper.EnterText(EnterVacancyPostCode, postcodes[0] + " ");
-
-            foreach (var letter in postcodes[1].ToCharArray())
+            formCompletionHelper.ClickElement(() =>
             {
-                _pageInteractionHelper.WaitUntilAnyElements(PostCodeResult);
-                if (postCodeResult().Count == 0)
-                {
-                    formCompletionHelper.SendKeys(EnterVacancyPostCode, letter.ToString());
-                    continue;
-                }
-                try
-                {
-                    formCompletionHelper.ClickElement(() => _raadataHelper.GetRandomElementFromListOfElements(postCodeResult()));
-                    break;
-                }
-                catch (Exception ex)
-                {
-                    TestContext.Progress.WriteLine($"{Environment.NewLine}Scenario Title : {_scenarioTitle}{Environment.NewLine}Exception : {ex.Message}");
-                }
-            }
+                formCompletionHelper.EnterText(EnterVacancyLocation, text);
+
+                _pageInteractionHelper.WaitUntilAnyElements(AddressResults);
+
+                return _raadataHelper.GetRandomElementFromListOfElements(addressResults());
+            });
+
             return this;
         }
 
