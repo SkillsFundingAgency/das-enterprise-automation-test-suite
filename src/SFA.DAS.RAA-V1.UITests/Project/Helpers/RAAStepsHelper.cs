@@ -252,7 +252,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
                        .AddLocation(postCode)
                        .EnterNumberOfVacancy()
                        .ClickAddAnotherLocationLink()
-                       .AddLocation("16 Quinton Road Coventry CV1 2NJ")
+                       .AddLocation("CV1 2NJ")
                        .EnterNumberOfVacancy2()
                        .EnterAdditionalLocationInformation()
                        .ClickSaveAndContinue();

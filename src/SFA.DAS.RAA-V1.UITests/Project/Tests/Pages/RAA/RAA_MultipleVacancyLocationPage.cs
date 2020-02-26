@@ -4,6 +4,7 @@ using SFA.DAS.RAA.DataGenerator;
 using SFA.DAS.UI.FrameworkHelpers;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
@@ -35,15 +36,13 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
 
         public RAA_MultipleVacancyLocationPage AddLocation(string text)
         {
-            List<IWebElement> addressResults() => _pageInteractionHelper.FindElements(AddressResults);
-
             formCompletionHelper.ClickElement(() =>
             {
                 formCompletionHelper.EnterText(EnterVacancyLocation, text);
 
                 _pageInteractionHelper.WaitUntilAnyElements(AddressResults);
 
-                return _raadataHelper.GetRandomElementFromListOfElements(addressResults());
+                return _pageInteractionHelper.FindElement(AddressResults);
             });
 
             return this;
