@@ -33,6 +33,9 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
                 case OrgType.Charity:
                     EnterAndSetOrgName(registrationDataHelper.CharityTypeOrg1Name);
                     break;
+                case OrgType.Charity2:
+                    EnterAndSetOrgName(registrationDataHelper.CharityTypeOrg2Name);
+                    break;
                 case OrgType.Default:
                     EnterAndSetOrgName(objectContext.GetOrganisationName());
                     break;

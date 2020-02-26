@@ -34,6 +34,9 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
                 case OrgType.Charity:
                     formCompletionHelper.ClickElement(SearchLinkUrl(registrationDataHelper.CharityTypeOrg1Name));
                     break;
+                case OrgType.Charity2:
+                    formCompletionHelper.ClickElement(SearchLinkUrl(registrationDataHelper.CharityTypeOrg2Name));
+                    break;
                 case OrgType.Default:
                     formCompletionHelper.ClickElement(SearchLinkUrl(objectContext.GetOrganisationName()));
                     break;

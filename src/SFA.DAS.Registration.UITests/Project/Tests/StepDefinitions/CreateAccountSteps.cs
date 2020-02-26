@@ -149,6 +149,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         public void WhenAnEmployerCreatesANonLevyAccountAndNotSignsTheAgreementDuringRegistration() =>
             GivenAnEmployerAccountWithSpecifiedTypeOrgIsCreatedAndAgeementIsNotSigned(OrgType.Company);
 
+        [Given(@"an Employer Account with (Company|PublicSector|Charity) Type Org is created and agreement is Signed")]
         [When(@"an Employer Account with (Company|PublicSector|Charity) Type Org is created and agreement is Signed")]
         public void GivenAnEmployerAccountWithSpecifiedTypeOrgIsCreatedAndAgeementIsSigned(OrgType orgType)
         {
@@ -177,7 +178,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             GivenAnEmployerAccountWithSpecifiedTypeOrgIsCreatedAndAgeementIsNotSigned(OrgType.Company);
         }
 
-        [When(@"the Employer initiates adding another Org of (Company|PublicSector|Charity) Type")]
+        [When(@"the Employer initiates adding another Org of (Company|PublicSector|Charity|Charity2) Type")]
         public void WhenTheEmployerInitiatesAddingAnotherOrgType(OrgType orgType)
         {
             _checkYourDetailsPage = SearchForAnotherOrg(orgType)
@@ -209,14 +210,23 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             Assert.AreEqual(_registrationDataHelper.CharityTypeOrg1Address, _checkYourDetailsPage.GetOrganisationAddress());
         }
 
+        [Then(@"the Employer is able check the details of the 2nd Charity Type Org added are displayed in the 'Check your details' page and Continue")]
+        public void ThenTheDetailsOfThe2ndCharityTypeOrgAddedAreDisplayedInThePageAndContinue()
+        {
+            Assert.AreEqual(_registrationDataHelper.CharityTypeOrg2Number, _checkYourDetailsPage.GetOrganisationNumber());
+            Assert.AreEqual(_registrationDataHelper.CharityTypeOrg2Name, _checkYourDetailsPage.GetOrganisationName());
+            Assert.AreEqual(_registrationDataHelper.CharityTypeOrg2Address, _checkYourDetailsPage.GetOrganisationAddress());
+            ThenTheNewOrgAddedIsShownInTheAccountOrganisationsList();
+        }
+
         [Then(@"the Employer is able check the details entered in the 'Check your details' page and complete registration")]
         public void ThenTheEmployerChecksTheDetailsEnteredAndCompletesRegistration()
         {
-            Assert.AreEqual(_registrationDataHelper.CharityTypeOrg2Number, _checkYourDetailsPage.GetManuallyAddedOrganisationNumber());
-            Assert.AreEqual(_registrationDataHelper.CharityTypeOrg2Name, _checkYourDetailsPage.GetManuallyAddedOrganisationName());
-            var manuallyEnteredCharityTypeOrg2Address = $"{_registrationDataHelper.CharityTypeOrg2FirstLineAddressForEnteringManually} " +
-                                                        $"{_registrationDataHelper.CharityTypeOrg2CityForEnteringManually} " +
-                                                        $"{_registrationDataHelper.CharityTypeOrg2PostCodeForEnteringManually}";
+            Assert.AreEqual(_registrationDataHelper.CharityTypeOrg3Number, _checkYourDetailsPage.GetManuallyAddedOrganisationNumber());
+            Assert.AreEqual(_registrationDataHelper.CharityTypeOrg3Name, _checkYourDetailsPage.GetManuallyAddedOrganisationName());
+            var manuallyEnteredCharityTypeOrg2Address = $"{_registrationDataHelper.CharityTypeOrg3FirstLineAddressForEnteringManually} " +
+                                                        $"{_registrationDataHelper.CharityTypeOrg3CityForEnteringManually} " +
+                                                        $"{_registrationDataHelper.CharityTypeOrg3PostCodeForEnteringManually}";
             Assert.AreEqual(manuallyEnteredCharityTypeOrg2Address, _checkYourDetailsPage.GetManuallyAddedOrganisationAddress());
 
             _checkYourDetailsPage.ClickYesTheseDetailsAreCorrectButtonInCheckYourDetailsPage()
@@ -246,12 +256,12 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         [When(@"adds the Organisation address details manually")]
         public void WhenAddsTheOrganisationAddressDetailsManually()
         {
-            _checkYourDetailsPage = _organistionSearchPage.SearchForAnOrganisation(_registrationDataHelper.CharityTypeOrg2Number)
-                                        .SelectYourOrganisation(_registrationDataHelper.CharityTypeOrg2Name)
+            _checkYourDetailsPage = _organistionSearchPage.SearchForAnOrganisation(_registrationDataHelper.CharityTypeOrg3Number)
+                                        .SelectYourOrganisation(_registrationDataHelper.CharityTypeOrg3Name)
                                         .ClickEnterAddressManullyLink()
                                         .EnterAddressDetailsAndContinue();
 
-            _objectContext.UpdateOrganisationName(_registrationDataHelper.CharityTypeOrg2Name);
+            _objectContext.UpdateOrganisationName(_registrationDataHelper.CharityTypeOrg3Name);
         }
 
         private void CreateUserAccountAndAddOrg(OrgType orgType)
