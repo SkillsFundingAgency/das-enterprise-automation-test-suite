@@ -29,10 +29,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             VerifyPage();
         }
 
-        public SearchForATrainingProviderPage SelectAddANewTrainingProvider()
+        public EnterYourTrainingProvidersUKProviderReferenceNumberUKPRN SelectAddANewTrainingProvider()
         {
             _formCompletionHelper.ClickElement(AddANewTrainingProviderButton);
-            return new SearchForATrainingProviderPage(_context);
+            return new EnterYourTrainingProvidersUKProviderReferenceNumberUKPRN(_context);
         }
 
         internal SetPermissionsPage SelectSetPermissions()
