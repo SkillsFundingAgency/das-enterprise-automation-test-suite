@@ -199,7 +199,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
 
         [Then(@"'Already added' message is shown to the User")]
         public void ThenAlreadyAddedMessageIsShownToTheUser() =>
-            _selectYourOrganisationPage.VerifyOrgAlreadyAddedMessage(_registrationDataHelper.PublicSectorTypeOrg);
+            _selectYourOrganisationPage.VerifyOrgAlreadyAddedMessage();
 
         [Then(@"the details of the Charity Type Org added are displayed in the 'Check your details' page")]
         public void ThenTheDetailsOfTheCharityTypeOrgAddedAreDisplayedInThePage()
