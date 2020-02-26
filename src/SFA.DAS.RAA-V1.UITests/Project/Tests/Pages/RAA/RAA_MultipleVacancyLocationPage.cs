@@ -36,10 +36,10 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
 
         public RAA_MultipleVacancyLocationPage AddLocation(string text)
         {
+            formCompletionHelper.EnterText(EnterVacancyLocation, text);
+
             formCompletionHelper.ClickElement(() =>
             {
-                formCompletionHelper.EnterText(EnterVacancyLocation, text);
-
                 _pageInteractionHelper.WaitUntilAnyElements(AddressResults);
 
                 return _pageInteractionHelper.FindElement(AddressResults);
