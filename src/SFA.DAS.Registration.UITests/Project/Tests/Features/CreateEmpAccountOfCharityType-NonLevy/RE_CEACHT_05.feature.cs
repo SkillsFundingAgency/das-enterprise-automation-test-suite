@@ -90,8 +90,8 @@ this.ScenarioInitialize(scenarioInfo);
 #line 8
  testRunner.When("the Employer initiates adding another Org of Charity2 Type", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 9
- testRunner.Then("the Employer is able check the details of the 2nd Charity Type Org added are disp" +
-                    "layed in the \'Check your details\' page and Continue", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the Employer is able check the details of the 2nd Charity Org added are displayed" +
+                    " in the \'Check your details\' page and Continue", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

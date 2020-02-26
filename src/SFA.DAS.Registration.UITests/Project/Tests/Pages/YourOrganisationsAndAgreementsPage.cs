@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using NUnit.Framework;
+using OpenQA.Selenium;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
@@ -38,7 +39,8 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             return new OrganisationSearchPage(_context);
         }
 
-        public bool VerifyNewlyAddedOrgIsPresent()
-            => pageInteractionHelper.GetTextFromElementsGroup(TableCells).Contains(objectContext.GetOrganisationName());
+        public void VerifyNewlyAddedOrgIsPresent() =>
+            Assert.IsTrue(pageInteractionHelper.GetTextFromElementsGroup(TableCells).Contains(objectContext.GetOrganisationName()),
+                $"'{objectContext.GetOrganisationName()} is NOT listed under 'YourOrganisationsAndAgreementsPage'");
     }
 }

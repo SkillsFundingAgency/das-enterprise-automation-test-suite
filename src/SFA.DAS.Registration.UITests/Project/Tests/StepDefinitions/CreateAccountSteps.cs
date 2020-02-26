@@ -202,22 +202,13 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         public void ThenAlreadyAddedMessageIsShownToTheUser() =>
             _selectYourOrganisationPage.VerifyOrgAlreadyAddedMessage();
 
-        [Then(@"the details of the Charity Type Org added are displayed in the 'Check your details' page")]
-        public void ThenTheDetailsOfTheCharityTypeOrgAddedAreDisplayedInThePage()
-        {
-            Assert.AreEqual(_registrationDataHelper.CharityTypeOrg1Number, _checkYourDetailsPage.GetOrganisationNumber());
-            Assert.AreEqual(_registrationDataHelper.CharityTypeOrg1Name, _checkYourDetailsPage.GetOrganisationName());
-            Assert.AreEqual(_registrationDataHelper.CharityTypeOrg1Address, _checkYourDetailsPage.GetOrganisationAddress());
-        }
+        [Then(@"the Employer is able check the details of the Charity Org added are displayed in the 'Check your details' page and Continue")]
+        public void ThenTheEmployerIsAbleToCheckTheDetailsOfTheCharityOrgAddedAreDisplayedInThePageAndContinue() => 
+            VerifyOrgDetailsAndContinue(_registrationDataHelper.CharityTypeOrg1Number, _registrationDataHelper.CharityTypeOrg1Name, _registrationDataHelper.CharityTypeOrg1Address);
 
-        [Then(@"the Employer is able check the details of the 2nd Charity Type Org added are displayed in the 'Check your details' page and Continue")]
-        public void ThenTheDetailsOfThe2ndCharityTypeOrgAddedAreDisplayedInThePageAndContinue()
-        {
-            Assert.AreEqual(_registrationDataHelper.CharityTypeOrg2Number, _checkYourDetailsPage.GetOrganisationNumber());
-            Assert.AreEqual(_registrationDataHelper.CharityTypeOrg2Name, _checkYourDetailsPage.GetOrganisationName());
-            Assert.AreEqual(_registrationDataHelper.CharityTypeOrg2Address, _checkYourDetailsPage.GetOrganisationAddress());
-            ThenTheNewOrgAddedIsShownInTheAccountOrganisationsList();
-        }
+        [Then(@"the Employer is able check the details of the 2nd Charity Org added are displayed in the 'Check your details' page and Continue")]
+        public void ThenTheEmployerIsAbleToCheckTheDetailsOfThe2ndCharityOrgAddedAreDisplayedInThePageAndContinue() => 
+            VerifyOrgDetailsAndContinue(_registrationDataHelper.CharityTypeOrg2Number, _registrationDataHelper.CharityTypeOrg2Name, _registrationDataHelper.CharityTypeOrg2Address);
 
         [Then(@"the Employer is able check the details entered in the 'Check your details' page and complete registration")]
         public void ThenTheEmployerChecksTheDetailsEnteredAndCompletesRegistration()
@@ -284,5 +275,14 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         }
 
         private void AddLevyDeclarations() => new BackgroundDataSteps(_context).GivenLevyDeclarationsIsAddedForPastMonthsWithLevypermonthAs("5", "10000");
+
+        private void VerifyOrgDetailsAndContinue(string orgNumber, string OrgName, string orgAddress)
+        {
+            Assert.AreEqual(orgNumber, _checkYourDetailsPage.GetOrganisationNumber());
+            Assert.AreEqual(OrgName, _checkYourDetailsPage.GetOrganisationName());
+            Assert.AreEqual(orgAddress, _checkYourDetailsPage.GetOrganisationAddress());
+
+            ThenTheNewOrgAddedIsShownInTheAccountOrganisationsList();
+        }
     }
 }
