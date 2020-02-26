@@ -12,7 +12,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
         private By TrainingCourseContainer => By.Id("SelectedCourseId");
 
         private By StandardCourseOption => By.Id("SelectedCourseId__option--0");
-        private By SaveAndContinueButton => By.CssSelector(".govuk-button");
+        private By SaveAndContinueButton => By.XPath("//button[@class='govuk-button']");
 
         #region Helpers and Context
         private readonly PageInteractionHelper _pageInteractionHelper;
@@ -36,7 +36,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
 
         public DoYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage EnterSelectForACourseAndSubmit()
         {
-            _formCompletionHelper.EnterText(TrainingCourseContainer, "Food Technologist - Level 3");
+            _formCompletionHelper.EnterText(TrainingCourseContainer, "Food Technologist - Level");
             _formCompletionHelper.ClickElement(StandardCourseOption);
             return new DoYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage(_context);
         }
