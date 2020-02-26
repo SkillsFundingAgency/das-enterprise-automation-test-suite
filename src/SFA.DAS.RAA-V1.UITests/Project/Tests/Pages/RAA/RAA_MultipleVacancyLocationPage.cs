@@ -35,21 +35,22 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
 
         public RAA_MultipleVacancyLocationPage AddLocation(string postcode)
         {
+            List<IWebElement> postCodeResult() => _pageInteractionHelper.FindElements(PostCodeResult);
+
             var postcodes = postcode.Split(" ");
             formCompletionHelper.EnterText(EnterVacancyPostCode, postcodes[0] + " ");
 
             foreach (var letter in postcodes[1].ToCharArray())
             {
-                _pageInteractionHelper.AnyElements(PostCodeResult);
-                List<IWebElement> postCodeResult = _pageInteractionHelper.FindElements(PostCodeResult);
-                if (postCodeResult.Count == 0)
+                _pageInteractionHelper.WaitUntilAnyElements(PostCodeResult);
+                if (postCodeResult().Count == 0)
                 {
                     formCompletionHelper.SendKeys(EnterVacancyPostCode, letter.ToString());
                     continue;
                 }
                 try
                 {
-                    formCompletionHelper.ClickElement(postCodeResult[0]);
+                    formCompletionHelper.ClickElement(() => _raadataHelper.GetRandomElementFromListOfElements(postCodeResult()));
                     break;
                 }
                 catch (Exception ex)
