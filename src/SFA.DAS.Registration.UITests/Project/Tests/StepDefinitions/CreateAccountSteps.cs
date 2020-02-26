@@ -13,14 +13,14 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         private readonly ScenarioContext _context;
         private readonly ObjectContext _objectContext;
         private readonly RegistrationDatahelpers _registrationDataHelper;
+        private readonly RegistrationSqlDataHelper _registrationSqlDataHelper;
         private HomePage _homePage;
         private AddAPAYESchemePage _addAPAYESchemePage;
         private GgSignInPage _gGSignInPage;
         private OrganisationSearchPage _organistionSearchPage;
         private SelectYourOrganisationPage _selectYourOrganisationPage;
         private SignAgreementPage _signAgreementPage;
-        private OrganisationHasBeenAddedPage _organisationHasBeenAddedPage;
-        private readonly RegistrationSqlDataHelper _registrationSqlDataHelper;
+        private CheckYourDetailsPage _checkYourDetailsPage;
 
         public CreateAccountSteps(ScenarioContext context)
         {
@@ -180,32 +180,48 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         [When(@"the Employer initiates adding another Org of (Company|PublicSector|Charity) Type")]
         public void WhenTheEmployerInitiatesAddingAnotherOrgType(OrgType orgType)
         {
-            _organisationHasBeenAddedPage = SearchForAnotherOrg(orgType)
-                .SelectYourOrganisation(orgType)
-                .ClickYesContinueButton();
+            _checkYourDetailsPage = SearchForAnotherOrg(orgType)
+                .SelectYourOrganisation(orgType);
         }
 
-        [When(@"the Employer initiates adding another same Org of (Company|PublicSector|Charity) Type again")]
-        public void WhenTheEmployerInitiatesAddingAnotherSameOrgTypeAgain(OrgType orgType) =>
+        [When(@"the Employer initiates adding same Org of (Company|PublicSector|Charity) Type again")]
+        public void WhenTheEmployerInitiatesAddingSameOrgTypeAgain(OrgType orgType) =>
             _selectYourOrganisationPage = SearchForAnotherOrg(orgType);
 
         [Then(@"the new Org added is shown in the Account Organisations list")]
         public void ThenTheNewOrgAddedIsShownInTheAccountOrganisationsList()
         {
-            _organisationHasBeenAddedPage
-            .GoToYourOrganisationsAndAgreementsPage()
-            .VerifyNewlyAddedOrgIsPresent();
+            _checkYourDetailsPage
+                .ClickYesContinueButton()
+                .GoToYourOrganisationsAndAgreementsPage()
+                .VerifyNewlyAddedOrgIsPresent();
         }
 
         [Then(@"'Already added' message is shown to the User")]
         public void ThenAlreadyAddedMessageIsShownToTheUser() =>
             _selectYourOrganisationPage.VerifyOrgAlreadyAddedMessage(_registrationDataHelper.PublicSectorTypeOrg);
 
-        private SelectYourOrganisationPage SearchForAnotherOrg(OrgType orgType)
+        [Then(@"the details of the Charity Type Org added are displayed in the 'Check your details' page")]
+        public void ThenTheDetailsOfTheCharityTypeOrgAddedAreDisplayedInThePage()
         {
-            return _homePage.GoToYourOrganisationsAndAgreementsPage()
-                .ClickAddNewOrganisationButton()
-                .SearchForAnOrganisation(orgType);
+            Assert.AreEqual(_registrationDataHelper.CharityTypeOrg1Number, _checkYourDetailsPage.GetOrganisationNumber());
+            Assert.AreEqual(_registrationDataHelper.CharityTypeOrg1Name, _checkYourDetailsPage.GetOrganisationName());
+            Assert.AreEqual(_registrationDataHelper.CharityTypeOrg1Address, _checkYourDetailsPage.GetOrganisationAddress());
+        }
+
+        [Then(@"the Employer is able check the details entered in the 'Check your details' page and complete registration")]
+        public void ThenTheEmployerChecksTheDetailsEnteredAndCompletesRegistration()
+        {
+            Assert.AreEqual(_registrationDataHelper.CharityTypeOrg2Number, _checkYourDetailsPage.GetManuallyAddedOrganisationNumber());
+            Assert.AreEqual(_registrationDataHelper.CharityTypeOrg2Name, _checkYourDetailsPage.GetManuallyAddedOrganisationName());
+            var manuallyEnteredCharityTypeOrg2Address = $"{_registrationDataHelper.CharityTypeOrg2FirstLineAddressForEnteringManually} " +
+                                                        $"{_registrationDataHelper.CharityTypeOrg2CityForEnteringManually} " +
+                                                        $"{_registrationDataHelper.CharityTypeOrg2PostCodeForEnteringManually}";
+            Assert.AreEqual(manuallyEnteredCharityTypeOrg2Address, _checkYourDetailsPage.GetManuallyAddedOrganisationAddress());
+
+            _checkYourDetailsPage.ClickYesTheseDetailsAreCorrectButtonInCheckYourDetailsPage()
+                .SelectViewAgreementNowAndContinue()
+                .SignAgreement();
         }
 
         [Then(@"ApprenticeshipEmployerType in Account table is marked as (.*)")]
@@ -223,11 +239,38 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
                 .SignAgreement();
         }
 
+        [When(@"an Employer initiates adding an Org of Charity Type Whose Address is Not in the Charity Commission database")]
+        public void WhenAnEmployerInitiatesAddingAnOrgOfCharityTypeWhoseAddressIsNotInTheCharityCommissionDatabase()
+            => CreateAnUserAcountAndAddPaye();
+
+        [When(@"adds the Organisation address details manually")]
+        public void WhenAddsTheOrganisationAddressDetailsManually()
+        {
+            _checkYourDetailsPage = _organistionSearchPage.SearchForAnOrganisation(_registrationDataHelper.CharityTypeOrg2Number)
+                                        .SelectYourOrganisation(_registrationDataHelper.CharityTypeOrg2Name)
+                                        .ClickEnterAddressManullyLink()
+                                        .EnterAddressDetailsAndContinue();
+
+            _objectContext.UpdateOrganisationName(_registrationDataHelper.CharityTypeOrg2Name);
+        }
+
         private void CreateUserAccountAndAddOrg(OrgType orgType)
+        {
+            CreateAnUserAcountAndAddPaye();
+            AddOrganisationTypeDetails(orgType);
+        }
+
+        private void CreateAnUserAcountAndAddPaye()
         {
             AnUserAccountIsCreated();
             AddPayeDetails();
-            AddOrganisationTypeDetails(orgType);
+        }
+
+        private SelectYourOrganisationPage SearchForAnotherOrg(OrgType orgType)
+        {
+            return _homePage.GoToYourOrganisationsAndAgreementsPage()
+                .ClickAddNewOrganisationButton()
+                .SearchForAnOrganisation(orgType);
         }
 
         private void AddLevyDeclarations() => new BackgroundDataSteps(_context).GivenLevyDeclarationsIsAddedForPastMonthsWithLevypermonthAs("5", "10000");
