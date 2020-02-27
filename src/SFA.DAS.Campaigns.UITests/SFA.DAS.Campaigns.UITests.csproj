@@ -46,8 +46,4 @@
     </None>
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Project\Tests\Features\RegisterInterest\" />
-  </ItemGroup>
-
 </Project>

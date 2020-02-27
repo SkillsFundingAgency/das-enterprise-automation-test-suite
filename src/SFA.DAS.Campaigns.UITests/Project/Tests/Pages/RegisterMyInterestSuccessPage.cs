@@ -11,4 +11,5 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
 
         public RegisterMyInterestSuccessPage(ScenarioContext context) : base(context) => VerifyPage();
     }
+
 }

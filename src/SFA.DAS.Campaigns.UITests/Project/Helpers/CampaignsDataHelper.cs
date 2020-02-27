@@ -14,8 +14,11 @@ namespace SFA.DAS.Campaigns.UITests.Project.Helpers
             _randomDataGenerator = randomDataGenerator;
             Firstname = _randomDataGenerator.GenerateRandomAlphabeticString(6);
             Lastname = _randomDataGenerator.GenerateRandomAlphabeticString(9);
+            FullName = $"{Firstname} {Lastname}";
             Email = $"{Firstname}.{Lastname}@example.com";
         }
+
+        public string FullName { get; }
 
         public string Firstname { get; }
 
