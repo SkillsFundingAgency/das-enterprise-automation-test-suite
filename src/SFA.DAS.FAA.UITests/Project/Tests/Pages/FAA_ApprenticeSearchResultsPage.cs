@@ -47,7 +47,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
             IWebElement selectElement = _pageInteractionHelper.FindElement(SortResults);
             SelectElement selectedValue = new SelectElement(selectElement);
             string selectedText = selectedValue.SelectedOption.Text;
-            selectedText.Contains("Closing date");
+            _pageInteractionHelper.VerifyText(selectedText, "Closing date");            
         }
 
         protected void CheckNationwideVacanciesText()
