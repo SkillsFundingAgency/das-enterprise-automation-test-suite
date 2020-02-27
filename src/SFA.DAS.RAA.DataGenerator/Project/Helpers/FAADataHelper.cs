@@ -32,12 +32,16 @@ namespace SFA.DAS.RAA.DataGenerator
             AdditionalQuestions2 = _randomDataGenerator.GenerateRandomAlphabeticString(59);
             InterviewSupport = _randomDataGenerator.GenerateRandomAlphabeticString(22);
             FirstName = _randomDataGenerator.GenerateRandomAlphabeticString(5);
+            NewFirstName = _randomDataGenerator.GenerateRandomAlphabeticString(5);
+            NewLastName = _randomDataGenerator.GenerateRandomAlphabeticString(5);            
             LastName = _randomDataGenerator.GenerateRandomAlphabeticString(10);
             DOB_Day = _randomDataGenerator.GenerateRandomDateOfMonth();
             DOB_Month = _randomDataGenerator.GenerateRandomMonth();
             DOB_Year = _randomDataGenerator.GenerateRandomDobYear();
             EmailId = _randomDataGenerator.GenerateRandomEmail();
+            ChangedEmailId = _randomDataGenerator.GenerateRandomEmail();
             PhoneNumber = _randomDataGenerator.GenerateRandomNumber(10);
+            NewPhoneNumber = _randomDataGenerator.GenerateRandomNumber(10);
             Password = _randomDataGenerator.GenerateRandomPassword(4, 4, 1, 1);
             VacancyClosing = DateTime.Today.AddMonths(2).AddDays(3);
             NewVacancyClosing = VacancyClosing.AddDays(15);
@@ -49,6 +53,11 @@ namespace SFA.DAS.RAA.DataGenerator
         public DateTime NewVacancyStart { get; }
 
         public DateTime VacancyClosing { get; }
+
+        
+        public string NewCustomMinWagePerWeek { get; set; }
+
+        public string NewCustomMaxWagePerWeek { get; set; }
 
         public string EducationSchoolOrCollege { get; }
 
@@ -95,6 +104,11 @@ namespace SFA.DAS.RAA.DataGenerator
         public string FirstName { get; }
 
         public string LastName { get; }
+        public string NewFirstName { get; }
+
+        public string NewLastName { get; }
+
+        public string NewAddress { get; set; }
 
         public int DOB_Day { get; }
 
@@ -104,11 +118,17 @@ namespace SFA.DAS.RAA.DataGenerator
 
         public string EmailId { get; }
 
+        public string ChangedEmailId { get; }
+
         public string PhoneNumber { get; }
 
         public string Password { get; }
 
+        public string NewPhoneNumber { get; }
+
         public string PostCode => "CV1 2WT";
+
+        public string NewPostCode => "NN5 4AB";
 
         public string ActivationCode => "ABC123";
 

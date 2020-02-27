@@ -129,14 +129,14 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
         private void AddApprenticeshipVacancy()
         {
             _exitFromWebsite = false;
-            AddApprenticeshipVacancy(TestData("CV3 5JJ"));
+            AddApprenticeshipVacancy(TestData("1 Croft Avenue Rugby CV21 1AD"));
             _exitFromWebsite = true;
         }
 
         private void AddTraineeshipVacancy()
         {
             _exitFromWebsite = false;
-            AddTraineeshipVacancy(TestData("CV3 5JJ"));
+            AddTraineeshipVacancy(TestData("1 Croft Avenue Rugby CV21 1AD"));
             _exitFromWebsite = true;
         }
 
@@ -185,7 +185,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
 
         private string PostCodeTestData(RAATableData dataset)
         {
-            return string.IsNullOrEmpty(dataset.PostCode) ? "CV1 2WT" : dataset.PostCode;
+            return string.IsNullOrEmpty(dataset.PostCode) ? "1 The Vale London N10 1AD" : dataset.PostCode;
         }
     }
 }

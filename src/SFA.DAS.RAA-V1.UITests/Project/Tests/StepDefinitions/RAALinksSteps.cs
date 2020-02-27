@@ -21,8 +21,10 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
 
         [Then(@"the Candidate is removed from the Recruit")]
         public void ThenTheCandidateIsRemovedFromTheRecruit() => _raaStepsHelper.SearchForDeletedCandidate();
+
+        [Then(@"the Candidate details is updated in Recruit '(EmailId|PhoneNumber)'")]
+        public void ThenTheCandidateDetailsIsUpdatedInRecruit(string changedField) => _raaStepsHelper.VerifyCandidateUpdatedDetails(changedField);
         
-       
         [Then(@"the provider can reach Provider Users")]
         public void ThenTheProviderCanReachProviderUsers()
         {

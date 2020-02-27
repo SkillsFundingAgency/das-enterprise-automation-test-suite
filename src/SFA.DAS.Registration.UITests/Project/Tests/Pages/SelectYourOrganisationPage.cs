@@ -32,7 +32,10 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
                     formCompletionHelper.ClickElement(SearchLinkUrl(registrationDataHelper.PublicSectorTypeOrg));
                     break;
                 case OrgType.Charity:
-                    formCompletionHelper.ClickElement(SearchLinkUrl(registrationDataHelper.CharityTypeOrg));
+                    formCompletionHelper.ClickElement(SearchLinkUrl(registrationDataHelper.CharityTypeOrg1Name));
+                    break;
+                case OrgType.Charity2:
+                    formCompletionHelper.ClickElement(SearchLinkUrl(registrationDataHelper.CharityTypeOrg2Name));
                     break;
                 case OrgType.Default:
                     formCompletionHelper.ClickElement(SearchLinkUrl(objectContext.GetOrganisationName()));
@@ -42,10 +45,16 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             return new CheckYourDetailsPage(_context);
         }
 
+        public FindOrganisationAddressPage SelectYourOrganisation(string orgName)
+        {
+            formCompletionHelper.ClickElement(SearchLinkUrl(orgName));
+            return new FindOrganisationAddressPage(_context);
+        }
+
         public string GetSearchResultsText() => pageInteractionHelper.GetText(SearchResultsText);
 
-        public bool VerifyOrgAlreadyAddedMessage(string orgName) =>
-            pageInteractionHelper.VerifyText(pageInteractionHelper.GetText(TextBelowOrgNameInResults(orgName)), "Already added");
+        public bool VerifyOrgAlreadyAddedMessage() =>
+            pageInteractionHelper.VerifyText(pageInteractionHelper.GetText(TextBelowOrgNameInResults(objectContext.GetOrganisationName())), "Already added");
 
         private IWebElement SearchLinkUrl(string searchText) => pageInteractionHelper.GetLink(OrganisationLink(), searchText);
     }

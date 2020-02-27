@@ -26,7 +26,8 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 
         private By CreateAnAccountLink => By.Id("create-account-link");
 
-        private By AccountDeletionInfo => By.Id("SuccessMessageText");
+        private By ChangeSettingsInfo => By.Id("SuccessMessageText");
+        
 
         public FAA_SignInPage(ScenarioContext context) : base(context)
         {
@@ -65,7 +66,12 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 
         public void ConfirmAccountDeletion()
         {
-            _PageInteractionhelper.VerifyText(AccountDeletionInfo,"Your account has been deleted"); 
+            _PageInteractionhelper.VerifyText(ChangeSettingsInfo, "Your account has been deleted"); 
+        }
+
+        public void ConfirmEmailAddressUpdate()
+        {
+            _PageInteractionhelper.VerifyText(ChangeSettingsInfo, "Your email address has been updated, please login using your new details.");
         }
     }
 }

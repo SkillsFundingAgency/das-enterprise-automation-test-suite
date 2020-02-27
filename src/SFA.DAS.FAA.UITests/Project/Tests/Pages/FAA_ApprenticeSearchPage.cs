@@ -65,6 +65,18 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 
         public new FAA_ApprenticeSummaryPage SearchByReferenceNumber()
         {
+            SearchVacancyInFAA();            
+            return new FAA_ApprenticeSummaryPage(_context);
+        }
+
+        public FAA_ApprenticeshipNotAvailablePage SearchClosedVacancy()
+        {
+            SearchVacancyInFAA();
+            return new FAA_ApprenticeshipNotAvailablePage(_context);
+        }
+
+        private void SearchVacancyInFAA()
+        {
             var vacancyRef = _objectContext.GetVacancyReference();
 
             if (_objectContext.IsRAAV1())
@@ -78,8 +90,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
             {
                 var uri = new Uri(new Uri(_config.FAABaseUrl), $"apprenticeship/{vacancyRef}");
                 _tabHelper.GoToUrl(uri.AbsoluteUri);
-            } 
-            return new FAA_ApprenticeSummaryPage(_context);
+            }
         }
 
         public FAA_PhoneNumberVerificationPage VerifyPhoneNumberVerificationText()
