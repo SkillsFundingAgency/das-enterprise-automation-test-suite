@@ -20,7 +20,7 @@ namespace SFA.DAS.Campaigns.UITests.Project
         public void SetUpProjectSpecificConfiguration()
         {
             var config = _configSection.GetConfigSection<CampaignsConfig>();
-            _context.SetCampaignsProjectConfig(config);
+            _context.SetCampaignsConfig(config);
         }
     }
 }

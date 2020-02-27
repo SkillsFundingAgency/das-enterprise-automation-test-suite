@@ -5,11 +5,11 @@ using System.Text;
 
 namespace SFA.DAS.Campaigns.UITests.Project.Helpers
 {
-    public class CampaignsHelper
+    public class CampaignsDataHelper
     {
         private readonly RandomDataGenerator _randomDataGenerator;
 
-        public CampaignsHelper(RandomDataGenerator randomDataGenerator)
+        public CampaignsDataHelper(RandomDataGenerator randomDataGenerator)
         {
             _randomDataGenerator = randomDataGenerator;
         }
