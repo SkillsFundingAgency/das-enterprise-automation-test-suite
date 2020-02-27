@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.Registration.UITests.Project.Tests.Features.CreateNonLevyEmployerAccount
+namespace SFA.DAS.Registration.UITests.Project.Tests.Features.CreateNonLevyEmpAccountAndCheckDBFlag
 {
     using TechTalk.SpecFlow;
     
@@ -70,13 +70,13 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features.CreateNonLevyEmplo
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RE_CNLEA_01_Create a NonLevy Account and Sign Agreement")]
+        [NUnit.Framework.DescriptionAttribute("RE_CNLEA_01_Create a NonLevy Employer Account and Not Sign the Agreement")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("registration")]
         [NUnit.Framework.CategoryAttribute("addpayedetails")]
-        public virtual void RE_CNLEA_01_CreateANonLevyAccountAndSignAgreement()
+        public virtual void RE_CNLEA_01_CreateANonLevyEmployerAccountAndNotSignTheAgreement()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RE_CNLEA_01_Create a NonLevy Account and Sign Agreement", null, new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RE_CNLEA_01_Create a NonLevy Employer Account and Not Sign the Agreement", null, new string[] {
                         "regression",
                         "registration",
                         "addpayedetails"});
@@ -84,13 +84,10 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features.CreateNonLevyEmplo
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 7
- testRunner.When("an User Account is created", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("an Employer Account with PublicSector Type Org is created and agreement is Not Si" +
+                    "gned", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 8
- testRunner.And("the User adds PAYE details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 9
- testRunner.And("adds Organisation details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 10
- testRunner.Then("the Employer is able to Sign the Agreement", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("ApprenticeshipEmployerType in Account table is marked as 0", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
