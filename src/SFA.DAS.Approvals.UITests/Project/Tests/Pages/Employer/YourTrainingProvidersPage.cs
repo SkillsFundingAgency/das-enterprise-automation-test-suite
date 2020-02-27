@@ -5,9 +5,9 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
-    public class TrainingProviderPermissionsPage : BasePage
+    public class YourTrainingProvidersPage : BasePage
     {
-        protected override string PageTitle => "Training provider permissions";
+        protected override string PageTitle => "Your training providers";
 
         #region Helpers and Context
         private readonly PageInteractionHelper _pageInteractionHelper;
@@ -16,11 +16,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private readonly ApprovalsConfig _config;
         #endregion
 
-        private By AddANewTrainingProviderButton => By.LinkText("Add a new training provider");
-        private By SetPermissionsLink => By.LinkText("Set permissions");
+        private By AddANewTrainingProviderButton => By.LinkText("Add a training provider");
+        private By SetPermissionsLink => By.LinkText("Change permissions");
 
 
-        public TrainingProviderPermissionsPage(ScenarioContext context) : base(context)
+        public YourTrainingProvidersPage(ScenarioContext context) : base(context)
         {
             _context = context;
             _config = context.GetApprovalsConfig<ApprovalsConfig>();
