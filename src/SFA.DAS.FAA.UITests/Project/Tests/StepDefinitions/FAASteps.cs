@@ -68,5 +68,11 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.StepDefinitions
                 .DeleteAccount()
                 .ConfirmAccountDeletion();            
         }
+
+        [Then(@"Candidate is able to delete draft application")]
+        public void ThenCandidateIsAbleToDeleteDraftApplication()
+        {
+            _faaStepsHelper.ConfirmDraftVacancyDeletion();
+        }
     }
 }

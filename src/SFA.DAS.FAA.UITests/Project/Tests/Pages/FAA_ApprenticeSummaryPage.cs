@@ -78,5 +78,11 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
             _pageInteractionHelper.VerifyText(ClosingDate, "Closing date: " + actualClosingDate + "");
             _pageInteractionHelper.VerifyText(StartDate,actualStartDate);
         }
+
+        public FAA_ApprenticeSummaryPage ConfirmDraftVacancyDeletion()
+        {
+            _pageInteractionHelper.VerifyText(ApplyButton, "Apply for apprenticeship");
+            return this;
+        }
     }
 }

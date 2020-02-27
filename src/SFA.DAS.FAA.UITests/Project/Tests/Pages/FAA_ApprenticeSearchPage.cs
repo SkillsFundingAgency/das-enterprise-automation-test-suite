@@ -47,9 +47,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
         }
 
         public FAA_ApprenticeSearchResultsPage SearchForAVacancy(string location, string distance, string apprenticeshipLevel, string disabilityConfident)
-        {
-            _formCompletionHelper.SelectFromDropDownByValue(SearchField, "JobTitle");
-            _formCompletionHelper.EnterText(KeyWord, _dataHelper.VacancyTitle);
+        {           
             _formCompletionHelper.EnterText(Location, location);
             _formCompletionHelper.SelectFromDropDownByText(Distance, distance);
             _formCompletionHelper.SelectFromDropDownByText(ApprenticeshipLevel, apprenticeshipLevel);

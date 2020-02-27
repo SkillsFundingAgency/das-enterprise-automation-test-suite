@@ -157,5 +157,22 @@ namespace SFA.DAS.FAA.UITests.Project.Helpers
             return new FAA_FindAnApprenticeshipHomePage(_context)
                 .MyApplications();
         }
+
+        public void CheckNationWideVacancies()
+        {
+            FAA_ApprenticeSearchResultsPage _faaApprenticeshipSearchResultsPage = new FAA_ApprenticeSearchResultsPage(_context);
+            _faaApprenticeshipSearchResultsPage.CheckSortOrderAndDistance();
+        }
+
+        public void CreateDraftApplication()
+        {
+            SearchByReferenceNumber().Apply().ClickSave();
+        }
+
+        public FAA_ApprenticeSummaryPage ConfirmDraftVacancyDeletion()
+        {
+            return new FAA_MyApplicationsHomePage(_context)
+                .ConfirmVacancyDeletion().ConfirmDraftVacancyDeletion();
+        }
     }
 }

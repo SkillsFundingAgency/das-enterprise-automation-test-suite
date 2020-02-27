@@ -18,13 +18,15 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.StepDefinitions
         {
             _faaStepsHelper = new FAAStepsHelper(context);
         }
-        
+
+        [Given(@"an applicant is on the Find an Apprenticeship Page")]
         [When(@"an applicant is on the Find an Apprenticeship Page")]
         public void WhenAnApplicantIsOnTheFindAnApprenticeshipPage()
         {
             _apprenticeSearchPage = _faaStepsHelper.FindAnApprenticeship();
         }
 
+        [When(@"the apprenticeship can be found based on '(.*)','(.*)'")]
         [Then(@"the apprenticeship can be found based on '(.*)','(.*)'")]
         public void ThenTheApprenticeshipCanBeFoundBasedOn(string postCode, string distance)
         {
@@ -53,6 +55,12 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.StepDefinitions
                  .SearchForAVacancy(postCode, distance);
 
             Assert.AreEqual(true, _traineeshipSearchResultsPage.FoundVacancies(), $"No traineeship found within '{distance}' of '{postCode}'");
+        }
+
+        [Then(@"the Sort results is changed by closing date and distance is not displayed on the vacancies")]
+        public void ThenTheSortResultsIsChangedByClosingDateAndDistanceIsJotDisplayedOnTheVacancies()
+        {
+            _faaStepsHelper.CheckNationWideVacancies();
         }
     }
 }

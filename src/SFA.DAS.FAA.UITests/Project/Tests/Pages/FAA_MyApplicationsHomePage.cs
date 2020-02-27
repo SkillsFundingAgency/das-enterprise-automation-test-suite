@@ -2,6 +2,7 @@
 using SFA.DAS.RAA.DataGenerator;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
+using System.Collections.Generic;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
@@ -10,7 +11,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => "My applications";
 
-        #region Helpers and Context
+        #region Helpers and Context        
         private readonly FormCompletionHelper _formCompletionHelper;
         private readonly PageInteractionHelper _PageIntercationHelper;
         private readonly ScenarioContext _context;
@@ -31,9 +32,19 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 
         private By Settings => By.LinkText("Settings");
 
+        private By SavedSection => By.Id("dashDrafts");
+
+        private By SavedVacanciesTable => By.CssSelector(".table-font-xsmall");
+
+        private By DeleteDraftButton => By.CssSelector("[title='Remove from my applications']");
+
+        private By DraftVacancyDeletionInfoText => By.Id("VacancyDeletedInfoMessageText");
+
+        private By VacancyDeletedLink => By.Id("vacancyDeletedLink");
+
         public FAA_MyApplicationsHomePage(ScenarioContext context) : base(context)
         {
-            _context = context;
+            _context = context;            
             _formCompletionHelper = context.Get<FormCompletionHelper>();
             _PageIntercationHelper = context.Get<PageInteractionHelper>();
             _dataHelper = context.Get<VacancyTitleDatahelper>();
@@ -88,6 +99,36 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
         {
             _formCompletionHelper.Click(ReadFeedbackLink);
             return new FAA_YourFeedbackPage(_context);
+        }
+
+        public void CheckDraftApplication()
+        {
+            _PageIntercationHelper.VerifyText(SavedSection, _dataHelper.VacancyTitle);
+        }
+
+        private void DeleteDraftApplication()
+        {
+            List<IWebElement> rows = _PageIntercationHelper.FindElements(SavedVacanciesTable);
+            for(int i=0; i<rows.Count; i++)
+            {
+                if (rows[i].Text.Contains(_dataHelper.VacancyTitle))
+                {
+                    rows[i].FindElement(DeleteDraftButton).Click();
+                    break;
+                }
+                else
+                {
+                    continue;
+                } 
+            }
+        }
+
+        public FAA_ApprenticeSummaryPage ConfirmVacancyDeletion()
+        {
+            DeleteDraftApplication();
+            _PageIntercationHelper.VerifyText(DraftVacancyDeletionInfoText, "You've successfully removed the " + _dataHelper.VacancyTitle + " apprenticeship");
+            _formCompletionHelper.Click(VacancyDeletedLink);
+            return new FAA_ApprenticeSummaryPage(_context);
         }
     }
 }
