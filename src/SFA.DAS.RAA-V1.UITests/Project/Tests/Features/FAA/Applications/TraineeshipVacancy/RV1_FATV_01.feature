@@ -2,6 +2,8 @@
 @regression
 Feature: RV1_FATV_01
 
+
+@adddifferentlocation
 Scenario Outline: RV1_FATV_01 search for an existing traineeship vacancy
 	Given the Provider initiates Create Apprenticeship Vacancy in Recruit
 	When the Provider chooses the employer '<location>','2'
