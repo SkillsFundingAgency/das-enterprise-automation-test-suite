@@ -1,4 +1,5 @@
-﻿using SFA.DAS.Campaigns.UITests.Project.Helpers;
+﻿using OpenQA.Selenium;
+using SFA.DAS.Campaigns.UITests.Project.Helpers;
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
@@ -8,14 +9,15 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
 {
     public abstract class CampaingnsBasePage : BasePage
     {
+        protected override By PageHeader => By.CssSelector(".heading-xl");
+
         #region Helpers and Context
         protected readonly ObjectContext objectContext;
         protected readonly PageInteractionHelper pageInteractionHelper;
         protected readonly FormCompletionHelper formCompletionHelper;
         protected readonly CampaignsConfig campaignsConfig;
-        private readonly CampaignsDataHelper campaignsHelper;
+        protected readonly CampaignsDataHelper campaignsDataHelper;
         #endregion
-
 
         public CampaingnsBasePage(ScenarioContext context) : base(context)
         {
@@ -23,7 +25,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
             formCompletionHelper = context.Get<FormCompletionHelper>();
             pageInteractionHelper = context.Get<PageInteractionHelper>();
             campaignsConfig = context.GetCampaignsConfig<CampaignsConfig>();
-            campaignsHelper = context.Get<CampaignsDataHelper>();
+            campaignsDataHelper = context.Get<CampaignsDataHelper>();
         }
     }
 }

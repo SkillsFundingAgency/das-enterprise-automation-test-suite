@@ -19,7 +19,10 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
         [Then(@"an apprentice can register interest")]
         public void ThenAnApprenticeCanRegisterInterest()
         {
-            new FireItUpHomePage(_context);
+            new FireItUpHomePage(_context)
+                .AcceptCookie()
+                .NavigateToRegisterInterest()
+                .RegisterInterestAsAnApprentice();
         }
 
     }

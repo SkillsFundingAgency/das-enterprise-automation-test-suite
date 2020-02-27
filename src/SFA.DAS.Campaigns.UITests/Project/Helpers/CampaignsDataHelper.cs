@@ -12,10 +12,15 @@ namespace SFA.DAS.Campaigns.UITests.Project.Helpers
         public CampaignsDataHelper(RandomDataGenerator randomDataGenerator)
         {
             _randomDataGenerator = randomDataGenerator;
+            Firstname = _randomDataGenerator.GenerateRandomAlphabeticString(6);
+            Lastname = _randomDataGenerator.GenerateRandomAlphabeticString(9);
+            Email = $"{Firstname}.{Lastname}@example.com";
         }
 
-        public string EmployerFirstname(string x) => $"{x}{_randomDataGenerator.GenerateRandomAlphabeticString(6)}";
+        public string Firstname { get; }
 
-        public string EmployerLastname(string x) => $"{x}{_randomDataGenerator.GenerateRandomAlphabeticString(6)}";
+        public string Lastname { get; }
+
+        public string Email { get; }
     }
 }
