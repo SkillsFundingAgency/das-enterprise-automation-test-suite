@@ -20,6 +20,14 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
 
         private By DoNotAlert => By.CssSelector("#alert-countries-stay");
 
+        private By Apprentice => By.CssSelector("a[href*='apprentice']");
+
+        private By Employer => By.CssSelector("a[href*='employer']");
+        
+        private By Parent => By.CssSelector("a[href*='parents']");
+        
+        private By Interests => By.CssSelector("a[href*='industries']");
+
         private By RegisterInterest => By.CssSelector("a[href*='register-interest']");
 
         public FireItUpHomePage(ScenarioContext context) : base(context)
@@ -39,10 +47,16 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
             return new FireItUpHomePage(_context);
         }
 
-        public RegisterMyInterestPage NavigateToRegisterInterest()
+        public RegisterInterestPage NavigateToRegisterInterest()
         {
             formCompletionHelper.ClickElement(RegisterInterest);
-            return new RegisterMyInterestPage(_context);
+            return new RegisterInterestPage(_context);
+        }
+
+        public HelpShapeTheirCareerPage NavigateToHelpShapeTheirCareerPage()
+        {
+            formCompletionHelper.ClickElement(Parent);
+            return new HelpShapeTheirCareerPage(_context);
         }
     }
 }

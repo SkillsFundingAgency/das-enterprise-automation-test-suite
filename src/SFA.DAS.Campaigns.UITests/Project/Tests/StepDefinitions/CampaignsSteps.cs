@@ -11,8 +11,15 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
     public class CampaignsSteps
     {
         private readonly CampaignsStepsHelper _stepsHelper;
+        private HelpShapeTheirCareerPage _helpShapeTheirCareerPage;
 
         public CampaignsSteps(ScenarioContext context) => _stepsHelper = new CampaignsStepsHelper(context);
+
+        [Given(@"the user can navigate to the parents page")]
+        public void GivenTheUserCanNavigateToTheParentsPage() => _helpShapeTheirCareerPage = GoToFireItUpHomePage().NavigateToHelpShapeTheirCareerPage();
+
+        [Then(@"the links on the parents page should not be broken")]
+        public void ThenTheLinksOnTheParentsPageShouldNotBeBroken() => _helpShapeTheirCareerPage.VerifyLinks();
 
         [Then(@"an apprentice can register interest")]
         public void ThenAnApprenticeCanRegisterInterest() => GoToFireItUpHomePage().NavigateToRegisterInterest().RegisterInterestAsAnApprentice();
