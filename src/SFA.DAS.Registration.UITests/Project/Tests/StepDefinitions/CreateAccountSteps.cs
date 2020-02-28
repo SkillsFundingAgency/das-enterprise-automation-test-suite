@@ -92,7 +92,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         }
 
         [When(@"the Employer Creates a new organisation and adds the details manually")]
-        public void WhenTheEmployerCreatesANewOrganisationAndAddsTheDetailsManually()
+        public CheckYourDetailsPage WhenTheEmployerCreatesANewOrganisationAndAddsTheDetailsManually()
         {
             _checkYourDetailsPage = WhenEntersAnInvalidCompanyNumberForOrgSearch()
                 .ClickEnterYourDetailsManuallyLink()
@@ -101,6 +101,8 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
                 .EnterAddressDetailsAndContinue();
 
             _objectContext.UpdateOrganisationName(_registrationDataHelper.ManuallyAddedOrgName);
+
+            return new CheckYourDetailsPage(_context);
         }
 
 
@@ -198,6 +200,15 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         {
             _checkYourDetailsPage = SearchForAnotherOrg(orgType)
                 .SelectYourOrganisation(orgType);
+        }
+
+        [When(@"the Employer initiates adding another Org of 'ManuallyAddredOrg' Type")]
+        public void WhenTheEmployerInitiatesAddingAnotherOrgOfManuallyAddredOrgType()
+        {
+            _homePage.GoToYourOrganisationsAndAgreementsPage()
+                .ClickAddNewOrganisationButton();
+
+            WhenTheEmployerCreatesANewOrganisationAndAddsTheDetailsManually();
         }
 
         [When(@"the Employer initiates adding same Org of (Company|PublicSector|Charity) Type again")]
