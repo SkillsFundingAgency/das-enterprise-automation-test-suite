@@ -5,4 +5,4 @@
 @regression
 Scenario: Check Parent Page Details
      When the user navigates to the parent page
-     Then the link on the parent page are not broken
+     Then the links are not broken

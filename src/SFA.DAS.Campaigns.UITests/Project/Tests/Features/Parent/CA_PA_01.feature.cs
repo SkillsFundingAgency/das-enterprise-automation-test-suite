@@ -86,7 +86,7 @@ this.ScenarioInitialize(scenarioInfo);
 #line 7
      testRunner.When("the user navigates to the parent page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 8
-     testRunner.Then("the link on the parent page are not broken", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+     testRunner.Then("the links are not broken", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

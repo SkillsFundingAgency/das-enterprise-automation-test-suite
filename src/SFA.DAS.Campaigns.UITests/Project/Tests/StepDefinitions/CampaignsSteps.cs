@@ -11,18 +11,18 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
     public class CampaignsSteps
     {
         private readonly CampaignsStepsHelper _stepsHelper;
-        private HelpShapeTheirCareerPage _helpShapeTheirCareerPage;
+        private CampaingnsBasePage _campaingnsBasePage;
 
         public CampaignsSteps(ScenarioContext context) => _stepsHelper = new CampaignsStepsHelper(context);
 
         [Given(@"the user can navigate to the real stories page")]
-        public void GivenTheUserCanNavigateToTheRealStoriesPage() => GoToFireItUpHomePage().NavigateToWhatIsAnApprenticeshipPage();
-        
+        public void GivenTheUserCanNavigateToTheRealStoriesPage() => GoToFireItUpHomePage().NavigateToWhatIsAnApprenticeshipPage().NavigateToRealStoriesPage();
+
         [When(@"the user navigates to the parent page")]
-        public void WhenTheUserNavigatesToTheParentPage() => _helpShapeTheirCareerPage = GoToFireItUpHomePage().NavigateToHelpShapeTheirCareerPage(); 
- 
-        [Then(@"the link on the parent page are not broken")]
-        public void ThenTheLinkOnTheParentPageAreNotBroken() => _helpShapeTheirCareerPage.VerifyLinks();
+        public void WhenTheUserNavigatesToTheParentPage() => _campaingnsBasePage = GoToFireItUpHomePage().NavigateToHelpShapeTheirCareerPage();
+
+        [Then(@"the links are not broken")]
+        public void ThenTheLinksAreNotBroken() => _campaingnsBasePage.VerifyLinks();
 
         [Then(@"an apprentice registers interest")]
         public void ThenAnApprenticeRegistersInterest() => GoToFireItUpHomePage().NavigateToRegisterInterest().RegisterInterestAsAnApprentice();

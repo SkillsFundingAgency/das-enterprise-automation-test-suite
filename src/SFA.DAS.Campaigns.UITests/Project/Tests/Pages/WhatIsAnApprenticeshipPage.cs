@@ -19,5 +19,10 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
             VerifyPage();
         }
 
+        public RealStoriesPage NavigateToRealStoriesPage()
+        {
+            formCompletionHelper.ClickElement(RealStories);
+            return new RealStoriesPage(_context);
+        }
     }
 }
