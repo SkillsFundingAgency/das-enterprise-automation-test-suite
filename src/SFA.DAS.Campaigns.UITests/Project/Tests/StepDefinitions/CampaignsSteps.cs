@@ -16,7 +16,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
         public CampaignsSteps(ScenarioContext context) => _stepsHelper = new CampaignsStepsHelper(context);
 
         [Given(@"the user can navigate to the real stories page")]
-        public void GivenTheUserCanNavigateToTheRealStoriesPage() => GoToFireItUpHomePage().NavigateToWhatIsAnApprenticeshipPage().NavigateToRealStoriesPage();
+        public void GivenTheUserCanNavigateToTheRealStoriesPage() => _campaingnsBasePage = GoToFireItUpHomePage().NavigateToWhatIsAnApprenticeshipPage().NavigateToRealStoriesPage();
 
         [When(@"the user navigates to the parent page")]
         public void WhenTheUserNavigatesToTheParentPage() => _campaingnsBasePage = GoToFireItUpHomePage().NavigateToHelpShapeTheirCareerPage();

@@ -11,7 +11,9 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
         private readonly ScenarioContext _context;
         #endregion
 
-        private By RealStories => By.CssSelector("a[href*='real-stories']");
+        private By AreApprenticeshipRightForYou => By.CssSelector("#link-nav-apprentice-1");
+
+        private By RealStories => By.CssSelector("#link-nav-app-real-stories");
 
         public WhatIsAnApprenticeshipPage(ScenarioContext context) : base(context)
         {
@@ -21,7 +23,8 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
 
         public RealStoriesPage NavigateToRealStoriesPage()
         {
-            formCompletionHelper.ClickElement(RealStories);
+            pageInteractionHelper.FocusTheElement(AreApprenticeshipRightForYou);
+            formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(RealStories));
             return new RealStoriesPage(_context);
         }
     }
