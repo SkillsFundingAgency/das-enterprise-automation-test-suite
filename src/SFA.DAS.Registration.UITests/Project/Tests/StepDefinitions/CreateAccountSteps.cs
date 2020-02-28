@@ -100,7 +100,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
                 .ClickEnterAddressManullyLink()
                 .EnterAddressDetailsAndContinue();
 
-            _objectContext.UpdateOrganisationName(_registrationDataHelper.ManuallyAddedOrgName);
+            _objectContext.UpdateOrganisationName(_registrationDataHelper.OrgNameForManualEntry);
 
             return new CheckYourDetailsPage(_context);
         }
@@ -241,17 +241,14 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         {
             Assert.AreEqual(_registrationDataHelper.CharityTypeOrg3Number, _checkYourDetailsPage.GetManuallyAddedOrganisationNumber());
             Assert.AreEqual(_registrationDataHelper.CharityTypeOrg3Name, _checkYourDetailsPage.GetManuallyAddedOrganisationName());
-            AssertManuallyAddedAddressDetails();
-
-            ContinueInCheckYourDetailsPageAndCompleteRegistration();
+            AssertManuallyAddedAddressDetailsAndCompleteRegistration();
         }
 
         [Then(@"the Employer is able check the details entered manually in the 'Check your details' page and complete registration")]
         public void ThenTheEmployerIsAbleCheckTheDetailsEnteredManuallyInThePageAndCompleteRegistration()
         {
-            Assert.AreEqual(_registrationDataHelper.ManuallyAddedOrgName, _checkYourDetailsPage.GetManuallyAddedOrganisationName());
-            AssertManuallyAddedAddressDetails();
-            ContinueInCheckYourDetailsPageAndCompleteRegistration();
+            Assert.AreEqual(_registrationDataHelper.OrgNameForManualEntry, _checkYourDetailsPage.GetManuallyAddedOrganisationName());
+            AssertManuallyAddedAddressDetailsAndCompleteRegistration();
         }
 
         [Then(@"ApprenticeshipEmployerType in Account table is marked as (.*)")]
@@ -314,19 +311,16 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             ThenTheNewOrgAddedIsShownInTheAccountOrganisationsList();
         }
 
-        private void ContinueInCheckYourDetailsPageAndCompleteRegistration()
+        private void AssertManuallyAddedAddressDetailsAndCompleteRegistration()
         {
+            var manuallyEnteredAddress = $"{_registrationDataHelper.FirstLineAddressForManualEntry} " +
+                                            $"{_registrationDataHelper.CityNameForManualEntry} " +
+                                            $"{_registrationDataHelper.PostCodeForManualEntry}";
+            Assert.AreEqual(manuallyEnteredAddress, _checkYourDetailsPage.GetManuallyAddedOrganisationAddress());
+
             _checkYourDetailsPage.ClickYesTheseDetailsAreCorrectButtonInCheckYourDetailsPage()
                         .SelectViewAgreementNowAndContinue()
                         .SignAgreement();
-        }
-
-        private void AssertManuallyAddedAddressDetails()
-        {
-            var manuallyEnteredAddress = $"{_registrationDataHelper.CharityTypeOrg3FirstLineAddressForEnteringManually} " +
-                                            $"{_registrationDataHelper.CharityTypeOrg3CityForEnteringManually} " +
-                                            $"{_registrationDataHelper.CharityTypeOrg3PostCodeForEnteringManually}";
-            Assert.AreEqual(manuallyEnteredAddress, _checkYourDetailsPage.GetManuallyAddedOrganisationAddress());
         }
     }
 }

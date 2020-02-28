@@ -24,7 +24,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         public FindOrganisationAddressPage EnterOrganisationNameAndContinue()
         {
-            formCompletionHelper.EnterText(NameTextBox, _registrationDataHelper.ManuallyAddedOrgName);
+            formCompletionHelper.EnterText(NameTextBox, _registrationDataHelper.OrgNameForManualEntry);
             Continue();
             return new FindOrganisationAddressPage(_context);
         }

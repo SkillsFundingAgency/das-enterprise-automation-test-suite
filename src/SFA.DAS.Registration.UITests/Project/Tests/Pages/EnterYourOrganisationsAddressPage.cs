@@ -26,9 +26,9 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         public CheckYourDetailsPage EnterAddressDetailsAndContinue()
         {
-            formCompletionHelper.EnterText(AddressFirstLineTextBox, _registrationDataHelper.CharityTypeOrg3FirstLineAddressForEnteringManually);
-            formCompletionHelper.EnterText(TownOrCityTextBox, _registrationDataHelper.CharityTypeOrg3CityForEnteringManually);
-            formCompletionHelper.EnterText(PostcodeTextBox, _registrationDataHelper.CharityTypeOrg3PostCodeForEnteringManually);
+            formCompletionHelper.EnterText(AddressFirstLineTextBox, _registrationDataHelper.FirstLineAddressForManualEntry);
+            formCompletionHelper.EnterText(TownOrCityTextBox, _registrationDataHelper.CityNameForManualEntry);
+            formCompletionHelper.EnterText(PostcodeTextBox, _registrationDataHelper.PostCodeForManualEntry);
             Continue();
             return new CheckYourDetailsPage(_context);
         }
