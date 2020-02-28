@@ -23,8 +23,11 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
 
         public RealStoriesPage NavigateToRealStoriesPage()
         {
-            pageInteractionHelper.FocusTheElement(AreApprenticeshipRightForYou);
-            formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(RealStories));
+            formCompletionHelper.ClickElement(() => 
+            {
+                pageInteractionHelper.FocusTheElement(AreApprenticeshipRightForYou);
+                return pageInteractionHelper.FindElement(RealStories);
+            });
             return new RealStoriesPage(_context);
         }
     }
