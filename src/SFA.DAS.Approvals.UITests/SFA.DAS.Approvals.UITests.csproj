@@ -5,11 +5,11 @@
     <RootNamespace>SFA.DAS.Approvals.UITests</RootNamespace>
     <IsPackable>false</IsPackable>
   </PropertyGroup>
-  
+
   <ItemGroup>
     <Compile Include="..\NUnitConfigurator.cs" Link="NUnitConfigurator.cs" />
   </ItemGroup>
-  
+
   <ItemGroup>
     <PackageReference Include="NUnit3TestAdapter" Version="3.14.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.2.0" />
@@ -20,7 +20,7 @@
   <ItemGroup>
     <ProjectReference Include="..\SFA.DAS.ConfigurationBuilder\SFA.DAS.ConfigurationBuilder.csproj" />
     <ProjectReference Include="..\SFA.DAS.Registration.UITests\SFA.DAS.Registration.UITests.csproj" />
-	<ProjectReference Include="..\SFA.DAS.ProviderLogin.Service\SFA.DAS.ProviderLogin.Service.csproj" />
+    <ProjectReference Include="..\SFA.DAS.ProviderLogin.Service\SFA.DAS.ProviderLogin.Service.csproj" />
     <ProjectReference Include="..\SFA.DAS.UI.Framework\SFA.DAS.UI.Framework.csproj" />
   </ItemGroup>
 

@@ -14,8 +14,8 @@
 
   <ItemGroup>
     <Content Include="..\Sample.pdf" Link="Sample.pdf">
-	<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	</Content>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>
@@ -26,20 +26,17 @@
     <PackageReference Include="SpecFlow.Tools.MsBuild.Generation" Version="3.0.225" />
   </ItemGroup>
 
-
   <ItemGroup>
     <ProjectReference Include="..\SFA.DAS.ConfigurationBuilder\SFA.DAS.ConfigurationBuilder.csproj" />
     <ProjectReference Include="..\SFA.DAS.UI.Framework\SFA.DAS.UI.Framework.csproj" />
     <ProjectReference Include="..\SFA.DAS.IdamsLogin.Service\SFA.DAS.IdamsLogin.Service.csproj" />
   </ItemGroup>
 
-
   <ItemGroup>
     <Compile Update="RoatpNUnitConfigurator.cs">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
   </ItemGroup>
-
 
   <ItemGroup>
     <None Update="appsettings.Environment.json">
