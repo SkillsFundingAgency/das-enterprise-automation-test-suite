@@ -19,6 +19,8 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
         protected readonly CampaignsDataHelper campaignsDataHelper;
         #endregion
 
+        private By Links => By.CssSelector("a");
+
         public CampaingnsBasePage(ScenarioContext context) : base(context)
         {
             objectContext = context.Get<ObjectContext>();
@@ -27,5 +29,20 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
             campaignsConfig = context.GetCampaignsConfig<CampaignsConfig>();
             campaignsDataHelper = context.Get<CampaignsDataHelper>();
         }
+
+        public void VerifyLinks()
+        {
+            var internalLinks = pageInteractionHelper.FindElements(Links);
+
+            foreach (var item in internalLinks)
+            {
+                var href = item.GetAttribute("href");
+                objectContext.Replace(item.Text, href);
+                
+                if (string.IsNullOrEmpty(href))
+                    throw new System.Exception($"{item.Text} link is broken");
+            }
+        }
+
     }
 }

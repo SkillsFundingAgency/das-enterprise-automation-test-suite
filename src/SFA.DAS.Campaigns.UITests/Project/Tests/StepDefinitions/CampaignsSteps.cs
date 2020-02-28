@@ -15,17 +15,20 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
 
         public CampaignsSteps(ScenarioContext context) => _stepsHelper = new CampaignsStepsHelper(context);
 
-        [Given(@"the user can navigate to the parents page")]
-        public void GivenTheUserCanNavigateToTheParentsPage() => _helpShapeTheirCareerPage = GoToFireItUpHomePage().NavigateToHelpShapeTheirCareerPage();
+        [Given(@"the user can navigate to the real stories page")]
+        public void GivenTheUserCanNavigateToTheRealStoriesPage() => GoToFireItUpHomePage().NavigateToWhatIsAnApprenticeshipPage();
+        
+        [When(@"the user navigates to the parent page")]
+        public void WhenTheUserNavigatesToTheParentPage() => _helpShapeTheirCareerPage = GoToFireItUpHomePage().NavigateToHelpShapeTheirCareerPage(); 
+ 
+        [Then(@"the link on the parent page are not broken")]
+        public void ThenTheLinkOnTheParentPageAreNotBroken() => _helpShapeTheirCareerPage.VerifyLinks();
 
-        [Then(@"the links on the parents page should not be broken")]
-        public void ThenTheLinksOnTheParentsPageShouldNotBeBroken() => _helpShapeTheirCareerPage.VerifyLinks();
+        [Then(@"an apprentice registers interest")]
+        public void ThenAnApprenticeRegistersInterest() => GoToFireItUpHomePage().NavigateToRegisterInterest().RegisterInterestAsAnApprentice();
 
-        [Then(@"an apprentice can register interest")]
-        public void ThenAnApprenticeCanRegisterInterest() => GoToFireItUpHomePage().NavigateToRegisterInterest().RegisterInterestAsAnApprentice();
-
-        [Then(@"the employer can register interest")]
-        public void ThenTheEmployerCanRegisterInterest() => GoToFireItUpHomePage().NavigateToRegisterInterest().RegisterInterestAsAnEmployer().VerifyDetail();
+        [Then(@"an employer registers interest")]
+        public void ThenAnEmployerRegistersInterest() => GoToFireItUpHomePage().NavigateToRegisterInterest().RegisterInterestAsAnEmployer().VerifyDetail();
 
         private FireItUpHomePage GoToFireItUpHomePage() => _stepsHelper.GoToFireItUpHomePage();
 

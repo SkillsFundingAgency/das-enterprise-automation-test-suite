@@ -1,21 +1,23 @@
 ﻿using OpenQA.Selenium;
-using System.Collections.Generic;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
 {
-    public class HelpShapeTheirCareerPage : CampaingnsBasePage
+    public class WhatIsAnApprenticeshipPage : CampaingnsBasePage
     {
-        protected override string PageTitle => "HELP SHAPE THEIR CAREER";
+        protected override string PageTitle => "WHAT IS AN APPRENTICESHIP?";
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
         #endregion
 
-        public HelpShapeTheirCareerPage(ScenarioContext context) : base(context)
+        private By RealStories => By.CssSelector("a[href*='real-stories']");
+
+        public WhatIsAnApprenticeshipPage(ScenarioContext context) : base(context)
         {
             _context = context;
             VerifyPage();
         }
+
     }
 }

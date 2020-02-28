@@ -58,5 +58,11 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
             formCompletionHelper.ClickElement(Parent);
             return new HelpShapeTheirCareerPage(_context);
         }
+
+        public WhatIsAnApprenticeshipPage NavigateToWhatIsAnApprenticeshipPage()
+        {
+            formCompletionHelper.ClickElement(Apprentice);
+            return new WhatIsAnApprenticeshipPage(_context);
+        }
     }
 }

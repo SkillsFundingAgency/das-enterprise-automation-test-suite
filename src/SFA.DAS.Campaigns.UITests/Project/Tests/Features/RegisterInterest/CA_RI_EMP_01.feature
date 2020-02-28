@@ -6,4 +6,4 @@ Register Interest as an Employer
 @registerinterest
 @regression
 Scenario: CA_RI_EMP_01_Register Interest as an Employer
-	Then the employer can register interest
+	Then an employer registers interest
