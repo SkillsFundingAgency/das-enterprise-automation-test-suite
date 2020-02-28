@@ -33,11 +33,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _dynamicHomePage = new DynamicHomePage(_context);
             _dynamicHomePage.VerifyReserveFundingPanel();
         }
+
         [Then(@"the employer continue to add an apprentices for reserved funding")]
         public void ThenTheEmployerContinueToAddAnApprenticesForReservedFunding()
         {
             _reservationStepsHelper.GoToAddAnApprentices();
         }
-
     }
 }

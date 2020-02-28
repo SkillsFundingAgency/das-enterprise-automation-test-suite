@@ -47,14 +47,15 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.DynamicHomePage
             _formCompletionHelper.ClickElement(ContinueButton);
             return new DoYouNeedToCreateAnAdverForThisApprenticeshipPage(_context);
         }
+
         public void VerifyReserveFundingPanel()
         {
             _pageInteractionHelper.VerifyText(ContinueSettingUpAnApprenticeship, ContinueSettingUpAnApprenticeshipPanelText);
         }
+
         public void VerifySetUpAnApprenticeshipPanel()
         {
             _pageInteractionHelper.VerifyText(SetUpAnApprenticeship, SetUpAnApprenticeshipPanelText);
         }
-
     }
 }

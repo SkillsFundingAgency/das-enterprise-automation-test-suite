@@ -1,4 +1,4 @@
-﻿@dynamicHomePage
+﻿@approvals
 Feature: DH_01_ReservesFundingToAddAnApprentices
 As a Non Levy Employer, I want to add an apprentices after reserves funding from dynamic homepage
 
