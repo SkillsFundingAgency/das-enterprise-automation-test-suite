@@ -6,6 +6,7 @@
         {
             Company,
             Charity,
+            Charity2,
             PublicSector,
             Default
         }

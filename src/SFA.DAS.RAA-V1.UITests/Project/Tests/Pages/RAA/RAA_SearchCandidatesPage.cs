@@ -16,7 +16,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         private readonly PageInteractionHelper _pageInteractionHelper;
         private readonly ScenarioContext _context;
         private readonly ObjectContext _objectcontext;
-               #endregion
+        #endregion
 
         private By FirstName => By.Id("SearchViewModel_FirstName");
 
@@ -25,7 +25,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         private By SearchCandidate => By.Id("search-candidates-button");
 
         private By SelectCandidateLinks => By.CssSelector("a");
-
+        
         public RAA_SearchCandidatesPage(ScenarioContext context) : base(context)
         {
             _context = context;

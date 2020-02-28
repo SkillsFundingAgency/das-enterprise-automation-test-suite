@@ -2,6 +2,7 @@
 
 @raa-v1
 @v1_e2e
+@adddifferentlocation
 @regression
 Scenario Outline: RV1_E2ETV_01 - Create, Approve and Apply for a Traineeship Vacancy and View Anonymous
 	Given the Provider initiates Create Apprenticeship Vacancy in Recruit

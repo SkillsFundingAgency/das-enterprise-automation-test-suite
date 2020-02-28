@@ -5,8 +5,6 @@ using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
-using SFA.DAS.FAA.UITests.Project;
-using SFA.DAS.RAA.DataGenerator;
 
 namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
 {
@@ -91,7 +89,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
             }
         }
 
-        public void ProviderFillsOutTraineeshipDetails(string location, string disabilityConfident = "Yes", string applicationMethod = "Online", string postCode = "CV1 2WT")
+        public void ProviderFillsOutTraineeshipDetails(string location, string disabilityConfident = "Yes", string applicationMethod = "Online", string postCode = "1 Speedway Drive London SW17 0XW")
         {
             switch (location)
             {
@@ -116,7 +114,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
             EnterRequirementsAndExtraQuestions(requirementsAndProspects, applicationMethod);
         }
 
-        internal void ProviderFillsOutApprenticeshipDetails(string location, string disabilityConfident, string applicationMethod, string apprenticeShip, string hoursPerWeek, string vacancyDuration, string wagetype, string postCode = "CV1 2WT")
+        internal void ProviderFillsOutApprenticeshipDetails(string location, string disabilityConfident, string applicationMethod, string apprenticeShip, string hoursPerWeek, string vacancyDuration, string wagetype, string postCode = "CV3 5ER")
         {
             switch (location)
             {
@@ -254,7 +252,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
                        .AddLocation(postCode)
                        .EnterNumberOfVacancy()
                        .ClickAddAnotherLocationLink()
-                       .AddLocation("BS16 4EA")
+                       .AddLocation("CV1 2NJ")
                        .EnterNumberOfVacancy2()
                        .EnterAdditionalLocationInformation()
                        .ClickSaveAndContinue();
@@ -290,8 +288,13 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
                 .SubmitRecruitmentLoginDetails();
         }   
         
-        public void SelectACandidate() => Search().SelectACandidate();
+        public RAA_CandidateApplicationPage SelectACandidate() => Search().SelectACandidate();
+
         public void SearchForDeletedCandidate() => Search().VerifyCandidateDeletion();
+
         private RAA_SearchCandidatesPage Search() => GoToRAAHomePage(true).SearchCandidates().Search();
+
+        public void VerifyCandidateUpdatedDetails(string changedField) => SelectACandidate().VerifyUpdatedCandidateDetails(changedField);
+
     }
 }

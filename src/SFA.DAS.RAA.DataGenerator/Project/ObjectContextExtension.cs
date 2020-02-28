@@ -43,7 +43,7 @@ namespace SFA.DAS.RAA.DataGenerator.Project
         {
             return objectContext.KeyExists<bool>(VacancyType);
         }
-
+        
         public static void SetRAAV2Employer(this ObjectContext objectContext)
         {
             objectContext.Set(RAAV2Employer, true);
@@ -83,7 +83,7 @@ namespace SFA.DAS.RAA.DataGenerator.Project
         {
             return objectContext.Get(VacancyReference);
         }
-
+        
         public static void SetVacancyTitle(this ObjectContext objectContext, string value)
         {
             objectContext.Replace(VacancyTitle, value);

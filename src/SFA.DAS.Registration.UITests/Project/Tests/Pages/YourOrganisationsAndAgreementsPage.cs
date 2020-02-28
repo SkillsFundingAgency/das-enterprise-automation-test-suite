@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using NUnit.Framework;
+using OpenQA.Selenium;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
@@ -15,7 +16,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         private By TransferStatus => By.ClassName("transfers-status");
         private By AgreementId => By.CssSelector("table tbody tr td[data-label='Agreement ID']");
         private By AddNewOrganisationButton => By.Id("addNewOrg");
-        private By NewlyAddedOrgNameText => By.XPath("(//td)[5]");
+        private By TableCells => By.XPath("//td");
         #endregion
 
         public YourOrganisationsAndAgreementsPage(ScenarioContext context, bool navigate = false) : base(context, navigate)
@@ -38,6 +39,8 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             return new OrganisationSearchPage(_context);
         }
 
-        public bool VerifyNewlyAddedOrgIsPresent() => pageInteractionHelper.VerifyText(NewlyAddedOrgNameText, objectContext.GetOrganisationName());
+        public void VerifyNewlyAddedOrgIsPresent() =>
+            Assert.IsTrue(pageInteractionHelper.GetTextFromElementsGroup(TableCells).Contains(objectContext.GetOrganisationName()),
+                $"'{objectContext.GetOrganisationName()} is NOT listed under 'YourOrganisationsAndAgreementsPage'");
     }
 }
