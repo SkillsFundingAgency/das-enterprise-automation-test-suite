@@ -84,7 +84,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Features.RegisterInterest
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 9
- testRunner.Then("the employer can register interest", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("an employer registers interest", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

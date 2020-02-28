@@ -31,7 +31,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Features.Parent
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "CA_PA_01", "A short summary of the feature", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "CA_PA_01", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -80,13 +80,13 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Features.Parent
                         "campaigns",
                         "parent",
                         "regression"});
-#line 8
+#line 6
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 9
-testRunner.Given("the user can navigate to the parents page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 10
-testRunner.Then("the links on the parents page should not be broken", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 7
+     testRunner.When("the user navigates to the parent page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 8
+     testRunner.Then("the links are not broken", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

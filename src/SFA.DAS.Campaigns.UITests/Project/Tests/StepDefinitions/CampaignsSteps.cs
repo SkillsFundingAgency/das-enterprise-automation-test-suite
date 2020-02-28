@@ -11,21 +11,24 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
     public class CampaignsSteps
     {
         private readonly CampaignsStepsHelper _stepsHelper;
-        private HelpShapeTheirCareerPage _helpShapeTheirCareerPage;
+        private CampaingnsBasePage _campaingnsBasePage;
 
         public CampaignsSteps(ScenarioContext context) => _stepsHelper = new CampaignsStepsHelper(context);
 
-        [Given(@"the user can navigate to the parents page")]
-        public void GivenTheUserCanNavigateToTheParentsPage() => _helpShapeTheirCareerPage = GoToFireItUpHomePage().NavigateToHelpShapeTheirCareerPage();
+        [Given(@"the user can navigate to the real stories page")]
+        public void GivenTheUserCanNavigateToTheRealStoriesPage() => _campaingnsBasePage = GoToFireItUpHomePage().NavigateToWhatIsAnApprenticeshipPage().NavigateToRealStoriesPage();
 
-        [Then(@"the links on the parents page should not be broken")]
-        public void ThenTheLinksOnTheParentsPageShouldNotBeBroken() => _helpShapeTheirCareerPage.VerifyLinks();
+        [When(@"the user navigates to the parent page")]
+        public void WhenTheUserNavigatesToTheParentPage() => _campaingnsBasePage = GoToFireItUpHomePage().NavigateToHelpShapeTheirCareerPage();
 
-        [Then(@"an apprentice can register interest")]
-        public void ThenAnApprenticeCanRegisterInterest() => GoToFireItUpHomePage().NavigateToRegisterInterest().RegisterInterestAsAnApprentice();
+        [Then(@"the links are not broken")]
+        public void ThenTheLinksAreNotBroken() => _campaingnsBasePage.VerifyLinks();
 
-        [Then(@"the employer can register interest")]
-        public void ThenTheEmployerCanRegisterInterest() => GoToFireItUpHomePage().NavigateToRegisterInterest().RegisterInterestAsAnEmployer().VerifyDetail();
+        [Then(@"an apprentice registers interest")]
+        public void ThenAnApprenticeRegistersInterest() => GoToFireItUpHomePage().NavigateToRegisterInterest().RegisterInterestAsAnApprentice();
+
+        [Then(@"an employer registers interest")]
+        public void ThenAnEmployerRegistersInterest() => GoToFireItUpHomePage().NavigateToRegisterInterest().RegisterInterestAsAnEmployer().VerifyDetail();
 
         private FireItUpHomePage GoToFireItUpHomePage() => _stepsHelper.GoToFireItUpHomePage();
 
