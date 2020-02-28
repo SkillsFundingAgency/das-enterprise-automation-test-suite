@@ -13,6 +13,8 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         #region Locators
         protected override By ContinueButton => By.Id("accept");
         private By NameTextBox => By.Id("Name");
+        private By ErrorMessageAboveNameTextBox => By.XPath("//span[text()='Enter a name']");
+        private By ErrorMessageAtHeader => By.LinkText("Enter a name");
         #endregion
 
         public EnterYourOrganisationNamePage(ScenarioContext context) : base(context)
@@ -22,11 +24,25 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             VerifyPage();
         }
 
-        public FindOrganisationAddressPage EnterOrganisationNameAndContinue()
+        public FindOrganisationAddressPage EnterOrganisationNameAndContinueInEnterYourOrganisationNamePage()
         {
             formCompletionHelper.EnterText(NameTextBox, _registrationDataHelper.OrgNameForManualEntry);
             Continue();
             return new FindOrganisationAddressPage(_context);
+        }
+
+        public EnterYourOrganisationNamePage LeaveOrganisationNameBlankAndContinueInEnterYourOrganisationNamePage()
+        {
+            formCompletionHelper.EnterText(NameTextBox, "");
+            Continue();
+            return this;
+        }
+
+        public EnterYourOrganisationNamePage VerifyErrorMessagesInEnterYourOrganisationNamePage()
+        {
+            VerifyPage(ErrorMessageAtHeader);
+            VerifyPage(ErrorMessageAboveNameTextBox);
+            return this;
         }
     }
 }

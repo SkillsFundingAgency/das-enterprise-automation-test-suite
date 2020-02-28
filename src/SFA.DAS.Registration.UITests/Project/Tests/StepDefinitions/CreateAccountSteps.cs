@@ -94,10 +94,10 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         [When(@"the Employer Creates a new organisation and adds the details manually")]
         public CheckYourDetailsPage WhenTheEmployerCreatesANewOrganisationAndAddsTheDetailsManually()
         {
-            _checkYourDetailsPage = WhenEntersAnInvalidCompanyNumberForOrgSearch()
-                .ClickEnterYourDetailsManuallyLink()
-                .EnterOrganisationNameAndContinue()
-                .ClickEnterAddressManullyLink()
+            _checkYourDetailsPage = WhenAnEmployerEntersAnInvalidCompanyNumberForOrgSearchInOrganisationSearchPage()
+                .ClickEnterYourDetailsManuallyLinkInSelectYourOrganisationPage()
+                .EnterOrganisationNameAndContinueInEnterYourOrganisationNamePage()
+                .ClickEnterAddressManullyLinkInFindOrganisationAddressPage()
                 .EnterAddressDetailsAndContinue();
 
             _objectContext.UpdateOrganisationName(_registrationDataHelper.OrgNameForManualEntry);
@@ -105,9 +105,21 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             return new CheckYourDetailsPage(_context);
         }
 
+        [Then(@"the Employer validates error messages for manually entering blank Organisation and Address details")]
+        public void ThenTheEmployerValidatesErrorMessagesForManuallyEnteringBlankOrganisationAndAddressDetails()
+        {
+            WhenAnEmployerEntersAnInvalidCompanyNumberForOrgSearchInOrganisationSearchPage()
+                .ClickEnterYourDetailsManuallyLinkInSelectYourOrganisationPage()
+                .LeaveOrganisationNameBlankAndContinueInEnterYourOrganisationNamePage()
+                .VerifyErrorMessagesInEnterYourOrganisationNamePage()
+                .EnterOrganisationNameAndContinueInEnterYourOrganisationNamePage()
+                .ClickEnterAddressManullyLinkInFindOrganisationAddressPage()
+                .ClickContinueWithOutEnteringDetailsInEnterYourOrganisationsAddressPage()
+                .VerifyErrorMessagesInEnterYourOrganisationsAddressPage();
+        }
 
         [When(@"enters an Invalid Company number for Org search")]
-        public SelectYourOrganisationPage WhenEntersAnInvalidCompanyNumberForOrgSearch()
+        public SelectYourOrganisationPage WhenAnEmployerEntersAnInvalidCompanyNumberForOrgSearchInOrganisationSearchPage()
         {
             _selectYourOrganisationPage = _organistionSearchPage.SearchForAnOrganisation(_registrationDataHelper.InvalidCompanyNumber);
             return new SelectYourOrganisationPage(_context);
@@ -275,7 +287,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         {
             _checkYourDetailsPage = _organistionSearchPage.SearchForAnOrganisation(_registrationDataHelper.CharityTypeOrg3Number)
                                         .SelectYourOrganisation(_registrationDataHelper.CharityTypeOrg3Name)
-                                        .ClickEnterAddressManullyLink()
+                                        .ClickEnterAddressManullyLinkInFindOrganisationAddressPage()
                                         .EnterAddressDetailsAndContinue();
 
             _objectContext.UpdateOrganisationName(_registrationDataHelper.CharityTypeOrg3Name);

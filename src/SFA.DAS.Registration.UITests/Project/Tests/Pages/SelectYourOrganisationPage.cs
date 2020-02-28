@@ -57,7 +57,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         public bool VerifyOrgAlreadyAddedMessage() =>
             pageInteractionHelper.VerifyText(pageInteractionHelper.GetText(TextBelowOrgNameInResults(objectContext.GetOrganisationName())), "Already added");
 
-        public EnterYourOrganisationNamePage ClickEnterYourDetailsManuallyLink()
+        public EnterYourOrganisationNamePage ClickEnterYourDetailsManuallyLinkInSelectYourOrganisationPage()
         {
             formCompletionHelper.Click(EnterYourDetailsManuallyLink);
             return new EnterYourOrganisationNamePage(_context);
