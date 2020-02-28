@@ -16,8 +16,9 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
         private readonly PageInteractionHelper _PageIntercationHelper;
         private readonly ScenarioContext _context;
         private readonly VacancyTitleDatahelper _dataHelper;
+        private readonly TableRowHelper _tableRowHelper;
         #endregion
-        
+
         private By FindAnApprenticeshipLink => By.LinkText("Find an apprenticeship");
 
         private By FindTraineeshipLink => By.Id("find-traineeship-link");
@@ -48,6 +49,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
             _formCompletionHelper = context.Get<FormCompletionHelper>();
             _PageIntercationHelper = context.Get<PageInteractionHelper>();
             _dataHelper = context.Get<VacancyTitleDatahelper>();
+            _tableRowHelper = context.Get<TableRowHelper>();
             VerifyPage();
         }
 
@@ -108,18 +110,19 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 
         private void DeleteDraftApplication()
         {
-            List<IWebElement> rows = _PageIntercationHelper.FindElements(SavedVacanciesTable);
-            for(int i=0; i<rows.Count; i++)
+            var Table = _PageIntercationHelper.FindElement(SavedVacanciesTable);
+            var rows = Table.FindElements(By.TagName("tr"));
+            foreach (var row in rows)
             {
-                if (rows[i].Text.Contains(_dataHelper.VacancyTitle))
+                if (row.Text.Contains(_dataHelper.VacancyTitle))
                 {
-                    rows[i].FindElement(DeleteDraftButton).Click();
+                    row.FindElement(DeleteDraftButton).Click();
                     break;
                 }
                 else
                 {
                     continue;
-                } 
+                }
             }
         }
 

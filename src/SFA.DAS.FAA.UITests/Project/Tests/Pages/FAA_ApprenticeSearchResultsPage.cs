@@ -44,6 +44,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 
         protected void CheckSortOrder()
         {
+            _pageInteractionHelper.WaitforURLToChange("LocationType=National");
             IWebElement selectElement = _pageInteractionHelper.FindElement(SortResults);
             SelectElement selectedValue = new SelectElement(selectElement);
             string selectedText = selectedValue.SelectedOption.Text;
@@ -65,7 +66,8 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
                     throw new Exception("No Nationwide Vacancies found");
                 }
                 return elementDisplayed;
-            }, () => _formCompletionHelper.Click(NationwideVacancies));
+            }, () => _formCompletionHelper.Click(NationwideVacancies));           
+
         }
 
     }
