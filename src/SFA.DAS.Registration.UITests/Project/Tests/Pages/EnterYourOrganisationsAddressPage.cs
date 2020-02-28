@@ -8,7 +8,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => "Enter your organisation's address";
         private readonly ScenarioContext _context;
-        private readonly RegistrationDatahelpers _registrationDataHelper;
+        private readonly RegistrationDataHelper _registrationDataHelper;
 
         #region Locators
         protected override By ContinueButton => By.CssSelector(".button[value='Continue']");
@@ -20,7 +20,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         public EnterYourOrganisationsAddressPage(ScenarioContext context) : base(context)
         {
             _context = context;
-            _registrationDataHelper = context.Get<RegistrationDatahelpers>();
+            _registrationDataHelper = context.Get<RegistrationDataHelper>();
             VerifyPage();
         }
 

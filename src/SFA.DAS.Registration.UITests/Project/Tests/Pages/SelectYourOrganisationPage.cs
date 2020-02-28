@@ -10,9 +10,10 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         private readonly ScenarioContext _context;
 
         #region Locators
-        private By OrganisationLink() => By.CssSelector("button[type=submit]");
+        private By OrganisationLink => By.CssSelector("button[type=submit]");
         private By SearchResultsText => By.Id("inline-search-hint");
         private By TextBelowOrgNameInResults(string orgName) => By.XPath($"//p[text()='{orgName}']/following-sibling::p");
+        private By EnterYourDetailsManuallyLink => By.LinkText("enter your details manually.");
         #endregion
 
         public SelectYourOrganisationPage(ScenarioContext context) : base(context)
@@ -56,6 +57,12 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         public bool VerifyOrgAlreadyAddedMessage() =>
             pageInteractionHelper.VerifyText(pageInteractionHelper.GetText(TextBelowOrgNameInResults(objectContext.GetOrganisationName())), "Already added");
 
-        private IWebElement SearchLinkUrl(string searchText) => pageInteractionHelper.GetLink(OrganisationLink(), searchText);
+        public EnterYourOrganisationNamePage ClickEnterYourDetailsManuallyLink()
+        {
+            formCompletionHelper.Click(EnterYourDetailsManuallyLink);
+            return new EnterYourOrganisationNamePage(_context);
+        }
+
+        private IWebElement SearchLinkUrl(string searchText) => pageInteractionHelper.GetLink(OrganisationLink, searchText);
     }
 }
