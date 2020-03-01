@@ -293,6 +293,9 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             _objectContext.UpdateOrganisationName(_registrationDataHelper.CharityTypeOrg3Name);
         }
 
+        [Then(@"'Start adding apprentices now' task link is displayed under Tasks pane")]
+        public void ThenTaskLinkIsDisplayedUnderTasksPane() => _homePage.VerifyStartAddingApprenticesNowTaskLink();
+
         private void CreateUserAccountAndAddOrg(OrgType orgType)
         {
             CreateAnUserAcountAndAddPaye();
