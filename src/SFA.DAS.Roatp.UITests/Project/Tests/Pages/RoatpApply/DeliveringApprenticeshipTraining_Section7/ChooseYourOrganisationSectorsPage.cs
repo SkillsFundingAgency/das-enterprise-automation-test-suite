@@ -21,7 +21,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.DeliveringApprent
 
         public YourSectorsAndEmployeesPage SelectSectors(string sector)
         {
-            SelectCheckboxByText(sector);
+            SelectCheckBoxByText(sector);
             Continue();
             return new YourSectorsAndEmployeesPage(_context);
         }
