@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.ManageFunding.NonLevyEmployer
+namespace SFA.DAS.Campaigns.UITests.Project.Tests.Features.Apprentice
 {
     using TechTalk.SpecFlow;
     
@@ -18,22 +18,20 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.ManageFunding.NonLevy
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.0.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("AP_MF_NLE_01_ReservesFunding")]
-    [NUnit.Framework.CategoryAttribute("approvals")]
-    public partial class AP_MF_NLE_01_ReservesFundingFeature
+    [NUnit.Framework.DescriptionAttribute("CA_AP_05")]
+    public partial class CA_AP_05Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "AP_MF_NLE_01_ReservesFunding.feature"
+#line 1 "CA_AP_05.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "AP_MF_NLE_01_ReservesFunding", "A Non Levy Employer reserves funding for an apprenticeship course", ProgrammingLanguage.CSharp, new string[] {
-                        "approvals"});
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "CA_AP_05", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -72,23 +70,25 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.ManageFunding.NonLevy
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("AP_MF_NLE_01 Non Levy Employer reserves funding")]
+        [NUnit.Framework.DescriptionAttribute("CA_AP_05_Check Interview Page Details")]
+        [NUnit.Framework.CategoryAttribute("campaigns")]
+        [NUnit.Framework.CategoryAttribute("apprentice")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("reservefunds")]
-        public virtual void AP_MF_NLE_01NonLevyEmployerReservesFunding()
+        public virtual void CA_AP_05_CheckInterviewPageDetails()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_MF_NLE_01 Non Levy Employer reserves funding", null, new string[] {
-                        "regression",
-                        "reservefunds"});
-#line 8
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CA_AP_05_Check Interview Page Details", null, new string[] {
+                        "campaigns",
+                        "apprentice",
+                        "regression"});
+#line 6
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
+#line 7
+ testRunner.Given("the user can navigate to the interview page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 8
+ testRunner.Then("the links are not broken", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 9
- testRunner.Given("the Employer logins using existing NonLevy Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 10
- testRunner.When("the Employer reserves funding for an apprenticeship course", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 11
- testRunner.Then("the funding is successfully reserved", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("the video links are not broken", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }

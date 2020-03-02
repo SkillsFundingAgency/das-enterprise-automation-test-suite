@@ -3,7 +3,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
 {
-    public class RealStoriesPage : CampaingnsBasePage
+    public class RealStoriesPage : ApprenticeshipBasePage
     {
         protected override string PageTitle => "REAL STORIES";
 
@@ -11,10 +11,6 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
 
         private By PageDescription => By.ClassName("lead-paragraph");
 
-        public RealStoriesPage(ScenarioContext context) : base(context)
-        {
-            VerifyPage();
-            pageInteractionHelper.VerifyText(PageDescription, ExpectedPageDescription);
-        }
+        public RealStoriesPage(ScenarioContext context) : base(context) => pageInteractionHelper.VerifyText(PageDescription, ExpectedPageDescription);
     }
 }

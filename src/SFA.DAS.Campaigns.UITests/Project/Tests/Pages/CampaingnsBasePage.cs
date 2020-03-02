@@ -10,8 +10,6 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
 {
     public abstract class CampaingnsBasePage : BasePage
     {
-        protected override By PageHeader => By.CssSelector(".heading-xl");
-
         #region Helpers and Context
         protected readonly ObjectContext objectContext;
         protected readonly PageInteractionHelper pageInteractionHelper;

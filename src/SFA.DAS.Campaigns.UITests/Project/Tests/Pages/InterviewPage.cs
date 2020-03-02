@@ -2,13 +2,17 @@
 
 namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
 {
-    public class InterviewPage : CampaingnsBasePage
+    public class InterviewPage : ApprenticeshipBasePage
     {
         protected override string PageTitle => "INTERVIEW";
 
-        public InterviewPage(ScenarioContext context) : base(context)
+        public InterviewPage(ScenarioContext context) : base(context) => VerifyHeadings(); 
+
+        private void VerifyHeadings()
         {
-            VerifyPage();
+            pageInteractionHelper.VerifyText(Heading1, "THE INTERVIEW PROCESS");
+            pageInteractionHelper.VerifyText(Heading2, "BEFORE YOUR INTERVIEW");
+            pageInteractionHelper.VerifyText(Heading3, "DAY OF THE INTERVIEW");
         }
     }
 }
