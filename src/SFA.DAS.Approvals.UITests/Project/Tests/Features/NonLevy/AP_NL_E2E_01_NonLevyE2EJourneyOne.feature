@@ -1,4 +1,5 @@
-﻿Feature: AP_NL_E2E_01_NonLevyE2EJourneyOne
+﻿@approvals
+Feature: AP_NL_E2E_01_NonLevyE2EJourneyOne
 
 @regression
 @non-levy

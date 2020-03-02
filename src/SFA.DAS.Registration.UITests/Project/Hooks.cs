@@ -20,7 +20,7 @@ namespace SFA.DAS.Registration.UITests.Project
         private readonly IWebDriver _webDriver;
         private readonly ObjectContext _objectContext;
         private List<string> _empRefs;
-        private RegistrationDatahelpers _registrationDatahelpers;
+        private RegistrationDataHelper _registrationDatahelpers;
         private LoginCredentialsHelper _loginCredentialsHelper;
         private MongoDbDataGenerator _mongoDbDataGenerator;
         private readonly SqlDatabaseConnectionHelper _sqlDatabaseConnectionHelper;
@@ -48,7 +48,7 @@ namespace SFA.DAS.Registration.UITests.Project
             _objectContext.SetDataHelper(dataHelper);
 
             var randomDataGenerator = _context.Get<RandomDataGenerator>();
-            _registrationDatahelpers = new RegistrationDatahelpers(dataHelper.GatewayUsername, _config.RE_AccountPassword, randomDataGenerator);
+            _registrationDatahelpers = new RegistrationDataHelper(dataHelper.GatewayUsername, _config.RE_AccountPassword, randomDataGenerator);
             _context.Set(_registrationDatahelpers);
 
             _loginCredentialsHelper = new LoginCredentialsHelper(_objectContext);

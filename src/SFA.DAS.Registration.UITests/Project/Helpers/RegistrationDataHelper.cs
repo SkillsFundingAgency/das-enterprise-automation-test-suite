@@ -1,12 +1,13 @@
 ﻿using SFA.DAS.UI.FrameworkHelpers;
+using System;
 
 namespace SFA.DAS.Registration.UITests.Project.Helpers
 {
-    public class RegistrationDatahelpers
+    public class RegistrationDataHelper
     {
         private readonly RandomDataGenerator _randomDataGenerator;
 
-        public RegistrationDatahelpers(string gatewayUsername, string password, RandomDataGenerator randomDataGenerator)
+        public RegistrationDataHelper(string gatewayUsername, string password, RandomDataGenerator randomDataGenerator)
         {
             _randomDataGenerator = randomDataGenerator;
             RandomEmail = $"{gatewayUsername}@mailinator.com";
@@ -14,6 +15,7 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
             InvalidGGId = RandomAlphaNumericString(10);
             InvalidGGPassword = RandomNumericString(10);
             InvalidCompanyNumber = RandomNumericString(10);
+            OrgNameForManualEntry = $"Manually Added Organisation_{DateTime.Now.ToString("ddMMMyyyy_HHmmss")}";
         }
 
         public string RandomEmail { get; }
@@ -31,9 +33,10 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
         public string CharityTypeOrg2Address => "OXFAM, 2700 JOHN SMITH DRIVE, OXFORD BUSINESS PARK SOUTH, OXFORD, OX4 2JY";
         public string CharityTypeOrg3Number => "277444";
         public string CharityTypeOrg3Name => "OXFAM (INDIA) TRUST";
-        public string CharityTypeOrg3FirstLineAddressForEnteringManually => "5 Quinton Road";
-        public string CharityTypeOrg3CityForEnteringManually => "Coventry";
-        public string CharityTypeOrg3PostCodeForEnteringManually => "CV1 2WT";
+        public string OrgNameForManualEntry { get; }
+        public string FirstLineAddressForManualEntry => "5 Quinton Road";
+        public string CityNameForManualEntry => "Coventry";
+        public string PostCodeForManualEntry => "CV1 2WT";
 
         private string RandomAlphaNumericString(int length) => _randomDataGenerator.GenerateRandomAlphanumericString(length);
         private string RandomNumericString(int length) => _randomDataGenerator.GenerateRandomNumber(length);
