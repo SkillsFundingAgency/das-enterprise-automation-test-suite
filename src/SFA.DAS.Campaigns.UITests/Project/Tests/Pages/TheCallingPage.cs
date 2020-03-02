@@ -7,7 +7,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => "#THECALLING";
 
-        protected override By PageHeader => By.CssSelector("#thecalling-site-heading");
+        protected override By PageHeader => By.CssSelector(".thecalling-site-heading");
 
         public TheCallingPage(ScenarioContext context) : base(context) => VerifyPage();
     }
