@@ -70,13 +70,15 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features.OrganisationDetail
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RE_ODC_01_Create an Employer Account with Company Type Org")]
+        [NUnit.Framework.DescriptionAttribute("RE_ODC_01_Create an Employer Account with Company Type Org and verify OrgName cha" +
+            "nge scenario")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("registration")]
         [NUnit.Framework.CategoryAttribute("addpayedetails")]
-        public virtual void RE_ODC_01_CreateAnEmployerAccountWithCompanyTypeOrg()
+        public virtual void RE_ODC_01_CreateAnEmployerAccountWithCompanyTypeOrgAndVerifyOrgNameChangeScenario()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RE_ODC_01_Create an Employer Account with Company Type Org", null, new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RE_ODC_01_Create an Employer Account with Company Type Org and verify OrgName cha" +
+                    "nge scenario", null, new string[] {
                         "regression",
                         "registration",
                         "addpayedetails"});

@@ -23,5 +23,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             formCompletionHelper.Click(UpdateTheseDetailsLink);
             return new ReviewYourDetailsPage(_context);
         }
+
+        public bool VerifyIfUpdateTheseDetailsLinkIsPresent() => pageInteractionHelper.IsElementDisplayed(UpdateTheseDetailsLink);
     }
 }

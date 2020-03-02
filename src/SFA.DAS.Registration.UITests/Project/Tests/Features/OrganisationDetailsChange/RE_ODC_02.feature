@@ -3,7 +3,7 @@
 @regression
 @registration
 @addpayedetails
-Scenario: RE_ODC_02_Create an Employer Account with Charity Type Org
+Scenario: RE_ODC_02_Create an Employer Account with Charity Type Org and verify OrgName change scenario
 	Given an Employer Account with Charity Type Org is created and agreement is Signed
 	When the Employer reviews Agreement page
 	Then clicking on 'Update these details' link displays 'Review your details' page showing These details are the same as those previously held

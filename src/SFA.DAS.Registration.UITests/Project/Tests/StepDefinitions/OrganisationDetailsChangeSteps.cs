@@ -1,4 +1,5 @@
-﻿using SFA.DAS.ConfigurationBuilder;
+﻿using NUnit.Framework;
+using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.Registration.UITests.Project.Helpers;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages;
 using TechTalk.SpecFlow;
@@ -53,5 +54,9 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
                 .ClickViewAgreementLink();
             return new YourEsfaAgreementPage(_context);
         }
+
+        [Then(@"the 'Update these details' link is not displayed for PublicSector Type Org")]
+        public void ThenTheUpdateTheseDetailsLinkIsNotDisplayedForPublicSectorTypeOrg() =>
+            Assert.IsFalse(_yourEsfaAgreementPage.VerifyIfUpdateTheseDetailsLinkIsPresent(), "'Update these details' link is present even though it should not be present for a PublicSector Type Org");
     }
 }

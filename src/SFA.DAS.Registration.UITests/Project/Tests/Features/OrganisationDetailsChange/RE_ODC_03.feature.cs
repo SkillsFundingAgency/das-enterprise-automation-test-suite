@@ -18,20 +18,20 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features.OrganisationDetail
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.0.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("RE_ODC_02")]
-    public partial class RE_ODC_02Feature
+    [NUnit.Framework.DescriptionAttribute("RE_ODC_03")]
+    public partial class RE_ODC_03Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "RE_ODC_02.feature"
+#line 1 "RE_ODC_03.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "RE_ODC_02", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "RE_ODC_03", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -70,15 +70,15 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features.OrganisationDetail
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RE_ODC_02_Create an Employer Account with Charity Type Org and verify OrgName cha" +
-            "nge scenario")]
+        [NUnit.Framework.DescriptionAttribute("RE_ODC_03_Create an Employer Account with PublicSector Type Org and verify OrgNam" +
+            "e change scenario")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("registration")]
         [NUnit.Framework.CategoryAttribute("addpayedetails")]
-        public virtual void RE_ODC_02_CreateAnEmployerAccountWithCharityTypeOrgAndVerifyOrgNameChangeScenario()
+        public virtual void RE_ODC_03_CreateAnEmployerAccountWithPublicSectorTypeOrgAndVerifyOrgNameChangeScenario()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RE_ODC_02_Create an Employer Account with Charity Type Org and verify OrgName cha" +
-                    "nge scenario", null, new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RE_ODC_03_Create an Employer Account with PublicSector Type Org and verify OrgNam" +
+                    "e change scenario", null, new string[] {
                         "regression",
                         "registration",
                         "addpayedetails"});
@@ -86,22 +86,12 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features.OrganisationDetail
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 7
- testRunner.Given("an Employer Account with Charity Type Org is created and agreement is Signed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("an Employer Account with PublicSector Type Org is created and agreement is Signed" +
+                    "", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 8
  testRunner.When("the Employer reviews Agreement page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 9
- testRunner.Then("clicking on \'Update these details\' link displays \'Review your details\' page showi" +
-                    "ng These details are the same as those previously held", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 10
- testRunner.When("the Employer revisits the Agreement page during change in Organisation name scena" +
-                    "rio", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 11
- testRunner.Then("clicking on \'Update these details\' link displays \'Review your details\' page showi" +
-                    "ng We\'ve retrieved the most up-to-date details we could find for your organisati" +
-                    "on", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 12
- testRunner.And("continuing by choosing \'Update details\' option displays \'Details updated\' page sh" +
-                    "owing You\'ve successfully updated your organisation details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Then("the \'Update these details\' link is not displayed for PublicSector Type Org", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
