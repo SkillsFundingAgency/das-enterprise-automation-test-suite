@@ -21,6 +21,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
         private By Location => By.Id("Location");
         private By ReferenceNumber => By.Id("ReferenceNumber");
         private By Distance => By.Id("loc-within");
+        private By LocationErrorMessage => By.Id("error-summary");
 
         public FAA_TraineeshipSearchPage(ScenarioContext context) : base(context)
         {
@@ -55,10 +56,26 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
         public FAA_TraineeshipSearchResultsPage SearchForAVacancy(string location)
         {            
             _formCompletionHelper.EnterText(Location, location);
-            _formCompletionHelper.Click(Search);
+            _formCompletionHelper.Click(Search);            
             _pageInteractionHelper.WaitforURLToChange("/traineeships/search?Hash=");
 
             return new FAA_TraineeshipSearchResultsPage(_context);
+        }
+
+        public FAA_TraineeshipSearchPage VerifyNoPostcodeErrorMessage(string location)
+        {
+            _formCompletionHelper.EnterText(Location, location);
+            _formCompletionHelper.Click(Search);
+            _pageInteractionHelper.VerifyText(LocationErrorMessage, "Please enter location");
+            return this;
+        }
+
+        public FAA_TraineeshipSearchPage VerifyPartialPostcodeErrorMessage(string location)
+        {
+            _formCompletionHelper.EnterText(Location, location);
+            _formCompletionHelper.Click(Search);
+            _pageInteractionHelper.VerifyText(LocationErrorMessage, "Location must be 3 or more characters or a postcode");
+            return this;
         }
     }
 }

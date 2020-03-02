@@ -170,5 +170,15 @@ namespace SFA.DAS.FAA.UITests.Project.Helpers
             }
         }
         private FAA_SettingsPage GoToSettingsPage() => GoToFAAHomePage().GoToSettings();
+
+        public FAA_TraineeshipSearchPage VerifyNoPostCodeErrorMessage(string location)
+        {
+            return FindATraineeship().VerifyNoPostcodeErrorMessage(location);
+        }
+
+        public FAA_TraineeshipSearchPage VerifyPartialPostCodeErrorMessage(string location)
+        {
+            return FindATraineeship().VerifyPartialPostcodeErrorMessage(location);
+        }
     }
 }
