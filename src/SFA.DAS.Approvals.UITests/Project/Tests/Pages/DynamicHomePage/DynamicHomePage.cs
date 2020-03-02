@@ -1,61 +1,22 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer;
-using SFA.DAS.ConfigurationBuilder;
-using SFA.DAS.UI.Framework.TestSupport;
-using SFA.DAS.UI.FrameworkHelpers;
+using SFA.DAS.Registration.UITests.Project.Tests.Pages;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.DynamicHomePage
 {
-    public class DynamicHomePage : BasePage
+    public class DynamicHomePage : HomePage
     {
         #region Helpers and Context
-        protected readonly PageInteractionHelper _pageInteractionHelper;
-        protected readonly FormCompletionHelper _formCompletionHelper;
-        protected readonly ObjectContext objectContext;
         private readonly ScenarioContext _context;
         #endregion
 
-        #region
-        private const string ContinueSettingUpAnApprenticeshipPanelText = "Continue setting up an apprenticeship";
-        private const string SetUpAnApprenticeshipPanelText = "Set up an apprenticeship";
-        private By ContinueSettingUpAnApprenticeship => By.Id("call-to-action-continue-setting-up-an-apprenticeship");
-        private By SetUpAnApprenticeship => By.Id("set-up-an-apprenticeship");
-        protected override string PageTitle => "Home";
-        protected override By PageHeader => By.LinkText("Home");
-        protected override By ContinueButton => By.LinkText("Continue");
-        private By StartNowButton => By.LinkText("Start now");
-        #endregion
-
-        public DynamicHomePage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            _pageInteractionHelper = context.Get<PageInteractionHelper>();
-            _formCompletionHelper = context.Get<FormCompletionHelper>();
-            VerifyPage();
-        }
+        public DynamicHomePage(ScenarioContext context) : base(context) => _context = context;
         
-        public ReserveFundingToTrainAndAssessAnApprenticePage ClickToReserveFunding()
+        public ReserveFundingToTrainAndAssessAnApprenticePage StartNowToReserveFunding()
         {
-            _formCompletionHelper.ClickElement(StartNowButton);
+            formCompletionHelper.ClickElement(StartNowButton);
             return new ReserveFundingToTrainAndAssessAnApprenticePage(_context);
-        }
-
-        public DoYouNeedToCreateAnAdverForThisApprenticeshipPage ClickContinueToCreateAdvertOrAddAnApprentices()
-        {
-            _formCompletionHelper.ClickElement(ContinueButton);
-            return new DoYouNeedToCreateAnAdverForThisApprenticeshipPage(_context);
-        }
-
-        public void VerifyReserveFundingPanel()
-        {
-            _pageInteractionHelper.VerifyText(ContinueSettingUpAnApprenticeship, ContinueSettingUpAnApprenticeshipPanelText);
-        }
-
-        public void VerifySetUpAnApprenticeshipPanel()
-        {
-            _pageInteractionHelper.VerifyText(SetUpAnApprenticeship, SetUpAnApprenticeshipPanelText);
         }
     }
 }

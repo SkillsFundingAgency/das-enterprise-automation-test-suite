@@ -1,5 +1,4 @@
-﻿using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common;
-using SFA.DAS.Approvals.UITests.Project.Tests.Pages.DynamicHomePage;
+﻿using SFA.DAS.Approvals.UITests.Project.Tests.Pages.DynamicHomePage;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer;
 using SFA.DAS.Registration.UITests.Project.Helpers;
@@ -21,33 +20,17 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             _loginHelper = new EmployerPortalLoginHelper(_context);
         }
 
-        public DoYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage GoToReserveFunding()
-        {
-            var yourFundingReservationsPage = GoToManageFunding();
-            return yourFundingReservationsPage.ClickReserveMoreFundingLink();
-        }
+        public DoYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage GoToReserveFunding() => GoToManageFunding().ClickReserveMoreFundingLink();
 
-        public DoYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage GoToReserveFundingFromHomePage()
-        {
-            var reserveFunding = ClickStartNowButtonOnHomePagePanelToSetUpAnApprentice();
-            return reserveFunding.ClickReserveFundingButton();
-        }
+        public DoYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage GoToReserveFundingFromHomePagePanel() => new DynamicHomePage(_context).StartNowToReserveFunding().ClickReserveFundingButton();
 
         public AddAnApprenitcePage GoToAddAnApprentices()
         {
-            var addAnApprentices = ContinueToAddAnApprentices();
-            return addAnApprentices.ClickNoRadioButtonTakesToAddAnApprentices();
+            ContinueToCreateAdvert();
+            return new DoYouNeedToCreateAnAdvertPage(_context).ClickNoRadioButtonTakesToAddAnApprentices();
         }
 
-        public DoYouNeedToCreateAnAdverForThisApprenticeshipPage ContinueToAddAnApprentices()
-        {
-            return new DynamicHomePage(_context).ClickContinueToCreateAdvertOrAddAnApprentices();
-        }
-
-        public ReserveFundingToTrainAndAssessAnApprenticePage ClickStartNowButtonOnHomePagePanelToSetUpAnApprentice()
-        {
-            return new DynamicHomePage(_context).ClickToReserveFunding();
-        }
+        private DoYouNeedToCreateAnAdvertBasePage ContinueToCreateAdvert() => new DynamicHomePage(_context).ContinueToCreateAdvert();
 
         public SuccessfullyReservedFundingPage CreateReservation(DoYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage doYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage)
         {
@@ -61,24 +44,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                 .ClickConfirmButton();
         }
 
-        public HomePage GoToDynamicHomePage()
-        {
-            return new SuccessfullyReservedFundingPage(_context).GoToHomePage();
-        }
-
-        public AddAnApprenitcePage AddAnApprentice(SuccessfullyReservedFundingPage successfullyReservedFundingPage)
-        {
-            return successfullyReservedFundingPage.AddApprentice();
-        }
-
-        public DoYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage AddAnotherReservation(ReviewYourCohortPage reviewYourCohortPage)
-        {
-            return reviewYourCohortPage.SelectAddAnApprenticeUsingReservation()
-                .ChooseCreateANewReservationRadioButton()
-                .ClickSaveAndContinueButton();
-        }
-
-        public YourFundingReservationsPage GoToManageFunding() => new YourFundingReservationsHomePage(_context).OpenYourFundingReservations();
+        private YourFundingReservationsPage GoToManageFunding() => new YourFundingReservationsHomePage(_context).OpenYourFundingReservations();
 
         public YourFundingReservationsPage DeleteAllUnusedFunding()
         {

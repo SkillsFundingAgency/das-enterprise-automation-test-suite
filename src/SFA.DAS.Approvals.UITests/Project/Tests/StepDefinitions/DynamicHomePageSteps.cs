@@ -19,21 +19,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _reservationStepsHelper = new MFEmployerStepsHelper(context);
         }
 
-        [When(@"the Employer reserves funding for an apprenticeship course from reserved panel")]
-        public void WhenTheEmployerReservesFundingForAnApprenticeshipCourseFromReservedPanel()
-        {
-            var doYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage = _reservationStepsHelper.GoToReserveFundingFromHomePage();
-            _reservationStepsHelper.CreateReservation(doYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage);
-        }
-
-        [Then(@"the new reserved funding panel is shown to employer on the homepage")]
-        public void ThenTheNewReservedFundingPanelIsShownToEmployerOnTheHomepage()
-        {
-            _reservationStepsHelper.GoToDynamicHomePage();
-            _dynamicHomePage = new DynamicHomePage(_context);
-            _dynamicHomePage.VerifyReserveFundingPanel();
-        }
-
         [Then(@"the employer continue to add an apprentices for reserved funding")]
         public void ThenTheEmployerContinueToAddAnApprenticesForReservedFunding()
         {
