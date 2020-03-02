@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.FAA.UITests.Project.Tests.Features.SearchVacancy
+namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Features.FAA.SearchVacancy.Apprenticeship
 {
     using TechTalk.SpecFlow;
     
@@ -74,19 +74,21 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Features.SearchVacancy
             " postcode entered")]
         [NUnit.Framework.CategoryAttribute("raa-v1")]
         [NUnit.Framework.CategoryAttribute("regression")]
+        [NUnit.Framework.CategoryAttribute("apprenticeshipvacancy")]
         public virtual void FAA_SBPC_01_SearchVacancyWhenNoLocationSingleLetterPostcodeNotPartialPostcodeEntered()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("FAA_SBPC_01 - Search Vacancy when No Location/Single letter postcode/ not partial" +
                     " postcode entered", null, new string[] {
                         "raa-v1",
-                        "regression"});
+                        "regression",
+                        "apprenticeshipvacancy"});
 #line 6
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 7
 testRunner.Given("an applicant is on the Find an Apprenticeship Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 8
-testRunner.Then("an error message is displayed to the candidate when postcode is not valid \' \'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+testRunner.Then("an error message is displayed to the candidate when postcode is not valid \'C\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

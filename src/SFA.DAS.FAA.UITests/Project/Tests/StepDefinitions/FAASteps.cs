@@ -98,15 +98,20 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.StepDefinitions
         {
             switch (postcode)
             {
-                case "string.Empty":
+                case " ":
                     _faaStepsHelper.VerifyNoPostCodeErrorMessage(string.Empty);
                     break;
 
-                case "!string.Empty ":
+                case "C":
                     _faaStepsHelper.VerifyPartialPostCodeErrorMessage(postcode);
                     break;
+
+                case "CV":
+                    _faaStepsHelper.VerifyPartialPostCodeErrorMessage(postcode);
+                    break;
+
+
             }
         }
-
     }
 }

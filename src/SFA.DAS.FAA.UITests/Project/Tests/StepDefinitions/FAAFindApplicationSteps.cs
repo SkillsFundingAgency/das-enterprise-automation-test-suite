@@ -18,7 +18,8 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.StepDefinitions
         {
             _faaStepsHelper = new FAAStepsHelper(context);
         }
-        
+
+        [Given(@"an applicant is on the Find an Apprenticeship Page")]
         [When(@"an applicant is on the Find an Apprenticeship Page")]
         public void WhenAnApplicantIsOnTheFindAnApprenticeshipPage()
         {

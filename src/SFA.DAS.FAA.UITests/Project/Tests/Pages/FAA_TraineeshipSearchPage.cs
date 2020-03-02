@@ -22,6 +22,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
         private By ReferenceNumber => By.Id("ReferenceNumber");
         private By Distance => By.Id("loc-within");
         private By LocationErrorMessage => By.Id("error-summary");
+        private By PartialLocationErrorMessage => By.ClassName("error-message");
 
         public FAA_TraineeshipSearchPage(ScenarioContext context) : base(context)
         {
@@ -74,7 +75,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
         {
             _formCompletionHelper.EnterText(Location, location);
             _formCompletionHelper.Click(Search);
-            _pageInteractionHelper.VerifyText(LocationErrorMessage, "Location must be 3 or more characters or a postcode");
+            _pageInteractionHelper.VerifyText(PartialLocationErrorMessage, "Location must be 3 or more characters or a postcode");
             return this;
         }
     }

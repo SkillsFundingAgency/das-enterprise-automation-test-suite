@@ -41,6 +41,10 @@
     <None Update="specflow.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Project\Tests\Features\FAA\SearchVacancy\Traineeship\" />
   </ItemGroup> 
 
 </Project>

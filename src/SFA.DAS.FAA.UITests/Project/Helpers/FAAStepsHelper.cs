@@ -171,14 +171,30 @@ namespace SFA.DAS.FAA.UITests.Project.Helpers
         }
         private FAA_SettingsPage GoToSettingsPage() => GoToFAAHomePage().GoToSettings();
 
-        public FAA_TraineeshipSearchPage VerifyNoPostCodeErrorMessage(string location)
+        public FAA_SearchVacancyBasePage VerifyNoPostCodeErrorMessage(string location)
         {
-            return FindATraineeship().VerifyNoPostcodeErrorMessage(location);
+            if (_objectContext.IsApprenticeshipVacancyType())
+            {
+                return new FAA_ApprenticeSearchPage(_context).VerifyNoPostcodeErrorMessage(location);
+            }
+            else
+            {
+                return new FAA_TraineeshipSearchPage(_context).VerifyNoPostcodeErrorMessage(location);
+            }
         }
 
-        public FAA_TraineeshipSearchPage VerifyPartialPostCodeErrorMessage(string location)
+        public FAA_SearchVacancyBasePage VerifyPartialPostCodeErrorMessage(string location)
         {
-            return FindATraineeship().VerifyPartialPostcodeErrorMessage(location);
+            if (_objectContext.IsApprenticeshipVacancyType())
+            {
+                return new FAA_ApprenticeSearchPage(_context).VerifyPartialPostcodeErrorMessage(location);
+            }
+            else
+            {
+                return new FAA_TraineeshipSearchPage(_context).VerifyPartialPostcodeErrorMessage(location);
+            }                
         }
+
+
     }
 }
