@@ -109,8 +109,6 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.StepDefinitions
                 case "CV":
                     _faaStepsHelper.VerifyPartialPostCodeErrorMessage(postcode);
                     break;
-
-
             }
         }
     }

@@ -24,7 +24,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Features.FAA.SearchVacancy.Appren
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "FAA_SBPC_01.feature"
+#line 1 "FAA_SSLP_01.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
@@ -70,15 +70,13 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Features.FAA.SearchVacancy.Appren
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("FAA_SBPC_01 - Search Vacancy when No Location/Single letter postcode/ not partial" +
-            " postcode entered")]
+        [NUnit.Framework.DescriptionAttribute("FAA_SBPC_01 - Search Vacancy when single letter postcode entered")]
         [NUnit.Framework.CategoryAttribute("raa-v1")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("apprenticeshipvacancy")]
-        public virtual void FAA_SBPC_01_SearchVacancyWhenNoLocationSingleLetterPostcodeNotPartialPostcodeEntered()
+        public virtual void FAA_SBPC_01_SearchVacancyWhenSingleLetterPostcodeEntered()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("FAA_SBPC_01 - Search Vacancy when No Location/Single letter postcode/ not partial" +
-                    " postcode entered", null, new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("FAA_SBPC_01 - Search Vacancy when single letter postcode entered", null, new string[] {
                         "raa-v1",
                         "regression",
                         "apprenticeshipvacancy"});

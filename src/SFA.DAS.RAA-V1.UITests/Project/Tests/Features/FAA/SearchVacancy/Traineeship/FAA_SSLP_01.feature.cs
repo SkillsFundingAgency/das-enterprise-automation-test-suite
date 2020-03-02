@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.ManageFunding.NonLevyEmployer
+namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Features.FAA.SearchVacancy.Traineeship
 {
     using TechTalk.SpecFlow;
     
@@ -18,22 +18,20 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.ManageFunding.NonLevy
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.0.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("AP_MF_NLE_01_ReservesFunding")]
-    [NUnit.Framework.CategoryAttribute("approvals")]
-    public partial class AP_MF_NLE_01_ReservesFundingFeature
+    [NUnit.Framework.DescriptionAttribute("FAA_SSLP_01")]
+    public partial class FAA_SSLP_01Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "AP_MF_NLE_01_ReservesFunding.feature"
+#line 1 "FAA_SSLP_01.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "AP_MF_NLE_01_ReservesFunding", "A Non Levy Employer reserves funding for an apprenticeship course", ProgrammingLanguage.CSharp, new string[] {
-                        "approvals"});
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "FAA_SSLP_01", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -72,23 +70,21 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.ManageFunding.NonLevy
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("AP_MF_NLE_01 Non Levy Employer reserves funding")]
+        [NUnit.Framework.DescriptionAttribute("FAA_SSLP_01 - Search Vacancy when single letter postcode entered")]
+        [NUnit.Framework.CategoryAttribute("raa-v1")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("reservefunds")]
-        public virtual void AP_MF_NLE_01NonLevyEmployerReservesFunding()
+        public virtual void FAA_SSLP_01_SearchVacancyWhenSingleLetterPostcodeEntered()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_MF_NLE_01 Non Levy Employer reserves funding", null, new string[] {
-                        "regression",
-                        "reservefunds"});
-#line 8
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("FAA_SSLP_01 - Search Vacancy when single letter postcode entered", null, new string[] {
+                        "raa-v1",
+                        "regression"});
+#line 5
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 9
- testRunner.Given("the Employer logins using existing NonLevy Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 10
- testRunner.When("the Employer reserves funding for an apprenticeship course", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 11
- testRunner.Then("the funding is successfully reserved", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 6
+testRunner.Given("an applicant is on the Find an Traineeship Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 7
+testRunner.Then("an error message is displayed to the candidate when postcode is not valid \'C\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

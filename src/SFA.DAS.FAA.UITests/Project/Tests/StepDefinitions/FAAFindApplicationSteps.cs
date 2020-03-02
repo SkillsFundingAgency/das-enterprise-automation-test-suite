@@ -35,6 +35,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.StepDefinitions
             Assert.AreEqual(true, _apprenticeSearchResultspage.FoundVacancies(), $"No apprenticeship found within '{distance}' of '{postCode}'");
         }
 
+        [Given(@"an applicant is on the Find an Traineeship Page")]
         [When(@"an applicant is on the Find an Traineeship Page")]
         public void WhenAnApplicantIsOnTheFindAnTraineeshipPage()
         {
