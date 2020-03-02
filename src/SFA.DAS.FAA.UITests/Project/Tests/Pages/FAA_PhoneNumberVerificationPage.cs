@@ -16,6 +16,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 
         #region Helpers and Context
         private readonly FormCompletionHelper _formCompletionHelper;
+        private readonly PageInteractionHelper _pageInteractionHelper;
         private readonly ScenarioContext _context;
         private readonly FAADataHelper _dataHelper;
         #endregion
@@ -27,11 +28,13 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
             _context = context;
             _formCompletionHelper = context.Get<FormCompletionHelper>(); 
             _dataHelper = context.Get<FAADataHelper>();
+            _pageInteractionHelper = context.Get<PageInteractionHelper>();
             VerifyPage();
         }
 
         public FAA_SettingsPage EnterVerificationCode()
         {
+            _pageInteractionHelper.WaitforURLToChange("verifymobile");
             _formCompletionHelper.EnterText(EnterCode, _dataHelper.PhoneNumberVerificationCode);
             _formCompletionHelper.Click(VerifyNumber);
             return new FAA_SettingsPage(_context);

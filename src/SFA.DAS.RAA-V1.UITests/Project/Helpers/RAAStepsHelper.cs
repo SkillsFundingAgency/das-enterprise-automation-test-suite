@@ -114,7 +114,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
             EnterRequirementsAndExtraQuestions(requirementsAndProspects, applicationMethod);
         }
 
-        internal void ProviderFillsOutApprenticeshipDetails(string location, string disabilityConfident, string applicationMethod, string apprenticeShip, string hoursPerWeek, string vacancyDuration, string wagetype, string postCode = "CV3 5ER")
+        internal void ProviderFillsOutApprenticeshipDetails(string location, string disabilityConfident, string applicationMethod, string apprenticeShip, string hoursPerWeek, string vacancyDuration, string wagetype, string postCode = "1 Speedway Drive London SW17 0XW")
         {
             switch (location)
             {

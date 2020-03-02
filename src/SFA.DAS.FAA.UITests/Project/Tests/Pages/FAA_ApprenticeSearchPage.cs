@@ -94,7 +94,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
         }
 
         public FAA_PhoneNumberVerificationPage VerifyPhoneNumberVerificationText()
-        {           
+        {  
             _pageInteractionHelper.VerifyText(VerifyPhoneNumberText, _faadataHelper.PhoneNumberVerificationText);           
             _formCompletionHelper.Click(VerifyYourNumber);
             return new FAA_PhoneNumberVerificationPage(_context);
