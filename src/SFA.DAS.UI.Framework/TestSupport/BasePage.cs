@@ -57,7 +57,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
 
         protected void SelectRadioOptionByText(string value) => _formCompletionHelper.SelectRadioOptionByText(RadioLabels, value);
 
-        protected void SelectCheckboxByText(string value) => _formCompletionHelper.SelectCheckboxByText(CheckBoxLabels, value);
+        protected void SelectCheckBoxByText(string value) => _formCompletionHelper.SelectCheckBoxByText(CheckBoxLabels, value);
 
         protected void NavigateBack() => _formCompletionHelper.Click(BackLink);
 

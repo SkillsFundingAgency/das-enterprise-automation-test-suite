@@ -106,7 +106,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
         
         public void SelectRadioOptionByText(By locator, string text) => ClickElementByText(locator, text);
 
-        public void SelectCheckboxByText(By locator, string text) => ClickElementByText(locator, text);
+        public void SelectCheckBoxByText(By locator, string text) => ClickElementByText(locator, text);
 
         public void EnterTextByLabel(By labellocator, string labeltext, string text) => EnterText(GetElementByText(labellocator, labeltext).FindElement(InputCssSelector), text);
 
