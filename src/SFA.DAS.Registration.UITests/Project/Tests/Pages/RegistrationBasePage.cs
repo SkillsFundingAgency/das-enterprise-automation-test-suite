@@ -12,7 +12,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         protected readonly PageInteractionHelper pageInteractionHelper;
         protected readonly RegistrationConfig config;
         protected readonly ObjectContext objectContext;
-        protected readonly RegistrationDatahelpers registrationDataHelper;
+        protected readonly RegistrationDataHelper registrationDataHelper;
 
         public RegistrationBasePage(ScenarioContext context) : base(context)
         {
@@ -20,7 +20,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             pageInteractionHelper = context.Get<PageInteractionHelper>();
             config = context.GetRegistrationConfig<RegistrationConfig>();
             objectContext = context.Get<ObjectContext>();
-            registrationDataHelper = context.Get<RegistrationDatahelpers>();
+            registrationDataHelper = context.Get<RegistrationDataHelper>();
         }
     }
 }

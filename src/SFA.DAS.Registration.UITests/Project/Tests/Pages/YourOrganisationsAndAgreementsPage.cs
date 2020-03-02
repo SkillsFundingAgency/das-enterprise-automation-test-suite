@@ -1,6 +1,5 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
-using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
@@ -9,7 +8,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => "Your organisations and agreements";
         private readonly ScenarioContext _context;
-        private readonly TableRowHelper _tableRowHelper;
 
         #region Locators
         protected override string Linktext => "Your organisations and agreements";
@@ -17,12 +15,12 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         private By AgreementId => By.CssSelector("table tbody tr td[data-label='Agreement ID']");
         private By AddNewOrganisationButton => By.Id("addNewOrg");
         private By TableCells => By.XPath("//td");
+        private By ViewAgreementLink => By.LinkText("View");
         #endregion
 
         public YourOrganisationsAndAgreementsPage(ScenarioContext context, bool navigate = false) : base(context, navigate)
         {
             _context = context;
-            _tableRowHelper = context.Get<TableRowHelper>();
         }
 
         public string GetTransfersStatus() => pageInteractionHelper.GetText(TransferStatus);
@@ -42,5 +40,11 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         public void VerifyNewlyAddedOrgIsPresent() =>
             Assert.IsTrue(pageInteractionHelper.GetTextFromElementsGroup(TableCells).Contains(objectContext.GetOrganisationName()),
                 $"'{objectContext.GetOrganisationName()} is NOT listed under 'YourOrganisationsAndAgreementsPage'");
+
+        public YourEsfaAgreementPage ClickViewAgreementLink()
+        {
+            formCompletionHelper.Click(ViewAgreementLink);
+            return new YourEsfaAgreementPage(_context);
+        }
     }
 }
