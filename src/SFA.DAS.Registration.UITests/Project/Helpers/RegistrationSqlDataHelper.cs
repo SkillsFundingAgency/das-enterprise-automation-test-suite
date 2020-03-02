@@ -21,6 +21,13 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
             return GetDataFromDb($"SELECT ApprenticeshipEmployerType FROM [employer_account].[Account] where Id = {id}");
         }
 
+        public void UpdateLegalEntityName(string email)
+        {
+            var id = GetDataFromDb($"SELECT Id from [employer_account].[User] where Email = '{email}'");
+            var accountId = GetDataFromDb($"SELECT AccountId FROM [employer_account].[Membership] where UserId = {id}");
+            _sqlDatabase.ExecuteSqlCommand(_connectionString, $"UPDATE [employer_account].[AccountLegalEntity] set Name = 'Changed Org Name' where AccountId = {accountId}");
+        }
+
         private string GetDataFromDb(string queryToExecute) =>  Convert.ToString(_sqlDatabase.ReadDataFromDataBase(queryToExecute, _connectionString)[0][0]);
     }
 }

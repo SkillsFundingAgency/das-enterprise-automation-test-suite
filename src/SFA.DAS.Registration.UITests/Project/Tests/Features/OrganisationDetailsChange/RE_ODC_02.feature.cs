@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.NonLevy
+namespace SFA.DAS.Registration.UITests.Project.Tests.Features.OrganisationDetailsChange
 {
     using TechTalk.SpecFlow;
     
@@ -18,22 +18,20 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.NonLevy
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.0.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("AP_NL_E2E_02_NonLevyE2EJourneyTwo")]
-    [NUnit.Framework.CategoryAttribute("approvals")]
-    public partial class AP_NL_E2E_02_NonLevyE2EJourneyTwoFeature
+    [NUnit.Framework.DescriptionAttribute("RE_ODC_02")]
+    public partial class RE_ODC_02Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "AP_NL_E2E_02_NonLevyE2EJourneyTwo.feature"
+#line 1 "RE_ODC_02.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "AP_NL_E2E_02_NonLevyE2EJourneyTwo", null, ProgrammingLanguage.CSharp, new string[] {
-                        "approvals"});
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "RE_ODC_02", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -72,27 +70,38 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.NonLevy
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("AP_NL_E2E_02 Non Levy Employer sends cohort to provider for review then provider " +
-            "approves then employer approves")]
+        [NUnit.Framework.DescriptionAttribute("RE_ODC_02_Create an Employer Account with Charity Type Org and verify OrgName cha" +
+            "nge scenario")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("non-levy")]
-        public virtual void AP_NL_E2E_02NonLevyEmployerSendsCohortToProviderForReviewThenProviderApprovesThenEmployerApproves()
+        [NUnit.Framework.CategoryAttribute("registration")]
+        [NUnit.Framework.CategoryAttribute("addpayedetails")]
+        public virtual void RE_ODC_02_CreateAnEmployerAccountWithCharityTypeOrgAndVerifyOrgNameChangeScenario()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_NL_E2E_02 Non Levy Employer sends cohort to provider for review then provider " +
-                    "approves then employer approves", null, new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RE_ODC_02_Create an Employer Account with Charity Type Org and verify OrgName cha" +
+                    "nge scenario", null, new string[] {
                         "regression",
-                        "non-levy"});
+                        "registration",
+                        "addpayedetails"});
 #line 6
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 7
- testRunner.Given("the Employer logins using existing NonLevy Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("an Employer Account with Charity Type Org is created and agreement is Signed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 8
- testRunner.When("the Employer uses the reservation and adds 2 cohort and sends to provider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("the Employer reviews Agreement page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 9
- testRunner.And("the provider adds Ulns and approves the cohorts and sends to employer", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Then("clicking on \'Update these details\' link displays \'Review your details\' page showi" +
+                    "ng These details are the same as those previously held", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 10
- testRunner.Then("the Employer approves the cohorts", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.When("the Employer revisits the Agreement page during change in Organisation name scena" +
+                    "rio", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 11
+ testRunner.Then("clicking on \'Update these details\' link displays \'Review your details\' page showi" +
+                    "ng We\'ve retrieved the most up-to-date details we could find for your organisati" +
+                    "on", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 12
+ testRunner.And("continuing by choosing \'Update details\' option displays \'Details updated\' page sh" +
+                    "owing You\'ve successfully updated your organisation details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
