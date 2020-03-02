@@ -15,6 +15,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         private By PublicAccountIdLocator => By.CssSelector(".heading-secondary");
         private By SucessSummary => By.CssSelector(".success-summary");
         private By AcceptYourAgreementLink => By.LinkText("Accept your agreement");
+        private By StartAddingApprenticesNowTaskLink => By.LinkText("Start adding apprentices now");
         protected By FundingAvailabilityLink => By.LinkText("Check funding availability and make a reservation");
         protected By YourFundingReservationsLink => By.LinkText("Your funding reservations");
         protected By YourFinancesLink => By.LinkText("Your finances");
@@ -64,5 +65,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             return new DoYouNeedToCreateAnAdvertBasePage(_context);
         }
         public void VerifyReserveFundingPanel() => pageInteractionHelper.VerifyText(ContinueSettingUpAnApprenticeship, "Continue setting up an apprenticeship");
+        public void VerifyStartAddingApprenticesNowTaskLink() => VerifyPage(StartAddingApprenticesNowTaskLink);
     }
 }

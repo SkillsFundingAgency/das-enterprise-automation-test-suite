@@ -12,7 +12,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
     {
         private readonly ScenarioContext _context;
         private readonly ObjectContext _objectContext;
-        private readonly RegistrationDatahelpers _registrationDataHelper;
+        private readonly RegistrationDataHelper _registrationDataHelper;
         private readonly RegistrationSqlDataHelper _registrationSqlDataHelper;
         private HomePage _homePage;
         private AddAPAYESchemePage _addAPAYESchemePage;
@@ -26,7 +26,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         {
             _context = context;
             _objectContext = _context.Get<ObjectContext>();
-            _registrationDataHelper = context.Get<RegistrationDatahelpers>();
+            _registrationDataHelper = context.Get<RegistrationDataHelper>();
             _registrationSqlDataHelper = context.Get<RegistrationSqlDataHelper>();
         }
 
@@ -48,6 +48,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             _addAPAYESchemePage.DoNotAddPaye();
         }
 
+        [Given(@"the User adds PAYE details")]
         [When(@"the User adds PAYE details")]
         [When(@"the User adds valid PAYE details")]
         public void AddPayeDetails()
@@ -90,10 +91,38 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
                 .SelectViewAgreementNowAndContinue();
         }
 
+        [When(@"the Employer Creates a new organisation and adds the details manually")]
+        public CheckYourDetailsPage WhenTheEmployerCreatesANewOrganisationAndAddsTheDetailsManually()
+        {
+            _checkYourDetailsPage = WhenAnEmployerEntersAnInvalidCompanyNumberForOrgSearchInOrganisationSearchPage()
+                .ClickEnterYourDetailsManuallyLinkInSelectYourOrganisationPage()
+                .EnterOrganisationNameAndContinueInEnterYourOrganisationNamePage()
+                .ClickEnterAddressManullyLinkInFindOrganisationAddressPage()
+                .EnterAddressDetailsAndContinue();
+
+            _objectContext.UpdateOrganisationName(_registrationDataHelper.OrgNameForManualEntry);
+
+            return new CheckYourDetailsPage(_context);
+        }
+
+        [Then(@"the Employer validates error messages for manually entering blank Organisation and Address details")]
+        public void ThenTheEmployerValidatesErrorMessagesForManuallyEnteringBlankOrganisationAndAddressDetails()
+        {
+            WhenAnEmployerEntersAnInvalidCompanyNumberForOrgSearchInOrganisationSearchPage()
+                .ClickEnterYourDetailsManuallyLinkInSelectYourOrganisationPage()
+                .LeaveOrganisationNameBlankAndContinueInEnterYourOrganisationNamePage()
+                .VerifyErrorMessagesInEnterYourOrganisationNamePage()
+                .EnterOrganisationNameAndContinueInEnterYourOrganisationNamePage()
+                .ClickEnterAddressManullyLinkInFindOrganisationAddressPage()
+                .ClickContinueWithOutEnteringDetailsInEnterYourOrganisationsAddressPage()
+                .VerifyErrorMessagesInEnterYourOrganisationsAddressPage();
+        }
+
         [When(@"enters an Invalid Company number for Org search")]
-        public void WhenEntersAnInvalidCompanyNumberForOrgSearch()
+        public SelectYourOrganisationPage WhenAnEmployerEntersAnInvalidCompanyNumberForOrgSearchInOrganisationSearchPage()
         {
             _selectYourOrganisationPage = _organistionSearchPage.SearchForAnOrganisation(_registrationDataHelper.InvalidCompanyNumber);
+            return new SelectYourOrganisationPage(_context);
         }
 
         [Then(@"the '(.*)' message is shown")]
@@ -185,6 +214,15 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
                 .SelectYourOrganisation(orgType);
         }
 
+        [When(@"the Employer initiates adding another Org of 'ManuallyAddredOrg' Type")]
+        public void WhenTheEmployerInitiatesAddingAnotherOrgOfManuallyAddredOrgType()
+        {
+            _homePage.GoToYourOrganisationsAndAgreementsPage()
+                .ClickAddNewOrganisationButton();
+
+            WhenTheEmployerCreatesANewOrganisationAndAddsTheDetailsManually();
+        }
+
         [When(@"the Employer initiates adding same Org of (Company|PublicSector|Charity) Type again")]
         public void WhenTheEmployerInitiatesAddingSameOrgTypeAgain(OrgType orgType) =>
             _selectYourOrganisationPage = SearchForAnotherOrg(orgType);
@@ -203,11 +241,11 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             _selectYourOrganisationPage.VerifyOrgAlreadyAddedMessage();
 
         [Then(@"the Employer is able check the details of the Charity Org added are displayed in the 'Check your details' page and Continue")]
-        public void ThenTheEmployerIsAbleToCheckTheDetailsOfTheCharityOrgAddedAreDisplayedInThePageAndContinue() => 
+        public void ThenTheEmployerIsAbleToCheckTheDetailsOfTheCharityOrgAddedAreDisplayedInThePageAndContinue() =>
             VerifyOrgDetailsAndContinue(_registrationDataHelper.CharityTypeOrg1Number, _registrationDataHelper.CharityTypeOrg1Name, _registrationDataHelper.CharityTypeOrg1Address);
 
         [Then(@"the Employer is able check the details of the 2nd Charity Org added are displayed in the 'Check your details' page and Continue")]
-        public void ThenTheEmployerIsAbleToCheckTheDetailsOfThe2ndCharityOrgAddedAreDisplayedInThePageAndContinue() => 
+        public void ThenTheEmployerIsAbleToCheckTheDetailsOfThe2ndCharityOrgAddedAreDisplayedInThePageAndContinue() =>
             VerifyOrgDetailsAndContinue(_registrationDataHelper.CharityTypeOrg2Number, _registrationDataHelper.CharityTypeOrg2Name, _registrationDataHelper.CharityTypeOrg2Address);
 
         [Then(@"the Employer is able check the details entered in the 'Check your details' page and complete registration")]
@@ -215,14 +253,14 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         {
             Assert.AreEqual(_registrationDataHelper.CharityTypeOrg3Number, _checkYourDetailsPage.GetManuallyAddedOrganisationNumber());
             Assert.AreEqual(_registrationDataHelper.CharityTypeOrg3Name, _checkYourDetailsPage.GetManuallyAddedOrganisationName());
-            var manuallyEnteredCharityTypeOrg2Address = $"{_registrationDataHelper.CharityTypeOrg3FirstLineAddressForEnteringManually} " +
-                                                        $"{_registrationDataHelper.CharityTypeOrg3CityForEnteringManually} " +
-                                                        $"{_registrationDataHelper.CharityTypeOrg3PostCodeForEnteringManually}";
-            Assert.AreEqual(manuallyEnteredCharityTypeOrg2Address, _checkYourDetailsPage.GetManuallyAddedOrganisationAddress());
+            AssertManuallyAddedAddressDetailsAndCompleteRegistration();
+        }
 
-            _checkYourDetailsPage.ClickYesTheseDetailsAreCorrectButtonInCheckYourDetailsPage()
-                .SelectViewAgreementNowAndContinue()
-                .SignAgreement();
+        [Then(@"the Employer is able check the details entered manually in the 'Check your details' page and complete registration")]
+        public void ThenTheEmployerIsAbleCheckTheDetailsEnteredManuallyInThePageAndCompleteRegistration()
+        {
+            Assert.AreEqual(_registrationDataHelper.OrgNameForManualEntry, _checkYourDetailsPage.GetManuallyAddedOrganisationName());
+            AssertManuallyAddedAddressDetailsAndCompleteRegistration();
         }
 
         [Then(@"ApprenticeshipEmployerType in Account table is marked as (.*)")]
@@ -249,11 +287,14 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         {
             _checkYourDetailsPage = _organistionSearchPage.SearchForAnOrganisation(_registrationDataHelper.CharityTypeOrg3Number)
                                         .SelectYourOrganisation(_registrationDataHelper.CharityTypeOrg3Name)
-                                        .ClickEnterAddressManullyLink()
+                                        .ClickEnterAddressManullyLinkInFindOrganisationAddressPage()
                                         .EnterAddressDetailsAndContinue();
 
             _objectContext.UpdateOrganisationName(_registrationDataHelper.CharityTypeOrg3Name);
         }
+
+        [Then(@"'Start adding apprentices now' task link is displayed under Tasks pane")]
+        public void ThenTaskLinkIsDisplayedUnderTasksPane() => _homePage.VerifyStartAddingApprenticesNowTaskLink();
 
         private void CreateUserAccountAndAddOrg(OrgType orgType)
         {
@@ -283,6 +324,18 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             Assert.AreEqual(orgAddress, _checkYourDetailsPage.GetOrganisationAddress());
 
             ThenTheNewOrgAddedIsShownInTheAccountOrganisationsList();
+        }
+
+        private void AssertManuallyAddedAddressDetailsAndCompleteRegistration()
+        {
+            var manuallyEnteredAddress = $"{_registrationDataHelper.FirstLineAddressForManualEntry} " +
+                                            $"{_registrationDataHelper.CityNameForManualEntry} " +
+                                            $"{_registrationDataHelper.PostCodeForManualEntry}";
+            Assert.AreEqual(manuallyEnteredAddress, _checkYourDetailsPage.GetManuallyAddedOrganisationAddress());
+
+            _checkYourDetailsPage.ClickYesTheseDetailsAreCorrectButtonInCheckYourDetailsPage()
+                        .SelectViewAgreementNowAndContinue()
+                        .SignAgreement();
         }
     }
 }
