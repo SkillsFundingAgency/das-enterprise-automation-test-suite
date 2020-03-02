@@ -15,6 +15,9 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
 
         public CampaignsSteps(ScenarioContext context) => _stepsHelper = new CampaignsStepsHelper(context);
 
+        [Given(@"the user can navigate to the benefits of apprenticeship page")]
+        public void GivenTheUserCanNavigateToTheBenefitsOfApprenticeshipPage() => _campaingnsBasePage = GoToFireItUpHomePage().NavigateToWhatIsAnApprenticeshipPage().NavigateToBenefitsofApprenticeshipPage();
+
         [Given(@"the user can navigate to the real stories page")]
         public void GivenTheUserCanNavigateToTheRealStoriesPage() => _campaingnsBasePage = GoToFireItUpHomePage().NavigateToWhatIsAnApprenticeshipPage().NavigateToRealStoriesPage();
 
@@ -23,6 +26,9 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
 
         [Then(@"the links are not broken")]
         public void ThenTheLinksAreNotBroken() => _campaingnsBasePage.VerifyLinks();
+
+        [Then(@"the video links are not broken")]
+        public void ThenTheVideoLinksAreNotBroken() => _campaingnsBasePage.VerifyVideoLinks();
 
         [Then(@"an apprentice registers interest")]
         public void ThenAnApprenticeRegistersInterest() => GoToFireItUpHomePage().NavigateToRegisterInterest().RegisterInterestAsAnApprentice();
