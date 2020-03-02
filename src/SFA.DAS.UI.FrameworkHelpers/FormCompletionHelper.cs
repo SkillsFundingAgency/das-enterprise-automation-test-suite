@@ -18,6 +18,8 @@ namespace SFA.DAS.UI.FrameworkHelpers
             _retryHelper = retryHelper;
         }
 
+        public void SelectRadioButton(IWebElement element) => ClickElement(element);
+
         public void RetryClickOnException(Func<IWebElement> element) => _retryHelper.RetryClickOnException(element);
 
         public void ClickElement(Func<IWebElement> element, Action retryAction = null) => _retryHelper.RetryClickOnWebDriverException(element, retryAction);
@@ -33,11 +35,6 @@ namespace SFA.DAS.UI.FrameworkHelpers
             ClickElement(_webDriver.FindElement(locator));
         }
 
-        public void ClickWebElement(IWebElement element)
-        {
-            element.Click();
-        }
-
         public void Click(By locator) => ClickElement(locator);
 
         public void EnterText(IWebElement element, string text)
@@ -46,28 +43,11 @@ namespace SFA.DAS.UI.FrameworkHelpers
             element.SendKeys(text);
         }
 
-        public void EnterGently(IWebElement element, string text)
-        {
-            element.Clear();
-            foreach (var letter in text.ToCharArray())
-            {
-                element.SendKeys(letter.ToString());
-            }
-        }
-
-        public void EnterGently(By locator, string text)
-        {
-            _webDriverWaitHelper.WaitForElementToBeDisplayed(locator);
-            EnterGently(_webDriver.FindElement(locator), text);
-        }
-
         public void EnterText(By locator, string text)
         {
             _webDriverWaitHelper.WaitForElementToBeDisplayed(locator);
             EnterText(_webDriver.FindElement(locator), text);
         }
-
-        public void EnterSpace(By locator) => SendKeys(locator, Keys.Space);
 
         public void SendKeys(By locator, string Key)
         {
@@ -126,9 +106,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
         
         public void SelectRadioOptionByText(By locator, string text) => ClickElementByText(locator, text);
 
-        public void SelectRadioOptionByText(string text) => ClickElementByText(RadioButtonCssSelector, text);
-
-        public void SelectCheckboxByText(By locator, string text) => ClickElementByText(locator, text);
+        public void SelectCheckBoxByText(By locator, string text) => ClickElementByText(locator, text);
 
         public void EnterTextByLabel(By labellocator, string labeltext, string text) => EnterText(GetElementByText(labellocator, labeltext).FindElement(InputCssSelector), text);
 
@@ -146,6 +124,8 @@ namespace SFA.DAS.UI.FrameworkHelpers
         }
 
         public void ClickButtonByText(string text) => ClickElementByText(ButtonCssSelector, text);
+
+        public void SelectRadioOptionByText(string text) => ClickElementByText(RadioButtonCssSelector, text);
 
         public void SelectCheckBoxByText(string text) => ClickElementByText(CheckBoxCssSelector, text);
     }

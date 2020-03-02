@@ -15,6 +15,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         #endregion
 
         private By NumberOfVacancy => By.Id("NumberOfPositions");
+
         private By NationwideNumberOfVacancy => By.Id("NumberOfPositionsNationwide");
 
         private By EmployerDescription => By.Id("AnonymousEmployerDescription");
@@ -75,7 +76,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         private void SaveAndContinue()
         {
             EnterAboutTheEmployerInformation();
-            ClickOnSaveAndContinueButton();   
+            formCompletionHelper.ClickButtonByText("Save and continue");
         }
 
         private RAA_EmployerInformationPage EnterAboutTheEmployerInformation()
