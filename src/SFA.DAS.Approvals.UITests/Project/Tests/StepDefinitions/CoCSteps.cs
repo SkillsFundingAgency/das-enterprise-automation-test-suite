@@ -27,6 +27,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
         private readonly ApprenticeDataHelper _dataHelper;
 
+        private readonly EditedApprenticeDataHelper _editedApprenticeDataHelper;
+
         public CoCSteps(ScenarioContext context)
         {
             _context = context;
@@ -35,6 +37,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _loginHelper = new EmployerPortalLoginHelper(context);
             _employerStepsHelper = new EmployerStepsHelper(context);
             _providerStepsHelper = new ProviderStepsHelper(context);
+            _editedApprenticeDataHelper = context.Get<EditedApprenticeDataHelper>();
         }
 
         [Given(@"the Employer has approved apprentice")]
@@ -127,7 +130,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             SetHasHadDataLockSuccessTrue();
 
             void employeraction()
-            {    
+            {
                 _employerStepsHelper.EditApprenticeDetailsPagePostApproval()
                  .EditCostCourseAndReference()
                  .AcceptChangesAndSubmit();
@@ -183,5 +186,47 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             _dataHelper.Ulns.ForEach((x) => _commitmentsDataHelper.SetHasHadDataLockSuccessTrue(x));
         }
+        
+        [When(@"the provider edits Name Dob and Reference")]
+        public void WhenTheProviderEditsDobAndReference()
+        {
+            _providerStepsHelper
+                .GoToProviderHomePage()
+                .GoToProviderManageYourApprenticePage()
+                .SelectViewCurrentApprenticeDetails()
+                .ClickEditApprenticeDetailsLink()
+                .EditApprenticeNameDobAndReference()
+                .AcceptChangesAndSubmit();
+        }
+
+        [When(@"the employer accepts these changes")]
+        public void WhenTheEmployerAcceptsTheseChanges()
+        {
+            _employerStepsHelper
+                .GoToManageYourApprenticesPage()
+                    .SelectViewCurrentApprenticeDetails()
+                    .ClickReviewChanges()
+                    .SelectApproveChangesAndSubmit();
+
+            _dataHelper.UpdateCurrentApprenticeName(_editedApprenticeDataHelper.ApprenticeEditedFirstname, _editedApprenticeDataHelper.ApprenticeEditedLastname);
+        }
+
+        [Then(@"the changes should be displayed on the view apprentice page")]
+        public void ThenTheChangesShouldBeDisplayedOnTheViewApprenticePage()
+        {
+            var expectedName = _editedApprenticeDataHelper.ApprenticeEditedFullName;
+
+            var expectedDob = new DateTime(_editedApprenticeDataHelper.DateOfBirthYear,
+                _editedApprenticeDataHelper.DateOfBirthMonth, _editedApprenticeDataHelper.DateOfBirthDay);
+
+            var expectedReference = _editedApprenticeDataHelper.ProviderRefernce;
+
+            _providerStepsHelper
+                .GoToProviderHomePage()
+                .GoToProviderManageYourApprenticePage()
+                .SelectViewCurrentApprenticeDetails()
+                .ConfirmNameDOBAndReferenceChanged(expectedName, expectedDob, expectedReference);
+        }
+        
     }
 }
