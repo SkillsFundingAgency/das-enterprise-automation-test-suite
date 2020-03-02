@@ -84,15 +84,15 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Features.FAA.Applications.Apprent
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 7
- testRunner.Given("the apprenticeship vacancy is Live in Recruit near \'CV3 5ER\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("the apprenticeship vacancy is Live in Recruit near \'CV1 2NJ\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 8
  testRunner.When("an applicant is on the Find an Apprenticeship Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 9
- testRunner.Then("the apprenticeship can be found based on \'CV1 3RX\',\'2 miles\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the apprenticeship can be found based on \'CV1 2WT\',\'2 miles\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 10
- testRunner.And("the apprenticeship can be found based on \'CV5 9AD\',\'5 miles\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("the apprenticeship can be found based on \'CV3 1DP\',\'5 miles\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 11
- testRunner.And("the apprenticeship can be found based on \'CV7 8EQ\',\'10 miles\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("the apprenticeship can be found based on \'CV7 9HZ\',\'10 miles\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 12
  testRunner.And("the apprenticeship can be found based on \'EH4 3AY\',\'England\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden

@@ -126,7 +126,7 @@ namespace SFA.DAS.RAA.DataGenerator
 
         public string NewPhoneNumber { get; }
 
-        public string PostCode => "CV1 2WT";
+        public string PostCode => "1 Speedway Drive London SW17 0XW";
 
         public string NewPostCode => "NN5 4AB";
 

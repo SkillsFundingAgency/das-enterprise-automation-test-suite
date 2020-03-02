@@ -33,8 +33,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
         }
 
         public FAA_SettingsPage EnterVerificationCode()
-        {
-            _pageInteractionHelper.WaitforURLToChange("verifymobile");
+        {            
             _formCompletionHelper.EnterText(EnterCode, _dataHelper.PhoneNumberVerificationCode);
             _formCompletionHelper.Click(VerifyNumber);
             return new FAA_SettingsPage(_context);
