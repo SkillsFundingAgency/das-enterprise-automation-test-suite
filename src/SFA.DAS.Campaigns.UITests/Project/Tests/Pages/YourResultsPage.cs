@@ -23,7 +23,6 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
             _tabhelper = context.Get<TabHelper>();
         }
 
-
         public ApprenticeshipSummaryPage SelectFirstSearchResult()
         {
             var firstresult = pageInteractionHelper.FindElement(SearchResults);

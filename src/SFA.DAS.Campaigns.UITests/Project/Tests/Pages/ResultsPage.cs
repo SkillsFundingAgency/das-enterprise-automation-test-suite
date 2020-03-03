@@ -17,7 +17,6 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
 
         private By UpdateResults => By.CssSelector("#button-faa-update-results");
 
-
         public ResultsPage(ScenarioContext context) : base(context)
         {
             _context = context;
@@ -39,6 +38,5 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
             }
             throw new System.Exception("NO MATCHING RESULTS...");
         }
-
     }
 }
