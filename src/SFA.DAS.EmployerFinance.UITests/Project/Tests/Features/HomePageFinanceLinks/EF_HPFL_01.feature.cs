@@ -88,14 +88,11 @@ this.ScenarioInitialize(scenarioInfo);
 #line 7
  testRunner.When("an Employer creates a Non Levy Account and Signs the Agreement", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 8
- testRunner.Then("\'Check funding availability and make a reservation\' link is displayed on the Empl" +
-                    "oyer Home Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("\'Your funding reservations\' and \'Your finances\' links are displayed in the Financ" +
+                    "es section", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 9
- testRunner.And("\'Your funding reservations\' and \'Your finances\' links are displayed in the Financ" +
-                    "es section", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 10
  testRunner.When("the Employer navigates to \'Finance\' Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 11
+#line 10
  testRunner.Then("\'View transactions\', \'Download transactions\' and \'Transfers\' links are displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
