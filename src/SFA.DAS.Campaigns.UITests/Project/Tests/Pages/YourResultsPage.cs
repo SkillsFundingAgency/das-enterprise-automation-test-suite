@@ -8,7 +8,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => "YOUR RESULTS...";
 
-        protected override By PageHeader => By.CssSelector(".heading-l");
+        protected override By PageHeader => By.CssSelector("h1.heading-l");
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
