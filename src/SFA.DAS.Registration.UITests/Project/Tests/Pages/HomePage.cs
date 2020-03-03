@@ -20,6 +20,15 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         protected By YourFinancesLink => By.LinkText("Your finances");
         #endregion
 
+        #region DynamicHomePanel
+        protected By ContinueSettingUpAnApprenticeship => By.Id("call-to-action-continue-setting-up-an-apprenticeship");
+
+        protected By ContinueTo => By.LinkText("Continue");
+
+        protected By StartNowButton => By.LinkText("Start now");
+        #endregion
+
+
         internal HomePage(ScenarioContext context, bool navigate) : base(context, navigate)
         {
             _context = context;
@@ -49,6 +58,14 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             return new AboutYourAgreementPage(_context);
         }
 
+        public DoYouNeedToCreateAnAdvertBasePage ContinueToCreateAdvert()
+        {
+            formCompletionHelper.ClickElement(ContinueTo);
+            return new DoYouNeedToCreateAnAdvertBasePage(_context);
+        }
+        
+        public void VerifyReserveFundingPanel() => pageInteractionHelper.VerifyText(ContinueSettingUpAnApprenticeship, "Continue setting up an apprenticeship");
+        
         public void VerifyStartAddingApprenticesNowTaskLink() => VerifyPage(StartAddingApprenticesNowTaskLink);
     }
 }
