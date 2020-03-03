@@ -32,11 +32,9 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
 
         protected By AssesmentAndCertification => By.CssSelector("#link-nav-app-step-6");
 
-
         #region Helpers and Context
         private readonly ScenarioContext _context;
         #endregion
-
 
         public ApprenticeshipHubPage(ScenarioContext context) : base(context)
         {
