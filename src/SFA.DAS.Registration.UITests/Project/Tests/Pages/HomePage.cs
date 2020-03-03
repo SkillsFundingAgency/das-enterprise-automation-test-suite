@@ -16,10 +16,18 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         private By SucessSummary => By.CssSelector(".success-summary");
         private By AcceptYourAgreementLink => By.LinkText("Accept your agreement");
         private By StartAddingApprenticesNowTaskLink => By.LinkText("Start adding apprentices now");
-        protected By FundingAvailabilityLink => By.LinkText("Check funding availability and make a reservation");
         protected By YourFundingReservationsLink => By.LinkText("Your funding reservations");
         protected By YourFinancesLink => By.LinkText("Your finances");
         #endregion
+
+        #region DynamicHomePanel
+        protected By ContinueSettingUpAnApprenticeship => By.Id("call-to-action-continue-setting-up-an-apprenticeship");
+
+        protected By ContinueTo => By.LinkText("Continue");
+
+        protected By StartNowButton => By.LinkText("Start now");
+        #endregion
+
 
         internal HomePage(ScenarioContext context, bool navigate) : base(context, navigate)
         {
@@ -50,6 +58,14 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             return new AboutYourAgreementPage(_context);
         }
 
+        public DoYouNeedToCreateAnAdvertBasePage ContinueToCreateAdvert()
+        {
+            formCompletionHelper.ClickElement(ContinueTo);
+            return new DoYouNeedToCreateAnAdvertBasePage(_context);
+        }
+        
+        public void VerifyReserveFundingPanel() => pageInteractionHelper.VerifyText(ContinueSettingUpAnApprenticeship, "Continue setting up an apprenticeship");
+        
         public void VerifyStartAddingApprenticesNowTaskLink() => VerifyPage(StartAddingApprenticesNowTaskLink);
     }
 }
