@@ -187,5 +187,31 @@ namespace SFA.DAS.FAA.UITests.Project.Helpers
             }
         }
         private FAA_SettingsPage GoToSettingsPage() => GoToFAAHomePage().GoToSettings();
+
+        public FAA_SearchVacancyBasePage VerifyNoPostCodeErrorMessage(string location)
+        {
+            if (_objectContext.IsApprenticeshipVacancyType())
+            {
+                return new FAA_ApprenticeSearchPage(_context).VerifyNoPostcodeErrorMessage(location);
+            }
+            else
+            {
+                return new FAA_TraineeshipSearchPage(_context).VerifyNoPostcodeErrorMessage(location);
+            }
+        }
+
+        public FAA_SearchVacancyBasePage VerifyPartialPostCodeErrorMessage(string location)
+        {
+            if (_objectContext.IsApprenticeshipVacancyType())
+            {
+                return new FAA_ApprenticeSearchPage(_context).VerifyPartialPostcodeErrorMessage(location);
+            }
+            else
+            {
+                return new FAA_TraineeshipSearchPage(_context).VerifyPartialPostcodeErrorMessage(location);
+            }                
+        }
+
+
     }
 }

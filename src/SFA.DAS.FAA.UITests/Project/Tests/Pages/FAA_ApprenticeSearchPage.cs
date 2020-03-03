@@ -32,7 +32,9 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
         private By ApprenticeshipLevel => By.Id("apprenticeship-level");
         private By VerifyPhoneNumberText => By.Id("InfoMessageText");
         private By VerifyYourNumber => By.LinkText("verify your number");
-
+        private By LocationErrorMessage => By.Id("error-summary");
+        private By PartialLocationErrorMessage => By.CssSelector("[data-valmsg-for='Location']");
+        
         public FAA_ApprenticeSearchPage(ScenarioContext context) : base(context)
         {
             _context = context;
@@ -99,6 +101,25 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
             _formCompletionHelper.Click(VerifyYourNumber);
             _pageInteractionHelper.WaitforURLToChange("verifymobile");
             return new FAA_PhoneNumberVerificationPage(_context);
-        }        
+        } 
+        
+        private void EnterPostCode(string location)
+        {
+            _formCompletionHelper.EnterText(Location, location);
+            _formCompletionHelper.Click(Search);
+        }
+        public FAA_ApprenticeSearchPage VerifyNoPostcodeErrorMessage(string location)
+        {
+            EnterPostCode(location);
+            _pageInteractionHelper.VerifyText(LocationErrorMessage, "Please enter location");
+            return this;
+        }
+
+        public FAA_ApprenticeSearchPage VerifyPartialPostcodeErrorMessage(string location)
+        {
+            EnterPostCode(location);
+            _pageInteractionHelper.VerifyText(PartialLocationErrorMessage, "Location must be 3 or more characters or a postcode");
+            return this;
+        }
     }
 }
