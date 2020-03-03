@@ -21,7 +21,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         public YourOrganisationsAndAgreementsPage SelectYesRadioOptionAndClickContinueInRemoveOrganisationPage()
         {
-            formCompletionHelper.ClickElement(pageInteractionHelper.FindElement(YesRadioButton));
+            formCompletionHelper.SelectRadioOptionByLocator(YesRadioButton);
             Continue();
             return new YourOrganisationsAndAgreementsPage(_context);
         }
