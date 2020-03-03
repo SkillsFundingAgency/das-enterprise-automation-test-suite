@@ -53,8 +53,8 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
                 var text = func(item);
                 objectContext.Replace(text, $"{attributeName}:{attributeValue}");
                 
-                if (string.IsNullOrEmpty(attributeValue) && string.IsNullOrEmpty(text))
-                    throw new System.Exception($"'{text}' element's '{attributeName}' attribute is broken - attributeValue : '{attributeValue}'");
+                if (string.IsNullOrEmpty(attributeValue) && !string.IsNullOrEmpty(text))
+                    throw new Exception($"'{text}' element's '{attributeName}' attribute is broken - attributeValue : '{attributeValue}'");
             }
         }
 
