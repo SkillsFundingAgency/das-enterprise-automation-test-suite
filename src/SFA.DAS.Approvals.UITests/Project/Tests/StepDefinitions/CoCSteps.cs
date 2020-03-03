@@ -33,7 +33,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             _context = context;
             _commitmentsDataHelper = context.Get<CommitmentsDataHelper>();
-            _dataHelper = context.Get<ApprenticeDataHelper>();
+             _dataHelper = context.Get<ApprenticeDataHelper>();
             _loginHelper = new EmployerPortalLoginHelper(context);
             _employerStepsHelper = new EmployerStepsHelper(context);
             _providerStepsHelper = new ProviderStepsHelper(context);

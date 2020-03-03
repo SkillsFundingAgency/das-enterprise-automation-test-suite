@@ -19,6 +19,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.CocJourneys
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("AP_CoC_08")]
+    [NUnit.Framework.CategoryAttribute("approvals")]
     public partial class AP_CoC_08Feature
     {
         
@@ -31,7 +32,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.CocJourneys
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "AP_CoC_08", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "AP_CoC_08", null, ProgrammingLanguage.CSharp, new string[] {
+                        "approvals"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -70,22 +72,26 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.CocJourneys
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("AP_CoC_08ProviderEditsApprenticeDobAndReferenceAndChangesPersist")]
+        [NUnit.Framework.DescriptionAttribute("AP_CoC_08 Provider Edits Apprentice Dob And Reference And Employer approves it")]
+        [NUnit.Framework.CategoryAttribute("regression")]
+        [NUnit.Framework.CategoryAttribute("cocscenarios")]
         [NUnit.Framework.CategoryAttribute("mytag")]
-        public virtual void AP_CoC_08ProviderEditsApprenticeDobAndReferenceAndChangesPersist()
+        public virtual void AP_CoC_08ProviderEditsApprenticeDobAndReferenceAndEmployerApprovesIt()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_CoC_08ProviderEditsApprenticeDobAndReferenceAndChangesPersist", null, new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_CoC_08 Provider Edits Apprentice Dob And Reference And Employer approves it", null, new string[] {
+                        "regression",
+                        "cocscenarios",
                         "mytag"});
-#line 4
+#line 7
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 5
- testRunner.Given("the Employer has approved apprentice", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 6
- testRunner.When("the provider edits Name Dob and Reference", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 7
- testRunner.And("the employer accepts these changes", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 8
+ testRunner.Given("the Employer has approved apprentice", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 9
+ testRunner.When("the provider edits Name Dob and Reference", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 10
+ testRunner.And("the employer accepts these changes", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 11
  testRunner.Then("the changes should be displayed on the view apprentice page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
