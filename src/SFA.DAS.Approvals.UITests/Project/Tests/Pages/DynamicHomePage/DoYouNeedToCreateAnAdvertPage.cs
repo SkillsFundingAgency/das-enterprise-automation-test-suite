@@ -19,6 +19,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.DynamicHomePage
         public DoYouNeedToCreateAnAdvertPage(ScenarioContext context) : base(context)
         {
             _context = context;
+            _formCompletionHelper = context.Get<FormCompletionHelper>();
         }
 
         public AddAnApprenitcePage ClickNoRadioButtonTakesToAddAnApprentices()
