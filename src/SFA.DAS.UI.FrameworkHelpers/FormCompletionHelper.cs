@@ -27,7 +27,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
         //links are Intercepted by Help menu.
         public void ClickInterceptedElement(IWebElement element) => _retryHelper.RetryOnElementClickInterceptedException(element, false);
 
-        public void ClickElement(By locator)
+        public void ClickElement(By locator) 
         {
             _webDriverWaitHelper.WaitForElementToBeClickable(locator);
             ClickElement(_webDriver.FindElement(locator));
@@ -110,11 +110,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         public void SelectRadioOptionByText(string text) => ClickElementByText(RadioButtonCssSelector, text);
 
-        public void SelectRadioOptionByLocator(By locator)
-        {
-            IWebElement element = _webDriver.FindElement(locator);
-            ClickElement(element);
-        }
+        public void SelectRadioOptionByLocator(By locator) => ClickElement(_webDriver.FindElement(locator));
 
         public void EnterTextByLabel(By labellocator, string labeltext, string text) => EnterText(GetElementByText(labellocator, labeltext).FindElement(InputCssSelector), text);
 
