@@ -4,7 +4,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentOpportunity
 {
     public class AO_ProposedStandardDetailsPage : EPAO_BasePage
     {
-        protected override string PageTitle => "Equine Athlete";
+        protected override string PageTitle => "Clinical scientist";
 
         public AO_ProposedStandardDetailsPage(ScenarioContext context) : base(context) => VerifyPage();
 

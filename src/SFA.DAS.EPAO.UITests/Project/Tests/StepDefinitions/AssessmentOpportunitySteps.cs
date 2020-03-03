@@ -71,7 +71,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         public void WhenTheUserClicksOnOneOfTheStandardsListedUnderProposedTabToViewIt()
         {
             _homePage.ClickInProposedTab()
-                .ClickOnEquineAthleteProposedStandard();
+                .ClickOnAProposedStandard();
         }
 
         [Then(@"the selected Proposed standard detail page is displayed")]
