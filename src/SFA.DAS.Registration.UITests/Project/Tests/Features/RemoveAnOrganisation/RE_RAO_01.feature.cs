@@ -95,7 +95,7 @@ this.ScenarioInitialize(scenarioInfo);
 #line 10
  testRunner.Then("the new Org added is shown in the Account Organisations list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 11
- testRunner.And("Emlployer is Allowed to remove the second Org added from the account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("Employer is Allowed to remove the second Org added from the account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }

@@ -314,8 +314,8 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             _homePage = GoToHomePage();
         }
 
-        [Then(@"Emlployer is Allowed to remove the second Org added from the account")]
-        public void ThenEmlployerIsAllowedToRemoveTheSecondOrgAddedFromTheAccount()
+        [Then(@"Employer is Allowed to remove the second Org added from the account")]
+        public void ThenEmployerIsAllowedToRemoveTheSecondOrgAddedFromTheAccount()
         {
             _yourOrganisationsAndAgreementsPage.ClickOnRemoveAnOrgFromYourAccountLink()
                 .ClickOnRemoveLinkBesideNewlyAddedOrgInRemoveAnOrganisationPage()

@@ -8,4 +8,4 @@ Scenario: RE_RAO_01_Verify Employer is Not allowed to Remove an Org when there i
 	Then the Employer is Not allowed to Remove the first Org added
 	When the Employer initiates adding another Org of Company Type
 	Then the new Org added is shown in the Account Organisations list
-	And Emlployer is Allowed to remove the second Org added from the account 
+	And Employer is Allowed to remove the second Org added from the account 
