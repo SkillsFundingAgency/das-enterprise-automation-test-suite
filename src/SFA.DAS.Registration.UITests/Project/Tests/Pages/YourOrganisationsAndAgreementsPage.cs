@@ -16,6 +16,8 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         private By AddNewOrganisationButton => By.Id("addNewOrg");
         private By TableCells => By.XPath("//td");
         private By ViewAgreementLink => By.LinkText("View");
+        private By RemoveAnOrgFromYourAccountLink => By.LinkText("Remove an organisation from your account");
+        private By OrgRemovedMessageInHeader = By.CssSelector("h1");
         #endregion
 
         public YourOrganisationsAndAgreementsPage(ScenarioContext context, bool navigate = false) : base(context, navigate)
@@ -37,14 +39,25 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             return new OrganisationSearchPage(_context);
         }
 
-        public void VerifyNewlyAddedOrgIsPresent() =>
+        public YourOrganisationsAndAgreementsPage VerifyNewlyAddedOrgIsPresent()
+        {
             Assert.IsTrue(pageInteractionHelper.GetTextFromElementsGroup(TableCells).Contains(objectContext.GetOrganisationName()),
                 $"'{objectContext.GetOrganisationName()} is NOT listed under 'YourOrganisationsAndAgreementsPage'");
+            return this;
+        }
 
         public YourEsfaAgreementPage ClickViewAgreementLink()
         {
             formCompletionHelper.Click(ViewAgreementLink);
             return new YourEsfaAgreementPage(_context);
         }
+
+        public RemoveAnOrganisationPage ClickOnRemoveAnOrgFromYourAccountLink()
+        {
+            formCompletionHelper.Click(RemoveAnOrgFromYourAccountLink);
+            return new RemoveAnOrganisationPage(_context);
+        }
+
+        public bool VerifyOrgRemovedMessageInHeader() => pageInteractionHelper.VerifyText(OrgRemovedMessageInHeader, $"You have removed {objectContext.GetOrganisationName()}");
     }
 }
