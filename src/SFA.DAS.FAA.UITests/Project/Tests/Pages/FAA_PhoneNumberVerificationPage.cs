@@ -36,6 +36,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
         {            
             _formCompletionHelper.EnterText(EnterCode, _dataHelper.PhoneNumberVerificationCode);
             _formCompletionHelper.Click(VerifyNumber);
+            _pageInteractionHelper.WaitforURLToChange("settings");
             return new FAA_SettingsPage(_context);
         }
     }

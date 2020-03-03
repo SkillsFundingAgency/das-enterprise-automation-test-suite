@@ -75,25 +75,29 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Features.FAA.Applications.Apprent
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("RV1_FAAV_01 search for an existing apprenticeship vacancy")]
+        [NUnit.Framework.CategoryAttribute("raa-v1")]
         [NUnit.Framework.CategoryAttribute("apprenticeshipvacancy")]
+        [NUnit.Framework.CategoryAttribute("regression")]
         public virtual void RV1_FAAV_01SearchForAnExistingApprenticeshipVacancy()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV1_FAAV_01 search for an existing apprenticeship vacancy", null, new string[] {
-                        "apprenticeshipvacancy"});
-#line 6
+                        "raa-v1",
+                        "apprenticeshipvacancy",
+                        "regression"});
+#line 8
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 7
- testRunner.Given("the apprenticeship vacancy is Live in Recruit near \'CV1 2NJ\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 8
- testRunner.When("an applicant is on the Find an Apprenticeship Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 9
- testRunner.Then("the apprenticeship can be found based on \'CV1 2WT\',\'2 miles\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Given("the apprenticeship vacancy is Live in Recruit near \'CV1 2NJ\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 10
- testRunner.And("the apprenticeship can be found based on \'CV3 1DP\',\'5 miles\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.When("an applicant is on the Find an Apprenticeship Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 11
- testRunner.And("the apprenticeship can be found based on \'CV7 9HZ\',\'10 miles\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Then("the apprenticeship can be found based on \'CV1 2WT\',\'2 miles\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 12
+ testRunner.And("the apprenticeship can be found based on \'CV3 1DP\',\'5 miles\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 13
+ testRunner.And("the apprenticeship can be found based on \'CV7 9HZ\',\'10 miles\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 14
  testRunner.And("the apprenticeship can be found based on \'EH4 3AY\',\'England\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
