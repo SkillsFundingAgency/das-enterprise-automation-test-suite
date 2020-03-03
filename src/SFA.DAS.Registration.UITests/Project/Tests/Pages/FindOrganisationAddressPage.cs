@@ -18,7 +18,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             VerifyPage();
         }
 
-        public EnterYourOrganisationsAddressPage ClickEnterAddressManullyLink()
+        public EnterYourOrganisationsAddressPage ClickEnterAddressManullyLinkInFindOrganisationAddressPage()
         {
             formCompletionHelper.Click(EnterAddressManullyLink);
             return new EnterYourOrganisationsAddressPage(_context);
