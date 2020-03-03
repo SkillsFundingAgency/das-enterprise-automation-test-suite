@@ -5,7 +5,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Parent
 {
     public class ParentHubPage : CampaingnsPage 
     {
-        protected override string PageTitle => "EMPLOYER HUB";
+        protected override string PageTitle => "PARENTS HUB";
 
         protected override By PageHeader => By.CssSelector(".header__caption--parents");
 
