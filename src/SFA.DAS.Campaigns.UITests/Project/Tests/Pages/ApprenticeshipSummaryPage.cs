@@ -5,7 +5,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
 {
-    public class ApprenticeshipSummaryPage : CampaingnsBasePage
+    public class ApprenticeshipSummaryPage : CampaingnsPage
     {
         protected override string PageTitle => "Apprenticeship summary";
 
