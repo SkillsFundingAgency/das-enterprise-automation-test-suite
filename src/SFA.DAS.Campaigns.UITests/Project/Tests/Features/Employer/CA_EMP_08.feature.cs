@@ -72,22 +72,22 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Features.Employer
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("CA_EMP_08_Check Choose a training provider Page Details")]
         [NUnit.Framework.CategoryAttribute("campaigns")]
-        [NUnit.Framework.CategoryAttribute("apprentice")]
+        [NUnit.Framework.CategoryAttribute("employer")]
         [NUnit.Framework.CategoryAttribute("regression")]
         public virtual void CA_EMP_08_CheckChooseATrainingProviderPageDetails()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CA_EMP_08_Check Choose a training provider Page Details", null, new string[] {
                         "campaigns",
-                        "apprentice",
+                        "employer",
                         "regression"});
-#line 7
+#line 6
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 8
+#line 7
  testRunner.Given("the user navigates to choose a training provider page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 9
+#line 8
  testRunner.Then("the links are not broken", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 10
+#line 9
  testRunner.And("the video links are not broken", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "* ");
 #line hidden
             this.ScenarioCleanup();

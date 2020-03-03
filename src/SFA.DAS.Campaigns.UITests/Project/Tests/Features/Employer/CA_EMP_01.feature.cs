@@ -72,13 +72,13 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Features.Employer
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("CA_EMP_01_Check Real stories Page Details")]
         [NUnit.Framework.CategoryAttribute("campaigns")]
-        [NUnit.Framework.CategoryAttribute("apprentice")]
+        [NUnit.Framework.CategoryAttribute("employer")]
         [NUnit.Framework.CategoryAttribute("regression")]
         public virtual void CA_EMP_01_CheckRealStoriesPageDetails()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CA_EMP_01_Check Real stories Page Details", null, new string[] {
                         "campaigns",
-                        "apprentice",
+                        "employer",
                         "regression"});
 #line 6
 this.ScenarioInitialize(scenarioInfo);
