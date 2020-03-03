@@ -11,6 +11,6 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
         protected By Heading2 => By.CssSelector("#h2");
         protected By Heading3 => By.CssSelector("#h3");
 
-        public ApprenticeshipBasePage(ScenarioContext context) : base(context) => VerifyPage();
+        public ApprenticeshipBasePage(ScenarioContext context) : base(context) { }
     }
 }

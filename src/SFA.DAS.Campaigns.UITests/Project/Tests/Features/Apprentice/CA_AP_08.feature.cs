@@ -70,13 +70,15 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Features.Apprentice
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("CA_AP_08_Check Find An Apprenticeship Page Details")]
+        [NUnit.Framework.DescriptionAttribute("CA_AP_08_Check Find An Apprenticeship Page Details And Search For An Apprenticesh" +
+            "ip")]
         [NUnit.Framework.CategoryAttribute("campaigns")]
         [NUnit.Framework.CategoryAttribute("apprentice")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public virtual void CA_AP_08_CheckFindAnApprenticeshipPageDetails()
+        public virtual void CA_AP_08_CheckFindAnApprenticeshipPageDetailsAndSearchForAnApprenticeship()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CA_AP_08_Check Find An Apprenticeship Page Details", null, new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CA_AP_08_Check Find An Apprenticeship Page Details And Search For An Apprenticesh" +
+                    "ip", null, new string[] {
                         "campaigns",
                         "apprentice",
                         "regression"});
@@ -88,7 +90,9 @@ this.ScenarioInitialize(scenarioInfo);
 #line 9
  testRunner.Then("the links are not broken", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 10
- testRunner.And("the video links are not broken", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("the video links are not broken", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "* ");
+#line 11
+ testRunner.And("the user can search for an apprenticeship", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "* ");
 #line hidden
             this.ScenarioCleanup();
         }
