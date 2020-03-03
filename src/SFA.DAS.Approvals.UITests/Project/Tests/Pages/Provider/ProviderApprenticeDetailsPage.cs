@@ -23,9 +23,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private By EditApprenticeDetailsLink => By.LinkText("Edit apprentice");
         private By ViewIlrMismatchDetailsLink => By.LinkText("View details");
         private By ChangeRequestMessage => By.ClassName("heading-medium");
-        private By Name => By.XPath("//th[text()='Name']/following-sibling::td");
-        private By DateOfBirth => By.XPath("//th[text()='Date of birth']/following-sibling::td");
-        private By Reference => By.XPath("//th[text()='Your reference']/following-sibling::td");
+        private By Name => By.Id("apprentice-name");
+        private By DateOfBirth => By.Id("apprentice-dob");
+        private By Reference => By.Id("apprentice-reference");
 
         public ProviderApprenticeDetailsPage(ScenarioContext context) : base(context)
         {
