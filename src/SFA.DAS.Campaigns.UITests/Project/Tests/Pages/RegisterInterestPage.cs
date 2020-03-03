@@ -7,6 +7,8 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => "REGISTER INTEREST";
 
+        protected override By PageHeader => By.CssSelector(".heading-xl");
+
         #region Helpers and Context
         private readonly ScenarioContext _context;
         #endregion
