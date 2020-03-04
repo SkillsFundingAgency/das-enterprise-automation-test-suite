@@ -25,5 +25,15 @@ namespace SFA.DAS.Campaigns.UITests.Project.Helpers
         public string Lastname { get; }
 
         public string Email { get; }
+
+        public string Route => "Care services";
+
+        public string Distance => "40 miles";
+
+        public string Postcode => "CV1 1DD";
+
+        public List<string> Postcodes = new List<string> { "SW1V 3LP", "M1 4WB", "G1 1YU", "EH2 4AD", "NN1 1SR", "CV1 4AH", "BS1 3LE", "SN1 1LF", "YO1 7DT", "LS1 4AG", "TW3 3JW" };
+
+            
     }
 }

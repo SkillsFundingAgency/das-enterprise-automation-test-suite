@@ -12,11 +12,8 @@ namespace SFA.DAS.EmployerFinance.UITests.Project.Tests.StepDefinitions
 
         public EmployerFinanceSteps(ScenarioContext context) => _context = context;
 
-        [Then(@"'Check funding availability and make a reservation' link is displayed on the Employer Home Page")]
-        public void ThenLinkIsDisplayedOnTheEmployerHomePage() => _homePageFinancesSectionPage = new HomePageFinancesSection(_context).VerifyFundingAvailabilityLink();
-
         [Then(@"'Your funding reservations' and 'Your finances' links are displayed in the Finances section")]
-        public void ThenAndLinksAreDisplayedInTheFinancesSection() => _homePageFinancesSectionPage = _homePageFinancesSectionPage.VerifyYourFinancesSectionLinksForANonLevyUser();
+        public void ThenAndLinksAreDisplayedInTheFinancesSection() => _homePageFinancesSectionPage = new HomePageFinancesSection(_context).VerifyYourFinancesSectionLinksForANonLevyUser();
 
         [Then(@"'Your finances' link is displayed in the Finances section")]
         public void ThenLinkIsDisplayedInTheFinancesSection() => _homePageFinancesSectionPage = new HomePageFinancesSection(_context).VerifyYourFinancesSectionLinksForALevyUser();
