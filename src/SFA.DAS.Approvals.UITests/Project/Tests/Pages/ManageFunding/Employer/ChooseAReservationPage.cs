@@ -9,7 +9,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
     {
         protected override string PageTitle => "Choose a Reservation";
         private By CreateANewReservationRadioButton => By.CssSelector(".govuk-label--s");
-        private By SaveAndContinueButton => By.CssSelector(".govuk-button");
+        protected override By ContinueButton => By.CssSelector("#main-content .govuk-button");
 
         #region Helpers and Context
         private readonly PageInteractionHelper _pageInteractionHelper;
@@ -33,7 +33,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
 
         public DoYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage ClickSaveAndContinueButton()
         {
-            _formCompletionHelper.ClickElement(SaveAndContinueButton);
+            Continue();
             return new DoYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage(_context);
         }
     }
