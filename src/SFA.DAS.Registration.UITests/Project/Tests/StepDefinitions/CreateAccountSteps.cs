@@ -60,6 +60,15 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
                 .SignInTo();
         }
 
+        [When(@"the User adds PAYE details through AORN route")]
+        public void WhenTheUserAddsPAYEDetailsThroughAORNRoute()
+        {
+            _signAgreementPage = _addAPAYESchemePage.AddAORN()
+                .EnterAornAndPayeDetailsAndContinue(_registrationSqlDataHelper.GetAORNumber())
+                .ClickYesTheseDetailsAreCorrectButtonInCheckYourDetailsPage()
+                .SelectViewAgreementNowAndContinue();
+        }
+
         [When(@"the User adds Invalid PAYE details")]
         public void WhenTheUserAddsInvalidPAYEDetails()
         {
