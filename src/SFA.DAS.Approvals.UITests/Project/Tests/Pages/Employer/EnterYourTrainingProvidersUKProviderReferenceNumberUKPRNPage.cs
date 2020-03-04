@@ -5,9 +5,9 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
-    public class SearchForATrainingProviderPage : BasePage
+    public class EnterYourTrainingProvidersUKProviderReferenceNumberUKPRN: BasePage
     {
-        protected override string PageTitle => "Search for a training provider";
+        protected override string PageTitle => "Enter your training provider's UK Provider Reference Number(UKPRN)";
 
         #region Helpers and Context
         private readonly FormCompletionHelper _formCompletionHelper;
@@ -16,7 +16,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         private By UKProviderReferenceNumberText => By.Id("Ukprn");
 
-        public SearchForATrainingProviderPage(ScenarioContext context) : base(context)
+        public EnterYourTrainingProvidersUKProviderReferenceNumberUKPRN(ScenarioContext context) : base(context)
         {
             _context = context;
             _formCompletionHelper = context.Get<FormCompletionHelper>();
