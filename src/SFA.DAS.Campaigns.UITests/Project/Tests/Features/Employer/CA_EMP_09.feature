@@ -5,3 +5,5 @@
 @regression
 Scenario: CA_EMP_09_Check Search for an apprenticeship Page Details
 	Given the user navigates to search for an apprenticeship page
+	Then the links are not broken
+	* the video links are not broken

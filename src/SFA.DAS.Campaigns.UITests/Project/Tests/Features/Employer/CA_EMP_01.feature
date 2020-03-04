@@ -5,4 +5,6 @@
 @regression
 Scenario: CA_EMP_01_Check Real stories Page Details
 	Given the user navigates to employer real stories page
+	Then the links are not broken
+	And the video links are not broken
 	

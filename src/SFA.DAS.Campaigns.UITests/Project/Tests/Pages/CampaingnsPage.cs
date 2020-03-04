@@ -8,7 +8,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
 {
-    public abstract class CampaingnsBasePage : BasePage
+    public class CampaingnsPage : BasePage
     {
         #region Helpers and Context
         protected readonly ObjectContext objectContext;
@@ -29,7 +29,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
 
         protected override string PageTitle => "";
 
-        public CampaingnsBasePage(ScenarioContext context) : base(context)
+        public CampaingnsPage(ScenarioContext context) : base(context)
         {
             _context = context;
             objectContext = context.Get<ObjectContext>();
@@ -37,16 +37,13 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
             pageInteractionHelper = context.Get<PageInteractionHelper>();
             campaignsConfig = context.GetCampaignsConfig<CampaignsConfig>();
             campaignsDataHelper = context.Get<CampaignsDataHelper>();
-            VerifyPage();
-            VerifyLinks();
-            VerifyVideoLinks();
         }
 
-        private void VerifyLinks() => VerifyLinks(Links, "href", (x) => x.Text);
+        public void VerifyLinks() => VerifyLinks(Links, "href", (x) => x.Text);
 
-        private void VerifyVideoLinks() => VerifyLinks(VideoLinks, "data-videourl", (x) => x?.GetAttribute("id"));
+        public void VerifyVideoLinks() => VerifyLinks(VideoLinks, "data-videourl", (x) => x?.GetAttribute("id"));
 
-        private void VerifyLinks(By locator, string attributeName, Func<IWebElement, string> func)
+        public void VerifyLinks(By locator, string attributeName, Func<IWebElement, string> func)
         {
             var internalLinks = pageInteractionHelper.FindElements(locator);
 

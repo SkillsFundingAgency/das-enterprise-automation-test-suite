@@ -4,7 +4,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Apprentice
 {
-    public class ApprenticeHubPage : CampaingnsBasePage
+    public class ApprenticeHubPage : CampaingnsPage
     {
         protected override string PageTitle => "APPRENTICE HUB";
 
@@ -36,7 +36,11 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Apprentice
         private readonly ScenarioContext _context;
         #endregion
 
-        public ApprenticeHubPage(ScenarioContext context) : base(context) => _context = context;
+        public ApprenticeHubPage(ScenarioContext context) : base(context)
+        {
+            _context = context;
+            VerifyPage();
+        }
 
         public ApprenticeRealStoriesPage NavigateToRealStoriesPage() => NavigateToAreApprenticeshipRightForYou(RealStories, (c) => new ApprenticeRealStoriesPage(c));
 

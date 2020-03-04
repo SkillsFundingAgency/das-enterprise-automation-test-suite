@@ -3,7 +3,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Parent
 {
-    public class HelpShapeTheirCareerPage : CampaingnsBasePage
+    public class HelpShapeTheirCareerPage : CampaingnsPage
     {
         protected override string PageTitle => "HELP SHAPE THEIR CAREER";
 
@@ -13,6 +13,10 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Parent
         private readonly ScenarioContext _context;
         #endregion
 
-        public HelpShapeTheirCareerPage(ScenarioContext context) : base(context) => _context = context;
+        public HelpShapeTheirCareerPage(ScenarioContext context) : base(context)
+        {
+            _context = context;
+            VerifyPage();
+        }
     }
 }

@@ -3,7 +3,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Parent
 {
-    public class ParentHubPage : CampaingnsBasePage 
+    public class ParentHubPage : CampaingnsPage 
     {
         protected override string PageTitle => "PARENTS HUB";
 
@@ -15,7 +15,11 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Parent
         private readonly ScenarioContext _context;
         #endregion
 
-        public ParentHubPage(ScenarioContext context) : base(context) => _context = context;
+        public ParentHubPage(ScenarioContext context) : base(context)
+        {
+            _context = context;
+            VerifyPage();
+        }
 
         public HelpShapeTheirCareerPage NavigateToTheirCareerPage()
         {

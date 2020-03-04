@@ -3,7 +3,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.RegisterInterest
 {
-    public class RegisterInterestPage : CampaingnsBasePage
+    public class RegisterInterestPage : CampaingnsPage
     {
         protected override string PageTitle => "REGISTER INTEREST";
 
@@ -25,7 +25,11 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.RegisterInterest
 
         private By RegisterMyInterest => By.CssSelector("#btn-register-interest-complete");
 
-        public RegisterInterestPage(ScenarioContext context) : base(context) => _context = context;
+        public RegisterInterestPage(ScenarioContext context) : base(context)
+        {
+            _context = context;
+            VerifyPage();
+        }
 
         public RegisterMyInterestSuccessPage RegisterInterestAsAnApprentice()
         {
