@@ -35,25 +35,8 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         private void SignIn(LoginUser loginUser)
         {
-            EnterEmailAddress(loginUser.Username)
-            .EnterPassword(loginUser.Password)
-            .SignIn();
-        }
-
-        private SignInPage EnterEmailAddress(string username)
-        {
-            formCompletionHelper.EnterText(EmailAddressInput, username);
-            return this;
-        }
-
-        private SignInPage EnterPassword(string password)
-        {
-            formCompletionHelper.EnterText(PasswordInput, password);
-            return this;
-        }
-
-        private void SignIn()
-        {
+            formCompletionHelper.EnterText(EmailAddressInput, loginUser.Username);
+            formCompletionHelper.EnterText(PasswordInput, loginUser.Password);
             formCompletionHelper.ClickElement(SignInButton);
         }
     }
