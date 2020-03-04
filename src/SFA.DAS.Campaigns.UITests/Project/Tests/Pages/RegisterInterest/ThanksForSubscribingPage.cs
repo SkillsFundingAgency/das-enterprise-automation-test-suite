@@ -3,7 +3,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.RegisterInterest
 {
-    public class ThanksForSubscribingPage : CampaingnsPage
+    public class ThanksForSubscribingPage : CampaingnsBasePage
     {
         protected override string PageTitle => "THANKS FOR SUBSCRIBING!";
 
@@ -11,7 +11,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.RegisterInterest
 
         private By NameDetails => By.CssSelector(".heading-emphasise");
 
-        public ThanksForSubscribingPage(ScenarioContext context) : base(context) => VerifyPage();
+        public ThanksForSubscribingPage(ScenarioContext context) : base(context) { }
 
         public void VerifyDetail() => pageInteractionHelper.VerifyText(NameDetails, $"{campaignsDataHelper.FullName.ToUpper()}");
     }

@@ -3,12 +3,12 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.TheCalling
 {
-    public class TheCallingPage : CampaingnsPage
+    public class TheCallingPage : CampaingnsBasePage
     {
         protected override string PageTitle => "#THECALLING";
 
         protected override By PageHeader => By.CssSelector(".thecalling-site-heading");
 
-        public TheCallingPage(ScenarioContext context) : base(context) => VerifyPage();
+        public TheCallingPage(ScenarioContext context) : base(context) { }
     }
 }

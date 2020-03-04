@@ -11,7 +11,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
 {
-    public class FireItUpHomePage : CampaingnsPage
+    public class FireItUpHomePage : CampaingnsBasePage
     {
         protected override string PageTitle => "FIRE";
 
@@ -37,11 +37,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
 
         private By TheCalling => By.CssSelector("#homepage-thecalling-banner-link");
 
-        public FireItUpHomePage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public FireItUpHomePage(ScenarioContext context) : base(context) => _context = context;
 
         public FireItUpHomePage AcceptCookieAndAlert()
         {
