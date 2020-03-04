@@ -30,6 +30,8 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
 
         private By RegisterInterest => By.CssSelector("a[href*='register-interest']");
 
+        private By TheCalling => By.CssSelector("#homepage-thecalling-banner-link");
+
         public FireItUpHomePage(ScenarioContext context) : base(context)
         {
             _context = context;
@@ -59,10 +61,16 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
             return new HelpShapeTheirCareerPage(_context);
         }
 
-        public WhatIsAnApprenticeshipPage NavigateToWhatIsAnApprenticeshipPage()
+        public ApprenticeshipHubPage NavigateToApprenticeshipHubPage()
         {
             formCompletionHelper.ClickElement(Apprentice);
-            return new WhatIsAnApprenticeshipPage(_context);
+            return new ApprenticeshipHubPage(_context);
+        }
+
+        public TheCallingPage NavigateToTheCallingPage()
+        {
+            formCompletionHelper.ClickElement(TheCalling);
+            return new TheCallingPage(_context);
         }
     }
 }

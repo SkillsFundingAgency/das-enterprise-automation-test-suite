@@ -70,13 +70,13 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Features.Parent
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Check Parent Page Details")]
+        [NUnit.Framework.DescriptionAttribute("CA_PA_01_Check Parent Page Details")]
         [NUnit.Framework.CategoryAttribute("campaigns")]
         [NUnit.Framework.CategoryAttribute("parent")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public virtual void CheckParentPageDetails()
+        public virtual void CA_PA_01_CheckParentPageDetails()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Check Parent Page Details", null, new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CA_PA_01_Check Parent Page Details", null, new string[] {
                         "campaigns",
                         "parent",
                         "regression"});

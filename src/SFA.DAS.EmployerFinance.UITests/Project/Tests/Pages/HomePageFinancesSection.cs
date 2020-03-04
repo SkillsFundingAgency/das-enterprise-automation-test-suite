@@ -18,12 +18,6 @@ namespace SFA.DAS.EmployerFinance.UITests.Project.Tests.Pages
             VerifyPage(FinancesSectionHeading);
         }
 
-        public HomePageFinancesSection VerifyFundingAvailabilityLink()
-        {
-            pageInteractionHelper.VerifyPage(FundingAvailabilityLink);
-            return this;
-        }
-
         public HomePageFinancesSection VerifyYourFinancesSectionLinksForANonLevyUser()
         {
             pageInteractionHelper.VerifyPage(YourFundingReservationsLink);

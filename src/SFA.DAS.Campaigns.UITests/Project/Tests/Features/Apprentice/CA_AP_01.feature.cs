@@ -70,13 +70,13 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Features.Apprentice
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Check Real stories Page Details")]
+        [NUnit.Framework.DescriptionAttribute("CA_AP_01_Check Real stories Page Details")]
         [NUnit.Framework.CategoryAttribute("campaigns")]
         [NUnit.Framework.CategoryAttribute("apprentice")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public virtual void CheckRealStoriesPageDetails()
+        public virtual void CA_AP_01_CheckRealStoriesPageDetails()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Check Real stories Page Details", null, new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CA_AP_01_Check Real stories Page Details", null, new string[] {
                         "campaigns",
                         "apprentice",
                         "regression"});
@@ -84,9 +84,11 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Features.Apprentice
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 7
-testRunner.Given("the user can navigate to the real stories page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("the user navigates to the real stories page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 8
-testRunner.Then("the links are not broken", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the links are not broken", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 9
+ testRunner.And("the video links are not broken", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }

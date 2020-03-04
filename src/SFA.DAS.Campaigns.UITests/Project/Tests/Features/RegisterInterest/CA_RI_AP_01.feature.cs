@@ -84,8 +84,6 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Features.RegisterInterest
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 9
- testRunner.Then("an apprentice can register interest", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 10
  testRunner.Then("an apprentice registers interest", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
