@@ -114,7 +114,16 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
             return NavigateToRecruitmentHomePage();
         }
 
+        //private RecruitmentLandingPage GoToRecruitmentLandingPage()
+        //{
+        //    _loginhelper.Login(_context.GetUser<RAAV2EmployerUser>(), true);
+
+        //    return NavigateToRecruitmentLandingPage();
+        //}
+
         private RecruitmentHomePage NavigateToRecruitmentHomePage() => new RecruitmentHomePage(_context, true);
+
+        //private RecruitmentLandingPage NavigateToRecruitmentLandingPage() => new RecruitmentLandingPage(_context, true);
 
         private ApprenticeshipTrainingPage EnterVacancyTitle()
         {
@@ -134,5 +143,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
                 .SubmitNoOfPositions()
                 .SelectOrganisation();
         }
+
+        
     }
 }
