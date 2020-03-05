@@ -15,12 +15,12 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
         private readonly string _tPRDbConnectionString;
         private readonly ObjectContext _objectContext;
 
-        public RegistrationSqlDataHelper(RegistrationConfig registrationConfig, SqlDatabaseConnectionHelper sqlDatabase, ScenarioContext context)
+        public RegistrationSqlDataHelper(RegistrationConfig registrationConfig, SqlDatabaseConnectionHelper sqlDatabase, ObjectContext objectContext)
         {
             _sqlDatabase = sqlDatabase;
             _accountDbConnectionString = registrationConfig.RE_AccountsDbConnectionString;
             _tPRDbConnectionString = registrationConfig.RE_TPRDbConnectionString;
-            _objectContext = context.Get<ObjectContext>();
+            _objectContext = objectContext;
         }
 
         public string GetAccountApprenticeshipEmployerType(string email)

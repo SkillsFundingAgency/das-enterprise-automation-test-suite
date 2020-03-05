@@ -56,7 +56,7 @@ namespace SFA.DAS.Registration.UITests.Project
 
             _objectContext.SetOrganisationName(_config.RE_OrganisationName);
 
-            var registrationSqlDataHelper = new RegistrationSqlDataHelper(_config, _sqlDatabaseConnectionHelper, _context);
+            var registrationSqlDataHelper = new RegistrationSqlDataHelper(_config, _sqlDatabaseConnectionHelper, _objectContext);
             _context.Set(registrationSqlDataHelper);
         }
 
