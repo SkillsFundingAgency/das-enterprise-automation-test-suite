@@ -1,12 +1,16 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.Login.Service.Helpers;
+using SFA.DAS.UI.Framework.TestSupport;
+using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 {
-    public class SignInPage : RegistrationBasePage
+    public class SignInPage : BasePage
     {
         protected override string PageTitle => "Sign in";
+
+        protected readonly FormCompletionHelper _formCompletionHelper;
         private readonly ScenarioContext _context;
 
         #region Locators
@@ -18,6 +22,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         public SignInPage(ScenarioContext context) : base(context)
         {
             _context = context;
+            _formCompletionHelper = context.Get<FormCompletionHelper>();
             VerifyPage();
         }
 
@@ -35,9 +40,9 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         private void SignIn(LoginUser loginUser)
         {
-            formCompletionHelper.EnterText(EmailAddressInput, loginUser.Username);
-            formCompletionHelper.EnterText(PasswordInput, loginUser.Password);
-            formCompletionHelper.ClickElement(SignInButton);
+            _formCompletionHelper.EnterText(EmailAddressInput, loginUser.Username);
+            _formCompletionHelper.EnterText(PasswordInput, loginUser.Password);
+            _formCompletionHelper.ClickElement(SignInButton);
         }
     }
 }
