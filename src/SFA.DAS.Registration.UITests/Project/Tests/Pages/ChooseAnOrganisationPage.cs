@@ -21,7 +21,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         public CheckYourDetailsPage SelectFirstOrganisationAndContinue()
         {
-            SelectRadioOptionByText(objectContext.GetPublicReceiverAccountId());
+            SelectRadioOptionByText(objectContext.GetOrganisationName());
             Continue();
             return new CheckYourDetailsPage(_context);
         }
