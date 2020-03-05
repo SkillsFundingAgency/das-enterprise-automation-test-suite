@@ -37,19 +37,33 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
             _sqlDatabase.ExecuteSqlCommand(_accountDbConnectionString, $"UPDATE [employer_account].[AccountLegalEntity] set Name = 'Changed Org Name' where AccountId = {accountId}");
         }
 
-        public string GetAORNumber()
+        public string GetAORNNumber(string org)
         {
-            var tprUniqueId = GetDataTprFromDb("SELECT MAX([TPRUniqueId]) FROM [Tpr].[Organisation]") + 1;
+            var tprUniqueId = GetMaxValueOfTPRUniqueId() + 1;
             var aORNValue = "A" + Get12DigitDateTimeValue();
-            var organisationName = $"AutomationTestForAornSingleOrg{tprUniqueId}";
+            var organisationName = $"AutomationTestFor{org}Aorn{tprUniqueId}";
             _objectContext.UpdateOrganisationName(organisationName);
             TestContext.Progress.WriteLine($"AORN Number: {aORNValue}");
 
-            _sqlDatabase.ExecuteSqlCommand(_tPRDbConnectionString, "INSERT INTO[Tpr].[Organisation] " +
-                "([TPRUniqueId],[OrganisationName],[AORN],[DistrictNumber],[Reference],[AODistrict],[AOTaxType],[AOCheckChar],[AOReference],[RecordCreatedDate]) " +
-                 $"VALUES ({tprUniqueId}, '{organisationName}', '{aORNValue}', '1', '1', 1, '1', '1', '1', '2020-01-01 00:00:00.0000000')");
+            EnterTPRData(tprUniqueId, organisationName, aORNValue);
 
-            var orgSK = GetDataTprFromDb($"SELECT [OrgSK] FROM [Tpr].[Organisation] where [TPRUniqueId] = {tprUniqueId}");
+            if (org.Equals("MultiOrg"))
+            {
+                tprUniqueId = GetMaxValueOfTPRUniqueId() + 1;
+                organisationName = $"AutomationTestFor{org}Aorn{tprUniqueId}";
+                EnterTPRData(tprUniqueId, organisationName, aORNValue);
+            }
+
+            return aORNValue;
+        }
+
+        private void EnterTPRData(int tprUniqueId, string organisationName, string aORNValue)
+        {
+            _sqlDatabase.ExecuteSqlCommand(_tPRDbConnectionString, "INSERT INTO[Tpr].[Organisation] " +
+            "([TPRUniqueId],[OrganisationName],[AORN],[DistrictNumber],[Reference],[AODistrict],[AOTaxType],[AOCheckChar],[AOReference],[RecordCreatedDate]) " +
+             $"VALUES ({tprUniqueId}, '{organisationName}', '{aORNValue}', '1', '1', 1, '1', '1', '1', '2020-01-01 00:00:00.0000000')");
+
+            var orgSK = GetDataFromTprDb($"SELECT [OrgSK] FROM [Tpr].[Organisation] where [TPRUniqueId] = {tprUniqueId}");
 
             _sqlDatabase.ExecuteSqlCommand(_tPRDbConnectionString, "INSERT INTO [Tpr].[OrganisationAddress] " +
            "([OrgSK],[TPRUniqueID],[OrganisationFullAddress],[AddressLine1],[AddressLine2],[AddressLine3],[PostCode],[RecordCreatedDate]) " +
@@ -57,14 +71,14 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
 
             _sqlDatabase.ExecuteSqlCommand(_tPRDbConnectionString, "INSERT INTO [Tpr].[OrganisationPAYEScheme] ([OrgSK],[TPRUniqueID],[PAYEScheme],[SchemeStartDate],[RecordCreatedDate]) " +
             $"VALUES ({orgSK}, {tprUniqueId}, '{_objectContext.GetGatewayPaye()}', '2020-01-01', '2020-01-01 00:00:00.0000000')");
-
-            return aORNValue;
         }
 
         private string GetDataFromAccountsDb(string queryToExecute) => Convert.ToString(_sqlDatabase.ReadDataFromDataBase(queryToExecute, _accountDbConnectionString)[0][0]);
 
-        private int GetDataTprFromDb(string queryToExecute) => Convert.ToInt32(_sqlDatabase.ReadDataFromDataBase(queryToExecute, _tPRDbConnectionString)[0][0]);
+        private int GetDataFromTprDb(string queryToExecute) => Convert.ToInt32(_sqlDatabase.ReadDataFromDataBase(queryToExecute, _tPRDbConnectionString)[0][0]);
 
         private string Get12DigitDateTimeValue() => DateTime.Now.ToString("ddMMyyHHmmss");
+
+        private int GetMaxValueOfTPRUniqueId() => GetDataFromTprDb("SELECT MAX([TPRUniqueId]) FROM [Tpr].[Organisation]");
     }
 }

@@ -18,20 +18,20 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features.CreateEmpAccountVi
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.0.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("RE_CEAORN_01")]
-    public partial class RE_CEAORN_01Feature
+    [NUnit.Framework.DescriptionAttribute("RE_CEAORN_02")]
+    public partial class RE_CEAORN_02Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "RE_CEAORN_01.feature"
+#line 1 "RE_CEAORN_02.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "RE_CEAORN_01", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "RE_CEAORN_02", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -70,15 +70,15 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features.CreateEmpAccountVi
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RE_CEAORN_01_Create an Employer Account through AORN route with paye details atta" +
-            "ched to a Single Organisation")]
+        [NUnit.Framework.DescriptionAttribute("RE_CEAORN_02_Create an Employer Account through AORN route with paye details atta" +
+            "ched to a Multiple Organisations")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("registration")]
         [NUnit.Framework.CategoryAttribute("addpayedetails")]
-        public virtual void RE_CEAORN_01_CreateAnEmployerAccountThroughAORNRouteWithPayeDetailsAttachedToASingleOrganisation()
+        public virtual void RE_CEAORN_02_CreateAnEmployerAccountThroughAORNRouteWithPayeDetailsAttachedToAMultipleOrganisations()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RE_CEAORN_01_Create an Employer Account through AORN route with paye details atta" +
-                    "ched to a Single Organisation", null, new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RE_CEAORN_02_Create an Employer Account through AORN route with paye details atta" +
+                    "ched to a Multiple Organisations", null, new string[] {
                         "regression",
                         "registration",
                         "addpayedetails"});
@@ -88,7 +88,7 @@ this.ScenarioInitialize(scenarioInfo);
 #line 7
  testRunner.Given("an User Account is created", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 8
- testRunner.When("the User adds PAYE details attached to a SingleOrg through AORN route", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("the User adds PAYE details attached to a MultiOrg through AORN route", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 9
  testRunner.And("the Employer Signs the Agreement", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 10

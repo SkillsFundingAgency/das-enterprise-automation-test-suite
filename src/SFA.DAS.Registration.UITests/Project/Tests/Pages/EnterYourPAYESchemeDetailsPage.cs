@@ -24,12 +24,23 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             VerifyPage();
         }
 
-        public CheckYourDetailsPage EnterAornAndPayeDetailsAndContinue(string aornNumber)
+        public CheckYourDetailsPage EnterAornAndPayeDetailsForSingleOrgScenarioAndContinue(string aornNumber)
+        {
+            EnterPayeData(aornNumber);
+            return new CheckYourDetailsPage(_context);
+        }
+
+        public ChooseAnOrganisationPage EnterAornAndPayeDetailsForMultiOrgScenarioAndContinue(string aornNumber)
+        {
+            EnterPayeData(aornNumber);
+            return new ChooseAnOrganisationPage(_context);
+        }
+
+        private void EnterPayeData(string aornNumber)
         {
             formCompletionHelper.EnterText(AornTextBox, aornNumber);
             formCompletionHelper.EnterText(PayeRefTextBox, _payeSchemeReference);
             Continue();
-            return new CheckYourDetailsPage(_context);
         }
     }
 }

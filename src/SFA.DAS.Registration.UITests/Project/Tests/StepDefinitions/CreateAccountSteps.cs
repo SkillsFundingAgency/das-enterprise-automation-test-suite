@@ -60,14 +60,27 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
                 .SignInTo();
         }
 
-        [When(@"the User adds PAYE details through AORN route")]
-        public void WhenTheUserAddsPAYEDetailsThroughAORNRoute()
+        [When(@"the User adds PAYE details attached to a (SingleOrg|MultiOrg) through AORN route")]
+        public void WhenTheUserAddsPAYEDetailsAttachedToASingleOrgThroughAORNRoute(string org)
         {
-            _signAgreementPage = _addAPAYESchemePage.AddAORN()
-                .EnterAornAndPayeDetailsAndContinue(_registrationSqlDataHelper.GetAORNumber())
-                .ClickYesTheseDetailsAreCorrectButtonInCheckYourDetailsPage()
-                .SelectViewAgreementNowAndContinue();
+            var aornNumber = _registrationSqlDataHelper.GetAORNNumber(org);
+
+            if (org.Equals("SingleOrg"))
+            {
+                _checkYourDetailsPage = _addAPAYESchemePage.AddAORN()
+                    .EnterAornAndPayeDetailsForSingleOrgScenarioAndContinue(aornNumber);
+            }
+            else
+            {
+                _checkYourDetailsPage = _addAPAYESchemePage.AddAORN()
+                    .EnterAornAndPayeDetailsForMultiOrgScenarioAndContinue(aornNumber)
+                    .SelectFirstOrganisationAndContinue();
+            }
+
+            _signAgreementPage = _checkYourDetailsPage.ClickYesTheseDetailsAreCorrectButtonInCheckYourDetailsPage()
+                    .SelectViewAgreementNowAndContinue();
         }
+
 
         [When(@"the User adds Invalid PAYE details")]
         public void WhenTheUserAddsInvalidPAYEDetails()
