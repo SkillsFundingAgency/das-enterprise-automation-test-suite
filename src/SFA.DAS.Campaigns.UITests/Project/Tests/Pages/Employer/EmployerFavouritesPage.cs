@@ -11,12 +11,13 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
         private readonly ScenarioContext _context;
         #endregion
 
-
         private By CreateAnAccountButton => By.CssSelector(".button.hero__panel-button");
         
         private By AddProviderLink => By.CssSelector($".das-basket__provider-add[href*='{objectContext.GetCourseId()}']");
 
         private By BasketEmpty => By.CssSelector(".das-basket__empty");
+        
+        private By Delete(string value) => By.CssSelector($".das-basket__item-delete[value='{value}']");
 
         public EmployerFavouritesPage(ScenarioContext context) : base(context) => _context = context;
 
@@ -35,6 +36,13 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
         public EmployerFavouritesPage VerifyEmptyBasket()
         {
             VerifyPage(BasketEmpty, "YOU HAVEN'T ADDED ANY FAVOURITES YET");
+            return new EmployerFavouritesPage(_context);
+        }
+
+        public EmployerFavouritesPage DeleteFavourites()
+        {
+            formCompletionHelper.ClickElement(Delete(objectContext.GetProviderId()));
+            formCompletionHelper.ClickElement(Delete(objectContext.GetCourseId()));
             return new EmployerFavouritesPage(_context);
         }
     }

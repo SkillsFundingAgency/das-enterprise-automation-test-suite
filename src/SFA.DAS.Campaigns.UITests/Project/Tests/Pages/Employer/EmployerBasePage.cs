@@ -8,7 +8,9 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
     {
         protected override By PageHeader => By.CssSelector(".heading-xl");
 
-        protected By Favourite => By.CssSelector(".das-search-result__favourite-button--unchecked");
+        protected By AddFavouriteSelector => By.CssSelector(".das-search-result__favourite-button--unchecked");
+
+        protected By RemoveFavouriteSelector => By.CssSelector(".das-search-result__favourite-button--checked");
 
         public EmployerBasePage(ScenarioContext context) : base(context) { }
 
@@ -16,7 +18,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
         {
             formCompletionHelper.ClickElement(() =>
             {
-                var element = campaignsDataHelper.GetRandomElementFromListOfElements(pageInteractionHelper.FindElements(Favourite));
+                var element = campaignsDataHelper.GetRandomElementFromListOfElements(pageInteractionHelper.FindElements(AddFavouriteSelector));
                 var courseId = element.GetAttribute("value");
                 action(courseId);
                 return element;
@@ -24,5 +26,8 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
         }
 
         protected void GoToBasket() => formCompletionHelper.ClickElement(Basket);
+
+        public bool VerifyCount(int count) => (count == 0) ? !pageInteractionHelper.IsElementDisplayed(FavCount) : VerifyPage(FavCount, count.ToString());
+
     }
 }

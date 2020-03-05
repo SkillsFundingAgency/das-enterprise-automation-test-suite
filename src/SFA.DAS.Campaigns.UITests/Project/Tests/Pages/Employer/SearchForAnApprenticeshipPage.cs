@@ -15,7 +15,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
 
         public SearchForAnApprenticeshipPage(ScenarioContext context) : base(context) => _context = context;
 
-        public SearchResultsPage SearchApprenticeship()
+        public SearchResultsPage GoToSearchResultsPage()
         {
             formCompletionHelper.ClickElement(Search);
             return new SearchResultsPage(_context);

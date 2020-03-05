@@ -19,12 +19,23 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
 
         public SummaryOfThisApprenticeshipPage(ScenarioContext context) : base(context) => _context = context;
 
-
         public TrainingProviderResultPage SearchProvider()
         {
             formCompletionHelper.EnterText(Postcode, campaignsDataHelper.ProviderPostcode);
             formCompletionHelper.ClickElement(ProviderSearchButton);
             return new TrainingProviderResultPage(_context);
+        }
+
+        public SummaryOfThisApprenticeshipPage RemoveFromFavourite()
+        {
+            formCompletionHelper.ClickElement(RemoveFavouriteSelector);
+            return new SummaryOfThisApprenticeshipPage(_context);
+        }
+
+        public SummaryOfThisApprenticeshipPage AddToFavourite()
+        {
+            formCompletionHelper.ClickElement(AddFavouriteSelector);
+            return new SummaryOfThisApprenticeshipPage(_context);
         }
     }
 }

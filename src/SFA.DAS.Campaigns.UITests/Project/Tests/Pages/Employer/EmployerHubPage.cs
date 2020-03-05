@@ -12,6 +12,8 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
 
         protected By Basket => By.CssSelector(".favourites-link__text");
 
+        protected By FavCount => By.CssSelector(".favourites-link__count");
+
         protected By AreApprenticeshipRightForYou => By.CssSelector("#link-nav-employer-1");
 
         protected By HowDoTheyWork => By.CssSelector("#link-nav-employer-2");
