@@ -15,7 +15,12 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
 
         public EmployerFavouritesPage AddFavouriteApprenticeship()
         {
-            AddFavourite();
+            AddFavourite((a) =>
+            {
+                campaignsDataHelper.CourseId.Add(a);
+                objectContext.SetCourseId(a);
+            });
+
             GoToBasket();
             return new EmployerFavouritesPage(_context);
         }

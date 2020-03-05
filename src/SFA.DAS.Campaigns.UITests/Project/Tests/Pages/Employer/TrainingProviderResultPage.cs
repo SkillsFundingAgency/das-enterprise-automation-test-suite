@@ -14,7 +14,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
 
         public EmployerFavouritesPage AddFavouriteProvider()
         {
-            AddFavourite();
+            AddFavourite((a) => campaignsDataHelper.ProviderId.Add(a));
             GoToBasket();
             return new EmployerFavouritesPage(_context);
         }

@@ -13,8 +13,10 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
 
 
         private By CreateAnAccountButton => By.CssSelector(".button.hero__panel-button");
-        private By AddProviderLink => By.CssSelector(".das-basket__provider-add");
         
+        private By AddProviderLink => By.CssSelector($".das-basket__provider-add[href*='{objectContext.GetCourseId()}']");
+
+        private By BasketEmpty => By.CssSelector(".das-basket__empty");
 
         public EmployerFavouritesPage(ScenarioContext context) : base(context) => _context = context;
 
@@ -28,6 +30,12 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
         {
             formCompletionHelper.ClickElement(AddProviderLink);
             return new SummaryOfThisApprenticeshipPage(_context);
+        }
+
+        public EmployerFavouritesPage VerifyEmptyBasket()
+        {
+            VerifyPage(BasketEmpty, "YOU HAVEN'T ADDED ANY FAVOURITES YET");
+            return new EmployerFavouritesPage(_context);
         }
     }
 }

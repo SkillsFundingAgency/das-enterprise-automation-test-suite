@@ -70,13 +70,13 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Features.E2E
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Employer Favourites Apprenticeship And A Training Provider")]
+        [NUnit.Framework.DescriptionAttribute("Employer favourites Apprenticeship and a Training Provider and removes them")]
         [NUnit.Framework.CategoryAttribute("campaigns")]
         [NUnit.Framework.CategoryAttribute("employer")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public virtual void EmployerFavouritesApprenticeshipAndATrainingProvider()
+        public virtual void EmployerFavouritesApprenticeshipAndATrainingProviderAndRemovesThem()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Employer Favourites Apprenticeship And A Training Provider", null, new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Employer favourites Apprenticeship and a Training Provider and removes them", null, new string[] {
                         "campaigns",
                         "employer",
                         "regression"});
@@ -89,6 +89,10 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.When("the employer shortlists favourite apprenticeship and provider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 9
  testRunner.Then("the favourites are saved in gov uk account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 10
+ testRunner.When("the employer deletes the favourites", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 11
+ testRunner.Then("there are no items in the favourites", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
