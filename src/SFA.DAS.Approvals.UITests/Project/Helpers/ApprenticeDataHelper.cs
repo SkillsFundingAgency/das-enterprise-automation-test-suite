@@ -27,9 +27,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers
             _apprenticeid = 0;
         }
 
-        public string ApprenticeFirstname { get; }      
+        public string ApprenticeFirstname { get; private set; }      
 
-        public string ApprenticeLastname { get; }
+        public string ApprenticeLastname { get; private set; }
 
         public string ApprenticeFullName => $"{ApprenticeFirstname} {ApprenticeLastname}";
 
@@ -68,6 +68,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers
             _apprenticeid = _commitmentsdataHelper.GetApprenticeshipId(Ulns.Single());
             _objectContext.SetApprenticeId(_apprenticeid);
             return _apprenticeid;
+        }
+
+        public void UpdateCurrentApprenticeName(string firstName, string lastName)
+        {
+            ApprenticeFirstname = firstName;
+            ApprenticeLastname = lastName;
         }
     }
 }
