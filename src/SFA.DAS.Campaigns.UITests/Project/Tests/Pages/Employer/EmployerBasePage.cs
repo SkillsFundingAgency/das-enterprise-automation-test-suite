@@ -12,7 +12,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
 
         protected By RemoveFavouriteSelector => By.CssSelector(".das-search-result__favourite-button--checked");
 
-        public EmployerBasePage(ScenarioContext context) : base(context) { }
+        protected EmployerBasePage(ScenarioContext context) : base(context) { }
 
         protected void AddFavourite(Action<string> action)
         {

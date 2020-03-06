@@ -1,6 +1,7 @@
 ﻿using SFA.DAS.Campaigns.UITests.Project.Helpers;
 using SFA.DAS.Campaigns.UITests.Project.Tests.Pages;
 using SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer;
+using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.Login.Service;
 using SFA.DAS.Login.Service.Helpers;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages;
@@ -19,17 +20,20 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
         private readonly CampaignsStepsHelper _stepsHelper;
         private readonly ScenarioContext _context;
         private SearchResultsPage _searchResultsPage;
-        private YourSavedFavouritesPage _favpage;
+        private EmployerFavouritesPage _empFavpage;
+        private GovUkYourSavedFavouritesPage _govukFavpage;
         private SummaryOfThisApprenticeshipPage _appsummaryPage;
         private SummaryOfThisProviderPage _providersummaryPage;
         private SignInPage _signInPage;
         private readonly CampaignsDataHelper _campaignsDataHelper;
         private readonly TabHelper _tabHelper;
         private readonly CampaignsConfig _campaignsConfig;
+        private readonly ObjectContext _objectContext;
 
         public E2ESteps(ScenarioContext context)
         {
             _context = context;
+            _objectContext = context.Get<ObjectContext>();
             _stepsHelper = new CampaignsStepsHelper(context);
             _campaignsDataHelper = context.Get<CampaignsDataHelper>();
             _tabHelper = context.Get<TabHelper>();
@@ -47,10 +51,33 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
                 .GoToSearchResultsPage();
         }
 
+        [When(@"the employer favourites multiple apprenticeship")]
+        public void WhenTheEmployerFavouritesMultipleApprenticeship()
+        {
+            _searchResultsPage = _searchResultsPage.SearchApprenticeship("Nurse");
+            _searchResultsPage = _searchResultsPage.SearchApprenticeship("IT");
+            _searchResultsPage = _searchResultsPage.SearchApprenticeship("Construction");
+            _empFavpage = _searchResultsPage.GoToEmployerFavouritesPage();
+            _empFavpage.VerifyCount(3);
+        }
+
+        [Then(@"the favourites count is (.*)")]
+        public void ThenTheFavouritesCountIs(int count) => _empFavpage.VerifyCount(count);
+
+        [When(@"the employer favourites multiple provider")]
+        public void WhenTheEmployerFavouritesMultipleProvider()
+        {
+            foreach (var item in _campaignsDataHelper.CourseId)
+            {
+                _objectContext.SetCourseId(item);
+                _empFavpage = _empFavpage.AddProvider().SearchProvider().AddFavouriteProvider();
+            }
+        }
+
         [When(@"the employer favourites an apprenticeship")]
         public void WhenTheEmployerFavouritesAnApprenticeship()
         {
-            _appsummaryPage = _searchResultsPage.SearchApprenticeship();
+            _appsummaryPage = _searchResultsPage.SearchApprenticeship("Software").GoToSummaryOfThisApprenticeshipPage();
             _appsummaryPage.VerifyCount(1);
             _appsummaryPage = _appsummaryPage.RemoveFromFavourite();
             _appsummaryPage.VerifyCount(0);
@@ -70,10 +97,20 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
         }
 
         [Then(@"the employer can delete the favourites")]
-        public void ThenTheEmployerCanDeleteTheFavourites()
+        public void ThenTheEmployerCanDeleteTheFavourites() => _providersummaryPage.GoToEmployerFavouritesPage().DeleteFavourites();
+
+        [When(@"the employer deletes all favourites apprenticeships")]
+        public void WhenTheEmployerDeletesAllFavouritesApprenticeships()
         {
-            _providersummaryPage.GoToEmployerFavouritesPage().DeleteFavourites().VerifyEmptyBasket();
+            foreach (var item in _campaignsDataHelper.CourseId)
+            {
+                _objectContext.SetCourseId(item);
+                _empFavpage = _empFavpage.DeleteApprenticeshipFavourites();
+            }
         }
+
+        [Then(@"the basket is empty")]
+        public void ThenTheBasketIsEmpty() => new EmployerFavouritesPage(_context).VerifyEmptyBasket();
 
         [When(@"the employer shortlists favourite apprenticeship and provider")]
         public void WhenTheEmployerShortlistsFavouriteApprenticeshipAndProvider()
@@ -93,16 +130,14 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
         {
             _signInPage.Login(_context.GetUser<CampaingnsEmployerUser>());
 
-            _favpage = new EmployerGovUkHomePage(_context).ViewSavedFavourites();
+            _govukFavpage = new GovUkEmployerHomePage(_context).ViewSavedFavourites();
         }
 
         [When(@"the employer deletes the favourites")]
         public void WhenTheEmployerDeletesTheFavourites()
         {
             foreach (var item in _campaignsDataHelper.CourseId)
-            {
-                _favpage = _favpage.RemoveFromFavourites(item).SelectYesAndContinue();
-            }
+                _govukFavpage = _govukFavpage.RemoveFromFavourites(item).SelectYesAndContinue();
         }
 
         [Then(@"there are no items in the favourites")]
@@ -111,8 +146,6 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
             var uri = new Uri(new Uri(_campaignsConfig.CA_BaseUrl), "/Basket/View").AbsoluteUri;
 
             _tabHelper.OpenInNewTab(uri);
-
-            new EmployerFavouritesPage(_context).VerifyEmptyBasket();
         }
     }
 }

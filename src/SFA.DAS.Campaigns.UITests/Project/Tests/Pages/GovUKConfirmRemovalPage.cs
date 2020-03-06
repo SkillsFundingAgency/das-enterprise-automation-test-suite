@@ -5,7 +5,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
 {
-    public class ConfirmRemovalPage : BasePage
+    public class GovUKConfirmRemovalPage : BasePage
     {
         protected override string PageTitle => "Confirm removal of apprenticeship";
 
@@ -21,7 +21,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
 
         private By Yes => By.CssSelector("#changed-name");
 
-        public ConfirmRemovalPage(ScenarioContext context) : base(context)
+        public GovUKConfirmRemovalPage(ScenarioContext context) : base(context)
         {
             _context = context;
             _formCompletionHelper = context.Get<FormCompletionHelper>();
@@ -29,11 +29,11 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
             VerifyPage();
         }
 
-        public YourSavedFavouritesPage SelectYesAndContinue()
+        public GovUkYourSavedFavouritesPage SelectYesAndContinue()
         {
             _formCompletionHelper.ClickElement(() => _pageInteractionHelper.FindElement(Yes));
             Continue();
-            return new YourSavedFavouritesPage(_context);
+            return new GovUkYourSavedFavouritesPage(_context);
         }
     }
 }
