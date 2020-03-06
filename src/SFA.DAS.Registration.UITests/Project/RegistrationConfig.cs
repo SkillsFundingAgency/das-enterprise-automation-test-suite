@@ -13,5 +13,7 @@
         public string RE_OrganisationName { get; set; }
 
         public string RE_AccountsDbConnectionString { get; set; }
+
+        public string RE_TPRDbConnectionString { get; set; }
     }
 }
