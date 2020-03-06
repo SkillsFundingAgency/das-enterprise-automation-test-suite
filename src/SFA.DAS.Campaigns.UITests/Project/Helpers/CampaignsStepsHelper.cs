@@ -1,4 +1,7 @@
 ﻿using SFA.DAS.Campaigns.UITests.Project.Tests.Pages;
+using SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Apprentice;
+using SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Parent;
+using SFA.DAS.Campaigns.UITests.Project.Tests.Pages.TheCalling;
 using System;
 using System.Collections.Generic;
 using System.Text;

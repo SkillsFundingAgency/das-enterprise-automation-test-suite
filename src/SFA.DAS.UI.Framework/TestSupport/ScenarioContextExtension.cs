@@ -22,6 +22,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
         private const string FATProjectConfigKey = "fatprojectconfigkey";
         private const string EPAOProjectConfigKey = "epaoprojectconfigkey";
         private const string CampaignsConfigKey = "campaignsprojectconfigkey";
+        private const string AskConfigKey = "askprojectconfigkey";
         #endregion
 
         #region Setters
@@ -39,6 +40,8 @@ namespace SFA.DAS.UI.Framework.TestSupport
         public static void SetFAAConfig<T>(this ScenarioContext context, T value) => Set(context, value, FAAProjectConfigKey);
         public static void SetEPAOConfig<T>(this ScenarioContext context, T value) => Set(context, value, EPAOProjectConfigKey);
         public static void SetCampaignsConfig<T>(this ScenarioContext context, T value) => Set(context, value, CampaignsConfigKey);
+
+        public static void SetAskConfig<T>(this ScenarioContext context, T value) => Set(context, value, AskConfigKey);
         public static void SetWebDriver(this ScenarioContext context, IWebDriver webDriver) => Replace(context, webDriver, WebDriverKey);      
         private static void Replace<T>(ScenarioContext context, T value, string key) => context.Replace(key, value);
         private static void Set<T>(ScenarioContext context, T value, string key) => context.Set(value, key);
@@ -59,6 +62,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
         public static T GetSupportConsoleConfig<T>(this ScenarioContext context) => Get<T>(context, SupportConsoleProjectConfigKey);
         public static T GetEPAOConfig<T>(this ScenarioContext context) => Get<T>(context, EPAOProjectConfigKey);      
         public static T GetCampaignsConfig<T>(this ScenarioContext context) => Get<T>(context, CampaignsConfigKey);
+        public static T GetAskConfig<T>(this ScenarioContext context) => Get<T>(context, AskConfigKey);
         public static IWebDriver GetWebDriver(this ScenarioContext context) => Get<IWebDriver>(context, WebDriverKey);
         public static T Get<T>(ScenarioContext context, string key) => context.Get<T>(key);
         #endregion
