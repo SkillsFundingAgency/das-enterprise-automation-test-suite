@@ -60,6 +60,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
                 .SignInTo();
         }
 
+        [Given(@"the User adds PAYE details attached to a (SingleOrg|MultiOrg) through AORN route")]
         [When(@"the User adds PAYE details attached to a (SingleOrg|MultiOrg) through AORN route")]
         public void WhenTheUserAddsPAYEDetailsAttachedToASingleOrgThroughAORNRoute(string org)
         {
@@ -67,8 +68,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
 
             if (org.Equals("SingleOrg"))
             {
-                _checkYourDetailsPage = _addAPAYESchemePage.AddAORN()
-                    .EnterAornAndPayeDetailsForSingleOrgScenarioAndContinue(aornNumber);
+                _checkYourDetailsPage = AddPayeDetailsForSingleOrgAornRoute(aornNumber);
             }
             else
             {
@@ -80,7 +80,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             _signAgreementPage = _checkYourDetailsPage.ClickYesTheseDetailsAreCorrectButtonInCheckYourDetailsPage()
                     .SelectViewAgreementNowAndContinue();
         }
-
 
         [When(@"the User adds Invalid PAYE details")]
         public void WhenTheUserAddsInvalidPAYEDetails()
@@ -380,6 +379,9 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
                         .SelectViewAgreementNowAndContinue()
                         .SignAgreement();
         }
+
+        private CheckYourDetailsPage AddPayeDetailsForSingleOrgAornRoute(string aornNumber) => 
+            _addAPAYESchemePage.AddAORN().EnterAornAndPayeDetailsForSingleOrgScenarioAndContinue(aornNumber);
 
         private HomePage GoToHomePage() => new HomePage(_context, true);
     }
