@@ -28,6 +28,5 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.Finish_Section9
             SelectNoAndContinue();
             return new FinishSectionShutterPage(_context);
         }
-
     }
 }

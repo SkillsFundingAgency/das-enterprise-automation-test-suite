@@ -70,13 +70,13 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Features.E2E
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Employer adds and deletes favourites")]
+        [NUnit.Framework.DescriptionAttribute("CA_E2E_02_Employer adds and deletes favourites")]
         [NUnit.Framework.CategoryAttribute("campaigns")]
         [NUnit.Framework.CategoryAttribute("employer")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public virtual void EmployerAddsAndDeletesFavourites()
+        public virtual void CA_E2E_02_EmployerAddsAndDeletesFavourites()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Employer adds and deletes favourites", null, new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CA_E2E_02_Employer adds and deletes favourites", null, new string[] {
                         "campaigns",
                         "employer",
                         "regression"});

@@ -69,6 +69,5 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.RoatpApply
                 .ReturnToApplicationOverview()
                 .VerifyTermsAndConditions_Section9(StatusHelper.StatusInProgress);
         }
-
     }
 }
