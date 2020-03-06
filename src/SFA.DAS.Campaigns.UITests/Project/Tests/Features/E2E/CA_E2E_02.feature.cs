@@ -91,6 +91,8 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("the employer favourites a provider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 10
  testRunner.Then("the employer can delete the favourites", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 11
+ testRunner.Then("the basket is empty", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

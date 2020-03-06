@@ -4,7 +4,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
 {
-    public class EmployerGovUkHomePage : HomePage
+    public class GovUkEmployerHomePage : HomePage
     {
         #region Helpers and Context
         private readonly ScenarioContext _context;
@@ -12,12 +12,12 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
 
         private By ViewSavedFav => By.CssSelector(".das-favourites-link__text");
 
-        public EmployerGovUkHomePage(ScenarioContext context) : base(context) => _context = context;
+        public GovUkEmployerHomePage(ScenarioContext context) : base(context) => _context = context;
 
-        public YourSavedFavouritesPage ViewSavedFavourites()
+        public GovUkYourSavedFavouritesPage ViewSavedFavourites()
         {
             formCompletionHelper.ClickElement(ViewSavedFav);
-            return new YourSavedFavouritesPage(_context);
+            return new GovUkYourSavedFavouritesPage(_context);
         }
     }
 }

@@ -41,7 +41,19 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
 
         public EmployerFavouritesPage DeleteFavourites()
         {
+            DeleteProviderFavourites();
+            DeleteApprenticeshipFavourites();
+            return new EmployerFavouritesPage(_context);
+        }
+
+        public EmployerFavouritesPage DeleteProviderFavourites()
+        {
             formCompletionHelper.ClickElement(Delete(objectContext.GetProviderId()));
+            return new EmployerFavouritesPage(_context);
+        }
+
+        public EmployerFavouritesPage DeleteApprenticeshipFavourites()
+        {
             formCompletionHelper.ClickElement(Delete(objectContext.GetCourseId()));
             return new EmployerFavouritesPage(_context);
         }

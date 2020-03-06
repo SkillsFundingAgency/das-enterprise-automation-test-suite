@@ -26,13 +26,24 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
             return new EmployerFavouritesPage(_context);
         }
 
-        public SummaryOfThisApprenticeshipPage SearchApprenticeship()
+        public SearchResultsPage SearchApprenticeship(string keyword)
         {
-            formCompletionHelper.EnterText(Keywords, "Software");
+            formCompletionHelper.EnterText(Keywords, keyword);
             formCompletionHelper.ClickElement(Search);
             AddFavourite();
+            return new SearchResultsPage(_context);
+        }
+
+        public SummaryOfThisApprenticeshipPage GoToSummaryOfThisApprenticeshipPage()
+        {
             formCompletionHelper.ClickElement(Apprenticeship);
             return new SummaryOfThisApprenticeshipPage(_context);
+        }
+
+        public EmployerFavouritesPage GoToEmployerFavouritesPage()
+        {
+            GoToBasket();
+            return new EmployerFavouritesPage(_context);
         }
 
         private void AddFavourite() => AddFavourite((a) => { campaignsDataHelper.CourseId.Add(a); objectContext.SetCourseId(a); });

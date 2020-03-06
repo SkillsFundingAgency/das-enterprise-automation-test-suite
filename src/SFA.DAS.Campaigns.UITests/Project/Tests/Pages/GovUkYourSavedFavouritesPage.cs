@@ -7,7 +7,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
 {
-    public class YourSavedFavouritesPage : BasePage
+    public class GovUkYourSavedFavouritesPage : BasePage
     {
         protected override string PageTitle => "Your saved favourites";
 
@@ -21,7 +21,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
 
         private By RemoveFromFav(string id) => By.CssSelector($".app-task-list__training-provider-content[href*='{id}/delete']");
 
-        public YourSavedFavouritesPage(ScenarioContext context) : base(context)
+        public GovUkYourSavedFavouritesPage(ScenarioContext context) : base(context)
         {
             _context = context;
             _objectContext = context.Get<ObjectContext>();
@@ -29,10 +29,10 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
             VerifyPage();
         }
 
-        public ConfirmRemovalPage RemoveFromFavourites(string courseId)
+        public GovUKConfirmRemovalPage RemoveFromFavourites(string courseId)
         {
             _formCompletionHelper.Click(RemoveFromFav(courseId));
-            return new ConfirmRemovalPage(_context);
+            return new GovUKConfirmRemovalPage(_context);
         }
     }
 }
