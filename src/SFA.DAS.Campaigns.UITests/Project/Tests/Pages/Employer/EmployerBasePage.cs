@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using System;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
@@ -7,6 +8,26 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
     {
         protected override By PageHeader => By.CssSelector(".heading-xl");
 
+        protected By AddFavouriteSelector => By.CssSelector(".das-search-result__favourite-button--unchecked");
+
+        protected By RemoveFavouriteSelector => By.CssSelector(".das-search-result__favourite-button--checked");
+
         public EmployerBasePage(ScenarioContext context) : base(context) { }
+
+        protected void AddFavourite(Action<string> action)
+        {
+            formCompletionHelper.ClickElement(() =>
+            {
+                var element = campaignsDataHelper.GetRandomElementFromListOfElements(pageInteractionHelper.FindElements(AddFavouriteSelector));
+                var courseId = element.GetAttribute("value");
+                action(courseId);
+                return element;
+            });
+        }
+
+        protected void GoToBasket() => formCompletionHelper.ClickElement(Basket);
+
+        public bool VerifyCount(int count) => (count == 0) ? !pageInteractionHelper.IsElementDisplayed(FavCount) : VerifyPage(FavCount, count.ToString());
+
     }
 }
