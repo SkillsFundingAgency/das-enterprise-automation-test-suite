@@ -91,14 +91,11 @@ this.ScenarioInitialize(scenarioInfo);
 #line 8
  testRunner.And("Signs the Agreement from Account HomePage Panel", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 9
- testRunner.Then("\'Check funding availability and make a reservation\' link is displayed on the Empl" +
-                    "oyer Home Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("\'Your funding reservations\' and \'Your finances\' links are displayed in the Financ" +
+                    "es section", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 10
- testRunner.And("\'Your funding reservations\' and \'Your finances\' links are displayed in the Financ" +
-                    "es section", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 11
  testRunner.When("the Employer navigates to \'Finance\' Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 12
+#line 11
  testRunner.Then("\'View transactions\', \'Download transactions\' and \'Transfers\' links are displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();

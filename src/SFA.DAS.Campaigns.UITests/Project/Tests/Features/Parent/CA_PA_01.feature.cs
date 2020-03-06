@@ -84,7 +84,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Features.Parent
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 7
-     testRunner.When("the user navigates to the parent page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+     testRunner.When("the user navigates to the their career page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 8
      testRunner.Then("the links are not broken", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden

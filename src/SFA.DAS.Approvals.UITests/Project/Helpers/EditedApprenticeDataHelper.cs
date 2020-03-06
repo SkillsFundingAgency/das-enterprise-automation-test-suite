@@ -45,9 +45,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers
             return ApprenticeEditedLastname;
         }
 
-        private string ApprenticeEditedFirstname { get; set; }
+        public string ApprenticeEditedFirstname { get; private set; }
 
-        private string ApprenticeEditedLastname { get; set; }
+        public string ApprenticeEditedLastname { get; private set; }
 
     }
 }

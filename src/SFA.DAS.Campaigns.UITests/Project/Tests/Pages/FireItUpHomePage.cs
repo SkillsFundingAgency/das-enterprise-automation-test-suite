@@ -1,4 +1,9 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Apprentice;
+using SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer;
+using SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Parent;
+using SFA.DAS.Campaigns.UITests.Project.Tests.Pages.RegisterInterest;
+using SFA.DAS.Campaigns.UITests.Project.Tests.Pages.TheCalling;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -6,7 +11,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
 {
-    public class FireItUpHomePage : CampaingnsBasePage
+    public class FireItUpHomePage : CampaingnsPage
     {
         protected override string PageTitle => "FIRE";
 
@@ -55,16 +60,22 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
             return new RegisterInterestPage(_context);
         }
 
-        public HelpShapeTheirCareerPage NavigateToHelpShapeTheirCareerPage()
+        public ParentHubPage NavigateToParentHubPage()
         {
             formCompletionHelper.ClickElement(Parent);
-            return new HelpShapeTheirCareerPage(_context);
+            return new ParentHubPage(_context);
         }
 
-        public ApprenticeshipHubPage NavigateToApprenticeshipHubPage()
+        public ApprenticeHubPage NavigateToApprenticeshipHubPage()
         {
             formCompletionHelper.ClickElement(Apprentice);
-            return new ApprenticeshipHubPage(_context);
+            return new ApprenticeHubPage(_context);
+        }
+
+        public EmployerHubPage NavigateToEmployerHubPage()
+        {
+            formCompletionHelper.ClickElement(Employer);
+            return new EmployerHubPage(_context);
         }
 
         public TheCallingPage NavigateToTheCallingPage()

@@ -110,7 +110,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         public void ThenTheApplyUserIsAbleToSignoutFromTheApplication()
         {
             new AS_LoggedInHomePage(_context).ClickSignOutLink()
-                .ClickReturnToAssessmentServiceLink();
+                .ClickSignBackInLink();
         }
 
         [When(@"the Apply User initiates Create Account journey")]

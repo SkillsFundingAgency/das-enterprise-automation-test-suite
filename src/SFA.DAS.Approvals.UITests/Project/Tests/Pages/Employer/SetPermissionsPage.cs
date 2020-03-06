@@ -29,41 +29,41 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         internal ConfirmTrainingProviderPermissionsPage SetCreateCohortPermissions()
         {
-            return CreateCohortPermissions(true)
+            return AddApprenticeRecordsPermissions(true)
                    .Update();
         }
 
         internal ConfirmTrainingProviderPermissionsPage UnSetCreateCohortPermissions()
         {
-            return CreateCohortPermissions(false)
+            return AddApprenticeRecordsPermissions(false)
                    .Update();
         }
 
         internal ConfirmTrainingProviderPermissionsPage UnSetCreateCohortAndRecruitmentPermissions()
         {
-            return CreateCohortPermissions(false)
-                   .CreateRecruitmentPermissions(false)
+            return AddApprenticeRecordsPermissions(false)
+                   .RecruitApprenticesPermissions(false)
                    .Update();
         }
         internal ConfirmTrainingProviderPermissionsPage SetRecruitmentPermissions()
         {
-            return CreateRecruitmentPermissions(true)
+            return RecruitApprenticesPermissions(true)
                    .Update();
         }
 
         internal ConfirmTrainingProviderPermissionsPage UnSetRecruitmentPermissions()
         {
-            return CreateRecruitmentPermissions(false)
+            return RecruitApprenticesPermissions(false)
                    .Update();
         }
 
-        private SetPermissionsPage CreateCohortPermissions(bool set)
+        private SetPermissionsPage AddApprenticeRecordsPermissions(bool set)
         {
             SelectRadioOptionByForAttribute(set ? "operation-0-yes": "operation-0-no");
             return this;
         }
 
-        private SetPermissionsPage CreateRecruitmentPermissions(bool set)
+        private SetPermissionsPage RecruitApprenticesPermissions(bool set)
         {
             SelectRadioOptionByForAttribute(set ? "operation-1-yes" : "operation-1-no");
             return this;

@@ -2,6 +2,7 @@
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.Registration.UITests.Project.Helpers;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages;
+using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 using static SFA.DAS.RAA_V1.UITests.Project.Helpers.EnumHelper;
 
@@ -21,6 +22,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         private SelectYourOrganisationPage _selectYourOrganisationPage;
         private SignAgreementPage _signAgreementPage;
         private CheckYourDetailsPage _checkYourDetailsPage;
+        private YourOrganisationsAndAgreementsPage _yourOrganisationsAndAgreementsPage;
 
         public CreateAccountSteps(ScenarioContext context)
         {
@@ -57,6 +59,28 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
                 .AddPaye().ContinueToGGSignIn()
                 .SignInTo();
         }
+
+        [When(@"the User adds PAYE details attached to a (SingleOrg|MultiOrg) through AORN route")]
+        public void WhenTheUserAddsPAYEDetailsAttachedToASingleOrgThroughAORNRoute(string org)
+        {
+            var aornNumber = _registrationSqlDataHelper.GetAORNNumber(org);
+
+            if (org.Equals("SingleOrg"))
+            {
+                _checkYourDetailsPage = _addAPAYESchemePage.AddAORN()
+                    .EnterAornAndPayeDetailsForSingleOrgScenarioAndContinue(aornNumber);
+            }
+            else
+            {
+                _checkYourDetailsPage = _addAPAYESchemePage.AddAORN()
+                    .EnterAornAndPayeDetailsForMultiOrgScenarioAndContinue(aornNumber)
+                    .SelectFirstOrganisationAndContinue();
+            }
+
+            _signAgreementPage = _checkYourDetailsPage.ClickYesTheseDetailsAreCorrectButtonInCheckYourDetailsPage()
+                    .SelectViewAgreementNowAndContinue();
+        }
+
 
         [When(@"the User adds Invalid PAYE details")]
         public void WhenTheUserAddsInvalidPAYEDetails()
@@ -207,6 +231,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             GivenAnEmployerAccountWithSpecifiedTypeOrgIsCreatedAndAgeementIsNotSigned(OrgType.Company);
         }
 
+        [Given(@"the Employer initiates adding another Org of (Company|PublicSector|Charity|Charity2) Type")]
         [When(@"the Employer initiates adding another Org of (Company|PublicSector|Charity|Charity2) Type")]
         public void WhenTheEmployerInitiatesAddingAnotherOrgType(OrgType orgType)
         {
@@ -230,10 +255,9 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         [Then(@"the new Org added is shown in the Account Organisations list")]
         public void ThenTheNewOrgAddedIsShownInTheAccountOrganisationsList()
         {
-            _checkYourDetailsPage
-                .ClickYesContinueButton()
-                .GoToYourOrganisationsAndAgreementsPage()
-                .VerifyNewlyAddedOrgIsPresent();
+            _yourOrganisationsAndAgreementsPage = _checkYourDetailsPage.ClickYesContinueButton()
+                                                        .GoToYourOrganisationsAndAgreementsPage()
+                                                        .VerifyNewlyAddedOrgIsPresent();
         }
 
         [Then(@"'Already added' message is shown to the User")]
@@ -302,6 +326,25 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             AddOrganisationTypeDetails(orgType);
         }
 
+        [Then(@"the Employer is Not allowed to Remove the first Org added")]
+        public void ThenTheEmployerIsNotAllowedToRemoveTheFirstOrgAdded()
+        {
+            _homePage.GoToYourOrganisationsAndAgreementsPage()
+                .ClickOnRemoveAnOrgFromYourAccountLink()
+                .VerifyCantBeRemovedMessageTextOnRemoveAnOrganisationPage();
+
+            _homePage = GoToHomePage();
+        }
+
+        [Then(@"Employer is Allowed to remove the second Org added from the account")]
+        public void ThenEmployerIsAllowedToRemoveTheSecondOrgAddedFromTheAccount()
+        {
+            _yourOrganisationsAndAgreementsPage.ClickOnRemoveAnOrgFromYourAccountLink()
+                .ClickOnRemoveLinkBesideNewlyAddedOrgInRemoveAnOrganisationPage()
+                .SelectYesRadioOptionAndClickContinueInRemoveOrganisationPage()
+                .VerifyOrgRemovedMessageInHeader();
+        }
+
         private void CreateAnUserAcountAndAddPaye()
         {
             AnUserAccountIsCreated();
@@ -337,5 +380,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
                         .SelectViewAgreementNowAndContinue()
                         .SignAgreement();
         }
+
+        private HomePage GoToHomePage() => new HomePage(_context, true);
     }
 }
