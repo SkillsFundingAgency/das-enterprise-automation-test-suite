@@ -30,6 +30,12 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             return new CheckYourDetailsPage(_context);
         }
 
+        public TheseDetailsAreAlreadyInUsePage ReEnterTheSameAornDetailsAndContinue(string aornNumber)
+        {
+            EnterPayeData(aornNumber);
+            return new TheseDetailsAreAlreadyInUsePage(_context);
+        }
+
         public ChooseAnOrganisationPage EnterAornAndPayeDetailsForMultiOrgScenarioAndContinue(string aornNumber)
         {
             EnterPayeData(aornNumber);

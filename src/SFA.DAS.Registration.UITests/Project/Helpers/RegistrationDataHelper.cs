@@ -11,6 +11,7 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
         {
             _randomDataGenerator = randomDataGenerator;
             RandomEmail = $"{gatewayUsername}@mailinator.com";
+            AnotherRandomEmail = $"{gatewayUsername}_2@mailinator.com";
             Password = password;
             InvalidGGId = RandomAlphaNumericString(10);
             InvalidGGPassword = RandomNumericString(10);
@@ -19,6 +20,7 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
         }
 
         public string RandomEmail { get; }
+        public string AnotherRandomEmail { get;  }
         public string Password { get; }
         public string InvalidGGId { get; }
         public string InvalidGGPassword { get; }

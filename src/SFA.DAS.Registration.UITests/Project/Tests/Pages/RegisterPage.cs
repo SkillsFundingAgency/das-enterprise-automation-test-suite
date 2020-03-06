@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using System;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
@@ -24,11 +25,11 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             VerifyPage();
         }
 
-        public ConfirmPage Register()
+        public ConfirmPage Register(string emailId = null)
         {
             EnterFirstName().
             EnterlastName().
-            EnterEmail().
+            EnterEmail(emailId).
             EnterPassword().
             EnterPasswordConfirm().
             SetMeUp();
@@ -47,9 +48,12 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             return this;
         }
 
-        private RegisterPage EnterEmail()
+        private RegisterPage EnterEmail(string emailId)
         {
-            formCompletionHelper.EnterText(EmailInput, registrationDataHelper.RandomEmail);
+            if (String.IsNullOrEmpty(emailId))
+                emailId = registrationDataHelper.RandomEmail;
+
+            formCompletionHelper.EnterText(EmailInput, emailId);
             return this;
         }
 

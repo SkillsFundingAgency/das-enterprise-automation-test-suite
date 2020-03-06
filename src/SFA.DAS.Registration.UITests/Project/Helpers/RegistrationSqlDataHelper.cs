@@ -3,12 +3,10 @@ using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.MongoDb.DataGenerator;
 using SFA.DAS.UI.FrameworkHelpers;
 using System;
-using System.Linq;
-using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Registration.UITests.Project.Helpers
 {
-    class RegistrationSqlDataHelper
+    internal class RegistrationSqlDataHelper
     {
         private readonly SqlDatabaseConnectionHelper _sqlDatabase;
         private readonly string _accountDbConnectionString;

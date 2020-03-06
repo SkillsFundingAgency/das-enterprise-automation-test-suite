@@ -13,7 +13,7 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.Registration.UITests.Project
 {
     [Binding]
-    public class Hooks          
+    public class Hooks
     {
         private readonly ScenarioContext _context;
         private readonly RegistrationConfig _config;

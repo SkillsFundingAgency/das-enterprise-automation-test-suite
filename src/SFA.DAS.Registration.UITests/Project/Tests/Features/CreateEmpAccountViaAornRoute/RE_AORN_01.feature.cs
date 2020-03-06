@@ -70,15 +70,15 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features.CreateEmpAccountVi
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RE_AORN_01_Create an Employer Account through AORN route with paye details attach" +
-            "ed to a Single Organisation")]
+        [NUnit.Framework.DescriptionAttribute("RE_AORN_01A_Create an Employer Account through AORN route with paye details attac" +
+            "hed to a Single Organisation")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("registration")]
         [NUnit.Framework.CategoryAttribute("addpayedetails")]
-        public virtual void RE_AORN_01_CreateAnEmployerAccountThroughAORNRouteWithPayeDetailsAttachedToASingleOrganisation()
+        public virtual void RE_AORN_01A_CreateAnEmployerAccountThroughAORNRouteWithPayeDetailsAttachedToASingleOrganisation()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RE_AORN_01_Create an Employer Account through AORN route with paye details attach" +
-                    "ed to a Single Organisation", null, new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RE_AORN_01A_Create an Employer Account through AORN route with paye details attac" +
+                    "hed to a Single Organisation", null, new string[] {
                         "regression",
                         "registration",
                         "addpayedetails"});
@@ -90,36 +90,43 @@ this.ScenarioInitialize(scenarioInfo);
 #line 8
  testRunner.When("the User adds PAYE details attached to a SingleOrg through AORN route", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 9
- testRunner.And("the Employer Signs the Agreement", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Then("the Employer is able to Sign the Agreement and view the Home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 10
- testRunner.Then("the Employer Home page is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("\'These details are already in use\' page is displayed when Another Employer tries " +
+                    "to register the account with the same Aorn and Paye details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 11
+ testRunner.And("\'Add a PAYE Scheme\' page is displayed when Employer clicks on \'Use different deta" +
+                    "ils\' button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 12
+ testRunner.And("\'Add a PAYE Scheme\' page is displayed when Employer clicks on Back link on the \'P" +
+                    "AYE scheme already in use\' page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RE_AORN_02_Create an Employer Account through AORN route with paye details attach" +
-            "ed to a Multiple Organisations")]
+        [NUnit.Framework.DescriptionAttribute("RE_AORN_01B_Create an Employer Account through AORN route with paye details attac" +
+            "hed to a Multiple Organisations")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("registration")]
         [NUnit.Framework.CategoryAttribute("addpayedetails")]
-        public virtual void RE_AORN_02_CreateAnEmployerAccountThroughAORNRouteWithPayeDetailsAttachedToAMultipleOrganisations()
+        public virtual void RE_AORN_01B_CreateAnEmployerAccountThroughAORNRouteWithPayeDetailsAttachedToAMultipleOrganisations()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RE_AORN_02_Create an Employer Account through AORN route with paye details attach" +
-                    "ed to a Multiple Organisations", null, new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RE_AORN_01B_Create an Employer Account through AORN route with paye details attac" +
+                    "hed to a Multiple Organisations", null, new string[] {
                         "regression",
                         "registration",
                         "addpayedetails"});
-#line 15
+#line 17
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 16
- testRunner.Given("an User Account is created", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 17
- testRunner.When("the User adds PAYE details attached to a MultiOrg through AORN route", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 18
- testRunner.And("the Employer Signs the Agreement", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Given("an User Account is created", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 19
+ testRunner.When("the User adds PAYE details attached to a MultiOrg through AORN route", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 20
+ testRunner.And("the Employer Signs the Agreement", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 21
  testRunner.Then("the Employer Home page is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
