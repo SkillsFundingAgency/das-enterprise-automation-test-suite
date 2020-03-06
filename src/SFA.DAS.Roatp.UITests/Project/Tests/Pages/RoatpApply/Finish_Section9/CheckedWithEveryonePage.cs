@@ -1,4 +1,5 @@
-﻿using TechTalk.SpecFlow;
+﻿
+using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.Finish_Section9
 {
@@ -22,6 +23,12 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.Finish_Section9
             SelectYesAndContinue();
             return new PermissionFromOrganisationPage(_context);
         }
-    }
 
+        public FinishSectionShutterPage SelectNoCheckedWithEveryoneAndContinue()
+        {
+            SelectNoAndContinue();
+            return new FinishSectionShutterPage(_context);
+        }
+
+    }
 }

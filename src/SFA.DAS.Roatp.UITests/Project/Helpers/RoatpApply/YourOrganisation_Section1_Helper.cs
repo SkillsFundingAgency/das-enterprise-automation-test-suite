@@ -176,7 +176,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.RoatpApply
                 .SelectYesForFullOfstedInspectionAndContinue()
                 .SelectYesForGradeInFullOfstedInspectionAndContinue()
                 .SelecRequiresImprovementAndContinue()
-                .SelecForoverallEffectivenessGradeRequiresImprovementAndContinue()
+                .SelectForoverallEffectivenessGradeRequiresImprovementAndContinue()
                 .VerifyExperienceAndAccreditationsStatus(StatusHelper.StatusCompleted);
         }
 
@@ -226,6 +226,40 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.RoatpApply
                 .EneterWebsiteAndContinue()
                 .SelectMaximumTradingPeriodAndContinue()
                 .VerifyOrganisationInformation(StatusHelper.StatusCompleted);
+        }
+
+        internal ApplicationOverviewPage UnhappyPathJourney_YourOrganisationSection_2(ApplicationOverviewPage applicationOverviewPage)
+        {
+            return applicationOverviewPage.AccessYourOrganisationSectionForOrgTypeCompany()
+                .SelectYesForUltimateParentCompanyAndContinue()
+                .EnterParentCompanyDetailsAndContinue()
+                .EnterIcoRegistrationNumberAndContinue()
+                .EneterWebsiteAndContinue()
+                .SelectMinimumTradingPeriodAndContinue()
+                .ReturnToApplicationOverview()
+                .VerifyOrganisationInformation(StatusHelper.StatusInProgress);
+        }
+
+        internal ApplicationOverviewPage UnhappyPathJourney_YourOrganisationSection_5(ApplicationOverviewPage applicationOverviewPage)
+        {
+            return applicationOverviewPage.AccessExperienceAndAccreditationsSection()
+                .SelectNoForFundedbyOFSAndContinue()
+                .SelectNoForITTAndContinue()
+                .SelectYesForFullOfstedInspectionAndContinue()
+                .SelectYesForGradeInFullOfstedInspectionAndContinue()
+                .SelecInadequateAndContinue()
+                .SelectYesForInadequateGradeWithinThreeYearsAndContinue()
+                .ReturnToApplicationOverview()
+                .VerifyExperienceAndAccreditationsStatus(StatusHelper.StatusInProgress)
+                .AccessExperienceAndAccreditationsSection()
+                .SelectNoForFundedbyOFSAndContinue()
+                .SelectNoForITTAndContinue()
+                .SelectYesForFullOfstedInspectionAndContinue()
+                .SelectNoForGradeInFullOfstedInspectionAndContinue()
+                .SelectForoverallEffectivenessGradeInadequateAndContinue()
+                .SelectYesForInadequateGradeWithinThreeYearsAndContinue()
+                .ReturnToApplicationOverview()
+                .VerifyExperienceAndAccreditationsStatus(StatusHelper.StatusInProgress);
         }
     }
 }
