@@ -60,6 +60,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
             _empFavpage = _searchResultsPage.GoToEmployerFavouritesPage();
             _empFavpage.VerifyCount(3);
         }
+
         [Then(@"the favourites count is (.*)")]
         public void ThenTheFavouritesCountIs(int count) => _empFavpage.VerifyCount(count);
 
@@ -96,10 +97,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
         }
 
         [Then(@"the employer can delete the favourites")]
-        public void ThenTheEmployerCanDeleteTheFavourites()
-        {
-            _providersummaryPage.GoToEmployerFavouritesPage().DeleteFavourites();
-        }
+        public void ThenTheEmployerCanDeleteTheFavourites() => _providersummaryPage.GoToEmployerFavouritesPage().DeleteFavourites();
 
         [When(@"the employer deletes all favourites apprenticeships")]
         public void WhenTheEmployerDeletesAllFavouritesApprenticeships()
@@ -139,9 +137,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
         public void WhenTheEmployerDeletesTheFavourites()
         {
             foreach (var item in _campaignsDataHelper.CourseId)
-            {
                 _govukFavpage = _govukFavpage.RemoveFromFavourites(item).SelectYesAndContinue();
-            }
         }
 
         [Then(@"there are no items in the favourites")]
