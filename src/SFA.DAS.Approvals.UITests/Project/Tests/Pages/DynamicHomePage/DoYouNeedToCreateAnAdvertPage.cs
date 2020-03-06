@@ -15,6 +15,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.DynamicHomePage
 
         protected override By ContinueButton => By.Id("accept");
         private By NoRadioButtonOption => By.Id("choice2-no");
+        private By YesRadioButtonOption => By.Id("choice1-yes");
 
         public DoYouNeedToCreateAnAdvertPage(ScenarioContext context) : base(context)
         {
@@ -27,6 +28,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.DynamicHomePage
             _formCompletionHelper.ClickElement(NoRadioButtonOption);
             Continue();
             return new AddAnApprenitcePage(_context);
+        }
+
+        public DoYouNeedToCreateAnAdvertPage ClickYesRadioButtonTakesToRecruitment()
+        {
+            _formCompletionHelper.ClickElement(YesRadioButtonOption);
+            Continue();
+            return this;
         }
     }
 }

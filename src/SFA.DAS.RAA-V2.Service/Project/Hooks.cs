@@ -3,6 +3,7 @@ using SFA.DAS.RAA.DataGenerator;
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
+using SFA.DAS.Registration.UITests.Project.Helpers;
 
 namespace SFA.DAS.RAA_V2.Service.Project
 {

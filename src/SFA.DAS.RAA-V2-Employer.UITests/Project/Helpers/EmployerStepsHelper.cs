@@ -1,4 +1,6 @@
-﻿using SFA.DAS.Login.Service;
+﻿using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
+using SFA.DAS.Approvals.UITests.Project.Tests.Pages.DynamicHomePage;
+using SFA.DAS.Login.Service;
 using SFA.DAS.Login.Service.Helpers;
 using SFA.DAS.RAA_V2.Service.Project.Helpers;
 using SFA.DAS.RAA_V2.Service.Project.Tests.Pages;
@@ -13,6 +15,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
         private readonly ScenarioContext _context;
         private readonly EmployerPortalLoginHelper _loginhelper;
         private readonly HomePageStepsHelper _homePageStepsHelper;
+        private readonly EmployerPortalLoginHelper _loginHelper;
         private readonly StepsHelper _stepsHelper;
         public EmployerStepsHelper(ScenarioContext context)
         {
@@ -20,6 +23,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
             _loginhelper = new EmployerPortalLoginHelper(context);
             _homePageStepsHelper = new HomePageStepsHelper(context);
             _stepsHelper = new StepsHelper(context);
+            _loginHelper = new EmployerPortalLoginHelper(_context);
         }
 
         internal void SubmitVacancy(VacancyPreviewPart2Page previewPage, bool isApplicationMethodFAA, bool optionalFields)
@@ -30,6 +34,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
         internal VacanciesPage DeleteDraftVacancy(VacancyPreviewPart2Page previewPage) => previewPage.DeleteVacancy().YesDeleteVacancy();
 
         internal VacanciesPage CancelVacancy() => EnterVacancyTitle().CancelVacancy();
+
 
         internal void CreateOfflineVacancy(bool disabilityConfidence)
         {
@@ -80,7 +85,19 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
 
         internal void CreateANewVacancy(string wageType)
         {
-            var employernamePage = SelectOrganisation();
+            var employernamePage = SelectOrganisation();  
+
+            var locationPage = _stepsHelper.ChooseEmployerName(employernamePage, string.Empty);
+
+            var previewPage = _stepsHelper.PreviewVacancy(locationPage, wageType);
+
+            _stepsHelper.SubmitVacancy(previewPage, true, false);
+        }
+        
+
+        internal void CreateFirstSubmittedVacancy(string wageType)
+        {
+            var employernamePage = SelectOrganisationForNewAccount();
 
             var locationPage = _stepsHelper.ChooseEmployerName(employernamePage, string.Empty);
 
@@ -116,9 +133,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
 
         //private RecruitmentLandingPage GoToRecruitmentLandingPage()
         //{
-        //    _loginhelper.Login(_context.GetUser<RAAV2EmployerUser>(), true);
-
-        //    return NavigateToRecruitmentLandingPage();
+            
         //}
 
         private RecruitmentHomePage NavigateToRecruitmentHomePage() => new RecruitmentHomePage(_context, true);
@@ -133,6 +148,15 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
                 .EnterVacancyTitle();
         }
 
+        public VacancyTitlePage GoToAddAnAdvert()
+        {
+            MFEmployerStepsHelper _mfEmployerStepsHelper = new MFEmployerStepsHelper(_context);
+            _mfEmployerStepsHelper.ContinueToCreateAddAnApprentices();
+            DoYouNeedToCreateAnAdvertPage _doYouNeedToCreateAnAdvertPage = new DoYouNeedToCreateAnAdvertPage(_context);
+            _doYouNeedToCreateAnAdvertPage.ClickYesRadioButtonTakesToRecruitment();
+            return new RecruitmentLandingPage(_context).ClickStartNow();
+        }
+        
         private EmployerNamePage SelectOrganisation()
         {
             return EnterVacancyTitle()
@@ -144,6 +168,63 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
                 .SelectOrganisation();
         }
 
-        
+        private EmployerNamePage SelectOrganisationForNewAccount()
+        {
+            return new VacancyTitlePage(_context).EnterVacancyTitleForTheFirstVacancy()
+                .SelectYes()
+                .EnterTrainingTitle()
+                .ConfirmTrainingAndContinue()
+                .ChooseTrainingProvider()
+                .ConfirmTrainingProviderAndContinue()
+                .SubmitNoOfPositionsAndNavigateToEmployerNamePage();
+        }
+
+        public VacanciesPage CreateFirstDraftVacancy()
+        {
+            return new VacancyTitlePage(_context).EnterVacancyTitleForTheFirstVacancy().CancelVacancy();
+        }
+
+        public string ConfirmVacancyStatus(string vacancyStatus)
+        {
+            string status = null;
+            if (_loginHelper.IsYourAccountPageDisplayed())
+            {
+                status = new VacancyReferencePage(_context).GoToHomePage().ConfirmVacancyDetails(vacancyStatus);                
+            }
+            else
+            {
+                status = new DynamicHomePage(_context).ConfirmVacancyDetails(vacancyStatus);
+            }
+            return status.Remove(0,7);
+        }
+
+        private void ClicktheButtonOnAdvertPage(string button)
+        {
+            new DynamicHomePage(_context).ClicktheButtonOnAdvertPage(button);
+        }
+
+        public HaveYouAlreadyFoundTrainingPage ClickContinueCreatingYourVacancy(string button)
+        {
+            ClicktheButtonOnAdvertPage(button);
+            return new HaveYouAlreadyFoundTrainingPage(_context);
+        }
+
+        public RecruitmentHomePage ClickGoToYourVacancy(string button)
+        {
+            ClicktheButtonOnAdvertPage(button);
+            return new RecruitmentHomePage(_context);
+        }
+
+        public VacancyPreviewPart2Page ClickReviewYourVacancy(string button)
+        {
+            ClicktheButtonOnAdvertPage(button);
+            return new VacancyPreviewPart2Page(_context);
+        }
+
+        public ManageVacancyPage ClickApplicationsLink(string button)
+        {
+            ClicktheButtonOnAdvertPage(button);
+            return new ManageVacancyPage(_context);
+        }
     }
 }

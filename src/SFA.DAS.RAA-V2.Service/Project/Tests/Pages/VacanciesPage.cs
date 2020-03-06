@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.Approvals.UITests.Project.Tests.Pages.DynamicHomePage;
 using SFA.DAS.RAA.DataGenerator;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
@@ -21,6 +22,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         #endregion
 
         private By Filter => By.CssSelector("#Filter");
+        private By HomeLink => By.LinkText("Home");
 
         
         public VacanciesPage(ScenarioContext context) : base(context)
@@ -50,6 +52,12 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
             _formCompletionHelper.SelectFromDropDownByValue(Filter, "Draft");
             _pageInteractionHelper.WaitforURLToChange($"Filter=Draft");
             _tableRowHelper.SelectRowFromTable("Edit and submit", _vacancyTitleDatahelper.VacancyTitle);
+        }
+
+        public DynamicHomePage GoToHomePage()
+        {
+            _formCompletionHelper.Click(HomeLink);
+            return new DynamicHomePage(_context);
         }
     }
 }

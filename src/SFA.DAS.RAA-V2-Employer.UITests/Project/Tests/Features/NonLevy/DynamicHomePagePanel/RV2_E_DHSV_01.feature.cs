@@ -18,20 +18,20 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Features.NonLevy.Dynamic
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.0.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("RV2_E_DHFD_01")]
-    public partial class RV2_E_DHFD_01Feature
+    [NUnit.Framework.DescriptionAttribute("RV2_E_DHSV_01")]
+    public partial class RV2_E_DHSV_01Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "RV2_E_DHFD_01.feature"
+#line 1 "RV2_E_DHSV_01.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "RV2_E_DHFD_01", "As a Non Levy Employer, I want to add a vacancy after reserves funding from dynam" +
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "RV2_E_DHSV_01", "As a Non Levy Employer, I want to add a vacancy after reserves funding from dynam" +
                     "ic homepage", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
@@ -71,14 +71,14 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Features.NonLevy.Dynamic
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RV2_E_DHFD_01 Employer creates a draft vacancy from dynamic homepage journey")]
+        [NUnit.Framework.DescriptionAttribute("RV2_E_DHSV_01 Employer creates Submitted vacancy from dynamic homepage journey")]
         [NUnit.Framework.CategoryAttribute("raa-v2")]
         [NUnit.Framework.CategoryAttribute("raa-v2e")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("addpayedetails")]
-        public virtual void RV2_E_DHFD_01EmployerCreatesADraftVacancyFromDynamicHomepageJourney()
+        public virtual void RV2_E_DHSV_01EmployerCreatesSubmittedVacancyFromDynamicHomepageJourney()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV2_E_DHFD_01 Employer creates a draft vacancy from dynamic homepage journey", null, new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV2_E_DHSV_01 Employer creates Submitted vacancy from dynamic homepage journey", null, new string[] {
                         "raa-v2",
                         "raa-v2e",
                         "regression",
@@ -97,13 +97,13 @@ this.ScenarioInitialize(scenarioInfo);
 #line 14
  testRunner.And("the employer continue to add vacancy in the Recruitment", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 15
- testRunner.Given("the Employer creates first Draft vacancy", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("the Employer creates first submitted vacancy \'National Minimum Wage\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 16
- testRunner.And("the vacancy details is displayed on the Dynamic home page with Status \'Saved as d" +
-                    "raft\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("the vacancy details is displayed on the Dynamic home page with Status \'PENDING RE" +
+                    "VIEW\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 17
- testRunner.And("the Employer is able to go back to the Recruitment after clicking \'Continue creat" +
-                    "ing your vacancy\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("the Employer is able to go back to the Recruitment after clicking \'Go to your vac" +
+                    "ancy dashboard\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }

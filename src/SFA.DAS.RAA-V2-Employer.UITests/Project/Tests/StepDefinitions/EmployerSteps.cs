@@ -1,6 +1,8 @@
 ﻿using NUnit.Framework;
 using SFA.DAS.RAA_V2.Service.Project.Tests.Pages;
 using SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers;
+using SFA.DAS.Registration.UITests.Project.Helpers;
+using SFA.DAS.UI.FrameworkHelpers;
 using System.Collections.Generic;
 using System.Linq;
 using TechTalk.SpecFlow;
@@ -14,10 +16,13 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
         private VacanciesPage _vacanciesPage;
         private VacancyPreviewPart2Page _vacancyPreviewPart2Page;
         private VacancyPreviewPart2WithErrorsPage _vacancyPreviewPart2WithErrorsPage;
-
+        private readonly PageInteractionHelper _pageInteractionHelper;
+        private readonly HomePageStepsHelper _homePageStepsHelper;
         public EmployerSteps(ScenarioContext context) 
         { 
-            _employerStepsHelper = new EmployerStepsHelper(context); 
+            _employerStepsHelper = new EmployerStepsHelper(context);
+            _pageInteractionHelper = context.Get<PageInteractionHelper>();
+            _homePageStepsHelper = new HomePageStepsHelper(context);
         }
 
         [When(@"Employer selects '(National Minimum Wage|National Minimum Wage For Apprentices|Fixed Wage Type)' in the first part of the journey")]
@@ -103,12 +108,53 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
         [Then(@"the Employer verify '(National Minimum Wage For Apprentices|National Minimum Wage|Fixed Wage Type)' the wage option selected in the Preview page")]
         public void ThenTheEmployerVerifyTheWageOptionSelectedInThePreviewPage(string wageType) => _employerStepsHelper.VerifyWageType(wageType);
 
-        [Given(@"Employer initiates the create vacancy journey")]
-        public void GivenEmployerInitiatesTheCreateVacancyJourney()
+        [Given(@"the Employer creates first Draft vacancy")]
+        public void GivenTheEmployerCreatesFirstDraftVacancy() => _employerStepsHelper.CreateFirstDraftVacancy();
+        
+        [Then(@"the employer continue to add vacancy in the Recruitment")]
+        public void ThenTheEmployerContinueToAddVacancyInTheRecruitment() => _employerStepsHelper.GoToAddAnAdvert();
+
+        [Given(@"the vacancy details is displayed on the Dynamic home page with Status '(.*)'")]
+        public void GivenTheVacancyDetailsIsDisplayedOnTheDynamicHomePageWithStatus(string status)
         {
-            
+            string vacancyStatus = _employerStepsHelper.ConfirmVacancyStatus(status);
+            _pageInteractionHelper.VerifyText(vacancyStatus, status);            
+        }
+
+        [Given(@"the Employer is able to go back to the Recruitment after clicking '(.*)'")]
+        public void GivenTheEmployerIsAbleToGoBackToTheRecruitmentAfterClicking(string button)
+        {
+            switch(button)
+            {
+                case "Continue creating your vacancy":
+                    _employerStepsHelper.ClickContinueCreatingYourVacancy(button);
+                    break;
+
+                case "Go to your vacancy dashboard":
+                    _employerStepsHelper.ClickGoToYourVacancy(button);
+                    break;
+
+                case "Review your vacancy":
+                    _employerStepsHelper.ClickReviewYourVacancy(button);
+                    break;
+
+                case "application":
+                    _employerStepsHelper.ClickApplicationsLink(button);
+                    break;
+            }
+        }
+
+        [Given(@"the Employer creates first submitted vacancy '(.*)'")]
+        public void GivenTheEmployerCreatesFirstSubmittedVacancy(string wageType)
+        {
+            _employerStepsHelper.CreateFirstSubmittedVacancy(wageType);
+        }
+
+        [Given(@"the Employer logs into Employer account")]
+        public void GivenTheEmployerLogsIntoEmployerAccount()
+        {
+            _homePageStepsHelper.GotoEmployerHomePage();
         }
 
     }
-
 }
