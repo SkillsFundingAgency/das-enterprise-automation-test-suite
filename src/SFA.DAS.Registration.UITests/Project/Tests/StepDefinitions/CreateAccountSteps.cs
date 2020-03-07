@@ -36,9 +36,10 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         public void AnUserAccountIsCreated()
         {
             var emailId = _registrationDataHelper.RandomEmail;
+            _objectContext.SetRegisteredEmail(emailId);
             TestContext.Progress.WriteLine($"Email : {emailId}");
 
-            _addAPAYESchemePage = RegisterUser(emailId);
+            _addAPAYESchemePage = RegisterUser();
         }
 
         [Then(@"My Account Home page is displayed when PAYE details are not added")]
@@ -347,8 +348,8 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         {
             _homePage.ClickSignOutLink().CickContinueInYouveLoggedOutPage();
 
-            var emailId = _registrationDataHelper.AnotherRandomEmail;
-            _addAPAYESchemePage = RegisterUser(emailId);
+            _objectContext.UpdateRegisteredEmail(_registrationDataHelper.AnotherRandomEmail);
+            _addAPAYESchemePage = RegisterUser();
 
             _theseDetailsAreAlreadyInUsePage = ReEnterAornDetails();
         }
@@ -429,11 +430,11 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         private CheckYourDetailsPage AddPayeDetailsForSingleOrgAornRoute() =>
             _addAPAYESchemePage.AddAORN().EnterAornAndPayeDetailsForSingleOrgScenarioAndContinue();
 
-        private AddAPAYESchemePage RegisterUser(string emailId)
+        private AddAPAYESchemePage RegisterUser()
         {
             return new IndexPage(_context)
                 .CreateAccount()
-                .Register(emailId)
+                .Register()
                 .ContinueToGetApprenticeshipFunding();
         }
 
