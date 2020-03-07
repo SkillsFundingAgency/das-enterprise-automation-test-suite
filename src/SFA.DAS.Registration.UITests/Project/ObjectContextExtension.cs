@@ -12,6 +12,7 @@ namespace SFA.DAS.Registration.UITests.Project
         private const string OrganisationNameKey = "organisationname";
         private const string ReceiverAccountIdkey = "receiveraccountidkey";
         private const string ReceiverPublicAccountIdkey = "receiverpublicaccountidkey";
+        private const string AornNumberKey = "aornnumberkey";
         #endregion
 
         internal static void SetLoginCredentials(this ObjectContext objectContext, string loginusername, string loginpassword)
@@ -50,6 +51,11 @@ namespace SFA.DAS.Registration.UITests.Project
             objectContext.Set(ReceiverPublicAccountIdkey, value);
         }
 
+        internal static void SetAornNumber(this ObjectContext objectContext, string value)
+        {
+            objectContext.Set(AornNumberKey, value);
+        }
+
         public static string GetReceiverAccountId(this ObjectContext objectContext)
         {
             return objectContext.Get(ReceiverAccountIdkey);
@@ -78,6 +84,11 @@ namespace SFA.DAS.Registration.UITests.Project
         internal static LoginUser GetLoginCredentials(this ObjectContext objectContext)
         {
             return objectContext.Get<LoginUser>(LoggedInUserKey);
+        }
+
+        internal static string GetAornNumber(this ObjectContext objectContext)
+        {
+            return objectContext.Get(AornNumberKey);
         }
     }
 }

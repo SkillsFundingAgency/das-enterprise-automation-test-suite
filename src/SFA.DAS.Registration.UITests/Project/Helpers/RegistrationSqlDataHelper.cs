@@ -35,10 +35,11 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
             _sqlDatabase.ExecuteSqlCommand(_accountDbConnectionString, $"UPDATE [employer_account].[AccountLegalEntity] set Name = 'Changed Org Name' where AccountId = {accountId}");
         }
 
-        public string GetAORNNumber(string org)
+        public string CreateAORNData(string org)
         {
             var tprUniqueId = GetMaxValueOfTPRUniqueId() + 1;
             var aORNValue = "A" + Get12DigitDateTimeValue();
+            _objectContext.SetAornNumber(aORNValue);
             var organisationName = $"AutomationTestFor{org}Aorn{tprUniqueId}";
             _objectContext.UpdateOrganisationName(organisationName);
             TestContext.Progress.WriteLine($"AORN Number: {aORNValue}");

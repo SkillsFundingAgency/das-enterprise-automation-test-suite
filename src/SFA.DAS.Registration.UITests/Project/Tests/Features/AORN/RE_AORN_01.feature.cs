@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.Registration.UITests.Project.Tests.Features.CreateEmpAccountViaAornRoute
+namespace SFA.DAS.Registration.UITests.Project.Tests.Features.AORN
 {
     using TechTalk.SpecFlow;
     
@@ -19,6 +19,9 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features.CreateEmpAccountVi
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("RE_AORN_01")]
+    [NUnit.Framework.CategoryAttribute("regression")]
+    [NUnit.Framework.CategoryAttribute("registration")]
+    [NUnit.Framework.CategoryAttribute("addpayedetails")]
     public partial class RE_AORN_01Feature
     {
         
@@ -31,7 +34,10 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features.CreateEmpAccountVi
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "RE_AORN_01", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "RE_AORN_01", null, ProgrammingLanguage.CSharp, new string[] {
+                        "regression",
+                        "registration",
+                        "addpayedetails"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -72,16 +78,10 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features.CreateEmpAccountVi
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("RE_AORN_01A_Create an Employer Account through AORN route with paye details attac" +
             "hed to a Single Organisation")]
-        [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("registration")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
         public virtual void RE_AORN_01A_CreateAnEmployerAccountThroughAORNRouteWithPayeDetailsAttachedToASingleOrganisation()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RE_AORN_01A_Create an Employer Account through AORN route with paye details attac" +
-                    "hed to a Single Organisation", null, new string[] {
-                        "regression",
-                        "registration",
-                        "addpayedetails"});
+                    "hed to a Single Organisation", null, ((string[])(null)));
 #line 6
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
@@ -107,27 +107,47 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("RE_AORN_01B_Create an Employer Account through AORN route with paye details attac" +
             "hed to a Multiple Organisations")]
-        [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("registration")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
         public virtual void RE_AORN_01B_CreateAnEmployerAccountThroughAORNRouteWithPayeDetailsAttachedToAMultipleOrganisations()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RE_AORN_01B_Create an Employer Account through AORN route with paye details attac" +
-                    "hed to a Multiple Organisations", null, new string[] {
-                        "regression",
-                        "registration",
-                        "addpayedetails"});
-#line 17
+                    "hed to a Multiple Organisations", null, ((string[])(null)));
+#line 14
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 18
+#line 15
  testRunner.Given("an User Account is created", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 19
+#line 16
  testRunner.When("the User adds PAYE details attached to a MultiOrg through AORN route", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 20
+#line 17
  testRunner.And("the Employer Signs the Agreement", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 21
+#line 18
  testRunner.Then("the Employer Home page is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("RE_AORN_01C_Validate AORN route check details page links")]
+        public virtual void RE_AORN_01C_ValidateAORNRouteCheckDetailsPageLinks()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RE_AORN_01C_Validate AORN route check details page links", null, ((string[])(null)));
+#line 20
+this.ScenarioInitialize(scenarioInfo);
+            this.ScenarioStart();
+#line 21
+ testRunner.Given("an User Account is created", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 22
+ testRunner.When("the User is on the \'Check your details\' page after adding PAYE details through AO" +
+                    "RN route", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 23
+ testRunner.Then("choosing to change the AORN number displays \'Enter your PAYE scheme details\' page" +
+                    "", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 24
+ testRunner.And("choosing to change the PAYE scheme displays \'Enter your PAYE scheme details\' page" +
+                    "", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 25
+ testRunner.And("choosing to change the Organisation selected displays \'Search for your Organisati" +
+                    "on\' page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }

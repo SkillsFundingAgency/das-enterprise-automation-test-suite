@@ -33,10 +33,10 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             objectContext.SetAgreementId(agreementId);
         }
 
-        public OrganisationSearchPage ClickAddNewOrganisationButton()
+        public SearchForYourOrganisationPage ClickAddNewOrganisationButton()
         {
             formCompletionHelper.Click(AddNewOrganisationButton);
-            return new OrganisationSearchPage(_context);
+            return new SearchForYourOrganisationPage(_context);
         }
 
         public YourOrganisationsAndAgreementsPage VerifyNewlyAddedOrgIsPresent()

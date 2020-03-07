@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.MongoDb.DataGenerator;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
@@ -17,6 +18,9 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         private By ManuallyAddedOrganisationNumber => By.XPath("//th/span[text()='Charity number']/../following-sibling::td/span");
         private By ManuallyAddedOrganisationName => By.XPath("//th[contains(text(), 'Organisation')]/following-sibling::td");
         private By ManuallyAddedOrganisationAddress => By.XPath("//th[contains(text(), 'Address')]/following-sibling::td");
+        private By OrganisationChangeLink => By.XPath($"//td[contains(text(), '{objectContext.GetOrganisationName()}')]/..//a");
+        private By AornChangeLink => By.XPath($"//td[contains(text(), '{objectContext.GetAornNumber()}')]/..//a");
+        private By PayeSchemeChangeLink => By.XPath($"//dt[contains(text(), '{objectContext.GetGatewayPaye()}')]/../../following-sibling::td");
         #endregion
 
         public CheckYourDetailsPage(ScenarioContext context) : base(context)
@@ -53,6 +57,24 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         {
             Continue();
             return new WhenDoYouWantToViewEmpAgreementPage(_context);
+        }
+
+        public SearchForYourOrganisationPage ClickOrganisationChangeLink()
+        {
+            formCompletionHelper.Click(OrganisationChangeLink);
+            return new SearchForYourOrganisationPage(_context);
+        }
+
+        public EnterYourPAYESchemeDetailsPage ClickAornChangeLink()
+        {
+            formCompletionHelper.Click(AornChangeLink);
+            return new EnterYourPAYESchemeDetailsPage(_context);
+        }
+
+        public AddAPAYESchemePage ClickPayeSchemeChangeLink()
+        {
+            formCompletionHelper.Click(PayeSchemeChangeLink);
+            return new AddAPAYESchemePage(_context);
         }
     }
 }

@@ -17,14 +17,12 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         private HomePage _homePage;
         private AddAPAYESchemePage _addAPAYESchemePage;
         private GgSignInPage _gGSignInPage;
-        private OrganisationSearchPage _organistionSearchPage;
+        private SearchForYourOrganisationPage _organistionSearchPage;
         private SelectYourOrganisationPage _selectYourOrganisationPage;
         private SignAgreementPage _signAgreementPage;
         private CheckYourDetailsPage _checkYourDetailsPage;
         private YourOrganisationsAndAgreementsPage _yourOrganisationsAndAgreementsPage;
         private TheseDetailsAreAlreadyInUsePage _theseDetailsAreAlreadyInUsePage;
-        private string _aornNumber;
-
         public CreateAccountSteps(ScenarioContext context)
         {
             _context = context;
@@ -63,16 +61,16 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         [When(@"the User adds PAYE details attached to a (SingleOrg|MultiOrg) through AORN route")]
         public void WhenTheUserAddsPAYEDetailsAttachedToASingleOrgThroughAORNRoute(string org)
         {
-            _aornNumber = _registrationSqlDataHelper.GetAORNNumber(org);
+            _registrationSqlDataHelper.CreateAORNData(org);
 
             if (org.Equals("SingleOrg"))
             {
-                _checkYourDetailsPage = AddPayeDetailsForSingleOrgAornRoute(_aornNumber);
+                _checkYourDetailsPage = AddPayeDetailsForSingleOrgAornRoute();
             }
             else
             {
                 _checkYourDetailsPage = _addAPAYESchemePage.AddAORN()
-                    .EnterAornAndPayeDetailsForMultiOrgScenarioAndContinue(_aornNumber)
+                    .EnterAornAndPayeDetailsForMultiOrgScenarioAndContinue()
                     .SelectFirstOrganisationAndContinue();
             }
 
@@ -366,6 +364,32 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
                 .CickBackLinkInTheseDetailsAreAlreadyInUsePage();
         }
 
+        [When(@"the User is on the 'Check your details' page after adding PAYE details through AORN route")]
+        public void WhenTheUserIsOnTheCheckYourDetailsPageAfterAddingPAYEDetailsThroughAORNRoute()
+        {
+            _registrationSqlDataHelper.CreateAORNData("SingleOrg");
+            _checkYourDetailsPage = AddPayeDetailsForSingleOrgAornRoute();
+        }
+
+
+        [Then(@"choosing to change the AORN number displays 'Enter your PAYE scheme details' page")]
+        public void ThenChoosingToChangeTheAORNNumberDisplaysPage()
+        {
+            _checkYourDetailsPage = _checkYourDetailsPage.ClickAornChangeLink()
+                .EnterAornAndPayeDetailsForSingleOrgScenarioAndContinue();
+        }
+
+        [Then(@"choosing to change the PAYE scheme displays 'Enter your PAYE scheme details' page")]
+        public void ThenChoosingToChangeThePAYESchemeDisplaysEnterYourPAYESchemeDetailsPage()
+        {
+            _checkYourDetailsPage = _checkYourDetailsPage.ClickPayeSchemeChangeLink()
+                .AddAORN().EnterAornAndPayeDetailsForSingleOrgScenarioAndContinue();
+        }
+
+        [Then(@"choosing to change the Organisation selected displays 'Search for your Organisation' page")]
+        public void ThenChoosingToChangeTheOrganisationSelectedDisplaysSearchForYourOrganisationPage() =>
+            _checkYourDetailsPage.ClickOrganisationChangeLink();
+
         private void CreateAnUserAcountAndAddPaye()
         {
             AnUserAccountIsCreated();
@@ -402,8 +426,8 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
                         .SignAgreement();
         }
 
-        private CheckYourDetailsPage AddPayeDetailsForSingleOrgAornRoute(string aornNumber) =>
-            _addAPAYESchemePage.AddAORN().EnterAornAndPayeDetailsForSingleOrgScenarioAndContinue(aornNumber);
+        private CheckYourDetailsPage AddPayeDetailsForSingleOrgAornRoute() =>
+            _addAPAYESchemePage.AddAORN().EnterAornAndPayeDetailsForSingleOrgScenarioAndContinue();
 
         private AddAPAYESchemePage RegisterUser(string emailId)
         {
@@ -414,7 +438,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         }
 
         private TheseDetailsAreAlreadyInUsePage ReEnterAornDetails() => _addAPAYESchemePage.AddAORN()
-                .ReEnterTheSameAornDetailsAndContinue(_aornNumber);
+                .ReEnterTheSameAornDetailsAndContinue();
 
         private HomePage GoToHomePage() => new HomePage(_context, true);
     }

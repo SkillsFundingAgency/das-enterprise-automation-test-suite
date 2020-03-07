@@ -25,7 +25,7 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
         public string InvalidGGId { get; }
         public string InvalidGGPassword { get; }
         public string InvalidCompanyNumber { get; }
-        public string CompanyTypeOrg => "AUTOMATION & OPTIMISATION LTD";
+        public string CompanyTypeOrg => "ESFA LTD";
         public string PublicSectorTypeOrg => "Royal School Hampstead";
         public string CharityTypeOrg1Number => "200895";
         public string CharityTypeOrg1Name => "ALLHALLOWS CHARITY";
