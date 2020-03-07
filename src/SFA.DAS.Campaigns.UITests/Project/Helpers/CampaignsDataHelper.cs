@@ -1,4 +1,5 @@
-﻿using SFA.DAS.UI.FrameworkHelpers;
+﻿using OpenQA.Selenium;
+using SFA.DAS.UI.FrameworkHelpers;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -16,6 +17,8 @@ namespace SFA.DAS.Campaigns.UITests.Project.Helpers
             Lastname = _randomDataGenerator.GenerateRandomAlphabeticString(9);
             FullName = $"{Firstname} {Lastname}";
             Email = $"{Firstname}.{Lastname}@example.com";
+            CourseId = new List<string>();
+            ProviderId = new List<string>();
         }
 
         public string FullName { get; }
@@ -32,8 +35,14 @@ namespace SFA.DAS.Campaigns.UITests.Project.Helpers
 
         public string Postcode => "CV1 1DD";
 
+        public string ProviderPostcode => "CV1 4HS";
+
         public List<string> Postcodes = new List<string> { "SW1V 3LP", "M1 4WB", "G1 1YU", "EH2 4AD", "NN1 1SR", "CV1 4AH", "BS1 3LE", "SN1 1LF", "YO1 7DT", "LS1 4AG", "TW3 3JW" };
 
-            
+        public IWebElement GetRandomElementFromListOfElements(List<IWebElement> options) => _randomDataGenerator.GetRandomElementFromListOfElements(options);
+
+        public List<string> CourseId { get; internal set; }
+
+        public List<string> ProviderId { get; internal set; }
     }
 }
