@@ -11,6 +11,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
         private const string ProviderConfigKey = "providerconfigkey";
         private const string TestProjectConfigKey = "testprojectconfigkey";
         private const string RegistrationProjectConfigKey = "registrationprojectconfigkey";
+        private const string TprProjectConfigKey = "tprprojectconfigkey";
         private const string RoatpProjectConfigKey = "roatpprojectconfigkey";
         private const string SupportConsoleProjectConfigKey = "supportconsoleprojectconfigkey";
         private const string RAAV1ProjectConfigKey = "raav1projectconfigkey";
@@ -30,6 +31,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
         public static void SetRoatpConfig<T>(this ScenarioContext context, T value) => Set(context, value, RoatpProjectConfigKey);
         public static void SetTestProjectConfig<T>(this ScenarioContext context, T value) => Set(context, value, TestProjectConfigKey);
         public static void SetRegistrationConfig<T>(this ScenarioContext context, T value) => Set(context, value, RegistrationProjectConfigKey);
+        public static void SetTprConfig<T>(this ScenarioContext context, T value) => Set(context, value, TprProjectConfigKey);
         public static void SetApprovalsConfig<T>(this ScenarioContext context, T value) => Set(context, value, ApprovalsProjectConfigKey);
         public static void SetProviderConfig<T>(this ScenarioContext context, T value) => Set(context, value, ProviderConfigKey);
         public static void SetProviderPermissionConfig<T>(this ScenarioContext context, T value) => Set(context, value, ProviderPermissionConfigKey);
@@ -52,6 +54,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
         public static T GetRoatpConfig<T>(this ScenarioContext context) => Get<T>(context, RoatpProjectConfigKey);
         public static T GetFATConfig<T>(this ScenarioContext context) => Get<T>(context, FATProjectConfigKey);
         public static T GetRegistrationConfig<T>(this ScenarioContext context) => Get<T>(context, RegistrationProjectConfigKey);
+        public static T GetTprConfig<T>(this ScenarioContext context) => Get<T>(context, TprProjectConfigKey);
         public static T GetTestProjectConfig<T>(this ScenarioContext context) => Get<T>(context, TestProjectConfigKey);
         public static T GetApprovalsConfig<T>(this ScenarioContext context) => Get<T>(context, ApprovalsProjectConfigKey);
         public static T GetProviderConfig<T>(this ScenarioContext context) => Get<T>(context, ProviderConfigKey);

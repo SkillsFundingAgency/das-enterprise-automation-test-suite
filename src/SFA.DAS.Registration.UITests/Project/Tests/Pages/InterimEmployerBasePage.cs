@@ -24,9 +24,10 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         private By ChangePasswordLink => By.LinkText("Change your password");
         private By ChangeEmailAddressLink => By.LinkText("Change your email address");
         private By NotificationSettingsLink => By.LinkText("Notifications settings");
+        private By SignOutLink => By.LinkText("Sign out");
         #endregion
 
-        public InterimEmployerBasePage(ScenarioContext context, bool navigate) : base(context, navigate)
+        protected InterimEmployerBasePage(ScenarioContext context, bool navigate) : base(context, navigate)
         {
             _context = context;
             _tabHelper = _context.Get<TabHelper>();
@@ -35,30 +36,9 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             VerifyPage();
         }
 
-        public HomePage GoToHomePage()
-        {
-            return new HomePage(_context, true);
-        }
+        public HomePage GoToHomePage() => new HomePage(_context, true);
 
-        public HomePage GoToHomePageUsingUrl()
-        {
-            return new HomePage(_context, true);
-        }
-
-        public HomePage HomePage()
-        {
-            return new HomePage(_context);
-        }
-
-        public AboutYourAgreementPage AboutYourAgreementPage()
-        {
-            return new AboutYourAgreementPage(_context);
-        }
-
-        public AboutYourAgreementPage GoToAboutYourAgreementPage()
-        {
-            return new AboutYourAgreementPage(_context, true);
-        }
+        public HomePage HomePage() => new HomePage(_context);
 
         public YourOrganisationsAndAgreementsPage GoToYourOrganisationsAndAgreementsPage()
         {
@@ -104,6 +84,12 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             formCompletionHelper.ClickElement(SettingsLink);
             formCompletionHelper.ClickElement(NotificationSettingsLink);
             return new NotificationSettingsPage(_context);
+        }
+
+        public YouveLoggedOutPage SignOut()
+        {
+            formCompletionHelper.Click(SignOutLink);
+            return new YouveLoggedOutPage(_context);
         }
     }
 }

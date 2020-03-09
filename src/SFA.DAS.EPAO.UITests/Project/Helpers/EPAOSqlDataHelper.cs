@@ -5,14 +5,9 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
 {
     public class EPAOSqlDataHelper
     {
-        private readonly SqlDatabaseConnectionHelper _sqlDatabase;
         private readonly string _connectionString;
 
-        public EPAOSqlDataHelper(EPAOConfig ePAOConfig, SqlDatabaseConnectionHelper sqlDatabase)
-        {
-            _sqlDatabase = sqlDatabase;
-            _connectionString = ePAOConfig.EPAOAssessorDbConnectionString;
-        }
+        public EPAOSqlDataHelper(EPAOConfig ePAOConfig) => _connectionString = ePAOConfig.EPAOAssessorDbConnectionString;
 
         public void DeleteCertificate(string uln)
         {
@@ -28,8 +23,8 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
             ExecuteSqlCommand($"DELETE from Apply where OrganisationId = '{organisationId}'");
         }
 
-        private void ExecuteSqlCommand(string queryToExecute) => _sqlDatabase.ExecuteSqlCommand(_connectionString, queryToExecute);
+        private void ExecuteSqlCommand(string queryToExecute) => SqlDatabaseConnectionHelper.ExecuteSqlCommand(_connectionString, queryToExecute);
 
-        private string GetDataFromDb(string queryToExecute) => Convert.ToString(_sqlDatabase.ReadDataFromDataBase(queryToExecute, _connectionString)[0][0]);
+        private string GetDataFromDb(string queryToExecute) => Convert.ToString(SqlDatabaseConnectionHelper.ReadDataFromDataBase(queryToExecute, _connectionString)[0][0]);
     }
 }

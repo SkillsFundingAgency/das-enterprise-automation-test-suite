@@ -28,10 +28,10 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             VerifyPage();
         }
 
-        public OrganisationSearchPage SignInTo()
+        public SearchForYourOrganisationPage SignInTo()
         {
             EnterLoginDetailsAndSignIn(_gatewayid, _gatewaypassword);
-            return new OrganisationSearchPage(_context);
+            return new SearchForYourOrganisationPage(_context);
         }
 
         public GgSignInPage SignInWithInvalidDetails()
