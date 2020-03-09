@@ -58,7 +58,7 @@ namespace SFA.DAS.Registration.UITests.Project
 
             _context.Set(new RegistrationSqlDataHelper(_config));
 
-            _context.Set(new TprSqlDataHelper(_tprconfig, _objectContext, _registrationDatahelpers.AornNumber));
+            _context.Set(new TprSqlDataHelper(_tprconfig, _objectContext, _registrationDatahelpers));
         }
 
         [BeforeScenario(Order = 23)]

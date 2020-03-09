@@ -41,7 +41,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         private void EnterPayeData()
         {
-            formCompletionHelper.EnterText(AornTextBox, objectContext.GetAornNumber());
+            formCompletionHelper.EnterText(AornTextBox, registrationDataHelper.AornNumber);
             formCompletionHelper.EnterText(PayeRefTextBox, objectContext.GetGatewayPaye());
             Continue();
         }

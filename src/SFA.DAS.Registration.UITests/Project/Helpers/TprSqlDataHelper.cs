@@ -1,8 +1,6 @@
 ﻿using NUnit.Framework;
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.MongoDb.DataGenerator;
-using SFA.DAS.UI.FrameworkHelpers;
-using System;
 
 namespace SFA.DAS.Registration.UITests.Project.Helpers
 {
@@ -10,18 +8,15 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
     {
         private readonly string _tPRDbConnectionString;
         private readonly ObjectContext _objectContext;
-        private readonly string _aORNValue;
+        private readonly RegistrationDataHelper _registrationDataHelper;
         private readonly string _payescheme;
 
-        static readonly object _object = new object();
-
-        public TprSqlDataHelper(TprConfig tprConfig, ObjectContext objectContext, string aORNValue)
+        public TprSqlDataHelper(TprConfig tprConfig, ObjectContext objectContext, RegistrationDataHelper registrationDataHelper)
         {
             _tPRDbConnectionString = tprConfig.RE_TPRDbConnectionString;
             _objectContext = objectContext;
             _payescheme = objectContext.GetGatewayPaye();
-            _aORNValue = aORNValue;
-            _objectContext.SetAornNumber(_aORNValue);
+            _registrationDataHelper = registrationDataHelper;
         }
 
         public void CreateSingleOrgAornData() => CreateAornData("SingleOrg");
@@ -34,35 +29,8 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
 
         private void CreateAornData(string orgType)
         {
-            var organisationName = InsertTprData(orgType);
+            var organisationName = InsertTprDataHelper.InsertTprData(_tPRDbConnectionString, _registrationDataHelper.AornNumber, _payescheme, orgType);
             _objectContext.UpdateOrganisationName(organisationName);
-        } 
-
-        private string InsertTprData(string orgType)
-        {
-            lock (_object)
-            {
-                int tprUniqueId = ReadDataFromDataBase("SELECT MAX([TPRUniqueId]) FROM [Tpr].[Organisation]") + 1;
-
-                var organisationName = $"AutomationTestFor{orgType}Aorn{tprUniqueId}";
-
-                ExecuteSqlCommand("INSERT INTO[Tpr].[Organisation] ([TPRUniqueId],[OrganisationName],[AORN],[DistrictNumber],[Reference],[AODistrict],[AOTaxType],[AOCheckChar],[AOReference],[RecordCreatedDate]) " +
-                $"VALUES ({tprUniqueId}, '{organisationName}', '{_aORNValue}', '1', '1', 1, '1', '1', '1', '2020-01-01 00:00:00.0000000')");
-
-                var orgSK = ReadDataFromDataBase($"SELECT [OrgSK] FROM [Tpr].[Organisation] where [TPRUniqueId] = {tprUniqueId}");
-
-                ExecuteSqlCommand("INSERT INTO [Tpr].[OrganisationAddress] ([OrgSK],[TPRUniqueID],[OrganisationFullAddress],[AddressLine1],[AddressLine2],[AddressLine3],[PostCode],[RecordCreatedDate]) " +
-                $"VALUES ({orgSK}, {tprUniqueId}, 'AutomationTestAddress{tprUniqueId}', '{tprUniqueId}', 'Test Street', 'Coventry', 'CV1 2WT', '2020-01-01 00:00:00.0000000')");
-
-                ExecuteSqlCommand("INSERT INTO [Tpr].[OrganisationPAYEScheme] ([OrgSK],[TPRUniqueID],[PAYEScheme],[SchemeStartDate],[RecordCreatedDate]) " +
-                $"VALUES ({orgSK}, {tprUniqueId}, '{_payescheme}', '2020-01-01', '2020-01-01 00:00:00.0000000')");
-
-                return organisationName;
-            }
         }
-
-        private int ReadDataFromDataBase(string queryToExecute) => Convert.ToInt32(SqlDatabaseConnectionHelper.ReadDataFromDataBase(queryToExecute, _tPRDbConnectionString)[0][0]);
-
-        private void ExecuteSqlCommand(string queryToExecute) => SqlDatabaseConnectionHelper.ExecuteSqlCommand(_tPRDbConnectionString, queryToExecute);
     }
 }
