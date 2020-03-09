@@ -38,6 +38,7 @@ namespace SFA.DAS.RAA_V2_QA.UITests.Project.Tests.Pages.Reviewer
             }
 
             _formCompletionHelper.Click(SubmitButton);
+            _pageInteractionHelper.WaitforURLToChange("reviews");
         }
 
         public void Refer()

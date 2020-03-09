@@ -70,6 +70,8 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
         [Then(@"Employer can make the application unsuccessful")]
         public void ThenEmployerCanMakeTheApplicationUnsuccessful() => _employerStepsHelper.ApplicantUnsucessful();
 
+        [When(@"the Employer can close the vacancy")]
+        [Given(@"the Employer can close the vacancy")]
         [Then(@"the Employer can close the vacancy")]
         public void ThenTheEmployerCanCloseTheVacancy() => _employerStepsHelper.CloseVacancy();
         
@@ -138,7 +140,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
                     _employerStepsHelper.ClickReviewYourVacancy(button);
                     break;
 
-                case "application":
+                case "0 applications":
                     _employerStepsHelper.ClickApplicationsLink(button);
                     break;
             }

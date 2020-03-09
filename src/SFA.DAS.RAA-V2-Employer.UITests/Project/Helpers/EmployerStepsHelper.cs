@@ -186,6 +186,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
 
         public string ConfirmVacancyStatus(string vacancyStatus)
         {
+
             string status = null;
             if (_loginHelper.IsYourAccountPageDisplayed())
             {

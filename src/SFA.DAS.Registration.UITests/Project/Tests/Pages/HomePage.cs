@@ -24,8 +24,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         private By AcceptYourAgreementLink => By.LinkText("Accept your agreement");
         private By StartAddingApprenticesNowTaskLink => By.LinkText("Start adding apprentices now");
         protected By YourFundingReservationsLink => By.LinkText("Your funding reservations");
-        protected By YourFinancesLink => By.LinkText("Your finances");
-
+        protected By YourFinancesLink => By.LinkText("Your finances");   
         #endregion
 
         #region DynamicHomePanel
@@ -43,6 +42,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         private By ReviewYourVacancy => By.LinkText("Review your vacancy");
         private By applicationsLink => By.CssSelector(".govuk-link");
         private By AddApprenticeDetails => By.LinkText("Add apprentice details");
+        private By LiveStatus => By.CssSelector(".govuk-tag govuk-tag--active");
         #endregion
 
 
@@ -114,11 +114,21 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
                             break;
 
                         case "LIVE":
+                            IWebElement func()
+                            {
+                                var liveStatus = _pageInteractionHelper.FindElement(LiveStatus);
+                                if (liveStatus.Text == "Live")
+                                {
+                                    return liveStatus;
+                                }
+                                return null;
+                            }
+                            //_pageInteractionHelper.WaitForElementToChange(func, AttributeHelper.InnerText, "Live");
                             vacancyStatus = _pageInteractionHelper.GetText(rows[i + 1]);
                             _pageInteractionHelper.VerifyText(rows[i + 2].Text, "Closing date " +(_raaV2DataHelper.VacancyClosing).ToString("dd MMM yyyy"));
                             _pageInteractionHelper.VerifyText(rows[i + 3].Text, "Applications 0 applications");
                             bool buttonDisplayed = _pageInteractionHelper.IsElementDisplayed(AddApprenticeDetails);
-                            _pageInteractionHelper.VerifyText(buttonDisplayed.ToString(), "true");                            
+                            _pageInteractionHelper.VerifyText(buttonDisplayed.ToString(), "True");                            
                             break;
 
                         case "CLOSED":
