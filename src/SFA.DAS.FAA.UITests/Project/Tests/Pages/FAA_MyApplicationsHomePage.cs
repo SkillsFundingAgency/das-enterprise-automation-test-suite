@@ -13,7 +13,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 
         #region Helpers and Context        
         private readonly FormCompletionHelper _formCompletionHelper;
-        private readonly PageInteractionHelper _PageIntercationHelper;
+        private readonly PageInteractionHelper _pageIntercationHelper;
         private readonly ScenarioContext _context;
         private readonly VacancyTitleDatahelper _dataHelper;
         private readonly TableRowHelper _tableRowHelper;
@@ -43,11 +43,17 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 
         private By VacancyDeletedLink => By.Id("vacancyDeletedLink");
 
+        private By SavedVacancy => By.CssSelector($"tr a[href*='{VacancyDetailshref}']");
+
+        private By DeleteVacancy(string id) => By.CssSelector($"tr a.delete-draft[href*='/apprenticeship/delete/{id}']");
+
+        private string VacancyDetailshref => "/account/apprenticeshipvacancydetails/";
+
         public FAA_MyApplicationsHomePage(ScenarioContext context) : base(context)
         {
             _context = context;            
             _formCompletionHelper = context.Get<FormCompletionHelper>();
-            _PageIntercationHelper = context.Get<PageInteractionHelper>();
+            _pageIntercationHelper = context.Get<PageInteractionHelper>();
             _dataHelper = context.Get<VacancyTitleDatahelper>();
             _tableRowHelper = context.Get<TableRowHelper>();
             VerifyPage();
@@ -76,12 +82,12 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
         }
         private void VerifyVacancySuccessfulNotification()
         {
-            _PageIntercationHelper.VerifyText(NotificationText, "Your application for "+_dataHelper.VacancyTitle+" has been successful."); 
+            _pageIntercationHelper.VerifyText(NotificationText, "Your application for "+_dataHelper.VacancyTitle+" has been successful."); 
         }
 
         private void VerifyVacancyUnsuccessfulNotification()
         {
-            _PageIntercationHelper.VerifyText(NotificationText, "Your application for "+_dataHelper.VacancyTitle+" has been unsuccessful.");
+            _pageIntercationHelper.VerifyText(NotificationText, "Your application for "+_dataHelper.VacancyTitle+" has been unsuccessful.");
         }
 
         public void DismissSuccessfulNotification()
@@ -105,12 +111,12 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 
         public void CheckDraftApplication()
         {
-            _PageIntercationHelper.VerifyText(SavedSection, _dataHelper.VacancyTitle);
+            _pageIntercationHelper.VerifyText(SavedSection, _dataHelper.VacancyTitle);
         }
 
         private void DeleteDraftApplication()
         {
-            var Table = _PageIntercationHelper.FindElement(SavedVacanciesTable);
+            var Table = _pageIntercationHelper.FindElement(SavedVacanciesTable);
             var rows = Table.FindElements(By.TagName("tr"));
             foreach (var row in rows)
             {
@@ -128,10 +134,19 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 
         public FAA_ApprenticeSummaryPage ConfirmVacancyDeletion()
         {
-            DeleteDraftApplication();
-            _PageIntercationHelper.VerifyText(DraftVacancyDeletionInfoText, "You've successfully removed the " + _dataHelper.VacancyTitle + " apprenticeship");
+            DeleteDraft();
+            _pageIntercationHelper.VerifyText(DraftVacancyDeletionInfoText, "You've successfully removed the " + _dataHelper.VacancyTitle + " apprenticeship");
             _formCompletionHelper.Click(VacancyDeletedLink);
             return new FAA_ApprenticeSummaryPage(_context);
+        }
+
+        private void DeleteDraft()
+        {
+            var element = _pageIntercationHelper.GetLinkContains(SavedVacancy, _dataHelper.VacancyTitle);
+            
+            var id = element.GetAttribute("href").Replace(VacancyDetailshref, string.Empty);
+
+            _formCompletionHelper.ClickElement(DeleteVacancy(id));
         }
     }
 }
