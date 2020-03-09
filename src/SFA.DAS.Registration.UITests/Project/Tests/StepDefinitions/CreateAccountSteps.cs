@@ -14,6 +14,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         private readonly ObjectContext _objectContext;
         private readonly RegistrationDataHelper _registrationDataHelper;
         private readonly RegistrationSqlDataHelper _registrationSqlDataHelper;
+        private readonly TprSqlDataHelper _tprSqlDataHelper;
         private HomePage _homePage;
         private AddAPAYESchemePage _addAPAYESchemePage;
         private GgSignInPage _gGSignInPage;
@@ -23,12 +24,14 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         private CheckYourDetailsPage _checkYourDetailsPage;
         private YourOrganisationsAndAgreementsPage _yourOrganisationsAndAgreementsPage;
         private TheseDetailsAreAlreadyInUsePage _theseDetailsAreAlreadyInUsePage;
+
         public CreateAccountSteps(ScenarioContext context)
         {
             _context = context;
             _objectContext = _context.Get<ObjectContext>();
             _registrationDataHelper = context.Get<RegistrationDataHelper>();
             _registrationSqlDataHelper = context.Get<RegistrationSqlDataHelper>();
+            _tprSqlDataHelper = context.Get<TprSqlDataHelper>();
         }
 
         [Given(@"an User Account is created")]
@@ -62,14 +65,14 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         [When(@"the User adds PAYE details attached to a (SingleOrg|MultiOrg) through AORN route")]
         public void WhenTheUserAddsPAYEDetailsAttachedToASingleOrgThroughAORNRoute(string org)
         {
-            _registrationSqlDataHelper.CreateAORNData(org);
-
             if (org.Equals("SingleOrg"))
             {
+                _tprSqlDataHelper.CreateSingleOrgAornData();
                 _checkYourDetailsPage = AddPayeDetailsForSingleOrgAornRoute();
             }
             else
             {
+                _tprSqlDataHelper.CreateMultiOrgAORNData();
                 _checkYourDetailsPage = _addAPAYESchemePage.AddAORN()
                     .EnterAornAndPayeDetailsForMultiOrgScenarioAndContinue()
                     .SelectFirstOrganisationAndContinue();
@@ -346,9 +349,10 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         [Then(@"'These details are already in use' page is displayed when Another Employer tries to register the account with the same Aorn and Paye details")]
         public void ThenPageIsDisplayedWhenAnotherEmployerTriesToRegisterTheAccountWithTheSameAornAndPayeDetails()
         {
-            _homePage.ClickSignOutLink().CickContinueInYouveLoggedOutPage();
+            _homePage.SignOut().CickContinueInYouveLoggedOutPage();
 
-            _objectContext.UpdateRegisteredEmail(_registrationDataHelper.AnotherRandomEmail);
+            _objectContext.SetRegisteredEmail(_registrationDataHelper.AnotherRandomEmail);
+            
             _addAPAYESchemePage = RegisterUser();
 
             _theseDetailsAreAlreadyInUsePage = ReEnterAornDetails();
@@ -359,33 +363,23 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             _addAPAYESchemePage = _theseDetailsAreAlreadyInUsePage.CickUseDifferentDetailsButtonInTheseDetailsAreAlreadyInUsePage();
 
         [Then(@"'Add a PAYE Scheme' page is displayed when Employer clicks on Back link on the 'PAYE scheme already in use' page")]
-        public void ThenAddAPAYESchemePageIsDisplayedWhenEmployerClicksOnBackLinkOnThePage()
-        {
-            _addAPAYESchemePage = ReEnterAornDetails()
-                .CickBackLinkInTheseDetailsAreAlreadyInUsePage();
-        }
+        public void ThenAddAPAYESchemePageIsDisplayedWhenEmployerClicksOnBackLinkOnThePage() => 
+            _addAPAYESchemePage = ReEnterAornDetails().CickBackLinkInTheseDetailsAreAlreadyInUsePage();
 
         [When(@"the User is on the 'Check your details' page after adding PAYE details through AORN route")]
         public void WhenTheUserIsOnTheCheckYourDetailsPageAfterAddingPAYEDetailsThroughAORNRoute()
         {
-            _registrationSqlDataHelper.CreateAORNData("SingleOrg");
+            _tprSqlDataHelper.CreateSingleOrgAornData();
             _checkYourDetailsPage = AddPayeDetailsForSingleOrgAornRoute();
         }
 
-
         [Then(@"choosing to change the AORN number displays 'Enter your PAYE scheme details' page")]
-        public void ThenChoosingToChangeTheAORNNumberDisplaysPage()
-        {
-            _checkYourDetailsPage = _checkYourDetailsPage.ClickAornChangeLink()
-                .EnterAornAndPayeDetailsForSingleOrgScenarioAndContinue();
-        }
+        public void ThenChoosingToChangeTheAORNNumberDisplaysPage() => 
+            _checkYourDetailsPage = _checkYourDetailsPage.ClickAornChangeLink().EnterAornAndPayeDetailsForSingleOrgScenarioAndContinue();
 
         [Then(@"choosing to change the PAYE scheme displays 'Enter your PAYE scheme details' page")]
-        public void ThenChoosingToChangeThePAYESchemeDisplaysEnterYourPAYESchemeDetailsPage()
-        {
-            _checkYourDetailsPage = _checkYourDetailsPage.ClickPayeSchemeChangeLink()
-                .AddAORN().EnterAornAndPayeDetailsForSingleOrgScenarioAndContinue();
-        }
+        public void ThenChoosingToChangeThePAYESchemeDisplaysEnterYourPAYESchemeDetailsPage() => 
+            _checkYourDetailsPage = _checkYourDetailsPage.ClickPayeSchemeChangeLink().AddAORN().EnterAornAndPayeDetailsForSingleOrgScenarioAndContinue();
 
         [Then(@"choosing to change the Organisation selected displays 'Search for your Organisation' page")]
         public void ThenChoosingToChangeTheOrganisationSelectedDisplaysSearchForYourOrganisationPage() =>
@@ -444,3 +438,4 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         private HomePage GoToHomePage() => new HomePage(_context, true);
     }
 }
+

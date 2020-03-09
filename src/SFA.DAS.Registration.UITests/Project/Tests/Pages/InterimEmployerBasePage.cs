@@ -36,15 +36,9 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             VerifyPage();
         }
 
-        public HomePage GoToHomePage()
-        {
-            return new HomePage(_context, true);
-        }
+        public HomePage GoToHomePage() => new HomePage(_context, true);
 
-        public HomePage HomePage()
-        {
-            return new HomePage(_context);
-        }
+        public HomePage HomePage() => new HomePage(_context);
 
         public YourOrganisationsAndAgreementsPage GoToYourOrganisationsAndAgreementsPage()
         {
@@ -92,7 +86,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             return new NotificationSettingsPage(_context);
         }
 
-        public YouveLoggedOutPage ClickSignOutLink()
+        public YouveLoggedOutPage SignOut()
         {
             formCompletionHelper.Click(SignOutLink);
             return new YouveLoggedOutPage(_context);
