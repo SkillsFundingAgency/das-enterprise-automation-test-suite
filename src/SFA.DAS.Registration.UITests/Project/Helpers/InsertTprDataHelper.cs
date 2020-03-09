@@ -5,7 +5,7 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
 {
     internal static class InsertTprDataHelper
     {
-        static readonly object _object = new object();
+        private static readonly object _object = new object();
 
         internal static string InsertTprData(string connectionString, string aornValue, string payescheme, string orgType)
         {
