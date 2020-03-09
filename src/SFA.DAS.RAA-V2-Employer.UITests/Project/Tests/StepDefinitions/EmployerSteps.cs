@@ -140,7 +140,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
                     _employerStepsHelper.ClickReviewYourVacancy(button);
                     break;
 
-                case "0 applications":
+                case "application":
                     _employerStepsHelper.ClickApplicationsLink(button);
                     break;
             }

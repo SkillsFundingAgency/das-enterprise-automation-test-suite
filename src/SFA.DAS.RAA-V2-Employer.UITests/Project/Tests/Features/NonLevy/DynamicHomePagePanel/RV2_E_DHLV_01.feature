@@ -18,4 +18,4 @@ Scenario: RV2_E_DHLV_01 Employer creates vacancy from dynamic homepage journey a
 	And the Applicant can apply for a Vacancy in FAA
 	And the Employer logs into Employer account
 	And the vacancy details is displayed on the Dynamic home page with Status 'LIVE'
-	And the Employer is able to go back to the Recruitment after clicking '1 applications'
+	And the Employer is able to go back to the Recruitment after clicking 'application'

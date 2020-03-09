@@ -18,4 +18,4 @@ Scenario: RV2_E_DHCV_01 Employer creates vacancy from dynamic homepage journey, 
 	And the Applicant can apply for a Vacancy in FAA
 	And the Employer can close the vacancy
 	And the vacancy details is displayed on the Dynamic home page with Status 'CLOSED'
-	And the Employer is able to go back to the Recruitment after clicking '1 applications'
+	And the Employer is able to go back to the Recruitment after clicking 'application'

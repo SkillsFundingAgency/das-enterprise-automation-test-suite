@@ -109,8 +109,7 @@ this.ScenarioInitialize(scenarioInfo);
 #line 20
  testRunner.And("the vacancy details is displayed on the Dynamic home page with Status \'LIVE\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 21
- testRunner.And("the Employer is able to go back to the Recruitment after clicking \'1 applications" +
-                    "\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("the Employer is able to go back to the Recruitment after clicking \'application\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }

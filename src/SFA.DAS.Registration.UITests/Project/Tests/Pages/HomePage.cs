@@ -159,10 +159,10 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
                     _formCompletionHelper.Click(ReviewYourVacancy);
                     break;
 
-                case "0 applications":
+                case "application":
                     foreach (var link in links)
                     {
-                        if (link.Text.Contains("applications"))
+                        if (link.Text.Contains("application"))
                         {
                             link.Click();
                             break;
