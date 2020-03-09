@@ -18,15 +18,9 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         }
 
         [Given(@"the Employer logins using existing Levy Account")]
-        public void GivenTheEmployerLoginsUsingExistingLevyAccount()
-        {
-            _loginhelper.Login(_context.GetUser<LevyUser>(), true);
-        }
+        public void GivenTheEmployerLoginsUsingExistingLevyAccount() => _loginhelper.Login(_context.GetUser<LevyUser>(), true);
 
         [Given(@"the Employer logins using existing NonLevy Account")]
-        public void GivenTheEmployerLoginsUsingExistingNonLevyAccount()
-        {
-            _loginhelper.Login(_context.GetUser<NonLevyUser>(), false);
-        }
+        public void GivenTheEmployerLoginsUsingExistingNonLevyAccount() => _loginhelper.Login(_context.GetUser<NonLevyUser>(), false);
     }
 }

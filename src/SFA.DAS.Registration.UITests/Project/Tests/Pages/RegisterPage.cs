@@ -49,7 +49,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         private RegisterPage EnterEmail()
         {
-            formCompletionHelper.EnterText(EmailInput, registrationDataHelper.RandomEmail);
+            formCompletionHelper.EnterText(EmailInput, objectContext.GetRegisteredEmail());
             return this;
         }
 
