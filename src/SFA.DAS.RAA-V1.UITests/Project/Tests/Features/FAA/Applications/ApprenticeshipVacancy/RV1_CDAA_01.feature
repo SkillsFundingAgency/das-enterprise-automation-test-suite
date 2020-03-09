@@ -1,8 +1,7 @@
 ﻿Feature: RV1_CDAA_01
 	
 Background: 
-	When an Applicant initiates Account creation journey
-	Then the Applicant is able to create a FAA Account
+	Given the Applicant creates new FAA account
 @apprenticeshipvacancy
 @regression
 @raa-v1
