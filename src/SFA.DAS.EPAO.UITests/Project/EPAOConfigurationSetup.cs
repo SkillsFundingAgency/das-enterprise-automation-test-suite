@@ -21,6 +21,9 @@ namespace SFA.DAS.EPAO.UITests.Project
         {
             var config = _configSection.GetConfigSection<EPAOConfig>();
             _context.SetEPAOConfig(config);
+
+            var adminconfig = _configSection.GetConfigSection<EpaoAdminConfig>();
+            _context.SetEPAOAdminConfig(adminconfig);
         }
     }
 }

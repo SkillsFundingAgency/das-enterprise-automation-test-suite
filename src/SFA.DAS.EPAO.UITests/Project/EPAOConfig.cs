@@ -25,4 +25,11 @@
         public string EPAOAlreadyAssessedApprenticeUln { get; set; }
         public string EPAOAssessorDbConnectionString { get; set; }
     }
+
+    public class EpaoAdminConfig
+    {
+        public string AdminBaseUrl { get; set; }
+        public string AdminUserName { get; set; }
+        public string AdminPassword { get; set; }
+    }
 }
