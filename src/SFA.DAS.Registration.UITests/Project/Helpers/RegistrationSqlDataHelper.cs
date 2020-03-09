@@ -5,14 +5,9 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
 {
     internal class RegistrationSqlDataHelper
     {
-        private readonly SqlDatabaseConnectionHelper _sqlDatabase;
         private readonly string _accountDbConnectionString;
 
-        public RegistrationSqlDataHelper(RegistrationConfig registrationConfig, SqlDatabaseConnectionHelper sqlDatabase)
-        {
-            _sqlDatabase = sqlDatabase;
-            _accountDbConnectionString = registrationConfig.RE_AccountsDbConnectionString;
-        }
+        public RegistrationSqlDataHelper(RegistrationConfig registrationConfig) => _accountDbConnectionString = registrationConfig.RE_AccountsDbConnectionString;
 
         public string GetAccountApprenticeshipEmployerType(string email)
         {
@@ -25,9 +20,9 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
         {
             var id = GetDataFromAccountsDb($"SELECT Id from [employer_account].[User] where Email = '{email}'");
             var accountId = GetDataFromAccountsDb($"SELECT AccountId FROM [employer_account].[Membership] where UserId = {id}");
-            _sqlDatabase.ExecuteSqlCommand(_accountDbConnectionString, $"UPDATE [employer_account].[AccountLegalEntity] set Name = 'Changed Org Name' where AccountId = {accountId}");
+            SqlDatabaseConnectionHelper.ExecuteSqlCommand(_accountDbConnectionString, $"UPDATE [employer_account].[AccountLegalEntity] set Name = 'Changed Org Name' where AccountId = {accountId}");
         }
 
-        private string GetDataFromAccountsDb(string queryToExecute) => Convert.ToString(_sqlDatabase.ReadDataFromDataBase(queryToExecute, _accountDbConnectionString)[0][0]);
+        private string GetDataFromAccountsDb(string queryToExecute) => Convert.ToString(SqlDatabaseConnectionHelper.ReadDataFromDataBase(queryToExecute, _accountDbConnectionString)[0][0]);
     }
 }
