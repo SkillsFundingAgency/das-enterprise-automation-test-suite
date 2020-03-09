@@ -10,13 +10,13 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
-        private readonly EpaoAdminConfig _config;
+        private readonly EPAOAdminConfig _config;
         #endregion
 
         public SignInPage(ScenarioContext context) : base(context)
         {
             _context = context;
-            _config = context.GetEPAOAdminConfig<EpaoAdminConfig>();
+            _config = context.GetEPAOAdminConfig<EPAOAdminConfig>();
         }
 
         public EpaoAdminHomePage SignInWithValidDetails()
