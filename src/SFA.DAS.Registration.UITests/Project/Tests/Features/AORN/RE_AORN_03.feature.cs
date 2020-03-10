@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.Campaigns.UITests.Project.Tests.Features.E2E
+namespace SFA.DAS.Registration.UITests.Project.Tests.Features.AORN
 {
     using TechTalk.SpecFlow;
     
@@ -18,20 +18,26 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Features.E2E
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.0.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("CA_E2E_01")]
-    public partial class CA_E2E_01Feature
+    [NUnit.Framework.DescriptionAttribute("RE_AORN_03")]
+    [NUnit.Framework.CategoryAttribute("regression")]
+    [NUnit.Framework.CategoryAttribute("registration")]
+    [NUnit.Framework.CategoryAttribute("addpayedetails")]
+    public partial class RE_AORN_03Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "CA_E2E_01.feature"
+#line 1 "RE_AORN_03.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "CA_E2E_01", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "RE_AORN_03", null, ProgrammingLanguage.CSharp, new string[] {
+                        "regression",
+                        "registration",
+                        "addpayedetails"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -70,33 +76,27 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Features.E2E
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("CA_E2E_01_Employer favourites Apprenticeship and a Training Provider and removes " +
-            "them")]
-        [NUnit.Framework.CategoryAttribute("campaigns")]
-        [NUnit.Framework.CategoryAttribute("employer")]
-        [NUnit.Framework.CategoryAttribute("regression")]
-        public virtual void CA_E2E_01_EmployerFavouritesApprenticeshipAndATrainingProviderAndRemovesThem()
+        [NUnit.Framework.DescriptionAttribute("RE_AORN_03_Validate AORN route check details page links")]
+        public virtual void RE_AORN_03_ValidateAORNRouteCheckDetailsPageLinks()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CA_E2E_01_Employer favourites Apprenticeship and a Training Provider and removes " +
-                    "them", null, new string[] {
-                        "campaigns",
-                        "employer",
-                        "regression"});
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RE_AORN_03_Validate AORN route check details page links", null, ((string[])(null)));
 #line 6
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 7
- testRunner.Given("the employer searches for an apprenticeship", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("an User Account is created", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 8
- testRunner.When("the employer shortlists favourite apprenticeship and provider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("the User is on the \'Check your details\' page after adding PAYE details through AO" +
+                    "RN route", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 9
- testRunner.Then("the favourites are saved in gov uk account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("choosing to change the AORN number displays \'Enter your PAYE scheme details\' page" +
+                    "", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 10
- testRunner.When("the employer deletes the favourites", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.And("choosing to change the PAYE scheme displays \'Enter your PAYE scheme details\' page" +
+                    "", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 11
- testRunner.Then("there are no items in the favourites", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 12
- testRunner.Then("the basket is empty", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("choosing to change the Organisation selected displays \'Search for your Organisati" +
+                    "on\' page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }

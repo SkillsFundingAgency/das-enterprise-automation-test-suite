@@ -38,7 +38,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
             _browser = objectContext.GetBrowser();
             TakeScreenShot();
         }
-        
+
         protected bool VerifyPageAfterRefresh(By locator) => _pageInteractionHelper.VerifyPageAfterRefresh(locator);
 
         protected bool VerifyPage(Func<List<IWebElement>> func) => _pageInteractionHelper.VerifyPage(func, PageTitle);

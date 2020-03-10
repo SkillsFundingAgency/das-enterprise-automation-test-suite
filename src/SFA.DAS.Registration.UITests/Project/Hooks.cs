@@ -13,24 +13,24 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.Registration.UITests.Project
 {
     [Binding]
-    public class Hooks          
+    public class Hooks
     {
         private readonly ScenarioContext _context;
         private readonly RegistrationConfig _config;
+        private readonly TprConfig _tprconfig;
         private readonly IWebDriver _webDriver;
         private readonly ObjectContext _objectContext;
         private List<string> _empRefs;
         private RegistrationDataHelper _registrationDatahelpers;
         private LoginCredentialsHelper _loginCredentialsHelper;
         private MongoDbDataGenerator _mongoDbDataGenerator;
-        private readonly SqlDatabaseConnectionHelper _sqlDatabaseConnectionHelper;
 
         public Hooks(ScenarioContext context)
         {
             _context = context;
             _webDriver = context.GetWebDriver();
             _config = context.GetRegistrationConfig<RegistrationConfig>();
-            _sqlDatabaseConnectionHelper = context.Get<SqlDatabaseConnectionHelper>();
+            _tprconfig = context.GetTprConfig<TprConfig>();
             _objectContext = context.Get<ObjectContext>();
         }
 
@@ -56,8 +56,9 @@ namespace SFA.DAS.Registration.UITests.Project
 
             _objectContext.SetOrganisationName(_config.RE_OrganisationName);
 
-            var registrationSqlDataHelper = new RegistrationSqlDataHelper(_config, _sqlDatabaseConnectionHelper, _objectContext);
-            _context.Set(registrationSqlDataHelper);
+            _context.Set(new RegistrationSqlDataHelper(_config));
+
+            _context.Set(new TprSqlDataHelper(_tprconfig, _objectContext, _registrationDatahelpers));
         }
 
         [BeforeScenario(Order = 23)]

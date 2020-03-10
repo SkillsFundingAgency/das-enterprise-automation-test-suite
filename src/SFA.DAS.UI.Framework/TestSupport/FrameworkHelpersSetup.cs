@@ -21,7 +21,6 @@ namespace SFA.DAS.UI.Framework.TestSupport
             _context.Replace(new TabHelper(webDriver));
             var webDriverwaitHelper = new WebDriverWaitHelper(webDriver, _config.TimeOutConfig);
             var retryHelper = new RetryHelper(webDriver, _context.ScenarioInfo.Title);
-            _context.Replace(new SqlDatabaseConnectionHelper());
             _context.Replace(new PageInteractionHelper(webDriver, webDriverwaitHelper, retryHelper));
             var formCompletionHelper = new FormCompletionHelper(webDriver, webDriverwaitHelper, retryHelper);
             _context.Replace(formCompletionHelper);
