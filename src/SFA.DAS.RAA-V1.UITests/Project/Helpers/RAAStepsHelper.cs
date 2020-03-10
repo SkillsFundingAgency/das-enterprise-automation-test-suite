@@ -294,7 +294,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
 
         private RAA_SearchCandidatesPage Search() => GoToRAAHomePage(true).SearchCandidates().Search();
 
-        public void VerifyCandidateUpdatedDetails(string changedField) => SelectACandidate().VerifyUpdatedCandidateDetails(changedField);
+        public void VerifyCandidateUpdatedDetails() => SelectACandidate().VerifyUpdatedCandidateDetails();
 
     }
 }

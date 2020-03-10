@@ -25,11 +25,13 @@ namespace SFA.DAS.RAA.DataGenerator.Project
 
         public static void SetFAANewAccount(this ObjectContext objectContext, string username, string password, string firstname, string lastname)
         {
-            objectContext.Set(FAALoginWithNewAccountUsername, username);
+            objectContext.SetFAANewUsername(username);
             objectContext.Set(FAALoginWithNewAccountPassword, password);
             objectContext.Set(FAALoginWithNewAccountFirstname, firstname);
             objectContext.Set(FAALoginWithNewAccountLastname, lastname);
         }
+
+        public static void SetFAANewUsername(this ObjectContext objectContext, string username) => objectContext.Replace(FAALoginWithNewAccountUsername, username);
 
         public static (string username, string password, string firstname, string lastname) GetFAANewAccount(this ObjectContext objectContext)
         {

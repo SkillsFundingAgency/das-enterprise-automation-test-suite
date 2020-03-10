@@ -2,7 +2,6 @@
 using SFA.DAS.RAA.DataGenerator;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
-using System.Collections.Generic;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
@@ -16,7 +15,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
         private readonly PageInteractionHelper _pageIntercationHelper;
         private readonly ScenarioContext _context;
         private readonly VacancyTitleDatahelper _dataHelper;
-        private readonly TableRowHelper _tableRowHelper;
+        private readonly FAAConfig _fAAConfig;
         #endregion
 
         private By FindAnApprenticeshipLink => By.LinkText("Find an apprenticeship");
@@ -35,10 +34,6 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 
         private By SavedSection => By.Id("dashDrafts");
 
-        private By SavedVacanciesTable => By.CssSelector(".table-font-xsmall");
-
-        private By DeleteDraftButton => By.CssSelector("[title='Remove from my applications']");
-
         private By DraftVacancyDeletionInfoText => By.Id("VacancyDeletedInfoMessageText");
 
         private By VacancyDeletedLink => By.Id("vacancyDeletedLink");
@@ -55,7 +50,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
             _formCompletionHelper = context.Get<FormCompletionHelper>();
             _pageIntercationHelper = context.Get<PageInteractionHelper>();
             _dataHelper = context.Get<VacancyTitleDatahelper>();
-            _tableRowHelper = context.Get<TableRowHelper>();
+            _fAAConfig = context.Get<FAAConfig>();
             VerifyPage();
         }
 
@@ -127,7 +122,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
         {
             var element = _pageIntercationHelper.GetLinkContains(SavedVacancy, _dataHelper.VacancyTitle);
             
-            var id = element.GetAttribute("href").Replace("https://pre.findapprenticeship.service.gov.uk" + VacancyDetailshref, string.Empty);
+            var id = element.GetAttribute("href").Replace($"{_fAAConfig.FAABaseUrl}{VacancyDetailshref}", string.Empty);
 
             _formCompletionHelper.ClickElement(DeleteVacancy(id));
         }

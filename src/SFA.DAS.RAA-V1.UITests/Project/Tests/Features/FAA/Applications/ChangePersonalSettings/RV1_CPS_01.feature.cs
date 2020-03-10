@@ -104,9 +104,9 @@ this.FeatureBackground();
 #line 13
  testRunner.And("the reviewer is able to search and select a candidate", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 14
- testRunner.When("the Candidate changes Personal Settings \'EmailId\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("the Candidate changes Personal Settings", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 15
- testRunner.Then("the Candidate details is updated in Recruit \'EmailId\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the Candidate details are updated in Recruit", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 16
  testRunner.And("the Candidate details is updated in Manage", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden

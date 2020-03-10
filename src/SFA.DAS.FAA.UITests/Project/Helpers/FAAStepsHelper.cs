@@ -169,23 +169,19 @@ namespace SFA.DAS.FAA.UITests.Project.Helpers
             SearchByReferenceNumber().Apply().ClickSave();
         }
 
-        public FAA_ApprenticeSummaryPage ConfirmDraftVacancyDeletion()
+        public FAA_ApprenticeSummaryPage ConfirmDraftVacancyDeletion() => new FAA_MyApplicationsHomePage(_context).ConfirmVacancyDeletion().ConfirmDraftVacancyDeletion();
+
+        public void ChangePersonalSettings()
         {
-            return new FAA_MyApplicationsHomePage(_context)
-                .ConfirmVacancyDeletion().ConfirmDraftVacancyDeletion();
+            var signInpage = GoToSettingsPage().ChangeTheEmailIdSettings().ChangeEmailAddress();
+
+            signInpage.ConfirmEmailAddressUpdate();
+
+            _objectContext.SetFAANewUsername(_faaDataHelper.ChangedEmailId);
+
+            GoToSettingsPage().ChangePhoneNumberSettings().EnterVerificationCode().VerifySuccessfulVerificationText();
         }
 
-        public void ChangePersonalSettings(string changingField)
-        {
-            if (changingField == "EmailId")
-            {
-                GoToSettingsPage().ChangeTheEmailIdSettings().ChangeEmailAddress().ConfirmEmailAddressUpdate();
-            }
-            else
-            {
-                GoToSettingsPage().ChangePhoneNumberSettings().EnterVerificationCode().VerifySuccessfulVerificationText();
-            }
-        }
         private FAA_SettingsPage GoToSettingsPage() => GoToFAAHomePage().GoToSettings();
     }
 }
