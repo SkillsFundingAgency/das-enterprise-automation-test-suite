@@ -22,10 +22,10 @@ namespace SFA.DAS.ASK.UITests.Project.Tests.Pages
             VerifyPage();
         }
 
-        public DoYouHaveDFEAccountPage StartNow()
+        public YourDetailsPage StartNow()
         {
             Continue();
-            return new DoYouHaveDFEAccountPage(_context);
+            return new YourDetailsPage(_context);
         }
     }
 }
