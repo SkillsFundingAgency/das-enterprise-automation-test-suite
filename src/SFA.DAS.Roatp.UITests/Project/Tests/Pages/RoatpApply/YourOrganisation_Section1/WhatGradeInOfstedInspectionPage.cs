@@ -30,5 +30,13 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.YourOrganisation_
             Continue();
             return new GradeWithin3YearsPage(_context);
         }
+
+        public GradeWithin3YearsPage SelecInadequateAndContinue()
+        {
+
+            SelectRadioOptionByText("Inadequate");
+            Continue();
+            return new GradeWithin3YearsPage(_context);
+        }
     }
 }

@@ -230,8 +230,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.RoatpApply
 
         internal ApplicationSubmittedPage CompletesFinish_Section9(ApplicationOverviewPage applicationOverviewPage)
         {
-            applicationOverviewPage = _finishSectionHelper.CompleteFinish_1(applicationOverviewPage);
-            applicationOverviewPage = _finishSectionHelper.CompleteFinish_2(applicationOverviewPage);
+            applicationOverviewPage = _finishSectionHelper.UnhappyPathFinish_123(applicationOverviewPage);
             applicationOverviewPage = _finishSectionHelper.CompleteFinish_3(applicationOverviewPage);
             return _finishSectionHelper.CompleteFinish_4(applicationOverviewPage);
         }
@@ -241,6 +240,17 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.RoatpApply
             applicationOverviewPage = _finishSectionHelper.CompleteFinish_1(applicationOverviewPage);
             applicationOverviewPage = _finishSectionHelper.CompleteFinish_2(applicationOverviewPage);
             return _finishSectionHelper.CompleteFinish_4(applicationOverviewPage);
+        }
+
+        internal ApplicationOverviewPage CompleteSecion1_UnHappyPath(ApplicationOverviewPage applicationOverviewPage)
+        {
+            applicationOverviewPage = _yourOrganisationSectionHelper.CompleteYourOrganisationSection_1(applicationOverviewPage);
+            applicationOverviewPage = _yourOrganisationSectionHelper.UnhappyPathJourney_YourOrganisationSection_2(applicationOverviewPage);
+            applicationOverviewPage = _yourOrganisationSectionHelper.CompleteYourOrganisationSection_2(applicationOverviewPage);
+            applicationOverviewPage = _yourOrganisationSectionHelper.CompleteYourOrganisationSection_3(applicationOverviewPage);
+            applicationOverviewPage = _yourOrganisationSectionHelper.CompleteYourOrganisationSection_4(applicationOverviewPage);
+            applicationOverviewPage = _yourOrganisationSectionHelper.UnhappyPathJourney_YourOrganisationSection_5(applicationOverviewPage);
+            return applicationOverviewPage;
         }
     }
 }
