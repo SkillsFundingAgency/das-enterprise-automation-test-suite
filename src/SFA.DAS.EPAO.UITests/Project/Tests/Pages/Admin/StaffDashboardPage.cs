@@ -6,7 +6,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
 {
-    public class EpaoAdminHomePage : EPAOAdmin_basePage
+    public class StaffDashboardPage : EPAOAdmin_BasePage
     {
         protected override string PageTitle => "Staff dashboard";
 
@@ -24,7 +24,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
         private By Financial => By.CssSelector("a.govuk-link[href='/Financial/Open']");
         private By Applications => By.CssSelector("a.govuk-link[href='/Applications/Midpoint']");
 
-        public EpaoAdminHomePage(ScenarioContext context) : base(context)
+        public StaffDashboardPage(ScenarioContext context) : base(context)
         {
             _context = context;
             VerifyPage();

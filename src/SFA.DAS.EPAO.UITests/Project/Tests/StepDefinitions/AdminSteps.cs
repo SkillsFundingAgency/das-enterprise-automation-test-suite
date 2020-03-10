@@ -31,7 +31,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
 
         private void SearchEpaoRegister(string keyword) => GoToEpaoAdminHomePage().SearchEPAO().SearchForAnOrganisation(keyword).SelectAnOrganisation();
 
-        private EpaoAdminHomePage GoToEpaoAdminHomePage()
+        private StaffDashboardPage GoToEpaoAdminHomePage()
         {
             new ServiceStartPage(_context).ClickStartNow().LoginToAccess1Staff();
 

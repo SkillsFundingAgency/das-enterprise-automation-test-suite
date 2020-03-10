@@ -19,10 +19,10 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
             _config = context.GetEPAOAdminConfig<EPAOAdminConfig>();
         }
 
-        public EpaoAdminHomePage SignInWithValidDetails()
+        public StaffDashboardPage SignInWithValidDetails()
         {
             SubmitValidLoginDetails(_config.AdminUserName, _config.AdminPassword);
-            return new EpaoAdminHomePage(_context);
+            return new StaffDashboardPage(_context);
         }
     }
 }

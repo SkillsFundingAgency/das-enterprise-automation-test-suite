@@ -3,7 +3,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
 {
-    public class OrganisationSearchResultsPage : EPAOAdmin_basePage
+    public class OrganisationSearchResultsPage : EPAOAdmin_BasePage
     {
         protected override string PageTitle => "Organisation search results";
 
