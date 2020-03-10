@@ -5,7 +5,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
 {
     public class SearchResultsPage : EPAOAdmin_BasePage
     {
-        protected override string PageTitle => "Organisation search results";
+        protected override string PageTitle => "Search results";
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
