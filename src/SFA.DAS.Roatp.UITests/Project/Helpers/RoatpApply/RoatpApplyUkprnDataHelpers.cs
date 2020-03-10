@@ -12,6 +12,12 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.RoatpApply
 
         private void AddApplyDatahelpers()
         {
+            _applyData.Add("rpuhp01",
+               new List<KeyValuePair<string, string>>
+               {
+                    new KeyValuePair<string, string>(emailkey, "sudhakar.chinoor+U1@digital.education.gov.uk"),
+                    new KeyValuePair<string, string>(ukprnkey, "10022137"),
+               });
             _applyData.Add("rppj01",
                 new List<KeyValuePair<string, string>>
                 {
