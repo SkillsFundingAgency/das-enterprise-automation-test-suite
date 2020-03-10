@@ -6,13 +6,13 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
 {
     internal class TprSqlDataHelper
     {
-        private readonly string _tPRDbConnectionString;
+        private readonly TprConfig _tprConfig;
         private readonly ObjectContext _objectContext;
         private readonly RegistrationDataHelper _registrationDataHelper;
 
         public TprSqlDataHelper(TprConfig tprConfig, ObjectContext objectContext, RegistrationDataHelper registrationDataHelper)
         {
-            _tPRDbConnectionString = tprConfig.RE_TPRDbConnectionString;
+            _tprConfig = tprConfig;
             _objectContext = objectContext;
             _registrationDataHelper = registrationDataHelper;
         }
@@ -27,7 +27,7 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
 
         private void CreateAornData(string orgType)
         {
-            var organisationName = InsertTprDataHelper.InsertTprData(_tPRDbConnectionString, _registrationDataHelper.AornNumber, _objectContext.GetGatewayPaye(), orgType);
+            var organisationName = InsertTprDataHelper.InsertTprData(_tprConfig.RE_TPRDbConnectionString, _registrationDataHelper.AornNumber, _objectContext.GetGatewayPaye(), orgType);
             _objectContext.UpdateOrganisationName(organisationName);
         }
     }
