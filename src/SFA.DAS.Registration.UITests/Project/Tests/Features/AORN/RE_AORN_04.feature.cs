@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.DLockJourneys
+namespace SFA.DAS.Registration.UITests.Project.Tests.Features.AORN
 {
     using TechTalk.SpecFlow;
     
@@ -18,22 +18,26 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.DLockJourneys
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.0.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("AP_DLock_05")]
-    [NUnit.Framework.CategoryAttribute("approvals")]
-    public partial class AP_DLock_05Feature
+    [NUnit.Framework.DescriptionAttribute("RE_AORN_04")]
+    [NUnit.Framework.CategoryAttribute("regression")]
+    [NUnit.Framework.CategoryAttribute("registration")]
+    [NUnit.Framework.CategoryAttribute("addpayedetails")]
+    public partial class RE_AORN_04Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "AP_DLock_05.feature"
+#line 1 "RE_AORN_04.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "AP_DLock_05", null, ProgrammingLanguage.CSharp, new string[] {
-                        "approvals"});
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "RE_AORN_04", null, ProgrammingLanguage.CSharp, new string[] {
+                        "regression",
+                        "registration",
+                        "addpayedetails"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -72,29 +76,25 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.DLockJourneys
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("AP_DLock_05 Employer can stop the waiting to start apprentice after Datalocks and" +
-            " ILR match")]
-        [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("waitingtostartapprentice")]
-        [NUnit.Framework.CategoryAttribute("dlockscenarios")]
-        public virtual void AP_DLock_05EmployerCanStopTheWaitingToStartApprenticeAfterDatalocksAndILRMatch()
+        [NUnit.Framework.DescriptionAttribute("RE_AORN_04_Validate AORN route PAYE scheme details page error content")]
+        public virtual void RE_AORN_04_ValidateAORNRoutePAYESchemeDetailsPageErrorContent()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_DLock_05 Employer can stop the waiting to start apprentice after Datalocks and" +
-                    " ILR match", null, new string[] {
-                        "regression",
-                        "waitingtostartapprentice",
-                        "dlockscenarios"});
-#line 7
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RE_AORN_04_Validate AORN route PAYE scheme details page error content", null, ((string[])(null)));
+#line 6
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
+#line 7
+ testRunner.Given("an User Account is created", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 8
- testRunner.Given("the Employer has approved apprentice", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.When("the User is on the \'Add a PAYE Scheme\' page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 9
- testRunner.And("the datalock has been successful", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Then("choosing to Continue with BlankAornAndBlankPaye displays relevant Error text", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 10
- testRunner.When("the provider submit an ILR with course price mismatch", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.And("choosing to Continue with BlankAornValidPaye displays relevant Error text", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 11
- testRunner.Then("the Employer can stop the waiting to start apprentice", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("choosing to Continue with BlankPayeValidAorn displays relevant Error text", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 12
+ testRunner.And("choosing to Continue with InvalidAornAndInvalidPaye displays relevant Error text", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
