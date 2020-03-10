@@ -29,13 +29,13 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
             return new SummaryOfThisProviderPage(_context);
         }
 
-        private void AddFavourite() => AddFavourite((a) => 
-        { 
-            campaignsDataHelper.ProviderId.Add(a); 
-            var x = a.Split(",");  
+        private void AddFavourite() => AddFavourite((a) =>
+        {
+            campaignsDataHelper.ProviderId.Add(a);
+            var x = a.Split(",");
             objectContext.SetProviderId(x[0]);
             objectContext.SetProviderLocationId(x[1]);
-        });
+        }, (e) => campaignsDataHelper.GetRandomElementFromListOfElements(e));
     }
 }
 
