@@ -1,5 +1,7 @@
 ﻿using OpenQA.Selenium;
 using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
@@ -14,11 +16,11 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
 
         protected EmployerBasePage(ScenarioContext context) : base(context) { }
 
-        protected void AddFavourite(Action<string> action)
+        protected void AddFavourite(Action<string> action, Func<List<IWebElement>, IWebElement> func)
         {
             formCompletionHelper.ClickElement(() =>
             {
-                var element = campaignsDataHelper.GetRandomElementFromListOfElements(pageInteractionHelper.FindElements(AddFavouriteSelector));
+                var element = func(pageInteractionHelper.FindElements(AddFavouriteSelector));
                 var courseId = element.GetAttribute("value");
                 action(courseId);
                 return element;
