@@ -18,11 +18,6 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.Finish_Section9
             _context = context;
             VerifyPage();
         }
-        public ApplicationOverviewPage ReturnToApplicationOverview()
-        {
-            formCompletionHelper.ClickLinkByText("Application overview");
-            return new ApplicationOverviewPage(_context);
-        }
     }
 }
    

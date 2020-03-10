@@ -9,6 +9,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.YourOrganisation_
     public class NotEligiblePage : RoatpApplyBasePage
     {
         protected override string PageTitle => "Your organisation is not eligible to apply to join RoATP";
+        protected override By PageHeader => By.TagName("h1, h2");
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
@@ -18,11 +19,6 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.YourOrganisation_
         {
             _context = context;
             VerifyPage();
-        }
-        public ApplicationOverviewPage ReturnToApplicationOverview()
-        {
-            formCompletionHelper.ClickLinkByText("Application overview");
-            return new ApplicationOverviewPage(_context);
         }
     }
 }

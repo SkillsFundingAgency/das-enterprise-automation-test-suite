@@ -8,7 +8,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
 {
     public abstract class RoatpBasePage : BasePage
     {
-        protected override By PageHeader => By.TagName("h1, h2");
+        protected override By PageHeader => By.TagName("h1");
 
         #region Helpers and Context
         protected readonly ObjectContext objectContext;
