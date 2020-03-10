@@ -4,7 +4,7 @@ using static SFA.DAS.RAA_V1.UITests.Project.Helpers.EnumHelper;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 {
-    public class OrganisationSearchPage : RegistrationBasePage
+    public class SearchForYourOrganisationPage : RegistrationBasePage
     {
         protected override string PageTitle => "Search for your organisation";
         private readonly ScenarioContext _context;
@@ -14,7 +14,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         private By SearchButton => By.CssSelector("input.govuk-button");
         #endregion
 
-        public OrganisationSearchPage(ScenarioContext context) : base(context)
+        public SearchForYourOrganisationPage(ScenarioContext context) : base(context)
         {
             _context = context;
             VerifyPage();
@@ -52,7 +52,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             return new SelectYourOrganisationPage(_context);
         }
 
-        private OrganisationSearchPage Search()
+        private SearchForYourOrganisationPage Search()
         {
             formCompletionHelper.ClickElement(SearchButton);
             return this;

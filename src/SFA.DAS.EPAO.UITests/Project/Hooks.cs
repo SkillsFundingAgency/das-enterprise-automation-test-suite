@@ -10,22 +10,19 @@ namespace SFA.DAS.EPAO.UITests.Project
     {
         private readonly ScenarioContext _context;
         private readonly EPAOConfig _config;
-        private readonly SqlDatabaseConnectionHelper _sqlDatabaseConnectionHelper;
 
         public Hooks(ScenarioContext context)
         {
             _context = context;
             _config = context.GetEPAOConfig<EPAOConfig>();
-            _sqlDatabaseConnectionHelper = context.Get<SqlDatabaseConnectionHelper>();
         }
 
         [BeforeScenario(Order = 32)]
         public void SetUpHelpers()
         {
-            var ePAOSqlDataHelper = new EPAOSqlDataHelper(_config, _sqlDatabaseConnectionHelper);
-            _context.Set(ePAOSqlDataHelper);
-            var random = _context.Get<RandomDataGenerator>();
-            _context.Set(new EPAODataHelper(random));
+            _context.Set(new EPAOSqlDataHelper(_config));
+
+            _context.Set(new EPAODataHelper(_context.Get<RandomDataGenerator>()));
         }
     }
 }

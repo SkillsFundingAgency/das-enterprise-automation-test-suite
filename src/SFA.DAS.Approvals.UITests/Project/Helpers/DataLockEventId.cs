@@ -10,13 +10,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers
         {
             static readonly object _object = new object();
 
-            internal static int GetMaxDataLockEventId(SqlDatabaseConnectionHelper sqlDatabase, string connectionString)
+            internal static int GetMaxDataLockEventId(string connectionString)
             {
                 String sqlQueryToGetMaxDataLockEventId = $"SELECT MAX(DataLockEventId) FROM [dbo].[DataLockStatus]";
 
                 lock (_object)
                 {
-                    List<object[]> responseData = sqlDatabase.ReadDataFromDataBase(sqlQueryToGetMaxDataLockEventId, connectionString);
+                    List<object[]> responseData = SqlDatabaseConnectionHelper.ReadDataFromDataBase(sqlQueryToGetMaxDataLockEventId, connectionString);
                     if (responseData.Count == 0)
                         return 0;
                     else

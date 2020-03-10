@@ -1,6 +1,5 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.MongoDb.DataGenerator;
-using SFA.DAS.ConfigurationBuilder;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
@@ -9,7 +8,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => "Enter your PAYE scheme details";
         private readonly ScenarioContext _context;
-        private readonly string _payeSchemeReference;
 
         #region Locators
         private By AornTextBox => By.Id("aorn");
@@ -20,26 +18,31 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         public EnterYourPAYESchemeDetailsPage(ScenarioContext context) : base(context)
         {
             _context = context;
-            _payeSchemeReference = context.Get<ObjectContext>().GetGatewayPaye();
             VerifyPage();
         }
 
-        public CheckYourDetailsPage EnterAornAndPayeDetailsForSingleOrgScenarioAndContinue(string aornNumber)
+        public CheckYourDetailsPage EnterAornAndPayeDetailsForSingleOrgScenarioAndContinue()
         {
-            EnterPayeData(aornNumber);
+            EnterPayeData();
             return new CheckYourDetailsPage(_context);
         }
 
-        public ChooseAnOrganisationPage EnterAornAndPayeDetailsForMultiOrgScenarioAndContinue(string aornNumber)
+        public TheseDetailsAreAlreadyInUsePage ReEnterTheSameAornDetailsAndContinue()
         {
-            EnterPayeData(aornNumber);
+            EnterPayeData();
+            return new TheseDetailsAreAlreadyInUsePage(_context);
+        }
+
+        public ChooseAnOrganisationPage EnterAornAndPayeDetailsForMultiOrgScenarioAndContinue()
+        {
+            EnterPayeData();
             return new ChooseAnOrganisationPage(_context);
         }
 
-        private void EnterPayeData(string aornNumber)
+        private void EnterPayeData()
         {
-            formCompletionHelper.EnterText(AornTextBox, aornNumber);
-            formCompletionHelper.EnterText(PayeRefTextBox, _payeSchemeReference);
+            formCompletionHelper.EnterText(AornTextBox, registrationDataHelper.AornNumber);
+            formCompletionHelper.EnterText(PayeRefTextBox, objectContext.GetGatewayPaye());
             Continue();
         }
     }

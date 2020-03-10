@@ -1,5 +1,6 @@
 ﻿Feature: RE_ODC_01
 
+@regression
 @registration
 @addpayedetails
 Scenario: RE_ODC_01_Create an Employer Account with Company Type Org and verify OrgName change scenario
