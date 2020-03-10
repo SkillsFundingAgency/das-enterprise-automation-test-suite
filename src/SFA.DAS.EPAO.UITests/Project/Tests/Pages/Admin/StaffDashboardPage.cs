@@ -35,5 +35,11 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
             formCompletionHelper.ClickElement(Register);
             return new OrganisationSearchPage(_context);
         }
+
+        public BatchSearchPage SearchEPAOBatch()
+        {
+            formCompletionHelper.ClickElement(BatchSearch);
+            return new BatchSearchPage(_context);
+        }
     }
 }
