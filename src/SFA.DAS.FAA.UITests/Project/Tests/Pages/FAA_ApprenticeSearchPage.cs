@@ -102,24 +102,5 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
             _pageInteractionHelper.WaitforURLToChange("verifymobile");
             return new FAA_PhoneNumberVerificationPage(_context);
         } 
-        
-        private void EnterPostCode(string location)
-        {
-            _formCompletionHelper.EnterText(Location, location);
-            _formCompletionHelper.Click(Search);
-        }
-        public FAA_ApprenticeSearchPage VerifyNoPostcodeErrorMessage(string location)
-        {
-            EnterPostCode(location);
-            _pageInteractionHelper.VerifyText(LocationErrorMessage, "Please enter location");
-            return this;
-        }
-
-        public FAA_ApprenticeSearchPage VerifyPartialPostcodeErrorMessage(string location)
-        {
-            EnterPostCode(location);
-            _pageInteractionHelper.VerifyText(PartialLocationErrorMessage, "Location must be 3 or more characters or a postcode");
-            return this;
-        }
     }
 }

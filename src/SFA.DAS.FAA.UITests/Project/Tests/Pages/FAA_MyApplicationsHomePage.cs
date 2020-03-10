@@ -113,27 +113,10 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
         {
             _pageIntercationHelper.VerifyText(SavedSection, _dataHelper.VacancyTitle);
         }
-
-        private void DeleteDraftApplication()
-        {
-            var Table = _pageIntercationHelper.FindElement(SavedVacanciesTable);
-            var rows = Table.FindElements(By.TagName("tr"));
-            foreach (var row in rows)
-            {
-                if (row.Text.Contains(_dataHelper.VacancyTitle))
-                {
-                    row.FindElement(DeleteDraftButton).Click();
-                    break;
-                }
-                else
-                {
-                    continue;
-                }
-            }
-        }
-
+        
         public FAA_ApprenticeSummaryPage ConfirmVacancyDeletion()
         {
+            _pageIntercationHelper.WaitforURLToChange("myapplications");
             DeleteDraft();
             _pageIntercationHelper.VerifyText(DraftVacancyDeletionInfoText, "You've successfully removed the " + _dataHelper.VacancyTitle + " apprenticeship");
             _formCompletionHelper.Click(VacancyDeletedLink);
@@ -144,7 +127,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
         {
             var element = _pageIntercationHelper.GetLinkContains(SavedVacancy, _dataHelper.VacancyTitle);
             
-            var id = element.GetAttribute("href").Replace(VacancyDetailshref, string.Empty);
+            var id = element.GetAttribute("href").Replace("https://pre.findapprenticeship.service.gov.uk" + VacancyDetailshref, string.Empty);
 
             _formCompletionHelper.ClickElement(DeleteVacancy(id));
         }

@@ -100,25 +100,6 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.StepDefinitions
             _faaStepsHelper.FindATraineeship().SearchClosedVacancy();
         }
 
-        [Then(@"an error message is displayed to the candidate when postcode is not valid '(.*)'")]
-        public void ThenAnErrorMessageIsDisplayedToTheCandidateWhenPostcodeIsNotValid(string postcode)
-        {
-            switch (postcode)
-            {
-                case " ":
-                    _faaStepsHelper.VerifyNoPostCodeErrorMessage(string.Empty);
-                    break;
-
-                case "C":
-                    _faaStepsHelper.VerifyPartialPostCodeErrorMessage(postcode);
-                    break;
-
-                case "CV":
-                    _faaStepsHelper.VerifyPartialPostCodeErrorMessage(postcode);
-                    break;
-            }
-        }
-
         [Then(@"Candidate is able to delete draft application")]
         public void ThenCandidateIsAbleToDeleteDraftApplication()
         {

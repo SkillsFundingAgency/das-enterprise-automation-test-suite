@@ -66,19 +66,5 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 
             return new FAA_TraineeshipSearchResultsPage(_context);
         }
-
-        public FAA_TraineeshipSearchPage VerifyNoPostcodeErrorMessage(string location)
-        {
-            EnterPostCode(location);
-            _pageInteractionHelper.VerifyText(LocationErrorMessage, "Please enter location");
-            return this;
-        }
-
-        public FAA_TraineeshipSearchPage VerifyPartialPostcodeErrorMessage(string location)
-        {
-            EnterPostCode(location);
-            _pageInteractionHelper.VerifyText(PartialLocationErrorMessage, "Location must be 3 or more characters or a postcode");
-            return this;
-        }
     }
 }
