@@ -13,7 +13,10 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
 
         private By SignOutLink => By.CssSelector(".govuk-link[href*='SignOut']");
 
-        public EPAOAdmin_BasePage(ScenarioContext context) : base(context) { }
+        public EPAOAdmin_BasePage(ScenarioContext context) : base(context) 
+        {
+            _context = context;
+        }
 
         public SignedOutPage SignOut()
         {

@@ -9,5 +9,7 @@
         public string OrganisationUkprn => "10009931";
 
         public string BatchSearch => "110";
+
+        public string LearnerUln => "7278214419";
     }
 }

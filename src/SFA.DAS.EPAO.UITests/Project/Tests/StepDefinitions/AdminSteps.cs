@@ -13,6 +13,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
     {
         private readonly ScenarioContext _context;
         private readonly EPAOAdminDataHelper _ePAOAdminDataHelper;
+        private CertificateDetailsPage _certificateDetailsPage;
 
         public AdminSteps(ScenarioContext context)
         {
@@ -31,6 +32,12 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
 
         [Then(@"the admin can search batches")]
         public void ThenTheAdminCanSearchBatches() => GoToEpaoAdminHomePage().SearchEPAOBatch().SearchBatches().VerifyingBatchDetails().SignOut();
+
+        [Then(@"the admin can search using uln")]
+        public void ThenTheAdminCanSearchUsingUln() => _certificateDetailsPage = GoToEpaoAdminHomePage().Search().SearchFor(_ePAOAdminDataHelper.LearnerUln).SelectACertificate();
+
+        [Then(@"the admin can access learners audit history")]
+        public void ThenTheAdminCanAccessLearnersAuditHistory() => _certificateDetailsPage.ShowAllHistory();
 
         private void SearchEpaoRegister(string keyword) => GoToEpaoAdminHomePage().SearchEPAO().SearchForAnOrganisation(keyword).SelectAnOrganisation();
 

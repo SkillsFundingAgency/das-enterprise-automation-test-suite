@@ -14,7 +14,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
         private readonly ScenarioContext _context;
         #endregion
 
-        private By Search => By.CssSelector("a.govuk-link[href='/Search']");
+        private By SearchLink => By.CssSelector("a.govuk-link[href='/Search']");
         private By BatchSearch => By.CssSelector("a.govuk-link[href='/BatchSearch']");
         private By Register => By.CssSelector("a.govuk-link[href='/Register']");
         private By ScheduleConfig => By.CssSelector("a.govuk-link[href='/ScheduleConfig']");
@@ -28,6 +28,12 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
         {
             _context = context;
             VerifyPage();
+        }
+
+        public SearchPage Search()
+        {
+            formCompletionHelper.ClickElement(SearchLink);
+            return new SearchPage(_context);
         }
 
         public OrganisationSearchPage SearchEPAO()

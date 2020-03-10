@@ -5,7 +5,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
 {
     public class BatchSearchPage : EPAOAdmin_BasePage
     {
-        protected override string PageTitle => "Staff dashboard";
+        protected override string PageTitle => "Batch search";
 
         protected override By PageHeader => By.CssSelector(".govuk-label--xl");
 

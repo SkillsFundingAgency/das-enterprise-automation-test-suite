@@ -25,5 +25,5 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
             Continue();
             return new OrganisationSearchResultsPage(_context);
         }
-    }
+    } 
 }
