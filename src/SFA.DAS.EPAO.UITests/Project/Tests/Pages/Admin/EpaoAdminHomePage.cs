@@ -1,11 +1,12 @@
-﻿using System;
+﻿using OpenQA.Selenium;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
 {
-    public class EpaoAdminHomePage : EPAO_BasePage
+    public class EpaoAdminHomePage : EPAOAdmin_basePage
     {
         protected override string PageTitle => "Staff dashboard";
 
@@ -13,11 +14,26 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
         private readonly ScenarioContext _context;
         #endregion
 
+        private By Search => By.CssSelector("a.govuk-link[href='/Search']");
+        private By BatchSearch => By.CssSelector("a.govuk-link[href='/BatchSearch']");
+        private By Register => By.CssSelector("a.govuk-link[href='/Register']");
+        private By ScheduleConfig => By.CssSelector("a.govuk-link[href='/ScheduleConfig']");
+        private By Reports => By.CssSelector("a.govuk-link[href='/Reports']");
+        private By CertificateApprovals => By.CssSelector("a.govuk-link[href='/CertificateApprovals/New']");
+        private By ExternalApi => By.CssSelector("a.govuk-link[href='/ExternalApi']");
+        private By Financial => By.CssSelector("a.govuk-link[href='/Financial/Open']");
+        private By Applications => By.CssSelector("a.govuk-link[href='/Applications/Midpoint']");
 
         public EpaoAdminHomePage(ScenarioContext context) : base(context)
         {
             _context = context;
             VerifyPage();
+        }
+
+        public OrganisationSearchPage SearchEPAO()
+        {
+            formCompletionHelper.ClickElement(Register);
+            return new OrganisationSearchPage(_context);
         }
     }
 }

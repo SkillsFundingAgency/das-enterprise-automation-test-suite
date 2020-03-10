@@ -29,6 +29,9 @@ namespace SFA.DAS.EPAO.UITests.Project
             _context.Set(new EPAOSqlDataHelper(_config));
 
             _context.Set(new EPAODataHelper(_context.Get<RandomDataGenerator>()));
+
+            _context.Set(new EPAOAdminDataHelper());
+
         }
 
         [BeforeScenario(Order = 33)]

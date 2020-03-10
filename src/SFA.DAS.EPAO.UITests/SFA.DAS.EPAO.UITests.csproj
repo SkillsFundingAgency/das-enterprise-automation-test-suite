@@ -52,7 +52,4 @@
     </None>
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Project\Tests\Features\Admin\EPAOSearch\" />
-  </ItemGroup>
 </Project>
