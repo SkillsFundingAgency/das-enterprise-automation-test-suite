@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using System.Linq;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
@@ -46,7 +47,9 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
             return new EmployerFavouritesPage(_context);
         }
 
-        private void AddFavourite() => AddFavourite((a) => { campaignsDataHelper.CourseId.Add(a); objectContext.SetCourseId(a); });
+        private void AddFavourite() => AddFavourite(
+            (a) => { campaignsDataHelper.CourseId.Add(a); objectContext.SetCourseId(a); },
+            (e) => e.First());
 
     }
 }
