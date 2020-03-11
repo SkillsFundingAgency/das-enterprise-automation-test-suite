@@ -14,10 +14,11 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.Registration.UITests.Project
 {
     [Binding]
-    public class Hooks          
+    public class Hooks
     {
         private readonly ScenarioContext _context;
         private readonly RegistrationConfig _config;
+        private readonly TprConfig _tprconfig;
         private readonly IWebDriver _webDriver;
         private readonly ObjectContext _objectContext;
         private List<string> _empRefs;
@@ -33,7 +34,7 @@ namespace SFA.DAS.Registration.UITests.Project
             _context = context;
             _webDriver = context.GetWebDriver();
             _config = context.GetRegistrationConfig<RegistrationConfig>();
-            _sqlDatabaseConnectionHelper = context.Get<SqlDatabaseConnectionHelper>();
+            _tprconfig = context.GetTprConfig<TprConfig>();
             _objectContext = context.Get<ObjectContext>();
         }
 

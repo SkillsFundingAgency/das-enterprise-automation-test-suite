@@ -25,7 +25,7 @@ namespace SFA.DAS.Roatp.UITests.Project
             _objectContext = context.Get<ObjectContext>();
             _webDriver = context.GetWebDriver();
             _config = context.GetRoatpConfig<RoatpConfig>();
-            _adminClearDownDataHelpers = new RoatpAdminClearDownDataHelpers(_objectContext, _config, context.Get<SqlDatabaseConnectionHelper>());
+            _adminClearDownDataHelpers = new RoatpAdminClearDownDataHelpers(_objectContext, _config);
         }
 
         [BeforeScenario(Order = 32)]

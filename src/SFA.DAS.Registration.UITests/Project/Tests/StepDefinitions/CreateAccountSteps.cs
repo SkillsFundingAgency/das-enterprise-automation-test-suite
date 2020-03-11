@@ -2,7 +2,6 @@
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.Registration.UITests.Project.Helpers;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages;
-using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 using static SFA.DAS.RAA_V1.UITests.Project.Helpers.EnumHelper;
 
@@ -15,14 +14,16 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         private readonly ObjectContext _objectContext;
         private readonly RegistrationDataHelper _registrationDataHelper;
         private readonly RegistrationSqlDataHelper _registrationSqlDataHelper;
+        private readonly TprSqlDataHelper _tprSqlDataHelper;
         private HomePage _homePage;
         private AddAPAYESchemePage _addAPAYESchemePage;
         private GgSignInPage _gGSignInPage;
-        private OrganisationSearchPage _organistionSearchPage;
+        private SearchForYourOrganisationPage _organistionSearchPage;
         private SelectYourOrganisationPage _selectYourOrganisationPage;
         private SignAgreementPage _signAgreementPage;
         private CheckYourDetailsPage _checkYourDetailsPage;
         private YourOrganisationsAndAgreementsPage _yourOrganisationsAndAgreementsPage;
+        private TheseDetailsAreAlreadyInUsePage _theseDetailsAreAlreadyInUsePage;
 
         public CreateAccountSteps(ScenarioContext context)
         {
@@ -30,18 +31,18 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             _objectContext = _context.Get<ObjectContext>();
             _registrationDataHelper = context.Get<RegistrationDataHelper>();
             _registrationSqlDataHelper = context.Get<RegistrationSqlDataHelper>();
+            _tprSqlDataHelper = context.Get<TprSqlDataHelper>();
         }
 
         [Given(@"an User Account is created")]
         [When(@"an User Account is created")]
         public void AnUserAccountIsCreated()
         {
-            TestContext.Progress.WriteLine($"Email : {_registrationDataHelper.RandomEmail}");
+            var emailId = _registrationDataHelper.RandomEmail;
+            _objectContext.SetRegisteredEmail(emailId);
+            TestContext.Progress.WriteLine($"Email : {emailId}");
 
-            _addAPAYESchemePage = new IndexPage(_context)
-                .CreateAccount()
-                .Register()
-                .ContinueToGetApprenticeshipFunding();
+            _addAPAYESchemePage = RegisterUser();
         }
 
         [Then(@"My Account Home page is displayed when PAYE details are not added")]
@@ -58,6 +59,27 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             _organistionSearchPage = _addAPAYESchemePage
                 .AddPaye().ContinueToGGSignIn()
                 .SignInTo();
+        }
+
+        [Given(@"the User adds PAYE details attached to a (SingleOrg|MultiOrg) through AORN route")]
+        [When(@"the User adds PAYE details attached to a (SingleOrg|MultiOrg) through AORN route")]
+        public void WhenTheUserAddsPAYEDetailsAttachedToASingleOrgThroughAORNRoute(string org)
+        {
+            if (org.Equals("SingleOrg"))
+            {
+                _tprSqlDataHelper.CreateSingleOrgAornData();
+                _checkYourDetailsPage = AddPayeDetailsForSingleOrgAornRoute();
+            }
+            else
+            {
+                _tprSqlDataHelper.CreateMultiOrgAORNData();
+                _checkYourDetailsPage = _addAPAYESchemePage.AddAORN()
+                    .EnterAornAndPayeDetailsForMultiOrgScenarioAndContinue()
+                    .SelectFirstOrganisationAndContinue();
+            }
+
+            _signAgreementPage = _checkYourDetailsPage.ClickYesTheseDetailsAreCorrectButtonInCheckYourDetailsPage()
+                    .SelectViewAgreementNowAndContinue();
         }
 
         [When(@"the User adds Invalid PAYE details")]
@@ -133,6 +155,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             Assert.AreEqual(resultMessage, _selectYourOrganisationPage.GetSearchResultsText());
         }
 
+        [Then(@"the Employer is able to Sign the Agreement and view the Home page")]
         [When(@"the Employer is able to Sign the Agreement")]
         [Then(@"the Employer is able to Sign the Agreement")]
         [When(@"the Employer Signs the Agreement")]
@@ -323,6 +346,45 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
                 .VerifyOrgRemovedMessageInHeader();
         }
 
+        [Then(@"'These details are already in use' page is displayed when Another Employer tries to register the account with the same Aorn and Paye details")]
+        public void ThenPageIsDisplayedWhenAnotherEmployerTriesToRegisterTheAccountWithTheSameAornAndPayeDetails()
+        {
+            _homePage.SignOut().CickContinueInYouveLoggedOutPage();
+
+            _objectContext.SetRegisteredEmail(_registrationDataHelper.AnotherRandomEmail);
+            
+            _addAPAYESchemePage = RegisterUser();
+
+            _theseDetailsAreAlreadyInUsePage = ReEnterAornDetails();
+        }
+
+        [Then(@"'Add a PAYE Scheme' page is displayed when Employer clicks on 'Use different details' button")]
+        public void ThenAddAPAYESchemePageIsDisplayedWhenEmployerClicksOnUseDifferentDetailsButton() =>
+            _addAPAYESchemePage = _theseDetailsAreAlreadyInUsePage.CickUseDifferentDetailsButtonInTheseDetailsAreAlreadyInUsePage();
+
+        [Then(@"'Add a PAYE Scheme' page is displayed when Employer clicks on Back link on the 'PAYE scheme already in use' page")]
+        public void ThenAddAPAYESchemePageIsDisplayedWhenEmployerClicksOnBackLinkOnThePage() => 
+            _addAPAYESchemePage = ReEnterAornDetails().CickBackLinkInTheseDetailsAreAlreadyInUsePage();
+
+        [When(@"the User is on the 'Check your details' page after adding PAYE details through AORN route")]
+        public void WhenTheUserIsOnTheCheckYourDetailsPageAfterAddingPAYEDetailsThroughAORNRoute()
+        {
+            _tprSqlDataHelper.CreateSingleOrgAornData();
+            _checkYourDetailsPage = AddPayeDetailsForSingleOrgAornRoute();
+        }
+
+        [Then(@"choosing to change the AORN number displays 'Enter your PAYE scheme details' page")]
+        public void ThenChoosingToChangeTheAORNNumberDisplaysPage() => 
+            _checkYourDetailsPage = _checkYourDetailsPage.ClickAornChangeLink().EnterAornAndPayeDetailsForSingleOrgScenarioAndContinue();
+
+        [Then(@"choosing to change the PAYE scheme displays 'Enter your PAYE scheme details' page")]
+        public void ThenChoosingToChangeThePAYESchemeDisplaysEnterYourPAYESchemeDetailsPage() => 
+            _checkYourDetailsPage = _checkYourDetailsPage.ClickPayeSchemeChangeLink().AddAORN().EnterAornAndPayeDetailsForSingleOrgScenarioAndContinue();
+
+        [Then(@"choosing to change the Organisation selected displays 'Search for your Organisation' page")]
+        public void ThenChoosingToChangeTheOrganisationSelectedDisplaysSearchForYourOrganisationPage() =>
+            _checkYourDetailsPage.ClickOrganisationChangeLink();
+
         private void CreateAnUserAcountAndAddPaye()
         {
             AnUserAccountIsCreated();
@@ -359,6 +421,21 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
                         .SignAgreement();
         }
 
+        private CheckYourDetailsPage AddPayeDetailsForSingleOrgAornRoute() =>
+            _addAPAYESchemePage.AddAORN().EnterAornAndPayeDetailsForSingleOrgScenarioAndContinue();
+
+        private AddAPAYESchemePage RegisterUser()
+        {
+            return new IndexPage(_context)
+                .CreateAccount()
+                .Register()
+                .ContinueToGetApprenticeshipFunding();
+        }
+
+        private TheseDetailsAreAlreadyInUsePage ReEnterAornDetails() => _addAPAYESchemePage.AddAORN()
+                .ReEnterTheSameAornDetailsAndContinue();
+
         private HomePage GoToHomePage() => new HomePage(_context, true);
     }
 }
+

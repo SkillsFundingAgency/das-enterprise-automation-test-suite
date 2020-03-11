@@ -12,13 +12,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
     public class MFEmployerStepsHelper
     {
         private readonly ScenarioContext _context;
-        private readonly EmployerPortalLoginHelper _loginHelper;
 
-        public MFEmployerStepsHelper(ScenarioContext context)
-        {
-            _context = context;
-            _loginHelper = new EmployerPortalLoginHelper(_context);
-        }
+        public MFEmployerStepsHelper(ScenarioContext context) => _context = context;
 
         public DoYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage GoToReserveFunding() => GoToManageFunding().ClickReserveMoreFundingLink();
 

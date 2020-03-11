@@ -25,6 +25,9 @@ namespace SFA.DAS.Registration.UITests.Project
         {
             var config = _configSection.GetConfigSection<RegistrationConfig>();
             _context.SetRegistrationConfig(config);
+            
+            var tprconfig = _configSection.GetConfigSection<TprConfig>();
+            _context.SetTprConfig(tprconfig);
 
             var levyUser = _configSection.GetConfigSection<LevyUser>();
             _context.SetUser(levyUser);

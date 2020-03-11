@@ -5,9 +5,9 @@ using System.Data.SqlClient;
 
 namespace SFA.DAS.UI.FrameworkHelpers
 {
-    public class SqlDatabaseConnectionHelper
+    public static class SqlDatabaseConnectionHelper
     {
-        public int ExecuteSqlCommand(string connectionString, string queryToExecute, object dynamicParameters = null)
+        public static int ExecuteSqlCommand(string connectionString, string queryToExecute, object dynamicParameters = null)
         {
             using (var connection = new SqlConnection(connectionString))
             {
@@ -16,7 +16,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
             }
         }
 
-        public int ExecuteSqlCommand(String connectionString, String queryToExecute, Dictionary<String, String> parameters)
+        public static int ExecuteSqlCommand(String connectionString, String queryToExecute, Dictionary<String, String> parameters)
         {
             try
             {
@@ -40,7 +40,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
             }
         }
 
-        public List<object[]> ReadDataFromDataBase(string queryToExecute, string connectionString)
+        public static List<object[]> ReadDataFromDataBase(string queryToExecute, string connectionString)
         {
             try
             {
