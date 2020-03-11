@@ -72,15 +72,15 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.DLockJourneys
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("AP_DLock_05 Employer can not stop the waiting to start apprentice after Datalocks" +
-            " and ILR match")]
+        [NUnit.Framework.DescriptionAttribute("AP_DLock_05 Employer can stop the waiting to start apprentice after Datalocks and" +
+            " ILR match")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("waitingtostartapprentice")]
         [NUnit.Framework.CategoryAttribute("dlockscenarios")]
-        public virtual void AP_DLock_05EmployerCanNotStopTheWaitingToStartApprenticeAfterDatalocksAndILRMatch()
+        public virtual void AP_DLock_05EmployerCanStopTheWaitingToStartApprenticeAfterDatalocksAndILRMatch()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_DLock_05 Employer can not stop the waiting to start apprentice after Datalocks" +
-                    " and ILR match", null, new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_DLock_05 Employer can stop the waiting to start apprentice after Datalocks and" +
+                    " ILR match", null, new string[] {
                         "regression",
                         "waitingtostartapprentice",
                         "dlockscenarios"});
@@ -94,7 +94,7 @@ this.ScenarioInitialize(scenarioInfo);
 #line 10
  testRunner.When("the provider submit an ILR with course price mismatch", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 11
- testRunner.Then("the Employer can not stop the waiting to start apprentice", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the Employer can stop the waiting to start apprentice", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

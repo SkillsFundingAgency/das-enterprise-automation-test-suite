@@ -14,6 +14,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages
         protected readonly FormCompletionHelper formCompletionHelper;
         protected readonly PageInteractionHelper pageInteractionHelper;
         protected readonly EPAODataHelper dataHelper;
+        protected readonly EPAOAdminDataHelper ePAOAdminDataHelper;
         protected readonly EPAOConfig ePAOConfig;
 
         protected override By PageHeader => By.CssSelector(".govuk-heading-xl, .heading-xlarge, .govuk-heading-l, .govuk-panel__title, .govuk-fieldset__heading");
@@ -24,6 +25,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages
             formCompletionHelper = context.Get<FormCompletionHelper>();
             pageInteractionHelper = context.Get<PageInteractionHelper>();
             dataHelper = context.Get<EPAODataHelper>();
+            ePAOAdminDataHelper = context.Get<EPAOAdminDataHelper>();
             ePAOConfig = context.GetEPAOConfig<EPAOConfig>();
         }
 

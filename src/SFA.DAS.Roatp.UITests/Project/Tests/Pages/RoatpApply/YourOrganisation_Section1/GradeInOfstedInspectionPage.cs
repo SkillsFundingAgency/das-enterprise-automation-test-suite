@@ -21,5 +21,11 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.YourOrganisation_
             SelectYesAndContinue();
             return new WhatGradeInOfstedInspectionPage(_context);
         }
+
+        public WhatGradeInOfstedInspectionOverallEffectivenessPage SelectNoForGradeInFullOfstedInspectionAndContinue()
+        {
+            SelectNoAndContinue();
+            return new WhatGradeInOfstedInspectionOverallEffectivenessPage(_context);
+        }
     }
 }
