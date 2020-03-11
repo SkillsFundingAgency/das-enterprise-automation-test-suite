@@ -31,11 +31,11 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
             VerifyPage();
         }
 
-        private Func<IWebElement> GetTaskLinkElement(string sectionName, string taskName) => GetTaskElement(sectionName, taskName, TaskName);
+        private Func<IWebElement> GetTaskLinkElement(string sectionName, string taskName, int index) => GetTaskElement(sectionName, taskName, TaskName, index);
 
-        private Func<IWebElement> GetTaskStatusElement(string sectionName, string taskName) => GetTaskElement(sectionName, taskName, TaskStatus);
+        private Func<IWebElement> GetTaskStatusElement(string sectionName, string taskName, int index) => GetTaskElement(sectionName, taskName, TaskStatus, index);
 
-        private Func<IWebElement> GetTaskElement(string sectionName, string taskName, By childelement)
+        private Func<IWebElement> GetTaskElement(string sectionName, string taskName, By childelement, int index)
         {
             return () =>
             {
@@ -48,9 +48,9 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
                         tasks = tasklist.FindElements(TaskItem).ToList();
                         foreach (var task in tasks)
                         {
-                            if (task.Text.ContainsCompareCaseInsensitive(taskName) && (childelement == TaskStatus ? true : (!task.Text.ContainsCompareCaseInsensitive("COMPLETED") && (!task.Text.ContainsCompareCaseInsensitive("NOT REQUIRED")))))
+                            if (task.Text.ContainsCompareCaseInsensitive(taskName) && (childelement == TaskStatus ? true : (!task.Text.ContainsCompareCaseInsensitive("NOT REQUIRED"))))
                             {
-                                return task.FindElement(childelement);
+                                return task.FindElements(childelement).ElementAt(index);
                             }
                         }
                     }
