@@ -23,6 +23,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private By ApprenticeSearchField => By.Id("search-input");
         private By SearchButton => By.CssSelector(".submit-search");
         private By ApprenticesTable => By.ClassName("tableResponsive");
+        private By SelectFilterDropdown => By.Id("selectedStatus");
+        private By ApplyFilter => By.CssSelector(".govuk-button");
+        private By ClearSearchAndFilters => By.PartialLinkText("Clear search");
+        private By DownloadAllDataLink => By.PartialLinkText("Download all data");
+        private By NextPageLink => By.PartialLinkText("Next");
 
         public ManageYourApprenticesPage(ScenarioContext context): base(context)
         {
@@ -58,6 +63,20 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
                 SearchForApprentice(_dataHelper.Ulns.Single());
 
             return _pageInteractionHelper.IsElementDisplayed(ApprenticesTable);
+        }
+
+        public ManageYourApprenticesPage FilterPagination(string filterText)
+        {
+            _formCompletionHelper.SelectFromDropDownByText(SelectFilterDropdown, filterText);
+            _formCompletionHelper.ClickElement(ApplyFilter);
+            _formCompletionHelper.ClickElement(NextPageLink);
+            _formCompletionHelper.ClickElement(ClearSearchAndFilters);
+            return this;
+        }
+
+        public bool DownloadAllDataLinkIsDisplayed()
+        {
+            return _pageInteractionHelper.IsElementDisplayed(DownloadAllDataLink);
         }
     }
 }

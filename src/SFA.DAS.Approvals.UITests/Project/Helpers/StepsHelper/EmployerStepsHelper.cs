@@ -36,6 +36,17 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 
         internal ManageYourApprenticesPage GoToManageYourApprenticesPage() => GoToEmployerApprenticesHomePage().ClickManageYourApprenticesLink();
 
+        public ManageYourApprenticesPage FilterAndPaginate(string filterselection)
+        {
+
+            return new ManageYourApprenticesPage(_context).FilterPagination(filterselection);
+        }
+
+        public bool VerifyDownloadAllLinkIsDisplayed()
+        {
+            return new ManageYourApprenticesPage(_context).DownloadAllDataLinkIsDisplayed();
+        }
+
         internal ApprenticesHomePage GoToEmployerApprenticesHomePage()
         {
             _homePageStepsHelper.GotoEmployerHomePage();
