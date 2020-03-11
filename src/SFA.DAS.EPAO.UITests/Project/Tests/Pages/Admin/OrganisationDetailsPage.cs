@@ -13,10 +13,18 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
         private readonly ScenarioContext _context;
         #endregion
 
+        private By ContactLink => By.CssSelector(".govuk-link[href*='view-contact']");
+
         public OrganisationDetailsPage(ScenarioContext context) : base(context)
         {
             _context = context;
             VerifyPage();
+        }
+
+        public ContactDetailsPage SelectContact()
+        {
+            formCompletionHelper.ClickLinkByText(ContactLink, "Raj PP");
+            return new ContactDetailsPage(_context);
         }
     }
 }

@@ -3,7 +3,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
 {
-    public abstract class AS_GradeDateBasePage : EPAO_BasePage
+    public abstract class AS_GradeDateBasePage : EPAOAssesment_BasePage
     {
         protected override By PageHeader => By.CssSelector(".govuk-fieldset__heading");
         private readonly ScenarioContext _context;

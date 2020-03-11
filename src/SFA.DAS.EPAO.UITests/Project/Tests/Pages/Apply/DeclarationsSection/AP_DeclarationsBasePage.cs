@@ -4,7 +4,7 @@ using SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.DeclarationsSection.Authori
 
 namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.DeclarationsSection
 {
-    public class AP_DeclarationsBasePage : EPAO_BasePage
+    public class AP_DeclarationsBasePage : EPAOApply_BasePage
     {
         protected override string PageTitle => "Declarations";
         private readonly ScenarioContext _context;
