@@ -27,7 +27,6 @@ namespace SFA.DAS.Registration.UITests.Project
         private MongoDbDataGenerator _mongoDbDataGenerator;
         private VacancyTitleDatahelper _vacancyTitleDatahelper;
         private RAAV2DataHelper _raaV2DataHelper;
-        private readonly SqlDatabaseConnectionHelper _sqlDatabaseConnectionHelper;
         
         public Hooks(ScenarioContext context)
         {
@@ -61,9 +60,10 @@ namespace SFA.DAS.Registration.UITests.Project
 
             _objectContext.SetOrganisationName(_config.RE_OrganisationName);
 
-            var registrationSqlDataHelper = new RegistrationSqlDataHelper(_config, _sqlDatabaseConnectionHelper);
-            _context.Set(registrationSqlDataHelper);
-            
+            _context.Set(new RegistrationSqlDataHelper(_config));
+
+            _context.Set(new TprSqlDataHelper(_tprconfig, _objectContext, _registrationDatahelpers));
+
             _context.Set(_vacancyTitleDatahelper);
             _context.Set(_raaV2DataHelper);
 
