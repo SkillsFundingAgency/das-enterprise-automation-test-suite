@@ -12,11 +12,6 @@ Scenario: RV2_E_DHFD_01 Employer creates a draft vacancy from dynamic homepage j
 	Then the funding is successfully reserved
 	And the new reserved funding panel is shown to employer on the homepage
 	And the employer continue to add vacancy in the Recruitment 
-	Given the Employer creates first Draft vacancy
+	Given the Employer creates first Draft vacancy 'National Mininum Wage'
 	And the vacancy details is displayed on the Dynamic home page with Status 'Saved as draft'
 	And the Employer is able to go back to the Recruitment after clicking 'Continue creating your vacancy'
-	
-	
-
-	
-	

@@ -3,6 +3,7 @@ using OpenQA.Selenium;
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.MongoDb.DataGenerator;
 using SFA.DAS.MongoDb.DataGenerator.Helpers;
+using SFA.DAS.RAA.DataGenerator;
 using SFA.DAS.Registration.UITests.Project.Helpers;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
@@ -23,8 +24,10 @@ namespace SFA.DAS.Registration.UITests.Project
         private RegistrationDataHelper _registrationDatahelpers;
         private LoginCredentialsHelper _loginCredentialsHelper;
         private MongoDbDataGenerator _mongoDbDataGenerator;
+        private VacancyTitleDatahelper _vacancyTitleDatahelper;
+        private RAAV2DataHelper _raaV2DataHelper;
         private readonly SqlDatabaseConnectionHelper _sqlDatabaseConnectionHelper;
-
+        
         public Hooks(ScenarioContext context)
         {
             _context = context;
@@ -48,6 +51,7 @@ namespace SFA.DAS.Registration.UITests.Project
             _objectContext.SetDataHelper(dataHelper);
 
             var randomDataGenerator = _context.Get<RandomDataGenerator>();
+            
             _registrationDatahelpers = new RegistrationDataHelper(dataHelper.GatewayUsername, _config.RE_AccountPassword, randomDataGenerator);
             _context.Set(_registrationDatahelpers);
 
@@ -58,6 +62,11 @@ namespace SFA.DAS.Registration.UITests.Project
 
             var registrationSqlDataHelper = new RegistrationSqlDataHelper(_config, _sqlDatabaseConnectionHelper);
             _context.Set(registrationSqlDataHelper);
+            
+            _context.Set(_vacancyTitleDatahelper);
+            _context.Set(_raaV2DataHelper);
+
+
         }
 
         [BeforeScenario(Order = 23)]

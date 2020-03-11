@@ -3,6 +3,7 @@ using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 using System.Collections.Generic;
 using SFA.DAS.RAA.DataGenerator;
+using System;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 {
@@ -44,7 +45,10 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         private By AddApprenticeDetails => By.LinkText("Add apprentice details");
         private By LiveStatus => By.CssSelector(".govuk-tag govuk-tag--active");
         #endregion
-
+        
+        private By TRows => By.CssSelector("tr");
+        private By THeader => By.CssSelector("th");
+        private By TData => By.CssSelector("td");
 
         internal HomePage(ScenarioContext context, bool navigate) : base(context, navigate)
         {
@@ -84,62 +88,95 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             formCompletionHelper.ClickElement(ContinueTo);
             return new DoYouNeedToCreateAnAdvertBasePage(_context);
         }
-
-        public string ConfirmVacancyDetails(string status)
+        private IWebElement GetStatus(string headerName)
         {
-            string vacancyStatus = null;
-            List<IWebElement> HomePagePanels = _pageInteractionHelper.FindElements(AdvertPanel);
-            foreach (var panel in HomePagePanels)
+            foreach (var row in pageInteractionHelper.FindElements(TRows))
             {
-                if (panel.Text.Contains("Your apprenticeship advert"))
+                if (row.FindElement(THeader).Text.ContainsCompareCaseInsensitive(headerName))
                 {
-                    var Table = _pageInteractionHelper.FindElement(VacancyDetails);
-                    var rows = Table.FindElements(By.TagName("tr"));
-                    int i = 0;
-                    _pageInteractionHelper.VerifyText(rows[i].Text, _vacancyTitleDataHelper.VacancyTitle);
-                    switch (status)
-                    {
-                        case "Saved as draft":
-                            vacancyStatus = _pageInteractionHelper.GetText(rows[i + 1]);
-                            break;
-
-                        case "PENDING REVIEW":
-                            _pageInteractionHelper.VerifyText(rows[i + 1].Text, "Closing date " + (_raaV2DataHelper.VacancyClosing).ToString("dd MMM yyyy"));
-                            vacancyStatus = _pageInteractionHelper.GetText(rows[i + 2]);
-                            _pageInteractionHelper.VerifyText(rows[i + 3].Text, "Applications No applications yet");
-                            break;
-
-                        case "REJECTED":
-                            vacancyStatus = _pageInteractionHelper.GetText(rows[i + 1]);
-                            break;
-
-                        case "LIVE":
-                            IWebElement func()
-                            {
-                                var liveStatus = _pageInteractionHelper.FindElement(LiveStatus);
-                                if (liveStatus.Text == "Live")
-                                {
-                                    return liveStatus;
-                                }
-                                return null;
-                            }
-                            //_pageInteractionHelper.WaitForElementToChange(func, AttributeHelper.InnerText, "Live");
-                            vacancyStatus = _pageInteractionHelper.GetText(rows[i + 1]);
-                            _pageInteractionHelper.VerifyText(rows[i + 2].Text, "Closing date " +(_raaV2DataHelper.VacancyClosing).ToString("dd MMM yyyy"));
-                            _pageInteractionHelper.VerifyText(rows[i + 3].Text, "Applications 0 applications");
-                            bool buttonDisplayed = _pageInteractionHelper.IsElementDisplayed(AddApprenticeDetails);
-                            _pageInteractionHelper.VerifyText(buttonDisplayed.ToString(), "True");                            
-                            break;
-
-                        case "CLOSED":
-                            vacancyStatus = _pageInteractionHelper.GetText(rows[i + 1]);
-                            _pageInteractionHelper.VerifyText(rows[i + 2].Text, (_raaV2DataHelper.VacancyClosing).ToString());
-                            break;
-                    }
+                        return row.FindElement(TData);
                 }
-                break;
             }
-            return vacancyStatus;
+                throw new NotFoundException($"{headerName} not found");
+        }
+
+        private IWebElement GetTitle(string title)
+        {
+            foreach (var row in pageInteractionHelper.FindElements(TRows))
+            {
+                if (row.FindElement(THeader).Text.ContainsCompareCaseInsensitive(title))
+                {
+                    return row.FindElement(TData);
+                }
+            }
+            throw new NotFoundException($"{title} not found");
+        }
+
+        private IWebElement GetClosingDate(string closingDate)
+        {
+            foreach (var row in pageInteractionHelper.FindElements(TRows))
+            {
+                if (row.FindElement(THeader).Text.ContainsCompareCaseInsensitive(closingDate))
+                {
+                    return row.FindElement(TData);
+                }
+            }
+            throw new NotFoundException($"{closingDate} not found");
+        }
+
+        private IWebElement GetApplications(string applications)
+        {
+            foreach (var row in pageInteractionHelper.FindElements(TRows))
+            {
+                if (row.FindElement(THeader).Text.ContainsCompareCaseInsensitive(applications))
+                {
+                    return row.FindElement(TData);
+                }
+            }
+            throw new NotFoundException($"{applications} not found");
+        }
+
+        public void ConfirmVacancyTitleAndStatus(string status)
+        {
+            string vacancyStatus = GetStatus("Status").Text.ToString(); 
+            _pageInteractionHelper.VerifyText(GetTitle("Title").Text.ToString(), _vacancyTitleDataHelper.VacancyTitle);
+            _pageInteractionHelper.VerifyText(vacancyStatus, status);
+        }
+
+        public void ConfirmSubmittedVacancyDetails(string status)
+        {
+            ConfirmVacancyTitleAndStatus(status);
+            VerifyClosingDate(_raaV2DataHelper.VacancyClosing.ToString("dd MMM yyyy"));
+            VerifyApplicationLink();
+        }
+
+        public void ConfirmRejectedVacancyDetails(string status)
+        {
+            ConfirmVacancyTitleAndStatus(status);
+        }
+
+        public void ConfirmLiveVacancyDetails(string status)
+        {
+            ConfirmVacancyTitleAndStatus(status);
+            VerifyClosingDate(_raaV2DataHelper.VacancyClosing.ToString("dd MMM yyyy"));
+            VerifyApplicationLink();
+        }
+
+        public void ConfirmClosedVacancyDetails(string status)
+        {
+            ConfirmVacancyTitleAndStatus(status);
+            VerifyClosingDate(DateTime.Today.ToString("dd MMMM yyyy"));
+            VerifyApplicationLink();
+        }
+
+        private void VerifyClosingDate(string closingDate)
+        {
+            _pageInteractionHelper.VerifyText(GetClosingDate("Closing date").Text.ToString(), closingDate);
+        }
+
+        private void VerifyApplicationLink()
+        {
+            _pageInteractionHelper.VerifyText(GetApplications("Applications").Text.ToString(), "application");
         }
 
         public void ClicktheButtonOnAdvertPage(string button)
@@ -160,9 +197,9 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
                     break;
 
                 case "application":
-                    foreach (var link in links)
+                    foreach(var link in links)
                     {
-                        if (link.Text.Contains("application"))
+                        if(link.Text.Contains("application"))
                         {
                             link.Click();
                             break;

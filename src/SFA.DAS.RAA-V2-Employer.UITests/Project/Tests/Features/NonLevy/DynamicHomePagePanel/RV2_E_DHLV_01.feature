@@ -6,7 +6,6 @@
 @raa-v2e
 @regression
 @addpayedetails
-@LoginNewEmployerAccount
 Scenario: RV2_E_DHLV_01 Employer creates vacancy from dynamic homepage journey and approve
 	Given the User creates Employer account and sign an agreement
 	When the Employer reserves funding for an apprenticeship course from reserved panel

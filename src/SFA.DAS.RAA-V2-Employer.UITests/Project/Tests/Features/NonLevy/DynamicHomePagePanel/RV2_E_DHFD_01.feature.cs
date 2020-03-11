@@ -97,7 +97,7 @@ this.ScenarioInitialize(scenarioInfo);
 #line 14
  testRunner.And("the employer continue to add vacancy in the Recruitment", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 15
- testRunner.Given("the Employer creates first Draft vacancy", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("the Employer creates first Draft vacancy \'National Mininum Wage\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 16
  testRunner.And("the vacancy details is displayed on the Dynamic home page with Status \'Saved as d" +
                     "raft\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");

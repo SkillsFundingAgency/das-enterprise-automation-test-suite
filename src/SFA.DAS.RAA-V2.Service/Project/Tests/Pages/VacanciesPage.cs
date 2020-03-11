@@ -22,7 +22,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         #endregion
 
         private By Filter => By.CssSelector("#Filter");
-        private By HomeLink => By.LinkText("Home");
+        private By RecruitmentLink => By.LinkText("Recruitment");
 
         
         public VacanciesPage(ScenarioContext context) : base(context)
@@ -54,10 +54,10 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
             _tableRowHelper.SelectRowFromTable("Edit and submit", _vacancyTitleDatahelper.VacancyTitle);
         }
 
-        public DynamicHomePage GoToHomePage()
+        public VacanciesPage GoToRecruitmentHomePage()
         {
-            _formCompletionHelper.Click(HomeLink);
-            return new DynamicHomePage(_context);
+            _formCompletionHelper.Click(RecruitmentLink);
+            return this;
         }
     }
 }

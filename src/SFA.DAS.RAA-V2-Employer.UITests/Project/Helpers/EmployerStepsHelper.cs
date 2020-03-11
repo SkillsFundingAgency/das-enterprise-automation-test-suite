@@ -30,7 +30,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
         {
             _stepsHelper.SubmitVacancy(previewPage, isApplicationMethodFAA, optionalFields);
         }
-
+               
         internal VacanciesPage DeleteDraftVacancy(VacancyPreviewPart2Page previewPage) => previewPage.DeleteVacancy().YesDeleteVacancy();
 
         internal VacanciesPage CancelVacancy() => EnterVacancyTitle().CancelVacancy();
@@ -68,7 +68,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
                 .PublishVacancy();
         }
 
-        internal void CloseVacancy() => SearchVacancyByVacancyReferenceInNewTab().CloseVacancy().YesCloseThisVacancy();
+        internal void CloseVacancy() => SearchVacancyByVacancyReferenceInNewTab().CloseVacancy().YesCloseThisVacancy().GoToRecruitmentHomePage();
 
         internal void ApplicantUnsucessful() => _stepsHelper.ApplicantUnsucessful(SearchVacancyByVacancyReferenceInNewTab());
 
@@ -124,21 +124,15 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
 
         private ManageVacancyPage SearchVacancyByVacancyReference() => NavigateToRecruitmentHomePage().SearchVacancyByVacancyReference();
 
-        private RecruitmentHomePage GoToRecruitmentHomePage()
+        public RecruitmentHomePage GoToRecruitmentHomePage()
         {
             _loginhelper.Login(_context.GetUser<RAAV2EmployerUser>(), true);
 
             return NavigateToRecruitmentHomePage();
         }
 
-        //private RecruitmentLandingPage GoToRecruitmentLandingPage()
-        //{
-            
-        //}
+        public RecruitmentHomePage NavigateToRecruitmentHomePage() => new RecruitmentHomePage(_context, true);
 
-        private RecruitmentHomePage NavigateToRecruitmentHomePage() => new RecruitmentHomePage(_context, true);
-
-        //private RecruitmentLandingPage NavigateToRecruitmentLandingPage() => new RecruitmentLandingPage(_context, true);
 
         private ApprenticeshipTrainingPage EnterVacancyTitle()
         {
@@ -179,35 +173,43 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
                 .SubmitNoOfPositionsAndNavigateToEmployerNamePage();
         }
 
-        public VacanciesPage CreateFirstDraftVacancy()
+        public void CreateFirstDraftVacancy(string wageType)
         {
-            return new VacancyTitlePage(_context).EnterVacancyTitleForTheFirstVacancy().CancelVacancy();
+            var employernamePage = SelectOrganisationForNewAccount();
+
+            var locationPage = _stepsHelper.ChooseEmployerName(employernamePage, string.Empty);
+
+            _stepsHelper.PreviewVacancy(locationPage, wageType).AddBriefOverview().EnterBriefOverview().ReturnToDashboard().GoToRecruitmentHomePage();
+        }
+        public void ConfirmVacancyStatusForDraft(string vacancyStatus)
+        {
+            new RecruitmentHomePage(_context).GoToMAHomePage().ConfirmVacancyTitleAndStatus(vacancyStatus);
         }
 
-        public string ConfirmVacancyStatus(string vacancyStatus)
+        public void ConfirmVacancyStatusForSubmitted(string vacancyStatus)
         {
-
-            string status = null;
-            if (_loginHelper.IsYourAccountPageDisplayed())
-            {
-                status = new VacancyReferencePage(_context).GoToHomePage().ConfirmVacancyDetails(vacancyStatus);                
-            }
-            else
-            {
-                status = new DynamicHomePage(_context).ConfirmVacancyDetails(vacancyStatus);
-            }
-            return status.Remove(0,7);
+            new RecruitmentHomePage(_context).GoToMAHomePage().ConfirmSubmittedVacancyDetails(vacancyStatus);
         }
 
+        public void ConfirmVacancyStatusForClosed(string vacancyStatus)
+        {
+            new RecruitmentHomePage(_context).GoToMAHomePage().ConfirmClosedVacancyDetails(vacancyStatus); 
+        }
+
+        public void ConfirmVacancyStatusForLive(string vacancyStatus)
+        {
+            new RecruitmentHomePage(_context).GoToMAHomePage().ConfirmLiveVacancyDetails(vacancyStatus);
+        }
+        
         private void ClicktheButtonOnAdvertPage(string button)
         {
             new DynamicHomePage(_context).ClicktheButtonOnAdvertPage(button);
         }
 
-        public HaveYouAlreadyFoundTrainingPage ClickContinueCreatingYourVacancy(string button)
+        public VacanciesPage ClickContinueCreatingYourVacancy(string button)
         {
             ClicktheButtonOnAdvertPage(button);
-            return new HaveYouAlreadyFoundTrainingPage(_context);
+           return new VacancyPreviewPart2Page(_context).ReturnToDashboard();
         }
 
         public RecruitmentHomePage ClickGoToYourVacancy(string button)

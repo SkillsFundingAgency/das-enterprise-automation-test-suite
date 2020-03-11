@@ -81,6 +81,8 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
         [Then(@"the vacancy is saved as a draft")]
         public void ThenTheVacancyIsSavedAsADraft() => _vacanciesPage.GoToApprenticeshipTrainingPage();
 
+        [Given(@"Employer is able to open the draft and create the vacancy by filling the data for the second part")]
+        [When(@"Employer is able to open the draft and create the vacancy by filling the data for the second part")]
         [Then(@"Employer is able to open the draft and create the vacancy by filling the data for the second part")]
         public void ThenEmployerIsAbleToOpenTheDraftAndCreateTheVacancyByFillingTheDataForTheSecondPart() => _employerStepsHelper.SubmitVacancy(_vacanciesPage.GoToVacancyPreviewPart2Page(), true, false);
 
@@ -110,17 +112,37 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
         [Then(@"the Employer verify '(National Minimum Wage For Apprentices|National Minimum Wage|Fixed Wage Type)' the wage option selected in the Preview page")]
         public void ThenTheEmployerVerifyTheWageOptionSelectedInThePreviewPage(string wageType) => _employerStepsHelper.VerifyWageType(wageType);
 
-        [Given(@"the Employer creates first Draft vacancy")]
-        public void GivenTheEmployerCreatesFirstDraftVacancy() => _employerStepsHelper.CreateFirstDraftVacancy();
-        
+        [Given(@"the Employer creates first Draft vacancy '(.*)'")]
+        public void GivenTheEmployerCreatesFirstDraftVacancy(string wageType) => _employerStepsHelper.CreateFirstDraftVacancy(wageType);
+                
         [Then(@"the employer continue to add vacancy in the Recruitment")]
         public void ThenTheEmployerContinueToAddVacancyInTheRecruitment() => _employerStepsHelper.GoToAddAnAdvert();
 
         [Given(@"the vacancy details is displayed on the Dynamic home page with Status '(.*)'")]
         public void GivenTheVacancyDetailsIsDisplayedOnTheDynamicHomePageWithStatus(string status)
         {
-            string vacancyStatus = _employerStepsHelper.ConfirmVacancyStatus(status);
-            _pageInteractionHelper.VerifyText(vacancyStatus, status);            
+            switch (status)
+            {
+                case "Saved as draft":
+                    _employerStepsHelper.ConfirmVacancyStatusForDraft(status);
+                    break;
+
+                case "CLOSED":
+                    _employerStepsHelper.ConfirmVacancyStatusForClosed(status);
+                    break;
+
+                case "PENDING REVIEW":
+                    _employerStepsHelper.ConfirmVacancyStatusForSubmitted(status);
+                    break;
+
+                case "LIVE":
+                    _employerStepsHelper.ConfirmVacancyStatusForLive(status);
+                    break;
+
+                case "REJECTED":
+                    _employerStepsHelper.ConfirmVacancyStatusForDraft(status);
+                    break;
+            }                    
         }
 
         [Given(@"the Employer is able to go back to the Recruitment after clicking '(.*)'")]
@@ -156,7 +178,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
         public void GivenTheEmployerLogsIntoEmployerAccount()
         {
             _homePageStepsHelper.GotoEmployerHomePage();
+            _employerStepsHelper.NavigateToRecruitmentHomePage();
         }
-
     }
 }

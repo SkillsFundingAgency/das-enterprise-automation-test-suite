@@ -22,6 +22,8 @@ namespace SFA.DAS.RAA_V2_QA.UITests.Project.Tests.Pages.Reviewer
 
         protected By SubmitButton => By.CssSelector("#submit-button");
 
+        private By VacancyQALink => By.LinkText("Vacancy QA");
+
         public ApproveVacancyBasePage(ScenarioContext context) : base(context)
         {
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
@@ -52,6 +54,7 @@ namespace SFA.DAS.RAA_V2_QA.UITests.Project.Tests.Pages.Reviewer
 
             _formCompletionHelper.EnterText(ReviewerComment, "Refered");
             _formCompletionHelper.Click(SubmitButton);
+            _formCompletionHelper.Click(VacancyQALink);
         }
 
         private List<IWebElement> ErrorsCheckboxElements() => _pageInteractionHelper.FindElements(ErrorsCheckboxes).ToList();
