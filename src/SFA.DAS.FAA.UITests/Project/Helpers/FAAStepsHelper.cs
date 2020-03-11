@@ -52,7 +52,7 @@ namespace SFA.DAS.FAA.UITests.Project.Helpers
                 _tabHelper.OpenInNewTab(_config.FAABaseUrl);
             }
 
-            var (username, password, _, _) = _objectContext.GetFAANewAccount();
+            var (username, password, _, _) = _objectContext.GetFAALogin();
 
                 return new FAA_Indexpage(_context)
                    .GoToSignInPage()
@@ -80,7 +80,7 @@ namespace SFA.DAS.FAA.UITests.Project.Helpers
 
         public void CreateFAAAccountWithNoActivation(FAA_CreateAnAccountPage accountCreationPage)
         {
-            var (username, password, _, _) = _objectContext.GetFAANewAccount();
+            var (username, password, _, _) = _objectContext.GetFAALogin();
             accountCreationPage.SubmitAccountCreationDetails()
                 .ClickSignOut()
                 .SubmitUnactivatedLoginDetails(username,password);
@@ -177,7 +177,7 @@ namespace SFA.DAS.FAA.UITests.Project.Helpers
 
             signInpage.ConfirmEmailAddressUpdate();
 
-            _objectContext.SetFAANewUsername(_faaDataHelper.ChangedEmailId);
+            _objectContext.SetFAAUsername(_faaDataHelper.ChangedEmailId);
 
             GoToSettingsPage().ChangePhoneNumberSettings().EnterVerificationCode().VerifySuccessfulVerificationText();
         }

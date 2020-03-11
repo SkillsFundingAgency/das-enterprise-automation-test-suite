@@ -78,16 +78,16 @@ testRunner.Given("the Applicant creates new FAA account", ((string)(null)), ((Te
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RV1_CPS_01 - Changing emailId and address in FAA and checking the changes in Recr" +
-            "uit and Manage")]
+        [NUnit.Framework.DescriptionAttribute("RV1_CPS_01 - Changing candidate details in FAA and checking the changes in Recrui" +
+            "t and Manage")]
         [NUnit.Framework.CategoryAttribute("raa-v1")]
         [NUnit.Framework.CategoryAttribute("apprenticeshipvacancy")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("FAALoginNewCredentials")]
-        public virtual void RV1_CPS_01_ChangingEmailIdAndAddressInFAAAndCheckingTheChangesInRecruitAndManage()
+        public virtual void RV1_CPS_01_ChangingCandidateDetailsInFAAAndCheckingTheChangesInRecruitAndManage()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV1_CPS_01 - Changing emailId and address in FAA and checking the changes in Recr" +
-                    "uit and Manage", null, new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV1_CPS_01 - Changing candidate details in FAA and checking the changes in Recrui" +
+                    "t and Manage", null, new string[] {
                         "raa-v1",
                         "apprenticeshipvacancy",
                         "regression",

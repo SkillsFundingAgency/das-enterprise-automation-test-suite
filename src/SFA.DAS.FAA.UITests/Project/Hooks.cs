@@ -50,11 +50,11 @@ namespace SFA.DAS.FAA.UITests.Project
             
             if (_context.ScenarioInfo.Tags.Contains("FAALoginNewCredentials"))
             {
-                _objectContext.SetFAANewAccount(fAAnewcreds.EmailId, fAAnewcreds.Password, fAAnewcreds.FirstName, fAAnewcreds.LastName);
+                _objectContext.SetFAALogin(fAAnewcreds.EmailId, fAAnewcreds.Password, fAAnewcreds.FirstName, fAAnewcreds.LastName);
             }
             else
             {
-                _objectContext.SetFAANewAccount(_fAAConfig.FAAUserName, _fAAConfig.FAAPassword,_fAAConfig.FAAFirstName,_fAAConfig.FAALastName);
+                _objectContext.SetFAALogin(_fAAConfig.FAAUserName, _fAAConfig.FAAPassword,_fAAConfig.FAAFirstName,_fAAConfig.FAALastName);
             }
         }
     }

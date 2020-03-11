@@ -90,16 +90,16 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Features.FAA.Applications.Apprent
                         "regression",
                         "raa-v1",
                         "FAALoginNewCredentials"});
-#line 9
+#line 10
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 3
 this.FeatureBackground();
-#line 10
-testRunner.Given("the apprenticeship vacancy is Live in Recruit with no application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 11
-testRunner.When("draft application is created in FAA", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+testRunner.Given("the apprenticeship vacancy is Live in Recruit with no application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 12
+testRunner.When("draft application is created in FAA", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 13
 testRunner.Then("Candidate is able to delete draft application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();

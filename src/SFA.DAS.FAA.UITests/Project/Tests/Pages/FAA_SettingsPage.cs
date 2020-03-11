@@ -51,7 +51,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 
         public FAA_ConfirmAccountDeletionPage DeleteYourAccount()
         {
-            var (username, password, _ , _) = _objectcontext.GetFAANewAccount();
+            var (username, password, _ , _) = _objectcontext.GetFAALogin();
             _formCompletionHelper.Click(DeleteYourAccountLink);
             _formCompletionHelper.EnterText(UsernameField, username);
             _formCompletionHelper.EnterText(PasswordField, password);

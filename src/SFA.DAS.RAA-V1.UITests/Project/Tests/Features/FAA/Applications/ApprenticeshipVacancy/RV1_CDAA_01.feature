@@ -2,6 +2,7 @@
 	
 Background: 
 	Given the Applicant creates new FAA account
+
 @apprenticeshipvacancy
 @regression
 @raa-v1

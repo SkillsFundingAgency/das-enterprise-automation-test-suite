@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.FAA.UITests.Project.Tests.Features.CreateAccount
+namespace SFA.DAS.FAA.UITests.Project.Tests.Features.SearchVacancy
 {
     using TechTalk.SpecFlow;
     
@@ -18,20 +18,20 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Features.CreateAccount
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.0.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("FAA_CA_02")]
-    public partial class FAA_CA_02Feature
+    [NUnit.Framework.DescriptionAttribute("FAA_SearchVacancy_01")]
+    public partial class FAA_SearchVacancy_01Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "RV1_FCA_02.feature"
+#line 1 "FAA_SearchVacancy_01.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "FAA_CA_02", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "FAA_SearchVacancy_01", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -70,21 +70,26 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Features.CreateAccount
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("FAA_CA_02 - Create an FAA Account with Registerd Email")]
+        [NUnit.Framework.DescriptionAttribute("FAA_SearchVacancy_01 - Search Nationwide Vacancy in FAA and checkin the sort resu" +
+            "lts and distance on the vacancies")]
         [NUnit.Framework.CategoryAttribute("raa-v1")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public virtual void FAA_CA_02_CreateAnFAAAccountWithRegisterdEmail()
+        public virtual void FAA_SearchVacancy_01_SearchNationwideVacancyInFAAAndCheckinTheSortResultsAndDistanceOnTheVacancies()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("FAA_CA_02 - Create an FAA Account with Registerd Email", null, new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("FAA_SearchVacancy_01 - Search Nationwide Vacancy in FAA and checkin the sort resu" +
+                    "lts and distance on the vacancies", null, new string[] {
                         "raa-v1",
                         "regression"});
-#line 5
+#line 6
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 6
- testRunner.When("an Applicant initiates Account creation journey", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 7
- testRunner.Then("the Applicant should be told that Email is already registered", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Given("an applicant is on the Find an Apprenticeship Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 8
+ testRunner.When("the apprenticeship can be found based on \'CV1\',\'England\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 9
+ testRunner.Then("the Sort results is changed by closing date and distance is not displayed on the " +
+                    "vacancies", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
