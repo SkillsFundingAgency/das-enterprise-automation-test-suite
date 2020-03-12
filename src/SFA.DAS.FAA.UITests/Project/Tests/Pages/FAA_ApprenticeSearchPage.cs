@@ -31,9 +31,6 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
         private By Distance => By.Id("loc-within");
         private By ApprenticeshipLevel => By.Id("apprenticeship-level");
         private By VerifyPhoneNumberText => By.Id("InfoMessageText");
-        private By VerifyYourNumber => By.LinkText("verify your number");
-        private By LocationErrorMessage => By.Id("error-summary");
-        private By PartialLocationErrorMessage => By.CssSelector("[data-valmsg-for='Location']");
         
         public FAA_ApprenticeSearchPage(ScenarioContext context) : base(context)
         {
@@ -97,8 +94,8 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 
         public FAA_PhoneNumberVerificationPage VerifyPhoneNumberVerificationText()
         {
-            _pageInteractionHelper.VerifyText(VerifyPhoneNumberText, _faadataHelper.PhoneNumberVerificationText);           
-            _formCompletionHelper.Click(VerifyYourNumber);
+            _pageInteractionHelper.VerifyText(VerifyPhoneNumberText, _faadataHelper.PhoneNumberVerificationText);
+            _formCompletionHelper.ClickLinkByText("verify your number");
             _pageInteractionHelper.WaitforURLToChange("verifymobile");
             return new FAA_PhoneNumberVerificationPage(_context);
         } 
