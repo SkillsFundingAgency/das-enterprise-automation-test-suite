@@ -2,7 +2,6 @@
 using SFA.DAS.Registration.UITests.Project.Helpers;
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.UI.FrameworkHelpers;
-using System;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
@@ -36,6 +35,26 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 
         internal ManageYourApprenticesPage GoToManageYourApprenticesPage() => GoToEmployerApprenticesHomePage().ClickManageYourApprenticesLink();
 
+        public ManageYourApprenticesPage Filter(string filterselection)
+        {
+            return new ManageYourApprenticesPage(_context).Filter(filterselection);
+        }
+
+        public ManageYourApprenticesPage SelectNextPage()
+        {
+            return new ManageYourApprenticesPage(_context).SelectNextPage();
+        }
+
+        public ManageYourApprenticesPage ClearFilterAndSearch()
+        {
+            return new ManageYourApprenticesPage(_context).ClearSearchAndFilter();
+        }
+
+        public ApprenticeDetailsPage SelectApprenticeship()
+        {
+            return new ManageYourApprenticesPage(_context).SelectApprenticeDetails();
+        }
+
         public ManageYourApprenticesPage FilterAndPaginate(string filterselection)
         {
 
@@ -45,6 +64,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
         public bool VerifyDownloadAllLinkIsDisplayed()
         {
             return new ManageYourApprenticesPage(_context).DownloadAllDataLinkIsDisplayed();
+        }
+
+        public bool VerifyDownloadFilteredLinkIsDisplayed()
+        {
+            return new ManageYourApprenticesPage(_context).DownloadFilteredDataLinkIsDisplayed();
         }
 
         internal ApprenticesHomePage GoToEmployerApprenticesHomePage()
@@ -81,8 +105,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                 .SelectYesAndConfirm();
         }
 
-        internal ApprenticeDetailsPage ViewCurrentApprenticeDetails() => GoToManageYourApprenticesPage().SelectViewCurrentApprenticeDetails();
+        internal ManageYourApprenticesPage ClickApprenticeDetailsBackLink(ApprenticeDetailsPage apprenticeDetailsPage)
+        {
+            return apprenticeDetailsPage.ClickBackLink();
+        }
 
+        internal ApprenticeDetailsPage ViewCurrentApprenticeDetails() => GoToManageYourApprenticesPage().SelectViewCurrentApprenticeDetails();
+        
         internal EditApprenticePage EditApprenticeDetailsPagePostApproval() => ViewCurrentApprenticeDetails().ClickEditApprenticeDetailsLink();
 
         internal ReviewYourCohortPage EmployerReviewCohort()

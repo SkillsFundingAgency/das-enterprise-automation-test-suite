@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
+using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
 using SFA.DAS.Login.Service;
 using SFA.DAS.Login.Service.Helpers;
 using SFA.DAS.Registration.UITests.Project.Helpers;
@@ -21,21 +22,58 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _loginHelper = new EmployerPortalLoginHelper(context);
         }
 
-        [Given(@"A Employer has navigated to Manage your apprentice page")]
-        public void GivenAEmployerHasNavigatedToManageYourApprenticePage()
+        [Given(@"An employer has navigated to Manage your apprentice page")]
+        public void AnEmployerHasNavigatedToManageYourApprenticePage()
         {
             _loginHelper.Login(_context.GetUser<LevyUser>(), true);
             _employerStepsHelper.GoToManageYourApprenticesPage();
         }
-        
+
+        [Given(@"the employer filters by '(.*)'")]
         [When(@"the employer filters by '(.*)'")]
-        public void WhenTheEmployerFiltersBy(string filterselection)
+        public void TheEmployerFiltersBy(string filterselection)
         {
-            _employerStepsHelper.FilterAndPaginate(filterselection);
+            _employerStepsHelper.Filter(filterselection);
         }
-        
+
+        [Given(@"the employer clears search and filters")]
+        [When(@"the employer clears search and filters")]
+        public void TheEmployerClearsSearchAndFilters()
+        {
+            _employerStepsHelper.ClearFilterAndSearch();
+        }
+
+        [Given(@"the employer selects next page")]
+        [When(@"the employer selects next page")]
+        public void TheEmployerSelectsNextPage()
+        {
+            _employerStepsHelper.SelectNextPage();
+        }
+
+        [Given(@"the employer selects apprenticeship details")]
+        [When(@"the employer selects apprenticeship details")]
+        public void TheEmployerSelectsApprenticeshipDetails()
+        {
+            _employerStepsHelper.SelectApprenticeship();
+        }
+
+
+        [When(@"the employer click the back link on apprenticeship details page")]
+        public void TheEmployerClicksOnBackLinkOnApprenticeshipDetails()
+        {
+            _employerStepsHelper.ClickApprenticeDetailsBackLink(new ApprenticeDetailsPage(_context, false));
+        }
+
+        [Then(@"the employer is presented with first page with filters applied")]
+        public void TheEmployerIsPresentedWithFirstPageWithFiltersApplied()
+        {
+            var linkDisplayed = _employerStepsHelper.VerifyDownloadFilteredLinkIsDisplayed();
+
+            Assert.IsTrue(linkDisplayed, "Download filtered data");
+        }
+
         [Then(@"the employer is presented with first page with no filters applied")]
-        public void ThenTheEmployerIsPresentedWithFirstPageWithNoFiltersApplied()
+        public void TheEmployerIsPresentedWithFirstPageWithNoFiltersApplied()
         {           
             var linkDisplayed = _employerStepsHelper.VerifyDownloadAllLinkIsDisplayed();
 
