@@ -39,23 +39,18 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
         {
             return () =>
             {
-                List<IWebElement> tasks = new List<IWebElement>();
-                var taskLists = pageInteractionHelper.FindElements(TaskLists).ToList();
-                foreach(var tasklist in taskLists)
+                var section = pageInteractionHelper.FindElements(TaskLists).Single(x => x.Text.StartsWith(sectionName));
+
+                var tasks = section.FindElements(TaskItem);
+
+                var task = tasks.Where(x => x.Text.ContainsCompareCaseInsensitive(taskName)).ElementAt(index);
+
+                if (childelement == TaskStatus ? true : (!task.Text.ContainsCompareCaseInsensitive("NOT REQUIRED")))
                 {
-                    if (tasklist.FindElement(TaskSection).Text.ContainsCompareCaseInsensitive(sectionName))
-                    {
-                        tasks = tasklist.FindElements(TaskItem).ToList();
-                        foreach (var task in tasks)
-                        {
-                            if (task.Text.ContainsCompareCaseInsensitive(taskName) && (childelement == TaskStatus ? true : (!task.Text.ContainsCompareCaseInsensitive("NOT REQUIRED"))))
-                            {
-                                return task.FindElements(childelement).ElementAt(index);
-                            }
-                        }
-                    }
+                    return task.FindElement(childelement);
                 }
-                var mesage = $"Expected :{Environment.NewLine}'{childelement.ToString()}' with task name - '{taskName}' under - '{sectionName}' section.{Environment.NewLine}" +
+
+                var mesage = $"Expected :{Environment.NewLine}'{childelement}' with task name - '{taskName}' under - '{sectionName}' section.{Environment.NewLine}" +
                              $"Actual :{Environment.NewLine}{string.Join($"{Environment.NewLine}", tasks.Select(x => x.Text))}";
                 throw new NotFoundException(mesage);
             };
