@@ -111,14 +111,20 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
 
         [Then(@"the Employer verify '(National Minimum Wage For Apprentices|National Minimum Wage|Fixed Wage Type)' the wage option selected in the Preview page")]
         public void ThenTheEmployerVerifyTheWageOptionSelectedInThePreviewPage(string wageType) => _employerStepsHelper.VerifyWageType(wageType);
-
+        
         [Given(@"the Employer creates first Draft vacancy '(.*)'")]
+        [When(@"the Employer creates first Draft vacancy '(.*)'")]
+        [Then(@"the Employer creates first Draft vacancy '(.*)'")]
         public void GivenTheEmployerCreatesFirstDraftVacancy(string wageType) => _employerStepsHelper.CreateFirstDraftVacancy(wageType);
-                
+
+        [Given(@"the employer continue to add vacancy in the Recruitment")]
+        [When(@"the employer continue to add vacancy in the Recruitment")]
         [Then(@"the employer continue to add vacancy in the Recruitment")]
         public void ThenTheEmployerContinueToAddVacancyInTheRecruitment() => _employerStepsHelper.GoToAddAnAdvert();
 
         [Given(@"the vacancy details is displayed on the Dynamic home page with Status '(.*)'")]
+        [When(@"the vacancy details is displayed on the Dynamic home page with Status '(.*)'")]
+        [Then(@"the vacancy details is displayed on the Dynamic home page with Status '(.*)'")]
         public void GivenTheVacancyDetailsIsDisplayedOnTheDynamicHomePageWithStatus(string status)
         {
             switch (status)
@@ -145,6 +151,8 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
             }                    
         }
 
+        [Then(@"the Employer is able to go back to the Recruitment after clicking '(.*)'")]
+        [When(@"the Employer is able to go back to the Recruitment after clicking '(.*)'")]
         [Given(@"the Employer is able to go back to the Recruitment after clicking '(.*)'")]
         public void GivenTheEmployerIsAbleToGoBackToTheRecruitmentAfterClicking(string button)
         {
@@ -169,6 +177,8 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
         }
 
         [Given(@"the Employer creates first submitted vacancy '(.*)'")]
+        [When(@"the Employer creates first submitted vacancy '(.*)'")]
+        [Then(@"the Employer creates first submitted vacancy '(.*)'")]
         public void GivenTheEmployerCreatesFirstSubmittedVacancy(string wageType)
         {
             _employerStepsHelper.CreateFirstSubmittedVacancy(wageType);
