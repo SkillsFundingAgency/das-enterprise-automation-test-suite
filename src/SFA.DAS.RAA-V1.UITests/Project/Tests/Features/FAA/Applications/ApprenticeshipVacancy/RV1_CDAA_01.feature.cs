@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Features.FAA.Applications.ChangePersonalSettings
+namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Features.FAA.Applications.ApprenticeshipVacancy
 {
     using TechTalk.SpecFlow;
     
@@ -18,20 +18,20 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Features.FAA.Applications.ChangeP
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.0.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("RV1_CPS_02")]
-    public partial class RV1_CPS_02Feature
+    [NUnit.Framework.DescriptionAttribute("RV1_CDAA_01")]
+    public partial class RV1_CDAA_01Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "RV1_CPS_02.feature"
+#line 1 "RV1_CDAA_01.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "RV1_CPS_02", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "RV1_CDAA_01", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -73,42 +73,34 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Features.FAA.Applications.ChangeP
         {
 #line 3
 #line 4
-testRunner.When("an Applicant initiates Account creation journey", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 5
-testRunner.Then("the Applicant is able to create a FAA Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Given("the Applicant creates new FAA account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RV1_CPS_01 - Changing PhoneNumber in FAA and checking the changes in Recruit and " +
-            "Manage")]
-        [NUnit.Framework.CategoryAttribute("raa-v1")]
+        [NUnit.Framework.DescriptionAttribute("RV1_CDAA_01 - creating draft application and deleting it in FAA")]
         [NUnit.Framework.CategoryAttribute("apprenticeshipvacancy")]
         [NUnit.Framework.CategoryAttribute("regression")]
+        [NUnit.Framework.CategoryAttribute("raa-v1")]
         [NUnit.Framework.CategoryAttribute("FAALoginNewCredentials")]
-        public virtual void RV1_CPS_01_ChangingPhoneNumberInFAAAndCheckingTheChangesInRecruitAndManage()
+        public virtual void RV1_CDAA_01_CreatingDraftApplicationAndDeletingItInFAA()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV1_CPS_01 - Changing PhoneNumber in FAA and checking the changes in Recruit and " +
-                    "Manage", null, new string[] {
-                        "raa-v1",
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV1_CDAA_01 - creating draft application and deleting it in FAA", null, new string[] {
                         "apprenticeshipvacancy",
                         "regression",
+                        "raa-v1",
                         "FAALoginNewCredentials"});
-#line 11
+#line 10
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 3
 this.FeatureBackground();
+#line 11
+testRunner.Given("the apprenticeship vacancy is Live in Recruit with no application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 12
- testRunner.Given("the apprenticeship vacancy is Live in Recruit with an application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+testRunner.When("draft application is created in FAA", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 13
- testRunner.Then("the Provider is able to search and select a Candidate", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 14
- testRunner.And("the reviewer is able to search and select a candidate", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 15
- testRunner.When("the Candidate changes Personal Settings \'PhoneNumber\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 16
- testRunner.Then("the Candidate details is updated in Recruit \'PhoneNumber\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+testRunner.Then("Candidate is able to delete draft application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
