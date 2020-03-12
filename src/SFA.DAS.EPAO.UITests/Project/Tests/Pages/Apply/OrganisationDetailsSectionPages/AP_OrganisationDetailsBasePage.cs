@@ -4,7 +4,7 @@ using SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.OrganisationDetailsSectionP
 
 namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply
 {
-    public class AP_OrganisationDetailsBasePage : EPAO_BasePage
+    public class AP_OrganisationDetailsBasePage : EPAOApply_BasePage
     {
         protected override string PageTitle => "Organisation details";
         private readonly ScenarioContext _context;

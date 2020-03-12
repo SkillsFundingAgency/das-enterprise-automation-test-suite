@@ -3,7 +3,7 @@ using OpenQA.Selenium;
 
 namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
 {
-    public class AS_CheckAndSubmitAssessmentPage : EPAO_BasePage
+    public class AS_CheckAndSubmitAssessmentPage : EPAOAssesment_BasePage
     {
         protected override string PageTitle => "Check and submit the assessment details";
         private readonly ScenarioContext _context;

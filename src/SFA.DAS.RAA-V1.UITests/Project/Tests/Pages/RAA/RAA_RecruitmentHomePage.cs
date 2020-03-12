@@ -139,7 +139,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
 
             formCompletionHelper.SelectFromDropDownByValue(VacancySearchMode, "ReferenceNumber");
             formCompletionHelper.EnterText(VacancySearchText, _objectContext.GetVacancyReference());
-            formCompletionHelper.ClickElement(() => _pageInteractionHelper.FindElement(SearchVacancy));
+            formCompletionHelper.ClickElement(() => _pageInteractionHelper.FindElement(SearchVacancy)); 
             _pageInteractionHelper.WaitForElementToChange(func, AttributeHelper.InnerText, "1");
             formCompletionHelper.ClickLinkByText(VacancyTitle, vacancyTitledataHelper.VacancyTitle);
         }

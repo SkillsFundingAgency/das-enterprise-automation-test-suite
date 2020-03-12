@@ -31,8 +31,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
         private By Distance => By.Id("loc-within");
         private By ApprenticeshipLevel => By.Id("apprenticeship-level");
         private By VerifyPhoneNumberText => By.Id("InfoMessageText");
-        private By VerifyYourNumber => By.LinkText("verify your number");
-
+        
         public FAA_ApprenticeSearchPage(ScenarioContext context) : base(context)
         {
             _context = context;
@@ -47,9 +46,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
         }
 
         public FAA_ApprenticeSearchResultsPage SearchForAVacancy(string location, string distance, string apprenticeshipLevel, string disabilityConfident)
-        {
-            _formCompletionHelper.SelectFromDropDownByValue(SearchField, "JobTitle");
-            _formCompletionHelper.EnterText(KeyWord, _dataHelper.VacancyTitle);
+        {           
             _formCompletionHelper.EnterText(Location, location);
             _formCompletionHelper.SelectFromDropDownByText(Distance, distance);
             _formCompletionHelper.SelectFromDropDownByText(ApprenticeshipLevel, apprenticeshipLevel);
@@ -96,10 +93,11 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
         }
 
         public FAA_PhoneNumberVerificationPage VerifyPhoneNumberVerificationText()
-        {           
-            _pageInteractionHelper.VerifyText(VerifyPhoneNumberText, _faadataHelper.PhoneNumberVerificationText);           
-            _formCompletionHelper.Click(VerifyYourNumber);
+        {
+            _pageInteractionHelper.VerifyText(VerifyPhoneNumberText, _faadataHelper.PhoneNumberVerificationText);
+            _formCompletionHelper.ClickLinkByText("verify your number");
+            _pageInteractionHelper.WaitforURLToChange("verifymobile");
             return new FAA_PhoneNumberVerificationPage(_context);
-        }        
+        } 
     }
 }

@@ -59,6 +59,8 @@ namespace SFA.DAS.Registration.UITests.Project
             _context.Set(new RegistrationSqlDataHelper(_config));
 
             _context.Set(new TprSqlDataHelper(_tprconfig, _objectContext, _registrationDatahelpers));
+
+            _objectContext.SetRegisteredEmail(_registrationDatahelpers.RandomEmail);
         }
 
         [BeforeScenario(Order = 23)]
