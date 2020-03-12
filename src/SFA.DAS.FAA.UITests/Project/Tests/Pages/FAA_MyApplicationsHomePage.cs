@@ -22,8 +22,6 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 
         private By FindTraineeshipLink => By.Id("find-traineeship-link");
 
-        private By SignOutCss => By.XPath("//a[contains(.,'Sign out')]");
-
         private By NotificationText => By.ClassName("info-summary");
 
         private By DismissNotification => By.LinkText("Dismiss this message");
@@ -31,8 +29,6 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
         private By ReadFeedbackLink => By.LinkText("Read feedback");
 
         private By Settings => By.LinkText("Settings");
-
-        private By SavedSection => By.Id("dashDrafts");
 
         private By DraftVacancyDeletionInfoText => By.Id("VacancyDeletedInfoMessageText");
 
@@ -50,7 +46,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
             _formCompletionHelper = context.Get<FormCompletionHelper>();
             _pageIntercationHelper = context.Get<PageInteractionHelper>();
             _dataHelper = context.Get<VacancyTitleDatahelper>();
-            _fAAConfig = context.Get<FAAConfig>();
+            _fAAConfig = context.GetFAAConfig<FAAConfig>();
             VerifyPage();
         }
 
@@ -71,10 +67,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
             _formCompletionHelper.Click(Settings);
             return new FAA_SettingsPage(_context);
         }
-        public void ClickSignOut()
-        {
-            _formCompletionHelper.Click(SignOutCss);
-        }
+
         private void VerifyVacancySuccessfulNotification()
         {
             _pageIntercationHelper.VerifyText(NotificationText, "Your application for "+_dataHelper.VacancyTitle+" has been successful."); 
@@ -104,11 +97,6 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
             return new FAA_YourFeedbackPage(_context);
         }
 
-        public void CheckDraftApplication()
-        {
-            _pageIntercationHelper.VerifyText(SavedSection, _dataHelper.VacancyTitle);
-        }
-        
         public FAA_ApprenticeSummaryPage ConfirmVacancyDeletion()
         {
             _pageIntercationHelper.WaitforURLToChange("myapplications");
