@@ -13,7 +13,9 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
         private readonly ScenarioContext _context;
         #endregion
 
-        private By ContactLink => By.CssSelector(".govuk-link[href*='view-contact']");
+        private By ContactEmail => By.CssSelector(".govuk-table__cell[data-label='Email']");
+
+        private By AddContactLink => By.CssSelector(".govuk-link[href*='add-contact']");
 
         private By StandardViewLink => By.CssSelector(".govuk-link[href*='view-standard']");
 
@@ -23,18 +25,23 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
             VerifyPage();
         }
 
+        public AddContactPage AddNewContact()
+        {
+            formCompletionHelper.ClickElement(AddContactLink);
+            return new AddContactPage(_context);
+        }
+
         public ContactDetailsPage SelectContact()
         {
-            NavigateTo(ContactLink);
+            VerifyPage(() => pageInteractionHelper.FindElements(ContactEmail), ePAOAdminDataHelper.Email);
+            formCompletionHelper.ClickLinkByText(ePAOAdminDataHelper.FullName);
             return new ContactDetailsPage(_context);
         }
 
         public StandardsDetailsPage SelectStandards()
         {
-            NavigateTo(StandardViewLink);
+            formCompletionHelper.ClickElement(() => ePAOAdminDataHelper.GetRandomElementFromListOfElements(pageInteractionHelper.FindElements(StandardViewLink)));
             return new StandardsDetailsPage(_context);
         }
-
-        private void NavigateTo(By @by) => formCompletionHelper.ClickElement(() => ePAOAdminDataHelper.GetRandomElementFromListOfElements(pageInteractionHelper.FindElements(@by)));
     }
 }

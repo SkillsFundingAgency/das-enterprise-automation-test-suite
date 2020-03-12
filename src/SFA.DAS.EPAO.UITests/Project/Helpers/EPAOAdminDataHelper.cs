@@ -4,11 +4,14 @@ using System.Collections.Generic;
 
 namespace SFA.DAS.EPAO.UITests.Project.Helpers
 {
-    public class EPAOAdminDataHelper
+    public class EPAOAdminDataHelper : EPAODataHelper
     {
-        private readonly RandomDataGenerator _randomDataGenerator;
-
-        public EPAOAdminDataHelper(RandomDataGenerator randomDataGenerator) => _randomDataGenerator = randomDataGenerator;
+        public EPAOAdminDataHelper(RandomDataGenerator randomDataGenerator) : base(randomDataGenerator) 
+        {
+            FirstName = GetRandomAlphabeticString(6);
+            LastName = GetRandomAlphabeticString(6);
+            Email = $"TestContact_{GetRandomEmail}";
+        }
 
         public string OrganisationName => "City and Guilds";
 
@@ -20,7 +23,17 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
 
         public string LearnerUln => "7278214419";
 
-        public IWebElement GetRandomElementFromListOfElements(List<IWebElement> options) => _randomDataGenerator.GetRandomElementFromListOfElements(options);
+        public string FirstName { get; }
+
+        public string LastName { get; }
+
+        public string FullName => $"{FirstName} {LastName}";
+
+        public string Email { get; }
+
+        public string PhoneNumber => $"0844455{GetRandomNumber(4)}";
+
+        public IWebElement GetRandomElementFromListOfElements(List<IWebElement> options) => randomDataGenerator.GetRandomElementFromListOfElements(options);
 
     }
 }

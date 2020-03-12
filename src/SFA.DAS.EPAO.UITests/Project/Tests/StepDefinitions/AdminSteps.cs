@@ -28,8 +28,8 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         [Then(@"the admin can search using organisation epao id")]
         public void ThenTheAdminCanSearchUsingOrganisationEpaoId() => _organisationDetailsPage = SearchEpaoRegister(_ePAOAdminDataHelper.OrganisationEpaoId);
 
-        [Then(@"the admin can view contact details")]
-        public void ThenTheAdminCanViewContactDetails() => _organisationDetailsPage = _organisationDetailsPage.SelectContact().ReturnToOrganisationDetailsPage();
+        [Then(@"the admin can add contact details")]
+        public void ThenTheAdminCanAddContactDetails() => _organisationDetailsPage = _organisationDetailsPage.AddNewContact().AddContact().ReturnToOrganisationDetailsPage().SelectContact().ReturnToOrganisationDetailsPage();
 
         [Then(@"the admin can view standards details")]
         public void ThenTheAdminCanViewStandardsDetails() => _organisationDetailsPage = _organisationDetailsPage.SelectStandards().ReturnToOrganisationDetailsPage();
