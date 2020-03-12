@@ -28,10 +28,11 @@ namespace SFA.DAS.EPAO.UITests.Project
         {
             _context.Set(new EPAOSqlDataHelper(_config));
 
-            _context.Set(new EPAODataHelper(_context.Get<RandomDataGenerator>()));
+            var r = _context.Get<RandomDataGenerator>();
 
-            _context.Set(new EPAOAdminDataHelper());
+            _context.Set(new EPAODataHelper(r));
 
+            _context.Set(new EPAOAdminDataHelper(r));
         }
 
         [BeforeScenario(Order = 33)]

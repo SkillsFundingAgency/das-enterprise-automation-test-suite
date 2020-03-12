@@ -87,6 +87,8 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Then("the admin can search using organisation epao id", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 9
  testRunner.And("the admin can view contact details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 10
+ testRunner.And("the admin can view standards details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
