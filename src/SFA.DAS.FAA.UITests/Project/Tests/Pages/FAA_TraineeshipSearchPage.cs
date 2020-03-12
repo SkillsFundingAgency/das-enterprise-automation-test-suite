@@ -21,6 +21,8 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
         private By Location => By.Id("Location");
         private By ReferenceNumber => By.Id("ReferenceNumber");
         private By Distance => By.Id("loc-within");
+        private By LocationErrorMessage => By.Id("error-summary");
+        private By PartialLocationErrorMessage => By.CssSelector("[data-valmsg-for='Location']");
 
         public FAA_TraineeshipSearchPage(ScenarioContext context) : base(context)
         {
@@ -50,12 +52,16 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
             _formCompletionHelper.EnterText(ReferenceNumber, _objectContext.GetVacancyReference());
             base.SearchByReferenceNumber();
         }
-        
-
-        public FAA_TraineeshipSearchResultsPage SearchForAVacancy(string location)
-        {            
+        private void EnterPostCode(string location)
+        {
             _formCompletionHelper.EnterText(Location, location);
             _formCompletionHelper.Click(Search);
+        }
+
+
+        public FAA_TraineeshipSearchResultsPage SearchForAVacancy(string location)
+        {
+            EnterPostCode(location);      
             _pageInteractionHelper.WaitforURLToChange("/traineeships/search?Hash=");
 
             return new FAA_TraineeshipSearchResultsPage(_context);

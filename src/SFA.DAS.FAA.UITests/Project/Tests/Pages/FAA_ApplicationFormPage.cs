@@ -57,6 +57,9 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
         private By AcceptSubmit => By.Id("AcceptSubmitLabel");
         private By SignOut => By.XPath("//a[contains(.,'Sign out')]");
         private By MyApplications => By.CssSelector("#myapplications-link");
+        private By Save => By.Id("save-button");
+
+
         #endregion
 
         public FAA_ApplicationFormPage(ScenarioContext context) : base(context)
@@ -200,6 +203,13 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
             {
                 _formCompletionHelper.Click(MyApplications);
             }
+        }
+
+        public FAA_MyApplicationsHomePage ClickSave()
+        {
+            _formCompletionHelper.Click(Save);
+            GoToMyApplications();
+            return new FAA_MyApplicationsHomePage(_context);
         }
     }
 }

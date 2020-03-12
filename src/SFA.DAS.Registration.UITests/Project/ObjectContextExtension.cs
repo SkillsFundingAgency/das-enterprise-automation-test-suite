@@ -19,6 +19,7 @@ namespace SFA.DAS.Registration.UITests.Project
         internal static void SetLoginCredentials(this ObjectContext objectContext, string loginusername, string loginpassword)
         {
             objectContext.Set("LoggedInUser", loginusername);
+            objectContext.SetRegisteredEmail(loginusername);
             objectContext.Set(LoggedInUserKey, new LoggedInUser { Username = loginusername, Password = loginpassword });
         }
 

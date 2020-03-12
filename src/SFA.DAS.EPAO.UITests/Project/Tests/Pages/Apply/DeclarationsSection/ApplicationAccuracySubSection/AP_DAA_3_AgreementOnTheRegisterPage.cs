@@ -2,7 +2,7 @@
 
 namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.DeclarationsSection.ApplicationAccuracySubSection
 {
-    public class AP_DAA_3_AgreementOnTheRegisterPage : EPAO_BasePage
+    public class AP_DAA_3_AgreementOnTheRegisterPage : EPAOApply_BasePage
     {
         protected override string PageTitle => "Agreement to appear on the register";
         private readonly ScenarioContext _context;
