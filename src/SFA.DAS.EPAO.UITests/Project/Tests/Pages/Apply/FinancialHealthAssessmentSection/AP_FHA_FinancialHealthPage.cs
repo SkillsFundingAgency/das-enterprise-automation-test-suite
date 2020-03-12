@@ -5,7 +5,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.FinancialHealthAssessmentSection
 {
-    public class AP_FHA_FinancialHealthPage : EPAO_BasePage
+    public class AP_FHA_FinancialHealthPage : EPAOApply_BasePage
     {
         protected override string PageTitle => "Financial health";
         private readonly ScenarioContext _context;

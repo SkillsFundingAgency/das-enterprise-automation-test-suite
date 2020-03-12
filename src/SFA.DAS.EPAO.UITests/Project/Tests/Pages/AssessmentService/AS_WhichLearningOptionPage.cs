@@ -2,7 +2,7 @@
 
 namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
 {
-    public class AS_WhichLearningOptionPage : EPAO_BasePage
+    public class AS_WhichLearningOptionPage : EPAOAssesment_BasePage
     {
         protected override string PageTitle => "Which learning option did the apprentice take?";
         private readonly ScenarioContext _context;
