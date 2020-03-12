@@ -1,5 +1,4 @@
-﻿using RestSharp.Extensions;
-using SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply;
+﻿using SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply;
 using SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.YourOrganisation_Section1;
 
 namespace SFA.DAS.Roatp.UITests.Project.Helpers.RoatpApply
