@@ -19,5 +19,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
             action();
             return new OrganisationDetailsPage(_context);
         }
+
+        public OrganisationDetailsPage ReturnToOrganisationDetailsPage() => ReturnToOrganisationDetailsPage(() => formCompletionHelper.ClickLinkByText("Return to organisation"));
     }
 }

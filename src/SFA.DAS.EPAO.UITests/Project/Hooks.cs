@@ -53,5 +53,9 @@ namespace SFA.DAS.EPAO.UITests.Project
         [AfterScenario(Order = 32)]
         [Scope(Tag = "clearcontact")]
         public void ClearContact() => _ePAOAdminSqlDataHelper.DeleteContact(_ePAOAdminDataHelper.Email);
+
+        [AfterScenario(Order = 33)]
+        [Scope(Tag = "clearstandards")]
+        public void ClearStandards() => _ePAOAdminSqlDataHelper.DeleteOrganisationStandard(_ePAOAdminDataHelper.Standards, _ePAOAdminDataHelper.OrganisationEpaoId);
     }
 }

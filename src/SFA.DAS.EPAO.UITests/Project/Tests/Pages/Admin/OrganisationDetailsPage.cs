@@ -19,6 +19,8 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
 
         private By StandardViewLink => By.CssSelector(".govuk-link[href*='view-standard']");
 
+        private By AddStandardLink => By.CssSelector(".govuk-link[href*='search-standards']");
+
         public OrganisationDetailsPage(ScenarioContext context) : base(context)
         {
             _context = context;
@@ -31,6 +33,12 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
             return new AddContactPage(_context);
         }
 
+        public AddStandardPage AddAStandard()
+        {
+            formCompletionHelper.ClickElement(AddStandardLink);
+            return new AddStandardPage(_context);
+        }
+
         public ContactDetailsPage SelectContact()
         {
             VerifyPage(() => pageInteractionHelper.FindElements(ContactEmail), ePAOAdminDataHelper.Email);
@@ -40,7 +48,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
 
         public StandardsDetailsPage SelectStandards()
         {
-            formCompletionHelper.ClickElement(() => ePAOAdminDataHelper.GetRandomElementFromListOfElements(pageInteractionHelper.FindElements(StandardViewLink)));
+            ClickRandomElement(StandardViewLink);
             return new StandardsDetailsPage(_context);
         }
     }

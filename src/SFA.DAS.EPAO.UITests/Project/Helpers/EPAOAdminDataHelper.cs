@@ -1,5 +1,6 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.UI.FrameworkHelpers;
+using System;
 using System.Collections.Generic;
 
 namespace SFA.DAS.EPAO.UITests.Project.Helpers
@@ -32,6 +33,12 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
         public string Email { get; }
 
         public string PhoneNumber => $"0844455{GetRandomNumber(4)}";
+
+        public string Standards => "100";
+
+        public DateTime StandardsEffectiveFrom => new DateTime(2015, 08, 01);
+
+        public string StandardsName => "Transport planning technician (100)";
 
         public IWebElement GetRandomElementFromListOfElements(List<IWebElement> options) => randomDataGenerator.GetRandomElementFromListOfElements(options);
 
