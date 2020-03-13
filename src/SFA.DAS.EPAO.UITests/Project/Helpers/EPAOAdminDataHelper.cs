@@ -38,7 +38,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
 
         public DateTime StandardsEffectiveFrom => new DateTime(2015, 08, 01);
 
-        public string StandardsName => "Transport planning technician (100)";
+        public string StandardsName => "Transport planning technician";
 
         public IWebElement GetRandomElementFromListOfElements(List<IWebElement> options) => randomDataGenerator.GetRandomElementFromListOfElements(options);
 

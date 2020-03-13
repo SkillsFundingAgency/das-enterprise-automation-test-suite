@@ -1,4 +1,6 @@
 ﻿using OpenQA.Selenium;
+using System;
+using System.Linq;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
@@ -17,9 +19,9 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
 
         private By AddContactLink => By.CssSelector(".govuk-link[href*='add-contact']");
 
-        private By StandardViewLink => By.CssSelector(".govuk-link[href*='view-standard']");
-
         private By AddStandardLink => By.CssSelector(".govuk-link[href*='search-standards']");
+
+        private By StandardPagination => By.CssSelector("#PaginationViewModel_ItemsPerPage");
 
         public OrganisationDetailsPage(ScenarioContext context) : base(context)
         {
@@ -48,7 +50,11 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
 
         public StandardsDetailsPage SelectStandards()
         {
-            ClickRandomElement(StandardViewLink);
+            var pageoptions = pageInteractionHelper.GetAvailableOptions(StandardPagination);
+            var maxoption = pageoptions.Select(x => int.Parse(x)).Max();
+            formCompletionHelper.SelectFromDropDownByValue(StandardPagination, maxoption.ToString());
+            pageInteractionHelper.WaitforURLToChange("itemsPerPage=500");
+            tableRowHelper.SelectRowFromTable("View", ePAOAdminDataHelper.StandardsName, "#approved table");
             return new StandardsDetailsPage(_context);
         }
     }

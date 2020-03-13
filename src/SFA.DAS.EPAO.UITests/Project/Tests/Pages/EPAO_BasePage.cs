@@ -10,6 +10,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages
     {
         protected readonly FormCompletionHelper formCompletionHelper;
         protected readonly PageInteractionHelper pageInteractionHelper;
+        protected readonly TableRowHelper tableRowHelper;
         protected readonly EPAODataHelper dataHelper;
         protected readonly EPAOAdminDataHelper ePAOAdminDataHelper;
         protected readonly EPAOConfig ePAOConfig;
@@ -20,6 +21,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages
         {
             formCompletionHelper = context.Get<FormCompletionHelper>();
             pageInteractionHelper = context.Get<PageInteractionHelper>();
+            tableRowHelper = context.Get<TableRowHelper>();
             dataHelper = context.Get<EPAODataHelper>();
             ePAOAdminDataHelper = context.Get<EPAOAdminDataHelper>();
             ePAOConfig = context.GetEPAOConfig<EPAOConfig>();
