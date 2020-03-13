@@ -17,6 +17,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
         private readonly ScenarioContext _context;
         private readonly FAADataHelper _dataHelper;
         private readonly FormCompletionHelper _formCompletionHelper;
+        private readonly PageInteractionHelper _pageInteractionHelper;
         #endregion
 
         private By SaveAndContinue => By.Id("save-continue-button");
@@ -27,12 +28,14 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
             _context = context;
             _dataHelper = context.Get<FAADataHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
+            _pageInteractionHelper = context.Get<PageInteractionHelper>();
             VerifyPage();
         }
 
         public FAA_ApprenticeSearchPage ClickSaveAndContinue()
         {
             _formCompletionHelper.Click(SaveAndContinue);
+            _pageInteractionHelper.WaitforURLToChange("apprenticeshipsearch");
             return new FAA_ApprenticeSearchPage(_context);
         }
 

@@ -36,30 +36,15 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
 
         [Given(@"an User Account is created")]
         [When(@"an User Account is created")]
-        public void AnUserAccountIsCreated()
-        {
-            var emailId = _registrationDataHelper.RandomEmail;
-            _objectContext.SetRegisteredEmail(emailId);
-            TestContext.Progress.WriteLine($"Email : {emailId}");
-
-            _addAPAYESchemePage = RegisterUser();
-        }
+        public void AnUserAccountIsCreated() => _addAPAYESchemePage = RegisterUser();
 
         [Then(@"My Account Home page is displayed when PAYE details are not added")]
-        public void DoNotAddPayeDetails()
-        {
-            _addAPAYESchemePage.DoNotAddPaye();
-        }
+        public void DoNotAddPayeDetails() => _addAPAYESchemePage.DoNotAddPaye();
 
         [Given(@"the User adds PAYE details")]
         [When(@"the User adds PAYE details")]
         [When(@"the User adds valid PAYE details")]
-        public void AddPayeDetails()
-        {
-            _organistionSearchPage = _addAPAYESchemePage
-                .AddPaye().ContinueToGGSignIn()
-                .SignInTo();
-        }
+        public void AddPayeDetails() => _organistionSearchPage = _addAPAYESchemePage.AddPaye().ContinueToGGSignIn().SignInTo();
 
         [Given(@"the User adds PAYE details attached to a (SingleOrg|MultiOrg) through AORN route")]
         [When(@"the User adds PAYE details attached to a (SingleOrg|MultiOrg) through AORN route")]

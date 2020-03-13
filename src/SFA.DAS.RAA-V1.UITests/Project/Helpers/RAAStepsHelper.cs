@@ -114,7 +114,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
             EnterRequirementsAndExtraQuestions(requirementsAndProspects, applicationMethod);
         }
 
-        internal void ProviderFillsOutApprenticeshipDetails(string location, string disabilityConfident, string applicationMethod, string apprenticeShip, string hoursPerWeek, string vacancyDuration, string wagetype, string postCode = "CV3 5ER")
+        internal void ProviderFillsOutApprenticeshipDetails(string location, string disabilityConfident, string applicationMethod, string apprenticeShip, string hoursPerWeek, string vacancyDuration, string wagetype, string postCode = "1 Speedway Drive London SW17 0XW")
         {
             switch (location)
             {
@@ -252,7 +252,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
                        .AddLocation(postCode)
                        .EnterNumberOfVacancy()
                        .ClickAddAnotherLocationLink()
-                       .AddLocation("CV1 2NJ")
+                       .AddLocation("4 Quinton Road Coventry CV1 2NJ")
                        .EnterNumberOfVacancy2()
                        .EnterAdditionalLocationInformation()
                        .ClickSaveAndContinue();
@@ -294,7 +294,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
 
         private RAA_SearchCandidatesPage Search() => GoToRAAHomePage(true).SearchCandidates().Search();
 
-        public void VerifyCandidateUpdatedDetails(string changedField) => SelectACandidate().VerifyUpdatedCandidateDetails(changedField);
+        public void VerifyCandidateUpdatedDetails() => SelectACandidate().VerifyUpdatedCandidateDetails();
 
     }
 }
