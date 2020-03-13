@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using System;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
@@ -13,10 +14,12 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
 
         public OrganisationSectionsBasePage(ScenarioContext context) : base(context) => _context = context;
 
-        public OrganisationDetailsPage ReturnToOrganisationDetailsPage()
+        protected OrganisationDetailsPage ReturnToOrganisationDetailsPage(Action action)
         {
-            formCompletionHelper.ClickLinkByText("Return to organisation");
+            action();
             return new OrganisationDetailsPage(_context);
         }
+
+        public OrganisationDetailsPage ReturnToOrganisationDetailsPage() => ReturnToOrganisationDetailsPage(() => formCompletionHelper.ClickLinkByText("Return to organisation"));
     }
 }

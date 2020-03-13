@@ -1,4 +1,6 @@
 ﻿using OpenQA.Selenium;
+using System;
+using System.Linq;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
@@ -13,9 +15,13 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
         private readonly ScenarioContext _context;
         #endregion
 
-        private By ContactLink => By.CssSelector(".govuk-link[href*='view-contact']");
+        private By ContactEmail => By.CssSelector(".govuk-table__cell[data-label='Email']");
 
-        private By StandardViewLink => By.CssSelector(".govuk-link[href*='view-standard']");
+        private By AddContactLink => By.CssSelector(".govuk-link[href*='add-contact']");
+
+        private By AddStandardLink => By.CssSelector(".govuk-link[href*='search-standards']");
+
+        private By StandardPagination => By.CssSelector("#PaginationViewModel_ItemsPerPage");
 
         public OrganisationDetailsPage(ScenarioContext context) : base(context)
         {
@@ -23,18 +29,33 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
             VerifyPage();
         }
 
+        public AddContactPage AddNewContact()
+        {
+            formCompletionHelper.ClickElement(AddContactLink);
+            return new AddContactPage(_context);
+        }
+
+        public AddStandardPage AddAStandard()
+        {
+            formCompletionHelper.ClickElement(AddStandardLink);
+            return new AddStandardPage(_context);
+        }
+
         public ContactDetailsPage SelectContact()
         {
-            NavigateTo(ContactLink);
+            VerifyPage(() => pageInteractionHelper.FindElements(ContactEmail), ePAOAdminDataHelper.Email);
+            formCompletionHelper.ClickLinkByText(ePAOAdminDataHelper.FullName);
             return new ContactDetailsPage(_context);
         }
 
         public StandardsDetailsPage SelectStandards()
         {
-            NavigateTo(StandardViewLink);
+            var pageoptions = pageInteractionHelper.GetAvailableOptions(StandardPagination);
+            var maxoption = pageoptions.Select(x => int.Parse(x)).Max();
+            formCompletionHelper.SelectFromDropDownByValue(StandardPagination, maxoption.ToString());
+            pageInteractionHelper.WaitforURLToChange("itemsPerPage=500");
+            tableRowHelper.SelectRowFromTable("View", ePAOAdminDataHelper.StandardsName, "#approved table");
             return new StandardsDetailsPage(_context);
         }
-
-        private void NavigateTo(By @by) => formCompletionHelper.ClickElement(() => ePAOAdminDataHelper.GetRandomElementFromListOfElements(pageInteractionHelper.FindElements(@by)));
     }
 }

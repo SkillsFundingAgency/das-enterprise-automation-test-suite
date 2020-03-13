@@ -13,15 +13,14 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
 
         private By SignOutLink => By.CssSelector(".govuk-link[href*='SignOut']");
 
-        public EPAOAdmin_BasePage(ScenarioContext context) : base(context) 
-        {
-            _context = context;
-        }
+        public EPAOAdmin_BasePage(ScenarioContext context) : base(context) => _context = context;
 
         public SignedOutPage SignOut()
         {
             formCompletionHelper.ClickElement(SignOutLink);
             return new SignedOutPage(_context);
         }
+
+        protected void ClickRandomElement(By locator) => formCompletionHelper.ClickElement(() => ePAOAdminDataHelper.GetRandomElementFromListOfElements(pageInteractionHelper.FindElements(locator)));
     }
 }

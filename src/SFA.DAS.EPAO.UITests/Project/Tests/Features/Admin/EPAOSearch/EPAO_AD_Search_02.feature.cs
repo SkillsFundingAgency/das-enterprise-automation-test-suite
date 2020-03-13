@@ -70,24 +70,30 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Features.Admin.EPAOSearch
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("EPAO_AD_Search_02_Search with Organsiation EPAO Id")]
+        [NUnit.Framework.DescriptionAttribute("EPAO_AD_Search_02_Search with Organsiation EPAO Id add Contact and Standards")]
         [NUnit.Framework.CategoryAttribute("epao")]
         [NUnit.Framework.CategoryAttribute("epaoadmin")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public virtual void EPAO_AD_Search_02_SearchWithOrgansiationEPAOId()
+        [NUnit.Framework.CategoryAttribute("clearcontact")]
+        [NUnit.Framework.CategoryAttribute("clearstandards")]
+        public virtual void EPAO_AD_Search_02_SearchWithOrgansiationEPAOIdAddContactAndStandards()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EPAO_AD_Search_02_Search with Organsiation EPAO Id", null, new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EPAO_AD_Search_02_Search with Organsiation EPAO Id add Contact and Standards", null, new string[] {
                         "epao",
                         "epaoadmin",
-                        "regression"});
-#line 7
+                        "regression",
+                        "clearcontact",
+                        "clearstandards"});
+#line 9
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 8
- testRunner.Then("the admin can search using organisation epao id", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 9
- testRunner.And("the admin can view contact details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 10
+ testRunner.Then("the admin can search using organisation epao id", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 11
+ testRunner.And("the admin can add contact details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 12
+ testRunner.And("the admin can add standards details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 13
  testRunner.And("the admin can view standards details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
