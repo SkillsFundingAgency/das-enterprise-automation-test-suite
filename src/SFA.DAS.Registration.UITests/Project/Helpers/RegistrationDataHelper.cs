@@ -12,7 +12,7 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
             _randomDataGenerator = randomDataGenerator;
             RandomEmail = $"{gatewayUsername}@mailinator.com";
             AnotherRandomEmail = $"{gatewayUsername}_2@mailinator.com";
-            AornNumber = $"A{DateTime.Now.ToString("ddMMyyHHmmss")}";
+            AornNumber = $"A{GetDateTimeValue()}";
             Password = password;
             InvalidGGId = RandomAlphaNumericString(10);
             InvalidGGPassword = RandomNumericString(10);
@@ -21,8 +21,8 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
         }
 
         public string RandomEmail { get; }
-        public string AnotherRandomEmail { get;  }
-        public string AornNumber{ get; }
+        public string AnotherRandomEmail { get; }
+        public string AornNumber { get; }
         public string Password { get; }
         public string InvalidGGId { get; }
         public string InvalidGGPassword { get; }
@@ -41,8 +41,11 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
         public string FirstLineAddressForManualEntry => "5 Quinton Road";
         public string CityNameForManualEntry => "Coventry";
         public string PostCodeForManualEntry => "CV1 2WT";
+        public string InvalidPaye => $"{RandomNumericString(3)}/{RandomAlphaNumericString(7)}";
+        public string InvalidAornNumber => $"A{GetDateTimeValue()}";
 
         private string RandomAlphaNumericString(int length) => _randomDataGenerator.GenerateRandomAlphanumericString(length);
         private string RandomNumericString(int length) => _randomDataGenerator.GenerateRandomNumber(length);
+        private string GetDateTimeValue() => DateTime.Now.ToString("ddMMyyHHmmss");
     }
 }
