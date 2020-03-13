@@ -21,11 +21,11 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             VerifyPage();
         }
 
-        public GatewayInformPage AddPaye()
+        public UsingYourGovtGatewayDetailsPage AddPaye()
         {
             SelectAddPaye().
                 Continue();
-            return new GatewayInformPage(_context);
+            return new UsingYourGovtGatewayDetailsPage(_context);
         }
 
         public EnterYourPAYESchemeDetailsPage AddAORN()

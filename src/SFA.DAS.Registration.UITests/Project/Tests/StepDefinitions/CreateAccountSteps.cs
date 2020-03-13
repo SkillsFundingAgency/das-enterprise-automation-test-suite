@@ -26,6 +26,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         private YourOrganisationsAndAgreementsPage _yourOrganisationsAndAgreementsPage;
         private TheseDetailsAreAlreadyInUsePage _theseDetailsAreAlreadyInUsePage;
         private EnterYourPAYESchemeDetailsPage _enterYourPAYESchemeDetailsPage;
+        private UsingYourGovtGatewayDetailsPage _usingYourGovtGatewayDetailsPage;
 
         public CreateAccountSteps(ScenarioContext context)
         {
@@ -387,25 +388,52 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             {
                 case "BlankAornAndBlankPaye":
                     _enterYourPAYESchemeDetailsPage.Continue();
-                    Assert.AreEqual(blankAornFieldErrorMessage, _enterYourPAYESchemeDetailsPage.GetErrorMessgeAboveAornTextBox());
-                    Assert.AreEqual(blankPayeFieldErrorMessage, _enterYourPAYESchemeDetailsPage.GetErrorMessgeAbovePayeTextBox());
+                    Assert.AreEqual(blankAornFieldErrorMessage, _enterYourPAYESchemeDetailsPage.GetErrorMessageAboveAornTextBox());
+                    Assert.AreEqual(blankPayeFieldErrorMessage, _enterYourPAYESchemeDetailsPage.GetErrorMessageAbovePayeTextBox());
                     break;
                 case "BlankAornValidPaye":
                     _enterYourPAYESchemeDetailsPage.EnterAornAndPayeAndContinue("", _objectContext.GetGatewayPaye());
-                    Assert.AreEqual(blankAornFieldErrorMessage, _enterYourPAYESchemeDetailsPage.GetErrorMessgeAboveAornTextBox());
+                    Assert.AreEqual(blankAornFieldErrorMessage, _enterYourPAYESchemeDetailsPage.GetErrorMessageAboveAornTextBox());
                     break;
                 case "BlankPayeValidAorn":
                     _tprSqlDataHelper.CreateSingleOrgAornData();
                     _enterYourPAYESchemeDetailsPage.EnterAornAndPayeAndContinue(_registrationDataHelper.AornNumber, "");
-                    Assert.AreEqual(blankPayeFieldErrorMessage, _enterYourPAYESchemeDetailsPage.GetErrorMessgeAbovePayeTextBox());
+                    Assert.AreEqual(blankPayeFieldErrorMessage, _enterYourPAYESchemeDetailsPage.GetErrorMessageAbovePayeTextBox());
                     break;
                 case "InvalidAornAndInvalidPaye":
                     _enterYourPAYESchemeDetailsPage.EnterAornAndPayeAndContinue("InvalidAorn", "InvalidPaye");
-                    Assert.AreEqual(aornInvalidFormatErrorMessage, _enterYourPAYESchemeDetailsPage.GetErrorMessgeAboveAornTextBox());
-                    Assert.AreEqual(payeInvalidFormatErrorMessage, _enterYourPAYESchemeDetailsPage.GetErrorMessgeAbovePayeTextBox());
+                    Assert.AreEqual(aornInvalidFormatErrorMessage, _enterYourPAYESchemeDetailsPage.GetErrorMessageAboveAornTextBox());
+                    Assert.AreEqual(payeInvalidFormatErrorMessage, _enterYourPAYESchemeDetailsPage.GetErrorMessageAbovePayeTextBox());
                     break;
             }
         }
+
+        [Then(@"choosing to enter AORN and PAYE details in the right format but non existing ones for 3 times displays 'Sorry Account disabled' Page")]
+        public void ThenChoosingToEnterAORNAndPAYEDetailsInTheRightFormatButNonExistingOnesForTimesDisplaysPage()
+        {
+            const string InvalidErrorMessage1stAttempt = EnterYourPAYESchemeDetailsPage.InvalidAornAndPayeErrorMessage1stAttempt;
+            const string InvalidErrorMessage2ndAttempt = EnterYourPAYESchemeDetailsPage.InvalidAornAndPayeErrorMessage2ndAttempt;
+
+            EnterInvalidAornAndPaye();
+            Assert.AreEqual(InvalidErrorMessage1stAttempt, _enterYourPAYESchemeDetailsPage.GetInvalidAornAndPayeErrorMessage());
+            EnterInvalidAornAndPaye();
+            Assert.AreEqual(InvalidErrorMessage2ndAttempt, _enterYourPAYESchemeDetailsPage.GetInvalidAornAndPayeErrorMessage());
+            EnterInvalidAornAndPaye();
+
+            _usingYourGovtGatewayDetailsPage = new SorryAccountDisabledPage(_context)
+                .ClickAddViaGGLink();
+        }
+
+        [Then(@"Employer is able to complete registration through GG route")]
+        public void ThenEmployerIsAbleToCompleteRegistrationThroughGGRoute()
+        {
+            _organistionSearchPage = _usingYourGovtGatewayDetailsPage.ContinueToGGSignIn().SignInTo();
+            AddOrganisationDetails();
+            SignTheAgreement();
+        }
+
+        private void EnterInvalidAornAndPaye() =>
+            _enterYourPAYESchemeDetailsPage.EnterAornAndPayeAndContinue(_registrationDataHelper.InvalidAornNumber, _registrationDataHelper.InvalidPaye);
 
         private void CreateAnUserAcountAndAddPaye()
         {

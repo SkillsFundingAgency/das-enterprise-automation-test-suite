@@ -14,6 +14,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         private By PayeRefTextBox => By.Id("payeRef");
         private By ErrorMessgeAboveAornTextBox => By.Id("error-message-aorn");
         private By ErrorMessgeAbovePayeTextBox => By.Id("error-message-payeRef");
+        private By InvalidAornAndPayeErrorMessage => By.CssSelector(".govuk-error-message");
         protected override By ContinueButton => By.Id("submit-aorn-details");
         #endregion
 
@@ -22,6 +23,8 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         public const string AornInvalidFormatErrorMessage = "Enter an accounts office reference number in the correct format";
         public const string BlankPayeFieldErrorMessage = "Enter your PAYE scheme to continue";
         public const string PayeInvalidFormatErrorMessage = "Enter a PAYE scheme number in the correct format";
+        public const string InvalidAornAndPayeErrorMessage1stAttempt = "You have 2 attempts remaining to enter a valid PAYE scheme and accounts office reference";
+        public const string InvalidAornAndPayeErrorMessage2ndAttempt = "You have 1 attempt remaining to enter a valid PAYE scheme and accounts office reference";
         #endregion
 
         public EnterYourPAYESchemeDetailsPage(ScenarioContext context) : base(context)
@@ -61,8 +64,10 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             Continue();
         }
 
-        public string GetErrorMessgeAboveAornTextBox() => pageInteractionHelper.GetText(ErrorMessgeAboveAornTextBox);
+        public string GetErrorMessageAboveAornTextBox() => pageInteractionHelper.GetText(ErrorMessgeAboveAornTextBox);
 
-        public string GetErrorMessgeAbovePayeTextBox() => pageInteractionHelper.GetText(ErrorMessgeAbovePayeTextBox);
+        public string GetErrorMessageAbovePayeTextBox() => pageInteractionHelper.GetText(ErrorMessgeAbovePayeTextBox);
+
+        public string GetInvalidAornAndPayeErrorMessage() => pageInteractionHelper.GetText(InvalidAornAndPayeErrorMessage);
     }
 }
