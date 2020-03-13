@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.EPAO.UITests.Project.Helpers;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
@@ -14,6 +15,8 @@ namespace SFA.DAS.EPAO.UITests.Project
         private readonly EPAOConfig _config;
         private readonly EPAOAdminConfig _adminconfig;
         private readonly IWebDriver _webDriver;
+        private EPAOAdminDataHelper _ePAOAdminDataHelper;
+        private EPAOAdminSqlDataHelper _ePAOAdminSqlDataHelper;
 
         public Hooks(ScenarioContext context)
         {
@@ -28,10 +31,15 @@ namespace SFA.DAS.EPAO.UITests.Project
         {
             _context.Set(new EPAOSqlDataHelper(_config));
 
-            _context.Set(new EPAODataHelper(_context.Get<RandomDataGenerator>()));
+            _ePAOAdminSqlDataHelper = new EPAOAdminSqlDataHelper(_config);
 
-            _context.Set(new EPAOAdminDataHelper());
+            var r = _context.Get<RandomDataGenerator>();
 
+            _context.Set(new EPAODataHelper(r));
+
+            _ePAOAdminDataHelper = new EPAOAdminDataHelper(r);
+
+            _context.Set(_ePAOAdminDataHelper);
         }
 
         [BeforeScenario(Order = 33)]
@@ -39,5 +47,13 @@ namespace SFA.DAS.EPAO.UITests.Project
         {
             if (_context.ScenarioInfo.Tags.Contains("epaoadmin")) { _webDriver.Navigate().GoToUrl(_adminconfig.AdminBaseUrl); }
         }
+
+        [AfterScenario(Order = 32)]
+        [Scope(Tag = "clearcontact")]
+        public void ClearContact() => _ePAOAdminSqlDataHelper.DeleteContact(_ePAOAdminDataHelper.Email);
+
+        [BeforeScenario(Order = 33)]
+        [Scope(Tag = "clearstandards")]
+        public void ClearStandards() => _ePAOAdminSqlDataHelper.DeleteOrganisationStandard(_ePAOAdminDataHelper.Standards, _ePAOAdminDataHelper.OrganisationEpaoId);
     }
 }

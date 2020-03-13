@@ -52,7 +52,7 @@ namespace SFA.DAS.FAA.UITests.Project.Helpers
                 _tabHelper.OpenInNewTab(_config.FAABaseUrl);
             }
 
-            var (username, password, _, _) = _objectContext.GetFAANewAccount();
+            var (username, password, _, _) = _objectContext.GetFAALogin();
 
                 return new FAA_Indexpage(_context)
                    .GoToSignInPage()
@@ -80,7 +80,7 @@ namespace SFA.DAS.FAA.UITests.Project.Helpers
 
         public void CreateFAAAccountWithNoActivation(FAA_CreateAnAccountPage accountCreationPage)
         {
-            var (username, password, _, _) = _objectContext.GetFAANewAccount();
+            var (username, password, _, _) = _objectContext.GetFAALogin();
             accountCreationPage.SubmitAccountCreationDetails()
                 .ClickSignOut()
                 .SubmitUnactivatedLoginDetails(username,password);
@@ -158,17 +158,30 @@ namespace SFA.DAS.FAA.UITests.Project.Helpers
                 .MyApplications();
         }
 
-        public void ChangePersonalSettings(string changingField)
+        public void CheckNationWideVacancies()
         {
-            if (changingField == "EmailId")
-            {
-                GoToSettingsPage().ChangeTheEmailIdSettings().ChangeEmailAddress().ConfirmEmailAddressUpdate();
-            }
-            else
-            {
-                GoToSettingsPage().ChangePhoneNumberSettings().EnterVerificationCode().VerifySuccessfulVerificationText();
-            }
+            FAA_ApprenticeSearchResultsPage _faaApprenticeshipSearchResultsPage = new FAA_ApprenticeSearchResultsPage(_context);
+            _faaApprenticeshipSearchResultsPage.CheckSortOrderAndDistance();
         }
+
+        public void CreateDraftApplication()
+        {
+            SearchByReferenceNumber().Apply().ClickSave();
+        }
+
+        public FAA_ApprenticeSummaryPage ConfirmDraftVacancyDeletion() => new FAA_MyApplicationsHomePage(_context).ConfirmVacancyDeletion().ConfirmDraftVacancyDeletion();
+
+        public void ChangePersonalSettings()
+        {
+            var signInpage = GoToSettingsPage().ChangeTheEmailIdSettings().ChangeEmailAddress();
+
+            signInpage.ConfirmEmailAddressUpdate();
+
+            _objectContext.SetFAAUsername(_faaDataHelper.ChangedEmailId);
+
+            GoToSettingsPage().ChangePhoneNumberSettings().EnterVerificationCode().VerifySuccessfulVerificationText();
+        }
+
         private FAA_SettingsPage GoToSettingsPage() => GoToFAAHomePage().GoToSettings();
     }
 }

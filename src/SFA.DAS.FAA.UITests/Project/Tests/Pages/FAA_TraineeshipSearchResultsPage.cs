@@ -43,10 +43,12 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 
             WaitforURLToChange(distance);
             _formCompletionHelper.SelectFromDropDownByValue(SortOrder, "RecentlyAdded");
-            _pageInteractionHelper.FocusTheElement(DisplayResults);
-            _formCompletionHelper.SelectFromDropDownByValue(DisplayResults, "50");
-            _pageInteractionHelper.WaitforURLToChange("resultsPerPage=50");
-            
+            if (_pageInteractionHelper.IsElementDisplayed(DisplayResults))
+            {
+                _pageInteractionHelper.FocusTheElement(DisplayResults);
+                _formCompletionHelper.SelectFromDropDownByValue(DisplayResults, "50");
+                _pageInteractionHelper.WaitforURLToChange("resultsPerPage=50");
+            }            
 
             List<IWebElement> vacanciesCount = _pageInteractionHelper.FindElements(VacanciesList);
             bool status = false;

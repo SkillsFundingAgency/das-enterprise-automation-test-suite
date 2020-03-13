@@ -14,6 +14,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         private readonly ScenarioContext _context;
         private readonly EPAOAdminDataHelper _ePAOAdminDataHelper;
         private CertificateDetailsPage _certificateDetailsPage;
+        private OrganisationDetailsPage _organisationDetailsPage;
 
         public AdminSteps(ScenarioContext context)
         {
@@ -22,13 +23,22 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         }
 
         [Then(@"the admin can search using organisation name")]
-        public void ThenTheAdminCanSearchUsingOrganisationName() => SearchEpaoRegister(_ePAOAdminDataHelper.OrganisationName);
+        public void ThenTheAdminCanSearchUsingOrganisationName() => _organisationDetailsPage = SearchEpaoRegister(_ePAOAdminDataHelper.OrganisationName);
 
         [Then(@"the admin can search using organisation epao id")]
-        public void ThenTheAdminCanSearchUsingOrganisationEpaoId() => SearchEpaoRegister(_ePAOAdminDataHelper.OrganisationEpaoId);
+        public void ThenTheAdminCanSearchUsingOrganisationEpaoId() => _organisationDetailsPage = SearchEpaoRegister(_ePAOAdminDataHelper.OrganisationEpaoId);
+
+        [Then(@"the admin can add contact details")]
+        public void ThenTheAdminCanAddContactDetails() => _organisationDetailsPage = _organisationDetailsPage.AddNewContact().AddContact().ReturnToOrganisationDetailsPage().SelectContact().ReturnToOrganisationDetailsPage();
+
+        [Then(@"the admin can add standards details")]
+        public void ThenTheAdminCanAddStandardsDetails() => _organisationDetailsPage = _organisationDetailsPage.AddAStandard().SearchStandards().AddStandardToOrganisation().AddStandardsDetails().VerifyStandards().ReturnToOrganisationDetailsPage();
+
+        [Then(@"the admin can view standards details")]
+        public void ThenTheAdminCanViewStandardsDetails() => _organisationDetailsPage = _organisationDetailsPage.SelectStandards().ReturnToOrganisationDetailsPage();
 
         [Then(@"the admin can search using organisation ukprn")]
-        public void ThenTheAdminCanSearchUsingOrganisationUkprn() => SearchEpaoRegister(_ePAOAdminDataHelper.OrganisationUkprn);
+        public void ThenTheAdminCanSearchUsingOrganisationUkprn() => _organisationDetailsPage = SearchEpaoRegister(_ePAOAdminDataHelper.OrganisationUkprn);
 
         [Then(@"the admin can search batches")]
         public void ThenTheAdminCanSearchBatches() => GoToEpaoAdminHomePage().SearchEPAOBatch().SearchBatches().VerifyingBatchDetails().SignOut();
@@ -39,7 +49,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         [Then(@"the admin can access learners audit history")]
         public void ThenTheAdminCanAccessLearnersAuditHistory() => _certificateDetailsPage.ShowAllHistory();
 
-        private void SearchEpaoRegister(string keyword) => GoToEpaoAdminHomePage().SearchEPAO().SearchForAnOrganisation(keyword).SelectAnOrganisation();
+        private OrganisationDetailsPage SearchEpaoRegister(string keyword) => GoToEpaoAdminHomePage().SearchEPAO().SearchForAnOrganisation(keyword).SelectAnOrganisation();
 
         private StaffDashboardPage GoToEpaoAdminHomePage()
         {
