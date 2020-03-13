@@ -12,7 +12,6 @@ namespace SFA.DAS.EPAO.UITests.Project
     public class Hooks
     {
         private readonly ScenarioContext _context;
-        private readonly ObjectContext _objectContext;
         private readonly EPAOConfig _config;
         private readonly EPAOAdminConfig _adminconfig;
         private readonly IWebDriver _webDriver;
@@ -22,7 +21,6 @@ namespace SFA.DAS.EPAO.UITests.Project
         public Hooks(ScenarioContext context)
         {
             _context = context;
-            _objectContext = context.Get<ObjectContext>();
             _webDriver = context.GetWebDriver();
             _config = context.GetEPAOConfig<EPAOConfig>();
             _adminconfig = context.GetEPAOAdminConfig<EPAOAdminConfig>();
@@ -54,7 +52,7 @@ namespace SFA.DAS.EPAO.UITests.Project
         [Scope(Tag = "clearcontact")]
         public void ClearContact() => _ePAOAdminSqlDataHelper.DeleteContact(_ePAOAdminDataHelper.Email);
 
-        [AfterScenario(Order = 33)]
+        [BeforeScenario(Order = 33)]
         [Scope(Tag = "clearstandards")]
         public void ClearStandards() => _ePAOAdminSqlDataHelper.DeleteOrganisationStandard(_ePAOAdminDataHelper.Standards, _ePAOAdminDataHelper.OrganisationEpaoId);
     }
