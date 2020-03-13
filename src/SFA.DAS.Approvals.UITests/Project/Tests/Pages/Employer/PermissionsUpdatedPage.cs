@@ -8,7 +8,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
     public class PermissionsUpdatedPage : BasePage
     {
-        protected override string PageTitle => "Permissions updated";
+        protected override string PageTitle => "You've successfully changed BOOM TRAINING LIMITED's permissions";
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
