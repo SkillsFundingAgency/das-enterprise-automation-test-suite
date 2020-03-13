@@ -27,14 +27,8 @@ namespace SFA.DAS.IdamsLogin.Service.Project.Tests.Pages
             VerifyPageAfterRefresh(PireanPreprod);
         }
 
-        public void LoginToPireanPreprod()
-        {
-            _formCompletionHelper.Click(PireanPreprod);
-        }
+        public void LoginToPireanPreprod() => _formCompletionHelper.Click(PireanPreprod);
 
-        public void LoginToAccess1Staff()
-        {
-            _formCompletionHelper.Click(Access1Staff);
-        }
+        public void LoginToAccess1Staff() => _formCompletionHelper.Click(Access1Staff);
     }
 }

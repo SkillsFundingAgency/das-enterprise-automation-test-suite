@@ -16,12 +16,32 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.YourOrganisation_
             VerifyPage();
         }
 
-        public ApplicationOverviewPage SelecForoverallEffectivenessGradeRequiresImprovementAndContinue()
+        public ApplicationOverviewPage SelectForoverallEffectivenessGradeRequiresImprovementAndContinue()
         {
             SelectRadioOptionByText("Requires improvement");
             Continue();
             return new ApplicationOverviewPage(_context);
         }
 
+        public GradeWithin3YearsPage SelectForoverallEffectivenessGradeInadequateAndContinue()
+        {
+            SelectRadioOptionByText("Inadequate");
+            Continue();
+            return new GradeWithin3YearsPage(_context);
+        }
+
+        public GradeWithin3YearsPage SelectForoverallEffectivenessGradeGoodAndContinue()
+        {
+            SelectRadioOptionByText("Good");
+            Continue();
+            return new GradeWithin3YearsPage(_context);
+        }
+
+        public GradeWithin3YearsPage SelectForoverallEffectivenessGradeOutstandingAndContinue()
+        {
+            SelectRadioOptionByText("Outstanding");
+            Continue();
+            return new GradeWithin3YearsPage(_context);
+        }
     }
 }

@@ -26,5 +26,10 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.YourOrganisation_
             SelectYesAndContinue();
             return new MaintainedFundingFromAnEducationAgencyPage(_context);
         }
+        public NotEligiblePage SelectYesForInadequateGradeWithinThreeYearsAndContinue()
+        {
+            SelectYesAndContinue();
+            return new NotEligiblePage(_context);
+        }
     }
 }

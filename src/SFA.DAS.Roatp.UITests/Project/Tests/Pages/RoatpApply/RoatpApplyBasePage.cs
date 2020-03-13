@@ -59,6 +59,12 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
             Continue();
         }
 
+        public ApplicationOverviewPage ReturnToApplicationOverview()
+        {
+            formCompletionHelper.ClickLinkByText("Application overview");
+            return new ApplicationOverviewPage(_context);
+        }
+
         public ApplicationOverviewPage EnterDateOfBirth()
         {
             var dobs = pageInteractionHelper.FindElements(Dob).ToList();

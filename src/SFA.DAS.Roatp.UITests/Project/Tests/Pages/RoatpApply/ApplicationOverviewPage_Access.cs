@@ -14,7 +14,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
     {
         #region Section9
 
-        private void NavigateToTask(string sectionName, string taskName) => formCompletionHelper.ClickElement(GetTaskLinkElement(sectionName, taskName), () => formCompletionHelper.ClickLinkByText("Application overview"));
+        private void NavigateToTask(string sectionName, string taskName, int index = 0) => formCompletionHelper.ClickElement(GetTaskLinkElement(sectionName, taskName, index), () => formCompletionHelper.ClickLinkByText("Application overview"));
 
         public PermissionsFromEveryoneNamedPage Access_Section9_ApplicationPermissionChecks()
         {
@@ -238,7 +238,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
         }
         public WhosInControlCriminalAndComplianceChecksPage Access_Section3_IntroductionWhatYouWillNeedStatusWhosInControl()
         {
-            NavigateToTask(CriminalAndComplianceChecks, CriminalAndComplianceChecks_3);
+            NavigateToTask(CriminalAndComplianceChecks, CriminalAndComplianceChecks_3, 1);
             return new WhosInControlCriminalAndComplianceChecksPage(_context);
         }
         public WhosInControlUnspentCriminalConvictionsPage Access_Section3_ChecksOnWhosInControlOfYourOrganisation()

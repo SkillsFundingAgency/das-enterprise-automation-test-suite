@@ -2,7 +2,7 @@
 
 namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
 {
-    public class AS_EditEmployerAddress : EPAO_BasePage
+    public class AS_EditEmployerAddress : EPAOAssesment_BasePage
     {
         protected override string PageTitle => "Edit the employer's address";
 

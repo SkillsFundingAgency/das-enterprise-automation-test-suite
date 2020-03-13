@@ -34,5 +34,40 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.RoatpApply
                 .ConfirmAllAnswersAndSubmitApplication()
                 .SetApplicationReference();
         }
+
+        internal ApplicationOverviewPage UnhappyPathFinish_123(ApplicationOverviewPage applicationOverviewPage)
+        {
+            return applicationOverviewPage.Access_Section9_ApplicationPermissionChecks()
+                .SelectNoForPermissionsAndContinue()
+                .ReturnToApplicationOverview()
+                .VerifyApplicationPermissions_Section9(StatusHelper.StatusInProgress)
+                .Access_Section9_ApplicationPermissionChecks()
+                .SelectYesForPermissionsAndContinue()
+                .SelectNoCheckedWithEveryoneAndContinue()
+                .ReturnToApplicationOverview()
+                .VerifyApplicationPermissions_Section9(StatusHelper.StatusInProgress)
+                .Access_Section9_ApplicationPermissionChecks()
+                .SelectYesForPermissionsAndContinue()
+                .SelectYesCheckedWithEveryoneAndContinue()
+                .SelectNoForPermissionFromOrganisationAndContinue()
+                .ReturnToApplicationOverview()
+                .VerifyApplicationPermissions_Section9(StatusHelper.StatusInProgress)
+                .Access_Section9_ApplicationPermissionChecks()
+                .SelectYesForPermissionsAndContinue()
+                .SelectYesCheckedWithEveryoneAndContinue()
+                .SelectYesForPermissionFromOrganisationAndContinue()
+                .VerifyApplicationPermissions_Section9(StatusHelper.StatusCompleted)
+                .Access_Section9_QualityStatement()
+                .SelectNoForInLineWithInstituteForApprenticeshipAndContinue()
+                .ReturnToApplicationOverview()
+                .VerifyQualityStatement_Section9(StatusHelper.StatusInProgress)
+                .Access_Section9_QualityStatement()
+                .SelectYesForInLineWithInstituteForApprenticeshipAndContinue()
+                .VerifyQualityStatement_Section9(StatusHelper.StatusCompleted)
+                .Access_Section9_PostApplicationTasks()
+                .SelectNoToCompletesAllPostApplicationTasksAndContinue()
+                .ReturnToApplicationOverview()
+                .VerifyTermsAndConditions_Section9(StatusHelper.StatusInProgress);
+        }
     }
 }
