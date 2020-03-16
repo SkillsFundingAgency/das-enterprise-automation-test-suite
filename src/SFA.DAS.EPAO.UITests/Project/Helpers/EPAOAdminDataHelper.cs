@@ -49,9 +49,9 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
 
         public string NewOrganisationUkprn { get; }
 
-        public string CompanyNumber => "76564736";
+        public string CompanyNumber => $"76{GetRandomNumber(6)}";
 
-        public string CharityNumber => "98303-93";
+        public string CharityNumber => $"9{GetRandomNumber(4)}-{GetRandomNumber(2)}";
 
         public string StreetAddress1 => "5 Quninton Road";
 
