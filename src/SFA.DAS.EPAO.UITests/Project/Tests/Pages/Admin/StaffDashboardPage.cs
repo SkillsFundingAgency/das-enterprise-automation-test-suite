@@ -13,7 +13,6 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
-        private readonly TabHelper _tabHelper;
         #endregion
 
         private By SearchLink => By.CssSelector("a.govuk-link[href='/Search']");
@@ -30,7 +29,6 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
         public StaffDashboardPage(ScenarioContext context) : base(context)
         {
             _context = context;
-            _tabHelper = context.Get<TabHelper>();
             VerifyPage();
         }
 
