@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.FAA.UITests.Project.Tests.Features.CreateAccount
+namespace SFA.DAS.Registration.UITests.Project.Tests.Features.AORN
 {
     using TechTalk.SpecFlow;
     
@@ -18,20 +18,26 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Features.CreateAccount
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.0.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("FAA_CA_02")]
-    public partial class FAA_CA_02Feature
+    [NUnit.Framework.DescriptionAttribute("RE_AORN_05")]
+    [NUnit.Framework.CategoryAttribute("regression")]
+    [NUnit.Framework.CategoryAttribute("registration")]
+    [NUnit.Framework.CategoryAttribute("addpayedetails")]
+    public partial class RE_AORN_05Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "RV1_FCA_02.feature"
+#line 1 "RE_AORN_05.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "FAA_CA_02", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "RE_AORN_05", null, ProgrammingLanguage.CSharp, new string[] {
+                        "regression",
+                        "registration",
+                        "addpayedetails"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -70,21 +76,24 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Features.CreateAccount
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("FAA_CA_02 - Create an FAA Account with Registerd Email")]
-        [NUnit.Framework.CategoryAttribute("raa-v1")]
-        [NUnit.Framework.CategoryAttribute("regression")]
-        public virtual void FAA_CA_02_CreateAnFAAAccountWithRegisterdEmail()
+        [NUnit.Framework.DescriptionAttribute("RE_AORN_05_Validate AORN route account lockup and using GG route to complete regi" +
+            "stration")]
+        public virtual void RE_AORN_05_ValidateAORNRouteAccountLockupAndUsingGGRouteToCompleteRegistration()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("FAA_CA_02 - Create an FAA Account with Registerd Email", null, new string[] {
-                        "raa-v1",
-                        "regression"});
-#line 5
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RE_AORN_05_Validate AORN route account lockup and using GG route to complete regi" +
+                    "stration", null, ((string[])(null)));
+#line 6
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 6
- testRunner.When("an Applicant initiates Account creation journey", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 7
- testRunner.Then("the Applicant should be told that Email is already registered", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Given("an User Account is created", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 8
+ testRunner.When("the User is on the \'Add a PAYE Scheme\' page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 9
+ testRunner.Then("choosing to enter AORN and PAYE details in the right format but non existing ones" +
+                    " for 3 times displays \'Sorry Account disabled\' Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 10
+ testRunner.And("Employer is able to complete registration through GG route", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }

@@ -35,7 +35,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
 
         public RAA_SearchCandidatesPage Search()
         {
-            var (_, _, firstname, lastname) = _objectcontext.GetFAANewAccount();
+            var (_, _, firstname, lastname) = _objectcontext.GetFAALogin();
             formCompletionHelper.EnterText(FirstName, firstname);
             formCompletionHelper.EnterText(LastName, lastname);
             formCompletionHelper.Click(SearchCandidate); 

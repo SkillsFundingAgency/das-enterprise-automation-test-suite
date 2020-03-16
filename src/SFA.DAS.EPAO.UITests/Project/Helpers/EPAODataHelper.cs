@@ -5,11 +5,11 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
 {
     public class EPAODataHelper : RandomElementHelper
     {
-        private readonly RandomDataGenerator _randomDataGenerator;
+        protected readonly RandomDataGenerator randomDataGenerator;
 
         public EPAODataHelper(RandomDataGenerator randomDataGenerator) : base(randomDataGenerator)
         {
-            _randomDataGenerator = randomDataGenerator;
+            this.randomDataGenerator = randomDataGenerator;
             GetCurrentDay = DateTime.Now.Day;
             GetCurrentMonth = DateTime.Now.Month;
             GetCurrentYear = DateTime.Now.Year;
@@ -29,9 +29,9 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
         public string InvalidOrgNameWithNumbers => "54678900";
         public string InvalidOrgNameWithAWord => "EPA01";
 
-        public string GetRandomNumber(int length) => _randomDataGenerator.GenerateRandomNumber(length);
+        public string GetRandomNumber(int length) => randomDataGenerator.GenerateRandomNumber(length);
 
-        public string GetRandomAlphabeticString(int length) => _randomDataGenerator.GenerateRandomAlphabeticString(length);
+        public string GetRandomAlphabeticString(int length) => randomDataGenerator.GenerateRandomAlphabeticString(length);
 
         private string GetDateTimeValue() => DateTime.Now.ToString("ddMMMyyyy_HHmmss").ToUpper();
     }

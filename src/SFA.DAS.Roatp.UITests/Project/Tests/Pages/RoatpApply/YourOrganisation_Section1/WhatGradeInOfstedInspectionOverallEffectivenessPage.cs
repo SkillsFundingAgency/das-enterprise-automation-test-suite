@@ -29,5 +29,19 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.YourOrganisation_
             Continue();
             return new GradeWithin3YearsPage(_context);
         }
+
+        public GradeWithin3YearsPage SelectForoverallEffectivenessGradeGoodAndContinue()
+        {
+            SelectRadioOptionByText("Good");
+            Continue();
+            return new GradeWithin3YearsPage(_context);
+        }
+
+        public GradeWithin3YearsPage SelectForoverallEffectivenessGradeOutstandingAndContinue()
+        {
+            SelectRadioOptionByText("Outstanding");
+            Continue();
+            return new GradeWithin3YearsPage(_context);
+        }
     }
 }

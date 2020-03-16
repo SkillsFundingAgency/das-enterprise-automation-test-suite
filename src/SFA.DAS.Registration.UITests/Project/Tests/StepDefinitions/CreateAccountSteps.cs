@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using SFA.DAS.ConfigurationBuilder;
+using SFA.DAS.MongoDb.DataGenerator;
 using SFA.DAS.Registration.UITests.Project.Helpers;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages;
 using TechTalk.SpecFlow;
@@ -24,6 +25,8 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         private CheckYourDetailsPage _checkYourDetailsPage;
         private YourOrganisationsAndAgreementsPage _yourOrganisationsAndAgreementsPage;
         private TheseDetailsAreAlreadyInUsePage _theseDetailsAreAlreadyInUsePage;
+        private EnterYourPAYESchemeDetailsPage _enterYourPAYESchemeDetailsPage;
+        private UsingYourGovtGatewayDetailsPage _usingYourGovtGatewayDetailsPage;
 
         public CreateAccountSteps(ScenarioContext context)
         {
@@ -36,30 +39,15 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
 
         [Given(@"an User Account is created")]
         [When(@"an User Account is created")]
-        public void AnUserAccountIsCreated()
-        {
-            var emailId = _registrationDataHelper.RandomEmail;
-            _objectContext.SetRegisteredEmail(emailId);
-            TestContext.Progress.WriteLine($"Email : {emailId}");
-
-            _addAPAYESchemePage = RegisterUser();
-        }
+        public void AnUserAccountIsCreated() => _addAPAYESchemePage = RegisterUser();
 
         [Then(@"My Account Home page is displayed when PAYE details are not added")]
-        public void DoNotAddPayeDetails()
-        {
-            _addAPAYESchemePage.DoNotAddPaye();
-        }
+        public void DoNotAddPayeDetails() => _addAPAYESchemePage.DoNotAddPaye();
 
         [Given(@"the User adds PAYE details")]
         [When(@"the User adds PAYE details")]
         [When(@"the User adds valid PAYE details")]
-        public void AddPayeDetails()
-        {
-            _organistionSearchPage = _addAPAYESchemePage
-                .AddPaye().ContinueToGGSignIn()
-                .SignInTo();
-        }
+        public void AddPayeDetails() => _organistionSearchPage = _addAPAYESchemePage.AddPaye().ContinueToGGSignIn().SignInTo();
 
         [Given(@"the User adds PAYE details attached to a (SingleOrg|MultiOrg) through AORN route")]
         [When(@"the User adds PAYE details attached to a (SingleOrg|MultiOrg) through AORN route")]
@@ -352,7 +340,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             _homePage.SignOut().CickContinueInYouveLoggedOutPage();
 
             _objectContext.SetRegisteredEmail(_registrationDataHelper.AnotherRandomEmail);
-            
+
             _addAPAYESchemePage = RegisterUser();
 
             _theseDetailsAreAlreadyInUsePage = ReEnterAornDetails();
@@ -363,7 +351,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             _addAPAYESchemePage = _theseDetailsAreAlreadyInUsePage.CickUseDifferentDetailsButtonInTheseDetailsAreAlreadyInUsePage();
 
         [Then(@"'Add a PAYE Scheme' page is displayed when Employer clicks on Back link on the 'PAYE scheme already in use' page")]
-        public void ThenAddAPAYESchemePageIsDisplayedWhenEmployerClicksOnBackLinkOnThePage() => 
+        public void ThenAddAPAYESchemePageIsDisplayedWhenEmployerClicksOnBackLinkOnThePage() =>
             _addAPAYESchemePage = ReEnterAornDetails().CickBackLinkInTheseDetailsAreAlreadyInUsePage();
 
         [When(@"the User is on the 'Check your details' page after adding PAYE details through AORN route")]
@@ -374,16 +362,78 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         }
 
         [Then(@"choosing to change the AORN number displays 'Enter your PAYE scheme details' page")]
-        public void ThenChoosingToChangeTheAORNNumberDisplaysPage() => 
+        public void ThenChoosingToChangeTheAORNNumberDisplaysPage() =>
             _checkYourDetailsPage = _checkYourDetailsPage.ClickAornChangeLink().EnterAornAndPayeDetailsForSingleOrgScenarioAndContinue();
 
         [Then(@"choosing to change the PAYE scheme displays 'Enter your PAYE scheme details' page")]
-        public void ThenChoosingToChangeThePAYESchemeDisplaysEnterYourPAYESchemeDetailsPage() => 
+        public void ThenChoosingToChangeThePAYESchemeDisplaysEnterYourPAYESchemeDetailsPage() =>
             _checkYourDetailsPage = _checkYourDetailsPage.ClickPayeSchemeChangeLink().AddAORN().EnterAornAndPayeDetailsForSingleOrgScenarioAndContinue();
 
         [Then(@"choosing to change the Organisation selected displays 'Search for your Organisation' page")]
         public void ThenChoosingToChangeTheOrganisationSelectedDisplaysSearchForYourOrganisationPage() =>
             _checkYourDetailsPage.ClickOrganisationChangeLink();
+
+        [When(@"the User is on the 'Add a PAYE Scheme' page")]
+        public void WhenTheUserIsOnThePage() => _enterYourPAYESchemeDetailsPage = _addAPAYESchemePage.AddAORN();
+
+        [Then(@"choosing to Continue with (BlankAornAndBlankPaye|BlankAornValidPaye|BlankPayeValidAorn|InvalidAornAndInvalidPaye) displays relevant Error text")]
+        public void ThenChoosingToContinueWithBlankAornValidPayeDisplaysRelevantErrorText(string errorCase)
+        {
+            const string blankAornFieldErrorMessage = EnterYourPAYESchemeDetailsPage.BlankAornFieldErrorMessage;
+            const string blankPayeFieldErrorMessage = EnterYourPAYESchemeDetailsPage.BlankPayeFieldErrorMessage;
+            const string aornInvalidFormatErrorMessage = EnterYourPAYESchemeDetailsPage.AornInvalidFormatErrorMessage;
+            const string payeInvalidFormatErrorMessage = EnterYourPAYESchemeDetailsPage.PayeInvalidFormatErrorMessage;
+
+            switch (errorCase)
+            {
+                case "BlankAornAndBlankPaye":
+                    _enterYourPAYESchemeDetailsPage.Continue();
+                    Assert.AreEqual(blankAornFieldErrorMessage, _enterYourPAYESchemeDetailsPage.GetErrorMessageAboveAornTextBox());
+                    Assert.AreEqual(blankPayeFieldErrorMessage, _enterYourPAYESchemeDetailsPage.GetErrorMessageAbovePayeTextBox());
+                    break;
+                case "BlankAornValidPaye":
+                    _enterYourPAYESchemeDetailsPage.EnterAornAndPayeAndContinue("", _objectContext.GetGatewayPaye());
+                    Assert.AreEqual(blankAornFieldErrorMessage, _enterYourPAYESchemeDetailsPage.GetErrorMessageAboveAornTextBox());
+                    break;
+                case "BlankPayeValidAorn":
+                    _tprSqlDataHelper.CreateSingleOrgAornData();
+                    _enterYourPAYESchemeDetailsPage.EnterAornAndPayeAndContinue(_registrationDataHelper.AornNumber, "");
+                    Assert.AreEqual(blankPayeFieldErrorMessage, _enterYourPAYESchemeDetailsPage.GetErrorMessageAbovePayeTextBox());
+                    break;
+                case "InvalidAornAndInvalidPaye":
+                    _enterYourPAYESchemeDetailsPage.EnterAornAndPayeAndContinue("InvalidAorn", "InvalidPaye");
+                    Assert.AreEqual(aornInvalidFormatErrorMessage, _enterYourPAYESchemeDetailsPage.GetErrorMessageAboveAornTextBox());
+                    Assert.AreEqual(payeInvalidFormatErrorMessage, _enterYourPAYESchemeDetailsPage.GetErrorMessageAbovePayeTextBox());
+                    break;
+            }
+        }
+
+        [Then(@"choosing to enter AORN and PAYE details in the right format but non existing ones for 3 times displays 'Sorry Account disabled' Page")]
+        public void ThenChoosingToEnterAORNAndPAYEDetailsInTheRightFormatButNonExistingOnesForTimesDisplaysPage()
+        {
+            const string InvalidErrorMessage1stAttempt = EnterYourPAYESchemeDetailsPage.InvalidAornAndPayeErrorMessage1stAttempt;
+            const string InvalidErrorMessage2ndAttempt = EnterYourPAYESchemeDetailsPage.InvalidAornAndPayeErrorMessage2ndAttempt;
+
+            EnterInvalidAornAndPaye();
+            Assert.AreEqual(InvalidErrorMessage1stAttempt, _enterYourPAYESchemeDetailsPage.GetInvalidAornAndPayeErrorMessage());
+            EnterInvalidAornAndPaye();
+            Assert.AreEqual(InvalidErrorMessage2ndAttempt, _enterYourPAYESchemeDetailsPage.GetInvalidAornAndPayeErrorMessage());
+            EnterInvalidAornAndPaye();
+
+            _usingYourGovtGatewayDetailsPage = new SorryAccountDisabledPage(_context)
+                .ClickAddViaGGLink();
+        }
+
+        [Then(@"Employer is able to complete registration through GG route")]
+        public void ThenEmployerIsAbleToCompleteRegistrationThroughGGRoute()
+        {
+            _organistionSearchPage = _usingYourGovtGatewayDetailsPage.ContinueToGGSignIn().SignInTo();
+            AddOrganisationDetails();
+            SignTheAgreement();
+        }
+
+        private void EnterInvalidAornAndPaye() =>
+            _enterYourPAYESchemeDetailsPage.EnterAornAndPayeAndContinue(_registrationDataHelper.InvalidAornNumber, _registrationDataHelper.InvalidPaye);
 
         private void CreateAnUserAcountAndAddPaye()
         {

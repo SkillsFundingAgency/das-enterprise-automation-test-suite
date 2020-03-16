@@ -68,6 +68,8 @@ namespace SFA.DAS.Registration.UITests.Project
             _context.Set(_raaV2DataHelper);
 
 
+
+            _objectContext.SetRegisteredEmail(_registrationDatahelpers.RandomEmail);
         }
 
         [BeforeScenario(Order = 23)]
