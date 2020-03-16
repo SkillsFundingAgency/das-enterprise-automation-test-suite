@@ -7,7 +7,6 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
         protected override string PageTitle => "View organisation standard";
 
         public StandardsDetailsPage(ScenarioContext context) : base(context) => VerifyPage();
-    }
 
-    
+    }    
 }

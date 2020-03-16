@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.EPAO.UITests.Project.Tests.Features.Admin.EPAOSearch
+namespace SFA.DAS.Registration.UITests.Project.Tests.Features.AORN
 {
     using TechTalk.SpecFlow;
     
@@ -18,20 +18,26 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Features.Admin.EPAOSearch
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.0.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("EPAO_AD_Search_02")]
-    public partial class EPAO_AD_Search_02Feature
+    [NUnit.Framework.DescriptionAttribute("RE_AORN_05")]
+    [NUnit.Framework.CategoryAttribute("regression")]
+    [NUnit.Framework.CategoryAttribute("registration")]
+    [NUnit.Framework.CategoryAttribute("addpayedetails")]
+    public partial class RE_AORN_05Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "EPAO_AD_Search_02.feature"
+#line 1 "RE_AORN_05.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "EPAO_AD_Search_02", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "RE_AORN_05", null, ProgrammingLanguage.CSharp, new string[] {
+                        "regression",
+                        "registration",
+                        "addpayedetails"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -70,31 +76,24 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Features.Admin.EPAOSearch
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("EPAO_AD_Search_02_Search with Organsiation EPAO Id add Contact and Standards")]
-        [NUnit.Framework.CategoryAttribute("epao")]
-        [NUnit.Framework.CategoryAttribute("epaoadmin")]
-        [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("clearcontact")]
-        [NUnit.Framework.CategoryAttribute("clearstandards")]
-        public virtual void EPAO_AD_Search_02_SearchWithOrgansiationEPAOIdAddContactAndStandards()
+        [NUnit.Framework.DescriptionAttribute("RE_AORN_05_Validate AORN route account lockup and using GG route to complete regi" +
+            "stration")]
+        public virtual void RE_AORN_05_ValidateAORNRouteAccountLockupAndUsingGGRouteToCompleteRegistration()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EPAO_AD_Search_02_Search with Organsiation EPAO Id add Contact and Standards", null, new string[] {
-                        "epao",
-                        "epaoadmin",
-                        "regression",
-                        "clearcontact",
-                        "clearstandards"});
-#line 9
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RE_AORN_05_Validate AORN route account lockup and using GG route to complete regi" +
+                    "stration", null, ((string[])(null)));
+#line 6
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
+#line 7
+ testRunner.Given("an User Account is created", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 8
+ testRunner.When("the User is on the \'Add a PAYE Scheme\' page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 9
+ testRunner.Then("choosing to enter AORN and PAYE details in the right format but non existing ones" +
+                    " for 3 times displays \'Sorry Account disabled\' Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 10
- testRunner.Then("the admin can search using organisation epao id", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 11
- testRunner.And("the admin can add contact details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 12
- testRunner.And("the admin can add standards details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 13
- testRunner.And("the admin can view standards details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("Employer is able to complete registration through GG route", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }

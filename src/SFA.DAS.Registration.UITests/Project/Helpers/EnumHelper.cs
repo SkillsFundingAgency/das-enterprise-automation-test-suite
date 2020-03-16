@@ -10,5 +10,13 @@
             PublicSector,
             Default
         }
+
+        public enum AornErrors
+        {
+            BlankAornAndBlankPaye,
+            BlankAornValidPaye,
+            BlankPayeValidAorn,
+            InvalidAornAndInvalidPaye
+        }
     }
 }

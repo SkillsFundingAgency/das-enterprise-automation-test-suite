@@ -66,12 +66,5 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             _formCompletionHelper.ClickElement(SaveAndContinueButton);
             return new ReviewYourCohortPage(_context);
         }
-
-        private void SelectRandomTrainingCourse()
-        {
-            var options = _pageInteractionHelper.GetAvailableOptions(TrainingCourseContainer);
-            var index = _coursedataHelper.RandomCourse(options);
-            _formCompletionHelper.SelectByIndex(TrainingCourseContainer, index);
-        }
     }
 }
