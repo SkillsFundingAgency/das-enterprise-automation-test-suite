@@ -17,12 +17,15 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
         private readonly PageInteractionHelper _pageInteractionHelper;
         private readonly FormCompletionHelper _formCompletionHelper;
         private readonly FAADataHelper _faaDataHelper;
+        private readonly VacancyTitleDatahelper _vacancyTitleDataHelper;
         private readonly ObjectContext _objectContext;
+        private readonly ScenarioContext _context;
         #endregion
         private By NationwideVacancies => By.Id("nationwideLocationTypeLink");
         private By SortResults => By.Id("sort-results");
         private By NationwideVacanciesText => By.Id("multiple-positions-nationwide");
         private By SearchResults => By.Id("search-results");
+        private By VacancyLink => By.LinkText(_vacancyTitleDataHelper.VacancyTitle);
 
 
 
@@ -31,7 +34,9 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
             _faaDataHelper = context.Get<FAADataHelper>();
+            _vacancyTitleDataHelper = context.Get<VacancyTitleDatahelper>();
             _objectContext = context.Get<ObjectContext>();
+            _context = context;
             VerifyPage();
         }
 
@@ -70,5 +75,11 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 
         }
 
+        public FAA_ApprenticeSummaryPage SelectBrowsedVacancy()
+        {
+            _formCompletionHelper.SelectFromDropDownByText(SortResults, "Recently added");
+            _formCompletionHelper.Click(VacancyLink);            
+            return new FAA_ApprenticeSummaryPage(_context);
+        }
     }
 }

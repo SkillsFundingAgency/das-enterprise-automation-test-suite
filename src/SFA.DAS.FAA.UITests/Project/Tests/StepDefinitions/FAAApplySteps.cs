@@ -26,6 +26,13 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.StepDefinitions
             _faaStepsHelper.ApplyForAVacancy(qualificationdetails, workExperience, trainingCourse);
         }
 
+        [When(@"the Applicant apply for a Vacancy by browsing in FAA")]
+        public void WhenTheApplicantApplyForAVacancyByBrowsingInFAA()
+        {
+            _faaStepsHelper.ApplyForABrowsedVacancy();
+        }
+
+
         [When(@"draft application is created in FAA")]
         public void WhenDraftApplicationIsCreatedInFAA()
         {

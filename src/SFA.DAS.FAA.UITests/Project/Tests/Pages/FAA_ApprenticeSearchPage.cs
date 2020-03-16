@@ -31,13 +31,20 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
         private By Distance => By.Id("loc-within");
         private By ApprenticeshipLevel => By.Id("apprenticeship-level");
         private By VerifyPhoneNumberText => By.Id("InfoMessageText");
+        private By Browse => By.LinkText("Browse");
+        private By Category => By.Id("category-ssat1.ahr");
+        private By AccountancySubCategory => By.Id("category-ssat1_ahr-details");
+        private By AccountancyCheckBox => By.Id("sub-category-stdsec.46");
+        private By BrowseButton => By.Id("browse-button");
+        private By UpdateResults => By.Id("search-button");
+
         
         public FAA_ApprenticeSearchPage(ScenarioContext context) : base(context)
         {
             _context = context;
             _objectContext = context.Get<ObjectContext>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
-            _pageInteractionHelper = context.Get<PageInteractionHelper>();
+            _pageInteractionHelper = context.Get<PageInteractionHelper>();  
             _dataHelper = context.Get<VacancyTitleDatahelper>();
             _tabHelper = context.Get<TabHelper>();
             _config = context.GetFAAConfig<FAAConfig>();
@@ -99,5 +106,18 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
             _pageInteractionHelper.WaitforURLToChange("verifymobile");
             return new FAA_PhoneNumberVerificationPage(_context);
         } 
+
+        public FAA_ApprenticeSearchResultsPage BrowseVacancy()
+        {
+            _formCompletionHelper.Click(Browse);
+            _formCompletionHelper.SelectRadioOptionByLocator(Category);
+            _formCompletionHelper.Click(BrowseButton);
+            _formCompletionHelper.Click(AccountancySubCategory);
+            _formCompletionHelper.Click(AccountancyCheckBox);
+            _formCompletionHelper.EnterText(Location, "CV1 2NJ");
+            _formCompletionHelper.SelectFromDropDownByText(Distance, "England");
+            _formCompletionHelper.Click(UpdateResults);
+            return new FAA_ApprenticeSearchResultsPage(_context);
+        }
     }
 }

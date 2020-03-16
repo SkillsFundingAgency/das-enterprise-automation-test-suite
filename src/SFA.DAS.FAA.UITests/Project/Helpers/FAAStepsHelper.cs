@@ -109,8 +109,8 @@ namespace SFA.DAS.FAA.UITests.Project.Helpers
         }
 
         public void ApplyForAVacancy(string qualificationdetails, string workExperience, string trainingCourse)
-        {     
-            var applicationFormPage = SearchByReferenceNumber().Apply();            
+        {
+            var applicationFormPage = SearchByReferenceNumber().Apply();
 
             if (_objectContext.IsApprenticeshipVacancyType())
             {
@@ -137,12 +137,42 @@ namespace SFA.DAS.FAA.UITests.Project.Helpers
                 applicationFormPage.SubmitTraineeshipApplication();
             }
         }
-        
+
+        public void ApplyForABrowsedVacancy()
+        {
+            var applicationFormPage = SearchByCategory().Apply();
+            if (_objectContext.IsApprenticeshipVacancyType())
+            {
+                
+                applicationFormPage.AnswerAdditionalQuestions();
+                applicationFormPage.ClickSaveAndContinue();
+                applicationFormPage.SelectAcceptSubmit();
+                applicationFormPage.SubmitApprenticeshipApplication();
+            }
+            else
+            {
+                applicationFormPage.AnswerAdditionalQuestions();
+                applicationFormPage.SubmitTraineeshipApplication();
+            }
+        }
+
         private FAA_ApprenticeSummaryPage SearchByReferenceNumber()
         {
             if (_objectContext.IsApprenticeshipVacancyType())
             {
                 return FindAnApprenticeship().SearchByReferenceNumber();
+            }
+            else
+            {
+                return FindATraineeship().SearchByReferenceNumber();
+            }
+        }
+
+        private FAA_ApprenticeSummaryPage SearchByCategory()
+        {
+            if (_objectContext.IsApprenticeshipVacancyType())
+            {
+                return FindAnApprenticeship().BrowseVacancy().SelectBrowsedVacancy();
             }
             else
             {

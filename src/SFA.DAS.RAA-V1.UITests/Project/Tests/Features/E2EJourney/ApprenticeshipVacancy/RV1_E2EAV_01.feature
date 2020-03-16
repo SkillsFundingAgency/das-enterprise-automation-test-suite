@@ -12,7 +12,7 @@ Scenario Outline: RV1_E2EAV_01 - Create, Approve and Apply for a Apprenticeship 
 	And the Provider fills out details for an Offline Vacancy '<location>','<DisabilityConfident>','<ApplicationMethod>','<ApprenticeshipType>','<HoursPerWeek>','<VacancyDuration>'
 	Then Provider is able to submit the vacancy for approval
 	Then the Reviewer approves the vacancy
-	When the Applicant apply for a Vacancy in FAA '<QualificationDetails>','<WorkExperience>','<TrainingCourse>'
+	When the Applicant apply for a Vacancy by browsing in FAA 
 	Then the vacancy can be viewed anonymously
 
 	Examples:
