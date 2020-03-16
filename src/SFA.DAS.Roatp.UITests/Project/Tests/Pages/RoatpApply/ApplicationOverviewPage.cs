@@ -21,7 +21,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
 
         private By TaskItem => By.CssSelector(".app-task-list__item");
 
-        private By TaskName => By.CssSelector(".app-task-list__task-name");
+        private By TaskName => By.CssSelector(".app-task-list__task-name > .govuk-link");
 
         private By TaskStatus => By.CssSelector(".govuk-tag");
 
