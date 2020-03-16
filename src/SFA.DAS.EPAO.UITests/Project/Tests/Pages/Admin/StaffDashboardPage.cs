@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.UI.FrameworkHelpers;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -12,6 +13,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
+        private readonly TabHelper _tabHelper;
         #endregion
 
         private By SearchLink => By.CssSelector("a.govuk-link[href='/Search']");
@@ -28,6 +30,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
         public StaffDashboardPage(ScenarioContext context) : base(context)
         {
             _context = context;
+            _tabHelper = context.Get<TabHelper>();
             VerifyPage();
         }
 
@@ -45,7 +48,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
 
         public AddOrganisationPage AddOrganisation()
         {
-            formCompletionHelper.ClickElement(() => pageInteractionHelper.GetLinkByHref("add-organisation"));
+            formCompletionHelper.ClickElement(AddOrganisationLink);
             return new AddOrganisationPage(_context);
         }
 
