@@ -34,7 +34,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.Manage
 
         public Manage_SearchForACandidatePage Search()
         {
-            var (_, _, firstname, lastname) = _objectcontext.GetFAANewAccount();
+            var (_, _, firstname, lastname) = _objectcontext.GetFAALogin();
             formCompletionHelper.EnterText(FirstName, firstname);
             formCompletionHelper.EnterText(LastName, lastname);
             formCompletionHelper.ClickButtonByText("Search");

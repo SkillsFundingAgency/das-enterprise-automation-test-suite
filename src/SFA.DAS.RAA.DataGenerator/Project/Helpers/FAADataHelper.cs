@@ -126,7 +126,7 @@ namespace SFA.DAS.RAA.DataGenerator
 
         public string NewPhoneNumber { get; }
 
-        public string PostCode => "CV1 2WT";
+        public string PostCode => "1 Speedway Drive London SW17 0XW";
 
         public string NewPostCode => "NN5 4AB";
 
@@ -139,5 +139,7 @@ namespace SFA.DAS.RAA.DataGenerator
         public string SuccessfulPhoneVerificationText => "You've successfully verified your mobile number";
 
         public string CreateAccountWithRegisteredEmailErrorMessage => "Your email address has already been activated. Please try signing in again. If you’ve forgotten your password you can reset it.";
+
+        public string NationwideVacanciesText => "This apprenticeship has multiple positions across England.";        
     }
 }

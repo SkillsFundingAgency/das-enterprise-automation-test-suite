@@ -92,5 +92,11 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
             _pageInteractionHelper.VerifyText(minWage,_faaDataHelper.NewCustomMinWagePerWeek);
             _pageInteractionHelper.VerifyText(maxWage,_faaDataHelper.NewCustomMaxWagePerWeek);
         }
+
+        public FAA_ApprenticeSummaryPage ConfirmDraftVacancyDeletion()
+        {
+            _pageInteractionHelper.VerifyText(ApplyButton, "Apply for apprenticeship");
+            return this;
+        }
     }
 }
