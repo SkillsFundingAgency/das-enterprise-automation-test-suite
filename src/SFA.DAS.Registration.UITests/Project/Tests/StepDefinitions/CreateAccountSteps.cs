@@ -1,5 +1,7 @@
 ﻿using NUnit.Framework;
 using SFA.DAS.ConfigurationBuilder;
+using SFA.DAS.Login.Service;
+using SFA.DAS.Login.Service.Helpers;
 using SFA.DAS.MongoDb.DataGenerator;
 using SFA.DAS.Registration.UITests.Project.Helpers;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages;
@@ -17,6 +19,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         private readonly RegistrationSqlDataHelper _registrationSqlDataHelper;
         private readonly TprSqlDataHelper _tprSqlDataHelper;
         private HomePage _homePage;
+        private SetUpAsAUserPage _setUpAsAUserPage;
         private AddAPAYESchemePage _addAPAYESchemePage;
         private GgSignInPage _gGSignInPage;
         private SearchForYourOrganisationPage _organistionSearchPage;
@@ -431,6 +434,17 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             AddOrganisationDetails();
             SignTheAgreement();
         }
+
+        [When(@"an User tries to regiser an Account with email an e-mail already registered")]
+        public void WhenAnUserTriesToRegiserAnAccountWithEmailAnE_MailAlreadyRegistered()
+        {
+            _setUpAsAUserPage = new IndexPage(_context)
+                .CreateAccount()
+                .EnterRegistrationDetailsAndContinue(_context.GetUser<LevyUser>().Username);
+        }
+
+        [Then(@"'Email already regisered' message is shown to the User")]
+        public void ThenMessageIsShownToTheUser() => _setUpAsAUserPage.VerifyEmailAlreadyRegisteredErrorMessage();
 
         private void EnterInvalidAornAndPaye() =>
             _enterYourPAYESchemeDetailsPage.EnterAornAndPayeAndContinue(_registrationDataHelper.InvalidAornNumber, _registrationDataHelper.InvalidPaye);
