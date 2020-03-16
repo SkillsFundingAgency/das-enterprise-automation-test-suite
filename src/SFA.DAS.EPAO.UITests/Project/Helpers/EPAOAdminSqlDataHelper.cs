@@ -8,7 +8,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
 
         public EPAOAdminSqlDataHelper(EPAOConfig ePAOConfig) => _connectionString = ePAOConfig.EPAOAssessorDbConnectionString;
 
-        public void DeleteUkprn(string ukprn) => SqlDatabaseConnectionHelper.ExecuteSqlCommand(_connectionString, 
+        public void DeleteOrganisation(string ukprn) => SqlDatabaseConnectionHelper.ExecuteSqlCommand(_connectionString, 
             $"DELETE FROM Organisations WHERE EndPointAssessorUkprn = '{ukprn}'");
 
         public void DeleteContact(string email) => SqlDatabaseConnectionHelper.ExecuteSqlCommand(_connectionString, 

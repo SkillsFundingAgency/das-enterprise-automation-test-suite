@@ -22,6 +22,9 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
             _ePAOAdminDataHelper = context.Get<EPAOAdminDataHelper>();
         }
 
+        [Then(@"the admin can add organisation")]
+        public void ThenTheAdminCanAddOrganisation() => GoToEpaoAdminHomePage().AddOrganisation().EnterDetails();
+
         [Then(@"the admin can search using organisation name")]
         public void ThenTheAdminCanSearchUsingOrganisationName() => _organisationDetailsPage = SearchEpaoRegister(_ePAOAdminDataHelper.OrganisationName);
 

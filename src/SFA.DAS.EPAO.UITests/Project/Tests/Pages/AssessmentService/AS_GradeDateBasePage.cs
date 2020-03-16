@@ -50,10 +50,10 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
 
         private void EnterDateFieldsAndContinue(bool invalidDateScenario = false)
         {
-            formCompletionHelper.EnterText(DayTextBox, dataHelper.GetCurrentDay);
-            formCompletionHelper.EnterText(MonthTextBox, dataHelper.GetCurrentMonth);
+            formCompletionHelper.EnterText(DayTextBox, dataHelper.CurrentDay);
+            formCompletionHelper.EnterText(MonthTextBox, dataHelper.CurrentMonth);
             if (invalidDateScenario) return;
-            formCompletionHelper.EnterText(YearTextBox, dataHelper.GetCurrentYear);
+            formCompletionHelper.EnterText(YearTextBox, dataHelper.CurrentYear);
             Continue();
         }
     }

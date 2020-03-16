@@ -26,8 +26,8 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.OrganisationDetailsSect
         public AP_OD11_DirectorsDataPage EnterNumberAndContinueInDirectoDetailsPage()
         {
             formCompletionHelper.EnterText(FullNameTextbox, dataHelper.GetRandomAlphabeticString(20));
-            formCompletionHelper.EnterText(MonthTextbox, dataHelper.GetCurrentMonth);
-            formCompletionHelper.EnterText(YearTextbox, dataHelper.GetCurrentYear - 30);
+            formCompletionHelper.EnterText(MonthTextbox, dataHelper.CurrentMonth);
+            formCompletionHelper.EnterText(YearTextbox, dataHelper.CurrentYear - 30);
             formCompletionHelper.EnterText(NumberOfSharesTextbox, dataHelper.GetRandomNumber(3));
             formCompletionHelper.Click(SaveAndAddAnotherLink);
             formCompletionHelper.Click(SaveAndContinueButton);

@@ -17,6 +17,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
         private By SearchLink => By.CssSelector("a.govuk-link[href='/Search']");
         private By BatchSearch => By.CssSelector("a.govuk-link[href='/BatchSearch']");
         private By Register => By.CssSelector("a.govuk-link[href='/Register']");
+        private By AddorganisationLink => By.CssSelector("a.govuk-link[href='/register/add-organisation']");
         private By ScheduleConfig => By.CssSelector("a.govuk-link[href='/ScheduleConfig']");
         private By Reports => By.CssSelector("a.govuk-link[href='/Reports']");
         private By CertificateApprovals => By.CssSelector("a.govuk-link[href='/CertificateApprovals/New']");
@@ -42,6 +43,12 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
             return new OrganisationSearchPage(_context);
         }
 
+        public AddOrganisationPage AddOrganisation()
+        {
+            formCompletionHelper.ClickLinkByText(AddorganisationLink, "Add");
+            return new AddOrganisationPage(_context);
+        }
+
         public BatchSearchPage SearchEPAOBatch()
         {
             formCompletionHelper.ClickElement(BatchSearch);
@@ -49,3 +56,4 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
         }
     }
 }
+

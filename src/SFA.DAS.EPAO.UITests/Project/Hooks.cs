@@ -43,17 +43,21 @@ namespace SFA.DAS.EPAO.UITests.Project
         }
 
         [BeforeScenario(Order = 33)]
+        [Scope(Tag = "deleteorganisationstandards")]
+        public void ClearStandards() => _ePAOAdminSqlDataHelper.DeleteOrganisationStandard(_ePAOAdminDataHelper.Standards, _ePAOAdminDataHelper.OrganisationEpaoId);
+
+        [BeforeScenario(Order = 34)]
         public void Navigate()
         {
             if (_context.ScenarioInfo.Tags.Contains("epaoadmin")) { _webDriver.Navigate().GoToUrl(_adminconfig.AdminBaseUrl); }
         }
 
         [AfterScenario(Order = 32)]
-        [Scope(Tag = "clearcontact")]
+        [Scope(Tag = "deleteorganisationcontact")]
         public void ClearContact() => _ePAOAdminSqlDataHelper.DeleteContact(_ePAOAdminDataHelper.Email);
 
-        [BeforeScenario(Order = 33)]
-        [Scope(Tag = "clearstandards")]
-        public void ClearStandards() => _ePAOAdminSqlDataHelper.DeleteOrganisationStandard(_ePAOAdminDataHelper.Standards, _ePAOAdminDataHelper.OrganisationEpaoId);
+        [AfterScenario(Order = 33)]
+        [Scope(Tag = "deleteorganisation")]
+        public void ClearOrganisation() => _ePAOAdminSqlDataHelper.DeleteOrganisation(_ePAOAdminDataHelper.NewOrganisationUkprn);
     }
 }

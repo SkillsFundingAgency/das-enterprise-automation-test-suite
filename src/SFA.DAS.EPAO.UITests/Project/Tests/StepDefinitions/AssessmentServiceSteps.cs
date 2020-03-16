@@ -148,7 +148,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         [When(@"the User enters the future date")]
         public void WhenTheUserEntersTheFutureDate()
         {
-            _achievementDatePage.EnterAchievementGradeDateForPrivatelyFundedApprenticeAndContinue(_dataHelper.GetCurrentYear + 1);
+            _achievementDatePage.EnterAchievementGradeDateForPrivatelyFundedApprenticeAndContinue(_dataHelper.CurrentYear + 1);
         }
 
         [Then(@"(.*) is displayed in the Apprenticeship achievement date page")]
