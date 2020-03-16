@@ -88,7 +88,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             formCompletionHelper.ClickElement(ContinueTo);
             return new DoYouNeedToCreateAnAdvertBasePage(_context);
         }
-        private IWebElement GetStatus(string headerName)
+        private IWebElement GetDetails(string headerName)
         {
             foreach (var row in pageInteractionHelper.FindElements(TRows))
             {
@@ -100,84 +100,86 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
                 throw new NotFoundException($"{headerName} not found");
         }
 
-        private IWebElement GetTitle(string title)
-        {
-            foreach (var row in pageInteractionHelper.FindElements(TRows))
-            {
-                if (row.FindElement(THeader).Text.ContainsCompareCaseInsensitive(title))
-                {
-                    return row.FindElement(TData);
-                }
-            }
-            throw new NotFoundException($"{title} not found");
-        }
+        //private IWebElement GetTitle(string title)
+        //{
+        //    foreach (var row in pageInteractionHelper.FindElements(TRows))
+        //    {
+        //        if (row.FindElement(THeader).Text.ContainsCompareCaseInsensitive(title))
+        //        {
+        //            return row.FindElement(TData);
+        //        }
+        //    }
+        //    throw new NotFoundException($"{title} not found");
+        //}
 
-        private IWebElement GetClosingDate(string closingDate)
-        {
-            foreach (var row in pageInteractionHelper.FindElements(TRows))
-            {
-                if (row.FindElement(THeader).Text.ContainsCompareCaseInsensitive(closingDate))
-                {
-                    return row.FindElement(TData);
-                }
-            }
-            throw new NotFoundException($"{closingDate} not found");
-        }
+        //private IWebElement GetClosingDate(string closingDate)
+        //{
+        //    foreach (var row in pageInteractionHelper.FindElements(TRows))
+        //    {
+        //        if (row.FindElement(THeader).Text.ContainsCompareCaseInsensitive(closingDate))
+        //        {
+        //            return row.FindElement(TData);
+        //        }
+        //    }
+        //    throw new NotFoundException($"{closingDate} not found");
+        //}
 
-        private IWebElement GetApplications(string applications)
-        {
-            foreach (var row in pageInteractionHelper.FindElements(TRows))
-            {
-                if (row.FindElement(THeader).Text.ContainsCompareCaseInsensitive(applications))
-                {
-                    return row.FindElement(TData);
-                }
-            }
-            throw new NotFoundException($"{applications} not found");
-        }
+        //private IWebElement GetApplications(string applications)
+        //{
+        //    foreach (var row in pageInteractionHelper.FindElements(TRows))
+        //    {
+        //        if (row.FindElement(THeader).Text.ContainsCompareCaseInsensitive(applications))
+        //        {
+        //            return row.FindElement(TData);
+        //        }
+        //    }
+        //    throw new NotFoundException($"{applications} not found");
+        //}
 
-        public void ConfirmVacancyTitleAndStatus(string status)
+        private void ConfirmVacancyTitleAndStatus(string status)
         {
-            string vacancyStatus = GetStatus("Status").Text.ToString(); 
-            _pageInteractionHelper.VerifyText(GetTitle("Title").Text.ToString(), _vacancyTitleDataHelper.VacancyTitle);
+            string vacancyStatus = GetDetails("Status").Text.ToString(); 
+            _pageInteractionHelper.VerifyText(GetDetails("Title").Text.ToString(), _vacancyTitleDataHelper.VacancyTitle);
             _pageInteractionHelper.VerifyText(vacancyStatus, status);
         }
 
-        public void ConfirmSubmittedVacancyDetails(string status)
+        private void ConfirmSubmittedVacancyDetails(string status)
         {
             ConfirmVacancyTitleAndStatus(status);
-            VerifyClosingDate(_raaV2DataHelper.VacancyClosing.ToString("dd MMM yyyy"));
-            VerifyApplicationLink();
+            _pageInteractionHelper.VerifyText(GetDetails("Closing date").Text.ToString(), _raaV2DataHelper.VacancyClosing.ToString("dd MMM yyyy"));
+            _pageInteractionHelper.VerifyText(GetDetails("Applications").Text.ToString(), "application");
         }
 
-        public void ConfirmRejectedVacancyDetails(string status)
+        private void ConfirmRejectedVacancyDetails(string status)
         {
             ConfirmVacancyTitleAndStatus(status);
         }
 
-        public void ConfirmLiveVacancyDetails(string status)
+        private void ConfirmLiveVacancyDetails(string status)
         {
             ConfirmVacancyTitleAndStatus(status);
-            VerifyClosingDate(_raaV2DataHelper.VacancyClosing.ToString("dd MMM yyyy"));
-            VerifyApplicationLink();
+            _pageInteractionHelper.VerifyText(GetDetails("Closing date").Text.ToString(), _raaV2DataHelper.VacancyClosing.ToString("dd MMM yyyy"));
+            _pageInteractionHelper.VerifyText(GetDetails("Applications").Text.ToString(), "application");
         }
 
-        public void ConfirmClosedVacancyDetails(string status)
+        private void ConfirmClosedVacancyDetails(string status)
         {
             ConfirmVacancyTitleAndStatus(status);
-            VerifyClosingDate(DateTime.Today.ToString("dd MMMM yyyy"));
-            VerifyApplicationLink();
+            _pageInteractionHelper.VerifyText(GetDetails("Closing date").Text.ToString(), DateTime.Today.ToString("dd MMMM yyyy"));
+            _pageInteractionHelper.VerifyText(GetDetails("Applications").Text.ToString(), "application");
         }
 
-        private void VerifyClosingDate(string closingDate)
-        {
-            _pageInteractionHelper.VerifyText(GetClosingDate("Closing date").Text.ToString(), closingDate);
-        }
+        //private void VerifyClosingDate(string closingDate)
+        //{
+        //    _pageInteractionHelper.VerifyText(GetDetails("Closing date").Text.ToString(), closingDate);
+        //}
 
-        private void VerifyApplicationLink()
-        {
-            _pageInteractionHelper.VerifyText(GetApplications("Applications").Text.ToString(), "application");
-        }
+        //private void VerifyApplicationLink()
+        //{
+        //    _pageInteractionHelper.VerifyText(GetDetails("Applications").Text.ToString(), "application");
+        //}
+
+            public 
 
         public void ClicktheButtonOnAdvertPage(string button)
         {

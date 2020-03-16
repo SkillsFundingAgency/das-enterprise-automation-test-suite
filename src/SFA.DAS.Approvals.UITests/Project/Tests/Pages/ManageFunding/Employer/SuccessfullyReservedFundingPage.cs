@@ -25,7 +25,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
             VerifyPage();
         }
 
-        internal HomePage GoToHomePage()
+        public HomePage GoToHomePage()
         {
             SelectRadioOptionByForAttribute("WhatsNext-home");
             _formCompletionHelper.ClickElement(ContinueButton);
