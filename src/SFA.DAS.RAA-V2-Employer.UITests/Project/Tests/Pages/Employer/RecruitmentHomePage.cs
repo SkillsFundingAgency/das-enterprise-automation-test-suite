@@ -4,7 +4,6 @@ using TechTalk.SpecFlow;
 using SFA.DAS.RAA_V2.Service.Project.Helpers;
 using SFA.DAS.UI.FrameworkHelpers;
 using OpenQA.Selenium;
-using SFA.DAS.Approvals.UITests.Project.Tests.Pages.DynamicHomePage;
 
 namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer
 {

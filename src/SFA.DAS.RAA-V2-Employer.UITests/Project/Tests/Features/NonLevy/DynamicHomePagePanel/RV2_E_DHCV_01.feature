@@ -11,6 +11,7 @@ Background:
 @regression
 @addpayedetails
 @LoginNewEmployerAccount
+@approvalsdatahelpers
 Scenario: RV2_E_DHCV_01 Employer creates vacancy from dynamic homepage journey, approve and close vacancy
 	Given the employer continue to add vacancy in the Recruitment 
 	When the Employer creates first submitted vacancy 'National Minimum Wage'
