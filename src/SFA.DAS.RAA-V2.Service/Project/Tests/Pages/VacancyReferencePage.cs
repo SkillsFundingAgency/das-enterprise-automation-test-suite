@@ -20,11 +20,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         protected By VacancyReferenceNumber => By.CssSelector(".govuk-panel--confirmation strong");
 
-        protected By RecruitmentLink => By.LinkText("Recruitment");
         protected By ReturnToDashboard => By.LinkText("Return to dashboard");
-        protected By HomeLink => By.LinkText("Home");
-
-
 
         public VacancyReferencePage(ScenarioContext context) : base(context)
         {
@@ -37,17 +33,6 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         public void SetVacancyReference()
         {
             _vacancyReferenceHelper.SetVacancyReference(VacancyReferenceNumber);
-        }
-
-        public void GoToRecruitmentHomePage()
-        {
-            _formCompletionHelper.Click(RecruitmentLink);
-        }
-
-        public DynamicHomePage GoToMAHomePage()
-        {
-            _formCompletionHelper.Click(HomeLink);
-            return new DynamicHomePage(_context);
         }
     }
 }
