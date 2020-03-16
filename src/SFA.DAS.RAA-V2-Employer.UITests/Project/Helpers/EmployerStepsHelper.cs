@@ -188,7 +188,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
 
         public void ConfirmVacancyStatusForSubmitted(string vacancyStatus)
         {
-            new RecruitmentHomePage(_context).GoToMAHomePage().ConfirmSubmittedVacancyDetails(vacancyStatus);
+            new VacancyReferencePage(_context).GoToMAHomePage().ConfirmSubmittedVacancyDetails(vacancyStatus);
         }
 
         public void ConfirmVacancyStatusForClosed(string vacancyStatus)
