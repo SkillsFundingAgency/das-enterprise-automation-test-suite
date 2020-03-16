@@ -26,7 +26,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
         protected virtual By CheckBoxLabels => By.CssSelector(".govuk-checkboxes__label");
         protected abstract string PageTitle { get; }
 
-        public BasePage(ScenarioContext context)
+        protected BasePage(ScenarioContext context)
         {
             _frameworkConfig = context.Get<FrameworkConfig>();
             _webDriver = context.GetWebDriver();
