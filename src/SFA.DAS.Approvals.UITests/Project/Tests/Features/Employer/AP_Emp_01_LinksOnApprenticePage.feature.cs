@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.DLockJourneys
+namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.Employer
 {
     using TechTalk.SpecFlow;
     
@@ -18,22 +18,20 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.DLockJourneys
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.0.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("AP_DLock_05")]
-    [NUnit.Framework.CategoryAttribute("approvals")]
-    public partial class AP_DLock_05Feature
+    [NUnit.Framework.DescriptionAttribute("AP_Emp_01_LinksOnApprenticePage")]
+    public partial class AP_Emp_01_LinksOnApprenticePageFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "AP_DLock_05.feature"
+#line 1 "AP_Emp_01_LinksOnApprenticePage.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "AP_DLock_05", null, ProgrammingLanguage.CSharp, new string[] {
-                        "approvals"});
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "AP_Emp_01_LinksOnApprenticePage", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -72,29 +70,22 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.DLockJourneys
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("AP_DLock_05 Employer can stop the waiting to start apprentice after Datalocks and" +
-            " ILR match")]
-        [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("waitingtostartapprentice")]
-        [NUnit.Framework.CategoryAttribute("dlockscenarios")]
-        public virtual void AP_DLock_05EmployerCanStopTheWaitingToStartApprenticeAfterDatalocksAndILRMatch()
+        [NUnit.Framework.DescriptionAttribute("Validate all links on Apprentice home page are functional")]
+        [NUnit.Framework.CategoryAttribute("mytag")]
+        public virtual void ValidateAllLinksOnApprenticeHomePageAreFunctional()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_DLock_05 Employer can stop the waiting to start apprentice after Datalocks and" +
-                    " ILR match", null, new string[] {
-                        "regression",
-                        "waitingtostartapprentice",
-                        "dlockscenarios"});
-#line 7
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Validate all links on Apprentice home page are functional", null, new string[] {
+                        "mytag"});
+#line 5
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 8
- testRunner.Given("the Employer has approved apprentice", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 6
+ testRunner.Given("Employer navigates to Apprentices home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 9
- testRunner.And("the datalock has been successful", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Then("\'Set payment order\' link should direct user to \'Set payment order\' page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 10
- testRunner.When("the provider submit an ILR with course price mismatch", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 11
- testRunner.Then("the Employer can stop the waiting to start apprentice", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("\'Report public sector apprenticeship target\' link should direct user to \'Annual a" +
+                    "pprenticeship return\' page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }

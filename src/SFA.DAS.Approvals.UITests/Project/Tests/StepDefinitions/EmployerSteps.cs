@@ -12,14 +12,21 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
     [Binding]
     public class EmployerSteps
     {
+
+        #region Helpers and Context
         private readonly EmployerStepsHelper _employerStepsHelper;
+        private readonly ScenarioContext _context;
+        private readonly ObjectContext _objectContext;
+        #endregion
+        
         private YourCohortRequestsPage _yourCohortRequestsPage;
         private ReviewYourCohortPage _reviewYourCohortPage;
-        private readonly ObjectContext _objectContext;
         private ApprenticeDetailsPage _apprenticeDetailsPage;
-        
+        private ApprenticesHomePage _apprenticesHomePage;
+
         public EmployerSteps(ScenarioContext context)
         {
+            _context = context;
             _objectContext = context.Get<ObjectContext>();
             _employerStepsHelper = new EmployerStepsHelper(context);
         }
@@ -122,7 +129,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 			_reviewYourCohortPage.EmployerFirstApproveAndNotifyTrainingProvider();
         }
 
-
         [When(@"the Employer create a cohort and send to provider to add apprentices")]
         public void WhenTheEmployerCreateACohortAndSendToProviderToAddApprentices()
         {
@@ -163,5 +169,30 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
             _employerStepsHelper.SetCohortReference(cohortReference);
         }
+
+        [Then(@"'(.*)' link should direct user to '(.*)' page")]
+        public void ThenLinkShouldDirectUserToPage(string link, string page)
+        {
+            _apprenticesHomePage = new ApprenticesHomePage(_context, true);
+
+            switch (link)
+            {
+                case "Set payment order":
+                    _apprenticesHomePage.ClickSetPaymentOrderLink();
+                    break;
+
+                case "Report public sector apprenticeship target":
+                    _apprenticesHomePage.ClickReportPublicSectorApprenticeshipTargetLink();
+                    break;
+
+                default:
+                    break;
+            }
+            
+        }
+
+
+
+
     }
 }

@@ -17,6 +17,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private By AddAnApprenticeLink => By.LinkText("Add an apprentice");
         private By YourCohortsLink => By.LinkText("Your cohorts");
         private By ManageYourApprenticesLink => By.LinkText("Manage your apprentices");
+        private By SetPaymentOrder => By.LinkText("Set payment order");
+        private By ReportPublicSectorApprenticeshipTarget => By.LinkText("Report public sector apprenticeship target");
 
         protected override string Linktext => "Apprentices";
 
@@ -41,6 +43,18 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         {
             formCompletionHelper.ClickElement(ManageYourApprenticesLink);
             return new ManageYourApprenticesPage(_context);
+        }
+
+        public SetpaymentOrderPage ClickSetPaymentOrderLink()
+        {
+            formCompletionHelper.ClickElement(SetPaymentOrder);
+            return new SetpaymentOrderPage(_context);
+        }
+
+        public ReportPublicSectorApprenticeshipTargetPage ClickReportPublicSectorApprenticeshipTargetLink()
+        {
+            formCompletionHelper.ClickElement(ReportPublicSectorApprenticeshipTarget);
+            return new ReportPublicSectorApprenticeshipTargetPage(_context);
         }
     }
 }
