@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using OpenQA.Selenium;
 using SFA.DAS.Approvals.UITests.Project.Helpers;
@@ -33,6 +34,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         private By ApprenticeshipDetailsLink => By.PartialLinkText("Changes requested");
 
+        private By ApprenticeInfoRow => By.CssSelector("tbody tr");
+        private By ViewApprenticeFullName => By.PartialLinkText(_dataHelper.ApprenticeFullName);
+
         public ManageYourApprenticesPage(ScenarioContext context): base(context)
         {
             _context = context;
@@ -48,8 +52,27 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         {
             SearchForApprentice(_dataHelper.ApprenticeFirstname);
 
-            _tableRowHelper.SelectRowFromTable("View", _dataHelper.ApprenticeFullName);
+            var apprenticeRows = _pageInteractionHelper.FindElements(ApprenticeInfoRow);
+            var detailsLinks = _pageInteractionHelper.FindElement(ViewApprenticeFullName);
 
+            int i = 0;
+            foreach (IWebElement apprenticeRow in apprenticeRows)
+            {
+                if (apprenticeRow.Text.Contains(_dataHelper.ApprenticeFullName))
+                {
+                    _formCompletionHelper.ClickElement(detailsLinks);
+                    return new ApprenticeDetailsPage(_context);
+                }
+                i++;
+            }
+            if (_pageInteractionHelper.IsElementDisplayed(NextPageLink))
+            {
+                _formCompletionHelper.ClickElement(NextPageLink);
+            }
+            else
+            {
+                throw new Exception("Apprentice with - " + _dataHelper.ApprenticeFullName + " - name is not found");
+            }
 
             return new ApprenticeDetailsPage(_context);
         }
