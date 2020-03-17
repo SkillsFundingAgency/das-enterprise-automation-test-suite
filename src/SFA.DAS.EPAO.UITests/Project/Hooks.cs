@@ -61,5 +61,9 @@ namespace SFA.DAS.EPAO.UITests.Project
         [AfterScenario(Order = 33)]
         [Scope(Tag = "deleteorganisation")]
         public void ClearOrganisation() => _ePAOAdminSqlDataHelper.DeleteOrganisation(_ePAOAdminDataHelper.NewOrganisationUkprn);
+
+        [AfterScenario(Order = 34)]
+        [Scope(Tag = "makeorganisationlive")]
+        public void MakeOrganisationLive() => _ePAOAdminSqlDataHelper.UpdateOrgStatusToLive(_ePAOAdminDataHelper.MakeLiveOrganisationEpaoId);
     }
 }

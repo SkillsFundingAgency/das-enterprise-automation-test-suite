@@ -5,6 +5,32 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
 {
+    public class EditOrganisationPage : EPAOAdmin_BasePage
+    {
+        protected override string PageTitle => "Edit organisation";
+
+        protected override By PageHeader => By.CssSelector(".govuk-heading-xl");
+
+        #region Helpers and Context
+        private readonly ScenarioContext _context;
+        #endregion
+
+        private By MakeLiveButton => By.CssSelector(".govuk-button[value='MakeLive']");
+
+        public EditOrganisationPage(ScenarioContext context) : base(context)
+        {
+            _context = context;
+            VerifyPage();
+        }
+
+        public OrganisationDetailsPage MakeOrgLive()
+        {
+            formCompletionHelper.ClickElement(MakeLiveButton);
+            return new OrganisationDetailsPage(_context);
+        }
+
+    }
+
     public class OrganisationDetailsPage : EPAOAdmin_BasePage
     {
         protected override string PageTitle => "Organisation details";
@@ -14,6 +40,8 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
         #region Helpers and Context
         private readonly ScenarioContext _context;
         #endregion
+
+        private By EditOrganisationLink => By.CssSelector("[href*='edit-organisation']");
 
         private By ContactEmail => By.CssSelector(".govuk-table__cell[data-label='Email']");
 
@@ -27,6 +55,18 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
         {
             _context = context;
             VerifyPage();
+        }
+
+        public EditOrganisationPage EditOrganisation()
+        {
+            formCompletionHelper.ClickElement(EditOrganisationLink);
+            return new EditOrganisationPage(_context);
+        }
+
+        public OrganisationDetailsPage VerifyOrganisationStatus(string status)
+        {
+            pageInteractionHelper.VerifyText(GetData("Organisation status").Text, status);
+            return new OrganisationDetailsPage(_context);
         }
 
         public AddContactPage AddNewContact()
