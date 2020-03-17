@@ -41,6 +41,8 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
 
         public DateTime StandardsEffectiveFrom => new DateTime(2015, 08, 01);
 
+        public DateTime OrgStandardsEffectiveFrom => StandardsEffectiveFrom.AddDays(35);
+
         public string StandardsName => "Transport planning technician";
 
         public string NewOrganisationName { get; }

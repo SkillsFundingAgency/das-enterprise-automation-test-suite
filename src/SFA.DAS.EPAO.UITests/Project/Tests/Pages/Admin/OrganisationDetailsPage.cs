@@ -48,14 +48,14 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
             return new ContactDetailsPage(_context);
         }
 
-        public StandardsDetailsPage SelectStandards()
+        public OrganisationStandardDetailsPage SelectStandards()
         {
             var pageoptions = pageInteractionHelper.GetAvailableOptions(StandardPagination);
             var maxoption = pageoptions.Select(x => int.Parse(x)).Max();
             formCompletionHelper.SelectFromDropDownByValue(StandardPagination, maxoption.ToString());
             pageInteractionHelper.WaitforURLToChange("itemsPerPage=500");
             tableRowHelper.SelectRowFromTable("View", ePAOAdminDataHelper.StandardsName, "#approved table");
-            return new StandardsDetailsPage(_context);
+            return new OrganisationStandardDetailsPage(_context);
         }
     }
 }

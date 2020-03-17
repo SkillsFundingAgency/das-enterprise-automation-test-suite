@@ -94,7 +94,7 @@ this.ScenarioInitialize(scenarioInfo);
 #line 12
  testRunner.And("the admin can add standards details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 13
- testRunner.And("the admin can view standards details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("the admin can update organisation standards status to be live", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }

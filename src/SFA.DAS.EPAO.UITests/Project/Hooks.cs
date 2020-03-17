@@ -33,6 +33,8 @@ namespace SFA.DAS.EPAO.UITests.Project
 
             _ePAOAdminSqlDataHelper = new EPAOAdminSqlDataHelper(_config);
 
+            _context.Set(_ePAOAdminSqlDataHelper);
+
             var r = _context.Get<RandomDataGenerator>();
 
             _context.Set(new EPAODataHelper(r));
