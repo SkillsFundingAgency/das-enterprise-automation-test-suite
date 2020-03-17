@@ -1,9 +1,6 @@
 ﻿using SFA.DAS.UI.FrameworkHelpers;
 using OpenQA.Selenium;
 using TechTalk.SpecFlow;
-using System.Collections.Generic;
-using SFA.DAS.RAA.DataGenerator;
-using System;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 {
@@ -11,13 +8,9 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => objectContext.GetOrganisationName();
         protected override string Linktext => "Home";
+
         private readonly RegexHelper _regexHelper;
         private readonly ScenarioContext _context;
-        private readonly PageInteractionHelper _pageInteractionHelper;
-        private readonly VacancyTitleDatahelper _vacancyTitleDataHelper;
-        private readonly FormCompletionHelper _formCompletionHelper;
-        private readonly RAAV2DataHelper _raaV2DataHelper;
-
 
         #region Locators
         private By PublicAccountIdLocator => By.CssSelector(".heading-secondary");
@@ -28,36 +21,16 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         protected By YourFinancesLink => By.LinkText("Your finances");   
         #endregion
 
-        #region DynamicHomePanel
         protected By ContinueSettingUpAnApprenticeship => By.Id("call-to-action-continue-setting-up-an-apprenticeship");
 
         protected By ContinueTo => By.LinkText("Continue");
 
         protected By StartNowButton => By.LinkText("Start now");
 
-        private By AdvertPanel => By.ClassName("dashboard-section");
-
-        private By VacancyDetails => By.ClassName("responsive");
-        private By ContinueCreatingNewVacancy => By.LinkText("Continue creating your vacancy");
-        private By GotoYourVacancyDashboard => By.LinkText("Go to your vacancy dashboard");
-        private By ReviewYourVacancy => By.LinkText("Review your vacancy");
-        private By applicationsLink => By.CssSelector(".govuk-link");
-        private By AddApprenticeDetails => By.LinkText("Add apprentice details");
-        private By LiveStatus => By.CssSelector(".govuk-tag govuk-tag--active");
-        #endregion
-        
-        private By TRows => By.CssSelector("tr");
-        private By THeader => By.CssSelector("th");
-        private By TData => By.CssSelector("td");
-
         internal HomePage(ScenarioContext context, bool navigate) : base(context, navigate)
         {
             _context = context;
             _regexHelper = context.Get<RegexHelper>();
-            _pageInteractionHelper = context.Get<PageInteractionHelper>();
-            _vacancyTitleDataHelper = context.Get<VacancyTitleDatahelper>();
-            _formCompletionHelper = context.Get<FormCompletionHelper>();
-            _raaV2DataHelper = context.Get<RAAV2DataHelper>();
         }
 
         public HomePage(ScenarioContext context) : this(context, false) { }

@@ -1,5 +1,4 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.Approvals.UITests.Project.Tests.Pages.DynamicHomePage;
 using SFA.DAS.RAA.DataGenerator;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
@@ -9,9 +8,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 {
     public class VacancyReferencePage : BasePage
     {
-
         protected override By PageHeader => VacancyReferenceNumber;
-
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
@@ -23,11 +20,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         protected By VacancyReferenceNumber => By.CssSelector(".govuk-panel--confirmation strong");
 
-        protected By RecruitmentLink => By.LinkText("Recruitment");
         protected By ReturnToDashboard => By.LinkText("Return to dashboard");
-        protected By HomeLink => By.LinkText("Home");
-
-
 
         public VacancyReferencePage(ScenarioContext context) : base(context)
         {
@@ -40,17 +33,6 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         public void SetVacancyReference()
         {
             _vacancyReferenceHelper.SetVacancyReference(VacancyReferenceNumber);
-        }
-
-        public void GoToRecruitmentHomePage()
-        {
-            _formCompletionHelper.Click(RecruitmentLink);
-        }
-
-        public DynamicHomePage GoToMAHomePage()
-        {
-            _formCompletionHelper.Click(HomeLink);
-            return new DynamicHomePage(_context);
         }
     }
 }

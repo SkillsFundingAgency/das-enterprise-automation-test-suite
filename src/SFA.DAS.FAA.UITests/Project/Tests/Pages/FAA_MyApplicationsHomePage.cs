@@ -38,7 +38,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 
         private By DeleteVacancy(string id) => By.CssSelector($"tr a.delete-draft[href*='/apprenticeship/delete/{id}']");
 
-        private string VacancyDetailshref => "/account/apprenticeshipvacancydetails/";
+        private string VacancyDetailshref => "account/apprenticeshipvacancydetails/";
 
         public FAA_MyApplicationsHomePage(ScenarioContext context) : base(context)
         {

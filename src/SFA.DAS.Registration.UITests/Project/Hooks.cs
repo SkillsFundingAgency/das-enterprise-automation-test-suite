@@ -3,7 +3,6 @@ using OpenQA.Selenium;
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.MongoDb.DataGenerator;
 using SFA.DAS.MongoDb.DataGenerator.Helpers;
-using SFA.DAS.RAA.DataGenerator;
 using SFA.DAS.Registration.UITests.Project.Helpers;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
@@ -25,8 +24,6 @@ namespace SFA.DAS.Registration.UITests.Project
         private RegistrationDataHelper _registrationDatahelpers;
         private LoginCredentialsHelper _loginCredentialsHelper;
         private MongoDbDataGenerator _mongoDbDataGenerator;
-        private VacancyTitleDatahelper _vacancyTitleDatahelper;
-        private RAAV2DataHelper _raaV2DataHelper;
         
         public Hooks(ScenarioContext context)
         {
@@ -63,11 +60,6 @@ namespace SFA.DAS.Registration.UITests.Project
             _context.Set(new RegistrationSqlDataHelper(_config));
 
             _context.Set(new TprSqlDataHelper(_tprconfig, _objectContext, _registrationDatahelpers));
-
-            _context.Set(_vacancyTitleDatahelper);
-            _context.Set(_raaV2DataHelper);
-
-
 
             _objectContext.SetRegisteredEmail(_registrationDatahelpers.RandomEmail);
         }
