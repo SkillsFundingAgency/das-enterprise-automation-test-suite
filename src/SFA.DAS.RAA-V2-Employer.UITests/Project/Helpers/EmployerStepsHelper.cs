@@ -182,53 +182,58 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
 
             _stepsHelper.PreviewVacancy(locationPage, wageType).AddBriefOverview().EnterBriefOverview().ReturnToDashboard().GoToRecruitmentHomePage();
         }
-        public void ConfirmVacancyStatusForDraft(string vacancyStatus)
+        public void ConfirmVacancyStatusForDraftAndClickContinueCreatingYourVacancy(string vacancyStatus)
         {
-            new RecruitmentHomePage(_context).GoToMAHomePage().ConfirmVacancyTitleAndStatus(vacancyStatus);
+            new RecruitmentHomePage(_context).GoToMAHomePage().ConfirmDraftVacancyDetailsAndClickContinueCreatingYourVacancy(vacancyStatus);
         }
 
-        public void ConfirmVacancyStatusForSubmitted(string vacancyStatus)
+        public void ConfirmVacancyStatusForSubmittedAndClickGoToYourDashboard(string vacancyStatus)
         {
-            new RecruitmentHomePage(_context).GoToMAHomePage().ConfirmSubmittedVacancyDetails(vacancyStatus);
+            new RecruitmentHomePage(_context).GoToMAHomePage().ConfirmSubmittedVacancyDetailsAndClickGoToYourVacancyDashboard(vacancyStatus);
         }
 
-        public void ConfirmVacancyStatusForClosed(string vacancyStatus)
+        public void ConfirmVacancyStatusForClosedAndClickApplicationsLink(string vacancyStatus)
         {
-            new RecruitmentHomePage(_context).GoToMAHomePage().ConfirmClosedVacancyDetails(vacancyStatus); 
+            new RecruitmentHomePage(_context).GoToMAHomePage().ConfirmClosedVacancyDetailsAndClickApplications(vacancyStatus); 
         }
 
-        public void ConfirmVacancyStatusForLive(string vacancyStatus)
+        public void ConfirmVacancyStatusForLiveAndClickApplicationsLink(string vacancyStatus)
         {
-            new RecruitmentHomePage(_context).GoToMAHomePage().ConfirmLiveVacancyDetails(vacancyStatus);
-        }
-        
-        private void ClicktheButtonOnAdvertPage(string button)
-        {
-            new DynamicHomePage(_context).ClicktheButtonOnAdvertPage(button);
+            new RecruitmentHomePage(_context).GoToMAHomePage().ConfirmLiveVacancyDetailsAndClickApplications(vacancyStatus);
         }
 
-        public VacanciesPage ClickContinueCreatingYourVacancy(string button)
+        public void ConfirmVacancyStatusForRejectedAndClickReviewYourVacancy(string vacancyStatus)
         {
-            ClicktheButtonOnAdvertPage(button);
-           return new VacancyPreviewPart2Page(_context).ReturnToDashboard();
+            new RecruitmentHomePage(_context).GoToMAHomePage().ConfirmRejectedVacancyDetailsAndClickReviewYourVacancy(vacancyStatus);
         }
 
-        public RecruitmentHomePage ClickGoToYourVacancy(string button)
-        {
-            ClicktheButtonOnAdvertPage(button);
-            return new RecruitmentHomePage(_context);
-        }
+        //private void ClicktheButtonOnAdvertPage(string button)
+        //{
+        //    new DynamicHomePage(_context).ClicktheButtonOnAdvertPage(button);
+        //}
 
-        public VacancyPreviewPart2Page ClickReviewYourVacancy(string button)
-        {
-            ClicktheButtonOnAdvertPage(button);
-            return new VacancyPreviewPart2Page(_context);
-        }
+        //public VacanciesPage ClickContinueCreatingYourVacancy(string button)
+        //{
+        //    ClicktheButtonOnAdvertPage(button);
+        //   return new VacancyPreviewPart2Page(_context).ReturnToDashboard();
+        //}
 
-        public ManageVacancyPage ClickApplicationsLink(string button)
-        {
-            ClicktheButtonOnAdvertPage(button);
-            return new ManageVacancyPage(_context);
-        }
+        //public RecruitmentHomePage ClickGoToYourVacancy(string button)
+        //{
+        //    ClicktheButtonOnAdvertPage(button);
+        //    return new RecruitmentHomePage(_context);
+        //}
+
+        //public VacancyPreviewPart2Page ClickReviewYourVacancy(string button)
+        //{
+        //    ClicktheButtonOnAdvertPage(button);
+        //    return new VacancyPreviewPart2Page(_context);
+        //}
+
+        //public ManageVacancyPage ClickApplicationsLink(string button)
+        //{
+        //    ClicktheButtonOnAdvertPage(button);
+        //    return new ManageVacancyPage(_context);
+        //}
     }
 }

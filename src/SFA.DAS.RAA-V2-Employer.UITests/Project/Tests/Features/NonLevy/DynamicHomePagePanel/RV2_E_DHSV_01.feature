@@ -12,5 +12,4 @@ Scenario: RV2_E_DHSV_01 Employer creates Submitted vacancy from dynamic homepage
 	Given the employer continue to add vacancy in the Recruitment 
 	When the Employer creates first submitted vacancy 'National Minimum Wage'
 	Then the vacancy details is displayed on the Dynamic home page with Status 'PENDING REVIEW'
-	And the Employer is able to go back to the Recruitment after clicking 'Go to your vacancy dashboard'
 	

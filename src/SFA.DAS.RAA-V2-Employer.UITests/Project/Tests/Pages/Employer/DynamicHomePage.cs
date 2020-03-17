@@ -1,5 +1,6 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.RAA.DataGenerator;
+using SFA.DAS.RAA_V2.Service.Project.Tests.Pages;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages;
 using SFA.DAS.UI.FrameworkHelpers;
 using System;
@@ -25,7 +26,6 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer
         private By ReviewYourVacancy => By.LinkText("Review your vacancy");
         private By ApplicationsLink => By.CssSelector(".govuk-link");
         private By AddApprenticeDetails => By.LinkText("Add apprentice details");
-        private By LiveStatus => By.CssSelector(".govuk-tag govuk-tag--active");
         private By TRows => By.CssSelector("tr");
         private By THeader => By.CssSelector("th");
         private By TData => By.CssSelector("td");
@@ -38,7 +38,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer
             _raaV2DataHelper = context.Get<RAAV2DataHelper>();
         }
 
-        private IWebElement GetStatus(string headerName)
+        private IWebElement GetDetails(string headerName)
         {
             foreach (var row in pageInteractionHelper.FindElements(TRows))
             {
@@ -50,113 +50,163 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer
             throw new NotFoundException($"{headerName} not found");
         }
 
-        private IWebElement GetTitle(string title)
-        {
-            foreach (var row in pageInteractionHelper.FindElements(TRows))
-            {
-                if (row.FindElement(THeader).Text.ContainsCompareCaseInsensitive(title))
-                {
-                    return row.FindElement(TData);
-                }
-            }
-            throw new NotFoundException($"{title} not found");
-        }
+        //private IWebElement GetTitle(string title)
+        //{
+        //    foreach (var row in pageInteractionHelper.FindElements(TRows))
+        //    {
+        //        if (row.FindElement(THeader).Text.ContainsCompareCaseInsensitive(title))
+        //        {
+        //            return row.FindElement(TData);
+        //        }
+        //    }
+        //    throw new NotFoundException($"{title} not found");
+        //}
 
-        private IWebElement GetClosingDate(string closingDate)
-        {
-            foreach (var row in pageInteractionHelper.FindElements(TRows))
-            {
-                if (row.FindElement(THeader).Text.ContainsCompareCaseInsensitive(closingDate))
-                {
-                    return row.FindElement(TData);
-                }
-            }
-            throw new NotFoundException($"{closingDate} not found");
-        }
+        //private IWebElement GetClosingDate(string closingDate)
+        //{
+        //    foreach (var row in pageInteractionHelper.FindElements(TRows))
+        //    {
+        //        if (row.FindElement(THeader).Text.ContainsCompareCaseInsensitive(closingDate))
+        //        {
+        //            return row.FindElement(TData);
+        //        }
+        //    }
+        //    throw new NotFoundException($"{closingDate} not found");
+        //}
 
-        private IWebElement GetApplications(string applications)
-        {
-            foreach (var row in pageInteractionHelper.FindElements(TRows))
-            {
-                if (row.FindElement(THeader).Text.ContainsCompareCaseInsensitive(applications))
-                {
-                    return row.FindElement(TData);
-                }
-            }
-            throw new NotFoundException($"{applications} not found");
-        }
+        //private IWebElement GetApplications(string applications)
+        //{
+        //    foreach (var row in pageInteractionHelper.FindElements(TRows))
+        //    {
+        //        if (row.FindElement(THeader).Text.ContainsCompareCaseInsensitive(applications))
+        //        {
+        //            return row.FindElement(TData);
+        //        }
+        //    }
+        //    throw new NotFoundException($"{applications} not found");
+        //}
 
-        public void ConfirmVacancyTitleAndStatus(string status)
+        private void ConfirmVacancyTitleAndStatus(string status)
         {
-            string vacancyStatus = GetStatus("Status").Text.ToString();
-            pageInteractionHelper.VerifyText(GetTitle("Title").Text.ToString(), _vacancyTitleDataHelper.VacancyTitle);
+            string vacancyStatus = GetDetails("Status").Text.ToString();
+            pageInteractionHelper.VerifyText(GetDetails("Title").Text.ToString(), _vacancyTitleDataHelper.VacancyTitle);
             pageInteractionHelper.VerifyText(vacancyStatus, status);
         }
 
-        public void ConfirmSubmittedVacancyDetails(string status)
+        private void ConfirmSubmittedVacancyDetails(string status)
         {
             ConfirmVacancyTitleAndStatus(status);
-            VerifyClosingDate(_raaV2DataHelper.VacancyClosing.ToString("dd MMM yyyy"));
-            VerifyApplicationLink();
+            pageInteractionHelper.VerifyText(GetDetails("Closing date").Text.ToString(), _raaV2DataHelper.VacancyClosing.ToString("dd MMM yyyy"));
+            pageInteractionHelper.VerifyText(GetDetails("Applications").Text.ToString(), "application");
         }
 
-        public void ConfirmRejectedVacancyDetails(string status)
+        private void ConfirmRejectedVacancyDetails(string status)
         {
             ConfirmVacancyTitleAndStatus(status);
         }
 
-        public void ConfirmLiveVacancyDetails(string status)
+        private void ConfirmLiveVacancyDetails(string status)
         {
             ConfirmVacancyTitleAndStatus(status);
-            VerifyClosingDate(_raaV2DataHelper.VacancyClosing.ToString("dd MMM yyyy"));
-            VerifyApplicationLink();
+            pageInteractionHelper.VerifyText(GetDetails("Closing date").Text.ToString(), _raaV2DataHelper.VacancyClosing.ToString("dd MMM yyyy"));
+            pageInteractionHelper.VerifyText(GetDetails("Applications").Text.ToString(), "application");
+            pageInteractionHelper.VerifyText(AddApprenticeDetails, "Add Apprentice Details");
         }
 
-        public void ConfirmClosedVacancyDetails(string status)
+        private void ConfirmClosedVacancyDetails(string status)
         {
             ConfirmVacancyTitleAndStatus(status);
-            VerifyClosingDate(DateTime.Today.ToString("dd MMMM yyyy"));
-            VerifyApplicationLink();
+            pageInteractionHelper.VerifyText(GetDetails("Closing date").Text.ToString(), DateTime.Today.ToString("dd MMMM yyyy"));
+            pageInteractionHelper.VerifyText(GetDetails("Applications").Text.ToString(), "application");
+            pageInteractionHelper.VerifyText(AddApprenticeDetails, "Add Apprentice Details");
         }
 
-        private void VerifyClosingDate(string closingDate)
+        //private void VerifyClosingDate(string closingDate)
+        //{
+        //    pageInteractionHelper.VerifyText(GetDetails("Closing date").Text.ToString(), closingDate);
+        //}
+
+        //private void VerifyApplicationLink()
+        //{
+        //    pageInteractionHelper.VerifyText(GetDetails("Applications").Text.ToString(), "application");
+        //}
+
+        public VacancyPreviewPart2Page ConfirmDraftVacancyDetailsAndClickContinueCreatingYourVacancy(string status)
         {
-            pageInteractionHelper.VerifyText(GetClosingDate("Closing date").Text.ToString(), closingDate);
+            ConfirmVacancyTitleAndStatus(status);
+            formCompletionHelper.Click(ContinueCreatingNewVacancy);
+            return new VacancyPreviewPart2Page(_context);
         }
 
-        private void VerifyApplicationLink()
+        public RecruitmentHomePage ConfirmSubmittedVacancyDetailsAndClickGoToYourVacancyDashboard(string status)
         {
-            pageInteractionHelper.VerifyText(GetApplications("Applications").Text.ToString(), "application");
+            ConfirmSubmittedVacancyDetails(status);
+            formCompletionHelper.Click(GotoYourVacancyDashboard);
+            return new RecruitmentHomePage(_context);
         }
 
-        public void ClicktheButtonOnAdvertPage(string button)
+        public VacancyPreviewPart2Page ConfirmRejectedVacancyDetailsAndClickReviewYourVacancy(string status)
         {
+            ConfirmRejectedVacancyDetails(status);
+            formCompletionHelper.Click(ReviewYourVacancy);
+            return new VacancyPreviewPart2Page(_context);
+        }
 
+        public ManageVacancyPage ConfirmLiveVacancyDetailsAndClickApplications(string status)
+        {
+            ConfirmLiveVacancyDetails(status);
+            ClickApplicationsLink();
+            return new ManageVacancyPage(_context);
+        }
+
+        public ManageVacancyPage ConfirmClosedVacancyDetailsAndClickApplications(string status)
+        {
+            ConfirmClosedVacancyDetails(status);
+            ClickApplicationsLink();
+            return new ManageVacancyPage(_context);
+        }
+
+        private void ClickApplicationsLink()
+        {
             List<IWebElement> links = pageInteractionHelper.FindElements(ApplicationsLink);
-            switch (button)
+            foreach (var link in links)
             {
-                case "Continue creating your vacancy":
-                    formCompletionHelper.Click(ContinueCreatingNewVacancy);
+                if (link.Text.Contains("application"))
+                {
+                    link.Click();
                     break;
-                case "Go to your vacancy dashboard":
-                    formCompletionHelper.Click(GotoYourVacancyDashboard);
-                    break;
-
-                case "Review your vacancy":
-                    formCompletionHelper.Click(ReviewYourVacancy);
-                    break;
-
-                case "application":
-                    foreach (var link in links)
-                    {
-                        if (link.Text.Contains("application"))
-                        {
-                            link.Click();
-                            break;
-                        }
-                    }
-                    break;
+                }
             }
+
         }
+        //public void ClicktheButtonOnAdvertPage(string button)
+        //{
+
+        //    List<IWebElement> links = pageInteractionHelper.FindElements(ApplicationsLink);
+        //    switch (button)
+        //    {
+        //        case "Continue creating your vacancy":
+                    
+        //            break;
+        //        case "Go to your vacancy dashboard":
+        //            formCompletionHelper.Click(GotoYourVacancyDashboard);
+        //            break;
+
+        //        case "Review your vacancy":
+        //            formCompletionHelper.Click(ReviewYourVacancy);
+        //            break;
+
+        //        case "application":
+        //            foreach (var link in links)
+        //            {
+        //                if (link.Text.Contains("application"))
+        //                {
+        //                    link.Click();
+        //                    break;
+        //                }
+        //            }
+        //            break;
+        //    }
+        //}
     }
 }

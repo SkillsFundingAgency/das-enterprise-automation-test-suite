@@ -18,8 +18,6 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer
         protected override string Linktext => "Recruitment";
         private By AcceptCookieButton => By.CssSelector("#btn-cookie-accept");
 
-        private By HomeLink => By.LinkText("Home");
-
         public RecruitmentHomePage(ScenarioContext context, bool navigate = false) : base(context, navigate)
         {
             _context = context;
@@ -48,7 +46,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer
 
         public DynamicHomePage GoToMAHomePage()
         {
-            formCompletionHelper.Click(HomeLink);
+            NavigateHome();
             pageInteractionHelper.WaitforURLToChange("teams");
             return new DynamicHomePage(_context);
         }

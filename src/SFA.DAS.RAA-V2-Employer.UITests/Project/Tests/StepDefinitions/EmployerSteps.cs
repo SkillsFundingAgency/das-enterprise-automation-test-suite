@@ -130,51 +130,51 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
             switch (status)
             {
                 case "Saved as draft":
-                    _employerStepsHelper.ConfirmVacancyStatusForDraft(status);
+                    _employerStepsHelper.ConfirmVacancyStatusForDraftAndClickContinueCreatingYourVacancy(status);
                     break;
 
                 case "CLOSED":
-                    _employerStepsHelper.ConfirmVacancyStatusForClosed(status);
+                    _employerStepsHelper.ConfirmVacancyStatusForClosedAndClickApplicationsLink(status);
                     break;
 
                 case "PENDING REVIEW":
-                    _employerStepsHelper.ConfirmVacancyStatusForSubmitted(status);
+                    _employerStepsHelper.ConfirmVacancyStatusForSubmittedAndClickGoToYourDashboard(status);
                     break;
 
                 case "LIVE":
-                    _employerStepsHelper.ConfirmVacancyStatusForLive(status);
+                    _employerStepsHelper.ConfirmVacancyStatusForLiveAndClickApplicationsLink(status);
                     break;
 
                 case "REJECTED":
-                    _employerStepsHelper.ConfirmVacancyStatusForDraft(status);
+                    _employerStepsHelper.ConfirmVacancyStatusForRejectedAndClickReviewYourVacancy(status);
                     break;
             }                    
         }
 
-        [Then(@"the Employer is able to go back to the Recruitment after clicking '(.*)'")]
-        [When(@"the Employer is able to go back to the Recruitment after clicking '(.*)'")]
-        [Given(@"the Employer is able to go back to the Recruitment after clicking '(.*)'")]
-        public void GivenTheEmployerIsAbleToGoBackToTheRecruitmentAfterClicking(string button)
-        {
-            switch(button)
-            {
-                case "Continue creating your vacancy":
-                    _employerStepsHelper.ClickContinueCreatingYourVacancy(button);
-                    break;
+        //[Then(@"the Employer is able to go back to the Recruitment after clicking '(.*)'")]
+        //[When(@"the Employer is able to go back to the Recruitment after clicking '(.*)'")]
+        //[Given(@"the Employer is able to go back to the Recruitment after clicking '(.*)'")]
+        //public void GivenTheEmployerIsAbleToGoBackToTheRecruitmentAfterClicking(string button)
+        //{
+        //    switch(button)
+        //    {
+        //        case "Continue creating your vacancy":
+        //            _employerStepsHelper.ClickContinueCreatingYourVacancy(button);
+        //            break;
 
-                case "Go to your vacancy dashboard":
-                    _employerStepsHelper.ClickGoToYourVacancy(button);
-                    break;
+        //        case "Go to your vacancy dashboard":
+        //            _employerStepsHelper.ClickGoToYourVacancy(button);
+        //            break;
 
-                case "Review your vacancy":
-                    _employerStepsHelper.ClickReviewYourVacancy(button);
-                    break;
+        //        case "Review your vacancy":
+        //            _employerStepsHelper.ClickReviewYourVacancy(button);
+        //            break;
 
-                case "application":
-                    _employerStepsHelper.ClickApplicationsLink(button);
-                    break;
-            }
-        }
+        //        case "application":
+        //            _employerStepsHelper.ClickApplicationsLink(button);
+        //            break;
+        //    }
+        //}
 
         [Given(@"the Employer creates first submitted vacancy '(.*)'")]
         [When(@"the Employer creates first submitted vacancy '(.*)'")]
