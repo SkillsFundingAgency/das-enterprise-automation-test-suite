@@ -77,7 +77,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {           
             var linkDisplayed = _employerStepsHelper.VerifyDownloadAllLinkIsDisplayed();
 
-            Assert.IsTrue(linkDisplayed, "Download all data");
+            Assert.IsTrue(linkDisplayed, "Download filtered data");
         }
     }
 }
