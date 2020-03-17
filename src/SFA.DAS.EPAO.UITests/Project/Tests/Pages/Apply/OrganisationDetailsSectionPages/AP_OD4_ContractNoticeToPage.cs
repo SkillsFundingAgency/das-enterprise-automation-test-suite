@@ -32,10 +32,10 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.OrganisationDetailsSect
             formCompletionHelper.EnterText(FamilyNameTextbox, dataHelper.GetRandomAlphabeticString(10));
             formCompletionHelper.Click(EnterTheAddressManuallyLink);
             formCompletionHelper.EnterText(AddressLine1Textbox, dataHelper.GetRandomNumber(3));
-            formCompletionHelper.EnterText(TownOrCityTextbox, dataHelper.GetTownName);
-            formCompletionHelper.EnterText(CountyTextbox, dataHelper.GetCountyName);
-            formCompletionHelper.EnterText(PostCodeTextbox, dataHelper.GetPostCode);
-            formCompletionHelper.EnterText(EmailAddressTextbox, dataHelper.GetRandomEmail);
+            formCompletionHelper.EnterText(TownOrCityTextbox, dataHelper.TownName);
+            formCompletionHelper.EnterText(CountyTextbox, dataHelper.CountyName);
+            formCompletionHelper.EnterText(PostCodeTextbox, dataHelper.PostCode);
+            formCompletionHelper.EnterText(EmailAddressTextbox, dataHelper.RandomEmail);
             formCompletionHelper.EnterText(TelephoneTextbox, dataHelper.GetRandomNumber(10));
             Continue();
             return new AP_OD5_UkprnPage(_context);

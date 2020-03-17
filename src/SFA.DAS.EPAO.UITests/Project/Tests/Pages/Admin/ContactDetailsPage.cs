@@ -11,7 +11,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
 
         public ContactDetailsPage(ScenarioContext context) : base(context) => VerifyPage();
 
-        public new OrganisationDetailsPage ReturnToOrganisationDetailsPage() => ReturnToOrganisationDetailsPage(() => formCompletionHelper.ClickElement(OrganisationLink));
+        public OrganisationDetailsPage ReturnToOrganisationDetailsPage() => ReturnToOrganisationDetailsPage(() => formCompletionHelper.ClickElement(OrganisationLink));
 
     }  
 }
