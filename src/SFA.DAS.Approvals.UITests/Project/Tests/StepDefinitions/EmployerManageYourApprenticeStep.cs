@@ -36,28 +36,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _employerStepsHelper.Filter(filterselection);
         }
 
-        [Given(@"the employer clears search and filters")]
-        [When(@"the employer clears search and filters")]
-        public void TheEmployerClearsSearchAndFilters()
-        {
-            _employerStepsHelper.ClearFilterAndSearch();
-        }
-
-        [Given(@"the employer selects next page")]
-        [When(@"the employer selects next page")]
-        public void TheEmployerSelectsNextPage()
-        {
-            _employerStepsHelper.SelectNextPage();
-        }
-
-        [Given(@"the employer selects apprenticeship details")]
-        [When(@"the employer selects apprenticeship details")]
-        public void TheEmployerSelectsApprenticeshipDetails()
-        {
-            _employerStepsHelper.SelectApprenticeship();
-        }
-
-
         [When(@"the employer click the back link on apprenticeship details page")]
         public void TheEmployerClicksOnBackLinkOnApprenticeshipDetails()
         {
@@ -67,17 +45,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Then(@"the employer is presented with first page with filters applied")]
         public void TheEmployerIsPresentedWithFirstPageWithFiltersApplied()
         {
-            var linkDisplayed = _employerStepsHelper.VerifyDownloadFilteredLinkIsDisplayed();
-
-            Assert.IsTrue(linkDisplayed, "Download filtered data");
+            Assert.IsTrue(_employerStepsHelper.VerifyDownloadFilteredLinkIsDisplayed(), "Download filtered data");
         }
 
-        [Then(@"the employer is presented with first page with no filters applied")]
-        public void TheEmployerIsPresentedWithFirstPageWithNoFiltersApplied()
-        {           
-            var linkDisplayed = _employerStepsHelper.VerifyDownloadAllLinkIsDisplayed();
-
-            Assert.IsTrue(linkDisplayed, "Download filtered data");
-        }
     }
 }
