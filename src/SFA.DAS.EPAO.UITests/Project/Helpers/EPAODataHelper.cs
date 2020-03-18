@@ -10,21 +10,21 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
         public EPAODataHelper(RandomDataGenerator randomDataGenerator) : base(randomDataGenerator)
         {
             this.randomDataGenerator = randomDataGenerator;
-            GetCurrentDay = DateTime.Now.Day;
-            GetCurrentMonth = DateTime.Now.Month;
-            GetCurrentYear = DateTime.Now.Year;
-            GetRandomEmail = GetDateTimeValue() + "@mailinator.com";
-            GetRandomWebsiteAddress = "http://www.TEST_" + GetDateTimeValue() + ".com";
+            CurrentDay = DateTime.Now.Day;
+            CurrentMonth = DateTime.Now.Month;
+            CurrentYear = DateTime.Now.Year;
+            RandomEmail = GetDateTimeValue() + "@mailinator.com";
+            RandomWebsiteAddress = "http://www.TEST_" + GetDateTimeValue() + ".com";
         }
 
-        public int GetCurrentDay { get; }
-        public int GetCurrentMonth { get; }
-        public int GetCurrentYear { get; }
-        public string GetRandomEmail { get; }
-        public string GetRandomWebsiteAddress { get; }
-        public string GetTownName => "Coventry";
-        public string GetCountyName => "Warwick";
-        public string GetPostCode => "CV1 2WT";
+        public int CurrentDay { get; }
+        public int CurrentMonth { get; }
+        public int CurrentYear { get; }
+        public string RandomEmail { get; }
+        public string RandomWebsiteAddress { get; }
+        public string TownName => "Coventry";
+        public string CountyName => "Warwick";
+        public string PostCode => "CV1 2WT";
         public string InvalidOrgNameWithAlphabets => "asfasfasdfasdf";
         public string InvalidOrgNameWithNumbers => "54678900";
         public string InvalidOrgNameWithAWord => "EPA01";
