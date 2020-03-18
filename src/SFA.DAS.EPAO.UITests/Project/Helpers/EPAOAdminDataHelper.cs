@@ -15,6 +15,8 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
             NewOrganisationName = $"New Org {GetRandomAlphabeticString(10)}";
             NewOrganisationLegalName = $"{NewOrganisationName} Legal Name";
             NewOrganisationUkprn = $"99{GetRandomNumber(6)}";
+            CompanyNumber = $"76{GetRandomNumber(6)}";
+            CharityNumber = $"9{GetRandomNumber(4)}-{GetRandomNumber(2)}";
         }
 
         public string OrganisationName => "City and Guilds";
@@ -53,9 +55,9 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
 
         public string NewOrganisationUkprn { get; }
 
-        public string CompanyNumber => $"76{GetRandomNumber(6)}";
+        public string CompanyNumber { get; }
 
-        public string CharityNumber => $"9{GetRandomNumber(4)}-{GetRandomNumber(2)}";
+        public string CharityNumber { get; }
 
         public string StreetAddress1 => "5 Quninton Road";
 
