@@ -5,32 +5,6 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
 {
-    public class EditOrganisationPage : EPAOAdmin_BasePage
-    {
-        protected override string PageTitle => "Edit organisation";
-
-        protected override By PageHeader => By.CssSelector(".govuk-heading-xl");
-
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        private By MakeLiveButton => By.CssSelector(".govuk-button[value='MakeLive']");
-
-        public EditOrganisationPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
-
-        public OrganisationDetailsPage MakeOrgLive()
-        {
-            formCompletionHelper.ClickElement(MakeLiveButton);
-            return new OrganisationDetailsPage(_context);
-        }
-
-    }
-
     public class OrganisationDetailsPage : EPAOAdmin_BasePage
     {
         protected override string PageTitle => "Organisation details";
@@ -63,11 +37,11 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
             return new EditOrganisationPage(_context);
         }
 
-        public OrganisationDetailsPage VerifyOrganisationStatus(string status)
-        {
-            pageInteractionHelper.VerifyText(GetData("Organisation status").Text, status);
-            return new OrganisationDetailsPage(_context);
-        }
+        public OrganisationDetailsPage VerifyOrganisationStatus(string status) => VerifyOrganisationDetails("Organisation status", status);
+        
+        public OrganisationDetailsPage VerifyOrganisationCharityNumber() => VerifyOrganisationDetails("Charity number", ePAOAdminDataHelper.CharityNumber);
+        
+        public OrganisationDetailsPage VerifyOrganisationCompanyNumber() => VerifyOrganisationDetails("Company number", ePAOAdminDataHelper.CompanyNumber);
 
         public AddContactPage AddNewContact()
         {
@@ -96,6 +70,12 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
             pageInteractionHelper.WaitforURLToChange("itemsPerPage=500");
             tableRowHelper.SelectRowFromTable("View", ePAOAdminDataHelper.StandardsName, "#approved table");
             return new OrganisationStandardDetailsPage(_context);
+        }
+
+        private OrganisationDetailsPage VerifyOrganisationDetails(string headerName, string value)
+        {
+            pageInteractionHelper.VerifyText(GetData(headerName).Text, value);
+            return new OrganisationDetailsPage(_context);
         }
     }
 }

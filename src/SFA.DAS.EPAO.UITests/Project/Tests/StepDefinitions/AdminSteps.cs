@@ -34,10 +34,20 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
 
             _organisationDetailsPage = SearchEpaoRegister(_ePAOAdminDataHelper.MakeLiveOrganisationEpaoId);
 
-            _organisationDetailsPage.VerifyOrganisationStatus("New")
+            _organisationDetailsPage = _organisationDetailsPage.VerifyOrganisationStatus("New")
                 .EditOrganisation()
                 .MakeOrgLive()
                 .VerifyOrganisationStatus("Live");
+        }
+
+        [Then(@"the admin can edit the organisation")]
+        public void ThenTheAdminCanEditTheOrganisation()
+        {
+            _organisationDetailsPage = _organisationDetailsPage
+                .EditOrganisation()
+                .EditDetails()
+                .VerifyOrganisationCharityNumber()
+                .VerifyOrganisationCompanyNumber();
         }
 
         [Then(@"the admin can search using organisation name")]
