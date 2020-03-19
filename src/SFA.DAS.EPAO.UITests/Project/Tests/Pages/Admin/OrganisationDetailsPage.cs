@@ -15,6 +15,8 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
         private readonly ScenarioContext _context;
         #endregion
 
+        private By EditOrganisationLink => By.CssSelector("[href*='edit-organisation']");
+
         private By ContactEmail => By.CssSelector(".govuk-table__cell[data-label='Email']");
 
         private By AddContactLink => By.CssSelector(".govuk-link[href*='add-contact']");
@@ -28,6 +30,18 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
             _context = context;
             VerifyPage();
         }
+
+        public EditOrganisationPage EditOrganisation()
+        {
+            formCompletionHelper.ClickElement(EditOrganisationLink);
+            return new EditOrganisationPage(_context);
+        }
+
+        public OrganisationDetailsPage VerifyOrganisationStatus(string status) => VerifyOrganisationDetails("Organisation status", status);
+        
+        public OrganisationDetailsPage VerifyOrganisationCharityNumber() => VerifyOrganisationDetails("Charity number", ePAOAdminDataHelper.CharityNumber);
+        
+        public OrganisationDetailsPage VerifyOrganisationCompanyNumber() => VerifyOrganisationDetails("Company number", ePAOAdminDataHelper.CompanyNumber);
 
         public AddContactPage AddNewContact()
         {
@@ -56,6 +70,12 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
             pageInteractionHelper.WaitforURLToChange("itemsPerPage=500");
             tableRowHelper.SelectRowFromTable("View", ePAOAdminDataHelper.StandardsName, "#approved table");
             return new OrganisationStandardDetailsPage(_context);
+        }
+
+        private OrganisationDetailsPage VerifyOrganisationDetails(string headerName, string value)
+        {
+            pageInteractionHelper.VerifyText(GetData(headerName).Text, value);
+            return new OrganisationDetailsPage(_context);
         }
     }
 }

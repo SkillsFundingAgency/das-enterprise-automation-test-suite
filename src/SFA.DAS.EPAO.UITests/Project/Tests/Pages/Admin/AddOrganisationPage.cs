@@ -1,11 +1,10 @@
-﻿using OpenQA.Selenium;
-using SFA.DAS.UI.FrameworkHelpers;
+﻿using SFA.DAS.UI.FrameworkHelpers;
 using System;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
 {
-    public class AddOrganisationPage : EPAOAdmin_BasePage
+    public class AddOrganisationPage : AddOrEditOrganisationPage
     {
         protected override string PageTitle => "Add an organisation";
 
@@ -13,21 +12,6 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
         private readonly ScenarioContext _context;
         private readonly TabHelper _tabHelper;
         #endregion
-
-        private By OrganisationNameField => By.Id("Name");
-        private By LegalNameField => By.Id("LegalName");
-        private By UkprnNameField => By.Id("Ukprn");
-        private By OrganisationTypeId => By.CssSelector(".govuk-radios__input[name='OrganisationTypeId']");
-        private By WebsiteField => By.Id("WebsiteLink");
-        private By Email => By.Id("Email");
-        private By PhoneNumber => By.Id("PhoneNumber");     
-        private By StreetAddress1Field => By.Id("Address1");
-        private By StreetAddress2Field => By.Id("Address2");
-        private By StreetAddress3Field => By.Id("Address3");
-        private By TownOrCityField => By.Id("Address4");
-        private By PostCodeField => By.Id("Postcode");
-        private By CompanyNumberField => By.Id("CompanyNumber");
-        private By CharityNumberField => By.Id("CharityNumber");
 
         public AddOrganisationPage(ScenarioContext context) : base(context)
         {
@@ -61,7 +45,6 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
             Continue();
             return new OrganisationDetailsPage(_context);
         }
-
     }
 }
 

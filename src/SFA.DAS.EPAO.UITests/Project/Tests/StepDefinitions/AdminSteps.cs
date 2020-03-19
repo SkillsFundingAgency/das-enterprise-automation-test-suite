@@ -13,9 +13,9 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
     {
         private readonly ScenarioContext _context;
         private readonly EPAOAdminDataHelper _ePAOAdminDataHelper;
+        private readonly EPAOAdminSqlDataHelper _ePAOAdminSqlDataHelper;
         private CertificateDetailsPage _certificateDetailsPage;
         private OrganisationDetailsPage _organisationDetailsPage;
-        private EPAOAdminSqlDataHelper _ePAOAdminSqlDataHelper;
 
         public AdminSteps(ScenarioContext context)
         {
@@ -26,6 +26,29 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
 
         [Then(@"the admin can add organisation")]
         public void ThenTheAdminCanAddOrganisation() => GoToEpaoAdminHomePage().AddOrganisation().EnterDetails();
+
+        [Then(@"the admin can make organisation to be live")]
+        public void ThenTheAdminCanMakeOrganisationToBeLive()
+        {
+            _ePAOAdminSqlDataHelper.UpdateOrgStatusToNew(_ePAOAdminDataHelper.MakeLiveOrganisationEpaoId);
+
+            _organisationDetailsPage = SearchEpaoRegister(_ePAOAdminDataHelper.MakeLiveOrganisationEpaoId);
+
+            _organisationDetailsPage = _organisationDetailsPage.VerifyOrganisationStatus("New")
+                .EditOrganisation()
+                .MakeOrgLive()
+                .VerifyOrganisationStatus("Live");
+        }
+
+        [Then(@"the admin can edit the organisation")]
+        public void ThenTheAdminCanEditTheOrganisation()
+        {
+            _organisationDetailsPage = _organisationDetailsPage
+                .EditOrganisation()
+                .EditDetails()
+                .VerifyOrganisationCharityNumber()
+                .VerifyOrganisationCompanyNumber();
+        }
 
         [Then(@"the admin can search using organisation name")]
         public void ThenTheAdminCanSearchUsingOrganisationName() => _organisationDetailsPage = SearchEpaoRegister(_ePAOAdminDataHelper.OrganisationName);
