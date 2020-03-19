@@ -3,6 +3,11 @@ using System;
 
 namespace SFA.DAS.RAA.DataGenerator
 {
+    public enum SearchVacancy
+    {
+        SearchByReferenceNumber,
+        SearchByCategory
+    }
     public class FAADataHelper : RandomElementHelper
     {
         private readonly RandomDataGenerator _randomDataGenerator;

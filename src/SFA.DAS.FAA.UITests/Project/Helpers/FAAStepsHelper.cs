@@ -5,6 +5,7 @@ using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 using SFA.DAS.RAA.DataGenerator.Project;
 using SFA.DAS.RAA.DataGenerator;
+using System;
 
 namespace SFA.DAS.FAA.UITests.Project.Helpers
 {
@@ -108,10 +109,10 @@ namespace SFA.DAS.FAA.UITests.Project.Helpers
             }
         }
 
-        public void ApplyForAVacancy(string qualificationdetails, string workExperience, string trainingCourse)
+        public void ApplyForAVacancy(string qualificationdetails, string workExperience, string trainingCourse, SearchVacancy? searchVacancy = null)
         {
-            var applicationFormPage = SearchByReferenceNumber().Apply();
-
+            var applicationFormPage = searchVacancy.HasValue ? SearchByCategory().Apply() : SearchByReferenceNumber().Apply();
+                        
             if (_objectContext.IsApprenticeshipVacancyType())
             {
                 applicationFormPage.EnterEducation();
@@ -138,24 +139,6 @@ namespace SFA.DAS.FAA.UITests.Project.Helpers
             }
         }
 
-        public void ApplyForABrowsedVacancy()
-        {
-            var applicationFormPage = SearchByCategory().Apply();
-            if (_objectContext.IsApprenticeshipVacancyType())
-            {
-                
-                applicationFormPage.AnswerAdditionalQuestions();
-                applicationFormPage.ClickSaveAndContinue();
-                applicationFormPage.SelectAcceptSubmit();
-                applicationFormPage.SubmitApprenticeshipApplication();
-            }
-            else
-            {
-                applicationFormPage.AnswerAdditionalQuestions();
-                applicationFormPage.SubmitTraineeshipApplication();
-            }
-        }
-
         private FAA_ApprenticeSummaryPage SearchByReferenceNumber()
         {
             if (_objectContext.IsApprenticeshipVacancyType())
@@ -170,14 +153,7 @@ namespace SFA.DAS.FAA.UITests.Project.Helpers
 
         private FAA_ApprenticeSummaryPage SearchByCategory()
         {
-            if (_objectContext.IsApprenticeshipVacancyType())
-            {
-                return FindAnApprenticeship().BrowseVacancy().SelectBrowsedVacancy();
-            }
-            else
-            {
-                return FindATraineeship().SearchByReferenceNumber();
-            }
+            return FindAnApprenticeship().BrowseVacancy().SelectBrowsedVacancy();
         }
 
         private FAA_MyApplicationsHomePage OpenFAAHomePageinNewtab()

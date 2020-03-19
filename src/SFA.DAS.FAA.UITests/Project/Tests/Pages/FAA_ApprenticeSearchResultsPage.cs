@@ -26,6 +26,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
         private By NationwideVacanciesText => By.Id("multiple-positions-nationwide");
         private By SearchResults => By.Id("search-results");
         private By VacancyLink => By.LinkText(_vacancyTitleDataHelper.VacancyTitle);
+        private By DisplayResults => By.Id("results-per-page");
 
 
 
@@ -78,6 +79,12 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
         public FAA_ApprenticeSummaryPage SelectBrowsedVacancy()
         {
             _formCompletionHelper.SelectFromDropDownByText(SortResults, "Recently added");
+            if (_pageInteractionHelper.IsElementDisplayed(DisplayResults))
+            {
+                _pageInteractionHelper.FocusTheElement(DisplayResults);
+                _formCompletionHelper.SelectFromDropDownByValue(DisplayResults, "50");
+                _pageInteractionHelper.WaitforURLToChange("resultsPerPage=50");
+            }
             _formCompletionHelper.Click(VacancyLink);            
             return new FAA_ApprenticeSummaryPage(_context);
         }

@@ -110,13 +110,16 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
         public FAA_ApprenticeSearchResultsPage BrowseVacancy()
         {
             _formCompletionHelper.Click(Browse);
+            _pageInteractionHelper.WaitforURLToChange("searchMode=Category");
             _formCompletionHelper.SelectRadioOptionByLocator(Category);
             _formCompletionHelper.Click(BrowseButton);
+            _pageInteractionHelper.WaitforURLToChange("ApprenticeshipLevel");
             _formCompletionHelper.Click(AccountancySubCategory);
             _formCompletionHelper.Click(AccountancyCheckBox);
             _formCompletionHelper.EnterText(Location, "CV1 2NJ");
             _formCompletionHelper.SelectFromDropDownByText(Distance, "England");
             _formCompletionHelper.Click(UpdateResults);
+            _pageInteractionHelper.WaitforURLToChange("DisplaySubCategory=true");
             return new FAA_ApprenticeSearchResultsPage(_context);
         }
     }
