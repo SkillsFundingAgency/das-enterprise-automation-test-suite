@@ -23,19 +23,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private By EditApprenticeStatusLink => By.LinkText("Edit status");
         private By EditStopDateLink => By.Id("editStopDateLink");
         private By EditApprenticeDetailsLink => By.LinkText("Edit");
-        private By BackToManageLink => By.LinkText("Back to manage your apprentices");
-
-        public ApprenticeDetailsPage(ScenarioContext context, bool verifyPageTitle = true) : base(context)
+        
+        public ApprenticeDetailsPage(ScenarioContext context) : base(context)
         {
             _context = context;
             _dataHelper = context.Get<ApprenticeDataHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
-
-            if (verifyPageTitle)
-            {
-                VerifyPage();
-            }
+            VerifyPage();
         }
 
         public EditApprenticePage ClickEditApprenticeDetailsLink()
@@ -60,14 +55,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         {
             _formCompletionHelper.ClickElement(EditStopDateLink);
             return new ThisApprenticeshipTrainingStopPage(_context);
-        }
-
-        public ManageYourApprenticesPage ClickBackLink()
-        {
-            IWebElement link = _pageInteractionHelper.FindElement(BackToManageLink);
-            _formCompletionHelper.ClickElement(link);
-
-            return new ManageYourApprenticesPage(_context);
         }
 
         public bool VerifyIfChangeRequestWasApproved()

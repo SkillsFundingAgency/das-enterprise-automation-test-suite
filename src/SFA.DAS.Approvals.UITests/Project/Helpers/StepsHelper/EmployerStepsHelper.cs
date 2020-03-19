@@ -35,42 +35,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 
         internal ManageYourApprenticesPage GoToManageYourApprenticesPage() => GoToEmployerApprenticesHomePage().ClickManageYourApprenticesLink();
 
-        public ManageYourApprenticesPage Filter(string filterselection)
-        {
-            return new ManageYourApprenticesPage(_context).Filter(filterselection);
-        }
-
-        public ManageYourApprenticesPage SelectNextPage()
-        {
-            return new ManageYourApprenticesPage(_context).SelectNextPage();
-        }
-
-        public ManageYourApprenticesPage ClearFilterAndSearch()
-        {
-            return new ManageYourApprenticesPage(_context).ClearSearchAndFilter();
-        }
-
-        public ApprenticeDetailsPage SelectApprenticeship()
-        {
-            return new ManageYourApprenticesPage(_context).SelectApprenticeDetails();
-        }
-
-        public ManageYourApprenticesPage FilterAndPaginate(string filterselection)
-        {
-
-            return new ManageYourApprenticesPage(_context).FilterPagination(filterselection);
-        }
-
-        public bool VerifyDownloadAllLinkIsDisplayed()
-        {
-            return new ManageYourApprenticesPage(_context).DownloadAllDataLinkIsDisplayed();
-        }
-
-        public bool VerifyDownloadFilteredLinkIsDisplayed()
-        {
-            return new ManageYourApprenticesPage(_context).DownloadFilteredDataLinkIsDisplayed();
-        }
-
         internal ApprenticesHomePage GoToEmployerApprenticesHomePage()
         {
             _homePageStepsHelper.GotoEmployerHomePage();
@@ -103,11 +67,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                 .SelectStopAndContinueForAStartedApprentice()
                 .EditStopDateToThisMonthAndSubmit()
                 .SelectYesAndConfirm();
-        }
-
-        internal ManageYourApprenticesPage ClickApprenticeDetailsBackLink(ApprenticeDetailsPage apprenticeDetailsPage)
-        {
-            return apprenticeDetailsPage.ClickBackLink();
         }
 
         internal ApprenticeDetailsPage ViewCurrentApprenticeDetails() => GoToManageYourApprenticesPage().SelectViewCurrentApprenticeDetails();

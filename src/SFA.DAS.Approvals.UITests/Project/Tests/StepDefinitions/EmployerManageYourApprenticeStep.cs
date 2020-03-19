@@ -14,6 +14,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         private readonly ScenarioContext _context;
         private readonly EmployerStepsHelper _employerStepsHelper;
         private EmployerPortalLoginHelper _loginHelper;
+        private ManageYourApprenticesPage _manageYourApprenticesPage;
 
         public EmployerManageYourApprenticeStep(ScenarioContext context)
         {
@@ -26,27 +27,15 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         public void AnEmployerHasNavigatedToManageYourApprenticePage()
         {
             _loginHelper.Login(_context.GetUser<LevyUser>(), true);
-            _employerStepsHelper.GoToManageYourApprenticesPage();
+
+            _manageYourApprenticesPage = _employerStepsHelper.GoToManageYourApprenticesPage();
         }
 
         [Given(@"the employer filters by '(.*)'")]
         [When(@"the employer filters by '(.*)'")]
-        public void TheEmployerFiltersBy(string filterselection)
-        {
-            _employerStepsHelper.Filter(filterselection);
-        }
-
-        [When(@"the employer click the back link on apprenticeship details page")]
-        public void TheEmployerClicksOnBackLinkOnApprenticeshipDetails()
-        {
-            _employerStepsHelper.ClickApprenticeDetailsBackLink(new ApprenticeDetailsPage(_context, false));
-        }
+        public void TheEmployerFiltersBy(string filterselection) => _manageYourApprenticesPage.Filter(filterselection);
 
         [Then(@"the employer is presented with first page with filters applied")]
-        public void TheEmployerIsPresentedWithFirstPageWithFiltersApplied()
-        {
-            Assert.IsTrue(_employerStepsHelper.VerifyDownloadFilteredLinkIsDisplayed(), "Download filtered data");
-        }
-
+        public void TheEmployerIsPresentedWithFirstPageWithFiltersApplied() => Assert.IsTrue(_manageYourApprenticesPage.DownloadFilteredDataLinkIsDisplayed(), "Download filtered data");
     }
 }

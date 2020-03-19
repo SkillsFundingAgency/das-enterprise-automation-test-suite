@@ -27,13 +27,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private By ApprenticesTable => By.ClassName("tableResponsive");
         private By SelectFilterDropdown => By.Id("selectedStatus");
         private By ApplyFilter => By.CssSelector(".govuk-button");
-        private By ClearSearchAndFilters => By.PartialLinkText("Clear search");
-        private By DownloadAllDataLink => By.PartialLinkText("Download all data");
         private By DownloadFilteredDataLink => By.PartialLinkText("Download filtered data");
         private By NextPageLink => By.PartialLinkText("Next");
-
-        private By ApprenticeshipDetailsLink => By.PartialLinkText("Changes requested");
-
         private By ApprenticeInfoRow => By.CssSelector("tbody tr");
         private By ViewApprenticeFullName => By.PartialLinkText(_dataHelper.ApprenticeFullName);
 
@@ -77,14 +72,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             return new ApprenticeDetailsPage(_context);
         }
 
-        internal ApprenticeDetailsPage SelectApprenticeDetails()
-        {
-            IList<IWebElement> viewApprenticeLinks = _pageInteractionHelper.FindElements(ApprenticeshipDetailsLink);
-            _formCompletionHelper.ClickElement(viewApprenticeLinks[0]);
-
-            return new ApprenticeDetailsPage(_context, false);
-        }
-
         private ManageYourApprenticesPage SearchForApprentice(string apprenticeName)
         {
             _formCompletionHelper.EnterText(ApprenticeSearchField, apprenticeName);
@@ -92,13 +79,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             return this;
         }
 
-        internal bool CheckIfApprenticeExists(bool isEdited = false)
+        internal bool ApprenticeExists()
         {
-            if (isEdited)
-                SearchForApprentice(_editedApprenticeDataHelper.ApprenticeEditedFullName);
-            else
-                SearchForApprentice(_dataHelper.Ulns.Single());
-
+            SearchForApprentice(_editedApprenticeDataHelper.ApprenticeEditedFullName);
             return _pageInteractionHelper.IsElementDisplayed(ApprenticesTable);
         }
 
@@ -106,39 +89,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         {
             _formCompletionHelper.SelectFromDropDownByText(SelectFilterDropdown, filterText);
             _formCompletionHelper.ClickElement(ApplyFilter);
-            return this;
+            return new ManageYourApprenticesPage(_context);
         }
 
-        public ManageYourApprenticesPage SelectNextPage()
-        {
-            _formCompletionHelper.ClickElement(NextPageLink);
-            return this;
-        }
-
-        public ManageYourApprenticesPage ClearSearchAndFilter()
-        {
-            _formCompletionHelper.ClickElement(ClearSearchAndFilters);
-            return this;
-        }
-
-        public ManageYourApprenticesPage FilterPagination(string filterText)
-        {
-            Filter(filterText);
-           
-            _formCompletionHelper.ClickElement(NextPageLink);
-            _formCompletionHelper.ClickElement(ClearSearchAndFilters);
-            return this;
-        }
-
-        public bool DownloadAllDataLinkIsDisplayed()
-        {
-            return _pageInteractionHelper.IsElementDisplayed(DownloadAllDataLink);
-        }
-
-        public bool DownloadFilteredDataLinkIsDisplayed()
-        {
-            return _pageInteractionHelper.IsElementDisplayed(DownloadFilteredDataLink);
-        }
+        public bool DownloadFilteredDataLinkIsDisplayed() => _pageInteractionHelper.IsElementDisplayed(DownloadFilteredDataLink);
     }
 }
 
