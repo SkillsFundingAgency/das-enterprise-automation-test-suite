@@ -29,7 +29,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
 
             int noOfPages = NoOfPages(NoOfPagesCssSelector);
 
-            for (int i = 1; i < noOfPages; i++)
+            for (int i = 1; i <= noOfPages; i++)
             {
                 List<IWebElement> filteredRows = _pageInteractionHelper.FindElements(VacancyTables).ToList().Where(x => func(x)).ToList();
 

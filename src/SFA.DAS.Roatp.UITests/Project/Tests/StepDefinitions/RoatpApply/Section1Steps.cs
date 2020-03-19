@@ -87,6 +87,9 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpApply
         public void ThenTheProviderCompletesExperienceAndAccreditationsSectionByMeetingAllOfstedRequirements() => _overviewPage = _yourOrganisationSectionHelper.CompleteYourOrganisationSection_5_Ofsted(_overviewPage);
 
         [Then(@"the provider verifies section exemptions")]
-        public void ThenTheProviderVerifiesSectionExemptions() => _overviewPage = _yourOrganisationSectionHelper.CompleteAndVerifySectionExemptions_Scenario1(_overviewPage);
+        public void ThenTheProviderVerifiesSectionExemptions() => _overviewPage = _yourOrganisationSectionHelper.CompleteAndVerifySectionExemptions_MainRoute(_overviewPage);
+
+        [Then(@"the provider verifies section exemptions for employer route")]
+        public void ThenTheProviderVerifiesSectionExemptionsForEmployerRoute() => _overviewPage = _yourOrganisationSectionHelper.CompleteAndVerifySectionExemptions_EmployerRoute(_overviewPage);
     }
 }
