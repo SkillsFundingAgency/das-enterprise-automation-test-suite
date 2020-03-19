@@ -12,10 +12,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
         #endregion
 
         private By EditStandardLink => By.CssSelector("[href *= '/edit-standard']");
-        private By TRows => By.CssSelector(".govuk-summary-list__row");
-        private By THeader => By.CssSelector(".govuk-summary-list__key");
-        private By TData => By.CssSelector(".govuk-summary-list__value");
-
+        
         public OrganisationStandardDetailsPage(ScenarioContext context) : base(context) 
         {
             _context = context;
@@ -40,18 +37,6 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
         {
             pageInteractionHelper.VerifyText(GetData("Status").Text, status);
             return new OrganisationStandardDetailsPage(_context);
-        }
-
-        private IWebElement GetData(string headerName)
-        {
-            foreach (var row in pageInteractionHelper.FindElements(TRows))
-            {
-                if (row.FindElement(THeader).Text == headerName)
-                {
-                    return row.FindElement(TData);
-                }
-            }
-            throw new NotFoundException($"{headerName} not found");
         }
     }    
 }

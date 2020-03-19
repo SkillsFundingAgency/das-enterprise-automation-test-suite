@@ -7,7 +7,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
     public class EnterYourTrainingProvidersUKProviderReferenceNumberUKPRN: BasePage
     {
-        protected override string PageTitle => "Enter your training provider's UK Provider Reference Number(UKPRN)";
+        protected override string PageTitle => "Enter your training provider's UK Provider Reference Number (UKPRN)";
 
         #region Helpers and Context
         private readonly FormCompletionHelper _formCompletionHelper;
