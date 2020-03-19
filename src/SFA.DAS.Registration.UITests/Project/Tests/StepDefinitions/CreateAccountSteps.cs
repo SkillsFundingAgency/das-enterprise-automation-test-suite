@@ -5,6 +5,8 @@ using SFA.DAS.Login.Service.Helpers;
 using SFA.DAS.MongoDb.DataGenerator;
 using SFA.DAS.Registration.UITests.Project.Helpers;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages;
+using SFA.DAS.UI.Framework.TestSupport;
+using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 using static SFA.DAS.RAA_V1.UITests.Project.Helpers.EnumHelper;
 
@@ -15,6 +17,8 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
     {
         private readonly ScenarioContext _context;
         private readonly ObjectContext _objectContext;
+        private readonly TabHelper _tabHelper;
+        private readonly RegistrationConfig _config;
         private readonly RegistrationDataHelper _registrationDataHelper;
         private readonly RegistrationSqlDataHelper _registrationSqlDataHelper;
         private readonly TprSqlDataHelper _tprSqlDataHelper;
@@ -38,11 +42,13 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             _registrationDataHelper = context.Get<RegistrationDataHelper>();
             _registrationSqlDataHelper = context.Get<RegistrationSqlDataHelper>();
             _tprSqlDataHelper = context.Get<TprSqlDataHelper>();
+            _tabHelper = context.Get<TabHelper>();
+            _config = context.GetRegistrationConfig<RegistrationConfig>();
         }
 
         [Given(@"an User Account is created")]
         [When(@"an User Account is created")]
-        public void AnUserAccountIsCreated() => _addAPAYESchemePage = RegisterUser();
+        public void AnUserAccountIsCreated() => _addAPAYESchemePage = RegisterUserAccount().ContinueToGetApprenticeshipFunding();
 
         [Then(@"My Account Home page is displayed when PAYE details are not added")]
         public void DoNotAddPayeDetails() => _addAPAYESchemePage.DoNotAddPaye();
@@ -344,7 +350,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
 
             _objectContext.SetRegisteredEmail(_registrationDataHelper.AnotherRandomEmail);
 
-            _addAPAYESchemePage = RegisterUser();
+            _addAPAYESchemePage = RegisterUserAccount().ContinueToGetApprenticeshipFunding();
 
             _theseDetailsAreAlreadyInUsePage = ReEnterAornDetails();
         }
@@ -435,16 +441,38 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             SignTheAgreement();
         }
 
-        [When(@"an User tries to regiser an Account with email an e-mail already registered")]
-        public void WhenAnUserTriesToRegiserAnAccountWithEmailAnE_MailAlreadyRegistered()
+        [When(@"an User tries to regiser an Account with an Email already registered")]
+        public void WhenAnUserTriesToRegiserAnAccountWithAnEMailAlreadyRegistered()
         {
-            _setUpAsAUserPage = new IndexPage(_context)
+            new IndexPage(_context)
                 .CreateAccount()
                 .EnterRegistrationDetailsAndContinue(_context.GetUser<LevyUser>().Username);
         }
 
         [Then(@"'Email already regisered' message is shown to the User")]
         public void ThenMessageIsShownToTheUser() => _setUpAsAUserPage.VerifyEmailAlreadyRegisteredErrorMessage();
+
+        [When(@"Given an User registers an acount with email but does not activate it")]
+        public void WhenGivenAnUserRegistersAnAcountWithEmailButDoesNotActivateIt() => RegisterUserAccount();
+
+        [When(@"the User tries to regiser another Account with the same Email that is pending activation")]
+        public void WhenTheUserTriesToRegiserAnotherAccountWithTheSameEmailThatIsPendingActivation()
+        {
+            _tabHelper.GoToUrl(_config.EmployerApprenticeshipServiceBaseURL);
+
+            _addAPAYESchemePage = RegisterUserAccount()
+                .ContinueToGetApprenticeshipFunding();
+        }
+
+        [Then(@"the User is allowed to activate the account and continue with registration")]
+        public void ThenTheUserIsAllowedToActivateTheAccountAndContinueWithRegistration()
+        {
+            AddPayeDetails();
+            AddOrganisationTypeDetails(OrgType.Company);
+            SignTheAgreement();
+        }
+
+        private ConfirmPage RegisterUserAccount() => new IndexPage(_context).CreateAccount().Register();
 
         private void EnterInvalidAornAndPaye() =>
             _enterYourPAYESchemeDetailsPage.EnterAornAndPayeAndContinue(_registrationDataHelper.InvalidAornNumber, _registrationDataHelper.InvalidPaye);
@@ -487,14 +515,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
 
         private CheckYourDetailsPage AddPayeDetailsForSingleOrgAornRoute() =>
             _addAPAYESchemePage.AddAORN().EnterAornAndPayeDetailsForSingleOrgScenarioAndContinue();
-
-        private AddAPAYESchemePage RegisterUser()
-        {
-            return new IndexPage(_context)
-                .CreateAccount()
-                .Register()
-                .ContinueToGetApprenticeshipFunding();
-        }
 
         private TheseDetailsAreAlreadyInUsePage ReEnterAornDetails() => _addAPAYESchemePage.AddAORN()
                 .ReEnterTheSameAornDetailsAndContinue();
