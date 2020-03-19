@@ -17,14 +17,12 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
         private VacanciesPage _vacanciesPage;
         private VacancyPreviewPart2Page _vacancyPreviewPart2Page;
         private VacancyPreviewPart2WithErrorsPage _vacancyPreviewPart2WithErrorsPage;
-        private readonly PageInteractionHelper _pageInteractionHelper;
         private readonly HomePageStepsHelper _homePageStepsHelper;
         private readonly ScenarioContext _context;
         public EmployerSteps(ScenarioContext context) 
         {
             _context = context;
             _employerStepsHelper = new EmployerStepsHelper(context);
-            _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _homePageStepsHelper = new HomePageStepsHelper(context);
         }
 

@@ -17,10 +17,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer
         private readonly VacancyTitleDatahelper _vacancyTitleDataHelper;
         private readonly RAAV2DataHelper _raaV2DataHelper;
         #endregion
-
-        private By AdvertPanel => By.ClassName("dashboard-section");
-
-        private By VacancyDetails => By.ClassName("responsive");
+       
         private By ContinueCreatingNewVacancy => By.LinkText("Continue creating your vacancy");
         private By GotoYourVacancyDashboard => By.LinkText("Go to your vacancy dashboard");
         private By ReviewYourVacancy => By.LinkText("Review your vacancy");
@@ -49,42 +46,6 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer
             }
             throw new NotFoundException($"{headerName} not found");
         }
-
-        //private IWebElement GetTitle(string title)
-        //{
-        //    foreach (var row in pageInteractionHelper.FindElements(TRows))
-        //    {
-        //        if (row.FindElement(THeader).Text.ContainsCompareCaseInsensitive(title))
-        //        {
-        //            return row.FindElement(TData);
-        //        }
-        //    }
-        //    throw new NotFoundException($"{title} not found");
-        //}
-
-        //private IWebElement GetClosingDate(string closingDate)
-        //{
-        //    foreach (var row in pageInteractionHelper.FindElements(TRows))
-        //    {
-        //        if (row.FindElement(THeader).Text.ContainsCompareCaseInsensitive(closingDate))
-        //        {
-        //            return row.FindElement(TData);
-        //        }
-        //    }
-        //    throw new NotFoundException($"{closingDate} not found");
-        //}
-
-        //private IWebElement GetApplications(string applications)
-        //{
-        //    foreach (var row in pageInteractionHelper.FindElements(TRows))
-        //    {
-        //        if (row.FindElement(THeader).Text.ContainsCompareCaseInsensitive(applications))
-        //        {
-        //            return row.FindElement(TData);
-        //        }
-        //    }
-        //    throw new NotFoundException($"{applications} not found");
-        //}
 
         private void ConfirmVacancyTitleAndStatus(string status)
         {

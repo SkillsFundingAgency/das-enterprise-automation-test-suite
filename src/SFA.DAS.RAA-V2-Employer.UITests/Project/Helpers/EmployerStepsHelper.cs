@@ -16,15 +16,15 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
         private readonly ScenarioContext _context;
         private readonly EmployerPortalLoginHelper _loginhelper;
         private readonly HomePageStepsHelper _homePageStepsHelper;
-        private readonly EmployerPortalLoginHelper _loginHelper;
         private readonly StepsHelper _stepsHelper;
+        private readonly MFEmployerStepsHelper _mfEmployerStepsHelper;
         public EmployerStepsHelper(ScenarioContext context)
         {
             _context = context;
             _loginhelper = new EmployerPortalLoginHelper(context);
             _homePageStepsHelper = new HomePageStepsHelper(context);
             _stepsHelper = new StepsHelper(context);
-            _loginHelper = new EmployerPortalLoginHelper(_context);
+            _mfEmployerStepsHelper = new MFEmployerStepsHelper(context);
         }
 
         internal void SubmitVacancy(VacancyPreviewPart2Page previewPage, bool isApplicationMethodFAA, bool optionalFields)
@@ -145,10 +145,8 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
 
         public VacancyTitlePage GoToAddAnAdvert()
         {
-            MFEmployerStepsHelper _mfEmployerStepsHelper = new MFEmployerStepsHelper(_context);
-            _mfEmployerStepsHelper.ContinueToCreateAddAnApprentices();
-            DoYouNeedToCreateAnAdvertPage _doYouNeedToCreateAnAdvertPage = new DoYouNeedToCreateAnAdvertPage(_context);
-            _doYouNeedToCreateAnAdvertPage.ClickYesRadioButtonTakesToRecruitment();
+            _mfEmployerStepsHelper.ContinueToCreateAddAnApprentices();             
+            new DoYouNeedToCreateAnAdvertPage(_context).ClickYesRadioButtonTakesToRecruitment();            
             return new RecruitmentLandingPage(_context).ClickStartNow();
         }
 
