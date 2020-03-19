@@ -27,7 +27,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.ManageUsers
 
         public string EnterUserDetailsAndSendInvite(EPAODataHelper dataHelper)
         {
-            var newUserEmailId = dataHelper.GetRandomEmail;
+            var newUserEmailId = dataHelper.RandomEmail;
             formCompletionHelper.EnterText(GivenNameTextBox, "Test Given Name");
             formCompletionHelper.EnterText(FamilyNameTextBox, "Test Family Name");
             formCompletionHelper.EnterText(EmailTextBox, newUserEmailId);

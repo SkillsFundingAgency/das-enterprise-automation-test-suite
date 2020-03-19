@@ -13,6 +13,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
     {
         private readonly ScenarioContext _context;
         private readonly EPAOAdminDataHelper _ePAOAdminDataHelper;
+        private readonly EPAOAdminSqlDataHelper _ePAOAdminSqlDataHelper;
         private CertificateDetailsPage _certificateDetailsPage;
         private OrganisationDetailsPage _organisationDetailsPage;
 
@@ -20,6 +21,33 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         {
             _context = context;
             _ePAOAdminDataHelper = context.Get<EPAOAdminDataHelper>();
+            _ePAOAdminSqlDataHelper = context.Get<EPAOAdminSqlDataHelper>();
+        }
+
+        [Then(@"the admin can add organisation")]
+        public void ThenTheAdminCanAddOrganisation() => GoToEpaoAdminHomePage().AddOrganisation().EnterDetails();
+
+        [Then(@"the admin can make organisation to be live")]
+        public void ThenTheAdminCanMakeOrganisationToBeLive()
+        {
+            _ePAOAdminSqlDataHelper.UpdateOrgStatusToNew(_ePAOAdminDataHelper.MakeLiveOrganisationEpaoId);
+
+            _organisationDetailsPage = SearchEpaoRegister(_ePAOAdminDataHelper.MakeLiveOrganisationEpaoId);
+
+            _organisationDetailsPage = _organisationDetailsPage.VerifyOrganisationStatus("New")
+                .EditOrganisation()
+                .MakeOrgLive()
+                .VerifyOrganisationStatus("Live");
+        }
+
+        [Then(@"the admin can edit the organisation")]
+        public void ThenTheAdminCanEditTheOrganisation()
+        {
+            _organisationDetailsPage = _organisationDetailsPage
+                .EditOrganisation()
+                .EditDetails()
+                .VerifyOrganisationCharityNumber()
+                .VerifyOrganisationCompanyNumber();
         }
 
         [Then(@"the admin can search using organisation name")]
@@ -34,9 +62,20 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         [Then(@"the admin can add standards details")]
         public void ThenTheAdminCanAddStandardsDetails() => _organisationDetailsPage = _organisationDetailsPage.AddAStandard().SearchStandards().AddStandardToOrganisation().AddStandardsDetails().VerifyStandards().ReturnToOrganisationDetailsPage();
 
-        [Then(@"the admin can view standards details")]
-        public void ThenTheAdminCanViewStandardsDetails() => _organisationDetailsPage = _organisationDetailsPage.SelectStandards().ReturnToOrganisationDetailsPage();
-
+        [Then(@"the admin can update organisation standards status to be live")]
+        public void ThenTheAdminCanUpdateOrganisationStandardsStatusToBeLive()
+        {
+            _ePAOAdminSqlDataHelper.UpdateOrgStandardStatusToNew(_ePAOAdminDataHelper.OrganisationEpaoId, _ePAOAdminDataHelper.Standards);
+            
+            _organisationDetailsPage = _organisationDetailsPage
+                .SelectStandards()
+                .VerifyOrgStandardsStatus("New")
+                .EditStandard()
+                .EditStandardsDetails()
+                .VerifyOrgStandardsStatus("Live")
+                .ReturnToOrganisationDetailsPage();
+        }
+        
         [Then(@"the admin can search using organisation ukprn")]
         public void ThenTheAdminCanSearchUsingOrganisationUkprn() => _organisationDetailsPage = SearchEpaoRegister(_ePAOAdminDataHelper.OrganisationUkprn);
 
