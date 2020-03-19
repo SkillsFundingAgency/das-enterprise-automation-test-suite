@@ -24,7 +24,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         private By ApprenticeSearchField => By.Id("searchTerm");
         private By SearchButton => By.ClassName("das-search-form__button");
-        private By ApprenticesTable => By.ClassName("tableResponsive");
+        private By ApprenticesTable => By.CssSelector("table.govuk-table.das-table--responsive");
         private By SelectFilterDropdown => By.Id("selectedStatus");
         private By ApplyFilter => By.CssSelector(".govuk-button");
         private By DownloadFilteredDataLink => By.PartialLinkText("Download filtered data");
@@ -76,13 +76,15 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         {
             _formCompletionHelper.EnterText(ApprenticeSearchField, apprenticeName);
             _formCompletionHelper.ClickElement(SearchButton);
-            return this;
+            return new ManageYourApprenticesPage(_context);
         }
 
-        internal bool ApprenticeExists()
+        internal void VerifyApprenticeExists()
         {
-            SearchForApprentice(_editedApprenticeDataHelper.ApprenticeEditedFullName);
-            return _pageInteractionHelper.IsElementDisplayed(ApprenticesTable);
+            _pageInteractionHelper.Verify(() =>
+            {
+                return _pageInteractionHelper.FindElements(ApprenticesTable).Any();
+            }, () => SearchForApprentice(_editedApprenticeDataHelper.ApprenticeEditedFullName));
         }
 
         public ManageYourApprenticesPage Filter(string filterText)

@@ -225,10 +225,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
             var manageYourApprenticePage = _employerStepsHelper.GoToManageYourApprenticesPage();
 
-            if (manageYourApprenticePage.ApprenticeExists() == false)
-            {
-                throw new Exception("Unable to find just approved Apprentices");
-            }
+            manageYourApprenticePage.VerifyApprenticeExists();
         }
 
         private void LoginAsReceiver()
