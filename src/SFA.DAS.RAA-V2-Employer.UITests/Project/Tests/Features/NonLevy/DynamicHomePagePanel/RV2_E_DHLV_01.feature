@@ -7,10 +7,12 @@ Background:
 @raa-v2e
 @regression
 @addpayedetails
-Scenario: RV2_E_DHLV_01 Employer creates vacancy from dynamic homepage journey and approve	
+Scenario: RV2_E_DHLV_01 Employer creates vacancy from dynamic homepage journey and approve	and close vacancy
 	Given the employer continue to add vacancy in the Recruitment 
 	When the Employer creates first submitted vacancy 'National Minimum Wage'
 	And the Reviewer Approves the vacancy
 	And the Applicant can apply for a Vacancy in FAA
 	Given the Employer logs into Employer account
 	Then the vacancy details is displayed on the Dynamic home page with Status 'LIVE'
+	Given the employer close the vacancy
+	Then the vacancy details is displayed on the Dynamic home page with Status 'CLOSED'

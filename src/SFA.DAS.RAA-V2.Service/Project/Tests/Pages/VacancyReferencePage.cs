@@ -11,9 +11,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         protected override By PageHeader => VacancyReferenceNumber;
 
         #region Helpers and Context
-        private readonly ScenarioContext _context;
         private readonly VacancyReferenceHelper _vacancyReferenceHelper;
-        private readonly FormCompletionHelper _formCompletionHelper;
         #endregion
 
         protected override string PageTitle => "VAC";
@@ -24,15 +22,14 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         public VacancyReferencePage(ScenarioContext context) : base(context)
         {
-            _context = context;
             _vacancyReferenceHelper = context.Get<VacancyReferenceHelper>();
-            _formCompletionHelper = context.Get<FormCompletionHelper>();
             VerifyPage();
         }
 
         public void SetVacancyReference()
         {
             _vacancyReferenceHelper.SetVacancyReference(VacancyReferenceNumber);
+            NavigateHome();
         }
     }
 }

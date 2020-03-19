@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+using SFA.DAS.RAA_V2.Service.Project.Helpers;
 using SFA.DAS.RAA_V2.Service.Project.Tests.Pages;
 using SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers;
 using SFA.DAS.Registration.UITests.Project.Helpers;
@@ -18,8 +19,10 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
         private VacancyPreviewPart2WithErrorsPage _vacancyPreviewPart2WithErrorsPage;
         private readonly PageInteractionHelper _pageInteractionHelper;
         private readonly HomePageStepsHelper _homePageStepsHelper;
+        private readonly ScenarioContext _context;
         public EmployerSteps(ScenarioContext context) 
-        { 
+        {
+            _context = context;
             _employerStepsHelper = new EmployerStepsHelper(context);
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _homePageStepsHelper = new HomePageStepsHelper(context);
@@ -116,7 +119,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
         [When(@"the Employer creates first Draft vacancy '(.*)'")]
         [Then(@"the Employer creates first Draft vacancy '(.*)'")]
         public void GivenTheEmployerCreatesFirstDraftVacancy(string wageType) => _employerStepsHelper.CreateFirstDraftVacancy(wageType);
-
+        
         [Given(@"the employer continue to add vacancy in the Recruitment")]
         [When(@"the employer continue to add vacancy in the Recruitment")]
         [Then(@"the employer continue to add vacancy in the Recruitment")]
@@ -151,31 +154,6 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
             }                    
         }
 
-        //[Then(@"the Employer is able to go back to the Recruitment after clicking '(.*)'")]
-        //[When(@"the Employer is able to go back to the Recruitment after clicking '(.*)'")]
-        //[Given(@"the Employer is able to go back to the Recruitment after clicking '(.*)'")]
-        //public void GivenTheEmployerIsAbleToGoBackToTheRecruitmentAfterClicking(string button)
-        //{
-        //    switch(button)
-        //    {
-        //        case "Continue creating your vacancy":
-        //            _employerStepsHelper.ClickContinueCreatingYourVacancy(button);
-        //            break;
-
-        //        case "Go to your vacancy dashboard":
-        //            _employerStepsHelper.ClickGoToYourVacancy(button);
-        //            break;
-
-        //        case "Review your vacancy":
-        //            _employerStepsHelper.ClickReviewYourVacancy(button);
-        //            break;
-
-        //        case "application":
-        //            _employerStepsHelper.ClickApplicationsLink(button);
-        //            break;
-        //    }
-        //}
-
         [Given(@"the Employer creates first submitted vacancy '(.*)'")]
         [When(@"the Employer creates first submitted vacancy '(.*)'")]
         [Then(@"the Employer creates first submitted vacancy '(.*)'")]
@@ -190,5 +168,12 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
             _homePageStepsHelper.GotoEmployerHomePage();
             _employerStepsHelper.NavigateToRecruitmentHomePage();
         }
+
+        [Given(@"the employer close the vacancy")]
+        public void GivenTheEmployerCloseTheVacancy()
+        {
+            new ManageVacancyPage(_context).CloseVacancy().YesCloseThisVacancy().GoToRecruitmentHomePage();
+        }
+
     }
 }

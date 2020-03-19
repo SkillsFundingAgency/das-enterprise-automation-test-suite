@@ -21,7 +21,6 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         #endregion
 
         private By Filter => By.CssSelector("#Filter");
-        private By RecruitmentLink => By.LinkText("Recruitment");
 
         
         public VacanciesPage(ScenarioContext context) : base(context)
@@ -55,7 +54,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         public VacanciesPage GoToRecruitmentHomePage()
         {
-            _formCompletionHelper.Click(RecruitmentLink);
+            NavigateRecruitment();
             return this;
         }
     }

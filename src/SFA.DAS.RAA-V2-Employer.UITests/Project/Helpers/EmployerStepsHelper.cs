@@ -31,7 +31,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
         {
             _stepsHelper.SubmitVacancy(previewPage, isApplicationMethodFAA, optionalFields);
         }
-               
+
         internal VacanciesPage DeleteDraftVacancy(VacancyPreviewPart2Page previewPage) => previewPage.DeleteVacancy().YesDeleteVacancy();
 
         internal VacanciesPage CancelVacancy() => EnterVacancyTitle().CancelVacancy();
@@ -48,17 +48,17 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
 
         internal void CloneAVacancy()
         {
-          var previewPage = GoToRecruitmentHomePage()
-                .SelectLiveVacancy()
-                .CloneVacancy()
-                .SelectYes()
-                .UpdateTitle()
-                .UpdateVacancyTitle();
+            var previewPage = GoToRecruitmentHomePage()
+                  .SelectLiveVacancy()
+                  .CloneVacancy()
+                  .SelectYes()
+                  .UpdateTitle()
+                  .UpdateVacancyTitle();
 
             _stepsHelper.SubmitVacancy(previewPage);
         }
 
-        internal void EditVacancyDates() 
+        internal void EditVacancyDates()
         {
             SearchVacancyByVacancyReferenceInNewTab()
                 .EditVacancy()
@@ -86,7 +86,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
 
         internal void CreateANewVacancy(string wageType)
         {
-            var employernamePage = SelectOrganisation();  
+            var employernamePage = SelectOrganisation();
 
             var locationPage = _stepsHelper.ChooseEmployerName(employernamePage, string.Empty);
 
@@ -94,7 +94,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
 
             _stepsHelper.SubmitVacancy(previewPage, true, false);
         }
-        
+
 
         internal void CreateFirstSubmittedVacancy(string wageType)
         {
@@ -151,7 +151,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
             _doYouNeedToCreateAnAdvertPage.ClickYesRadioButtonTakesToRecruitment();
             return new RecruitmentLandingPage(_context).ClickStartNow();
         }
-        
+
         private EmployerNamePage SelectOrganisation()
         {
             return EnterVacancyTitle()
@@ -189,12 +189,12 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
 
         public void ConfirmVacancyStatusForSubmittedAndClickGoToYourDashboard(string vacancyStatus)
         {
-            new RecruitmentHomePage(_context).GoToMAHomePage().ConfirmSubmittedVacancyDetailsAndClickGoToYourVacancyDashboard(vacancyStatus);
+            new DynamicHomePage(_context).ConfirmSubmittedVacancyDetailsAndClickGoToYourVacancyDashboard(vacancyStatus);
         }
 
         public void ConfirmVacancyStatusForClosedAndClickApplicationsLink(string vacancyStatus)
         {
-            new RecruitmentHomePage(_context).GoToMAHomePage().ConfirmClosedVacancyDetailsAndClickApplications(vacancyStatus); 
+            new RecruitmentHomePage(_context).GoToMAHomePage().ConfirmClosedVacancyDetailsAndClickApplications(vacancyStatus);
         }
 
         public void ConfirmVacancyStatusForLiveAndClickApplicationsLink(string vacancyStatus)
@@ -204,36 +204,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
 
         public void ConfirmVacancyStatusForRejectedAndClickReviewYourVacancy(string vacancyStatus)
         {
-            new RecruitmentHomePage(_context).GoToMAHomePage().ConfirmRejectedVacancyDetailsAndClickReviewYourVacancy(vacancyStatus);
+            new RecruitmentHomePage(_context).GoToMAHomePage().ConfirmRejectedVacancyDetailsAndClickReviewYourVacancy(vacancyStatus).ResubmitVacancy().ConfirmVacancyResubmission();
         }
-
-        //private void ClicktheButtonOnAdvertPage(string button)
-        //{
-        //    new DynamicHomePage(_context).ClicktheButtonOnAdvertPage(button);
-        //}
-
-        //public VacanciesPage ClickContinueCreatingYourVacancy(string button)
-        //{
-        //    ClicktheButtonOnAdvertPage(button);
-        //   return new VacancyPreviewPart2Page(_context).ReturnToDashboard();
-        //}
-
-        //public RecruitmentHomePage ClickGoToYourVacancy(string button)
-        //{
-        //    ClicktheButtonOnAdvertPage(button);
-        //    return new RecruitmentHomePage(_context);
-        //}
-
-        //public VacancyPreviewPart2Page ClickReviewYourVacancy(string button)
-        //{
-        //    ClicktheButtonOnAdvertPage(button);
-        //    return new VacancyPreviewPart2Page(_context);
-        //}
-
-        //public ManageVacancyPage ClickApplicationsLink(string button)
-        //{
-        //    ClicktheButtonOnAdvertPage(button);
-        //    return new ManageVacancyPage(_context);
-        //}
     }
 }

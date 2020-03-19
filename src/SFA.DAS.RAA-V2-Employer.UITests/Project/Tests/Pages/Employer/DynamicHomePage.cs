@@ -109,8 +109,11 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer
         {
             ConfirmVacancyTitleAndStatus(status);
             pageInteractionHelper.VerifyText(GetDetails("Closing date").Text.ToString(), _raaV2DataHelper.VacancyClosing.ToString("dd MMM yyyy"));
-            pageInteractionHelper.VerifyText(GetDetails("Applications").Text.ToString(), "application");
-            pageInteractionHelper.VerifyText(AddApprenticeDetails, "Add Apprentice Details");
+            pageInteractionHelper.VerifyText(GetDetails("Applications").Text.ToString(), "application"); 
+            if (!pageInteractionHelper.IsElementDisplayed(AddApprenticeDetails))
+            {
+                throw new Exception("Add apprenticedetails not found");
+            }
         }
 
         private void ConfirmClosedVacancyDetails(string status)
@@ -118,18 +121,11 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer
             ConfirmVacancyTitleAndStatus(status);
             pageInteractionHelper.VerifyText(GetDetails("Closing date").Text.ToString(), DateTime.Today.ToString("dd MMMM yyyy"));
             pageInteractionHelper.VerifyText(GetDetails("Applications").Text.ToString(), "application");
-            pageInteractionHelper.VerifyText(AddApprenticeDetails, "Add Apprentice Details");
+            if(!pageInteractionHelper.IsElementDisplayed(AddApprenticeDetails))
+            {
+                throw new Exception("Add apprenticedetails not found");
+            }
         }
-
-        //private void VerifyClosingDate(string closingDate)
-        //{
-        //    pageInteractionHelper.VerifyText(GetDetails("Closing date").Text.ToString(), closingDate);
-        //}
-
-        //private void VerifyApplicationLink()
-        //{
-        //    pageInteractionHelper.VerifyText(GetDetails("Applications").Text.ToString(), "application");
-        //}
 
         public VacancyPreviewPart2Page ConfirmDraftVacancyDetailsAndClickContinueCreatingYourVacancy(string status)
         {
@@ -147,6 +143,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer
 
         public VacancyPreviewPart2Page ConfirmRejectedVacancyDetailsAndClickReviewYourVacancy(string status)
         {
+            pageInteractionHelper.RefreshPage();
             ConfirmRejectedVacancyDetails(status);
             formCompletionHelper.Click(ReviewYourVacancy);
             return new VacancyPreviewPart2Page(_context);
@@ -179,34 +176,5 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer
             }
 
         }
-        //public void ClicktheButtonOnAdvertPage(string button)
-        //{
-
-        //    List<IWebElement> links = pageInteractionHelper.FindElements(ApplicationsLink);
-        //    switch (button)
-        //    {
-        //        case "Continue creating your vacancy":
-                    
-        //            break;
-        //        case "Go to your vacancy dashboard":
-        //            formCompletionHelper.Click(GotoYourVacancyDashboard);
-        //            break;
-
-        //        case "Review your vacancy":
-        //            formCompletionHelper.Click(ReviewYourVacancy);
-        //            break;
-
-        //        case "application":
-        //            foreach (var link in links)
-        //            {
-        //                if (link.Text.Contains("application"))
-        //                {
-        //                    link.Click();
-        //                    break;
-        //                }
-        //            }
-        //            break;
-        //    }
-        //}
     }
 }

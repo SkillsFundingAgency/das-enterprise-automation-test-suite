@@ -18,8 +18,8 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Features.NonLevy.Dynamic
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.0.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("RV2_E_DHSV_01")]
-    public partial class RV2_E_DHSV_01Feature
+    [NUnit.Framework.DescriptionAttribute("RV2_E_DHSRV_01")]
+    public partial class RV2_E_DHSRV_01Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
@@ -31,7 +31,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Features.NonLevy.Dynamic
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "RV2_E_DHSV_01", "As a Non Levy Employer, I want to add a vacancy after reserves funding from dynam" +
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "RV2_E_DHSRV_01", "As a Non Levy Employer, I want to add a vacancy after reserves funding from dynam" +
                     "ic homepage", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
@@ -79,14 +79,16 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Features.NonLevy.Dynamic
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RV2_E_DHSV_01 Employer creates Submitted vacancy from dynamic homepage journey")]
+        [NUnit.Framework.DescriptionAttribute("RV2_E_DHSV_01 Employer creates Submitted vacancy from dynamic homepage journey an" +
+            "d rejects the vacancy")]
         [NUnit.Framework.CategoryAttribute("raa-v2")]
         [NUnit.Framework.CategoryAttribute("raa-v2e")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("addpayedetails")]
-        public virtual void RV2_E_DHSV_01EmployerCreatesSubmittedVacancyFromDynamicHomepageJourney()
+        public virtual void RV2_E_DHSV_01EmployerCreatesSubmittedVacancyFromDynamicHomepageJourneyAndRejectsTheVacancy()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV2_E_DHSV_01 Employer creates Submitted vacancy from dynamic homepage journey", null, new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV2_E_DHSV_01 Employer creates Submitted vacancy from dynamic homepage journey an" +
+                    "d rejects the vacancy", null, new string[] {
                         "raa-v2",
                         "raa-v2e",
                         "regression",
@@ -103,6 +105,12 @@ this.FeatureBackground();
 #line 14
  testRunner.Then("the vacancy details is displayed on the Dynamic home page with Status \'PENDING RE" +
                     "VIEW\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 15
+ testRunner.Given("the Reviewer Refer the vacancy", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 16
+ testRunner.And("the Employer logs into Employer account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 17
+ testRunner.Then("the vacancy details is displayed on the Dynamic home page with Status \'REJECTED\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

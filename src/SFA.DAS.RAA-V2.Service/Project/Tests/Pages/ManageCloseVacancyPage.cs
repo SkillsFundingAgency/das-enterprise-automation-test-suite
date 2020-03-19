@@ -14,8 +14,6 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         protected override By PageHeader => By.CssSelector(".info-summary");
 
-        private By RecruitmentLInk => By.LinkText("Recruitment");
-
         #region Helpers and Context
         private readonly string _vacRef;
         private readonly string _vacancyTitle;
@@ -32,7 +30,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         public void GoToRecruitmentHomePage()
         {
-            _formCompletionHelper.Click(RecruitmentLInk); 
+            NavigateRecruitment(); 
         }
     }
 }

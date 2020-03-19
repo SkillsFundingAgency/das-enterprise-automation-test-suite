@@ -79,14 +79,16 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Features.NonLevy.Dynamic
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RV2_E_DHLV_01 Employer creates vacancy from dynamic homepage journey and approve")]
+        [NUnit.Framework.DescriptionAttribute("RV2_E_DHLV_01 Employer creates vacancy from dynamic homepage journey and approve\t" +
+            "and close vacancy")]
         [NUnit.Framework.CategoryAttribute("raa-v2")]
         [NUnit.Framework.CategoryAttribute("raa-v2e")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("addpayedetails")]
-        public virtual void RV2_E_DHLV_01EmployerCreatesVacancyFromDynamicHomepageJourneyAndApprove()
+        public virtual void RV2_E_DHLV_01EmployerCreatesVacancyFromDynamicHomepageJourneyAndApproveAndCloseVacancy()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV2_E_DHLV_01 Employer creates vacancy from dynamic homepage journey and approve", null, new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV2_E_DHLV_01 Employer creates vacancy from dynamic homepage journey and approve\t" +
+                    "and close vacancy", null, new string[] {
                         "raa-v2",
                         "raa-v2e",
                         "regression",
@@ -108,6 +110,10 @@ this.FeatureBackground();
  testRunner.Given("the Employer logs into Employer account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 16
  testRunner.Then("the vacancy details is displayed on the Dynamic home page with Status \'LIVE\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 17
+ testRunner.Given("the employer close the vacancy", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 18
+ testRunner.Then("the vacancy details is displayed on the Dynamic home page with Status \'CLOSED\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

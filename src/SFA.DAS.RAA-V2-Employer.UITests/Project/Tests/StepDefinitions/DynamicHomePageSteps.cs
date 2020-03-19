@@ -15,16 +15,12 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
     {
         private readonly ScenarioContext _context;
         private readonly ApprovalsStepsHelper _stepsHelper;
-        private readonly RegistrationDataHelper _registrationDataHelper;
         private readonly MFEmployerStepsHelper _reservationStepsHelper;
         private SuccessfullyReservedFundingPage _successfullyReservedFundingPage;
-        private readonly ObjectContext _objectContext;
         public DynamicHomePageSteps(ScenarioContext context)
         {
             _context = context;
-            _objectContext = _context.Get<ObjectContext>();
             _stepsHelper = new ApprovalsStepsHelper(context);
-            _registrationDataHelper = context.Get<RegistrationDataHelper>();
             _reservationStepsHelper = new MFEmployerStepsHelper(context);
 
         }
