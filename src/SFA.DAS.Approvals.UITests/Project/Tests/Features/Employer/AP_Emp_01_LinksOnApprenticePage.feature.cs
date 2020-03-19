@@ -81,6 +81,8 @@ this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 6
  testRunner.Given("Employer navigates to Apprentices home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 7
+ testRunner.Then("Standard gov.uk footer should be displayed at the bottom of the page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 9
  testRunner.Then("\'Set payment order\' link should direct user to \'Set payment order\' page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 10

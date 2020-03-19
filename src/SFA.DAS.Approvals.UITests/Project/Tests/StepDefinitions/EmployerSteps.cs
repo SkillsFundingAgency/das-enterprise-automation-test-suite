@@ -1,10 +1,6 @@
-﻿using SFA.DAS.Approvals.UITests.Project.Helpers;
-using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
+﻿using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
 using SFA.DAS.ConfigurationBuilder;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
@@ -18,7 +14,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         private readonly ScenarioContext _context;
         private readonly ObjectContext _objectContext;
         #endregion
-        
+
         private YourCohortRequestsPage _yourCohortRequestsPage;
         private ReviewYourCohortPage _reviewYourCohortPage;
         private ApprenticeDetailsPage _apprenticeDetailsPage;
@@ -191,6 +187,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             
         }
 
+        [Then(@"Standard gov\.uk footer should be displayed at the bottom of the page")]
+        public void ThenStandardGov_UkFooterShouldBeDisplayedAtTheBottomOfThePage()
+        {
+            _apprenticesHomePage = new ApprenticesHomePage(_context, true);
+            _apprenticesHomePage.ValidateFooter();
+        }
 
 
 
