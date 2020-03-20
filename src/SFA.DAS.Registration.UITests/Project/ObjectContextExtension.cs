@@ -12,7 +12,6 @@ namespace SFA.DAS.Registration.UITests.Project
         private const string OrganisationNameKey = "organisationname";
         private const string ReceiverAccountIdkey = "receiveraccountidkey";
         private const string ReceiverPublicAccountIdkey = "receiverpublicaccountidkey";
-        private const string AornNumberKey = "aornnumberkey";
         private const string RegisteredEmailKey = "registeredemailkey";
         #endregion
 
