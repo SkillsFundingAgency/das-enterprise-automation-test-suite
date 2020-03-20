@@ -69,7 +69,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Features.E2EJourney.Apprenticeshi
             testRunner.CollectScenarioErrors();
         }
         
-        public virtual void RV1_E2EAV_01_CreateApproveAndApplyForAApprenticeshipVacancyAndViewAnonymous(string location, string anonymity, string disabilityConfident, string applicationMethod, string apprenticeshipType, string hoursPerWeek, string vacancyDuration, string noOfPositions, string qualificationDetails, string workExperience, string trainingCourse, string[] exampleTags)
+        public virtual void RV1_E2EAV_01_CreateApproveAndApplyForAApprenticeshipVacancySearchingByCategoryInFAAAndViewAnonymous(string location, string anonymity, string disabilityConfident, string applicationMethod, string apprenticeshipType, string hoursPerWeek, string vacancyDuration, string noOfPositions, string qualificationDetails, string workExperience, string trainingCourse, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "raa-v1",
@@ -81,8 +81,8 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Features.E2EJourney.Apprenticeshi
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
             }
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV1_E2EAV_01 - Create, Approve and Apply for a Apprenticeship Vacancy and View An" +
-                    "onymous", null, @__tags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV1_E2EAV_01 - Create, Approve and Apply for a Apprenticeship Vacancy Searching b" +
+                    "y Category in FAA and View Anonymous", null, @__tags);
 #line 8
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
@@ -108,17 +108,17 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RV1_E2EAV_01 - Create, Approve and Apply for a Apprenticeship Vacancy and View An" +
-            "onymous: Add different location")]
+        [NUnit.Framework.DescriptionAttribute("RV1_E2EAV_01 - Create, Approve and Apply for a Apprenticeship Vacancy Searching b" +
+            "y Category in FAA and View Anonymous: Add different location")]
         [NUnit.Framework.CategoryAttribute("raa-v1")]
         [NUnit.Framework.CategoryAttribute("v1_e2e")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("adddifferentlocation")]
         [NUnit.Framework.CategoryAttribute("apprenticeshipvacancy")]
-        public virtual void RV1_E2EAV_01_CreateApproveAndApplyForAApprenticeshipVacancyAndViewAnonymous_AddDifferentLocation()
+        public virtual void RV1_E2EAV_01_CreateApproveAndApplyForAApprenticeshipVacancySearchingByCategoryInFAAAndViewAnonymous_AddDifferentLocation()
         {
 #line 8
-this.RV1_E2EAV_01_CreateApproveAndApplyForAApprenticeshipVacancyAndViewAnonymous("Add different location", "Yes", "Yes", "Online", "Standard", "42", "52", "3", "No", "Yes", "No", ((string[])(null)));
+this.RV1_E2EAV_01_CreateApproveAndApplyForAApprenticeshipVacancySearchingByCategoryInFAAAndViewAnonymous("Add different location", "Yes", "Yes", "Online", "Standard", "42", "52", "3", "No", "Yes", "No", ((string[])(null)));
 #line hidden
         }
     }

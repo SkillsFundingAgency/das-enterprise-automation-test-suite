@@ -5,7 +5,7 @@
 @regression
 @adddifferentlocation
 @apprenticeshipvacancy
-Scenario Outline: RV1_E2EAV_01 - Create, Approve and Apply for a Apprenticeship Vacancy and View Anonymous
+Scenario Outline: RV1_E2EAV_01 - Create, Approve and Apply for a Apprenticeship Vacancy Searching by Category in FAA and View Anonymous
 	Given the Provider initiates Create Apprenticeship Vacancy in Recruit
 	When the Provider chooses the employer '<location>','<NoOfPositions>'
 	And the Provider chooses their '<anonymity>'
