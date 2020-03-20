@@ -6,6 +6,7 @@ using SFA.DAS.RAA.DataGenerator.Project;
 using SFA.DAS.UI.FrameworkHelpers;
 using System;
 using TechTalk.SpecFlow;
+using System.Collections.Generic;
 
 namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 {
@@ -24,9 +25,9 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
         private By NationwideVacancies => By.Id("nationwideLocationTypeLink");
         private By SortResults => By.Id("sort-results");
         private By NationwideVacanciesText => By.Id("multiple-positions-nationwide");
-        private By SearchResults => By.Id("search-results");
         private By VacancyLink => By.LinkText(_vacancyTitleDataHelper.VacancyTitle);
         private By DisplayResults => By.Id("results-per-page");
+        private By VacanciesList => By.ClassName("vacancy-link");
 
 
 
@@ -87,6 +88,36 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
             }
             _formCompletionHelper.Click(VacancyLink);            
             return new FAA_ApprenticeSummaryPage(_context);
+        }
+
+        public FAA_ApprenticeSearchResultsPage CheckVacancyIsDisplayedBasedOnSearchCriteria()
+        {
+            _formCompletionHelper.SelectFromDropDownByValue(SortResults, "RecentlyAdded");
+            _pageInteractionHelper.WaitforURLToChange("sortType=RecentlyAdded");
+            if (_pageInteractionHelper.IsElementDisplayed(DisplayResults))
+            {
+                _pageInteractionHelper.FocusTheElement(DisplayResults);
+                _formCompletionHelper.SelectFromDropDownByValue(DisplayResults, "50");
+                _pageInteractionHelper.WaitforURLToChange("resultsPerPage=50");
+            }
+
+            List<IWebElement> vacanciesCount = _pageInteractionHelper.FindElements(VacanciesList);
+            bool status = false;
+
+            foreach (var vacancy in vacanciesCount)
+            {
+                if (vacancy.Text.Contains(_vacancyTitleDataHelper.VacancyTitle))
+                {
+                    status = true;
+                    break;
+                }
+            }
+            if (!status)
+            {
+                throw new Exception($"Vacancy title: {_vacancyTitleDataHelper.VacancyTitle} Not Found");
+            }
+
+            return this;
         }
     }
 }

@@ -23,6 +23,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
         private readonly TabHelper _tabHelper;
         private readonly FAAConfig _config;
         private readonly FAADataHelper _faadataHelper;
+        private readonly RAAV1DataHelper _raaV1DataHelper;
         #endregion
 
         private By SearchField => By.Id("SearchField");
@@ -37,6 +38,8 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
         private By AccountancyCheckBox => By.Id("sub-category-stdsec.46");
         private By BrowseButton => By.Id("browse-button");
         private By UpdateResults => By.Id("search-button");
+        private By KeywordDropDown => By.Id("SearchField");
+        private By KeywordTextField => By.Id("Keywords");
 
         
         public FAA_ApprenticeSearchPage(ScenarioContext context) : base(context)
@@ -49,25 +52,51 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
             _tabHelper = context.Get<TabHelper>();
             _config = context.GetFAAConfig<FAAConfig>();
             _faadataHelper = context.Get<FAADataHelper>();
+            _raaV1DataHelper = context.Get<RAAV1DataHelper>();
             VerifyPage();
         }
 
         public FAA_ApprenticeSearchResultsPage SearchForAVacancy(string location, string distance, string apprenticeshipLevel, string disabilityConfident)
         {           
             _formCompletionHelper.EnterText(Location, location);
-            _formCompletionHelper.SelectFromDropDownByText(Distance, distance);
             _formCompletionHelper.SelectFromDropDownByText(ApprenticeshipLevel, apprenticeshipLevel);
             if (disabilityConfident == "Yes")
             {
                 _formCompletionHelper.SelectCheckBoxByText("Disability Confident");
             }
+            switch (distance)
+            {
+                case "Job title":
+                    _formCompletionHelper.SelectFromDropDownByText(KeywordDropDown, distance);
+                    _formCompletionHelper.EnterText(KeywordTextField, _dataHelper.VacancyTitle);
+                    _formCompletionHelper.Click(Search);
+                    _pageInteractionHelper.WaitforURLToChange("Keywords=" + _dataHelper.VacancyTitle);
+                    break;
 
-            _formCompletionHelper.Click(Search);
+                case "Employer":
+                    _formCompletionHelper.SelectFromDropDownByText(KeywordDropDown, distance);
+                    _formCompletionHelper.EnterText(KeywordTextField, _raaV1DataHelper.EmployerName);
+                    _formCompletionHelper.Click(Search);
+                    _pageInteractionHelper.WaitforURLToChange("SearchField=Employer");
+                    break;
 
-            WaitforURLToChange(distance);
+                case "Description":
+                    _formCompletionHelper.SelectFromDropDownByText(KeywordDropDown, distance);
+                    _formCompletionHelper.EnterText(KeywordTextField, _raaV1DataHelper.VacancyShortDescription);
+                    _formCompletionHelper.Click(Search);
+                    _pageInteractionHelper.WaitforURLToChange("SearchField=Description");
+                    break;
 
+                default:
+                    _formCompletionHelper.SelectFromDropDownByText(Distance, distance);
+                    _formCompletionHelper.Click(Search);
+                    WaitforURLToChange(distance);
+                    break;
+            }
+            
             return new FAA_ApprenticeSearchResultsPage(_context);
         }
+
 
         public new FAA_ApprenticeSummaryPage SearchByReferenceNumber()
         {

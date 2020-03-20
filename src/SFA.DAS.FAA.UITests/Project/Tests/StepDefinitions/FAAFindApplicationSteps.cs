@@ -31,7 +31,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.StepDefinitions
         public void ThenTheApprenticeshipCanBeFoundBasedOn(string postCode, string distance)
         {
             _apprenticeSearchResultspage = _apprenticeSearchPage
-                .SearchForAVacancy(postCode, distance, "All levels", "Yes");
+                .SearchForAVacancy(postCode, distance, "All levels", "Yes").CheckVacancyIsDisplayedBasedOnSearchCriteria();
 
             Assert.AreEqual(true, _apprenticeSearchResultspage.FoundVacancies(), $"No apprenticeship found within '{distance}' of '{postCode}'");
         }
