@@ -444,7 +444,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         [When(@"an User tries to regiser an Account with an Email already registered")]
         public void WhenAnUserTriesToRegiserAnAccountWithAnEMailAlreadyRegistered()
         {
-            new IndexPage(_context)
+            _setUpAsAUserPage = new IndexPage(_context)
                 .CreateAccount()
                 .EnterRegistrationDetailsAndContinue(_context.GetUser<LevyUser>().Username);
         }
