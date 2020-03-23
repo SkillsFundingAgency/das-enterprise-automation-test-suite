@@ -23,7 +23,6 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
         private readonly TabHelper _tabHelper;
         private readonly FAAConfig _config;
         private readonly FAADataHelper _faadataHelper;
-        private readonly RAAV1DataHelper _raaV1DataHelper;
         #endregion
 
         private By SearchField => By.Id("SearchField");
@@ -52,7 +51,6 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
             _tabHelper = context.Get<TabHelper>();
             _config = context.GetFAAConfig<FAAConfig>();
             _faadataHelper = context.Get<FAADataHelper>();
-            _raaV1DataHelper = context.Get<RAAV1DataHelper>();
             VerifyPage();
         }
 
@@ -75,14 +73,16 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 
                 case "Employer":
                     _formCompletionHelper.SelectFromDropDownByText(KeywordDropDown, distance);
-                    _formCompletionHelper.EnterText(KeywordTextField, _raaV1DataHelper.EmployerName);
+                    var empName = _objectContext.GetEmployerName();
+                    _formCompletionHelper.EnterText(KeywordTextField, empName);
                     _formCompletionHelper.Click(Search);
                     _pageInteractionHelper.WaitforURLToChange("SearchField=Employer");
                     break;
 
                 case "Description":
                     _formCompletionHelper.SelectFromDropDownByText(KeywordDropDown, distance);
-                    _formCompletionHelper.EnterText(KeywordTextField, _raaV1DataHelper.VacancyShortDescription);
+                    var empDesc = _objectContext.GetVacancyShortDescription();
+                    _formCompletionHelper.EnterText(KeywordTextField, empDesc);
                     _formCompletionHelper.Click(Search);
                     _pageInteractionHelper.WaitforURLToChange("SearchField=Description");
                     break;

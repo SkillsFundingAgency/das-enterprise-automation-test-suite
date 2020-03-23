@@ -55,8 +55,7 @@ namespace SFA.DAS.RAA.DataGenerator
 
             return randomEmployer;
         }
-
-        public string EmployerName { get; set; }
+                
 
         public string EmployerDescription { get; }
 

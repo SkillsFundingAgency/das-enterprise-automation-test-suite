@@ -1,5 +1,7 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.RAA.DataGenerator;
+using SFA.DAS.RAA.DataGenerator.Project;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
@@ -13,7 +15,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         #region Helpers and Context
         private readonly IWebDriver _webDriver;
         private readonly PageInteractionHelper _pageInteractionHelper;
-        private readonly RAAV1DataHelper _raaV1DataHelper; 
+        private readonly ObjectContext _objectContext;
         #endregion
 
         private By NumberOfVacancy => By.Id("NumberOfPositions");
@@ -40,12 +42,12 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         {
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _webDriver = context.GetWebDriver();
-            _raaV1DataHelper = context.Get<RAAV1DataHelper>();
+            _objectContext = context.Get<ObjectContext>();
         }
 
         public RAA_EmployerInformationPage UseTheMainEmployerAddress(string position)
         {
-            SetEmployerName();
+            SetEmployerName(pageInteractionHelper.GetText(EmployerName));
             formCompletionHelper.SelectRadioOptionByText("Use the main employer address");
             formCompletionHelper.EnterText(NumberOfVacancy, position);
             return this;
@@ -53,14 +55,14 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
 
         public RAA_EmployerInformationPage AddDifferentLocation()
         {
-            SetEmployerName();
+            SetEmployerName(pageInteractionHelper.GetText(EmployerName));
             formCompletionHelper.SelectRadioOptionByText("Add different location(s)");
             return this;
         }
 
         public RAA_EmployerInformationPage SetAsANationWideVacancy(string position)
         {
-            SetEmployerName();
+            SetEmployerName(pageInteractionHelper.GetText(EmployerName));
             formCompletionHelper.SelectRadioOptionByText("Set as a nationwide vacancy");
             formCompletionHelper.EnterText(NationwideNumberOfVacancy, position);
             return this;
@@ -106,9 +108,9 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
                 formCompletionHelper.Click(VacancyLocationPageSaveAndContinue);
             }
         }
-        private void SetEmployerName()
+        private void SetEmployerName(string value)
         {
-            _raaV1DataHelper.EmployerName = pageInteractionHelper.GetText(EmployerName);
+            _objectContext.SetEmployerName(value);
         }
     }
 }
