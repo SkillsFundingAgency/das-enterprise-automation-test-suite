@@ -109,16 +109,16 @@ this.ScenarioInitialize(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("RV1_E2EAV_01 - Create, Approve and Apply for a Apprenticeship Vacancy Searching b" +
-            "y Category in FAA and View Anonymous: Add different location")]
+            "y Category in FAA and View Anonymous: Use the main employer address")]
         [NUnit.Framework.CategoryAttribute("raa-v1")]
         [NUnit.Framework.CategoryAttribute("v1_e2e")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("adddifferentlocation")]
         [NUnit.Framework.CategoryAttribute("apprenticeshipvacancy")]
-        public virtual void RV1_E2EAV_01_CreateApproveAndApplyForAApprenticeshipVacancySearchingByCategoryInFAAAndViewAnonymous_AddDifferentLocation()
+        public virtual void RV1_E2EAV_01_CreateApproveAndApplyForAApprenticeshipVacancySearchingByCategoryInFAAAndViewAnonymous_UseTheMainEmployerAddress()
         {
 #line 8
-this.RV1_E2EAV_01_CreateApproveAndApplyForAApprenticeshipVacancySearchingByCategoryInFAAAndViewAnonymous("Add different location", "Yes", "Yes", "Online", "Standard", "42", "52", "3", "No", "Yes", "No", ((string[])(null)));
+this.RV1_E2EAV_01_CreateApproveAndApplyForAApprenticeshipVacancySearchingByCategoryInFAAAndViewAnonymous("Use the main employer address", "Yes", "Yes", "Online", "Standard", "42", "52", "3", "No", "Yes", "No", ((string[])(null)));
 #line hidden
         }
     }

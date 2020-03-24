@@ -17,4 +17,4 @@ Scenario Outline: RV1_E2EAV_01 - Create, Approve and Apply for a Apprenticeship 
 
 	Examples:
 		| location					  | anonymity | DisabilityConfident | ApplicationMethod | ApprenticeshipType | HoursPerWeek | VacancyDuration | NoOfPositions | QualificationDetails | WorkExperience | TrainingCourse |
-		| Add different location      | Yes       | Yes                 | Online            | Standard           | 42           | 52              | 3             | No                   | Yes            | No             |
+		| Use the main employer address      | Yes       | Yes                 | Online            | Standard           | 42           | 52              | 3             | No                   | Yes            | No             |

@@ -80,6 +80,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
         public FAA_ApprenticeSummaryPage SelectBrowsedVacancy()
         {
             _formCompletionHelper.SelectFromDropDownByText(SortResults, "Recently added");
+            _pageInteractionHelper.WaitforURLToChange("sortType=RecentlyAdded");
             if (_pageInteractionHelper.IsElementDisplayed(DisplayResults))
             {
                 _pageInteractionHelper.FocusTheElement(DisplayResults);
