@@ -1,71 +1,91 @@
 ﻿using OpenQA.Selenium;
+using System;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 {
-    public class RegisterPage : RegistrationBasePage
+    public class SetUpAsAUserPage : RegistrationBasePage
     {
         protected override string PageTitle => "Set up as a user";
         private readonly ScenarioContext _context;
 
-        #region Locators
+        #region constants
         private const string LastName = "Auto_Tester";
+        private const string ExpectedEmailErrorText = "Email already registered.";
+        #endregion
+
+        #region Locators
         private By FirstNameInput => By.Id("FirstName");
         private By LastNameInput => By.Id("LastName");
         private By EmailInput => By.Id("Email");
         private By PasswordInput => By.Id("Password");
         private By PasswordConfirmInput => By.Id("ConfirmPassword");
         private By SetMeUpButton => By.Id("button-register");
+        private By ErrorTextAboveEmailTextBox => By.Id("error-email");
+        private By EmailErrorTextAtheader => By.CssSelector(".danger");
         #endregion
 
-        public RegisterPage(ScenarioContext context) : base(context)
+        public SetUpAsAUserPage(ScenarioContext context) : base(context)
         {
             _context = context;
             VerifyPage();
         }
 
-        public ConfirmPage Register()
+        public ConfirmPage Register(string email = null)
         {
-            EnterFirstName().
-            EnterlastName().
-            EnterEmail().
-            EnterPassword().
-            EnterPasswordConfirm().
-            SetMeUp();
+            email = String.IsNullOrEmpty(email) ? objectContext.GetRegisteredEmail() : email;
+
+            EnterRegistrationDetailsAndContinue(email);
             return new ConfirmPage(_context);
         }
 
-        private RegisterPage EnterFirstName()
+        public SetUpAsAUserPage EnterRegistrationDetailsAndContinue(string email)
+        {
+            return EnterFirstName().
+            EnterlastName().
+            EnterEmail(email).
+            EnterPassword().
+            EnterPasswordConfirm().
+            SetMeUp();
+        }
+
+        public void VerifyEmailAlreadyRegisteredErrorMessage()
+        {
+            pageInteractionHelper.VerifyText(EmailErrorTextAtheader, ExpectedEmailErrorText);
+            pageInteractionHelper.VerifyText(ErrorTextAboveEmailTextBox, ExpectedEmailErrorText);
+        }
+
+        private SetUpAsAUserPage EnterFirstName()
         {
             formCompletionHelper.EnterText(FirstNameInput, config.TwoDigitProjectCode);
             return this;
         }
 
-        private RegisterPage EnterlastName()
+        private SetUpAsAUserPage EnterlastName()
         {
             formCompletionHelper.EnterText(LastNameInput, LastName);
             return this;
         }
 
-        private RegisterPage EnterEmail()
+        private SetUpAsAUserPage EnterEmail(string email)
         {
-            formCompletionHelper.EnterText(EmailInput, objectContext.GetRegisteredEmail());
+            formCompletionHelper.EnterText(EmailInput, email);
             return this;
         }
 
-        private RegisterPage EnterPassword()
+        private SetUpAsAUserPage EnterPassword()
         {
             formCompletionHelper.EnterText(PasswordInput, registrationDataHelper.Password);
             return this;
         }
 
-        private RegisterPage EnterPasswordConfirm()
+        private SetUpAsAUserPage EnterPasswordConfirm()
         {
             formCompletionHelper.EnterText(PasswordConfirmInput, registrationDataHelper.Password);
             return this;
         }
 
-        private RegisterPage SetMeUp()
+        private SetUpAsAUserPage SetMeUp()
         {
             formCompletionHelper.ClickElement(SetMeUpButton);
             return this;

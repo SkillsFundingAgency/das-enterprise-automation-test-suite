@@ -20,7 +20,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.Organisatio
 
         public AS_ConfirmEmailAddressPage EnterRandomEmailAndClickChange()
         {
-            formCompletionHelper.EnterText(EmailTextBox, dataHelper.GetRandomEmail);
+            formCompletionHelper.EnterText(EmailTextBox, dataHelper.RandomEmail);
             Continue();
             return new AS_ConfirmEmailAddressPage(_context);
         }

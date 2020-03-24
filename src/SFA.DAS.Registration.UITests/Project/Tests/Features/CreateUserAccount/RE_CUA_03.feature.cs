@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.EPAO.UITests.Project.Tests.Features.Admin.EPAOSearch
+namespace SFA.DAS.Registration.UITests.Project.Tests.Features.CreateUserAccount
 {
     using TechTalk.SpecFlow;
     
@@ -18,20 +18,20 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Features.Admin.EPAOSearch
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.0.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("EPAO_AD_Search_02")]
-    public partial class EPAO_AD_Search_02Feature
+    [NUnit.Framework.DescriptionAttribute("RE_CUA_03")]
+    public partial class RE_CUA_03Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "EPAO_AD_Search_02.feature"
+#line 1 "RE_CUA_03.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "EPAO_AD_Search_02", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "RE_CUA_03", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -70,31 +70,28 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Features.Admin.EPAOSearch
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("EPAO_AD_Search_02_Search with Organsiation EPAO Id add Contact and Standards")]
-        [NUnit.Framework.CategoryAttribute("epao")]
-        [NUnit.Framework.CategoryAttribute("epaoadmin")]
+        [NUnit.Framework.DescriptionAttribute("RE_CUA_03_Verify registering an account with an Email address that is pending act" +
+            "ivation by another User")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("deleteorganisationcontact")]
-        [NUnit.Framework.CategoryAttribute("deleteorganisationstandards")]
-        public virtual void EPAO_AD_Search_02_SearchWithOrgansiationEPAOIdAddContactAndStandards()
+        [NUnit.Framework.CategoryAttribute("registration")]
+        [NUnit.Framework.CategoryAttribute("addpayedetails")]
+        public virtual void RE_CUA_03_VerifyRegisteringAnAccountWithAnEmailAddressThatIsPendingActivationByAnotherUser()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EPAO_AD_Search_02_Search with Organsiation EPAO Id add Contact and Standards", null, new string[] {
-                        "epao",
-                        "epaoadmin",
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RE_CUA_03_Verify registering an account with an Email address that is pending act" +
+                    "ivation by another User", null, new string[] {
                         "regression",
-                        "deleteorganisationcontact",
-                        "deleteorganisationstandards"});
-#line 9
+                        "registration",
+                        "addpayedetails"});
+#line 6
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 10
- testRunner.Then("the admin can search using organisation epao id", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 11
- testRunner.And("the admin can add contact details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 12
- testRunner.And("the admin can add standards details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 13
- testRunner.And("the admin can update organisation standards status to be live", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 7
+ testRunner.When("Given an User registers an acount with email but does not activate it", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 8
+ testRunner.And("the User tries to regiser another Account with the same Email that is pending act" +
+                    "ivation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 9
+ testRunner.Then("the User is allowed to activate the account and continue with registration", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

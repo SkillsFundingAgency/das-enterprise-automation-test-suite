@@ -24,7 +24,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
         {
             formCompletionHelper.EnterText(GivenNameTextbox, dataHelper.GetRandomAlphabeticString(5));
             formCompletionHelper.EnterText(FamilyNameTextbox, dataHelper.GetRandomAlphabeticString(10));
-            formCompletionHelper.EnterText(EmailAddressTextbox, dataHelper.GetRandomEmail);
+            formCompletionHelper.EnterText(EmailAddressTextbox, dataHelper.RandomEmail);
             Continue();
             return new AS_ConfirmYourIdentityPage(_context);
         }

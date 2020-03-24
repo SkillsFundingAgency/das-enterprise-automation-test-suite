@@ -12,6 +12,9 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
         #endregion
 
         private By SignOutLink => By.CssSelector(".govuk-link[href*='SignOut']");
+        private By TRows => By.CssSelector(".govuk-summary-list__row");
+        private By THeader => By.CssSelector(".govuk-summary-list__key");
+        private By TData => By.CssSelector(".govuk-summary-list__value");
 
         public EPAOAdmin_BasePage(ScenarioContext context) : base(context) => _context = context;
 
@@ -22,5 +25,17 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
         }
 
         protected void ClickRandomElement(By locator) => formCompletionHelper.ClickElement(() => ePAOAdminDataHelper.GetRandomElementFromListOfElements(pageInteractionHelper.FindElements(locator)));
+
+        protected IWebElement GetData(string headerName)
+        {
+            foreach (var row in pageInteractionHelper.FindElements(TRows))
+            {
+                if (row.FindElement(THeader).Text == headerName)
+                {
+                    return row.FindElement(TData);
+                }
+            }
+            throw new NotFoundException($"{headerName} not found");
+        }
     }
 }
