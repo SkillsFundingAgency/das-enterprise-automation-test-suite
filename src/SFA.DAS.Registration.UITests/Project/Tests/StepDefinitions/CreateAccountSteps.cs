@@ -22,6 +22,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         private readonly RegistrationDataHelper _registrationDataHelper;
         private readonly RegistrationSqlDataHelper _registrationSqlDataHelper;
         private readonly TprSqlDataHelper _tprSqlDataHelper;
+        private readonly AccountCreationStepsHelper _accountCreationStepsHelper;
         private HomePage _homePage;
         private SetUpAsAUserPage _setUpAsAUserPage;
         private AddAPAYESchemePage _addAPAYESchemePage;
@@ -44,11 +45,12 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             _tprSqlDataHelper = context.Get<TprSqlDataHelper>();
             _tabHelper = context.Get<TabHelper>();
             _config = context.GetRegistrationConfig<RegistrationConfig>();
+            _accountCreationStepsHelper = new AccountCreationStepsHelper(context);
         }
 
         [Given(@"an User Account is created")]
         [When(@"an User Account is created")]
-        public void AnUserAccountIsCreated() => _addAPAYESchemePage = RegisterUserAccount().ContinueToGetApprenticeshipFunding();
+        public void AnUserAccountIsCreated() => _addAPAYESchemePage = _accountCreationStepsHelper.RegisterUserAccount().ContinueToGetApprenticeshipFunding();
 
         [Then(@"My Account Home page is displayed when PAYE details are not added")]
         public void DoNotAddPayeDetails() => _addAPAYESchemePage.DoNotAddPaye();
@@ -65,7 +67,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             if (org.Equals("SingleOrg"))
             {
                 _tprSqlDataHelper.CreateSingleOrgAornData();
-                _checkYourDetailsPage = AddPayeDetailsForSingleOrgAornRoute();
+                _checkYourDetailsPage = _accountCreationStepsHelper.AddPayeDetailsForSingleOrgAornRoute(_addAPAYESchemePage);
             }
             else
             {
@@ -218,14 +220,14 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         [When(@"an Employer creates a Levy Account and Signs the Agreement")]
         public void GivenAnEmployerCreatesALevyAccountAndSignsTheAgreement()
         {
-            AddLevyDeclarations();
+            _accountCreationStepsHelper.AddLevyDeclarations();
             GivenAnEmployerAccountWithSpecifiedTypeOrgIsCreatedAndAgeementIsSigned(OrgType.Company);
         }
 
         [When(@"an Employer creates a Levy Account and not Signs the Agreement during registration")]
         public void WhenAnEmployerCreatesALevyAccountAndNotSignsTheAgreementDuringRegistration()
         {
-            AddLevyDeclarations();
+            _accountCreationStepsHelper.AddLevyDeclarations();
             GivenAnEmployerAccountWithSpecifiedTypeOrgIsCreatedAndAgeementIsNotSigned(OrgType.Company);
         }
 
@@ -233,7 +235,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         [When(@"the Employer initiates adding another Org of (Company|PublicSector|Charity|Charity2) Type")]
         public void WhenTheEmployerInitiatesAddingAnotherOrgType(OrgType orgType)
         {
-            _checkYourDetailsPage = SearchForAnotherOrg(orgType)
+            _checkYourDetailsPage = _accountCreationStepsHelper.SearchForAnotherOrg(_homePage, orgType)
                 .SelectYourOrganisation(orgType);
         }
 
@@ -248,7 +250,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
 
         [When(@"the Employer initiates adding same Org of (Company|PublicSector|Charity) Type again")]
         public void WhenTheEmployerInitiatesAddingSameOrgTypeAgain(OrgType orgType) =>
-            _selectYourOrganisationPage = SearchForAnotherOrg(orgType);
+            _selectYourOrganisationPage = _accountCreationStepsHelper.SearchForAnotherOrg(_homePage, orgType);
 
         [Then(@"the new Org added is shown in the Account Organisations list")]
         public void ThenTheNewOrgAddedIsShownInTheAccountOrganisationsList()
@@ -263,26 +265,32 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             _selectYourOrganisationPage.VerifyOrgAlreadyAddedMessage();
 
         [Then(@"the Employer is able check the details of the Charity Org added are displayed in the 'Check your details' page and Continue")]
-        public void ThenTheEmployerIsAbleToCheckTheDetailsOfTheCharityOrgAddedAreDisplayedInThePageAndContinue() =>
-            VerifyOrgDetailsAndContinue(_registrationDataHelper.CharityTypeOrg1Number, _registrationDataHelper.CharityTypeOrg1Name, _registrationDataHelper.CharityTypeOrg1Address);
+        public void ThenTheEmployerIsAbleToCheckTheDetailsOfTheCharityOrgAddedAreDisplayedInThePageAndContinue()
+        {
+            VerifyOrgDetails(_registrationDataHelper.CharityTypeOrg1Number, _registrationDataHelper.CharityTypeOrg1Name, _registrationDataHelper.CharityTypeOrg1Address);
+            ThenTheNewOrgAddedIsShownInTheAccountOrganisationsList();
+        }
 
         [Then(@"the Employer is able check the details of the 2nd Charity Org added are displayed in the 'Check your details' page and Continue")]
-        public void ThenTheEmployerIsAbleToCheckTheDetailsOfThe2ndCharityOrgAddedAreDisplayedInThePageAndContinue() =>
-            VerifyOrgDetailsAndContinue(_registrationDataHelper.CharityTypeOrg2Number, _registrationDataHelper.CharityTypeOrg2Name, _registrationDataHelper.CharityTypeOrg2Address);
+        public void ThenTheEmployerIsAbleToCheckTheDetailsOfThe2ndCharityOrgAddedAreDisplayedInThePageAndContinue()
+        {
+            VerifyOrgDetails(_registrationDataHelper.CharityTypeOrg2Number, _registrationDataHelper.CharityTypeOrg2Name, _registrationDataHelper.CharityTypeOrg2Address);
+            ThenTheNewOrgAddedIsShownInTheAccountOrganisationsList();
+        }
 
         [Then(@"the Employer is able check the details entered in the 'Check your details' page and complete registration")]
         public void ThenTheEmployerChecksTheDetailsEnteredAndCompletesRegistration()
         {
             Assert.AreEqual(_registrationDataHelper.CharityTypeOrg3Number, _checkYourDetailsPage.GetManuallyAddedOrganisationNumber());
             Assert.AreEqual(_registrationDataHelper.CharityTypeOrg3Name, _checkYourDetailsPage.GetManuallyAddedOrganisationName());
-            AssertManuallyAddedAddressDetailsAndCompleteRegistration();
+            _accountCreationStepsHelper.AssertManuallyAddedAddressDetailsAndCompleteRegistration(_checkYourDetailsPage);
         }
 
         [Then(@"the Employer is able check the details entered manually in the 'Check your details' page and complete registration")]
         public void ThenTheEmployerIsAbleCheckTheDetailsEnteredManuallyInThePageAndCompleteRegistration()
         {
             Assert.AreEqual(_registrationDataHelper.OrgNameForManualEntry, _checkYourDetailsPage.GetManuallyAddedOrganisationName());
-            AssertManuallyAddedAddressDetailsAndCompleteRegistration();
+            _accountCreationStepsHelper.AssertManuallyAddedAddressDetailsAndCompleteRegistration(_checkYourDetailsPage);
         }
 
         [Then(@"ApprenticeshipEmployerType in Account table is marked as (.*)")]
@@ -331,7 +339,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
                 .ClickOnRemoveAnOrgFromYourAccountLink()
                 .VerifyCantBeRemovedMessageTextOnRemoveAnOrganisationPage();
 
-            _homePage = GoToHomePage();
+            _homePage = new HomePage(_context, true);
         }
 
         [Then(@"Employer is Allowed to remove the second Org added from the account")]
@@ -350,9 +358,9 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
 
             _objectContext.SetRegisteredEmail(_registrationDataHelper.AnotherRandomEmail);
 
-            _addAPAYESchemePage = RegisterUserAccount().ContinueToGetApprenticeshipFunding();
+            _addAPAYESchemePage = _accountCreationStepsHelper.RegisterUserAccount().ContinueToGetApprenticeshipFunding();
 
-            _theseDetailsAreAlreadyInUsePage = ReEnterAornDetails();
+            _theseDetailsAreAlreadyInUsePage = _accountCreationStepsHelper.ReEnterAornDetails(_addAPAYESchemePage);
         }
 
         [Then(@"'Add a PAYE Scheme' page is displayed when Employer clicks on 'Use different details' button")]
@@ -361,13 +369,13 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
 
         [Then(@"'Add a PAYE Scheme' page is displayed when Employer clicks on Back link on the 'PAYE scheme already in use' page")]
         public void ThenAddAPAYESchemePageIsDisplayedWhenEmployerClicksOnBackLinkOnThePage() =>
-            _addAPAYESchemePage = ReEnterAornDetails().CickBackLinkInTheseDetailsAreAlreadyInUsePage();
+            _addAPAYESchemePage = _accountCreationStepsHelper.ReEnterAornDetails(_addAPAYESchemePage).CickBackLinkInTheseDetailsAreAlreadyInUsePage();
 
         [When(@"the User is on the 'Check your details' page after adding PAYE details through AORN route")]
         public void WhenTheUserIsOnTheCheckYourDetailsPageAfterAddingPAYEDetailsThroughAORNRoute()
         {
             _tprSqlDataHelper.CreateSingleOrgAornData();
-            _checkYourDetailsPage = AddPayeDetailsForSingleOrgAornRoute();
+            _checkYourDetailsPage = _accountCreationStepsHelper.AddPayeDetailsForSingleOrgAornRoute(_addAPAYESchemePage);
         }
 
         [Then(@"choosing to change the AORN number displays 'Enter your PAYE scheme details' page")]
@@ -453,14 +461,14 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         public void ThenMessageIsShownToTheUser() => _setUpAsAUserPage.VerifyEmailAlreadyRegisteredErrorMessage();
 
         [When(@"Given an User registers an acount with email but does not activate it")]
-        public void WhenGivenAnUserRegistersAnAcountWithEmailButDoesNotActivateIt() => RegisterUserAccount();
+        public void WhenGivenAnUserRegistersAnAcountWithEmailButDoesNotActivateIt() => _accountCreationStepsHelper.RegisterUserAccount();
 
         [When(@"the User tries to regiser another Account with the same Email that is pending activation")]
         public void WhenTheUserTriesToRegiserAnotherAccountWithTheSameEmailThatIsPendingActivation()
         {
             _tabHelper.GoToUrl(_config.EmployerApprenticeshipServiceBaseURL);
 
-            _addAPAYESchemePage = RegisterUserAccount()
+            _addAPAYESchemePage = _accountCreationStepsHelper.RegisterUserAccount()
                 .ContinueToGetApprenticeshipFunding();
         }
 
@@ -472,8 +480,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             SignTheAgreement();
         }
 
-        private ConfirmPage RegisterUserAccount() => new IndexPage(_context).CreateAccount().Register();
-
         private void EnterInvalidAornAndPaye() =>
             _enterYourPAYESchemeDetailsPage.EnterAornAndPayeAndContinue(_registrationDataHelper.InvalidAornNumber, _registrationDataHelper.InvalidPaye);
 
@@ -483,43 +489,12 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             AddPayeDetails();
         }
 
-        private SelectYourOrganisationPage SearchForAnotherOrg(OrgType orgType)
-        {
-            return _homePage.GoToYourOrganisationsAndAgreementsPage()
-                .ClickAddNewOrganisationButton()
-                .SearchForAnOrganisation(orgType);
-        }
-
-        private void AddLevyDeclarations() => new BackgroundDataSteps(_context).GivenLevyDeclarationsIsAddedForPastMonthsWithLevypermonthAs("5", "10000");
-
-        private void VerifyOrgDetailsAndContinue(string orgNumber, string OrgName, string orgAddress)
+        private void VerifyOrgDetails(string orgNumber, string OrgName, string orgAddress)
         {
             Assert.AreEqual(orgNumber, _checkYourDetailsPage.GetOrganisationNumber());
             Assert.AreEqual(OrgName, _checkYourDetailsPage.GetOrganisationName());
             Assert.AreEqual(orgAddress, _checkYourDetailsPage.GetOrganisationAddress());
-
-            ThenTheNewOrgAddedIsShownInTheAccountOrganisationsList();
         }
-
-        private void AssertManuallyAddedAddressDetailsAndCompleteRegistration()
-        {
-            var manuallyEnteredAddress = $"{_registrationDataHelper.FirstLineAddressForManualEntry} " +
-                                            $"{_registrationDataHelper.CityNameForManualEntry} " +
-                                            $"{_registrationDataHelper.PostCodeForManualEntry}";
-            Assert.AreEqual(manuallyEnteredAddress, _checkYourDetailsPage.GetManuallyAddedOrganisationAddress());
-
-            _checkYourDetailsPage.ClickYesTheseDetailsAreCorrectButtonInCheckYourDetailsPage()
-                        .SelectViewAgreementNowAndContinue()
-                        .SignAgreement();
-        }
-
-        private CheckYourDetailsPage AddPayeDetailsForSingleOrgAornRoute() =>
-            _addAPAYESchemePage.AddAORN().EnterAornAndPayeDetailsForSingleOrgScenarioAndContinue();
-
-        private TheseDetailsAreAlreadyInUsePage ReEnterAornDetails() => _addAPAYESchemePage.AddAORN()
-                .ReEnterTheSameAornDetailsAndContinue();
-
-        private HomePage GoToHomePage() => new HomePage(_context, true);
     }
 }
 
