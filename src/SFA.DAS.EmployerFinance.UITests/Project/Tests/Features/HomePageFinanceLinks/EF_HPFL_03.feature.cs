@@ -93,6 +93,8 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.When("the Employer navigates to \'Finance\' Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 10
  testRunner.Then("\'View transactions\', \'Download transactions\' and \'Transfers\' links are displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 11
+ testRunner.And("Funds data information is diplayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
