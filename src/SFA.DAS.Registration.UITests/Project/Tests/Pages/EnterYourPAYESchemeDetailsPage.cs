@@ -15,6 +15,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         private By ErrorMessgeAboveAornTextBox => By.Id("error-message-aorn");
         private By ErrorMessgeAbovePayeTextBox => By.Id("error-message-payeRef");
         private By InvalidAornAndPayeErrorMessage => By.CssSelector(".govuk-error-message");
+        private By SkipThisStepForNowLink => By.LinkText("Skip this step for now");
         protected override By ContinueButton => By.Id("submit-aorn-details");
         #endregion
 
@@ -69,5 +70,11 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         public string GetErrorMessageAbovePayeTextBox() => pageInteractionHelper.GetText(ErrorMessgeAbovePayeTextBox);
 
         public string GetInvalidAornAndPayeErrorMessage() => pageInteractionHelper.GetText(InvalidAornAndPayeErrorMessage);
+
+        public MyAccountWithOutPayePage ClickSkipThisStepForNowLink()
+        {
+            formCompletionHelper.Click(SkipThisStepForNowLink);
+            return new MyAccountWithOutPayePage(_context);
+        }
     }
 }

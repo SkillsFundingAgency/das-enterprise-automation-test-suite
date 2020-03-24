@@ -35,6 +35,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         private TheseDetailsAreAlreadyInUsePage _theseDetailsAreAlreadyInUsePage;
         private EnterYourPAYESchemeDetailsPage _enterYourPAYESchemeDetailsPage;
         private UsingYourGovtGatewayDetailsPage _usingYourGovtGatewayDetailsPage;
+        private MyAccountWithOutPayePage _myAccountWithOutPayePage;
 
         public CreateAccountSteps(ScenarioContext context)
         {
@@ -51,9 +52,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         [Given(@"an User Account is created")]
         [When(@"an User Account is created")]
         public void AnUserAccountIsCreated() => _addAPAYESchemePage = _accountCreationStepsHelper.RegisterUserAccount().ContinueToGetApprenticeshipFunding();
-
-        [Then(@"My Account Home page is displayed when PAYE details are not added")]
-        public void DoNotAddPayeDetails() => _addAPAYESchemePage.DoNotAddPaye();
 
         [Given(@"the User adds PAYE details")]
         [When(@"the User adds PAYE details")]
@@ -158,6 +156,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         [When(@"the Employer is able to Sign the Agreement")]
         [Then(@"the Employer is able to Sign the Agreement")]
         [When(@"the Employer Signs the Agreement")]
+        [Then(@"the Employer Signs the Agreement")]
         public void SignTheAgreement()
         {
             _homePage = _signAgreementPage
@@ -473,12 +472,31 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         }
 
         [Then(@"the User is allowed to activate the account and continue with registration")]
-        public void ThenTheUserIsAllowedToActivateTheAccountAndContinueWithRegistration()
+        public void ThenTheUserIsAllowedToActivateTheAccountAndContinueWithRegistration() => AddPayeAndOrgAndSignAgreement();
+
+        [Given(@"an Employer creates an Account by skipping the add PAYE part")]
+        public void GivenAnEmployerCreatesAnAccountBySkippingTheAddPAYEPart()
         {
-            AddPayeDetails();
-            AddOrganisationTypeDetails(OrgType.Company);
-            SignTheAgreement();
+            AnUserAccountIsCreated();
+            _myAccountWithOutPayePage = _addAPAYESchemePage.DoNotAddPaye();
         }
+
+        [When(@"the Employer chooses to add PAYE from Account Home Page")]
+        public void WhenTheEmployerChoosesToAddPAYEFromAccountHomePage() => _addAPAYESchemePage = _myAccountWithOutPayePage.ClickAddYourPAYESchemeLink();
+
+        [Then(@"the Employer is able to add PAYE and Organisation to the Account")]
+        public void ThenTheEmployerIsAbleToAddPAYEAndOrganisationToTheAccount() => AddPayeAndOrgAndSignAgreement();
+
+        [Given(@"an Employer creates an Account by skipping to add PAYE details after choosing AORN route")]
+        public void GivenAnEmployerCreatesAnAccountBySkippingToAddPAYEDetailsAfterChoosingAORNRoute()
+        {
+            AnUserAccountIsCreated();
+            _myAccountWithOutPayePage = _addAPAYESchemePage.AddAORN().ClickSkipThisStepForNowLink();
+        }
+
+        [Then(@"the Employer is able to add AORN details attached to a SingleOrg to the Account")]
+        public void ThenTheEmployerIsAbleToAddAORNDetailsAttachedToASingleOrgToTheAccount() =>
+            WhenTheUserAddsPAYEDetailsAttachedToASingleOrgThroughAORNRoute("SingleOrg");
 
         private void EnterInvalidAornAndPaye() =>
             _enterYourPAYESchemeDetailsPage.EnterAornAndPayeAndContinue(_registrationDataHelper.InvalidAornNumber, _registrationDataHelper.InvalidPaye);
@@ -494,6 +512,13 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             Assert.AreEqual(orgNumber, _checkYourDetailsPage.GetOrganisationNumber());
             Assert.AreEqual(OrgName, _checkYourDetailsPage.GetOrganisationName());
             Assert.AreEqual(orgAddress, _checkYourDetailsPage.GetOrganisationAddress());
+        }
+
+        private void AddPayeAndOrgAndSignAgreement()
+        {
+            AddPayeDetails();
+            AddOrganisationTypeDetails(OrgType.Company);
+            SignTheAgreement();
         }
     }
 }
