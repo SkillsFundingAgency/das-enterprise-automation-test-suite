@@ -4,6 +4,8 @@
     {
         public string EPAOAssessmentServiceUrl { get; set; }
         public string EPAOAssessmentOpportunityFinderUrl { get; set; }
+        public string EPAOStandardAssessorLoginUsername { get; set; }
+        public string EPAOStandardAssessorLoginPassword { get; set; }
         public string EPAOAssessorLoginUsername { get; set; }
         public string EPAOAssessorLoginPassword { get; set; }
         public string EPAOManageUserLoginUsername { get; set; }
