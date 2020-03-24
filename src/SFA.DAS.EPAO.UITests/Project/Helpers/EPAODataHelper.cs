@@ -17,6 +17,9 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
             RandomWebsiteAddress = "http://www.TEST_" + GetDateTimeValue() + ".com";
         }
 
+        public string Standards => "100";
+        public string StandardsName => "Transport planning technician";
+        public string StandardAssessorOrganisationEpaoId => "EPA0002";
         public int CurrentDay { get; }
         public int CurrentMonth { get; }
         public int CurrentYear { get; }

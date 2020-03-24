@@ -41,13 +41,9 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
 
         public string PhoneNumber => $"0844455{GetRandomNumber(4)}";
 
-        public string Standards => "100";
-
         public DateTime StandardsEffectiveFrom => new DateTime(2015, 08, 01);
 
         public DateTime OrgStandardsEffectiveFrom => StandardsEffectiveFrom.AddDays(35);
-
-        public string StandardsName => "Transport planning technician";
 
         public string NewOrganisationName { get; }
 

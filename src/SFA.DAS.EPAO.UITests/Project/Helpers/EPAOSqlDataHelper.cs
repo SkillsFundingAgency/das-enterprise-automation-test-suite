@@ -23,6 +23,8 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
             ExecuteSqlCommand($"DELETE from Apply where OrganisationId = '{organisationId}'");
         }
 
+        public void DeleteStandardPreambleApplicication(string standardReference, string organisationId) => ExecuteSqlCommand($"DELETE Applications WHERE JSON_VALUE (ApplicationData, '$.StandardReference') = {standardReference} and ApplyingOrganisationId = {organisationId}");
+
         private void ExecuteSqlCommand(string queryToExecute) => SqlDatabaseConnectionHelper.ExecuteSqlCommand(_connectionString, queryToExecute);
 
         private string GetDataFromDb(string queryToExecute) => Convert.ToString(SqlDatabaseConnectionHelper.ReadDataFromDataBase(queryToExecute, _connectionString)[0][0]);

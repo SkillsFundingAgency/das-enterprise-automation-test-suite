@@ -2,17 +2,9 @@
 {
     public class EPAOConfig
     {
+        public string EPAOAdminBaseUrl { get; set; }
         public string EPAOAssessmentServiceUrl { get; set; }
         public string EPAOAssessmentOpportunityFinderUrl { get; set; }
-        public string EPAOStandardAssessorLoginUsername { get; set; }
-        public string EPAOStandardAssessorLoginPassword { get; set; }
-        public string EPAOAssessorLoginUsername { get; set; }
-        public string EPAOAssessorLoginPassword { get; set; }
-        public string EPAOManageUserLoginUsername { get; set; }
-        public string EPAOManageUserLoginPassword { get; set; }
-        public string EPAOApplyUserLoginUsername { get; set; }
-        public string EPAOApplyUserFullName { get; set; }
-        public string EPAOApplyUserLoginPassword { get; set; }
         public string EPAOApprenticeNameWithSingleStandard { get; set; }
         public string EPAOApprenticeUlnWithSingleStandard { get; set; }
         public string EPAOApprenticeNameWithMultipleStandards { get; set; }

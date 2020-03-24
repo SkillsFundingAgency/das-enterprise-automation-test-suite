@@ -13,7 +13,6 @@ namespace SFA.DAS.EPAO.UITests.Project
     {
         private readonly ScenarioContext _context;
         private readonly EPAOConfig _config;
-        private readonly EPAOAdminConfig _adminconfig;
         private readonly IWebDriver _webDriver;
         private EPAOAdminDataHelper _ePAOAdminDataHelper;
         private EPAOAdminSqlDataHelper _ePAOAdminSqlDataHelper;
@@ -23,7 +22,6 @@ namespace SFA.DAS.EPAO.UITests.Project
             _context = context;
             _webDriver = context.GetWebDriver();
             _config = context.GetEPAOConfig<EPAOConfig>();
-            _adminconfig = context.GetEPAOAdminConfig<EPAOAdminConfig>();
         }
 
         [BeforeScenario(Order = 32)]
@@ -51,7 +49,7 @@ namespace SFA.DAS.EPAO.UITests.Project
         [BeforeScenario(Order = 34)]
         public void Navigate()
         {
-            if (_context.ScenarioInfo.Tags.Contains("epaoadmin")) { _webDriver.Navigate().GoToUrl(_adminconfig.AdminBaseUrl); }
+            if (_context.ScenarioInfo.Tags.Contains("epaoadmin")) { _webDriver.Navigate().GoToUrl(_config.EPAOAdminBaseUrl); }
         }
 
         [AfterScenario(Order = 32)]

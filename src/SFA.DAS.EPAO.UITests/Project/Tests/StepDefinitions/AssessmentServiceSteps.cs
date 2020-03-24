@@ -3,6 +3,8 @@ using SFA.DAS.EPAO.UITests.Project.Helpers;
 using SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService;
 using SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.ManageUsers;
 using SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.OrganisationDetails;
+using SFA.DAS.Login.Service;
+using SFA.DAS.Login.Service.Helpers;
 using SFA.DAS.UI.Framework.TestSupport;
 using TechTalk.SpecFlow;
 
@@ -35,17 +37,24 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
             _ePAOSqlDataHelper = context.Get<EPAOSqlDataHelper>();
         }
 
-        [Given(@"the (Assessor User|Manage User|Apply User) is logged into Assessment Service Application")]
-        [When(@"the (Assessor User|Manage User|Apply User) is logged into Assessment Service Application")]
+        [Given(@"the (Assessor User|Standard Apply User|Manage User|Apply User) is logged into Assessment Service Application")]
+        [When(@"the (Assessor User|Standard Apply User|Manage User|Apply User) is logged into Assessment Service Application")]
         public void GivenTheUserIsLoggedIntoAssessmentServiceApplication(string user)
         {
             _stepsHelper.LaunchAssessmentServiceApplication();
 
-            if (user.Equals("Assessor User") || user.Equals("Manage User"))
-                _loggedInHomePage = _stepsHelper.LoginToAssessmentServiceApplication(user);
+            if (user.Equals("Assessor User"))
+                _loggedInHomePage = _stepsHelper.LoginToAssessmentServiceApplication(_context.GetUser<EPAOAssessorUser>());            
+            else if (user.Equals("Manage User"))
+                _loggedInHomePage = _stepsHelper.LoginToAssessmentServiceApplication(_context.GetUser<EPAOManageUser>());
+            else if (user.Equals("Standard Apply User"))
+            {
+                //_ePAOSqlDataHelper.DeleteStandardPreambleApplicication(_dataHelper.Standards, _dataHelper.StandardAssessorOrganisationEpaoId);
+                _loggedInHomePage = _stepsHelper.LoginToAssessmentServiceApplication(_context.GetUser<EPAOStandardApplyUser>());
+            }
             else if (user.Equals("Apply User"))
             {
-                _ePAOSqlDataHelper.ResetApplyUser(_ePAOConfig.EPAOApplyUserLoginUsername);
+                _ePAOSqlDataHelper.ResetApplyUser(_context.GetUser<EPAOApplyUser>().Username);
                 new AS_LandingPage(_context).ClickStartButton().SignInAsApplyUser();
             }
         }
@@ -58,10 +67,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         }
 
         [When(@"the User goes through certifying a Privately funded Apprentice")]
-        public void WhenTheUserGoesThroughCertifyingAPrivatelyFundedApprentice()
-        {
-            _stepsHelper.CertifyPrivatelyFundedApprentice();
-        }
+        public void WhenTheUserGoesThroughCertifyingAPrivatelyFundedApprentice() => _stepsHelper.CertifyPrivatelyFundedApprentice();
 
         [Then(@"the Assessment is recorded and the User is able to navigate back to certifying another Apprentice")]
         public void ThenTheAssessmentIsRecordedAndTheUserIsAbleToNavigateBackToCertifyingAnotherApprentice()
@@ -78,10 +84,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         }
 
         [Then(@"'(.*)' message is displayed")]
-        public void ThenErrorMessageIsDisplayed(string errorMessage)
-        {
-            Assert.AreEqual(_recordAGradePage.GetPageTitle(), errorMessage);
-        }
+        public void ThenErrorMessageIsDisplayed(string errorMessage) => Assert.AreEqual(_recordAGradePage.GetPageTitle(), errorMessage);
 
         [Then(@"the '(.*)' is displayed")]
         public void ThenErrorIsDisplayed(string errorMessage)
@@ -133,10 +136,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         public void GivenNavigatesToAssessmentPage() => new AS_LoggedInHomePage(_context).ClickOnRecordAGrade();
 
         [Given(@"the User is on the Apprenticeship achievement date page")]
-        public void GivenTheUserIsOnTheApprenticeshipAchievementDatePage()
-        {
-            _stepsHelper.CertifyPrivatelyFundedApprentice(true);
-        }
+        public void GivenTheUserIsOnTheApprenticeshipAchievementDatePage() => _stepsHelper.CertifyPrivatelyFundedApprentice(true);
 
         [When(@"the User enters the date before the Year 2017")]
         public void WhenTheUserEntersTheDateBeforeTheYear2017()
