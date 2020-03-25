@@ -70,10 +70,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         public void WhenTheUserGoesThroughCertifyingAPrivatelyFundedApprentice() => _stepsHelper.CertifyPrivatelyFundedApprentice();
 
         [Then(@"the Assessment is recorded and the User is able to navigate back to certifying another Apprentice")]
-        public void ThenTheAssessmentIsRecordedAndTheUserIsAbleToNavigateBackToCertifyingAnotherApprentice()
-        {
-            new AS_AssessmentRecordedPage(_context).ClickRecordAnotherGradeLinkInAssessmentRecordedPage();
-        }
+        public void ThenTheAssessmentIsRecordedAndTheUserIsAbleToNavigateBackToCertifyingAnotherApprentice() => new AS_AssessmentRecordedPage(_context).ClickRecordAnotherGradeLinkInAssessmentRecordedPage();
 
         [When(@"the User goes through certifying an already assessed Apprentice")]
         public void WhenTheUserGoesThroughCertifyingAnAlreadyAssessedApprentice()
@@ -146,16 +143,10 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         }
 
         [When(@"the User enters the future date")]
-        public void WhenTheUserEntersTheFutureDate()
-        {
-            _achievementDatePage.EnterAchievementGradeDateForPrivatelyFundedApprenticeAndContinue(_dataHelper.CurrentYear + 1);
-        }
+        public void WhenTheUserEntersTheFutureDate() => _achievementDatePage.EnterAchievementGradeDateForPrivatelyFundedApprenticeAndContinue(_dataHelper.CurrentYear + 1);
 
         [Then(@"(.*) is displayed in the Apprenticeship achievement date page")]
-        public void ThenDateErrorIsDisplayedInTheApprenticeshipAchievementDatePage(string errorText)
-        {
-            Assert.AreEqual(_achievementDatePage.GetDateErrorText(), errorText);
-        }
+        public void ThenDateErrorIsDisplayedInTheApprenticeshipAchievementDatePage(string errorText) => Assert.AreEqual(_achievementDatePage.GetDateErrorText(), errorText);
 
         [When(@"the (.*) is on the Confirm Assessment Page")]
         public void WhenTheUserIsOnTheConfirmAssessmentPage(string user)
@@ -179,16 +170,10 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         }
 
         [When(@"the User navigates to the Completed assessments tab")]
-        public void WhenTheUserNavigatesToTheCompletedAssessmentsTab()
-        {
-            _loggedInHomePage.ClickCompletedAssessmentsLink();
-        }
+        public void WhenTheUserNavigatesToTheCompletedAssessmentsTab() => _loggedInHomePage.ClickCompletedAssessmentsLink();
 
         [Then(@"the User is able to view the history of the assessments")]
-        public void ThenTheUserIsAbleToViewTheHistoryOfTheAssessments()
-        {
-            new AS_CompletedAssessmentsPage(_context).VerifyTableHeaders();
-        }
+        public void ThenTheUserIsAbleToViewTheHistoryOfTheAssessments() => new AS_CompletedAssessmentsPage(_context).VerifyTableHeaders();
 
         [When(@"the User navigates to Organisation details page")]
         public void WhenTheUserNavigatesToOrganisationDetailsPage()
@@ -255,16 +240,10 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         private string AddAssertResultText(bool condition) => condition ? "permission selected is not shown in 'User details' page" : "permission selected is not shown in 'User details' page";
 
         [When(@"the User initiates inviting a new user journey")]
-        public void WhenTheUserInitiatesInvitingANewUserJourney()
-        {
-            _newUserEmailId = _stepsHelper.InviteAUser(_loggedInHomePage, _dataHelper);
-        }
-
+        public void WhenTheUserInitiatesInvitingANewUserJourney() => _newUserEmailId = _stepsHelper.InviteAUser(_loggedInHomePage, _dataHelper);
+    
         [Then(@"a new User is invited and able to initiate inviting another user")]
-        public void ThenANewUserIsInvitedAndAbleToInitiateInvitingAnotherUser()
-        {
-            new AS_UserInvitedPage(_context).ClickInviteSomeoneElseLink();
-        }
+        public void ThenANewUserIsInvitedAndAbleToInitiateInvitingAnotherUser() => new AS_UserInvitedPage(_context).ClickInviteSomeoneElseLink();
 
         [Then(@"the User can remove newly invited user")]
         public void ThenTheUserCanRemoveNewlyInvitedUser()
@@ -274,6 +253,19 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
                 .ClickOnNewlyAddedUserLink(_newUserEmailId)
                 .ClicRemoveThisUserLinkInUserDetailPage()
                 .ClickRemoveUserButtonInRemoveUserPage();
+        }
+
+        [Then(@"the user can apply to assess a standard")]
+        public void ThenTheUserCanApplyToAssessAStandard()
+        {
+            _loggedInHomePage.ApplyToAssessStandard()
+                .SelectApplication()
+                .StartApplication()
+                .Start()
+                .EnterStandardName()
+                .Apply()
+                .ConfirmAndApply()
+                .GoToApplyToStandard();
         }
     }
 }

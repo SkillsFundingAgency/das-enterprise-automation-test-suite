@@ -9,8 +9,8 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
     public class AS_LoginPage : EPAO_BasePage
     {
         protected override string PageTitle => "Sign in to Apprenticeship assessment service";
+
         private readonly ScenarioContext _context;
-        string userName, password;
 
         #region Locators
         private By EmailAddressTextBox => By.Id("Username");

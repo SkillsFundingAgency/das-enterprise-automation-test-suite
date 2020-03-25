@@ -19,6 +19,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
 
         public string Standards => "100";
         public string StandardsName => "Transport planning technician";
+        public string ApplyforStandard => "Software developer";
         public string StandardAssessorOrganisationEpaoId => "EPA0002";
         public int CurrentDay { get; }
         public int CurrentMonth { get; }
