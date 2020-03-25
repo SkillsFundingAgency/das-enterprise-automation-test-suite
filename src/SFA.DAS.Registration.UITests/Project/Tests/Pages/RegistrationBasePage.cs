@@ -14,7 +14,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         protected readonly ObjectContext objectContext;
         protected readonly RegistrationDataHelper registrationDataHelper;
 
-        public RegistrationBasePage(ScenarioContext context) : base(context)
+        protected RegistrationBasePage(ScenarioContext context) : base(context)
         {
             formCompletionHelper = context.Get<FormCompletionHelper>();
             pageInteractionHelper = context.Get<PageInteractionHelper>();

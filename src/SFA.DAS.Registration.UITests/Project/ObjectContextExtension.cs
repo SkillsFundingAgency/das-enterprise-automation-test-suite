@@ -13,6 +13,7 @@ namespace SFA.DAS.Registration.UITests.Project
         private const string ReceiverAccountIdkey = "receiveraccountidkey";
         private const string ReceiverPublicAccountIdkey = "receiverpublicaccountidkey";
         private const string RegisteredEmailKey = "registeredemailkey";
+        private const string AnotherEmailKey = "anotheremailkey";
         #endregion
 
         internal static void SetLoginCredentials(this ObjectContext objectContext, string loginusername, string loginpassword)
@@ -29,6 +30,7 @@ namespace SFA.DAS.Registration.UITests.Project
         internal static void SetReceiverAccountId(this ObjectContext objectContext, string value) => objectContext.Set(ReceiverAccountIdkey, value);
         internal static void SetReceiverPublicAccountId(this ObjectContext objectContext, string value) => objectContext.Set(ReceiverPublicAccountIdkey, value);
         internal static void SetRegisteredEmail(this ObjectContext objectContext, string value) => objectContext.Replace(RegisteredEmailKey, value);
+        internal static void SetAnotherEmail(this ObjectContext objectContext, string value) => objectContext.Replace(AnotherEmailKey, value);
         public static string GetReceiverAccountId(this ObjectContext objectContext) => objectContext.Get(ReceiverAccountIdkey);
         public static string GetAgreementId(this ObjectContext objectContext) => objectContext.Get(AgreementIdKey);
         public static string GetPublicReceiverAccountId(this ObjectContext objectContext) => objectContext.Get(ReceiverPublicAccountIdkey);
@@ -36,5 +38,6 @@ namespace SFA.DAS.Registration.UITests.Project
         public static string GetAccountId(this ObjectContext objectContext) => objectContext.Get(AccountIdKey);
         internal static LoginUser GetLoginCredentials(this ObjectContext objectContext) => objectContext.Get<LoginUser>(LoggedInUserKey);
         internal static string GetRegisteredEmail(this ObjectContext objectContext) => objectContext.Get(RegisteredEmailKey);
+        internal static string GetAnotherEmail(this ObjectContext objectContext) => objectContext.Get(AnotherEmailKey);
     }
 }
