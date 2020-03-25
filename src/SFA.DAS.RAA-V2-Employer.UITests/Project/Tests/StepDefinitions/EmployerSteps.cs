@@ -71,8 +71,6 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
         [Then(@"Employer can make the application unsuccessful")]
         public void ThenEmployerCanMakeTheApplicationUnsuccessful() => _employerStepsHelper.ApplicantUnsucessful();
 
-        [When(@"the Employer can close the vacancy")]
-        [Given(@"the Employer can close the vacancy")]
         [Then(@"the Employer can close the vacancy")]
         public void ThenTheEmployerCanCloseTheVacancy() => _employerStepsHelper.CloseVacancy();
         
@@ -82,8 +80,6 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
         [Then(@"the vacancy is saved as a draft")]
         public void ThenTheVacancyIsSavedAsADraft() => _vacanciesPage.GoToApprenticeshipTrainingPage();
 
-        [Given(@"Employer is able to open the draft and create the vacancy by filling the data for the second part")]
-        [When(@"Employer is able to open the draft and create the vacancy by filling the data for the second part")]
         [Then(@"Employer is able to open the draft and create the vacancy by filling the data for the second part")]
         public void ThenEmployerIsAbleToOpenTheDraftAndCreateTheVacancyByFillingTheDataForTheSecondPart() => _employerStepsHelper.SubmitVacancy(_vacanciesPage.GoToVacancyPreviewPart2Page(), true, false);
 
@@ -113,19 +109,13 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
         [Then(@"the Employer verify '(National Minimum Wage For Apprentices|National Minimum Wage|Fixed Wage Type)' the wage option selected in the Preview page")]
         public void ThenTheEmployerVerifyTheWageOptionSelectedInThePreviewPage(string wageType) => _employerStepsHelper.VerifyWageType(wageType);
         
-        [Given(@"the Employer creates first Draft vacancy '(.*)'")]
         [When(@"the Employer creates first Draft vacancy '(.*)'")]
-        [Then(@"the Employer creates first Draft vacancy '(.*)'")]
         public void GivenTheEmployerCreatesFirstDraftVacancy(string wageType) => _employerStepsHelper.CreateFirstDraftVacancy(wageType);
         
         [Given(@"the employer continue to add vacancy in the Recruitment")]
-        [When(@"the employer continue to add vacancy in the Recruitment")]
-        [Then(@"the employer continue to add vacancy in the Recruitment")]
         public void ThenTheEmployerContinueToAddVacancyInTheRecruitment() => _employerStepsHelper.GoToAddAnAdvert();
 
-        [Given(@"the vacancy details is displayed on the Dynamic home page with Status '(.*)'")]
-        [When(@"the vacancy details is displayed on the Dynamic home page with Status '(.*)'")]
-        [Then(@"the vacancy details is displayed on the Dynamic home page with Status '(.*)'")]
+        [Then(@"the vacancy details is displayed on the Dynamic home page with Status '(Saved as draft|CLOSED|PENDING REVIEW|LIVE|REJECTED)'")]
         public void GivenTheVacancyDetailsIsDisplayedOnTheDynamicHomePageWithStatus(string status)
         {
             switch (status)
@@ -152,9 +142,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
             }                    
         }
 
-        [Given(@"the Employer creates first submitted vacancy '(.*)'")]
-        [When(@"the Employer creates first submitted vacancy '(.*)'")]
-        [Then(@"the Employer creates first submitted vacancy '(.*)'")]
+        [When(@"the Employer creates first submitted vacancy '(National Minimum Wage|National Minimum Wage For Apprentices|Fixed Wage Type)'")]
         public void GivenTheEmployerCreatesFirstSubmittedVacancy(string wageType)
         {
             _employerStepsHelper.CreateFirstSubmittedVacancy(wageType);

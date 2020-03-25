@@ -17,14 +17,12 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         #region Helpers and Context
         private readonly string _vacRef;
         private readonly string _vacancyTitle;
-        private readonly FormCompletionHelper _formCompletionHelper;
         #endregion
 
         public ManageCloseVacancyPage(ScenarioContext context) : base(context)
         {
             _vacancyTitle = context.Get<RAAV2DataHelper>().VacancyTitle;
             _vacRef = context.Get<ObjectContext>().GetVacancyReference();
-            _formCompletionHelper = context.Get<FormCompletionHelper>();
             VerifyPage();
         }
 

@@ -13,7 +13,6 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.StepDefinitions
             _faaStepsHelper = new FAAStepsHelper(context);
         }
 
-        [Given(@"the Applicant can apply for a Vacancy in FAA")]
         [Then(@"the Applicant can apply for a Vacancy in FAA")]
         [When(@"the Applicant can apply for a Vacancy in FAA")]
         public void WhenTheApplicantCanApplyForAVacancyInFAA()

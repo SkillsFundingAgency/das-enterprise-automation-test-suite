@@ -13,13 +13,11 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
     [Binding]
     public class DynamicHomePageSteps
     {
-        private readonly ScenarioContext _context;
         private readonly ApprovalsStepsHelper _stepsHelper;
         private readonly MFEmployerStepsHelper _reservationStepsHelper;
         private SuccessfullyReservedFundingPage _successfullyReservedFundingPage;
         public DynamicHomePageSteps(ScenarioContext context)
         {
-            _context = context;
             _stepsHelper = new ApprovalsStepsHelper(context);
             _reservationStepsHelper = new MFEmployerStepsHelper(context);
 
