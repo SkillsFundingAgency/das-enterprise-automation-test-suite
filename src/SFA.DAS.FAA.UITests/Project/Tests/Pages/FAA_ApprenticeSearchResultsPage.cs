@@ -79,19 +79,34 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 
         public FAA_ApprenticeSummaryPage SelectBrowsedVacancy()
         {
-            _formCompletionHelper.SelectFromDropDownByText(SortResults, "Recently added");
-            _pageInteractionHelper.WaitforURLToChange("sortType=RecentlyAdded");
-            if (_pageInteractionHelper.IsElementDisplayed(DisplayResults))
-            {
-                _pageInteractionHelper.FocusTheElement(DisplayResults);
-                _formCompletionHelper.SelectFromDropDownByValue(DisplayResults, "50");
-                _pageInteractionHelper.WaitforURLToChange("resultsPerPage=50");
-            }
+            ChangeSortOrder();           
             _formCompletionHelper.Click(VacancyLink);            
             return new FAA_ApprenticeSummaryPage(_context);
         }
 
-        public FAA_ApprenticeSearchResultsPage CheckVacancyIsDisplayedBasedOnSearchCriteria()
+        public bool CheckVacancyIsDisplayedBasedOnSearchCriteria(string postCode, string distance)
+        {
+            ChangeSortOrder();
+            bool vacanciesFound = FoundVacancies();
+            if (vacanciesFound)
+            {
+                List<IWebElement> vacanciesCount = _pageInteractionHelper.FindElements(VacanciesList);
+                foreach (var vacancy in vacanciesCount)
+                {
+                    if (vacancy.Text.Contains(_vacancyTitleDataHelper.VacancyTitle))
+                    {
+                        return true;
+                    }
+                }
+            }
+            else
+            {
+                throw new Exception($"No apprenticeship found within '{distance}' of '{postCode}'");
+            }
+            return false;
+        }
+
+        private void ChangeSortOrder()
         {
             _formCompletionHelper.SelectFromDropDownByValue(SortResults, "RecentlyAdded");
             _pageInteractionHelper.WaitforURLToChange("sortType=RecentlyAdded");
@@ -101,24 +116,6 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
                 _formCompletionHelper.SelectFromDropDownByValue(DisplayResults, "50");
                 _pageInteractionHelper.WaitforURLToChange("resultsPerPage=50");
             }
-
-            List<IWebElement> vacanciesCount = _pageInteractionHelper.FindElements(VacanciesList);
-            bool status = false;
-
-            foreach (var vacancy in vacanciesCount)
-            {
-                if (vacancy.Text.Contains(_vacancyTitleDataHelper.VacancyTitle))
-                {
-                    status = true;
-                    break;
-                }
-            }
-            if (!status)
-            {
-                throw new Exception($"Vacancy title: {_vacancyTitleDataHelper.VacancyTitle} Not Found");
-            }
-
-            return this;
         }
     }
 }

@@ -46,7 +46,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
             _context = context;
             _objectContext = context.Get<ObjectContext>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
-            _pageInteractionHelper = context.Get<PageInteractionHelper>();  
+            _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _dataHelper = context.Get<VacancyTitleDatahelper>();
             _tabHelper = context.Get<TabHelper>();
             _config = context.GetFAAConfig<FAAConfig>();
@@ -65,38 +65,44 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
             switch (distance)
             {
                 case "Job title":
-                    _formCompletionHelper.SelectFromDropDownByText(KeywordDropDown, distance);
-                    _formCompletionHelper.EnterText(KeywordTextField, _dataHelper.VacancyTitle);
-                    _formCompletionHelper.Click(Search);
-                    _pageInteractionHelper.WaitforURLToChange("Keywords=" + _dataHelper.VacancyTitle);
+                    SearchByKeyword(distance,_dataHelper.VacancyTitle, "Keywords=" + _dataHelper.VacancyTitle);
                     break;
 
                 case "Employer":
-                    _formCompletionHelper.SelectFromDropDownByText(KeywordDropDown, distance);
                     var empName = _objectContext.GetEmployerName();
-                    _formCompletionHelper.EnterText(KeywordTextField, empName);
-                    _formCompletionHelper.Click(Search);
-                    _pageInteractionHelper.WaitforURLToChange("SearchField=Employer");
+                    SearchByKeyword(distance,empName, "SearchField=Employer");
                     break;
 
                 case "Description":
-                    _formCompletionHelper.SelectFromDropDownByText(KeywordDropDown, distance);
                     var empDesc = _objectContext.GetVacancyShortDescription();
-                    _formCompletionHelper.EnterText(KeywordTextField, empDesc);
-                    _formCompletionHelper.Click(Search);
-                    _pageInteractionHelper.WaitforURLToChange("SearchField=Description");
+                    SearchByKeyword(distance,empDesc, "SearchField=Description");
                     break;
 
                 default:
+                    string urlDistance = "0";
+                    if (distance != "England")
+                    {
+                        int index = distance.LastIndexOf("miles");
+                        urlDistance = distance.Substring(0, index).TrimEnd();
+                    }
                     _formCompletionHelper.SelectFromDropDownByText(Distance, distance);
-                    _formCompletionHelper.Click(Search);
-                    WaitforURLToChange(distance);
+                    SearchByKeyword(string.Empty,string.Empty, "WithinDistance=" + urlDistance);                     
                     break;
             }
             
             return new FAA_ApprenticeSearchResultsPage(_context);
         }
 
+        private void SearchByKeyword(string distance,string searchText, string urlCheck)
+        {
+            if (!string.IsNullOrEmpty(searchText))
+            {
+                _formCompletionHelper.SelectFromDropDownByText(KeywordDropDown, distance);
+                _formCompletionHelper.EnterText(KeywordTextField, searchText);
+            }
+            _formCompletionHelper.Click(Search);
+            _pageInteractionHelper.WaitforURLToChange(urlCheck);
+        }
 
         public new FAA_ApprenticeSummaryPage SearchByReferenceNumber()
         {

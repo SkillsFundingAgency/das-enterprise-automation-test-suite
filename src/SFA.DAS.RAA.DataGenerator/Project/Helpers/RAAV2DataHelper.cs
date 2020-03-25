@@ -92,7 +92,7 @@ namespace SFA.DAS.RAA.DataGenerator
 
         public string OptionalMessage { get; }
 
-        private string WebsiteUrl(string url) => $"https://www.{url}.com";
+        private string WebsiteUrl(string url) => $"www.{url}.com";
 
         private List<string> AvailableProviders => new List<string> { "BALTIC TRAINING SERVICES LIMITED 10019026" };
 
