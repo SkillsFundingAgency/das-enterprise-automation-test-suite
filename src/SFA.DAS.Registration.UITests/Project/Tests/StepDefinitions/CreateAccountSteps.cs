@@ -8,7 +8,7 @@ using SFA.DAS.Registration.UITests.Project.Tests.Pages;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
-using static SFA.DAS.RAA_V1.UITests.Project.Helpers.EnumHelper;
+using static SFA.DAS.Registration.UITests.Project.Helpers.EnumHelper;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
 {
@@ -168,11 +168,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         }
 
         [When(@"the Employer does not sign the Agreement")]
-        public void DoNotSignTheAgreement()
-        {
-            _homePage = _signAgreementPage
-                .DoNotSignAgreement();
-        }
+        public void DoNotSignTheAgreement() => _homePage = _signAgreementPage.DoNotSignAgreement();
 
         [Then(@"the Employer Home page is displayed")]
         public void TheEmployerHomePageIsDisplayed()
@@ -436,8 +432,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             Assert.AreEqual(InvalidErrorMessage2ndAttempt, _enterYourPAYESchemeDetailsPage.GetInvalidAornAndPayeErrorMessage());
             EnterInvalidAornAndPaye();
 
-            _usingYourGovtGatewayDetailsPage = new SorryAccountDisabledPage(_context)
-                .ClickAddViaGGLink();
+            _usingYourGovtGatewayDetailsPage = new SorryAccountDisabledPage(_context).ClickAddViaGGLink();
         }
 
         [Then(@"Employer is able to complete registration through GG route")]
@@ -449,12 +444,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         }
 
         [When(@"an User tries to regiser an Account with an Email already registered")]
-        public void WhenAnUserTriesToRegiserAnAccountWithAnEMailAlreadyRegistered()
-        {
-            _setUpAsAUserPage = new IndexPage(_context)
-                .CreateAccount()
-                .EnterRegistrationDetailsAndContinue(_context.GetUser<LevyUser>().Username);
-        }
+        public void WhenAnUserTriesToRegiserAnAccountWithAnEMailAlreadyRegistered() => _setUpAsAUserPage = new IndexPage(_context).CreateAccount().EnterRegistrationDetailsAndContinue(_context.GetUser<LevyUser>().Username);
 
         [Then(@"'Email already regisered' message is shown to the User")]
         public void ThenMessageIsShownToTheUser() => _setUpAsAUserPage.VerifyEmailAlreadyRegisteredErrorMessage();
