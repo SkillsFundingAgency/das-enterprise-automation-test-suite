@@ -118,6 +118,17 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.RoatpApply
                 .VerifyDescribeYourOrganisationStatus(StatusHelper.StatusCompleted);
         }
 
+        internal ApplicationOverviewPage CompleteYourOrganisationSection_4_OrgTypeHEIEmplopyerRoute(ApplicationOverviewPage applicationOverviewPage)
+        {
+            return applicationOverviewPage
+                .AccessDescribeYourOrganisationsForOrgTypeCharity()
+                .SelectEducationalInstituteAndContinue()
+                .SelectHigherEducationInstituteAndContinueForEmplopyer()
+                .SelectInYourOrganisationAndContinue()
+                .SelectPublicServiceMutalAndShelterdWorkshopAndContinue()
+                .VerifyDescribeYourOrganisationStatus(StatusHelper.StatusCompleted);
+        }
+
         internal ApplicationOverviewPage CompleteYourOrganisationSection_4_OrgTypeAcadamy(ApplicationOverviewPage applicationOverviewPage)
         {
             return applicationOverviewPage

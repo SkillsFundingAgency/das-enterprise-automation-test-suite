@@ -88,7 +88,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Features.RoatpApply.E2EJourney
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 9
- testRunner.Given("the provider initates an application as supporting route soletrader", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("the provider initates an application as supporting route", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 10
  testRunner.When("the provider completes Your organisation section for supporting route", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 11

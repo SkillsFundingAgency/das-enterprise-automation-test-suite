@@ -18,20 +18,20 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Features.RoatpApply.Section1_Youro
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.0.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("RP_S1_07")]
-    public partial class RP_S1_07Feature
+    [NUnit.Framework.DescriptionAttribute("RP_S1_09")]
+    public partial class RP_S1_09Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "RP_S1_07.feature"
+#line 1 "RP_S1_09.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "RP_S1_07", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "RP_S1_09", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -70,16 +70,16 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Features.RoatpApply.Section1_Youro
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RP_S1_07_CharityAndCompany - Main - Org PublicBody - GovtDept - Exempt from FHA")]
-        [NUnit.Framework.CategoryAttribute("rps107")]
+        [NUnit.Framework.DescriptionAttribute("RP_S1_09_CharityAndCompany - Supporting - Org Multiacademy")]
+        [NUnit.Framework.CategoryAttribute("rps109")]
         [NUnit.Framework.CategoryAttribute("roatp")]
         [NUnit.Framework.CategoryAttribute("roatpapply")]
         [NUnit.Framework.CategoryAttribute("roatps1")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public virtual void RP_S1_07_CharityAndCompany_Main_OrgPublicBody_GovtDept_ExemptFromFHA()
+        public virtual void RP_S1_09_CharityAndCompany_Supporting_OrgMultiacademy()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_S1_07_CharityAndCompany - Main - Org PublicBody - GovtDept - Exempt from FHA", null, new string[] {
-                        "rps107",
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_S1_09_CharityAndCompany - Supporting - Org Multiacademy", null, new string[] {
+                        "rps109",
                         "roatp",
                         "roatpapply",
                         "roatps1",
@@ -88,19 +88,19 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Features.RoatpApply.Section1_Youro
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 10
-    testRunner.Given("the provider initates an application as main route company", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("the provider initates an application as supporting route", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 11
-    testRunner.Then("the provider completes Introduction and what you\'ll need section for main and emp" +
-                    "loyer route", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the provider completes Introduction and what you\'ll need content for supporting r" +
+                    "oute", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 12
-    testRunner.And("the provider completes Organisation Information section for company", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("the provider completes Organisation Information section for company", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 13
-    testRunner.And("the provider completes Tell us who\'s in control section for charity and company", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("the provider completes Tell us who\'s in control section for charity and company", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 14
-    testRunner.And("the provider completes Describe your organisation section as OrgTypePublicBody", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("the provider completes Describe your organisation section", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 15
-    testRunner.And("the provider completes Experience and Accreditations section by selecting No to a" +
-                    "ll", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("the provider completes Experience and Accreditations section by selecting Yes to " +
+                    "Subcontractor training", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 16
  testRunner.And("the provider verifies Financial Section Status", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
