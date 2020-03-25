@@ -25,10 +25,10 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             return new SignInPage(_context);
         }
 
-        public RegisterPage CreateAccount()
+        public SetUpAsAUserPage CreateAccount()
         {
             formCompletionHelper.ClickElement(CreateAccountLink);
-            return new RegisterPage(_context);
+            return new SetUpAsAUserPage(_context);
         }
     }
 }
