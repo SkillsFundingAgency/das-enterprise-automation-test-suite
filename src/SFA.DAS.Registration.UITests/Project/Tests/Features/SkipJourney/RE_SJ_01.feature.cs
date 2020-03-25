@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.EmployerFinance.UITests.Project.Tests.Features.HomePageFinanceLinks
+namespace SFA.DAS.Registration.UITests.Project.Tests.Features.SkipJourney
 {
     using TechTalk.SpecFlow;
     
@@ -18,20 +18,20 @@ namespace SFA.DAS.EmployerFinance.UITests.Project.Tests.Features.HomePageFinance
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.0.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("EF_HPFL_03")]
-    public partial class EF_HPFL_03Feature
+    [NUnit.Framework.DescriptionAttribute("RE_SJ_01")]
+    public partial class RE_SJ_01Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "EF_HPFL_03.feature"
+#line 1 "RE_SJ_01.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "EF_HPFL_03", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "RE_SJ_01", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -70,31 +70,25 @@ namespace SFA.DAS.EmployerFinance.UITests.Project.Tests.Features.HomePageFinance
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("EF_HPFL_03 - Validate Home Page Finance section for a Levy User who has Signed th" +
-            "e Agreement")]
+        [NUnit.Framework.DescriptionAttribute("RE_SJ_01_Verify GG route skip journey")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("employerfinance")]
+        [NUnit.Framework.CategoryAttribute("registration")]
         [NUnit.Framework.CategoryAttribute("addpayedetails")]
-        public virtual void EF_HPFL_03_ValidateHomePageFinanceSectionForALevyUserWhoHasSignedTheAgreement()
+        public virtual void RE_SJ_01_VerifyGGRouteSkipJourney()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EF_HPFL_03 - Validate Home Page Finance section for a Levy User who has Signed th" +
-                    "e Agreement", null, new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RE_SJ_01_Verify GG route skip journey", null, new string[] {
                         "regression",
-                        "employerfinance",
+                        "registration",
                         "addpayedetails"});
 #line 6
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 7
- testRunner.When("an Employer creates a Levy Account and Signs the Agreement", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.Given("an Employer creates an Account by skipping the add PAYE part", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 8
- testRunner.Then("\'Your finances\' link is displayed in the Finances section", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.When("the Employer chooses to add PAYE from Account Home Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 9
- testRunner.When("the Employer navigates to \'Finance\' Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 10
- testRunner.Then("\'View transactions\', \'Download transactions\' and \'Transfers\' links are displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 11
- testRunner.And("Funds data information is diplayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Then("the Employer is able to add PAYE and Organisation to the Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
