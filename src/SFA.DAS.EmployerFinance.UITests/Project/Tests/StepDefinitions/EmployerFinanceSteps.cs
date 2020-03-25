@@ -28,11 +28,11 @@ namespace SFA.DAS.EmployerFinance.UITests.Project.Tests.StepDefinitions
         [Then(@"Funds data information is diplayed")]
         public void ThenFundsDataInformationIsDiplayed()
         {
-            const string expectedCurrentFundsLabel = FinancePage.ExpectedCurrentFundsLabel;
-            var expectedFundsSpentLabel = _financePage.ExpectedFundsSpentLabelConstant();
-            const string expectedEstimatesLabel = FinancePage.ExpectedEstimatesLabel;
-            const string expectedEstimatedTotalFundsText = FinancePage.ExpectedEstimatedTotalFundsLabel;
-            const string expectedEstimatedPlannedSpendingText = FinancePage.ExpectedEstimatedPlannedSpendingLabel;
+            string expectedCurrentFundsLabel = _financePage.ExpectedCurrentFundsLabel;
+            string expectedFundsSpentLabel = _financePage.ExpectedFundsSpentLabelConstant();
+            string expectedEstimatesLabel = _financePage.ExpectedEstimatesLabel;
+            string expectedEstimatedTotalFundsText = _financePage.ExpectedEstimatedTotalFundsLabel;
+            string expectedEstimatedPlannedSpendingText = _financePage.ExpectedEstimatedPlannedSpendingLabel;
 
             Assert.AreEqual(expectedCurrentFundsLabel, _financePage.GetCurrentFundsLabel());
             Assert.AreEqual(expectedFundsSpentLabel, _financePage.GetFundsSpentLabel());

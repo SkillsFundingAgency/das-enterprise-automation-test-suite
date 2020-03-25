@@ -391,10 +391,10 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         [Then(@"choosing to Continue with (BlankAornAndBlankPaye|BlankAornValidPaye|BlankPayeValidAorn|InvalidAornAndInvalidPaye) displays relevant Error text")]
         public void ThenChoosingToContinueWithBlankAornValidPayeDisplaysRelevantErrorText(string errorCase)
         {
-            const string blankAornFieldErrorMessage = EnterYourPAYESchemeDetailsPage.BlankAornFieldErrorMessage;
-            const string blankPayeFieldErrorMessage = EnterYourPAYESchemeDetailsPage.BlankPayeFieldErrorMessage;
-            const string aornInvalidFormatErrorMessage = EnterYourPAYESchemeDetailsPage.AornInvalidFormatErrorMessage;
-            const string payeInvalidFormatErrorMessage = EnterYourPAYESchemeDetailsPage.PayeInvalidFormatErrorMessage;
+            string blankAornFieldErrorMessage = _enterYourPAYESchemeDetailsPage.BlankAornFieldErrorMessage;
+            string blankPayeFieldErrorMessage = _enterYourPAYESchemeDetailsPage.BlankPayeFieldErrorMessage;
+            string aornInvalidFormatErrorMessage = _enterYourPAYESchemeDetailsPage.AornInvalidFormatErrorMessage;
+            string payeInvalidFormatErrorMessage = _enterYourPAYESchemeDetailsPage.PayeInvalidFormatErrorMessage;
 
             switch (errorCase)
             {
@@ -423,8 +423,8 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         [Then(@"choosing to enter AORN and PAYE details in the right format but non existing ones for 3 times displays 'Sorry Account disabled' Page")]
         public void ThenChoosingToEnterAORNAndPAYEDetailsInTheRightFormatButNonExistingOnesForTimesDisplaysPage()
         {
-            const string InvalidErrorMessage1stAttempt = EnterYourPAYESchemeDetailsPage.InvalidAornAndPayeErrorMessage1stAttempt;
-            const string InvalidErrorMessage2ndAttempt = EnterYourPAYESchemeDetailsPage.InvalidAornAndPayeErrorMessage2ndAttempt;
+            string InvalidErrorMessage1stAttempt = _enterYourPAYESchemeDetailsPage.InvalidAornAndPayeErrorMessage1stAttempt;
+            string InvalidErrorMessage2ndAttempt = _enterYourPAYESchemeDetailsPage.InvalidAornAndPayeErrorMessage2ndAttempt;
 
             EnterInvalidAornAndPaye();
             Assert.AreEqual(InvalidErrorMessage1stAttempt, _enterYourPAYESchemeDetailsPage.GetInvalidAornAndPayeErrorMessage());

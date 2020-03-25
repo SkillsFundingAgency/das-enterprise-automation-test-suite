@@ -20,12 +20,12 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         #endregion
 
         #region Constants
-        public const string BlankAornFieldErrorMessage = "Enter your reference number to continue";
-        public const string AornInvalidFormatErrorMessage = "Enter an accounts office reference number in the correct format";
-        public const string BlankPayeFieldErrorMessage = "Enter your PAYE scheme to continue";
-        public const string PayeInvalidFormatErrorMessage = "Enter a PAYE scheme number in the correct format";
-        public const string InvalidAornAndPayeErrorMessage1stAttempt = "You have 2 attempts remaining to enter a valid PAYE scheme and accounts office reference";
-        public const string InvalidAornAndPayeErrorMessage2ndAttempt = "You have 1 attempt remaining to enter a valid PAYE scheme and accounts office reference";
+        public string BlankAornFieldErrorMessage => "Enter your reference number to continue";
+        public string AornInvalidFormatErrorMessage => "Enter an accounts office reference number in the correct format";
+        public string BlankPayeFieldErrorMessage => "Enter your PAYE scheme to continue";
+        public string PayeInvalidFormatErrorMessage => "Enter a PAYE scheme number in the correct format";
+        public string InvalidAornAndPayeErrorMessage1stAttempt => "You have 2 attempts remaining to enter a valid PAYE scheme and accounts office reference";
+        public string InvalidAornAndPayeErrorMessage2ndAttempt => "You have 1 attempt remaining to enter a valid PAYE scheme and accounts office reference";
         #endregion
 
         public EnterYourPAYESchemeDetailsPage(ScenarioContext context) : base(context)

@@ -1,6 +1,7 @@
 ﻿using NUnit.Framework;
+using SFA.DAS.MongoDb.DataGenerator;
+using SFA.DAS.MongoDb.DataGenerator.Helpers;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages;
-using SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions;
 using TechTalk.SpecFlow;
 using static SFA.DAS.Registration.UITests.Project.Helpers.EnumHelper;
 
@@ -10,11 +11,15 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
     {
         private readonly ScenarioContext _context;
         private readonly RegistrationDataHelper _registrationDataHelper;
+        private readonly MongoDbDataGenerator _mongoDbDataGenerator;
+        private readonly LoginCredentialsHelper _loginCredentialsHelper;
 
         public AccountCreationStepsHelper(ScenarioContext context)
         {
             _context = context;
             _registrationDataHelper = context.Get<RegistrationDataHelper>();
+            _loginCredentialsHelper = context.Get<LoginCredentialsHelper>();
+            _mongoDbDataGenerator = new MongoDbDataGenerator(_context);
         }
 
         public ConfirmPage RegisterUserAccount() => new IndexPage(_context).CreateAccount().Register();
@@ -26,7 +31,12 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
                 .SearchForAnOrganisation(orgType);
         }
 
-        public void AddLevyDeclarations() => new BackgroundDataSteps(_context).GivenLevyDeclarationsIsAddedForPastMonthsWithLevypermonthAs("5", "10000");
+        public void AddLevyDeclarations()
+        {
+            var (fraction, calculatedAt, levyDeclarations) = LevyDeclarationDataHelper.LevyFunds("5", "10000");
+            _mongoDbDataGenerator.AddLevyDeclarations(fraction, calculatedAt, levyDeclarations);
+            _loginCredentialsHelper.SetIsLevy();
+        }
 
         public void AssertManuallyAddedAddressDetailsAndCompleteRegistration(CheckYourDetailsPage checkYourDetailsPage)
         {

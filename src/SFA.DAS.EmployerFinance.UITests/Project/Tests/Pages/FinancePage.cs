@@ -21,10 +21,10 @@ namespace SFA.DAS.EmployerFinance.UITests.Project.Tests.Pages
         #endregion
 
         #region Constants
-        public const string ExpectedCurrentFundsLabel = "Current funds";
-        public const string ExpectedEstimatesLabel = "Estimates";
-        public const string ExpectedEstimatedTotalFundsLabel = "Estimated total funding for the next 12 months (based on funds entering your Apprenticeship service account, including the 10% top up)";
-        public const string ExpectedEstimatedPlannedSpendingLabel = "Estimated planned spending for the next 12 months";
+        public string ExpectedCurrentFundsLabel => "Current funds";
+        public string ExpectedEstimatesLabel => "Estimates";
+        public string ExpectedEstimatedTotalFundsLabel => "Estimated total funding for the next 12 months (based on funds entering your Apprenticeship service account, including the 10% top up)";
+        public string ExpectedEstimatedPlannedSpendingLabel => "Estimated planned spending for the next 12 months";
         #endregion
 
         public FinancePage(ScenarioContext context) : base(context) => VerifyPage();
