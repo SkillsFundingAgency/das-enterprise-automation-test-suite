@@ -89,6 +89,17 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.RoatpApply
                 .VerifyDescribeYourOrganisationStatus(StatusHelper.StatusCompleted);
         }
 
+        internal ApplicationOverviewPage CompleteYourOrganisationSection_4_SixthFormCollege(ApplicationOverviewPage applicationOverviewPage)
+        {
+            return applicationOverviewPage
+                .AccessDescribeYourOrganisationsForOrgTypeCharity()
+                .SelectEducationalInstituteAndContinue()
+                .SelectSixthFormCollegeAndContinue()
+                .SelectYesForOrgAlreadyRegisteredAndContinue()
+                .SelectPublicServiceMutalAndShelterdWorkshopAndContinue()
+                .VerifyDescribeYourOrganisationStatus(StatusHelper.StatusCompleted);
+        }
+
         internal ApplicationOverviewPage CompleteYourOrganisationSection_4_OrgTypeNoneOfTheAbove(ApplicationOverviewPage applicationOverviewPage)
         {
             return applicationOverviewPage

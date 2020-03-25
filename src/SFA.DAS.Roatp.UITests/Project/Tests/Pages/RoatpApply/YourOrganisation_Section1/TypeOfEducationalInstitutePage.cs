@@ -23,6 +23,13 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.YourOrganisation_
             return new DescribeYourOrganisationPage(_context);
         }
 
+        public AlreadyRegisteredWithEsfaPage SelectSixthFormCollegeAndContinue()
+        {
+            SelectRadioOptionByText("Sixth Form College");
+            Continue();
+            return new AlreadyRegisteredWithEsfaPage(_context);
+        }
+
         public AlreadyRegisteredWithEsfaPage SelectAcademyAndContinue()
         {
             SelectRadioOptionByText("Academy");
