@@ -79,14 +79,19 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 
         public FAA_ApprenticeSummaryPage SelectBrowsedVacancy()
         {
-            ChangeSortOrder();           
+            ChangeSortOrderToRecentlyAdded();
+            ChangeSortResultsTo50Vacancies();
             _formCompletionHelper.Click(VacancyLink);            
             return new FAA_ApprenticeSummaryPage(_context);
         }
 
         public bool CheckVacancyIsDisplayedBasedOnSearchCriteria(string postCode, string distance)
         {
-            ChangeSortOrder();
+            if (distance == "Job title" || distance == "Employer" || distance == "Description")
+            {
+                ChangeSortOrderToRecentlyAdded();
+            }
+            ChangeSortResultsTo50Vacancies();
             bool vacanciesFound = FoundVacancies();
             if (vacanciesFound)
             {
@@ -106,10 +111,13 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
             return false;
         }
 
-        private void ChangeSortOrder()
+        private void ChangeSortOrderToRecentlyAdded()
         {
             _formCompletionHelper.SelectFromDropDownByValue(SortResults, "RecentlyAdded");
             _pageInteractionHelper.WaitforURLToChange("sortType=RecentlyAdded");
+        }
+        private void ChangeSortResultsTo50Vacancies()
+        {
             if (_pageInteractionHelper.IsElementDisplayed(DisplayResults))
             {
                 _pageInteractionHelper.FocusTheElement(DisplayResults);
