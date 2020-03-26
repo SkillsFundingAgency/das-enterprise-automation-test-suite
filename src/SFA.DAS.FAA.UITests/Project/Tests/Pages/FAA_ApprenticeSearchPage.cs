@@ -136,16 +136,9 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 
         public FAA_PhoneNumberVerificationPage VerifyPhoneNumberVerificationText()
         {
-            if(_pageInteractionHelper.IsElementDisplayed(VerifyPhoneNumberText))
-            {
-                _pageInteractionHelper.VerifyText(VerifyPhoneNumberText, _faadataHelper.PhoneNumberVerificationText);
-                _formCompletionHelper.ClickLinkByText("verify your number");
-                _pageInteractionHelper.WaitforURLToChange("verifymobile");
-            }
-            else
-            {
-                throw new Exception("verify phone number text is not found");
-            }            
+            _pageInteractionHelper.VerifyText(VerifyPhoneNumberText, _faadataHelper.PhoneNumberVerificationText);
+            _formCompletionHelper.ClickLinkByText("verify your number");
+            _pageInteractionHelper.WaitforURLToChange("verifymobile");
             return new FAA_PhoneNumberVerificationPage(_context);
         } 
 

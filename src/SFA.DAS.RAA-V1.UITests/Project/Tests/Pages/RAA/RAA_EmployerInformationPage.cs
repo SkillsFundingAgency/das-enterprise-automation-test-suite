@@ -102,6 +102,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         public void ClickOnSaveAndContinueButton()
         {
             formCompletionHelper.ClickButtonByText("Save and continue");
+            pageInteractionHelper.WaitforURLToChange("create?");
             var heading = _pageInteractionHelper.GetText(VacancyLocationHeading);
             if (heading.Contains("Vacancy location(s)"))
             {
