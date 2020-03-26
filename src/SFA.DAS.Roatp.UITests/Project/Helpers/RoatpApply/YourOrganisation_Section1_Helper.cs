@@ -95,7 +95,8 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.RoatpApply
                 .AccessDescribeYourOrganisationsForOrgTypeCharity()
                 .SelectEducationalInstituteAndContinue()
                 .SelectSixthFormCollegeAndContinue()
-                .SelectYesForOrgAlreadyRegisteredAndContinue()
+                .SelectYesForOrgAlreadyRegisteredAndContinueRouteEmployer()
+                .SelectInYourOrganisationAndContinue()
                 .SelectPublicServiceMutalAndShelterdWorkshopAndContinue()
                 .VerifyDescribeYourOrganisationStatus(StatusHelper.StatusCompleted);
         }
