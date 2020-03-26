@@ -98,18 +98,8 @@ namespace SFA.DAS.RAA.DataGenerator
 
         private List<string> AvailableTraining => new List<string> 
         {
-            "Agriculture: Agriculture, Level 3 (A level)",
-            "Broadcast production assistant, Level 3 (A level)",
-            "Construction Building: Maintenance Operations, Level 2 (GCSE)",
-            "Event Assistant, Level 3 (A level)",
-            "Financial services administrator, Level 3 (A level)",
-            "Groundworker, Level 2 (GCSE)",
-            "Healthcare support worker, Level 2 (GCSE)",            
-            "Junior journalist, Level 3 (A level)",
             "Software Development Technician, Level 3 (A level)",
-            "Software tester, Level 4 (Higher national certificate)",
-            "Lifting Technician, Level 2 (GCSE)",
-            "Legal Services: Property, Level 3 (A level)"
+            "Software tester, Level 4 (Higher national certificate)"
         };
 
         private List<string> AvailableAddress => new List<string>
