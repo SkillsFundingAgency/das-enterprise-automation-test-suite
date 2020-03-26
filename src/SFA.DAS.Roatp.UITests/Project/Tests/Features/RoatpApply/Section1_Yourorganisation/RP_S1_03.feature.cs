@@ -90,7 +90,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Features.RoatpApply.Section1_Youro
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 9
- testRunner.Given("the provider initates an application as supporting route soletrader", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("the provider initates an application as supporting route", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 10
  testRunner.Then("the provider completes Introduction and what you\'ll need content for supporting r" +
                     "oute", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");

@@ -6,7 +6,7 @@
 @roatpe2e
 @regression
 Scenario: RP_E2E_03_SupportingRoute-Soletrader
-	Given the provider initates an application as supporting route soletrader
+	Given the provider initates an application as supporting route
 	When the provider completes Your organisation section for supporting route
 	And the provider completes Financial Evidence section for supporting route
 	And the provider completes Criminal and Compliance section
