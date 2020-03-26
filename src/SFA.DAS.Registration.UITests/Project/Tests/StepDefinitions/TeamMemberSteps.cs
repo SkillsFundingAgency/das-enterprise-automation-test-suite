@@ -43,7 +43,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         {
             TestContext.Progress.WriteLine($"Invited team member's email id: {_invitedMemberEmailId}");
 
-            _yourTeamPage = _yourTeamPage.ClickViewMemberLink(_objectContext.GetAnotherEmail())
+            _yourTeamPage = _yourTeamPage.ClickViewMemberLink(_invitedMemberEmailId)
                 .ClickResendInvitationButton()
                 .VerifyInvitationResentHeaderInfoMessage();
         }
@@ -51,7 +51,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         [Then(@"Employer is able abort cancelling during cancelling an invite")]
         public void ThenEmployerIsAbleAbortCancellingDuringCancellingAnInvite()
         {
-            _yourTeamPage = _yourTeamPage.ClickViewMemberLink(_objectContext.GetAnotherEmail())
+            _yourTeamPage = _yourTeamPage.ClickViewMemberLink(_invitedMemberEmailId)
                 .ClickCancelInvitationLink()
                 .ClickNoDontCancelInvitationLink();
         }
@@ -59,7 +59,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         [Then(@"Employer is able to cancel an invite")]
         public void ThenEmployerIsAbleToCancelAnInvite()
         {
-            _yourTeamPage = _yourTeamPage.ClickViewMemberLink(_objectContext.GetAnotherEmail())
+            _yourTeamPage = _yourTeamPage.ClickViewMemberLink(_invitedMemberEmailId)
                 .ClickCancelInvitationLink()
                 .ClickYesCancelInvitationButtonButton()
                 .VerifyInvitationCancelledHeaderInfoMessage();
@@ -85,7 +85,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
                 .SignIn()
                 .Login(_objectContext.GetLoginCredentials())
                 .GotoYourTeamPage()
-                .ClickViewMemberLink(_objectContext.GetAnotherEmail())
+                .ClickViewMemberLink(_invitedMemberEmailId)
                 .ClickRemoveTeamMemberButton()
                 .ClickYesRemoveNowButton()
                 .VerifyTeamMemberRemovedHeaderInfoMessage();
