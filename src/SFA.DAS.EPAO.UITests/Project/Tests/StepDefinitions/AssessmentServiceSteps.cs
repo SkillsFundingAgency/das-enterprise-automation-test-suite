@@ -258,7 +258,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         [Then(@"the user can apply to assess a standard")]
         public void ThenTheUserCanApplyToAssessAStandard()
         {
-            _loggedInHomePage.ApplyToAssessStandard()
+           var applyToStandard = _loggedInHomePage.ApplyToAssessStandard()
                 .SelectApplication()
                 .StartApplication()
                 .Start()
@@ -266,6 +266,47 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
                 .Apply()
                 .ConfirmAndApply()
                 .GoToApplyToStandard();
+
+            applyToStandard = applyToStandard.AccessYourPolicies_01()
+                .EnterRegNumber()
+                .UploadAuditPolicy()
+                .UploadPublicLiabilityInsurance()
+                .UploadProfessionalIndemnityInsurance()
+                .UploadEmployersLiabilityInsurance()
+                .UploadSafeguardingPolicy()
+                .UploadPreventAgendaPolicy()
+                .UploadConflictOfinterestPolicy()
+                .UploadMonitoringProcedure()
+                .UploadModerationProcesses()
+                .UploadComplaintsPolicy()
+                .UploadFairAccess()
+                .UploadConsistencyAssurance()
+                .EnterImproveTheQuality()
+                .EnterEngagement()
+                .EnterMembershipDetails()
+                .EnterHowManyAssessors()
+                .EnterHowManyEndPointAssessment()
+                .EnterVolume()
+                .EnterHowRecruitAndTrainAssessors()
+                .EnterExperience()
+                .EnterOccupationalExpertise()
+                .EnterDeliverEndPoint()
+                .EnterIntendToOutsource()
+                .EnterEngageWithEmployers()
+                .EnterManageAnyPotentialConflict()
+                .ChooseLocation()
+                .EnterDayToStart()
+                .EnterAssessmentPlan()
+                .EnterReviewAndMaintainPlan()
+                .EnterSecureITInfrastructurePlan()
+                .EnterAssessmentAdministration()
+                .EnterAssessmentProduct()
+                .EnterAssessmentContent()
+                .EnterCollationOutcome()
+                .EnterAssessmentResutls()
+                .EnterWebAddress();
+
+            applyToStandard.ReturnToApplicationOverview().Submit();
         }
     }
 }

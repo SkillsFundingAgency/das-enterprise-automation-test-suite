@@ -37,6 +37,8 @@ namespace SFA.DAS.EPAO.UITests.Project
 
             _context.Set(new EPAODataHelper(r));
 
+            _context.Set(new EPAOApplyStandardDataHelper(r));
+
             _ePAOAdminDataHelper = new EPAOAdminDataHelper(r);
 
             _context.Set(_ePAOAdminDataHelper);

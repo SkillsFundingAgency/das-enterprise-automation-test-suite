@@ -19,6 +19,10 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
             CharityNumber = $"9{GetRandomNumber(4)}-{GetRandomNumber(2)}";
         }
 
+        public string Standards => "100";
+
+        public string StandardsName => "Transport planning technician";
+
         public string OrganisationName => "City and Guilds";
 
         public string OrganisationEpaoId => "EPA0008";
@@ -60,8 +64,5 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
         public string StreetAddress2 => "Cheylsmore Avuene";
 
         public string StreetAddress3 => "Warkwickshire";
-
-        public IWebElement GetRandomElementFromListOfElements(List<IWebElement> options) => randomDataGenerator.GetRandomElementFromListOfElements(options);
-
     }
 }
