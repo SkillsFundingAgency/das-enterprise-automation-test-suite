@@ -1,0 +1,59 @@
+﻿using NUnit.Framework;
+using SFA.DAS.MongoDb.DataGenerator;
+using SFA.DAS.MongoDb.DataGenerator.Helpers;
+using SFA.DAS.Registration.UITests.Project.Tests.Pages;
+using TechTalk.SpecFlow;
+using static SFA.DAS.Registration.UITests.Project.Helpers.EnumHelper;
+
+namespace SFA.DAS.Registration.UITests.Project.Helpers
+{
+    public class AccountCreationStepsHelper
+    {
+        private readonly ScenarioContext _context;
+        private readonly RegistrationDataHelper _registrationDataHelper;
+        private readonly MongoDbDataGenerator _mongoDbDataGenerator;
+        private readonly LoginCredentialsHelper _loginCredentialsHelper;
+
+        public AccountCreationStepsHelper(ScenarioContext context)
+        {
+            _context = context;
+            _registrationDataHelper = context.Get<RegistrationDataHelper>();
+            _loginCredentialsHelper = context.Get<LoginCredentialsHelper>();
+            _mongoDbDataGenerator = new MongoDbDataGenerator(_context);
+        }
+
+        public ConfirmPage RegisterUserAccount() => new IndexPage(_context).CreateAccount().Register();
+
+        public SelectYourOrganisationPage SearchForAnotherOrg(HomePage homepage, OrgType orgType)
+        {
+            return homepage.GoToYourOrganisationsAndAgreementsPage()
+                .ClickAddNewOrganisationButton()
+                .SearchForAnOrganisation(orgType);
+        }
+
+        public void AddLevyDeclarations()
+        {
+            var (fraction, calculatedAt, levyDeclarations) = LevyDeclarationDataHelper.LevyFunds("5", "10000");
+            _mongoDbDataGenerator.AddLevyDeclarations(fraction, calculatedAt, levyDeclarations);
+            _loginCredentialsHelper.SetIsLevy();
+        }
+
+        public void AssertManuallyAddedAddressDetailsAndCompleteRegistration(CheckYourDetailsPage checkYourDetailsPage)
+        {
+            var manuallyEnteredAddress = $"{_registrationDataHelper.FirstLineAddressForManualEntry} " +
+                                            $"{_registrationDataHelper.CityNameForManualEntry} " +
+                                            $"{_registrationDataHelper.PostCodeForManualEntry}";
+            Assert.AreEqual(manuallyEnteredAddress, checkYourDetailsPage.GetManuallyAddedOrganisationAddress());
+
+            checkYourDetailsPage.ClickYesTheseDetailsAreCorrectButtonInCheckYourDetailsPage()
+                        .SelectViewAgreementNowAndContinue()
+                        .SignAgreement();
+        }
+
+        public CheckYourDetailsPage AddPayeDetailsForSingleOrgAornRoute(AddAPAYESchemePage addAPAYESchemePage) =>
+            addAPAYESchemePage.AddAORN().EnterAornAndPayeDetailsForSingleOrgScenarioAndContinue();
+
+        public TheseDetailsAreAlreadyInUsePage ReEnterAornDetails(AddAPAYESchemePage addAPAYESchemePage) => addAPAYESchemePage.AddAORN()
+                .ReEnterTheSameAornDetailsAndContinue();
+    }
+}

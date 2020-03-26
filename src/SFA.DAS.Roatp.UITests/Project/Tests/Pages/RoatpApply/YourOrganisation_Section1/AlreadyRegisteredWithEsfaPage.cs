@@ -20,7 +20,6 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.YourOrganisation_
             SelectYesAndContinue();
             return new TrainApprenticesPage(_context);
         }
-
         public DescribeYourOrganisationPage SelectYesForOrgAlreadyRegisteredAndContinue()
         {
             SelectYesAndContinue();

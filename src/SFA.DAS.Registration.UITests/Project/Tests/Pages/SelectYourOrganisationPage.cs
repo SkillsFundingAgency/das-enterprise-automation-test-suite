@@ -1,6 +1,6 @@
 ﻿using OpenQA.Selenium;
 using TechTalk.SpecFlow;
-using static SFA.DAS.RAA_V1.UITests.Project.Helpers.EnumHelper;
+using static SFA.DAS.Registration.UITests.Project.Helpers.EnumHelper;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 {
