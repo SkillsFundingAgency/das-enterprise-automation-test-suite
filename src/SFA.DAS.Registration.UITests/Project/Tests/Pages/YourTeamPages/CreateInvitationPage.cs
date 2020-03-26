@@ -12,6 +12,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.YourTeamPages
         private By SendInvitationButton => By.Id("send_invitation");
         private By EmailTextBox => By.Id("Email");
         private By FullNameTextBox => By.Id("Name");
+        private By ViewerAccessRadioButton => By.Id("radio1");
         #endregion
 
         public CreateInvitationPage(ScenarioContext context) : base(context)
@@ -20,9 +21,8 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.YourTeamPages
             VerifyPage();
         }
 
-        public CreateInvitationPage EnterEmailAndFullName()
+        public CreateInvitationPage EnterEmailAndFullName(string email)
         {
-            var email = registrationDataHelper.AnotherRandomEmail;
             formCompletionHelper.EnterText(EmailTextBox, email);
             objectContext.SetAnotherEmail(email);
             formCompletionHelper.EnterText(FullNameTextBox, registrationDataHelper.InvitedViewerAccessUserFullName);
@@ -31,7 +31,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.YourTeamPages
 
         public InvitationSentPage SelectViewerAccessRadioButtonAndSendInvitation()
         {
-            SelectRadioOptionByForAttribute("radio1");
+            formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(ViewerAccessRadioButton));
             formCompletionHelper.Click(SendInvitationButton);
             return new InvitationSentPage(_context);
         }

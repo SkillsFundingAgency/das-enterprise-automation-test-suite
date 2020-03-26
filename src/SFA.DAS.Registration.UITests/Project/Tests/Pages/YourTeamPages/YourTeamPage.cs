@@ -32,19 +32,19 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.YourTeamPages
             return new ViewTeamMemberPage(_context);
         }
 
-        public YourTeamPage VerifyInvitationResentHeader()
+        public YourTeamPage VerifyInvitationResentHeaderInfoMessage()
         {
             VerifyInvitationActionHeader("Invitation resent");
             return this;
         }
 
-        public YourTeamPage VerifyInvitationCancelledHeader()
+        public YourTeamPage VerifyInvitationCancelledHeaderInfoMessage()
         {
             VerifyInvitationActionHeader("Invitation cancelled");
             return this;
         }
 
-        public YourTeamPage VerifyTeamMemberRemovedHeader()
+        public YourTeamPage VerifyTeamMemberRemovedHeaderInfoMessage()
         {
             VerifyInvitationActionHeader("Team member removed");
             return this;

@@ -43,7 +43,7 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
         public string PostCodeForManualEntry => "CV1 2WT";
         public string InvalidPaye => $"{RandomNumericString(3)}/{RandomAlphaNumericString(7)}";
         public string InvalidAornNumber => $"A{GetDateTimeValue()}";
-        public string InvitedViewerAccessUserFullName => "ViewerAccess User";
+        public string InvitedViewerAccessUserFullName => "RE Auto_Tester";
 
         private string RandomAlphaNumericString(int length) => _randomDataGenerator.GenerateRandomAlphanumericString(length);
         private string RandomNumericString(int length) => _randomDataGenerator.GenerateRandomNumber(length);

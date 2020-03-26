@@ -3,16 +3,17 @@ using TechTalk.SpecFlow;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.Registration.UITests.Project.Helpers;
-
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 {
     public abstract class RegistrationBasePage : BasePage
     {
+        #region Helpers and Context
         protected readonly FormCompletionHelper formCompletionHelper;
         protected readonly PageInteractionHelper pageInteractionHelper;
         protected readonly RegistrationConfig config;
         protected readonly ObjectContext objectContext;
         protected readonly RegistrationDataHelper registrationDataHelper;
+        #endregion
 
         protected RegistrationBasePage(ScenarioContext context) : base(context)
         {

@@ -9,7 +9,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.YourTeamPages
         private readonly ScenarioContext _context;
 
         #region Locators
-        private By AcceptInviteLink => By.LinkText("Accept invite");
+        private By AcceptInviteLink => By.Id("invitationId");
         #endregion
 
         public InvitationsPage(ScenarioContext context) : base(context)
