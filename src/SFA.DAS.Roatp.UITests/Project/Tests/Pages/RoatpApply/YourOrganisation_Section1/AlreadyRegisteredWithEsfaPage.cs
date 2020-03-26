@@ -4,7 +4,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.YourOrganisation_
 {
     public class AlreadyRegisteredWithEsfaPage : RoatpApplyBasePage
     {
-        protected override string PageTitle => "Is your organisation already registered with ESFA?";
+        protected override string PageTitle => "Is your organisation";
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
@@ -20,7 +20,6 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.YourOrganisation_
             SelectYesAndContinue();
             return new TrainApprenticesPage(_context);
         }
-
         public DescribeYourOrganisationPage SelectYesForOrgAlreadyRegisteredAndContinue()
         {
             SelectYesAndContinue();

@@ -2,6 +2,6 @@
 
 @regression
 @registration
-Scenario: RE_CUA_01_Create an User Account and Skip adding PAYE
-	When an User Account is created
-	Then My Account Home page is displayed when PAYE details are not added
+Scenario: RE_CUA_01_Verify registering an account with an Email address that is already associated to an Active Account
+	When an User tries to regiser an Account with an Email already registered
+	Then 'Email already regisered' message is shown to the User

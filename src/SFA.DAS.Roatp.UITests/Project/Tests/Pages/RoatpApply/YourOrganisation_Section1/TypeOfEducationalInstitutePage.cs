@@ -29,5 +29,12 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.YourOrganisation_
             Continue();
             return new AlreadyRegisteredWithEsfaPage(_context);
         }
+
+        public TrainApprenticesPage SelectHigherEducationInstituteAndContinueForEmplopyer()
+        {
+            SelectRadioOptionByText("Higher Education Institute");
+            Continue();
+            return new TrainApprenticesPage(_context);
+        }
     }
 }

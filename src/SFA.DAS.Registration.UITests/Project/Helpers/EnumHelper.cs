@@ -1,4 +1,4 @@
-﻿namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
+﻿namespace SFA.DAS.Registration.UITests.Project.Helpers
 {
     public static class EnumHelper
     {
@@ -9,14 +9,6 @@
             Charity2,
             PublicSector,
             Default
-        }
-
-        public enum AornErrors
-        {
-            BlankAornAndBlankPaye,
-            BlankAornValidPaye,
-            BlankPayeValidAorn,
-            InvalidAornAndInvalidPaye
         }
     }
 }

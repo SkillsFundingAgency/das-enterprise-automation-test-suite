@@ -1,10 +1,11 @@
-﻿using SFA.DAS.EmployerFinance.UITests.Project.Tests.Pages;
+﻿using NUnit.Framework;
+using SFA.DAS.EmployerFinance.UITests.Project.Tests.Pages;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EmployerFinance.UITests.Project.Tests.StepDefinitions
 {
     [Binding]
-    class EmployerFinanceSteps
+    public class EmployerFinanceSteps
     {
         private readonly ScenarioContext _context;
         private HomePageFinancesSection _homePageFinancesSectionPage;
@@ -23,5 +24,21 @@ namespace SFA.DAS.EmployerFinance.UITests.Project.Tests.StepDefinitions
 
         [Then(@"'View transactions', 'Download transactions' and 'Transfers' links are displayed")]
         public void ThenAndLinksAreDisplayed() => _financePage.IsViewTransactionsLinkPresent().IsDownloadTransactionsLinkPresent().IsTransfersLinkPresent();
+
+        [Then(@"Funds data information is diplayed")]
+        public void ThenFundsDataInformationIsDiplayed()
+        {
+            string expectedCurrentFundsLabel = _financePage.ExpectedCurrentFundsLabel;
+            string expectedFundsSpentLabel = _financePage.ExpectedFundsSpentLabelConstant();
+            string expectedEstimatesLabel = _financePage.ExpectedEstimatesLabel;
+            string expectedEstimatedTotalFundsText = _financePage.ExpectedEstimatedTotalFundsLabel;
+            string expectedEstimatedPlannedSpendingText = _financePage.ExpectedEstimatedPlannedSpendingLabel;
+
+            Assert.AreEqual(expectedCurrentFundsLabel, _financePage.GetCurrentFundsLabel());
+            Assert.AreEqual(expectedFundsSpentLabel, _financePage.GetFundsSpentLabel());
+            Assert.AreEqual(expectedEstimatesLabel, _financePage.GetEstimatesLabel());
+            Assert.AreEqual(expectedEstimatedTotalFundsText, _financePage.GetEstimatedTotalFundsText());
+            Assert.AreEqual(expectedEstimatedPlannedSpendingText, _financePage.getEstimatedPlannedSpendingText());
+        }
     }
 }
