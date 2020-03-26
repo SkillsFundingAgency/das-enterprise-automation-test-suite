@@ -60,7 +60,6 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.RoatpApply
                 .VerifyYourOrganisationsFinancialEvidence_Section2(StatusHelper.StatusCompleted);
         }
 
-
         internal ApplicationOverviewPage CompleteFinancialEvidence_3(ApplicationOverviewPage applicationOverviewPage)
         {
             return applicationOverviewPage
@@ -69,6 +68,14 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.RoatpApply
                 .ClickNoOnOtherSubsidiaryCompanies()
                 .UploadFullFinancialStatementsForTwelveMonthsAndContinue()
                 .VerifyYourUkUltimateParentCompany_Section3(StatusHelper.StatusCompleted);
+        }
+
+        internal ApplicationOverviewPage VerifyFinancialEvidenceSectionExempted(ApplicationOverviewPage applicationOverviewPage)
+        {
+            return applicationOverviewPage
+                .VerifyIntroductionStatus_Section2(StatusHelper.NotRequired)
+                .VerifyYourOrganisationsFinancialEvidence_Section2(StatusHelper.NotRequired)
+                .VerifyYourUkUltimateParentCompany_Section3(StatusHelper.NotRequired);
         }
     }
 }

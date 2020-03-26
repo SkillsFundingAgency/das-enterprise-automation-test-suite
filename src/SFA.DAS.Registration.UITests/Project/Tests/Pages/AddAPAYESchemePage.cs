@@ -35,11 +35,11 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             return new EnterYourPAYESchemeDetailsPage(_context);
         }
 
-        public MyAccountWithOutPaye DoNotAddPaye()
+        public MyAccountWithOutPayePage DoNotAddPaye()
         {
             SelectDoNotAddPaye().
                 Continue();
-            return new MyAccountWithOutPaye(_context);
+            return new MyAccountWithOutPayePage(_context);
         }
 
         private AddAPAYESchemePage SelectAddPaye()

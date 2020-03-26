@@ -13,11 +13,13 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpApply
         private readonly ScenarioContext _context;
         private ApplicationOverviewPage _overviewPage;
         private readonly YourOrganisation_Section1_Helper _yourOrganisationSectionHelper;
+        private readonly FinancialEvidence_Section2_Helper _financialEvidence_Section2_Helper;
 
         public Section1Steps(ScenarioContext context)
         {
             _context = context;
             _yourOrganisationSectionHelper = new YourOrganisation_Section1_Helper();
+            _financialEvidence_Section2_Helper = new FinancialEvidence_Section2_Helper();
         }
 
         [Then(@"the provider completes Introduction and what you'll need section for main and employer route")]
@@ -59,6 +61,9 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpApply
         [Then(@"the provider completes Describe your organisation section as OrgTypeAEI")]
         public void ThenTheProviderCompletesDescribeYourOrganisationSectionAsOrgTypeAEI() => _overviewPage = _yourOrganisationSectionHelper.CompleteYourOrganisationSection_4_OrgTypeAEI(_overviewPage);
 
+        [Then(@"the provider completes Describe your organisation section as OrgTypeAEI Employer Route")]
+        public void ThenTheProviderCompletesDescribeYourOrganisationSectionAsOrgTypeAEIEmployerRoute() => _overviewPage = _yourOrganisationSectionHelper.CompleteYourOrganisationSection_4_OrgTypeHEIEmplopyerRoute(_overviewPage);
+
         [Then(@"the provider completes Describe your organisation section")]
         public void ThenTheProviderCompletesDescribeYourOrganisationSection() => _overviewPage = _yourOrganisationSectionHelper.CompleteYourOrganisationSection_4_OrgTypeAcadamy(_overviewPage);
 
@@ -91,5 +96,9 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpApply
 
         [Then(@"the provider verifies section exemptions for employer route")]
         public void ThenTheProviderVerifiesSectionExemptionsForEmployerRoute() => _overviewPage = _yourOrganisationSectionHelper.CompleteAndVerifySectionExemptions_EmployerRoute(_overviewPage);
+
+        [Then(@"the provider verifies Financial Section Status as not required")]
+        public void ThenTheProviderVerifiesFinancialSectionStatusAsNotRequired() => _overviewPage = _financialEvidence_Section2_Helper.VerifyFinancialEvidenceSectionExempted(_overviewPage);
+
     }
 }

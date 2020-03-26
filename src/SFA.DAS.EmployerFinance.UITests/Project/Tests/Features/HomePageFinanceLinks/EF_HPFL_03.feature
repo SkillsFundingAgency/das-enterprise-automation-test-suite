@@ -8,3 +8,4 @@ Scenario: EF_HPFL_03 - Validate Home Page Finance section for a Levy User who ha
 	Then 'Your finances' link is displayed in the Finances section
 	When the Employer navigates to 'Finance' Page
 	Then 'View transactions', 'Download transactions' and 'Transfers' links are displayed
+	And Funds data information is diplayed
