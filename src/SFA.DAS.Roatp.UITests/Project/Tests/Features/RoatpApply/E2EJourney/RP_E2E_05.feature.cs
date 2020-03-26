@@ -18,20 +18,20 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Features.RoatpApply.E2EJourney
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.0.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("RP_E2E_04")]
-    public partial class RP_E2E_04Feature
+    [NUnit.Framework.DescriptionAttribute("RP_E2E_05")]
+    public partial class RP_E2E_05Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "SpecFlowFeature1.feature"
+#line 1 "RP_E2E_05.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "RP_E2E_04", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "RP_E2E_05", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -70,16 +70,16 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Features.RoatpApply.E2EJourney
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RP_E2E_02_EmployerRoute-Company -FHA Exempt")]
-        [NUnit.Framework.CategoryAttribute("rpe2e02")]
+        [NUnit.Framework.DescriptionAttribute("RP_E2E_05_EmployerRoute-Company -FHA Exempt")]
+        [NUnit.Framework.CategoryAttribute("rpe2e05")]
         [NUnit.Framework.CategoryAttribute("roatp")]
         [NUnit.Framework.CategoryAttribute("roatpapply")]
         [NUnit.Framework.CategoryAttribute("roatpe2e")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public virtual void RP_E2E_02_EmployerRoute_Company_FHAExempt()
+        public virtual void RP_E2E_05_EmployerRoute_Company_FHAExempt()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_E2E_02_EmployerRoute-Company -FHA Exempt", null, new string[] {
-                        "rpe2e02",
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_E2E_05_EmployerRoute-Company -FHA Exempt", null, new string[] {
+                        "rpe2e05",
                         "roatp",
                         "roatpapply",
                         "roatpe2e",
