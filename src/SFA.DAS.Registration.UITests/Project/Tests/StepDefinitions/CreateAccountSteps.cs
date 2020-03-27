@@ -349,7 +349,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         [Then(@"'These details are already in use' page is displayed when Another Employer tries to register the account with the same Aorn and Paye details")]
         public void ThenPageIsDisplayedWhenAnotherEmployerTriesToRegisterTheAccountWithTheSameAornAndPayeDetails()
         {
-            _homePage.SignOut().CickContinueInYouveLoggedOutPage();
+            _accountCreationStepsHelper.SignOut();
 
             _objectContext.SetRegisteredEmail(_registrationDataHelper.AnotherRandomEmail);
 
