@@ -9,8 +9,6 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.ApplyToAsse
 
         private readonly ScenarioContext _context;
 
-        private By InputNumber => By.CssSelector(".govuk-input[type='number']");
-
         public AS_HowManyAssessorsPage(ScenarioContext context) : base(context) => _context = context;
 
         public AS_HowManyEndPointAssessmentPage EnterHowManyAssessors()
