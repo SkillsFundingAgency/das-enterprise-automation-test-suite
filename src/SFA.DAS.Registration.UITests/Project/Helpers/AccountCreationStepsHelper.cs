@@ -55,5 +55,7 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
 
         public TheseDetailsAreAlreadyInUsePage ReEnterAornDetails(AddAPAYESchemePage addAPAYESchemePage) => addAPAYESchemePage.AddAORN()
                 .ReEnterTheSameAornDetailsAndContinue();
+
+        public IndexPage SignOut() => new HomePage(_context, true).SignOut().CickContinueInYouveLoggedOutPage();
     }
 }
