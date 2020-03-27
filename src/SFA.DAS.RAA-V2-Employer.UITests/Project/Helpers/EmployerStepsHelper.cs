@@ -1,5 +1,4 @@
-﻿using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
-using SFA.DAS.Login.Service;
+﻿using SFA.DAS.Login.Service;
 using SFA.DAS.Login.Service.Helpers;
 using SFA.DAS.RAA_V2.Service.Project.Helpers;
 using SFA.DAS.RAA_V2.Service.Project.Tests.Pages;
@@ -25,15 +24,11 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
             _stepsHelper = new StepsHelper(context);
         }
 
-        internal void SubmitVacancy(VacancyPreviewPart2Page previewPage, bool isApplicationMethodFAA, bool optionalFields)
-        {
-            _stepsHelper.SubmitVacancy(previewPage, isApplicationMethodFAA, optionalFields);
-        }
+        internal void SubmitVacancy(VacancyPreviewPart2Page previewPage, bool isApplicationMethodFAA, bool optionalFields) => _stepsHelper.SubmitVacancy(previewPage, isApplicationMethodFAA, optionalFields);
 
         internal VacanciesPage DeleteDraftVacancy(VacancyPreviewPart2Page previewPage) => previewPage.DeleteVacancy().YesDeleteVacancy();
 
         internal VacanciesPage CancelVacancy() => EnterVacancyTitle().CancelVacancy();
-
 
         internal void CreateOfflineVacancy(bool disabilityConfidence)
         {
@@ -44,28 +39,9 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
             SearchVacancyByVacancyReference().NavigateToViewVacancyPage().VerifyDisabilityConfident();
         }
 
-        internal void CloneAVacancy()
-        {
-            var previewPage = GoToRecruitmentHomePage()
-                  .SelectLiveVacancy()
-                  .CloneVacancy()
-                  .SelectYes()
-                  .UpdateTitle()
-                  .UpdateVacancyTitle();
+        internal void CloneAVacancy() =>  _stepsHelper.SubmitVacancy(GoToRecruitmentHomePage().SelectLiveVacancy().CloneVacancy().SelectYes().UpdateTitle().UpdateVacancyTitle());
 
-            _stepsHelper.SubmitVacancy(previewPage);
-        }
-
-        internal void EditVacancyDates()
-        {
-            SearchVacancyByVacancyReferenceInNewTab()
-                .EditVacancy()
-                .EditVacancyCloseDate()
-                .EnterVacancyDates()
-                .EditVacancyStartDate()
-                .EnterPossibleStartDate()
-                .PublishVacancy();
-        }
+        internal void EditVacancyDates() => SearchVacancyByVacancyReferenceInNewTab().EditVacancy().EditVacancyCloseDate().EnterVacancyDates().EditVacancyStartDate().EnterPossibleStartDate().PublishVacancy();
 
         internal void CloseVacancy() => SearchVacancyByVacancyReferenceInNewTab().CloseVacancy().YesCloseThisVacancy();
 
@@ -117,6 +93,11 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
 
             return _stepsHelper.PreviewVacancy(employernamePage, employername, isEmployerAddress, disabilityConfidence);
         }
+        internal VacancyTitlePage GoToAddAnAdvert()
+        {
+            new RecruitmentDynamicHomePage(_context, true).ContinueToCreateAdvert();
+            return new DoYouNeedToCreateAnAdvertPage(_context).ClickYesRadioButtonTakesToRecruitment().ClickStartNow();
+        }
 
         private ManageVacancyPage SearchVacancyByVacancyReferenceInNewTab()
         {
@@ -127,19 +108,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
 
         private ManageVacancyPage SearchVacancyByVacancyReference() => NavigateToRecruitmentHomePage().SearchVacancyByVacancyReference();
 
-        private ApprenticeshipTrainingPage EnterVacancyTitle()
-        {
-            return GoToRecruitmentHomePage()
-                .CreateANewVacancy()
-                .CreateNewVacancy()
-                .EnterVacancyTitle();
-        }
-
-        public VacancyTitlePage GoToAddAnAdvert()
-        {
-            new RecruitmentDynamicHomePage(_context, true).ContinueToCreateAdvert();
-            return new DoYouNeedToCreateAnAdvertPage(_context).ClickYesRadioButtonTakesToRecruitment().ClickStartNow();
-        }
+        private ApprenticeshipTrainingPage EnterVacancyTitle() => GoToRecruitmentHomePage().CreateANewVacancy().CreateNewVacancy().EnterVacancyTitle();
 
         private EmployerNamePage SelectOrganisation() => EnterTrainingDetails(EnterVacancyTitle()).SubmitNoOfPositions().SelectOrganisation();
 
