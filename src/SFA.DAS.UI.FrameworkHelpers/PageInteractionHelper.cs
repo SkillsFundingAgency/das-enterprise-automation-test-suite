@@ -91,11 +91,6 @@ namespace SFA.DAS.UI.FrameworkHelpers
             return _retryHelper.RetryOnException(Func(locator), beforeAction, retryAction);
         }
 
-        public void RefreshPage()
-        {
-            _webDriver.Navigate().Refresh();
-        }
-
         public void Verify(Func<bool> func, Action beforeAction) => _retryHelper.RetryOnException(func, beforeAction);
 
         private bool VerifyPage(Func<bool> func)

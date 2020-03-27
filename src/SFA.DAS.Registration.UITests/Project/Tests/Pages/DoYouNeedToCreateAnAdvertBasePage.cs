@@ -4,7 +4,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 {
-    public class DoYouNeedToCreateAnAdvertBasePage : BasePage
+    public abstract class DoYouNeedToCreateAnAdvertBasePage : BasePage
     {
         #region
         protected override string PageTitle => "Do you need to create an advert for this apprenticeship?";

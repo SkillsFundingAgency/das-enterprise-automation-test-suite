@@ -18,11 +18,11 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.DynamicHomePageEmp
             _formCompletionHelper = context.Get<FormCompletionHelper>();
         }
 
-        public RecruitmentLandingPage ClickYesRadioButtonTakesToRecruitment()
+        public RecruitmentHomePage ClickYesRadioButtonTakesToRecruitment()
         {
             _formCompletionHelper.ClickElement(YesRadioButtonOption);
             Continue();
-            return new RecruitmentLandingPage(_context);
+            return new RecruitmentHomePage(_context);
         }
     }
 }

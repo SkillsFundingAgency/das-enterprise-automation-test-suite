@@ -21,7 +21,8 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
         private VacanciesPage _vacanciesPage;
         private VacancyPreviewPart2Page _vacancyPreviewPart2Page;
         private VacancyPreviewPart2WithErrorsPage _vacancyPreviewPart2WithErrorsPage;
-        private DynamicHomePage _dynamicHomePage;
+        private RecruitmentDynamicHomePage _dynamicHomePage;
+        private RecruitmentHomePage _recruitmentHomePage;
 
         public EmployerSteps(ScenarioContext context) 
         {
@@ -126,19 +127,19 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
             {
                 case "Saved as draft":
                 case "REJECTED":
-                    _dynamicHomePage = new DynamicHomePage(_context, true).ConfirmVacancyTitleAndStatus(status);
+                    _dynamicHomePage = new RecruitmentDynamicHomePage(_context, true).ConfirmVacancyTitleAndStatus(status);
                     break;
 
                 case "CLOSED":
-                    _dynamicHomePage = new DynamicHomePage(_context, true).ConfirmClosedVacancyDetails(status);
+                    _dynamicHomePage = new RecruitmentDynamicHomePage(_context, true).ConfirmClosedVacancyDetails(status);
                     break;
 
                 case "PENDING REVIEW":
-                    _dynamicHomePage = new DynamicHomePage(_context, true).ConfirmVacancyDetails(status, _rAAV2DataHelper.VacancyClosing);
+                    _dynamicHomePage = new RecruitmentDynamicHomePage(_context, true).ConfirmVacancyDetails(status, _rAAV2DataHelper.VacancyClosing);
                     break;
 
                 case "LIVE":
-                    _dynamicHomePage = new DynamicHomePage(_context, true).ConfirmLiveVacancyDetails(status);
+                    _dynamicHomePage = new RecruitmentDynamicHomePage(_context, true).ConfirmLiveVacancyDetails(status);
                     break;
             }                    
         }

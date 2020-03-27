@@ -16,11 +16,11 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
         private readonly ApprovalsStepsHelper _stepsHelper;
         private readonly MFEmployerStepsHelper _reservationStepsHelper;
         private SuccessfullyReservedFundingPage _successfullyReservedFundingPage;
+        
         public DynamicHomePageSteps(ScenarioContext context)
         {
             _stepsHelper = new ApprovalsStepsHelper(context);
             _reservationStepsHelper = new MFEmployerStepsHelper(context);
-
         }
 
         [Given(@"the user reserves funding from the dynamic home page")]
@@ -28,25 +28,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
         {
             _stepsHelper.CreatesAccountAndSignAnAgreement();
             _successfullyReservedFundingPage = _reservationStepsHelper.CreateReservation(_reservationStepsHelper.GoToReserveFundingFromHomePagePanel());
-            _successfullyReservedFundingPage.VerifySucessMessage();
-            _successfullyReservedFundingPage.GoToHomePage().VerifyReserveFundingPanel();
-        }
-
-        [When(@"the Employer reserves funding for an apprenticeship course from reserved home page panel")]
-        public void WhenTheEmployerReservesFundingForAnApprenticeshipCourseFromReservedHomePagePanel()
-        {
-            _successfullyReservedFundingPage = _reservationStepsHelper.CreateReservation(_reservationStepsHelper.GoToReserveFundingFromHomePagePanel());
-        }
-
-        [Then(@"the funding is reserved successfully")]
-        public void ThenTheFundingIsReservedSuccessfully()
-        {
-            _successfullyReservedFundingPage.VerifySucessMessage();
-        }
-
-        [Then(@"the new reserved funding panel is shown to employer on the dynamic homepage")]
-        public void ThenTheNewReservedFundingPanelIsShownToEmployerOnTheDynamicHomepage()
-        {
+            _successfullyReservedFundingPage = _successfullyReservedFundingPage.VerifySucessMessage();
             _successfullyReservedFundingPage.GoToHomePage().VerifyReserveFundingPanel();
         }
     }

@@ -6,7 +6,6 @@ using SFA.DAS.RAA_V2.Service.Project.Tests.Pages;
 using SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer;
 using SFA.DAS.Registration.UITests.Project.Helpers;
 using TechTalk.SpecFlow;
-using DynamicHomePage = SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer.DynamicHomePage;
 using DoYouNeedToCreateAnAdvertPage = SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.DynamicHomePageEmployer.DoYouNeedToCreateAnAdvertPage;
 
 namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
@@ -17,7 +16,6 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
         private readonly EmployerPortalLoginHelper _loginhelper;
         private readonly HomePageStepsHelper _homePageStepsHelper;
         private readonly StepsHelper _stepsHelper;
-        private readonly MFEmployerStepsHelper _mfEmployerStepsHelper;
 
         public EmployerStepsHelper(ScenarioContext context)
         {
@@ -25,7 +23,6 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
             _loginhelper = new EmployerPortalLoginHelper(context);
             _homePageStepsHelper = new HomePageStepsHelper(context);
             _stepsHelper = new StepsHelper(context);
-            _mfEmployerStepsHelper = new MFEmployerStepsHelper(context);
         }
 
         internal void SubmitVacancy(VacancyPreviewPart2Page previewPage, bool isApplicationMethodFAA, bool optionalFields)
@@ -125,7 +122,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
 
         private ManageVacancyPage SearchVacancyByVacancyReference() => NavigateToRecruitmentHomePage().SearchVacancyByVacancyReference();
 
-        public RecruitmentHomePage NavigateToRecruitmentHomePage() => new RecruitmentHomePage(_context, true);
+        private RecruitmentHomePage NavigateToRecruitmentHomePage() => new RecruitmentHomePage(_context, true);
 
         private ApprenticeshipTrainingPage EnterVacancyTitle()
         {
@@ -137,7 +134,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
 
         public VacancyTitlePage GoToAddAnAdvert()
         {
-            _mfEmployerStepsHelper.ContinueToCreateAddAnApprentices();
+            new RecruitmentDynamicHomePage(_context, true).ContinueToCreateAdvert();
             return new DoYouNeedToCreateAnAdvertPage(_context).ClickYesRadioButtonTakesToRecruitment().ClickStartNow();
         }
 
@@ -170,31 +167,6 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
             var locationPage = _stepsHelper.ChooseEmployerName(employernamePage, string.Empty);
 
             _stepsHelper.PreviewVacancy(locationPage, wageType).AddBriefOverview().EnterBriefOverview().ReturnToDashboard();
-        }
-
-        public void ConfirmVacancyStatusForDraftAndClickContinueCreatingYourVacancy(string vacancyStatus)
-        {
-            
-        }
-
-        public void ConfirmVacancyStatusForSubmittedAndClickGoToYourDashboard(string vacancyStatus)
-        {
-            
-        }
-
-        public void ConfirmVacancyStatusForClosedAndClickApplicationsLink(string vacancyStatus)
-        {
-            
-        }
-
-        public void ConfirmVacancyStatusForLiveAndClickApplicationsLink(string vacancyStatus)
-        {
-            
-        }
-
-        public void ConfirmVacancyStatusForRejectedAndClickReviewYourVacancy(string vacancyStatus)
-        {
-            
         }
 
         private RecruitmentHomePage GoToRecruitmentHomePage()

@@ -17,15 +17,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 
         public DoYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage GoToReserveFunding() => GoToManageFunding().ClickReserveMoreFundingLink();
 
-        public DoYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage GoToReserveFundingFromHomePagePanel() => new DynamicHomePage(_context).StartNowToReserveFunding().ClickReserveFundingButton();
+        public DoYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage GoToReserveFundingFromHomePagePanel() => new ApprovalsDynamicHomePage(_context).StartNowToReserveFunding().ClickReserveFundingButton();
 
         public AddAnApprenitcePage GoToAddAnApprentices()
         {
-            ContinueToCreateAddAnApprentices();
+            new ApprovalsDynamicHomePage(_context).ContinueToCreateAdvert();
             return new DoYouNeedToCreateAnAdvertPage(_context).ClickNoRadioButtonTakesToAddAnApprentices();
         }
-
-        public DoYouNeedToCreateAnAdvertBasePage ContinueToCreateAddAnApprentices() => new DynamicHomePage(_context).ContinueToCreateAdvert();
 
         public SuccessfullyReservedFundingPage CreateReservation(DoYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage doYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage)
         {

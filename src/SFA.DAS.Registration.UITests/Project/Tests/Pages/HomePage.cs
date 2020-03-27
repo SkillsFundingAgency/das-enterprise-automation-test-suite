@@ -47,11 +47,8 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             return new AboutYourAgreementPage(_context);
         }
 
-        public DoYouNeedToCreateAnAdvertBasePage ContinueToCreateAdvert()
-        {
-            formCompletionHelper.ClickElement(ContinueTo);
-            return new DoYouNeedToCreateAnAdvertBasePage(_context);
-        }
+        public void ContinueToCreateAdvert() => formCompletionHelper.ClickElement(ContinueTo);
+
         public void VerifyReserveFundingPanel() => pageInteractionHelper.VerifyText(ContinueSettingUpAnApprenticeship, "Continue setting up an apprenticeship");
         
         public void VerifyStartAddingApprenticesNowTaskLink() => VerifyPage(StartAddingApprenticesNowTaskLink);
