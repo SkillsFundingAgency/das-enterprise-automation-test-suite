@@ -4,7 +4,6 @@ using SFA.DAS.RAA_V2.Service.Project.Tests.Pages;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages;
 using SFA.DAS.UI.FrameworkHelpers;
 using System;
-using System.Collections.Generic;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer
@@ -18,17 +17,14 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer
         private readonly RAAV2DataHelper _raaV2DataHelper;
         #endregion
        
-        private By ContinueCreatingNewVacancy => By.LinkText("Continue creating your vacancy");
-        private By GotoYourVacancyDashboard => By.LinkText("Go to your vacancy dashboard");
-        private By ReviewYourVacancy => By.LinkText("Review your vacancy");
-        private By ApplicationsLink => By.CssSelector(".govuk-link");
+        private By ReviewYourVacancyLink => By.LinkText("Review your vacancy");
         private By AddApprenticeDetails => By.LinkText("Add apprentice details");
         private By TRows => By.CssSelector("tr");
         private By THeader => By.CssSelector("th");
         private By TData => By.CssSelector("td");
 
 
-        public DynamicHomePage(ScenarioContext context) : base(context)
+        public DynamicHomePage(ScenarioContext context, bool navigate) : base(context, navigate)
         {
             _context = context;
             _vacancyTitleDataHelper = context.Get<VacancyTitleDatahelper>();
@@ -47,86 +43,49 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer
             throw new NotFoundException($"{headerName} not found");
         }
 
-        private void ConfirmVacancyTitleAndStatus(string status)
+        public DynamicHomePage ConfirmVacancyTitleAndStatus(string status)
         {
-            string vacancyStatus = GetDetails("Status").Text.ToString();
             pageInteractionHelper.VerifyText(GetDetails("Title").Text.ToString(), _vacancyTitleDataHelper.VacancyTitle);
-            pageInteractionHelper.VerifyText(vacancyStatus, status);
+            pageInteractionHelper.VerifyText(GetDetails("Status").Text.ToString(), status);
+            return this;
         }
 
-        private void ConfirmSubmittedVacancyDetails(string status)
+        public DynamicHomePage ConfirmVacancyDetails(string status, DateTime dateTime)
         {
             ConfirmVacancyTitleAndStatus(status);
-            ConfirmClosedDateAndApplicationsLink(_raaV2DataHelper.VacancyClosing.ToString("dd MMM yyyy"));
+            return ConfirmClosedDateAndApplicationsLink(dateTime.ToString("dd MMM yyyy"));
         }
 
-        private void ConfirmLiveVacancyDetails(string status)
+        public DynamicHomePage ConfirmLiveVacancyDetails(string status)
         {
-            ConfirmVacancyTitleAndStatus(status);
-            ConfirmClosedDateAndApplicationsLink(_raaV2DataHelper.VacancyClosing.ToString("dd MMM yyyy"));
-            ConfirmAddApprenticeDeatilsButton();
+            ConfirmVacancyDetails(status, _raaV2DataHelper.VacancyClosing);
+            return ConfirmAddApprenticeDeatilsButton();
         }
 
-        private void ConfirmClosedVacancyDetails(string status)
+        public DynamicHomePage ConfirmClosedVacancyDetails(string status)
         {
             ConfirmVacancyTitleAndStatus(status);
             ConfirmClosedDateAndApplicationsLink(DateTime.Today.ToString("dd MMMM yyyy"));
-            ConfirmAddApprenticeDeatilsButton();
+            return ConfirmAddApprenticeDeatilsButton();
         }
 
-        private void ConfirmClosedDateAndApplicationsLink(string closingDate)
+        private DynamicHomePage ConfirmClosedDateAndApplicationsLink(string closingDate)
         {
             pageInteractionHelper.VerifyText(GetDetails("Closing date").Text.ToString(), closingDate);
-            pageInteractionHelper.VerifyText(GetDetails("Applications").Text.ToString(), "application");            
+            pageInteractionHelper.VerifyText(GetDetails("Applications").Text.ToString(), "application");
+            return this;
         }
 
-        private void ConfirmAddApprenticeDeatilsButton()
+        private DynamicHomePage ConfirmAddApprenticeDeatilsButton()
         {
-            if (!pageInteractionHelper.IsElementDisplayed(AddApprenticeDetails))
-            {
-                throw new Exception("Add apprenticedetails not found");
-            }
+            pageInteractionHelper.VerifyPage(AddApprenticeDetails);
+            return this;
         }
 
-        public VacancyPreviewPart2Page ConfirmDraftVacancyDetailsAndClickContinueCreatingYourVacancy(string status)
+        public VacancyPreviewPart2Page ReviewYourVacancy()
         {
-            ConfirmVacancyTitleAndStatus(status);
-            formCompletionHelper.Click(ContinueCreatingNewVacancy);
+            formCompletionHelper.Click(ReviewYourVacancyLink);
             return new VacancyPreviewPart2Page(_context);
-        }
-
-        public RecruitmentHomePage ConfirmSubmittedVacancyDetailsAndClickGoToYourVacancyDashboard(string status)
-        {
-            ConfirmSubmittedVacancyDetails(status);
-            formCompletionHelper.Click(GotoYourVacancyDashboard);
-            return new RecruitmentHomePage(_context);
-        }
-
-        public VacancyPreviewPart2Page ConfirmRejectedVacancyDetailsAndClickReviewYourVacancy(string status)
-        {
-            pageInteractionHelper.RefreshPage();
-            ConfirmVacancyTitleAndStatus(status);
-            formCompletionHelper.Click(ReviewYourVacancy);
-            return new VacancyPreviewPart2Page(_context);
-        }
-
-        public ManageVacancyPage ConfirmLiveVacancyDetailsAndClickApplications(string status)
-        {
-            ConfirmLiveVacancyDetails(status);
-            ClickApplicationsLink();
-            return new ManageVacancyPage(_context);
-        }
-
-        public ManageVacancyPage ConfirmClosedVacancyDetailsAndClickApplications(string status)
-        {
-            ConfirmClosedVacancyDetails(status);
-            ClickApplicationsLink();
-            return new ManageVacancyPage(_context);
-        }
-
-        private void ClickApplicationsLink()
-        {
-            formCompletionHelper.ClickLinkByText("application");
         }
     }
 }

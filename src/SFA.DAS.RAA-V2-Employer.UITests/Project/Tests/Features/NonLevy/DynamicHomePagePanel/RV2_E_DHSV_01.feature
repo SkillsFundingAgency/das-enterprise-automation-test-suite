@@ -15,3 +15,4 @@ Scenario: RV2_E_DHSV_01 Employer creates Submitted vacancy from dynamic homepage
 	Given the Reviewer Refer the vacancy
 	And the Employer logs into Employer account
 	Then the vacancy details is displayed on the Dynamic home page with Status 'REJECTED'	
+	And the vacancy can be resubmitted

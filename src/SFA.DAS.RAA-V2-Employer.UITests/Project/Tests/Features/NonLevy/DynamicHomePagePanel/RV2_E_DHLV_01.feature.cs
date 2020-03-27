@@ -111,9 +111,9 @@ this.FeatureBackground();
 #line 16
  testRunner.Then("the vacancy details is displayed on the Dynamic home page with Status \'LIVE\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 17
- testRunner.Given("the employer close the vacancy", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.And("the Employer can close the vacancy", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 18
- testRunner.Then("the vacancy details is displayed on the Dynamic home page with Status \'CLOSED\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("the vacancy details is displayed on the Dynamic home page with Status \'CLOSED\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }

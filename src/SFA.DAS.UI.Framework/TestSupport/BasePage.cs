@@ -24,11 +24,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
         protected virtual By BackLink => By.CssSelector(".govuk-back-link, .back-link");
         protected virtual By RadioLabels => By.CssSelector(".govuk-radios__label");
         protected virtual By CheckBoxLabels => By.CssSelector(".govuk-checkboxes__label");
-        protected virtual By HomeLink => By.LinkText("Home");
-        protected virtual By RecruitmentLink => By.LinkText("Recruitment");
         protected abstract string PageTitle { get; }
-
-
 
         protected BasePage(ScenarioContext context)
         {
@@ -66,9 +62,6 @@ namespace SFA.DAS.UI.Framework.TestSupport
         protected void SelectCheckBoxByText(string value) => _formCompletionHelper.SelectCheckBoxByText(CheckBoxLabels, value);
 
         protected void NavigateBack() => _formCompletionHelper.Click(BackLink);
-
-        protected void NavigateHome() => _formCompletionHelper.Click(HomeLink);
-        protected void NavigateRecruitment() => _formCompletionHelper.Click(RecruitmentLink);
 
         private void TakeScreenShot()
         {

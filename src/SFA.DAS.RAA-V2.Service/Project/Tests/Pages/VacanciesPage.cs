@@ -51,11 +51,5 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
             _pageInteractionHelper.WaitforURLToChange($"Filter=Draft");
             _tableRowHelper.SelectRowFromTable("Edit and submit", _vacancyTitleDatahelper.VacancyTitle);
         }
-
-        public VacanciesPage GoToRecruitmentHomePage()
-        {
-            NavigateRecruitment();
-            return this;
-        }
     }
 }

@@ -12,9 +12,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
     public class ResubmittedVacancyReferencePage : BasePage
     {
         #region Helpers and Context
-        private readonly ScenarioContext _context;
         private readonly VacancyTitleDatahelper _vacancyTitleDataHelper;  
-        private readonly FormCompletionHelper _formCompletionHelper;
         private readonly PageInteractionHelper _pageInteractionHelper;
         #endregion
 
@@ -25,17 +23,11 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         public ResubmittedVacancyReferencePage(ScenarioContext context) : base(context)
         {
-            _context = context;
             _vacancyTitleDataHelper = context.Get<VacancyTitleDatahelper>();
-            _formCompletionHelper = context.Get<FormCompletionHelper>();
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             VerifyPage();
         }
 
-        public void ConfirmVacancyResubmission()
-        {
-            _pageInteractionHelper.VerifyText(VacancyResubmissionText, "Vacancy resubmitted for approval");
-            NavigateHome();
-        }
+        public void ConfirmVacancyResubmission() => _pageInteractionHelper.VerifyText(VacancyResubmissionText, "Vacancy resubmitted for approval");
     }
 }

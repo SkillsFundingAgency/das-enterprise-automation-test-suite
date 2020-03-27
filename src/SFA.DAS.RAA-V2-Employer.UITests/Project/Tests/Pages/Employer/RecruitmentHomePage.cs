@@ -43,12 +43,5 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer
         public ManageVacancyPage SelectLiveVacancy() => _searchVacancyPageHelper.SelectLiveVacancy();
 
         public ManageVacancyPage SearchVacancyByVacancyReference() => _searchVacancyPageHelper.SearchVacancyByVacancyReference();
-
-        public DynamicHomePage GoToMAHomePage()
-        {
-            NavigateHome();
-            pageInteractionHelper.WaitforURLToChange("teams");
-            return new DynamicHomePage(_context);
-        }
     }
 }

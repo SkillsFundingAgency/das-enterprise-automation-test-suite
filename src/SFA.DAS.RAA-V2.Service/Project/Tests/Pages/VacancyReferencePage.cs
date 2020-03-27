@@ -18,18 +18,12 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         protected By VacancyReferenceNumber => By.CssSelector(".govuk-panel--confirmation strong");
 
-        protected By ReturnToDashboard => By.LinkText("Return to dashboard");
-
         public VacancyReferencePage(ScenarioContext context) : base(context)
         {
             _vacancyReferenceHelper = context.Get<VacancyReferenceHelper>();
             VerifyPage();
         }
 
-        public void SetVacancyReference()
-        {
-            _vacancyReferenceHelper.SetVacancyReference(VacancyReferenceNumber);
-            NavigateHome();
-        }
+        public void SetVacancyReference() => _vacancyReferenceHelper.SetVacancyReference(VacancyReferenceNumber);
     }
 }

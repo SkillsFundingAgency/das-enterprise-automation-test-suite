@@ -25,10 +25,5 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
             _vacRef = context.Get<ObjectContext>().GetVacancyReference();
             VerifyPage();
         }
-
-        public void GoToRecruitmentHomePage()
-        {
-            NavigateRecruitment(); 
-        }
     }
 }

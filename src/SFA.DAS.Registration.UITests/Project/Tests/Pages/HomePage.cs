@@ -27,7 +27,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         protected By StartNowButton => By.LinkText("Start now");
 
-        internal HomePage(ScenarioContext context, bool navigate) : base(context, navigate)
+        public HomePage(ScenarioContext context, bool navigate) : base(context, navigate)
         {
             _context = context;
             _regexHelper = context.Get<RegexHelper>();
@@ -35,20 +35,11 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         public HomePage(ScenarioContext context) : this(context, false) { }
 
-        public void VerifySucessSummary()
-        {
-            pageInteractionHelper.VerifyText(SucessSummary, "All agreements signed");
-        }
+        public void VerifySucessSummary() => pageInteractionHelper.VerifyText(SucessSummary, "All agreements signed");
 
-        public string AccountId()
-        {
-            return _regexHelper.GetAccountId(pageInteractionHelper.GetUrl());
-        }
+        public string AccountId() => _regexHelper.GetAccountId(pageInteractionHelper.GetUrl()); 
 
-        public string PublicAccountId()
-        {
-            return _regexHelper.GetPublicAccountId(pageInteractionHelper.GetText(PublicAccountIdLocator));
-        }
+        public string PublicAccountId() => _regexHelper.GetPublicAccountId(pageInteractionHelper.GetText(PublicAccountIdLocator));
 
         public AboutYourAgreementPage ClickAcceptYourAgreementLinkInHomePagePanel()
         {

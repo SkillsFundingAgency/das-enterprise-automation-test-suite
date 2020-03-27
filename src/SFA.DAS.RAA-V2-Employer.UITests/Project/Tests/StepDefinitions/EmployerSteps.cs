@@ -1,9 +1,9 @@
 ﻿using NUnit.Framework;
-using SFA.DAS.RAA_V2.Service.Project.Helpers;
+using SFA.DAS.RAA.DataGenerator;
 using SFA.DAS.RAA_V2.Service.Project.Tests.Pages;
 using SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers;
+using SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer;
 using SFA.DAS.Registration.UITests.Project.Helpers;
-using SFA.DAS.UI.FrameworkHelpers;
 using System.Collections.Generic;
 using System.Linq;
 using TechTalk.SpecFlow;
@@ -13,15 +13,20 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
     [Binding]
     public class EmployerSteps
     {
+        private readonly ScenarioContext _context;
+        private readonly HomePageStepsHelper _homePageStepsHelper;
+        private readonly RAAV2DataHelper _rAAV2DataHelper;
         private readonly EmployerStepsHelper _employerStepsHelper;
+
         private VacanciesPage _vacanciesPage;
         private VacancyPreviewPart2Page _vacancyPreviewPart2Page;
         private VacancyPreviewPart2WithErrorsPage _vacancyPreviewPart2WithErrorsPage;
-        private readonly HomePageStepsHelper _homePageStepsHelper;
-        private readonly ScenarioContext _context;
+        private DynamicHomePage _dynamicHomePage;
+
         public EmployerSteps(ScenarioContext context) 
         {
             _context = context;
+            _rAAV2DataHelper = context.Get<RAAV2DataHelper>();
             _employerStepsHelper = new EmployerStepsHelper(context);
             _homePageStepsHelper = new HomePageStepsHelper(context);
         }
@@ -103,7 +108,6 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
             var actualMessages = _vacancyPreviewPart2WithErrorsPage.GetErrorMessages();
 
             Assert.IsTrue(expectedMessges.All(x => actualMessages.Contains(x)), $"Not all messages are found. {_employerStepsHelper.DeleteDraftVacancy(_vacancyPreviewPart2Page)}");
-
         }
 
         [Then(@"the Employer verify '(National Minimum Wage For Apprentices|National Minimum Wage|Fixed Wage Type)' the wage option selected in the Preview page")]
@@ -121,45 +125,31 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
             switch (status)
             {
                 case "Saved as draft":
-                    _employerStepsHelper.ConfirmVacancyStatusForDraftAndClickContinueCreatingYourVacancy(status);
+                case "REJECTED":
+                    _dynamicHomePage = new DynamicHomePage(_context, true).ConfirmVacancyTitleAndStatus(status);
                     break;
 
                 case "CLOSED":
-                    _employerStepsHelper.ConfirmVacancyStatusForClosedAndClickApplicationsLink(status);
+                    _dynamicHomePage = new DynamicHomePage(_context, true).ConfirmClosedVacancyDetails(status);
                     break;
 
                 case "PENDING REVIEW":
-                    _employerStepsHelper.ConfirmVacancyStatusForSubmittedAndClickGoToYourDashboard(status);
+                    _dynamicHomePage = new DynamicHomePage(_context, true).ConfirmVacancyDetails(status, _rAAV2DataHelper.VacancyClosing);
                     break;
 
                 case "LIVE":
-                    _employerStepsHelper.ConfirmVacancyStatusForLiveAndClickApplicationsLink(status);
-                    break;
-
-                case "REJECTED":
-                    _employerStepsHelper.ConfirmVacancyStatusForRejectedAndClickReviewYourVacancy(status);
+                    _dynamicHomePage = new DynamicHomePage(_context, true).ConfirmLiveVacancyDetails(status);
                     break;
             }                    
         }
 
         [When(@"the Employer creates first submitted vacancy '(National Minimum Wage|National Minimum Wage For Apprentices|Fixed Wage Type)'")]
-        public void GivenTheEmployerCreatesFirstSubmittedVacancy(string wageType)
-        {
-            _employerStepsHelper.CreateFirstSubmittedVacancy(wageType);
-        }
+        public void GivenTheEmployerCreatesFirstSubmittedVacancy(string wageType) => _employerStepsHelper.CreateFirstSubmittedVacancy(wageType);
 
         [Given(@"the Employer logs into Employer account")]
-        public void GivenTheEmployerLogsIntoEmployerAccount()
-        {
-            _homePageStepsHelper.GotoEmployerHomePage();
-            _employerStepsHelper.NavigateToRecruitmentHomePage();
-        }
+        public void GivenTheEmployerLogsIntoEmployerAccount() => _homePageStepsHelper.GotoEmployerHomePage();
 
-        [Given(@"the employer close the vacancy")]
-        public void GivenTheEmployerCloseTheVacancy()
-        {
-            new ManageVacancyPage(_context).CloseVacancy().YesCloseThisVacancy().GoToRecruitmentHomePage();
-        }
-
+        [Then(@"the vacancy can be resubmitted")]
+        public void ThenTheVacancyCanBeResubmitted() => _dynamicHomePage.ReviewYourVacancy().ResubmitVacancy().ConfirmVacancyResubmission();
     }
 }

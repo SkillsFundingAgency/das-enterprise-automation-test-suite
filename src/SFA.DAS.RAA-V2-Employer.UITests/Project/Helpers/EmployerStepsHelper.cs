@@ -18,6 +18,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
         private readonly HomePageStepsHelper _homePageStepsHelper;
         private readonly StepsHelper _stepsHelper;
         private readonly MFEmployerStepsHelper _mfEmployerStepsHelper;
+
         public EmployerStepsHelper(ScenarioContext context)
         {
             _context = context;
@@ -69,7 +70,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
                 .PublishVacancy();
         }
 
-        internal void CloseVacancy() => SearchVacancyByVacancyReferenceInNewTab().CloseVacancy().YesCloseThisVacancy().GoToRecruitmentHomePage();
+        internal void CloseVacancy() => SearchVacancyByVacancyReferenceInNewTab().CloseVacancy().YesCloseThisVacancy();
 
         internal void ApplicantUnsucessful() => _stepsHelper.ApplicantUnsucessful(SearchVacancyByVacancyReferenceInNewTab());
 
@@ -94,7 +95,6 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
 
             _stepsHelper.SubmitVacancy(previewPage, true, false);
         }
-
 
         internal void CreateFirstSubmittedVacancy(string wageType)
         {
@@ -125,15 +125,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
 
         private ManageVacancyPage SearchVacancyByVacancyReference() => NavigateToRecruitmentHomePage().SearchVacancyByVacancyReference();
 
-        public RecruitmentHomePage GoToRecruitmentHomePage()
-        {
-            _loginhelper.Login(_context.GetUser<RAAV2EmployerUser>(), true);
-
-            return NavigateToRecruitmentHomePage();
-        }
-
         public RecruitmentHomePage NavigateToRecruitmentHomePage() => new RecruitmentHomePage(_context, true);
-
 
         private ApprenticeshipTrainingPage EnterVacancyTitle()
         {
@@ -145,9 +137,8 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
 
         public VacancyTitlePage GoToAddAnAdvert()
         {
-            _mfEmployerStepsHelper.ContinueToCreateAddAnApprentices();             
-            new DoYouNeedToCreateAnAdvertPage(_context).ClickYesRadioButtonTakesToRecruitment();            
-            return new RecruitmentLandingPage(_context).ClickStartNow();
+            _mfEmployerStepsHelper.ContinueToCreateAddAnApprentices();
+            return new DoYouNeedToCreateAnAdvertPage(_context).ClickYesRadioButtonTakesToRecruitment().ClickStartNow();
         }
 
         private EmployerNamePage SelectOrganisation()
@@ -178,31 +169,39 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
 
             var locationPage = _stepsHelper.ChooseEmployerName(employernamePage, string.Empty);
 
-            _stepsHelper.PreviewVacancy(locationPage, wageType).AddBriefOverview().EnterBriefOverview().ReturnToDashboard().GoToRecruitmentHomePage();
+            _stepsHelper.PreviewVacancy(locationPage, wageType).AddBriefOverview().EnterBriefOverview().ReturnToDashboard();
         }
+
         public void ConfirmVacancyStatusForDraftAndClickContinueCreatingYourVacancy(string vacancyStatus)
         {
-            new RecruitmentHomePage(_context).GoToMAHomePage().ConfirmDraftVacancyDetailsAndClickContinueCreatingYourVacancy(vacancyStatus);
+            
         }
 
         public void ConfirmVacancyStatusForSubmittedAndClickGoToYourDashboard(string vacancyStatus)
         {
-            new DynamicHomePage(_context).ConfirmSubmittedVacancyDetailsAndClickGoToYourVacancyDashboard(vacancyStatus);
+            
         }
 
         public void ConfirmVacancyStatusForClosedAndClickApplicationsLink(string vacancyStatus)
         {
-            new RecruitmentHomePage(_context).GoToMAHomePage().ConfirmClosedVacancyDetailsAndClickApplications(vacancyStatus);
+            
         }
 
         public void ConfirmVacancyStatusForLiveAndClickApplicationsLink(string vacancyStatus)
         {
-            new RecruitmentHomePage(_context).GoToMAHomePage().ConfirmLiveVacancyDetailsAndClickApplications(vacancyStatus);
+            
         }
 
         public void ConfirmVacancyStatusForRejectedAndClickReviewYourVacancy(string vacancyStatus)
         {
-            new RecruitmentHomePage(_context).GoToMAHomePage().ConfirmRejectedVacancyDetailsAndClickReviewYourVacancy(vacancyStatus).ResubmitVacancy().ConfirmVacancyResubmission();
+            
+        }
+
+        private RecruitmentHomePage GoToRecruitmentHomePage()
+        {
+            _loginhelper.Login(_context.GetUser<RAAV2EmployerUser>(), true);
+
+            return NavigateToRecruitmentHomePage();
         }
     }
 }
