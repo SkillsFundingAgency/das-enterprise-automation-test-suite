@@ -16,7 +16,7 @@ namespace SFA.DAS.Login.Service.Project.Tests.Pages
 
         protected abstract string Linktext { get; }
 
-        public Navigate(ScenarioContext context, bool navigate) : base(context)
+        protected Navigate(ScenarioContext context, bool navigate) : base(context)
         {
             pageInteractionHelper = context.Get<PageInteractionHelper>();
             formCompletionHelper = context.Get<FormCompletionHelper>();
