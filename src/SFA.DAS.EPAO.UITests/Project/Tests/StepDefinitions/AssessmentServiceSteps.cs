@@ -17,6 +17,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         private readonly AssessmentServiceStepsHelper _stepsHelper;
         private readonly EPAOConfig _ePAOConfig;
         private readonly EPAODataHelper _dataHelper;
+        private readonly EPAOApplyStandardDataHelper _ePAOApplyStandardData;
         private AS_RecordAGradePage _recordAGradePage;
         private AS_AchievementDatePage _achievementDatePage;
         private AS_CheckAndSubmitAssessmentPage _checkAndSubmitAssessmentPage;
@@ -49,8 +50,9 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
                 _loggedInHomePage = _stepsHelper.LoginToAssessmentServiceApplication(_context.GetUser<EPAOManageUser>());
             else if (user.Equals("Standard Apply User"))
             {
-                //_ePAOSqlDataHelper.DeleteStandardPreambleApplicication(_dataHelper.Standards, _dataHelper.StandardAssessorOrganisationEpaoId);
-                _loggedInHomePage = _stepsHelper.LoginToAssessmentServiceApplication(_context.GetUser<EPAOStandardApplyUser>());
+                var usercreds = _context.GetUser<EPAOStandardApplyUser>();
+                _ePAOSqlDataHelper.DeleteStandardApplicication(_ePAOApplyStandardData.ApplyforStandardCode, _ePAOApplyStandardData.StandardAssessorOrganisationEpaoId, usercreds.Username);
+                _loggedInHomePage = _stepsHelper.LoginToAssessmentServiceApplication(usercreds);
             }
             else if (user.Equals("Apply User"))
             {
