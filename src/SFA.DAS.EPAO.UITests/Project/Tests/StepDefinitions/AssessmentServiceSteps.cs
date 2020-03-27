@@ -35,6 +35,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
             _stepsHelper = new AssessmentServiceStepsHelper(_context);
             _ePAOConfig = context.GetEPAOConfig<EPAOConfig>();
             _dataHelper = context.Get<EPAODataHelper>();
+            _ePAOApplyStandardData = context.Get<EPAOApplyStandardDataHelper>();
             _ePAOSqlDataHelper = context.Get<EPAOSqlDataHelper>();
         }
 
