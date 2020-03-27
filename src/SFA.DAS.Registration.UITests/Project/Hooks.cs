@@ -24,7 +24,7 @@ namespace SFA.DAS.Registration.UITests.Project
         private RegistrationDataHelper _registrationDatahelpers;
         private LoginCredentialsHelper _loginCredentialsHelper;
         private MongoDbDataGenerator _mongoDbDataGenerator;
-
+        
         public Hooks(ScenarioContext context)
         {
             _context = context;
@@ -48,6 +48,7 @@ namespace SFA.DAS.Registration.UITests.Project
             _objectContext.SetDataHelper(dataHelper);
 
             var randomDataGenerator = _context.Get<RandomDataGenerator>();
+            
             _registrationDatahelpers = new RegistrationDataHelper(dataHelper.GatewayUsername, _config.RE_AccountPassword, randomDataGenerator);
             _context.Set(_registrationDatahelpers);
 

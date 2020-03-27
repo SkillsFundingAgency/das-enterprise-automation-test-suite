@@ -92,12 +92,12 @@ namespace SFA.DAS.RAA.DataGenerator
 
         public string OptionalMessage { get; }
 
-        private string WebsiteUrl(string url) => $"https://www.{url}.com";
+        private string WebsiteUrl(string url) => $"www.{url}.com";
 
         private List<string> AvailableProviders => new List<string> { "BALTIC TRAINING SERVICES LIMITED 10019026" };
 
-        private List<string> AvailableTraining => new List<string> 
-        {
+        private List<string> AvailableTraining => new List<string>
+        { 
             "Aerospace Engineer (degree), Level 6 (Degree with honours)",
             "Agriculture: Agriculture, Level 3 (A level)",
             "Broadcast production assistant, Level 3 (A level)",
@@ -105,7 +105,7 @@ namespace SFA.DAS.RAA.DataGenerator
             "Event Assistant, Level 3 (A level)",
             "Financial services administrator, Level 3 (A level)",
             "Groundworker, Level 2 (GCSE)",
-            "Healthcare support worker, Level 2 (GCSE)",            
+            "Healthcare support worker, Level 2 (GCSE)",
             "Junior journalist, Level 3 (A level)",
             "Software Development Technician, Level 3 (A level)",
             "Software tester, Level 4 (Higher national certificate)",

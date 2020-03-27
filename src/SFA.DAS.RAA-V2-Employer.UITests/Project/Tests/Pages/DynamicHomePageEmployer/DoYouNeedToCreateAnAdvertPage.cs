@@ -1,12 +1,11 @@
-﻿using OpenQA.Selenium;
-using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
+﻿using SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.DynamicHomePage
+namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.DynamicHomePageEmployer
 {
-    public class DoYouNeedToCreateAnAdvertPage : DoYouNeedToCreateAnAdvertBasePage
+    class DoYouNeedToCreateAnAdvertPage: DoYouNeedToCreateAnAdvertBasePage
     {
         #region Helpers and Context
         private readonly FormCompletionHelper _formCompletionHelper;
@@ -19,11 +18,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.DynamicHomePage
             _formCompletionHelper = context.Get<FormCompletionHelper>();
         }
 
-        public AddAnApprenitcePage ClickNoRadioButtonTakesToAddAnApprentices()
+        public RecruitmentHomePage ClickYesRadioButtonTakesToRecruitment()
         {
-            _formCompletionHelper.ClickElement(NoRadioButtonOption);
+            _formCompletionHelper.ClickElement(YesRadioButtonOption);
             Continue();
-            return new AddAnApprenitcePage(_context);
+            return new RecruitmentHomePage(_context);
         }
     }
 }

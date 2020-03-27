@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Tests.Features.E2EJourney
+namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Features.NonLevy.DynamicHomePagePanel
 {
     using TechTalk.SpecFlow;
     
@@ -18,20 +18,21 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Tests.Features.E2EJourney
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.0.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("RV2_P_E2E_02")]
-    public partial class RV2_P_E2E_02Feature
+    [NUnit.Framework.DescriptionAttribute("RV2_E_DHSRV_01")]
+    public partial class RV2_E_DHSRV_01Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "RV2_P_E2E_02.feature"
+#line 1 "RV2_E_DHSV_01.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "RV2_P_E2E_02", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "RV2_E_DHSRV_01", "As a Non Levy Employer, I want to add a vacancy after reserves funding from dynam" +
+                    "ic homepage", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -70,35 +71,40 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Tests.Features.E2EJourney
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RV2_P_E2E_02 - Create vacancy by entering data for Optional fields, Approve, Appl" +
-            "y and make Application Unsuccessful")]
+        [NUnit.Framework.DescriptionAttribute("RV2_E_DHSV_01 Employer creates Submitted vacancy from dynamic homepage journey an" +
+            "d rejects the vacancy")]
         [NUnit.Framework.CategoryAttribute("raa-v2")]
-        [NUnit.Framework.CategoryAttribute("raa-v2p")]
-        [NUnit.Framework.CategoryAttribute("v2_e2e")]
-        [NUnit.Framework.CategoryAttribute("v2p_e2e")]
+        [NUnit.Framework.CategoryAttribute("raa-v2e")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public virtual void RV2_P_E2E_02_CreateVacancyByEnteringDataForOptionalFieldsApproveApplyAndMakeApplicationUnsuccessful()
+        [NUnit.Framework.CategoryAttribute("addpayedetails")]
+        public virtual void RV2_E_DHSV_01EmployerCreatesSubmittedVacancyFromDynamicHomepageJourneyAndRejectsTheVacancy()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV2_P_E2E_02 - Create vacancy by entering data for Optional fields, Approve, Appl" +
-                    "y and make Application Unsuccessful", null, new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV2_E_DHSV_01 Employer creates Submitted vacancy from dynamic homepage journey an" +
+                    "d rejects the vacancy", null, new string[] {
                         "raa-v2",
-                        "raa-v2p",
-                        "v2_e2e",
-                        "v2p_e2e",
-                        "regression"});
+                        "raa-v2e",
+                        "regression",
+                        "addpayedetails"});
 #line 8
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 9
- testRunner.Given("the Provider creates a vacancy by entering all the Optional fields", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("the user reserves funding from the dynamic home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 10
- testRunner.And("the Reviewer Approves the vacancy", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("the employer continue to add vacancy in the Recruitment", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 11
- testRunner.When("the Applicant can apply for a Vacancy in FAA", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("the Employer creates first submitted vacancy \'National Minimum Wage\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 12
- testRunner.Then("Provider can make the application unsuccessful", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the vacancy details is displayed on the Dynamic home page with Status \'PENDING RE" +
+                    "VIEW\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 13
- testRunner.And("the status of the Application is shown as \'unsuccessful\' in FAA", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Given("the Reviewer Refer the vacancy", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 14
+ testRunner.And("the Employer logs into Employer account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 15
+ testRunner.Then("the vacancy details is displayed on the Dynamic home page with Status \'REJECTED\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 16
+ testRunner.And("the vacancy can be resubmitted", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
