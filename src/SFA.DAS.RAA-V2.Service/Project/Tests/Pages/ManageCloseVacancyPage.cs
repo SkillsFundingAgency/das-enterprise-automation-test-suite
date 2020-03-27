@@ -4,7 +4,6 @@ using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.ConfigurationBuilder;
 using TechTalk.SpecFlow;
 using SFA.DAS.RAA.DataGenerator.Project;
-using SFA.DAS.UI.FrameworkHelpers;
 
 namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 {

@@ -22,7 +22,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
         private VacancyPreviewPart2Page _vacancyPreviewPart2Page;
         private VacancyPreviewPart2WithErrorsPage _vacancyPreviewPart2WithErrorsPage;
         private RecruitmentDynamicHomePage _dynamicHomePage;
-        private RecruitmentHomePage _recruitmentHomePage;
+        private VacancyTitlePage _vacancyTitlePage;
 
         public EmployerSteps(ScenarioContext context) 
         {
@@ -115,10 +115,10 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
         public void ThenTheEmployerVerifyTheWageOptionSelectedInThePreviewPage(string wageType) => _employerStepsHelper.VerifyWageType(wageType);
         
         [When(@"the Employer creates first Draft vacancy '(.*)'")]
-        public void GivenTheEmployerCreatesFirstDraftVacancy(string wageType) => _employerStepsHelper.CreateFirstDraftVacancy(wageType);
+        public void GivenTheEmployerCreatesFirstDraftVacancy(string wageType) => _employerStepsHelper.CreateDraftVacancy(_vacancyTitlePage, wageType).AddBriefOverview().EnterBriefOverview().ReturnToDashboard();
         
         [Given(@"the employer continue to add vacancy in the Recruitment")]
-        public void ThenTheEmployerContinueToAddVacancyInTheRecruitment() => _employerStepsHelper.GoToAddAnAdvert();
+        public void ThenTheEmployerContinueToAddVacancyInTheRecruitment() => _vacancyTitlePage = _employerStepsHelper.GoToAddAnAdvert();
 
         [Then(@"the vacancy details is displayed on the Dynamic home page with Status '(Saved as draft|CLOSED|PENDING REVIEW|LIVE|REJECTED)'")]
         public void GivenTheVacancyDetailsIsDisplayedOnTheDynamicHomePageWithStatus(string status)
@@ -145,7 +145,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
         }
 
         [When(@"the Employer creates first submitted vacancy '(National Minimum Wage|National Minimum Wage For Apprentices|Fixed Wage Type)'")]
-        public void GivenTheEmployerCreatesFirstSubmittedVacancy(string wageType) => _employerStepsHelper.CreateFirstSubmittedVacancy(wageType);
+        public void GivenTheEmployerCreatesFirstSubmittedVacancy(string wageType) => _employerStepsHelper.CreateSubmittedVacancy(_vacancyTitlePage, wageType);
 
         [Given(@"the Employer logs into Employer account")]
         public void GivenTheEmployerLogsIntoEmployerAccount() => _homePageStepsHelper.GotoEmployerHomePage();

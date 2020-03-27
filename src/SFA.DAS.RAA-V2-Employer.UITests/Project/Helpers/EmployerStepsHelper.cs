@@ -93,15 +93,20 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
             _stepsHelper.SubmitVacancy(previewPage, true, false);
         }
 
-        internal void CreateFirstSubmittedVacancy(string wageType)
+        internal void CreateSubmittedVacancy(VacancyTitlePage vacancyTitlePage, string wageType)
         {
-            var employernamePage = SelectOrganisationForNewAccount();
+            var previewPage = CreateDraftVacancy(vacancyTitlePage, wageType);
+
+            _stepsHelper.SubmitVacancy(previewPage, true, false);
+        }
+
+        internal VacancyPreviewPart2Page CreateDraftVacancy(VacancyTitlePage vacancyTitlePage, string wageType)
+        {
+            var employernamePage = SelectOrganisationForNewAccount(vacancyTitlePage);
 
             var locationPage = _stepsHelper.ChooseEmployerName(employernamePage, string.Empty);
 
-            var previewPage = _stepsHelper.PreviewVacancy(locationPage, wageType);
-
-            _stepsHelper.SubmitVacancy(previewPage, true, false);
+            return _stepsHelper.PreviewVacancy(locationPage, wageType);
         }
 
         internal void VerifyWageType(string wageType) => _stepsHelper.VerifyWageType(SearchVacancyByVacancyReference(), wageType);
@@ -121,8 +126,6 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
         }
 
         private ManageVacancyPage SearchVacancyByVacancyReference() => NavigateToRecruitmentHomePage().SearchVacancyByVacancyReference();
-
-        private RecruitmentHomePage NavigateToRecruitmentHomePage() => new RecruitmentHomePage(_context, true);
 
         private ApprenticeshipTrainingPage EnterVacancyTitle()
         {
@@ -149,9 +152,10 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
                 .SelectOrganisation();
         }
 
-        private EmployerNamePage SelectOrganisationForNewAccount()
+        private EmployerNamePage SelectOrganisationForNewAccount(VacancyTitlePage vacancyTitlePage)
         {
-            return new VacancyTitlePage(_context).EnterVacancyTitleForTheFirstVacancy()
+            return vacancyTitlePage
+                .EnterVacancyTitleForTheFirstVacancy()
                 .SelectYes()
                 .EnterTrainingTitle()
                 .ConfirmTrainingAndContinue()
@@ -160,20 +164,13 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
                 .SubmitNoOfPositionsAndNavigateToEmployerNamePage();
         }
 
-        public void CreateFirstDraftVacancy(string wageType)
-        {
-            var employernamePage = SelectOrganisationForNewAccount();
-
-            var locationPage = _stepsHelper.ChooseEmployerName(employernamePage, string.Empty);
-
-            _stepsHelper.PreviewVacancy(locationPage, wageType).AddBriefOverview().EnterBriefOverview().ReturnToDashboard();
-        }
-
         private RecruitmentHomePage GoToRecruitmentHomePage()
         {
             _loginhelper.Login(_context.GetUser<RAAV2EmployerUser>(), true);
 
             return NavigateToRecruitmentHomePage();
         }
+
+        private RecruitmentHomePage NavigateToRecruitmentHomePage() => new RecruitmentHomePage(_context, true);
     }
 }
