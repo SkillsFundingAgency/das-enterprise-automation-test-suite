@@ -141,28 +141,11 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
             return new DoYouNeedToCreateAnAdvertPage(_context).ClickYesRadioButtonTakesToRecruitment().ClickStartNow();
         }
 
-        private EmployerNamePage SelectOrganisation()
-        {
-            return EnterVacancyTitle()
-                .EnterTrainingTitle()
-                .ConfirmTrainingAndContinue()
-                .ChooseTrainingProvider()
-                .ConfirmTrainingProviderAndContinue()
-                .SubmitNoOfPositions()
-                .SelectOrganisation();
-        }
+        private EmployerNamePage SelectOrganisation() => EnterTrainingDetails(EnterVacancyTitle()).SubmitNoOfPositions().SelectOrganisation();
 
-        private EmployerNamePage SelectOrganisationForNewAccount(VacancyTitlePage vacancyTitlePage)
-        {
-            return vacancyTitlePage
-                .EnterVacancyTitleForTheFirstVacancy()
-                .SelectYes()
-                .EnterTrainingTitle()
-                .ConfirmTrainingAndContinue()
-                .ChooseTrainingProvider()
-                .ConfirmTrainingProviderAndContinue()
-                .SubmitNoOfPositionsAndNavigateToEmployerNamePage();
-        }
+        private EmployerNamePage SelectOrganisationForNewAccount(VacancyTitlePage vacancyTitlePage) => EnterTrainingDetails(vacancyTitlePage.EnterVacancyTitleForTheFirstVacancy().SelectYes()).SubmitNoOfPositionsAndNavigateToEmployerNamePage();
+
+        private SubmitNoOfPositionsPage EnterTrainingDetails(ApprenticeshipTrainingPage apprenticeshipTrainingPage) => apprenticeshipTrainingPage.EnterTrainingTitle().ConfirmTrainingAndContinue().ChooseTrainingProvider().ConfirmTrainingProviderAndContinue();
 
         private RecruitmentHomePage GoToRecruitmentHomePage()
         {

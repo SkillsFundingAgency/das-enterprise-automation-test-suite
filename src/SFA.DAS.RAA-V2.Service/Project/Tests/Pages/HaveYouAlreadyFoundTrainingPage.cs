@@ -12,14 +12,13 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
     {
         protected override string PageTitle => "Have you already found apprenticeship training?";
 
-#region Helpers And Context
+        #region Helpers And Context
         private readonly ScenarioContext _context;
         private readonly FormCompletionHelper _formCompletionHelper;
-
         #endregion
 
-        private By Cancel = By.LinkText("Cancel");
-        private By YesRadioButton = By.Id("has_training_yes");
+        private By YesRadioButton => By.Id("has_training_yes");
+
         protected override By ContinueButton => By.CssSelector("[data-automation='btn-continue']");
 
 
@@ -28,12 +27,6 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
             _context = context;
             _formCompletionHelper = context.Get<FormCompletionHelper>();
             VerifyPage();
-        }
-
-        public VacanciesPage CancelVacancy()
-        {
-            _formCompletionHelper.Click(Cancel);
-            return new VacanciesPage(_context);
         }
 
         public ApprenticeshipTrainingPage SelectYes()
