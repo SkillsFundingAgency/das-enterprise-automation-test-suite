@@ -46,7 +46,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer
         public RecruitmentDynamicHomePage ConfirmVacancyDetails(string status, DateTime dateTime)
         {
             ConfirmVacancyTitleAndStatus(status);
-            return ConfirmClosedDateAndApplicationsLink(dateTime.ToString("dd MMM yyyy"));
+            return ConfirmClosedDateAndApplicationsLink(dateTime);
         }
 
         public RecruitmentDynamicHomePage ConfirmLiveVacancyDetails(string status)
@@ -58,13 +58,13 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer
         public RecruitmentDynamicHomePage ConfirmClosedVacancyDetails(string status)
         {
             ConfirmVacancyTitleAndStatus(status);
-            ConfirmClosedDateAndApplicationsLink(DateTime.Today.ToString("dd MMMM yyyy"));
+            ConfirmClosedDateAndApplicationsLink(DateTime.Today);
             return ConfirmAddApprenticeDeatilsButton();
         }
 
-        private RecruitmentDynamicHomePage ConfirmClosedDateAndApplicationsLink(string closingDate)
+        private RecruitmentDynamicHomePage ConfirmClosedDateAndApplicationsLink(DateTime closingDate)
         {
-            pageInteractionHelper.VerifyText(GetDetails("Closing date").Text.ToString(), closingDate);
+            pageInteractionHelper.VerifyText(GetDetails("Closing date").Text.ToString(), closingDate.ToString("dd MMMM yyyy"), closingDate.ToString("dd MMM yyyy"));
             pageInteractionHelper.VerifyText(GetDetails("Applications").Text.ToString(), "application");
             return this;
         }
