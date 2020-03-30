@@ -33,6 +33,13 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
             applydataHelpers = context.Get<RoatpApplyDataHelpers>();
             roatpUkprnDataHelpers = context.Get<RoatpApplyUkprnDataHelpers>();
         }
+        
+        protected void EnterMonthAndYear()
+        {
+            formCompletionHelper.EnterText(Month, "02");
+            formCompletionHelper.EnterText(Year, "1991");
+            Continue();
+        }
 
         protected void UploadFile()
         {
