@@ -35,11 +35,8 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         public HomePage(ScenarioContext context) : this(context, false) { }
 
-        public void VerifySucessSummary()
-        {
-            pageInteractionHelper.VerifyText(SucessSummary, "Agreement accepted");
-        }
-
+        public void VerifySucessSummary() => pageInteractionHelper.VerifyText(SucessSummary, "Agreement accepted");
+        
         public string AccountId() => _regexHelper.GetAccountId(pageInteractionHelper.GetUrl()); 
 
         public string PublicAccountId() => _regexHelper.GetPublicAccountId(pageInteractionHelper.GetText(PublicAccountIdLocator));
