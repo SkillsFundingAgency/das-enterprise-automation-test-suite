@@ -15,7 +15,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.ApplyToAsse
 
         public AS_AssessmentPlanPage EnterDayToStart()
         {
-            SelectYesAndContinue();
+            SelectAndContinue("Yes");
             return new AS_AssessmentPlanPage(_context);
         }
     }

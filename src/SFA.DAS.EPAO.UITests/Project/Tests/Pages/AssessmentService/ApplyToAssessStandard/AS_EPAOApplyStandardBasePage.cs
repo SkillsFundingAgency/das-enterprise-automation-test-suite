@@ -15,17 +15,11 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.ApplyToAsse
 
         protected override By ContinueButton => By.CssSelector(".govuk-button[type='submit']");
 
-        public AS_EPAOApplyStandardBasePage(ScenarioContext context) : base(context) { }
+        public AS_EPAOApplyStandardBasePage(ScenarioContext context) : base(context) { VerifyPage(); }
 
-        protected void SelectNoAndContinue()
+        protected void SelectAndContinue(string option)
         {
-            SelectRadioOptionByText("No");
-            Continue();
-        }
-
-        protected void SelectYesAndContinue()
-        {
-            SelectRadioOptionByText("Yes");
+            SelectRadioOptionByText(option);
             Continue();
         }
     }

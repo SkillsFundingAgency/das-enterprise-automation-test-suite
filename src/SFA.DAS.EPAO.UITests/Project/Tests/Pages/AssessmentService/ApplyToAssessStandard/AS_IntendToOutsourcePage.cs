@@ -15,7 +15,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.ApplyToAsse
 
         public AS_EngageWithEmployersPage EnterIntendToOutsource()
         {
-            SelectNoAndContinue();
+            SelectAndContinue("No");
             return new AS_EngageWithEmployersPage(_context);
         }
     }
