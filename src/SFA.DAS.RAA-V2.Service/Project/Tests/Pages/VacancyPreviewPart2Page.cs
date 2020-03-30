@@ -99,6 +99,12 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
             return new VacancyReferencePage(_context);
         }
 
+        public ResubmittedVacancyReferencePage ResubmitVacancy()
+        {
+            formCompletionHelper.Click(Submit);
+            return new ResubmittedVacancyReferencePage(_context);
+        }
+
         public VacancyPreviewPart2WithErrorsPage SubmitVacancyWithMissingData()
         {
             formCompletionHelper.Click(Submit);
