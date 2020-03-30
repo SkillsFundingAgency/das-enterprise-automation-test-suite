@@ -1,6 +1,9 @@
 ﻿using TechTalk.SpecFlow;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
+using SFA.DAS.Login.Service;
+using SFA.DAS.Login.Service.Helpers;
+using SFA.DAS.Registration.UITests.Project.Helpers;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 {
@@ -9,12 +12,16 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
     {
         private readonly ScenarioContext _context;
         private readonly ProviderStepsHelper _providerStepsHelper;
+        private readonly EmployerStepsHelper _employerStepsHelper;
+        private readonly EmployerPortalLoginHelper _loginHelper;
         private ProviderReviewYourCohortPage _providerReviewYourCohortPage;
 
 		public ProviderSteps(ScenarioContext context)
         {
             _context = context;
             _providerStepsHelper = new ProviderStepsHelper(context);
+            _employerStepsHelper = new EmployerStepsHelper(context);
+            _loginHelper = new EmployerPortalLoginHelper(context);
         }
 
         [Then(@"the provider approves the cohorts")]
@@ -96,6 +103,26 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         public void ThenProviderIsAbleToDeleteTheCohortBeforeApproval()
         {
             _providerStepsHelper.DeleteCohort(_providerReviewYourCohortPage);
+        }
+
+        [Given(@"the provider has an apprentice with a stopped status")]
+        public void GivenTheProviderHasAnApprenticeWithAStoppedStatus()
+        {
+            _loginHelper.Login(_context.GetUser<LevyUser>(), true);
+
+            var cohortReference = _employerStepsHelper.EmployerApproveAndSendToProvider(1);
+
+            _employerStepsHelper.SetCohortReference(cohortReference);
+
+            _providerStepsHelper.Approve();
+
+            _employerStepsHelper.StopApprenticeThisMonth();
+        }
+
+        [When(@"the provider starts the change of employer journey")]
+        public void WhenTheProviderStartsTheChangeOfEmployerJourney()
+        {
+            _providerStepsHelper.StartChangeOfEmployerJourney();
         }
     }
 }
