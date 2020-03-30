@@ -23,7 +23,6 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.YourOrganisation_
         {
             formCompletionHelper.EnterText(IndividualsDetails, applydataHelpers.FullName);
             EnterMonthAndYear();
-            Continue();
             return new ConfirmPartnerShipDetailsPage(_context);
         }
     }
