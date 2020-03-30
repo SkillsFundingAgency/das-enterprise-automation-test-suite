@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using System;
+using OpenQA.Selenium;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.UI.FrameworkHelpers;
@@ -213,6 +214,15 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
         public bool VerifyDownloadAllLinkIsDisplayed()
         {
             return new ProviderManageYourApprenticesPage(_context).DownloadAllDataLinkIsDisplayed();
+        }
+
+        public ProviderSelectEmployerPage StartChangeOfEmployerJourney()
+        {
+            return GoToProviderHomePage()
+                .GoToProviderManageYourApprenticePage()
+                .SelectViewCurrentApprenticeDetails()
+                .ClickChangeEmployerLink()
+                .SelectChangeTheEmployer();
         }
 
     }
