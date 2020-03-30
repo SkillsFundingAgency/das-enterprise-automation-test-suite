@@ -6,7 +6,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
     public class AboutYourAgreementPage : InterimEmployerBasePage
     {
         protected override string PageTitle => "About your agreement";
-        private ScenarioContext _context;
+        private readonly ScenarioContext _context;
 
         #region Locators
         protected override string Linktext => "Your organisations and agreements";

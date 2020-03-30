@@ -1,4 +1,6 @@
-﻿using SFA.DAS.Registration.UITests.Project.Helpers;
+﻿using NUnit.Framework;
+using SFA.DAS.ConfigurationBuilder;
+using SFA.DAS.Registration.UITests.Project.Helpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
