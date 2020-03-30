@@ -39,7 +39,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         public void VerifySucessSummary()
         {
-            pageInteractionHelper.VerifyText(SucessSummary, "All agreements signed");
+            pageInteractionHelper.VerifyText(SucessSummary, "Agreement accepted");
         }
 
         public string AccountId()
