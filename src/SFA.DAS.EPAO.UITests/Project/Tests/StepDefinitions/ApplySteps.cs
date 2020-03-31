@@ -2,6 +2,8 @@
 using SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply;
 using SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.PreamblePages;
 using SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService;
+using SFA.DAS.Login.Service;
+using SFA.DAS.Login.Service.Helpers;
 using SFA.DAS.UI.Framework.TestSupport;
 using TechTalk.SpecFlow;
 
@@ -104,7 +106,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         public void ThenTheApplicationIsAllowedToBeSubmitted() => _applicationOverviewPage.ClickSubmitInApplicationOverviewPage();
 
         [Then(@"the User Name is displayed in the Logged In Home page")]
-        public void ThenTheUserNameIsDisplayedInTheLoggedInHomePage() => new AS_LoggedInHomePage(_context).VerifySignedInUserName(_config.EPAOApplyUserFullName);
+        public void ThenTheUserNameIsDisplayedInTheLoggedInHomePage() => new AS_LoggedInHomePage(_context).VerifySignedInUserName(_context.GetUser<EPAOApplyUser>().FullName);
 
         [Then(@"the Apply User is able to Signout from the application")]
         public void ThenTheApplyUserIsAbleToSignoutFromTheApplication()

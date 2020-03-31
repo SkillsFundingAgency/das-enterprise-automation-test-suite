@@ -22,7 +22,6 @@ namespace SFA.DAS.UI.Framework.TestSupport
         private const string TransfersProjectConfigKey = "transfersprojectconfigkey";
         private const string FATProjectConfigKey = "fatprojectconfigkey";
         private const string EPAOProjectConfigKey = "epaoprojectconfigkey";
-        private const string EPAOAdminProjectConfigKey = "epaoadminprojectconfigkey";
         private const string CampaignsConfigKey = "campaignsprojectconfigkey";
         private const string AskConfigKey = "askprojectconfigkey";
         #endregion
@@ -42,7 +41,6 @@ namespace SFA.DAS.UI.Framework.TestSupport
         public static void SetRAAV2QAConfig<T>(this ScenarioContext context, T value) => Set(context, value, RAAV2QAProjectConfigKey);
         public static void SetFAAConfig<T>(this ScenarioContext context, T value) => Set(context, value, FAAProjectConfigKey);
         public static void SetEPAOConfig<T>(this ScenarioContext context, T value) => Set(context, value, EPAOProjectConfigKey);
-        public static void SetEPAOAdminConfig<T>(this ScenarioContext context, T value) => Set(context, value, EPAOAdminProjectConfigKey);
         public static void SetCampaignsConfig<T>(this ScenarioContext context, T value) => Set(context, value, CampaignsConfigKey);
         public static void SetAskConfig<T>(this ScenarioContext context, T value) => Set(context, value, AskConfigKey);
         public static void SetWebDriver(this ScenarioContext context, IWebDriver webDriver) => Replace(context, webDriver, WebDriverKey);      
@@ -65,7 +63,6 @@ namespace SFA.DAS.UI.Framework.TestSupport
         public static T GetFAAConfig<T>(this ScenarioContext context) => Get<T>(context, FAAProjectConfigKey);
         public static T GetSupportConsoleConfig<T>(this ScenarioContext context) => Get<T>(context, SupportConsoleProjectConfigKey);
         public static T GetEPAOConfig<T>(this ScenarioContext context) => Get<T>(context, EPAOProjectConfigKey);
-        public static T GetEPAOAdminConfig<T>(this ScenarioContext context) => Get<T>(context, EPAOAdminProjectConfigKey);
         public static T GetCampaignsConfig<T>(this ScenarioContext context) => Get<T>(context, CampaignsConfigKey);
         public static T GetAskConfig<T>(this ScenarioContext context) => Get<T>(context, AskConfigKey);
         public static IWebDriver GetWebDriver(this ScenarioContext context) => Get<IWebDriver>(context, WebDriverKey);
