@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.Registration.UITests.Project.Tests.Features.AORN
+namespace SFA.DAS.Registration.UITests.Project.Tests.Features.Notification
 {
     using TechTalk.SpecFlow;
     
@@ -18,26 +18,24 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features.AORN
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.0.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("RE_AORN_01")]
+    [NUnit.Framework.DescriptionAttribute("RE_NOTIF_01")]
     [NUnit.Framework.CategoryAttribute("regression")]
     [NUnit.Framework.CategoryAttribute("registration")]
-    [NUnit.Framework.CategoryAttribute("addpayedetails")]
-    public partial class RE_AORN_01Feature
+    public partial class RE_NOTIF_01Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "RE_AORN_01.feature"
+#line 1 "RE_NOTIF_01.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "RE_AORN_01", null, ProgrammingLanguage.CSharp, new string[] {
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "RE_NOTIF_01", null, ProgrammingLanguage.CSharp, new string[] {
                         "regression",
-                        "registration",
-                        "addpayedetails"});
+                        "registration"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -76,30 +74,17 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features.AORN
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RE_AORN_01_Create an Employer Account through AORN route with paye details attach" +
-            "ed to a Single Organisation")]
-        public virtual void RE_AORN_01_CreateAnEmployerAccountThroughAORNRouteWithPayeDetailsAttachedToASingleOrganisation()
+        [NUnit.Framework.DescriptionAttribute("RE_NOTIF_01_Veify Access code notification receipt during Account creation")]
+        public virtual void RE_NOTIF_01_VeifyAccessCodeNotificationReceiptDuringAccountCreation()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RE_AORN_01_Create an Employer Account through AORN route with paye details attach" +
-                    "ed to a Single Organisation", null, ((string[])(null)));
-#line 6
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RE_NOTIF_01_Veify Access code notification receipt during Account creation", null, ((string[])(null)));
+#line 5
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
+#line 6
+ testRunner.When("the User initiates Account creation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 7
- testRunner.Given("an User Account is created", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 8
- testRunner.When("the User adds PAYE details attached to a SingleOrg through AORN route", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 9
- testRunner.Then("the Employer is able to Sign the Agreement and view the Home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 10
- testRunner.And("\'These details are already in use\' page is displayed when Another Employer tries " +
-                    "to register the account with the same Aorn and Paye details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 11
- testRunner.And("\'Add a PAYE Scheme\' page is displayed when Employer clicks on \'Use different deta" +
-                    "ils\' button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 12
- testRunner.And("\'Add a PAYE Scheme\' page is displayed when Employer clicks on Back link on the \'P" +
-                    "AYE scheme already in use\' page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Then("the User receives Access code notification to the registered email", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

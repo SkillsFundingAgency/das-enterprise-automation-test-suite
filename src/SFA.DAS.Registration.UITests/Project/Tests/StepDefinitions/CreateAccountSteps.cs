@@ -51,8 +51,10 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
 
         [Given(@"an User Account is created")]
         [When(@"an User Account is created")]
-        [When("the User initiates Account creation"]
         public void AnUserAccountIsCreated() => _addAPAYESchemePage = _accountCreationStepsHelper.RegisterUserAccount().ContinueToGetApprenticeshipFunding();
+
+        [When("the User initiates Account creation")]
+        public void UserInitiatesAccountCreation() => _accountCreationStepsHelper.RegisterUserAccount();
 
         [Given(@"the User adds PAYE details")]
         [When(@"the User adds PAYE details")]
@@ -513,4 +515,3 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         }
     }
 }
-

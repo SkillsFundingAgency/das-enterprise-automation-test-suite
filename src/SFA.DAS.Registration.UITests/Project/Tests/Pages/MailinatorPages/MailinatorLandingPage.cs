@@ -1,11 +1,11 @@
 ﻿using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.Mailinator
+namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.MailinatorPages
 {
     public class MailinatorLandingPage : RegistrationBasePage
     {
-        protected override string PageTitle => "Mailinator";
+        protected override string PageTitle => "MAILINATOR";
         protected override By PageHeader => By.CssSelector(".nav-title");
         private readonly ScenarioContext _context;
 
@@ -20,11 +20,11 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.Mailinator
             VerifyPage();
         }
 
-        public MailinatorLandingPage EnterEmailAndClickOnGoButton(string email)
+        public MailinatorInboxPage EnterEmailAndClickOnGoButton(string email)
         {
             formCompletionHelper.EnterText(EmailTextBox, email);
             formCompletionHelper.Click(GoButton);
-            return this;
+            return new MailinatorInboxPage(_context);
         }
     }
 }

@@ -37,6 +37,8 @@ namespace SFA.DAS.Registration.UITests.Project
 
             var mongoDbconfig = _configSection.GetConfigSection<MongoDbConfig>();
             _context.SetMongoDbConfig(mongoDbconfig);
+
+            _context.SetMailinatorConfig(_configSection.GetConfigSection<MailinatorConfig>());
         }
     }
 }
