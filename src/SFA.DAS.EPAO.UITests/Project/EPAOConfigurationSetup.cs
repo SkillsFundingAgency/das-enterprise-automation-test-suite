@@ -1,4 +1,6 @@
 ﻿using SFA.DAS.ConfigurationBuilder;
+using SFA.DAS.Login.Service;
+using SFA.DAS.Login.Service.Helpers;
 using SFA.DAS.UI.Framework.TestSupport;
 using TechTalk.SpecFlow;
 
@@ -19,11 +21,17 @@ namespace SFA.DAS.EPAO.UITests.Project
         [BeforeScenario(Order = 2)]
         public void SetUpEPAOProjectConfiguration()
         {
-            var config = _configSection.GetConfigSection<EPAOConfig>();
-            _context.SetEPAOConfig(config);
+            _context.SetEPAOConfig(_configSection.GetConfigSection<EPAOConfig>());
 
-            var adminconfig = _configSection.GetConfigSection<EPAOAdminConfig>();
-            _context.SetEPAOAdminConfig(adminconfig);
+            _context.SetUser(_configSection.GetConfigSection<EPAOStandardApplyUser>());
+
+            _context.SetUser(_configSection.GetConfigSection<EPAOAssessorUser>());
+
+            _context.SetUser(_configSection.GetConfigSection<EPAOManageUser>());
+
+            _context.SetUser(_configSection.GetConfigSection<EPAOApplyUser>());
+
+            _context.SetUser(_configSection.GetConfigSection<EPAOAdminUser>());
         }
     }
 }

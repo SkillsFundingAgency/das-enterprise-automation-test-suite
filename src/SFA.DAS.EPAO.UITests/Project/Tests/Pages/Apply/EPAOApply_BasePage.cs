@@ -8,11 +8,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply
         private readonly ScenarioContext _context;
         #endregion
 
-
-        public EPAOApply_BasePage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-        }
+        public EPAOApply_BasePage(ScenarioContext context) : base(context) => _context = context;
 
         public AP_ApplicationOverviewPage ClickReturnToApplicationOverviewButton()
         {
