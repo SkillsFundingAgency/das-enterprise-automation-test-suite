@@ -23,6 +23,19 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.YourOrganisation_
             return new SoleTraderDOBPage(_context);
         }
 
+        public OrganisationPartnersPage SelectPartnershipAndContinue()
+        {
+            SelectRadioOptionByText("Partnership");
+            Continue();
+            return new OrganisationPartnersPage(_context);
+        }
+
+        public ConfirmPartnerShipDetailsPage SelectIndividualForPartnershipContinue()
+        {
+            SelectRadioOptionByText("Partnership");
+            Continue();
+            return new ConfirmPartnerShipDetailsPage(_context);
+        }
     }
 }
 
