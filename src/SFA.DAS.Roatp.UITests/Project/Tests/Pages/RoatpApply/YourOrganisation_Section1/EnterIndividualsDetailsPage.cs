@@ -6,6 +6,8 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.YourOrganisation_
     public class EnterIndividualsDetailsPage : RoatpApplyBasePage
     {
         protected override string PageTitle => "Enter the individual's details";
+        protected By Month => By.CssSelector("input[id*='Month']");
+        protected By Year => By.CssSelector("input[id*='Year']");
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
@@ -17,6 +19,13 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.YourOrganisation_
         {
             _context = context;
             VerifyPage();
+        }
+
+        protected void EnterMonthAndYear()
+        {
+            formCompletionHelper.EnterText(Month, "02");
+            formCompletionHelper.EnterText(Year, "1991");
+            Continue();
         }
 
         public ConfirmPartnerShipDetailsPage EnterIndividualsDetailsAndContinue()
