@@ -1,5 +1,6 @@
 ﻿using SFA.DAS.IdamsLogin.Service.Project.Tests.Pages;
-using SFA.DAS.UI.Framework.TestSupport;
+using SFA.DAS.Login.Service;
+using SFA.DAS.Login.Service.Helpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
@@ -10,18 +11,18 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
-        private readonly EPAOAdminConfig _config;
+        private readonly EPAOAdminUser _user;
         #endregion
 
         public SignInPage(ScenarioContext context) : base(context)
         {
             _context = context;
-            _config = context.GetEPAOAdminConfig<EPAOAdminConfig>();
+            _user = _context.GetUser<EPAOAdminUser>();
         }
 
         public StaffDashboardPage SignInWithValidDetails()
         {
-            SubmitValidLoginDetails(_config.AdminUserName, _config.AdminPassword);
+            SubmitValidLoginDetails(_user.Username, _user.Password);
             return new StaffDashboardPage(_context);
         }
     }

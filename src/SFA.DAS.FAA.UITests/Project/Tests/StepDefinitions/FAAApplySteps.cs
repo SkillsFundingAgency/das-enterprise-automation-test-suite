@@ -13,13 +13,13 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.StepDefinitions
             _faaStepsHelper = new FAAStepsHelper(context);
         }
 
-        [When(@"the Applicant applies for a Vacancy in FAA")]
         [Then(@"the Applicant can apply for a Vacancy in FAA")]
-        public void TheApplicantAppliesForAVacancyInFAA()
+        [When(@"the Applicant can apply for a Vacancy in FAA")]
+        public void WhenTheApplicantCanApplyForAVacancyInFAA()
         {
             _faaStepsHelper.ApplyForAVacancy("No", "No", "No");
         }
-
+        
         [When(@"the Applicant apply for a Vacancy in FAA '(.*)','(.*)','(.*)'")]
         public void WhenTheApplicantApplyForAVacancyInFAA(string qualificationdetails, string workExperience, string trainingCourse)
         {

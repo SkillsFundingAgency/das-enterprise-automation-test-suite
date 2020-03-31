@@ -23,20 +23,15 @@ namespace SFA.DAS.Registration.UITests.Project
         [BeforeScenario(Order = 2)]
         public void SetUpRegistrationConfigConfiguration()
         {
-            var config = _configSection.GetConfigSection<RegistrationConfig>();
-            _context.SetRegistrationConfig(config);
-            
-            var tprconfig = _configSection.GetConfigSection<TprConfig>();
-            _context.SetTprConfig(tprconfig);
+            _context.SetRegistrationConfig(_configSection.GetConfigSection<RegistrationConfig>());
 
-            var levyUser = _configSection.GetConfigSection<LevyUser>();
-            _context.SetUser(levyUser);
+            _context.SetTprConfig(_configSection.GetConfigSection<TprConfig>());
 
-            var nonLevyUser = _configSection.GetConfigSection<NonLevyUser>();
-            _context.SetUser(nonLevyUser);
+            _context.SetUser(_configSection.GetConfigSection<LevyUser>());
 
-            var mongoDbconfig = _configSection.GetConfigSection<MongoDbConfig>();
-            _context.SetMongoDbConfig(mongoDbconfig);
+            _context.SetUser(_configSection.GetConfigSection<NonLevyUser>());
+
+            _context.SetMongoDbConfig(_configSection.GetConfigSection<MongoDbConfig>());
 
             _context.SetMailinatorConfig(_configSection.GetConfigSection<MailinatorConfig>());
         }

@@ -23,6 +23,8 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
             ExecuteSqlCommand($"DELETE from Apply where OrganisationId = '{organisationId}'");
         }
 
+        public void DeleteStandardApplicication(string standardReference, string organisationId, string userid) => ExecuteSqlCommand($"DELETE from [Apply] where OrganisationId = (select OrganisationId from Organisations WHERE EndPointAssessorOrganisationId = '{organisationId}') and CreatedBy = (select Id from Contacts where Email = '{userid}') and StandardCode = {standardReference}");
+
         private void ExecuteSqlCommand(string queryToExecute) => SqlDatabaseConnectionHelper.ExecuteSqlCommand(_connectionString, queryToExecute);
 
         private string GetDataFromDb(string queryToExecute) => Convert.ToString(SqlDatabaseConnectionHelper.ReadDataFromDataBase(queryToExecute, _connectionString)[0][0]);
