@@ -15,7 +15,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             _stepsHelper = new ApprovalsStepsHelper(context);
         }
 
-        [Given(@"the User creates Employer account and sign an agreement")]
+        [Given(@"The User creates Employer account and sign an agreement")]
         public void TheUserCreatesEmployerAccountAndSignAnAgreement()
         {
             _stepsHelper.CreatesAccountAndSignAnAgreement();

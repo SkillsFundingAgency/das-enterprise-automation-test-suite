@@ -3,6 +3,7 @@ using SFA.DAS.Registration.UITests.Project.Helpers;
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
+using SFA.DAS.Approvals.UITests.Project.Tests.Pages.DynamicHomePage;
 
 namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 {
@@ -14,7 +15,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
         private readonly HomePageStepsHelper _homePageStepsHelper;
         private readonly ObjectContext _objectContext;
         private readonly ScenarioContext _context;
-
+       
         internal EmployerStepsHelper(ScenarioContext context)
         {
             _context = context;
@@ -204,5 +205,20 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             }
             return new ReviewYourCohortPage(_context);
         }
+
+         public void DraftApprentice()
+        {
+            AddAnApprenitcePage _addAnApprenitcePage = new AddAnApprenitcePage(_context);
+            _addAnApprenitcePage.StartNowToAddTrainingProvider()
+             .SubmitValidUkprn()
+             .ConfirmProviderDetailsAreCorrect()
+              .DHNonLevyEmployerAddsApprentices()
+              .DynamicHomePageClickSaveAndContinueToAddAnApprentices()
+              .DraftDynamicHomePageSubmitValidApprenticeDetails()
+              .DraftReturnToHomePage()
+             .CheckStatusAndAddDetails()
+             .VerifyEditApprenticePage()
+            .ContinueToAddValidApprenticeDetails();
+          }
     }
 }

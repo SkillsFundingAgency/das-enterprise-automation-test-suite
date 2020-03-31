@@ -1,4 +1,6 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.Approvals.UITests.Project.Tests.Pages.DynamicHomePage;
+using SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
@@ -54,6 +56,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             EmployerAgreesToAdds();
             Continue();
             return new AddApprenticeDetailsPage(_context);
+        }
+        public ChooseAReservationPage DHNonLevyEmployerAddsApprentices()
+        {
+            EmployerAgreesToAdds();
+            Continue();
+            return new ChooseAReservationPage(_context);
         }
     }
 }

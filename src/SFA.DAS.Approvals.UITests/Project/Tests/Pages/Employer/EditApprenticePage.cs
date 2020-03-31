@@ -1,6 +1,7 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.Approvals.UITests.Project.Helpers;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common;
+using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
@@ -12,9 +13,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         #region Helpers and Context
         private readonly ScenarioContext _context;
         private readonly EditedApprenticeCourseDataHelper _coursedataHelper;
+        private readonly FormCompletionHelper _formCompletionHelper;
+        private readonly PageInteractionHelper _pageInteractionHelper;
+        private readonly ApprenticeDataHelper _dataHelper;
         #endregion
 
         private By CourseOption => By.CssSelector("#TrainingCode");
+        private By VerifyEditApprenticeDetailsPage = By.CssSelector("#main-content > div > div > h1");
 
         private By DeleteButton => By.LinkText("Delete");
 
@@ -22,6 +27,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         {
             _context = context;
             _coursedataHelper = context.Get<EditedApprenticeCourseDataHelper>();
+            _formCompletionHelper = context.Get<FormCompletionHelper>();
+            _pageInteractionHelper = context.Get<PageInteractionHelper>();
+            _dataHelper = context.Get<ApprenticeDataHelper>();
+            
         }
 
         public ConfirmApprenticeDeletionPage SelectDeleteApprentice()
@@ -50,5 +59,17 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         {
             return new ConfirmChangesPage(_context);
         }
+        public AddApprenticeDetailsPage VerifyEditApprenticePage()
+        {
+            _pageInteractionHelper.VerifyPage(VerifyEditApprenticeDetailsPage);
+            //_pageInteractionHelper.VerifyText(VerifyEditApprenticeDetailsPage, PageTitle);
+            return new AddApprenticeDetailsPage(_context);
+        }
+        /*public ApproveApprenticeDetailsPage SaveEditApprenticePage()
+        {
+          AddApprenticeDetailsPage _addApprenticeDetailsPage = new AddApprenticeDetailsPage(_context);
+          _addApprenticeDetailsPage.ContinueToAddValidApprenticeDetails();
+            return new ApproveApprenticeDetailsPage(_context);
+        }*/
     }
 }

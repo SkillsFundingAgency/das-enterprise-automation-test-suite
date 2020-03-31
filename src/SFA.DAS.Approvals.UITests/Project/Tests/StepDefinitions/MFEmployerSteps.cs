@@ -27,16 +27,16 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _reservationStepsHelper = new MFEmployerStepsHelper(context);
         }
 
-        [Then(@"the new reserved funding panel is shown to employer on the homepage")]
+        [Then(@"The new reserved funding panel is shown to employer on the homepage")]
         public void ThenTheNewReservedFundingPanelIsShownToEmployerOnTheHomepage() => _successfullyReservedFundingPage.GoToHomePage().VerifyReserveFundingPanel();
 
-        [When(@"the Employer reserves funding for an apprenticeship course from reserved panel")]
+        [When(@"The Employer reserves funding for an apprenticeship course from reserved panel")]
         public void WhenTheEmployerReservesFundingForAnApprenticeshipCourseFromReservedPanel() => _successfullyReservedFundingPage = _reservationStepsHelper.CreateReservation(_reservationStepsHelper.GoToReserveFundingFromHomePagePanel());
 
         [When(@"the Employer reserves funding for an apprenticeship course")]
         public void WhenTheEmployerReservesFundingForAnApprenticeshipCourse() => _successfullyReservedFundingPage = _reservationStepsHelper.CreateReservation(_reservationStepsHelper.GoToReserveFunding());
 
-        [Then(@"the funding is successfully reserved")]
+        [Then(@"The funding is successfully reserved")]
         public void ThenTheFundingIsSuccessfullyReserved() => _successfullyReservedFundingPage.VerifySucessMessage();
         
         [When(@"the Employer deletes all unused funding for an apprenticeship course")]
