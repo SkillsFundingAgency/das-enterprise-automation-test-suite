@@ -27,4 +27,17 @@
     public class NonLevyUser : LoginUser { }
 
     public class LoggedInUser : LoginUser { }
+    
+    public class EPAOStandardApplyUser : LoginUser { }
+
+    public class EPAOAssessorUser : LoginUser { }
+
+    public class EPAOManageUser : LoginUser { }
+
+    public class EPAOApplyUser : LoginUser
+    {
+        public string FullName { get; set; }
+    }
+
+    public class EPAOAdminUser : LoginUser { }
 }

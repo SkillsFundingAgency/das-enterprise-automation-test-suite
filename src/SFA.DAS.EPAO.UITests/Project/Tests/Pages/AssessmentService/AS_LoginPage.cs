@@ -1,5 +1,7 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.PreamblePages;
+using SFA.DAS.Login.Service;
+using SFA.DAS.Login.Service.Helpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
@@ -7,8 +9,8 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
     public class AS_LoginPage : EPAO_BasePage
     {
         protected override string PageTitle => "Sign in to Apprenticeship assessment service";
+
         private readonly ScenarioContext _context;
-        string userName, password;
 
         #region Locators
         private By EmailAddressTextBox => By.Id("Username");
@@ -21,27 +23,22 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
             VerifyPage();
         }
 
-        public AS_LoggedInHomePage SignInWithValidDetails(string user)
+        public AS_LoggedInHomePage SignInWithValidDetails(LoginUser loginUser)
         {
-            userName = user == "Assessor User" ? ePAOConfig.EPAOAssessorLoginUsername : ePAOConfig.EPAOManageUserLoginUsername;
-            password = user == "Assessor User" ? ePAOConfig.EPAOAssessorLoginPassword : ePAOConfig.EPAOManageUserLoginPassword;
-
-            EnterLoginDetails(userName, password);
+            EnterLoginDetails(loginUser);
             return new AS_LoggedInHomePage(_context);
         }
 
         public AP_PR1_SearchForYourOrganisationPage SignInAsApplyUser()
         {
-            userName = ePAOConfig.EPAOApplyUserLoginUsername;
-            password = ePAOConfig.EPAOApplyUserLoginPassword;
-            EnterLoginDetails(userName, password);
+            EnterLoginDetails(_context.GetUser<EPAOApplyUser>());
             return new AP_PR1_SearchForYourOrganisationPage(_context);
         }
 
-        public void EnterLoginDetails(string userName, string password)
+        public void EnterLoginDetails(LoginUser loginUser)
         {
-            formCompletionHelper.EnterText(EmailAddressTextBox, userName);
-            formCompletionHelper.EnterText(PasswordTextBox, password);
+            formCompletionHelper.EnterText(EmailAddressTextBox, loginUser.Username);
+            formCompletionHelper.EnterText(PasswordTextBox, loginUser.Password);
             Continue();
         }
     }

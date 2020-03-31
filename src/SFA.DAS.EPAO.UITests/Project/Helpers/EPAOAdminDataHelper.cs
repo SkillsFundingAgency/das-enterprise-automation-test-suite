@@ -19,6 +19,10 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
             CharityNumber = $"9{GetRandomNumber(4)}-{GetRandomNumber(2)}";
         }
 
+        public string Standards => "100";
+
+        public string StandardsName => "Transport planning technician";
+
         public string OrganisationName => "City and Guilds";
 
         public string OrganisationEpaoId => "EPA0008";
@@ -41,13 +45,9 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
 
         public string PhoneNumber => $"0844455{GetRandomNumber(4)}";
 
-        public string Standards => "100";
-
         public DateTime StandardsEffectiveFrom => new DateTime(2015, 08, 01);
 
         public DateTime OrgStandardsEffectiveFrom => StandardsEffectiveFrom.AddDays(35);
-
-        public string StandardsName => "Transport planning technician";
 
         public string NewOrganisationName { get; }
 
@@ -64,8 +64,5 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
         public string StreetAddress2 => "Cheylsmore Avuene";
 
         public string StreetAddress3 => "Warkwickshire";
-
-        public IWebElement GetRandomElementFromListOfElements(List<IWebElement> options) => randomDataGenerator.GetRandomElementFromListOfElements(options);
-
     }
 }
