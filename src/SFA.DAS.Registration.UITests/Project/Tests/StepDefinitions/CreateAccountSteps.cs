@@ -165,7 +165,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             _homePage = _signAgreementPage
                 .SignAgreement();
 
-            _homePage.VerifySucessSummary();
+            _homePage.VerifySucessSummary("Agreement accepted");
 
             SetAgreementId(_homePage);
         }
@@ -490,6 +490,17 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         [Then(@"the Employer is able to add AORN details attached to a SingleOrg to the Account")]
         public void ThenTheEmployerIsAbleToAddAORNDetailsAttachedToASingleOrgToTheAccount() =>
             WhenTheUserAddsPAYEDetailsAttachedToASingleOrgThroughAORNRoute("SingleOrg");
+
+        [Then(@"the Employer is able to rename the Account")]
+        public void ThenTheEmployerIsAbleToRenameTheAccount()
+        {
+            var newOrgName = _objectContext.GetOrganisationName() + "_Renamed";
+
+            _homePage.GoToRenameAccountPage()
+                .EnterNewNameAndContinue(newOrgName)
+                .VerifySucessSummary("Account renamed")
+                .VerifyAccountName(newOrgName);
+        }
 
         private void EnterInvalidAornAndPaye() =>
             _enterYourPAYESchemeDetailsPage.EnterAornAndPayeAndContinue(_registrationDataHelper.InvalidAornNumber, _registrationDataHelper.InvalidPaye);
