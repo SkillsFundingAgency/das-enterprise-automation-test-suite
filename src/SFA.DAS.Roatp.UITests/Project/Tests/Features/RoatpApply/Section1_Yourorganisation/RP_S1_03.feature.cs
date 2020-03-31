@@ -70,17 +70,17 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Features.RoatpApply.Section1_Youro
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RP_S1_03_SoleTraderOrNonlimitedPartnership - Supporting - Org- A Group Training A" +
-            "ssociation")]
+        [NUnit.Framework.DescriptionAttribute("RP_S1_03_SoleTraderAndPartnership - Supporting - Org- A Group Training Associatio" +
+            "n")]
         [NUnit.Framework.CategoryAttribute("rps103")]
         [NUnit.Framework.CategoryAttribute("roatp")]
         [NUnit.Framework.CategoryAttribute("roatpapply")]
         [NUnit.Framework.CategoryAttribute("roatps1")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public virtual void RP_S1_03_SoleTraderOrNonlimitedPartnership_Supporting_Org_AGroupTrainingAssociation()
+        public virtual void RP_S1_03_SoleTraderAndPartnership_Supporting_Org_AGroupTrainingAssociation()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_S1_03_SoleTraderOrNonlimitedPartnership - Supporting - Org- A Group Training A" +
-                    "ssociation", null, new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_S1_03_SoleTraderAndPartnership - Supporting - Org- A Group Training Associatio" +
+                    "n", null, new string[] {
                         "rps103",
                         "roatp",
                         "roatpapply",
@@ -97,7 +97,8 @@ this.ScenarioInitialize(scenarioInfo);
 #line 11
  testRunner.And("the provider completes Organisation Information section for charity", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 12
-    testRunner.And("the provider completes Tell us who\'s in control section for sole trader", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+    testRunner.And("the provider completes Tell us who\'s in control section for sole trader and partn" +
+                    "ership", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 13
     testRunner.And("the provider completes Describe your organisation section as OrgTypeGTA", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 14
