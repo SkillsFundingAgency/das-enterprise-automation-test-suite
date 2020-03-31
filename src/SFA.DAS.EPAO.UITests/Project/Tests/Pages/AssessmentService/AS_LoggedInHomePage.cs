@@ -1,6 +1,7 @@
 ﻿using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 using SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.ManageUsers;
+using SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.ApplyToAssessStandard;
 
 namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
 {
@@ -17,9 +18,16 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
         private By HomeTopMenuLink => By.Id("Home");
         private By SignedInUserNameText => By.CssSelector(".das-user-panel__content");
         private By SignOutLink => By.XPath("//a[@href='/Account/SignOut']");
+        private By ApplyToAssessStandardLink => By.CssSelector("a[href='/ApplyToAssessStandard']");
         #endregion
 
         public AS_LoggedInHomePage(ScenarioContext context) : base(context) => _context = context;
+
+        public AS_ApplyToAssessStandardPage ApplyToAssessStandard()
+        {
+            formCompletionHelper.Click(ApplyToAssessStandardLink);
+            return new AS_ApplyToAssessStandardPage(_context);
+        }
 
         public AS_RecordAGradePage ClickOnRecordAGrade()
         {

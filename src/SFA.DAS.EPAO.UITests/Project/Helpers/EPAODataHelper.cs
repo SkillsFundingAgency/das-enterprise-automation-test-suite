@@ -1,5 +1,7 @@
-﻿using SFA.DAS.UI.FrameworkHelpers;
+﻿using OpenQA.Selenium;
+using SFA.DAS.UI.FrameworkHelpers;
 using System;
+using System.Collections.Generic;
 
 namespace SFA.DAS.EPAO.UITests.Project.Helpers
 {
@@ -32,6 +34,8 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
         public string GetRandomNumber(int length) => randomDataGenerator.GenerateRandomNumber(length);
 
         public string GetRandomAlphabeticString(int length) => randomDataGenerator.GenerateRandomAlphabeticString(length);
+
+        public IWebElement GetRandomElementFromListOfElements(List<IWebElement> options) => randomDataGenerator.GetRandomElementFromListOfElements(options);
 
         private string GetDateTimeValue() => DateTime.Now.ToString("ddMMMyyyy_HHmmss").ToUpper();
     }
