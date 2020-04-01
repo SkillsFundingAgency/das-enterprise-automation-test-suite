@@ -23,7 +23,7 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
                  .ContinueToGetApprenticeshipFunding()
                  .AddPaye();
             
-            var homePage = SignAgreement(page, 0);
+            var homePage = AddPayeAndOrgDetailsAndSignAgreement(page, 0);
 
             var accountid = homePage.AccountId();
             _objectContext.SetAccountId(accountid);
@@ -35,7 +35,7 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
         {
             var page = homePage.GoToYourAccountsPage().AddNewAccount();
 
-            homePage = SignAgreement(page, index);
+            homePage = AddPayeAndOrgDetailsAndSignAgreement(page, index);
                  
             var accountid = homePage.AccountId();
             _objectContext.SetReceiverAccountId(accountid);
@@ -46,7 +46,7 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
             return homePage;
         }
 
-        private HomePage SignAgreement(UsingYourGovtGatewayDetailsPage usingYourGovtGatewayDetailsPage, int index)
+        private HomePage AddPayeAndOrgDetailsAndSignAgreement(UsingYourGovtGatewayDetailsPage usingYourGovtGatewayDetailsPage, int index)
         {
             return usingYourGovtGatewayDetailsPage
                  .ContinueToGGSignIn()
