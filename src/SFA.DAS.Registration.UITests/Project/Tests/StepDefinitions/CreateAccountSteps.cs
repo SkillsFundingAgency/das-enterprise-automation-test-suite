@@ -508,15 +508,14 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         public void WhenTheUserIsOnTheCheckYourDetailsPageAfterAddingPAYEAndCompanyTypeOrgDetails()
         {
             _searchForYourOrganisationPage = CreateAnUserAcountAndAddPaye();
-            _checkYourDetailsPage = SearchAndSelectOrg(_searchForYourOrganisationPage, OrgType.Company);
+            _checkYourDetailsPage = _accountCreationStepsHelper.SearchAndSelectOrg(_searchForYourOrganisationPage, OrgType.Company);
         }
-
 
         [Then(@"the User is able to choose a different Company by clicking on Change Organisation")]
         public void ThenTheUserIsAbleToChooseADifferentCompanyByClickingOnChangeOrganisation()
         {
             _searchForYourOrganisationPage = _checkYourDetailsPage.ClickOrganisationChangeLink();
-            _checkYourDetailsPage = SearchAndSelectOrg(_searchForYourOrganisationPage, OrgType.Company2);
+            _checkYourDetailsPage = _accountCreationStepsHelper.SearchAndSelectOrg(_searchForYourOrganisationPage, OrgType.Company2);
             Assert.AreEqual(_objectContext.GetOrganisationName(), _checkYourDetailsPage.GetOrganisationName());
         }
 
@@ -524,8 +523,8 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         public void ThenTheUserIsAbleToChooseADifferentPAYESchemeByClickingOnChangePAYESchemeAndCompleteRegistationJourney()
         {
             _addAPAYESchemePage = _checkYourDetailsPage.ClickPayeSchemeChangeLink();
-            _searchForYourOrganisationPage = AddADifferentPaye(_addAPAYESchemePage);
-            _checkYourDetailsPage = SearchAndSelectOrg(_searchForYourOrganisationPage, OrgType.Company2);
+            _searchForYourOrganisationPage = _accountCreationStepsHelper.AddADifferentPaye(_addAPAYESchemePage);
+            _checkYourDetailsPage = _accountCreationStepsHelper.SearchAndSelectOrg(_searchForYourOrganisationPage, OrgType.Company2);
             Assert.AreEqual(_objectContext.GetGatewayPaye(1), _checkYourDetailsPage.GetPayeScheme());
         }
 
@@ -550,19 +549,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             AddPayeDetails();
             AddOrganisationTypeDetails(OrgType.Company);
             SignTheAgreement();
-        }
-
-        private CheckYourDetailsPage SearchAndSelectOrg(SearchForYourOrganisationPage searchForYourOrganistionPage, OrgType org)
-        {
-            return searchForYourOrganistionPage.SearchForAnOrganisation(org)
-                .SelectYourOrganisation(org);
-        }
-
-        private SearchForYourOrganisationPage AddADifferentPaye(AddAPAYESchemePage addAPAYESchemePage)
-        {
-            return addAPAYESchemePage.AddPaye()
-                .ContinueToGGSignIn()
-                .SignInTo(1);
         }
     }
 }
