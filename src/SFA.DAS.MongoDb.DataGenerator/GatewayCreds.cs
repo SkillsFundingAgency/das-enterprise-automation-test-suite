@@ -17,6 +17,6 @@ namespace SFA.DAS.MongoDb.DataGenerator
         public string Paye { get; private set; }
         internal int Index { get; private set; }
 
-        public override string ToString() => $"'{GatewayId}', '{GatewayPassword}', '{Paye}'";
+        public override string ToString() => $"Gatewayid:'{GatewayId}', GatewayPassword:'{GatewayPassword}', Paye/EmpRef:'{Paye}'";
     }
 }
