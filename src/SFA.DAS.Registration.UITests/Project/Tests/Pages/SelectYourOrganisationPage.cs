@@ -29,6 +29,9 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
                 case OrgType.Company:
                     formCompletionHelper.ClickElement(SearchLinkUrl(registrationDataHelper.CompanyTypeOrg));
                     break;
+                case OrgType.Company2:
+                    formCompletionHelper.ClickElement(SearchLinkUrl(registrationDataHelper.CompanyTypeOrg2));
+                    break;
                 case OrgType.PublicSector:
                     formCompletionHelper.ClickElement(SearchLinkUrl(registrationDataHelper.PublicSectorTypeOrg));
                     break;
@@ -63,6 +66,10 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             return new EnterYourOrganisationNamePage(_context);
         }
 
-        private IWebElement SearchLinkUrl(string searchText) => pageInteractionHelper.GetLink(OrganisationLink, searchText);
+        private IWebElement SearchLinkUrl(string searchText)
+        {
+            objectContext.UpdateOrganisationName(searchText);
+            return pageInteractionHelper.GetLink(OrganisationLink, searchText);
+        }
     }
 }

@@ -27,6 +27,9 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
                 case OrgType.Company:
                     EnterAndSetOrgName(registrationDataHelper.CompanyTypeOrg);
                     break;
+                case OrgType.Company2:
+                    EnterAndSetOrgName(registrationDataHelper.CompanyTypeOrg2);
+                    break;
                 case OrgType.PublicSector:
                     EnterAndSetOrgName(registrationDataHelper.PublicSectorTypeOrg);
                     break;
