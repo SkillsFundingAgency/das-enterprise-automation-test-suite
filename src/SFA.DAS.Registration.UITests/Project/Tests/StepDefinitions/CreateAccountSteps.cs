@@ -53,6 +53,9 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         [When(@"an User Account is created")]
         public void AnUserAccountIsCreated() => _addAPAYESchemePage = _accountCreationStepsHelper.RegisterUserAccount().ContinueToGetApprenticeshipFunding();
 
+        [When("the User initiates Account creation")]
+        public void UserInitiatesAccountCreation() => _accountCreationStepsHelper.RegisterUserAccount();
+
         [Given(@"the User adds PAYE details")]
         [When(@"the User adds PAYE details")]
         [When(@"the User adds valid PAYE details")]
@@ -162,7 +165,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             _homePage = _signAgreementPage
                 .SignAgreement();
 
-            _homePage.VerifySucessSummary();
+            _homePage.VerifySucessSummary("Agreement accepted");
 
             SetAgreementId(_homePage);
         }
@@ -487,6 +490,17 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         public void ThenTheEmployerIsAbleToAddAORNDetailsAttachedToASingleOrgToTheAccount() =>
             WhenTheUserAddsPAYEDetailsAttachedToASingleOrgThroughAORNRoute("SingleOrg");
 
+        [Then(@"the Employer is able to rename the Account")]
+        public void ThenTheEmployerIsAbleToRenameTheAccount()
+        {
+            var newOrgName = _objectContext.GetOrganisationName() + "_Renamed";
+
+            _homePage.GoToRenameAccountPage()
+                .EnterNewNameAndContinue(newOrgName)
+                .VerifySucessSummary("Account renamed")
+                .VerifyAccountName(newOrgName);
+        }
+
         private void EnterInvalidAornAndPaye() =>
             _enterYourPAYESchemeDetailsPage.EnterAornAndPayeAndContinue(_registrationDataHelper.InvalidAornNumber, _registrationDataHelper.InvalidPaye);
 
@@ -511,4 +525,3 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         }
     }
 }
-

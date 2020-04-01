@@ -24,7 +24,7 @@ namespace SFA.DAS.Registration.UITests.Project
         public void SetUpRegistrationConfigConfiguration()
         {
             _context.SetRegistrationConfig(_configSection.GetConfigSection<RegistrationConfig>());
-            
+
             _context.SetTprConfig(_configSection.GetConfigSection<TprConfig>());
 
             _context.SetUser(_configSection.GetConfigSection<LevyUser>());
@@ -32,6 +32,8 @@ namespace SFA.DAS.Registration.UITests.Project
             _context.SetUser(_configSection.GetConfigSection<NonLevyUser>());
 
             _context.SetMongoDbConfig(_configSection.GetConfigSection<MongoDbConfig>());
+
+            _context.SetMailinatorConfig(_configSection.GetConfigSection<MailinatorConfig>());
         }
     }
 }
