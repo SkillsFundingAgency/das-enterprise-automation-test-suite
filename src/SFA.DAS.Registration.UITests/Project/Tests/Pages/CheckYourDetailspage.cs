@@ -20,7 +20,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         private By ManuallyAddedOrganisationAddress => By.XPath("//th[contains(text(), 'Address')]/following-sibling::td");
         private By OrganisationChangeLink => By.XPath($"//td[contains(text(), '{objectContext.GetOrganisationName()}')]/..//a");
         private By AornChangeLink => By.XPath($"//td[contains(text(), '{registrationDataHelper.AornNumber}')]/..//a");
-        private By PayeSchemeChangeLink => By.XPath($"//dt[contains(text(), '{objectContext.GetGatewayPaye()}')]/../../following-sibling::td");
+        private By PayeSchemeChangeLink => By.XPath($"//dt[contains(text(), '{objectContext.GetGatewayPaye(0)}')]/../../following-sibling::td");
         #endregion
 
         public CheckYourDetailsPage(ScenarioContext context) : base(context)

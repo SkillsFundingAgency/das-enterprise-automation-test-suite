@@ -59,7 +59,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         [Given(@"the User adds PAYE details")]
         [When(@"the User adds PAYE details")]
         [When(@"the User adds valid PAYE details")]
-        public void AddPayeDetails() => _organistionSearchPage = _addAPAYESchemePage.AddPaye().ContinueToGGSignIn().SignInTo();
+        public void AddPayeDetails() => _organistionSearchPage = _addAPAYESchemePage.AddPaye().ContinueToGGSignIn().SignInTo(0);
 
         [Given(@"the User adds PAYE details attached to a (SingleOrg|MultiOrg) through AORN route")]
         [When(@"the User adds PAYE details attached to a (SingleOrg|MultiOrg) through AORN route")]
@@ -99,7 +99,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         [When(@"the User adds valid PAYE details on Gateway Sign In Page")]
         public void WhenTheUserAddsValidPAYEDetailsOnGatewaySignInPage()
         {
-            _organistionSearchPage = _gGSignInPage.SignInTo();
+            _organistionSearchPage = _gGSignInPage.SignInTo(0);
         }
 
         [When(@"adds Organisation details")]
@@ -407,7 +407,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
                     Assert.AreEqual(blankPayeFieldErrorMessage, _enterYourPAYESchemeDetailsPage.GetErrorMessageAbovePayeTextBox());
                     break;
                 case "BlankAornValidPaye":
-                    _enterYourPAYESchemeDetailsPage.EnterAornAndPayeAndContinue("", _objectContext.GetGatewayPaye());
+                    _enterYourPAYESchemeDetailsPage.EnterAornAndPayeAndContinue("", _objectContext.GetGatewayPaye(0));
                     Assert.AreEqual(blankAornFieldErrorMessage, _enterYourPAYESchemeDetailsPage.GetErrorMessageAboveAornTextBox());
                     break;
                 case "BlankPayeValidAorn":
@@ -441,7 +441,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         [Then(@"Employer is able to complete registration through GG route")]
         public void ThenEmployerIsAbleToCompleteRegistrationThroughGGRoute()
         {
-            _organistionSearchPage = _usingYourGovtGatewayDetailsPage.ContinueToGGSignIn().SignInTo();
+            _organistionSearchPage = _usingYourGovtGatewayDetailsPage.ContinueToGGSignIn().SignInTo(0);
             AddOrganisationDetails();
             SignTheAgreement();
         }
@@ -460,8 +460,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         {
             _tabHelper.GoToUrl(_config.EmployerApprenticeshipServiceBaseURL);
 
-            _addAPAYESchemePage = _accountCreationStepsHelper.RegisterUserAccount()
-                .ContinueToGetApprenticeshipFunding();
+            _addAPAYESchemePage = _accountCreationStepsHelper.RegisterUserAccount().ContinueToGetApprenticeshipFunding();
         }
 
         [Then(@"the User is allowed to activate the account and continue with registration")]

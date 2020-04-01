@@ -4,10 +4,7 @@
     {
         private readonly DataHelper _dataHelper;
 
-        public MongoDbDataHelper(DataHelper dataHelper)
-        {
-            _dataHelper = dataHelper;
-        }
+        public MongoDbDataHelper(DataHelper dataHelper) => _dataHelper = dataHelper;
 
         public string GatewayId => _dataHelper.GatewayUsername;
 
