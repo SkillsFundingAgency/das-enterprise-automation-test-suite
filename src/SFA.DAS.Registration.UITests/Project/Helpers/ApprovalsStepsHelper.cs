@@ -17,18 +17,13 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
 
         public HomePage CreatesAccountAndSignAnAgreement()
         {
-            var homePage = new IndexPage(_context)
+            var page = new IndexPage(_context)
                  .CreateAccount()
                  .Register()
                  .ContinueToGetApprenticeshipFunding()
-                 .AddPaye()
-                 .ContinueToGGSignIn()
-                 .SignInTo()
-                 .SearchForAnOrganisation()
-                 .SelectYourOrganisation()
-                 .ContinueToAboutYourAgreementPage()
-                 .SelectViewAgreementNowAndContinue()
-                 .SignAgreement();
+                 .AddPaye();
+            
+            var homePage = SignAgreement(page, 0);
 
             var accountid = homePage.AccountId();
             _objectContext.SetAccountId(accountid);
@@ -36,18 +31,12 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
             return homePage;
         }
 
-        public HomePage AddNewAccountAndSignAnAgreement(HomePage homePage)
+        public HomePage AddNewAccountAndSignAnAgreement(HomePage homePage, int index)
         {
-            homePage.GoToYourAccountsPage()
-                 .AddNewAccount()
-                 .ContinueToGGSignIn()
-                 .SignInTo()
-                 .SearchForAnOrganisation()
-                 .SelectYourOrganisation()
-                 .ContinueToAboutYourAgreementPage()
-                 .SelectViewAgreementNowAndContinue()
-                 .SignAgreement();
+            var page = homePage.GoToYourAccountsPage().AddNewAccount();
 
+            homePage = SignAgreement(page, index);
+                 
             var accountid = homePage.AccountId();
             _objectContext.SetReceiverAccountId(accountid);
 
@@ -55,6 +44,18 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
             _objectContext.SetReceiverPublicAccountId(publicAccountid);
 
             return homePage;
+        }
+
+        private HomePage SignAgreement(UsingYourGovtGatewayDetailsPage usingYourGovtGatewayDetailsPage, int index)
+        {
+            return usingYourGovtGatewayDetailsPage
+                 .ContinueToGGSignIn()
+                 .SignInTo(index)
+                 .SearchForAnOrganisation()
+                 .SelectYourOrganisation()
+                 .ContinueToAboutYourAgreementPage()
+                 .SelectViewAgreementNowAndContinue()
+                 .SignAgreement();
         }
     }
 }
