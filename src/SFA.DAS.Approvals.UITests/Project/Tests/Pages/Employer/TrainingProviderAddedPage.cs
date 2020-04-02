@@ -21,11 +21,19 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             VerifyPage();
         }
 
-        public SetPermissionsPage SelectContinueInEmployerTrainingProviderAddedPage()
+         /* public SetPermissionsPage SelectContinueInEmployerTrainingProviderAddedPage()
+          {
+              _formCompletionHelper.SelectRadioOptionByText(RadioLabels, "Set permissions for this training provider");
+              Continue();
+              return new SetPermissionsPage(_context);
+          }
+          */
+
+        public DoYouGiveTrainingProviderPermissionToAddApprenticeRecordsPage SelectContinueInEmployerTrainingProviderAddedPage()
         {
             _formCompletionHelper.SelectRadioOptionByText(RadioLabels, "Set permissions for this training provider");
             Continue();
-            return new SetPermissionsPage(_context);
+            return new DoYouGiveTrainingProviderPermissionToAddApprenticeRecordsPage (_context);
         }
     }
 }
