@@ -6,15 +6,10 @@ namespace SFA.DAS.TestDataExport
 {
     public static class ObjectContextExtension
     {
+
         #region Constants
-        private const string BrowserKey = "browser";
         private const string DirectoryKey = "directory";
         private const string AfterScenarioExceptions = "afterscenarioexceptions";
-        private const string BrowserNameKey = "browsername";
-        private const string BrowserVersionKey = "browserVersion";
-        private const string BrowserstackFailedToUpdateTestResult = "browserstackfailedtoupdatetestresult";
-        private const string WebDriverUrl = "webdriverurl";
-        private const string CurrentApplicationName = "currentapplicationname";
         #endregion
 
         public static void SetDirectory(this ObjectContext objectContext, string value) => objectContext.Set(DirectoryKey, value);
