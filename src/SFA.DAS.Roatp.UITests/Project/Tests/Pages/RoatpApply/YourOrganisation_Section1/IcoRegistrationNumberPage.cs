@@ -27,5 +27,12 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.YourOrganisation_
             Continue();
             return new WebsitePage(_context);
         }
+
+        public TradingPeriodPage EnterIcoRegistrationNumber_WebsiteAndContinue()
+        {
+            formCompletionHelper.EnterText(IcoNumberField, applydataHelpers.IocNumber);
+            Continue();
+            return new TradingPeriodPage(_context);
+        }
     }
 }
