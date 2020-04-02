@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.Transfers
+namespace SFA.DAS.Registration.UITests.Project.Tests.Features.CreateEmpAccountOfCompanyType_NonLevy
 {
     using TechTalk.SpecFlow;
     
@@ -18,22 +18,20 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.Transfers
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.0.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("AP_TR_04_TransfersConnectionJourney")]
-    [NUnit.Framework.CategoryAttribute("approvals")]
-    public partial class AP_TR_04_TransfersConnectionJourneyFeature
+    [NUnit.Framework.DescriptionAttribute("RE_CEACMPT_03")]
+    public partial class RE_CEACMPT_03Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "AP_TR_04_TransfersConnectionJourney.feature"
+#line 1 "RE_CEACMPT_03.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "AP_TR_04_TransfersConnectionJourney", null, ProgrammingLanguage.CSharp, new string[] {
-                        "approvals"});
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "RE_CEACMPT_03", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -72,30 +70,32 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.Transfers
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("AP_TR_04 Transfers - Creating Transfer Connection between Sender and Receiver")]
+        [NUnit.Framework.DescriptionAttribute("RE_CEACMPT_03_Validate changing Organisation and PAYE features from Check details" +
+            " page")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("transfersscenarios")]
+        [NUnit.Framework.CategoryAttribute("registration")]
         [NUnit.Framework.CategoryAttribute("addpayedetails")]
-        [NUnit.Framework.CategoryAttribute("addtransferslevyfunds")]
         [NUnit.Framework.CategoryAttribute("addanothernonlevypayedetails")]
-        public virtual void AP_TR_04Transfers_CreatingTransferConnectionBetweenSenderAndReceiver()
+        public virtual void RE_CEACMPT_03_ValidateChangingOrganisationAndPAYEFeaturesFromCheckDetailsPage()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_TR_04 Transfers - Creating Transfer Connection between Sender and Receiver", null, new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RE_CEACMPT_03_Validate changing Organisation and PAYE features from Check details" +
+                    " page", null, new string[] {
                         "regression",
-                        "transfersscenarios",
+                        "registration",
                         "addpayedetails",
-                        "addtransferslevyfunds",
                         "addanothernonlevypayedetails"});
-#line 9
+#line 7
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
+#line 8
+ testRunner.When("the User is on the \'Check your details\' page after adding PAYE and Company Type O" +
+                    "rg details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 9
+ testRunner.Then("the User is able to choose a different Company by clicking on Change Organisation" +
+                    "", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 10
- testRunner.Given("We have a new Sender with sufficient levy funds and a new Receiver accounts setup" +
-                    "", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 11
- testRunner.When("Sender connects to Receiver", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 12
- testRunner.Then("A transfer connection is established successfully", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the User is able to choose a different PAYE scheme by clicking on Change PAYE sch" +
+                    "eme and complete registation journey", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

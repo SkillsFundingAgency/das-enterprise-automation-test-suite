@@ -27,7 +27,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         private SetUpAsAUserPage _setUpAsAUserPage;
         private AddAPAYESchemePage _addAPAYESchemePage;
         private GgSignInPage _gGSignInPage;
-        private SearchForYourOrganisationPage _organistionSearchPage;
+        private SearchForYourOrganisationPage _searchForYourOrganisationPage;
         private SelectYourOrganisationPage _selectYourOrganisationPage;
         private SignAgreementPage _signAgreementPage;
         private CheckYourDetailsPage _checkYourDetailsPage;
@@ -59,7 +59,10 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         [Given(@"the User adds PAYE details")]
         [When(@"the User adds PAYE details")]
         [When(@"the User adds valid PAYE details")]
-        public void AddPayeDetails() => _organistionSearchPage = _addAPAYESchemePage.AddPaye().ContinueToGGSignIn().SignInTo();
+        public SearchForYourOrganisationPage AddPayeDetails()
+        {
+            return _searchForYourOrganisationPage = _addAPAYESchemePage.AddPaye().ContinueToGGSignIn().SignInTo(0);
+        }
 
         [Given(@"the User adds PAYE details attached to a (SingleOrg|MultiOrg) through AORN route")]
         [When(@"the User adds PAYE details attached to a (SingleOrg|MultiOrg) through AORN route")]
@@ -99,7 +102,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         [When(@"the User adds valid PAYE details on Gateway Sign In Page")]
         public void WhenTheUserAddsValidPAYEDetailsOnGatewaySignInPage()
         {
-            _organistionSearchPage = _gGSignInPage.SignInTo();
+            _searchForYourOrganisationPage = _gGSignInPage.SignInTo(0);
         }
 
         [When(@"adds Organisation details")]
@@ -108,7 +111,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         [When(@"adds (Company|PublicSector|Charity) Type Organisation details")]
         public void AddOrganisationTypeDetails(OrgType orgType)
         {
-            _signAgreementPage = _organistionSearchPage
+            _signAgreementPage = _searchForYourOrganisationPage
                 .SearchForAnOrganisation(orgType)
                 .SelectYourOrganisation(orgType)
                 .ContinueToAboutYourAgreementPage()
@@ -145,7 +148,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         [When(@"enters an Invalid Company number for Org search")]
         public SelectYourOrganisationPage WhenAnEmployerEntersAnInvalidCompanyNumberForOrgSearchInOrganisationSearchPage()
         {
-            _selectYourOrganisationPage = _organistionSearchPage.SearchForAnOrganisation(_registrationDataHelper.InvalidCompanyNumber);
+            _selectYourOrganisationPage = _searchForYourOrganisationPage.SearchForAnOrganisation(_registrationDataHelper.InvalidCompanyNumber);
             return new SelectYourOrganisationPage(_context);
         }
 
@@ -313,7 +316,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         [When(@"adds the Organisation address details manually")]
         public void WhenAddsTheOrganisationAddressDetailsManually()
         {
-            _checkYourDetailsPage = _organistionSearchPage.SearchForAnOrganisation(_registrationDataHelper.CharityTypeOrg3Number)
+            _checkYourDetailsPage = _searchForYourOrganisationPage.SearchForAnOrganisation(_registrationDataHelper.CharityTypeOrg3Number)
                                         .SelectYourOrganisation(_registrationDataHelper.CharityTypeOrg3Name)
                                         .ClickEnterAddressManullyLinkInFindOrganisationAddressPage()
                                         .EnterAddressDetailsAndContinue();
@@ -407,7 +410,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
                     Assert.AreEqual(blankPayeFieldErrorMessage, _enterYourPAYESchemeDetailsPage.GetErrorMessageAbovePayeTextBox());
                     break;
                 case "BlankAornValidPaye":
-                    _enterYourPAYESchemeDetailsPage.EnterAornAndPayeAndContinue("", _objectContext.GetGatewayPaye());
+                    _enterYourPAYESchemeDetailsPage.EnterAornAndPayeAndContinue("", _objectContext.GetGatewayPaye(0));
                     Assert.AreEqual(blankAornFieldErrorMessage, _enterYourPAYESchemeDetailsPage.GetErrorMessageAboveAornTextBox());
                     break;
                 case "BlankPayeValidAorn":
@@ -441,7 +444,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         [Then(@"Employer is able to complete registration through GG route")]
         public void ThenEmployerIsAbleToCompleteRegistrationThroughGGRoute()
         {
-            _organistionSearchPage = _usingYourGovtGatewayDetailsPage.ContinueToGGSignIn().SignInTo();
+            _searchForYourOrganisationPage = _usingYourGovtGatewayDetailsPage.ContinueToGGSignIn().SignInTo(0);
             AddOrganisationDetails();
             SignTheAgreement();
         }
@@ -460,8 +463,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         {
             _tabHelper.GoToUrl(_config.EmployerApprenticeshipServiceBaseURL);
 
-            _addAPAYESchemePage = _accountCreationStepsHelper.RegisterUserAccount()
-                .ContinueToGetApprenticeshipFunding();
+            _addAPAYESchemePage = _accountCreationStepsHelper.RegisterUserAccount().ContinueToGetApprenticeshipFunding();
         }
 
         [Then(@"the User is allowed to activate the account and continue with registration")]
@@ -502,13 +504,37 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
                 .VerifyAccountName(newOrgName);
         }
 
+        [When(@"the User is on the 'Check your details' page after adding PAYE and Company Type Org details")]
+        public void WhenTheUserIsOnTheCheckYourDetailsPageAfterAddingPAYEAndCompanyTypeOrgDetails()
+        {
+            _searchForYourOrganisationPage = CreateAnUserAcountAndAddPaye();
+            _checkYourDetailsPage = _accountCreationStepsHelper.SearchAndSelectOrg(_searchForYourOrganisationPage, OrgType.Company);
+        }
+
+        [Then(@"the User is able to choose a different Company by clicking on Change Organisation")]
+        public void ThenTheUserIsAbleToChooseADifferentCompanyByClickingOnChangeOrganisation()
+        {
+            _searchForYourOrganisationPage = _checkYourDetailsPage.ClickOrganisationChangeLink();
+            _checkYourDetailsPage = _accountCreationStepsHelper.SearchAndSelectOrg(_searchForYourOrganisationPage, OrgType.Company2);
+            Assert.AreEqual(_objectContext.GetOrganisationName(), _checkYourDetailsPage.GetOrganisationName());
+        }
+
+        [Then(@"the User is able to choose a different PAYE scheme by clicking on Change PAYE scheme and complete registation journey")]
+        public void ThenTheUserIsAbleToChooseADifferentPAYESchemeByClickingOnChangePAYESchemeAndCompleteRegistationJourney()
+        {
+            _addAPAYESchemePage = _checkYourDetailsPage.ClickPayeSchemeChangeLink();
+            _searchForYourOrganisationPage = _accountCreationStepsHelper.AddADifferentPaye(_addAPAYESchemePage);
+            _checkYourDetailsPage = _accountCreationStepsHelper.SearchAndSelectOrg(_searchForYourOrganisationPage, OrgType.Company2);
+            Assert.AreEqual(_objectContext.GetGatewayPaye(1), _checkYourDetailsPage.GetPayeScheme());
+        }
+
         private void EnterInvalidAornAndPaye() =>
             _enterYourPAYESchemeDetailsPage.EnterAornAndPayeAndContinue(_registrationDataHelper.InvalidAornNumber, _registrationDataHelper.InvalidPaye);
 
-        private void CreateAnUserAcountAndAddPaye()
+        private SearchForYourOrganisationPage CreateAnUserAcountAndAddPaye()
         {
             AnUserAccountIsCreated();
-            AddPayeDetails();
+            return AddPayeDetails();
         }
 
         private void VerifyOrgDetails(string orgNumber, string OrgName, string orgAddress)

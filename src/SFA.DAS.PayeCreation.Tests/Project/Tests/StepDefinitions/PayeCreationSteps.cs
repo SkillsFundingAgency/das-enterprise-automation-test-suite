@@ -12,13 +12,11 @@ namespace SFA.DAS.PayeCreation.Project.Tests.StepDefinitions
     {
         private MongoDbDataGenerator _mongoDbDataGenerator;
         private readonly ScenarioContext _context;
-        private readonly ObjectContext _objectContext;
         private readonly PayeCreationConfig _payeCreationConfig;
 
         public PayeCreationSteps(ScenarioContext context)
         {
             _context = context;
-            _objectContext = context.Get<ObjectContext>();
             _mongoDbDataGenerator = new MongoDbDataGenerator(_context);
             _payeCreationConfig = context.GetPayeCreationConfig();
         }
@@ -29,17 +27,17 @@ namespace SFA.DAS.PayeCreation.Project.Tests.StepDefinitions
         [Given(@"I add levy declarations")]
         public void GivenIAddLevyDeclarations()
         {
-            AddGatewayUsers();
+            var gatewayCreds = AddGatewayUsers();
 
             var (fraction, calculatedAt, levyDeclarations) = LevyDeclarationDataHelper.LevyFunds(_payeCreationConfig.Duration, _payeCreationConfig.LevyPerMonth);
             foreach (var item in levyDeclarations.Rows.ToList().Select(x => x.Values))
             {
-                TestContext.Progress.WriteLine($"Levy Declarations: {_objectContext.GetGatewayPaye()} - {string.Join(",", item.Select(y => y))}");
+                TestContext.Progress.WriteLine($"Levy Declarations: {gatewayCreds.Paye} - {string.Join(",", item.Select(y => y))}");
             }
            
             _mongoDbDataGenerator.AddLevyDeclarations(fraction, calculatedAt, levyDeclarations);
         }
 
-        private void AddGatewayUsers() => _mongoDbDataGenerator.AddGatewayUsers();
+        private GatewayCreds AddGatewayUsers() => _mongoDbDataGenerator.AddGatewayUsers(0);
     }
 }

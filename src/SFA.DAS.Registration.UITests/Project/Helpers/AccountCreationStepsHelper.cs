@@ -57,5 +57,18 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
                 .ReEnterTheSameAornDetailsAndContinue();
 
         public IndexPage SignOut() => new HomePage(_context, true).SignOut().CickContinueInYouveLoggedOutPage();
+
+        public CheckYourDetailsPage SearchAndSelectOrg(SearchForYourOrganisationPage searchForYourOrganistionPage, OrgType org)
+        {
+            return searchForYourOrganistionPage.SearchForAnOrganisation(org)
+                .SelectYourOrganisation(org);
+        }
+
+        public SearchForYourOrganisationPage AddADifferentPaye(AddAPAYESchemePage addAPAYESchemePage)
+        {
+            return addAPAYESchemePage.AddPaye()
+                .ContinueToGGSignIn()
+                .SignInTo(1);
+        }
     }
 }
