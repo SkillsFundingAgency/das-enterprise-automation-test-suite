@@ -8,8 +8,6 @@ namespace SFA.DAS.UI.Framework.TestSupport
     {
         #region Constants
         private const string BrowserKey = "browser";
-        private const string DirectoryKey = "directory";
-        private const string AfterScenarioExceptions = "afterscenarioexceptions";
         private const string BrowserNameKey = "browsername";
         private const string BrowserVersionKey = "browserVersion";
         private const string BrowserstackFailedToUpdateTestResult = "browserstackfailedtoupdatetestresult";
