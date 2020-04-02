@@ -60,8 +60,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         [Given(@"the User adds PAYE details")]
         [When(@"the User adds PAYE details")]
         [When(@"the User adds valid PAYE details")]
-        public SearchForYourOrganisationPage AddPayeDetails(int payeIndex = 0) =>
-            _searchForYourOrganisationPage = _addAPAYESchemePage.AddPaye().ContinueToGGSignIn().SignInTo(payeIndex);
+        public SearchForYourOrganisationPage AddPayeDetails() => AddPayeDetails(0);
 
         [Given(@"the User adds PAYE details attached to a (SingleOrg|MultiOrg) through AORN route")]
         [When(@"the User adds PAYE details attached to a (SingleOrg|MultiOrg) through AORN route")]
@@ -560,5 +559,8 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             AddOrganisationTypeDetails(OrgType.Company);
             SignTheAgreement();
         }
+
+        private SearchForYourOrganisationPage AddPayeDetails(int payeIndex) =>
+            _searchForYourOrganisationPage = _addAPAYESchemePage.AddPaye().ContinueToGGSignIn().SignInTo(payeIndex);
     }
 }
