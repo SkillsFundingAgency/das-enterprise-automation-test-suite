@@ -42,11 +42,11 @@ namespace SFA.DAS.MongoDb.DataGenerator
             _mongoDbDatabase = mongoDbConfig.Database;
         }
 
-        public void AddGatewayUsers()
+        public GatewayCreds AddGatewayUsers(int index)
         {
             _objectContext.SetMongoDbDataHelper(_mongoDbDataHelper, _empRef);
 
-            _objectContext.SetGatewayCreds(_mongoDbDataHelper.GatewayId, _mongoDbDataHelper.GatewayPassword, _mongoDbDataHelper.EmpRef);
+            _objectContext.SetGatewayCreds(_mongoDbDataHelper.GatewayId, _mongoDbDataHelper.GatewayPassword, _mongoDbDataHelper.EmpRef, index);
 
             _addGatewayUserData = new MongoDbHelper(_mongodbConnectionHelper, new GatewayUserDataGenerator(_mongoDbDataHelper));
 
@@ -62,6 +62,8 @@ namespace SFA.DAS.MongoDb.DataGenerator
 
             _context.Set(_addGatewayUserData, $"{typeof(GatewayUserDataGenerator).FullName}_{_empRef}");
             _context.Set(_addempRefLinksData, $"{typeof(EmpRefLinksDataGenerator).FullName}_{_empRef}");
+
+            return _objectContext.GetGatewayCreds(index);
         }
 
         public void AddLevyDeclarations(decimal fraction, DateTime calculatedAt, Table table)

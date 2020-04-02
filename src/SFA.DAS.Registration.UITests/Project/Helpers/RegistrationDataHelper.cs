@@ -28,6 +28,7 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
         public string InvalidGGPassword { get; }
         public string InvalidCompanyNumber { get; }
         public string CompanyTypeOrg => "ESFA LTD";
+        public string CompanyTypeOrg2 => "TESCO PLC";
         public string PublicSectorTypeOrg => "Royal School Hampstead";
         public string CharityTypeOrg1Number => "200895";
         public string CharityTypeOrg1Name => "ALLHALLOWS CHARITY";
@@ -44,7 +45,6 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
         public string InvalidPaye => $"{RandomNumericString(3)}/{RandomAlphaNumericString(7)}";
         public string InvalidAornNumber => $"A{GetDateTimeValue()}";
         public string InvitedViewerAccessUserFullName => "RE Auto_Tester";
-
         private string RandomAlphaNumericString(int length) => _randomDataGenerator.GenerateRandomAlphanumericString(length);
         private string RandomNumericString(int length) => _randomDataGenerator.GenerateRandomNumber(length);
         private string GetDateTimeValue() => DateTime.Now.ToString("ddMMyyHHmmss");

@@ -19,4 +19,9 @@
     {
         public string RE_TPRDbConnectionString { get; set; }
     }
+
+    public class MailinatorConfig
+    {
+        public string MailinatorURL { get; set; }
+    }
 }
