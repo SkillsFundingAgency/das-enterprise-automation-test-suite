@@ -47,7 +47,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
 
         public RAA_EmployerInformationPage UseTheMainEmployerAddress(string position)
         {
-            SetEmployerName(pageInteractionHelper.GetText(EmployerName));
+            SetEmployerName();
             formCompletionHelper.SelectRadioOptionByText("Use the main employer address");
             formCompletionHelper.EnterText(NumberOfVacancy, position);
             return this;
@@ -55,14 +55,14 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
 
         public RAA_EmployerInformationPage AddDifferentLocation()
         {
-            SetEmployerName(pageInteractionHelper.GetText(EmployerName));
+            SetEmployerName();
             formCompletionHelper.SelectRadioOptionByText("Add different location(s)");
             return this;
         }
 
         public RAA_EmployerInformationPage SetAsANationWideVacancy(string position)
         {
-            SetEmployerName(pageInteractionHelper.GetText(EmployerName));
+            SetEmployerName();
             formCompletionHelper.SelectRadioOptionByText("Set as a nationwide vacancy");
             formCompletionHelper.EnterText(NationwideNumberOfVacancy, position);
             return this;
@@ -109,9 +109,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
                 formCompletionHelper.Click(VacancyLocationPageSaveAndContinue);
             }
         }
-        private void SetEmployerName(string value)
-        {
-            _objectContext.SetEmployerName(value);
-        }
+
+        private void SetEmployerName() => _objectContext.SetEmployerName(pageInteractionHelper.GetText(EmployerName));
     }
 }

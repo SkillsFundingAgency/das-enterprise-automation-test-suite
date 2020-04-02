@@ -30,7 +30,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.StepDefinitions
         [When(@"the Applicant apply for a Vacancy by browsing in FAA '(.*)','(.*)','(.*)'")]
         public void WhenTheApplicantApplyForAVacancyByBrowsingInFAA(string qualificationdetails, string workExperience, string trainingCourse)
         {
-            _faaStepsHelper.ApplyForAVacancy(qualificationdetails, workExperience, trainingCourse, SearchVacancy.SearchByCategory);
+            _faaStepsHelper.ApplyForAVacancy(qualificationdetails, workExperience, trainingCourse, true);
         }
 
         [When(@"draft application is created in FAA")]

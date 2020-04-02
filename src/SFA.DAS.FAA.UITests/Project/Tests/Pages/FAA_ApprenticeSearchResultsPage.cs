@@ -85,9 +85,9 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
             return new FAA_ApprenticeSummaryPage(_context);
         }
 
-        public bool CheckVacancyIsDisplayedBasedOnSearchCriteria(string postCode, string distance)
+        public bool CheckVacancyIsDisplayedBasedOnSearchCriteria(string postCode, string searchParameter)
         {
-            if (distance == "Job title" || distance == "Employer" || distance == "Description")
+            if (searchParameter == "Job title" || searchParameter == "Employer" || searchParameter == "Description")
             {
                 ChangeSortOrderToRecentlyAdded();
             }
@@ -106,7 +106,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
             }
             else
             {
-                throw new Exception($"No apprenticeship found within '{distance}' of '{postCode}'");
+                throw new Exception($"No apprenticeship found based on given search criteria '{searchParameter}' and '{postCode}'");
             }
             return false;
         }

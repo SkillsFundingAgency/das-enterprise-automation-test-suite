@@ -3,11 +3,6 @@ using System;
 
 namespace SFA.DAS.RAA.DataGenerator
 {
-    public enum SearchVacancy
-    {
-        SearchByReferenceNumber,
-        SearchByCategory
-    }
     public class FAADataHelper : RandomElementHelper
     {
         private readonly RandomDataGenerator _randomDataGenerator;
@@ -131,9 +126,6 @@ namespace SFA.DAS.RAA.DataGenerator
 
         public string NewPhoneNumber { get; }
 
-        public string EmployerName { get; set; }
-
-        public string VacancyShortDescription { get; set; }
         public string PostCode => "1 Speedway Drive London SW17 0XW";
 
         public string NewPostCode => "NN5 4AB";

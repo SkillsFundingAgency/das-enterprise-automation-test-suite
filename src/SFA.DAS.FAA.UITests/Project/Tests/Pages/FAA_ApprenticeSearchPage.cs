@@ -54,7 +54,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
             VerifyPage();
         }
 
-        public FAA_ApprenticeSearchResultsPage SearchForAVacancy(string location, string distance, string apprenticeshipLevel, string disabilityConfident)
+        public FAA_ApprenticeSearchResultsPage SearchForAVacancy(string location, string searchParameter, string apprenticeshipLevel, string disabilityConfident)
         {           
             _formCompletionHelper.EnterText(Location, location);
             _formCompletionHelper.SelectFromDropDownByText(ApprenticeshipLevel, apprenticeshipLevel);
@@ -62,30 +62,30 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
             {
                 _formCompletionHelper.SelectCheckBoxByText("Disability Confident");
             }
-            switch (distance)
+            switch (searchParameter)
             {
                 case "Job title":
-                    SearchByKeyword(distance,_dataHelper.VacancyTitle, "Keywords=" + _dataHelper.VacancyTitle);
+                    SearchByKeyword(searchParameter, _dataHelper.VacancyTitle, "Keywords=" + _dataHelper.VacancyTitle);
                     break;
 
                 case "Employer":
                     var empName = _objectContext.GetEmployerName();
-                    SearchByKeyword(distance,empName, "SearchField=Employer");
+                    SearchByKeyword(searchParameter, empName, "SearchField=Employer");
                     break;
 
                 case "Description":
                     var empDesc = _objectContext.GetVacancyShortDescription();
-                    SearchByKeyword(distance,empDesc, "SearchField=Description");
+                    SearchByKeyword(searchParameter, empDesc, "SearchField=Description");
                     break;
 
                 default:
                     string urlDistance = "0";
-                    if (distance != "England")
+                    if (searchParameter != "England")
                     {
-                        int index = distance.LastIndexOf("miles");
-                        urlDistance = distance.Substring(0, index).TrimEnd();
+                        int index = searchParameter.LastIndexOf("miles");
+                        urlDistance = searchParameter.Substring(0, index).TrimEnd();
                     }
-                    _formCompletionHelper.SelectFromDropDownByText(Distance, distance);
+                    _formCompletionHelper.SelectFromDropDownByText(Distance, searchParameter);
                     SearchByKeyword(string.Empty,string.Empty, "WithinDistance=" + urlDistance);                     
                     break;
             }
@@ -93,11 +93,11 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
             return new FAA_ApprenticeSearchResultsPage(_context);
         }
 
-        private void SearchByKeyword(string distance,string searchText, string urlCheck)
+        private void SearchByKeyword(string searchParameter,string searchText, string urlCheck)
         {
             if (!string.IsNullOrEmpty(searchText))
             {
-                _formCompletionHelper.SelectFromDropDownByText(KeywordDropDown, distance);
+                _formCompletionHelper.SelectFromDropDownByText(KeywordDropDown, searchParameter);
                 _formCompletionHelper.EnterText(KeywordTextField, searchText);
             }
             _formCompletionHelper.Click(Search);
