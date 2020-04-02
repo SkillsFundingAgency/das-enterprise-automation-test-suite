@@ -1,6 +1,6 @@
 ﻿using CsvHelper.Configuration.Attributes;
 
-namespace SFA.DAS.UI.Framework.TestSupport
+namespace SFA.DAS.TestDataExport
 {
     public class TestData
     {

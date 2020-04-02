@@ -4,6 +4,7 @@ using OpenQA.Selenium;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 using SFA.DAS.ConfigurationBuilder;
+using SFA.DAS.TestDataExport;
 
 namespace SFA.DAS.UI.Framework.TestSupport
 {
