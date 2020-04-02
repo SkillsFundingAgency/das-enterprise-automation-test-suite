@@ -36,6 +36,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         private EnterYourPAYESchemeDetailsPage _enterYourPAYESchemeDetailsPage;
         private UsingYourGovtGatewayDetailsPage _usingYourGovtGatewayDetailsPage;
         private MyAccountWithOutPayePage _myAccountWithOutPayePage;
+        private IndexPage _indexPage;
 
         public CreateAccountSteps(ScenarioContext context)
         {
@@ -59,10 +60,8 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         [Given(@"the User adds PAYE details")]
         [When(@"the User adds PAYE details")]
         [When(@"the User adds valid PAYE details")]
-        public SearchForYourOrganisationPage AddPayeDetails()
-        {
-            return _searchForYourOrganisationPage = _addAPAYESchemePage.AddPaye().ContinueToGGSignIn().SignInTo(0);
-        }
+        public SearchForYourOrganisationPage AddPayeDetails(int payeIndex = 0) =>
+            _searchForYourOrganisationPage = _addAPAYESchemePage.AddPaye().ContinueToGGSignIn().SignInTo(payeIndex);
 
         [Given(@"the User adds PAYE details attached to a (SingleOrg|MultiOrg) through AORN route")]
         [When(@"the User adds PAYE details attached to a (SingleOrg|MultiOrg) through AORN route")]
@@ -327,12 +326,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         [Then(@"'Start adding apprentices now' task link is displayed under Tasks pane")]
         public void ThenTaskLinkIsDisplayedUnderTasksPane() => _homePage.VerifyStartAddingApprenticesNowTaskLink();
 
-        private void CreateUserAccountAndAddOrg(OrgType orgType)
-        {
-            CreateAnUserAcountAndAddPaye();
-            AddOrganisationTypeDetails(orgType);
-        }
-
         [Then(@"the Employer is Not allowed to Remove the first Org added")]
         public void ThenTheEmployerIsNotAllowedToRemoveTheFirstOrgAdded()
         {
@@ -526,6 +519,23 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             _searchForYourOrganisationPage = _accountCreationStepsHelper.AddADifferentPaye(_addAPAYESchemePage);
             _checkYourDetailsPage = _accountCreationStepsHelper.SearchAndSelectOrg(_searchForYourOrganisationPage, OrgType.Company2);
             Assert.AreEqual(_objectContext.GetGatewayPaye(1), _checkYourDetailsPage.GetPayeScheme());
+        }
+
+        [When(@"the Employer logsout of the Account")]
+        public void WhenTheEmployerLogsoutOfTheAccount() => _indexPage = _accountCreationStepsHelper.SignOut();
+
+        [Then(@"an Employer is able to create another Account with the same PublicSector Type Org but with a different PAYE")]
+        public void ThenAnEmployerIsAbleToCreateAnotherAccountWithTheSamePublicSectorTypeOrgButWithADifferentPAYE()
+        {
+            _addAPAYESchemePage = _accountCreationStepsHelper.CreateAnotherUserAccount(_indexPage);
+            AddPayeDetails(1);
+            AddOrganisationTypeDetails(OrgType.PublicSector);
+        }
+
+        private void CreateUserAccountAndAddOrg(OrgType orgType)
+        {
+            CreateAnUserAcountAndAddPaye();
+            AddOrganisationTypeDetails(orgType);
         }
 
         private void EnterInvalidAornAndPaye() =>
