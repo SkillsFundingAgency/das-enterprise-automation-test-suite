@@ -32,6 +32,5 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             _formCompletionHelper.Click(ContinueButton);
             return new ConfirmTrainingProviderPermissionsPage(_context);
         }
-
     }
 }
