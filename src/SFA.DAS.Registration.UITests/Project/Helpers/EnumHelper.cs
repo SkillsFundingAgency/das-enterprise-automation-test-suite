@@ -5,6 +5,7 @@
         public enum OrgType
         {
             Company,
+            Company2,
             Charity,
             Charity2,
             PublicSector,

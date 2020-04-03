@@ -102,7 +102,7 @@ this.ScenarioInitialize(scenarioInfo);
     testRunner.And("the provider completes Experience and Accreditations section by selecting No to a" +
                     "ll", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 16
- testRunner.And("the provider verifies Financial Section Status", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("the provider verifies Financial Section Status as not required", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }

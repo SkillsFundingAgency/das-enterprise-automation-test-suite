@@ -80,11 +80,45 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.RoatpApply
                 .VerifyTellUsWhosInControlStatus(StatusHelper.StatusCompleted);
         }
 
+        internal ApplicationOverviewPage CompleteYourOrganisationSection_3_Supporting_Partnership(ApplicationOverviewPage applicationOverviewPage)
+        {
+            return applicationOverviewPage
+                .AccessTellUsWhosInControlSectionForSoleTrader()
+                .SelectSoleTraderAndContinue()
+                .EnterDateOfBirth()
+                .VerifyTellUsWhosInControlStatus(StatusHelper.StatusCompleted)
+                .AccessTellUsWhosInControlSectionForSoleTrader()
+                .SelectPartnershipAndContinue()
+                .SelectOrganisationAndContinue()
+                .EnterOrganisationDetailsAndContinue()
+                .ConfirmAndContinue()
+                .VerifyTellUsWhosInControlStatus(StatusHelper.StatusCompleted)
+                .AccessTellUsWhosInControlSectionForSoleTrader()
+                .SelectIndividualForPartnershipContinue()
+                .AddAnotherPartner()
+                .SelectIndividualAndContinue()
+                .EnterIndividualsDetailsAndContinue()
+                .ConfirmAndContinue()
+                .VerifyTellUsWhosInControlStatus(StatusHelper.StatusCompleted);
+        }
+
         internal ApplicationOverviewPage CompleteYourOrganisationSection_4(ApplicationOverviewPage applicationOverviewPage)
         {
             return applicationOverviewPage
                 .AccessDescribeYourOrganisationsForOrgTypeCharity()
                 .SelectIndependentTrainingProviderAndContinue()
+                .SelectPublicServiceMutalAndShelterdWorkshopAndContinue()
+                .VerifyDescribeYourOrganisationStatus(StatusHelper.StatusCompleted);
+        }
+
+        internal ApplicationOverviewPage CompleteYourOrganisationSection_4_SixthFormCollege(ApplicationOverviewPage applicationOverviewPage)
+        {
+            return applicationOverviewPage
+                .AccessDescribeYourOrganisationsForOrgTypeCharity()
+                .SelectEducationalInstituteAndContinue()
+                .SelectSixthFormCollegeAndContinue()
+                .SelectYesForOrgAlreadyRegisteredAndContinueRouteEmployer()
+                .SelectInYourOrganisationAndContinue()
                 .SelectPublicServiceMutalAndShelterdWorkshopAndContinue()
                 .VerifyDescribeYourOrganisationStatus(StatusHelper.StatusCompleted);
         }

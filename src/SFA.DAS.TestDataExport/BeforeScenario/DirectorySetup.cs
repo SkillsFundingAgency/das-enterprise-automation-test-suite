@@ -1,21 +1,16 @@
 ﻿using SFA.DAS.ConfigurationBuilder;
-using SFA.DAS.UI.Framework.TestSupport;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Text;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
+namespace SFA.DAS.TestDataExport.BeforeScenario
 {
     [Binding]
     public class DirectorySetup
     {
         private readonly ObjectContext _objectContext;
-        public DirectorySetup(ScenarioContext context)
-        {
-            _objectContext = context.Get<ObjectContext>();
-        }
+
+        public DirectorySetup(ScenarioContext context) => _objectContext = context.Get<ObjectContext>();
 
         [BeforeScenario(Order = 4)]
         public void SetUpDirectory()
@@ -27,9 +22,8 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
              + "\\";
 
             if (!Directory.Exists(directory))
-            {
                 Directory.CreateDirectory(directory);
-            }
+
             _objectContext.SetDirectory(directory);
         }
     }

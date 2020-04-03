@@ -8,6 +8,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => objectContext.GetOrganisationName();
         protected override string Linktext => "Home";
+
         private readonly RegexHelper _regexHelper;
         private readonly ScenarioContext _context;
 
@@ -16,20 +17,18 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         private By SucessSummary => By.CssSelector(".success-summary");
         private By AcceptYourAgreementLink => By.LinkText("Accept your agreement");
         private By StartAddingApprenticesNowTaskLink => By.LinkText("Start adding apprentices now");
+        private By AccountNameText => By.CssSelector("p.heading-xlarge");
         protected By YourFundingReservationsLink => By.LinkText("Your funding reservations");
         protected By YourFinancesLink => By.LinkText("Your finances");
         #endregion
 
-        #region DynamicHomePanel
         protected By ContinueSettingUpAnApprenticeship => By.Id("call-to-action-continue-setting-up-an-apprenticeship");
 
         protected By ContinueTo => By.LinkText("Continue");
 
         protected By StartNowButton => By.LinkText("Start now");
-        #endregion
 
-
-        internal HomePage(ScenarioContext context, bool navigate) : base(context, navigate)
+        public HomePage(ScenarioContext context, bool navigate) : base(context, navigate)
         {
             _context = context;
             _regexHelper = context.Get<RegexHelper>();
@@ -37,20 +36,21 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         public HomePage(ScenarioContext context) : this(context, false) { }
 
-        public void VerifySucessSummary()
+        public HomePage VerifySucessSummary(string message)
         {
-            pageInteractionHelper.VerifyText(SucessSummary, "All agreements signed");
+            pageInteractionHelper.VerifyText(SucessSummary, message);
+            return this;
         }
 
-        public string AccountId()
+        public HomePage VerifyAccountName(string name)
         {
-            return _regexHelper.GetAccountId(pageInteractionHelper.GetUrl());
+            pageInteractionHelper.VerifyText(AccountNameText, name);
+            return this;
         }
 
-        public string PublicAccountId()
-        {
-            return _regexHelper.GetPublicAccountId(pageInteractionHelper.GetText(PublicAccountIdLocator));
-        }
+        public string AccountId() => _regexHelper.GetAccountId(pageInteractionHelper.GetUrl());
+
+        public string PublicAccountId() => _regexHelper.GetPublicAccountId(pageInteractionHelper.GetText(PublicAccountIdLocator));
 
         public AboutYourAgreementPage ClickAcceptYourAgreementLinkInHomePagePanel()
         {
@@ -58,14 +58,10 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             return new AboutYourAgreementPage(_context);
         }
 
-        public DoYouNeedToCreateAnAdvertBasePage ContinueToCreateAdvert()
-        {
-            formCompletionHelper.ClickElement(ContinueTo);
-            return new DoYouNeedToCreateAnAdvertBasePage(_context);
-        }
-        
+        public void ContinueToCreateAdvert() => formCompletionHelper.ClickElement(ContinueTo);
+
         public void VerifyReserveFundingPanel() => pageInteractionHelper.VerifyText(ContinueSettingUpAnApprenticeship, "Continue setting up an apprenticeship");
-        
+
         public void VerifyStartAddingApprenticesNowTaskLink() => VerifyPage(StartAddingApprenticesNowTaskLink);
     }
 }

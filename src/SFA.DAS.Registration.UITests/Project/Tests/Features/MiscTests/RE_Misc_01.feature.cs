@@ -24,7 +24,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features.MiscTests
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "RE_MT_01.feature"
+#line 1 "RE_Misc_01.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]

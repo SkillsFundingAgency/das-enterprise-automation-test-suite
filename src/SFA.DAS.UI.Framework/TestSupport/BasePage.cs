@@ -4,10 +4,11 @@ using OpenQA.Selenium;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 using SFA.DAS.ConfigurationBuilder;
+using SFA.DAS.TestDataExport;
 
 namespace SFA.DAS.UI.Framework.TestSupport
 {
-    public abstract class BasePage
+    public abstract class BasePage 
     {
         #region Helpers and Context
         private readonly PageInteractionHelper _pageInteractionHelper;

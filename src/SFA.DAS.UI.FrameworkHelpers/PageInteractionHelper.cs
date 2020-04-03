@@ -70,7 +70,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
                     return true;
                 }
 
-                throw new Exception("Page verification failed:"
+                    throw new Exception("Page verification failed:"
                     + "\n Expected: " + expected + " page"
                     + "\n Found: " + actual + " page");
             }
@@ -100,16 +100,16 @@ namespace SFA.DAS.UI.FrameworkHelpers
             return _retryHelper.RetryOnException(func, beforeAction);
         }
 
-        public bool VerifyPage(string actual, string expected1, string expected2)
+        public bool VerifyText(string actual, string expected1, string expected2)
         {
             if (actual.Contains(expected1) || actual.Contains(expected2))
             {
                 return true;
             }
 
-            throw new Exception("Page verification failed: "
-                + "\n Expected: " + expected1 + " or " + expected2 + " pages"
-                + "\n Found: " + actual + " page");
+            throw new Exception("Text verification failed: "
+                + "\n Expected: '" + expected1 + "' or '" + expected2 + "' text"
+                + "\n Found: '" + actual + "' page");
         }
 
         public bool VerifyText(String actual, string expected)

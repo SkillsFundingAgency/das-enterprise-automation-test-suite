@@ -5,6 +5,7 @@ using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 using SFA.DAS.RAA.DataGenerator.Project;
 using SFA.DAS.RAA.DataGenerator;
+using System;
 
 namespace SFA.DAS.FAA.UITests.Project.Helpers
 {
@@ -108,10 +109,10 @@ namespace SFA.DAS.FAA.UITests.Project.Helpers
             }
         }
 
-        public void ApplyForAVacancy(string qualificationdetails, string workExperience, string trainingCourse)
-        {     
-            var applicationFormPage = SearchByReferenceNumber().Apply();            
-
+        public void ApplyForAVacancy(string qualificationdetails, string workExperience, string trainingCourse, bool isSearchByCategory = false)
+        {
+            var applicationFormPage = isSearchByCategory ? SearchByCategory().Apply() : SearchByReferenceNumber().Apply();
+                        
             if (_objectContext.IsApprenticeshipVacancyType())
             {
                 applicationFormPage.EnterEducation();
@@ -137,7 +138,7 @@ namespace SFA.DAS.FAA.UITests.Project.Helpers
                 applicationFormPage.SubmitTraineeshipApplication();
             }
         }
-        
+
         private FAA_ApprenticeSummaryPage SearchByReferenceNumber()
         {
             if (_objectContext.IsApprenticeshipVacancyType())
@@ -149,6 +150,9 @@ namespace SFA.DAS.FAA.UITests.Project.Helpers
                 return FindATraineeship().SearchByReferenceNumber();
             }
         }
+
+        private FAA_ApprenticeSummaryPage SearchByCategory() => FindAnApprenticeship().BrowseVacancy().SelectBrowsedVacancy();
+        
 
         private FAA_MyApplicationsHomePage OpenFAAHomePageinNewtab()
         {

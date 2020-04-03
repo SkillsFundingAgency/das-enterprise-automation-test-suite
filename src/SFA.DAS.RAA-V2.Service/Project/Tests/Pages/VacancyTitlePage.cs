@@ -28,6 +28,12 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
             return new ApprenticeshipTrainingPage(_context);
         }
 
+        public HaveYouAlreadyFoundTrainingPage EnterVacancyTitleForTheFirstVacancy()
+        {
+            ChangeVacancyTitle();
+            return new HaveYouAlreadyFoundTrainingPage(_context);
+        }
+
         public VacancyPreviewPart2Page UpdateVacancyTitle()
         {
             ChangeVacancyTitle();
