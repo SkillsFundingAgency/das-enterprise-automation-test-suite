@@ -1,4 +1,5 @@
-﻿using SFA.DAS.MongoDb.DataGenerator;
+﻿using SFA.DAS.ConfigurationBuilder;
+using SFA.DAS.MongoDb.DataGenerator;
 using TechTalk.SpecFlow;
 using SFA.DAS.MongoDb.DataGenerator.Helpers;
 using NUnit.Framework;
@@ -11,10 +12,12 @@ namespace SFA.DAS.PayeCreation.Project.Tests.StepDefinitions
     {
         private readonly ScenarioContext _context;
         private readonly PayeCreationConfig _payeCreationConfig;
+        private readonly ObjectContext _objectContext;
 
         public PayeCreationSteps(ScenarioContext context)
         {
             _context = context;
+            _objectContext = context.Get<ObjectContext>();
             _payeCreationConfig = context.GetPayeCreationConfig();
         }
 
@@ -40,12 +43,16 @@ namespace SFA.DAS.PayeCreation.Project.Tests.StepDefinitions
                         
         private MongoDbDataGenerator AddGatewayUsers(int index)
         {
+            SetUpDataHelpers();
+
             var mongodbGenerator = new MongoDbDataGenerator(_context);
 
             mongodbGenerator.AddGatewayUsers(index);
 
             return mongodbGenerator;
         }
+
+        private void SetUpDataHelpers() => _objectContext.SetDataHelper(new DataHelper(_context.ScenarioInfo.Tags.Contains("levypaye") ? "LE" : "NL"));
 
         private void AddLevy(MongoDbDataGenerator mongoDbDataGenerator)
         {
