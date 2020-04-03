@@ -58,17 +58,13 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
 
         public IndexPage SignOut() => new HomePage(_context, true).SignOut().CickContinueInYouveLoggedOutPage();
 
-        public CheckYourDetailsPage SearchAndSelectOrg(SearchForYourOrganisationPage searchForYourOrganistionPage, OrgType org)
-        {
-            return searchForYourOrganistionPage.SearchForAnOrganisation(org)
-                .SelectYourOrganisation(org);
-        }
+        public CheckYourDetailsPage SearchAndSelectOrg(SearchForYourOrganisationPage searchForYourOrganistionPage, OrgType org) =>
+            searchForYourOrganistionPage.SearchForAnOrganisation(org).SelectYourOrganisation(org);
 
-        public SearchForYourOrganisationPage AddADifferentPaye(AddAPAYESchemePage addAPAYESchemePage)
-        {
-            return addAPAYESchemePage.AddPaye()
-                .ContinueToGGSignIn()
-                .SignInTo(1);
-        }
+        public SearchForYourOrganisationPage AddADifferentPaye(AddAPAYESchemePage addAPAYESchemePage) =>
+            addAPAYESchemePage.AddPaye().ContinueToGGSignIn().SignInTo(1);
+
+        public AddAPAYESchemePage CreateAnotherUserAccount(IndexPage indexPage) => indexPage.CreateAccount().Register(_registrationDataHelper.AnotherRandomEmail)
+        .EnterAccessCode().ContinueToGetApprenticeshipFunding();
     }
 }
