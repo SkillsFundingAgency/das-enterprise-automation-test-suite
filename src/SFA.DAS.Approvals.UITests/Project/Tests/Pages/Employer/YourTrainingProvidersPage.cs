@@ -10,21 +10,16 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         protected override string PageTitle => "Your training providers";
 
         #region Helpers and Context
-        private readonly PageInteractionHelper _pageInteractionHelper;
         private readonly FormCompletionHelper _formCompletionHelper;
         private readonly ScenarioContext _context;
-        private readonly ApprovalsConfig _config;
         #endregion
 
         private By AddANewTrainingProviderButton => By.LinkText("Add a training provider");
-        private By SetPermissionsLink => By.LinkText("Change permissions");
-
+        private By ChangePermissionsLink => By.LinkText("Change permissions");
 
         public YourTrainingProvidersPage(ScenarioContext context) : base(context)
         {
             _context = context;
-            _config = context.GetApprovalsConfig<ApprovalsConfig>();
-            _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
             VerifyPage();
         }
@@ -35,11 +30,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             return new EnterYourTrainingProvidersUKProviderReferenceNumberUKPRN(_context);
         }
 
-        internal SetPermissionsPage SelectSetPermissions()
+        public DoYouGiveTrainingProviderPermissionToAddApprenticeRecordsPage SelectChangePermissions()
         {
-            _formCompletionHelper.ClickElement(SetPermissionsLink);
-            return new SetPermissionsPage(_context);
+            _formCompletionHelper.ClickElement(ChangePermissionsLink);
+            return new DoYouGiveTrainingProviderPermissionToAddApprenticeRecordsPage(_context);
         }
     }
 }
-
