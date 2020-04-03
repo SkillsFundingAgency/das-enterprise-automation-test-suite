@@ -2,7 +2,6 @@
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
-
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
     public class DoYouGiveTrainingProviderPermissionToRecruitApprenticesPage : BasePage
@@ -13,19 +12,21 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private readonly FormCompletionHelper _formCompletionHelper;
         private readonly ScenarioContext _context;
         #endregion
-                
-        public DoYouGiveTrainingProviderPermissionToRecruitApprenticesPage (ScenarioContext context) : base(context)
+
+        public DoYouGiveTrainingProviderPermissionToRecruitApprenticesPage(ScenarioContext context) : base(context)
         {
             _context = context;
             _formCompletionHelper = context.Get<FormCompletionHelper>();
             VerifyPage();
         }
+
         public ConfirmTrainingProviderPermissionsPage ClickYesToAddRecruitApprentice()
         {
             _formCompletionHelper.SelectRadioOptionByText(RadioLabels, "Yes");
             _formCompletionHelper.Click(ContinueButton);
             return new ConfirmTrainingProviderPermissionsPage(_context);
         }
+
         public ConfirmTrainingProviderPermissionsPage ClickNoToAddRecruitApprentice()
         {
             _formCompletionHelper.SelectRadioOptionByText(RadioLabels, "No");

@@ -9,20 +9,17 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         protected override string PageTitle => "Do you give";
 
         #region Helpers and Context
-        private readonly PageInteractionHelper _pageInteractionHelper;
         private readonly FormCompletionHelper _formCompletionHelper;
         private readonly ScenarioContext _context;
-        private readonly ApprovalsConfig _config;
         #endregion
 
-       public DoYouGiveTrainingProviderPermissionToAddApprenticeRecordsPage(ScenarioContext context) : base(context)
-       {
+        public DoYouGiveTrainingProviderPermissionToAddApprenticeRecordsPage(ScenarioContext context) : base(context)
+        {
             _context = context;
-            _config = context.GetApprovalsConfig<ApprovalsConfig>();
-            _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
             VerifyPage();
-       }
+        }
+
         public DoYouGiveTrainingProviderPermissionToRecruitApprenticesPage ClickYesToAddApprenticeRecords()
         {
             _formCompletionHelper.SelectRadioOptionByText(RadioLabels, "Yes");
@@ -36,5 +33,5 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             _formCompletionHelper.Click(ContinueButton);
             return new DoYouGiveTrainingProviderPermissionToRecruitApprenticesPage(_context);
         }
-    }  
+    }
 }

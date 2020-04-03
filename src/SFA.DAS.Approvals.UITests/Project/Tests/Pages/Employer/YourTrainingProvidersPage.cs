@@ -12,22 +12,24 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         #region Helpers and Context
         private readonly FormCompletionHelper _formCompletionHelper;
         private readonly ScenarioContext _context;
-        private readonly ApprovalsConfig _config;
         #endregion
+
         private By AddANewTrainingProviderButton => By.LinkText("Add a training provider");
         private By ChangePermissionsLink => By.LinkText("Change permissions");
+
         public YourTrainingProvidersPage(ScenarioContext context) : base(context)
         {
             _context = context;
-            _config = context.GetApprovalsConfig<ApprovalsConfig>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
             VerifyPage();
         }
+
         public EnterYourTrainingProvidersUKProviderReferenceNumberUKPRN SelectAddANewTrainingProvider()
         {
             _formCompletionHelper.ClickElement(AddANewTrainingProviderButton);
             return new EnterYourTrainingProvidersUKProviderReferenceNumberUKPRN(_context);
         }
+
         public DoYouGiveTrainingProviderPermissionToAddApprenticeRecordsPage SelectChangePermissions()
         {
             _formCompletionHelper.ClickElement(ChangePermissionsLink);
