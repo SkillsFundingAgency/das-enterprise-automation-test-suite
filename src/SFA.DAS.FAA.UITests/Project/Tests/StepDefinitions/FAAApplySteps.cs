@@ -1,5 +1,4 @@
 ﻿using SFA.DAS.FAA.UITests.Project.Helpers;
-using SFA.DAS.RAA.DataGenerator;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.FAA.UITests.Project.Tests.StepDefinitions
@@ -9,10 +8,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.StepDefinitions
     {
         private readonly FAAStepsHelper _faaStepsHelper;
         
-        public FAAApplySteps(ScenarioContext context)
-        {
-            _faaStepsHelper = new FAAStepsHelper(context);
-        }
+        public FAAApplySteps(ScenarioContext context) => _faaStepsHelper = new FAAStepsHelper(context);
 
         [Then(@"the Applicant can apply for a Vacancy in FAA")]
         [When(@"the Applicant can apply for a Vacancy in FAA")]

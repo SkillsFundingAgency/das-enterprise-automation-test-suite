@@ -109,9 +109,9 @@ namespace SFA.DAS.FAA.UITests.Project.Helpers
             }
         }
 
-        public void ApplyForAVacancy(string qualificationdetails, string workExperience, string trainingCourse, bool isSearchByReference = false)
+        public void ApplyForAVacancy(string qualificationdetails, string workExperience, string trainingCourse, bool isSearchByCategory = false)
         {
-            var applicationFormPage = isSearchByReference ? SearchByCategory().Apply() : SearchByReferenceNumber().Apply();
+            var applicationFormPage = isSearchByCategory ? SearchByCategory().Apply() : SearchByReferenceNumber().Apply();
                         
             if (_objectContext.IsApprenticeshipVacancyType())
             {
