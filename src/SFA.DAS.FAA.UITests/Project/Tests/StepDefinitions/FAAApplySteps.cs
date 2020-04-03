@@ -8,10 +8,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.StepDefinitions
     {
         private readonly FAAStepsHelper _faaStepsHelper;
         
-        public FAAApplySteps(ScenarioContext context)
-        {
-            _faaStepsHelper = new FAAStepsHelper(context);
-        }
+        public FAAApplySteps(ScenarioContext context) => _faaStepsHelper = new FAAStepsHelper(context);
 
         [Then(@"the Applicant can apply for a Vacancy in FAA")]
         [When(@"the Applicant can apply for a Vacancy in FAA")]
@@ -24,6 +21,12 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.StepDefinitions
         public void WhenTheApplicantApplyForAVacancyInFAA(string qualificationdetails, string workExperience, string trainingCourse)
         {
             _faaStepsHelper.ApplyForAVacancy(qualificationdetails, workExperience, trainingCourse);
+        }
+
+        [When(@"the Applicant apply for a Vacancy by browsing in FAA '(.*)','(.*)','(.*)'")]
+        public void WhenTheApplicantApplyForAVacancyByBrowsingInFAA(string qualificationdetails, string workExperience, string trainingCourse)
+        {
+            _faaStepsHelper.ApplyForAVacancy(qualificationdetails, workExperience, trainingCourse, true);
         }
 
         [When(@"draft application is created in FAA")]
