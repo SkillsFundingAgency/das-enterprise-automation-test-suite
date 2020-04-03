@@ -30,6 +30,15 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.StepDefinitions
         [Then(@"the apprenticeship can be found based on '(.*)','(.*)'")]
         public void ThenTheApprenticeshipCanBeFoundBasedOn(string postCode, string distance)
         {
+            bool vacancyTitleDisplayed = _apprenticeSearchPage
+                .SearchForAVacancy(postCode, distance, "All levels", "Yes").CheckVacancyIsDisplayedBasedOnSearchCriteria(postCode,distance);
+
+            Assert.AreEqual(true, vacancyTitleDisplayed, $"VacancyTitle Not found in VacanciesList within '{distance}' of '{postCode}'");
+        }
+
+        [When(@"the candidate search for Nationwide Vacancies '(.*)','(.*)'")]
+        public void WhenTheCandidateSearchForNationwideVacancies(string postCode, string distance)
+        {
             _apprenticeSearchResultspage = _apprenticeSearchPage
                 .SearchForAVacancy(postCode, distance, "All levels", "Yes");
 

@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.Registration.UITests.Project.Tests.Pages.YourTeamPages;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
@@ -26,10 +27,16 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             return new AddAPAYESchemePage(_context);
         }
 
-        private ConfirmPage EnterAccessCode()
+        public ConfirmPage EnterAccessCode()
         {
             formCompletionHelper.EnterText(AccessCodeInput, config.RE_ConfirmCode);
             return this;
+        }
+
+        public InvitationsPage ContinueToInvitationsPage()
+        {
+            Continue();
+            return new InvitationsPage(_context);
         }
     }
 }

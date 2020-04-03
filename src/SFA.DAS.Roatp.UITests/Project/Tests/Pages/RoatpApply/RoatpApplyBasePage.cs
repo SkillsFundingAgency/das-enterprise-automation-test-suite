@@ -20,9 +20,9 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
 
         private By Dob => By.CssSelector("#dob");
 
-        private By Month => By.CssSelector("input[id*='Month']");
+        protected By Month => By.CssSelector("input[id*='Month']");
 
-        private By Year => By.CssSelector("input[id*='Year']");
+        protected By Year => By.CssSelector("input[id*='Year']");
 
         protected virtual By LongTextArea => By.CssSelector(".govuk-fieldset .govuk-textarea");
 
@@ -33,7 +33,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
             applydataHelpers = context.Get<RoatpApplyDataHelpers>();
             roatpUkprnDataHelpers = context.Get<RoatpApplyUkprnDataHelpers>();
         }
-
+        
         protected void UploadFile()
         {
             string File = AppDomain.CurrentDomain.BaseDirectory + _frameworkConfig.SampleFileName;

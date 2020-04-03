@@ -10,7 +10,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Apprentice
 
         private void VerifyHeadings()
         {
-            pageInteractionHelper.VerifyText(Heading1, "WHAT ARE MY FUTURE PROSPECTS ONCE I’VE SUCCESSFULLY FINISHED MY APPRENTICESHIP?");
+            pageInteractionHelper.VerifyText(Heading1, "WHAT ARE MY FUTURE PROSPECTS ONCE I'VE SUCCESSFULLY FINISHED MY APPRENTICESHIP?");
             pageInteractionHelper.VerifyText(Heading2, "HOW MUCH CAN YOU EARN?");
             pageInteractionHelper.VerifyText(Heading3, "WHAT WILL MY APPRENTICESHIP COST ME?");
         }

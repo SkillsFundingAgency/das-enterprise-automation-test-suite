@@ -1,5 +1,4 @@
 ﻿using CsvHelper;
-using SFA.DAS.UI.Framework.TestSupport;
 using System;
 using System.Linq;
 using System.Collections.Generic;
@@ -9,7 +8,7 @@ using System.IO;
 using SFA.DAS.UI.FrameworkHelpers;
 using SFA.DAS.ConfigurationBuilder;
 
-namespace SFA.DAS.UI.Framework.Hooks.AfterScenario
+namespace SFA.DAS.TestDataExport.AfterScenario
 {
     [Binding]
     public class TestDataTearDown
@@ -32,7 +31,7 @@ namespace SFA.DAS.UI.Framework.Hooks.AfterScenario
 
                 DateTime dateTime = DateTime.Now;
 
-                string fileName = ($"{dateTime.ToString("HH-mm-ss")}_{_context.ScenarioInfo.Title}.txt").RemoveSpace();
+                string fileName = $"{dateTime.ToString("HH-mm-ss")}_{_context.ScenarioInfo.Title}.txt".RemoveSpace();
 
                 string directory = _objectContext.GetDirectory();
 

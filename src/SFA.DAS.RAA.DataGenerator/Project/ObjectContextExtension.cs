@@ -16,6 +16,7 @@ namespace SFA.DAS.RAA.DataGenerator.Project
         private const string FAAPassword = "faaLoginWithNewAccountpassword";
         private const string FAAFirstname = "faaLoginWithNewAccountfirstname";
         private const string FAALastname  = "faaLoginWithNewAccountlastname";
+        private const string VacancyShortDesc = "vacancyshortdesc";
         #endregion
 
         public static void SetApprenticeshipVacancyType(this ObjectContext objectContext) => objectContext.Set(VacancyType, true);
@@ -51,5 +52,7 @@ namespace SFA.DAS.RAA.DataGenerator.Project
         public static string GetVacancyTitle(this ObjectContext objectContext) => objectContext.KeyExists<bool>(VacancyTitle) ? objectContext.Get(VacancyTitle) : string.Empty;
         public static void SetEmployerName(this ObjectContext objectContext, string value) => objectContext.Set(EmployerName, value);
         public static string GetEmployerName(this ObjectContext objectContext) => objectContext.Get(EmployerName);
+        public static void SetVacancyShortDescription(this ObjectContext objectContext, string value) => objectContext.Set(VacancyShortDesc, value);
+        public static string GetVacancyShortDescription(this ObjectContext objectContext) => objectContext.Get(VacancyShortDesc);
     }
 }

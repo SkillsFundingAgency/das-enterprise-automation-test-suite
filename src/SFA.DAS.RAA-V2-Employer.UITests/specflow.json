@@ -8,6 +8,7 @@
   "stepAssemblies": [
     { "assembly": "SFA.DAS.UI.Framework" },
     { "assembly": "SFA.DAS.ConfigurationBuilder" },
+    { "assembly": "SFA.DAS.TestDataExport" },
     { "assembly": "SFA.DAS.Registration.UITests" },
     { "assembly": "SFA.DAS.FAA.UITests" },
     { "assembly": "SFA.DAS.RAA-V2.Service" },

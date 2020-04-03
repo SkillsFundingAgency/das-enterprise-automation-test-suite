@@ -77,22 +77,24 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.Transfers
         [NUnit.Framework.CategoryAttribute("transfersscenarios")]
         [NUnit.Framework.CategoryAttribute("addpayedetails")]
         [NUnit.Framework.CategoryAttribute("addtransferslevyfunds")]
+        [NUnit.Framework.CategoryAttribute("addanothernonlevypayedetails")]
         public virtual void AP_TR_04Transfers_CreatingTransferConnectionBetweenSenderAndReceiver()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_TR_04 Transfers - Creating Transfer Connection between Sender and Receiver", null, new string[] {
                         "regression",
                         "transfersscenarios",
                         "addpayedetails",
-                        "addtransferslevyfunds"});
-#line 8
+                        "addtransferslevyfunds",
+                        "addanothernonlevypayedetails"});
+#line 9
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 9
+#line 10
  testRunner.Given("We have a new Sender with sufficient levy funds and a new Receiver accounts setup" +
                     "", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 10
- testRunner.When("Sender connects to Receiver", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 11
+ testRunner.When("Sender connects to Receiver", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 12
  testRunner.Then("A transfer connection is established successfully", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();

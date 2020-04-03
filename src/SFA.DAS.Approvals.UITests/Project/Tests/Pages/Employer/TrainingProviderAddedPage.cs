@@ -1,5 +1,4 @@
-﻿using OpenQA.Selenium;
-using SFA.DAS.UI.Framework.TestSupport;
+﻿using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
@@ -20,12 +19,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             _formCompletionHelper = context.Get<FormCompletionHelper>();
             VerifyPage();
         }
-
-        public SetPermissionsPage SelectContinueInEmployerTrainingProviderAddedPage()
+        public DoYouGiveTrainingProviderPermissionToAddApprenticeRecordsPage SelectContinueInEmployerTrainingProviderAddedPage()
         {
             _formCompletionHelper.SelectRadioOptionByText(RadioLabels, "Set permissions for this training provider");
             Continue();
-            return new SetPermissionsPage(_context);
+            return new DoYouGiveTrainingProviderPermissionToAddApprenticeRecordsPage (_context);
         }
     }
 }
