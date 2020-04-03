@@ -1,9 +1,0 @@
-﻿1>------ Build started: Project: SFA.DAS.TestProject.UITests, Configuration: Debug Any CPU ------
-1>SpecFlowFeatureFiles: Project\Tests\Features\SampleFeatureFive.feature;Project\Tests\Features\SampleFeatureFour.feature;Project\Tests\Features\SampleFeatureOne.feature;Project\Tests\Features\SampleFeatureThree.feature;Project\Tests\Features\SampleFeatureTwo.feature
-1>SpecFlowGeneratedFiles: Project\Tests\Features\SampleFeatureFive.feature.cs
-1>SpecFlowGeneratedFiles: Project\Tests\Features\SampleFeatureFour.feature.cs
-1>SpecFlowGeneratedFiles: Project\Tests\Features\SampleFeatureOne.feature.cs
-1>SpecFlowGeneratedFiles: Project\Tests\Features\SampleFeatureThree.feature.cs
-1>SpecFlowGeneratedFiles: Project\Tests\Features\SampleFeatureTwo.feature.cs
-1>SFA.DAS.TestProject.UITests -> C:\Users\smahmood\Documents\Campaign\das-enterprise-automation-test-suite\src\SFA.DAS.TestProject.UITests\bin\Debug\netcoreapp2.2\SFA.DAS.TestProject.UITests.dll
-========== Build: 1 succeeded, 0 failed, 24 up-to-date, 0 skipped ==========
