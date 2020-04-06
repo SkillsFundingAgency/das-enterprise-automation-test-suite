@@ -10,36 +10,20 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => "Sign in";
 
-        #region Helpers and Context
-        private readonly PageInteractionHelper _pageInteractionHelper;
-        private readonly FormCompletionHelper _formCompletionHelper;
+        protected readonly FormCompletionHelper _formCompletionHelper;
         private readonly ScenarioContext _context;
-        private readonly RegistrationConfig _config;
-        #endregion
 
-        private By CreateAnAccountLink => By.LinkText("create an account");
-
+        #region Locators
         private By EmailAddressInput => By.Id("EmailAddress");
-
         private By PasswordInput => By.Id("Password");
-
         private By SignInButton => By.Id("button-signin");
-
-        private By ForgottenYourPasswordLink => By.LinkText("Forgotten your password?");
+        #endregion
 
         public SignInPage(ScenarioContext context) : base(context)
         {
             _context = context;
-            _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
-            _config = context.GetRegistrationConfig<RegistrationConfig>();
             VerifyPage();
-        }
-
-        public RegisterPage CreateAnAccount()
-        {
-            _formCompletionHelper.ClickElement(CreateAnAccountLink);
-            return new RegisterPage(_context);
         }
 
         public HomePage Login(LoginUser loginUser)
@@ -56,32 +40,9 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         private void SignIn(LoginUser loginUser)
         {
-            EnterEmailAddress(loginUser.Username)
-            .EnterPassword(loginUser.Password)
-            .SignIn();
-        }
-
-
-        private SignInPage EnterEmailAddress(string username)
-        {
-            _formCompletionHelper.EnterText(EmailAddressInput, username);
-            return this;
-        }
-
-        private SignInPage EnterPassword(string password)
-        {
-            _formCompletionHelper.EnterText(PasswordInput, password);
-            return this;
-        }
-
-        private void SignIn()
-        {
+            _formCompletionHelper.EnterText(EmailAddressInput, loginUser.Username);
+            _formCompletionHelper.EnterText(PasswordInput, loginUser.Password);
             _formCompletionHelper.ClickElement(SignInButton);
-        }
-
-        private void ForgottenYourPassword()
-        {
-            _formCompletionHelper.ClickElement(ForgottenYourPasswordLink);
         }
     }
 }

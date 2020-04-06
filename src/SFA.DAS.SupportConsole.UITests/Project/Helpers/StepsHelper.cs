@@ -1,6 +1,7 @@
 ﻿using SFA.DAS.SupportConsole.UITests.Project.Tests.Pages;
 using TechTalk.SpecFlow;
 using NUnit.Framework;
+using SFA.DAS.IdamsLogin.Service.Project.Tests.Pages;
 
 namespace SFA.DAS.SupportConsole.UITests.Project.Helpers
 {
@@ -13,7 +14,12 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Helpers
             _context = context;
         }
 
-        public SearchHomePage LoginToSupportConsole() => new IdamsPage(_context).ClickAccessStaff1Link().SignInWithValidDetails();
+        public SearchHomePage LoginToSupportConsole()
+        {
+            new IdamsPage(_context).LoginToAccess1Staff();
+
+            return new SignInPage(_context).SignInWithValidDetails();
+        }
 
         public AccountOverviewPage SearchAndViewAccount() => new SearchHomePage(_context).SearchAndViewAccount();
 

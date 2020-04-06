@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using System;
+using OpenQA.Selenium;
 using SFA.DAS.Approvals.UITests.Project.Helpers;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
@@ -21,7 +22,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private By ReviewChangesLink => By.LinkText("Review changes");
         private By EditApprenticeDetailsLink => By.LinkText("Edit apprentice");
         private By ViewIlrMismatchDetailsLink => By.LinkText("View details");
-        private By ChangeRequestMessage => By.ClassName("heading-medium");
+        private By ChangeRequestMessage => By.ClassName("das-notification");
+        private By Name => By.Id("apprentice-name");
+        private By DateOfBirth => By.Id("apprentice-dob");
+        private By Reference => By.Id("apprentice-reference");
 
         public ProviderApprenticeDetailsPage(ScenarioContext context) : base(context)
         {
@@ -54,6 +58,18 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         {
             string confirmationMessgage = _pageInteractionHelper.GetText(ChangeRequestMessage);
             _pageInteractionHelper.VerifyText(confirmationMessgage, "Change request");
+        }
+
+        public void ConfirmNameDOBAndReferenceChanged(string expectedName, DateTime expectedDateOfBirth, string expectedReference)
+        {
+            var actualName = _pageInteractionHelper.GetText(Name);
+            var actualDateOfBirth = DateTime.Parse(_pageInteractionHelper.GetText(DateOfBirth));
+            var actualReference = _pageInteractionHelper.GetText(Reference);
+
+            _pageInteractionHelper.VerifyText(actualName, expectedName);
+            _pageInteractionHelper.VerifyText(actualDateOfBirth.ToString(), expectedDateOfBirth.ToString());
+            _pageInteractionHelper.VerifyText(actualReference, expectedReference.ToString());
+
         }
     }
 }

@@ -12,12 +12,11 @@ namespace SFA.DAS.Login.Service.Project.Tests.Pages
         protected readonly FormCompletionHelper formCompletionHelper;
         #endregion
 
-        protected By GlobalNavLink => By.CssSelector("#global-nav-links li a, #navigation li a");
-       
+        protected By GlobalNavLink => By.CssSelector("#global-nav-links li a, #navigation li a, .das-navigation__link");
 
         protected abstract string Linktext { get; }
 
-        public Navigate(ScenarioContext context, bool navigate) : base(context)
+        protected Navigate(ScenarioContext context, bool navigate) : base(context)
         {
             pageInteractionHelper = context.Get<PageInteractionHelper>();
             formCompletionHelper = context.Get<FormCompletionHelper>();

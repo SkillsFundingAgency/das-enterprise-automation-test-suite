@@ -12,8 +12,6 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
     {
         private Manage_HomePage _manage_HomePage;
         private Manage_EnterBasicVacancyDetailsPage _manage_EnterBasicVacancyDetailsPage;
-        private Manage_HelpdeskAdviserPage manage_HelpdeskAdviserPage;
-        private Manage_SearchForACandidatePage manage_SearchForACandidatePage;
         private Manage_AdminFunctionsPage _manage_AdminFunctionsPage;
         private readonly ManageStepsHelper _manageStepsHelper;
         private readonly ObjectContext _objectContext;
@@ -26,30 +24,16 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
             _tabHelper = context.Get<TabHelper>();
         }
 
-        [Given(@"the reviewer logged in to the manage application")]
-        public void GivenTheReviewerLoggedInToTheManageApplication()
-        {
-            _manage_HomePage = _manageStepsHelper.GoToManageHomePage(false);
-        }
-
-        [Given(@"switches the role to helpdesk adviser")]
-        public void GivenSwitchesTheRoleToHelpdeskAdviser()
-        {
-            manage_HelpdeskAdviserPage = _manage_HomePage.HelpdeskAdviser();
-        }
-
+        
         [Then(@"the reviewer is able to search and select a candidate")]
-        public void ThenTheReviewerIsAbleToSearchAndSelectACandidate()
-        {
-            manage_SearchForACandidatePage = manage_HelpdeskAdviserPage.SearchForACandidate();
-        }
+        public void ThenTheReviewerIsAbleToSearchAndSelectACandidate()  => _manageStepsHelper.SearchForACandidate();
+        
+        [Then(@"the Candidate is removed from the Manage")]
+        public void ThenTheCandidateIsRemovedFromTheRecruit() => _manageStepsHelper.SearchForDeletedCandidate();
 
-        [Then(@"view the candidate's applications")]
-        public void ThenViewTheCandidatesApplications()
-        {
-            manage_SearchForACandidatePage.Search().ViewApplications();
-        }
-
+        [Then(@"the Candidate details is updated in Manage")]
+        public void ThenTheCandidateDetailsIsUpdatedInManage() => _manageStepsHelper.VerifyUpdatedCandidateDetails();
+        
         [Then(@"the Reviewer approves the vacancy")]
         public void ThenTheReviewerApprovesTheVacancy()
         {

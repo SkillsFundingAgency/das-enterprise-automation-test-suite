@@ -38,7 +38,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
                 var elementDisplayed = _pageInteractionHelper.IsElementDisplayed(NoSearchResults);
                 if (elementDisplayed)
                 {
-                    throw new Exception($"Element verification failed: No Search result found for Vacancy {_objectContext.GetVacancyReference()}");
+                     throw new Exception($"Element verification failed: No Search result found for Vacancy {_objectContext.GetVacancyReference()}");
                 }
                 return elementDisplayed;
             }, () => _formCompletionHelper.Click(Search));
@@ -49,7 +49,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
             var urlChange = distance.Contains("miles") ? distance.Split(" ")[0] : "0";
 
             _pageInteractionHelper.WaitforURLToChange($"WithinDistance={urlChange}");
-        }
+        }        
 
     }
 }

@@ -15,10 +15,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             VerifyPage();
         }
 
-        public TrainingProviderPermissionsPage OpenProviderPermissions()
+        public YourTrainingProvidersPage OpenProviderPermissions()
         {
             formCompletionHelper.ClickElement(TrainingProviderPermissionLink);
-            return new TrainingProviderPermissionsPage(_context);
+            return new YourTrainingProvidersPage(_context);
         }
     }
 }

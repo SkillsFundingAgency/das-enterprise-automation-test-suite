@@ -6,6 +6,8 @@ using SFA.DAS.UI.FrameworkHelpers;
 using System;
 using System.Linq;
 using TechTalk.SpecFlow;
+using System.Drawing;
+using System.Collections.ObjectModel;
 
 namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
 {
@@ -89,10 +91,18 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
             return new RAA_VacancySummaryPage(_context);
         }
 
-        public RAA_VacancyPreviewPage SearchLiveVacancyWithNoApplications()
+        public RAA_PreviewBasePage SearchLiveVacancyWithNoApplications()
         {
             SearchByReferenceNumber("Live");
-            return new RAA_VacancyPreviewPage(_context);
+
+            if(_objectContext.IsApprenticeshipVacancyType())
+            {
+                return new RAA_VacancyPreviewPage(_context);
+            }
+            else
+            {
+                return new RAA_OppurtunityPreviewPage(_context);
+            }
         }
 
         public RAA_PreviewBasePage SearchReferredVacancy()
@@ -111,20 +121,22 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
 
         private void SearchByReferenceNumber(string vacancyType)
         {
+         
             IWebElement func()
             {
-                var filters = _pageInteractionHelper.FindElements(VacancyFilter);
+                //_pageInteractionHelper expects some element back and fails when page is running slow and element is not available 
+                var dummyElement = _pageInteractionHelper.FindElements(VacancyFilter);
+                var vacancies = _pageInteractionHelper.FindElements(VacancyTitle);                
 
-                foreach (var filter in filters)
-                {
-                    var status = _pageInteractionHelper.FindElement(filter, VacancyStatus);
-                    if (status.Text == vacancyType)
+                foreach (var vac in vacancies)
+                {                    
+                    if (vac.Text == vacancyTitledataHelper.VacancyTitle)
                     {
-                        return _pageInteractionHelper.FindElement(filter, NoOfVacancy);
+                        return vac;
                     }
                 }
 
-                return null;
+                return dummyElement[0];
             }
 
             ApprenticeshipVacancyType();
@@ -132,7 +144,8 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
             formCompletionHelper.SelectFromDropDownByValue(VacancySearchMode, "ReferenceNumber");
             formCompletionHelper.EnterText(VacancySearchText, _objectContext.GetVacancyReference());
             formCompletionHelper.ClickElement(() => _pageInteractionHelper.FindElement(SearchVacancy));
-            _pageInteractionHelper.WaitForElementToChange(func, AttributeHelper.InnerText, "1");
+            _pageInteractionHelper.WaitForElementToChange(func, AttributeHelper.InnerText, vacancyTitledataHelper.VacancyTitle);            
+
             formCompletionHelper.ClickLinkByText(VacancyTitle, vacancyTitledataHelper.VacancyTitle);
         }
 
@@ -164,5 +177,5 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
 
             return _vacancyHelper.RandomElementAt(func, VacancyTables, VacancyTitle, NextPage, NoOfPagesCssSelector);
         }
-    }
+    }   
 }

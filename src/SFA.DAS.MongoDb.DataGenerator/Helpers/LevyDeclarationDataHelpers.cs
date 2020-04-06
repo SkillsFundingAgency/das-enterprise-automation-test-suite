@@ -1,5 +1,4 @@
-﻿using NUnit.Framework;
-using System;
+﻿using System;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.MongoDb.DataGenerator.Helpers
@@ -26,35 +25,35 @@ namespace SFA.DAS.MongoDb.DataGenerator.Helpers
             return (EnglishFraction, EnglishFractioncalculatedAt, table);
         }
 
-        public static (decimal fraction, DateTime calculatedAt, Table levyDeclarations) LevyFunds(string duration, string levyPerMonth)
+        public static (decimal fraction, DateTime calculatedAt, Table levyDeclarations) LevyFunds(string duration, string levyPerMonth, DateTime dateTime = default(DateTime))
         {
-            (DateTime englishFractioncalculatedAt, Table levyDeclarations) = GetlevyDeclarations(duration, levyPerMonth);
+            dateTime = dateTime == default(DateTime) ? DateTime.Now : dateTime;
+
+            (DateTime englishFractioncalculatedAt, Table levyDeclarations) = GetlevyDeclarations(duration, levyPerMonth, dateTime);
             return (EnglishFraction, englishFractioncalculatedAt, levyDeclarations);
         }
 
         private static Table GetTableHeader() => new Table("Year", "Month", "LevyDueYTD", "LevyAllowanceForFullYear", "SubmissionDate");
 
-        private static (DateTime calculatedAt, Table levyDeclarations) GetlevyDeclarations(string duration, string levyPerMonth)
+        private static (DateTime calculatedAt, Table levyDeclarations) GetlevyDeclarations(string duration, string levyPerMonth, DateTime dateTime)
         {
             var table = GetTableHeader();
 
-            int.TryParse(duration, out int noOfMonths);
-            noOfMonths = noOfMonths == 0 ? 15 : noOfMonths;
-
-            int.TryParse(levyPerMonth, out int levyDueYTD);
-            levyDueYTD = levyDueYTD == 0 ? 10000 : levyDueYTD;
+            int noOfMonths = int.TryParse(duration, out noOfMonths) ? noOfMonths : 15;
+            int levyDueYTD = int.TryParse(levyPerMonth, out levyDueYTD) ? levyDueYTD : 10000;
 
             int levyAllowanceForFullYear = levyDueYTD * noOfMonths;
 
             for (int i = 0; i < noOfMonths; i++)
             {
-                var date = DateTime.Now.AddMonths(i - noOfMonths);
+                var date = dateTime.AddMonths(i - noOfMonths);
                 int levythisMonth = levyDueYTD * (i + 1);
 
                 var levy = GetlevyDeclarations(date, levythisMonth, levyAllowanceForFullYear);
                 table.AddRow(levy);
             }
-            var englishFractioncalculatedAt = DateTime.Now.AddMonths(-(noOfMonths + 1));
+
+            var englishFractioncalculatedAt = dateTime.AddMonths(-(noOfMonths + 1));
             return (englishFractioncalculatedAt, table);
         }
 

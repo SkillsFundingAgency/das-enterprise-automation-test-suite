@@ -26,6 +26,9 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 
         private By CreateAnAccountLink => By.Id("create-account-link");
 
+        private By ChangeSettingsInfo => By.Id("SuccessMessageText");
+        
+
         public FAA_SignInPage(ScenarioContext context) : base(context)
         {
             _context = context;
@@ -36,26 +39,39 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
             VerifyPage(UsernameField);
         }
 
-        public FAA_MyApplicationsHomePage SubmitValidLoginDetails()
+        public FAA_MyApplicationsHomePage SubmitValidLoginDetails(string emailId, string password)
         {
-            _formCompletionHelper.EnterText(UsernameField, _config.FAAUserName);
-            _formCompletionHelper.EnterText(PasswordField, _config.FAAPassword);
-            _formCompletionHelper.ClickElement(SignInButton);
+            FAASignIn(emailId, password);
             return new FAA_MyApplicationsHomePage(_context);
         }
 
-        public FAA_ActivateYourAccountPage SubmitUnactivatedLoginDetails()
+        public FAA_ActivateYourAccountPage SubmitUnactivatedLoginDetails(string emailId,string password)
         {
-            _formCompletionHelper.EnterText(UsernameField, _dataHelper.EmailId);
-            _formCompletionHelper.EnterText(PasswordField, _dataHelper.Password);
-            _formCompletionHelper.ClickElement(SignInButton);
+            FAASignIn(emailId, password);
             return new FAA_ActivateYourAccountPage(_context);
+        }
+
+        private void FAASignIn(string emailId, string password)
+        {
+            _formCompletionHelper.EnterText(UsernameField, emailId);
+            _formCompletionHelper.EnterText(PasswordField, password);
+            _formCompletionHelper.ClickElement(SignInButton);
         }
 
         public FAA_CreateAnAccountPage ClickCreateAnAccountLink()
         {
             _formCompletionHelper.Click(CreateAnAccountLink);
             return new FAA_CreateAnAccountPage(_context);
+        }
+
+        public void ConfirmAccountDeletion()
+        {
+            _PageInteractionhelper.VerifyText(ChangeSettingsInfo, "Your account has been deleted"); 
+        }
+
+        public void ConfirmEmailAddressUpdate()
+        {
+            _PageInteractionhelper.VerifyText(ChangeSettingsInfo, "Your email address has been updated, please login using your new details.");
         }
     }
 }

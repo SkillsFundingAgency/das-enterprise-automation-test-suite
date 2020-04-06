@@ -18,6 +18,8 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         protected readonly FormCompletionHelper formCompletionHelper;
         protected readonly RAAV1DataHelper dataHelper;
         protected readonly VacancyTitleDatahelper vacancyTitledataHelper;
+        protected readonly PageInteractionHelper pageInteractionHelper;
+        protected readonly FAADataHelper faaDataHelper;
         #endregion
 
         public RAA_HeaderSectionBasePage(ScenarioContext context, bool navigate = false) : base(context)
@@ -25,6 +27,8 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
             dataHelper = context.Get<RAAV1DataHelper>();
             vacancyTitledataHelper = context.Get<VacancyTitleDatahelper>();
             formCompletionHelper = context.Get<FormCompletionHelper>();
+            pageInteractionHelper = context.Get<PageInteractionHelper>();
+            faaDataHelper = context.Get<FAADataHelper>();
             if (navigate) { NavigateToHome(); }
             VerifyPage();
         }

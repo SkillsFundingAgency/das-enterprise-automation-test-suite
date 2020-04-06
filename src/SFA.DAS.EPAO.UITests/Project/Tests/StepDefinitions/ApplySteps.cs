@@ -2,6 +2,8 @@
 using SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply;
 using SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.PreamblePages;
 using SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService;
+using SFA.DAS.Login.Service;
+using SFA.DAS.Login.Service.Helpers;
 using SFA.DAS.UI.Framework.TestSupport;
 using TechTalk.SpecFlow;
 
@@ -15,12 +17,14 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         private AS_CreateAnAccountPage _createAnAccountPage;
         private readonly EPAOConfig _config;
         private readonly AssessmentServiceStepsHelper _stepsHelper;
+        private readonly EPAODataHelper _dataHelper;
 
         public ApplySteps(ScenarioContext context)
         {
             _context = context;
             _config = context.GetEPAOConfig<EPAOConfig>();
             _stepsHelper = new AssessmentServiceStepsHelper(_context);
+            _dataHelper = context.Get<EPAODataHelper>();
         }
 
         [When(@"the Apply User completes preamble journey")]
@@ -53,7 +57,8 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
                 .SelectNoOptionAndContinueInDirectorsDataPage()
                 .EnterCharityDetailsAndContinueInRegisteredCharityPage()
                 .SelectNoOptionAndContinueInRegisterOfRemovedTrusteesPage()
-                .ClickReturnToApplicationOverviewButton();
+                .ClickReturnToApplicationOverviewButton()
+                .VerifyOrganisationDetailsSectionCompletedText();
         }
 
         [When(@"the Apply User completes the Declarations section")]
@@ -82,7 +87,8 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
                 .SelectYesOptionAndContinueInFalseDeclarationsPage()
                 .SelectYesOptionAndContinueInAccurateRepresentationPage()
                 .SelectYesOptionAndContinueInAgreementOnTheRegisterPage()
-                .ClickReturnToApplicationOverviewButton();
+                .ClickReturnToApplicationOverviewButton()
+                .VerifyDeclarationsSectionCompletedText();
         }
 
         [When(@"the Apply User completes the FHA section")]
@@ -92,20 +98,21 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
                 .ClickGoToFinancialHealthAssessmentLinkInApplicationOverviewPage()
                 .ClickFHALinkInFHABasePage()
                 .UploadFileAndContinueInFinancialHealthPage()
-                .ClickReturnToApplicationOverviewButton();
+                .ClickReturnToApplicationOverviewButton()
+                .VerifyFHASectionCompletedText();
         }
 
         [Then(@"the application is allowed to be submitted")]
         public void ThenTheApplicationIsAllowedToBeSubmitted() => _applicationOverviewPage.ClickSubmitInApplicationOverviewPage();
 
         [Then(@"the User Name is displayed in the Logged In Home page")]
-        public void ThenTheUserNameIsDisplayedInTheLoggedInHomePage() => new AS_LoggedInHomePage(_context).VerifySignedInUserName(_config.EPAOApplyUserFullName);
+        public void ThenTheUserNameIsDisplayedInTheLoggedInHomePage() => new AS_LoggedInHomePage(_context).VerifySignedInUserName(_context.GetUser<EPAOApplyUser>().FullName);
 
         [Then(@"the Apply User is able to Signout from the application")]
         public void ThenTheApplyUserIsAbleToSignoutFromTheApplication()
         {
             new AS_LoggedInHomePage(_context).ClickSignOutLink()
-                .ClickReturnToAssessmentServiceLink();
+                .ClickSignBackInLink();
         }
 
         [When(@"the Apply User initiates Create Account journey")]
@@ -121,10 +128,10 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         [Then(@"no matches are shown for Organisation searches with Invalid search term")]
         public void ThenNoMatchesAreShownForOrganisationSearchesWithInvalidSearchTerm()
         {
-            new AP_PR1_SearchForYourOrganisationPage(_context).EnterInvalidOrgNameAndSearchInSearchForYourOrgPage("asfasfasdfasdf")
+            new AP_PR1_SearchForYourOrganisationPage(_context).EnterInvalidOrgNameAndSearchInSearchForYourOrgPage(_dataHelper.InvalidOrgNameWithAlphabets)
                             .VerifyInvalidSearchResultText()
-                            .EnterInvalidOrgNameAndSearchInSearchResultsForPage("54678900")
-                            .EnterInvalidOrgNameAndSearchInSearchResultsForPage("EPA01");
+                            .EnterInvalidOrgNameAndSearchInSearchResultsForPage(_dataHelper.InvalidOrgNameWithNumbers)
+                            .EnterInvalidOrgNameAndSearchInSearchResultsForPage(_dataHelper.InvalidOrgNameWithAWord);
         }
     }
 }

@@ -4,6 +4,7 @@ using OpenQA.Selenium;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.Login.Service.Project.Tests.Pages;
 using SFA.DAS.UI.FrameworkHelpers;
+using SFA.DAS.Registration.UITests.Project.Tests.Pages.YourTeamPages;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 {
@@ -16,53 +17,30 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         protected readonly TabHelper _tabHelper;
         #endregion
 
+        #region Locators
         private By SettingsLink => By.LinkText("Settings");
-
         private By YourAccountsLink => By.LinkText("Your accounts");
-
         private By HelpLink => By.LinkText("Help");
-
         private By RenameAccountLink => By.LinkText("Rename account");
-
         private By ChangePasswordLink => By.LinkText("Change your password");
-
         private By ChangeEmailAddressLink => By.LinkText("Change your email address");
-
         private By NotificationSettingsLink => By.LinkText("Notifications settings");
+        private By SignOutLink => By.LinkText("Sign out");
+        private By YourTeamLink => By.LinkText("Your team");
+        #endregion
 
-        public InterimEmployerBasePage(ScenarioContext context, bool navigate) : base(context, navigate)
+        protected InterimEmployerBasePage(ScenarioContext context, bool navigate) : base(context, navigate)
         {
             _context = context;
+            _tabHelper = _context.Get<TabHelper>();
             config = context.GetRegistrationConfig<RegistrationConfig>();
             objectContext = context.Get<ObjectContext>();
-            _tabHelper = _context.Get<TabHelper>();
             VerifyPage();
         }
 
-        public HomePage GoToHomePage()
-        {
-            return new HomePage(_context, true);
-        }
+        public HomePage GoToHomePage() => new HomePage(_context, true);
 
-        public HomePage GoToHomePageUsingUrl()
-        {
-            return new HomePage(_context, true);
-        }
-
-        public HomePage HomePage()
-        {
-            return new HomePage(_context);
-        }
-
-        public AboutYourAgreementPage AboutYourAgreementPage()
-        {
-            return new AboutYourAgreementPage(_context);
-        }
-
-        public AboutYourAgreementPage GoToAboutYourAgreementPage()
-        {
-            return new AboutYourAgreementPage(_context, true);
-        }
+        public HomePage HomePage() => new HomePage(_context);
 
         public YourOrganisationsAndAgreementsPage GoToYourOrganisationsAndAgreementsPage()
         {
@@ -108,6 +86,18 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             formCompletionHelper.ClickElement(SettingsLink);
             formCompletionHelper.ClickElement(NotificationSettingsLink);
             return new NotificationSettingsPage(_context);
+        }
+
+        public YouveLoggedOutPage SignOut()
+        {
+            formCompletionHelper.Click(SignOutLink);
+            return new YouveLoggedOutPage(_context);
+        }
+
+        public YourTeamPage GotoYourTeamPage()
+        {
+            formCompletionHelper.Click(YourTeamLink);
+            return new YourTeamPage(_context);
         }
     }
 }

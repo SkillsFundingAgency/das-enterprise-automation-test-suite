@@ -16,7 +16,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
         private readonly TabHelper _tabHelper;
         private readonly RestartWebDriverHelper _helper;
         private const string _applicationName = "Recruit";
-
+        
         public RAAStepsHelper(ScenarioContext context)
         {
             _context = context;
@@ -89,7 +89,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
             }
         }
 
-        public void ProviderFillsOutTraineeshipDetails(string location, string disabilityConfident = "Yes", string applicationMethod = "Online", string postCode = "CV1 2WT")
+        public void ProviderFillsOutTraineeshipDetails(string location, string disabilityConfident = "Yes", string applicationMethod = "Online", string postCode = "1 Speedway Drive London SW17 0XW")
         {
             switch (location)
             {
@@ -114,7 +114,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
             EnterRequirementsAndExtraQuestions(requirementsAndProspects, applicationMethod);
         }
 
-        internal void ProviderFillsOutApprenticeshipDetails(string location, string disabilityConfident, string applicationMethod, string apprenticeShip, string hoursPerWeek, string vacancyDuration, string wagetype, string postCode = "CV1 2WT")
+        internal void ProviderFillsOutApprenticeshipDetails(string location, string disabilityConfident, string applicationMethod, string apprenticeShip, string hoursPerWeek, string vacancyDuration, string wagetype, string postCode = "1 Speedway Drive London SW17 0XW")
         {
             switch (location)
             {
@@ -252,7 +252,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
                        .AddLocation(postCode)
                        .EnterNumberOfVacancy()
                        .ClickAddAnotherLocationLink()
-                       .AddLocation("BS16 4EA")
+                       .AddLocation("4 Quinton Road Coventry, CV1 2NJ")
                        .EnterNumberOfVacancy2()
                        .EnterAdditionalLocationInformation()
                        .ClickSaveAndContinue();
@@ -282,10 +282,19 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
         {
             new RAA_IndexPage(_context)
                 .ClickOnSignInButton()
-                .RecruitStaffIdams();
+                .LoginToPireanPreprod();
 
             return new SignInPage(_context)
                 .SubmitRecruitmentLoginDetails();
-        }        
+        }   
+        
+        public RAA_CandidateApplicationPage SelectACandidate() => Search().SelectACandidate();
+
+        public void SearchForDeletedCandidate() => Search().VerifyCandidateDeletion();
+
+        private RAA_SearchCandidatesPage Search() => GoToRAAHomePage(true).SearchCandidates().Search();
+
+        public void VerifyCandidateUpdatedDetails() => SelectACandidate().VerifyUpdatedCandidateDetails();
+
     }
 }

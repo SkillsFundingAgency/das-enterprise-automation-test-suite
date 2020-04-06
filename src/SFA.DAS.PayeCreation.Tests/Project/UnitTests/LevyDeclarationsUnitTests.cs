@@ -63,7 +63,27 @@ namespace SFA.DAS.PayeCreation.Project.UnitTests
                 new List<string>() { "19-20", "8", (levypermonth * 10).ToString(), levyperyear, "2019-11-15" }
             };
 
-            var (fraction, calculatedAt, levyDeclarations) = LevyDeclarationDataHelper.LevyFunds(noOfmonths.ToString(), levypermonth.ToString());
+            var (_, _, levyDeclarations) = LevyDeclarationDataHelper.LevyFunds(noOfmonths.ToString(), levypermonth.ToString(), new DateTime(2019, 12, 20));
+
+            for (int i = 0; i <= noOfmonths - 1; i++)
+            {
+                CollectionAssert.AreEqual(expected[i], levyDeclarations.Rows[i].Values);
+            }
+        }
+
+        [TestCase]
+        public void Get0LevyFundsFor1Month()
+        {
+            //This test was written on 20/02/2020
+            int noOfmonths = 1;
+            int levypermonth = 0;
+            string levyperyear = (noOfmonths * levypermonth).ToString();
+            List<List<string>> expected = new List<List<string>>()
+            {
+                new List<string>() { "19-20", "10", (levypermonth * 1).ToString(), levyperyear, "2020-01-15" },
+            };
+
+            var (_, _, levyDeclarations) = LevyDeclarationDataHelper.LevyFunds(noOfmonths.ToString(), levypermonth.ToString());
 
             for (int i = 0; i <= noOfmonths - 1; i++)
             {

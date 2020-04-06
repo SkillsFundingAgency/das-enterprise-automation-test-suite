@@ -58,6 +58,14 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
             AddApprenticeshipVacancy(table.CreateInstance<RAATableData>());
         }
 
+        [Given(@"the traineeship vacancy is Live in Recruit with no application")]
+        public void GivenTheTraineeshipVacancyIsLiveInRecruitWithNoApplication()
+        {
+            _applyForVacancy = false;
+            AddTraineeshipVacancy();
+            _applyForVacancy = true;
+        }
+
         [Given(@"the apprenticeship vacancy is Live in Recruit with no application")]
         public void GivenTheApprenticeshipVacancyIsLiveInRecruitWithNoApplication()
         {
@@ -66,11 +74,16 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
             _applyForVacancy = true;
         }
 
-
         [Given(@"the apprenticeship vacancy is Live in Recruit with an application")]
         public void GivenTheApprenticeshipVacancyIsLiveInRecruitWithAnApplication()
         {
             AddApprenticeshipVacancy();
+        }
+
+        [Given(@"the traineeship vacancy is Live in Recruit with an application")]
+        public void GivenTheTraineeshipVacancyIsLiveInRecruitWithAnApplication()
+        {
+            AddTraineeshipVacancy();
         }
 
         [Given(@"the apprenticeship vacancy is Live in Recruit near '(.*)'")]
@@ -116,7 +129,14 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
         private void AddApprenticeshipVacancy()
         {
             _exitFromWebsite = false;
-            AddApprenticeshipVacancy(TestData("CV3 5JJ"));
+            AddApprenticeshipVacancy(TestData("1 Croft Avenue Rugby CV21 1AD"));
+            _exitFromWebsite = true;
+        }
+
+        private void AddTraineeshipVacancy()
+        {
+            _exitFromWebsite = false;
+            AddTraineeshipVacancy(TestData("1 Croft Avenue Rugby CV21 1AD"));
             _exitFromWebsite = true;
         }
 
@@ -165,7 +185,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
 
         private string PostCodeTestData(RAATableData dataset)
         {
-            return string.IsNullOrEmpty(dataset.PostCode) ? "CV1 2WT" : dataset.PostCode;
+            return string.IsNullOrEmpty(dataset.PostCode) ? "1 The Vale London N10 1AD" : dataset.PostCode;
         }
     }
 }

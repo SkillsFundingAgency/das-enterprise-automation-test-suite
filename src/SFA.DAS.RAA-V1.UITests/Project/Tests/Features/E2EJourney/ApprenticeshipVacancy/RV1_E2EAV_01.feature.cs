@@ -69,54 +69,56 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Features.E2EJourney.Apprenticeshi
             testRunner.CollectScenarioErrors();
         }
         
-        public virtual void RV1_E2EAV_01_CreateApproveAndApplyForAApprenticeshipVacancyAndViewAnonymous(string location, string anonymity, string disabilityConfident, string applicationMethod, string apprenticeshipType, string hoursPerWeek, string vacancyDuration, string noOfPositions, string qualificationDetails, string workExperience, string trainingCourse, string[] exampleTags)
+        public virtual void RV1_E2EAV_01_CreateApproveAndApplyForAApprenticeshipVacancySearchingByCategoryInFAAAndViewAnonymous(string location, string anonymity, string disabilityConfident, string applicationMethod, string apprenticeshipType, string hoursPerWeek, string vacancyDuration, string noOfPositions, string qualificationDetails, string workExperience, string trainingCourse, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "raa-v1",
                     "v1_e2e",
                     "regression",
+                    "adddifferentlocation",
                     "apprenticeshipvacancy"};
             if ((exampleTags != null))
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
             }
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV1_E2EAV_01 - Create, Approve and Apply for a Apprenticeship Vacancy and View An" +
-                    "onymous", null, @__tags);
-#line 7
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV1_E2EAV_01 - Create, Approve and Apply for a Apprenticeship Vacancy Searching b" +
+                    "y Category in FAA and View Anonymous", null, @__tags);
+#line 8
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 8
- testRunner.Given("the Provider initiates Create Apprenticeship Vacancy in Recruit", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 9
- testRunner.When(string.Format("the Provider chooses the employer \'{0}\',\'{1}\'", location, noOfPositions), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.Given("the Provider initiates Create Apprenticeship Vacancy in Recruit", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 10
- testRunner.And(string.Format("the Provider chooses their \'{0}\'", anonymity), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.When(string.Format("the Provider chooses the employer \'{0}\',\'{1}\'", location, noOfPositions), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 11
+ testRunner.And(string.Format("the Provider chooses their \'{0}\'", anonymity), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 12
  testRunner.And(string.Format("the Provider fills out details for an Offline Vacancy \'{0}\',\'{1}\',\'{2}\',\'{3}\',\'{4" +
                         "}\',\'{5}\'", location, disabilityConfident, applicationMethod, apprenticeshipType, hoursPerWeek, vacancyDuration), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 12
- testRunner.Then("Provider is able to submit the vacancy for approval", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 13
- testRunner.Then("the Reviewer approves the vacancy", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("Provider is able to submit the vacancy for approval", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 14
- testRunner.When(string.Format("the Applicant apply for a Vacancy in FAA \'{0}\',\'{1}\',\'{2}\'", qualificationDetails, workExperience, trainingCourse), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.Then("the Reviewer approves the vacancy", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 15
+ testRunner.When(string.Format("the Applicant apply for a Vacancy by browsing in FAA \'{0}\',\'{1}\',\'{2}\'", qualificationDetails, workExperience, trainingCourse), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 16
  testRunner.Then("the vacancy can be viewed anonymously", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RV1_E2EAV_01 - Create, Approve and Apply for a Apprenticeship Vacancy and View An" +
-            "onymous: Add different location")]
+        [NUnit.Framework.DescriptionAttribute("RV1_E2EAV_01 - Create, Approve and Apply for a Apprenticeship Vacancy Searching b" +
+            "y Category in FAA and View Anonymous: Use the main employer address")]
         [NUnit.Framework.CategoryAttribute("raa-v1")]
         [NUnit.Framework.CategoryAttribute("v1_e2e")]
         [NUnit.Framework.CategoryAttribute("regression")]
+        [NUnit.Framework.CategoryAttribute("adddifferentlocation")]
         [NUnit.Framework.CategoryAttribute("apprenticeshipvacancy")]
-        public virtual void RV1_E2EAV_01_CreateApproveAndApplyForAApprenticeshipVacancyAndViewAnonymous_AddDifferentLocation()
+        public virtual void RV1_E2EAV_01_CreateApproveAndApplyForAApprenticeshipVacancySearchingByCategoryInFAAAndViewAnonymous_UseTheMainEmployerAddress()
         {
-#line 7
-this.RV1_E2EAV_01_CreateApproveAndApplyForAApprenticeshipVacancyAndViewAnonymous("Add different location", "Yes", "Yes", "Online", "Standard", "42", "52", "3", "No", "Yes", "No", ((string[])(null)));
+#line 8
+this.RV1_E2EAV_01_CreateApproveAndApplyForAApprenticeshipVacancySearchingByCategoryInFAAAndViewAnonymous("Use the main employer address", "Yes", "Yes", "Online", "Standard", "42", "52", "3", "No", "Yes", "No", ((string[])(null)));
 #line hidden
         }
     }

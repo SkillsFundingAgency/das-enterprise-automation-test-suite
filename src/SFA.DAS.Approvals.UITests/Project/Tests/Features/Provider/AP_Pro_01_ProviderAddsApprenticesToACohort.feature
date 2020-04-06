@@ -3,7 +3,7 @@ Feature: AP_Pro_01_ProviderAddsApprenticesToACohort
 
 @regression
 Scenario: AP_Pro_01 Provider adds apprentices and views cohort details when the cohort is with the employer
-	Given the Employer login using existing levy account
+	Given the Employer logins using existing Levy Account
 	When the Employer create a cohort and send to provider to add apprentices
 	And the provider adds 2 apprentices approves them and sends to employer to approve
 	Then Provider is able to view the cohort with employer

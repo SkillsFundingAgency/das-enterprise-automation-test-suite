@@ -4,6 +4,8 @@ using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 using SFA.DAS.RAA.DataGenerator.Project;
+using SFA.DAS.RAA.DataGenerator;
+using System;
 
 namespace SFA.DAS.FAA.UITests.Project.Helpers
 {
@@ -13,16 +15,18 @@ namespace SFA.DAS.FAA.UITests.Project.Helpers
         private readonly FAAConfig _config;
         private readonly RestartWebDriverHelper _helper;
         private readonly TabHelper _tabHelper;
+        private readonly FAADataHelper _faaDataHelper;
         private readonly ObjectContext _objectContext;
-        private const string _applicationName = "FindApprenticeship";
-
+        private const string _applicationName = "FindApprenticeship";           
+        
         public FAAStepsHelper(ScenarioContext context)
         {
             _context = context;
             _objectContext = context.Get<ObjectContext>();
             _config = context.GetFAAConfig<FAAConfig>();
             _tabHelper = context.Get<TabHelper>();
-            _helper = new RestartWebDriverHelper(context);
+            _faaDataHelper = context.Get<FAADataHelper>();
+            _helper = new RestartWebDriverHelper(context);            
         }
 
         public string GetApplicationStatus()
@@ -37,7 +41,6 @@ namespace SFA.DAS.FAA.UITests.Project.Helpers
         public FAA_ApprenticeSearchPage FindAnApprenticeship() => GoToFAAHomePage().FindAnApprenticeship();
 
         public FAA_TraineeshipSearchPage FindATraineeship() => GoToFAAHomePage().FindATraineeship();
-        
 
         public FAA_MyApplicationsHomePage GoToFAAHomePage()
         {
@@ -50,9 +53,11 @@ namespace SFA.DAS.FAA.UITests.Project.Helpers
                 _tabHelper.OpenInNewTab(_config.FAABaseUrl);
             }
 
-            return new FAA_Indexpage(_context)
-                .GoToSignInPage()
-                .SubmitValidLoginDetails();
+            var (username, password, _, _) = _objectContext.GetFAALogin();
+
+                return new FAA_Indexpage(_context)
+                   .GoToSignInPage()
+                   .SubmitValidLoginDetails(username, password);
         }
         
         public FAA_CreateAnAccountPage StartFAAAccountCreation()
@@ -71,15 +76,15 @@ namespace SFA.DAS.FAA.UITests.Project.Helpers
                 .ClickSaveAndContinue()
                 .VerifyPhoneNumberVerificationText()
                 .EnterVerificationCode()
-                .VerifySuccessfulVerificationText();
-            
+                .VerifySuccessfulVerificationText();            
         }
 
         public void CreateFAAAccountWithNoActivation(FAA_CreateAnAccountPage accountCreationPage)
         {
+            var (username, password, _, _) = _objectContext.GetFAALogin();
             accountCreationPage.SubmitAccountCreationDetails()
                 .ClickSignOut()
-                .SubmitUnactivatedLoginDetails();
+                .SubmitUnactivatedLoginDetails(username,password);
         }
                   
         public void WithdrawVacancy()
@@ -90,10 +95,24 @@ namespace SFA.DAS.FAA.UITests.Project.Helpers
                 .YesWithdraw();
         }
 
-        public void ApplyForAVacancy(string qualificationdetails, string workExperience, string trainingCourse)
+        public void DismissNotification(string status)
         {
-            var applicationFormPage = SearchByReferenceNumber().Apply();
+            switch(status)
+            {
+                case "Successful":
+                    GoToFAAHomePage().DismissSuccessfulNotification();
+                    break;
 
+                case "Unsccessful":
+                    GoToFAAHomePage().DismissUnsuccessfulNotification().ReadFeedback().VerifyReadFeedbackText();
+                    break;
+            }
+        }
+
+        public void ApplyForAVacancy(string qualificationdetails, string workExperience, string trainingCourse, bool isSearchByCategory = false)
+        {
+            var applicationFormPage = isSearchByCategory ? SearchByCategory().Apply() : SearchByReferenceNumber().Apply();
+                        
             if (_objectContext.IsApprenticeshipVacancyType())
             {
                 applicationFormPage.EnterEducation();
@@ -103,6 +122,9 @@ namespace SFA.DAS.FAA.UITests.Project.Helpers
                 applicationFormPage.EnterWorkExperience(workExperience);
                 applicationFormPage.EnterTrainingCourse(trainingCourse);
                 applicationFormPage.AnswerAdditionalQuestions();
+                applicationFormPage.EnterStrengths();
+                applicationFormPage.EnterSkills();
+                applicationFormPage.EnterHobbiesAndInterests();
                 applicationFormPage.ClickSaveAndContinue();
                 applicationFormPage.SelectAcceptSubmit();
                 applicationFormPage.SubmitApprenticeshipApplication();
@@ -128,6 +150,10 @@ namespace SFA.DAS.FAA.UITests.Project.Helpers
                 return FindATraineeship().SearchByReferenceNumber();
             }
         }
+
+        private FAA_ApprenticeSummaryPage SearchByCategory() => FindAnApprenticeship().BrowseVacancy().SelectBrowsedVacancy();
+        
+
         private FAA_MyApplicationsHomePage OpenFAAHomePageinNewtab()
         {
             _tabHelper.OpenInNewTab(_config.FAABaseUrl);
@@ -135,5 +161,31 @@ namespace SFA.DAS.FAA.UITests.Project.Helpers
             return new FAA_FindAnApprenticeshipHomePage(_context)
                 .MyApplications();
         }
+
+        public void CheckNationWideVacancies()
+        {
+            FAA_ApprenticeSearchResultsPage _faaApprenticeshipSearchResultsPage = new FAA_ApprenticeSearchResultsPage(_context);
+            _faaApprenticeshipSearchResultsPage.CheckSortOrderAndDistance();
+        }
+
+        public void CreateDraftApplication()
+        {
+            SearchByReferenceNumber().Apply().ClickSave();
+        }
+
+        public FAA_ApprenticeSummaryPage ConfirmDraftVacancyDeletion() => new FAA_MyApplicationsHomePage(_context).ConfirmVacancyDeletion().ConfirmDraftVacancyDeletion();
+
+        public void ChangePersonalSettings()
+        {
+            var signInpage = GoToSettingsPage().ChangeTheEmailIdSettings().ChangeEmailAddress();
+
+            signInpage.ConfirmEmailAddressUpdate();
+
+            _objectContext.SetFAAUsername(_faaDataHelper.ChangedEmailId);
+
+            GoToSettingsPage().ChangePhoneNumberSettings().EnterVerificationCode().VerifySuccessfulVerificationText();
+        }
+
+        private FAA_SettingsPage GoToSettingsPage() => GoToFAAHomePage().GoToSettings();
     }
 }

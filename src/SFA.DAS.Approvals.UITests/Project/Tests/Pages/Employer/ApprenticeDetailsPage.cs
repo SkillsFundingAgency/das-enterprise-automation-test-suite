@@ -23,7 +23,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private By EditApprenticeStatusLink => By.LinkText("Edit status");
         private By EditStopDateLink => By.Id("editStopDateLink");
         private By EditApprenticeDetailsLink => By.LinkText("Edit");
-
+        
         public ApprenticeDetailsPage(ScenarioContext context) : base(context)
         {
             _context = context;

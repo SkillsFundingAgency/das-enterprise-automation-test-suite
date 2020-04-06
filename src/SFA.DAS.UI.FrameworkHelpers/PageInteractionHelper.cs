@@ -60,17 +60,17 @@ namespace SFA.DAS.UI.FrameworkHelpers
             return VerifyPage(func);
         }
 
-        public bool VerifyPage(Func<IWebElement> element, string expected)
+        public bool VerifyPage(Func<IWebElement> element, string expected, Action retryAction = null)
         {
             bool func()
             {
-                var actual = GetText(element);
+                var actual = GetText(element, retryAction);
                 if (actual.Contains(expected))
                 {
                     return true;
                 }
 
-                throw new Exception("Page verification failed:"
+                    throw new Exception("Page verification failed:"
                     + "\n Expected: " + expected + " page"
                     + "\n Found: " + actual + " page");
             }
@@ -100,16 +100,16 @@ namespace SFA.DAS.UI.FrameworkHelpers
             return _retryHelper.RetryOnException(func, beforeAction);
         }
 
-        public bool VerifyPage(string actual, string expected1, string expected2)
+        public bool VerifyText(string actual, string expected1, string expected2)
         {
             if (actual.Contains(expected1) || actual.Contains(expected2))
             {
                 return true;
             }
 
-            throw new Exception("Page verification failed: "
-                + "\n Expected: " + expected1 + " or " + expected2 + " pages"
-                + "\n Found: " + actual + " page");
+            throw new Exception("Text verification failed: "
+                + "\n Expected: '" + expected1 + "' or '" + expected2 + "' text"
+                + "\n Found: '" + actual + "' page");
         }
 
         public bool VerifyText(String actual, string expected)
@@ -211,7 +211,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         public string GetText(By locator) => GetText(() => FindElement(locator));
 
-        public string GetText(Func<IWebElement> element) => _retryHelper.RetryOnWebDriverException<string>(() => element().Text);
+        public string GetText(Func<IWebElement> element, Action retryAction = null) => _retryHelper.RetryOnWebDriverException<string>(() => element().Text, retryAction);
 
         public string GetTextFromPlaceholderAttributeOfAnElement(By by) => FindElement(by).GetAttribute(AttributeHelper.Placeholder);
 
@@ -235,6 +235,8 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         public List<IWebElement> FindElements(By locator) => _webDriver.FindElements(locator).ToList();
 
+        public bool WaitUntilAnyElements(By locator) => _webDriverWaitHelper.WaitUntil(() => FindElements(locator).Any());
+
         public IWebElement GetLinkByHref(string hrefContains) => FindElements(LinkCssSelector).First(x => x.GetAttribute("href").ContainsCompareCaseInsensitive(hrefContains));
 
         public IWebElement GetLink(By by, Func<string, bool> func) => FindElements(by).First(x => func(x.GetAttribute(AttributeHelper.InnerText)));
@@ -243,7 +245,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         public List<IWebElement> GetLinks(string linkText) => FindElements(LinkCssSelector).Where(x => x.GetAttribute(AttributeHelper.InnerText).ContainsCompareCaseInsensitive(linkText)).ToList();
 
-        public List<string> GetAvailableOptions(By @by) => SelectElement(FindElement(by)).Options.Where(t => string.IsNullOrEmpty(t.Text)).Select(x => x.Text).ToList();
+        public List<string> GetAvailableOptions(By @by) => SelectElement(FindElement(by)).Options.Where(t => !string.IsNullOrEmpty(t.Text)).Select(x => x.Text).ToList();
 
         private Func<bool> Func(By locator)
         {

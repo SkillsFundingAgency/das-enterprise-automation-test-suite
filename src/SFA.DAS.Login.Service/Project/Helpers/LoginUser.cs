@@ -7,6 +7,8 @@
         public string Password { get; set; }
     }
 
+    public class CampaingnsEmployerUser : LoginUser { }
+
     public class RAAV2EmployerUser : LoginUser { }
 
     public class ProviderLoginUser : LoginUser
@@ -24,7 +26,18 @@
 
     public class NonLevyUser : LoginUser { }
 
-    public class EoiUser : LoginUser { }
-
     public class LoggedInUser : LoginUser { }
+    
+    public class EPAOStandardApplyUser : LoginUser { }
+
+    public class EPAOAssessorUser : LoginUser { }
+
+    public class EPAOManageUser : LoginUser { }
+
+    public class EPAOApplyUser : LoginUser
+    {
+        public string FullName { get; set; }
+    }
+
+    public class EPAOAdminUser : LoginUser { }
 }

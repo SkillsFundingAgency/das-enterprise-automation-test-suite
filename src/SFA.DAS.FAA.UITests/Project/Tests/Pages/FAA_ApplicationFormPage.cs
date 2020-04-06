@@ -50,10 +50,16 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
         private By SaveTrainingCourse => By.Id("addTrainingCourseBtn");
         private By FirstQuestion => By.Id("Candidate_EmployerQuestionAnswers_CandidateAnswer1");
         private By SecondQuestion => By.Id("Candidate_EmployerQuestionAnswers_CandidateAnswer2");
+        private By Strengths => By.Id("Candidate_AboutYou_WhatAreYourStrengths");
+        private By Skills => By.Id("Candidate_AboutYou_WhatDoYouFeelYouCouldImprove");
+        private By HobbiesAndInterests => By.Id("Candidate_AboutYou_WhatAreYourHobbiesInterests");
         private By SaveAndContinue => By.Id("apply-button");
         private By AcceptSubmit => By.Id("AcceptSubmitLabel");
         private By SignOut => By.XPath("//a[contains(.,'Sign out')]");
         private By MyApplications => By.CssSelector("#myapplications-link");
+        private By Save => By.Id("save-button");
+
+
         #endregion
 
         public FAA_ApplicationFormPage(ScenarioContext context) : base(context)
@@ -137,6 +143,21 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
             }
         }
 
+        public void EnterStrengths()
+        {
+            _formCompletionHelper.EnterText(Strengths, _dataHelper.Strengths);
+        }
+
+        public void EnterSkills()
+        {
+            _formCompletionHelper.EnterText(Skills, _dataHelper.Skills);
+        }
+
+        public void EnterHobbiesAndInterests()
+        {
+            _formCompletionHelper.EnterText(HobbiesAndInterests, _dataHelper.HobbiesAndInterests);
+        }
+
         public void AnswerAdditionalQuestions()
         {
             if (_pageInteractionHelper.IsElementDisplayed(FirstQuestion))
@@ -182,6 +203,13 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
             {
                 _formCompletionHelper.Click(MyApplications);
             }
+        }
+
+        public FAA_MyApplicationsHomePage ClickSave()
+        {
+            _formCompletionHelper.Click(Save);
+            GoToMyApplications();
+            return new FAA_MyApplicationsHomePage(_context);
         }
     }
 }

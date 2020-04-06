@@ -54,7 +54,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
                 case "Standard":
                     formCompletionHelper.SelectRadioOptionByText("Standard");
                     formCompletionHelper.Click(StandardsDropDownMenu);
-                    formCompletionHelper.SelectFromDropDownByValue(StandardsDropDownMenu, "208");
+                    formCompletionHelper.SelectFromDropDownByText(StandardsDropDownMenu, dataHelper.TrainingStandard);
                     break;
 
                 case "Traineeship":

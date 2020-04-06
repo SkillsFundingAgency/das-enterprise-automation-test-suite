@@ -18,7 +18,6 @@ namespace SFA.DAS.Approvals.UITests.Project
         private ApprenticeDataHelper _datahelper;
         private readonly ApprovalsConfig _approvalsConfig;
         private readonly ProviderPermissionsConfig _providerPermissionsConfig;
-        private readonly SqlDatabaseConnectionHelper _sqlDatabaseConnectionHelper;
 
         public BeforeScenarioHooks(ScenarioContext context)
         {
@@ -26,7 +25,6 @@ namespace SFA.DAS.Approvals.UITests.Project
             _objectcontext = context.Get<ObjectContext>();
             _approvalsConfig = context.GetApprovalsConfig<ApprovalsConfig>();
             _providerPermissionsConfig = context.GetProviderPermissionConfig<ProviderPermissionsConfig>();
-            _sqlDatabaseConnectionHelper = context.Get<SqlDatabaseConnectionHelper>();
         }
 
         [BeforeScenario(Order = 32)]
@@ -38,11 +36,11 @@ namespace SFA.DAS.Approvals.UITests.Project
                                    _context.ScenarioInfo.Tags.Contains("currentacademicyearstartdate") ? ApprenticeStatus.CurrentAcademicYearStartDate :
                                    _context.ScenarioInfo.Tags.Contains("waitingtostartapprentice") ? ApprenticeStatus.WaitingToStart : ApprenticeStatus.Random;
 
-            var commitmentsdatahelper = new CommitmentsDataHelper(_approvalsConfig, _sqlDatabaseConnectionHelper);
+            var commitmentsdatahelper = new CommitmentsDataHelper(_approvalsConfig);
 
             _context.Set(commitmentsdatahelper);
 
-            var providerPermissionsdatahelper = new ProviderPermissionsDatahelper(_providerPermissionsConfig, _sqlDatabaseConnectionHelper);
+            var providerPermissionsdatahelper = new ProviderPermissionsDatahelper(_providerPermissionsConfig);
 
             _context.Set(providerPermissionsdatahelper);
 
@@ -62,7 +60,7 @@ namespace SFA.DAS.Approvals.UITests.Project
 
             _context.Set(new EditedApprenticeCourseDataHelper(randomCoursehelper, apprenticeCourseDataHelper));
 
-            _context.Set(new DlockDataHelper(_approvalsConfig, new FileHelper(), _datahelper, apprenticeCourseDataHelper, _sqlDatabaseConnectionHelper));
+            _context.Set(new DlockDataHelper(_approvalsConfig, _datahelper, apprenticeCourseDataHelper));
         }
     }
 }

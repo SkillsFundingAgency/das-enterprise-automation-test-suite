@@ -26,8 +26,8 @@ namespace SFA.DAS.RAA.DataGenerator
             WorkkingWeek = _randomDataGenerator.GenerateRandomAlphabeticString(15);
             VacancyClosing = DateTime.Today.AddMonths(2).AddDays(3);
             VacancyStart = VacancyClosing.AddMonths(1).AddDays(1);
-            EditedVacancyClosing = VacancyStart.AddMonths(2).AddDays(3);
-            EditedVacancyStart = EditedVacancyClosing.AddMonths(1).AddDays(1);
+            EditedVacancyClosing = VacancyStart.AddDays(14);
+            EditedVacancyStart = EditedVacancyClosing.AddDays(14);
             DesiredQualificationsSubject = _randomDataGenerator.GenerateRandomAlphabeticString(8);
             OptionalMessage = _randomDataGenerator.GenerateRandomAlphabeticString(30);
         }
@@ -68,9 +68,9 @@ namespace SFA.DAS.RAA.DataGenerator
 
         public string FixedWageYearlyAmount => "10000";
 
-        public string NationalMinimumWage => "£9,048 - £17,076.80";
+        public string NationalMinimumWage => "£9,464 - £18,137.60";
 
-        public string NationalMinimumWageForApprentices => "£8,112";
+        public string NationalMinimumWageForApprentices => "£8,632";
 
         public string FixedWageForApprentices => "£10,000";
 
@@ -92,12 +92,12 @@ namespace SFA.DAS.RAA.DataGenerator
 
         public string OptionalMessage { get; }
 
-        private string WebsiteUrl(string url) => $"https://www.{url}.com";
+        private string WebsiteUrl(string url) => $"www.{url}.com";
 
         private List<string> AvailableProviders => new List<string> { "BALTIC TRAINING SERVICES LIMITED 10019026" };
 
-        private List<string> AvailableTraining => new List<string> 
-        {
+        private List<string> AvailableTraining => new List<string>
+        { 
             "Aerospace Engineer (degree), Level 6 (Degree with honours)",
             "Agriculture: Agriculture, Level 3 (A level)",
             "Broadcast production assistant, Level 3 (A level)",
@@ -106,7 +106,6 @@ namespace SFA.DAS.RAA.DataGenerator
             "Financial services administrator, Level 3 (A level)",
             "Groundworker, Level 2 (GCSE)",
             "Healthcare support worker, Level 2 (GCSE)",
-            "IT Solutions Technician, Level 3 (A level)",
             "Junior journalist, Level 3 (A level)",
             "Software Development Technician, Level 3 (A level)",
             "Software tester, Level 4 (Higher national certificate)",

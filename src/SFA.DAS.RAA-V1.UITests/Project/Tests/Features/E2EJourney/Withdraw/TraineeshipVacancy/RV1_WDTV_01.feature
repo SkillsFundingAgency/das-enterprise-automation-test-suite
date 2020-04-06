@@ -10,5 +10,5 @@ Scenario Outline: RV1_WDTV_01 - Withdraw Traineeship Vacancy
 	Then the vacancy should not be displayed in Recruit
 
 	Examples:
-		| location               | QualificationDetails | WorkExperience | TrainingCourse |
-		| Add different location | No                   | No             | No             |
+		| location                    | QualificationDetails | WorkExperience | TrainingCourse |
+		| Set as a nationwide vacancy | No                   | No             | No             |

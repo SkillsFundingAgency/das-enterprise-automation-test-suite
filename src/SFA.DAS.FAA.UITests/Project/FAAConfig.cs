@@ -9,5 +9,7 @@ namespace SFA.DAS.FAA.UITests.Project
         public string FAABaseUrl { get; set; }
         public string FAAUserName { get; set; }
         public string FAAPassword { get; set; }
+        public string FAAFirstName { get; set; }
+        public string FAALastName { get; set; }
     }
 }

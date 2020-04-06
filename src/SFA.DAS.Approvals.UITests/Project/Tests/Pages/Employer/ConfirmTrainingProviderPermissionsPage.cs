@@ -7,7 +7,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
     public class ConfirmTrainingProviderPermissionsPage : BasePage
     {
-        protected override string PageTitle => "Confirm training provider permissions";
+        protected override string PageTitle => "Confirm permissions";
 
         #region Helpers and Context
         private readonly PageInteractionHelper _pageInteractionHelper;

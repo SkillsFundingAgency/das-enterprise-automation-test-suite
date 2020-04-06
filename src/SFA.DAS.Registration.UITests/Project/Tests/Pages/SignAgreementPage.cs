@@ -1,32 +1,22 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.UI.Framework.TestSupport;
-using SFA.DAS.ConfigurationBuilder;
-using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 {
-    public class SignAgreementPage : BasePage
+    public class SignAgreementPage : RegistrationBasePage
     {
-        protected override string PageTitle => _objectContext.GetOrganisationName();
-
-        #region Helpers and Context
-        private readonly FormCompletionHelper _formCompletionHelper;
+        protected override string PageTitle => objectContext.GetOrganisationName();
         private readonly ScenarioContext _context;
-        private readonly ObjectContext _objectContext;
-        #endregion
 
+        #region Locators
         private By WantToSignRadioButton => By.CssSelector("label[for=want-to-sign]");
-
         private By DoNotWantToSignRadioButton => By.CssSelector("label[for=do-not-want-to-sign]");
-
         protected override By ContinueButton => By.CssSelector("input.govuk-button, input.button");
+        #endregion
 
         public SignAgreementPage(ScenarioContext context) : base(context)
         {
             _context = context;
-            _objectContext = context.Get<ObjectContext>();
-            _formCompletionHelper = context.Get<FormCompletionHelper>();
             VerifyPage();
         }
 
@@ -47,20 +37,12 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             Continue(WantToSignRadioButton);
         }
 
-        private void DoNotSign()
-        {
-            Continue(DoNotWantToSignRadioButton);
-        }
+        private void DoNotSign() => Continue(DoNotWantToSignRadioButton);
 
         private void Continue(By by)
         {
-            _formCompletionHelper.ClickElement(by);
-            _formCompletionHelper.ClickElement(ContinueButton);
-        }
-
-        public SignAgreementPage VerifySignAgreementPage()
-        {
-            return this;
+            formCompletionHelper.ClickElement(by);
+            formCompletionHelper.ClickElement(ContinueButton);
         }
     }
 }

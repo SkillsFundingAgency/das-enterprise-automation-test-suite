@@ -12,71 +12,29 @@ namespace SFA.DAS.Registration.UITests.Project
         private const string OrganisationNameKey = "organisationname";
         private const string ReceiverAccountIdkey = "receiveraccountidkey";
         private const string ReceiverPublicAccountIdkey = "receiverpublicaccountidkey";
+        private const string RegisteredEmailKey = "registeredemailkey";
         #endregion
 
         internal static void SetLoginCredentials(this ObjectContext objectContext, string loginusername, string loginpassword)
         {
             objectContext.Set("LoggedInUser", loginusername);
-            objectContext.Set(LoggedInUserKey, new LoggedInUser { Username = loginusername, Password = loginpassword});
+            objectContext.SetRegisteredEmail(loginusername);
+            objectContext.Set(LoggedInUserKey, new LoggedInUser { Username = loginusername, Password = loginpassword });
         }
 
-        internal static void SetAccountId(this ObjectContext objectContext, string accountid)
-        {
-            objectContext.Replace(AccountIdKey, accountid);
-        }
-
-        internal static void SetAgreementId(this ObjectContext objectContext, string agreementId)
-        {
-            objectContext.Replace(AgreementIdKey, agreementId);
-        }
-
-        public static void SetOrganisationName(this ObjectContext objectContext, string organisationName)
-        {
-            objectContext.Set(OrganisationNameKey, organisationName.ToUpper());
-        }
-
-        public static void UpdateOrganisationName(this ObjectContext objectContext, string organisationName)
-        {
-            objectContext.Update(OrganisationNameKey, organisationName.ToUpper());
-        }
-
-        internal static void SetReceiverAccountId(this ObjectContext objectContext, string value)
-        {
-            objectContext.Set(ReceiverAccountIdkey, value);
-        }
-
-        internal static void SetReceiverPublicAccountId(this ObjectContext objectContext, string value)
-        {
-            objectContext.Set(ReceiverPublicAccountIdkey, value);
-        }
-        public static string GetReceiverAccountId(this ObjectContext objectContext)
-        {
-            return objectContext.Get(ReceiverAccountIdkey);
-        }
-
-        public static string GetAgreementId(this ObjectContext objectContext)
-        {
-            return objectContext.Get(AgreementIdKey);
-        }
-
-        public static string GetPublicReceiverAccountId(this ObjectContext objectContext)
-        {
-            return objectContext.Get(ReceiverPublicAccountIdkey);
-        }
-
-        public static string GetOrganisationName(this ObjectContext objectContext)
-        {
-            return objectContext.Get(OrganisationNameKey);
-        }
-
-        public static string GetAccountId(this ObjectContext objectContext)
-        {
-            return objectContext.Get(AccountIdKey);
-        }
-
-        internal static LoginUser GetLoginCredentials(this ObjectContext objectContext)
-        {
-            return objectContext.Get<LoginUser>(LoggedInUserKey);
-        }
+        internal static void SetAccountId(this ObjectContext objectContext, string accountid) => objectContext.Replace(AccountIdKey, accountid);
+        internal static void SetAgreementId(this ObjectContext objectContext, string agreementId) => objectContext.Replace(AgreementIdKey, agreementId);
+        public static void SetOrganisationName(this ObjectContext objectContext, string organisationName) => objectContext.Set(OrganisationNameKey, organisationName);
+        public static void UpdateOrganisationName(this ObjectContext objectContext, string organisationName) => objectContext.Update(OrganisationNameKey, organisationName);
+        internal static void SetReceiverAccountId(this ObjectContext objectContext, string value) => objectContext.Set(ReceiverAccountIdkey, value);
+        internal static void SetReceiverPublicAccountId(this ObjectContext objectContext, string value) => objectContext.Set(ReceiverPublicAccountIdkey, value);
+        internal static void SetRegisteredEmail(this ObjectContext objectContext, string value) => objectContext.Replace(RegisteredEmailKey, value);
+        public static string GetReceiverAccountId(this ObjectContext objectContext) => objectContext.Get(ReceiverAccountIdkey);
+        public static string GetAgreementId(this ObjectContext objectContext) => objectContext.Get(AgreementIdKey);
+        public static string GetPublicReceiverAccountId(this ObjectContext objectContext) => objectContext.Get(ReceiverPublicAccountIdkey);
+        public static string GetOrganisationName(this ObjectContext objectContext) => objectContext.Get(OrganisationNameKey);
+        public static string GetAccountId(this ObjectContext objectContext) => objectContext.Get(AccountIdKey);
+        internal static LoginUser GetLoginCredentials(this ObjectContext objectContext) => objectContext.Get<LoginUser>(LoggedInUserKey);
+        internal static string GetRegisteredEmail(this ObjectContext objectContext) => objectContext.Get(RegisteredEmailKey);
     }
 }

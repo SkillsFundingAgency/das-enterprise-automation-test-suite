@@ -1,38 +1,28 @@
-﻿using SFA.DAS.UI.FrameworkHelpers;
-using OpenQA.Selenium;
-using SFA.DAS.UI.Framework.TestSupport;
+﻿using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 {
-    public class YourAccountsPage : BasePage
+    public class YourAccountsPage : RegistrationBasePage
     {
         protected override string PageTitle => "Your accounts";
-
-        #region Helpers and Context
-        private readonly PageInteractionHelper _pageInteractionHelper;
-        private readonly FormCompletionHelper _formCompletionHelper;
         private readonly ScenarioContext _context;
-        private readonly RegistrationConfig _config;
-        #endregion
 
+        #region Locators
         private By AddNewAccountButton => By.Id("add_new_account");
-
         private By OpenLink() => By.CssSelector("table a");
+        #endregion
 
         public YourAccountsPage(ScenarioContext context) : base(context)
         {
             _context = context;
-            _config = context.GetRegistrationConfig<RegistrationConfig>();
-            _pageInteractionHelper = context.Get<PageInteractionHelper>();
-            _formCompletionHelper = context.Get<FormCompletionHelper>();
             VerifyPage();
         }
 
-        public GatewayInformPage AddNewAccount()
+        public UsingYourGovtGatewayDetailsPage AddNewAccount()
         {
-            _formCompletionHelper.ClickElement(AddNewAccountButton);
-            return new GatewayInformPage(_context);
+            formCompletionHelper.ClickElement(AddNewAccountButton);
+            return new UsingYourGovtGatewayDetailsPage(_context);
         }
 
         public HomePage GoToHomePage(string organisationName)
@@ -41,17 +31,11 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             return new HomePage(_context);
         }
 
-        public HomePage GoToHomePage()
-        {
-            NavigateTo(_config.RE_OrganisationName);
-            return new HomePage(_context);
-        }
-
         private void NavigateTo(string organisationName)
         {
-            _formCompletionHelper.ClickElement(SearchLinkUrl(organisationName));
+            formCompletionHelper.ClickElement(SearchLinkUrl(organisationName));
         }
 
-        private IWebElement SearchLinkUrl(string searchText) => _pageInteractionHelper.GetLinkContains(OpenLink(), searchText);
+        private IWebElement SearchLinkUrl(string searchText) => pageInteractionHelper.GetLinkContains(OpenLink(), searchText);
     }
 }

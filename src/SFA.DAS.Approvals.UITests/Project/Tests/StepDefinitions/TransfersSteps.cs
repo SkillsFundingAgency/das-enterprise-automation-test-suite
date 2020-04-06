@@ -25,7 +25,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         private readonly MultipleAccountsLoginHelper _multipleAccountsLoginHelper;
         private readonly EmployerPortalLoginHelper _employerPortalLoginHelper;
         private readonly ObjectContext _objectContext;
-        private readonly DataHelper _dataHelper;
         private readonly ApprovalsStepsHelper _approvalsStepsHelper;
         private readonly EmployerStepsHelper _employerStepsHelper;
         private readonly ProviderStepsHelper _providerStepsHelper;
@@ -45,7 +44,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _employerStepsHelper = new EmployerStepsHelper(context);
             _providerStepsHelper = new ProviderStepsHelper(context);
             _objectContext = context.Get<ObjectContext>();
-            _dataHelper = _objectContext.GetDataHelper();
             _approvalsStepsHelper = new ApprovalsStepsHelper(context);
             _senderAccountId = null;
             _recieverAccountId = null;
@@ -69,13 +67,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
             _senderAccountId = _objectContext.GetAccountId();
 
-            _objectContext.UpdateDataHelper(new DataHelper(_dataHelper.TwoDigitProjectCode));
-
-            new MongoDbDataGenerator(_context).AddGatewayUsers();
-
             _objectContext.UpdateOrganisationName(_receiver);
 
-            _homePage = _approvalsStepsHelper.AddNewAccountAndSignAnAgreement(_homePage);
+            _homePage = _approvalsStepsHelper.AddNewAccountAndSignAnAgreement(_homePage, 1);
 
             _recieverAccountId = _objectContext.GetReceiverAccountId();
         }
@@ -225,10 +219,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
             var manageYourApprenticePage = _employerStepsHelper.GoToManageYourApprenticesPage();
 
-            if (!(manageYourApprenticePage.CheckIfApprenticeExists()))
-            {
-                throw new Exception("Unable to find just approved Apprentices");
-            }
+            manageYourApprenticePage.VerifyApprenticeExists();
         }
 
         private void LoginAsReceiver()

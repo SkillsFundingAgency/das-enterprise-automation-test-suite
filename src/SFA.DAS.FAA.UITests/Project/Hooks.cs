@@ -3,6 +3,8 @@ using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.UI.FrameworkHelpers;
 using System.Linq;
 using TechTalk.SpecFlow;
+using SFA.DAS.UI.Framework.TestSupport;
+using SFA.DAS.RAA.DataGenerator.Project;
 
 namespace SFA.DAS.FAA.UITests.Project
 {
@@ -10,10 +12,13 @@ namespace SFA.DAS.FAA.UITests.Project
     public class Hooks
     {
         private readonly ScenarioContext _context;
+        private readonly ObjectContext _objectContext;
+        private FAAConfig _fAAConfig;
 
         public Hooks(ScenarioContext context)
         {
             _context = context;
+            _objectContext = context.Get<ObjectContext>();
         }
 
         [BeforeScenario(Order = 32)]
@@ -34,6 +39,23 @@ namespace SFA.DAS.FAA.UITests.Project
             var pageInteractionHelper = _context.Get<PageInteractionHelper>();
 
             _context.Set(new VacancyReferenceHelper(pageInteractionHelper, objectContext, regexHelper));
+        }
+
+        [BeforeScenario(Order = 33)]
+        public void LoginWithNewAccount()
+        {
+            _fAAConfig = _context.GetFAAConfig<FAAConfig>();
+            
+            var fAAnewcreds = _context.Get<FAADataHelper>();
+            
+            if (_context.ScenarioInfo.Tags.Contains("FAALoginNewCredentials"))
+            {
+                _objectContext.SetFAALogin(fAAnewcreds.EmailId, fAAnewcreds.Password, fAAnewcreds.FirstName, fAAnewcreds.LastName);
+            }
+            else
+            {
+                _objectContext.SetFAALogin(_fAAConfig.FAAUserName, _fAAConfig.FAAPassword,_fAAConfig.FAAFirstName,_fAAConfig.FAALastName);
+            }
         }
     }
 }

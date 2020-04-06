@@ -7,9 +7,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 {
     public class VacancyReferencePage : BasePage
     {
-
         protected override By PageHeader => VacancyReferenceNumber;
-
 
         #region Helpers and Context
         private readonly VacancyReferenceHelper _vacancyReferenceHelper;
@@ -25,9 +23,6 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
             VerifyPage();
         }
 
-        public void SetVacancyReference()
-        {
-            _vacancyReferenceHelper.SetVacancyReference(VacancyReferenceNumber);
-        }
+        public void SetVacancyReference() => _vacancyReferenceHelper.SetVacancyReference(VacancyReferenceNumber);
     }
 }

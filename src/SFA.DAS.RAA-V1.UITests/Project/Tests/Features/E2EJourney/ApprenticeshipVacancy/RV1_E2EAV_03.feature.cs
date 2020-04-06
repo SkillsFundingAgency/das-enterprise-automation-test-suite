@@ -116,7 +116,7 @@ this.ScenarioInitialize(scenarioInfo);
         public virtual void RV1_E2EAV_03_CreateApproveAndApplyForAApprenticeshipVacancyAndMakeItUnsuccessful_UseTheMainEmployerAddress()
         {
 #line 7
-this.RV1_E2EAV_03_CreateApproveAndApplyForAApprenticeshipVacancyAndMakeItUnsuccessful("Use the main employer address", "No", "No", "Online", "Framework", "42", "52", "2", "Yes", "Yes", "Yes", ((string[])(null)));
+this.RV1_E2EAV_03_CreateApproveAndApplyForAApprenticeshipVacancyAndMakeItUnsuccessful("Use the main employer address", "No", "No", "Online", "Framework", "42", "52", "2", "No", "No", "No", ((string[])(null)));
 #line hidden
         }
     }

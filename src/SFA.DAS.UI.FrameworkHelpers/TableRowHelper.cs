@@ -14,9 +14,9 @@ namespace SFA.DAS.UI.FrameworkHelpers
             _formCompletionHelper = formCompletionHelper;
         }
 
-        public void SelectRowFromTable(string byLinkText, string byKey)
+        public void SelectRowFromTable(string byLinkText, string byKey, string tableSelector = "table")
         {
-            var table = _webDriver.FindElement(By.TagName("table"));
+            var table = _webDriver.FindElement(By.CssSelector(tableSelector));
             var tableRows = table.FindElements(By.CssSelector("tbody tr"));
             var links = _webDriver.FindElements(By.PartialLinkText(byLinkText));
             int i = 0;
@@ -24,23 +24,12 @@ namespace SFA.DAS.UI.FrameworkHelpers
             {
                 if (tableRow.Text.Contains(byKey))
                 {
-                    _formCompletionHelper.ClickElement(links[i]);
-                    break;
+                    _formCompletionHelper.ClickInterceptedElement(links[i]);
+                    return;
                 }
                 i++;
             }
-        }
-
-        public void SelectRowForMultipleTables(string byLinkText, string byKey)
-        {
-            var tableRows = _webDriver.FindElements(By.TagName("tr"));
-            var requiredRow = (from tr in tableRows
-                               from td in tr.FindElements(By.TagName("td"))
-                               where td.Text.Trim() == byKey
-                               select tr)?.FirstOrDefault();
-
-            var linkToClick = requiredRow.FindElement(By.LinkText(byLinkText));
-            _formCompletionHelper.ClickElement(linkToClick);
+            throw new System.Exception($"Test Exception: Could not find link with text '{byLinkText}' using key '{byKey}' and selector '{tableSelector}'");
         }
     }
 }

@@ -6,7 +6,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 {
     public class VacancyPreviewPart2WithErrorsPage : VacancyPreviewPart2Page
     {
-        protected override string PageTitle => "Please fix these errors";
+        protected override string PageTitle => "There is a problem";
 
         protected override By PageHeader => By.CssSelector(".govuk-error-summary");
 

@@ -1,6 +1,5 @@
 ﻿using NUnit.Framework;
 using SFA.DAS.MongoDb.DataGenerator.Helpers;
-using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using SFA.DAS.ConfigurationBuilder;
 using System;
@@ -12,6 +11,8 @@ namespace SFA.DAS.MongoDb.DataGenerator
 {
     public class MongoDbDataGenerator
     {
+        public string EmpRef { get; set; }
+
         private readonly ScenarioContext _context;
 
         private readonly ObjectContext _objectContext;
@@ -21,8 +22,6 @@ namespace SFA.DAS.MongoDb.DataGenerator
         private readonly MongoDbDataHelper _mongoDbDataHelper;
 
         private readonly string _gatewayId;
-
-        private readonly string _empRef;
 
         private readonly string _mongoDbDatabase;
 
@@ -39,15 +38,15 @@ namespace SFA.DAS.MongoDb.DataGenerator
             _mongodbConnectionHelper = new MongoDbConnectionHelper(mongoDbConfig);
             _mongoDbDataHelper = new MongoDbDataHelper(dataHelper);
             _gatewayId = _mongoDbDataHelper.GatewayId;
-            _empRef = _mongoDbDataHelper.EmpRef;
+            EmpRef = _mongoDbDataHelper.EmpRef;
             _mongoDbDatabase = mongoDbConfig.Database;
         }
 
-        public void AddGatewayUsers()
+        public GatewayCreds AddGatewayUsers(int index)
         {
-            _objectContext.SetMongoDbDataHelper(_mongoDbDataHelper, _empRef);
+            _objectContext.SetMongoDbDataHelper(_mongoDbDataHelper, EmpRef);
 
-            _objectContext.SetGatewayCreds(_mongoDbDataHelper.GatewayId, _mongoDbDataHelper.GatewayPassword, _mongoDbDataHelper.EmpRef);
+            _objectContext.SetGatewayCreds(_mongoDbDataHelper.GatewayId, _mongoDbDataHelper.GatewayPassword, _mongoDbDataHelper.EmpRef, index);
 
             _addGatewayUserData = new MongoDbHelper(_mongodbConnectionHelper, new GatewayUserDataGenerator(_mongoDbDataHelper));
 
@@ -55,14 +54,16 @@ namespace SFA.DAS.MongoDb.DataGenerator
 
             _addGatewayUserData.AsyncCreateData().Wait();
             TestContext.Progress.WriteLine($"Gateway Id Created : {_gatewayId}");
-            TestContext.Progress.WriteLine($"Gateway User Created, EmpRef: {_empRef}");
+            TestContext.Progress.WriteLine($"Gateway User Created, EmpRef: {EmpRef}");
 
             _addempRefLinksData = new MongoDbHelper(_mongodbConnectionHelper, new EmpRefLinksDataGenerator(_mongoDbDataHelper));
             _addempRefLinksData.AsyncCreateData().Wait();
-            TestContext.Progress.WriteLine($"EmpRef Links Created, EmpRef: {_empRef}");
+            TestContext.Progress.WriteLine($"EmpRef Links Created, EmpRef: {EmpRef}");
 
-            _context.Set(_addGatewayUserData, $"{typeof(GatewayUserDataGenerator).FullName}_{_empRef}");
-            _context.Set(_addempRefLinksData, $"{typeof(EmpRefLinksDataGenerator).FullName}_{_empRef}");
+            _context.Set(_addGatewayUserData, $"{typeof(GatewayUserDataGenerator).FullName}_{EmpRef}");
+            _context.Set(_addempRefLinksData, $"{typeof(EmpRefLinksDataGenerator).FullName}_{EmpRef}");
+
+            return _objectContext.GetGatewayCreds(index);
         }
 
         public void AddLevyDeclarations(decimal fraction, DateTime calculatedAt, Table table)
@@ -73,9 +74,9 @@ namespace SFA.DAS.MongoDb.DataGenerator
 
             mongoDbHelper.AsyncCreateData().Wait();
 
-            TestContext.Progress.WriteLine($"Declarations Created for, EmpRef: {_empRef}");
+            TestContext.Progress.WriteLine($"Declarations Created for, EmpRef: {EmpRef}");
 
-            _context.Set(mongoDbHelper, $"{typeof(DeclarationsDataGenerator).FullName}_{_empRef}");
+            _context.Set(mongoDbHelper, $"{typeof(DeclarationsDataGenerator).FullName}_{EmpRef}");
 
             EnglishFraction(fraction, calculatedAt);
         }
@@ -86,9 +87,9 @@ namespace SFA.DAS.MongoDb.DataGenerator
 
             mongoDbHelper.AsyncCreateData().Wait();
 
-            TestContext.Progress.WriteLine($"English fraction Created for, EmpRef: {_empRef}");
+            TestContext.Progress.WriteLine($"English fraction Created for, EmpRef: {EmpRef}");
 
-            _context.Set(mongoDbHelper, $"{typeof(EnglishFractionDataGenerator).FullName}_{_empRef}");
+            _context.Set(mongoDbHelper, $"{typeof(EnglishFractionDataGenerator).FullName}_{EmpRef}");
         }
     }
 }

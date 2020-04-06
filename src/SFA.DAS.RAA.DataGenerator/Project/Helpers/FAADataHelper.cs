@@ -8,9 +8,9 @@ namespace SFA.DAS.RAA.DataGenerator
         private readonly RandomDataGenerator _randomDataGenerator;
 
         public FAADataHelper(RandomDataGenerator randomDataGenerator) : base(randomDataGenerator)
-        {
-            var datetime = DateTime.Now;
-            _randomDataGenerator = randomDataGenerator;
+        {            
+            var datetime = DateTime.Now;            
+            _randomDataGenerator = randomDataGenerator;            
             EducationSchoolOrCollege = _randomDataGenerator.GenerateRandomAlphabeticString(10);
             YearsAttended = datetime.AddYears(-1);
             QualificationYear = YearsAttended.Year.ToString();
@@ -32,14 +32,32 @@ namespace SFA.DAS.RAA.DataGenerator
             AdditionalQuestions2 = _randomDataGenerator.GenerateRandomAlphabeticString(59);
             InterviewSupport = _randomDataGenerator.GenerateRandomAlphabeticString(22);
             FirstName = _randomDataGenerator.GenerateRandomAlphabeticString(5);
+            NewFirstName = _randomDataGenerator.GenerateRandomAlphabeticString(5);
+            NewLastName = _randomDataGenerator.GenerateRandomAlphabeticString(5);            
             LastName = _randomDataGenerator.GenerateRandomAlphabeticString(10);
             DOB_Day = _randomDataGenerator.GenerateRandomDateOfMonth();
             DOB_Month = _randomDataGenerator.GenerateRandomMonth();
             DOB_Year = _randomDataGenerator.GenerateRandomDobYear();
             EmailId = _randomDataGenerator.GenerateRandomEmail();
+            ChangedEmailId = _randomDataGenerator.GenerateRandomEmail();
             PhoneNumber = _randomDataGenerator.GenerateRandomNumber(10);
-            Password = _randomDataGenerator.GenerateRandomPassword(4,4,1,1);
+            NewPhoneNumber = _randomDataGenerator.GenerateRandomNumber(10);
+            Password = _randomDataGenerator.GenerateRandomPassword(4, 4, 1, 1);
+            VacancyClosing = DateTime.Today.AddMonths(2).AddDays(3);
+            NewVacancyClosing = VacancyClosing.AddDays(15);
+            NewVacancyStart = NewVacancyClosing.AddDays(15);
         }
+
+        public DateTime NewVacancyClosing { get; }
+
+        public DateTime NewVacancyStart { get; }
+
+        public DateTime VacancyClosing { get; }
+
+        
+        public string NewCustomMinWagePerWeek { get; set; }
+
+        public string NewCustomMaxWagePerWeek { get; set; }
 
         public string EducationSchoolOrCollege { get; }
 
@@ -86,6 +104,11 @@ namespace SFA.DAS.RAA.DataGenerator
         public string FirstName { get; }
 
         public string LastName { get; }
+        public string NewFirstName { get; }
+
+        public string NewLastName { get; }
+
+        public string NewAddress { get; set; }
 
         public int DOB_Day { get; }
 
@@ -95,11 +118,17 @@ namespace SFA.DAS.RAA.DataGenerator
 
         public string EmailId { get; }
 
+        public string ChangedEmailId { get; }
+
         public string PhoneNumber { get; }
 
         public string Password { get; }
 
-        public string PostCode => "CV1 2WT";
+        public string NewPhoneNumber { get; }
+
+        public string PostCode => "1 Speedway Drive London SW17 0XW";
+
+        public string NewPostCode => "NN5 4AB";
 
         public string ActivationCode => "ABC123";
 
@@ -110,5 +139,7 @@ namespace SFA.DAS.RAA.DataGenerator
         public string SuccessfulPhoneVerificationText => "You've successfully verified your mobile number";
 
         public string CreateAccountWithRegisteredEmailErrorMessage => "Your email address has already been activated. Please try signing in again. If you’ve forgotten your password you can reset it.";
+
+        public string NationwideVacanciesText => "This apprenticeship has multiple positions across England.";        
     }
 }

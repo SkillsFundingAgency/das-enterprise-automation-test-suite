@@ -6,18 +6,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
 {
     public class YourFundingReservationsHomePage : HomePage
     {
-        private ScenarioContext _context;
-        private By YourFundingReservationsLink => By.LinkText("Your funding reservations");
+        private readonly ScenarioContext _context;
 
-        public YourFundingReservationsHomePage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public YourFundingReservationsHomePage(ScenarioContext context) : base(context) => _context = context;
 
         internal YourFundingReservationsPage OpenYourFundingReservations()
         {
-            formCompletionHelper.ClickElement(YourFundingReservationsLink);
+            formCompletionHelper.ClickLinkByText("Your funding reservations");
             return new YourFundingReservationsPage(_context);
         }
     }

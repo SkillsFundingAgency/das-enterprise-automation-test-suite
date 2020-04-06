@@ -1,5 +1,6 @@
 ﻿using SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService;
 using SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.OrganisationDetails;
+using SFA.DAS.Login.Service.Helpers;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
@@ -26,10 +27,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
             return new AS_LandingPage(_context);
         }
 
-        public AS_LoggedInHomePage LoginToAssessmentServiceApplication(string user)
-        {
-            return _loggedInHomePage = new AS_LandingPage(_context).ClickStartButton().SignInWithValidDetails(user);   
-        }
+        public AS_LoggedInHomePage LoginToAssessmentServiceApplication(LoginUser user) => _loggedInHomePage = new AS_LandingPage(_context).ClickStartButton().SignInWithValidDetails(user);   
 
         public void CertifyApprentice(string grade, string enrolledStandard)
         {

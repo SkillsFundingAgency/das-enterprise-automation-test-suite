@@ -54,13 +54,14 @@ namespace SFA.DAS.UI.FrameworkHelpers
                });
         }
 
-        internal void RetryClickOnWebDriverException(Func<IWebElement> element)
+        internal void RetryClickOnWebDriverException(Func<IWebElement> element, Action retryAction = null)
         {
             Policy
-                .Handle<WebDriverException>()
+                .Handle<WebDriverException>((ex) => !ex.Message.ContainsCompareCaseInsensitive("The HTTP request to the remote WebDriver server for URL"))
                 .WaitAndRetry(TimeOut, (exception, timeSpan, retryCount, context) =>
                 {
                     Report(retryCount, exception);
+                    retryAction?.Invoke();
                 })
                .Execute(() =>
                {
@@ -71,24 +72,25 @@ namespace SFA.DAS.UI.FrameworkHelpers
                });
         }
 
-        internal T RetryOnWebDriverException<T>(Func<T> element)
+        internal T RetryOnWebDriverException<T>(Func<T> func, Action retryAction = null)
         {
-            T webElement = default(T);
+            T result = default(T);
             Policy
                 .Handle<WebDriverException>()
                 .WaitAndRetry(TimeOut, (exception, timeSpan, retryCount, context) =>
                 {
                     Report(retryCount, exception);
+                    retryAction?.Invoke();
                 })
                 .Execute(() =>
                 {
                     using (var testcontext = new NUnit.Framework.Internal.TestExecutionContext.IsolatedContext())
                     {
-                        webElement = element.Invoke();
+                        result = func.Invoke();
                     }
                 });
 
-            return webElement;
+            return result;
         }
 
         internal void RetryOnElementClickInterceptedException(IWebElement element, bool useAction)

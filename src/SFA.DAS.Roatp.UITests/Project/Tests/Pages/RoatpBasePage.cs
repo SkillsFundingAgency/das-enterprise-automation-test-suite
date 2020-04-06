@@ -1,10 +1,7 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.ConfigurationBuilder;
-using SFA.DAS.Roatp.UITests.Project.Helpers;
-using SFA.DAS.UI.Framework;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
-using System;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
@@ -17,30 +14,15 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
         protected readonly ObjectContext objectContext;
         protected readonly PageInteractionHelper pageInteractionHelper;
         protected readonly FormCompletionHelper formCompletionHelper;
-        protected readonly ApplyUkprnDataHelpers applyUkprnDataHelpers;
-        protected readonly ApplyDataHelpers applydataHelpers;
         protected readonly RoatpConfig roatpConfig;
-        private readonly FrameworkConfig _frameworkConfig;
         #endregion
-
-        private By ChooseFile => By.ClassName("govuk-file-upload");
 
         public RoatpBasePage(ScenarioContext context) : base(context)
         {
             objectContext = context.Get<ObjectContext>();
             formCompletionHelper = context.Get<FormCompletionHelper>();
             pageInteractionHelper = context.Get<PageInteractionHelper>();
-            applyUkprnDataHelpers = context.Get<ApplyUkprnDataHelpers>();
-            applydataHelpers = context.Get<ApplyDataHelpers>();
             roatpConfig = context.GetRoatpConfig<RoatpConfig>();
-            _frameworkConfig = context.Get<FrameworkConfig>();
-        }
-
-        protected void UploadFile()
-        {
-            string File = AppDomain.CurrentDomain.BaseDirectory + _frameworkConfig.SampleFileName;
-            formCompletionHelper.EnterText(ChooseFile, File);
-            Continue();
         }
     }
 }

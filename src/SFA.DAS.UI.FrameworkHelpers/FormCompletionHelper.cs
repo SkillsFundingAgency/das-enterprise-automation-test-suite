@@ -18,19 +18,16 @@ namespace SFA.DAS.UI.FrameworkHelpers
             _retryHelper = retryHelper;
         }
 
-        public void SelectRadioButton(IWebElement element) => ClickElement(element);
-
-        public void SelectRadioButton(By locator) => SelectRadioButton(_webDriver.FindElement(locator));
-
         public void RetryClickOnException(Func<IWebElement> element) => _retryHelper.RetryClickOnException(element);
 
-        public void ClickElement(Func<IWebElement> element) => _retryHelper.RetryClickOnWebDriverException(element);
+        public void ClickElement(Func<IWebElement> element, Action retryAction = null) => _retryHelper.RetryClickOnWebDriverException(element, retryAction);
 
         public void ClickElement(IWebElement element) => _retryHelper.RetryOnElementClickInterceptedException(element, true);
 
+        //links are Intercepted by Help menu.
         public void ClickInterceptedElement(IWebElement element) => _retryHelper.RetryOnElementClickInterceptedException(element, false);
 
-        public void ClickElement(By locator)
+        public void ClickElement(By locator) 
         {
             _webDriverWaitHelper.WaitForElementToBeClickable(locator);
             ClickElement(_webDriver.FindElement(locator));
@@ -44,28 +41,11 @@ namespace SFA.DAS.UI.FrameworkHelpers
             element.SendKeys(text);
         }
 
-        public void EnterGently(IWebElement element, string text)
-        {
-            element.Clear();
-            foreach (var letter in text.ToCharArray())
-            {
-                element.SendKeys(letter.ToString());
-            }
-        }
-
-        public void EnterGently(By locator, string text)
-        {
-            _webDriverWaitHelper.WaitForElementToBeDisplayed(locator);
-            EnterGently(_webDriver.FindElement(locator), text);
-        }
-
         public void EnterText(By locator, string text)
         {
             _webDriverWaitHelper.WaitForElementToBeDisplayed(locator);
             EnterText(_webDriver.FindElement(locator), text);
         }
-
-        public void EnterSpace(By locator) => SendKeys(locator, Keys.Space);
 
         public void SendKeys(By locator, string Key)
         {
@@ -113,6 +93,10 @@ namespace SFA.DAS.UI.FrameworkHelpers
             SelectCheckbox(element);
         }
 
+        public void SelectCheckBoxByText(By locator, string text) => ClickElementByText(locator, text);
+
+        public void SelectCheckBoxByText(string text) => ClickElementByText(CheckBoxCssSelector, text);
+
         public void SelectRadioOptionByForAttribute(By locator, string forAttribute)
         {
             IList<IWebElement> radios = _webDriver.FindElements(locator);
@@ -122,9 +106,15 @@ namespace SFA.DAS.UI.FrameworkHelpers
                 ClickElement(radioToSelect);
         }
         
-        public void SelectRadioOptionByText(By locator, String text) => ClickElementByText(locator, text);
+        public void SelectRadioOptionByText(By locator, string text) => ClickElementByText(locator, text);
 
-        private void ClickElementByText(By locator, String text) => ClickElement(() => GetElementByText(locator, text));
+        public void SelectRadioOptionByText(string text) => ClickElementByText(RadioButtonCssSelector, text);
+
+        public void SelectRadioOptionByLocator(By locator) => ClickElement(_webDriver.FindElement(locator));
+
+        public void EnterTextByLabel(By labellocator, string labeltext, string text) => EnterText(GetElementByText(labellocator, labeltext).FindElement(InputCssSelector), text);
+
+        private void ClickElementByText(By locator, string text) => ClickElement(() => GetElementByText(locator, text));
 
         public void ClickLinkByText(By locator, string text) => ClickElementByText(locator, text);
 
@@ -138,9 +128,5 @@ namespace SFA.DAS.UI.FrameworkHelpers
         }
 
         public void ClickButtonByText(string text) => ClickElementByText(ButtonCssSelector, text);
-
-        public void SelectRadioOptionByText(string text) => ClickElementByText(RadioButtonCssSelector, text);
-
-        public void SelectCheckBoxByText(string text) => ClickElementByText(CheckBoxCssSelector, text);
     }
 }
