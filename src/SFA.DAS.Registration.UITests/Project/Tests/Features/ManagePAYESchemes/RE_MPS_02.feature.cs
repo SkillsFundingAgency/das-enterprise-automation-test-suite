@@ -18,8 +18,8 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features.ManagePAYESchemes
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.0.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("RE_MPS_01")]
-    public partial class RE_MPS_01Feature
+    [NUnit.Framework.DescriptionAttribute("RE_MPS_02")]
+    public partial class RE_MPS_02Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
@@ -31,7 +31,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features.ManagePAYESchemes
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "RE_MPS_01", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "RE_MPS_02", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -70,14 +70,14 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features.ManagePAYESchemes
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RE_MPS_01_Create an Employer Account and add another Levy PAYE Scheme")]
+        [NUnit.Framework.DescriptionAttribute("RE_MPS_02_Create an Employer Account and add another Levy PAYE Scheme")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("registration")]
         [NUnit.Framework.CategoryAttribute("addpayedetails")]
         [NUnit.Framework.CategoryAttribute("addanotherlevypayedetails")]
-        public virtual void RE_MPS_01_CreateAnEmployerAccountAndAddAnotherLevyPAYEScheme()
+        public virtual void RE_MPS_02_CreateAnEmployerAccountAndAddAnotherLevyPAYEScheme()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RE_MPS_01_Create an Employer Account and add another Levy PAYE Scheme", null, new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RE_MPS_02_Create an Employer Account and add another Levy PAYE Scheme", null, new string[] {
                         "regression",
                         "registration",
                         "addpayedetails",
