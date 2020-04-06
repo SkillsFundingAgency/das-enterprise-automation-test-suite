@@ -30,9 +30,6 @@ namespace SFA.DAS.ProviderLogin.Service.Pages
             VerifyPage();
         }
 
-        public bool CreateCohortPermissionLinkIsDisplayed()
-        {
-            return _pageInteractionHelper.IsElementDisplayed(CreateACohortLink);
-        }
+        public bool CreateCohortPermissionLinkIsDisplayed() => _pageInteractionHelper.IsElementDisplayed(CreateACohortLink);
     }
 }

@@ -12,12 +12,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="..\specflow.json" Link="specflow.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.2.0" />
     <PackageReference Include="MongoDB.Bson" Version="2.9.1" />
     <PackageReference Include="MongoDB.Driver" Version="2.9.1" />
@@ -40,6 +34,9 @@
     <None Update="SFA.DAS.Registration.UITests.runtimeconfig.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="specflow.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
   <ItemGroup>
@@ -47,7 +44,7 @@
     <ProjectReference Include="..\SFA.DAS.TestDataExport\SFA.DAS.TestDataExport.csproj" />
     <ProjectReference Include="..\SFA.DAS.MongoDb.DataGenerator\SFA.DAS.MongoDb.DataGenerator.csproj" />
     <ProjectReference Include="..\SFA.DAS.UI.Framework\SFA.DAS.UI.Framework.csproj" />
-    <ProjectReference Include="..\SFA.DAS.Login.Service\SFA.DAS.Login.Service.csproj" />
+    <ProjectReference Include="..\SFA.DAS.ProviderLogin.Service\SFA.DAS.ProviderLogin.Service.csproj" />
   </ItemGroup>
 
 </Project>

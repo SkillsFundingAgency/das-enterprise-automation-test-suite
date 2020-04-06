@@ -31,7 +31,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features.ProviderRegistrati
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "RE_PR_01", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "RE_PR_01", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -71,24 +71,16 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features.ProviderRegistrati
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("RE_CA_01A Provider Registration")]
-        [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("providerregistration")]
+        [NUnit.Framework.IgnoreAttribute("Ignored scenario")]
         public virtual void RE_CA_01AProviderRegistration()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RE_CA_01A Provider Registration", null, new string[] {
-                        "regression",
-                        "providerregistration"});
-#line 5
+                        "ignore"});
+#line 4
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 6
-testRunner.Given("that I am a training provider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 7
-testRunner.And("I am on the provider homepage", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 8
-testRunner.And("I have selected the link to \'Start setting up an employer account\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 9
-testRunner.Then("I am navigated to the \'Enter the employer details\' page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 5
+testRunner.Then("the provider can invite an employer", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
