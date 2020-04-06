@@ -16,33 +16,32 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
         public HomePage SetCreateCohortPermission(string ukprn)
         {
             return GoToSetProviderPermissionsPage(ukprn)
-                .SetCreateCohortPermissions()
-                .ConfirmTrainingProviderPermissions()
-                .GoToHomePage();
+                  .GoToHomePage();
         }
 
-        public SetPermissionsPage GoToSetProviderPermissionsPage(string ukprn)
+        public PermissionsUpdatedPage GoToSetProviderPermissionsPage(string ukprn)
         {
             return OpenProviderPermissions()
                  .SelectAddANewTrainingProvider()
                  .SearchForATrainingProvider(ukprn)
                  .ConfirmTrainingProvider()
-                 .SelectContinueInEmployerTrainingProviderAddedPage();
+                 .SelectContinueInEmployerTrainingProviderAddedPage()
+                 .ClickYesToAddApprenticeRecords()
+                 .ClickYesToAddRecruitApprentice()
+                 .ConfirmTrainingProviderPermissions();
         }
-
-        internal void UnSetCreateCohortPermission()
+        public PermissionsUpdatedPage UnSetCreateCohortPermission()
         {
-                OpenProviderPermissions()
-                .SelectSetPermissions()
-                .UnSetCreateCohortPermissions()
-                .ConfirmTrainingProviderPermissions()
-                .GoToHomePage();
+            return OpenProviderPermissions()
+                   .SelectChangePermissions()
+                   .ClickNOToAddApprenticeRecords()
+                   .ClickNoToAddRecruitApprentice()
+                   .ConfirmTrainingProviderPermissions();
         }
-
         private YourTrainingProvidersPage OpenProviderPermissions()
         {
             return new TrainingProviderPermissionsHomePage(_context)
                     .OpenProviderPermissions();
-        }
+        }              
     }
 }

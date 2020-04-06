@@ -61,13 +61,14 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
             _formCompletionHelper.EnterText(ConfirmPassword, _dataHelper.Password);
             _formCompletionHelper.ClickElement(() => _pageInteractionHelper.FindElement(AcceptTermsAndConditions));
             _formCompletionHelper.Click(CreateAccountButton);
-
+            _pageInteractionHelper.WaitforURLToChange("activation");
             return new FAA_ActivateYourAccountPage(_context);
         }
 
         public void SelectAddress()
         {
             _formCompletionHelper.EnterText(PostCode, _dataHelper.PostCode);
+            _pageInteractionHelper.WaitUntilAnyElements(PostCodeAutoSuggestResults);
             _formCompletionHelper.ClickElement(() => _dataHelper.GetRandomElementFromListOfElements(_pageInteractionHelper.FindElements(PostCodeAutoSuggestResults)));
         }
 
