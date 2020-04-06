@@ -66,5 +66,15 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
 
         public AddAPAYESchemePage CreateAnotherUserAccount(IndexPage indexPage) => indexPage.CreateAccount().Register(_registrationDataHelper.AnotherRandomEmail)
         .EnterAccessCode().ContinueToGetApprenticeshipFunding();
+
+        public HomePage AddAnotherPayeSchemeToTheAccount(HomePage homePage)
+        {
+            return homePage.GotoPAYESchemesPage()
+                .ClickAddNewSchemeButton()
+                .ContinueToGGSignIn()
+                .EnterPayeDetailsAndContinue(1)
+                .ClickContinueInConfirmPAYESchemePage()
+                .SelectContinueAccountSetupInPAYESchemeAddedPage();
+        }
     }
 }
