@@ -203,6 +203,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
 
         [Given(@"an Employer Account with (Company|PublicSector|Charity) Type Org is created and agreement is Signed")]
         [When(@"an Employer Account with (Company|PublicSector|Charity) Type Org is created and agreement is Signed")]
+        [Then(@"a Levy Employer Account with (Company|PublicSector|Charity) Type Org is created and agreement is Signed")]
         public void GivenAnEmployerAccountWithSpecifiedTypeOrgIsCreatedAndAgeementIsSigned(OrgType orgType)
         {
             CreateUserAccountAndAddOrg(orgType);
