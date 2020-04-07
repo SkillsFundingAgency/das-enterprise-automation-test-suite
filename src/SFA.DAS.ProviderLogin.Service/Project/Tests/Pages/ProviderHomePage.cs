@@ -1,7 +1,5 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
-using SFA.DAS.IdamsLogin.Service.Project.Tests.Pages;
 
 namespace SFA.DAS.ProviderLogin.Service.Pages
 {
@@ -27,14 +25,10 @@ namespace SFA.DAS.ProviderLogin.Service.Pages
 
         protected By SetupEmployer => By.LinkText("Set up employer account");
 
+        protected By InvitedEmployers => By.LinkText("View invited employers");
+
         public ProviderHomePage(ScenarioContext context, bool navigate = false) : base(context, navigate) => _context = context;
 
         public bool CreateCohortPermissionLinkIsDisplayed() => pageInteractionHelper.IsElementDisplayed(CreateACohortLink);
-
-        public IdamsPage SetupEmployerAccount()
-        {
-            formCompletionHelper.ClickElement(SetupEmployer);
-            return new IdamsPage(_context);
-        }
     }
 }

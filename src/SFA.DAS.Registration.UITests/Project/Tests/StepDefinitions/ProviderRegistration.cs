@@ -25,13 +25,18 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         [Then(@"the provider can invite an employer")]
         public void ThenTheProviderCanInviteAnEmployer()
         {
-            var homepage = _providerHomePageStepsHelper.GoToProviderHomePage(false);
+            _providerHomePageStepsHelper.GoToProviderHomePage(false);
 
-            homepage.SetupEmployerAccount().LoginToPireanPreprod();
+            //new ProviderLeadRegistrationHomePage(_context).SetupEmployerAccount().LoginToPireanPreprod();
 
-            new StartSettingUpEmployerPage(_context).Start()
-                .EnterRegistrationDetailsAndContinue()
-                .InviteEmployer();
+            //new StartSettingUpEmployerPage(_context).Start()
+            //    .EnterRegistrationDetailsAndContinue()
+            //    .ChangeDetails()
+            //    .VerifyDetails()
+            //    .NavigateToCheckDetailsPage()
+            //    .InviteEmployer();
+
+            new ProviderLeadRegistrationHomePage(_context).ViewInvitedEmployers().VerifyStatus("Invitation sent");
         }
     }
 }

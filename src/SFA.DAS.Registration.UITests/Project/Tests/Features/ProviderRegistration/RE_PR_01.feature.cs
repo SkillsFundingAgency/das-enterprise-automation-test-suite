@@ -70,13 +70,13 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features.ProviderRegistrati
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RE_CA_01A Provider Registration")]
+        [NUnit.Framework.DescriptionAttribute("RE_PR_01 Provider Registration")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("registration")]
         [NUnit.Framework.CategoryAttribute("addpayedetails")]
-        public virtual void RE_CA_01AProviderRegistration()
+        public virtual void RE_PR_01ProviderRegistration()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RE_CA_01A Provider Registration", null, new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RE_PR_01 Provider Registration", null, new string[] {
                         "regression",
                         "registration",
                         "addpayedetails"});

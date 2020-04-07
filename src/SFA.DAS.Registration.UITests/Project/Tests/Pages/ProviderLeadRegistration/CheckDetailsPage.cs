@@ -11,6 +11,8 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.ProviderLeadRegistrat
 
         private readonly ScenarioContext _context;
 
+        private By ChangeDetailsLink => By.CssSelector(".govuk-link[type='submit'][value='Change']");
+
         public CheckDetailsPage(ScenarioContext context) : base(context)
         {
             _context = context;
@@ -21,6 +23,12 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.ProviderLeadRegistrat
         {
             Continue();
             return new EmployerAccountIsReadyPage(_context);
+        }
+
+        public EnterTheEmployerDetailsPage ChangeDetails()
+        {
+            formCompletionHelper.ClickElement(ChangeDetailsLink);
+            return new EnterTheEmployerDetailsPage(_context);
         }
     }
 }

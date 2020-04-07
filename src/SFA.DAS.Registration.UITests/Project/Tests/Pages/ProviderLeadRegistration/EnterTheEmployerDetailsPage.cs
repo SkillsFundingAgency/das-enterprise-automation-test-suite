@@ -19,6 +19,8 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.ProviderLeadRegistrat
 
         private By EmployerEmailAddress => By.CssSelector("#EmployerEmailAddress");
 
+        private string LastName => "AutoTester";
+
         public EnterTheEmployerDetailsPage(ScenarioContext context): base(context)
         {
             _context = context;
@@ -29,8 +31,22 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.ProviderLeadRegistrat
         {
             formCompletionHelper.EnterText(EmployerOrganisation, config.RE_OrganisationName);
             formCompletionHelper.EnterText(EmployerFirstName, config.TwoDigitProjectCode);
-            formCompletionHelper.EnterText(EmployerLastName, "AutoTester");
+            formCompletionHelper.EnterText(EmployerLastName, LastName);
             formCompletionHelper.EnterText(EmployerEmailAddress, objectContext.GetRegisteredEmail());
+            return NavigateToCheckDetailsPage();
+        }
+
+        public EnterTheEmployerDetailsPage VerifyDetails()
+        {
+            pageInteractionHelper.VerifyText(EmployerOrganisation, config.RE_OrganisationName);
+            pageInteractionHelper.VerifyText(EmployerFirstName, config.TwoDigitProjectCode);
+            pageInteractionHelper.VerifyText(EmployerLastName, LastName);
+            pageInteractionHelper.VerifyText(EmployerEmailAddress, objectContext.GetRegisteredEmail());
+            return this;
+        }
+
+        public CheckDetailsPage NavigateToCheckDetailsPage()
+        {
             Continue();
             return new CheckDetailsPage(_context);
         }
