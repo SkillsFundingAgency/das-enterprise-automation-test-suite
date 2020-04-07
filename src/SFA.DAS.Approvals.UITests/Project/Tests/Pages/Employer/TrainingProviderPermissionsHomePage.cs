@@ -4,12 +4,12 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
-    public class TrainingProviderPermissionsHomePage : HomePage
+    public class YourTrainingProvidersLinkHomePage : HomePage
     {
         private readonly ScenarioContext _context;
-        private By TrainingProviderPermissionLink => By.LinkText("Training provider permissions");
+        private By YourTrainingProvidersLink => By.LinkText("Your training providers");
 
-        public TrainingProviderPermissionsHomePage(ScenarioContext context) : base(context)
+        public YourTrainingProvidersLinkHomePage(ScenarioContext context) : base(context)
         {
             _context = context;
             VerifyPage();
@@ -17,7 +17,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         public YourTrainingProvidersPage OpenProviderPermissions()
         {
-            formCompletionHelper.ClickElement(TrainingProviderPermissionLink);
+            formCompletionHelper.ClickElement(YourTrainingProvidersLink);
             return new YourTrainingProvidersPage(_context);
         }
     }

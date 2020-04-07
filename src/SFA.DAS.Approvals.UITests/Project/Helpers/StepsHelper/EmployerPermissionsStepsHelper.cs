@@ -40,7 +40,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
         }
         private YourTrainingProvidersPage OpenProviderPermissions()
         {
-            return new TrainingProviderPermissionsHomePage(_context)
+            return new YourTrainingProvidersLinkHomePage(_context)
                     .OpenProviderPermissions();
         }              
     }
