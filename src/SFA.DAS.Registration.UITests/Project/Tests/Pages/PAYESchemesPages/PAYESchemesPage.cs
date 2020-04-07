@@ -11,8 +11,9 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.PAYESchemesPages
 
         #region Locators
         private By AddNewSchemeButton => By.Id("addNewPaye");
-        private By PayeDetailsLink(string paye) => By.XPath($"//td[contains(text(),'{paye}')]/following-sibling::td//a");
+        private By PayeDetailsLink => By.XPath($"//td[contains(text(),'{SecondPaye}')]/following-sibling::td//a");
         private By PAYERemovedHeaderInfo => By.CssSelector("h2.govuk-error-summary__title");
+        private string SecondPaye => objectContext.GetGatewayPaye(1);
         #endregion
 
         public PAYESchemesPage(ScenarioContext context) : base(context)
@@ -27,15 +28,15 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.PAYESchemesPages
             return new UsingYourGovtGatewayDetailsPage(_context);
         }
 
-        public PAYESchemeDetailsPage ClickPayeDetailsLink(string paye)
+        public PAYESchemeDetailsPage ClickNewlyAddedPayeDetailsLink()
         {
-            formCompletionHelper.Click(PayeDetailsLink(paye));
+            formCompletionHelper.Click(PayeDetailsLink);
             return new PAYESchemeDetailsPage(_context);
         }
 
         public PAYESchemesPage VerifyPayeSchemeRemovedInfoMessage()
         {
-            VerifyPage(PAYERemovedHeaderInfo, $"You've removed {objectContext.GetGatewayPaye(1)}");
+            VerifyPage(PAYERemovedHeaderInfo, $"You've removed {SecondPaye}");
             return this;
         }
     }

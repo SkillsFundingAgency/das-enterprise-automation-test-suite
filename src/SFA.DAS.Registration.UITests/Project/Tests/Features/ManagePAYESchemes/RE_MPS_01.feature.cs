@@ -70,7 +70,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features.ManagePAYESchemes
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RE_MPS_01_Create an Employer Account and add another NonLevy PAYE Scheme and Remo" +
+        [NUnit.Framework.DescriptionAttribute("RE_MPS_01_Create an Employer Account and Add Another NonLevy PAYE Scheme and Remo" +
             "ve it")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("registration")]
@@ -78,7 +78,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features.ManagePAYESchemes
         [NUnit.Framework.CategoryAttribute("addanothernonlevypayedetails")]
         public virtual void RE_MPS_01_CreateAnEmployerAccountAndAddAnotherNonLevyPAYESchemeAndRemoveIt()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RE_MPS_01_Create an Employer Account and add another NonLevy PAYE Scheme and Remo" +
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RE_MPS_01_Create an Employer Account and Add Another NonLevy PAYE Scheme and Remo" +
                     "ve it", null, new string[] {
                         "regression",
                         "registration",

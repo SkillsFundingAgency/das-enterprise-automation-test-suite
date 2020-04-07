@@ -2,6 +2,7 @@
 using SFA.DAS.MongoDb.DataGenerator;
 using SFA.DAS.MongoDb.DataGenerator.Helpers;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages;
+using SFA.DAS.Registration.UITests.Project.Tests.Pages.PAYESchemesPages;
 using TechTalk.SpecFlow;
 using static SFA.DAS.Registration.UITests.Project.Helpers.EnumHelper;
 
@@ -64,17 +65,25 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
         public SearchForYourOrganisationPage AddADifferentPaye(AddAPAYESchemePage addAPAYESchemePage) =>
             addAPAYESchemePage.AddPaye().ContinueToGGSignIn().SignInTo(1);
 
-        public AddAPAYESchemePage CreateAnotherUserAccount(IndexPage indexPage) => indexPage.CreateAccount().Register(_registrationDataHelper.AnotherRandomEmail)
-        .EnterAccessCode().ContinueToGetApprenticeshipFunding();
+        public AddAPAYESchemePage CreateAnotherUserAccount(IndexPage indexPage) =>
+            indexPage.CreateAccount()
+                .Register(_registrationDataHelper.AnotherRandomEmail)
+                .EnterAccessCode()
+                .ContinueToGetApprenticeshipFunding();
 
-        public HomePage AddAnotherPayeSchemeToTheAccount(HomePage homePage)
-        {
-            return homePage.GotoPAYESchemesPage()
+        public HomePage AddAnotherPayeSchemeToTheAccount(HomePage homePage) =>
+            homePage.GotoPAYESchemesPage()
                 .ClickAddNewSchemeButton()
                 .ContinueToGGSignIn()
                 .EnterPayeDetailsAndContinue(1)
                 .ClickContinueInConfirmPAYESchemePage()
                 .SelectContinueAccountSetupInPAYESchemeAddedPage();
-        }
+
+        public PAYESchemesPage RemovePayeSchemeFromTheAccount(HomePage homePage) =>
+            homePage.GotoPAYESchemesPage()
+                .ClickNewlyAddedPayeDetailsLink()
+                .ClickRemovePAYESchemeButton()
+                .SelectYesRadioButtonAndContinue()
+                .VerifyPayeSchemeRemovedInfoMessage();
     }
 }

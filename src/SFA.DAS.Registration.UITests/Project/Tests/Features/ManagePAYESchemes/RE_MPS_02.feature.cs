@@ -70,14 +70,16 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features.ManagePAYESchemes
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RE_MPS_02_Create an Employer Account and add another Levy PAYE Scheme")]
+        [NUnit.Framework.DescriptionAttribute("RE_MPS_02_Create an Employer Account and Add Another Levy PAYE Scheme and Remove " +
+            "it")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("registration")]
         [NUnit.Framework.CategoryAttribute("addpayedetails")]
         [NUnit.Framework.CategoryAttribute("addanotherlevypayedetails")]
-        public virtual void RE_MPS_02_CreateAnEmployerAccountAndAddAnotherLevyPAYEScheme()
+        public virtual void RE_MPS_02_CreateAnEmployerAccountAndAddAnotherLevyPAYESchemeAndRemoveIt()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RE_MPS_02_Create an Employer Account and add another Levy PAYE Scheme", null, new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RE_MPS_02_Create an Employer Account and Add Another Levy PAYE Scheme and Remove " +
+                    "it", null, new string[] {
                         "regression",
                         "registration",
                         "addpayedetails",
@@ -89,6 +91,8 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.When("an Employer Account with Company Type Org is created and agreement is Signed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 9
  testRunner.Then("the Employer is able to Add Another Levy PAYE scheme to the Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 10
+ testRunner.And("the Employer is able to Remove the second PAYE scheme added from the Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }

@@ -532,20 +532,13 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         }
 
         [Then(@"the Employer is able to Add Another NonLevy PAYE scheme to the Account")]
-        public void ThenTheEmployerIsAbleToAddAnotherNonLevyPAYESchemeToTheAccount() =>
+        [Then(@"the Employer is able to Add Another Levy PAYE scheme to the Account")]
+        public void ThenTheEmployerIsAbleToAddAnotherPAYESchemeToTheAccount() =>
             _homePage = _accountCreationStepsHelper.AddAnotherPayeSchemeToTheAccount(_homePage);
 
         [Then(@"the Employer is able to Remove the second PAYE scheme added from the Account")]
-        public void ThenTheEmployerIsAbleToRemoveTheSecondPAYESchemeAddedFromTheAccount()
-        {
-
-        }
-
-        [Then(@"the Employer is able to Add Another Levy PAYE scheme to the Account")]
-        public void ThenTheEmployerIsAbleToAddAnotherLevyPAYESchemeToTheAccount()
-        {
-
-        }
+        public void ThenTheEmployerIsAbleToRemoveTheSecondPAYESchemeAddedFromTheAccount() =>
+            _accountCreationStepsHelper.RemovePayeSchemeFromTheAccount(_homePage);
 
         private void CreateUserAccountAndAddOrg(OrgType orgType)
         {

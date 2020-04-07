@@ -10,7 +10,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.PAYESchemesPages
         private readonly ScenarioContext _context;
 
         #region Locators
-        private By RemovePAYESchemeButton => By.LinkText("Remove");
+        private By RemovePAYESchemeButton => By.LinkText("Remove PAYE scheme");
         #endregion
 
         public PAYESchemeDetailsPage(ScenarioContext context) : base(context)
