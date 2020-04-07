@@ -27,14 +27,14 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         {
             _providerHomePageStepsHelper.GoToProviderHomePage(false);
 
-            //new ProviderLeadRegistrationHomePage(_context).SetupEmployerAccount().LoginToPireanPreprod();
+            new ProviderLeadRegistrationHomePage(_context).SetupEmployerAccount().LoginToPireanPreprod();
 
-            //new StartSettingUpEmployerPage(_context).Start()
-            //    .EnterRegistrationDetailsAndContinue()
-            //    .ChangeDetails()
-            //    .VerifyDetails()
-            //    .NavigateToCheckDetailsPage()
-            //    .InviteEmployer();
+            new StartSettingUpEmployerPage(_context).Start()
+                .EnterRegistrationDetailsAndContinue()
+                .ChangeDetails()
+                .VerifyDetails()
+                .NavigateToCheckDetailsPage()
+                .InviteEmployer();
 
             new ProviderLeadRegistrationHomePage(_context).ViewInvitedEmployers().VerifyStatus("Invitation sent");
         }
