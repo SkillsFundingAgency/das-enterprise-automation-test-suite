@@ -11,8 +11,8 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.ProviderLeadRegistrat
 
         public InvitedEmployersPage(ScenarioContext context) : base(context) { VerifyPage(); }
 
-        private By TRows => By.CssSelector("tr");
-        private By THeader => By.CssSelector("th");
+        private By TRows => By.CssSelector("tbody tr");
+        private By THeader => By.CssSelector("thead th");
         private By TData => By.CssSelector("td");
 
 
