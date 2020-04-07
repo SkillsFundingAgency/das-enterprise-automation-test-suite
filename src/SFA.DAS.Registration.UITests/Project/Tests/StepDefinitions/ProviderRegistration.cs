@@ -1,5 +1,7 @@
 ﻿using SFA.DAS.ConfigurationBuilder;
+using SFA.DAS.ProviderLogin.Service.Helpers;
 using SFA.DAS.Registration.UITests.Project.Helpers;
+using SFA.DAS.Registration.UITests.Project.Tests.Pages.ProviderLeadRegistration;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
@@ -10,18 +12,26 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         private readonly ScenarioContext _context;
         private readonly ObjectContext _objectContext;
         private readonly RegistrationDataHelper _dataHelper;
+        private readonly ProviderHomePageStepsHelper _providerHomePageStepsHelper;
 
         public ProviderRegistration(ScenarioContext context)
         {
             _context = context;
             _objectContext = context.Get<ObjectContext>();
             _dataHelper = context.Get<RegistrationDataHelper>();
+            _providerHomePageStepsHelper = new ProviderHomePageStepsHelper(_context);
         }
 
         [Then(@"the provider can invite an employer")]
         public void ThenTheProviderCanInviteAnEmployer()
         {
-            throw new PendingStepException();
+            var homepage = _providerHomePageStepsHelper.GoToProviderHomePage(false);
+
+            homepage.SetupEmployerAccount().LoginToPireanPreprod();
+
+            new StartSettingUpEmployerPage(_context).Start()
+                .EnterRegistrationDetailsAndContinue()
+                .InviteEmployer();
         }
     }
 }

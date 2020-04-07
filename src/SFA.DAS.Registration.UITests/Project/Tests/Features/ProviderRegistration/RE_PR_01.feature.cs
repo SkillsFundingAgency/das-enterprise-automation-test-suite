@@ -71,15 +71,19 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features.ProviderRegistrati
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("RE_CA_01A Provider Registration")]
-        [NUnit.Framework.IgnoreAttribute("Ignored scenario")]
+        [NUnit.Framework.CategoryAttribute("regression")]
+        [NUnit.Framework.CategoryAttribute("registration")]
+        [NUnit.Framework.CategoryAttribute("addpayedetails")]
         public virtual void RE_CA_01AProviderRegistration()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RE_CA_01A Provider Registration", null, new string[] {
-                        "ignore"});
-#line 4
+                        "regression",
+                        "registration",
+                        "addpayedetails"});
+#line 6
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 5
+#line 7
 testRunner.Then("the provider can invite an employer", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();

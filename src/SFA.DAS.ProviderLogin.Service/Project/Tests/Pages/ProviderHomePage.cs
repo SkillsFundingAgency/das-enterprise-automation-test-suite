@@ -1,6 +1,7 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
+using SFA.DAS.IdamsLogin.Service.Project.Tests.Pages;
 
 namespace SFA.DAS.ProviderLogin.Service.Pages
 {
@@ -13,7 +14,7 @@ namespace SFA.DAS.ProviderLogin.Service.Pages
         protected override string Linktext => "Home";
 
         #region Helpers and Context
-        private readonly PageInteractionHelper _pageInteractionHelper;
+        private readonly ScenarioContext _context;
         #endregion
 
         protected By CreateACohortLink => By.LinkText("Create a cohort");
@@ -24,12 +25,16 @@ namespace SFA.DAS.ProviderLogin.Service.Pages
 
         protected By ManageYourFundingLink => By.LinkText("Manage your funding reserved for non-levy employers");
 
-        public ProviderHomePage(ScenarioContext context, bool navigate = false) : base(context, navigate)
-        {
-            _pageInteractionHelper = context.Get<PageInteractionHelper>();
-            VerifyPage();
-        }
+        protected By SetupEmployer => By.LinkText("Set up employer account");
 
-        public bool CreateCohortPermissionLinkIsDisplayed() => _pageInteractionHelper.IsElementDisplayed(CreateACohortLink);
+        public ProviderHomePage(ScenarioContext context, bool navigate = false) : base(context, navigate) => _context = context;
+
+        public bool CreateCohortPermissionLinkIsDisplayed() => pageInteractionHelper.IsElementDisplayed(CreateACohortLink);
+
+        public IdamsPage SetupEmployerAccount()
+        {
+            formCompletionHelper.ClickElement(SetupEmployer);
+            return new IdamsPage(_context);
+        }
     }
 }
