@@ -30,7 +30,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.ProviderLeadRegistrat
             foreach (var row in rows)
             {
                 var tDatas = row.FindElements(TData).ToList();
-                if (tDatas[rowIdentifierHeaderindex].Text == rowIdentifierHeaderValue)
+                if (tDatas[rowIdentifierHeaderindex].Text.ContainsCompareCaseInsensitive(rowIdentifierHeaderValue))
                 {
                     return tDatas[headerNameindex];
                 }

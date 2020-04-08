@@ -11,13 +11,13 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.ProviderLeadRegistrat
 
         private readonly ScenarioContext _context;
 
-        private By EmployerOrganisation => By.CssSelector("#EmployerOrganisation");
+        private By EmployerOrganisation(string value = null) => By.CssSelector($"#EmployerOrganisation{value}");
 
-        private By EmployerFirstName => By.CssSelector("#EmployerFirstName");
+        private By EmployerFirstName(string value = null) => By.CssSelector($"#EmployerFirstName{value}");
 
-        private By EmployerLastName => By.CssSelector("#EmployerLastName");
+        private By EmployerLastName(string value = null) => By.CssSelector($"#EmployerLastName{value}");
 
-        private By EmployerEmailAddress => By.CssSelector("#EmployerEmailAddress");
+        private By EmployerEmailAddress(string value = null) => By.CssSelector($"#EmployerEmailAddress{value}");
 
         private string LastName => "AutoTester";
 
@@ -29,19 +29,19 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.ProviderLeadRegistrat
 
         public CheckDetailsPage EnterRegistrationDetailsAndContinue()
         {
-            formCompletionHelper.EnterText(EmployerOrganisation, config.RE_OrganisationName);
-            formCompletionHelper.EnterText(EmployerFirstName, config.TwoDigitProjectCode);
-            formCompletionHelper.EnterText(EmployerLastName, LastName);
-            formCompletionHelper.EnterText(EmployerEmailAddress, objectContext.GetRegisteredEmail());
+            formCompletionHelper.EnterText(EmployerOrganisation(), config.RE_OrganisationName);
+            formCompletionHelper.EnterText(EmployerFirstName(), config.TwoDigitProjectCode);
+            formCompletionHelper.EnterText(EmployerLastName(), LastName);
+            formCompletionHelper.EnterText(EmployerEmailAddress(), objectContext.GetRegisteredEmail());
             return NavigateToCheckDetailsPage();
         }
 
         public EnterTheEmployerDetailsPage VerifyDetails()
         {
-            pageInteractionHelper.VerifyText(EmployerOrganisation, config.RE_OrganisationName);
-            pageInteractionHelper.VerifyText(EmployerFirstName, config.TwoDigitProjectCode);
-            pageInteractionHelper.VerifyText(EmployerLastName, LastName);
-            pageInteractionHelper.VerifyText(EmployerEmailAddress, objectContext.GetRegisteredEmail());
+            pageInteractionHelper.VerifyPage(EmployerOrganisation($"[value='{config.RE_OrganisationName}']"));
+            pageInteractionHelper.VerifyPage(EmployerFirstName($"[value='{config.TwoDigitProjectCode}']"));
+            pageInteractionHelper.VerifyPage(EmployerLastName($"[value='{LastName}']"));
+            pageInteractionHelper.VerifyPage(EmployerEmailAddress($"[value='{objectContext.GetRegisteredEmail()}']"));
             return this;
         }
 
