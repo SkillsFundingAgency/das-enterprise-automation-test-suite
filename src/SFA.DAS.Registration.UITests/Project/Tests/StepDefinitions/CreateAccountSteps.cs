@@ -36,6 +36,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         private EnterYourPAYESchemeDetailsPage _enterYourPAYESchemeDetailsPage;
         private UsingYourGovtGatewayDetailsPage _usingYourGovtGatewayDetailsPage;
         private MyAccountWithOutPayePage _myAccountWithOutPayePage;
+        private IndexPage _indexPage;
 
         public CreateAccountSteps(ScenarioContext context)
         {
@@ -59,10 +60,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         [Given(@"the User adds PAYE details")]
         [When(@"the User adds PAYE details")]
         [When(@"the User adds valid PAYE details")]
-        public SearchForYourOrganisationPage AddPayeDetails()
-        {
-            return _searchForYourOrganisationPage = _addAPAYESchemePage.AddPaye().ContinueToGGSignIn().SignInTo(0);
-        }
+        public SearchForYourOrganisationPage AddPayeDetails() => AddPayeDetails(0);
 
         [Given(@"the User adds PAYE details attached to a (SingleOrg|MultiOrg) through AORN route")]
         [When(@"the User adds PAYE details attached to a (SingleOrg|MultiOrg) through AORN route")]
@@ -327,12 +325,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         [Then(@"'Start adding apprentices now' task link is displayed under Tasks pane")]
         public void ThenTaskLinkIsDisplayedUnderTasksPane() => _homePage.VerifyStartAddingApprenticesNowTaskLink();
 
-        private void CreateUserAccountAndAddOrg(OrgType orgType)
-        {
-            CreateAnUserAcountAndAddPaye();
-            AddOrganisationTypeDetails(orgType);
-        }
-
         [Then(@"the Employer is Not allowed to Remove the first Org added")]
         public void ThenTheEmployerIsNotAllowedToRemoveTheFirstOrgAdded()
         {
@@ -528,6 +520,32 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             Assert.AreEqual(_objectContext.GetGatewayPaye(1), _checkYourDetailsPage.GetPayeScheme());
         }
 
+        [When(@"the Employer logsout of the Account")]
+        public void WhenTheEmployerLogsoutOfTheAccount() => _indexPage = _accountCreationStepsHelper.SignOut();
+
+        [Then(@"an Employer is able to create another Account with the same PublicSector Type Org but with a different PAYE")]
+        public void ThenAnEmployerIsAbleToCreateAnotherAccountWithTheSamePublicSectorTypeOrgButWithADifferentPAYE()
+        {
+            _addAPAYESchemePage = _accountCreationStepsHelper.CreateAnotherUserAccount(_indexPage);
+            AddPayeDetails(1);
+            AddOrganisationTypeDetails(OrgType.PublicSector);
+        }
+
+        [Then(@"the Employer is able to Add Another NonLevy PAYE scheme to the Account")]
+        [Then(@"the Employer is able to Add Another Levy PAYE scheme to the Account")]
+        public void ThenTheEmployerIsAbleToAddAnotherPAYESchemeToTheAccount() =>
+            _homePage = _accountCreationStepsHelper.AddAnotherPayeSchemeToTheAccount(_homePage);
+
+        [Then(@"the Employer is able to Remove the second PAYE scheme added from the Account")]
+        public void ThenTheEmployerIsAbleToRemoveTheSecondPAYESchemeAddedFromTheAccount() =>
+            _accountCreationStepsHelper.RemovePayeSchemeFromTheAccount(_homePage);
+
+        private void CreateUserAccountAndAddOrg(OrgType orgType)
+        {
+            CreateAnUserAcountAndAddPaye();
+            AddOrganisationTypeDetails(orgType);
+        }
+
         private void EnterInvalidAornAndPaye() =>
             _enterYourPAYESchemeDetailsPage.EnterAornAndPayeAndContinue(_registrationDataHelper.InvalidAornNumber, _registrationDataHelper.InvalidPaye);
 
@@ -550,5 +568,8 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             AddOrganisationTypeDetails(OrgType.Company);
             SignTheAgreement();
         }
+
+        private SearchForYourOrganisationPage AddPayeDetails(int payeIndex) =>
+            _searchForYourOrganisationPage = _addAPAYESchemePage.AddPaye().ContinueToGGSignIn().SignInTo(payeIndex);
     }
 }

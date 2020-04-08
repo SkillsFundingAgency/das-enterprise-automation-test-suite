@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.FAA.UITests.Project.Tests.Features.SearchVacancy
+namespace SFA.DAS.Registration.UITests.Project.Tests.Features.CreateEmpAccountOfPublicSectorType_NonLevy
 {
     using TechTalk.SpecFlow;
     
@@ -18,20 +18,20 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Features.SearchVacancy
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.0.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("FAA_SearchVacancy_01")]
-    public partial class FAA_SearchVacancy_01Feature
+    [NUnit.Framework.DescriptionAttribute("RE_CEAPST_02")]
+    public partial class RE_CEAPST_02Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "FAA_SearchVacancy_01.feature"
+#line 1 "RE_CEAPST_02.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "FAA_SearchVacancy_01", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "RE_CEAPST_02", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -70,26 +70,31 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Features.SearchVacancy
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("FAA_SearchVacancy_01 - Search Nationwide Vacancy in FAA and checkin the sort resu" +
-            "lts and distance on the vacancies")]
-        [NUnit.Framework.CategoryAttribute("raa-v1")]
+        [NUnit.Framework.DescriptionAttribute("RE_CEAPST_02_Create an Employer Account with Public Sector Type Org and create an" +
+            "other Employer Account with the Same Org")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public virtual void FAA_SearchVacancy_01_SearchNationwideVacancyInFAAAndCheckinTheSortResultsAndDistanceOnTheVacancies()
+        [NUnit.Framework.CategoryAttribute("registration")]
+        [NUnit.Framework.CategoryAttribute("addpayedetails")]
+        [NUnit.Framework.CategoryAttribute("addanothernonlevypayedetails")]
+        public virtual void RE_CEAPST_02_CreateAnEmployerAccountWithPublicSectorTypeOrgAndCreateAnotherEmployerAccountWithTheSameOrg()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("FAA_SearchVacancy_01 - Search Nationwide Vacancy in FAA and checkin the sort resu" +
-                    "lts and distance on the vacancies", null, new string[] {
-                        "raa-v1",
-                        "regression"});
-#line 6
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RE_CEAPST_02_Create an Employer Account with Public Sector Type Org and create an" +
+                    "other Employer Account with the Same Org", null, new string[] {
+                        "regression",
+                        "registration",
+                        "addpayedetails",
+                        "addanothernonlevypayedetails"});
+#line 7
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 7
- testRunner.Given("an applicant is on the Find an Apprenticeship Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 8
- testRunner.When("the candidate search for Nationwide Vacancies \'CV1\',\'England\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("an Employer Account with PublicSector Type Org is created and agreement is Signed" +
+                    "", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 9
- testRunner.Then("the Sort results is changed by closing date and distance is not displayed on the " +
-                    "vacancies", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("the Employer logsout of the Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 10
+ testRunner.Then("an Employer is able to create another Account with the same PublicSector Type Org" +
+                    " but with a different PAYE", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
