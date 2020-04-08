@@ -8,6 +8,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
     public class StartAddingApprenticesPage : BasePage
     {
         protected override string PageTitle => "Start adding apprentices";
+        protected override By ContinueButton => By.Id("continue-button");
 
         #region Helpers and Context
         private readonly PageInteractionHelper _pageInteractionHelper;
@@ -26,14 +27,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         public AddApprenticeDetailsPage EmployerAddsApprentices()
         {
             EmployerAgreesToAdds();
-            Continue();
+            _formCompletionHelper.ClickElement(ContinueButton);
             return new AddApprenticeDetailsPage(_context);
         }
 
         public MessageForYourTrainingProviderPage EmployerSendsToProviderToAddApprentices()
         {
             EmployerSendsToProviderToAdd();
-            Continue();
+            _formCompletionHelper.ClickElement(ContinueButton);
             return new MessageForYourTrainingProviderPage(_context);
         }
 
@@ -52,7 +53,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         public AddApprenticeDetailsPage NonLevyEmployerAddsApprentices()
         {
             EmployerAgreesToAdds();
-            Continue();
+            _formCompletionHelper.ClickElement(ContinueButton);
             return new AddApprenticeDetailsPage(_context);
         }
     }

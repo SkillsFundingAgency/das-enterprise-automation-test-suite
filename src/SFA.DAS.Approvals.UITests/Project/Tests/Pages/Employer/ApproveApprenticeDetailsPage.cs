@@ -14,7 +14,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private readonly ScenarioContext _context;
         #endregion
 
-        protected override By ContinueButton => By.CssSelector("#submitCohort button");
+        protected override By ContinueButton => By.CssSelector("#main-content .govuk-button");
 
         public ApproveApprenticeDetailsPage(ScenarioContext context) : base(context)
         {
@@ -25,15 +25,15 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         public ReviewYourCohortPage SubmitApproveAndSendToTrainingProvider()
         {
-            SelectCohortApproveOptions("radio-approve")
-            .Continue();
+            SelectCohortApproveOptions("radio-approve");
+            _formCompletionHelper.ClickElement(ContinueButton);
             return new ReviewYourCohortPage(_context);
         }
 
         public ReviewYourCohortPage ChangeRequestFromTrainingProvider()
         {
-            SelectCohortApproveOptions("radio-send")
-            .Continue();
+            SelectCohortApproveOptions("radio-send");
+            _formCompletionHelper.ClickElement(ContinueButton);
             return new ReviewYourCohortPage(_context);
         }
 
