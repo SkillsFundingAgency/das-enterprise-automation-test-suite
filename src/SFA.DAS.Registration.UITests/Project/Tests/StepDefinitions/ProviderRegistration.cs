@@ -77,7 +77,11 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             _homePageStepsHelper.GotoEmployerHomePage()
                 .ClickAcceptYourAgreementLinkInHomePagePanel()
                 .ClickContinueToYourAgreementButtonInAboutYourAgreementPage()
-                .SignAgreement();
+                .ProviderLeadRegistrationSignAgreement()
+                .ClickNoToAddApprenticeRecords()
+                .ClickNoToAddRecruitApprentice()
+                .ConfirmTrainingProviderPermissions()
+                .GoToHomePage();
         }
 
         [Then(@"the invited employer status in ""(Invitation sent|Account started|PAYE scheme added|Legal agreement signed)""")]
