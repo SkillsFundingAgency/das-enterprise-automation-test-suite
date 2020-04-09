@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.Registration.UITests.Project.Tests.Features.Notification
+namespace SFA.DAS.Registration.UITests.Project.Tests.Features.CreateLevyEmpAccountAndCheckDBFlag
 {
     using TechTalk.SpecFlow;
     
@@ -18,24 +18,20 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features.Notification
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.0.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("RE_NOTIF_01")]
-    [NUnit.Framework.CategoryAttribute("regression")]
-    [NUnit.Framework.CategoryAttribute("registration")]
-    public partial class RE_NOTIF_01Feature
+    [NUnit.Framework.DescriptionAttribute("RE_CLEA_03")]
+    public partial class RE_CLEA_03Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "RE_NOTIF_01.feature"
+#line 1 "RE_CLEA_03.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "RE_NOTIF_01", null, ProgrammingLanguage.CSharp, new string[] {
-                        "regression",
-                        "registration"});
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "RE_CLEA_03", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,17 +70,47 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features.Notification
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RE_NOTIF_01_Veify Access code notification receipt during Account creation")]
-        public virtual void RE_NOTIF_01_VeifyAccessCodeNotificationReceiptDuringAccountCreation()
+        [NUnit.Framework.DescriptionAttribute("RE_CLEA_03_Create a Levy Account for a specific period")]
+        [NUnit.Framework.CategoryAttribute("registration")]
+        [NUnit.Framework.CategoryAttribute("addpayedetails")]
+        public virtual void RE_CLEA_03_CreateALevyAccountForASpecificPeriod()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RE_NOTIF_01_Veify Access code notification receipt during Account creation", null, ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RE_CLEA_03_Create a Levy Account for a specific period", null, new string[] {
+                        "registration",
+                        "addpayedetails"});
 #line 5
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
+#line hidden
+            TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Year",
+                        "Month",
+                        "LevyDueYTD",
+                        "LevyAllowanceForFullYear",
+                        "SubmissionDate"});
+            table1.AddRow(new string[] {
+                        "19-20",
+                        "1",
+                        "42000",
+                        "60000",
+                        "2019-05-15"});
+            table1.AddRow(new string[] {
+                        "19-20",
+                        "2",
+                        "44000",
+                        "60000",
+                        "2019-05-15"});
+            table1.AddRow(new string[] {
+                        "19-20",
+                        "3",
+                        "48000",
+                        "60000",
+                        "2019-05-15"});
 #line 6
- testRunner.When("the User initiates Account creation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 7
- testRunner.Then("the User receives Access code notification to the registered email", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Given("the following levy declarations with english fraction of 1.00 calculated at 2019-" +
+                    "01-15", ((string)(null)), table1, "Given ");
+#line 11
+ testRunner.Then("a Levy Employer Account with Company Type Org is created and agreement is Signed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
