@@ -34,7 +34,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         {
             pageInteractionHelper.VerifyPage(FirstNameInput($"[value='{registrationDataHelper.FirstName}']"));
             pageInteractionHelper.VerifyPage(LastNameInput($"[value='{registrationDataHelper.LastName}']"));
-            pageInteractionHelper.VerifyPage(EmailInput($"[value='{objectContext.GetRegisteredEmail()}']"));
+            pageInteractionHelper.VerifyPage(EmailInput($"[value='{objectContext.GetRegisteredEmail().ToLower()}']"));
 
             EnterPassword().EnterPasswordConfirm().SetMeUp();
 

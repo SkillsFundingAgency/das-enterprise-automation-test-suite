@@ -3,6 +3,7 @@ using SFA.DAS.ProviderLogin.Service.Helpers;
 using SFA.DAS.Registration.UITests.Project.Helpers;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages.ProviderLeadRegistration;
+using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using System;
 using TechTalk.SpecFlow;
@@ -14,20 +15,17 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
     {
         private readonly ScenarioContext _context;
         private readonly ObjectContext _objectContext;
-        private readonly RegistrationDataHelper _dataHelper;
         private readonly TabHelper _tabHelper;
         private readonly RegistrationConfig _config;
         private readonly ProviderHomePageStepsHelper _providerHomePageStepsHelper;
         private readonly EmployerHomePageStepsHelper _homePageStepsHelper;
         private readonly PregSqlDataHelper _pregSqlDataHelper;
-        private HomePage _homePage;
 
         public ProviderRegistration(ScenarioContext context)
         {
             _context = context;
-            _config = context.Get<RegistrationConfig>();
+            _config = context.GetRegistrationConfig<RegistrationConfig>();
             _objectContext = context.Get<ObjectContext>();
-            _dataHelper = context.Get<RegistrationDataHelper>();
             _tabHelper = context.Get<TabHelper>();
             _pregSqlDataHelper = context.Get<PregSqlDataHelper>();
             _providerHomePageStepsHelper = new ProviderHomePageStepsHelper(_context);
@@ -52,7 +50,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         [When(@"the employer sets up the user")]
         public void WhenTheEmployerSetsUpTheUser()
         {
-            var uri = new Uri(new Uri(_config.EmployerApprenticeshipServiceBaseURL), $"/service/register/{_pregSqlDataHelper.GetReference(_objectContext.GetRegisteredEmail())}").AbsoluteUri;
+            var uri = new Uri(new Uri($"https://accounts.{new Uri(_config.EmployerApprenticeshipServiceBaseURL).Host}"), $"/service/register/{_pregSqlDataHelper.GetReference(_objectContext.GetRegisteredEmail())}").AbsoluteUri;
 
             _tabHelper.OpenInNewTab(uri);
 
@@ -62,15 +60,25 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         [When(@"the employer adds PAYE from Account Home Page")]
         public void WhenTheEmployerAddsPAYEFromAccountHomePage()
         {
-            _homePage = _homePageStepsHelper.GotoEmployerHomePage(new MyAccountWithOutPayeLoginHelper(_context))
+            _homePageStepsHelper.GotoEmployerHomePage(new MyAccountWithOutPayeLoginHelper(_context))
                 .AddYourPAYEScheme()
                 .AddPaye()
                 .ContinueToGGSignIn()
-                .EnterPayeDetailsAndContinue(0)
-                .ClickContinueInConfirmPAYESchemePage()
-                .SelectContinueAccountSetupInPAYESchemeAddedPage();
+                .SignInTo(0)
+                .SearchForAnOrganisation(EnumHelper.OrgType.Company)
+                .SelectYourOrganisation(EnumHelper.OrgType.Company)
+                .ClickYesTheseDetailsAreCorrectButtonInCheckYourDetailsPage()
+                .SelectViewItLaterAndContinue();
         }
 
+        [When(@"the employer signs the agreement")]
+        public void WhenTheEmployerSignsTheAgreement()
+        {
+            _homePageStepsHelper.GotoEmployerHomePage()
+                .ClickAcceptYourAgreementLinkInHomePagePanel()
+                .ClickContinueToYourAgreementButtonInAboutYourAgreementPage()
+                .SignAgreement();
+        }
 
         [Then(@"the invited employer status in ""(Invitation sent|Account started|PAYE scheme added|Legal agreement signed)""")]
         public void ThenTheInvitedEmployerStatusIn(string status)

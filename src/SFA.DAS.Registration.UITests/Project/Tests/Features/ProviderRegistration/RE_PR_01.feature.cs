@@ -96,6 +96,8 @@ testRunner.When("the employer adds PAYE from Account Home Page", ((string)(null)
 #line 12
 testRunner.Then("the invited employer status in \"PAYE scheme added\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 13
+testRunner.When("the employer signs the agreement", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 14
 testRunner.Then("the invited employer status in \"Legal agreement signed\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();

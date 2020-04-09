@@ -7,7 +7,7 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
     {
         private readonly RandomDataGenerator _randomDataGenerator;
 
-        public RegistrationDataHelper(string gatewayUsername, string password, RandomDataGenerator randomDataGenerator)
+        public RegistrationDataHelper(string gatewayUsername, string password, string organisationName, RandomDataGenerator randomDataGenerator)
         {
             _randomDataGenerator = randomDataGenerator;
             RandomEmail = $"{gatewayUsername}@mailinator.com";
@@ -18,6 +18,7 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
             InvalidGGPassword = RandomNumericString(10);
             InvalidCompanyNumber = RandomNumericString(10);
             OrgNameForManualEntry = $"Manually Added Organisation_{DateTime.Now.ToString("ddMMMyyyy_HHmmss")}";
+            CompanyTypeOrg = organisationName;
         }
 
         public string FirstName => "AutoFirstName";
@@ -29,7 +30,7 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
         public string InvalidGGId { get; }
         public string InvalidGGPassword { get; }
         public string InvalidCompanyNumber { get; }
-        public string CompanyTypeOrg => "ESFA LTD";
+        public string CompanyTypeOrg { get; }
         public string CompanyTypeOrg2 => "TESCO PLC";
         public string PublicSectorTypeOrg => "Royal School Hampstead";
         public string CharityTypeOrg1Number => "200895";

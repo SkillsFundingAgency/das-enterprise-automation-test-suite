@@ -10,4 +10,5 @@ When the employer sets up the user
 Then the invited employer status in "Account started"
 When the employer adds PAYE from Account Home Page
 Then the invited employer status in "PAYE scheme added"
+When the employer signs the agreement
 Then the invited employer status in "Legal agreement signed"
