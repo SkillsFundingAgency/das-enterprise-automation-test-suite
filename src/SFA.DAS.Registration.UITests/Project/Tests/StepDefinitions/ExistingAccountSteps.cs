@@ -23,6 +23,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         [When(@"the Employer logins using existing Levy Account")]
         public void GivenTheEmployerLoginsUsingExistingLevyAccount() => _homePage = _loginhelper.Login(_context.GetUser<LevyUser>(), true);
 
+        [Given(@"the Employer logins using existing NonLevy Account")]
         [When(@"the Employer logins using existing NonLevy Account")]
         public void GivenTheEmployerLoginsUsingExistingNonLevyAccount() => _homePage = _loginhelper.LoginFromCreateAcccountPage(_context.GetUser<NonLevyUser>());
 
