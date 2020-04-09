@@ -22,6 +22,5 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.GwAdmin
             new SignInPage(_context).SignInGatewayUser();
             return new GatewayLandingPage(_context);
         }
-
     }
 }
