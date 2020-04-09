@@ -27,5 +27,10 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpAdmin
             SubmitValidLoginDetails(_config.AdminUserName, _config.AdminPassword);
             return new RoatpAdminHomePage(_context);
         }
+
+        public void SignInGatewayUser()
+        {
+            SubmitValidLoginDetails(_config.AdminUserName, _config.AdminPassword);
+        }
     }
 }
