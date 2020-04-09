@@ -17,7 +17,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         public SignAgreementPage(ScenarioContext context) : base(context)
         {
             _context = context;
-            VerifyPage();
+            VerifyPage(WantToSignRadioButton);
         }
 
         public HomePage SignAgreement()
@@ -32,10 +32,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             return new HomePage(_context);
         }
 
-        private void Sign()
-        {
-            Continue(WantToSignRadioButton);
-        }
+        private void Sign() => Continue(WantToSignRadioButton);
 
         private void DoNotSign() => Continue(DoNotWantToSignRadioButton);
 

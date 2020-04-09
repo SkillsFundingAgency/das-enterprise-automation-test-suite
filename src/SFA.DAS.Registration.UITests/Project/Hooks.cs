@@ -18,7 +18,8 @@ namespace SFA.DAS.Registration.UITests.Project
         private readonly ProviderLeadRegistrationConfig _providerLeadRegistrationConfig;
         private readonly IWebDriver _webDriver;
         private readonly ObjectContext _objectContext;
-
+        private PregSqlDataHelper _pregSqlDataHelper;
+        
         public Hooks(ScenarioContext context)
         {
             _context = context;
@@ -43,7 +44,7 @@ namespace SFA.DAS.Registration.UITests.Project
 
             _objectContext.SetDataHelper(dataHelper);
            
-            var registrationDatahelpers = new RegistrationDataHelper(dataHelper.GatewayUsername, _config.RE_AccountPassword, _context.Get<RandomDataGenerator>());
+            var registrationDatahelpers = new RegistrationDataHelper(dataHelper.GatewayUsername, _config.RE_AccountPassword, _config.RE_OrganisationName, _context.Get<RandomDataGenerator>());
 
             _context.Set(registrationDatahelpers);
 
@@ -55,9 +56,15 @@ namespace SFA.DAS.Registration.UITests.Project
 
             _context.Set(new TprSqlDataHelper(_tprconfig, _objectContext, registrationDatahelpers));
 
-            _context.Set(new PregSqlDataHelper(_providerLeadRegistrationConfig));
+            _pregSqlDataHelper = new PregSqlDataHelper(_providerLeadRegistrationConfig);
+
+            _context.Set(_pregSqlDataHelper);
 
             _objectContext.SetRegisteredEmail(registrationDatahelpers.RandomEmail);
         }
+
+        [AfterScenario(Order = 22)]
+        [Scope(Tag = "providerleadregistration")]
+        public void ClearInvitation() => _pregSqlDataHelper.DeleteInvitation(_objectContext.GetRegisteredEmail());
     }
 }

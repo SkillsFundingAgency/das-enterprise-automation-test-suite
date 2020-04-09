@@ -5,10 +5,10 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
 {
     internal abstract class SqlDbHelper
     {
-        protected readonly string _connectionString;
+        protected readonly string connectionString;
         
-        public SqlDbHelper(string connectionString) => _connectionString = connectionString;
+        public SqlDbHelper(string connectionString) => this.connectionString = connectionString;
         
-        protected string GetData(string queryToExecute) => Convert.ToString(SqlDatabaseConnectionHelper.ReadDataFromDataBase(queryToExecute, _connectionString)[0][0]);
+        protected string GetData(string queryToExecute) => Convert.ToString(SqlDatabaseConnectionHelper.ReadDataFromDataBase(queryToExecute, connectionString)[0][0]);
     }
 }

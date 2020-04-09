@@ -3,6 +3,7 @@
 @regression
 @registration
 @addpayedetails
+@providerleadregistration
 Scenario: RE_PR_01 Provider Registration
 Given the provider invite an employer
 Then the invited employer status in "Invitation sent"
