@@ -51,6 +51,16 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.RoatpApply
             return applicationOverviewPage;
         }
 
+        internal ApplicationOverviewPage CompleteYourOrganisation_Section1_GovernmentStatue(ApplicationOverviewPage applicationOverviewPage)
+        {
+            applicationOverviewPage = _yourOrganisationSectionHelper.CompleteYourOrganisationSection_1(applicationOverviewPage);
+            applicationOverviewPage = _yourOrganisationSectionHelper.CompleteYourOrganisationSection_2_HasWebsite(applicationOverviewPage);
+            applicationOverviewPage = _yourOrganisationSectionHelper.CompleteYourOrganisationSection_3_GovernmentStatue(applicationOverviewPage);
+            applicationOverviewPage = _yourOrganisationSectionHelper.CompleteYourOrganisationSection_4(applicationOverviewPage);
+            applicationOverviewPage = _yourOrganisationSectionHelper.CompleteYourOrganisationSection_5_NoToAll(applicationOverviewPage);
+            return applicationOverviewPage;
+        }
+
         internal ApplicationOverviewPage CompleteYourOrganisation_Section1(ApplicationOverviewPage applicationOverviewPage)
         {
             applicationOverviewPage = _yourOrganisationSectionHelper.CompleteYourOrganisationSection_1(applicationOverviewPage);
