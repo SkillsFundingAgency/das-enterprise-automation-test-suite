@@ -4,6 +4,6 @@
     {
         public PregSqlDataHelper(ProviderLeadRegistrationConfig config): base(config.RE_PregDbConnectionString) { }
 
-        public string GetReference(string email) => GetData($"SELECT [Id] FROM [dbo].[Invitations] where EmployerEmail = '{email}'");
+        public string GetReference(string email) => GetData($"SELECT [Reference] FROM [dbo].[Invitations] where EmployerEmail = '{email}'");
     }
 }
