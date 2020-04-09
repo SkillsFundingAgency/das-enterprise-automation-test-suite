@@ -1,5 +1,4 @@
-﻿using NUnit.Framework;
-using SFA.DAS.ConfigurationBuilder;
+﻿using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.MongoDb.DataGenerator;
 
 namespace SFA.DAS.Registration.UITests.Project.Helpers

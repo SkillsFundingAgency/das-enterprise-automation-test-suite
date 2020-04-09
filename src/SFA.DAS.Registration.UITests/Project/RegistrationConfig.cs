@@ -20,6 +20,11 @@
         public string RE_TPRDbConnectionString { get; set; }
     }
 
+    public class ProviderLeadRegistrationConfig
+    {
+        public string RE_PregDbConnectionString { get; set; }
+    }
+
     public class MailinatorConfig
     {
         public string MailinatorURL { get; set; }

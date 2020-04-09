@@ -15,6 +15,7 @@ namespace SFA.DAS.Registration.UITests.Project
         private readonly ScenarioContext _context;
         private readonly RegistrationConfig _config;
         private readonly TprConfig _tprconfig;
+        private readonly ProviderLeadRegistrationConfig _providerLeadRegistrationConfig;
         private readonly IWebDriver _webDriver;
         private readonly ObjectContext _objectContext;
 
@@ -24,6 +25,7 @@ namespace SFA.DAS.Registration.UITests.Project
             _webDriver = context.GetWebDriver();
             _config = context.GetRegistrationConfig<RegistrationConfig>();
             _tprconfig = context.GetTprConfig<TprConfig>();
+            _providerLeadRegistrationConfig = context.GetProviderLeadRegistrationConfig<ProviderLeadRegistrationConfig>();
             _objectContext = context.Get<ObjectContext>();
         }
 
@@ -52,6 +54,8 @@ namespace SFA.DAS.Registration.UITests.Project
             _context.Set(new RegistrationSqlDataHelper(_config));
 
             _context.Set(new TprSqlDataHelper(_tprconfig, _objectContext, registrationDatahelpers));
+
+            _context.Set(new PregSqlDataHelper(_providerLeadRegistrationConfig));
 
             _objectContext.SetRegisteredEmail(registrationDatahelpers.RandomEmail);
         }

@@ -14,7 +14,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
     public class EmployerSteps
     {
         private readonly ScenarioContext _context;
-        private readonly HomePageStepsHelper _homePageStepsHelper;
+        private readonly EmployerHomePageStepsHelper _homePageStepsHelper;
         private readonly RAAV2DataHelper _rAAV2DataHelper;
         private readonly EmployerStepsHelper _employerStepsHelper;
 
@@ -29,7 +29,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
             _context = context;
             _rAAV2DataHelper = context.Get<RAAV2DataHelper>();
             _employerStepsHelper = new EmployerStepsHelper(context);
-            _homePageStepsHelper = new HomePageStepsHelper(context);
+            _homePageStepsHelper = new EmployerHomePageStepsHelper(context);
         }
 
         [When(@"Employer selects '(National Minimum Wage|National Minimum Wage For Apprentices|Fixed Wage Type)' in the first part of the journey")]

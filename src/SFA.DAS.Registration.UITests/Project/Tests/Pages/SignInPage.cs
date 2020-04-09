@@ -32,6 +32,12 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             return new HomePage(_context);
         }
 
+        public MyAccountWithOutPayePage LoginToMyAccountWithOutPaye(LoginUser loginUser)
+        {
+            SignIn(loginUser);
+            return new MyAccountWithOutPayePage(_context);
+        }
+
         public YourAccountsPage MultipleAccountLogin(LoginUser loginUser)
         {
             SignIn(loginUser);

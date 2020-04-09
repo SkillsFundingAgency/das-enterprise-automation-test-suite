@@ -19,29 +19,36 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.ProviderLeadRegistrat
 
         private By EmployerEmailAddress(string value = null) => By.CssSelector($"#EmployerEmailAddress{value}");
 
-        private string LastName => "AutoTester";
+        private readonly string OrganisationName;
+        private readonly string FirstName;
+        private readonly string LastName;
+        private readonly string Email;
 
         public EnterTheEmployerDetailsPage(ScenarioContext context): base(context)
         {
             _context = context;
+            OrganisationName = config.RE_OrganisationName;
+            FirstName = registrationDataHelper.FirstName;
+            LastName = registrationDataHelper.LastName;
+            Email = objectContext.GetRegisteredEmail();
             VerifyPage();
         }
 
         public CheckDetailsPage EnterRegistrationDetailsAndContinue()
         {
-            formCompletionHelper.EnterText(EmployerOrganisation(), config.RE_OrganisationName);
-            formCompletionHelper.EnterText(EmployerFirstName(), config.TwoDigitProjectCode);
+            formCompletionHelper.EnterText(EmployerOrganisation(), OrganisationName);
+            formCompletionHelper.EnterText(EmployerFirstName(), FirstName);
             formCompletionHelper.EnterText(EmployerLastName(), LastName);
-            formCompletionHelper.EnterText(EmployerEmailAddress(), objectContext.GetRegisteredEmail());
+            formCompletionHelper.EnterText(EmployerEmailAddress(), Email);
             return NavigateToCheckDetailsPage();
         }
 
         public EnterTheEmployerDetailsPage VerifyDetails()
         {
-            pageInteractionHelper.VerifyPage(EmployerOrganisation($"[value='{config.RE_OrganisationName}']"));
-            pageInteractionHelper.VerifyPage(EmployerFirstName($"[value='{config.TwoDigitProjectCode}']"));
+            pageInteractionHelper.VerifyPage(EmployerOrganisation($"[value='{OrganisationName}']"));
+            pageInteractionHelper.VerifyPage(EmployerFirstName($"[value='{FirstName}']"));
             pageInteractionHelper.VerifyPage(EmployerLastName($"[value='{LastName}']"));
-            pageInteractionHelper.VerifyPage(EmployerEmailAddress($"[value='{objectContext.GetRegisteredEmail()}']"));
+            pageInteractionHelper.VerifyPage(EmployerEmailAddress($"[value='{Email}']"));
             return this;
         }
 

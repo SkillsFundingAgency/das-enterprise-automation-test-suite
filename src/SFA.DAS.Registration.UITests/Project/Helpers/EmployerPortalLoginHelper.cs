@@ -18,38 +18,15 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
             loginCredentialsHelper = context.Get<LoginCredentialsHelper>();
         }
 
-        public bool IsSignInPageDisplayed()
-        {
-            return new CheckSignInPage(_context)
-                .IsPageDisplayed();
-        }
+        public bool IsSignInPageDisplayed() => new CheckSignInPage(_context).IsPageDisplayed();
 
-        public bool IsIndexPageDisplayed()
-        {
-            return new CheckIndexPage(_context)
-                .IsPageDisplayed();
-        }
+        public bool IsIndexPageDisplayed() => new CheckIndexPage(_context).IsPageDisplayed();
 
-        public bool IsYourAccountPageDisplayed()
-        {
-            return new CheckYourAccountPage(_context)
-                .IsPageDisplayed();
-        }
+        public bool IsYourAccountPageDisplayed() => new CheckYourAccountPage(_context).IsPageDisplayed();
 
-        public HomePage ReLogin()
-        {
-            var loginCredentials = loginCredentialsHelper.GetLoginCredentials();
+        public HomePage ReLogin() => new SignInPage(_context).Login(loginCredentialsHelper.GetLoginCredentials());
 
-            return new SignInPage(_context)
-                .Login(loginCredentials);
-        }
-
-        protected virtual HomePage Login(LoginUser loginUser)
-        {
-            return new IndexPage(_context)
-                    .SignIn()
-                    .Login(loginUser);
-        }
+        protected virtual HomePage Login(LoginUser loginUser) => new IndexPage(_context).SignIn().Login(loginUser);
 
         public HomePage Login(LoginUser loginUser, bool isLevy)
         {
@@ -62,9 +39,6 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
             return homePage;
         }
 
-        public HomePage Login(NonLevyUser nonLevyUser)
-        {
-            return Login(nonLevyUser, false);
-        }
+        public HomePage Login(NonLevyUser nonLevyUser) => Login(nonLevyUser, false);
     }
 }

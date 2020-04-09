@@ -1,5 +1,4 @@
 ﻿using OpenQA.Selenium;
-using System;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
@@ -7,17 +6,17 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
     public class SetUpAsAUserPage : RegistrationBasePage
     {
         protected override string PageTitle => "Set up as a user";
+
         private readonly ScenarioContext _context;
 
         #region constants
-        private const string LastName = "Auto_Tester";
         private const string ExpectedEmailErrorText = "Email already registered.";
         #endregion
 
         #region Locators
-        private By FirstNameInput => By.Id("FirstName");
-        private By LastNameInput => By.Id("LastName");
-        private By EmailInput => By.Id("Email");
+        private By FirstNameInput(string value = null) => By.CssSelector($"#FirstName{value}");
+        private By LastNameInput(string value = null) => By.CssSelector($"#LastName{value}");
+        private By EmailInput(string value = null) => By.CssSelector($"#Email{value}");
         private By PasswordInput => By.Id("Password");
         private By PasswordConfirmInput => By.Id("ConfirmPassword");
         private By SetMeUpButton => By.Id("button-register");
@@ -31,23 +30,27 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             VerifyPage();
         }
 
-        public ConfirmPage Register(string email = null)
+        public ConfirmPage ProviderLeadRegistration()
         {
-            email = String.IsNullOrEmpty(email) ? objectContext.GetRegisteredEmail() : email;
+            pageInteractionHelper.VerifyPage(FirstNameInput($"[value='{registrationDataHelper.FirstName}']"));
+            pageInteractionHelper.VerifyPage(LastNameInput($"[value='{registrationDataHelper.LastName}']"));
+            pageInteractionHelper.VerifyPage(EmailInput($"[value='{objectContext.GetRegisteredEmail()}']"));
 
-            EnterRegistrationDetailsAndContinue(email);
+            EnterPassword().EnterPasswordConfirm().SetMeUp();
+
             return new ConfirmPage(_context);
         }
 
-        public SetUpAsAUserPage EnterRegistrationDetailsAndContinue(string email)
+        public ConfirmPage Register(string email = null)
         {
-            return EnterFirstName().
-            EnterlastName().
-            EnterEmail(email).
-            EnterPassword().
-            EnterPasswordConfirm().
-            SetMeUp();
+            email = string.IsNullOrEmpty(email) ? objectContext.GetRegisteredEmail() : email;
+
+            EnterRegistrationDetailsAndContinue(email);
+
+            return new ConfirmPage(_context);
         }
+
+        public void EnterRegistrationDetailsAndContinue(string email) => EnterFirstName().EnterlastName().EnterEmail(email).EnterPassword().EnterPasswordConfirm().SetMeUp();
 
         public void VerifyEmailAlreadyRegisteredErrorMessage()
         {
@@ -57,19 +60,19 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         private SetUpAsAUserPage EnterFirstName()
         {
-            formCompletionHelper.EnterText(FirstNameInput, config.TwoDigitProjectCode);
+            formCompletionHelper.EnterText(FirstNameInput(), registrationDataHelper.FirstName);
             return this;
         }
 
         private SetUpAsAUserPage EnterlastName()
         {
-            formCompletionHelper.EnterText(LastNameInput, LastName);
+            formCompletionHelper.EnterText(LastNameInput(), registrationDataHelper.LastName);
             return this;
         }
 
         private SetUpAsAUserPage EnterEmail(string email)
         {
-            formCompletionHelper.EnterText(EmailInput, email);
+            formCompletionHelper.EnterText(EmailInput(), email);
             return this;
         }
 
@@ -85,10 +88,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             return this;
         }
 
-        private SetUpAsAUserPage SetMeUp()
-        {
-            formCompletionHelper.ClickElement(SetMeUpButton);
-            return this;
-        }
+        private void SetMeUp() => formCompletionHelper.ClickElement(SetMeUpButton);
     }
 }

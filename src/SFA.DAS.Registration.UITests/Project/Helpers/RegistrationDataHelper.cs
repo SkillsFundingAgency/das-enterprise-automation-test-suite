@@ -20,6 +20,8 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
             OrgNameForManualEntry = $"Manually Added Organisation_{DateTime.Now.ToString("ddMMMyyyy_HHmmss")}";
         }
 
+        public string FirstName => "AutoFirstName";
+        public string LastName => "AutoLastName";
         public string RandomEmail { get; }
         public string AnotherRandomEmail { get; }
         public string AornNumber { get; }
