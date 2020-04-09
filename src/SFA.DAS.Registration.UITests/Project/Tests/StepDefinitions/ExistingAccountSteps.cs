@@ -30,9 +30,9 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         public void ThenEmployerIsAbleToNavigateToAllTheLinkUnderSettings() => _homePage = _homePage
                 .GoToYourAccountsPage().OpenAccount().GoToHomePage()
                 .GoToRenameAccountPage().GoToHomePage()
-                .GoToChangeYourPasswordPage().NavigateBack()
-                .GoToChangeYourEmailAddressPage().NavigateBack()
-                .GoToNotificationSettingsPage().NavigateBack();
+                .GoToChangeYourPasswordPage().ClickBackLink()
+                .GoToChangeYourEmailAddressPage().ClickBackLink()
+                .GoToNotificationSettingsPage().ClickBackLink();
 
         [Then(@"Employer is able to navigate to Your saved favourites Page")]
         public void ThenEmployerIsAbleToNavigateToYourSavedFavouritesPage() => _homePage = _homePage.GoToYourSavedFavourites().GoToHomePage();

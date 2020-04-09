@@ -29,9 +29,9 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         public HomePage GoToHomePage() => new HomePage(_context, true);
 
-        new public HomePage NavigateBack()
+        public HomePage ClickBackLink()
         {
-            base.NavigateBack();
+            NavigateBack();
             return new HomePage(_context);
         }
     }
