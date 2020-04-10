@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.Registration.UITests.Project.Tests.Features.MiscTests
+namespace SFA.DAS.Registration.UITests.Project.Tests.Features.ManagePAYESchemes
 {
     using TechTalk.SpecFlow;
     
@@ -18,20 +18,20 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features.MiscTests
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.0.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("RE_MT_01")]
-    public partial class RE_MT_01Feature
+    [NUnit.Framework.DescriptionAttribute("RE_MPS_01")]
+    public partial class RE_MPS_01Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "RE_Misc_01.feature"
+#line 1 "RE_MPS_01.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "RE_MT_01", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "RE_MPS_01", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -70,55 +70,29 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features.MiscTests
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RE_MT_01_Create a Levy Account for a specific period")]
+        [NUnit.Framework.DescriptionAttribute("RE_MPS_01_Create an Employer Account and Add Another NonLevy PAYE Scheme and Remo" +
+            "ve it")]
+        [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("registration")]
         [NUnit.Framework.CategoryAttribute("addpayedetails")]
-        public virtual void RE_MT_01_CreateALevyAccountForASpecificPeriod()
+        [NUnit.Framework.CategoryAttribute("addanothernonlevypayedetails")]
+        public virtual void RE_MPS_01_CreateAnEmployerAccountAndAddAnotherNonLevyPAYESchemeAndRemoveIt()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RE_MT_01_Create a Levy Account for a specific period", null, new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RE_MPS_01_Create an Employer Account and Add Another NonLevy PAYE Scheme and Remo" +
+                    "ve it", null, new string[] {
+                        "regression",
                         "registration",
-                        "addpayedetails"});
-#line 5
+                        "addpayedetails",
+                        "addanothernonlevypayedetails"});
+#line 7
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line hidden
-            TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
-                        "Year",
-                        "Month",
-                        "LevyDueYTD",
-                        "LevyAllowanceForFullYear",
-                        "SubmissionDate"});
-            table1.AddRow(new string[] {
-                        "19-20",
-                        "1",
-                        "42000",
-                        "60000",
-                        "2019-05-15"});
-            table1.AddRow(new string[] {
-                        "19-20",
-                        "2",
-                        "44000",
-                        "60000",
-                        "2019-05-15"});
-            table1.AddRow(new string[] {
-                        "19-20",
-                        "3",
-                        "48000",
-                        "60000",
-                        "2019-05-15"});
-#line 6
- testRunner.Given("the following levy declarations with english fraction of 1.00 calculated at 2019-" +
-                    "01-15", ((string)(null)), table1, "Given ");
-#line 11
- testRunner.And("an User Account is created", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 12
- testRunner.When("the User adds PAYE details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 13
- testRunner.And("adds Organisation details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 14
- testRunner.And("the Employer does not sign the Agreement", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 15
- testRunner.Then("the Employer Home page is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 8
+ testRunner.When("an Employer Account with Company Type Org is created and agreement is Signed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 9
+ testRunner.Then("the Employer is able to Add Another NonLevy PAYE scheme to the Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 10
+ testRunner.And("the Employer is able to Remove the second PAYE scheme added from the Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }

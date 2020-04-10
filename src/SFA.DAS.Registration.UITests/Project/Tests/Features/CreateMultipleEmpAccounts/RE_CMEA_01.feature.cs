@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.Registration.UITests.Project.Tests.Features.Notification
+namespace SFA.DAS.Registration.UITests.Project.Tests.Features.CreateMultipleEmpAccounts
 {
     using TechTalk.SpecFlow;
     
@@ -18,24 +18,20 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features.Notification
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.0.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("RE_NOTIF_01")]
-    [NUnit.Framework.CategoryAttribute("regression")]
-    [NUnit.Framework.CategoryAttribute("registration")]
-    public partial class RE_NOTIF_01Feature
+    [NUnit.Framework.DescriptionAttribute("RE_CMEA_01")]
+    public partial class RE_CMEA_01Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "RE_NOTIF_01.feature"
+#line 1 "RE_CMEA_01.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "RE_NOTIF_01", null, ProgrammingLanguage.CSharp, new string[] {
-                        "regression",
-                        "registration"});
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "RE_CMEA_01", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,17 +70,29 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features.Notification
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RE_NOTIF_01_Veify Access code notification receipt during Account creation")]
-        public virtual void RE_NOTIF_01_VeifyAccessCodeNotificationReceiptDuringAccountCreation()
+        [NUnit.Framework.DescriptionAttribute("RE_CMEA_01_Create an Employer Account and Add another Account for the same login")]
+        [NUnit.Framework.CategoryAttribute("regression")]
+        [NUnit.Framework.CategoryAttribute("registration")]
+        [NUnit.Framework.CategoryAttribute("addpayedetails")]
+        [NUnit.Framework.CategoryAttribute("addanothernonlevypayedetails")]
+        public virtual void RE_CMEA_01_CreateAnEmployerAccountAndAddAnotherAccountForTheSameLogin()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RE_NOTIF_01_Veify Access code notification receipt during Account creation", null, ((string[])(null)));
-#line 5
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RE_CMEA_01_Create an Employer Account and Add another Account for the same login", null, new string[] {
+                        "regression",
+                        "registration",
+                        "addpayedetails",
+                        "addanothernonlevypayedetails"});
+#line 7
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 6
- testRunner.When("the User initiates Account creation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 7
- testRunner.Then("the User receives Access code notification to the registered email", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 8
+ testRunner.When("an Employer Account with PublicSector Type Org is created and agreement is Signed" +
+                    "", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 9
+ testRunner.Then("the Employer is able to add another Account with Charity Type Org to the same use" +
+                    "r login", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 10
+ testRunner.And("the Employer is able to switch between the Accounts", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }

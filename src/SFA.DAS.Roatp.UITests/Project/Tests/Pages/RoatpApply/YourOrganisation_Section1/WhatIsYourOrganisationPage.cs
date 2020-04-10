@@ -1,4 +1,5 @@
-﻿using TechTalk.SpecFlow;
+﻿using OpenQA.Selenium;
+using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.YourOrganisation_Section1
 {
@@ -10,6 +11,8 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.YourOrganisation_
         private readonly ScenarioContext _context;
         #endregion
 
+        private By SaveAndContinue => By.XPath("//button[text()='Save and continue']");
+
         public WhatIsYourOrganisationPage(ScenarioContext context) : base(context)
         {
             _context = context;
@@ -19,37 +22,37 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.YourOrganisation_
         public DescribeYourOrganisationPage SelectAnApprenticeshipTrainingAgencyAndContinue()
         {
             SelectRadioOptionByText("An Apprenticeship Training Agency");
-            Continue();
+            formCompletionHelper.ClickElement(SaveAndContinue);
             return new DescribeYourOrganisationPage(_context);
         }
         public TypeOfEducationalInstitutePage SelectEducationalInstituteAndContinue()
         { 
             SelectRadioOptionByText("An educational institute");
-            Continue();
+            formCompletionHelper.ClickElement(SaveAndContinue);
             return new TypeOfEducationalInstitutePage(_context);
         }
         public DescribeYourOrganisationPage SelectIndependentTrainingProviderAndContinue()
         {
             SelectRadioOptionByText("An Independent Training Provider");
-            Continue();
+            formCompletionHelper.ClickElement(SaveAndContinue);
             return new DescribeYourOrganisationPage(_context);
         }
         public TrainApprenticesPage SelectNoneOfTheAboveAndContinue()
         {
             SelectRadioOptionByText("None of the above");
-            Continue();
+            formCompletionHelper.ClickElement(SaveAndContinue);
             return new TrainApprenticesPage(_context);
         }
         public DescribeYourOrganisationPage SelectGroupTrainingAssociationAndContinue()
         {
             SelectRadioOptionByText("A Group Training Association");
-            Continue();
+            formCompletionHelper.ClickElement(SaveAndContinue);
             return new DescribeYourOrganisationPage(_context);
         }
         public TypeOfBodyPage SelectPublicBodyAndContinue()
         { 
             SelectRadioOptionByText("A public body");
-            Continue();
+            formCompletionHelper.ClickElement(SaveAndContinue);
             return new TypeOfBodyPage(_context);
         }
     }
