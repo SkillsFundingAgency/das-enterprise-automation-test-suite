@@ -1,32 +1,23 @@
 ﻿using SFA.DAS.Approvals.UITests.Project.Tests.Pages.DynamicHomePage;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer;
-using SFA.DAS.Registration.UITests.Project.Helpers;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages;
-using System;
 using TechTalk.SpecFlow;
-
 
 namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 {
     public class MFEmployerStepsHelper
     {
         private readonly ScenarioContext _context;
-
         public MFEmployerStepsHelper(ScenarioContext context) => _context = context;
-
         public DoYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage GoToReserveFunding() => GoToManageFunding().ClickReserveMoreFundingLink();
-
         public DoYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage GoToReserveFundingFromHomePagePanel() => new DynamicHomePages(_context).StartNowToReserveFunding().ClickReserveFundingButton();
-
         public AddAnApprenitcePage GoToAddAnApprentices()
         {
             ContinueToCreateAddAnApprentices();
             return new DoYouNeedToCreateAnAdvertPage(_context).ClickNoRadioButtonTakesToAddAnApprentices();
         }
-
-        private DoYouNeedToCreateAnAdvertBasePage ContinueToCreateAddAnApprentices() => new DynamicHomePages(_context).ContinueToCreateAdvert();
-
+        private void ContinueToCreateAddAnApprentices() => new DynamicHomePages(_context).ContinueToCreateAdvert();
         public SuccessfullyReservedFundingPage CreateReservation(DoYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage doYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage)
         {
             return doYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage

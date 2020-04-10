@@ -14,27 +14,26 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.DynamicHomePage
         private readonly FormCompletionHelper _formCompletionHelper;
         private readonly PageInteractionHelper _pageInteractionHelper;
         #endregion
+
         private string VerifyStatusMessage = "DRAFT";
         private By VerifyStatus = By.Id("draft");
-        private By DynamicHomePageAddMoreDetails = By.LinkText("Add more details");
+        private By DynamicHomeContinueButton = By.XPath("(//a[@class='button'])[1]");
         public DynamicHomePages(ScenarioContext context) : base(context) 
         {
             _context = context;
             _formCompletionHelper = context.Get<FormCompletionHelper>();
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
         }
-        
         public ReserveFundingToTrainAndAssessAnApprenticePage StartNowToReserveFunding()
         {
             _formCompletionHelper.ClickElement(StartNowButton);
             return new ReserveFundingToTrainAndAssessAnApprenticePage(_context);
         }
-
         public EditApprenticePage CheckStatusAndAddDetails()
         {
             _pageInteractionHelper.VerifyText(VerifyStatus, VerifyStatusMessage);
-            _formCompletionHelper.ClickElement(DynamicHomePageAddMoreDetails);
+            _formCompletionHelper.Click(DynamicHomeContinueButton);
             return new EditApprenticePage(_context);
         }
-}
+    }
 }
