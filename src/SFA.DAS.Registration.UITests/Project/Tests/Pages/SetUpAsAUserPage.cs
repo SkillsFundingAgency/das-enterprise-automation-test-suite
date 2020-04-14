@@ -32,12 +32,12 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             VerifyPage();
         }
 
-        public ConfirmPage Register(string email = null)
+        public ConfirmYourIdentityPage Register(string email = null)
         {
             email = String.IsNullOrEmpty(email) ? objectContext.GetRegisteredEmail() : email;
 
             EnterRegistrationDetailsAndContinue(email);
-            return new ConfirmPage(_context);
+            return new ConfirmYourIdentityPage(_context);
         }
 
         public SetUpAsAUserPage EnterRegistrationDetailsAndContinue(string email) =>

@@ -26,7 +26,7 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
 
         public HomePage ReLogin() => new SignInPage(_context).Login(loginCredentialsHelper.GetLoginCredentials());
 
-        protected virtual HomePage Login(LoginUser loginUser) => new IndexPage(_context).SignIn().Login(loginUser);
+        protected virtual HomePage Login(LoginUser loginUser) => new IndexPage(_context).ClickSignInLinkOnIndexPage().Login(loginUser);
 
         public HomePage Login(LoginUser loginUser, bool isLevy)
         {

@@ -16,7 +16,7 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
         protected override HomePage Login(LoginUser loginUser)
         {
             return new IndexPage(_context)
-                .SignIn()
+                .ClickSignInLinkOnIndexPage()
                 .MultipleAccountLogin(loginUser)
                 .GoToHomePage(objectContext.GetOrganisationName());
         }
