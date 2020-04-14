@@ -15,9 +15,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.DynamicHomePage
         private readonly PageInteractionHelper _pageInteractionHelper;
         #endregion
 
-        private string VerifyStatusMessage = "DRAFT";
-        private By VerifyStatus = By.Id("draft");
-        private By DynamicHomeContinueButton = By.XPath("(//a[@class='button'])[1]");
+        private string VerifyDraftStatusMessage = "DRAFT";
+        private By VerifyDraftStatus = By.Id("draft");
+        private string VerifyWithTrainingProviderStatusMessage = "WITH TRAINING PROVIDER";
+        private By VerifyWithTrainingProviderStatus = By.Id("with-training-provider");
+        private By DynamicHomeContinueButton = By.LinkText("Continue");
         public DynamicHomePages(ScenarioContext context) : base(context) 
         {
             _context = context;
@@ -29,11 +31,15 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.DynamicHomePage
             _formCompletionHelper.ClickElement(StartNowButton);
             return new ReserveFundingToTrainAndAssessAnApprenticePage(_context);
         }
-        public EditApprenticePage CheckStatusAndAddDetails()
+        public EditApprenticePage CheckDraftStatusAndAddDetails()
         {
-            _pageInteractionHelper.VerifyText(VerifyStatus, VerifyStatusMessage);
+            _pageInteractionHelper.VerifyText(VerifyDraftStatus, VerifyDraftStatusMessage);
             _formCompletionHelper.Click(DynamicHomeContinueButton);
             return new EditApprenticePage(_context);
+        }
+        public void CheckWithTrainingProviderStatus()
+        {
+            _pageInteractionHelper.VerifyText(VerifyWithTrainingProviderStatus, VerifyWithTrainingProviderStatusMessage);
         }
     }
 }

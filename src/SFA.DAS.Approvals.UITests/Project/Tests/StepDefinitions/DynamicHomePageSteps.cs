@@ -1,7 +1,10 @@
 ﻿using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
-using SFA.DAS.Approvals.UITests.Project.Tests.Pages.DynamicHomePage;
-using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
+using SFA.DAS.ProviderLogin.Service.Helpers;
 using TechTalk.SpecFlow;
+using System;
+using SFA.DAS.Login.Service.Helpers;
+using SFA.DAS.ProviderLogin.Service;
+using SFA.DAS.UI.Framework.TestSupport;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 {
@@ -12,12 +15,18 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         #region Helpers and Context
         private readonly MFEmployerStepsHelper _reservationStepsHelper;
         private readonly EmployerStepsHelper _employerStepsHelper;
+        private readonly ProviderHomePageStepsHelper _providerHomePageStepsHelper;
+        private readonly ProviderConfig _config;
+        private readonly ProviderLoginUser _login;
         #endregion
 
         public DynamicHomePageSteps(ScenarioContext context)
         {
             _reservationStepsHelper = new MFEmployerStepsHelper(context);
             _employerStepsHelper = new EmployerStepsHelper(context);
+            _providerHomePageStepsHelper = new ProviderHomePageStepsHelper(context);
+            _config = context.GetProviderConfig<ProviderConfig>();
+            _login = new ProviderLoginUser { Username = _config.UserId, Password = _config.Password, Ukprn = _config.Ukprn };
         }
 
         [Then(@"The employer continues to add an apprentice for reserved funding")]
@@ -26,5 +35,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _reservationStepsHelper.GoToAddAnApprentices();
             _employerStepsHelper.DraftApprentice();
         }
+
+        [Then(@"TrainingProvider approves apprentice by adding further details")]
+        public void ThenTrainingProviderApprovesApprenticeByAddingFurtherDetails()
+        {
+            _providerHomePageStepsHelper.GoToProviderHomePage(_login, true);
+        }
+
     }
 }

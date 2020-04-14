@@ -15,9 +15,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
         private readonly HomePageStepsHelper _homePageStepsHelper;
         private readonly ObjectContext _objectContext;
         private readonly ScenarioContext _context;
-        private readonly AddAnApprenitcePage _addAnApprenitcePage;
-
-
+        
         internal EmployerStepsHelper(ScenarioContext context)
         {
             _context = context;
@@ -25,7 +23,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             _homePageStepsHelper = new HomePageStepsHelper(_context);
             _reviewYourCohortStepsHelper = new ReviewYourCohortStepsHelper(_context.Get<AssertHelper>());
             _employerReservationStepsHelper = new MFEmployerStepsHelper(_context);
-            _addAnApprenitcePage = new AddAnApprenitcePage(_context); 
         }
 
         public void Approve() => EmployerReviewCohort().EmployerDoesSecondApproval();
@@ -211,6 +208,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 
          public void DraftApprentice()
         {
+             AddAnApprenitcePage _addAnApprenitcePage = new AddAnApprenitcePage(_context);
             _addAnApprenitcePage.StartNowToAddTrainingProvider()
              .SubmitValidUkprn()
              .ConfirmProviderDetailsAreCorrect()
@@ -218,8 +216,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
               .DynamicHomePageClickSaveAndContinueToAddAnApprentices()
               .DraftDynamicHomePageSubmitValidApprenticeDetails()
               .DraftReturnToHomePage()
-             .CheckStatusAndAddDetails()
-             .ContinueToAddValidApprenticeDetails(false);
+             .CheckDraftStatusAndAddDetails()
+             .ContinueToAddValidApprenticeDetails()
+             .DynamicHomePageSubmitApproveAndSendToTrainingProvider()
+             .ClickHomeLink()
+             .CheckWithTrainingProviderStatus();
           }
     }
 }

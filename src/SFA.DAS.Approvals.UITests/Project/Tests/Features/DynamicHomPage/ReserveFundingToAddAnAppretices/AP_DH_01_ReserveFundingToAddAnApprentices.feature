@@ -11,3 +11,4 @@ Scenario: AP_DH_01 Employer reserves funding to add an apprentice from dynamic h
 	Then  The funding is successfully reserved
 	And   The new reserved funding panel is shown to employer on the homepage
 	And   The employer continues to add an apprentice for reserved funding
+	And   TrainingProvider approves apprentice by adding further details

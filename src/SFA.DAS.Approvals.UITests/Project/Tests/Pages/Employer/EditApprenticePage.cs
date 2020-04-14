@@ -57,7 +57,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             EditCostCourseAndReference(dataHelper.EmployerReference);
             return ConfirmChangesPage();
         }
-
         public ConfirmChangesPage EditApprenticeNameDobAndReference()
         {
             EditApprenticeNameDobAndReference(dataHelper.EmployerReference);
@@ -67,34 +66,21 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         {
             formCompletionHelper.SelectFromDropDownByValue(CourseOption, _coursedataHelper.EditedCourse);
         }
-
         private ConfirmChangesPage ConfirmChangesPage()
         {
             return new ConfirmChangesPage(_context);
         }
-        public ApproveApprenticeDetailsPage ContinueToAddValidApprenticeDetails(bool isMF)
+        public ApproveApprenticeDetailsPage ContinueToAddValidApprenticeDetails()
         {
             _formCompletionHelper.EnterText(EditDateOfBirthDay, _dataHelper.DateOfBirthDay);
             _formCompletionHelper.EnterText(EditDateOfBirthMonth, _dataHelper.DateOfBirthMonth);
             _formCompletionHelper.EnterText(EditDateOfBirthYear, _dataHelper.DateOfBirthYear);
-           //_formCompletionHelper.SelectFromDropDownByValue(EditTrainingCourseContainer, _EditedcoursedataHelper.Course);
-            //_formCompletionHelper.ClickElement(StartDateMonth);
-            if (isMF == false)
-            {
-                _formCompletionHelper.EnterText(StartDateMonth, _EditedcoursedataHelper.CourseStartDate.Month);
-                _formCompletionHelper.EnterText(StartDateYear, _EditedcoursedataHelper.CourseStartDate.Year);
-            }
             _formCompletionHelper.EnterText(EndDateMonth, _EditedcoursedataHelper.CourseEndDate.Month);
             _formCompletionHelper.EnterText(EndDateYear, _EditedcoursedataHelper.CourseEndDate.Year);
-            //_formCompletionHelper.EnterText(EditStartDateMonth, _EditedcoursedataHelper.CourseStartDate.Month);
-            //_formCompletionHelper.EnterText(EditStartDateYear, _EditedcoursedataHelper.CourseStartDate.Year);
-            //_formCompletionHelper.EnterText(EditEndDateMonth, _EditedcoursedataHelper.CourseEndDate.Month);
-            //_formCompletionHelper.EnterText(EditEndDateYear, _EditedcoursedataHelper.CourseEndDate.Year);
             _formCompletionHelper.EnterText(EditTrainingCost, _dataHelper.TrainingPrice);
             _formCompletionHelper.EnterText(EditEmployerReference, _dataHelper.EmployerReference);
             _formCompletionHelper.ClickElement(EditSaveAndContinueButton);
             return new ApproveApprenticeDetailsPage(_context);
-        }
-       
+        }       
     }
 }

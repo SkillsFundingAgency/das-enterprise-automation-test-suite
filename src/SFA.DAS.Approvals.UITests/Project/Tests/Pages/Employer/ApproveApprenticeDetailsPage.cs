@@ -9,7 +9,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
     public class ApproveApprenticeDetailsPage : BasePage
     {
-        protected override string PageTitle => "ApproveAndNotifyTrainingProvider apprentice details";
+        //protected override string PageTitle => "ApproveAndNotifyTrainingProvider apprentice details";
+        protected override string PageTitle => "Approve apprentice details";
         #region Helpers and Context
         private readonly FormCompletionHelper _formCompletionHelper;
         private readonly PageInteractionHelper _pageInteractionHelper;
@@ -44,6 +45,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         {
             SelectRadioOptionByForAttribute(value);
             return this;
+        }
+        internal ApprenticeDetailsApprovedAndSentToTrainingProviderPage  DynamicHomePageSubmitApproveAndSendToTrainingProvider()
+        {
+            SelectCohortApproveOptions("radio-approve")
+            .Continue();
+            return new ApprenticeDetailsApprovedAndSentToTrainingProviderPage(_context);
         }
     }
 }

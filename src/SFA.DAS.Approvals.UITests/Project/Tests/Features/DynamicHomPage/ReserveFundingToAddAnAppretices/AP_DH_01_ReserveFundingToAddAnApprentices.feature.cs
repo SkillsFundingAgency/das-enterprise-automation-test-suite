@@ -98,6 +98,8 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("The new reserved funding panel is shown to employer on the homepage", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 13
  testRunner.And("The employer continues to add an apprentice for reserved funding", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 14
+ testRunner.And("TrainingProvider approves apprentice by adding further details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
