@@ -25,7 +25,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         private By RenameAccountLink => By.LinkText("Rename account");
         private By ChangePasswordLink => By.LinkText("Change your password");
         private By ChangeEmailAddressLink => By.LinkText("Change your email address");
-        private By NotificationSettingsLink => By.LinkText("Notifications settings");
+        private By NotificationSettingsLink => By.PartialLinkText("Notification");
         private By SignOutLink => By.LinkText("Sign out");
         private By YourTeamLink => By.LinkText("Your team");
         private By MoreLink => By.LinkText("More");
@@ -57,10 +57,10 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             return new YourAccountsPage(_context);
         }
 
-        public ManageApprenticeshipsServiceHelpPage GoToHelpPage()
+        public HelpArticlesPage GoToHelpPage()
         {
             _tabHelper.OpenInNewTab(() => formCompletionHelper.ClickElement(HelpLink));
-            return new ManageApprenticeshipsServiceHelpPage(_context);
+            return new HelpArticlesPage(_context);
         }
 
         public RenameAccountPage GoToRenameAccountPage()
