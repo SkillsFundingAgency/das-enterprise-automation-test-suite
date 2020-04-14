@@ -22,6 +22,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         private By SetMeUpButton => By.Id("button-register");
         private By ErrorTextAboveEmailTextBox => By.Id("error-email");
         private By EmailErrorTextAtheader => By.CssSelector(".danger");
+        private By SigninLink => By.LinkText("sign in");
         #endregion
 
         public SetUpAsAUserPage(ScenarioContext context) : base(context)
@@ -56,6 +57,12 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         {
             pageInteractionHelper.VerifyText(EmailErrorTextAtheader, ExpectedEmailErrorText);
             pageInteractionHelper.VerifyText(ErrorTextAboveEmailTextBox, ExpectedEmailErrorText);
+        }
+
+        public SignInPage SignIn()
+        {
+            formCompletionHelper.ClickElement(SigninLink);
+            return new SignInPage(_context);
         }
 
         private SetUpAsAUserPage EnterFirstName()
