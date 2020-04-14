@@ -100,7 +100,7 @@ testRunner.Then("the invited employer status in \"PAYE scheme added\"", ((string
 #line 14
 testRunner.When("the employer signs the agreement", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 15
-testRunner.Then("the invited employer status in \"Legal agreement signed\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+testRunner.Then("the invited employer status in \"Legal agreement accepted\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

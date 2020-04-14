@@ -83,7 +83,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
                 .ConfirmProviderLeadRegistrationPermissions();
         }
 
-        [Then(@"the invited employer status in ""(Invitation sent|Account started|PAYE scheme added|Legal agreement signed)""")]
+        [Then(@"the invited employer status in ""(Invitation sent|Account started|PAYE scheme added|Legal agreement accepted)""")]
         public void ThenTheInvitedEmployerStatusIn(string status)
         {
             GoToProviderHomePage();
