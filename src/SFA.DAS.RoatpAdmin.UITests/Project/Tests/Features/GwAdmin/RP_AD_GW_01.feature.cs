@@ -71,21 +71,23 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Features.GwAdmin
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("RP_AD_GW_01_Sample test")]
-        [NUnit.Framework.CategoryAttribute("rpadgw01")]
+        [NUnit.Framework.CategoryAttribute("notestdata")]
         [NUnit.Framework.CategoryAttribute("roatp")]
         [NUnit.Framework.CategoryAttribute("roatpadmin")]
+        [NUnit.Framework.CategoryAttribute("newroatpadmin")]
         [NUnit.Framework.CategoryAttribute("regression")]
         public virtual void RP_AD_GW_01_SampleTest()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_AD_GW_01_Sample test", null, new string[] {
-                        "rpadgw01",
+                        "notestdata",
                         "roatp",
                         "roatpadmin",
+                        "newroatpadmin",
                         "regression"});
-#line 6
+#line 8
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 7
+#line 9
 testRunner.When("the gateway admin lands on the Dashboard", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
             this.ScenarioCleanup();
