@@ -16,7 +16,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             VerifyPage();
         }
 
-        public HomePage GoToHomePage()
+        public new HomePage GoToHomePage()
         {
             SelectRadioOptionByForAttribute("choice-3");
             Continue();

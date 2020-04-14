@@ -21,6 +21,12 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             Continue();
             return new PermissionsUpdatedPage(_context);
         }
+
+        public HomePage ConfirmProviderLeadRegistrationPermissions()
+        {
+            Continue();
+            return new HomePage(_context);
+        }
     }
 }
 
