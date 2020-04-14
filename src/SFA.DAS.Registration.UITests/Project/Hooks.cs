@@ -56,11 +56,16 @@ namespace SFA.DAS.Registration.UITests.Project
 
             _context.Set(new TprSqlDataHelper(_tprconfig, _objectContext, registrationDatahelpers));
 
+            _objectContext.SetRegisteredEmail(registrationDatahelpers.RandomEmail);
+        }
+
+        [BeforeScenario(Order = 23)]
+        [Scope(Tag = "providerleadregistration")]
+        public void SetUpProviderLeadRegistrationDataHelpers()
+        {
             _pregSqlDataHelper = new PregSqlDataHelper(_providerLeadRegistrationConfig);
 
             _context.Set(_pregSqlDataHelper);
-
-            _objectContext.SetRegisteredEmail(registrationDatahelpers.RandomEmail);
         }
 
         [AfterScenario(Order = 22)]
