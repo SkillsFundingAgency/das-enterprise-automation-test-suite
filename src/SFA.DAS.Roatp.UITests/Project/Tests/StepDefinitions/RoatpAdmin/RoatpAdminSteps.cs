@@ -1,4 +1,4 @@
-﻿using SFA.DAS.IdamsLogin.Service.Project.Tests.Pages;
+﻿using SFA.DAS.Roatp.UITests.Project.Helpers.RoatpAdmin;
 using SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpAdmin;
 using TechTalk.SpecFlow;
 
@@ -10,8 +10,13 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpAdmin
         private readonly ScenarioContext _context;
         private RoatpAdminHomePage _roatpAdminHomePage;
         private ResultsFoundPage _resultsFoundPage;
+        private readonly RoatpAdminLoginStepsHelper _loginStepsHelper;
 
-        public RoatpAdminSteps(ScenarioContext context) => _context = context;
+        public RoatpAdminSteps(ScenarioContext context)
+        {
+            _context = context;
+            _loginStepsHelper = new RoatpAdminLoginStepsHelper(_context);
+        }
 
         [When(@"the admin searches for a provider by partial provider name")]
         public void WhenTheAdminSearchesForAProviderByPartialProviderName() => _resultsFoundPage = GoToRoatpAdminHomePage(_resultsFoundPage).SearchTrainingProvider("PEOPLE");
@@ -103,9 +108,9 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpAdmin
 
         private RoatpAdminHomePage GoToRoatpAdminHomePage()
         {
-            new ServiceStartPage(_context).ClickStartNow().LoginToAccess1Staff();
+            _loginStepsHelper.SubmitValidLoginDetails();
 
-            return new SignInPage(_context).SignInWithValidDetails();
+            return new RoatpAdminHomePage(_context);
         }
 
         private RoatpAdminHomePage GoToRoatpAdminHomePage(ResultsFoundPage resultsFoundPage) => resultsFoundPage.GetRoatpAdminHomePage();
