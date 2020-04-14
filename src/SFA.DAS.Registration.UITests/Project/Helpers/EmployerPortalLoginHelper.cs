@@ -40,7 +40,5 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
         }
 
         public HomePage Login(NonLevyUser nonLevyUser) => Login(nonLevyUser, false);
-
-        public HomePage LoginFromCreateAcccountPage(LoginUser loginUser) => new IndexPage(_context).CreateAccount().SignIn().Login(loginUser);
     }
 }
