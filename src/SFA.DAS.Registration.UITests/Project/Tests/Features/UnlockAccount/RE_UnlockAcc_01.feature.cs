@@ -18,20 +18,20 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features.UnlockAccount
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.0.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("RE_UnlockA_01")]
-    public partial class RE_UnlockA_01Feature
+    [NUnit.Framework.DescriptionAttribute("RE_UnlockAcc_01")]
+    public partial class RE_UnlockAcc_01Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "RE_UnlockA_01.feature"
+#line 1 "RE_UnlockAcc_01.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "RE_UnlockA_01", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "RE_UnlockAcc_01", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -70,13 +70,13 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features.UnlockAccount
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RE_UnlockA_01_Verify Unlock Account scenario")]
+        [NUnit.Framework.DescriptionAttribute("RE_UnlockAcc_01_Verify Unlock Account scenario")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("registration")]
         [NUnit.Framework.CategoryAttribute("addpayedetails")]
-        public virtual void RE_UnlockA_01_VerifyUnlockAccountScenario()
+        public virtual void RE_UnlockAcc_01_VerifyUnlockAccountScenario()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RE_UnlockA_01_Verify Unlock Account scenario", null, new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RE_UnlockAcc_01_Verify Unlock Account scenario", null, new string[] {
                         "regression",
                         "registration",
                         "addpayedetails"});
@@ -86,7 +86,7 @@ this.ScenarioInitialize(scenarioInfo);
 #line 7
  testRunner.When("an Employer Account with Company Type Org is created and agreement is Signed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 8
- testRunner.Then("the Employer account is locked with 3 incorrect password attempts", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the Employer Account is locked with 3 incorrect password attempts", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 9
  testRunner.And("Employer is able to Unlock the Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
