@@ -31,7 +31,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             VerifyPage();
         }
 
-        public ConfirmPage ProviderLeadRegistration()
+        public ConfirmYourIdentityPage ProviderLeadRegistration()
         {
             pageInteractionHelper.VerifyPage(FirstNameInput($"[value='{registrationDataHelper.FirstName}']"));
             pageInteractionHelper.VerifyPage(LastNameInput($"[value='{registrationDataHelper.LastName}']"));
@@ -39,16 +39,16 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
             EnterPassword().EnterPasswordConfirm().SetMeUp();
 
-            return new ConfirmPage(_context);
+            return new ConfirmYourIdentityPage(_context);
         }
 
-        public ConfirmPage Register(string email = null)
+        public ConfirmYourIdentityPage Register(string email = null)
         {
             email = string.IsNullOrEmpty(email) ? objectContext.GetRegisteredEmail() : email;
 
             EnterRegistrationDetailsAndContinue(email);
 
-            return new ConfirmPage(_context);
+            return new ConfirmYourIdentityPage(_context);
         }
 
         public void EnterRegistrationDetailsAndContinue(string email) => EnterFirstName().EnterlastName().EnterEmail(email).EnterPassword().EnterPasswordConfirm().SetMeUp();
