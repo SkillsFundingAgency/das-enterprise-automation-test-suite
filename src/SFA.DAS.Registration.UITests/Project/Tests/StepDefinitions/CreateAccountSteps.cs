@@ -36,6 +36,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         private EnterYourPAYESchemeDetailsPage _enterYourPAYESchemeDetailsPage;
         private UsingYourGovtGatewayDetailsPage _usingYourGovtGatewayDetailsPage;
         private MyAccountWithOutPayePage _myAccountWithOutPayePage;
+        private SetUpAsAUserPage _setUpAsAUserPage;
         private IndexPage _indexPage;
         private SignInPage _signInPage;
         private string _loginEmail;
@@ -555,13 +556,16 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         }
 
         [Then(@"Employer is able to Unlock the Account")]
-        public void ThenEmployerIsAbleToUnlockTheAccount()
-        {
-            new AccountLockedPage(_context)
-                .EnterDetailsAndClickUnlockButton(_loginEmail)
-                .CheckHeaderInformationMessageOnSignInPage("Account Unlocked")
-                .Login(_objectContext.GetLoginCredentials());
-        }
+        public void ThenEmployerIsAbleToUnlockTheAccount() => new AccountLockedPage(_context)
+            .EnterDetailsAndClickUnlockButton(_loginEmail)
+            .CheckHeaderInformationMessageOnSignInPage("Account Unlocked")
+            .Login(_objectContext.GetLoginCredentials());
+
+        [When(@"the User is on the 'Set up as a user' page")]
+        public void WhenTheUserIsOnTheSetUpAsAUserPage() => _setUpAsAUserPage = new IndexPage(_context).CreateAccount();
+
+        [Then(@"the User is able to navigate to 'Terms and conditions' page")]
+        public void ThenTheUserIsAbleToNavigateToTermsAndConditionsPage() => _setUpAsAUserPage.ClickTermsAndConditionsLink();
 
         private void CreateUserAccountAndAddOrg(OrgType orgType)
         {
