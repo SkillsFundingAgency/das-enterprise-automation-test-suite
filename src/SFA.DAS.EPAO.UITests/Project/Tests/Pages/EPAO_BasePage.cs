@@ -46,7 +46,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages
             Continue();
         }
         
-        protected void AcceptCookies() => formCompletionHelper.Click(AcceptCookiesButton);
+        protected void AcceptCookies() => formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(AcceptCookiesButton));
 
         protected void ClickRandomElement(By locator) => formCompletionHelper.ClickElement(() => dataHelper.GetRandomElementFromListOfElements(pageInteractionHelper.FindElements(locator)));
     }
