@@ -31,6 +31,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
             }
 
             Continue();
+            pageInteractionHelper.WaitforURLToChange("duration");
             return new DurationPage(_context);
         }
     }
