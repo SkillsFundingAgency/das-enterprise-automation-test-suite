@@ -21,6 +21,8 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages
         
         protected override By PageHeader => By.CssSelector(".govuk-heading-xl, .heading-xlarge, .govuk-heading-l, .govuk-panel__title, .govuk-fieldset__heading");
 
+        protected override By ContinueButton => By.CssSelector("#main-content .govuk-button");
+
         private By ChooseFile => By.ClassName("govuk-file-upload");
 
         public EPAO_BasePage(ScenarioContext context) : base(context)
