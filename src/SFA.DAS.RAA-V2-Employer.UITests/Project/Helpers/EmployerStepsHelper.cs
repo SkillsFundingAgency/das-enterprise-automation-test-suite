@@ -13,14 +13,14 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
     {
         private readonly ScenarioContext _context;
         private readonly EmployerPortalLoginHelper _loginhelper;
-        private readonly HomePageStepsHelper _homePageStepsHelper;
+        private readonly EmployerHomePageStepsHelper _homePageStepsHelper;
         private readonly StepsHelper _stepsHelper;
 
         public EmployerStepsHelper(ScenarioContext context)
         {
             _context = context;
             _loginhelper = new EmployerPortalLoginHelper(context);
-            _homePageStepsHelper = new HomePageStepsHelper(context);
+            _homePageStepsHelper = new EmployerHomePageStepsHelper(context);
             _stepsHelper = new StepsHelper(context);
         }
 

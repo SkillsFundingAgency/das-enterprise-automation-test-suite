@@ -27,6 +27,8 @@ namespace SFA.DAS.Registration.UITests.Project
 
             _context.SetTprConfig(_configSection.GetConfigSection<TprConfig>());
 
+            _context.SetProviderLeadRegistrationConfig(_configSection.GetConfigSection<ProviderLeadRegistrationConfig>());
+
             _context.SetUser(_configSection.GetConfigSection<LevyUser>());
 
             _context.SetUser(_configSection.GetConfigSection<NonLevyUser>());

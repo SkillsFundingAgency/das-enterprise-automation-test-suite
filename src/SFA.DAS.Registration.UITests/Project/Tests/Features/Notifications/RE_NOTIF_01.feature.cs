@@ -33,7 +33,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features.Notifications
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "RE_NOTIF_01", null, ProgrammingLanguage.CSharp, new string[] {
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "RE_NOTIF_01", null, ProgrammingLanguage.CSharp, new string[] {
                         "regression",
                         "registration"});
             testRunner.OnFeatureStart(featureInfo);
