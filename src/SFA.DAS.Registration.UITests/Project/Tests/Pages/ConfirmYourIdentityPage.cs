@@ -4,7 +4,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 {
-    public class ConfirmPage : RegistrationBasePage
+    public class ConfirmYourIdentityPage : RegistrationBasePage
     {
         protected override string PageTitle => "Confirm your identity";
         private readonly ScenarioContext _context;
@@ -14,7 +14,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         protected override By ContinueButton => By.CssSelector("input.button");
         #endregion
 
-        public ConfirmPage(ScenarioContext context) : base(context)
+        public ConfirmYourIdentityPage(ScenarioContext context) : base(context)
         {
             _context = context;
             VerifyPage();
@@ -27,7 +27,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             return new AddAPAYESchemePage(_context);
         }
 
-        public ConfirmPage EnterAccessCode()
+        public ConfirmYourIdentityPage EnterAccessCode()
         {
             formCompletionHelper.EnterText(AccessCodeInput, config.RE_ConfirmCode);
             return this;

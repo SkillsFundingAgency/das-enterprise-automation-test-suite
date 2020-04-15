@@ -23,6 +23,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         private readonly RegistrationSqlDataHelper _registrationSqlDataHelper;
         private readonly TprSqlDataHelper _tprSqlDataHelper;
         private readonly AccountCreationStepsHelper _accountCreationStepsHelper;
+        private readonly LoginCredentialsHelper _loginCredentialsHelper;
         private HomePage _homePage;
         private AddAPAYESchemePage _addAPAYESchemePage;
         private GgSignInPage _gGSignInPage;
@@ -36,6 +37,8 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         private UsingYourGovtGatewayDetailsPage _usingYourGovtGatewayDetailsPage;
         private MyAccountWithOutPayePage _myAccountWithOutPayePage;
         private IndexPage _indexPage;
+        private SignInPage _signInPage;
+        private string _loginEmail;
 
         public CreateAccountSteps(ScenarioContext context)
         {
@@ -43,6 +46,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             _objectContext = _context.Get<ObjectContext>();
             _registrationDataHelper = context.Get<RegistrationDataHelper>();
             _registrationSqlDataHelper = context.Get<RegistrationSqlDataHelper>();
+            _loginCredentialsHelper = context.Get<LoginCredentialsHelper>();
             _tprSqlDataHelper = context.Get<TprSqlDataHelper>();
             _tabHelper = context.Get<TabHelper>();
             _config = context.GetRegistrationConfig<RegistrationConfig>();
@@ -538,6 +542,27 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             OpenAccount(_objectContext.GetSecondAccountOrganisationName());
         }
 
+        [Then(@"the Employer Account is locked with 3 incorrect password attempts")]
+        public void ThenTheEmployerAccountIsLockedWithIncorrectPasswordAttempts()
+        {
+            _signInPage = _accountCreationStepsHelper.SignOut().ClickSignInLinkOnIndexPage();
+
+            _loginEmail = _loginCredentialsHelper.GetLoginCredentials().Username;
+            const string password = "InvalidPassword";
+            AttemptLogin(_loginEmail, password);
+            AttemptLogin(_loginEmail, password);
+            AttemptLogin(_loginEmail, password);
+        }
+
+        [Then(@"Employer is able to Unlock the Account")]
+        public void ThenEmployerIsAbleToUnlockTheAccount()
+        {
+            new AccountLockedPage(_context)
+                .EnterDetailsAndClickUnlockButton(_loginEmail)
+                .CheckHeaderInformationMessageOnSignInPage("Account Unlocked")
+                .Login(_objectContext.GetLoginCredentials());
+        }
+
         private void CreateUserAccountAndAddOrg(OrgType orgType)
         {
             CreateAnUserAcountAndAddPaye();
@@ -571,5 +596,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             _searchForYourOrganisationPage = _addAPAYESchemePage.AddPaye().ContinueToGGSignIn().SignInTo(payeIndex);
 
         private HomePage OpenAccount(string orgName) => _homePage = _homePage.GoToYourAccountsPage().ClickAccountLink(orgName);
+
+        private void AttemptLogin(string loginId, string password) => _signInPage.EnterLoginDetailsAndClickSignIn(loginId, password);
     }
 }

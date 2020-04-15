@@ -26,7 +26,7 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
             _objectContext = _context.Get<ObjectContext>();
         }
 
-        public ConfirmPage RegisterUserAccount() => new IndexPage(_context).CreateAccount().Register();
+        public ConfirmYourIdentityPage RegisterUserAccount() => new IndexPage(_context).CreateAccount().Register();
 
         public SelectYourOrganisationPage SearchForAnotherOrg(HomePage homepage, OrgType orgType)
         {
