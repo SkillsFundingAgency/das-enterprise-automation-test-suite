@@ -16,6 +16,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
         public AS_LandingPage(ScenarioContext context) : base(context)
         {
             _context = context;
+            AcceptCookies();
             VerifyPage();
         }
 

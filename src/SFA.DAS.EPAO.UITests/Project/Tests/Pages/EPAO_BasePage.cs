@@ -25,6 +25,8 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages
 
         private By ChooseFile => By.ClassName("govuk-file-upload");
 
+        private By AcceptCookiesButton => By.CssSelector(".das-cookie-banner__button-accept");
+
         public EPAO_BasePage(ScenarioContext context) : base(context)
         {
             _frameworkConfig = context.Get<FrameworkConfig>();
@@ -43,6 +45,8 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages
             formCompletionHelper.EnterText(ChooseFile, File);
             Continue();
         }
+        
+        protected void AcceptCookies() => formCompletionHelper.Click(AcceptCookiesButton);
 
         protected void ClickRandomElement(By locator) => formCompletionHelper.ClickElement(() => dataHelper.GetRandomElementFromListOfElements(pageInteractionHelper.FindElements(locator)));
     }
