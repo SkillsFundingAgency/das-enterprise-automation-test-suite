@@ -24,6 +24,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         private readonly TprSqlDataHelper _tprSqlDataHelper;
         private readonly AccountCreationStepsHelper _accountCreationStepsHelper;
         private readonly LoginCredentialsHelper _loginCredentialsHelper;
+        private readonly RestartWebDriverHelper _restartWebDriverHelper;
         private HomePage _homePage;
         private AddAPAYESchemePage _addAPAYESchemePage;
         private GgSignInPage _gGSignInPage;
@@ -50,6 +51,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             _loginCredentialsHelper = context.Get<LoginCredentialsHelper>();
             _tprSqlDataHelper = context.Get<TprSqlDataHelper>();
             _tabHelper = context.Get<TabHelper>();
+            _restartWebDriverHelper = new RestartWebDriverHelper(context);
             _config = context.GetRegistrationConfig<RegistrationConfig>();
             _accountCreationStepsHelper = new AccountCreationStepsHelper(context);
         }
@@ -445,8 +447,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         [When(@"the User tries to regiser another Account with the same Email that is pending activation")]
         public void WhenTheUserTriesToRegiserAnotherAccountWithTheSameEmailThatIsPendingActivation()
         {
-            _tabHelper.GoToUrl(_config.EmployerApprenticeshipServiceBaseURL);
-
+            VisitEmployerApprenticeshipSite();
             _addAPAYESchemePage = _accountCreationStepsHelper.RegisterUserAccount().ContinueToGetApprenticeshipFunding();
         }
 
@@ -567,6 +568,15 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         [Then(@"the User is able to navigate to 'Terms and conditions' page")]
         public void ThenTheUserIsAbleToNavigateToTermsAndConditionsPage() => _setUpAsAUserPage.ClickTermsAndConditionsLink();
 
+        [Then(@"'Confirm your identity' page is displayed when the User tries to login with the Unactivated credentials")]
+        public void ThenConfirmYourIdentityPageIsDisplayedWhenTheUserTriesToLoginWithTheUnactivatedCredentials()
+        {
+            _restartWebDriverHelper.RestartWebDriver(_config.EmployerApprenticeshipServiceBaseURL, "EAS");
+
+            new IndexPage(_context).ClickSignInLinkOnIndexPage()
+                .LoginWithUnActivatedAccount(_objectContext.GetRegisteredEmail(), _registrationDataHelper.Password);
+        }
+
         private void CreateUserAccountAndAddOrg(OrgType orgType)
         {
             CreateAnUserAcountAndAddPaye();
@@ -602,5 +612,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         private HomePage OpenAccount(string orgName) => _homePage = _homePage.GoToYourAccountsPage().ClickAccountLink(orgName);
 
         private void AttemptLogin(string loginId, string password) => _signInPage.EnterLoginDetailsAndClickSignIn(loginId, password);
+
+        private void VisitEmployerApprenticeshipSite() => _tabHelper.GoToUrl(_config.EmployerApprenticeshipServiceBaseURL);
     }
 }
