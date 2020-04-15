@@ -35,6 +35,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
                 DifferentLocation();
             }
             Continue();
+            pageInteractionHelper.WaitforURLToChange("dates");
             return new ImportantDatesPage(_context);
         }
 
