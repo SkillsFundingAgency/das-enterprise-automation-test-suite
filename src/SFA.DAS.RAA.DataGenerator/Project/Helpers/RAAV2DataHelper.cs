@@ -97,8 +97,8 @@ namespace SFA.DAS.RAA.DataGenerator
         private List<string> AvailableProviders => new List<string> { "BALTIC TRAINING SERVICES LIMITED 10019026" };
 
         private List<string> AvailableTraining => new List<string>
-        { 
-            "Agriculture: Agriculture, Level 3 (A level)",
+        {
+            "Software Tester, Level 4 (Higher national certificate)",
         };
 
         private List<string> AvailableAddress => new List<string>
