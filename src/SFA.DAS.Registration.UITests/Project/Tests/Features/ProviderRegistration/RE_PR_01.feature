@@ -4,7 +4,7 @@
 @registration
 @addpayedetails
 @providerleadregistration
-Scenario: RE_PR_01 Provider Registration
+Scenario: RE_PR_01 Provider Lead Registration
 Given the provider invite an employer
 Then the invited employer status in "Invitation sent"
 When the employer sets up the user
