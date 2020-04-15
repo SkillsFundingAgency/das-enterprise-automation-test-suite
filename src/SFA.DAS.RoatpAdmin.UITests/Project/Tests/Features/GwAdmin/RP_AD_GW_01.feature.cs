@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.EmployerFinance.UITests.Project.Tests.Features.HomePageFinanceLinks
+namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Features.GwAdmin
 {
     using TechTalk.SpecFlow;
     
@@ -18,20 +18,20 @@ namespace SFA.DAS.EmployerFinance.UITests.Project.Tests.Features.HomePageFinance
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.0.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("EF_HPFL_02")]
-    public partial class EF_HPFL_02Feature
+    [NUnit.Framework.DescriptionAttribute("RP_AD_GW_01")]
+    public partial class RP_AD_GW_01Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "EF_HPFL_02.feature"
+#line 1 "RP_AD_GW_01.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "EF_HPFL_02", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "RP_AD_GW_01", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -70,33 +70,23 @@ namespace SFA.DAS.EmployerFinance.UITests.Project.Tests.Features.HomePageFinance
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("EF_HPFL_02 - Validate Home Page Finance section for a NonLevy User who has not Si" +
-            "gned the Agreement")]
+        [NUnit.Framework.DescriptionAttribute("RP_AD_GW_01_Sample test")]
+        [NUnit.Framework.CategoryAttribute("rpadgw01")]
+        [NUnit.Framework.CategoryAttribute("roatp")]
+        [NUnit.Framework.CategoryAttribute("roatpadmin")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("employerfinance")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
-        public virtual void EF_HPFL_02_ValidateHomePageFinanceSectionForANonLevyUserWhoHasNotSignedTheAgreement()
+        public virtual void RP_AD_GW_01_SampleTest()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EF_HPFL_02 - Validate Home Page Finance section for a NonLevy User who has not Si" +
-                    "gned the Agreement", null, new string[] {
-                        "regression",
-                        "employerfinance",
-                        "addpayedetails"});
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_AD_GW_01_Sample test", null, new string[] {
+                        "rpadgw01",
+                        "roatp",
+                        "roatpadmin",
+                        "regression"});
 #line 6
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 7
- testRunner.When("an Employer creates a Non Levy Account and not Signs the Agreement during registr" +
-                    "ation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 8
- testRunner.And("Signs the Agreement from Account HomePage Panel", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 9
- testRunner.Then("\'Your funding reservations\' and \'Your finances\' links are displayed in the Financ" +
-                    "es section", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 10
- testRunner.When("the Employer navigates to \'Finance\' Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 11
- testRunner.Then("\'View transactions\', \'Download transactions\' and \'Transfers\' links are displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+testRunner.When("the gateway admin lands on the Dashboard", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
             this.ScenarioCleanup();
         }

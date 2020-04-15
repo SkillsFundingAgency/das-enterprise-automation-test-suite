@@ -13,13 +13,14 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         private readonly ScenarioContext _context;
 
         #region Locators
+        protected By YourFundingReservationsLink => By.LinkText("Your funding reservations");
+        protected By YourFinancesLink => By.LinkText("Your finances");
         private By PublicAccountIdLocator => By.CssSelector(".heading-secondary");
         private By SucessSummary => By.CssSelector(".success-summary");
         private By AcceptYourAgreementLink => By.LinkText("Accept your agreement");
         private By StartAddingApprenticesNowTaskLink => By.LinkText("Start adding apprentices now");
         private By AccountNameText => By.CssSelector("p.heading-xlarge");
-        protected By YourFundingReservationsLink => By.LinkText("Your funding reservations");
-        protected By YourFinancesLink => By.LinkText("Your finances");
+        private By YourSavedFavouritesLink => By.CssSelector(".das-favourites-link__text");
         #endregion
 
         protected By ContinueSettingUpAnApprenticeship => By.Id("call-to-action-continue-setting-up-an-apprenticeship");
@@ -63,5 +64,11 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         public void VerifyReserveFundingPanel() => pageInteractionHelper.VerifyText(ContinueSettingUpAnApprenticeship, "Continue setting up an apprenticeship");
 
         public void VerifyStartAddingApprenticesNowTaskLink() => VerifyPage(StartAddingApprenticesNowTaskLink);
+
+        public YourSavedFavouritesPage GoToYourSavedFavourites()
+        {
+            formCompletionHelper.Click(YourSavedFavouritesLink);
+            return new YourSavedFavouritesPage(_context);
+        }
     }
 }

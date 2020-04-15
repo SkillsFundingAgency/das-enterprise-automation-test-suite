@@ -40,6 +40,11 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.RoatpAdmin
                     new KeyValuePair<string, string>(providernamekey, "OLMEC"),
                     new KeyValuePair<string, string>(ukprnkey, "10033872"),
                });
+            _adminData.Add("rpadgw01",
+               new List<KeyValuePair<string, string>>
+               { new KeyValuePair<string, string>(providernamekey, "OLEC"),
+                    new KeyValuePair<string, string>(ukprnkey, "10033873"),
+               });
         }
     }
 }

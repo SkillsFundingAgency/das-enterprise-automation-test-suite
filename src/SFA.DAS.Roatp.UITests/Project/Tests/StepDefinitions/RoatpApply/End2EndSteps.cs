@@ -50,6 +50,9 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpApply
         [When(@"the provider completes Your organisation section for charity")]
         public void WhenTheProviderCompletesYourOrganisationSectionForCharity() => _overviewPage = _end2EndStepsHelper.CompleteYourOrganisation_Section1_Charity(_overviewPage);
 
+        [When(@"the provider completes Your organisation section for Government Statue has a website")]
+        public void WhenTheProviderCompletesYourOrganisationSectionForGovernmentStatueHasAWebsite() => _overviewPage = _end2EndStepsHelper.CompleteYourOrganisation_Section1_GovernmentStatue(_overviewPage);
+
         [When(@"the provider completes Your organisation section for FHA exemptions")]
         public void WhenTheProviderCompletesYourOrganisationSectionForFHAExemptions() => _overviewPage = _end2EndStepsHelper.CompleteYourOrganisation_Section1_FHAExempt(_overviewPage);
 

@@ -70,9 +70,9 @@ namespace SFA.DAS.UI.FrameworkHelpers
                     return true;
                 }
 
-                    throw new Exception("Page verification failed:"
-                    + "\n Expected: " + expected + " page"
-                    + "\n Found: " + actual + " page");
+                throw new Exception("Page verification failed:"
+                + "\n Expected: " + expected + " page"
+                + "\n Found: " + actual + " page");
             }
 
             return VerifyPage(func);

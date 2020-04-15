@@ -10,6 +10,8 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
     {
         protected override By PageHeader => By.TagName("h1");
 
+        protected override By ContinueButton => By.CssSelector("#main-content .govuk-button");
+
         #region Helpers and Context
         protected readonly ObjectContext objectContext;
         protected readonly PageInteractionHelper pageInteractionHelper;

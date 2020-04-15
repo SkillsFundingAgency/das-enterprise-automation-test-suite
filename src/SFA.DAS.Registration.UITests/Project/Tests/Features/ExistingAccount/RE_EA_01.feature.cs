@@ -70,21 +70,27 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features.ExistingAccount
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RE_EA_01_Verify Login for Existing Levy Account")]
+        [NUnit.Framework.DescriptionAttribute("RE_EA_01_Verify Login for Existing Levy Account and Navigation to Saved favourite" +
+            "s, Help and all Settings pages")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("registration")]
-        public virtual void RE_EA_01_VerifyLoginForExistingLevyAccount()
+        public virtual void RE_EA_01_VerifyLoginForExistingLevyAccountAndNavigationToSavedFavouritesHelpAndAllSettingsPages()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RE_EA_01_Verify Login for Existing Levy Account", null, new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RE_EA_01_Verify Login for Existing Levy Account and Navigation to Saved favourite" +
+                    "s, Help and all Settings pages", null, new string[] {
                         "regression",
                         "registration"});
 #line 5
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 6
- testRunner.Given("the Employer logins using existing Levy Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.When("the Employer logins using existing Levy Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 7
- testRunner.Then("the Employer Home page is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("Employer is able to navigate to all the link under Settings", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 8
+ testRunner.And("Employer is able to navigate to Your saved favourites Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 9
+ testRunner.And("Employer is able to navigate to Help Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
