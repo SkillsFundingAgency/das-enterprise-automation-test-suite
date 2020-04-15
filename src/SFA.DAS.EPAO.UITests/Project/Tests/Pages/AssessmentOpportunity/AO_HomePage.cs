@@ -21,8 +21,8 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentOpportunity
         public AO_HomePage(ScenarioContext context) : base(context)
         {
             _context = context;
-            AcceptCookies();
             VerifyPage();
+            AcceptCookies();
         }
         
         public bool IsApprovedTabDisplayed() => pageInteractionHelper.IsElementDisplayed(ApprovedTab);

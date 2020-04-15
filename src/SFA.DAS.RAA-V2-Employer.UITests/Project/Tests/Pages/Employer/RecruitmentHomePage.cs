@@ -17,7 +17,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer
 
         protected override string Linktext => "Recruitment";
 
-        private By AcceptCookieButton => By.CssSelector("#btn-cookie-accept");
+        protected override By AcceptCookieButton => By.CssSelector("#btn-cookie-accept");
 
         private readonly By StartNow = By.CssSelector("[data-automation='create-vacancy']");
 
@@ -40,12 +40,9 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer
             return new CreateVacancyPage(_context);
         }
 
-        private RecruitmentHomePage AcceptCookies()
+        private new RecruitmentHomePage AcceptCookies()
         {
-            if (pageInteractionHelper.IsElementDisplayed(AcceptCookieButton))
-            {
-                formCompletionHelper.Click(AcceptCookieButton);
-            }
+            base.AcceptCookies();
             return this;
         }
 
