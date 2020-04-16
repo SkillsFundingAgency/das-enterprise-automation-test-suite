@@ -7,6 +7,8 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.ApplyToAsse
     {
         protected override string PageTitle => "Where will you deliver end-point assessments?";
 
+        protected override By PageHeader => By.CssSelector(".govuk-fieldset__heading");
+
         private readonly ScenarioContext _context;
 
         protected By DeliveryAreas => By.CssSelector(".govuk-checkboxes__input");
