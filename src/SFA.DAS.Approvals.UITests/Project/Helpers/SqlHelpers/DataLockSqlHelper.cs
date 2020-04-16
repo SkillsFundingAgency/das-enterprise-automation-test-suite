@@ -18,7 +18,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
             _coursedataHelper = coursedataHelper;
         }
 
-        public int GetDatalocksResolvedStatus() => Convert.ToInt32(GetData($"SELECT IsResolved from [dbo].[DataLockStatus] WHERE ApprenticeshipId = '{_apprenticeshipId}'"));
+        public int GetDatalocksResolvedStatus() => Convert.ToInt32(GetDataAsObject($"SELECT IsResolved from [dbo].[DataLockStatus] WHERE ApprenticeshipId = '{_apprenticeshipId}'"));
 
         public void SubmitILRWithPriceMismatch() => SubmitILRMismatch("PriceDataLock");
 

@@ -18,6 +18,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
             SqlDatabaseConnectionHelper.ExecuteSqlCommand(connectionString, sqlQueryToSetDataLockSuccessStatus);
         }
 
-        public int GetApprenticeshipId(string uln) => Convert.ToInt32(GetData($"SELECT Id from [dbo].[Apprenticeship] WHERE ULN = '{uln}' AND PaymentStatus >= 1"));
+        public int GetApprenticeshipId(string uln) => Convert.ToInt32(GetDataAsObject($"SELECT Id from [dbo].[Apprenticeship] WHERE ULN = '{uln}' AND PaymentStatus >= 1"));
     }
 }

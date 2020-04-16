@@ -8,6 +8,9 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         public SqlDbHelper(string connectionString) => this.connectionString = connectionString;
 
-        protected string GetData(string queryToExecute) => Convert.ToString(SqlDatabaseConnectionHelper.ReadDataFromDataBase(queryToExecute, connectionString)[0][0]);
+        protected string GetData(string queryToExecute) => Convert.ToString(GetDataAsObject(queryToExecute));
+
+        protected object GetDataAsObject(string queryToExecute) => SqlDatabaseConnectionHelper.ReadDataFromDataBase(queryToExecute, connectionString)[0][0];
+
     }
 }
