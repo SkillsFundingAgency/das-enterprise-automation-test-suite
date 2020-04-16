@@ -578,10 +578,11 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         }
 
         [Then(@"the User is able to change the registered Email")]
-        public void ThenTheUserIsAbleToChangeTheRegisteredEmail()
-        {
-            _addAPAYESchemePage.GoToChangeYourEmailAddressPage();
-        }
+        public void ThenTheUserIsAbleToChangeTheRegisteredEmail() => _addAPAYESchemePage.GoToChangeYourEmailAddressPage()
+            .EnterNewEmailAddressDetailsAndContinue()
+            .EnterSecurityCodeDetailsDuringAccountCreationJourney()
+            .SignOut().CickContinueInYouveLoggedOutPage().ClickSignInLinkOnIndexPage()
+            .EnterLoginDetailsAndClickSignIn(_objectContext.GetRegisteredEmail(), _registrationDataHelper.Password);
 
         private void CreateUserAccountAndAddOrg(OrgType orgType)
         {
