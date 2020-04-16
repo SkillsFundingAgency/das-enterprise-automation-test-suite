@@ -1,7 +1,6 @@
 ﻿using TechTalk.SpecFlow;
 using SFA.DAS.IdamsLogin.Service.Project.Tests.Pages;
 using SFA.DAS.ProviderLogin.Service.Pages;
-using OpenQA.Selenium;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.ProviderLeadRegistration
 {

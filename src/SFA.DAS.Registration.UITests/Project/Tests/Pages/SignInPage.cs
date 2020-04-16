@@ -34,7 +34,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         public MyAccountWithOutPayePage LoginToMyAccountWithOutPaye(LoginUser loginUser)
         {
-            SignIn(loginUser);
+            EnterLoginDetailsAndClickSignIn(loginUser.Username, loginUser.Password);
             return new MyAccountWithOutPayePage(_context);
         }
 

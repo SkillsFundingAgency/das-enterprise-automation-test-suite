@@ -4,7 +4,7 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
 {
     internal class RegistrationSqlDataHelper : SqlDbHelper
     {
-        public RegistrationSqlDataHelper(RegistrationConfig registrationConfig): base(registrationConfig.RE_AccountsDbConnectionString) { }
+        public RegistrationSqlDataHelper(RegistrationConfig registrationConfig) : base(registrationConfig.RE_AccountsDbConnectionString) { }
 
         public string GetAccountApprenticeshipEmployerType(string email)
         {
