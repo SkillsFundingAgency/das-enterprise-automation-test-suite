@@ -203,6 +203,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             SignTheAgreement();
         }
 
+        [When(@"an Employer Account with (Company|PublicSector|Charity) Type Org is created")]
         [When(@"an Employer Account with (Company|PublicSector|Charity) Type Org is created and agreement is Not Signed")]
         public void GivenAnEmployerAccountWithSpecifiedTypeOrgIsCreatedAndAgeementIsNotSigned(OrgType orgType)
         {
@@ -591,6 +592,14 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         {
             _addAPAYESchemePage = _addAPAYESchemePage.GoToChangeYourPasswordPage().ChangePasswordDuringAccountCreationJourney();
             SignOutAndReLoginFromAddAPayeSchemePageDuringAccountCreation(_addAPAYESchemePage, _registrationDataHelper.NewPassword);
+        }
+
+        [Then(@"the User is able to reset password using 'Forgot your password' link on SignIn Page")]
+        public void ThenTheUserIsAbleToResetPasswordUsingLinkOnSignInPage()
+        {
+            _indexPage = _accountCreationStepsHelper.SignOut();
+            _indexPage.ClickSignInLinkOnIndexPage().ClickForgottenYourPasswordLink().EnterEmailToBeReset().ResetPassword();
+            _accountCreationStepsHelper.SignOut().ClickSignInLinkOnIndexPage().EnterLoginDetailsAndClickSignIn(_objectContext.GetRegisteredEmail(), _registrationDataHelper.NewPassword);
         }
 
         private void CreateUserAccountAndAddOrg(OrgType orgType)
