@@ -25,7 +25,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         private readonly AccountCreationStepsHelper _accountCreationStepsHelper;
         private readonly LoginCredentialsHelper _loginCredentialsHelper;
         private HomePage _homePage;
-        private SetUpAsAUserPage _setUpAsAUserPage;
         private AddAPAYESchemePage _addAPAYESchemePage;
         private GgSignInPage _gGSignInPage;
         private SearchForYourOrganisationPage _searchForYourOrganisationPage;
@@ -88,24 +87,13 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         }
 
         [When(@"the User adds Invalid PAYE details")]
-        public void WhenTheUserAddsInvalidPAYEDetails()
-        {
-            _gGSignInPage = _addAPAYESchemePage
-                .AddPaye().ContinueToGGSignIn()
-                .SignInWithInvalidDetails();
-        }
+        public void WhenTheUserAddsInvalidPAYEDetails() => _gGSignInPage = _addAPAYESchemePage.AddPaye().ContinueToGGSignIn().SignInWithInvalidDetails();
 
         [Then(@"the '(.*)' error message is shown")]
-        public void ThenTheErrorMessageIsShown(string error)
-        {
-            Assert.AreEqual(error, _gGSignInPage.GetErrorMessage());
-        }
+        public void ThenTheErrorMessageIsShown(string error) => Assert.AreEqual(error, _gGSignInPage.GetErrorMessage());
 
         [When(@"the User adds valid PAYE details on Gateway Sign In Page")]
-        public void WhenTheUserAddsValidPAYEDetailsOnGatewaySignInPage()
-        {
-            _searchForYourOrganisationPage = _gGSignInPage.SignInTo(0);
-        }
+        public void WhenTheUserAddsValidPAYEDetailsOnGatewaySignInPage() => _searchForYourOrganisationPage = _gGSignInPage.SignInTo(0);
 
         [When(@"adds Organisation details")]
         public void AddOrganisationDetails() => AddOrganisationTypeDetails(OrgType.Default);
@@ -155,10 +143,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         }
 
         [Then(@"the '(.*)' message is shown")]
-        public void ThenTheMessageIsShown(string resultMessage)
-        {
-            Assert.AreEqual(resultMessage, _selectYourOrganisationPage.GetSearchResultsText());
-        }
+        public void ThenTheMessageIsShown(string resultMessage) => Assert.AreEqual(resultMessage, _selectYourOrganisationPage.GetSearchResultsText());
 
         [Then(@"the Employer is able to Sign the Agreement and view the Home page")]
         [When(@"the Employer is able to Sign the Agreement")]
@@ -448,10 +433,10 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         }
 
         [When(@"an User tries to regiser an Account with an Email already registered")]
-        public void WhenAnUserTriesToRegiserAnAccountWithAnEMailAlreadyRegistered() => _setUpAsAUserPage = new IndexPage(_context).CreateAccount().EnterRegistrationDetailsAndContinue(_context.GetUser<LevyUser>().Username);
+        public void WhenAnUserTriesToRegiserAnAccountWithAnEMailAlreadyRegistered() => new IndexPage(_context).CreateAccount().EnterRegistrationDetailsAndContinue(_context.GetUser<LevyUser>().Username);
 
         [Then(@"'Email already regisered' message is shown to the User")]
-        public void ThenMessageIsShownToTheUser() => _setUpAsAUserPage.VerifyEmailAlreadyRegisteredErrorMessage();
+        public void ThenMessageIsShownToTheUser() => new SetUpAsAUserPage(_context).VerifyEmailAlreadyRegisteredErrorMessage();
 
         [When(@"Given an User registers an acount with email but does not activate it")]
         public void WhenGivenAnUserRegistersAnAcountWithEmailButDoesNotActivateIt() => _accountCreationStepsHelper.RegisterUserAccount();
@@ -475,7 +460,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         }
 
         [When(@"the Employer chooses to add PAYE from Account Home Page")]
-        public void WhenTheEmployerChoosesToAddPAYEFromAccountHomePage() => _addAPAYESchemePage = _myAccountWithOutPayePage.ClickAddYourPAYESchemeLink();
+        public void WhenTheEmployerChoosesToAddPAYEFromAccountHomePage() => _addAPAYESchemePage = _myAccountWithOutPayePage.AddYourPAYEScheme();
 
         [Then(@"the Employer is able to add PAYE and Organisation to the Account")]
         public void ThenTheEmployerIsAbleToAddPAYEAndOrganisationToTheAccount() => AddPayeAndOrgAndSignAgreement();

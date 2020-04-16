@@ -11,12 +11,14 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
     {
         private readonly ScenarioContext _context;
         private readonly EmployerPortalLoginHelper _loginhelper;
+        private readonly EmployerLoginFromCreateAcccountPageHelper _loginFromCreateAcccountPageHelper;
         private HomePage _homePage;
 
         public ExistingAccountSteps(ScenarioContext context)
         {
             _context = context;
             _loginhelper = new EmployerPortalLoginHelper(context);
+            _loginFromCreateAcccountPageHelper = new EmployerLoginFromCreateAcccountPageHelper(_context);
         }
 
         [Given(@"the Employer logins using existing Levy Account")]
@@ -25,7 +27,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
 
         [Given(@"the Employer logins using existing NonLevy Account")]
         [When(@"the Employer logins using existing NonLevy Account")]
-        public void GivenTheEmployerLoginsUsingExistingNonLevyAccount() => _homePage = _loginhelper.LoginFromCreateAcccountPage(_context.GetUser<NonLevyUser>());
+        public void GivenTheEmployerLoginsUsingExistingNonLevyAccount() => _homePage = _loginFromCreateAcccountPageHelper.Login(_context.GetUser<NonLevyUser>());
 
         [Then(@"Employer is able to navigate to all the link under Settings")]
         public void ThenEmployerIsAbleToNavigateToAllTheLinkUnderSettings() => _homePage = _homePage

@@ -8,17 +8,8 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
     {
         private readonly ScenarioContext _context;
 
-        public MultipleAccountsLoginHelper(ScenarioContext context) : base(context)
-        {
-            _context = context;
-        }
+        public MultipleAccountsLoginHelper(ScenarioContext context) : base(context) => _context = context;
 
-        protected override HomePage Login(LoginUser loginUser)
-        {
-            return new IndexPage(_context)
-                .ClickSignInLinkOnIndexPage()
-                .MultipleAccountLogin(loginUser)
-                .GoToHomePage(objectContext.GetOrganisationName());
-        }
+        protected override HomePage Login(LoginUser loginUser) => new IndexPage(_context).ClickSignInLinkOnIndexPage().MultipleAccountLogin(loginUser).GoToHomePage(objectContext.GetOrganisationName());
     }
 }
