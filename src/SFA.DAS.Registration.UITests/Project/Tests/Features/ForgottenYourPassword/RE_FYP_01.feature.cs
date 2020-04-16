@@ -78,12 +78,12 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features.ForgottenYourPassw
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RE_FYP_01_Verify Forgot Password feature", null, new string[] {
                         "regression",
                         "registration"});
-#line 5
+#line 6
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 6
- testRunner.When("an Employer Account with Company Type Org is created", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 7
+ testRunner.When("an User Account is created", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 8
  testRunner.Then("the User is able to reset password using \'Forgot your password\' link on SignIn Pa" +
                     "ge", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden

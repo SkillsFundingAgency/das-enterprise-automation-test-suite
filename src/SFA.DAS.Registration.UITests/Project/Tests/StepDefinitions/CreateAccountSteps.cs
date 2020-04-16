@@ -572,7 +572,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         [Then(@"'Confirm your identity' page is displayed when the User tries to login with the Unactivated credentials")]
         public void ThenConfirmYourIdentityPageIsDisplayedWhenTheUserTriesToLoginWithTheUnactivatedCredentials()
         {
-            _restartWebDriverHelper.RestartWebDriver(_config.EmployerApprenticeshipServiceBaseURL, "EAS");
+            RelaunchApplication();
 
             new IndexPage(_context).ClickSignInLinkOnIndexPage()
                 .LoginWithUnActivatedAccount(_objectContext.GetRegisteredEmail(), _registrationDataHelper.Password);
@@ -597,9 +597,9 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         [Then(@"the User is able to reset password using 'Forgot your password' link on SignIn Page")]
         public void ThenTheUserIsAbleToResetPasswordUsingLinkOnSignInPage()
         {
-            _indexPage = _accountCreationStepsHelper.SignOut();
-            _indexPage.ClickSignInLinkOnIndexPage().ClickForgottenYourPasswordLink().EnterEmailToBeReset().ResetPassword();
-            _accountCreationStepsHelper.SignOut().ClickSignInLinkOnIndexPage().EnterLoginDetailsAndClickSignIn(_objectContext.GetRegisteredEmail(), _registrationDataHelper.NewPassword);
+            RelaunchApplication();
+            _addAPAYESchemePage = new IndexPage(_context).ClickSignInLinkOnIndexPage().ClickForgottenYourPasswordLink().EnterEmailToBeReset().ResetPasswordDuringAccountCreation();
+            SignOutAndReLoginFromAddAPayeSchemePageDuringAccountCreation(_addAPAYESchemePage, _registrationDataHelper.NewPassword);
         }
 
         private void CreateUserAccountAndAddOrg(OrgType orgType)
@@ -643,5 +643,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         private void SignOutAndReLoginFromAddAPayeSchemePageDuringAccountCreation(AddAPAYESchemePage addAPAYESchemePage, string password) =>
             addAPAYESchemePage.SignOut().CickContinueInYouveLoggedOutPage().ClickSignInLinkOnIndexPage()
             .EnterLoginDetailsAndClickSignIn(_objectContext.GetRegisteredEmail(), password);
+
+        private void RelaunchApplication() => _restartWebDriverHelper.RestartWebDriver(_config.EmployerApprenticeshipServiceBaseURL, "EAS");
     }
 }

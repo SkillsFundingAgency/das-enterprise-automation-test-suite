@@ -21,14 +21,14 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             VerifyPage();
         }
 
-        public HomePage ResetPassword()
+        public AddAPAYESchemePage ResetPasswordDuringAccountCreation()
         {
             var newPassword = registrationDataHelper.NewPassword;
             formCompletionHelper.EnterText(EnterCodeTextBox, config.RE_ConfirmCode);
             formCompletionHelper.EnterText(CreateNewPasswordTextBox, newPassword);
             formCompletionHelper.EnterText(ConfirmPasswordTextBox, newPassword);
             Continue();
-            return new HomePage(_context);
+            return new AddAPAYESchemePage(_context);
         }
     }
 }
