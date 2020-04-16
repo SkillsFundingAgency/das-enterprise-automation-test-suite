@@ -578,11 +578,20 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         }
 
         [Then(@"the User is able to change the registered Email")]
-        public void ThenTheUserIsAbleToChangeTheRegisteredEmail() => _addAPAYESchemePage.GoToChangeYourEmailAddressPage()
-            .EnterNewEmailAddressDetailsAndContinue()
-            .EnterSecurityCodeDetailsDuringAccountCreationJourney()
-            .SignOut().CickContinueInYouveLoggedOutPage().ClickSignInLinkOnIndexPage()
-            .EnterLoginDetailsAndClickSignIn(_objectContext.GetRegisteredEmail(), _registrationDataHelper.Password);
+        public void ThenTheUserIsAbleToChangeTheRegisteredEmail()
+        {
+            _addAPAYESchemePage = _addAPAYESchemePage.GoToChangeYourEmailAddressPage()
+            .ChangeEmail().EnterSecurityCodeDetailsDuringAccountCreationJourney();
+
+            SignOutAndReLoginFromAddAPayeSchemePageDuringAccountCreation(_addAPAYESchemePage, _registrationDataHelper.Password);
+        }
+
+        [Then(@"the User is able to change the account Password")]
+        public void ThenTheUserIsAbleToChangeTheAccountPassword()
+        {
+            _addAPAYESchemePage = _addAPAYESchemePage.GoToChangeYourPasswordPage().ChangePasswordDuringAccountCreationJourney();
+            SignOutAndReLoginFromAddAPayeSchemePageDuringAccountCreation(_addAPAYESchemePage, _registrationDataHelper.NewPassword);
+        }
 
         private void CreateUserAccountAndAddOrg(OrgType orgType)
         {
@@ -621,5 +630,9 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         private void AttemptLogin(string loginId, string password) => _signInPage.EnterLoginDetailsAndClickSignIn(loginId, password);
 
         private void VisitEmployerApprenticeshipSite() => _tabHelper.GoToUrl(_config.EmployerApprenticeshipServiceBaseURL);
+
+        private void SignOutAndReLoginFromAddAPayeSchemePageDuringAccountCreation(AddAPAYESchemePage addAPAYESchemePage, string password) =>
+            addAPAYESchemePage.SignOut().CickContinueInYouveLoggedOutPage().ClickSignInLinkOnIndexPage()
+            .EnterLoginDetailsAndClickSignIn(_objectContext.GetRegisteredEmail(), password);
     }
 }

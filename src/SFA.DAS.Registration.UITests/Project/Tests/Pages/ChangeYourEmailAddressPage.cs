@@ -20,7 +20,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             VerifyPage();
         }
 
-        public EnterYourSecurityCodePage EnterNewEmailAddressDetailsAndContinue()
+        public EnterYourSecurityCodePage ChangeEmail()
         {
             var newEmail = registrationDataHelper.AnotherRandomEmail;
             objectContext.SetRegisteredEmail(newEmail);
