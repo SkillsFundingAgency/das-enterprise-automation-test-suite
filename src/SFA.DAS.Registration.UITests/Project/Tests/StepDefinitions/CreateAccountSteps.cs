@@ -577,6 +577,12 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
                 .LoginWithUnActivatedAccount(_objectContext.GetRegisteredEmail(), _registrationDataHelper.Password);
         }
 
+        [Then(@"the User is able to change the registered Email")]
+        public void ThenTheUserIsAbleToChangeTheRegisteredEmail()
+        {
+            _addAPAYESchemePage.GoToChangeYourEmailAddressPage();
+        }
+
         private void CreateUserAccountAndAddOrg(OrgType orgType)
         {
             CreateAnUserAcountAndAddPaye();
