@@ -73,14 +73,12 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Features.Admin.Add
         [NUnit.Framework.DescriptionAttribute("EPAO_AD_AddOrg_01 Add an Organisation")]
         [NUnit.Framework.CategoryAttribute("epao")]
         [NUnit.Framework.CategoryAttribute("epaoadmin")]
-        [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("deleteorganisation")]
         public virtual void EPAO_AD_AddOrg_01AddAnOrganisation()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EPAO_AD_AddOrg_01 Add an Organisation", null, new string[] {
                         "epao",
                         "epaoadmin",
-                        "regression",
                         "deleteorganisation"});
 #line 7
 this.ScenarioInitialize(scenarioInfo);
