@@ -26,5 +26,12 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             Continue();
             return new SignAgreementPage(_context);
         }
+
+        public HomePage SelectViewItLaterAndContinue()
+        {
+            formCompletionHelper.SelectRadioOptionByForAttribute(ViewItNowRadionButton, "view-it-later");
+            Continue();
+            return new HomePage(_context);
+        }
     }
 }

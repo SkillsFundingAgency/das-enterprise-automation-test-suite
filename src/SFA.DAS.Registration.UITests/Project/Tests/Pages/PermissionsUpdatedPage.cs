@@ -1,12 +1,8 @@
-﻿using OpenQA.Selenium;
-using SFA.DAS.Registration.UITests.Project.Tests.Pages;
-using SFA.DAS.UI.Framework.TestSupport;
-using SFA.DAS.UI.FrameworkHelpers;
-using TechTalk.SpecFlow;
+﻿using TechTalk.SpecFlow;
 
-namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
+namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 {
-    public class PermissionsUpdatedPage : BasePage
+    public class PermissionsUpdatedPage : RegistrationBasePage
     {
         protected override string PageTitle => "You've successfully changed";
 
@@ -19,8 +15,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             _context = context;
             VerifyPage();
         }
-        
-        internal HomePage GoToHomePage()
+
+        public new HomePage GoToHomePage()
         {
             SelectRadioOptionByForAttribute("choice-3");
             Continue();

@@ -9,7 +9,6 @@ namespace SFA.DAS.ProviderLogin.Service.Pages
     public abstract class InterimProviderBasePage : Navigate
     {
         #region Helpers and Context
-        private readonly FormCompletionHelper _formCompletionHelper;
         protected readonly string ukprn;
         #endregion
         
@@ -19,14 +18,10 @@ namespace SFA.DAS.ProviderLogin.Service.Pages
 
         public InterimProviderBasePage(ScenarioContext context, bool navigate = false) : base(context, navigate)
         {
-            _formCompletionHelper = context.Get<FormCompletionHelper>();
             ukprn = context.Get<ObjectContext>().GetUkprn();
             VerifyPage();
         }
 
-        public void SignsOut()
-        {
-            _formCompletionHelper.ClickElement(SignOutLink);
-        }
+        public void SignsOut() => formCompletionHelper.ClickElement(SignOutLink);
     }
 }

@@ -11,7 +11,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
         private ReviewYourCohortPage _reviewYourCohortPage;
 		private readonly ReviewYourCohortStepsHelper _reviewYourCohortStepsHelper;
         private readonly MFEmployerStepsHelper _employerReservationStepsHelper;
-        private readonly HomePageStepsHelper _homePageStepsHelper;
+        private readonly EmployerHomePageStepsHelper _homePageStepsHelper;
         private readonly ObjectContext _objectContext;
         private readonly ScenarioContext _context;
 
@@ -19,7 +19,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
         {
             _context = context;
             _objectContext = _context.Get<ObjectContext>();
-            _homePageStepsHelper = new HomePageStepsHelper(_context);
+            _homePageStepsHelper = new EmployerHomePageStepsHelper(_context);
             _reviewYourCohortStepsHelper = new ReviewYourCohortStepsHelper(_context.Get<AssertHelper>());
             _employerReservationStepsHelper = new MFEmployerStepsHelper(_context);
         }
