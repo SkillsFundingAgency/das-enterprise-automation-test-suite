@@ -11,7 +11,7 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
 {
     [Binding]
-    public class ProviderRegistration
+    public class ProviderRegistrationSteps
     {
         private readonly ScenarioContext _context;
         private readonly ObjectContext _objectContext;
@@ -21,7 +21,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         private readonly EmployerHomePageStepsHelper _homePageStepsHelper;
         private readonly PregSqlDataHelper _pregSqlDataHelper;
 
-        public ProviderRegistration(ScenarioContext context)
+        public ProviderRegistrationSteps(ScenarioContext context)
         {
             _context = context;
             _config = context.GetRegistrationConfig<RegistrationConfig>();
