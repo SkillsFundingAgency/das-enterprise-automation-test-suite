@@ -18,13 +18,12 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         private readonly ScenarioContext _context;
         private readonly ObjectContext _objectContext;
         private readonly TabHelper _tabHelper;
-        private readonly RegistrationConfig _config;
+        private readonly RegistrationConfig _registrationConfig;
         private readonly RegistrationDataHelper _registrationDataHelper;
         private readonly RegistrationSqlDataHelper _registrationSqlDataHelper;
         private readonly TprSqlDataHelper _tprSqlDataHelper;
         private readonly AccountCreationStepsHelper _accountCreationStepsHelper;
         private readonly LoginCredentialsHelper _loginCredentialsHelper;
-        private readonly RestartWebDriverHelper _restartWebDriverHelper;
         private HomePage _homePage;
         private AddAPAYESchemePage _addAPAYESchemePage;
         private GgSignInPage _gGSignInPage;
@@ -51,8 +50,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             _loginCredentialsHelper = context.Get<LoginCredentialsHelper>();
             _tprSqlDataHelper = context.Get<TprSqlDataHelper>();
             _tabHelper = context.Get<TabHelper>();
-            _restartWebDriverHelper = new RestartWebDriverHelper(context);
-            _config = context.GetRegistrationConfig<RegistrationConfig>();
+            _registrationConfig = context.GetRegistrationConfig<RegistrationConfig>();
             _accountCreationStepsHelper = new AccountCreationStepsHelper(context);
         }
 
@@ -572,7 +570,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         [Then(@"'Confirm your identity' page is displayed when the User tries to login with the Unactivated credentials")]
         public void ThenConfirmYourIdentityPageIsDisplayedWhenTheUserTriesToLoginWithTheUnactivatedCredentials()
         {
-            RelaunchApplication();
+            _accountCreationStepsHelper.RelaunchApplication();
 
             new IndexPage(_context).ClickSignInLinkOnIndexPage()
                 .LoginWithUnActivatedAccount(_objectContext.GetRegisteredEmail(), _registrationDataHelper.Password);
@@ -597,7 +595,8 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         [Then(@"the User is able to reset password using 'Forgot your password' link on SignIn Page")]
         public void ThenTheUserIsAbleToResetPasswordUsingLinkOnSignInPage()
         {
-            RelaunchApplication();
+            _accountCreationStepsHelper.RelaunchApplication();
+
             _addAPAYESchemePage = new IndexPage(_context).ClickSignInLinkOnIndexPage().ClickForgottenYourPasswordLink().EnterEmailToBeReset().ResetPasswordDuringAccountCreation();
             SignOutAndReLoginFromAddAPayeSchemePageDuringAccountCreation(_addAPAYESchemePage, _registrationDataHelper.NewPassword);
         }
@@ -638,12 +637,10 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
 
         private void AttemptLogin(string loginId, string password) => _signInPage.EnterLoginDetailsAndClickSignIn(loginId, password);
 
-        private void VisitEmployerApprenticeshipSite() => _tabHelper.GoToUrl(_config.EmployerApprenticeshipServiceBaseURL);
+        private void VisitEmployerApprenticeshipSite() => _tabHelper.GoToUrl(_registrationConfig.EmployerApprenticeshipServiceBaseURL);
 
         private void SignOutAndReLoginFromAddAPayeSchemePageDuringAccountCreation(AddAPAYESchemePage addAPAYESchemePage, string password) =>
             addAPAYESchemePage.SignOut().CickContinueInYouveLoggedOutPage().ClickSignInLinkOnIndexPage()
             .EnterLoginDetailsAndClickSignIn(_objectContext.GetRegisteredEmail(), password);
-
-        private void RelaunchApplication() => _restartWebDriverHelper.RestartWebDriver(_config.EmployerApprenticeshipServiceBaseURL, "EAS");
     }
 }

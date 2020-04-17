@@ -3,10 +3,9 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 {
-    public class AddAPAYESchemePage : InterimEmployerBasePage
+    public class AddAPAYESchemePage : RegistrationBasePage
     {
         protected override string PageTitle => "Add a PAYE Scheme";
-        protected override string Linktext => "";
         private readonly ScenarioContext _context;
 
         #region Locators
@@ -16,7 +15,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         protected override By ContinueButton => By.Id("submit-add-a-paye-scheme-button");
         #endregion
 
-        public AddAPAYESchemePage(ScenarioContext context) : base(context, false)
+        public AddAPAYESchemePage(ScenarioContext context) : base(context)
         {
             _context = context;
             VerifyPage();
