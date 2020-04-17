@@ -10,7 +10,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.ApplyToAsse
 
         protected override By PageHeader => By.CssSelector(".govuk-caption-l");
 
-        protected override By ContinueButton => By.CssSelector(".govuk-button[type='submit']");
+        protected override By ContinueButton => By.CssSelector("#main-content .govuk-button[type='submit']");
 
         private By ConfirmCheckBox => By.CssSelector("#IsConfirmed");
 

@@ -8,7 +8,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.ApplyToAsse
         protected override string PageTitle => "Apply for a standard";
         private readonly ScenarioContext _context;
 
-        private By StartButton => By.CssSelector(".govuk-button");
+        private By StartButton => By.CssSelector("#main-content .govuk-button");
 
         public AS_ApplyForAStandardPage(ScenarioContext context) : base(context) => _context = context;
 

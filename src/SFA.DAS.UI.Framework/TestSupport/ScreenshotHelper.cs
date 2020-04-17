@@ -10,19 +10,19 @@ namespace SFA.DAS.UI.Framework.TestSupport
     {
         public static void TakeScreenShot(IWebDriver webDriver, string screenshotsDirectory, string scenarioTitle)
         {
+            var imageName = ($"{DateTime.Now:HH-mm-ss}_{scenarioTitle}.png").RemoveSpace();
+            var screenshotPath = Path.Combine(screenshotsDirectory, imageName);
+
             try
             {
-                DateTime dateTime = DateTime.Now;
-                String failureImageName = ($"{dateTime.ToString("HH-mm-ss")}_{scenarioTitle}.png").RemoveSpace();
                 ITakesScreenshot screenshotHandler = webDriver as ITakesScreenshot;
-                Screenshot screenshot = screenshotHandler.GetScreenshot();
-                String screenshotPath = Path.Combine(screenshotsDirectory, failureImageName);
+                Screenshot screenshot = screenshotHandler.GetScreenshot();   
                 screenshot.SaveAsFile(screenshotPath, ScreenshotImageFormat.Png);
-                TestContext.AddTestAttachment(screenshotPath, failureImageName);
+                TestContext.AddTestAttachment(screenshotPath, imageName);
             }
             catch (Exception exception)
             {
-                TestContext.Progress.WriteLine("Exception occurred while taking screenshot - " + exception);
+                TestContext.Progress.WriteLine($"Exception occurred while taking screenshot - Path - '{screenshotPath}', ImageName - '{imageName}'" + exception);
             }
         }
     }

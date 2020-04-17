@@ -162,7 +162,6 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         public void ThenTheChangeLinksNavigateToTheRespectivePages()
         {
             _checkAndSubmitAssessmentPage = new AS_CheckAndSubmitAssessmentPage(_context);
-
             _checkAndSubmitAssessmentPage = _checkAndSubmitAssessmentPage.ClickGradeChangeLink().ClickBackLink();
             _checkAndSubmitAssessmentPage = _checkAndSubmitAssessmentPage.ClickOptionChangeLink().ClickBackLink();
             _checkAndSubmitAssessmentPage = _checkAndSubmitAssessmentPage.ClickAchievementDateChangeLink().ClickBackLink();
@@ -190,7 +189,6 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         public void ThenTheUserIsAbleToChangeTheRegisteredDetails()
         {
             _organisationDetailsPage = new AS_OrganisationDetailsPage(_context);
-
             _organisationDetailsPage = _stepsHelper.ChangeContactName(_organisationDetailsPage);
             _organisationDetailsPage = _stepsHelper.ChangePhoneNumber(_organisationDetailsPage);
             _organisationDetailsPage = _stepsHelper.ChangeAddress(_organisationDetailsPage);

@@ -21,6 +21,10 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages
         
         protected override By PageHeader => By.CssSelector(".govuk-heading-xl, .heading-xlarge, .govuk-heading-l, .govuk-panel__title, .govuk-fieldset__heading");
 
+        protected override By ContinueButton => By.CssSelector("#main-content .govuk-button");
+
+        protected override By AcceptCookieButton => By.CssSelector(".das-cookie-banner__button-accept");
+
         private By ChooseFile => By.ClassName("govuk-file-upload");
 
         public EPAO_BasePage(ScenarioContext context) : base(context)
@@ -41,7 +45,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages
             formCompletionHelper.EnterText(ChooseFile, File);
             Continue();
         }
-
+               
         protected void ClickRandomElement(By locator) => formCompletionHelper.ClickElement(() => dataHelper.GetRandomElementFromListOfElements(pageInteractionHelper.FindElements(locator)));
     }
 }

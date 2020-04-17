@@ -30,54 +30,27 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         }
 
         [Then(@"the Approved tab is displayed and selected")]
-        public void ThenTheApprovedTabIsDisplayedAndSelected()
-        {
-            Assert.IsTrue(_homePage.IsApprovedTabDisplayed(), "Approved tab not found");
-            Assert.AreEqual("Approved Standards", _homePage.GetApprovedTabHeaderText());
-        }
+        public void ThenTheApprovedTabIsDisplayedAndSelected() => _homePage.VerifyApprovedTab();
 
         [When(@"the User clicks on one of the standards listed under 'Approved' tab to view it")]
-        public void WhenTheUserClicksOnOneOfTheStandardsListedUnderTab()
-        {
-            _homePage.ClickOnAbattoirWorkerApprovedStandardLink();
-        }
+        public void WhenTheUserClicksOnOneOfTheStandardsListedUnderTab() => _homePage.ClickOnAbattoirWorkerApprovedStandardLink();
 
         [When(@"clicks on 'Apply to assess this Standard'")]
-        public void WhenTheUserClicksOnApplyToAssessThisStandard()
-        {
-            new AO_ApprovedStandardDetailsPage(_context).ClickApplyToThisStandardButton();
-        }
+        public void WhenTheUserClicksOnApplyToAssessThisStandard() => new AO_ApprovedStandardDetailsPage(_context).ClickApplyToThisStandardButton();
 
         [Then(@"the User is redirected to 'Assessment Service' application")]
-        public void ThenTheUserIsRedirectedToAssessmentServiceApplication()
-        {
-            new AS_LandingPage(_context).VerifyAS_LandingPage();
-        }
+        public void ThenTheUserIsRedirectedToAssessmentServiceApplication() => new AS_LandingPage(_context).VerifyAS_LandingPage();
 
         [When(@"the User clicks on one of the standards listed under 'In-development' tab to view it")]
-        public void WhenTheUserClicksOnOneOfTheStandardsListedUnderInDevelopmentTabToViewIt()
-        {
-            _homePage.ClickInDevelopmentTab()
-                .ClickOnInDevelopmentStandardLink();
-        }
+        public void WhenTheUserClicksOnOneOfTheStandardsListedUnderInDevelopmentTabToViewIt() => _homePage.ClickInDevelopmentTab().ClickOnInDevelopmentStandardLink();
 
         [Then(@"the selected In-development standard detail page is displayed")]
-        public void ThenTheSelectedInDevelopmentStandardDetailPageIsDisplayed()
-        {
-            new AO_InDevelopmentStandardDetailsPage(_context).IsInDevelopmentStandardDetailsPageDisplayed();
-        }
+        public void ThenTheSelectedInDevelopmentStandardDetailPageIsDisplayed() => new AO_InDevelopmentStandardDetailsPage(_context).IsInDevelopmentStandardDetailsPageDisplayed();
 
         [When(@"the User clicks on one of the standards listed under 'Proposed' tab to view it")]
-        public void WhenTheUserClicksOnOneOfTheStandardsListedUnderProposedTabToViewIt()
-        {
-            _homePage.ClickInProposedTab()
-                .ClickOnAProposedStandard();
-        }
+        public void WhenTheUserClicksOnOneOfTheStandardsListedUnderProposedTabToViewIt() => _homePage.ClickInProposedTab().ClickOnAProposedStandard();
 
         [Then(@"the selected Proposed standard detail page is displayed")]
-        public void ThenTheSelectedProposedStandardDetailPageIsDisplayed()
-        {
-            new AO_ProposedStandardDetailsPage(_context).IsProposedStandardDetailsPageDisplayed();
-        }
+        public void ThenTheSelectedProposedStandardDetailPageIsDisplayed() => new AO_ProposedStandardDetailsPage(_context).IsProposedStandardDetailsPageDisplayed();
     }
 }

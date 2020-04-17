@@ -8,7 +8,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.ApplyToAsse
         protected override string PageTitle => "Standard search results";
         private readonly ScenarioContext _context;
 
-        protected override By ContinueButton => By.CssSelector(".govuk-button[type='submit']");
+        protected override By ContinueButton => By.CssSelector("#main-content .govuk-button[type='submit']");
 
         public AS_StandardSearchResultsPage(ScenarioContext context) : base(context) => _context = context;
 
