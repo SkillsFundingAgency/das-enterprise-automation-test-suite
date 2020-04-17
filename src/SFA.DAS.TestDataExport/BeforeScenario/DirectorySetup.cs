@@ -1,4 +1,5 @@
 ﻿using SFA.DAS.ConfigurationBuilder;
+using SFA.DAS.UI.FrameworkHelpers;
 using System;
 using System.IO;
 using TechTalk.SpecFlow;
@@ -25,7 +26,7 @@ namespace SFA.DAS.TestDataExport.BeforeScenario
              + "Project\\Screenshots\\"
              + DateTime.Now.ToString("dd-MM-yyyy")
              + "\\"
-             + _featureContext.FeatureInfo.Title
+             + EscapePatternHelper.DirectoryEscapePattern(_featureContext.FeatureInfo.Title)
              + "\\";
 
             if (!Directory.Exists(directory))
