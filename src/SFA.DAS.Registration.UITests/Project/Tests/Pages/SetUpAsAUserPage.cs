@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
@@ -8,6 +9,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         protected override string PageTitle => "Set up as a user";
 
         private readonly ScenarioContext _context;
+        private readonly TabHelper _tabHelper;
 
         #region constants
         private const string ExpectedEmailErrorText = "Email already registered.";
@@ -23,11 +25,13 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         private By ErrorTextAboveEmailTextBox => By.Id("error-email");
         private By EmailErrorTextAtheader => By.CssSelector(".danger");
         private By SigninLink => By.LinkText("sign in");
+        private By TermsAndConditionsLink => By.LinkText("terms and conditions");
         #endregion
 
         public SetUpAsAUserPage(ScenarioContext context) : base(context)
         {
             _context = context;
+            _tabHelper = context.Get<TabHelper>();
             VerifyPage();
         }
 
@@ -63,6 +67,12 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         {
             formCompletionHelper.ClickElement(SigninLink);
             return new SignInPage(_context);
+        }
+
+        public TermsAndConditionsPage ClickTermsAndConditionsLink()
+        {
+            _tabHelper.OpenInNewTab(() => formCompletionHelper.Click(TermsAndConditionsLink));
+            return new TermsAndConditionsPage(_context);
         }
 
         private SetUpAsAUserPage EnterFirstName()

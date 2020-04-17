@@ -28,6 +28,7 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
         public string AnotherRandomEmail { get; }
         public string AornNumber { get; }
         public string Password { get; }
+        public string NewPassword => "Test1234";
         public string InvalidGGId { get; }
         public string InvalidGGPassword { get; }
         public string InvalidCompanyNumber { get; }
