@@ -14,7 +14,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         public void ThenTheEmployerIsAbleToNavigateBackAndForthFromApprenticesToFinancePage()
         {
             NavigateToApprenticesPage();
-            new FinancePage(_context);
+            new FinancePage(_context, true);
         }
 
         [Then(@"the Employer is able to navigate back and forth from Apprentices to 'Your Team' Page")]
