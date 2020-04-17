@@ -13,7 +13,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.ApplyToAsse
 
         protected By TextArea => By.CssSelector(".govuk-textarea");
 
-        protected override By ContinueButton => By.CssSelector(".govuk-button[type='submit']");
+        protected override By ContinueButton => By.CssSelector("#main-content .govuk-button[type='submit']");
 
         public AS_EPAOApplyStandardBasePage(ScenarioContext context) : base(context) { VerifyPage(); }
 

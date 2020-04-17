@@ -28,6 +28,8 @@ namespace SFA.DAS.UI.Framework.TestSupport
 
         protected abstract string PageTitle { get; }
 
+        protected virtual By AcceptCookieButton { get; }
+
         protected BasePage(ScenarioContext context)
         {
             _frameworkConfig = context.Get<FrameworkConfig>();
@@ -64,6 +66,14 @@ namespace SFA.DAS.UI.Framework.TestSupport
         protected void SelectCheckBoxByText(string value) => _formCompletionHelper.SelectCheckBoxByText(CheckBoxLabels, value);
 
         protected void NavigateBack() => _formCompletionHelper.Click(BackLink);
+
+        protected void AcceptCookies()
+        {
+            if (_pageInteractionHelper.IsElementDisplayed(AcceptCookieButton))
+            {
+                _formCompletionHelper.Click(AcceptCookieButton);
+            }
+        }
 
         private void TakeScreenShot()
         {

@@ -17,6 +17,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
         {
             _context = context;
             VerifyPage();
+            AcceptCookies();
         }
 
         public AS_LoginPage ClickStartButton()
