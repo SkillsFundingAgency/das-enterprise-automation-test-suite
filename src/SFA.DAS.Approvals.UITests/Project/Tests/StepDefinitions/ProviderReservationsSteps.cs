@@ -14,7 +14,7 @@ using SFA.DAS.ConfigurationBuilder;
 namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 {
     [Binding]
-    public class ProviderReservations
+    public class ProviderReservationsSteps
     {
         private readonly ScenarioContext _context;
         private readonly ObjectContext _objectContext;
@@ -25,7 +25,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 		private ProviderAddApprenticeDetailsPage _providerAddApprenticeDetailsPage;
 		private ProviderReviewYourCohortPage _providerReviewYourCohortPage;
 
-        public ProviderReservations(ScenarioContext context)
+        public ProviderReservationsSteps(ScenarioContext context)
         {
             _context = context;
             _objectContext = context.Get<ObjectContext>();
