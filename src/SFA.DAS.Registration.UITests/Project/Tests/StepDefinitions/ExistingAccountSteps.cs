@@ -10,20 +10,20 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
     public class ExistingAccountSteps
     {
         private readonly ScenarioContext _context;
-        private readonly EmployerPortalLoginHelper _loginhelper;
+        private readonly EmployerPortalLoginHelper _employerPortalLoginHelper;
         private readonly EmployerLoginFromCreateAcccountPageHelper _loginFromCreateAcccountPageHelper;
         private HomePage _homePage;
 
         public ExistingAccountSteps(ScenarioContext context)
         {
             _context = context;
-            _loginhelper = new EmployerPortalLoginHelper(context);
+            _employerPortalLoginHelper = new EmployerPortalLoginHelper(context);
             _loginFromCreateAcccountPageHelper = new EmployerLoginFromCreateAcccountPageHelper(_context);
         }
 
         [Given(@"the Employer logins using existing Levy Account")]
         [When(@"the Employer logins using existing Levy Account")]
-        public void GivenTheEmployerLoginsUsingExistingLevyAccount() => _homePage = _loginhelper.Login(_context.GetUser<LevyUser>(), true);
+        public void GivenTheEmployerLoginsUsingExistingLevyAccount() => _homePage = _employerPortalLoginHelper.Login(_context.GetUser<LevyUser>(), true);
 
         [Given(@"the Employer logins using existing NonLevy Account")]
         [When(@"the Employer logins using existing NonLevy Account")]
