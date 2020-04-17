@@ -17,6 +17,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         private By PasswordInput => By.Id("Password");
         private By SignInButton => By.Id("button-signin");
         private By HeaderInformationMessage => By.CssSelector(".bold-large");
+        private By ForgottenYourPasswordLink => By.LinkText("Forgotten your password?");
         #endregion
 
         public SignInPage(ScenarioContext context) : base(context)
@@ -30,6 +31,12 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         {
             EnterLoginDetailsAndClickSignIn(loginUser.Username, loginUser.Password);
             return new HomePage(_context);
+        }
+
+        public ConfirmYourIdentityPage LoginWithUnActivatedAccount(string userName, string password)
+        {
+            EnterLoginDetailsAndClickSignIn(userName, password);
+            return new ConfirmYourIdentityPage(_context);
         }
 
         public MyAccountWithOutPayePage LoginToMyAccountWithOutPaye(LoginUser loginUser)
@@ -55,6 +62,12 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         {
             VerifyPage(HeaderInformationMessage, info);
             return this;
+        }
+
+        public ResetYourPasswordPage ClickForgottenYourPasswordLink()
+        {
+            _formCompletionHelper.Click(ForgottenYourPasswordLink);
+            return new ResetYourPasswordPage(_context);
         }
     }
 }
