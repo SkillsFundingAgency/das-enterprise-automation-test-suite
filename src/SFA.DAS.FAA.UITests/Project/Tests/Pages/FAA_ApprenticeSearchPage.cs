@@ -137,9 +137,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
         public FAA_PhoneNumberVerificationPage VerifyPhoneNumberVerificationText()
         {
             _pageInteractionHelper.VerifyText(VerifyPhoneNumberText, _faadataHelper.PhoneNumberVerificationText);
-            _pageInteractionHelper.WaitUntilAnyElements(VerifyMobile);
-            _formCompletionHelper.ClickElement(() => _pageInteractionHelper.FindElement(VerifyMobile));
-            _pageInteractionHelper.WaitforURLToChange("verifymobile");
+            _formCompletionHelper.ClickElement(VerifyMobile);
             return new FAA_PhoneNumberVerificationPage(_context);
         } 
 
