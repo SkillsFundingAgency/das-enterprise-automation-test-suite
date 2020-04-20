@@ -13,7 +13,7 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 {
     [Binding]
-    public class ProviderPermissions
+    public class ProviderPermissionsSteps
     {
         private readonly EmployerPortalLoginHelper _employerLoginHelper;
         private readonly ScenarioContext _context;
@@ -25,7 +25,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         private ProviderLoginUser _providerLoginUser;
         private ApprovalsProviderHomePage _providerHomePage;
 
-        public ProviderPermissions(ScenarioContext context)
+        public ProviderPermissionsSteps(ScenarioContext context)
         {
             _context = context;
             _providerPermissionConfig = context.GetProviderPermissionConfig<ProviderPermissionsConfig>();
