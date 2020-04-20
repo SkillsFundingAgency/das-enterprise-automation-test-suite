@@ -17,8 +17,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         #endregion
 
         protected override By ContinueButton => By.CssSelector("#submitCohort button");
-        private By DraftGoToHomePage => By.CssSelector("#submitCohort > div > fieldset > div > div:nth-child(4) > label");
-        private By DraftSaveAndSubmit => By.CssSelector("#submitCohort > button");
+        private By DraftSaveAndSubmit => By.CssSelector(".govuk-button");
         public YouMustCompleteAllApprenticeDetailsPage (ScenarioContext context) : base(context)
         {
             _context = context;
@@ -28,7 +27,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         
         public DynamicHomePages DraftReturnToHomePage()
         {
-            _formCompletionHelper.ScrollAndClickElement(DraftGoToHomePage);
+            SelectRadioOptionByForAttribute("radio-home");
             _formCompletionHelper.ScrollAndClickElement(DraftSaveAndSubmit);
             return new DynamicHomePages(_context);
         }

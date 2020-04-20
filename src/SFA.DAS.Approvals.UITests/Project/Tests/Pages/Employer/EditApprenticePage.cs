@@ -16,7 +16,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private readonly FormCompletionHelper _formCompletionHelper;
         private readonly PageInteractionHelper _pageInteractionHelper;
         private readonly ApprenticeDataHelper _dataHelper;
-       private readonly ApprenticeCourseDataHelper _EditedcoursedataHelper;
+        private readonly ApprenticeCourseDataHelper _EditedcoursedataHelper;
         #endregion
         public EditApprenticePage(ScenarioContext context) : base(context)
         {
@@ -29,23 +29,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         }
 
         private By CourseOption => By.CssSelector("#TrainingCode");
-        private By VerifyEditApprenticeDetailsPage = By.CssSelector("#main-content > div > div > h1");
-        private By EditFirstNameField => By.Id("FirstName");
-        private By EditLastNameField => By.Id("LastName");
         private By EditDateOfBirthDay => By.Id("BirthDay");
         private By EditDateOfBirthMonth => By.Id("BirthMonth");
         private By EditDateOfBirthYear => By.Id("BirthYear");
-        private By EditTrainingCourseContainer => By.Id("CourseCode");
-        private By EditStartDateMonth => By.Id("StartMonth");
-        private By EditStartDateYear => By.Id("StartYear");
-        private By EditEndDateMonth => By.Id("EndMonth");
-        private By EditEndDateYear => By.Id("EndYear");
         private By EditTrainingCost => By.Id("Cost");
         private By EditEmployerReference => By.Id("Reference");
         private By EditSaveAndContinueButton => By.CssSelector(".govuk-button");
-
         private By DeleteButton => By.LinkText("Delete");
-
+        
         public ConfirmApprenticeDeletionPage SelectDeleteApprentice()
         {
            formCompletionHelper.ClickElement(DeleteButton);
@@ -70,7 +61,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         {
             return new ConfirmChangesPage(_context);
         }
-        public ApproveApprenticeDetailsPage ContinueToAddValidApprenticeDetails()
+        public AfterEditApproveApprenticeDetailsPage ContinueToAddValidApprenticeDetails()
         {
             _formCompletionHelper.EnterText(EditDateOfBirthDay, _dataHelper.DateOfBirthDay);
             _formCompletionHelper.EnterText(EditDateOfBirthMonth, _dataHelper.DateOfBirthMonth);
@@ -80,7 +71,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             _formCompletionHelper.EnterText(EditTrainingCost, _dataHelper.TrainingPrice);
             _formCompletionHelper.EnterText(EditEmployerReference, _dataHelper.EmployerReference);
             _formCompletionHelper.ClickElement(EditSaveAndContinueButton);
-            return new ApproveApprenticeDetailsPage(_context);
+            return new AfterEditApproveApprenticeDetailsPage(_context);
         }       
     }
 }

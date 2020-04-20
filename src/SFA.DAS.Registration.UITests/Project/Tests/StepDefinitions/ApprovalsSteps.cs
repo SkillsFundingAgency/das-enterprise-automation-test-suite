@@ -1,6 +1,4 @@
-﻿using NUnit.Framework;
-using SFA.DAS.ConfigurationBuilder;
-using SFA.DAS.Registration.UITests.Project.Helpers;
+﻿using SFA.DAS.Registration.UITests.Project.Helpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
@@ -17,8 +15,8 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             _stepsHelper = new ApprovalsStepsHelper(context);
         }
 
-        [Given(@"The User creates Employer account and sign an agreement")]
-        public void TheUserCreatesEmployerAccountAndSignAnAgreement()
+        [Given(@"The User creates NonLevyEmployer account and sign an agreement")]
+        public void TheUserCreatesNonLevyEmployerAccountAndSignAnAgreement()
         {
             _stepsHelper.CreatesAccountAndSignAnAgreement();
         }

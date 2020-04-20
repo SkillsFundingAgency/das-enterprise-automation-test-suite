@@ -17,7 +17,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             ContinueToCreateAddAnApprentices();
             return new DoYouNeedToCreateAnAdvertPage(_context).ClickNoRadioButtonTakesToAddAnApprentices();
         }
-        private void ContinueToCreateAddAnApprentices() => new DynamicHomePages(_context).ContinueToCreateAdvert();
+        private  void ContinueToCreateAddAnApprentices() => new DynamicHomePages(_context).ContinueToCreateAdvert();
         public SuccessfullyReservedFundingPage CreateReservation(DoYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage doYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage)
         {
             return doYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage

@@ -13,13 +13,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
         private readonly ScenarioContext _context;
         private readonly ObjectContext _objectContext;
         private readonly ProviderHomePageStepsHelper _providerHomePageStepsHelper;
-        private readonly ReviewYourCohortStepsHelper _reviewYourCohortStepsHelper;    
-		public ProviderStepsHelper(ScenarioContext context)
+        private readonly ReviewYourCohortStepsHelper _reviewYourCohortStepsHelper;
+        
+        public ProviderStepsHelper(ScenarioContext context)
         {
             _context = context;
             _objectContext = _context.Get<ObjectContext>();
             _providerHomePageStepsHelper = new ProviderHomePageStepsHelper(_context);
-            _reviewYourCohortStepsHelper = new ReviewYourCohortStepsHelper(_context.Get<AssertHelper>());  
+            _reviewYourCohortStepsHelper = new ReviewYourCohortStepsHelper(_context.Get<AssertHelper>());
         }
 
         internal ApprovalsProviderHomePage GoToProviderHomePage(ProviderLoginUser login)
@@ -215,5 +216,17 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             return new ProviderManageYourApprenticesPage(_context).DownloadAllDataLinkIsDisplayed();
         }
 
+        public void DynamicProviderApproval()
+        {
+            ApprovalsProviderHomePage _approvalsProviderHomePage = new ApprovalsProviderHomePage(_context);
+            _approvalsProviderHomePage.GoToYourCohorts()
+            .GoToCohortsToReviewPage()
+             .SelectViewCurrentCohortDetails()
+             .SelectEditApprentice(0)
+             .EnterUlnAndSave()
+             .SelectSaveAndContinue()
+             .SubmitApproveAndSendToEmployerForApproval()
+             .SendInstructionsToEmployerForAnApprovedCohort();
+        }
     }
 }

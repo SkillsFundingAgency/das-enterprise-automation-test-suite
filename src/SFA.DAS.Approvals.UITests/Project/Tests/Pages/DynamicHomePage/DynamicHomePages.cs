@@ -37,9 +37,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.DynamicHomePage
             _formCompletionHelper.Click(DynamicHomeContinueButton);
             return new EditApprenticePage(_context);
         }
-        public void CheckWithTrainingProviderStatus()
+        public DynamicHomePages CheckWithTrainingProviderStatus()
         {
             _pageInteractionHelper.VerifyText(VerifyWithTrainingProviderStatus, VerifyWithTrainingProviderStatusMessage);
+            return  new DynamicHomePages(_context);
         }
     }
 }
