@@ -39,7 +39,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
         private By UpdateResults => By.Id("search-button");
         private By KeywordDropDown => By.Id("SearchField");
         private By KeywordTextField => By.Id("Keywords");
-
+        private By VerifyMobile => By.CssSelector("a[href='/verifymobile']");
         
         public FAA_ApprenticeSearchPage(ScenarioContext context) : base(context)
         {
@@ -137,8 +137,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
         public FAA_PhoneNumberVerificationPage VerifyPhoneNumberVerificationText()
         {
             _pageInteractionHelper.VerifyText(VerifyPhoneNumberText, _faadataHelper.PhoneNumberVerificationText);
-            _formCompletionHelper.ClickLinkByText("verify your number");
-            _pageInteractionHelper.WaitforURLToChange("verifymobile");
+            _formCompletionHelper.ClickElement(VerifyMobile);
             return new FAA_PhoneNumberVerificationPage(_context);
         } 
 

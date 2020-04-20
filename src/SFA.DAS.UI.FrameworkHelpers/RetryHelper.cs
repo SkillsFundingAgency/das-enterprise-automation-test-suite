@@ -4,6 +4,8 @@ using NUnit.Framework;
 using OpenQA.Selenium;
 using System.Drawing;
 using OpenQA.Selenium.Interactions;
+using TechTalk.SpecFlow;
+using System.Linq;
 
 namespace SFA.DAS.UI.FrameworkHelpers
 {
@@ -11,11 +13,15 @@ namespace SFA.DAS.UI.FrameworkHelpers
     {
         private readonly IWebDriver _webDriver;
         private readonly string _scenarioTitle;
+        private readonly ScenarioInfo _scenarioInfo;
+        private readonly TimeSpan[] TimeOut;
 
-        public RetryHelper(IWebDriver webDriver, string scenarioTitle)
+        public RetryHelper(IWebDriver webDriver, ScenarioInfo scenarioInfo)
         {
             _webDriver = webDriver;
-            _scenarioTitle = scenarioTitle;
+            _scenarioInfo = scenarioInfo;
+            _scenarioTitle = scenarioInfo.Title;
+            TimeOut = SetTimeOut();
         }
 
         internal bool RetryOnException(Func<bool> func, Action beforeAction, Action retryAction = null)
@@ -134,12 +140,16 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         private Action Click(IWebElement element) => () => element.Click();
 
-        private static TimeSpan[] TimeOut => new[]
+        private TimeSpan[] SetTimeOut() 
         {
-            TimeSpan.FromSeconds(1),
-            TimeSpan.FromSeconds(2),
-            TimeSpan.FromSeconds(3)
-        };
+            switch (true)
+            {
+                case bool _ when _scenarioInfo.Tags.Contains("raa-v1"):
+                    return new TimeSpan[] { TimeSpan.FromSeconds(3), TimeSpan.FromSeconds(4), TimeSpan.FromSeconds(5) };
+                default:
+                    return new TimeSpan[] { TimeSpan.FromSeconds(1), TimeSpan.FromSeconds(2), TimeSpan.FromSeconds(3) };
+            }           
+        }
 
         private (Action beforeAction, Action afterAction) ResizeWindow()
         {
