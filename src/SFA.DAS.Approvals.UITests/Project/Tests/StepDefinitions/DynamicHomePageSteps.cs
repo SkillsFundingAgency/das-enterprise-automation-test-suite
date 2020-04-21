@@ -43,5 +43,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _providerHomePageStepsHelper.GoToProviderHomePage(_login, true);
             _providerStepsHelper.DynamicProviderApproval();
         }
+
+        [Then(@"Employer Approves the apprentice")]
+        public void ThenEmployerApprovesTheApprentice()
+        {
+            _employerStepsHelper.GotoEmployerHomePage();
+        }
+
     }
 }

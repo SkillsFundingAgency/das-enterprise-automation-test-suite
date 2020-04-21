@@ -101,6 +101,8 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("The nonlevyemployer continues to add an apprentice for reserved funding", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 14
  testRunner.And("TrainingProvider approves apprentice by adding further details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 15
+ testRunner.And("Employer Approves the apprentice", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }

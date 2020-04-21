@@ -4,6 +4,7 @@ using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.DynamicHomePage;
+using SFA.DAS.Registration.UITests.Project.Tests.Pages;
 
 namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 {
@@ -34,11 +35,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 
 
         internal ManageYourApprenticesPage GoToManageYourApprenticesPage() => GoToEmployerApprenticesHomePage().ClickManageYourApprenticesLink();
-
+        internal HomePage GotoEmployerHomePage() => _homePageStepsHelper.GotoEmployerHomePage();
         internal ApprenticesHomePage GoToEmployerApprenticesHomePage()
         {
-            _homePageStepsHelper.GotoEmployerHomePage();
-
+            GotoEmployerHomePage();
             return new ApprenticesHomePage(_context, true);
         }
 
