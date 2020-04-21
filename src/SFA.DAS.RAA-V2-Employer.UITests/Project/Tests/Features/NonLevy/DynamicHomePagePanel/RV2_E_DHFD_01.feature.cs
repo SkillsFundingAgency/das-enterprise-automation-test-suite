@@ -95,8 +95,7 @@ this.ScenarioInitialize(scenarioInfo);
 #line 13
  testRunner.Then("the vacancy details is displayed on the Dynamic home page with Status \'DRAFT\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 14
- testRunner.And("Employer is able to go to Recruitment page after clicking \'Continue creating your" +
-                    " advert\' button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("Employer can continue creating an advert", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }

@@ -43,19 +43,19 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer
             return this;
         }
 
-        public VacancyPreviewPart2Page ClickContinueCreatingYourAdvertButton()
+        public VacancyPreviewPart2Page ContinueCreatingYourAdvert()
         {
             formCompletionHelper.ClickLinkByText("Continue creating your advert");
             return new VacancyPreviewPart2Page(_context);
         }
 
-        public RecruitmentHomePage ClickGotoYourDashboard()
+        public RecruitmentHomePage GoToVacancyDashboard()
         {
             formCompletionHelper.ClickLinkByText("Go to your vacancy dashboard");
             return new RecruitmentHomePage(_context);
         }
 
-        public ManageVacancyPage ClickApplicationsLink()
+        public ManageVacancyPage GoToManageVacancyPage()
         {
             formCompletionHelper.ClickLinkByText("application");
             return new ManageVacancyPage(_context);
