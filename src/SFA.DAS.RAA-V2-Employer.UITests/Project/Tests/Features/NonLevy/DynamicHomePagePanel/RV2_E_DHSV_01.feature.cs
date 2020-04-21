@@ -98,12 +98,18 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Then("the vacancy details is displayed on the Dynamic home page with Status \'PENDING RE" +
                     "VIEW\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 13
- testRunner.Given("the Reviewer Refer the vacancy", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.And("Employer is able to go to Recruitment page after clicking \'Go to your vacancy das" +
+                    "hboard\' button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 14
- testRunner.And("the Employer logs into Employer account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Given("the Reviewer Refer the vacancy", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 15
- testRunner.Then("the vacancy details is displayed on the Dynamic home page with Status \'REJECTED\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("the Employer logs into Employer account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 16
+ testRunner.Then("the vacancy details is displayed on the Dynamic home page with Status \'REJECTED\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 17
+ testRunner.And("Employer is able to go to Recruitment page after clicking \'Review your advert\' bu" +
+                    "tton", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 18
  testRunner.And("the vacancy can be resubmitted", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();

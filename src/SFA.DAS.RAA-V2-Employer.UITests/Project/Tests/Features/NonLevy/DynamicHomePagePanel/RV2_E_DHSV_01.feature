@@ -10,7 +10,9 @@ Scenario: RV2_E_DHSV_01 Employer creates Submitted vacancy from dynamic homepage
 	And the employer continue to add vacancy in the Recruitment 
 	When the Employer creates first submitted vacancy 'National Minimum Wage'
 	Then the vacancy details is displayed on the Dynamic home page with Status 'PENDING REVIEW'
+	And Employer is able to go to Recruitment page after clicking 'Go to your vacancy dashboard' button
 	Given the Reviewer Refer the vacancy
 	And the Employer logs into Employer account
 	Then the vacancy details is displayed on the Dynamic home page with Status 'REJECTED'	
+	And Employer is able to go to Recruitment page after clicking 'Review your advert' button
 	And the vacancy can be resubmitted

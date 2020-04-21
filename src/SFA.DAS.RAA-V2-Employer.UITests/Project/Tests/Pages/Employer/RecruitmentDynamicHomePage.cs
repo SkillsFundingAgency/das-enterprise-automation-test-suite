@@ -32,7 +32,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer
 
         public VacancyPreviewPart2Page ReviewYourVacancy()
         {
-            formCompletionHelper.ClickLinkByText("Review your vacancy");
+            formCompletionHelper.ClickLinkByText("Review your advert");
             return new VacancyPreviewPart2Page(_context);
         }
 
@@ -43,10 +43,27 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer
             return this;
         }
 
+        public VacancyPreviewPart2Page ClickContinueCreatingYourAdvertButton()
+        {
+            formCompletionHelper.ClickLinkByText("Continue creating your advert");
+            return new VacancyPreviewPart2Page(_context);
+        }
+
+        public RecruitmentHomePage ClickGotoYourDashboard()
+        {
+            formCompletionHelper.ClickLinkByText("Go to your vacancy dashboard");
+            return new RecruitmentHomePage(_context);
+        }
+
+        public ManageVacancyPage ClickApplicationsLink()
+        {
+            formCompletionHelper.ClickLinkByText("application");
+            return new ManageVacancyPage(_context);
+        }
         public RecruitmentDynamicHomePage ConfirmVacancyDetails(string status, DateTime dateTime)
         {
             ConfirmVacancyTitleAndStatus(status);
-            return ConfirmClosedDateAndApplicationsLink(dateTime);
+            return ConfirmClosedDateAndApplicationsLink(dateTime, status);
         }
 
         public RecruitmentDynamicHomePage ConfirmLiveVacancyDetails(string status)
@@ -58,14 +75,17 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer
         public RecruitmentDynamicHomePage ConfirmClosedVacancyDetails(string status)
         {
             ConfirmVacancyTitleAndStatus(status);
-            ConfirmClosedDateAndApplicationsLink(DateTime.Today);
+            ConfirmClosedDateAndApplicationsLink(DateTime.Today, status);
             return ConfirmAddApprenticeDeatilsButton();
         }
 
-        private RecruitmentDynamicHomePage ConfirmClosedDateAndApplicationsLink(DateTime closingDate)
+        private RecruitmentDynamicHomePage ConfirmClosedDateAndApplicationsLink(DateTime closingDate, string status)
         {
             pageInteractionHelper.VerifyText(GetDetails("Closing date").Text.ToString(), closingDate.ToString("dd MMMM yyyy"), closingDate.ToString("dd MMM yyyy"));
-            pageInteractionHelper.VerifyText(GetDetails("Applications").Text.ToString(), "application");
+            if (status != "PENDING REVIEW")
+            {
+                pageInteractionHelper.VerifyText(GetDetails("Applications").Text.ToString(), "application");
+            }
             return this;
         }
 

@@ -16,13 +16,16 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
         private readonly ScenarioContext _context;
         private readonly EmployerHomePageStepsHelper _homePageStepsHelper;
         private readonly RAAV2DataHelper _rAAV2DataHelper;
-        private readonly EmployerStepsHelper _employerStepsHelper;
+        private readonly EmployerStepsHelper _employerStepsHelper;        
 
         private VacanciesPage _vacanciesPage;
         private VacancyPreviewPart2Page _vacancyPreviewPart2Page;
         private VacancyPreviewPart2WithErrorsPage _vacancyPreviewPart2WithErrorsPage;
         private RecruitmentDynamicHomePage _dynamicHomePage;
         private VacancyTitlePage _vacancyTitlePage;
+        private RecruitmentHomePage _recruitmentHomePage;
+        private ManageVacancyPage _manageVacancyPage;
+
 
         public EmployerSteps(ScenarioContext context) 
         {
@@ -120,12 +123,12 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
         [Given(@"the employer continue to add vacancy in the Recruitment")]
         public void ThenTheEmployerContinueToAddVacancyInTheRecruitment() => _vacancyTitlePage = _employerStepsHelper.GoToAddAnAdvert();
 
-        [Then(@"the vacancy details is displayed on the Dynamic home page with Status '(Saved as draft|CLOSED|PENDING REVIEW|LIVE|REJECTED)'")]
+        [Then(@"the vacancy details is displayed on the Dynamic home page with Status '(DRAFT|CLOSED|PENDING REVIEW|LIVE|REJECTED)'")]
         public void GivenTheVacancyDetailsIsDisplayedOnTheDynamicHomePageWithStatus(string status)
         {
             switch (status)
             {
-                case "Saved as draft":
+                case "DRAFT":
                 case "REJECTED":
                     _dynamicHomePage = new RecruitmentDynamicHomePage(_context, true).ConfirmVacancyTitleAndStatus(status);
                     break;
@@ -144,6 +147,30 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
             }                    
         }
 
+        [Then(@"Employer is able to go to Recruitment page after clicking '(Continue creating your advert|Go to your vacancy dashboard|Review your advert|application)' button")]
+        public void ThenEmployerIsAbleToGoToRecruitmentPageAfterClickingButton(string button)
+        {
+            switch(button)
+            {
+                case "Continue creating your advert":
+                    _vacancyPreviewPart2Page = new RecruitmentDynamicHomePage(_context, true).ClickContinueCreatingYourAdvertButton();                   
+                    break;
+
+                case "Go to your vacancy dashboard":
+                    _recruitmentHomePage = new RecruitmentDynamicHomePage(_context, true).ClickGotoYourDashboard();
+                    break;
+
+                case "Review your advert":
+                    _vacancyPreviewPart2Page = new RecruitmentDynamicHomePage(_context, true).ReviewYourVacancy();
+                    break;
+
+                case "application":
+                    _manageVacancyPage = new RecruitmentDynamicHomePage(_context, true).ClickApplicationsLink();
+                    break;
+            }
+        }
+
+
         [When(@"the Employer creates first submitted vacancy '(National Minimum Wage|National Minimum Wage For Apprentices|Fixed Wage Type)'")]
         public void GivenTheEmployerCreatesFirstSubmittedVacancy(string wageType) => _employerStepsHelper.CreateSubmittedVacancy(_vacancyTitlePage, wageType);
 
@@ -151,6 +178,6 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
         public void GivenTheEmployerLogsIntoEmployerAccount() => _homePageStepsHelper.GotoEmployerHomePage();
 
         [Then(@"the vacancy can be resubmitted")]
-        public void ThenTheVacancyCanBeResubmitted() => _dynamicHomePage.ReviewYourVacancy().ResubmitVacancy().ConfirmVacancyResubmission();
+        public void ThenTheVacancyCanBeResubmitted() => new VacancyPreviewPart2Page(_context).ResubmitVacancy().ConfirmVacancyResubmission();
     }
 }

@@ -93,8 +93,10 @@ this.ScenarioInitialize(scenarioInfo);
 #line 12
  testRunner.When("the Employer creates first Draft vacancy \'National Mininum Wage\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 13
- testRunner.Then("the vacancy details is displayed on the Dynamic home page with Status \'Saved as d" +
-                    "raft\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the vacancy details is displayed on the Dynamic home page with Status \'DRAFT\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 14
+ testRunner.And("Employer is able to go to Recruitment page after clicking \'Continue creating your" +
+                    " advert\' button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
