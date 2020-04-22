@@ -1,6 +1,7 @@
 ﻿using SFA.DAS.Login.Service;
 using SFA.DAS.Login.Service.Helpers;
 using SFA.DAS.Registration.UITests.Project.Helpers;
+using SFA.DAS.Registration.UITests.Project.Tests.Pages;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
@@ -9,18 +10,37 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
     public class ExistingAccountSteps
     {
         private readonly ScenarioContext _context;
-        private readonly EmployerPortalLoginHelper _loginhelper;
+        private readonly EmployerPortalLoginHelper _employerPortalLoginHelper;
+        private readonly EmployerLoginFromCreateAcccountPageHelper _loginFromCreateAcccountPageHelper;
+        private HomePage _homePage;
 
         public ExistingAccountSteps(ScenarioContext context)
         {
             _context = context;
-            _loginhelper = new EmployerPortalLoginHelper(context);
+            _employerPortalLoginHelper = new EmployerPortalLoginHelper(context);
+            _loginFromCreateAcccountPageHelper = new EmployerLoginFromCreateAcccountPageHelper(_context);
         }
 
         [Given(@"the Employer logins using existing Levy Account")]
-        public void GivenTheEmployerLoginsUsingExistingLevyAccount() => _loginhelper.Login(_context.GetUser<LevyUser>(), true);
+        [When(@"the Employer logins using existing Levy Account")]
+        public void GivenTheEmployerLoginsUsingExistingLevyAccount() => _homePage = _employerPortalLoginHelper.Login(_context.GetUser<LevyUser>(), true);
 
         [Given(@"the Employer logins using existing NonLevy Account")]
-        public void GivenTheEmployerLoginsUsingExistingNonLevyAccount() => _loginhelper.Login(_context.GetUser<NonLevyUser>(), false);
+        [When(@"the Employer logins using existing NonLevy Account")]
+        public void GivenTheEmployerLoginsUsingExistingNonLevyAccount() => _homePage = _loginFromCreateAcccountPageHelper.Login(_context.GetUser<NonLevyUser>());
+
+        [Then(@"Employer is able to navigate to all the link under Settings")]
+        public void ThenEmployerIsAbleToNavigateToAllTheLinkUnderSettings() => _homePage = _homePage
+                .GoToYourAccountsPage().OpenAccount().GoToHomePage()
+                .GoToRenameAccountPage().GoToHomePage()
+                .GoToChangeYourPasswordPage().ClickBackLink()
+                .GoToChangeYourEmailAddressPage().ClickBackLink()
+                .GoToNotificationSettingsPage().ClickBackLink();
+
+        [Then(@"Employer is able to navigate to Your saved favourites Page")]
+        public void ThenEmployerIsAbleToNavigateToYourSavedFavouritesPage() => _homePage = _homePage.GoToYourSavedFavourites().GoToHomePage();
+
+        [Then(@"Employer is able to navigate to Help Page")]
+        public void ThenEmployerIsAbleToNavigateToHelpPage() => _homePage.GoToHelpPage();
     }
 }

@@ -10,7 +10,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentOpportunity
         private readonly TabHelper _tabHelper;
 
         #region Locators
-        private By ApplyToAssessThisStandardButton => By.CssSelector(".govuk-button");
+        private By ApplyToAssessThisStandardButton => By.CssSelector("#main-content .govuk-button");
         #endregion
 
         public AO_ApprovedStandardDetailsPage(ScenarioContext context) : base(context)

@@ -19,7 +19,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             VerifyPage();
         }
 
-        public SignInPage SignIn()
+        public SignInPage ClickSignInLinkOnIndexPage()
         {
             formCompletionHelper.ClickElement(SigninLink);
             return new SignInPage(_context);

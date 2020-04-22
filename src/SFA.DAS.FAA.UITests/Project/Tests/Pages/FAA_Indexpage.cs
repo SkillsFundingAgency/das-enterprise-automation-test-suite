@@ -17,7 +17,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 
         private By SignIn => By.CssSelector("#loginLink");
 
-        private By AcceptCookieButton => By.CssSelector("#btn-cookie-accept");
+        protected override By AcceptCookieButton => By.CssSelector("#btn-cookie-accept");
 
         public FAA_Indexpage(ScenarioContext context) : base(context)
         {
@@ -34,12 +34,9 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
             return new FAA_SignInPage(_context);
         }
 
-        private FAA_Indexpage AcceptCookies()
+        private new FAA_Indexpage AcceptCookies()
         {
-            if (_pageInteractionHelper.IsElementDisplayed(AcceptCookieButton))
-            {
-                _formCompletionHelper.Click(AcceptCookieButton);
-            }
+            base.AcceptCookies();
             return this;
         }
     }

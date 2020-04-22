@@ -9,14 +9,15 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
     public class SignInPage : BasePage
     {
         protected override string PageTitle => "Sign in";
-
-        protected readonly FormCompletionHelper _formCompletionHelper;
         private readonly ScenarioContext _context;
+        private readonly FormCompletionHelper _formCompletionHelper;
 
         #region Locators
         private By EmailAddressInput => By.Id("EmailAddress");
         private By PasswordInput => By.Id("Password");
         private By SignInButton => By.Id("button-signin");
+        private By HeaderInformationMessage => By.CssSelector(".bold-large");
+        private By ForgottenYourPasswordLink => By.LinkText("Forgotten your password?");
         #endregion
 
         public SignInPage(ScenarioContext context) : base(context)
@@ -28,21 +29,45 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         public HomePage Login(LoginUser loginUser)
         {
-            SignIn(loginUser);
+            EnterLoginDetailsAndClickSignIn(loginUser.Username, loginUser.Password);
             return new HomePage(_context);
+        }
+
+        public ConfirmYourIdentityPage LoginWithUnActivatedAccount(string userName, string password)
+        {
+            EnterLoginDetailsAndClickSignIn(userName, password);
+            return new ConfirmYourIdentityPage(_context);
+        }
+
+        public MyAccountWithOutPayePage LoginToMyAccountWithOutPaye(LoginUser loginUser)
+        {
+            EnterLoginDetailsAndClickSignIn(loginUser.Username, loginUser.Password);
+            return new MyAccountWithOutPayePage(_context);
         }
 
         public YourAccountsPage MultipleAccountLogin(LoginUser loginUser)
         {
-            SignIn(loginUser);
+            EnterLoginDetailsAndClickSignIn(loginUser.Username, loginUser.Password);
             return new YourAccountsPage(_context);
         }
 
-        private void SignIn(LoginUser loginUser)
+        public void EnterLoginDetailsAndClickSignIn(string userName, string password)
         {
-            _formCompletionHelper.EnterText(EmailAddressInput, loginUser.Username);
-            _formCompletionHelper.EnterText(PasswordInput, loginUser.Password);
+            _formCompletionHelper.EnterText(EmailAddressInput, userName);
+            _formCompletionHelper.EnterText(PasswordInput, password);
             _formCompletionHelper.ClickElement(SignInButton);
+        }
+
+        public SignInPage CheckHeaderInformationMessageOnSignInPage(string info)
+        {
+            VerifyPage(HeaderInformationMessage, info);
+            return this;
+        }
+
+        public ResetYourPasswordPage ClickForgottenYourPasswordLink()
+        {
+            _formCompletionHelper.Click(ForgottenYourPasswordLink);
+            return new ResetYourPasswordPage(_context);
         }
     }
 }

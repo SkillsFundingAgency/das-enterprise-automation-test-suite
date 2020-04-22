@@ -25,24 +25,21 @@ namespace SFA.DAS.TestDataExport.AfterScenario
         [AfterScenario(Order = 10)]
         public void CollectTestData()
         {
+            _objectContext.SetAfterScenarioExceptions(new List<Exception>());
+            
+            string fileName = $"{DateTime.Now:HH-mm-ss}_{_context.ScenarioInfo.Title}.txt".RemoveSpace();
+
+            string directory = _objectContext.GetDirectory();
+
+            string filePath = Path.Combine(directory, fileName);
+            
+            List<TestData> records = new List<TestData>();
+
+            var testDatas = _objectContext.GetAll();
+
+            testDatas.ToList().ForEach(x => records.Add(new TestData { Key = x.Key, Value = testDatas[x.Key].ToString() }));
             try
             {
-                _objectContext.SetAfterScenarioExceptions(new List<Exception>());
-
-                DateTime dateTime = DateTime.Now;
-
-                string fileName = $"{dateTime.ToString("HH-mm-ss")}_{_context.ScenarioInfo.Title}.txt".RemoveSpace();
-
-                string directory = _objectContext.GetDirectory();
-
-                string filePath = Path.Combine(directory, fileName);
-
-                List<TestData> records = new List<TestData>();
-
-                var testDatas = _objectContext.GetAll();
-
-                testDatas.ToList().ForEach(x => records.Add(new TestData { Key = x.Key, Value = testDatas[x.Key].ToString() }));
-
                 using (var writer = new StreamWriter(filePath))
                 {
                     using (var csv = new CsvWriter(writer))
@@ -55,6 +52,8 @@ namespace SFA.DAS.TestDataExport.AfterScenario
             }
             catch (Exception ex)
             {
+                TestContext.Progress.WriteLine($"Exception occurred while collecting testdata - {filePath}" + ex);
+
                 _objectContext.SetAfterScenarioException(ex);
             }
         }

@@ -24,7 +24,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.YourTeamPages
         public CreateInvitationPage EnterEmailAndFullName(string email)
         {
             formCompletionHelper.EnterText(EmailTextBox, email);
-            formCompletionHelper.EnterText(FullNameTextBox, registrationDataHelper.InvitedViewerAccessUserFullName);
+            formCompletionHelper.EnterText(FullNameTextBox, registrationDataHelper.FullName);
             return this;
         }
 
