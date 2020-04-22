@@ -11,5 +11,5 @@ Scenario: AP_DH_01 NonLevyEmployer reserves funding to add an apprentice from dy
 	Then  The funding is successfully reserved
 	And   The new reserved funding panel is shown to nonlevyemployer on the homepage
 	And   The nonlevyemployer continues to add an apprentice for reserved funding
-	And   TrainingProvider approves apprentice by adding further details
-	And   Employer Approves the apprentice
+	And   The TrainingProvider approves apprentice by adding further details
+	And   The NonLevyEmployer Reviews and Approves the apprentice

@@ -16,6 +16,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
         private readonly HomePageStepsHelper _homePageStepsHelper;
         private readonly ObjectContext _objectContext;
         private readonly ScenarioContext _context;
+        
         internal EmployerStepsHelper(ScenarioContext context)
         {
             _context = context;
@@ -219,5 +220,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                  .ClickHomeLink()
                  .CheckWithTrainingProviderStatus();
           }
+
+        public DynamicHomePages DynamicHomePageFinishToAddApprenticeJourney()
+        {
+            return new DynamicHomePages(_context).CheckReadyToReviewStatus()
+                .ApproveAndNotifyTrainingProvider()
+                .ClickHome()
+                .VerifyYourFundingReservationsLink();
+        }
     }
 }

@@ -216,7 +216,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             return new ProviderManageYourApprenticesPage(_context).DownloadAllDataLinkIsDisplayed();
         }
 
-        public void DynamicProviderApproval()
+        public void DynamicHomePageProviderApproval()
         {
             ApprovalsProviderHomePage _approvalsProviderHomePage = new ApprovalsProviderHomePage(_context);
             _approvalsProviderHomePage.GoToYourCohorts()

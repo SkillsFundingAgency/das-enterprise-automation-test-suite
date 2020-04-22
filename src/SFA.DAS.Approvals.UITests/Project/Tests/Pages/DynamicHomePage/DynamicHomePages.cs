@@ -15,11 +15,16 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.DynamicHomePage
         private readonly PageInteractionHelper _pageInteractionHelper;
         #endregion
 
-        private string VerifyDraftStatusMessage = "DRAFT";
-        private By VerifyDraftStatus = By.Id("draft");
-        private string VerifyWithTrainingProviderStatusMessage = "WITH TRAINING PROVIDER";
-        private By VerifyWithTrainingProviderStatus = By.Id("with-training-provider");
-        private By DynamicHomeContinueButton = By.LinkText("Continue");
+        private string VerifyDraftStatusMessage => "DRAFT";
+        private string VerifyWithTrainingProviderStatusMessage => "WITH TRAINING PROVIDER";
+        private string VerifyReadyToReviewStatusMessage => "READY TO REVIEW";
+        private string VerifyViewApprenticeDetails => "View apprentice details";
+        private By VerifyDraftStatus => By.Id("draft");
+        private By VerifyWithTrainingProviderStatus => By.Id("with-training-provider");
+        private By VerifyReadyToReviewStatus => By.Id("ready-for-review");
+        private By ReviewApprenticeDetailsButton => By.LinkText("Review apprentice details");
+        private By VerifyViewApprenticeDetailsLink => By.LinkText("View apprentice details");
+        private By DynamicHomeContinueButton => By.LinkText("Continue");
         public DynamicHomePages(ScenarioContext context) : base(context) 
         {
             _context = context;
@@ -41,6 +46,17 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.DynamicHomePage
         {
             _pageInteractionHelper.VerifyText(VerifyWithTrainingProviderStatus, VerifyWithTrainingProviderStatusMessage);
             return  new DynamicHomePages(_context);
+        }
+        public AfterEditApproveApprenticeDetailsPage CheckReadyToReviewStatus()
+        {
+            _pageInteractionHelper.VerifyText(VerifyReadyToReviewStatus, VerifyReadyToReviewStatusMessage);
+            _formCompletionHelper.Click(ReviewApprenticeDetailsButton);
+            return new AfterEditApproveApprenticeDetailsPage(_context);
+        }
+        public DynamicHomePages VerifyYourFundingReservationsLink()
+        {
+            _pageInteractionHelper.VerifyText(VerifyViewApprenticeDetailsLink, VerifyViewApprenticeDetails);
+            return new DynamicHomePages(_context);
         }
     }
 }

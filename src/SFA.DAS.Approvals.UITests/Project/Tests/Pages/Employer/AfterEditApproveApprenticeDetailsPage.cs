@@ -26,5 +26,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             _formCompletionHelper.ClickElement(ApproveApprenticeSaveAndSubmit);
             return new NotificationSentToTrainingProviderPage(_context);
         }
+        public ApprenticeDetailsApprovedPage ApproveAndNotifyTrainingProvider()
+        {
+            SelectRadioOptionByForAttribute("radio-approve");
+            Continue();
+            return new ApprenticeDetailsApprovedPage(_context);
+        }
     }
 }

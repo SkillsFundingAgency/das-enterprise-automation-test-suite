@@ -37,18 +37,18 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _employerStepsHelper.DynamicHomePageStartToAddApprentice();
         }
 
-        [Then(@"TrainingProvider approves apprentice by adding further details")]
-        public void ThenTrainingProviderApprovesApprenticeByAddingFurtherDetails()
+        [Then(@"The TrainingProvider approves apprentice by adding further details")]
+        public void ThenTheTrainingProviderApprovesApprenticeByAddingFurtherDetails()
         {
             _providerHomePageStepsHelper.GoToProviderHomePage(_login, true);
-            _providerStepsHelper.DynamicProviderApproval();
+            _providerStepsHelper.DynamicHomePageProviderApproval();
         }
 
-        [Then(@"Employer Approves the apprentice")]
-        public void ThenEmployerApprovesTheApprentice()
+        [Then(@"The NonLevyEmployer Reviews and Approves the apprentice")]
+        public void ThenTheNonLevyEmployerReviewsandApprovesTheApprentice()
         {
             _employerStepsHelper.GotoEmployerHomePage();
+            _employerStepsHelper.DynamicHomePageFinishToAddApprenticeJourney();
         }
-
     }
 }
