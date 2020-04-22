@@ -84,10 +84,12 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features.SkipJourney
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 7
- testRunner.Given("an Employer creates an Account by skipping the add PAYE part", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.When("an Employer creates an Account by skipping the add PAYE part", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 8
- testRunner.When("the Employer chooses to add PAYE from Account Home Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.Then("ApprenticeshipEmployerType in Account table is marked as 2", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 9
+ testRunner.When("the Employer chooses to add PAYE from Account Home Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 10
  testRunner.Then("the Employer is able to add PAYE and Organisation to the Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
