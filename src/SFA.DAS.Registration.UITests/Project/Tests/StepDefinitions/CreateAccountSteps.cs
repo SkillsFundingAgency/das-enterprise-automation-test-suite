@@ -453,6 +453,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         [Then(@"the User is allowed to activate the account and continue with registration")]
         public void ThenTheUserIsAllowedToActivateTheAccountAndContinueWithRegistration() => AddPayeAndOrgAndSignAgreement();
 
+        [When(@"an Employer creates an Account by skipping the add PAYE part")]
         [Given(@"an Employer creates an Account by skipping the add PAYE part")]
         public void GivenAnEmployerCreatesAnAccountBySkippingTheAddPAYEPart()
         {
