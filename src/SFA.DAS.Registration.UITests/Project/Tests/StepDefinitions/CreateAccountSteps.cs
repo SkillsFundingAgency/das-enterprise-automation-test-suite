@@ -157,8 +157,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
                 .SignAgreement();
 
             _homePage.VerifySucessSummary("Agreement accepted");
-
-          //  SetAgreementId(_homePage);
         }
 
         [When(@"the Employer does not sign the Agreement")]
@@ -176,10 +174,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
 
         private HomePage SetAgreementId(HomePage homePage)
         {
-            homePage
-                 .GoToYourOrganisationsAndAgreementsPage();
-              //   .SetAgreementId();
-
+            homePage.GoToYourOrganisationsAndAgreementsPage();
             return new HomePage(_context, true);
         }
 
@@ -322,8 +317,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         public void ThenTheEmployerIsNotAllowedToRemoveTheFirstOrgAdded()
         {
             _homePage.GoToYourOrganisationsAndAgreementsPage();
-            // Will be uncomment this code in the next sprint
-            //   .VerifyCantBeRemovedMessageTextOnRemoveAnOrganisationPage();
 
             _homePage = new HomePage(_context, true);
         }
