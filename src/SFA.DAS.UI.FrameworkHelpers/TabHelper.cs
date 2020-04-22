@@ -9,15 +9,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
     {
         private IWebDriver _webDriver;
 
-        public TabHelper(IWebDriver webDriver)
-        {
-            _webDriver = webDriver;
-        }
-
-        public ReadOnlyCollection<string> ExistingTabs()
-        {
-            return _webDriver.WindowHandles;
-        }
+        public TabHelper(IWebDriver webDriver) => _webDriver = webDriver;
 
         public void OpenInNewTab(Action action)
         {
@@ -32,19 +24,12 @@ namespace SFA.DAS.UI.FrameworkHelpers
             _webDriver = _webDriver.SwitchTo().Window(newtab);
         }
 
-        public void OpenInNewTab(string url)
-        {
-            OpenInNewTab(() => ((IJavaScriptExecutor)_webDriver).ExecuteScript($"window.open('{url}','_blank');"));
-        }
+        public void OpenInNewTab(string url) => OpenInNewTab(() => ((IJavaScriptExecutor)_webDriver).ExecuteScript($"window.open('{url}','_blank');"));
 
-        public void GoToUrl(string url)
-        {
-            _webDriver.Navigate().GoToUrl(url);
-        }
+        public void GoToUrl(string url) => _webDriver.Navigate().GoToUrl(url);
 
-        public void NavigateBrowserBack()
-        {
-            _webDriver.Navigate().Back();
-        }
+        public void NavigateBrowserBack() => _webDriver.Navigate().Back();
+
+        private ReadOnlyCollection<string> ExistingTabs() => _webDriver.WindowHandles;
     }
 }

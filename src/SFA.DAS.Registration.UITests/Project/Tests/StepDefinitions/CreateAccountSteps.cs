@@ -18,13 +18,13 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         private readonly ScenarioContext _context;
         private readonly ObjectContext _objectContext;
         private readonly TabHelper _tabHelper;
-        private readonly RegistrationConfig _config;
+        private readonly RegistrationConfig _registrationConfig;
         private readonly RegistrationDataHelper _registrationDataHelper;
         private readonly RegistrationSqlDataHelper _registrationSqlDataHelper;
         private readonly TprSqlDataHelper _tprSqlDataHelper;
         private readonly AccountCreationStepsHelper _accountCreationStepsHelper;
+        private readonly LoginCredentialsHelper _loginCredentialsHelper;
         private HomePage _homePage;
-        private SetUpAsAUserPage _setUpAsAUserPage;
         private AddAPAYESchemePage _addAPAYESchemePage;
         private GgSignInPage _gGSignInPage;
         private SearchForYourOrganisationPage _searchForYourOrganisationPage;
@@ -36,7 +36,10 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         private EnterYourPAYESchemeDetailsPage _enterYourPAYESchemeDetailsPage;
         private UsingYourGovtGatewayDetailsPage _usingYourGovtGatewayDetailsPage;
         private MyAccountWithOutPayePage _myAccountWithOutPayePage;
+        private SetUpAsAUserPage _setUpAsAUserPage;
         private IndexPage _indexPage;
+        private SignInPage _signInPage;
+        private string _loginEmail;
 
         public CreateAccountSteps(ScenarioContext context)
         {
@@ -44,9 +47,10 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             _objectContext = _context.Get<ObjectContext>();
             _registrationDataHelper = context.Get<RegistrationDataHelper>();
             _registrationSqlDataHelper = context.Get<RegistrationSqlDataHelper>();
+            _loginCredentialsHelper = context.Get<LoginCredentialsHelper>();
             _tprSqlDataHelper = context.Get<TprSqlDataHelper>();
             _tabHelper = context.Get<TabHelper>();
-            _config = context.GetRegistrationConfig<RegistrationConfig>();
+            _registrationConfig = context.GetRegistrationConfig<RegistrationConfig>();
             _accountCreationStepsHelper = new AccountCreationStepsHelper(context);
         }
 
@@ -84,24 +88,13 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         }
 
         [When(@"the User adds Invalid PAYE details")]
-        public void WhenTheUserAddsInvalidPAYEDetails()
-        {
-            _gGSignInPage = _addAPAYESchemePage
-                .AddPaye().ContinueToGGSignIn()
-                .SignInWithInvalidDetails();
-        }
+        public void WhenTheUserAddsInvalidPAYEDetails() => _gGSignInPage = _addAPAYESchemePage.AddPaye().ContinueToGGSignIn().SignInWithInvalidDetails();
 
         [Then(@"the '(.*)' error message is shown")]
-        public void ThenTheErrorMessageIsShown(string error)
-        {
-            Assert.AreEqual(error, _gGSignInPage.GetErrorMessage());
-        }
+        public void ThenTheErrorMessageIsShown(string error) => Assert.AreEqual(error, _gGSignInPage.GetErrorMessage());
 
         [When(@"the User adds valid PAYE details on Gateway Sign In Page")]
-        public void WhenTheUserAddsValidPAYEDetailsOnGatewaySignInPage()
-        {
-            _searchForYourOrganisationPage = _gGSignInPage.SignInTo(0);
-        }
+        public void WhenTheUserAddsValidPAYEDetailsOnGatewaySignInPage() => _searchForYourOrganisationPage = _gGSignInPage.SignInTo(0);
 
         [When(@"adds Organisation details")]
         public void AddOrganisationDetails() => AddOrganisationTypeDetails(OrgType.Default);
@@ -151,10 +144,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         }
 
         [Then(@"the '(.*)' message is shown")]
-        public void ThenTheMessageIsShown(string resultMessage)
-        {
-            Assert.AreEqual(resultMessage, _selectYourOrganisationPage.GetSearchResultsText());
-        }
+        public void ThenTheMessageIsShown(string resultMessage) => Assert.AreEqual(resultMessage, _selectYourOrganisationPage.GetSearchResultsText());
 
         [Then(@"the Employer is able to Sign the Agreement and view the Home page")]
         [When(@"the Employer is able to Sign the Agreement")]
@@ -211,6 +201,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             SignTheAgreement();
         }
 
+        [When(@"an Employer Account with (Company|PublicSector|Charity) Type Org is created")]
         [When(@"an Employer Account with (Company|PublicSector|Charity) Type Org is created and agreement is Not Signed")]
         public void GivenAnEmployerAccountWithSpecifiedTypeOrgIsCreatedAndAgeementIsNotSigned(OrgType orgType)
         {
@@ -444,10 +435,10 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         }
 
         [When(@"an User tries to regiser an Account with an Email already registered")]
-        public void WhenAnUserTriesToRegiserAnAccountWithAnEMailAlreadyRegistered() => _setUpAsAUserPage = new IndexPage(_context).CreateAccount().EnterRegistrationDetailsAndContinue(_context.GetUser<LevyUser>().Username);
+        public void WhenAnUserTriesToRegiserAnAccountWithAnEMailAlreadyRegistered() => new IndexPage(_context).CreateAccount().EnterRegistrationDetailsAndContinue(_context.GetUser<LevyUser>().Username);
 
         [Then(@"'Email already regisered' message is shown to the User")]
-        public void ThenMessageIsShownToTheUser() => _setUpAsAUserPage.VerifyEmailAlreadyRegisteredErrorMessage();
+        public void ThenMessageIsShownToTheUser() => new SetUpAsAUserPage(_context).VerifyEmailAlreadyRegisteredErrorMessage();
 
         [When(@"Given an User registers an acount with email but does not activate it")]
         public void WhenGivenAnUserRegistersAnAcountWithEmailButDoesNotActivateIt() => _accountCreationStepsHelper.RegisterUserAccount();
@@ -455,8 +446,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         [When(@"the User tries to regiser another Account with the same Email that is pending activation")]
         public void WhenTheUserTriesToRegiserAnotherAccountWithTheSameEmailThatIsPendingActivation()
         {
-            _tabHelper.GoToUrl(_config.EmployerApprenticeshipServiceBaseURL);
-
+            VisitEmployerApprenticeshipSite();
             _addAPAYESchemePage = _accountCreationStepsHelper.RegisterUserAccount().ContinueToGetApprenticeshipFunding();
         }
 
@@ -471,7 +461,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         }
 
         [When(@"the Employer chooses to add PAYE from Account Home Page")]
-        public void WhenTheEmployerChoosesToAddPAYEFromAccountHomePage() => _addAPAYESchemePage = _myAccountWithOutPayePage.ClickAddYourPAYESchemeLink();
+        public void WhenTheEmployerChoosesToAddPAYEFromAccountHomePage() => _addAPAYESchemePage = _myAccountWithOutPayePage.AddYourPAYEScheme();
 
         [Then(@"the Employer is able to add PAYE and Organisation to the Account")]
         public void ThenTheEmployerIsAbleToAddPAYEAndOrganisationToTheAccount() => AddPayeAndOrgAndSignAgreement();
@@ -553,6 +543,64 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             OpenAccount(_objectContext.GetSecondAccountOrganisationName());
         }
 
+        [Then(@"the Employer Account is locked with 3 incorrect password attempts")]
+        public void ThenTheEmployerAccountIsLockedWithIncorrectPasswordAttempts()
+        {
+            _signInPage = _accountCreationStepsHelper.SignOut().ClickSignInLinkOnIndexPage();
+
+            _loginEmail = _loginCredentialsHelper.GetLoginCredentials().Username;
+            const string password = "InvalidPassword";
+            AttemptLogin(_loginEmail, password);
+            AttemptLogin(_loginEmail, password);
+            AttemptLogin(_loginEmail, password);
+        }
+
+        [Then(@"Employer is able to Unlock the Account")]
+        public void ThenEmployerIsAbleToUnlockTheAccount() => new AccountLockedPage(_context)
+            .EnterDetailsAndClickUnlockButton(_loginEmail)
+            .CheckHeaderInformationMessageOnSignInPage("Account Unlocked")
+            .Login(_objectContext.GetLoginCredentials());
+
+        [When(@"the User is on the 'Set up as a user' page")]
+        public void WhenTheUserIsOnTheSetUpAsAUserPage() => _setUpAsAUserPage = new IndexPage(_context).CreateAccount();
+
+        [Then(@"the User is able to navigate to 'Terms and conditions' page")]
+        public void ThenTheUserIsAbleToNavigateToTermsAndConditionsPage() => _setUpAsAUserPage.ClickTermsAndConditionsLink();
+
+        [Then(@"'Confirm your identity' page is displayed when the User tries to login with the Unactivated credentials")]
+        public void ThenConfirmYourIdentityPageIsDisplayedWhenTheUserTriesToLoginWithTheUnactivatedCredentials()
+        {
+            _accountCreationStepsHelper.RelaunchApplication();
+
+            new IndexPage(_context).ClickSignInLinkOnIndexPage()
+                .LoginWithUnActivatedAccount(_objectContext.GetRegisteredEmail(), _registrationDataHelper.Password);
+        }
+
+        [Then(@"the User is able to change the registered Email")]
+        public void ThenTheUserIsAbleToChangeTheRegisteredEmail()
+        {
+            _addAPAYESchemePage = _addAPAYESchemePage.GoToChangeYourEmailAddressPage()
+            .ChangeEmail().EnterSecurityCodeDetailsDuringAccountCreationJourney();
+
+            SignOutAndReLoginFromAddAPayeSchemePageDuringAccountCreation(_addAPAYESchemePage, _registrationDataHelper.Password);
+        }
+
+        [Then(@"the User is able to change the account Password")]
+        public void ThenTheUserIsAbleToChangeTheAccountPassword()
+        {
+            _addAPAYESchemePage = _addAPAYESchemePage.GoToChangeYourPasswordPage().ChangePasswordDuringAccountCreationJourney();
+            SignOutAndReLoginFromAddAPayeSchemePageDuringAccountCreation(_addAPAYESchemePage, _registrationDataHelper.NewPassword);
+        }
+
+        [Then(@"the User is able to reset password using 'Forgot your password' link on SignIn Page")]
+        public void ThenTheUserIsAbleToResetPasswordUsingLinkOnSignInPage()
+        {
+            _accountCreationStepsHelper.RelaunchApplication();
+
+            _addAPAYESchemePage = new IndexPage(_context).ClickSignInLinkOnIndexPage().ClickForgottenYourPasswordLink().EnterEmailToBeReset().ResetPasswordDuringAccountCreation();
+            SignOutAndReLoginFromAddAPayeSchemePageDuringAccountCreation(_addAPAYESchemePage, _registrationDataHelper.NewPassword);
+        }
+
         private void CreateUserAccountAndAddOrg(OrgType orgType)
         {
             CreateAnUserAcountAndAddPaye();
@@ -586,5 +634,13 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             _searchForYourOrganisationPage = _addAPAYESchemePage.AddPaye().ContinueToGGSignIn().SignInTo(payeIndex);
 
         private HomePage OpenAccount(string orgName) => _homePage = _homePage.GoToYourAccountsPage().ClickAccountLink(orgName);
+
+        private void AttemptLogin(string loginId, string password) => _signInPage.EnterLoginDetailsAndClickSignIn(loginId, password);
+
+        private void VisitEmployerApprenticeshipSite() => _tabHelper.GoToUrl(_registrationConfig.EmployerApprenticeshipServiceBaseURL);
+
+        private void SignOutAndReLoginFromAddAPayeSchemePageDuringAccountCreation(AddAPAYESchemePage addAPAYESchemePage, string password) =>
+            addAPAYESchemePage.SignOut().CickContinueInYouveLoggedOutPage().ClickSignInLinkOnIndexPage()
+            .EnterLoginDetailsAndClickSignIn(_objectContext.GetRegisteredEmail(), password);
     }
 }

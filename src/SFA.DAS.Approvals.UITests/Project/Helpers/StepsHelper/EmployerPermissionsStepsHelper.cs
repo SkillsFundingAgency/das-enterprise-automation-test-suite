@@ -8,18 +8,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
     {
         private readonly ScenarioContext _context;
 
-        public EmployerPermissionsStepsHelper(ScenarioContext context)
-        {
-            _context = context;
-        }
+        public EmployerPermissionsStepsHelper(ScenarioContext context) => _context = context;
 
-        public HomePage SetCreateCohortPermission(string ukprn)
-        {
-            return GoToSetProviderPermissionsPage(ukprn)
-                  .GoToHomePage();
-        }
-
-        public PermissionsUpdatedPage GoToSetProviderPermissionsPage(string ukprn)
+        public HomePage SetCreateCohortPermission(string ukprn) 
         {
             return OpenProviderPermissions()
                  .SelectAddANewTrainingProvider()
@@ -28,20 +19,19 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                  .SelectContinueInEmployerTrainingProviderAddedPage()
                  .ClickYesToAddApprenticeRecords()
                  .ClickYesToAddRecruitApprentice()
-                 .ConfirmTrainingProviderPermissions();
+                 .ConfirmTrainingProviderPermissions()
+                 .GoToHomePage();
         }
+
         public PermissionsUpdatedPage UnSetCreateCohortPermission()
         {
             return OpenProviderPermissions()
                    .SelectChangePermissions()
-                   .ClickNOToAddApprenticeRecords()
+                   .ClickNoToAddApprenticeRecords()
                    .ClickNoToAddRecruitApprentice()
                    .ConfirmTrainingProviderPermissions();
         }
-        private YourTrainingProvidersPage OpenProviderPermissions()
-        {
-            return new YourTrainingProvidersLinkHomePage(_context)
-                    .OpenProviderPermissions();
-        }              
+
+        private YourTrainingProvidersPage OpenProviderPermissions() => new YourTrainingProvidersLinkHomePage(_context).OpenProviderPermissions();
     }
 }

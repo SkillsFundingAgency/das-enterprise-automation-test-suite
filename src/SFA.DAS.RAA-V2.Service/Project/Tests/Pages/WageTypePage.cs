@@ -44,6 +44,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         {
             formCompletionHelper.EnterText(WageAdditionalInformation, dataHelper.OptionalMessage);
             Continue();
+            pageInteractionHelper.WaitforURLToChange("part1-complete");
             return new PreviewYourVacancyPage(_context);
         }
     }

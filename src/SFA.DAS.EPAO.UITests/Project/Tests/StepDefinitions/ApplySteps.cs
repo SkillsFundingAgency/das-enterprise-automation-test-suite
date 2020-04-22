@@ -15,14 +15,12 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         private readonly ScenarioContext _context;
         private AP_ApplicationOverviewPage _applicationOverviewPage;
         private AS_CreateAnAccountPage _createAnAccountPage;
-        private readonly EPAOConfig _config;
         private readonly AssessmentServiceStepsHelper _stepsHelper;
         private readonly EPAODataHelper _dataHelper;
 
         public ApplySteps(ScenarioContext context)
         {
             _context = context;
-            _config = context.GetEPAOConfig<EPAOConfig>();
             _stepsHelper = new AssessmentServiceStepsHelper(_context);
             _dataHelper = context.Get<EPAODataHelper>();
         }
@@ -109,18 +107,10 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         public void ThenTheUserNameIsDisplayedInTheLoggedInHomePage() => new AS_LoggedInHomePage(_context).VerifySignedInUserName(_context.GetUser<EPAOApplyUser>().FullName);
 
         [Then(@"the Apply User is able to Signout from the application")]
-        public void ThenTheApplyUserIsAbleToSignoutFromTheApplication()
-        {
-            new AS_LoggedInHomePage(_context).ClickSignOutLink()
-                .ClickSignBackInLink();
-        }
+        public void ThenTheApplyUserIsAbleToSignoutFromTheApplication() => new AS_LoggedInHomePage(_context).ClickSignOutLink().ClickSignBackInLink();
 
         [When(@"the Apply User initiates Create Account journey")]
-        public void WhenTheApplyUserInitiatesCreateAccountJourney()
-        {
-            _createAnAccountPage = _stepsHelper.LaunchAssessmentServiceApplication()
-             .ClickCreateAnAccountLink();
-        }
+        public void WhenTheApplyUserInitiatesCreateAccountJourney() => _createAnAccountPage = _stepsHelper.LaunchAssessmentServiceApplication().ClickCreateAnAccountLink();
 
         [Then(@"the Apply User is able to Create an Account")]
         public void ThenTheApplyUserIsAbleToCreateAnAccount() => _createAnAccountPage.EnterAccountDetailsAndClickCreateAccount();
@@ -128,10 +118,11 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         [Then(@"no matches are shown for Organisation searches with Invalid search term")]
         public void ThenNoMatchesAreShownForOrganisationSearchesWithInvalidSearchTerm()
         {
-            new AP_PR1_SearchForYourOrganisationPage(_context).EnterInvalidOrgNameAndSearchInSearchForYourOrgPage(_dataHelper.InvalidOrgNameWithAlphabets)
-                            .VerifyInvalidSearchResultText()
-                            .EnterInvalidOrgNameAndSearchInSearchResultsForPage(_dataHelper.InvalidOrgNameWithNumbers)
-                            .EnterInvalidOrgNameAndSearchInSearchResultsForPage(_dataHelper.InvalidOrgNameWithAWord);
+            new AP_PR1_SearchForYourOrganisationPage(_context)
+                .EnterInvalidOrgNameAndSearchInSearchForYourOrgPage(_dataHelper.InvalidOrgNameWithAlphabets)
+                .VerifyInvalidSearchResultText()
+                .EnterInvalidOrgNameAndSearchInSearchResultsForPage(_dataHelper.InvalidOrgNameWithNumbers)
+                .EnterInvalidOrgNameAndSearchInSearchResultsForPage(_dataHelper.InvalidOrgNameWithAWord);
         }
     }
 }

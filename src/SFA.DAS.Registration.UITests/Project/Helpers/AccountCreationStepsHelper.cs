@@ -4,6 +4,7 @@ using SFA.DAS.MongoDb.DataGenerator;
 using SFA.DAS.MongoDb.DataGenerator.Helpers;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages.PAYESchemesPages;
+using SFA.DAS.UI.Framework.TestSupport;
 using TechTalk.SpecFlow;
 using static SFA.DAS.Registration.UITests.Project.Helpers.EnumHelper;
 
@@ -15,6 +16,8 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
         private readonly RegistrationDataHelper _registrationDataHelper;
         private readonly MongoDbDataGenerator _mongoDbDataGenerator;
         private readonly LoginCredentialsHelper _loginCredentialsHelper;
+        private readonly RestartWebDriverHelper _restartWebDriverHelper;
+        private readonly RegistrationConfig _registrationConfig;
         private readonly ObjectContext _objectContext;
 
         public AccountCreationStepsHelper(ScenarioContext context)
@@ -22,11 +25,13 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
             _context = context;
             _registrationDataHelper = context.Get<RegistrationDataHelper>();
             _loginCredentialsHelper = context.Get<LoginCredentialsHelper>();
+            _restartWebDriverHelper = new RestartWebDriverHelper(context);
             _mongoDbDataGenerator = new MongoDbDataGenerator(_context);
+            _registrationConfig = context.GetRegistrationConfig<RegistrationConfig>();
             _objectContext = _context.Get<ObjectContext>();
         }
 
-        public ConfirmPage RegisterUserAccount() => new IndexPage(_context).CreateAccount().Register();
+        public ConfirmYourIdentityPage RegisterUserAccount() => new IndexPage(_context).CreateAccount().Register();
 
         public SelectYourOrganisationPage SearchForAnotherOrg(HomePage homepage, OrgType orgType)
         {
@@ -105,6 +110,8 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
 
         public void SetFirstAccountOrganisationName(OrgType orgType) =>
             _objectContext.SetFirstAccountOrganisationName(GetOrgName(orgType));
+
+        public void RelaunchApplication() => _restartWebDriverHelper.RestartWebDriver(_registrationConfig.EmployerApprenticeshipServiceBaseURL, "EAS");
 
         private string GetOrgName(OrgType orgType)
         {

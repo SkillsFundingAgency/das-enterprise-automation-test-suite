@@ -25,10 +25,12 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         public WageTypePage EnterDuration()
         {
+            pageInteractionHelper.WaitforURLToChange("/duration/");
             formCompletionHelper.EnterText(Duration, dataHelper.Duration);
             formCompletionHelper.EnterText(WorkingWeekDescription, dataHelper.WorkkingWeek);
             formCompletionHelper.EnterText(WeeklyHours, dataHelper.WeeklyHours);
             Continue();
+            pageInteractionHelper.WaitforURLToChange("wage");
             return new WageTypePage(_context);
         }
     }

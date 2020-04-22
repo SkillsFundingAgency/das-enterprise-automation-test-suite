@@ -82,7 +82,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         public void ThenEmployerIsAbleToRemoveTheTeamMemberFromTheAccount()
         {
             _accountCreationStepsHelper.SignOut()
-                .SignIn()
+                .ClickSignInLinkOnIndexPage()
                 .Login(_objectContext.GetLoginCredentials())
                 .GotoYourTeamPage()
                 .ClickViewMemberLink(_invitedMemberEmailId)

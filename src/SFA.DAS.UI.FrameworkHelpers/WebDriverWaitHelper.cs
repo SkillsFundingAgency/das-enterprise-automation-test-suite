@@ -44,8 +44,6 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         internal void WaitForPageToLoad() => _pagenavigationWait.Until(driver => IsDocumentReady(driver));
 
-        internal void WaitforURLToChange(string url) => _pagenavigationWait.Until(ExpectedConditions.UrlContains(url));
-
         internal void TextToBePresentInElementLocated(By @by, string text) => _pagenavigationWait.Until(ExpectedConditions.TextToBePresentInElementLocated(by, text));
 
         internal void TurnOffImplicitWaits() => _webDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromMilliseconds(500);
