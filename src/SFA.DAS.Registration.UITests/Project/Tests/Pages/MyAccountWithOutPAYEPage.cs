@@ -6,6 +6,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
     public class MyAccountWithOutPayePage : RegistrationBasePage
     {
         protected override string PageTitle => "MY ACCOUNT";
+
         private readonly ScenarioContext _context;
 
         #region Locators
@@ -18,7 +19,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             VerifyPage();
         }
 
-        public AddAPAYESchemePage ClickAddYourPAYESchemeLink()
+        public AddAPAYESchemePage AddYourPAYEScheme()
         {
             formCompletionHelper.Click(AddYourPAYESchemeLink);
             return new AddAPAYESchemePage(_context);

@@ -1,7 +1,5 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages;
-using System.Collections.Generic;
-using System.Text;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer

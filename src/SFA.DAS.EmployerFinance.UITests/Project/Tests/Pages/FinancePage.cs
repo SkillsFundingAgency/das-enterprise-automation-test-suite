@@ -8,10 +8,12 @@ namespace SFA.DAS.EmployerFinance.UITests.Project.Tests.Pages
     public class FinancePage : HomePage
     {
         protected override string PageTitle => "Finance";
+        private readonly ScenarioContext _context;
 
         #region Locators
         private By ViewTransactionsLink() => By.LinkText("View transactions");
         private By DownloadTransactionsLink() => By.LinkText("Download transactions");
+        private By FundingProjectionLink() => By.LinkText("Funding projection");
         private By TransfersLink() => By.LinkText("Transfers");
         private By CurrentFundsLabel => By.Id("lbl-current-funds");
         private By FundsSpentLabel => By.Id("lbl-current-spent-funds");
@@ -27,12 +29,22 @@ namespace SFA.DAS.EmployerFinance.UITests.Project.Tests.Pages
         public string ExpectedEstimatedPlannedSpendingLabel => "Estimated planned spending for the next 12 months";
         #endregion
 
-        public FinancePage(ScenarioContext context) : base(context) => VerifyPage();
+        public FinancePage(ScenarioContext context) : base(context)
+        {
+            _context = context;
+            VerifyPage();
+        }
 
         public FinancePage IsViewTransactionsLinkPresent()
         {
             VerifyPage(ViewTransactionsLink());
             return this;
+        }
+
+        public YourTransactionsPage GoToViewTransactionsPage()
+        {
+            formCompletionHelper.Click(ViewTransactionsLink());
+            return new YourTransactionsPage(_context);
         }
 
         public FinancePage IsDownloadTransactionsLinkPresent()
@@ -41,10 +53,28 @@ namespace SFA.DAS.EmployerFinance.UITests.Project.Tests.Pages
             return this;
         }
 
+        public DownloadTransactionsPage GoToDownloadTransactionsPage()
+        {
+            formCompletionHelper.Click(DownloadTransactionsLink());
+            return new DownloadTransactionsPage(_context);
+        }
+
         public FinancePage IsTransfersLinkPresent()
         {
             VerifyPage(TransfersLink());
             return this;
+        }
+
+        public TransfersPage GoToTransfersPage()
+        {
+            formCompletionHelper.Click(TransfersLink());
+            return new TransfersPage(_context);
+        }
+
+        public FundingProjectionPage GoToFundingProjectionPage()
+        {
+            formCompletionHelper.Click(FundingProjectionLink());
+            return new FundingProjectionPage(_context);
         }
 
         public string ExpectedFundsSpentLabelConstant()

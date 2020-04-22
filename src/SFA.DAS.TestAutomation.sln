@@ -63,7 +63,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.Campaigns.UITests",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.ASK.UITests", "SFA.DAS.ASK.UITests\SFA.DAS.ASK.UITests.csproj", "{98ABA3F5-876A-4191-99ED-B7FBC37C7B4E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SFA.DAS.TestDataExport", "SFA.DAS.TestDataExport\SFA.DAS.TestDataExport.csproj", "{9B5AD24F-2BC6-4BEF-AA30-1FA59B897377}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.TestDataExport", "SFA.DAS.TestDataExport\SFA.DAS.TestDataExport.csproj", "{9B5AD24F-2BC6-4BEF-AA30-1FA59B897377}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SFA.DAS.RoatpAdmin.UITests", "SFA.DAS.RoatpAdmin.UITests\SFA.DAS.RoatpAdmin.UITests.csproj", "{D5AF4AA3-447A-4C27-8596-C4BCEA74BFC0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -228,6 +230,12 @@ Global
 		{9B5AD24F-2BC6-4BEF-AA30-1FA59B897377}.Development|Any CPU.Build.0 = Debug|Any CPU
 		{9B5AD24F-2BC6-4BEF-AA30-1FA59B897377}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9B5AD24F-2BC6-4BEF-AA30-1FA59B897377}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D5AF4AA3-447A-4C27-8596-C4BCEA74BFC0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D5AF4AA3-447A-4C27-8596-C4BCEA74BFC0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D5AF4AA3-447A-4C27-8596-C4BCEA74BFC0}.Development|Any CPU.ActiveCfg = Debug|Any CPU
+		{D5AF4AA3-447A-4C27-8596-C4BCEA74BFC0}.Development|Any CPU.Build.0 = Debug|Any CPU
+		{D5AF4AA3-447A-4C27-8596-C4BCEA74BFC0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D5AF4AA3-447A-4C27-8596-C4BCEA74BFC0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -12,6 +12,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         private By AddNewAccountButton => By.Id("add_new_account");
         private By OpenLink() => By.CssSelector("table a");
         private By AccountLink(string orgName) => By.XPath($"//span[@class='vh' and contains(text(), '{orgName}')]");
+
         #endregion
 
         public YourAccountsPage(ScenarioContext context) : base(context)
@@ -36,6 +37,12 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         {
             formCompletionHelper.Click(AccountLink(orgName));
             objectContext.UpdateOrganisationName(orgName);
+            return new HomePage(_context);
+        }
+
+        public HomePage OpenAccount()
+        {
+            formCompletionHelper.Click(OpenLink());
             return new HomePage(_context);
         }
 

@@ -1,15 +1,9 @@
-﻿using System.Linq;
-using System.Text.RegularExpressions;
+﻿using System.Text.RegularExpressions;
 
 namespace SFA.DAS.UI.FrameworkHelpers
 {
     public class RegexHelper
     {
-        public string Remove(string value, string pattern)
-        {
-            return Regex.Replace(value, EscapePattern(pattern), string.Empty);
-        }
-
         public string GetAccountId(string url)
         {
             Match match = Regex.Match(url, @"\/[A-Z0-9]{6}\/");
@@ -88,24 +82,6 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         private string TrimAnySpace(string value) => Regex.Replace(value, @"\s", string.Empty);
 
-        private Match CohortMatch(string url, string action) 
-        {
-            return Regex.Match(url, $@"{action}\/[A-Z0-9][A-Z0-9][A-Z0-9][A-Z0-9][A-Z0-9][A-Z0-9]");
-        }
-
-        private string EscapePattern(string pattern)
-        {
-            var chars = new string[] { ".", "^", "$", "?", "(", ")", "[", "]", "{", "}", "\\", "|" };
-            string escapedPattern = pattern;
-            foreach (char x in pattern)
-            {
-                var y = x.ToString();
-                if (chars.Any(c => c == y))
-                {
-                    escapedPattern = escapedPattern.Replace(y, $"\\{x}");
-                }
-            }
-            return escapedPattern;
-        }
+        private Match CohortMatch(string url, string action) => Regex.Match(url, $@"{action}\/[A-Z0-9][A-Z0-9][A-Z0-9][A-Z0-9][A-Z0-9][A-Z0-9]");
     }
 }

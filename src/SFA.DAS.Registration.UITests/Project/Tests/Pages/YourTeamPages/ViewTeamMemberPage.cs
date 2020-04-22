@@ -5,7 +5,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.YourTeamPages
 {
     public class ViewTeamMemberPage : RegistrationBasePage
     {
-        protected override string PageTitle => registrationDataHelper.InvitedViewerAccessUserFullName;
+        protected override string PageTitle => registrationDataHelper.FullName;
         private readonly ScenarioContext _context;
 
         #region Locators

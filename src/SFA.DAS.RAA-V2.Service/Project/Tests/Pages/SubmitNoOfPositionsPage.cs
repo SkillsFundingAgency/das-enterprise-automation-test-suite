@@ -36,6 +36,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         {
             formCompletionHelper.EnterText(NumberOfPositions, dataHelper.NumberOfVacancy);
             Continue();
+            pageInteractionHelper.WaitforURLToChange("employer");
         }
     }
 }

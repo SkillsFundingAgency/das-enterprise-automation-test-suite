@@ -5,6 +5,7 @@
 @raa-v2e
 @regression
 @addpayedetails
+@ignore
 Scenario: RV2_E_DHLV_01 Employer creates vacancy from dynamic homepage journey and approve	and close vacancy
 	Given the user reserves funding from the dynamic home page
 	And the employer continue to add vacancy in the Recruitment 
@@ -13,5 +14,7 @@ Scenario: RV2_E_DHLV_01 Employer creates vacancy from dynamic homepage journey a
 	And the Applicant can apply for a Vacancy in FAA
 	Given the Employer logs into Employer account
 	Then the vacancy details is displayed on the Dynamic home page with Status 'LIVE'
+	And Employer can go to Manage vacancy page
 	And the Employer can close the vacancy
 	And the vacancy details is displayed on the Dynamic home page with Status 'CLOSED'
+	And Employer can go to Manage vacancy page

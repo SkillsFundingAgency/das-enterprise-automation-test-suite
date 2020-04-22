@@ -15,15 +15,18 @@ namespace SFA.DAS.Registration.UITests.Project
         private readonly ScenarioContext _context;
         private readonly RegistrationConfig _config;
         private readonly TprConfig _tprconfig;
+        private readonly ProviderLeadRegistrationConfig _providerLeadRegistrationConfig;
         private readonly IWebDriver _webDriver;
         private readonly ObjectContext _objectContext;
-
+        private PregSqlDataHelper _pregSqlDataHelper;
+        
         public Hooks(ScenarioContext context)
         {
             _context = context;
             _webDriver = context.GetWebDriver();
             _config = context.GetRegistrationConfig<RegistrationConfig>();
             _tprconfig = context.GetTprConfig<TprConfig>();
+            _providerLeadRegistrationConfig = context.GetProviderLeadRegistrationConfig<ProviderLeadRegistrationConfig>();
             _objectContext = context.Get<ObjectContext>();
         }
 
@@ -41,7 +44,7 @@ namespace SFA.DAS.Registration.UITests.Project
 
             _objectContext.SetDataHelper(dataHelper);
            
-            var registrationDatahelpers = new RegistrationDataHelper(dataHelper.GatewayUsername, _config.RE_AccountPassword, _context.Get<RandomDataGenerator>());
+            var registrationDatahelpers = new RegistrationDataHelper(dataHelper.GatewayUsername, _config.RE_AccountPassword, _config.RE_OrganisationName, _context.Get<RandomDataGenerator>());
 
             _context.Set(registrationDatahelpers);
 
@@ -55,5 +58,18 @@ namespace SFA.DAS.Registration.UITests.Project
 
             _objectContext.SetRegisteredEmail(registrationDatahelpers.RandomEmail);
         }
+
+        [BeforeScenario(Order = 23)]
+        [Scope(Tag = "providerleadregistration")]
+        public void SetUpProviderLeadRegistrationDataHelpers()
+        {
+            _pregSqlDataHelper = new PregSqlDataHelper(_providerLeadRegistrationConfig);
+
+            _context.Set(_pregSqlDataHelper);
+        }
+
+        [AfterScenario(Order = 22)]
+        [Scope(Tag = "providerleadregistration")]
+        public void ClearInvitation() => _pregSqlDataHelper.DeleteInvitation(_objectContext.GetRegisteredEmail());
     }
 }

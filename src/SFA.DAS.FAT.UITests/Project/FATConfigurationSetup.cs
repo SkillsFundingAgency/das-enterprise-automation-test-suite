@@ -21,7 +21,6 @@ namespace SFA.DAS.FAT.UITests
         {
             var config = _configSection.GetConfigSection<FATConfig>();
             _context.SetFATConfig(config);
-
         }
     }
 }

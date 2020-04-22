@@ -36,7 +36,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Helpers
         {
             _formCompletionHelper.ClickLinkByText("Live vacancies");
             _pageInteractionHelper.WaitforURLToChange($"filter=Live");
-            _formCompletionHelper.ClickElement(() => _dataHelper.GetRandomElementFromListOfElements(_pageInteractionHelper.FindElements(Manage)));
+            _formCompletionHelper.ClickInterceptedElement(_dataHelper.GetRandomElementFromListOfElements(_pageInteractionHelper.FindElements(Manage)));
             return new ManageVacancyPage(_context);
         }
 
@@ -56,9 +56,9 @@ namespace SFA.DAS.RAA_V2.Service.Project.Helpers
         {
             var vacRef = _objectContext.GetVacancyReference();
             _formCompletionHelper.EnterText(SearchInput, vacRef); 
-            _formCompletionHelper.Click(SearchButton);
-            _pageInteractionHelper.WaitforURLToChange($"SearchTerm={vacRef}");
-            _formCompletionHelper.Click(Manage);
+            _formCompletionHelper.Click(SearchButton);            
+            _pageInteractionHelper.WaitforURLToChange($"searchTerm={vacRef}");
+            _formCompletionHelper.ClickInterceptedElement(_pageInteractionHelper.FindElement(Manage));                        
         }
     }
 }

@@ -8,7 +8,7 @@ using SFA.DAS.TestDataExport;
 
 namespace SFA.DAS.UI.Framework.TestSupport
 {
-    public abstract class BasePage 
+    public abstract class BasePage
     {
         #region Helpers and Context
         private readonly PageInteractionHelper _pageInteractionHelper;
@@ -25,7 +25,11 @@ namespace SFA.DAS.UI.Framework.TestSupport
         protected virtual By BackLink => By.CssSelector(".govuk-back-link, .back-link");
         protected virtual By RadioLabels => By.CssSelector(".govuk-radios__label");
         protected virtual By CheckBoxLabels => By.CssSelector(".govuk-checkboxes__label");
+
         protected abstract string PageTitle { get; }
+
+        protected virtual By AcceptCookieButton { get; }
+
         protected BasePage(ScenarioContext context)
         {
             _frameworkConfig = context.Get<FrameworkConfig>();
@@ -60,6 +64,14 @@ namespace SFA.DAS.UI.Framework.TestSupport
         protected void SelectCheckBoxByText(string value) => _formCompletionHelper.SelectCheckBoxByText(CheckBoxLabels, value);
 
         protected void NavigateBack() => _formCompletionHelper.Click(BackLink);
+
+        protected void AcceptCookies()
+        {
+            if (_pageInteractionHelper.IsElementDisplayed(AcceptCookieButton))
+            {
+                _formCompletionHelper.Click(AcceptCookieButton);
+            }
+        }
 
         private void TakeScreenShot()
         {
