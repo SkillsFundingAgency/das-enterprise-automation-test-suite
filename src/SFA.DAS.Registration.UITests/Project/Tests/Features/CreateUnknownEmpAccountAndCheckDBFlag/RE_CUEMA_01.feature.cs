@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Features.NonLevy.DynamicHomePagePanel
+namespace SFA.DAS.Registration.UITests.Project.Tests.Features.CreateUnknownEmpAccountAndCheckDBFlag
 {
     using TechTalk.SpecFlow;
     
@@ -18,21 +18,20 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Features.NonLevy.Dynamic
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.0.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("RV2_E_DHFD_01")]
-    public partial class RV2_E_DHFD_01Feature
+    [NUnit.Framework.DescriptionAttribute("RE_CUEMA_01")]
+    public partial class RE_CUEMA_01Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "RV2_E_DHFD_01.feature"
+#line 1 "RE_CUEMA_01.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "RV2_E_DHFD_01", "As a Non Levy Employer, I want to add a vacancy after reserves funding from dynam" +
-                    "ic homepage", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "RE_CUEMA_01", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -71,33 +70,23 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Features.NonLevy.Dynamic
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RV2_E_DHFD_01 Employer creates a draft vacancy from dynamic homepage journey")]
-        [NUnit.Framework.IgnoreAttribute("Ignored scenario")]
-        [NUnit.Framework.CategoryAttribute("raa-v2")]
-        [NUnit.Framework.CategoryAttribute("raa-v2e")]
+        [NUnit.Framework.DescriptionAttribute("RE_CUEMA_01_Create unknown employer account and verify DB flag")]
         [NUnit.Framework.CategoryAttribute("regression")]
+        [NUnit.Framework.CategoryAttribute("registration")]
         [NUnit.Framework.CategoryAttribute("addpayedetails")]
-        public virtual void RV2_E_DHFD_01EmployerCreatesADraftVacancyFromDynamicHomepageJourney()
+        public virtual void RE_CUEMA_01_CreateUnknownEmployerAccountAndVerifyDBFlag()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV2_E_DHFD_01 Employer creates a draft vacancy from dynamic homepage journey", null, new string[] {
-                        "raa-v2",
-                        "raa-v2e",
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RE_CUEMA_01_Create unknown employer account and verify DB flag", null, new string[] {
                         "regression",
-                        "addpayedetails",
-                        "ignore"});
-#line 10
+                        "registration",
+                        "addpayedetails"});
+#line 6
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 11
- testRunner.Given("the user reserves funding from the dynamic home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 12
- testRunner.And("the employer continue to add vacancy in the Recruitment", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 13
- testRunner.When("the Employer creates first Draft vacancy \'National Mininum Wage\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 14
- testRunner.Then("the vacancy details is displayed on the Dynamic home page with Status \'DRAFT\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 15
- testRunner.And("Employer can continue creating an advert", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 7
+ testRunner.Given("an Employer creates an Account by skipping the add PAYE part", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 8
+ testRunner.Then("ApprenticeshipEmployerType in Account table is marked as 2", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
