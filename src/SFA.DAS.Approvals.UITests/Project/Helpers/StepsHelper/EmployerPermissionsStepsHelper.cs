@@ -17,6 +17,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                  .SearchForATrainingProvider(ukprn)
                  .ConfirmTrainingProvider()
                  .SelectContinueInEmployerTrainingProviderAddedPage()
+                 .SelectSetPermissions()
                  .ClickYesToAddApprenticeRecords()
                  .ClickYesToAddRecruitApprentice()
                  .ConfirmTrainingProviderPermissions()
