@@ -28,7 +28,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         public DynamicHomePages DraftReturnToHomePage()
         {
             SelectRadioOptionByForAttribute("radio-home");
-            _formCompletionHelper.ScrollAndClickElement(DraftSaveAndSubmit);
+            _formCompletionHelper.ScrollAndClickElement(DraftSaveAndSubmit, "window.scrollTo(0, 800)");
             return new DynamicHomePages(_context);
         }
         
