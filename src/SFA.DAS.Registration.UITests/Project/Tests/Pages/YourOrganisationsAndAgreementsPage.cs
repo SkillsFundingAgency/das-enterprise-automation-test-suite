@@ -11,13 +11,12 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         #region Locators
         protected override string Linktext => "Your organisations and agreements";
-        private By TransferStatus => By.ClassName("transfers-status");
+        private By TransferStatus => By.XPath("//p[3]");
         private By AgreementId => By.CssSelector("table tbody tr td[data-label='Agreement ID']");
-        private By AddNewOrganisationButton => By.Id("addNewOrg");
+        private By AddNewOrganisationButton => By.LinkText("Add an organisation");
         private By TableCells => By.XPath("//td");
         private By ViewAgreementLink => By.LinkText("View");
-        private By RemoveAnOrgFromYourAccountLink => By.LinkText("Remove an organisation from your account");
-        private By OrgRemovedMessageInHeader = By.CssSelector("h1");
+        private By OrgRemovedMessageInHeader = By.Id("error-summary-title");
         #endregion
 
         public YourOrganisationsAndAgreementsPage(ScenarioContext context, bool navigate = false) : base(context, navigate)
@@ -52,10 +51,10 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             return new YourEsfaAgreementPage(_context);
         }
 
-        public RemoveAnOrganisationPage ClickOnRemoveAnOrgFromYourAccountLink()
+        public AreYouSureYouWantToRemovePage ClickOnRemoveAnOrgFromYourAccountLink()
         {
-            formCompletionHelper.Click(RemoveAnOrgFromYourAccountLink);
-            return new RemoveAnOrganisationPage(_context);
+            tableRowHelper.SelectRowFromTable("Remove organisation", $"{objectContext.GetOrganisationName()}");
+            return new AreYouSureYouWantToRemovePage(_context);
         }
 
         public bool VerifyOrgRemovedMessageInHeader() => pageInteractionHelper.VerifyText(OrgRemovedMessageInHeader, $"You have removed {objectContext.GetOrganisationName()}");

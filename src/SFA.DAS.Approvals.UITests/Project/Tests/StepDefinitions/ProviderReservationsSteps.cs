@@ -42,8 +42,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
             _objectContext.SetProviderMakesReservationForNonLevyEmployers();
 
-            homePage.GoToYourOrganisationsAndAgreementsPage()
-                .SetAgreementId();
+            homePage.GoToYourOrganisationsAndAgreementsPage();
         }
 
         [When(@"Provider creates a reservation and adds (.*) apprentices and approves the cohort and sends to Employer to approve")]

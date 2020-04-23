@@ -88,8 +88,6 @@ this.ScenarioInitialize(scenarioInfo);
 #line 7
  testRunner.When("an Employer Account with PublicSector Type Org is created and agreement is Signed" +
                     "", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 8
- testRunner.Then("the Employer is Not allowed to Remove the first Org added", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 9
  testRunner.When("the Employer initiates adding another Org of Company Type", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 10

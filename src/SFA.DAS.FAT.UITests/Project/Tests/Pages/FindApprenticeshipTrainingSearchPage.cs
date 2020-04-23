@@ -13,10 +13,10 @@ namespace SFA.DAS.FAT.UITests.Project.Tests.Pages
             VerifyPage();
         }
 
-        public SearchResultsPage SearchApprenticeshipInFindApprenticeshipTrainingSearchPage(string searchTerm = "")
+        public TrainingCourseSearchResultsPage SearchApprenticeshipInFindApprenticeshipTrainingSearchPage(string searchTerm)
         {
             SearchApprenticeship(searchTerm);
-            return new SearchResultsPage(_context);
+            return new TrainingCourseSearchResultsPage(_context);
         }
     }
 }
