@@ -1,5 +1,7 @@
-﻿using SFA.DAS.UI.FrameworkHelpers;
+﻿using OpenQA.Selenium;
+using SFA.DAS.UI.FrameworkHelpers;
 using System;
+using System.Collections.Generic;
 
 namespace SFA.DAS.EPAO.UITests.Project.Helpers
 {
@@ -14,7 +16,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
             CurrentMonth = DateTime.Now.Month;
             CurrentYear = DateTime.Now.Year;
             RandomEmail = GetDateTimeValue() + "@mailinator.com";
-            RandomWebsiteAddress = "http://www.TEST_" + GetDateTimeValue() + ".com";
+            RandomWebsiteAddress = "http://www.TEST" + GetDateTimeValue() + ".com";
         }
 
         public int CurrentDay { get; }
@@ -33,6 +35,8 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
 
         public string GetRandomAlphabeticString(int length) => randomDataGenerator.GenerateRandomAlphabeticString(length);
 
-        private string GetDateTimeValue() => DateTime.Now.ToString("ddMMMyyyy_HHmmss").ToUpper();
+        public IWebElement GetRandomElementFromListOfElements(List<IWebElement> options) => randomDataGenerator.GetRandomElementFromListOfElements(options);
+
+        private string GetDateTimeValue() => DateTime.Now.ToString("ddMMMyyyyHHmmss").ToUpper();
     }
 }

@@ -16,7 +16,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         #endregion
 
         private By Info => By.CssSelector(".info-summary");
-        private By ChangeTitle => By.CssSelector("a[data-automation='link-employer-name']");
+        private By ChangeTitle => By.CssSelector("a[data-automation='link-employer-name']");        
 
         public ConfimCloneVacancyDatePage(ScenarioContext context) : base(context)
         {

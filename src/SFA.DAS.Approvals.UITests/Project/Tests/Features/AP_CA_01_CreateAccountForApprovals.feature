@@ -1,5 +1,5 @@
 ﻿Feature: AP_CA_01_CreateAccountForApprovals
-#Do not add regression or approvals tag as these test are meant to create data
+#Do not add regression or approvals tag, as these tests are meant to create data
 
 @addpayedetails
 @addlevyfunds

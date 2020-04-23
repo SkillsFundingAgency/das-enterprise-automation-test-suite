@@ -34,6 +34,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
         {
             _formCompletionHelper.EnterText(ActivationCode, _dataHelper.ActivationCode);
             _formCompletionHelper.Click(ActivateAccount);
+            _pageInteractionHelper.WaitforURLToChange("tellusmore");
             return new FAA_ActivateYourAccountPage2(_context);
         }
 

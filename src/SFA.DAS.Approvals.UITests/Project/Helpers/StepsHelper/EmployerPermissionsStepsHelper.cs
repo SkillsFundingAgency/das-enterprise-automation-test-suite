@@ -8,41 +8,30 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
     {
         private readonly ScenarioContext _context;
 
-        public EmployerPermissionsStepsHelper(ScenarioContext context)
-        {
-            _context = context;
-        }
+        public EmployerPermissionsStepsHelper(ScenarioContext context) => _context = context;
 
-        public HomePage SetCreateCohortPermission(string ukprn)
-        {
-            return GoToSetProviderPermissionsPage(ukprn)
-                .SetCreateCohortPermissions()
-                .ConfirmTrainingProviderPermissions()
-                .GoToHomePage();
-        }
-
-        public SetPermissionsPage GoToSetProviderPermissionsPage(string ukprn)
+        public HomePage SetCreateCohortPermission(string ukprn) 
         {
             return OpenProviderPermissions()
                  .SelectAddANewTrainingProvider()
                  .SearchForATrainingProvider(ukprn)
                  .ConfirmTrainingProvider()
-                 .SelectContinueInEmployerTrainingProviderAddedPage();
+                 .SelectContinueInEmployerTrainingProviderAddedPage()
+                 .ClickYesToAddApprenticeRecords()
+                 .ClickYesToAddRecruitApprentice()
+                 .ConfirmTrainingProviderPermissions()
+                 .GoToHomePage();
         }
 
-        internal void UnSetCreateCohortPermission()
+        public PermissionsUpdatedPage UnSetCreateCohortPermission()
         {
-                OpenProviderPermissions()
-                .SelectSetPermissions()
-                .UnSetCreateCohortPermissions()
-                .ConfirmTrainingProviderPermissions()
-                .GoToHomePage();
+            return OpenProviderPermissions()
+                   .SelectChangePermissions()
+                   .ClickNoToAddApprenticeRecords()
+                   .ClickNoToAddRecruitApprentice()
+                   .ConfirmTrainingProviderPermissions();
         }
 
-        private YourTrainingProvidersPage OpenProviderPermissions()
-        {
-            return new TrainingProviderPermissionsHomePage(_context)
-                    .OpenProviderPermissions();
-        }
+        private YourTrainingProvidersPage OpenProviderPermissions() => new YourTrainingProvidersLinkHomePage(_context).OpenProviderPermissions();
     }
 }

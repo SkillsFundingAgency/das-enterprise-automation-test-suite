@@ -4,6 +4,7 @@ using OpenQA.Selenium;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 using SFA.DAS.ConfigurationBuilder;
+using SFA.DAS.TestDataExport;
 
 namespace SFA.DAS.UI.Framework.TestSupport
 {
@@ -24,7 +25,10 @@ namespace SFA.DAS.UI.Framework.TestSupport
         protected virtual By BackLink => By.CssSelector(".govuk-back-link, .back-link");
         protected virtual By RadioLabels => By.CssSelector(".govuk-radios__label");
         protected virtual By CheckBoxLabels => By.CssSelector(".govuk-checkboxes__label");
+
         protected abstract string PageTitle { get; }
+
+        protected virtual By AcceptCookieButton { get; }
 
         protected BasePage(ScenarioContext context)
         {
@@ -62,6 +66,14 @@ namespace SFA.DAS.UI.Framework.TestSupport
         protected void SelectCheckBoxByText(string value) => _formCompletionHelper.SelectCheckBoxByText(CheckBoxLabels, value);
 
         protected void NavigateBack() => _formCompletionHelper.Click(BackLink);
+
+        protected void AcceptCookies()
+        {
+            if (_pageInteractionHelper.IsElementDisplayed(AcceptCookieButton))
+            {
+                _formCompletionHelper.Click(AcceptCookieButton);
+            }
+        }
 
         private void TakeScreenShot()
         {

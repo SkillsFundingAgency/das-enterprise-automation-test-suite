@@ -24,8 +24,6 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
             return new SignedOutPage(_context);
         }
 
-        protected void ClickRandomElement(By locator) => formCompletionHelper.ClickElement(() => ePAOAdminDataHelper.GetRandomElementFromListOfElements(pageInteractionHelper.FindElements(locator)));
-
         protected IWebElement GetData(string headerName)
         {
             foreach (var row in pageInteractionHelper.FindElements(TRows))

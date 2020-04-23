@@ -4,6 +4,8 @@ using OpenQA.Selenium;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.Login.Service.Project.Tests.Pages;
 using SFA.DAS.UI.FrameworkHelpers;
+using SFA.DAS.Registration.UITests.Project.Tests.Pages.YourTeamPages;
+using SFA.DAS.Registration.UITests.Project.Tests.Pages.PAYESchemesPages;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 {
@@ -23,8 +25,11 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         private By RenameAccountLink => By.LinkText("Rename account");
         private By ChangePasswordLink => By.LinkText("Change your password");
         private By ChangeEmailAddressLink => By.LinkText("Change your email address");
-        private By NotificationSettingsLink => By.LinkText("Notifications settings");
+        private By NotificationSettingsLink => By.PartialLinkText("Notification");
         private By SignOutLink => By.LinkText("Sign out");
+        private By YourTeamLink => By.LinkText("Your team");
+        private By MoreLink => By.LinkText("More");
+        private By PAYESchemesLink => By.LinkText("PAYE schemes");
         #endregion
 
         protected InterimEmployerBasePage(ScenarioContext context, bool navigate) : base(context, navigate)
@@ -52,10 +57,10 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             return new YourAccountsPage(_context);
         }
 
-        public ManageApprenticeshipsServiceHelpPage GoToHelpPage()
+        public HelpArticlesPage GoToHelpPage()
         {
             _tabHelper.OpenInNewTab(() => formCompletionHelper.ClickElement(HelpLink));
-            return new ManageApprenticeshipsServiceHelpPage(_context);
+            return new HelpArticlesPage(_context);
         }
 
         public RenameAccountPage GoToRenameAccountPage()
@@ -90,6 +95,25 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         {
             formCompletionHelper.Click(SignOutLink);
             return new YouveLoggedOutPage(_context);
+        }
+
+        public YourTeamPage GotoYourTeamPage()
+        {
+            formCompletionHelper.Click(YourTeamLink);
+            return new YourTeamPage(_context);
+        }
+
+        public PAYESchemesPage GotoPAYESchemesPage()
+        {
+            ClickMoreLinkIfPresent();
+            formCompletionHelper.Click(PAYESchemesLink);
+            return new PAYESchemesPage(_context);
+        }
+
+        private void ClickMoreLinkIfPresent()
+        {
+            if (pageInteractionHelper.IsElementDisplayed(MoreLink))
+                formCompletionHelper.Click(MoreLink);
         }
     }
 }

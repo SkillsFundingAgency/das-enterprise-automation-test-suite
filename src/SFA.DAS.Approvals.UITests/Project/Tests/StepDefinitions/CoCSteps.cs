@@ -1,6 +1,7 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
 using SFA.DAS.Approvals.UITests.Project.Helpers;
+using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
 using SFA.DAS.Login.Service;
 using SFA.DAS.Login.Service.Helpers;
@@ -23,7 +24,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
         private readonly ProviderStepsHelper _providerStepsHelper;
 
-        private readonly CommitmentsDataHelper _commitmentsDataHelper;
+        private readonly CommitmentsSqlDataHelper _commitmentsDataHelper;
 
         private readonly ApprenticeDataHelper _dataHelper;
 
@@ -32,7 +33,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         public CoCSteps(ScenarioContext context)
         {
             _context = context;
-            _commitmentsDataHelper = context.Get<CommitmentsDataHelper>();
+            _commitmentsDataHelper = context.Get<CommitmentsSqlDataHelper>();
              _dataHelper = context.Get<ApprenticeDataHelper>();
             _loginHelper = new EmployerPortalLoginHelper(context);
             _employerStepsHelper = new EmployerStepsHelper(context);

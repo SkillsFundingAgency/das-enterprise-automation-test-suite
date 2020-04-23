@@ -43,6 +43,9 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpApply
         [Then(@"the provider completes Tell us who's in control section for sole trader")]
         public void ThenTheProviderCompletesTellUsWhosInControlSectionForSoleTrader() => _overviewPage = _yourOrganisationSectionHelper.CompleteYourOrganisationSection_3_Support(_overviewPage);
 
+        [Then(@"the provider completes Tell us who's in control section for sole trader and partnership")]
+        public void ThenTheProviderCompletesTellUsWhoSInControlSectionForSoleTraderAndPartnership() => _overviewPage = _yourOrganisationSectionHelper.CompleteYourOrganisationSection_3_Supporting_Partnership(_overviewPage);
+
         [Then(@"the provider completes Tell us who's in control section for charity and company")]
         public void ThenTheProviderCompletesTellUsWhosInControlSectionForCharityAndCompany() => _overviewPage = _yourOrganisationSectionHelper.CompleteYourOrganisationSection_3_CharityAndCompany(_overviewPage);
 

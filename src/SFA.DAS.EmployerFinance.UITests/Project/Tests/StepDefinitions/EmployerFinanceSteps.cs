@@ -8,22 +8,28 @@ namespace SFA.DAS.EmployerFinance.UITests.Project.Tests.StepDefinitions
     public class EmployerFinanceSteps
     {
         private readonly ScenarioContext _context;
-        private HomePageFinancesSection _homePageFinancesSectionPage;
         private FinancePage _financePage;
 
         public EmployerFinanceSteps(ScenarioContext context) => _context = context;
 
         [Then(@"'Your funding reservations' and 'Your finances' links are displayed in the Finances section")]
-        public void ThenAndLinksAreDisplayedInTheFinancesSection() => _homePageFinancesSectionPage = new HomePageFinancesSection(_context).VerifyYourFinancesSectionLinksForANonLevyUser();
+        public void ThenAndLinksAreDisplayedInTheFinancesSection() => new HomePageFinancesSection(_context).VerifyYourFinancesSectionLinksForANonLevyUser();
 
         [Then(@"'Your finances' link is displayed in the Finances section")]
-        public void ThenLinkIsDisplayedInTheFinancesSection() => _homePageFinancesSectionPage = new HomePageFinancesSection(_context).VerifyYourFinancesSectionLinksForALevyUser();
+        public void ThenLinkIsDisplayedInTheFinancesSection() => new HomePageFinancesSection(_context).VerifyYourFinancesSectionLinksForALevyUser();
 
         [When(@"the Employer navigates to 'Finance' Page")]
-        public void WhenTheEmployerNavigatesFinancePage() => _financePage = _homePageFinancesSectionPage.NavigateToFinancePage();
+        public void WhenTheEmployerNavigatesFinancePage() => _financePage = new HomePageFinancesSection(_context).NavigateToFinancePage();
 
         [Then(@"'View transactions', 'Download transactions' and 'Transfers' links are displayed")]
         public void ThenAndLinksAreDisplayed() => _financePage.IsViewTransactionsLinkPresent().IsDownloadTransactionsLinkPresent().IsTransfersLinkPresent();
+
+        [Then(@"Employer is able to navigate to 'View transactions', 'Download transactions', 'Funding projection' and 'Transfers' pages")]
+        public void ThenEmployerIsAbleToNavigateToAndPages() => _financePage = _financePage
+            .GoToViewTransactionsPage().GoToFinancePage()
+            .GoToDownloadTransactionsPage().GoToFinancePage()
+            .GoToFundingProjectionPage().GoToFinancePage()
+            .GoToTransfersPage().GoToFinancePage();
 
         [Then(@"Funds data information is diplayed")]
         public void ThenFundsDataInformationIsDiplayed()

@@ -40,7 +40,23 @@ namespace SFA.DAS.UI.FrameworkHelpers
             _retryHelper.RetryOnWebDriverException(() => func(element));
         }
 
-        public void WaitforURLToChange(string url) => _webDriverWaitHelper.WaitforURLToChange(url);
+        public bool WaitforURLToChange(string expected) 
+        {
+            bool func()
+            {
+                var actual = _webDriver.Url;
+                if (actual.Contains(expected))
+                {
+                    return true;
+                }
+
+                throw new Exception("Url verification failed:"
+                + "\n Expected: " + expected + " page"
+                + "\n Found: " + actual + " page");
+            }
+
+            return VerifyPage(func);
+        }
 
         public bool VerifyPage(Func<List<IWebElement>> elements, string expected)
         {
@@ -71,8 +87,8 @@ namespace SFA.DAS.UI.FrameworkHelpers
                 }
 
                 throw new Exception("Page verification failed:"
-                    + "\n Expected: " + expected + " page"
-                    + "\n Found: " + actual + " page");
+                + "\n Expected: " + expected + " page"
+                + "\n Found: " + actual + " page");
             }
 
             return VerifyPage(func);
@@ -100,16 +116,16 @@ namespace SFA.DAS.UI.FrameworkHelpers
             return _retryHelper.RetryOnException(func, beforeAction);
         }
 
-        public bool VerifyPage(string actual, string expected1, string expected2)
+        public bool VerifyText(string actual, string expected1, string expected2)
         {
             if (actual.Contains(expected1) || actual.Contains(expected2))
             {
                 return true;
             }
 
-            throw new Exception("Page verification failed: "
-                + "\n Expected: " + expected1 + " or " + expected2 + " pages"
-                + "\n Found: " + actual + " page");
+            throw new Exception("Text verification failed: "
+                + "\n Expected: '" + expected1 + "' or '" + expected2 + "' text"
+                + "\n Found: '" + actual + "' page");
         }
 
         public bool VerifyText(String actual, string expected)

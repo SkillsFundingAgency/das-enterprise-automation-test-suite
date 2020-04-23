@@ -36,19 +36,19 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         public CheckYourDetailsPage EnterAornAndPayeDetailsForSingleOrgScenarioAndContinue()
         {
-            EnterAornAndPayeAndContinue(registrationDataHelper.AornNumber, objectContext.GetGatewayPaye());
+            EnterAornAndPayeAndContinue();
             return new CheckYourDetailsPage(_context);
         }
 
         public TheseDetailsAreAlreadyInUsePage ReEnterTheSameAornDetailsAndContinue()
         {
-            EnterAornAndPayeAndContinue(registrationDataHelper.AornNumber, objectContext.GetGatewayPaye());
+            EnterAornAndPayeAndContinue();
             return new TheseDetailsAreAlreadyInUsePage(_context);
         }
 
         public ChooseAnOrganisationPage EnterAornAndPayeDetailsForMultiOrgScenarioAndContinue()
         {
-            EnterAornAndPayeAndContinue(registrationDataHelper.AornNumber, objectContext.GetGatewayPaye());
+            EnterAornAndPayeAndContinue();
             return new ChooseAnOrganisationPage(_context);
         }
 
@@ -57,6 +57,8 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             base.Continue();
             return this;
         }
+
+        private void EnterAornAndPayeAndContinue() => EnterAornAndPayeAndContinue(registrationDataHelper.AornNumber, objectContext.GetGatewayPaye(0));
 
         public void EnterAornAndPayeAndContinue(string aornNumber, string Paye)
         {

@@ -33,7 +33,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private By EndDateYear => By.Id("EndYear");
         private By TrainingCost => By.Id("Cost");
         private By EmployerReference => By.Id("Reference");
-        private By SaveAndContinueButton => By.CssSelector(".govuk-button");
+        private By SaveAndContinueButton => By.CssSelector("#main-content .govuk-button"); //By.Id("continue-button");
 
         public AddApprenticeDetailsPage(ScenarioContext context) : base(context)
         {

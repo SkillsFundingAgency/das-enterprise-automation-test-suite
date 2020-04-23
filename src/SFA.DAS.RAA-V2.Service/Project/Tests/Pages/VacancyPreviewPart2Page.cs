@@ -26,6 +26,8 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         private By Submit => By.CssSelector(".govuk-button[data-automation='submit-button']");
         private By ReturnToDashboardLink => By.CssSelector("a[data-automation='dashboard-link']");
         private By DeleteVacancyButton => By.CssSelector("a[data-automation='delete-button']");
+        private By ChangeApplicationProcess => By.CssSelector("a[data-automation='link-application-link']");
+        private By ApplicationWebAddress => By.Id("ApplicationUrl");
 
         public VacancyPreviewPart2Page(ScenarioContext context) : base(context)
         {
@@ -99,6 +101,12 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
             return new VacancyReferencePage(_context);
         }
 
+        public ResubmittedVacancyReferencePage ResubmitVacancy()
+        {
+            formCompletionHelper.Click(Submit);
+            return new ResubmittedVacancyReferencePage(_context);
+        }
+
         public VacancyPreviewPart2WithErrorsPage SubmitVacancyWithMissingData()
         {
             formCompletionHelper.Click(Submit);
@@ -106,5 +114,18 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         }
 
         private By ContactDetails() => _objectContext.IsRAAV2Employer() ? EmployerContactDetails : ProviderContactDetails;
+
+        public ApplicationProcessPage UpdateApplicationProcess()
+        {
+            if (pageInteractionHelper.IsElementPresent(ApplicationWebAddress))
+            {
+                formCompletionHelper.Click(ChangeApplicationProcess);                
+            }
+            else
+            {
+                formCompletionHelper.Click(ApplicationProcess);
+            }
+            return new ApplicationProcessPage(_context);
+        }
     }
 }

@@ -14,18 +14,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         #region Helpers and Context
         private readonly FormCompletionHelper _formCompletionHelper;
         private readonly ScenarioContext _context;
-        private readonly ApprovalsConfig _config;
         #endregion
-
 
         public DoYouWantToUseTransferFundsPage(ScenarioContext context) : base(context)
         {
             _context = context;
-            _config = context.GetApprovalsConfig<ApprovalsConfig>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
             VerifyPage();
         }
-
         internal AddTrainingProviderDetailsPage SelectYesIWantToUseTransferFunds()
         {
             _formCompletionHelper.SelectRadioOptionByText(CohortFundingOptions, "Yes, I will use transfer funds from ESFA LTD");

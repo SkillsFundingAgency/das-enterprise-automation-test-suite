@@ -1,4 +1,5 @@
 ﻿using SFA.DAS.Approvals.UITests.Project.Helpers;
+using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
     [Binding]
     public class DLockSteps
     {
-        private readonly DlockDataHelper _dlockDataHelper;
+        private readonly DataLockSqlHelper _dlockDataHelper;
 
         private readonly ProviderStepsHelper _providerStepsHelper;
 
@@ -20,7 +21,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
         public DLockSteps(ScenarioContext context)
         {
-            _dlockDataHelper = context.Get<DlockDataHelper>();
+            _dlockDataHelper = context.Get<DataLockSqlHelper>();
             _dataHelper = context.Get<ApprenticeDataHelper>();
             _providerStepsHelper = new ProviderStepsHelper(context);
             _employerStepsHelper = new EmployerStepsHelper(context);
