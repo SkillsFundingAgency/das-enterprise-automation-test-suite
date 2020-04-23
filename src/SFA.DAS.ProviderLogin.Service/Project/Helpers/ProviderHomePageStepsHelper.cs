@@ -53,7 +53,7 @@ namespace SFA.DAS.ProviderLogin.Service.Helpers
             {
                 return _loginHelper.Login(login);
             }
-            return new ProviderHomePage(_context);
+            return new ProviderHomePage   (_context);
         }
     }
 }

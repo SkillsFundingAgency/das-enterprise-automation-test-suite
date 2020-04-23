@@ -1,4 +1,5 @@
-﻿using SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider;
+﻿using OpenQA.Selenium;
+using SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider;
 using SFA.DAS.ProviderLogin.Service.Pages;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
@@ -7,7 +8,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 {
     public class ApprovalsProviderHomePage : ProviderHomePage
     {
-
+        protected By YourCohortsLink => By.LinkText("Your cohorts");
         #region Helpers and Context
         private readonly FormCompletionHelper _formCompletionHelper;
         private readonly ScenarioContext _context;
@@ -47,6 +48,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         {
             _formCompletionHelper.ClickElement(ManageYourFundingLink);
             return new ProviderFundingForNonLevyEmployersPage(_context);
+        }
+        public ProviderYourCohortsPage GoToYourCohorts()
+        {
+            _formCompletionHelper.ClickElement(YourCohortsLink);
+            return new ProviderYourCohortsPage(_context);
         }
     }
 }
