@@ -1,6 +1,6 @@
 ﻿Feature: RE_PR_01
 
-#@regression
+@regression
 @registration
 @addpayedetails
 @providerleadregistration
