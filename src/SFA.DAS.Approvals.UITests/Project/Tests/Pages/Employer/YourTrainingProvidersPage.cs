@@ -16,6 +16,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         #endregion
 
         private By AddANewTrainingProviderButton => By.LinkText("Add a training provider");
+        private By SetPermissionsLink => By.LinkText("Set permissions");
         private By ChangePermissionsLink => By.LinkText("Change permissions");
 
         public YourTrainingProvidersPage(ScenarioContext context) : base(context)
@@ -31,10 +32,15 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             return new EnterYourTrainingProvidersUKProviderReferenceNumberUKPRN(_context);
         }
 
+        public DoYouGiveTrainingProviderPermissionToAddApprenticeRecordsPage SelectSetPermissions()
+        {
+            _formCompletionHelper.ClickElement(SetPermissionsLink);
+            return new DoYouGiveTrainingProviderPermissionToAddApprenticeRecordsPage(_context);
+        }
         public DoYouGiveTrainingProviderPermissionToAddApprenticeRecordsPage SelectChangePermissions()
         {
             _formCompletionHelper.ClickElement(ChangePermissionsLink);
             return new DoYouGiveTrainingProviderPermissionToAddApprenticeRecordsPage(_context);
-        }
+        }        
     }
 }
