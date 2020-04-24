@@ -20,7 +20,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
 
         public AS_SearchAndSelectStandardPage EnterGivenNameAndContinue()
         {
-            formCompletionHelper.EnterText(GivenNameTextBox, ePAOConfig.EPAOPrivatelyFundedApprenticeGivenName);
+            formCompletionHelper.EnterText(GivenNameTextBox, ePAOConfig.PrivatelyFundedApprenticeGivenName);
             Continue();
             return new AS_SearchAndSelectStandardPage(_context);
         }

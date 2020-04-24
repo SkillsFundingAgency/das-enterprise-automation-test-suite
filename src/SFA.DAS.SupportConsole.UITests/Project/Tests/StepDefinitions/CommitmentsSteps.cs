@@ -64,7 +64,7 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.StepDefinitions
         public void WhenTheUserClicksOnButton()
         {
             var cohortSummaryPage = new CohortSummaryPage(_context);
-            Assert.AreEqual(cohortSummaryPage.GetCohortRefNumber(), _config.SupportConsoleCohortRef, "Cohort reference mismatch in CohortSummaryPage");
+            Assert.AreEqual(cohortSummaryPage.GetCohortRefNumber(), _config.CohortRef, "Cohort reference mismatch in CohortSummaryPage");
             cohortSummaryPage.ClickViewThisCohortButton();
         }
 
@@ -72,7 +72,7 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.StepDefinitions
         public void WhenTheUserChoosesToViewUlnOfTheCohort()
         {
             var cohortDetailsPage = new CohortDetailsPage(_context);
-            Assert.AreEqual(cohortDetailsPage.GetCohortRefNumber(), _config.SupportConsoleCohortRef, "Cohort reference mismatch in CohortDetailsPage");
+            Assert.AreEqual(cohortDetailsPage.GetCohortRefNumber(), _config.CohortRef, "Cohort reference mismatch in CohortDetailsPage");
             cohortDetailsPage.ClickViewUlnLink();
         }
 

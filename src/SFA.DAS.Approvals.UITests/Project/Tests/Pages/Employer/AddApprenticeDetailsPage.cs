@@ -2,7 +2,6 @@
 using SFA.DAS.Approvals.UITests.Project.Helpers;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
-using System;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
@@ -66,5 +65,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             _formCompletionHelper.ClickElement(SaveAndContinueButton);
             return new ReviewYourCohortPage(_context);
         }
+        public YouMustCompleteAllApprenticeDetailsPage DraftDynamicHomePageSubmitValidApprenticeDetails()
+        {
+            _formCompletionHelper.EnterText(FirstNameField, _dataHelper.ApprenticeFirstname);
+            _formCompletionHelper.EnterText(LastNameField, _dataHelper.ApprenticeLastname);
+            _formCompletionHelper.ClickElement(SaveAndContinueButton);
+            return new YouMustCompleteAllApprenticeDetailsPage(_context);
+        }       
     }
 }
