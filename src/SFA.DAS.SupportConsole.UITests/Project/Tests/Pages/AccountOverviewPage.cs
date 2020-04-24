@@ -30,7 +30,7 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
             _config = context.GetSupportConsoleConfig<SupportConsoleConfig>();
             ClickOrganisationsLink(); //Doing this to refresh the page as the Header dissappears at times - known issue
             VerifyPage();
-            VerifyPage(PageHeaderWithAccountDetails, _config.SupportConsoleAccountDetails);
+            VerifyPage(PageHeaderWithAccountDetails, _config.AccountDetails);
         }
 
         public CommitmentsSearchPage ClickCommitmentsMenuLink()

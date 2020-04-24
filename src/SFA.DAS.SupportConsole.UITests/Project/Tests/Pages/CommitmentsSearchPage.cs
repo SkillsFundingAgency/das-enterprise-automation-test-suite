@@ -64,7 +64,7 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
         public UlnSearchResultsPage SearchForULN()
         {
             SelectUlnSearchTypeRadioButton();
-            EnterTextInSearchBox(_config.SupportConsoleUln);
+            EnterTextInSearchBox(_config.Uln);
             ClickSearchButton();
             return new UlnSearchResultsPage(_context);
         }
@@ -84,7 +84,7 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
         public CohortSummaryPage SearchForCohort()
         {
             SelectCohortRefSearchTypeRadioButton();
-            EnterTextInSearchBox(_config.SupportConsoleCohortRef);
+            EnterTextInSearchBox(_config.CohortRef);
             ClickSearchButton();
             return new CohortSummaryPage(_context);
         }
@@ -103,7 +103,7 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
 
         public void SearchWithUnauthorisedCohortAccess()
         {
-            EnterTextInSearchBox(_config.SupportConsoleCohortNotAssociatedToAccount);
+            EnterTextInSearchBox(_config.CohortNotAssociatedToAccount);
             ClickSearchButton();
         }
 

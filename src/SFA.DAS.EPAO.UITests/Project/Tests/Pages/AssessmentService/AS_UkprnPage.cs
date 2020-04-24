@@ -20,7 +20,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
 
         public AS_AchievementDatePage EnterUkprnAndContinue()
         {
-            formCompletionHelper.EnterText(UkprnTextBox, ePAOConfig.EPAOPrivatelyFundedUkprn);
+            formCompletionHelper.EnterText(UkprnTextBox, ePAOConfig.PrivatelyFundedUkprn);
             Continue();
             return new AS_AchievementDatePage(_context);
         }

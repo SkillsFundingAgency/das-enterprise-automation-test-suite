@@ -7,7 +7,7 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
 {
     public class UlnDetailsPage : BasePage
     {
-        protected override string PageTitle => _config.SupportConsoleUlnName;
+        protected override string PageTitle => _config.UlnName;
         private string StatusSectionHeaderText => "Status";
         private string ApprenticeSectionHeaderText => "Apprentice";
         private string TrainingSectionHeaderText => "Training";
