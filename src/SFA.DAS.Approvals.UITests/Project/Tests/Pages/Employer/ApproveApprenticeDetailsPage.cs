@@ -17,7 +17,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private readonly ScenarioContext _context;
         #endregion
 
-        protected override By ContinueButton => By.CssSelector("#main-content .govuk-button");
+        //protected override By ContinueButton => By.CssSelector("#main-content .govuk-button");
 
         protected override By ContinueButton => By.CssSelector("#submitCohort button");
         
