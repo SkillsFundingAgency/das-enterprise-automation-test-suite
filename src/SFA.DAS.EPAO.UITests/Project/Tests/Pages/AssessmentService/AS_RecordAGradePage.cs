@@ -31,16 +31,16 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
             switch (enrolledStandard)
             {
                 case "single":
-                    _ePAOSqlDataHelper.DeleteCertificate(ePAOConfig.EPAOApprenticeUlnWithSingleStandard);
-                    EnterApprentcieDetailsAndContinue(ePAOConfig.EPAOApprenticeNameWithSingleStandard, ePAOConfig.EPAOApprenticeUlnWithSingleStandard);
+                    _ePAOSqlDataHelper.DeleteCertificate(ePAOConfig.ApprenticeUlnWithSingleStandard);
+                    EnterApprentcieDetailsAndContinue(ePAOConfig.ApprenticeNameWithSingleStandard, ePAOConfig.ApprenticeUlnWithSingleStandard);
                     break;
                 case "more than one":
-                    _ePAOSqlDataHelper.DeleteCertificate(ePAOConfig.EPAOApprenticeUlnWithMultipleStandards);
-                    EnterApprentcieDetailsAndContinue(ePAOConfig.EPAOApprenticeNameWithMultipleStandards, ePAOConfig.EPAOApprenticeUlnWithMultipleStandards);
+                    _ePAOSqlDataHelper.DeleteCertificate(ePAOConfig.ApprenticeUlnWithMultipleStandards);
+                    EnterApprentcieDetailsAndContinue(ePAOConfig.ApprenticeNameWithMultipleStandards, ePAOConfig.ApprenticeUlnWithMultipleStandards);
                     break;
                 case "additional learning option":
-                    _ePAOSqlDataHelper.DeleteCertificate(ePAOConfig.EPAOApprenticeUlnWithAStandardHavingLearningOption);
-                    EnterApprentcieDetailsAndContinue(ePAOConfig.EPAOApprenticeNameWithAStandardHavingLearningOption, ePAOConfig.EPAOApprenticeUlnWithAStandardHavingLearningOption);
+                    _ePAOSqlDataHelper.DeleteCertificate(ePAOConfig.ApprenticeUlnWithAStandardHavingLearningOption);
+                    EnterApprentcieDetailsAndContinue(ePAOConfig.ApprenticeNameWithAStandardHavingLearningOption, ePAOConfig.ApprenticeUlnWithAStandardHavingLearningOption);
                     break;
             }
 
@@ -49,9 +49,9 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
 
         public AS_DeclarationPage SearchPrivatelyFundedApprentice()
         {
-            _ePAOSqlDataHelper.DeleteCertificate(ePAOConfig.EPAOPrivatelyFundedApprenticeUln);
+            _ePAOSqlDataHelper.DeleteCertificate(ePAOConfig.PrivatelyFundedApprenticeUln);
             SelectPrivatelyFundedCheckBox();
-            EnterApprentcieDetailsAndContinue(ePAOConfig.EPAOPrivatelyFundedApprenticeLastName, ePAOConfig.EPAOPrivatelyFundedApprenticeUln);
+            EnterApprentcieDetailsAndContinue(ePAOConfig.PrivatelyFundedApprenticeLastName, ePAOConfig.PrivatelyFundedApprenticeUln);
             return new AS_DeclarationPage(_context);
         }
 

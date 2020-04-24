@@ -24,7 +24,7 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
 
         public SearchHomePage SignInWithValidDetails()
         {
-            SubmitValidLoginDetails(_config.SupportConsoleLoginUsername, _config.SupportConsoleLoginPassword);
+            SubmitValidLoginDetails(_config.LoginUsername, _config.LoginPassword);
             return new SearchHomePage(_context);
         }
     }
