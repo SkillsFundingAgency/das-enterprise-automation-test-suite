@@ -1,5 +1,7 @@
-﻿using SFA.DAS.FAT.UITests.Project.Helpers;
+﻿using NUnit.Framework;
+using SFA.DAS.FAT.UITests.Project.Helpers;
 using SFA.DAS.FAT.UITests.Project.Tests.Pages;
+using System.Linq;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.FAT.UITests.Project.Tests.StepDefinitions
@@ -44,6 +46,26 @@ namespace SFA.DAS.FAT.UITests.Project.Tests.StepDefinitions
         {
             _providerSearchResultsPage = _findATrainingProviderPage.EnterPostCodeAndSearch(postCode);
             _fATStepsHelper.CheckIfSatisfactionAndAchievementRatesAreDisplayed(_providerSearchResultsPage);
+        }
+
+        [When(@"the User chooses to diplay results in (ascending order|descending order) of Apprenticeship Level")]
+        public void WhenTheUserChoosesToDiplayResultsInAscendingOrderOfApprenticeshipLevel(string order)
+        {
+            if (order.Contains("ascending order"))
+                _trainingCourseSearchResultsPage.SelectAscendingOrderSort();
+            else
+                _trainingCourseSearchResultsPage.SelectDescendingOrderSort();
+        }
+
+        [Then(@"the results are displayed in (ascending order|descending order)")]
+        public void ThenTheResultsAreDisplayedInAscendingOrder(string order)
+        {
+            var levelInfo = _trainingCourseSearchResultsPage.GetLevelInfoFromResults();
+
+            if (order.Contains("ascending order"))
+                CollectionAssert.IsOrdered(levelInfo);
+            else
+                CollectionAssert.IsOrdered(levelInfo.Reverse());
         }
     }
 }

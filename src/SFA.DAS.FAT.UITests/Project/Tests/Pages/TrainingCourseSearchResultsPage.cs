@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using System.Collections.Generic;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.FAT.UITests.Project.Tests.Pages
@@ -15,6 +16,8 @@ namespace SFA.DAS.FAT.UITests.Project.Tests.Pages
         private By LevelText => By.CssSelector("dd.level");
         private By UpdateResultsButton => By.CssSelector(".button[value='Update results']");
         private By FirstResultLink => By.CssSelector("h2.result-title");
+        private By SortByDropDown => By.Id("select-order");
+        private By LevelInfoText => By.ClassName("level");
         #endregion
 
         public TrainingCourseSearchResultsPage(ScenarioContext context) : base(context)
@@ -58,6 +61,14 @@ namespace SFA.DAS.FAT.UITests.Project.Tests.Pages
             return new TrainingCourseSummaryPage(_context);
         }
 
+        public void SelectAscendingOrderSort() => SelectDropDownValue("Level (low to high)");
+
+        public void SelectDescendingOrderSort() => SelectDropDownValue("Level (high to low)");
+
+        public IEnumerable<string> GetLevelInfoFromResults() => pageInteractionHelper.GetStringCollectionFromElementsGroup(LevelInfoText);
+
         private void ClickLevelCheckBox(string level) => formCompletionHelper.Click(LevelCheckBox(level));
+
+        private void SelectDropDownValue(string value) => formCompletionHelper.SelectFromDropDownByText(SortByDropDown, value);
     }
 }
