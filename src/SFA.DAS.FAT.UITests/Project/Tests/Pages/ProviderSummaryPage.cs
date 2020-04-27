@@ -18,5 +18,11 @@ namespace SFA.DAS.FAT.UITests.Project.Tests.Pages
             NavigateBack();
             return new ProviderSearchResultsPage(_context);
         }
+
+        public FindATrainingProviderByNamePage NavigateBackFromProviderSummaryPageForProviderOnlySearch()
+        {
+            NavigateBack();
+            return new FindATrainingProviderByNamePage(_context);
+        }
     }
 }

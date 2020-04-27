@@ -51,7 +51,7 @@ namespace SFA.DAS.FAT.UITests.Project.Tests.StepDefinitions
         }
 
         [When(@"the User chooses to diplay results in (ascending order|descending order) of Apprenticeship Level")]
-        public void WhenTheUserChoosesToDiplayResultsInAscendingOrderOfApprenticeshipLevel(string order)
+        public void WhenTheUserChoosesToDiplayResultsInTheSelectedOrderOfApprenticeshipLevel(string order)
         {
             if (order.Contains("ascending order"))
                 _trainingCourseSearchResultsPage.SelectAscendingOrderSort();
@@ -60,7 +60,7 @@ namespace SFA.DAS.FAT.UITests.Project.Tests.StepDefinitions
         }
 
         [Then(@"the results are displayed in (ascending order|descending order)")]
-        public void ThenTheResultsAreDisplayedInAscendingOrder(string order)
+        public void ThenTheResultsAreDisplayedInTheSelectedOrder(string order)
         {
             var levelInfo = _trainingCourseSearchResultsPage.GetLevelInfoFromResults();
 
@@ -70,7 +70,7 @@ namespace SFA.DAS.FAT.UITests.Project.Tests.StepDefinitions
                 CollectionAssert.IsOrdered(levelInfo.Reverse(), "Results are not Descending ordered based on Level");
         }
 
-        [Given(@"the User has searched for a course and selected the provider")]
+        [Given(@"the User has searched for a Course and selected the Provider")]
         public void GivenTheUserHasSearchedForACourseAndSelectedTheProvider()
         {
             WhenTheUserSearchesWithATerm("Account");
@@ -80,12 +80,26 @@ namespace SFA.DAS.FAT.UITests.Project.Tests.StepDefinitions
             _providerSummaryPage = _providerSearchResultsPage.SelectFirstProviderResult();
         }
 
-        [Then(@"User is able to navigate back to the beginning of the search")]
-        public void ThenUserIsAbleToNavigateBackToTheBeginningOfTheSearch() => _providerSummaryPage.NavigateBackFromProviderSummaryPage()
+        [Then(@"User is able to navigate back to the beginning of the E2E search")]
+        public void ThenUserIsAbleToNavigateBackToTheBeginningOfTheE2ESearch() => _providerSummaryPage.NavigateBackFromProviderSummaryPage()
             .NavigateBackFromProviderSearchResultsPage()
             .NavigateBackFromFindATrainingProviderPage()
             .NavigateBackFromTrainingCourseSummaryPage()
             .NavigateBackFromTrainingCourseSearchResultsPage()
+            .NavigateBackFromFindApprenticeshipTrainingSearchPage();
+
+        [Given(@"the User has searched only for a Training Provider by querying (.*)")]
+        public void GivenTheUserHasSearchedOnlyForATrainingProviderByQuerying(string providerName) =>
+            _providerSummaryPage = new FATIndexPage(_context).ClickStartButton()
+                .ClickSearchTrainingProviderLink()
+                .SearchForProvider(providerName)
+                .SelectFirstProviderResult();
+
+        [Then(@"User is able to navigate back to the beginning of the Training Provider search")]
+        public void ThenUserIsAbleToNavigateBackToTheBeginningOfTheTrainingProviderSearch() => _providerSummaryPage
+            .NavigateBackFromProviderSummaryPageForProviderOnlySearch()
+            .NavigateBackFromSearchResultsInFindATrainingProviderByNamePage()
+            .NavigateBackFromFindATrainingProviderByNamePage()
             .NavigateBackFromFindApprenticeshipTrainingSearchPage();
     }
 }

@@ -26,14 +26,6 @@ namespace SFA.DAS.FAT.UITests.Project.Tests.Pages
 
         public string GetAchievementRatePercentageInfoInfo() => pageInteractionHelper.GetText(AchievementRatePercentageInfo);
 
-        public ProviderSummaryPage SelectFirstProviderResult()
-        {
-            var firstLinkText = pageInteractionHelper.GetText(FirstResultLink);
-            objectContext.SetProviderName(firstLinkText);
-            formCompletionHelper.ClickLinkByText(firstLinkText);
-            return new ProviderSummaryPage(_context);
-        }
-
         public FindATrainingProviderPage NavigateBackFromProviderSearchResultsPage()
         {
             NavigateBack();

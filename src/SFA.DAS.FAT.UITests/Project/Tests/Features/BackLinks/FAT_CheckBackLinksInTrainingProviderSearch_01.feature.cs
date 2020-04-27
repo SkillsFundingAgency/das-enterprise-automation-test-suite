@@ -18,20 +18,20 @@ namespace SFA.DAS.FAT.UITests.Project.Tests.Features.BackLinks
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.0.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("FAT_CheckBackLinksInE2EJourney_01")]
-    public partial class FAT_CheckBackLinksInE2EJourney_01Feature
+    [NUnit.Framework.DescriptionAttribute("FAT_CheckBackLinksInTrainingProviderSearch_01")]
+    public partial class FAT_CheckBackLinksInTrainingProviderSearch_01Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "FAT_CheckBackLinksInE2EJourney_01.feature"
+#line 1 "FAT_CheckBackLinksInTrainingProviderSearch_01.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "FAT_CheckBackLinksInE2EJourney_01", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "FAT_CheckBackLinksInTrainingProviderSearch_01", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -70,21 +70,21 @@ namespace SFA.DAS.FAT.UITests.Project.Tests.Features.BackLinks
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("FAT_BLE2E_01_Validate BackLinks In E2EJourney")]
+        [NUnit.Framework.DescriptionAttribute("FAT_BLTPS_01_Validate BackLinks in Training Provider search journey")]
         [NUnit.Framework.CategoryAttribute("fat")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public virtual void FAT_BLE2E_01_ValidateBackLinksInE2EJourney()
+        public virtual void FAT_BLTPS_01_ValidateBackLinksInTrainingProviderSearchJourney()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("FAT_BLE2E_01_Validate BackLinks In E2EJourney", null, new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("FAT_BLTPS_01_Validate BackLinks in Training Provider search journey", null, new string[] {
                         "fat",
                         "regression"});
 #line 5
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 6
- testRunner.Given("the User has searched for a Course and selected the Provider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("the User has searched only for a Training Provider by querying Northampton", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 7
- testRunner.Then("User is able to navigate back to the beginning of the E2E search", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("User is able to navigate back to the beginning of the Training Provider search", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
