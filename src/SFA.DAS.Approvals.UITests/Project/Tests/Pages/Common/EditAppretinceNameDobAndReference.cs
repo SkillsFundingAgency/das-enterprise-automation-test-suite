@@ -23,7 +23,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
         protected virtual By EndDateMonth => By.CssSelector("#EndMonth, #EndDate_Month");
         protected virtual By EndDateYear => By.CssSelector("#EndYear, #EndDate_Year");
         protected virtual By Reference => By.CssSelector("#EmployerRef, #Reference, #ProviderRef");
-        protected virtual By UpdateDetailsButton => By.Id("submit-edit-app");
+        protected virtual By UpdateDetailsButton => By.CssSelector("#submit-edit-app, #submit-edit-details");
 
         public EditAppretinceNameDobAndReference(ScenarioContext context) : base(context)
         {
