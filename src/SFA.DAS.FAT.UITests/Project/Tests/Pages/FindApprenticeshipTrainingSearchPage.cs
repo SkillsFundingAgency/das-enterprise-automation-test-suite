@@ -18,5 +18,11 @@ namespace SFA.DAS.FAT.UITests.Project.Tests.Pages
             SearchApprenticeship(searchTerm);
             return new TrainingCourseSearchResultsPage(_context);
         }
+
+        public FATIndexPage NavigateBackFromFindApprenticeshipTrainingSearchPage()
+        {
+            NavigateBack();
+            return new FATIndexPage(_context);
+        }
     }
 }

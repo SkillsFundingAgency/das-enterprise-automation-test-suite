@@ -16,8 +16,10 @@ namespace SFA.DAS.FAT.UITests.Project.Tests.Pages
         #endregion
 
         #region Locators
+        protected override By BackLink => By.CssSelector("a.link-back");
         protected By SearchTextField => By.Id("keywords");
         protected virtual By SearchButton => By.Id("submit-keywords");
+        protected By FirstResultLink => By.CssSelector("h2.result-title a");
         #endregion
 
         protected FATBasePage(ScenarioContext context) : base(context)

@@ -14,6 +14,7 @@ namespace SFA.DAS.FAT.UITests.Project.Tests.StepDefinitions
         private TrainingCourseSearchResultsPage _trainingCourseSearchResultsPage;
         private ProviderSearchResultsPage _providerSearchResultsPage;
         private FindATrainingProviderPage _findATrainingProviderPage;
+        private ProviderSummaryPage _providerSummaryPage;
 
         public FATSteps(ScenarioContext context)
         {
@@ -34,6 +35,7 @@ namespace SFA.DAS.FAT.UITests.Project.Tests.StepDefinitions
         [Then(@"only the level (2|3|4|5|6|7) Search Results are displayed")]
         public void ThenOnlyTheLevelSearchResultsAreDisplayed(string level) => _trainingCourseSearchResultsPage = _trainingCourseSearchResultsPage.VerifyLevelInfoFromSearchResults(level);
 
+        [Given(@"the User searches with (.*) term")]
         [When(@"the User searches with (.*) term")]
         public void WhenTheUserSearchesWithATerm(string training) => _trainingCourseSearchResultsPage = _fATStepsHelper.SearchForTrainingCourse(training);
 
@@ -62,10 +64,28 @@ namespace SFA.DAS.FAT.UITests.Project.Tests.StepDefinitions
         {
             var levelInfo = _trainingCourseSearchResultsPage.GetLevelInfoFromResults();
 
-            if (order.Contains("ascending order"))
-                CollectionAssert.IsOrdered(levelInfo);
+            if (order.Equals("ascending order"))
+                CollectionAssert.IsOrdered(levelInfo, "Results are not Ascending ordered based on Level");
             else
-                CollectionAssert.IsOrdered(levelInfo.Reverse());
+                CollectionAssert.IsOrdered(levelInfo.Reverse(), "Results are not Descending ordered based on Level");
         }
+
+        [Given(@"the User has searched for a course and selected the provider")]
+        public void GivenTheUserHasSearchedForACourseAndSelectedTheProvider()
+        {
+            WhenTheUserSearchesWithATerm("Account");
+            ThenTheUserIsAbleToChooseTheFirstTrainingFromTheResultsDisplayed();
+            ThenTheUserIsAbleToFindTheProviderByPostCodeForTheChosenTraining("CV1 5FB");
+
+            _providerSummaryPage = _providerSearchResultsPage.SelectFirstProviderResult();
+        }
+
+        [Then(@"User is able to navigate back to the beginning of the search")]
+        public void ThenUserIsAbleToNavigateBackToTheBeginningOfTheSearch() => _providerSummaryPage.NavigateBackFromProviderSummaryPage()
+            .NavigateBackFromProviderSearchResultsPage()
+            .NavigateBackFromFindATrainingProviderPage()
+            .NavigateBackFromTrainingCourseSummaryPage()
+            .NavigateBackFromTrainingCourseSearchResultsPage()
+            .NavigateBackFromFindApprenticeshipTrainingSearchPage();
     }
 }

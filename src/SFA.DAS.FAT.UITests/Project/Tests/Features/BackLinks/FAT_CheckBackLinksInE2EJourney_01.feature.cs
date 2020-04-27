@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.FAT.UITests.Project.Tests.Features.SortResults
+namespace SFA.DAS.FAT.UITests.Project.Tests.Features.BackLinks
 {
     using TechTalk.SpecFlow;
     
@@ -18,20 +18,20 @@ namespace SFA.DAS.FAT.UITests.Project.Tests.Features.SortResults
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.0.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("FAT_SortResults_01")]
-    public partial class FAT_SortResults_01Feature
+    [NUnit.Framework.DescriptionAttribute("FAT_CheckBackLinksInE2EJourney_01")]
+    public partial class FAT_CheckBackLinksInE2EJourney_01Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "FAT_SortResults_01.feature"
+#line 1 "FAT_CheckBackLinksInE2EJourney_01.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "FAT_SortResults_01", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "FAT_CheckBackLinksInE2EJourney_01", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -70,27 +70,21 @@ namespace SFA.DAS.FAT.UITests.Project.Tests.Features.SortResults
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("FAT_SR_01 Verify Search Results Sorting")]
+        [NUnit.Framework.DescriptionAttribute("FAT_BLE2E_01_Validate BackLinks In E2EJourney")]
         [NUnit.Framework.CategoryAttribute("fat")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public virtual void FAT_SR_01VerifySearchResultsSorting()
+        public virtual void FAT_BLE2E_01_ValidateBackLinksInE2EJourney()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("FAT_SR_01 Verify Search Results Sorting", null, new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("FAT_BLE2E_01_Validate BackLinks In E2EJourney", null, new string[] {
                         "fat",
                         "regression"});
 #line 5
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 6
- testRunner.Given("the User searches with account term", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("the User has searched for a course and selected the provider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 7
- testRunner.When("the User chooses to diplay results in ascending order of Apprenticeship Level", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 8
- testRunner.Then("the results are displayed in ascending order", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 9
- testRunner.When("the User chooses to diplay results in descending order of Apprenticeship Level", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 10
- testRunner.Then("the results are displayed in descending order", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("User is able to navigate back to the beginning of the search", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

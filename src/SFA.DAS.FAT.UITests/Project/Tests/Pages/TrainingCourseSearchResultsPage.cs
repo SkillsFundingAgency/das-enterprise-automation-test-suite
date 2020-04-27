@@ -15,7 +15,6 @@ namespace SFA.DAS.FAT.UITests.Project.Tests.Pages
         private By SortByDropDownField => By.Id("select-order");
         private By LevelText => By.CssSelector("dd.level");
         private By UpdateResultsButton => By.CssSelector(".button[value='Update results']");
-        private By FirstResultLink => By.CssSelector("h2.result-title");
         private By SortByDropDown => By.Id("select-order");
         private By LevelInfoText => By.ClassName("level");
         #endregion
@@ -66,6 +65,12 @@ namespace SFA.DAS.FAT.UITests.Project.Tests.Pages
         public void SelectDescendingOrderSort() => SelectDropDownValue("Level (high to low)");
 
         public IEnumerable<string> GetLevelInfoFromResults() => pageInteractionHelper.GetStringCollectionFromElementsGroup(LevelInfoText);
+
+        public FindApprenticeshipTrainingSearchPage NavigateBackFromTrainingCourseSearchResultsPage()
+        {
+            NavigateBack();
+            return new FindApprenticeshipTrainingSearchPage(_context);
+        }
 
         private void ClickLevelCheckBox(string level) => formCompletionHelper.Click(LevelCheckBox(level));
 
