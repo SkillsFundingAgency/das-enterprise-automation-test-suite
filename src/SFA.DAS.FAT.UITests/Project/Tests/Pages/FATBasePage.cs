@@ -35,7 +35,8 @@ namespace SFA.DAS.FAT.UITests.Project.Tests.Pages
         public void SearchApprenticeship(string searchTerm)
         {
             formCompletionHelper.EnterText(SearchTextField, searchTerm);
-            formCompletionHelper.ClickInterceptedElement(pageInteractionHelper.FindElement(SearchButton));
+            formCompletionHelper.SendKeys(SearchTextField, Keys.Escape);
+            formCompletionHelper.Click(SearchButton);
         }
 
         public ProviderSummaryPage SelectFirstProviderResult()
