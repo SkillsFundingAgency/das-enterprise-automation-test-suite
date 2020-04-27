@@ -312,7 +312,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         {
             
              Assert.AreEqual(_homePage.GoToYourOrganisationsAndAgreementsPage().IsRemoveLinkBesideNewlyAddedOrg(), false);
-            _homePage = new HomePage(_context, true);
+             _homePage = new HomePage(_context, true); 
         }
 
         [Then(@"Employer is Allowed to remove the second Org added from the account")]

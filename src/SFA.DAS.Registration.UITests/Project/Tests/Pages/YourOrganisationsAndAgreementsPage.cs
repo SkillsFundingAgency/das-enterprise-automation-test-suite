@@ -19,7 +19,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         private By TableCells => By.XPath("//td");
         private By ViewAgreementLink => By.LinkText("View");
         private By OrgRemovedMessageInHeader = By.Id("error-summary-title");
-        private By RemoveLinkBesideNewlyAddedOrg => By.XPath($"//td[text()='{objectContext.GetOrganisationName()}']/following-sibling::td/a");
+        private By RemoveLinkBesideNewlyAddedOrg => By.LinkText($"Remove organisation");
         #endregion
 
         public YourOrganisationsAndAgreementsPage(ScenarioContext context, bool navigate = false) : base(context, navigate)
