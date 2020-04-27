@@ -35,7 +35,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         {
             _context = context;
             _regexHelper = context.Get<RegexHelper>();
-            _registrationSqlDataHelper = context.Get<RegistrationSqlDataHelper>();
         }
 
         public HomePage(ScenarioContext context) : this(context, false) { }
@@ -55,14 +54,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         public string AccountId() => _regexHelper.GetAccountId(pageInteractionHelper.GetUrl());
 
         public string PublicAccountId() => _regexHelper.GetPublicAccountId(pageInteractionHelper.GetText(PublicAccountIdLocator));
-
-        public string GetAgreementId() => _registrationSqlDataHelper.GetAgreementId(AccountId());
-
-        public void SetAgreementId()
-        {
-            var agreementId = GetAgreementId();
-            objectContext.SetAgreementId(agreementId);
-        }
 
         public AboutYourAgreementPage ClickAcceptYourAgreementLinkInHomePagePanel()
         {

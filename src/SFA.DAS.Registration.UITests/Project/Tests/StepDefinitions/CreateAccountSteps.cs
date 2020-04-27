@@ -316,7 +316,8 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         [Then(@"the Employer is Not allowed to Remove the first Org added")]
         public void ThenTheEmployerIsNotAllowedToRemoveTheFirstOrgAdded()
         {
-            _homePage.GoToYourOrganisationsAndAgreementsPage();
+            _homePage.GoToYourOrganisationsAndAgreementsPage()
+                     .IsRemoveLinkBesideNewlyAddedOrg();
 
             _homePage = new HomePage(_context, true);
         }
