@@ -27,7 +27,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
             });
         }
 
-        protected void GoToBasket() => formCompletionHelper.ClickElement(Basket);
+        protected void GoToBasket() => tabHelper.OpenInNewTab(campaignsConfig.CA_BaseUrl, campaignsConfig.BasketView);
 
         public bool VerifyCount(int count) => (count == 0) ? !pageInteractionHelper.IsElementDisplayed(FavCount) : VerifyPage(FavCount, count.ToString());
 
