@@ -30,7 +30,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         public ApprenticeDetailsApprovedPage ApproveAndNotifyTrainingProvider()
         {
             SelectRadioOptionByForAttribute("radio-approve");
-            _formCompletionHelper.ClickElement(ContinueButton);
+            Continue();
             return new ApprenticeDetailsApprovedPage(_context);
         }
     }
