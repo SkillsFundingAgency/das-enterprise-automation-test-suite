@@ -36,7 +36,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         public MessageForYourTrainingProviderPage EmployerSendsToProviderToAddApprentices()
         {
             EmployerSendsToProviderToAdd();
-            _formCompletionHelper.ClickElement(ContinueButton);
+            Continue();
             return new MessageForYourTrainingProviderPage(_context);
         }
 
