@@ -25,7 +25,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         public YourCohortRequestsPage ConfirmDeleteAndSubmit()
         {
             SelectRadioOptionByForAttribute("confirm-yes");
-            _formCompletionHelper.ClickElement(ContinueButton);
+            Continue();
             return new YourCohortRequestsPage(_context);
         }
     }
