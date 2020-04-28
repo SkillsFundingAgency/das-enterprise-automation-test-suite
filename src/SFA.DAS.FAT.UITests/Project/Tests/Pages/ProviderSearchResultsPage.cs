@@ -6,8 +6,13 @@ namespace SFA.DAS.FAT.UITests.Project.Tests.Pages
     public class ProviderSearchResultsPage : FATBasePage
     {
         protected override string PageTitle => "Search results";
+        private readonly ScenarioContext _context;
 
-        public ProviderSearchResultsPage(ScenarioContext context) : base(context) => VerifyPage();
+        public ProviderSearchResultsPage(ScenarioContext context) : base(context)
+        {
+            _context = context;
+            VerifyPage();
+        }
 
         #region Locators
         private By EmployerSatisfactionPercentageInfo => By.CssSelector("dd.employer-satisfaction");
@@ -20,5 +25,11 @@ namespace SFA.DAS.FAT.UITests.Project.Tests.Pages
         public string GetLearnerSatisfactionPercentageInfoInfo() => pageInteractionHelper.GetText(LearnerSatisfactionPercentageInfo);
 
         public string GetAchievementRatePercentageInfoInfo() => pageInteractionHelper.GetText(AchievementRatePercentageInfo);
+
+        public FindATrainingProviderPage NavigateBackFromProviderSearchResultsPage()
+        {
+            NavigateBack();
+            return new FindATrainingProviderPage(_context);
+        }
     }
 }
