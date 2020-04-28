@@ -2,6 +2,7 @@
 using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 using System;
+using SFA.DAS.Registration.UITests.Project.Helpers;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 {
@@ -9,7 +10,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => objectContext.GetOrganisationName();
         protected override string Linktext => "Home";
-
+        
         private readonly RegexHelper _regexHelper;
         private readonly ScenarioContext _context;
         private readonly RegistrationSqlDataHelper _registrationSqlDataHelper;
