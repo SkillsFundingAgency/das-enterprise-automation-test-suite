@@ -49,6 +49,7 @@ namespace SFA.DAS.ConfigurationBuilder
             .AddUserSecrets($"{ProjectName}_Secrets")
             .AddUserSecrets($"{ProjectName}_{EnvironmentName}_Secrets")
             .AddUserSecrets("MongoDbSecrets")
+            .AddUserSecrets("TestExecutionSecrets")
             .Build();
         }
 
