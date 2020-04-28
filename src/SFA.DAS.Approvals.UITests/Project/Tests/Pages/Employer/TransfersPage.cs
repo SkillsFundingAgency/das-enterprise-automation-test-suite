@@ -80,7 +80,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         internal TransferRequestDetailsPage OpenPendingCohortRequestAsFundingEmployer()
         {
-            var receivingEmployer = _transfersConfig.AP_ReceiverOrganisationName;
+            var receivingEmployer = _transfersConfig.ReceiverOrganisationName;
             var cohortTotalCost = _objectContext.GetApprenticeTotalCost();
 
             IList<IWebElement> transferRequestRows = _pageInteractionHelper.FindElements(YourTransferConnectionsRows);

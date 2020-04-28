@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.Registration.UITests.Project.Tests.Features.Tasks
+namespace SFA.DAS.FAT.UITests.Project.Tests.Features.BackLinks
 {
     using TechTalk.SpecFlow;
     
@@ -18,20 +18,20 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features.Tasks
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.0.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("RE_Tasks_01")]
-    public partial class RE_Tasks_01Feature
+    [NUnit.Framework.DescriptionAttribute("FAT_CheckBackLinksInTrainingProviderSearch_01")]
+    public partial class FAT_CheckBackLinksInTrainingProviderSearch_01Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "RE_Tasks_01.feature"
+#line 1 "FAT_CheckBackLinksInTrainingProviderSearch_01.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "RE_Tasks_01", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "FAT_CheckBackLinksInTrainingProviderSearch_01", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -70,28 +70,21 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features.Tasks
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RE_Tasks_01_Create an Employer Account with Public Sector Type Org and verify Tas" +
-            "ks link")]
+        [NUnit.Framework.DescriptionAttribute("FAT_BLTPS_01_Validate BackLinks in Training Provider search journey")]
+        [NUnit.Framework.CategoryAttribute("fat")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("registration")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
-        public virtual void RE_Tasks_01_CreateAnEmployerAccountWithPublicSectorTypeOrgAndVerifyTasksLink()
+        public virtual void FAT_BLTPS_01_ValidateBackLinksInTrainingProviderSearchJourney()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RE_Tasks_01_Create an Employer Account with Public Sector Type Org and verify Tas" +
-                    "ks link", null, new string[] {
-                        "regression",
-                        "registration",
-                        "addpayedetails"});
-#line 6
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("FAT_BLTPS_01_Validate BackLinks in Training Provider search journey", null, new string[] {
+                        "fat",
+                        "regression"});
+#line 5
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
+#line 6
+ testRunner.Given("the User has searched only for a Training Provider by querying Northampton", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 7
- testRunner.Given("levy declarations are added for the past 15 months with levypermonth as 10000", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 8
- testRunner.When("an Employer Account with PublicSector Type Org is created and agreement is Signed" +
-                    "", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 9
- testRunner.Then("\'Start adding apprentices now\' task link is displayed under Tasks pane", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("User is able to navigate back to the beginning of the Training Provider search", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

@@ -23,7 +23,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
 
         public AS_LandingPage LaunchAssessmentServiceApplication()
         {
-            _tabHelper.GoToUrl(_ePAOConfig.EPAOAssessmentServiceUrl);
+            _tabHelper.GoToUrl(_ePAOConfig.AssessmentServiceUrl);
             return new AS_LandingPage(_context);
         }
 

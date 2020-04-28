@@ -3,17 +3,17 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 {
-    public class RemoveOrganisationPage : RegistrationBasePage
+    public class AreYouSureYouWantToRemovePage : RegistrationBasePage
     {
-        protected override string PageTitle => "Remove organisation";
+        protected override string PageTitle => "Are you sure you want to remove";
         private readonly ScenarioContext _context;
 
         #region Locators
-        protected override By ContinueButton => By.CssSelector(".button");
-        private By YesRadioButton => By.CssSelector("input[name='RemoveOrganisation']");
+        private By YesRadioButton => By.Name("Remove");
+        protected override By ContinueButton => By.Id("can-remove-organisation-button");
         #endregion
 
-        public RemoveOrganisationPage(ScenarioContext context) : base(context)
+        public AreYouSureYouWantToRemovePage(ScenarioContext context) : base(context)
         {
             _context = context;
             VerifyPage();
@@ -22,7 +22,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         public YourOrganisationsAndAgreementsPage SelectYesRadioOptionAndClickContinueInRemoveOrganisationPage()
         {
             formCompletionHelper.SelectRadioOptionByLocator(YesRadioButton);
-            Continue();
+            Continue();          
             return new YourOrganisationsAndAgreementsPage(_context);
         }
     }

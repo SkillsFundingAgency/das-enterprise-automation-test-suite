@@ -1,6 +1,7 @@
 ﻿using SFA.DAS.UI.FrameworkHelpers;
 using OpenQA.Selenium;
 using TechTalk.SpecFlow;
+using SFA.DAS.Registration.UITests.Project.Helpers;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 {
@@ -11,6 +12,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         private readonly RegexHelper _regexHelper;
         private readonly ScenarioContext _context;
+        private readonly RegistrationSqlDataHelper _registrationSqlDataHelper;
 
         #region Locators
         protected By YourFundingReservationsLink => By.LinkText("Your funding reservations");
