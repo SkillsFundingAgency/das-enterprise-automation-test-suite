@@ -12,6 +12,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         private readonly RegexHelper _regexHelper;
         private readonly ScenarioContext _context;
+        private readonly RegistrationSqlDataHelper _registrationSqlDataHelper;
 
         #region Locators
         protected By YourFundingReservationsLink => By.LinkText("Your funding reservations");
@@ -23,9 +24,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         private By AccountNameText => By.CssSelector("p.heading-xlarge");
         private By YourSavedFavouritesLink => By.CssSelector(".das-favourites-link__text");
         #endregion
-
-        //protected By ContinueSettingUpAnApprenticeship => By.Id("call-to-action-continue-setting-up-an-apprenticeship");
-
         protected By ContinueTo => By.LinkText("Continue");
 
         protected By StartNowButton => By.LinkText("Start now");
@@ -61,9 +59,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         }
 
         public void ContinueToCreateAdvert() => formCompletionHelper.ClickElement(ContinueTo);
-
-        //public void VerifyReserveFundingPanel() => pageInteractionHelper.VerifyText(ContinueSettingUpAnApprenticeship, "Continue setting up an apprenticeship");
-
+        
         public void VerifyStartAddingApprenticesNowTaskLink() => VerifyPage(StartAddingApprenticesNowTaskLink);
 
         public YourSavedFavouritesPage GoToYourSavedFavourites()

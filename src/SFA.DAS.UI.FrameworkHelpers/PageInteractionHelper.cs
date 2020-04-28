@@ -157,6 +157,8 @@ namespace SFA.DAS.UI.FrameworkHelpers
             return text;
         }
 
+        public IEnumerable<string> GetStringCollectionFromElementsGroup(By locator) => FindElements(locator).Select(e => e.Text);
+
         public int GetCountOfElementsGroup(By locator) => _webDriver.FindElements(locator).Count;
 
         public bool IsElementPresent(By locator)
