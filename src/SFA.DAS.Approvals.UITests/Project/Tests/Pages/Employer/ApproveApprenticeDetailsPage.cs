@@ -29,15 +29,15 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         public ReviewYourCohortPage SubmitApproveAndSendToTrainingProvider()
         {
-            SelectCohortApproveOptions("radio-approve");
-            _formCompletionHelper.ClickElement(ContinueButton);
+            SelectCohortApproveOptions("radio-approve")
+            .Continue();;
             return new ReviewYourCohortPage(_context);
         }
 
         public ReviewYourCohortPage ChangeRequestFromTrainingProvider()
         {
-            SelectCohortApproveOptions("radio-send");
-            _formCompletionHelper.ClickElement(ContinueButton);
+            SelectCohortApproveOptions("radio-send")
+            .Continue();;
             return new ReviewYourCohortPage(_context);
         }
 
