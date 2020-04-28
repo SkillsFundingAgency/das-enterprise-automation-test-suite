@@ -1,7 +1,6 @@
 ﻿using SFA.DAS.Approvals.UITests.Project.Tests.Pages.DynamicHomePage;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer;
-using SFA.DAS.Registration.UITests.Project.Tests.Pages;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
@@ -9,9 +8,16 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
     public class MFEmployerStepsHelper
     {
         private readonly ScenarioContext _context;
-        public MFEmployerStepsHelper(ScenarioContext context) => _context = context;
-        public DoYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage GoToReserveFunding() => GoToManageFunding().ClickReserveMoreFundingLink();
-        public DoYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage GoToReserveFundingFromHomePagePanel() => new DynamicHomePages(_context).StartNowToReserveFunding().ClickReserveFundingButton();
+        
+        public MFEmployerStepsHelper(ScenarioContext context)
+        {
+            _context = context;
+        }
+
+        public DoYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage GoToReserveFunding()
+        {
+            return new DoYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage(_context);
+        }
         public AddAnApprenitcePage GoToAddAnApprentices()
         {
             ContinueToCreateAddAnApprentices();
@@ -29,9 +35,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                 .ClickYesReserveFundingNowRadioButton()
                 .ClickConfirmButton();
         }
+        public SuccessfullyReservedFundingPage VerifySuccessfullyReservedFundingPage()
+        {
 
+            return new SuccessfullyReservedFundingPage(_context);
+        }
         private YourFundingReservationsPage GoToManageFunding() => new YourFundingReservationsHomePage(_context).OpenYourFundingReservations();
-
         public YourFundingReservationsPage DeleteAllUnusedFunding()
         {
             var yourFundingReservationsPage = GoToManageFunding();

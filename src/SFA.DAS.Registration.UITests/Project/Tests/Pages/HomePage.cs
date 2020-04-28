@@ -1,6 +1,7 @@
 ﻿using SFA.DAS.UI.FrameworkHelpers;
 using OpenQA.Selenium;
 using TechTalk.SpecFlow;
+using System;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 {
@@ -23,7 +24,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         private By YourSavedFavouritesLink => By.CssSelector(".das-favourites-link__text");
         #endregion
 
-        protected By ContinueSettingUpAnApprenticeship => By.Id("call-to-action-continue-setting-up-an-apprenticeship");
+        //protected By ContinueSettingUpAnApprenticeship => By.Id("call-to-action-continue-setting-up-an-apprenticeship");
 
         protected By ContinueTo => By.LinkText("Continue");
 
@@ -61,7 +62,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         public void ContinueToCreateAdvert() => formCompletionHelper.ClickElement(ContinueTo);
 
-        public void VerifyReserveFundingPanel() => pageInteractionHelper.VerifyText(ContinueSettingUpAnApprenticeship, "Continue setting up an apprenticeship");
+        //public void VerifyReserveFundingPanel() => pageInteractionHelper.VerifyText(ContinueSettingUpAnApprenticeship, "Continue setting up an apprenticeship");
 
         public void VerifyStartAddingApprenticesNowTaskLink() => VerifyPage(StartAddingApprenticesNowTaskLink);
 

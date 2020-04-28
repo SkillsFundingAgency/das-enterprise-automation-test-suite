@@ -1,7 +1,7 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common;
+using SFA.DAS.Approvals.UITests.Project.Tests.Pages.DynamicHomePage;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
-using SFA.DAS.Registration.UITests.Project.Tests.Pages;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
@@ -25,14 +25,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
             _formCompletionHelper = context.Get<FormCompletionHelper>();
             VerifyPage();
         }
-
-        public HomePage GoToHomePage()
+        public DynamicHomePages GoToHomePage()
         {
             SelectRadioOptionByForAttribute("WhatsNext-home");
             _formCompletionHelper.ClickElement(ContinueButton);
-            return new HomePage(_context);
+            return new DynamicHomePages(_context);
         }
-
         internal AddAnApprenitcePage AddApprentice()
         {
             ChooseToAddApprenticeRadioButton();
@@ -54,6 +52,5 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
         }
 
         private void ChooseToAddApprenticeRadioButton() => _formCompletionHelper.ClickElement(AddApprenticeRadioButton);
-
     }
 }

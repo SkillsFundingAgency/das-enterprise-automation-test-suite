@@ -39,7 +39,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
         }
         public AddApprenticeDetailsPage DynamicHomePageClickSaveAndContinueToAddAnApprentices()
         {
-            _formCompletionHelper.SelectRadioOptionByText(RadioLabels,"Food Technologist - Level 3 starting between Apr 2020 to Jun 2020");
+            _formCompletionHelper.SelectRadioOptionByText(RadioLabels, "Food technologist - Level 3 starting between Apr 2020 to Jun 2020");
+            
             Continue();
             return new AddApprenticeDetailsPage(_context);
         }

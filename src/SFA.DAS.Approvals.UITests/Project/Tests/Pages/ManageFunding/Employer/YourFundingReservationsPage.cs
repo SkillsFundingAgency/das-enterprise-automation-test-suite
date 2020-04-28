@@ -40,14 +40,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
             }
             return new ReserveFundingToTrainAndAssessAnApprenticePage(_context);
         }
-
-        public DoYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage ClickReserveMoreFundingLink()
-        {
-            ClickReserveFundingButton();
-            formCompletionHelper.ClickElement(ReserveFundingSecondButton);
-            return new DoYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage(_context);
-        }
-
         public DeleteReservationPage DeleteUnusedFunding()
         {
             _formCompletionHelper.ClickElement(DeleteLink);
