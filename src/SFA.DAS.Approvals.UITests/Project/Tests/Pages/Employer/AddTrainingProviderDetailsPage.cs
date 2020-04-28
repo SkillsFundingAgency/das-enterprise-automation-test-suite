@@ -30,7 +30,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         public ConfirmTrainingProviderPage SubmitValidUkprn()
         {
             EnterUkprn();
-            _formCompletionHelper.ClickElement(ContinueButton);
+            Continue();
             return new ConfirmTrainingProviderPage(_context);
         }
 
