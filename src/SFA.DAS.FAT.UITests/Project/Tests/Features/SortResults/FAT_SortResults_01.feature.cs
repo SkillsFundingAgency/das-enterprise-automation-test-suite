@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.Registration.UITests.Project.Tests.Features.RemoveAnOrganisation
+namespace SFA.DAS.FAT.UITests.Project.Tests.Features.SortResults
 {
     using TechTalk.SpecFlow;
     
@@ -18,20 +18,20 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features.RemoveAnOrganisati
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.0.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("RE_RAO_01")]
-    public partial class RE_RAO_01Feature
+    [NUnit.Framework.DescriptionAttribute("FAT_SortResults_01")]
+    public partial class FAT_SortResults_01Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "RE_RAO_01.feature"
+#line 1 "FAT_SortResults_01.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "RE_RAO_01", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "FAT_SortResults_01", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -70,32 +70,27 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features.RemoveAnOrganisati
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RE_RAO_01_Verify Employer is Not allowed to Remove an Org when there is only one " +
-            "in the Account and Allowed to Remove a second Org added")]
+        [NUnit.Framework.DescriptionAttribute("FAT_SR_01 Verify Search Results Sorting")]
+        [NUnit.Framework.CategoryAttribute("fat")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("registration")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
-        public virtual void RE_RAO_01_VerifyEmployerIsNotAllowedToRemoveAnOrgWhenThereIsOnlyOneInTheAccountAndAllowedToRemoveASecondOrgAdded()
+        public virtual void FAT_SR_01VerifySearchResultsSorting()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RE_RAO_01_Verify Employer is Not allowed to Remove an Org when there is only one " +
-                    "in the Account and Allowed to Remove a second Org added", null, new string[] {
-                        "regression",
-                        "registration",
-                        "addpayedetails"});
-#line 6
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("FAT_SR_01 Verify Search Results Sorting", null, new string[] {
+                        "fat",
+                        "regression"});
+#line 5
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
+#line 6
+ testRunner.Given("the User searches with account term", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 7
- testRunner.When("an Employer Account with PublicSector Type Org is created and agreement is Signed" +
-                    "", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("the User chooses to diplay results in ascending order of Apprenticeship Level", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 8
- testRunner.Then("the Employer is Not allowed to Remove the first Org added", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the results are displayed in ascending order", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 9
- testRunner.When("the Employer initiates adding another Org of Company Type", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("the User chooses to diplay results in descending order of Apprenticeship Level", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 10
- testRunner.Then("the new Org added is shown in the Account Organisations list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 11
- testRunner.And("Employer is Allowed to remove the second Org added from the account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Then("the results are displayed in descending order", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

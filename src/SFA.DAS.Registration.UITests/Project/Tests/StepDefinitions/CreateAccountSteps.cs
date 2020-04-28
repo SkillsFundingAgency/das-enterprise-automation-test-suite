@@ -157,7 +157,18 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
                 .SignAgreement();
 
             _homePage.VerifySucessSummary("Agreement accepted");
+
+          //  SetAgreementId(_homePage);
         }
+
+        //private HomePage SetAgreementId(HomePage homePage)
+        //{
+        //    homePage
+        //         .GoToYourOrganisationsAndAgreementsPage()
+        //         .SetAgreementId();
+
+        //    return new HomePage(_context, true);
+        //}
 
         [When(@"the Employer does not sign the Agreement")]
         public void DoNotSignTheAgreement() => _homePage = _signAgreementPage.DoNotSignAgreement();
@@ -170,12 +181,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
                 .AccountId();
 
             _objectContext.SetAccountId(accountid);
-        }
-
-        private HomePage SetAgreementId(HomePage homePage)
-        {
-            homePage.GoToYourOrganisationsAndAgreementsPage();
-            return new HomePage(_context, true);
         }
 
         [When(@"an Employer creates a Non Levy Account and Signs the Agreement")]
@@ -316,9 +321,9 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         [Then(@"the Employer is Not allowed to Remove the first Org added")]
         public void ThenTheEmployerIsNotAllowedToRemoveTheFirstOrgAdded()
         {
-            _homePage.GoToYourOrganisationsAndAgreementsPage();
-
-            _homePage = new HomePage(_context, true);
+            
+             Assert.AreEqual(_homePage.GoToYourOrganisationsAndAgreementsPage().IsRemoveLinkBesideNewlyAddedOrg(), false);
+             _homePage = new HomePage(_context, true); 
         }
 
         [Then(@"Employer is Allowed to remove the second Org added from the account")]
