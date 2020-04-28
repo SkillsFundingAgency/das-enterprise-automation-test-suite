@@ -55,7 +55,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         public AddApprenticeDetailsPage NonLevyEmployerAddsApprentices()
         {
             EmployerAgreesToAdds();
-            _formCompletionHelper.ClickElement(ContinueButton);
+            Continue();
             return new AddApprenticeDetailsPage(_context);
         }
         public ChooseAReservationPage DynamicHomePageNonLevyEmployerAddsApprentices()
