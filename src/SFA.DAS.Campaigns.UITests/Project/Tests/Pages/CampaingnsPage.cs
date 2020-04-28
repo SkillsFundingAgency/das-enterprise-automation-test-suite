@@ -16,6 +16,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
         protected readonly FormCompletionHelper formCompletionHelper;
         protected readonly CampaignsConfig campaignsConfig;
         protected readonly CampaignsDataHelper campaignsDataHelper;
+        protected readonly TabHelper tabHelper;
         private readonly ScenarioContext _context;
         #endregion
 
@@ -37,6 +38,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
             pageInteractionHelper = context.Get<PageInteractionHelper>();
             campaignsConfig = context.GetCampaignsConfig<CampaignsConfig>();
             campaignsDataHelper = context.Get<CampaignsDataHelper>();
+            tabHelper = context.Get<TabHelper>();
         }
 
         public void VerifyLinks() => VerifyLinks(Links, "href", (x) => x.Text);
