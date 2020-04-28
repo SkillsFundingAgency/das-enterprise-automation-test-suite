@@ -29,7 +29,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         public AddApprenticeDetailsPage EmployerAddsApprentices()
         {
             EmployerAgreesToAdds();
-            _formCompletionHelper.ClickElement(ContinueButton);
+            Continue();
             return new AddApprenticeDetailsPage(_context);
         }
 
