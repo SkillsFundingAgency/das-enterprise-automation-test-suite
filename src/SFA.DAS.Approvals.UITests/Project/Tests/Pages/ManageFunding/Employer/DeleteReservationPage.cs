@@ -8,6 +8,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
     public class DeleteReservationPage : BasePage
     {
         protected override string PageTitle => "Delete Reservation";
+        protected override By ContinueButton => By.CssSelector("#main-content .govuk-button");
 
         #region Helpers and Context
         private readonly PageInteractionHelper _pageInteractionHelper;

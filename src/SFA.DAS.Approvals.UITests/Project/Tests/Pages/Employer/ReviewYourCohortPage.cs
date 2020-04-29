@@ -22,7 +22,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         private By ApproveMessage => By.CssSelector("#approve-details");
 		private By ReviewMessage => By.CssSelector("#send-details");
-		private By SaveSubmit => By.CssSelector(".govuk-button");
+		private By SaveSubmit => By.CssSelector("#main-content .govuk-button");
 
 
         public ReviewYourCohortPage(ScenarioContext context) : base(context)
