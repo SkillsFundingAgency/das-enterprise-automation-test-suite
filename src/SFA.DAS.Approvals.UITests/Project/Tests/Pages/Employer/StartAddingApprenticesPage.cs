@@ -10,6 +10,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
     public class StartAddingApprenticesPage : BasePage
     {
         protected override string PageTitle => "Start adding apprentices";
+        protected override By ContinueButton => By.Id("continue-button");
 
         #region Helpers and Context
         private readonly PageInteractionHelper _pageInteractionHelper;

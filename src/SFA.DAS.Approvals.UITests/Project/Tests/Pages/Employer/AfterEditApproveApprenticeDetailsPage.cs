@@ -13,7 +13,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private readonly FormCompletionHelper _formCompletionHelper;
         private readonly ScenarioContext _context;
         #endregion
-        private By ApproveApprenticeSaveAndSubmit => By.CssSelector(".govuk-button");
+        private By ApproveApprenticeSaveAndSubmit => By.Id("continue-button");
+        protected override By ContinueButton => By.Id("continue-button");
         public AfterEditApproveApprenticeDetailsPage(ScenarioContext context) : base(context)
         {
             _context = context;
