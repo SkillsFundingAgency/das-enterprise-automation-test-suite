@@ -43,7 +43,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
 
                 var tasks = section.FindElements(TaskItem);
 
-                var task = tasks.Where(x => x.Text.ContainsCompareCaseInsensitive(taskName)).ElementAt(index);
+                var task = tasks.Where(x => x.Text.StartsWith(taskName)).ElementAt(index);
 
                 if (childelement == TaskStatus ? true : (!task.Text.ContainsCompareCaseInsensitive("NOT REQUIRED")))
                 {
