@@ -12,7 +12,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         private readonly ScenarioContext _context;
         private readonly ObjectContext _objectContext;
         private readonly RegistrationSqlDataHelper _registrationSqlDataHelper;
-        private YourEsfaAgreementPage _yourEsfaAgreementPage;
+        private YourAgreementsWithTheEducationAndSkillsFundingAgencyPage _yourAgreementsWithTheEducationAndSkillsFundingAgencyPage;
         private ReviewYourDetailsPage _reviewYourDetailsPage;
 
         public OrganisationDetailsChangeSteps(ScenarioContext context)
@@ -23,12 +23,12 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         }
 
         [When(@"the Employer reviews Agreement page")]
-        public void WhenTheEmployerReviewsAgreementPage() => _yourEsfaAgreementPage = ClickViewAgreementLinkInYourOrganisationsAndAgreementsPage();
+        public void WhenTheEmployerReviewsAgreementPage() => _yourAgreementsWithTheEducationAndSkillsFundingAgencyPage = ClickViewAgreementLinkInYourOrganisationsAndAgreementsPage();
 
         [Then(@"clicking on 'Update these details' link displays 'Review your details' page showing (These details are the same as those previously held|We've retrieved the most up-to-date details we could find for your organisation)")]
         public void ThenClickingOnUpdateTheseDetailsLinkDisplaysReviewYourDetailsPageShowingExpectedMessage(string expectedMessage)
         {
-            _reviewYourDetailsPage = _yourEsfaAgreementPage.ClickUpdateTheseDetailsLinkInReviewYourDetailsPage()
+            _reviewYourDetailsPage = _yourAgreementsWithTheEducationAndSkillsFundingAgencyPage.ClickUpdateTheseDetailsLinkInReviewYourDetailsPage()
                 .VerifyInfoTextInReviewYourDetailsPage(expectedMessage);
         }
 
@@ -38,7 +38,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             var loginUser = _objectContext.GetLoginCredentials();
             _registrationSqlDataHelper.UpdateLegalEntityName(loginUser.Username);
 
-            _yourEsfaAgreementPage = ClickViewAgreementLinkInYourOrganisationsAndAgreementsPage();
+            _yourAgreementsWithTheEducationAndSkillsFundingAgencyPage = ClickViewAgreementLinkInYourOrganisationsAndAgreementsPage();
         }
 
         [Then(@"continuing by choosing 'Update details' option displays 'Details updated' page showing (You've successfully updated your organisation details)")]
@@ -48,15 +48,15 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
                 .SelectGoToHomePageOptionAndContinueInDetailsUpdatedPage();
         }
 
-        private YourEsfaAgreementPage ClickViewAgreementLinkInYourOrganisationsAndAgreementsPage()
+        private YourAgreementsWithTheEducationAndSkillsFundingAgencyPage ClickViewAgreementLinkInYourOrganisationsAndAgreementsPage()
         {
             new HomePage(_context, true).GoToYourOrganisationsAndAgreementsPage()
                 .ClickViewAgreementLink();
-            return new YourEsfaAgreementPage(_context);
+            return new YourAgreementsWithTheEducationAndSkillsFundingAgencyPage(_context);
         }
 
         [Then(@"the 'Update these details' link is not displayed for PublicSector Type Org")]
         public void ThenTheUpdateTheseDetailsLinkIsNotDisplayedForPublicSectorTypeOrg() =>
-            Assert.IsFalse(_yourEsfaAgreementPage.VerifyIfUpdateTheseDetailsLinkIsPresent(), "'Update these details' link is present even though it should not be present for a PublicSector Type Org");
+            Assert.IsFalse(_yourAgreementsWithTheEducationAndSkillsFundingAgencyPage.VerifyIfUpdateTheseDetailsLinkIsPresent(), "'Update these details' link is present even though it should not be present for a PublicSector Type Org");
     }
 }

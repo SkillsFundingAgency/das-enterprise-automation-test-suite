@@ -3,16 +3,17 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 {
-    public class YourEsfaAgreementPage : RegistrationBasePage
+    public class YourAgreementsWithTheEducationAndSkillsFundingAgencyPage : RegistrationBasePage
     {
-        protected override string PageTitle => "Your ESFA agreement";
+        protected override string PageTitle => "Your agreements with the Education and Skills Funding Agency";
         private readonly ScenarioContext _context;
 
         #region Locators
         private By UpdateTheseDetailsLink => By.LinkText("Update these details");
+        private By AgreementId => By.XPath("//dd[5]");
         #endregion
 
-        public YourEsfaAgreementPage(ScenarioContext context) : base(context)
+        public YourAgreementsWithTheEducationAndSkillsFundingAgencyPage(ScenarioContext context) : base(context)
         {
             _context = context;
             VerifyPage();
@@ -24,6 +25,13 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             return new ReviewYourDetailsPage(_context);
         }
 
+        public void SetAgreementId()
+        {
+            var agreementId = pageInteractionHelper.GetText(AgreementId);
+            objectContext.SetAgreementId(agreementId);
+        }
+
         public bool VerifyIfUpdateTheseDetailsLinkIsPresent() => pageInteractionHelper.IsElementDisplayed(UpdateTheseDetailsLink);
     }
 }
+

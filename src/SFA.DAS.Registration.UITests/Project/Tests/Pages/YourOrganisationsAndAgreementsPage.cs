@@ -9,15 +9,13 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => "Your organisations and agreements";
         private readonly ScenarioContext _context;
-        private readonly RegistrationSqlDataHelper _registrationSqlDataHelper;
 
         #region Locators
         protected override string Linktext => "Your organisations and agreements";
         private By TransferStatus => By.XPath("//p[3]");
-        private By AgreementId => By.CssSelector("table tbody tr td[data-label='Agreement ID']");
         private By AddNewOrganisationButton => By.LinkText("Add an organisation");
         private By TableCells => By.XPath("//td");
-        private By ViewAgreementLink => By.LinkText("View");
+        private By ViewAgreementLink => By.LinkText("View all agreements");
         private By OrgRemovedMessageInHeader = By.Id("error-summary-title");
         private By RemoveLinkBesideNewlyAddedOrg => By.LinkText($"Remove organisation");
         #endregion
@@ -25,16 +23,9 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         public YourOrganisationsAndAgreementsPage(ScenarioContext context, bool navigate = false) : base(context, navigate)
         {
             _context = context;
-            _registrationSqlDataHelper = context.Get<RegistrationSqlDataHelper>();
         }
 
         public string GetTransfersStatus() => pageInteractionHelper.GetText(TransferStatus);
-
-        public void SetAgreementId()
-        {
-            var agreementId = _registrationSqlDataHelper.GetAgreementId(objectContext.GetAccountId());
-            objectContext.SetAgreementId(agreementId);
-        }
 
         public SearchForYourOrganisationPage ClickAddNewOrganisationButton()
         {
@@ -49,10 +40,10 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             return this;
         }
 
-        public YourEsfaAgreementPage ClickViewAgreementLink()
+        public YourAgreementsWithTheEducationAndSkillsFundingAgencyPage ClickViewAgreementLink()
         {
             formCompletionHelper.Click(ViewAgreementLink);
-            return new YourEsfaAgreementPage(_context);
+            return new YourAgreementsWithTheEducationAndSkillsFundingAgencyPage(_context);
         }
 
         public AreYouSureYouWantToRemovePage ClickOnRemoveAnOrgFromYourAccountLink()

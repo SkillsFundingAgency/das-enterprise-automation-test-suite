@@ -26,7 +26,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private By SearchButton => By.ClassName("das-search-form__button");
         private By ApprenticesTable => By.CssSelector("table.govuk-table.das-table--responsive");
         private By SelectFilterDropdown => By.Id("selectedStatus");
-        private By ApplyFilter => By.CssSelector(".govuk-button");
+        private By ApplyFilter => By.CssSelector("#main-content .govuk-button");
         private By DownloadFilteredDataLink => By.PartialLinkText("Download filtered data");
         private By NextPageLink => By.PartialLinkText("Next");
         private By ApprenticeInfoRow => By.CssSelector("tbody tr");

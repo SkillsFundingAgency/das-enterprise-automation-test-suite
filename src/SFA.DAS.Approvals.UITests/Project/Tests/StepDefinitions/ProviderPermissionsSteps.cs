@@ -47,8 +47,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
             var organisationPage = homePage.GoToYourOrganisationsAndAgreementsPage();
 
-            organisationPage.SetAgreementId();
-
+            organisationPage.ClickViewAgreementLink().SetAgreementId();
+         
             organisationPage.GoToHomePage();
            
             _employerPermissionsStepsHelper.SetCreateCohortPermission(_providerPermissionConfig.Ukprn);

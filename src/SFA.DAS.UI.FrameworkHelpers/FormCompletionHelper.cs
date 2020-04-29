@@ -33,13 +33,6 @@ namespace SFA.DAS.UI.FrameworkHelpers
             ClickElement(_webDriver.FindElement(locator));
         }
 
-        public void ScrollAndClickElement(By locator, string script)
-        {
-            ((IJavaScriptExecutor)_webDriver).ExecuteScript(script);
-            _webDriverWaitHelper.WaitForElementToBeClickable(locator);
-            ClickElement(_webDriver.FindElement(locator));
-        }
-
         public void Click(By locator) => ClickElement(locator);
 
         public void EnterText(IWebElement element, string text)

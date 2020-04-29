@@ -158,17 +158,18 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
 
             _homePage.VerifySucessSummary("Agreement accepted");
 
-          //  SetAgreementId(_homePage);
+            SetAgreementId(_homePage);
         }
 
-        //private HomePage SetAgreementId(HomePage homePage)
-        //{
-        //    homePage
-        //         .GoToYourOrganisationsAndAgreementsPage()
-        //         .SetAgreementId();
+        private HomePage SetAgreementId(HomePage homePage)
+        {
+            homePage
+                 .GoToYourOrganisationsAndAgreementsPage()
+                 .ClickViewAgreementLink()
+                 .SetAgreementId();
 
-        //    return new HomePage(_context, true);
-        //}
+            return new HomePage(_context, true);
+        }
 
         [When(@"the Employer does not sign the Agreement")]
         public void DoNotSignTheAgreement() => _homePage = _signAgreementPage.DoNotSignAgreement();

@@ -34,7 +34,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private By EditDateOfBirthYear => By.Id("BirthYear");
         private By EditTrainingCost => By.Id("Cost");
         private By EditEmployerReference => By.Id("Reference");
-        private By EditSaveAndContinueButton => By.CssSelector(".govuk-button");
+        private By EditSaveAndContinueButton => By.Id("continue-button");
         private By DeleteButton => By.LinkText("Delete");
         
         public ConfirmApprenticeDeletionPage SelectDeleteApprentice()
