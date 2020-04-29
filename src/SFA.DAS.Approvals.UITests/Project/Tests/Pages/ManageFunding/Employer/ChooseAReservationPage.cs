@@ -11,6 +11,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
         protected override string PageTitle => "Choose a Reservation";
         private By CreateANewReservationRadioButton => By.CssSelector(".govuk-label--s");
         protected override By ContinueButton => By.CssSelector("#main-content .govuk-button");
+        private By ChooseCourseReservation => By.XPath("(//div[@class='govuk-radios']//div[@class='govuk-radios__item'])[1]");
         
         #region Helpers and Context
         private readonly PageInteractionHelper _pageInteractionHelper;
@@ -39,8 +40,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
         }
         public AddApprenticeDetailsPage DynamicHomePageClickSaveAndContinueToAddAnApprentices()
         {
-            _formCompletionHelper.SelectRadioOptionByText(RadioLabels, "Food technologist - Level 3 starting between Apr 2020 to Jun 2020");
-            
+            _formCompletionHelper.Click(ChooseCourseReservation);
             Continue();
             return new AddApprenticeDetailsPage(_context);
         }
