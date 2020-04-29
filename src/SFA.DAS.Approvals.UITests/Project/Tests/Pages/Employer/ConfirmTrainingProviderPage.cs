@@ -25,7 +25,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         public StartAddingApprenticesPage ConfirmProviderDetailsAreCorrect()
         {
             SelectRadioOptionByForAttribute("UseThisProvider");
-            _formCompletionHelper.ClickElement(ContinueButton);
+            Continue();
             return new StartAddingApprenticesPage(_context);
         }
     }
