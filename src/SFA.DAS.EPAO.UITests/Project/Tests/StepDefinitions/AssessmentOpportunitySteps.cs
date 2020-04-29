@@ -25,7 +25,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         [When(@"the User visits the Assessment Opportunity Application")]
         public void WhenTheUserVisitsTheAssessmentOpportunityApplication()
         {
-            _tabHelper.GoToUrl(_ePAOConfig.AssessmentOpportunityFinderUrl);
+            _tabHelper.GoToUrl(_ePAOConfig.AssessmentServiceUrl, _ePAOConfig.AssessmentOpportunityFinderUrl);
             _homePage = new AO_HomePage(_context);
         }
 

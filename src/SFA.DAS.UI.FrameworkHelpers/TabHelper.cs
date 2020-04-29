@@ -24,8 +24,10 @@ namespace SFA.DAS.UI.FrameworkHelpers
             _webDriver = _webDriver.SwitchTo().Window(newtab);
         }
 
-        public void OpenInNewTab(string uriString, string relativeUri) => OpenInNewTab(new Uri(new Uri(uriString), relativeUri).AbsoluteUri);
+        public void OpenInNewTab(string uriString, string relativeUri) => OpenInNewTab(GetUrl(uriString, relativeUri));
 
+        public void GoToUrl(string uriString, string relativeUri) => GoToUrl(GetUrl(uriString, relativeUri));
+        
         public void OpenInNewTab(string url) => OpenInNewTab(() => ((IJavaScriptExecutor)_webDriver).ExecuteScript($"window.open('{url}','_blank');"));
 
         public void GoToUrl(string url) => _webDriver.Navigate().GoToUrl(url);
@@ -33,5 +35,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
         public void NavigateBrowserBack() => _webDriver.Navigate().Back();
 
         private ReadOnlyCollection<string> ExistingTabs() => _webDriver.WindowHandles;
+
+        private string GetUrl(string uriString, string relativeUri) => new Uri(new Uri(uriString), relativeUri).AbsoluteUri;
     }
 }
