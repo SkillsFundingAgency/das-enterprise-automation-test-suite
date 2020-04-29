@@ -8,14 +8,17 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
     public class ConfirmTrainingProviderPage : BasePage
     {
         protected override string PageTitle => "Confirm training provider";
+        protected override By ContinueButton => By.Id("continue-button");
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
+        private readonly FormCompletionHelper _formCompletionHelper;
         #endregion
 
         public ConfirmTrainingProviderPage(ScenarioContext context): base(context)
         {
             _context = context;
+            _formCompletionHelper = context.Get<FormCompletionHelper>();
             VerifyPage();
         }
 

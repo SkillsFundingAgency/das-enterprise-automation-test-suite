@@ -8,7 +8,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
     public class ReservationSuccessfullyDeletedPage : BasePage
     {
         protected override string PageTitle => "Reservation successfully deleted";
-        
+        protected override By ContinueButton => By.CssSelector("#main-content .govuk-button");
         #region Helpers and Context
         private readonly PageInteractionHelper _pageInteractionHelper;
         private readonly FormCompletionHelper _formCompletionHelper;

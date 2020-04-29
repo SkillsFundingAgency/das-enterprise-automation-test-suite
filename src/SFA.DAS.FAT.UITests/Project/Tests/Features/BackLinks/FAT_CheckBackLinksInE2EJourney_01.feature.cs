@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.E2EJourneys.NewUserAccount
+namespace SFA.DAS.FAT.UITests.Project.Tests.Features.BackLinks
 {
     using TechTalk.SpecFlow;
     
@@ -18,20 +18,20 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.E2EJourneys.NewUserAc
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.0.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("AP_E2E_NUA_03_NewUserAccount")]
-    public partial class AP_E2E_NUA_03_NewUserAccountFeature
+    [NUnit.Framework.DescriptionAttribute("FAT_CheckBackLinksInE2EJourney_01")]
+    public partial class FAT_CheckBackLinksInE2EJourney_01Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "AP_E2E_NUA_03_NewUserAccount.feature"
+#line 1 "FAT_CheckBackLinksInE2EJourney_01.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "AP_E2E_NUA_03_NewUserAccount", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "FAT_CheckBackLinksInE2EJourney_01", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -70,29 +70,21 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.E2EJourneys.NewUserAc
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("AP_E2E_NUA_03 Create Employer Provider adds apprentices and approves then employe" +
-            "r approves cohort")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
-        [NUnit.Framework.CategoryAttribute("addlevyfunds")]
-        [NUnit.Framework.CategoryAttribute("e2escenarios")]
-        public virtual void AP_E2E_NUA_03CreateEmployerProviderAddsApprenticesAndApprovesThenEmployerApprovesCohort()
+        [NUnit.Framework.DescriptionAttribute("FAT_BLE2E_01_Validate BackLinks In E2EJourney")]
+        [NUnit.Framework.CategoryAttribute("fat")]
+        [NUnit.Framework.CategoryAttribute("regression")]
+        public virtual void FAT_BLE2E_01_ValidateBackLinksInE2EJourney()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_E2E_NUA_03 Create Employer Provider adds apprentices and approves then employe" +
-                    "r approves cohort", null, new string[] {
-                        "addpayedetails",
-                        "addlevyfunds",
-                        "e2escenarios"});
-#line 6
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("FAT_BLE2E_01_Validate BackLinks In E2EJourney", null, new string[] {
+                        "fat",
+                        "regression"});
+#line 5
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
+#line 6
+ testRunner.Given("the User has searched for a Course and selected the Provider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 7
- testRunner.Given("The User creates NonLevyEmployer account and sign an agreement", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 8
- testRunner.When("the Employer create a cohort and send to provider to add apprentices", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 9
- testRunner.And("the provider adds 2 apprentices approves them and sends to employer to approve", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 10
- testRunner.Then("the Employer approves the cohorts", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("User is able to navigate back to the beginning of the E2E search", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
