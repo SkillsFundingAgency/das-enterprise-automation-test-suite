@@ -8,7 +8,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 {
     public class ProviderYourCohortsPage : Navigate
     {
-        protected override string PageTitle => "Your cohorts";
+        protected override string PageTitle => "Apprentice requests";
 
         protected override string Linktext => "Your cohorts";
 
@@ -18,8 +18,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private readonly ScenarioContext _context;
         #endregion
 
-        private By NumberOfCohortsForReview => By.CssSelector(".bold-xxlarge");
-        private By NumberOfCohortsWithEmployers => By.XPath("(//h2[@class='bold-xxlarge'])[2]");
+        private By NumberOfCohortsForReview => By.CssSelector("#Review span.das-card-figure");
+        private By NumberOfCohortsWithEmployers => By.CssSelector("#WithEmployer span.das-card-figure");
 
         public ProviderYourCohortsPage(ScenarioContext context, bool navigate = false) : base(context, navigate)
         {
