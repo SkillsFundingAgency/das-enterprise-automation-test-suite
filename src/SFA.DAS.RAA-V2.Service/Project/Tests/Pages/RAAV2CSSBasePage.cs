@@ -10,6 +10,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
     {
         protected readonly RAAV2DataHelper dataHelper;
         protected readonly FormCompletionHelper formCompletionHelper;
+        protected readonly PageInteractionHelper pageInteractionHelper;
 
         protected override By ContinueButton => By.CssSelector(".save-button");
 
@@ -17,6 +18,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         {
             dataHelper = context.Get<RAAV2DataHelper>();
             formCompletionHelper = context.Get<FormCompletionHelper>();
+            pageInteractionHelper = context.Get<PageInteractionHelper>();
             VerifyPage();
         }
 

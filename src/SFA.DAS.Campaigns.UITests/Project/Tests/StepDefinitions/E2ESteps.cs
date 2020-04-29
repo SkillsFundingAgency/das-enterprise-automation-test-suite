@@ -54,7 +54,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
         [When(@"the employer favourites multiple apprenticeship")]
         public void WhenTheEmployerFavouritesMultipleApprenticeship()
         {
-            _searchResultsPage = _searchResultsPage.SearchApprenticeship("Nurse");
+            _searchResultsPage = _searchResultsPage.SearchApprenticeship("Business and Administration");
             _searchResultsPage = _searchResultsPage.SearchApprenticeship("IT");
             _searchResultsPage = _searchResultsPage.SearchApprenticeship("Construction");
             _empFavpage = _searchResultsPage.GoToEmployerFavouritesPage();
@@ -141,11 +141,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
         }
 
         [Then(@"there are no items in the favourites")]
-        public void ThenThereAreNoItemsInTheFavourites()
-        {
-            var uri = new Uri(new Uri(_campaignsConfig.CA_BaseUrl), "/Basket/View").AbsoluteUri;
+        public void ThenThereAreNoItemsInTheFavourites() => _tabHelper.OpenInNewTab(_campaignsConfig.CA_BaseUrl, _campaignsConfig.BasketView);
 
-            _tabHelper.OpenInNewTab(uri);
-        }
     }
 }

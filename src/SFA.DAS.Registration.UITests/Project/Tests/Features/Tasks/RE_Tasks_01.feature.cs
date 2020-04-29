@@ -31,7 +31,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features.Tasks
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "RE_Tasks_01", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "RE_Tasks_01", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -86,9 +86,11 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features.Tasks
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 7
+ testRunner.Given("levy declarations are added for the past 15 months with levypermonth as 10000", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 8
  testRunner.When("an Employer Account with PublicSector Type Org is created and agreement is Signed" +
                     "", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 8
+#line 9
  testRunner.Then("\'Start adding apprentices now\' task link is displayed under Tasks pane", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();

@@ -34,7 +34,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features.AORN
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "RE_AORN_01", null, ProgrammingLanguage.CSharp, new string[] {
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "RE_AORN_01", null, ProgrammingLanguage.CSharp, new string[] {
                         "regression",
                         "registration",
                         "addpayedetails"});

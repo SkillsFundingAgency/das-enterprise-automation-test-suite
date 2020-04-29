@@ -80,7 +80,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         {
             new AS_LoggedInHomePage(_context).ClickOnRecordAGrade();
             _recordAGradePage = new AS_RecordAGradePage(_context);
-            _recordAGradePage.EnterApprentcieDetailsAndContinue(_ePAOConfig.EPAOAlreadyAssessedApprenticeName, _ePAOConfig.EPAOAlreadyAssessedApprenticeUln);
+            _recordAGradePage.EnterApprentcieDetailsAndContinue(_ePAOConfig.AlreadyAssessedApprenticeName, _ePAOConfig.AlreadyAssessedApprenticeUln);
         }
 
         [Then(@"'(.*)' message is displayed")]
@@ -118,16 +118,16 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
                     _recordAGradePage.EnterApprentcieDetailsAndContinue("", "");
                     break;
                 case "by entering valid Family name and blank ULN":
-                    _recordAGradePage.EnterApprentcieDetailsAndContinue(_ePAOConfig.EPAOApprenticeNameWithSingleStandard, "");
+                    _recordAGradePage.EnterApprentcieDetailsAndContinue(_ePAOConfig.ApprenticeNameWithSingleStandard, "");
                     break;
                 case "by entering blank Family name and Valid ULN":
-                    _recordAGradePage.EnterApprentcieDetailsAndContinue("", _ePAOConfig.EPAOApprenticeUlnWithSingleStandard);
+                    _recordAGradePage.EnterApprentcieDetailsAndContinue("", _ePAOConfig.ApprenticeUlnWithSingleStandard);
                     break;
                 case "by entering valid Family name but ULN less than 10 digits":
-                    _recordAGradePage.EnterApprentcieDetailsAndContinue(_ePAOConfig.EPAOApprenticeNameWithSingleStandard, _dataHelper.GetRandomNumber(9));
+                    _recordAGradePage.EnterApprentcieDetailsAndContinue(_ePAOConfig.ApprenticeNameWithSingleStandard, _dataHelper.GetRandomNumber(9));
                     break;
                 case "by entering valid Family name and Invalid ULN":
-                    _recordAGradePage.EnterApprentcieDetailsAndContinue(_ePAOConfig.EPAOApprenticeNameWithSingleStandard, _dataHelper.GetRandomNumber(11));
+                    _recordAGradePage.EnterApprentcieDetailsAndContinue(_ePAOConfig.ApprenticeNameWithSingleStandard, _dataHelper.GetRandomNumber(11));
                     break;
             }
         }
@@ -162,7 +162,6 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         public void ThenTheChangeLinksNavigateToTheRespectivePages()
         {
             _checkAndSubmitAssessmentPage = new AS_CheckAndSubmitAssessmentPage(_context);
-
             _checkAndSubmitAssessmentPage = _checkAndSubmitAssessmentPage.ClickGradeChangeLink().ClickBackLink();
             _checkAndSubmitAssessmentPage = _checkAndSubmitAssessmentPage.ClickOptionChangeLink().ClickBackLink();
             _checkAndSubmitAssessmentPage = _checkAndSubmitAssessmentPage.ClickAchievementDateChangeLink().ClickBackLink();
@@ -190,7 +189,6 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         public void ThenTheUserIsAbleToChangeTheRegisteredDetails()
         {
             _organisationDetailsPage = new AS_OrganisationDetailsPage(_context);
-
             _organisationDetailsPage = _stepsHelper.ChangeContactName(_organisationDetailsPage);
             _organisationDetailsPage = _stepsHelper.ChangePhoneNumber(_organisationDetailsPage);
             _organisationDetailsPage = _stepsHelper.ChangeAddress(_organisationDetailsPage);

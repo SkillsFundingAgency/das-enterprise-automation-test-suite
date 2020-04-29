@@ -11,7 +11,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.ApplyToAsse
 
         private readonly ScenarioContext _context;
 
-        protected override By ContinueButton => By.CssSelector(".govuk-button[type='submit']");
+        protected override By ContinueButton => By.CssSelector("#main-content .govuk-button[type='submit']");
 
         private By StandardName => By.CssSelector("#standard-name");
 

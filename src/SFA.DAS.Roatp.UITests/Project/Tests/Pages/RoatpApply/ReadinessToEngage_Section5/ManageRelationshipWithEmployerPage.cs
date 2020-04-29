@@ -7,7 +7,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.ReadinessToEngage
     {
         protected override string PageTitle => "How will your organisation manage its relationship with employers?";
 
-        protected override By PageHeader => By.TagName("h2");
+        protected override By PageHeader => By.CssSelector("h2.govuk-label-wrapper");
 
         #region Helpers and Context
         private readonly ScenarioContext _context;

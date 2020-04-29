@@ -9,7 +9,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.YourOrganisation_
     public class NotEligiblePage : RoatpApplyBasePage
     {
         protected override string PageTitle => "Your organisation is not eligible to apply to join RoATP";
-        protected override By PageHeader => By.TagName("h1, h2");
+        protected override By PageHeader => By.CssSelector("h1.govuk-heading-xl, h2.govuk-label-wrapper");
 
         #region Helpers and Context
         private readonly ScenarioContext _context;

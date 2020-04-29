@@ -1,5 +1,4 @@
-﻿using NUnit.Framework;
-using SFA.DAS.ConfigurationBuilder;
+﻿using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.MongoDb.DataGenerator;
 
 namespace SFA.DAS.Registration.UITests.Project.Helpers
@@ -27,7 +26,7 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
 
         private void CreateAornData(string orgType)
         {
-            var organisationName = InsertTprDataHelper.InsertTprData(_tprConfig.RE_TPRDbConnectionString, _registrationDataHelper.AornNumber, _objectContext.GetGatewayPaye(), orgType);
+            var organisationName = InsertTprDataHelper.InsertTprData(_tprConfig.RE_TPRDbConnectionString, _registrationDataHelper.AornNumber, _objectContext.GetGatewayPaye(0), orgType);
             _objectContext.UpdateOrganisationName(organisationName);
         }
     }

@@ -1,6 +1,7 @@
 ﻿using SFA.DAS.UI.FrameworkHelpers;
 using OpenQA.Selenium;
 using TechTalk.SpecFlow;
+using SFA.DAS.Registration.UITests.Project.Helpers;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 {
@@ -13,12 +14,14 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         private readonly ScenarioContext _context;
 
         #region Locators
+        protected By YourFundingReservationsLink => By.LinkText("Your funding reservations");
+        protected By YourFinancesLink => By.LinkText("Your finances");
         private By PublicAccountIdLocator => By.CssSelector(".heading-secondary");
         private By SucessSummary => By.CssSelector(".success-summary");
         private By AcceptYourAgreementLink => By.LinkText("Accept your agreement");
         private By StartAddingApprenticesNowTaskLink => By.LinkText("Start adding apprentices now");
-        protected By YourFundingReservationsLink => By.LinkText("Your funding reservations");
-        protected By YourFinancesLink => By.LinkText("Your finances");   
+        private By AccountNameText => By.CssSelector("p.heading-xlarge");
+        private By YourSavedFavouritesLink => By.CssSelector(".das-favourites-link__text");
         #endregion
 
         protected By ContinueSettingUpAnApprenticeship => By.Id("call-to-action-continue-setting-up-an-apprenticeship");
@@ -35,9 +38,19 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         public HomePage(ScenarioContext context) : this(context, false) { }
 
-        public void VerifySucessSummary() => pageInteractionHelper.VerifyText(SucessSummary, "Agreement accepted");
-        
-        public string AccountId() => _regexHelper.GetAccountId(pageInteractionHelper.GetUrl()); 
+        public HomePage VerifySucessSummary(string message)
+        {
+            pageInteractionHelper.VerifyText(SucessSummary, message);
+            return this;
+        }
+
+        public HomePage VerifyAccountName(string name)
+        {
+            pageInteractionHelper.VerifyText(AccountNameText, name);
+            return this;
+        }
+
+        public string AccountId() => _regexHelper.GetAccountId(pageInteractionHelper.GetUrl());
 
         public string PublicAccountId() => _regexHelper.GetPublicAccountId(pageInteractionHelper.GetText(PublicAccountIdLocator));
 
@@ -50,7 +63,13 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         public void ContinueToCreateAdvert() => formCompletionHelper.ClickElement(ContinueTo);
 
         public void VerifyReserveFundingPanel() => pageInteractionHelper.VerifyText(ContinueSettingUpAnApprenticeship, "Continue setting up an apprenticeship");
-        
+
         public void VerifyStartAddingApprenticesNowTaskLink() => VerifyPage(StartAddingApprenticesNowTaskLink);
+
+        public YourSavedFavouritesPage GoToYourSavedFavourites()
+        {
+            formCompletionHelper.Click(YourSavedFavouritesLink);
+            return new YourSavedFavouritesPage(_context);
+        }
     }
 }

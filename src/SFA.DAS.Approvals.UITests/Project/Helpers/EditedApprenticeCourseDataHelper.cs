@@ -1,6 +1,4 @@
-﻿using System;
-using System.Linq;
-using SFA.DAS.UI.FrameworkHelpers;
+﻿using System.Linq;
 
 namespace SFA.DAS.Approvals.UITests.Project.Helpers
 {

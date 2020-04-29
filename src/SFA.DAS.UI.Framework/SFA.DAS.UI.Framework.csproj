@@ -28,10 +28,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SFA.DAS.ConfigurationBuilder\SFA.DAS.ConfigurationBuilder.csproj" />
+    <ProjectReference Include="..\SFA.DAS.TestDataExport\SFA.DAS.TestDataExport.csproj" />
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="appsettings.UrlConfig.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="appsettings.BrowserStack.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

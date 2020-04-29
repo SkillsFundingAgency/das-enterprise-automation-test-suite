@@ -10,7 +10,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
 
         protected override By PageHeader => By.CssSelector(".header__caption--employer");
 
-        protected By Basket => By.CssSelector(".favourites-link__text");
+        protected By Basket => By.CssSelector("a[href='/Basket/View']");
 
         protected By FavCount => By.CssSelector(".favourites-link__count");
 

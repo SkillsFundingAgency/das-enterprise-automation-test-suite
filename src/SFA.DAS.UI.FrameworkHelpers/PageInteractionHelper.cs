@@ -40,7 +40,23 @@ namespace SFA.DAS.UI.FrameworkHelpers
             _retryHelper.RetryOnWebDriverException(() => func(element));
         }
 
-        public void WaitforURLToChange(string url) => _webDriverWaitHelper.WaitforURLToChange(url);
+        public bool WaitforURLToChange(string expected) 
+        {
+            bool func()
+            {
+                var actual = _webDriver.Url;
+                if (actual.Contains(expected))
+                {
+                    return true;
+                }
+
+                throw new Exception("Url verification failed:"
+                + "\n Expected: " + expected + " page"
+                + "\n Found: " + actual + " page");
+            }
+
+            return VerifyPage(func);
+        }
 
         public bool VerifyPage(Func<List<IWebElement>> elements, string expected)
         {
@@ -71,8 +87,8 @@ namespace SFA.DAS.UI.FrameworkHelpers
                 }
 
                 throw new Exception("Page verification failed:"
-                    + "\n Expected: " + expected + " page"
-                    + "\n Found: " + actual + " page");
+                + "\n Expected: " + expected + " page"
+                + "\n Found: " + actual + " page");
             }
 
             return VerifyPage(func);
@@ -140,6 +156,8 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
             return text;
         }
+
+        public IEnumerable<string> GetStringCollectionFromElementsGroup(By locator) => FindElements(locator).Select(e => e.Text);
 
         public int GetCountOfElementsGroup(By locator) => _webDriver.FindElements(locator).Count;
 

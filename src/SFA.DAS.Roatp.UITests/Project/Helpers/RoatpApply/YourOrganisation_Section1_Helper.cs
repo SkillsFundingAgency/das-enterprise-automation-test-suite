@@ -27,6 +27,12 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.RoatpApply
                .AccessYourOrganisationSectionForOrgTypeNotACompany());
         }
 
+        internal ApplicationOverviewPage CompleteYourOrganisationSection_2_HasWebsite(ApplicationOverviewPage applicationOverviewPage)
+        {
+            return CompleteYourOrganisationSection_Website_2(applicationOverviewPage
+               .AccessYourOrganisationSectionForOrgTypeNotACompany());
+        }
+
         internal ApplicationOverviewPage CompleteYourOrganisationSection_2(ApplicationOverviewPage applicationOverviewPage)
         {
             return CompleteYourOrganisationSection_2(applicationOverviewPage
@@ -269,6 +275,14 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.RoatpApply
             return icoRegistrationNumberPage
                 .EnterIcoRegistrationNumberAndContinue()
                 .EneterWebsiteAndContinue()
+                .SelectMaximumTradingPeriodAndContinue()
+                .VerifyOrganisationInformation(StatusHelper.StatusCompleted);
+        }
+
+        private ApplicationOverviewPage CompleteYourOrganisationSection_Website_2(IcoRegistrationNumberPage icoRegistrationNumberPage)
+        {
+            return icoRegistrationNumberPage
+                .EnterIcoRegistrationNumber_WebsiteAndContinue()
                 .SelectMaximumTradingPeriodAndContinue()
                 .VerifyOrganisationInformation(StatusHelper.StatusCompleted);
         }
