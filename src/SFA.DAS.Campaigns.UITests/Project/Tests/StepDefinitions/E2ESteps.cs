@@ -144,7 +144,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
         }
 
         [Then(@"there are no items in the favourites")]
-        public void ThenThereAreNoItemsInTheFavourites() => _tabHelper.OpenInNewTab(_campaignsConfig.CA_BaseUrl, _campaignsConfig.BasketView);
+        public void ThenThereAreNoItemsInTheFavourites() => _tabHelper.OpenInNewTab(_campaignsConfig.CA_BaseUrl, _campaignsConfig.BasketViewPath);
 
     }
 }

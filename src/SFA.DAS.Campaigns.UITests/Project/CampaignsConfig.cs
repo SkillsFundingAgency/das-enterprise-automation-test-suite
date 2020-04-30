@@ -3,6 +3,6 @@
     public class CampaignsConfig
     { 
         public string CA_BaseUrl { get; set; }
-        public string BasketView { get; set; }
+        public string BasketViewPath => "/Basket/View";
     }
 }
