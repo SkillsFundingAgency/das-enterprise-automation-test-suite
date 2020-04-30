@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
@@ -56,6 +57,12 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
         {
             formCompletionHelper.ClickElement(Delete(objectContext.GetCourseId()));
             return new EmployerFavouritesPage(_context);
+        }
+
+        public RemoveConfirmPage DeleteApprenticeshipAndProviderFavourites()
+        {
+            formCompletionHelper.ClickElement(Delete(objectContext.GetCourseId()));
+            return new RemoveConfirmPage(_context);
         }
     }
 }
