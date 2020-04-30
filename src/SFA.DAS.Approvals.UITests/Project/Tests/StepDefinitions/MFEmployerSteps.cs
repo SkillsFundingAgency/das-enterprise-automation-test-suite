@@ -38,7 +38,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [When(@"the Employer reserves funding for an apprenticeship course")]
         public void WhenTheEmployerReservesFundingForAnApprenticeshipCourse()
         {
-            _dynamicHomePageStepsHelper.DynamicHomePageTriageJourney();
+            _reservationStepsHelper.ClickReserveFundingFromHomepage();
             _reservationStepsHelper.CreateReservation(_reservationStepsHelper.GoToReserveFunding());
         }
 

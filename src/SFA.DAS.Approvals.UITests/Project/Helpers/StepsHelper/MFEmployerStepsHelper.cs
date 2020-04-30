@@ -13,7 +13,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
         {
             _context = context;
         }
-
+        public DoYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage ClickReserveFundingFromHomepage() => GoToManageFunding().ClickReserveMoreFundingLink();
         public DoYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage GoToReserveFunding()
         {
             return new DoYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage(_context);

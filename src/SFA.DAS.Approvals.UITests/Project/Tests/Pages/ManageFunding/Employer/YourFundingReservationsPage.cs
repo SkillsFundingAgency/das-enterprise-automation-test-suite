@@ -57,5 +57,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
                 return false;
             }
         }
+        public DoYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage ClickReserveMoreFundingLink()
+        {
+            ClickReserveFundingButton();
+            formCompletionHelper.ClickElement(ReserveFundingSecondButton);
+            return new DoYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage(_context);
+        }
     }
 }
