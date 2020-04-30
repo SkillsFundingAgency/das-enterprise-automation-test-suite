@@ -25,6 +25,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
         private SummaryOfThisApprenticeshipPage _appsummaryPage;
         private SummaryOfThisProviderPage _providersummaryPage;
         private SignInPage _signInPage;
+        private RemoveConfirmPage _removeConfirmPage;
         private readonly CampaignsDataHelper _campaignsDataHelper;
         private readonly TabHelper _tabHelper;
         private readonly CampaignsConfig _campaignsConfig;
@@ -105,7 +106,9 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
             foreach (var item in _campaignsDataHelper.CourseId)
             {
                 _objectContext.SetCourseId(item);
-                _empFavpage = _empFavpage.DeleteApprenticeshipFavourites();
+                EmployerFavouritesPage _empFavpage = new EmployerFavouritesPage(_context);
+                    _empFavpage.DeleteApprenticeshipAndProviderFavourites()
+                    .ClickConfirmRemoveButton();
             }
         }
 
