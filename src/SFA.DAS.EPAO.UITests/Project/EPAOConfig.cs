@@ -4,7 +4,7 @@
     {
         public string AdminBaseUrl { get; set; }
         public string AssessmentServiceUrl { get; set; }
-        public string AssessmentOpportunityFinderUrl { get; set; }
+        public string AssessmentOpportunityFinderPath => "/find-an-assessment-opportunity";
         public string ApprenticeNameWithSingleStandard { get; set; }
         public string ApprenticeUlnWithSingleStandard { get; set; }
         public string ApprenticeNameWithMultipleStandards { get; set; }
