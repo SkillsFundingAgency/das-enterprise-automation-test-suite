@@ -40,7 +40,9 @@ namespace SFA.DAS.UI.Framework.TestSupport
             var objectContext = context.Get<ObjectContext>();
             _directory = objectContext.GetDirectory();
             _browser = objectContext.GetBrowser();
-            TakeScreenShot();
+            
+            if (_frameworkConfig.IsVstsExecution)
+                ScreenshotHelper.TakeScreenShot(_webDriver, _directory, _screenShotTitleGenerator.GetNextCount());
         }
 
         protected bool VerifyPageAfterRefresh(By locator) => _pageInteractionHelper.VerifyPageAfterRefresh(locator);
@@ -73,12 +75,6 @@ namespace SFA.DAS.UI.Framework.TestSupport
             {
                 _formCompletionHelper.Click(AcceptCookieButton);
             }
-        }
-
-        private void TakeScreenShot()
-        {
-            if (_frameworkConfig.IsVstsExecution && !_browser.IsCloudExecution())
-                ScreenshotHelper.TakeScreenShot(_webDriver, _directory, _screenShotTitleGenerator.GetNextCount());
         }
     }
 }
