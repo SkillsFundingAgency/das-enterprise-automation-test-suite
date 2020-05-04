@@ -1,11 +1,12 @@
-﻿using SFA.DAS.UI.FrameworkHelpers;
+﻿using SFA.DAS.ConfigurationBuilder;
+using SFA.DAS.UI.FrameworkHelpers;
 
 namespace SFA.DAS.UI.Framework
 {
     public static class EnvironmentConfig
     {
-        public static string EnvironmentName { get; internal set; }
-        
+        public static string EnvironmentName = Configurator.EnvironmentName;
+
         public static bool IsATEnvironment = EnvironmentName.CompareToIgnoreCase("at");
 
         public static bool IsTestEnvironment = EnvironmentName.CompareToIgnoreCase("test");

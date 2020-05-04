@@ -33,8 +33,6 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
 
             _context.Set(configuration);
 
-            EnvironmentConfig.EnvironmentName = Configurator.EnvironmentName;
-
             var testExecutionConfig = _configSection.GetConfigSection<TestExecutionConfig>();
 
             _objectContext.SetBrowser(testExecutionConfig.Browser);
