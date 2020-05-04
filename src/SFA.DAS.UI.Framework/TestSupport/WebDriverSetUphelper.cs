@@ -19,14 +19,11 @@ namespace SFA.DAS.UI.Framework.TestSupport
 
         private readonly FrameworkConfig _frameworkConfig;
 
-        private readonly EnvironmentConfig _executionConfig;
-
         public WebDriverSetupHelper(ScenarioContext context)
         {
             _context = context;
             _objectContext = context.Get<ObjectContext>();
             _frameworkConfig = context.Get<FrameworkConfig>();
-            _executionConfig = context.Get<EnvironmentConfig>();
         }
 
         public IWebDriver SetupWebDriver()
@@ -60,7 +57,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
 
                 case bool _ when browser.IsCloudExecution():
                     _frameworkConfig.BrowserStackSetting.Name = _context.ScenarioInfo.Title;
-                    WebDriver = BrowserStackSetup.Init(_frameworkConfig.BrowserStackSetting, _executionConfig);
+                    WebDriver = BrowserStackSetup.Init(_frameworkConfig.BrowserStackSetting);
                     break;
 
                 default:
