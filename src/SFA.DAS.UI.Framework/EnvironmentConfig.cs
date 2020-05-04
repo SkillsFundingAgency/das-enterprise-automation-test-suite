@@ -1,10 +1,17 @@
-﻿namespace SFA.DAS.UI.Framework
+﻿using SFA.DAS.UI.FrameworkHelpers;
+
+namespace SFA.DAS.UI.Framework
 {
-    public class EnvironmentConfig
+    public static class EnvironmentConfig
     {
-        public string EnvironmentName { get; internal set; }
+        public static string EnvironmentName { get; internal set; }
+        
+        public static bool IsATEnvironment = EnvironmentName.CompareToIgnoreCase("at");
 
-        public string ProjectName { get; internal set; }
+        public static bool IsTestEnvironment = EnvironmentName.CompareToIgnoreCase("test");
 
+        public static bool IsTest2Environment = EnvironmentName.CompareToIgnoreCase("test2");
+
+        public static bool IsPPEnvironment = EnvironmentName.CompareToIgnoreCase("pp");
     }
 }

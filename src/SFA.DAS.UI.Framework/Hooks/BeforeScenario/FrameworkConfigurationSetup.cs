@@ -33,9 +33,7 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
 
             _context.Set(configuration);
 
-            var executionConfig = new EnvironmentConfig { EnvironmentName = Configurator.EnvironmentName, ProjectName = Configurator.ProjectName };
-
-            _context.Set(executionConfig);
+            EnvironmentConfig.EnvironmentName = Configurator.EnvironmentName;
 
             var testExecutionConfig = _configSection.GetConfigSection<TestExecutionConfig>();
 
