@@ -7,9 +7,6 @@ using SFA.DAS.Login.Service.Helpers;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
@@ -25,7 +22,6 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
         private SummaryOfThisApprenticeshipPage _appsummaryPage;
         private SummaryOfThisProviderPage _providersummaryPage;
         private SignInPage _signInPage;
-        private RemoveConfirmPage _removeConfirmPage;
         private readonly CampaignsDataHelper _campaignsDataHelper;
         private readonly TabHelper _tabHelper;
         private readonly CampaignsConfig _campaignsConfig;
