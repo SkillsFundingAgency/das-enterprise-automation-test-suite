@@ -10,8 +10,6 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
     {
         private readonly ApprovalsStepsHelper _stepsHelper;
         private readonly MFEmployerStepsHelper _reservationStepsHelper;
-        private YourFundingReservationsPage _yourFundingReservationsPage;
-        private SuccessfullyReservedFundingPage _successfullyReservedFundingPage;
         private readonly DynamicHomePageStepsHelper _dynamicHomePageStepsHelper;
 
         public DynamicHomePageSteps(ScenarioContext context)
