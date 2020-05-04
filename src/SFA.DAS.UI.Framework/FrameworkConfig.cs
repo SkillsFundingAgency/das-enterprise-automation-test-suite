@@ -1,5 +1,4 @@
-﻿using SFA.DAS.ConfigurationBuilder;
-using SFA.DAS.UI.FrameworkHelpers;
+﻿using SFA.DAS.UI.FrameworkHelpers;
 
 namespace SFA.DAS.UI.Framework
 {
