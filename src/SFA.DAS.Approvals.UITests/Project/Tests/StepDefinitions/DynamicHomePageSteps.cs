@@ -10,9 +10,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
     [Binding]
     public class DynamicHomePageSteps
     {
-
         #region Helpers and Context
-        private readonly MFEmployerStepsHelper _reservationStepsHelper;
+        private readonly ManageFundingEmployerStepsHelper _reservationStepsHelper;
         private readonly EmployerStepsHelper _employerStepsHelper;
         private readonly ProviderHomePageStepsHelper _providerHomePageStepsHelper;
         private readonly ProviderStepsHelper _providerStepsHelper;
@@ -22,7 +21,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
         public DynamicHomePageSteps(ScenarioContext context)
         {
-            _reservationStepsHelper = new MFEmployerStepsHelper(context);
+            _reservationStepsHelper = new ManageFundingEmployerStepsHelper(context);
             _employerStepsHelper = new EmployerStepsHelper(context);
             _providerHomePageStepsHelper = new ProviderHomePageStepsHelper(context);
             _providerStepsHelper = new ProviderStepsHelper(context);

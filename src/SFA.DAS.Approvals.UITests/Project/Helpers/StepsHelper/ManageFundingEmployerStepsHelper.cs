@@ -5,25 +5,37 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 {
-    public class MFEmployerStepsHelper
+    public class ManageFundingEmployerStepsHelper
     {
         private readonly ScenarioContext _context;
         
-        public MFEmployerStepsHelper(ScenarioContext context)
+        public ManageFundingEmployerStepsHelper(ScenarioContext context) => _context = context;
+
+        public DoYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage GoToReserveFunding() => GoToManageFunding().ClickReserveMoreFundingLink();
+
+        public SuccessfullyReservedFundingPage CreateReservationViaDynamicHomePageTriageJourney()
         {
-            _context = context;
+            return CreateReservation(GoToDynamicHomePage()
+                .StartNowToReserveFunding()
+                 .YesToCourse()
+                 .YesToTrainingProviderToDeliver()
+                 .YesWillTrainingStartInSixMonths()
+                 .YesSetupForExistingEmployee()
+                 .YesContinueToReserveFunding()
+                 .ClickReserveFundingButton());
         }
-        public DoYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage ClickReserveFundingFromHomepage() => GoToManageFunding().ClickReserveMoreFundingLink();
-        public DoYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage GoToReserveFunding()
-        {
-            return new DoYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage(_context);
-        }
+
+        public void VerifyContinueOnHomePagePanel() => GoToDynamicHomePage().VerifyReserveFundingPanel();
+
         public AddAnApprenitcePage GoToAddAnApprentices()
         {
-            ContinueToCreateAddAnApprentices();
+            GoToDynamicHomePage().ContinueToCreateAdvert();
+
             return new DoYouNeedToCreateAnAdvertPage(_context).ClickNoRadioButtonTakesToAddAnApprentices();
         }
-        private  void ContinueToCreateAddAnApprentices() => new DynamicHomePages(_context).ContinueToCreateAdvert();
+
+        public SuccessfullyReservedFundingPage CreateReservation() => CreateReservation(GoToReserveFunding());
+        
         public SuccessfullyReservedFundingPage CreateReservation(DoYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage doYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage)
         {
             return doYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage
@@ -35,15 +47,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                 .ClickYesReserveFundingNowRadioButton()
                 .ClickConfirmButton();
         }
-        public SuccessfullyReservedFundingPage VerifySuccessfullyReservedFundingPage()
-        {
 
-            return new SuccessfullyReservedFundingPage(_context);
-        }
-        private YourFundingReservationsPage GoToManageFunding() => new YourFundingReservationsHomePage(_context).OpenYourFundingReservations();
         public YourFundingReservationsPage DeleteAllUnusedFunding()
         {
             var yourFundingReservationsPage = GoToManageFunding();
+
             while (yourFundingReservationsPage.CheckIfDeleteLinkIsPresent())
             {
                 yourFundingReservationsPage.DeleteUnusedFunding()
@@ -54,5 +62,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             }
             return yourFundingReservationsPage;
         }
+
+        private YourFundingReservationsPage GoToManageFunding() => new YourFundingReservationsHomePage(_context).OpenYourFundingReservations();
+
+        private DynamicHomePages GoToDynamicHomePage() => new DynamicHomePages(_context);
     }
 }

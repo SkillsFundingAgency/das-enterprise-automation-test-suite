@@ -13,7 +13,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.DynamicHomePage
         private readonly FormCompletionHelper _formCompletionHelper;
         private readonly ScenarioContext _context;
         #endregion
+
         private By ClickYesContinue => By.Id("which-course-your-apprentice-will-take-button");
+
         public DoYouKnowWhichCourseYourApprenticeWillTakePage (ScenarioContext context) : base(context)
         {
             _context = context;
