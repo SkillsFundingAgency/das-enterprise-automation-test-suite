@@ -9,9 +9,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers
 
         public List<string> AvailableCourses;
 
-        public RandomCourseHelper(RandomDataGenerator randomDataGenerator, bool isTransfersFunds)
+        public RandomCourseHelper(RandomDataGenerator randomDataGenerator, bool isLevy)
         {
-            AvailableCourses = isTransfersFunds ? TransferFundsCourses() : AllCourses();
+            AvailableCourses = isLevy ? AllCourses() : StandardCourses();
             RandomNumber = randomDataGenerator.GenerateRandomNumberBetweenTwoValues(1, 10);
         }
 
@@ -28,6 +28,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers
 
         private List<string> AllCourses() => new List<string> { AbleSeafarerStandardCourseOption, FrameworkCourseOption };
 
-        private List<string> TransferFundsCourses() => new List<string> { AbleSeafarerStandardCourseOption, SoftwareTesterStandardCourseOption };
+        private List<string> StandardCourses() => new List<string> { AbleSeafarerStandardCourseOption, SoftwareTesterStandardCourseOption };
     }
 }
