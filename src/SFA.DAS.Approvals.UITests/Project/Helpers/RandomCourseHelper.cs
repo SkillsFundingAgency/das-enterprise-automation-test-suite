@@ -9,9 +9,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers
 
         public List<string> AvailableCourses;
 
-        public RandomCourseHelper(RandomDataGenerator randomDataGenerator, bool isLevy)
+        public RandomCourseHelper(RandomDataGenerator randomDataGenerator, bool selectstandardcourse)
         {
-            AvailableCourses = isLevy ? AllCourses() : StandardCourses();
+            AvailableCourses = selectstandardcourse ? StandardCourses() : AllCourses();
             RandomNumber = randomDataGenerator.GenerateRandomNumberBetweenTwoValues(1, 10);
         }
 

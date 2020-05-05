@@ -78,6 +78,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.Transfers
         [NUnit.Framework.CategoryAttribute("transfersscenarios")]
         [NUnit.Framework.CategoryAttribute("liveapprentice")]
         [NUnit.Framework.CategoryAttribute("transfersfunds")]
+        [NUnit.Framework.CategoryAttribute("selectstandardcourse")]
         public virtual void AP_TR_02Transfers_CreatingCohortAndApproveByAll3PartiesAndSecondApprovalByProvider()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_TR_02 Transfers - Creating Cohort and approve by all 3 parties and second appr" +
@@ -85,17 +86,18 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.Transfers
                         "regression",
                         "transfersscenarios",
                         "liveapprentice",
-                        "transfersfunds"});
-#line 8
+                        "transfersfunds",
+                        "selectstandardcourse"});
+#line 9
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 9
- testRunner.Given("Receiver sends an approved cohort to the provider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 10
- testRunner.When("Provider approves the cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.Given("Receiver sends an approved cohort to the provider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 11
- testRunner.And("Sender approves the cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.When("Provider approves the cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 12
+ testRunner.And("Sender approves the cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 13
  testRunner.Then("Verify a new live apprenticeship record is created", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
