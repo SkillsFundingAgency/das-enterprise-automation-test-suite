@@ -51,7 +51,7 @@ namespace SFA.DAS.Approvals.UITests.Project
 
             _context.Set(new EditedApprenticeDataHelper(random, _datahelper));
 
-            var isLevy = !(_context.ScenarioInfo.Tags.Contains("transfersfunds") || _context.ScenarioInfo.Title.Contains("_NL") || _context.ScenarioInfo.Tags[1].Contains("nonlevy"));
+            var isLevy = !(_context.ScenarioInfo.Tags.Contains("transfersfunds") || _context.ScenarioInfo.Title.Contains("_NL"));
 
             var randomCoursehelper = new RandomCourseHelper(random, isLevy);
 
