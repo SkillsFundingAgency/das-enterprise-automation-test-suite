@@ -13,9 +13,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 
         public DoYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage GoToReserveFunding() => GoToManageFunding().ClickReserveMoreFundingLink();
 
-        public SuccessfullyReservedFundingPage CreateReservationViaDynamicHomePageTriageJourney()
+        public DynamicHomePages CreateReservationViaDynamicHomePageTriageJourney()
         {
-            return CreateReservation(GoToDynamicHomePage()
+            var reservedPage = CreateReservation(GoToDynamicHomePage()
                 .StartNowToReserveFunding()
                  .YesToCourse()
                  .YesToTrainingProviderToDeliver()
@@ -23,9 +23,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                  .YesSetupForExistingEmployee()
                  .YesContinueToReserveFunding()
                  .ClickReserveFundingButton());
+
+            return VerifyContinueOnHomePagePanel(reservedPage);
         }
 
-        public void VerifyContinueOnHomePagePanel() => GoToDynamicHomePage().VerifyReserveFundingPanel();
+        public DynamicHomePages VerifyContinueOnHomePagePanel(SuccessfullyReservedFundingPage successfullyReservedFundingPage) => successfullyReservedFundingPage.GoToDynamicHomePage().VerifyReserveFundingPanel();
 
         public AddAnApprenitcePage GoToAddAnApprentices()
         {

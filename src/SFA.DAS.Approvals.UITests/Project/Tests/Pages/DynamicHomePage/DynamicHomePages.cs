@@ -27,7 +27,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.DynamicHomePage
         private By VerifyViewApprenticeDetailsLink => By.LinkText("View apprentice details");
         private By DynamicHomeContinueButton => By.LinkText("Continue");
 
-        public DynamicHomePages(ScenarioContext context) : base(context) 
+        public DynamicHomePages(ScenarioContext context, bool navigate = false) : base(context, navigate) 
         {
             _context = context;
             _formCompletionHelper = context.Get<FormCompletionHelper>();
@@ -62,11 +62,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.DynamicHomePage
             return new DynamicHomePages(_context);
         }
 
-        public void VerifyReserveFundingPanel()
+        public DynamicHomePages VerifyReserveFundingPanel()
         {
-            GoToHomePage();
-
             pageInteractionHelper.VerifyText(ContinueSettingUpAnApprenticeship, "Continue setting up an apprenticeship");
+            return this;
         }
     }
 }

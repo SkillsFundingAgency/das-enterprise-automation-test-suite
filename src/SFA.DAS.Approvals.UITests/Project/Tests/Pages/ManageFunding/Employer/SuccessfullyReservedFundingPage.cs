@@ -25,23 +25,19 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
             _formCompletionHelper = context.Get<FormCompletionHelper>();
             VerifyPage();
         }
-        public DynamicHomePages GoToHomePage()
+
+        public DynamicHomePages GoToDynamicHomePage()
         {
             SelectRadioOptionByForAttribute("WhatsNext-home");
             _formCompletionHelper.ClickElement(ContinueButton);
             return new DynamicHomePages(_context);
         }
+
         internal AddAnApprenitcePage AddApprentice()
         {
             ChooseToAddApprenticeRadioButton();
             Continue();
             return new AddAnApprenitcePage(_context);
-        }
-
-        public new SuccessfullyReservedFundingPage VerifySucessMessage()
-        {
-            base.VerifySucessMessage();
-            return this;
         }
 
         internal AddApprenticeDetailsPage AddAnotherApprentice()

@@ -14,10 +14,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
         public ManageFundingEmployerSteps(ScenarioContext context) => _reservationStepsHelper = new ManageFundingEmployerStepsHelper(context);
 
-
-        [Then(@"The new reserved funding panel is shown to nonlevyemployer on the homepage")]
-        public void ThenTheNewReservedFundingPanelIsShownToNonLevyEmployerOnTheHomepage() => _reservationStepsHelper.VerifyContinueOnHomePagePanel();
-            
         [When(@"The NonLevyEmployer reserves funding for an apprenticeship course from reserved panel")]
         public void WhenTheNonLevyEmployerReservesFundingForAnApprenticeshipCourseFromReservedPanel() => _reservationStepsHelper.CreateReservationViaDynamicHomePageTriageJourney();
 

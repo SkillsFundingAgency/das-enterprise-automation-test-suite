@@ -94,12 +94,10 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.When("The NonLevyEmployer reserves funding for an apprenticeship course from reserved p" +
                     "anel", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 11
- testRunner.Then("The new reserved funding panel is shown to nonlevyemployer on the homepage", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("The nonlevyemployer continues to add an apprentice for reserved funding", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 12
- testRunner.And("The nonlevyemployer continues to add an apprentice for reserved funding", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 13
  testRunner.And("The TrainingProvider approves apprentice by adding further details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 14
+#line 13
  testRunner.And("The NonLevyEmployer Reviews and Approves the apprentice", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
