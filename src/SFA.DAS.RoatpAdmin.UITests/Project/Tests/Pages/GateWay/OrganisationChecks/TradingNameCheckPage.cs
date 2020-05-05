@@ -6,7 +6,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay.OrganisationChecks
 {
-    public class LegalNamePage : RoatpGateWayBasePage
+    public class TradingNameCheckPage : RoatpGateWayBasePage
     {
         protected override string PageTitle => "";
 
@@ -14,10 +14,10 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay.OrganisationChe
         private readonly ScenarioContext _context;
         #endregion
 
-        public LegalNamePage(ScenarioContext context) : base(context)
+        public TradingNameCheckPage(ScenarioContext context) : base(context)
         {
             _context = context;
             VerifyPage();
         }
     }
- }
+}
