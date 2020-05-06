@@ -51,9 +51,9 @@ namespace SFA.DAS.Approvals.UITests.Project
 
             _context.Set(new EditedApprenticeDataHelper(random, _datahelper));
 
-            var isTransfersFunds = _context.ScenarioInfo.Tags.Contains("transfersfunds");
+            var selectstandardcourse = _context.ScenarioInfo.Tags.Contains("selectstandardcourse");
 
-            var randomCoursehelper = new RandomCourseHelper(random, isTransfersFunds);
+            var randomCoursehelper = new RandomCourseHelper(random, selectstandardcourse);
 
             var apprenticeCourseDataHelper = new ApprenticeCourseDataHelper(randomCoursehelper, apprenticeStatus);
 
