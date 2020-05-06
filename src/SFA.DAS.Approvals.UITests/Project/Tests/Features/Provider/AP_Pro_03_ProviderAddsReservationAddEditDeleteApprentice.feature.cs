@@ -73,14 +73,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.Provider
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("AP_Pro_03 Provider makes reservation adds edits and deletes apprentice for non-le" +
-            "vy employer")]
+        [NUnit.Framework.DescriptionAttribute("AP_Pro_03_NL Provider makes reservation adds edits and deletes apprentice for non" +
+            "-levy employer")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("nonlevyproviderscenarios")]
-        public virtual void AP_Pro_03ProviderMakesReservationAddsEditsAndDeletesApprenticeForNon_LevyEmployer()
+        public virtual void AP_Pro_03_NLProviderMakesReservationAddsEditsAndDeletesApprenticeForNon_LevyEmployer()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_Pro_03 Provider makes reservation adds edits and deletes apprentice for non-le" +
-                    "vy employer", null, new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_Pro_03_NL Provider makes reservation adds edits and deletes apprentice for non" +
+                    "-levy employer", null, new string[] {
                         "regression",
                         "nonlevyproviderscenarios"});
 #line 9

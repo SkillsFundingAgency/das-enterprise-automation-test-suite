@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
+using SFA.DAS.Registration.UITests.Project.Helpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
@@ -11,13 +12,12 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         #region Locators
         protected override string Linktext => "Your organisations and agreements";
-        private By TransferStatus => By.ClassName("transfers-status");
-        private By AgreementId => By.CssSelector("table tbody tr td[data-label='Agreement ID']");
-        private By AddNewOrganisationButton => By.Id("addNewOrg");
+        private By TransferStatus => By.XPath("//p[3]");
+        private By AddNewOrganisationButton => By.LinkText("Add an organisation");
         private By TableCells => By.XPath("//td");
-        private By ViewAgreementLink => By.LinkText("View");
-        private By RemoveAnOrgFromYourAccountLink => By.LinkText("Remove an organisation from your account");
-        private By OrgRemovedMessageInHeader = By.CssSelector("h1");
+        private By ViewAgreementLink => By.LinkText("View all agreements");
+        private By OrgRemovedMessageInHeader = By.Id("error-summary-title");
+        private By RemoveLinkBesideNewlyAddedOrg => By.LinkText($"Remove organisation");
         #endregion
 
         public YourOrganisationsAndAgreementsPage(ScenarioContext context, bool navigate = false) : base(context, navigate)
@@ -26,12 +26,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         }
 
         public string GetTransfersStatus() => pageInteractionHelper.GetText(TransferStatus);
-
-        public void SetAgreementId()
-        {
-            var agreementId = pageInteractionHelper.GetText(AgreementId);
-            objectContext.SetAgreementId(agreementId);
-        }
 
         public SearchForYourOrganisationPage ClickAddNewOrganisationButton()
         {
@@ -46,17 +40,19 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             return this;
         }
 
-        public YourEsfaAgreementPage ClickViewAgreementLink()
+        public YourAgreementsWithTheEducationAndSkillsFundingAgencyPage ClickViewAgreementLink()
         {
             formCompletionHelper.Click(ViewAgreementLink);
-            return new YourEsfaAgreementPage(_context);
+            return new YourAgreementsWithTheEducationAndSkillsFundingAgencyPage(_context);
         }
 
-        public RemoveAnOrganisationPage ClickOnRemoveAnOrgFromYourAccountLink()
+        public AreYouSureYouWantToRemovePage ClickOnRemoveAnOrgFromYourAccountLink()
         {
-            formCompletionHelper.Click(RemoveAnOrgFromYourAccountLink);
-            return new RemoveAnOrganisationPage(_context);
+            tableRowHelper.SelectRowFromTable("Remove organisation", $"{objectContext.GetOrganisationName()}");
+            return new AreYouSureYouWantToRemovePage(_context);
         }
+
+        public bool IsRemoveLinkBesideNewlyAddedOrg() => pageInteractionHelper.IsElementDisplayed(RemoveLinkBesideNewlyAddedOrg);
 
         public bool VerifyOrgRemovedMessageInHeader() => pageInteractionHelper.VerifyText(OrgRemovedMessageInHeader, $"You have removed {objectContext.GetOrganisationName()}");
     }

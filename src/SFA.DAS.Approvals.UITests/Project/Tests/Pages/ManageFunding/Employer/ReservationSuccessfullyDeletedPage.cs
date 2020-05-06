@@ -31,7 +31,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
 
         public YourFundingReservationsPage ClickConfirmButton()
         {
-            _formCompletionHelper.ClickElement(ContinueButton);
+            Continue();
             return new YourFundingReservationsPage(_context);
         }
     }

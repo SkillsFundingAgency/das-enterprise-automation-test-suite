@@ -6,7 +6,7 @@ Feature: AP_Pro_03_ProviderAddsReservationAddEditDeleteApprentice
 
 @regression 
 @nonlevyproviderscenarios
-Scenario: AP_Pro_03 Provider makes reservation adds edits and deletes apprentice for non-levy employer
+Scenario: AP_Pro_03_NL Provider makes reservation adds edits and deletes apprentice for non-levy employer
 	Given An Employer has given create reservation permission to a provider
 	Then Provider can make a reservation
 	And Provider can add an apprentice

@@ -9,6 +9,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
     public class AddTrainingProviderDetailsPage : BasePage
     {
         protected override string PageTitle => "Add training provider details";
+        protected override By ContinueButton => By.Id("continue-button");
 
         #region Helpers and Context
         private readonly FormCompletionHelper _formCompletionHelper;
@@ -17,7 +18,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         #endregion
 
         private By UkprnField => By.CssSelector(".govuk-input");
-        protected override By ContinueButton => By.Id("continue-button");
 
         public AddTrainingProviderDetailsPage(ScenarioContext context): base(context)
         {
@@ -30,7 +30,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         public ConfirmTrainingProviderPage SubmitValidUkprn()
         {
             EnterUkprn();
-            _formCompletionHelper.ClickElement(ContinueButton);
+            Continue();
             return new ConfirmTrainingProviderPage(_context);
         }
 

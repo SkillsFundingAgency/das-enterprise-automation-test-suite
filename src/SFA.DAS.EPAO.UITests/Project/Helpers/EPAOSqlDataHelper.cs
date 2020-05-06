@@ -5,7 +5,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
 {
     public class EPAOSqlDataHelper : SqlDbHelper
     {
-        public EPAOSqlDataHelper(EPAOConfig ePAOConfig) : base(ePAOConfig.EPAOAssessorDbConnectionString) { }
+        public EPAOSqlDataHelper(EPAOConfig ePAOConfig) : base(ePAOConfig.AssessorDbConnectionString) { }
 
         public void DeleteCertificate(string uln)
         {

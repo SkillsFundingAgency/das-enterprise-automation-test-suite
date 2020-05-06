@@ -3,6 +3,8 @@ using SFA.DAS.Registration.UITests.Project.Helpers;
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
+using SFA.DAS.Approvals.UITests.Project.Tests.Pages.DynamicHomePage;
+using SFA.DAS.Registration.UITests.Project.Tests.Pages;
 
 namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 {
@@ -10,18 +12,18 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
     {
         private ReviewYourCohortPage _reviewYourCohortPage;
 		private readonly ReviewYourCohortStepsHelper _reviewYourCohortStepsHelper;
-        private readonly MFEmployerStepsHelper _employerReservationStepsHelper;
+        private readonly ManageFundingEmployerStepsHelper _employerReservationStepsHelper;
         private readonly EmployerHomePageStepsHelper _homePageStepsHelper;
         private readonly ObjectContext _objectContext;
         private readonly ScenarioContext _context;
-
+        
         internal EmployerStepsHelper(ScenarioContext context)
         {
             _context = context;
             _objectContext = _context.Get<ObjectContext>();
             _homePageStepsHelper = new EmployerHomePageStepsHelper(_context);
             _reviewYourCohortStepsHelper = new ReviewYourCohortStepsHelper(_context.Get<AssertHelper>());
-            _employerReservationStepsHelper = new MFEmployerStepsHelper(_context);
+            _employerReservationStepsHelper = new ManageFundingEmployerStepsHelper(_context);
         }
 
         public void Approve() => EmployerReviewCohort().EmployerDoesSecondApproval();
@@ -34,11 +36,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 
 
         internal ManageYourApprenticesPage GoToManageYourApprenticesPage() => GoToEmployerApprenticesHomePage().ClickManageYourApprenticesLink();
-
+        internal HomePage GotoEmployerHomePage() => _homePageStepsHelper.GotoEmployerHomePage();
         internal ApprenticesHomePage GoToEmployerApprenticesHomePage()
         {
-            _homePageStepsHelper.GotoEmployerHomePage();
-
+            GotoEmployerHomePage();
             return new ApprenticesHomePage(_context, true);
         }
 
@@ -184,9 +185,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             return new ReviewYourCohortPage(_context);
         }
 
-        public ReviewYourCohortPage NonLevyEmployerAddsApprenticesUsingReservations(int numberOfApprentices, bool isTransfersFunds)
+        public ReviewYourCohortPage NonLevyEmployerAddsApprenticesUsingReservations(int numberOfApprentices)
         {
             var doYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage = _employerReservationStepsHelper.GoToReserveFunding();
+
             _employerReservationStepsHelper.CreateReservation(doYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage)
                 .AddApprentice();
             var addApprenticeDetailsPage = NonLevyEmployerAddsProviderDetails();
@@ -198,11 +200,36 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                     reviewYourCohortPage.SelectAddAnApprenticeUsingReservation()
                         .ChooseCreateANewReservationRadioButton()
                         .ClickSaveAndContinueButton();
-                    _employerReservationStepsHelper.CreateReservation(doYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage)
+
+                    _employerReservationStepsHelper
+                        .CreateReservation(doYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage)
                         .AddAnotherApprentice();
                 }
             }
             return new ReviewYourCohortPage(_context);
+        }
+        public DynamicHomePages DynamicHomePageStartToAddApprentice()
+        {
+            return new AddAnApprenitcePage(_context).StartNowToAddTrainingProvider()
+                 .SubmitValidUkprn()
+                 .ConfirmProviderDetailsAreCorrect()
+                 .DynamicHomePageNonLevyEmployerAddsApprentices()
+                 .DynamicHomePageClickSaveAndContinueToAddAnApprentices()
+                 .DraftDynamicHomePageSubmitValidApprenticeDetails()
+                 .DraftReturnToHomePage()
+                 .CheckDraftStatusAndAddDetails()
+                 .ContinueToAddValidApprenticeDetails()
+                 .DynamicHomePageChangeRequestFromTrainingProvider()
+                 .ClickHomeLink()
+                 .CheckWithTrainingProviderStatus();
+          }
+
+        public DynamicHomePages DynamicHomePageFinishToAddApprenticeJourney()
+        {
+            return new DynamicHomePages(_context).CheckReadyToReviewStatus()
+                .ApproveAndNotifyTrainingProvider()
+                .ClickHome()
+                .VerifyYourFundingReservationsLink();
         }
     }
 }

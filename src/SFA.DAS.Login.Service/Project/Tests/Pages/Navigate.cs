@@ -10,6 +10,7 @@ namespace SFA.DAS.Login.Service.Project.Tests.Pages
         #region Helpers and Context
         protected readonly PageInteractionHelper pageInteractionHelper;
         protected readonly FormCompletionHelper formCompletionHelper;
+        protected readonly TableRowHelper tableRowHelper;
         #endregion
 
         protected By GlobalNavLink => By.CssSelector("#global-nav-links li a, #navigation li a, .das-navigation__link");
@@ -20,6 +21,7 @@ namespace SFA.DAS.Login.Service.Project.Tests.Pages
         {
             pageInteractionHelper = context.Get<PageInteractionHelper>();
             formCompletionHelper = context.Get<FormCompletionHelper>();
+            tableRowHelper = context.Get<TableRowHelper>();
             NavigateTo(navigate);
         }
 

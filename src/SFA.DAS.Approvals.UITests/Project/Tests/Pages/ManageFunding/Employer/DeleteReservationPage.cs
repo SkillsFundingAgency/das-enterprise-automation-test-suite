@@ -32,7 +32,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
 
         public ReservationSuccessfullyDeletedPage ClickConfirmButton()
         {
-            _formCompletionHelper.ClickElement(ContinueButton);
+            Continue();
             return new ReservationSuccessfullyDeletedPage(_context);
         }
     }

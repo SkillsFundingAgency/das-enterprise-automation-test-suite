@@ -51,7 +51,7 @@ namespace SFA.DAS.EPAO.UITests.Project
         [BeforeScenario(Order = 34)]
         public void Navigate()
         {
-            if (_context.ScenarioInfo.Tags.Contains("epaoadmin")) { _webDriver.Navigate().GoToUrl(_config.EPAOAdminBaseUrl); }
+            if (_context.ScenarioInfo.Tags.Contains("epaoadmin")) { _webDriver.Navigate().GoToUrl(_config.AdminBaseUrl); }
         }
 
         [AfterScenario(Order = 32)]

@@ -8,7 +8,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
     public abstract class ChangeApprenticeStatus : BasePage
     {
         private By ConfirmResumeOptions => By.CssSelector(".selection-button-radio");
-        private By ConfirmButton => By.CssSelector(".button");
+        private By ConfirmButton => By.Id("submit-status-change");
 
         private readonly FormCompletionHelper _formCompletionHelper;
 

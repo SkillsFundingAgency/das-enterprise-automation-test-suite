@@ -1,4 +1,5 @@
 ﻿using TechTalk.SpecFlow;
+using SFA.DAS.UI.FrameworkHelpers;
 
 namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
 {
@@ -15,7 +16,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
 
         public AS_WhatGradePage SelectLearningOptionAndContinue()
         {
-            SelectRadioOptionByForAttribute("options_Overheadlines");
+            formCompletionHelper.SelectRadioOptionByText(RadioLabels, "Overhead Lines");
             Continue();
             return new AS_WhatGradePage(_context);
         }

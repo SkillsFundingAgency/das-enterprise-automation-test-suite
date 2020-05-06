@@ -10,7 +10,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
     {
         protected override string PageTitle => "Your cohorts";
 
-        protected override string Linktext => "Your cohorts";
+        protected override string Linktext => "Apprentice requests";
 
         #region Helpers and Context
         private readonly PageInteractionHelper _pageInteractionHelper;

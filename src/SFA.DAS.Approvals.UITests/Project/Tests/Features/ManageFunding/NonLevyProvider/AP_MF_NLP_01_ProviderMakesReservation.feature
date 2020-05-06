@@ -6,6 +6,7 @@ Feature: AP_MF_NLP_01_ProviderMakesReservation
 
 @regression
 @nonlevyproviderscenarios
+@selectstandardcourse
 Scenario: AP_MF_NLP_01 Provider makes reservation adds and deletes apprentice for non-levy employer
 	Given An Employer has given create reservation permission to a provider
 	Then Provider can make a reservation
