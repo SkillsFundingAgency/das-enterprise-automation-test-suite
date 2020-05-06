@@ -5,6 +5,7 @@ Feature: AP_TR_01_TransfersApprovalJourney
 @transfersscenarios
 @liveapprentice
 @transfersfunds
+@selectstandardcourse
 Scenario: AP_TR_01 Transfers - Creating a Cohort and Approve by all 3 parties
 	Given Receiver sends a cohort to the provider for review and approval
 	When Provider adds an apprentices approves the cohort
