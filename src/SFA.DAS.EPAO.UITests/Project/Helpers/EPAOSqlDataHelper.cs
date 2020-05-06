@@ -3,11 +3,9 @@ using System;
 
 namespace SFA.DAS.EPAO.UITests.Project.Helpers
 {
-    public class EPAOSqlDataHelper
+    public class EPAOSqlDataHelper : SqlDbHelper
     {
-        private readonly string _connectionString;
-
-        public EPAOSqlDataHelper(EPAOConfig ePAOConfig) => _connectionString = ePAOConfig.EPAOAssessorDbConnectionString;
+        public EPAOSqlDataHelper(EPAOConfig ePAOConfig) : base(ePAOConfig.AssessorDbConnectionString) { }
 
         public void DeleteCertificate(string uln)
         {
@@ -17,14 +15,14 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
 
         public void ResetApplyUser(string applyUserEmail)
         {
-            var organisationId = GetDataFromDb($"SELECT OrganisationId from Contacts where Email = '{applyUserEmail}'");
+            var organisationId = GetData($"SELECT OrganisationId from Contacts where Email = '{applyUserEmail}'");
             if (organisationId.Equals("")) return;
             ExecuteSqlCommand($"UPDATE Contacts SET OrganisationID = null WHERE Email = '{applyUserEmail}'");
             ExecuteSqlCommand($"DELETE from Apply where OrganisationId = '{organisationId}'");
         }
 
-        private void ExecuteSqlCommand(string queryToExecute) => SqlDatabaseConnectionHelper.ExecuteSqlCommand(_connectionString, queryToExecute);
+        public void DeleteStandardApplicication(string standardReference, string organisationId, string userid) => ExecuteSqlCommand($"DELETE from [Apply] where OrganisationId = (select OrganisationId from Organisations WHERE EndPointAssessorOrganisationId = '{organisationId}') and CreatedBy = (select Id from Contacts where Email = '{userid}') and StandardCode = {standardReference}");
 
-        private string GetDataFromDb(string queryToExecute) => Convert.ToString(SqlDatabaseConnectionHelper.ReadDataFromDataBase(queryToExecute, _connectionString)[0][0]);
+        private void ExecuteSqlCommand(string queryToExecute) => SqlDatabaseConnectionHelper.ExecuteSqlCommand(connectionString, queryToExecute);
     }
 }

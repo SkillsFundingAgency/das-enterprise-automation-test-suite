@@ -12,6 +12,18 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.RoatpApply
 
         private void AddApplyDatahelpers()
         {
+            _applyData.Add("rpse01",
+               new List<KeyValuePair<string, string>>
+               {
+                    new KeyValuePair<string, string>(emailkey, "sudhakar.chinoor+SE1@digital.education.gov.uk"),
+                    new KeyValuePair<string, string>(ukprnkey, "10066722"),
+               });
+            _applyData.Add("rpse02",
+               new List<KeyValuePair<string, string>>
+               {
+                    new KeyValuePair<string, string>(emailkey, "umakanth.gangaraju+SE2@digital.education.gov.uk"),
+                    new KeyValuePair<string, string>(ukprnkey, "10058122"),
+               });
             _applyData.Add("rpuhp01",
                new List<KeyValuePair<string, string>>
                {
@@ -60,6 +72,24 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.RoatpApply
                     new KeyValuePair<string, string>(emailkey, "sudhakar.chinoor+supporting@digital.education.gov.uk"),
                     new KeyValuePair<string, string>(ukprnkey, "10083833"),
                 });
+            _applyData.Add("rpe2e04",
+              new List<KeyValuePair<string, string>>
+              {
+                    new KeyValuePair<string, string>(emailkey, "sudhakar.chinoor+mainCC@digital.education.gov.uk"),
+                    new KeyValuePair<string, string>(ukprnkey, "10004708"),
+              });
+            _applyData.Add("rpe2e05",
+             new List<KeyValuePair<string, string>>
+             {
+                    new KeyValuePair<string, string>(emailkey, "umakanth.gangaraju+FHAExempt@digital.education.gov.uk"),
+                    new KeyValuePair<string, string>(ukprnkey, "10046095"),
+             });
+            _applyData.Add("rpe2e06",
+            new List<KeyValuePair<string, string>>
+            {
+                    new KeyValuePair<string, string>(emailkey, "sudhakar.chinoor+GOVT@digital.education.gov.uk"),
+                    new KeyValuePair<string, string>(ukprnkey, "10052113"),
+            });
             _applyData.Add("rps101",
                 new List<KeyValuePair<string, string>>
                 {
@@ -108,6 +138,18 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.RoatpApply
                     new KeyValuePair<string, string>(emailkey, "sudhakar.chinoor+D8@digital.education.gov.uk"),
                     new KeyValuePair<string, string>(ukprnkey, "10057614"),
                 });
+            _applyData.Add("rps109",
+                new List<KeyValuePair<string, string>>
+                {
+                    new KeyValuePair<string, string>(emailkey, "sudhakar.chinoor+D9@digital.education.gov.uk"),
+                    new KeyValuePair<string, string>(ukprnkey, "10027640"),
+                });
+            _applyData.Add("rps110",
+              new List<KeyValuePair<string, string>>
+              {
+                    new KeyValuePair<string, string>(emailkey, "sudhakar.chinoor+D10@digital.education.gov.uk"),
+                    new KeyValuePair<string, string>(ukprnkey, "10029227"),
+              });
         }
     }
 }

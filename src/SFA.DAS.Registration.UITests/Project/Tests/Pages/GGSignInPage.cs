@@ -2,6 +2,7 @@
 using SFA.DAS.MongoDb.DataGenerator;
 using SFA.DAS.ConfigurationBuilder;
 using TechTalk.SpecFlow;
+using SFA.DAS.Registration.UITests.Project.Tests.Pages.PAYESchemesPages;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 {
@@ -9,9 +10,9 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => "Sign in";
         protected override By PageHeader => By.CssSelector(".content__body h1");
+
         private readonly ScenarioContext _context;
-        private readonly string _gatewayid;
-        private readonly string _gatewaypassword;
+        private readonly ObjectContext _objectContext;
 
         #region Locators
         private By UserIdInput => By.Id("userId");
@@ -23,26 +24,37 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         public GgSignInPage(ScenarioContext context) : base(context)
         {
             _context = context;
-            _gatewayid = context.Get<ObjectContext>().GetGatewayId();
-            _gatewaypassword = context.Get<ObjectContext>().GetGatewayPassword();
+            _objectContext = _context.Get<ObjectContext>();
             VerifyPage();
         }
 
-        public SearchForYourOrganisationPage SignInTo()
+        public SearchForYourOrganisationPage SignInTo(int index)
         {
-            EnterLoginDetailsAndSignIn(_gatewayid, _gatewaypassword);
+            EnterGateWayCredentialsAndSignIn(index);
             return new SearchForYourOrganisationPage(_context);
+        }
+
+        public ConfirmPAYESchemePage EnterPayeDetailsAndContinue(int index)
+        {
+            EnterGateWayCredentialsAndSignIn(index);
+            return new ConfirmPAYESchemePage(_context);
         }
 
         public GgSignInPage SignInWithInvalidDetails()
         {
-            EnterLoginDetailsAndSignIn(registrationDataHelper.InvalidGGId, registrationDataHelper.InvalidGGPassword);
+            SignInTo(registrationDataHelper.InvalidGGId, registrationDataHelper.InvalidGGPassword);
             return this;
         }
 
         public string GetErrorMessage() => pageInteractionHelper.GetText(ErrorMessageText);
 
-        private void EnterLoginDetailsAndSignIn(string id, string password)
+        private void EnterGateWayCredentialsAndSignIn(int index)
+        {
+            var gatewaydetails = _objectContext.GetGatewayCreds(index);
+            SignInTo(gatewaydetails.GatewayId, gatewaydetails.GatewayPassword);
+        }
+
+        private void SignInTo(string id, string password)
         {
             formCompletionHelper.EnterText(UserIdInput, id);
             formCompletionHelper.EnterText(PasswordInput, password);

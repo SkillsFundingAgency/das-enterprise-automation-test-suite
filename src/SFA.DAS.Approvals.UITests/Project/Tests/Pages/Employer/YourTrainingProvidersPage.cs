@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.Registration.UITests.Project.Tests.Pages;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
@@ -10,21 +11,17 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         protected override string PageTitle => "Your training providers";
 
         #region Helpers and Context
-        private readonly PageInteractionHelper _pageInteractionHelper;
         private readonly FormCompletionHelper _formCompletionHelper;
         private readonly ScenarioContext _context;
-        private readonly ApprovalsConfig _config;
         #endregion
 
         private By AddANewTrainingProviderButton => By.LinkText("Add a training provider");
-        private By SetPermissionsLink => By.LinkText("Change permissions");
-
+        private By SetPermissionsLink => By.LinkText("Set permissions");
+        private By ChangePermissionsLink => By.LinkText("Change permissions");
 
         public YourTrainingProvidersPage(ScenarioContext context) : base(context)
         {
             _context = context;
-            _config = context.GetApprovalsConfig<ApprovalsConfig>();
-            _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
             VerifyPage();
         }
@@ -35,11 +32,15 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             return new EnterYourTrainingProvidersUKProviderReferenceNumberUKPRN(_context);
         }
 
-        internal SetPermissionsPage SelectSetPermissions()
+        public DoYouGiveTrainingProviderPermissionToAddApprenticeRecordsPage SelectSetPermissions()
         {
             _formCompletionHelper.ClickElement(SetPermissionsLink);
-            return new SetPermissionsPage(_context);
+            return new DoYouGiveTrainingProviderPermissionToAddApprenticeRecordsPage(_context);
         }
+        public DoYouGiveTrainingProviderPermissionToAddApprenticeRecordsPage SelectChangePermissions()
+        {
+            _formCompletionHelper.ClickElement(ChangePermissionsLink);
+            return new DoYouGiveTrainingProviderPermissionToAddApprenticeRecordsPage(_context);
+        }        
     }
 }
-

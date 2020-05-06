@@ -2,7 +2,6 @@
 using SFA.DAS.Approvals.UITests.Project.Helpers;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
-using System;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
@@ -33,7 +32,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private By EndDateYear => By.Id("EndYear");
         private By TrainingCost => By.Id("Cost");
         private By EmployerReference => By.Id("Reference");
-        private By SaveAndContinueButton => By.CssSelector(".govuk-button");
+        private By SaveAndContinueButton => By.CssSelector("#main-content .govuk-button");
 
         public AddApprenticeDetailsPage(ScenarioContext context) : base(context)
         {
@@ -66,12 +65,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             _formCompletionHelper.ClickElement(SaveAndContinueButton);
             return new ReviewYourCohortPage(_context);
         }
-
-        private void SelectRandomTrainingCourse()
+        public YouMustCompleteAllApprenticeDetailsPage DraftDynamicHomePageSubmitValidApprenticeDetails()
         {
-            var options = _pageInteractionHelper.GetAvailableOptions(TrainingCourseContainer);
-            var index = _coursedataHelper.RandomCourse(options);
-            _formCompletionHelper.SelectByIndex(TrainingCourseContainer, index);
-        }
+            _formCompletionHelper.EnterText(FirstNameField, _dataHelper.ApprenticeFirstname);
+            _formCompletionHelper.EnterText(LastNameField, _dataHelper.ApprenticeLastname);
+            _formCompletionHelper.ClickElement(SaveAndContinueButton);
+            return new YouMustCompleteAllApprenticeDetailsPage(_context);
+        }       
     }
 }

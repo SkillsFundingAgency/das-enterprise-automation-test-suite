@@ -21,11 +21,11 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             VerifyPage();
         }
 
-        public GatewayInformPage AddPaye()
+        public UsingYourGovtGatewayDetailsPage AddPaye()
         {
             SelectAddPaye().
                 Continue();
-            return new GatewayInformPage(_context);
+            return new UsingYourGovtGatewayDetailsPage(_context);
         }
 
         public EnterYourPAYESchemeDetailsPage AddAORN()
@@ -35,11 +35,11 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             return new EnterYourPAYESchemeDetailsPage(_context);
         }
 
-        public MyAccountWithOutPaye DoNotAddPaye()
+        public MyAccountWithOutPayePage DoNotAddPaye()
         {
             SelectDoNotAddPaye().
                 Continue();
-            return new MyAccountWithOutPaye(_context);
+            return new MyAccountWithOutPayePage(_context);
         }
 
         private AddAPAYESchemePage SelectAddPaye()

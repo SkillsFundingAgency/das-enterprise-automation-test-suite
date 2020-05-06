@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using TechTalk.SpecFlow;
+using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
 
 namespace SFA.DAS.Approvals.UITests.Project
 {
@@ -36,7 +37,7 @@ namespace SFA.DAS.Approvals.UITests.Project
                                    _context.ScenarioInfo.Tags.Contains("currentacademicyearstartdate") ? ApprenticeStatus.CurrentAcademicYearStartDate :
                                    _context.ScenarioInfo.Tags.Contains("waitingtostartapprentice") ? ApprenticeStatus.WaitingToStart : ApprenticeStatus.Random;
 
-            var commitmentsdatahelper = new CommitmentsDataHelper(_approvalsConfig);
+            var commitmentsdatahelper = new CommitmentsSqlDataHelper(_approvalsConfig);
 
             _context.Set(commitmentsdatahelper);
 
@@ -50,9 +51,9 @@ namespace SFA.DAS.Approvals.UITests.Project
 
             _context.Set(new EditedApprenticeDataHelper(random, _datahelper));
 
-            var isTransfersFunds = _context.ScenarioInfo.Tags.Contains("transfersfunds");
+            var selectstandardcourse = _context.ScenarioInfo.Tags.Contains("selectstandardcourse");
 
-            var randomCoursehelper = new RandomCourseHelper(random, isTransfersFunds);
+            var randomCoursehelper = new RandomCourseHelper(random, selectstandardcourse);
 
             var apprenticeCourseDataHelper = new ApprenticeCourseDataHelper(randomCoursehelper, apprenticeStatus);
 
@@ -60,7 +61,7 @@ namespace SFA.DAS.Approvals.UITests.Project
 
             _context.Set(new EditedApprenticeCourseDataHelper(randomCoursehelper, apprenticeCourseDataHelper));
 
-            _context.Set(new DlockDataHelper(_approvalsConfig, _datahelper, apprenticeCourseDataHelper));
+            _context.Set(new DataLockSqlHelper(_approvalsConfig, _datahelper, apprenticeCourseDataHelper));
         }
     }
 }

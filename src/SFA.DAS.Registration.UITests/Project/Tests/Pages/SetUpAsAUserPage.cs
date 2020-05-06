@@ -1,0 +1,110 @@
+﻿using OpenQA.Selenium;
+using SFA.DAS.UI.FrameworkHelpers;
+using TechTalk.SpecFlow;
+
+namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
+{
+    public class SetUpAsAUserPage : RegistrationBasePage
+    {
+        protected override string PageTitle => "Set up as a user";
+
+        private readonly ScenarioContext _context;
+        private readonly TabHelper _tabHelper;
+
+        #region constants
+        private const string ExpectedEmailErrorText = "Email already registered.";
+        #endregion
+
+        #region Locators
+        private By FirstNameInput(string value = null) => By.CssSelector($"#FirstName{value}");
+        private By LastNameInput(string value = null) => By.CssSelector($"#LastName{value}");
+        private By EmailInput(string value = null) => By.CssSelector($"#Email{value}");
+        private By PasswordInput => By.Id("Password");
+        private By PasswordConfirmInput => By.Id("ConfirmPassword");
+        private By SetMeUpButton => By.Id("button-register");
+        private By ErrorTextAboveEmailTextBox => By.Id("error-email");
+        private By EmailErrorTextAtheader => By.CssSelector(".danger");
+        private By SigninLink => By.LinkText("sign in");
+        private By TermsAndConditionsLink => By.LinkText("terms and conditions");
+        #endregion
+
+        public SetUpAsAUserPage(ScenarioContext context) : base(context)
+        {
+            _context = context;
+            _tabHelper = context.Get<TabHelper>();
+            VerifyPage();
+        }
+
+        public ConfirmYourIdentityPage ProviderLeadRegistration()
+        {
+            pageInteractionHelper.VerifyPage(FirstNameInput($"[value='{registrationDataHelper.FirstName}']"));
+            pageInteractionHelper.VerifyPage(LastNameInput($"[value='{registrationDataHelper.LastName}']"));
+            pageInteractionHelper.VerifyPage(EmailInput($"[value='{objectContext.GetRegisteredEmail().ToLower()}']"));
+
+            EnterPassword().EnterPasswordConfirm().SetMeUp();
+
+            return new ConfirmYourIdentityPage(_context);
+        }
+
+        public ConfirmYourIdentityPage Register(string email = null)
+        {
+            email = string.IsNullOrEmpty(email) ? objectContext.GetRegisteredEmail() : email;
+
+            EnterRegistrationDetailsAndContinue(email);
+
+            return new ConfirmYourIdentityPage(_context);
+        }
+
+        public void EnterRegistrationDetailsAndContinue(string email) => EnterFirstName().EnterlastName().EnterEmail(email).EnterPassword().EnterPasswordConfirm().SetMeUp();
+
+        public void VerifyEmailAlreadyRegisteredErrorMessage()
+        {
+            pageInteractionHelper.VerifyText(EmailErrorTextAtheader, ExpectedEmailErrorText);
+            pageInteractionHelper.VerifyText(ErrorTextAboveEmailTextBox, ExpectedEmailErrorText);
+        }
+
+        public SignInPage SignIn()
+        {
+            formCompletionHelper.ClickElement(SigninLink);
+            return new SignInPage(_context);
+        }
+
+        public TermsAndConditionsPage ClickTermsAndConditionsLink()
+        {
+            _tabHelper.OpenInNewTab(() => formCompletionHelper.Click(TermsAndConditionsLink));
+            return new TermsAndConditionsPage(_context);
+        }
+
+        private SetUpAsAUserPage EnterFirstName()
+        {
+            formCompletionHelper.EnterText(FirstNameInput(), registrationDataHelper.FirstName);
+            return this;
+        }
+
+        private SetUpAsAUserPage EnterlastName()
+        {
+            formCompletionHelper.EnterText(LastNameInput(), registrationDataHelper.LastName);
+            return this;
+        }
+
+        private SetUpAsAUserPage EnterEmail(string email)
+        {
+            formCompletionHelper.EnterText(EmailInput(), email);
+            return this;
+        }
+
+        private SetUpAsAUserPage EnterPassword()
+        {
+            formCompletionHelper.EnterText(PasswordInput, registrationDataHelper.Password);
+            return this;
+        }
+
+        private SetUpAsAUserPage EnterPasswordConfirm()
+        {
+            formCompletionHelper.EnterText(PasswordConfirmInput, registrationDataHelper.Password);
+            return this;
+        }
+
+        private void SetMeUp() => formCompletionHelper.ClickElement(SetMeUpButton);
+    }
+}

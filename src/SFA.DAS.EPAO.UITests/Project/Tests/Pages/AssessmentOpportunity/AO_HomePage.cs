@@ -12,21 +12,24 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentOpportunity
         private By ApprovedTab => By.Id("tab_approved");
         private By InDevelopmentTab => By.Id("tab_in-development");
         private By ProposedTab => By.Id("tab_proposed");
-        private By TabHeader => By.CssSelector(".govuk-heading-m");
+        private By TabHeader => By.CssSelector("#main-content .govuk-heading-m");
         private By AbattoirWorkerApprovedStandardLink => By.LinkText("Abattoir worker");
         private By BookbinderInDevelopmentStandardLink => By.LinkText("Bookbinder");
-        private By ClinicalScientistProposedStandard => By.LinkText("Clinical scientist");
+        private By EquestrianAthleteProposedStandard => By.LinkText("Equestrian athlete");
         #endregion
 
         public AO_HomePage(ScenarioContext context) : base(context)
         {
             _context = context;
             VerifyPage();
+            AcceptCookies();
         }
 
-        public bool IsApprovedTabDisplayed() => pageInteractionHelper.IsElementDisplayed(ApprovedTab);
-
-        public string GetApprovedTabHeaderText() => pageInteractionHelper.GetText(TabHeader);
+        public void VerifyApprovedTab()
+        {
+            pageInteractionHelper.VerifyPage(ApprovedTab);
+            pageInteractionHelper.VerifyPage(TabHeader, "Approved Standards");
+        }
 
         public AO_ApprovedStandardDetailsPage ClickOnAbattoirWorkerApprovedStandardLink()
         {
@@ -54,7 +57,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentOpportunity
 
         public AO_ProposedStandardDetailsPage ClickOnAProposedStandard()
         {
-            formCompletionHelper.Click(ClinicalScientistProposedStandard);
+            formCompletionHelper.Click(EquestrianAthleteProposedStandard);
             return new AO_ProposedStandardDetailsPage(_context);
         }
     }

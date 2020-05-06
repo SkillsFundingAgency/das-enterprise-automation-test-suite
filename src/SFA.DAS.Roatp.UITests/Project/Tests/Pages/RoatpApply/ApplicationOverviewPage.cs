@@ -21,7 +21,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
 
         private By TaskItem => By.CssSelector(".app-task-list__item");
 
-        private By TaskName => By.CssSelector(".app-task-list__task_name");
+        private By TaskName => By.CssSelector(".app-task-list__task-name > .govuk-link");
 
         private By TaskStatus => By.CssSelector(".govuk-tag");
 
@@ -31,31 +31,26 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
             VerifyPage();
         }
 
-        private Func<IWebElement> GetTaskLinkElement(string sectionName, string taskName) => GetTaskElement(sectionName, taskName, TaskName);
+        private Func<IWebElement> GetTaskLinkElement(string sectionName, string taskName, int index) => GetTaskElement(sectionName, taskName, TaskName, index);
 
-        private Func<IWebElement> GetTaskStatusElement(string sectionName, string taskName) => GetTaskElement(sectionName, taskName, TaskStatus);
+        private Func<IWebElement> GetTaskStatusElement(string sectionName, string taskName, int index) => GetTaskElement(sectionName, taskName, TaskStatus, index);
 
-        private Func<IWebElement> GetTaskElement(string sectionName, string taskName, By childelement)
+        private Func<IWebElement> GetTaskElement(string sectionName, string taskName, By childelement, int index)
         {
             return () =>
             {
-                List<IWebElement> tasks = new List<IWebElement>();
-                var taskLists = pageInteractionHelper.FindElements(TaskLists).ToList();
-                foreach(var tasklist in taskLists)
+                var section = pageInteractionHelper.FindElements(TaskLists).Single(x => x.Text.StartsWith(sectionName));
+
+                var tasks = section.FindElements(TaskItem);
+
+                var task = tasks.Where(x => x.Text.StartsWith(taskName)).ElementAt(index);
+
+                if (childelement == TaskStatus ? true : (!task.Text.ContainsCompareCaseInsensitive("NOT REQUIRED")))
                 {
-                    if (tasklist.FindElement(TaskSection).Text.ContainsCompareCaseInsensitive(sectionName))
-                    {
-                        tasks = tasklist.FindElements(TaskItem).ToList();
-                        foreach (var task in tasks)
-                        {
-                            if (task.Text.ContainsCompareCaseInsensitive(taskName) && (childelement == TaskStatus ? true : (!task.Text.ContainsCompareCaseInsensitive("COMPLETED") && (!task.Text.ContainsCompareCaseInsensitive("NOT REQUIRED")))))
-                            {
-                                return task.FindElement(childelement);
-                            }
-                        }
-                    }
+                    return task.FindElement(childelement);
                 }
-                var mesage = $"Expected :{Environment.NewLine}'{childelement.ToString()}' with task name - '{taskName}' under - '{sectionName}' section.{Environment.NewLine}" +
+
+                var mesage = $"Expected :{Environment.NewLine}'{childelement}' with task name - '{taskName}' under - '{sectionName}' section.{Environment.NewLine}" +
                              $"Actual :{Environment.NewLine}{string.Join($"{Environment.NewLine}", tasks.Select(x => x.Text))}";
                 throw new NotFoundException(mesage);
             };

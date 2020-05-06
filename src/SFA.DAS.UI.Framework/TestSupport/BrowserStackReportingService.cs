@@ -1,6 +1,4 @@
 ﻿using System;
-using System.IO;
-using System.Text;
 using System.Net;
 using RestSharp;
 using RestSharp.Authenticators;

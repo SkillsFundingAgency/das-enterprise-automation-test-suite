@@ -3,6 +3,7 @@ Feature: AP_NL_E2E_01_NonLevyE2EJourneyOne
 
 @regression
 @non-levy
+@selectstandardcourse
 Scenario: AP_NL_E2E_01 Non Levy Employer sends an approved cohort then provider approves the cohort
 	Given the Employer logins using existing NonLevy Account
 	When the Employer uses the reservation to create and approve 2 cohort and sends to provider

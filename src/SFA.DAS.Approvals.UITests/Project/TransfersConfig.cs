@@ -2,6 +2,6 @@
 {
     public class TransfersConfig
     {
-        public string AP_ReceiverOrganisationName { get; set; }
+        public string ReceiverOrganisationName { get; set; }
     }
 }

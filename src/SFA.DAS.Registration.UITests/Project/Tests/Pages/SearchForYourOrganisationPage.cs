@@ -1,6 +1,6 @@
 ﻿using OpenQA.Selenium;
 using TechTalk.SpecFlow;
-using static SFA.DAS.RAA_V1.UITests.Project.Helpers.EnumHelper;
+using static SFA.DAS.Registration.UITests.Project.Helpers.EnumHelper;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 {
@@ -26,6 +26,9 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             {
                 case OrgType.Company:
                     EnterAndSetOrgName(registrationDataHelper.CompanyTypeOrg);
+                    break;
+                case OrgType.Company2:
+                    EnterAndSetOrgName(registrationDataHelper.CompanyTypeOrg2);
                     break;
                 case OrgType.PublicSector:
                     EnterAndSetOrgName(registrationDataHelper.PublicSectorTypeOrg);

@@ -3,6 +3,8 @@ using SFA.DAS.EPAO.UITests.Project.Helpers;
 using SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService;
 using SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.ManageUsers;
 using SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.OrganisationDetails;
+using SFA.DAS.Login.Service;
+using SFA.DAS.Login.Service.Helpers;
 using SFA.DAS.UI.Framework.TestSupport;
 using TechTalk.SpecFlow;
 
@@ -15,6 +17,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         private readonly AssessmentServiceStepsHelper _stepsHelper;
         private readonly EPAOConfig _ePAOConfig;
         private readonly EPAODataHelper _dataHelper;
+        private readonly EPAOApplyStandardDataHelper _ePAOApplyStandardData;
         private AS_RecordAGradePage _recordAGradePage;
         private AS_AchievementDatePage _achievementDatePage;
         private AS_CheckAndSubmitAssessmentPage _checkAndSubmitAssessmentPage;
@@ -32,20 +35,29 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
             _stepsHelper = new AssessmentServiceStepsHelper(_context);
             _ePAOConfig = context.GetEPAOConfig<EPAOConfig>();
             _dataHelper = context.Get<EPAODataHelper>();
+            _ePAOApplyStandardData = context.Get<EPAOApplyStandardDataHelper>();
             _ePAOSqlDataHelper = context.Get<EPAOSqlDataHelper>();
         }
 
-        [Given(@"the (Assessor User|Manage User|Apply User) is logged into Assessment Service Application")]
-        [When(@"the (Assessor User|Manage User|Apply User) is logged into Assessment Service Application")]
+        [Given(@"the (Assessor User|Standard Apply User|Manage User|Apply User) is logged into Assessment Service Application")]
+        [When(@"the (Assessor User|Standard Apply User|Manage User|Apply User) is logged into Assessment Service Application")]
         public void GivenTheUserIsLoggedIntoAssessmentServiceApplication(string user)
         {
             _stepsHelper.LaunchAssessmentServiceApplication();
 
-            if (user.Equals("Assessor User") || user.Equals("Manage User"))
-                _loggedInHomePage = _stepsHelper.LoginToAssessmentServiceApplication(user);
+            if (user.Equals("Assessor User"))
+                _loggedInHomePage = _stepsHelper.LoginToAssessmentServiceApplication(_context.GetUser<EPAOAssessorUser>());            
+            else if (user.Equals("Manage User"))
+                _loggedInHomePage = _stepsHelper.LoginToAssessmentServiceApplication(_context.GetUser<EPAOManageUser>());
+            else if (user.Equals("Standard Apply User"))
+            {
+                var usercreds = _context.GetUser<EPAOStandardApplyUser>();
+                _ePAOSqlDataHelper.DeleteStandardApplicication(_ePAOApplyStandardData.ApplyforStandardCode, _ePAOApplyStandardData.StandardAssessorOrganisationEpaoId, usercreds.Username);
+                _loggedInHomePage = _stepsHelper.LoginToAssessmentServiceApplication(usercreds);
+            }
             else if (user.Equals("Apply User"))
             {
-                _ePAOSqlDataHelper.ResetApplyUser(_ePAOConfig.EPAOApplyUserLoginUsername);
+                _ePAOSqlDataHelper.ResetApplyUser(_context.GetUser<EPAOApplyUser>().Username);
                 new AS_LandingPage(_context).ClickStartButton().SignInAsApplyUser();
             }
         }
@@ -58,30 +70,21 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         }
 
         [When(@"the User goes through certifying a Privately funded Apprentice")]
-        public void WhenTheUserGoesThroughCertifyingAPrivatelyFundedApprentice()
-        {
-            _stepsHelper.CertifyPrivatelyFundedApprentice();
-        }
+        public void WhenTheUserGoesThroughCertifyingAPrivatelyFundedApprentice() => _stepsHelper.CertifyPrivatelyFundedApprentice();
 
         [Then(@"the Assessment is recorded and the User is able to navigate back to certifying another Apprentice")]
-        public void ThenTheAssessmentIsRecordedAndTheUserIsAbleToNavigateBackToCertifyingAnotherApprentice()
-        {
-            new AS_AssessmentRecordedPage(_context).ClickRecordAnotherGradeLinkInAssessmentRecordedPage();
-        }
+        public void ThenTheAssessmentIsRecordedAndTheUserIsAbleToNavigateBackToCertifyingAnotherApprentice() => new AS_AssessmentRecordedPage(_context).ClickRecordAnotherGradeLinkInAssessmentRecordedPage();
 
         [When(@"the User goes through certifying an already assessed Apprentice")]
         public void WhenTheUserGoesThroughCertifyingAnAlreadyAssessedApprentice()
         {
             new AS_LoggedInHomePage(_context).ClickOnRecordAGrade();
             _recordAGradePage = new AS_RecordAGradePage(_context);
-            _recordAGradePage.EnterApprentcieDetailsAndContinue(_ePAOConfig.EPAOAlreadyAssessedApprenticeName, _ePAOConfig.EPAOAlreadyAssessedApprenticeUln);
+            _recordAGradePage.EnterApprentcieDetailsAndContinue(_ePAOConfig.AlreadyAssessedApprenticeName, _ePAOConfig.AlreadyAssessedApprenticeUln);
         }
 
         [Then(@"'(.*)' message is displayed")]
-        public void ThenErrorMessageIsDisplayed(string errorMessage)
-        {
-            Assert.AreEqual(_recordAGradePage.GetPageTitle(), errorMessage);
-        }
+        public void ThenErrorMessageIsDisplayed(string errorMessage) => Assert.AreEqual(_recordAGradePage.GetPageTitle(), errorMessage);
 
         [Then(@"the '(.*)' is displayed")]
         public void ThenErrorIsDisplayed(string errorMessage)
@@ -115,16 +118,16 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
                     _recordAGradePage.EnterApprentcieDetailsAndContinue("", "");
                     break;
                 case "by entering valid Family name and blank ULN":
-                    _recordAGradePage.EnterApprentcieDetailsAndContinue(_ePAOConfig.EPAOApprenticeNameWithSingleStandard, "");
+                    _recordAGradePage.EnterApprentcieDetailsAndContinue(_ePAOConfig.ApprenticeNameWithSingleStandard, "");
                     break;
                 case "by entering blank Family name and Valid ULN":
-                    _recordAGradePage.EnterApprentcieDetailsAndContinue("", _ePAOConfig.EPAOApprenticeUlnWithSingleStandard);
+                    _recordAGradePage.EnterApprentcieDetailsAndContinue("", _ePAOConfig.ApprenticeUlnWithSingleStandard);
                     break;
                 case "by entering valid Family name but ULN less than 10 digits":
-                    _recordAGradePage.EnterApprentcieDetailsAndContinue(_ePAOConfig.EPAOApprenticeNameWithSingleStandard, _dataHelper.GetRandomNumber(9));
+                    _recordAGradePage.EnterApprentcieDetailsAndContinue(_ePAOConfig.ApprenticeNameWithSingleStandard, _dataHelper.GetRandomNumber(9));
                     break;
                 case "by entering valid Family name and Invalid ULN":
-                    _recordAGradePage.EnterApprentcieDetailsAndContinue(_ePAOConfig.EPAOApprenticeNameWithSingleStandard, _dataHelper.GetRandomNumber(11));
+                    _recordAGradePage.EnterApprentcieDetailsAndContinue(_ePAOConfig.ApprenticeNameWithSingleStandard, _dataHelper.GetRandomNumber(11));
                     break;
             }
         }
@@ -133,10 +136,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         public void GivenNavigatesToAssessmentPage() => new AS_LoggedInHomePage(_context).ClickOnRecordAGrade();
 
         [Given(@"the User is on the Apprenticeship achievement date page")]
-        public void GivenTheUserIsOnTheApprenticeshipAchievementDatePage()
-        {
-            _stepsHelper.CertifyPrivatelyFundedApprentice(true);
-        }
+        public void GivenTheUserIsOnTheApprenticeshipAchievementDatePage() => _stepsHelper.CertifyPrivatelyFundedApprentice(true);
 
         [When(@"the User enters the date before the Year 2017")]
         public void WhenTheUserEntersTheDateBeforeTheYear2017()
@@ -146,16 +146,10 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         }
 
         [When(@"the User enters the future date")]
-        public void WhenTheUserEntersTheFutureDate()
-        {
-            _achievementDatePage.EnterAchievementGradeDateForPrivatelyFundedApprenticeAndContinue(_dataHelper.GetCurrentYear + 1);
-        }
+        public void WhenTheUserEntersTheFutureDate() => _achievementDatePage.EnterAchievementGradeDateForPrivatelyFundedApprenticeAndContinue(_dataHelper.CurrentYear + 1);
 
         [Then(@"(.*) is displayed in the Apprenticeship achievement date page")]
-        public void ThenDateErrorIsDisplayedInTheApprenticeshipAchievementDatePage(string errorText)
-        {
-            Assert.AreEqual(_achievementDatePage.GetDateErrorText(), errorText);
-        }
+        public void ThenDateErrorIsDisplayedInTheApprenticeshipAchievementDatePage(string errorText) => Assert.AreEqual(_achievementDatePage.GetDateErrorText(), errorText);
 
         [When(@"the (.*) is on the Confirm Assessment Page")]
         public void WhenTheUserIsOnTheConfirmAssessmentPage(string user)
@@ -168,7 +162,6 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         public void ThenTheChangeLinksNavigateToTheRespectivePages()
         {
             _checkAndSubmitAssessmentPage = new AS_CheckAndSubmitAssessmentPage(_context);
-
             _checkAndSubmitAssessmentPage = _checkAndSubmitAssessmentPage.ClickGradeChangeLink().ClickBackLink();
             _checkAndSubmitAssessmentPage = _checkAndSubmitAssessmentPage.ClickOptionChangeLink().ClickBackLink();
             _checkAndSubmitAssessmentPage = _checkAndSubmitAssessmentPage.ClickAchievementDateChangeLink().ClickBackLink();
@@ -179,16 +172,10 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         }
 
         [When(@"the User navigates to the Completed assessments tab")]
-        public void WhenTheUserNavigatesToTheCompletedAssessmentsTab()
-        {
-            _loggedInHomePage.ClickCompletedAssessmentsLink();
-        }
+        public void WhenTheUserNavigatesToTheCompletedAssessmentsTab() => _loggedInHomePage.ClickCompletedAssessmentsLink();
 
         [Then(@"the User is able to view the history of the assessments")]
-        public void ThenTheUserIsAbleToViewTheHistoryOfTheAssessments()
-        {
-            new AS_CompletedAssessmentsPage(_context).VerifyTableHeaders();
-        }
+        public void ThenTheUserIsAbleToViewTheHistoryOfTheAssessments() => new AS_CompletedAssessmentsPage(_context).VerifyTableHeaders();
 
         [When(@"the User navigates to Organisation details page")]
         public void WhenTheUserNavigatesToOrganisationDetailsPage()
@@ -202,7 +189,6 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         public void ThenTheUserIsAbleToChangeTheRegisteredDetails()
         {
             _organisationDetailsPage = new AS_OrganisationDetailsPage(_context);
-
             _organisationDetailsPage = _stepsHelper.ChangeContactName(_organisationDetailsPage);
             _organisationDetailsPage = _stepsHelper.ChangePhoneNumber(_organisationDetailsPage);
             _organisationDetailsPage = _stepsHelper.ChangeAddress(_organisationDetailsPage);
@@ -255,16 +241,10 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         private string AddAssertResultText(bool condition) => condition ? "permission selected is not shown in 'User details' page" : "permission selected is not shown in 'User details' page";
 
         [When(@"the User initiates inviting a new user journey")]
-        public void WhenTheUserInitiatesInvitingANewUserJourney()
-        {
-            _newUserEmailId = _stepsHelper.InviteAUser(_loggedInHomePage, _dataHelper);
-        }
-
+        public void WhenTheUserInitiatesInvitingANewUserJourney() => _newUserEmailId = _stepsHelper.InviteAUser(_loggedInHomePage, _dataHelper);
+    
         [Then(@"a new User is invited and able to initiate inviting another user")]
-        public void ThenANewUserIsInvitedAndAbleToInitiateInvitingAnotherUser()
-        {
-            new AS_UserInvitedPage(_context).ClickInviteSomeoneElseLink();
-        }
+        public void ThenANewUserIsInvitedAndAbleToInitiateInvitingAnotherUser() => new AS_UserInvitedPage(_context).ClickInviteSomeoneElseLink();
 
         [Then(@"the User can remove newly invited user")]
         public void ThenTheUserCanRemoveNewlyInvitedUser()
@@ -274,6 +254,60 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
                 .ClickOnNewlyAddedUserLink(_newUserEmailId)
                 .ClicRemoveThisUserLinkInUserDetailPage()
                 .ClickRemoveUserButtonInRemoveUserPage();
+        }
+
+        [Then(@"the user can apply to assess a standard")]
+        public void ThenTheUserCanApplyToAssessAStandard()
+        {
+           var applyToStandard = _loggedInHomePage.ApplyToAssessStandard()
+                .SelectApplication()
+                .StartApplication()
+                .Start()
+                .EnterStandardName()
+                .Apply()
+                .ConfirmAndApply()
+                .GoToApplyToStandard();
+
+            applyToStandard = applyToStandard.AccessYourPolicies_01()
+                .EnterRegNumber()
+                .UploadAuditPolicy()
+                .UploadPublicLiabilityInsurance()
+                .UploadProfessionalIndemnityInsurance()
+                .UploadEmployersLiabilityInsurance()
+                .UploadSafeguardingPolicy()
+                .UploadPreventAgendaPolicy()
+                .UploadConflictOfinterestPolicy()
+                .UploadMonitoringProcedure()
+                .UploadModerationProcesses()
+                .UploadComplaintsPolicy()
+                .UploadFairAccess()
+                .UploadConsistencyAssurance()
+                .EnterImproveTheQuality()
+                .EnterEngagement()
+                .EnterMembershipDetails()
+                .EnterHowManyAssessors()
+                .EnterHowManyEndPointAssessment()
+                .EnterVolume()
+                .EnterHowRecruitAndTrainAssessors()
+                .EnterExperience()
+                .EnterOccupationalExpertise()
+                .EnterDeliverEndPoint()
+                .EnterIntendToOutsource()
+                .EnterEngageWithEmployers()
+                .EnterManageAnyPotentialConflict()
+                .ChooseLocation()
+                .EnterDayToStart()
+                .EnterAssessmentPlan()
+                .EnterReviewAndMaintainPlan()
+                .EnterSecureITInfrastructurePlan()
+                .EnterAssessmentAdministration()
+                .EnterAssessmentProduct()
+                .EnterAssessmentContent()
+                .EnterCollationOutcome()
+                .EnterAssessmentResutls()
+                .EnterWebAddress();
+
+            applyToStandard.ReturnToApplicationOverview().Submit();
         }
     }
 }

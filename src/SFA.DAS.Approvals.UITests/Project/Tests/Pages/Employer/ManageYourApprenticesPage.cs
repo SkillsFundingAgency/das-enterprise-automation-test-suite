@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using OpenQA.Selenium;
 using SFA.DAS.Approvals.UITests.Project.Helpers;
 using SFA.DAS.UI.Framework.TestSupport;
@@ -20,9 +22,15 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private readonly PageInteractionHelper _pageInteractionHelper;
         #endregion
 
-        private By ApprenticeSearchField => By.Id("search-input");
-        private By SearchButton => By.CssSelector(".submit-search");
-        private By ApprenticesTable => By.ClassName("tableResponsive");
+        private By ApprenticeSearchField => By.Id("searchTerm");
+        private By SearchButton => By.ClassName("das-search-form__button");
+        private By ApprenticesTable => By.CssSelector("table.govuk-table.das-table--responsive");
+        private By SelectFilterDropdown => By.Id("selectedStatus");
+        private By ApplyFilter => By.CssSelector("#main-content .govuk-button");
+        private By DownloadFilteredDataLink => By.PartialLinkText("Download filtered data");
+        private By NextPageLink => By.PartialLinkText("Next");
+        private By ApprenticeInfoRow => By.CssSelector("tbody tr");
+        private By ViewApprenticeFullName => By.PartialLinkText(_dataHelper.ApprenticeFullName);
 
         public ManageYourApprenticesPage(ScenarioContext context): base(context)
         {
@@ -39,7 +47,28 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         {
             SearchForApprentice(_dataHelper.ApprenticeFirstname);
 
-            _tableRowHelper.SelectRowFromTable("View", _dataHelper.ApprenticeFullName);
+            var apprenticeRows = _pageInteractionHelper.FindElements(ApprenticeInfoRow);
+            var detailsLinks = _pageInteractionHelper.FindElement(ViewApprenticeFullName);
+
+            int i = 0;
+            foreach (IWebElement apprenticeRow in apprenticeRows)
+            {
+                if (apprenticeRow.Text.Contains(_dataHelper.ApprenticeFullName))
+                {
+                    _formCompletionHelper.ClickElement(detailsLinks);
+                    return new ApprenticeDetailsPage(_context);
+                }
+                i++;
+            }
+            if (_pageInteractionHelper.IsElementDisplayed(NextPageLink))
+            {
+                _formCompletionHelper.ClickElement(NextPageLink);
+            }
+            else
+            {
+                throw new Exception("Apprentice with - " + _dataHelper.ApprenticeFullName + " - name is not found");
+            }
+
             return new ApprenticeDetailsPage(_context);
         }
 
@@ -47,18 +76,25 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         {
             _formCompletionHelper.EnterText(ApprenticeSearchField, apprenticeName);
             _formCompletionHelper.ClickElement(SearchButton);
-            return this;
+            return new ManageYourApprenticesPage(_context);
         }
 
-        internal bool CheckIfApprenticeExists(bool isEdited = false)
+        internal void VerifyApprenticeExists()
         {
-            if (isEdited)
-                SearchForApprentice(_editedApprenticeDataHelper.ApprenticeEditedFullName);
-            else
-                SearchForApprentice(_dataHelper.Ulns.Single());
-
-            return _pageInteractionHelper.IsElementDisplayed(ApprenticesTable);
+            _pageInteractionHelper.Verify(() =>
+            {
+                return _pageInteractionHelper.FindElements(ApprenticesTable).Any();
+            }, () => SearchForApprentice(_editedApprenticeDataHelper.ApprenticeEditedFullName));
         }
+
+        public ManageYourApprenticesPage Filter(string filterText)
+        {
+            _formCompletionHelper.SelectFromDropDownByText(SelectFilterDropdown, filterText);
+            _formCompletionHelper.ClickElement(ApplyFilter);
+            return new ManageYourApprenticesPage(_context);
+        }
+
+        public bool DownloadFilteredDataLinkIsDisplayed() => _pageInteractionHelper.IsElementDisplayed(DownloadFilteredDataLink);
     }
 }
 

@@ -40,7 +40,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
             var entityName = _pageInteractionHelper.GetText(LegalEntityName);
 
-            SetEmployerName(_regexHelper.Remove(entityName, "(registered name)")?.Trim());
+            SetEmployerName(EscapePatternHelper.StringEscapePattern(entityName, "(registered name)")?.Trim());
 
             Continue();
             return new ChooseApprenticeshipLocationPage(_context);

@@ -50,6 +50,6 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
             _formCompletionHelper.SelectFromDropDownByValue(Filter, "Draft");
             _pageInteractionHelper.WaitforURLToChange($"Filter=Draft");
             _tableRowHelper.SelectRowFromTable("Edit and submit", _vacancyTitleDatahelper.VacancyTitle);
-        }
+        }        
     }
 }

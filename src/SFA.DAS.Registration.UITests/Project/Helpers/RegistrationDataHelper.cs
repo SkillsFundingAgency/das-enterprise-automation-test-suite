@@ -7,27 +7,33 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
     {
         private readonly RandomDataGenerator _randomDataGenerator;
 
-        public RegistrationDataHelper(string gatewayUsername, string password, RandomDataGenerator randomDataGenerator)
+        public RegistrationDataHelper(string gatewayUsername, string password, string organisationName, RandomDataGenerator randomDataGenerator)
         {
             _randomDataGenerator = randomDataGenerator;
             RandomEmail = $"{gatewayUsername}@mailinator.com";
             AnotherRandomEmail = $"{gatewayUsername}_2@mailinator.com";
-            AornNumber = $"A{DateTime.Now.ToString("ddMMyyHHmmss")}";
+            AornNumber = $"A{GetDateTimeValue()}";
             Password = password;
             InvalidGGId = RandomAlphaNumericString(10);
             InvalidGGPassword = RandomNumericString(10);
             InvalidCompanyNumber = RandomNumericString(10);
             OrgNameForManualEntry = $"Manually Added Organisation_{DateTime.Now.ToString("ddMMMyyyy_HHmmss")}";
+            CompanyTypeOrg = organisationName;
         }
 
+        public string FirstName => "AutoFirstName";
+        public string LastName => "AutoLastName";
+        public string FullName => $"{FirstName } {LastName}";
         public string RandomEmail { get; }
-        public string AnotherRandomEmail { get;  }
-        public string AornNumber{ get; }
+        public string AnotherRandomEmail { get; }
+        public string AornNumber { get; }
         public string Password { get; }
+        public string NewPassword => "Test1234";
         public string InvalidGGId { get; }
         public string InvalidGGPassword { get; }
         public string InvalidCompanyNumber { get; }
-        public string CompanyTypeOrg => "ESFA LTD";
+        public string CompanyTypeOrg { get; }
+        public string CompanyTypeOrg2 => "TESCO PLC";
         public string PublicSectorTypeOrg => "Royal School Hampstead";
         public string CharityTypeOrg1Number => "200895";
         public string CharityTypeOrg1Name => "ALLHALLOWS CHARITY";
@@ -41,8 +47,10 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
         public string FirstLineAddressForManualEntry => "5 Quinton Road";
         public string CityNameForManualEntry => "Coventry";
         public string PostCodeForManualEntry => "CV1 2WT";
-
+        public string InvalidPaye => $"{RandomNumericString(3)}/{RandomAlphaNumericString(7)}";
+        public string InvalidAornNumber => $"A{GetDateTimeValue()}";
         private string RandomAlphaNumericString(int length) => _randomDataGenerator.GenerateRandomAlphanumericString(length);
         private string RandomNumericString(int length) => _randomDataGenerator.GenerateRandomNumber(length);
+        private string GetDateTimeValue() => DateTime.Now.ToString("ddMMyyHHmmss");
     }
 }

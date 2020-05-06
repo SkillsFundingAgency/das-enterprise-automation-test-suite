@@ -51,6 +51,16 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
         #endregion
 
         #region Section4
+        public ApplicationOverviewPage Verify_Section4(string status)
+        {
+            return VerifyIntroductionStatus_Section4(status)
+                .VerifyContinuity_Section4(status)
+                .VerifyEquality_Section4(status)
+                .VerifySafeguarding_Section4(status)
+                .VerifyHealthAndSafety_Section4(status)
+                .VerifyActingAsASubContractor(status);
+        }
+
         public ApplicationOverviewPage VerifyIntroductionStatus_Section4(string status) => Verify_Section4(ProtectingYourApprentices_1, status);
         public ApplicationOverviewPage VerifyContinuity_Section4(string status) => Verify_Section4(ProtectingYourApprentices_2, status);
         public ApplicationOverviewPage VerifyEquality_Section4(string status) => Verify_Section4(ProtectingYourApprentices_3, status);
@@ -62,7 +72,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
         #region Section3
         public ApplicationOverviewPage VerifyIntroductionStatus_Section3(string status) => Verify_Section3(CriminalAndComplianceChecks_1, status);
         public ApplicationOverviewPage VerifyChecksOnYourOrganisations_Section3(string status) => Verify_Section3(CriminalAndComplianceChecks_2, status);
-        public ApplicationOverviewPage VerifyIntroductionStatusControl_Section3(string status) => Verify_Section3(CriminalAndComplianceChecks_3, status);
+        public ApplicationOverviewPage VerifyIntroductionStatusControl_Section3(string status) => Verify_Section3(CriminalAndComplianceChecks_3, status, 1);
         public ApplicationOverviewPage VerifyCheckWhoIsInControl_Section3(string status) => Verify_Section3(CriminalAndComplianceChecks_4, status);
         #endregion
 
@@ -86,13 +96,13 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
         private ApplicationOverviewPage Verify_Section6(string taskName, string status) => VerifySections(PlanningApprenticeshipTraining, taskName, status);
         private ApplicationOverviewPage Verify_Section5(string taskName, string status) => VerifySections(ReadinessToEngage, taskName, status);
         private ApplicationOverviewPage Verify_Section4(string taskName, string status) => VerifySections(ProtectingYourApprentices, taskName, status);
-        private ApplicationOverviewPage Verify_Section3(string taskName, string status) => VerifySections(CriminalAndComplianceChecks, taskName, status);
+        private ApplicationOverviewPage Verify_Section3(string taskName, string status, int index = 0) => VerifySections(CriminalAndComplianceChecks, taskName, status, index);
         private ApplicationOverviewPage Verify_Section2(string taskName, string status) => VerifySections(FinancialEvidence, taskName, status);
         private ApplicationOverviewPage Verify_Section1(string taskName, string status) => VerifySections(Yourorganisation, taskName, status);
 
-        private ApplicationOverviewPage VerifySections(string sectionName, string taskName, string status)
+        private ApplicationOverviewPage VerifySections(string sectionName, string taskName, string status, int index = 0)
         {
-            VerifyElement(GetTaskStatusElement(sectionName, taskName), status, () => formCompletionHelper.ClickLinkByText("Application overview"));
+            VerifyElement(GetTaskStatusElement(sectionName, taskName, index), status, () => formCompletionHelper.ClickLinkByText("Application overview"));
             return new ApplicationOverviewPage(_context);
         }
     }

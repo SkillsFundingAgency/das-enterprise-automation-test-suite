@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.UI.Framework;
 using SFA.DAS.UI.FrameworkHelpers;
 using System;
 using System.Collections.Generic;
@@ -42,7 +43,7 @@ namespace SFA.DAS.RAA.DataGenerator
             SecondQuestion = _randomDataGenerator.GenerateRandomAlphabeticString(15);
             AdditionalLocationInformation = _randomDataGenerator.GenerateRandomAlphabeticString(5);
             ShareApplicationEmail = $"{TrainingContactName}@gmail.com";
-            OptionalMessage = _randomDataGenerator.GenerateRandomAlphabeticString(30);            
+            OptionalMessage = _randomDataGenerator.GenerateRandomAlphabeticString(30);              
         }
 
         public string EmployerErn { get; private set; }
@@ -55,6 +56,7 @@ namespace SFA.DAS.RAA.DataGenerator
 
             return randomEmployer;
         }
+                
 
         public string EmployerDescription { get; }
 
@@ -121,5 +123,7 @@ namespace SFA.DAS.RAA.DataGenerator
         public string OptionalMessage { get; }
 
         private string WebsiteUrl(string url) => $"https://www.{url}.com";
+
+        public string TrainingStandard => EnvironmentConfig.IsTestEnvironment ? "Accountancy Taxation Professional" : "Accountancy / Taxation Professional";
     }
 }

@@ -150,15 +150,17 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [When(@"the Employer uses the reservation to create and approve (\d) cohort and sends to provider")]
         public void TheEmployerUsesTheReservationToCreateAndApproveCohortAndSendsToProvider(int numberOfApprentices)
         {
-            _reviewYourCohortPage = _employerStepsHelper.NonLevyEmployerAddsApprenticesUsingReservations(numberOfApprentices, false);
+            _reviewYourCohortPage = _employerStepsHelper.NonLevyEmployerAddsApprenticesUsingReservations(numberOfApprentices);
+
             var cohortReference = _employerStepsHelper.EmployerApproveAndSendToProvider(_reviewYourCohortPage);
+            
             _employerStepsHelper.SetCohortReference(cohortReference);
         }
 
         [When(@"the Employer uses the reservation and adds (\d) cohort and sends to provider")]
         public void TheEmployerUsesTheReservationAndAddsCohortAndSendsToProvider(int numberOfApprentices)
         {
-            _reviewYourCohortPage = _employerStepsHelper.NonLevyEmployerAddsApprenticesUsingReservations(numberOfApprentices, false);
+            _reviewYourCohortPage = _employerStepsHelper.NonLevyEmployerAddsApprenticesUsingReservations(numberOfApprentices);
 
             var cohortReference = _reviewYourCohortPage.EmployerSendsToTrainingProviderForReview()
                 .CohortReference();

@@ -2,7 +2,7 @@
 
 namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.OrganisationDetailsSectionPages
 {
-    public class AP_OD13_RegisterOfRemovedTrusteesPage : EPAO_BasePage
+    public class AP_OD13_RegisterOfRemovedTrusteesPage : EPAOApply_BasePage
     {
         protected override string PageTitle => "Register of removed trustees";
         private readonly ScenarioContext _context;

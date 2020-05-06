@@ -1,38 +1,42 @@
-﻿using SFA.DAS.UI.FrameworkHelpers;
+﻿using OpenQA.Selenium;
+using SFA.DAS.UI.FrameworkHelpers;
 using System;
+using System.Collections.Generic;
 
 namespace SFA.DAS.EPAO.UITests.Project.Helpers
 {
     public class EPAODataHelper : RandomElementHelper
     {
-        private readonly RandomDataGenerator _randomDataGenerator;
+        protected readonly RandomDataGenerator randomDataGenerator;
 
         public EPAODataHelper(RandomDataGenerator randomDataGenerator) : base(randomDataGenerator)
         {
-            _randomDataGenerator = randomDataGenerator;
-            GetCurrentDay = DateTime.Now.Day;
-            GetCurrentMonth = DateTime.Now.Month;
-            GetCurrentYear = DateTime.Now.Year;
-            GetRandomEmail = GetDateTimeValue() + "@mailinator.com";
-            GetRandomWebsiteAddress = "http://www.TEST_" + GetDateTimeValue() + ".com";
+            this.randomDataGenerator = randomDataGenerator;
+            CurrentDay = DateTime.Now.Day;
+            CurrentMonth = DateTime.Now.Month;
+            CurrentYear = DateTime.Now.Year;
+            RandomEmail = GetDateTimeValue() + "@mailinator.com";
+            RandomWebsiteAddress = "http://www.TEST" + GetDateTimeValue() + ".com";
         }
 
-        public int GetCurrentDay { get; }
-        public int GetCurrentMonth { get; }
-        public int GetCurrentYear { get; }
-        public string GetRandomEmail { get; }
-        public string GetRandomWebsiteAddress { get; }
-        public string GetTownName => "Coventry";
-        public string GetCountyName => "Warwick";
-        public string GetPostCode => "CV1 2WT";
+        public int CurrentDay { get; }
+        public int CurrentMonth { get; }
+        public int CurrentYear { get; }
+        public string RandomEmail { get; }
+        public string RandomWebsiteAddress { get; }
+        public string TownName => "Coventry";
+        public string CountyName => "Warwick";
+        public string PostCode => "CV1 2WT";
         public string InvalidOrgNameWithAlphabets => "asfasfasdfasdf";
         public string InvalidOrgNameWithNumbers => "54678900";
         public string InvalidOrgNameWithAWord => "EPA01";
 
-        public string GetRandomNumber(int length) => _randomDataGenerator.GenerateRandomNumber(length);
+        public string GetRandomNumber(int length) => randomDataGenerator.GenerateRandomNumber(length);
 
-        public string GetRandomAlphabeticString(int length) => _randomDataGenerator.GenerateRandomAlphabeticString(length);
+        public string GetRandomAlphabeticString(int length) => randomDataGenerator.GenerateRandomAlphabeticString(length);
 
-        private string GetDateTimeValue() => DateTime.Now.ToString("ddMMMyyyy_HHmmss").ToUpper();
+        public IWebElement GetRandomElementFromListOfElements(List<IWebElement> options) => randomDataGenerator.GetRandomElementFromListOfElements(options);
+
+        private string GetDateTimeValue() => DateTime.Now.ToString("ddMMMyyyyHHmmss").ToUpper();
     }
 }

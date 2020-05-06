@@ -11,6 +11,8 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         #region Locators
         private By AddNewAccountButton => By.Id("add_new_account");
         private By OpenLink() => By.CssSelector("table a");
+        private By AccountLink(string orgName) => By.XPath($"//span[@class='vh' and contains(text(), '{orgName}')]");
+
         #endregion
 
         public YourAccountsPage(ScenarioContext context) : base(context)
@@ -19,10 +21,10 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             VerifyPage();
         }
 
-        public GatewayInformPage AddNewAccount()
+        public UsingYourGovtGatewayDetailsPage AddNewAccount()
         {
             formCompletionHelper.ClickElement(AddNewAccountButton);
-            return new GatewayInformPage(_context);
+            return new UsingYourGovtGatewayDetailsPage(_context);
         }
 
         public HomePage GoToHomePage(string organisationName)
@@ -31,10 +33,20 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             return new HomePage(_context);
         }
 
-        private void NavigateTo(string organisationName)
+        public HomePage ClickAccountLink(string orgName)
         {
-            formCompletionHelper.ClickElement(SearchLinkUrl(organisationName));
+            formCompletionHelper.Click(AccountLink(orgName));
+            objectContext.UpdateOrganisationName(orgName);
+            return new HomePage(_context);
         }
+
+        public HomePage OpenAccount()
+        {
+            formCompletionHelper.Click(OpenLink());
+            return new HomePage(_context);
+        }
+
+        private void NavigateTo(string organisationName) => formCompletionHelper.ClickElement(SearchLinkUrl(organisationName));
 
         private IWebElement SearchLinkUrl(string searchText) => pageInteractionHelper.GetLinkContains(OpenLink(), searchText);
     }

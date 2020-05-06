@@ -2,27 +2,21 @@
 {
     public class EPAOConfig
     {
-        public string EPAOAssessmentServiceUrl { get; set; }
-        public string EPAOAssessmentOpportunityFinderUrl { get; set; }
-        public string EPAOAssessorLoginUsername { get; set; }
-        public string EPAOAssessorLoginPassword { get; set; }
-        public string EPAOManageUserLoginUsername { get; set; }
-        public string EPAOManageUserLoginPassword { get; set; }
-        public string EPAOApplyUserLoginUsername { get; set; }
-        public string EPAOApplyUserFullName { get; set; }
-        public string EPAOApplyUserLoginPassword { get; set; }
-        public string EPAOApprenticeNameWithSingleStandard { get; set; }
-        public string EPAOApprenticeUlnWithSingleStandard { get; set; }
-        public string EPAOApprenticeNameWithMultipleStandards { get; set; }
-        public string EPAOApprenticeUlnWithMultipleStandards { get; set; }
-        public string EPAOApprenticeNameWithAStandardHavingLearningOption { get; set; }
-        public string EPAOApprenticeUlnWithAStandardHavingLearningOption { get; set; }
-        public string EPAOPrivatelyFundedApprenticeLastName { get; set; }
-        public string EPAOPrivatelyFundedApprenticeUln { get; set; }
-        public string EPAOPrivatelyFundedApprenticeGivenName { get; set; }
-        public string EPAOPrivatelyFundedUkprn { get; set; }
-        public string EPAOAlreadyAssessedApprenticeName { get; set; }
-        public string EPAOAlreadyAssessedApprenticeUln { get; set; }
-        public string EPAOAssessorDbConnectionString { get; set; }
+        public string AdminBaseUrl { get; set; }
+        public string AssessmentServiceUrl { get; set; }
+        public string AssessmentOpportunityFinderPath => "/find-an-assessment-opportunity";
+        public string ApprenticeNameWithSingleStandard { get; set; }
+        public string ApprenticeUlnWithSingleStandard { get; set; }
+        public string ApprenticeNameWithMultipleStandards { get; set; }
+        public string ApprenticeUlnWithMultipleStandards { get; set; }
+        public string ApprenticeNameWithAStandardHavingLearningOption { get; set; }
+        public string ApprenticeUlnWithAStandardHavingLearningOption { get; set; }
+        public string PrivatelyFundedApprenticeLastName { get; set; }
+        public string PrivatelyFundedApprenticeUln { get; set; }
+        public string PrivatelyFundedApprenticeGivenName { get; set; }
+        public string PrivatelyFundedUkprn { get; set; }
+        public string AlreadyAssessedApprenticeName { get; set; }
+        public string AlreadyAssessedApprenticeUln { get; set; }
+        public string AssessorDbConnectionString { get; set; }
     }
 }

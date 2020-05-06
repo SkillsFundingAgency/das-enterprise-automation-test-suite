@@ -1,7 +1,7 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common;
+using SFA.DAS.Approvals.UITests.Project.Tests.Pages.DynamicHomePage;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
-using SFA.DAS.Registration.UITests.Project.Tests.Pages;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
@@ -16,6 +16,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
         private readonly FormCompletionHelper _formCompletionHelper;
         private readonly ScenarioContext _context;
         #endregion
+
         private By AddApprenticeRadioButton => By.CssSelector("label[for=WhatsNext-add]");
 
         public SuccessfullyReservedFundingPage(ScenarioContext context) : base(context)
@@ -25,16 +26,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
             VerifyPage();
         }
 
-        internal HomePage GoToHomePage()
+        public DynamicHomePages GoToDynamicHomePage()
         {
             SelectRadioOptionByForAttribute("WhatsNext-home");
             _formCompletionHelper.ClickElement(ContinueButton);
-            return new HomePage(_context);
-        }
-
-        private void ChooseToAddApprenticeRadioButton()
-        {
-            _formCompletionHelper.ClickElement(AddApprenticeRadioButton);
+            return new DynamicHomePages(_context);
         }
 
         internal AddAnApprenitcePage AddApprentice()
@@ -44,17 +40,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
             return new AddAnApprenitcePage(_context);
         }
 
-        public new SuccessfullyReservedFundingPage VerifySucessMessage()
-        {
-            base.VerifySucessMessage();
-            return this;
-        }
-
         internal AddApprenticeDetailsPage AddAnotherApprentice()
         {
             ChooseToAddApprenticeRadioButton();
             Continue();
             return new AddApprenticeDetailsPage(_context);
         }
+
+        private void ChooseToAddApprenticeRadioButton() => _formCompletionHelper.ClickElement(AddApprenticeRadioButton);
     }
 }

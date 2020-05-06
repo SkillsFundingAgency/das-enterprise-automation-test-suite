@@ -9,6 +9,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
     public class AddTrainingProviderDetailsPage : BasePage
     {
         protected override string PageTitle => "Add training provider details";
+        protected override By ContinueButton => By.Id("continue-button");
 
         #region Helpers and Context
         private readonly FormCompletionHelper _formCompletionHelper;

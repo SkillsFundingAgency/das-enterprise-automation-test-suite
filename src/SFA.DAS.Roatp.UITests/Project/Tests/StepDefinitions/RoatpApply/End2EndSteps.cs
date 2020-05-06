@@ -16,12 +16,14 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpApply
         private readonly SelectRouteStepsHelper _selectRouteStepsHelper;
         private ApplicationOverviewPage _overviewPage;
         private ApplicationSubmittedPage _applicationSubmittedPage;
+        private readonly FinancialEvidence_Section2_Helper _financialEvidence_Section2_Helper;
 
         public End2EndSteps(ScenarioContext context)
         {
             _context = context;
             _end2EndStepsHelper = new RoatpApplyEnd2EndStepsHelper();
             _selectRouteStepsHelper = new SelectRouteStepsHelper(_context);
+            _financialEvidence_Section2_Helper = new FinancialEvidence_Section2_Helper();
         }
 
         [Then(@"the provider do not accept the Terms and conditions")]
@@ -33,14 +35,26 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpApply
         [Given(@"the provider initates an application as employer route charity")]
         public void GivenTheProviderInitatesAnApplicationAsEmployerRouteCharity() => _overviewPage = _selectRouteStepsHelper.CompleteProviderCharityRouteSection();
 
-        [Given(@"the provider initates an application as supporting route soletrader")]
-        public void GivenTheProviderInitatesAnApplicationAsSupportingRouteSoletrader() => _overviewPage = _selectRouteStepsHelper.CompleteProviderSupportRouteSection();
+        [Given(@"the provider initates an application as employer route")]
+        public void GivenTheProviderInitatesAnApplicationAsEmployerRouteCompany() => _overviewPage = _selectRouteStepsHelper.CompleteProviderCharityRouteSection();
+
+        [Given(@"the provider initates an application as supporting route")]
+        public void GivenTheProviderInitatesAnApplicationAsSupportingRoute() => _overviewPage = _selectRouteStepsHelper.CompleteProviderSupportRouteSection();
 
         [When(@"the provider completes Your organisation section")]
         public void WhenTheProviderCompletesYourOrganisationSection() => _overviewPage = _end2EndStepsHelper.CompleteYourOrganisation_Section1(_overviewPage);
 
+        [When(@"the provider completes Your organisation section for company and charity")]
+        public void WhenTheProviderCompletesYourOrganisationSectionForCompanyAndCharity() => _overviewPage = _end2EndStepsHelper.CompleteYourOrganisation_Section1CharityAndCompany(_overviewPage);
+
         [When(@"the provider completes Your organisation section for charity")]
         public void WhenTheProviderCompletesYourOrganisationSectionForCharity() => _overviewPage = _end2EndStepsHelper.CompleteYourOrganisation_Section1_Charity(_overviewPage);
+
+        [When(@"the provider completes Your organisation section for Government Statue has a website")]
+        public void WhenTheProviderCompletesYourOrganisationSectionForGovernmentStatueHasAWebsite() => _overviewPage = _end2EndStepsHelper.CompleteYourOrganisation_Section1_GovernmentStatue(_overviewPage);
+
+        [When(@"the provider completes Your organisation section for FHA exemptions")]
+        public void WhenTheProviderCompletesYourOrganisationSectionForFHAExemptions() => _overviewPage = _end2EndStepsHelper.CompleteYourOrganisation_Section1_FHAExempt(_overviewPage);
 
         [When(@"the provider completes Your organisation section for supporting route")]
         public void WhenTheProviderCompletesYourOrganisationSectionForSupportingRoute() => _overviewPage = _end2EndStepsHelper.CompleteYourOrganisation_Section1_Support(_overviewPage);
@@ -50,6 +64,9 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpApply
 
         [When(@"the provider completes Financial Evidence section for no ultimate parent company")]
         public void WhenTheProviderCompletesFinancialEvidenceSectionForNoUltimateParentCompany() => _overviewPage = _end2EndStepsHelper.CompleteFinancialEvidence_Section2_ForNoUltimateParentCompany(_overviewPage);
+
+        [When(@"the provider verifies Financial Evidence section status as not required")]
+        public void WhenTheProviderVerifiesFinancialEvidenceSectionStatusAsNotRequired() => _overviewPage = _financialEvidence_Section2_Helper.VerifyFinancialEvidenceSectionExempted(_overviewPage);
 
         [When(@"the provider completes Financial Evidence section for supporting route")]
         public void WhenTheProviderCompletesFinancialEvidenceSectionForSupportingRoute() => _overviewPage = _end2EndStepsHelper.CompleteFinancialEvidence_Section2_ForSupportingRoute(_overviewPage);

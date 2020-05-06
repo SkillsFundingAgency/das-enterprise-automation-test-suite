@@ -1,4 +1,6 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.Approvals.UITests.Project.Tests.Pages.DynamicHomePage;
+using SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
@@ -8,6 +10,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
     public class StartAddingApprenticesPage : BasePage
     {
         protected override string PageTitle => "Start adding apprentices";
+        protected override By ContinueButton => By.Id("continue-button");
 
         #region Helpers and Context
         private readonly PageInteractionHelper _pageInteractionHelper;
@@ -54,6 +57,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             EmployerAgreesToAdds();
             Continue();
             return new AddApprenticeDetailsPage(_context);
+        }
+        public ChooseAReservationPage DynamicHomePageNonLevyEmployerAddsApprentices()
+        {
+            EmployerAgreesToAdds();
+            Continue();
+            return new ChooseAReservationPage(_context);
         }
     }
 }

@@ -1,6 +1,8 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.Approvals.UITests.Project.Tests.Pages.DynamicHomePage;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
+using System;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
@@ -8,19 +10,21 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
     public class ApproveApprenticeDetailsPage : BasePage
     {
         protected override string PageTitle => "ApproveAndNotifyTrainingProvider apprentice details";
-
+      
         #region Helpers and Context
         private readonly FormCompletionHelper _formCompletionHelper;
+        private readonly PageInteractionHelper _pageInteractionHelper;
         private readonly ScenarioContext _context;
         #endregion
 
         protected override By ContinueButton => By.CssSelector("#submitCohort button");
-
+        
         public ApproveApprenticeDetailsPage(ScenarioContext context) : base(context)
         {
             _context = context;
             _formCompletionHelper = context.Get<FormCompletionHelper>();
-            VerifyPage();
+            _pageInteractionHelper = context.Get<PageInteractionHelper>();
+            VerifyPage();            
         }
 
         public ReviewYourCohortPage SubmitApproveAndSendToTrainingProvider()

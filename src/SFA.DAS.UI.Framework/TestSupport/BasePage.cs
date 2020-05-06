@@ -4,6 +4,7 @@ using OpenQA.Selenium;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 using SFA.DAS.ConfigurationBuilder;
+using SFA.DAS.TestDataExport;
 
 namespace SFA.DAS.UI.Framework.TestSupport
 {
@@ -24,9 +25,12 @@ namespace SFA.DAS.UI.Framework.TestSupport
         protected virtual By BackLink => By.CssSelector(".govuk-back-link, .back-link");
         protected virtual By RadioLabels => By.CssSelector(".govuk-radios__label");
         protected virtual By CheckBoxLabels => By.CssSelector(".govuk-checkboxes__label");
+
         protected abstract string PageTitle { get; }
 
-        public BasePage(ScenarioContext context)
+        protected virtual By AcceptCookieButton { get; }
+
+        protected BasePage(ScenarioContext context)
         {
             _frameworkConfig = context.Get<FrameworkConfig>();
             _webDriver = context.GetWebDriver();
@@ -36,12 +40,16 @@ namespace SFA.DAS.UI.Framework.TestSupport
             var objectContext = context.Get<ObjectContext>();
             _directory = objectContext.GetDirectory();
             _browser = objectContext.GetBrowser();
-            TakeScreenShot();
+            
+            if (_frameworkConfig.IsVstsExecution)
+                ScreenshotHelper.TakeScreenShot(_webDriver, _directory, _screenShotTitleGenerator.GetNextCount());
         }
 
         protected bool VerifyPageAfterRefresh(By locator) => _pageInteractionHelper.VerifyPageAfterRefresh(locator);
 
         protected bool VerifyPage(Func<List<IWebElement>> func) => _pageInteractionHelper.VerifyPage(func, PageTitle);
+
+        protected bool VerifyPage(Func<List<IWebElement>> func, string expected) => _pageInteractionHelper.VerifyPage(func, expected);
 
         protected bool VerifyElement(Func<IWebElement> func, string text, Action retryAction) => _pageInteractionHelper.VerifyPage(func, text, retryAction);
 
@@ -61,10 +69,12 @@ namespace SFA.DAS.UI.Framework.TestSupport
 
         protected void NavigateBack() => _formCompletionHelper.Click(BackLink);
 
-        private void TakeScreenShot()
+        protected void AcceptCookies()
         {
-            if (_frameworkConfig.IsVstsExecution && !_browser.IsCloudExecution())
-                ScreenshotHelper.TakeScreenShot(_webDriver, _directory, _screenShotTitleGenerator.GetNextCount());
+            if (_pageInteractionHelper.IsElementDisplayed(AcceptCookieButton))
+            {
+                _formCompletionHelper.Click(AcceptCookieButton);
+            }
         }
     }
 }
