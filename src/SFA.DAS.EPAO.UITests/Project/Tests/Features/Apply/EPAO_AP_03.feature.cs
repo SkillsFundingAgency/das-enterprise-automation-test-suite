@@ -71,12 +71,14 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Features.Apply
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("EPAO_AP_03 - Apply Additional Standard")]
+        [NUnit.Framework.IgnoreAttribute("Ignored scenario")]
         [NUnit.Framework.CategoryAttribute("epao")]
         [NUnit.Framework.CategoryAttribute("epaoapply")]
         [NUnit.Framework.CategoryAttribute("regression")]
         public virtual void EPAO_AP_03_ApplyAdditionalStandard()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EPAO_AP_03 - Apply Additional Standard", null, new string[] {
+                        "ignore",
                         "epao",
                         "epaoapply",
                         "regression"});
