@@ -6,15 +6,15 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay.OrganisationChecks
 {
-    public class TradingNameCheckPage : RoatpGateWayBasePage
+    public class RemovedFromProfessionalOrTradeRegistersCheckPage : RoatpGateWayBasePage
     {
-        protected override string PageTitle => "Trading name check";
+        protected override string PageTitle => "Removed from any professional or trade registers in the last 3 years check";
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
         #endregion
 
-        public TradingNameCheckPage(ScenarioContext context) : base(context)
+        public RemovedFromProfessionalOrTradeRegistersCheckPage(ScenarioContext context) : base(context)
         {
             _context = context;
             VerifyPage();

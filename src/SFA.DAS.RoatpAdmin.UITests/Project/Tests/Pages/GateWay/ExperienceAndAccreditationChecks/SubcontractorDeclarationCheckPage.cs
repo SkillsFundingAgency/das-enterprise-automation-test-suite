@@ -6,15 +6,15 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay.OrganisationChecks
 {
-    public class TradingNameCheckPage : RoatpGateWayBasePage
+    public class SubcontractorDeclarationCheckPage : RoatpGateWayBasePage
     {
-        protected override string PageTitle => "Trading name check";
+        protected override string PageTitle => "Subcontractor declaration check";
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
         #endregion
 
-        public TradingNameCheckPage(ScenarioContext context) : base(context)
+        public SubcontractorDeclarationCheckPage(ScenarioContext context) : base(context)
         {
             _context = context;
             VerifyPage();

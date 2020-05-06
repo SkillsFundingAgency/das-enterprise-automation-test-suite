@@ -19,11 +19,11 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.GwAdmin
         [When(@"the gateway admin lands on the Dashboard")]
         public void WhenTheGatewayAdminLandsOnTheDashboard() => GoToGatewayLandingPage();
 
-        private GatewayLandingPage GoToGatewayLandingPage()
+        private StaffDashboardPage GoToGatewayLandingPage()
         {
             _loginStepsHelper.SubmitValidLoginDetails();
 
-            return new GatewayLandingPage(_context);
+            return new StaffDashboardPage(_context);
         }
     }
 }

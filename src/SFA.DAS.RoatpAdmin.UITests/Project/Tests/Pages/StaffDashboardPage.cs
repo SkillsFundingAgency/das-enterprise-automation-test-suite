@@ -5,7 +5,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages
 {
-   public class GatewayLandingPage : RoatpAdminBasePage
+   public class StaffDashboardPage : RoatpAdminBasePage
     {
         protected override string PageTitle => "Staff dashboard";
 
@@ -14,7 +14,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages
         private readonly RoatpConfig _config;
         #endregion
 
-        public GatewayLandingPage(ScenarioContext context) : base(context)
+        public StaffDashboardPage(ScenarioContext context) : base(context)
         {
             _context = context;
             _config = context.GetRoatpConfig<RoatpConfig>();

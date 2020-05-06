@@ -8,7 +8,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay.OrganisationChe
 {
     public class OrganisationStatusCheckPage : RoatpGateWayBasePage
     {
-        protected override string PageTitle => "";
+        protected override string PageTitle => "Organisation status check";
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
