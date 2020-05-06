@@ -2,8 +2,6 @@
 using OpenQA.Selenium;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages;
 using SFA.DAS.UI.FrameworkHelpers;
-using System.Collections.Generic;
-using System.Text;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
@@ -24,7 +22,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private By ReportPublicSectorApprenticeshipTarget => By.LinkText("Report public sector apprenticeship target");
         private By Help = By.LinkText("Help");
         private By Feedback = By.LinkText("Feedback");
-        private By PrivacyAndCookies = By.LinkText("Privacy and cookies");
+        private By Privacy = By.LinkText("Privacy");
+        private By Cookies = By.LinkText("Cookies");
         private By BuiltBy = By.LinkText("Education and Skills Funding Agency");
         private By CrownCopyright = By.LinkText("© Crown copyright");
 
@@ -33,6 +32,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         public ApprenticesHomePage(ScenarioContext context, bool navigate = false) : base(context, navigate)
         {
             _context = context;
+            _pageInteractionHelper = context.Get<PageInteractionHelper>();
         }
 
         public AddAnApprenitcePage AddAnApprentice()
@@ -69,7 +69,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         {
             Assert.IsTrue(_pageInteractionHelper.IsElementDisplayed(Help), "Validate Help link on the footer of the page");
             Assert.IsTrue(_pageInteractionHelper.IsElementDisplayed(Feedback), "Validate Feedback link on the footer of the page");
-            Assert.IsTrue(_pageInteractionHelper.IsElementDisplayed(PrivacyAndCookies), "Validate PrivacyAndCookies link on the footer of the page");
+            Assert.IsTrue(_pageInteractionHelper.IsElementDisplayed(Privacy), "Validate Privacy link on the footer of the page");
+            Assert.IsTrue(_pageInteractionHelper.IsElementDisplayed(Cookies), "Validate Cookies link on the footer of the page");
             Assert.IsTrue(_pageInteractionHelper.IsElementDisplayed(BuiltBy), "Validate BuiltBy link on the footer of the page");
             Assert.IsTrue(_pageInteractionHelper.IsElementDisplayed(CrownCopyright), "Validate CrownCopyright link on the footer of the page");
         }
