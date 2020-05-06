@@ -72,13 +72,11 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features.ExistingAccount
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("RE_EA_01_Verify Login for Existing Levy Account and Navigation to Saved favourite" +
             "s, Help and all Settings pages")]
-        [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("registration")]
         public virtual void RE_EA_01_VerifyLoginForExistingLevyAccountAndNavigationToSavedFavouritesHelpAndAllSettingsPages()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RE_EA_01_Verify Login for Existing Levy Account and Navigation to Saved favourite" +
                     "s, Help and all Settings pages", null, new string[] {
-                        "regression",
                         "registration"});
 #line 5
 this.ScenarioInitialize(scenarioInfo);

@@ -1,6 +1,6 @@
 ﻿Feature: RE_EA_01
 
-@regression
+#@regression
 @registration
 Scenario: RE_EA_01_Verify Login for Existing Levy Account and Navigation to Saved favourites, Help and all Settings pages
 	When the Employer logins using existing Levy Account

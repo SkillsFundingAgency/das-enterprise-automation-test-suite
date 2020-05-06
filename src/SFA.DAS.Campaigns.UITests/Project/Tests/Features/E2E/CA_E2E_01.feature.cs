@@ -74,14 +74,12 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Features.E2E
             "them")]
         [NUnit.Framework.CategoryAttribute("campaigns")]
         [NUnit.Framework.CategoryAttribute("employer")]
-        [NUnit.Framework.CategoryAttribute("regression")]
         public virtual void CA_E2E_01_EmployerFavouritesApprenticeshipAndATrainingProviderAndRemovesThem()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CA_E2E_01_Employer favourites Apprenticeship and a Training Provider and removes " +
                     "them", null, new string[] {
                         "campaigns",
-                        "employer",
-                        "regression"});
+                        "employer"});
 #line 6
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();

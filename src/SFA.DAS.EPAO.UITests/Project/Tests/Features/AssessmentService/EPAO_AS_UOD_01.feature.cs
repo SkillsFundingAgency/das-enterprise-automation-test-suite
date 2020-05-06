@@ -71,14 +71,12 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Features.AssessmentService
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("EPAO_AS_UOD_01 - Update organisation details")]
-        [NUnit.Framework.IgnoreAttribute("Ignored scenario")]
         [NUnit.Framework.CategoryAttribute("epao")]
         [NUnit.Framework.CategoryAttribute("assessmentservice")]
         [NUnit.Framework.CategoryAttribute("regression")]
         public virtual void EPAO_AS_UOD_01_UpdateOrganisationDetails()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EPAO_AS_UOD_01 - Update organisation details", null, new string[] {
-                        "ignore",
                         "epao",
                         "assessmentservice",
                         "regression"});

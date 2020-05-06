@@ -74,14 +74,12 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Features.Apprentice
             "ip")]
         [NUnit.Framework.CategoryAttribute("campaigns")]
         [NUnit.Framework.CategoryAttribute("apprentice")]
-        [NUnit.Framework.CategoryAttribute("regression")]
         public virtual void CA_AP_08_CheckFindAnApprenticeshipPageDetailsAndSearchForAnApprenticeship()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CA_AP_08_Check Find An Apprenticeship Page Details And Search For An Apprenticesh" +
                     "ip", null, new string[] {
                         "campaigns",
-                        "apprentice",
-                        "regression"});
+                        "apprentice"});
 #line 7
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();

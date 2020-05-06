@@ -2,7 +2,7 @@
 
 @campaigns
 @employer
-@regression
+#@regression
 Scenario: CA_E2E_03_Employer adds multiple favourites
 	Given the employer searches for an apprenticeship
 	When the employer favourites multiple apprenticeship

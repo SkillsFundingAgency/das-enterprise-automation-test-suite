@@ -73,13 +73,11 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Features.E2E
         [NUnit.Framework.DescriptionAttribute("CA_E2E_03_Employer adds multiple favourites")]
         [NUnit.Framework.CategoryAttribute("campaigns")]
         [NUnit.Framework.CategoryAttribute("employer")]
-        [NUnit.Framework.CategoryAttribute("regression")]
         public virtual void CA_E2E_03_EmployerAddsMultipleFavourites()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CA_E2E_03_Employer adds multiple favourites", null, new string[] {
                         "campaigns",
-                        "employer",
-                        "regression"});
+                        "employer"});
 #line 6
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();

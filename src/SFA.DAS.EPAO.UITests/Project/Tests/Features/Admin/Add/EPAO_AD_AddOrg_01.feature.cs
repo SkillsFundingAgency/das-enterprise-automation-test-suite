@@ -71,7 +71,6 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Features.Admin.Add
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("EPAO_AD_AddOrg_01 Add an Organisation")]
-        [NUnit.Framework.IgnoreAttribute("Ignored scenario")]
         [NUnit.Framework.CategoryAttribute("epao")]
         [NUnit.Framework.CategoryAttribute("epaoadmin")]
         [NUnit.Framework.CategoryAttribute("regression")]
@@ -79,7 +78,6 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Features.Admin.Add
         public virtual void EPAO_AD_AddOrg_01AddAnOrganisation()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EPAO_AD_AddOrg_01 Add an Organisation", null, new string[] {
-                        "ignore",
                         "epao",
                         "epaoadmin",
                         "regression",
