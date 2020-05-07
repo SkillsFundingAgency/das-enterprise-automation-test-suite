@@ -32,11 +32,10 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.StepDefinitions
         [When(@"enters correct levybalance")]
         public void WhenEntersCorrectLevybalance() => _challengePage.EnterCurrentLevybalance(_config.CurrentLevyBalance);
 
-        [Then(@"the user should see the error message (.*)")]
-        public void ThenTheUserShouldSeeTheErrorMessage(string message)
-        {
-            throw new PendingStepException();
-        }
+        [When(@"the user submits the challenge")]
+        public void WhenTheUserSubmitsTheChallenge() => _challengePage.Submit();
 
+        [Then(@"the user should see the error message (.*)")]
+        public void ThenTheUserShouldSeeTheErrorMessage(string message) => _challengePage.VerifyChallengeResponseErrorMessage(message);
     }
 }

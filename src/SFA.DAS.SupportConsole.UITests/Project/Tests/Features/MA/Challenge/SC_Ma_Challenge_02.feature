@@ -12,4 +12,4 @@ Scenario: SC_Ma_Challenge_02 Submit incorrect details
 	When the user enters invalid payscheme
 	But enters correct levybalance
 	When the user submits the challenge
-	Then the user should see the error message "Incorrect information entered."
+	Then the user should see the error message Incorrect information entered.
