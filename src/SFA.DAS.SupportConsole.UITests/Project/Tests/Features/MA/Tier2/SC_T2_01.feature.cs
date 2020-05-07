@@ -84,7 +84,7 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Features.MA.Tier2
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 8
- testRunner.Given("the Tier 1 User is logged into Support Console", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("the Tier 2 User is logged into Support Console", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 9
  testRunner.And("the User is on the Account details page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 10
