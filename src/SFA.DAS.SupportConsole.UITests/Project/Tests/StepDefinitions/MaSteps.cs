@@ -1,6 +1,4 @@
-﻿using SFA.DAS.SupportConsole.UITests.Project.Helpers;
-using SFA.DAS.SupportConsole.UITests.Project.Tests.Pages;
-using SFA.DAS.UI.Framework.TestSupport;
+﻿using SFA.DAS.SupportConsole.UITests.Project.Tests.Pages;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.SupportConsole.UITests.Project.Tests.StepDefinitions
