@@ -178,16 +178,31 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                 case "Set payment order":
                     _apprenticesHomePage.ClickSetPaymentOrderLink();
                     break;
-
                 case "Report public sector apprenticeship target":
                     _apprenticesHomePage.ClickReportPublicSectorApprenticeshipTargetLink();
                     break;
-
+                case "Manage your apprentices":
+                    _apprenticesHomePage.ClickManageYourApprenticesLink();
+                    break;
+                case "Your cohorts":
+                    _apprenticesHomePage.ClickYourCohortsLink();
+                    break;
+                case "Add an apprentice":
+                    _apprenticesHomePage.AddAnApprentice();
+                    break;
                 default:
                     break;
             }
             
         }
+
+        [Then(@"Standard cookie banner should be displayed at the top of the page")]
+        public void ThenStandardCookieBannerShouldBeDisplayedAtTheTopOfThePage()
+        {
+            _apprenticesHomePage = new ApprenticesHomePage(_context, true);
+            _apprenticesHomePage.ValidateCookiesBanner();
+        }
+
 
         [Then(@"Standard gov\.uk footer should be displayed at the bottom of the page")]
         public void ThenStandardGov_UkFooterShouldBeDisplayedAtTheBottomOfThePage()

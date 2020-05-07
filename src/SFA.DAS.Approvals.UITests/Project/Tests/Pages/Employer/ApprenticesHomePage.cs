@@ -27,6 +27,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private By BuiltBy = By.LinkText("Education and Skills Funding Agency");
         private By CrownCopyright = By.LinkText("© Crown copyright");
 
+        private By CookiesAcceptButton = By.Id("btn-cookie-accept");
+        private By CookiesSettingsButton = By.Id("btn-cookie-settings");
+
         protected override string Linktext => "Apprentices";
 
         public ApprenticesHomePage(ScenarioContext context, bool navigate = false) : base(context, navigate)
@@ -40,6 +43,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             formCompletionHelper.ClickElement(AddAnApprenticeLink);
             return new AddAnApprenitcePage(_context);
         }
+
+        
 
         public YourCohortRequestsPage ClickYourCohortsLink()
         {
@@ -73,6 +78,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             Assert.IsTrue(_pageInteractionHelper.IsElementDisplayed(Cookies), "Validate Cookies link on the footer of the page");
             Assert.IsTrue(_pageInteractionHelper.IsElementDisplayed(BuiltBy), "Validate BuiltBy link on the footer of the page");
             Assert.IsTrue(_pageInteractionHelper.IsElementDisplayed(CrownCopyright), "Validate CrownCopyright link on the footer of the page");
+        }
+
+        public void ValidateCookiesBanner()
+        {
+            Assert.IsTrue(_pageInteractionHelper.IsElementDisplayed(CookiesAcceptButton), "Validate accept cookies button on cookies banner");
+            Assert.IsTrue(_pageInteractionHelper.IsElementDisplayed(CookiesSettingsButton), "Validate cookie settings button on cookies banner");
         }
 
     }
