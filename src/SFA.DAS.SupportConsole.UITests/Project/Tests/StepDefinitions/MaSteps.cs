@@ -8,7 +8,8 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.StepDefinitions
     {
         private readonly ScenarioContext _context;
         private ChallengePage _challengePage;
-        
+        private FinancePage _financePage;
+
         public MaSteps(ScenarioContext context) => _context = context;
         
         [When(@"the user navigates to finance page")]
@@ -37,6 +38,17 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.StepDefinitions
         }
         
         [Then(@"the user is redirected to finance page")]
-        public void ThenTheUserIsRedirectedToFinancePage() => new FinancePage(_context);
+        public void ThenTheUserIsRedirectedToFinancePage() => _financePage = new FinancePage(_context);
+
+        [Then(@"the user can view levy declarations")]
+        public void ThenTheUserCanViewLevyDeclarations()
+        {
+            throw new PendingStepException();
+        }
+
+
+        [Then(@"the user can view transactions")]
+        public void ThenTheUserCanViewTransactions() => _financePage.
+
     }
 }

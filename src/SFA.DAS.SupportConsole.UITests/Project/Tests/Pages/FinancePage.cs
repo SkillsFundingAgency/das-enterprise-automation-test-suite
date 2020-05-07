@@ -1,11 +1,9 @@
 ﻿using OpenQA.Selenium;
 using TechTalk.SpecFlow;
-using SFA.DAS.UI.FrameworkHelpers;
-using SFA.DAS.UI.Framework.TestSupport;
 
 namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
 {
-    public class FinancePage : BasePage
+    public class FinancePage : SupportConsoleBasePage
     {
         protected override string PageTitle => "Finanace";
 
@@ -13,14 +11,18 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
-        private readonly FormCompletionHelper _formCompletionHelper;
-        private readonly SupportConsoleConfig _config;
         #endregion
 
-        public FinancePage(ScenarioContext context) : base(context)
+        private By ViewlevyDeclarations = By.LinkText("view");
+
+        public FinancePage(ScenarioContext context, bool navigate = false) : base(context)
         {
             _context = context;
+            if (navigate)
+            {
+                ClickFinanceMenuLink();
+            }
+            VerifyPage();
         }
-
     }
 }

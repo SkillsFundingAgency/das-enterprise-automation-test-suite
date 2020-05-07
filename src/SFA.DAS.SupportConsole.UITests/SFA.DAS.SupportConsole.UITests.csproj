@@ -46,4 +46,8 @@
     </None>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Project\Tests\Features\MA\Tier2\" />
+  </ItemGroup>
+
 </Project>

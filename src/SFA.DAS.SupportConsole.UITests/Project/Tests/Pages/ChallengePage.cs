@@ -1,24 +1,17 @@
 ﻿using OpenQA.Selenium;
 using TechTalk.SpecFlow;
-using SFA.DAS.UI.FrameworkHelpers;
-using SFA.DAS.UI.Framework.TestSupport;
 using System.Linq;
 
 namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
 {
-    public class ChallengePage : BasePage
+    public class ChallengePage : SupportConsoleBasePage
     {
         protected override string PageTitle => "Enter the following information to verify the caller";
 
         protected override By PageHeader => By.CssSelector(".lede");
 
         #region Helpers and Context
-        private readonly ScenarioContext _context;
-        private readonly FormCompletionHelper _formCompletionHelper;
-        private readonly PageInteractionHelper _pageInteractionHelper;
-        private readonly SupportConsoleConfig _config;
-        private readonly RegexHelper _regexHelper;
-        private readonly char[] _payeschemechars;
+        private char[] _payeschemechars;
         #endregion
 
         private By Challenge1 => By.Id("challenge1");
@@ -28,27 +21,21 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
         private By SubmitButton => By.CssSelector(".button");
         private By PayeChallengeLabel => By.CssSelector("label[for='challenge1']");
 
-        public ChallengePage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            _formCompletionHelper = context.Get<FormCompletionHelper>();
-            _pageInteractionHelper = context.Get<PageInteractionHelper>();
-            _config = context.GetSupportConsoleConfig<SupportConsoleConfig>();
-            _regexHelper = context.Get<RegexHelper>();
-            _payeschemechars = _config.PayeScheme.Replace("/", string.Empty).ToCharArray();
-        }
+        public ChallengePage(ScenarioContext context) : base(context) { }
 
         public void EnterIncorrectPaye() => EnterPayeChallenge("2", "2");
     
         public void EnterCorrectPaye()
         {
-            string func(int position) => _payeschemechars.ElementAt(position - 1).ToString();
+            string func(char[] chars, int position) => chars.ElementAt(position - 1).ToString();
+
+            _payeschemechars = _config.PayeScheme.Replace("/", string.Empty).ToCharArray();
 
             var text = _pageInteractionHelper.GetText(PayeChallengeLabel);
             
             (int x, int y) = _regexHelper.GetPayeChallenge(text);
 
-            EnterPayeChallenge(func(x), func(y));
+            EnterPayeChallenge(func(_payeschemechars, x), func(_payeschemechars, y));
         }
 
         public void EnterCorrectLevybalance() => _formCompletionHelper.EnterText(LevyBalance, _config.CurrentLevyBalance);
