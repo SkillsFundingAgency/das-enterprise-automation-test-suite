@@ -9,16 +9,9 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.StepDefinitions
     public class MaSteps
     {
         private readonly ScenarioContext _context;
-        private readonly StepsHelper _stepsHelper;
-        private readonly SupportConsoleConfig _config;
         private ChallengePage _challengePage;
         
-        public MaSteps(ScenarioContext context)
-        {
-            _context = context;
-            _stepsHelper = new StepsHelper(_context);
-            _config = context.GetSupportConsoleConfig<SupportConsoleConfig>();
-        }
+        public MaSteps(ScenarioContext context) => _context = context;
         
         [When(@"the user navigates to finance page")]
         public void WhenTheUserNavigatesToFinancePage() => new AccountOverviewPage(_context).ClickFinanceMenuLink();
@@ -45,7 +38,7 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.StepDefinitions
             _challengePage.EnterCorrectLevybalance();
         }
         
-        [Then(@"the user redirected to finance page")]
-        public void ThenTheUserRedirectedToFinancePage() => new FinancePage(_context);
+        [Then(@"the user is redirected to finance page")]
+        public void ThenTheUserIsRedirectedToFinancePage() => new FinancePage(_context);
     }
 }

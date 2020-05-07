@@ -10,5 +10,5 @@ Scenario: SC_Ma_Challenge_01 Submit correct details
 	When the user navigates to finance page
 	Then the user is redirected to a challenge page
 	When the user enters valid payscheme and levybalance
-	When the user submits the challenge
-	Then the user redirected to finance page
+	And the user submits the challenge
+	Then the user is redirected to finance page

@@ -7,9 +7,9 @@ namespace SFA.DAS.UI.FrameworkHelpers
     {
         public (int,int) GetPayeChallenge(string question)
         {
-            Match match = Regex.Match(question, @"[0-9]{1}");
+            var matches = Regex.Matches(question, @"[0-9]{1}", RegexOptions.None);
 
-            return (Int16.Parse(match.Groups[0].Value), Int16.Parse(match.Groups[1].Value));
+            return (Int16.Parse(matches[0].Value), Int16.Parse(matches[1].Value));
         }
 
         public string GetAccountId(string url)
