@@ -1,25 +1,40 @@
 ﻿using OpenQA.Selenium;
 using TechTalk.SpecFlow;
-using SFA.DAS.UI.FrameworkHelpers;
-using SFA.DAS.UI.Framework.TestSupport;
 
 namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
 {
-    public class FinancePage : BasePage
+    public class FinancePage : SupportConsoleBasePage
     {
-        protected override string PageTitle => "Finanace";
+        protected override string PageTitle => "Finance";
 
         protected override By PageHeader => By.CssSelector(".heading-xlarge");
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
-        private readonly FormCompletionHelper _formCompletionHelper;
-        private readonly SupportConsoleConfig _config;
         #endregion
+
+        private By LevyDeclarationsViewLink => By.LinkText("view");
+
+        private By TransactionsViewLink => By.LinkText("Transactions");
+
+        private By CurrentBalance => By.CssSelector(".data__purple-block");
 
         public FinancePage(ScenarioContext context) : base(context)
         {
             _context = context;
+            VerifyPage();
+        }
+
+        public LevyDeclarationsPage ViewLevyDeclarations()
+        {
+            _formCompletionHelper.Click(LevyDeclarationsViewLink);
+            return new LevyDeclarationsPage(_context);
+        }
+
+        public void ViewTransactions()
+        {
+            _formCompletionHelper.Click(TransactionsViewLink);
+            _pageInteractionHelper.VerifyText(CurrentBalance, "Current balance");
         }
 
     }
