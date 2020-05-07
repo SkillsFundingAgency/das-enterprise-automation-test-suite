@@ -27,15 +27,25 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.StepDefinitions
         public void ThenTheUserIsRedirectedToAChallengePage() => _challengePage = new ChallengePage(_context);
 
         [When(@"the user enters invalid payscheme")]
-        public void WhenTheUserEntersInvalidPayscheme() => _challengePage.EnterChallenge("1", "1");
+        public void WhenTheUserEntersInvalidPayscheme() => _challengePage.EnterIncorrectPaye();
 
         [When(@"enters correct levybalance")]
-        public void WhenEntersCorrectLevybalance() => _challengePage.EnterCurrentLevybalance(_config.CurrentLevyBalance);
+        public void WhenEntersCorrectLevybalance() => _challengePage.EnterCorrectLevybalance();
 
         [When(@"the user submits the challenge")]
         public void WhenTheUserSubmitsTheChallenge() => _challengePage.Submit();
 
         [Then(@"the user should see the error message (.*)")]
         public void ThenTheUserShouldSeeTheErrorMessage(string message) => _challengePage.VerifyChallengeResponseErrorMessage(message);
+
+        [When(@"the user enters valid payscheme and levybalance")]
+        public void WhenTheUserEntersValidPayschemeAndLevybalance()
+        {
+            _challengePage.EnterCorrectPaye();
+            _challengePage.EnterCorrectLevybalance();
+        }
+        
+        [Then(@"the user redirected to finance page")]
+        public void ThenTheUserRedirectedToFinancePage() => new FinancePage(_context);
     }
 }

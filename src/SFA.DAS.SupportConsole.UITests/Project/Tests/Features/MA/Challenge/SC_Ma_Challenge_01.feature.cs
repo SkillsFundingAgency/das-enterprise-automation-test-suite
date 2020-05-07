@@ -70,13 +70,13 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Features.MA.Challenge
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("SC_Ma_Challenge_01 Challenge response page")]
+        [NUnit.Framework.DescriptionAttribute("SC_Ma_Challenge_01 Submit correct details")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("supportconsole")]
         [NUnit.Framework.CategoryAttribute("masupportconsole")]
-        public virtual void SC_Ma_Challenge_01ChallengeResponsePage()
+        public virtual void SC_Ma_Challenge_01SubmitCorrectDetails()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("SC_Ma_Challenge_01 Challenge response page", null, new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("SC_Ma_Challenge_01 Submit correct details", null, new string[] {
                         "regression",
                         "supportconsole",
                         "masupportconsole"});
@@ -91,6 +91,12 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.When("the user navigates to finance page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 11
  testRunner.Then("the user is redirected to a challenge page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 12
+ testRunner.When("the user enters valid payscheme and levybalance", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 13
+ testRunner.When("the user submits the challenge", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 14
+ testRunner.Then("the user redirected to finance page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
