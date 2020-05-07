@@ -10,6 +10,8 @@ Scenario: SC_T2_01_Tier2Navigation
 	When the user navigates to finance page
 	Then the user is redirected to finance page
 	And the user can view levy declarations
+	When the user navigates to finance page
+	Then the user is redirected to finance page
 	And the user can view transactions
 	When the user navigates to team members page
 	Then the user is redirected to team members page

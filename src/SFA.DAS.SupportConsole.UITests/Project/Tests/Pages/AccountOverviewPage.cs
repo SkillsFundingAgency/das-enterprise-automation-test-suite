@@ -24,6 +24,8 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
             VerifyPage(PageHeaderWithAccountDetails, _config.AccountDetails);
         }
 
+        public void ClickTeamMembersLink() => _formCompletionHelper.Click(TeamMembersLink);
+
         public CommitmentsSearchPage ClickCommitmentsMenuLink()
         {
             _formCompletionHelper.Click(CommitmentsMenuLink);

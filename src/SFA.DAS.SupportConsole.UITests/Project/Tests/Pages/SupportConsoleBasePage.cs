@@ -19,6 +19,7 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
         protected By OrganisationsMenuLink => By.LinkText("Organisations");
         protected By CommitmentsMenuLink => By.LinkText("Commitments");
         protected By FinanceLink => By.LinkText("Finance");
+        protected By TeamMembersLink => By.LinkText("Team members");
 
         public SupportConsoleBasePage(ScenarioContext context) : base(context)
         {
@@ -30,6 +31,6 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
             _regexHelper = context.Get<RegexHelper>();
         }
 
-        public void ClickFinanceMenuLink() => _formCompletionHelper.Click(FinanceLink);
+        public void ClickFinanceMenuLink() => _formCompletionHelper.Click(FinanceLink);       
     }
 }

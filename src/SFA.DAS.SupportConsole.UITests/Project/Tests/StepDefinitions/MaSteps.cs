@@ -41,14 +41,15 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.StepDefinitions
         public void ThenTheUserIsRedirectedToFinancePage() => _financePage = new FinancePage(_context);
 
         [Then(@"the user can view levy declarations")]
-        public void ThenTheUserCanViewLevyDeclarations()
-        {
-            throw new PendingStepException();
-        }
-
+        public void ThenTheUserCanViewLevyDeclarations() => _financePage.ViewLevyDeclarations();
 
         [Then(@"the user can view transactions")]
-        public void ThenTheUserCanViewTransactions() => _financePage.
+        public void ThenTheUserCanViewTransactions() => _financePage.ViewTransactions();
 
+        [When(@"the user navigates to team members page")]
+        public void WhenTheUserNavigatesToTeamMembersPage() => new AccountOverviewPage(_context).ClickTeamMembersLink();
+
+        [Then(@"the user is redirected to team members page")]
+        public void ThenTheUserIsRedirectedToTeamMembersPage() => new TeamMembersPage(_context);
     }
 }
