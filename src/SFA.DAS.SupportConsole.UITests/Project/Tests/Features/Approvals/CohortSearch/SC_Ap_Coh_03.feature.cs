@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Features.Approvals.ULNSearch
+namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Features.Approvals.CohortSearch
 {
     using TechTalk.SpecFlow;
     
@@ -18,20 +18,20 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Features.Approvals.ULNSea
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.0.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("SC_ApULN_01")]
-    public partial class SC_ApULN_01Feature
+    [NUnit.Framework.DescriptionAttribute("SC_Ap_Coh_03")]
+    public partial class SC_Ap_Coh_03Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "SC_ApULN_01.feature"
+#line 1 "SC_Ap_Coh_03.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "SC_ApULN_01", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "SC_Ap_Coh_03", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -70,13 +70,13 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Features.Approvals.ULNSea
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("SC_ApULN_01 - View ULN details")]
+        [NUnit.Framework.DescriptionAttribute("SC_Ap_Coh_03 - Search for a unauthorised Cohort")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("supportconsole")]
         [NUnit.Framework.CategoryAttribute("approvalssupportconsole")]
-        public virtual void SC_ApULN_01_ViewULNDetails()
+        public virtual void SC_Ap_Coh_03_SearchForAUnauthorisedCohort()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("SC_ApULN_01 - View ULN details", null, new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("SC_Ap_Coh_03 - Search for a unauthorised Cohort", null, new string[] {
                         "regression",
                         "supportconsole",
                         "approvalssupportconsole"});
@@ -88,9 +88,9 @@ this.ScenarioInitialize(scenarioInfo);
 #line 8
  testRunner.And("the User is on the Account details page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 9
- testRunner.When("the User searches for an ULN", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("the user tries to view another Employer\'s Cohort Ref", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 10
- testRunner.Then("the ULN details are displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("unauthorised Cohort access error message is shown to the user", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
