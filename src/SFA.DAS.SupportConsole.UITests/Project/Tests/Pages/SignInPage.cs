@@ -1,8 +1,6 @@
 ﻿using SFA.DAS.IdamsLogin.Service.Project.Tests.Pages;
-using SFA.DAS.UI.Framework.TestSupport;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using SFA.DAS.Login.Service;
+using SFA.DAS.Login.Service.Helpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
@@ -13,18 +11,14 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
-        private readonly SupportConsoleConfig _config;
         #endregion
 
-        public SignInPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            _config = context.GetSupportConsoleConfig<SupportConsoleConfig>();
-        }
+        public SignInPage(ScenarioContext context) : base(context) => _context = context;          
 
-        public SearchHomePage SignInWithValidDetails()
+        public SearchHomePage SignInWithValidDetails(LoginUser usercreds)
         {
-            SubmitValidLoginDetails(_config.LoginUsername, _config.LoginPassword);
+            SubmitValidLoginDetails(usercreds.Username, usercreds.Password);
+
             return new SearchHomePage(_context);
         }
     }

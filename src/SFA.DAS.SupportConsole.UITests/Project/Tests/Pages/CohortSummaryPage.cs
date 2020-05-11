@@ -1,18 +1,14 @@
 ﻿using OpenQA.Selenium;
 using TechTalk.SpecFlow;
-using SFA.DAS.UI.FrameworkHelpers;
-using SFA.DAS.UI.Framework.TestSupport;
 
 namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
 {
-    public class CohortSummaryPage : BasePage
+    public class CohortSummaryPage : SupportConsoleBasePage
     {
         protected override string PageTitle => "Cohort Summary";
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
-        private readonly FormCompletionHelper _formCompletionHelper;
-        private readonly PageInteractionHelper _pageInteractionHelper;
         #endregion
 
         #region Locators
@@ -23,20 +19,18 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
         public CohortSummaryPage(ScenarioContext context) : base(context)
         {
             _context = context;
-            _formCompletionHelper = context.Get<FormCompletionHelper>();
-            _pageInteractionHelper = context.Get<PageInteractionHelper>();
             VerifyPage();
         }
 
         public CohortDetailsPage ClickViewThisCohortButton()
         {
-            _formCompletionHelper.Click(ViewThisCohortButton);
+            formCompletionHelper.Click(ViewThisCohortButton);
             return new CohortDetailsPage(_context);
         }
 
         public string GetCohortRefNumber()
         {
-            return _pageInteractionHelper.GetText(CohortRefNumber);
+            return pageInteractionHelper.GetText(CohortRefNumber);
         }
     }
 }
