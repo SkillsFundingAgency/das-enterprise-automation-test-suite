@@ -11,7 +11,18 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.StepDefinitions
         private FinancePage _financePage;
 
         public MaSteps(ScenarioContext context) => _context = context;
-        
+
+        [Then(@"the user can search by account name or PAYE scheme")]
+        public void ThenTheUserCanSearchByAccountNameOrPAYEScheme()
+        {
+            new SearchHomePage(_context)
+                 .GoToSearchHomePage()
+                 .SearchByAccountNameAndViewAccount()
+                 .GoToSearchHomePage()
+                 .SearchByPayeSchemeAndViewAccount()
+                 .GoToSearchHomePage();
+        }
+
         [When(@"the user navigates to finance page")]
         public void WhenTheUserNavigatesToFinancePage() => new AccountOverviewPage(_context).ClickFinanceMenuLink();
 

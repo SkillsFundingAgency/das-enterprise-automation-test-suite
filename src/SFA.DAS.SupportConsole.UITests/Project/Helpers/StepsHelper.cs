@@ -17,7 +17,7 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Helpers
         
         public SearchHomePage Tier2LoginToSupportConsole() => LoginToSupportConsole(_context.GetUser<SupportConsoleTier2User>());
 
-        public AccountOverviewPage SearchAndViewAccount() => new SearchHomePage(_context).SearchAndViewAccount();
+        public AccountOverviewPage SearchAndViewAccount() => new SearchHomePage(_context).SearchByAccountIdAndViewAccount();
 
         public UlnSearchResultsPage SearchForUln() => new AccountOverviewPage(_context).ClickCommitmentsMenuLink().SearchForULN();
 

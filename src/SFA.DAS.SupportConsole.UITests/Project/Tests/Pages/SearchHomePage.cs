@@ -18,16 +18,26 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
         private By SearchTextBox => By.Id("search-main");
         #endregion
 
+        private string AccountSearchHint => "Enter account name, account ID or PAYE scheme";
+        private string UserSearchHint => "Enter name or email address";
+
         public SearchHomePage(ScenarioContext context) : base(context)
         {
             _context = context;
             VerifyPage();
         }
 
-        public AccountOverviewPage SearchAndViewAccount()
+        public AccountOverviewPage SearchByAccountIdAndViewAccount() => SearchAndViewAccount(config.AccountId);
+        
+        public AccountOverviewPage SearchByAccountNameAndViewAccount() => SearchAndViewAccount(config.AccountName);
+
+        public AccountOverviewPage SearchByPayeSchemeAndViewAccount() => SearchAndViewAccount(config.PayeScheme);
+
+        private AccountOverviewPage SearchAndViewAccount(string criteria)
         {
             formCompletionHelper.SelectRadioOptionByForAttribute(AccountsRadioButton, "AccountSearchType");
-            formCompletionHelper.EnterText(SearchTextBox, config.AccountId);
+            pageInteractionHelper.WaitForElementToChange(SearchTextBox, "placeholder", AccountSearchHint);
+            formCompletionHelper.EnterText(SearchTextBox, criteria);
             formCompletionHelper.Click(SearchButton);
             tableRowHelper.SelectRowFromTable("view", config.AccountId);
             return new AccountOverviewPage(_context);
