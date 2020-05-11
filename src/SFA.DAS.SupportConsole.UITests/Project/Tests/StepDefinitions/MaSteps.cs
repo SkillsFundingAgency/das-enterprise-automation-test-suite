@@ -22,6 +22,17 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.StepDefinitions
                  .SearchByPayeSchemeAndViewAccount()
                  .GoToSearchHomePage();
         }
+        
+        [Then(@"the user can search by name or email address")]
+        public void ThenTheUserCanSearchByNameOrEmailAddress()
+        {
+            new SearchHomePage(_context)
+                  .GoToSearchHomePage()
+                  .SearchByNameAndView()
+                  .GoToSearchHomePage()
+                  .SearchByEmailAddressAndView()
+                  .GoToSearchHomePage();
+        }
 
         [When(@"the user navigates to finance page")]
         public void WhenTheUserNavigatesToFinancePage() => new AccountOverviewPage(_context).ClickFinanceMenuLink();

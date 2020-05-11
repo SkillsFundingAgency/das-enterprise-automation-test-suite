@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using MongoDB.Driver;
+using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
@@ -13,7 +14,7 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
 
         #region Locators
         protected override By PageHeader => By.CssSelector(".heading-large");
-        private By AccountsRadioButton => By.CssSelector("label");
+        private By RadioLabels => By.CssSelector("label");
         private By SearchButton => By.Id("searchButton");
         private By SearchTextBox => By.Id("search-main");
         #endregion
@@ -27,6 +28,10 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
             VerifyPage();
         }
 
+        public UserInformationOverviewPage SearchByNameAndView() => SearchAndViewUserInformation(config.Name);
+
+        public UserInformationOverviewPage SearchByEmailAddressAndView() => SearchAndViewUserInformation(config.EmailAddress);
+        
         public AccountOverviewPage SearchByAccountIdAndViewAccount() => SearchAndViewAccount(config.AccountId);
         
         public AccountOverviewPage SearchByAccountNameAndViewAccount() => SearchAndViewAccount(config.AccountName);
@@ -35,12 +40,22 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
 
         private AccountOverviewPage SearchAndViewAccount(string criteria)
         {
-            formCompletionHelper.SelectRadioOptionByForAttribute(AccountsRadioButton, "AccountSearchType");
+            formCompletionHelper.SelectRadioOptionByForAttribute(RadioLabels, "AccountSearchType");
             pageInteractionHelper.WaitForElementToChange(SearchTextBox, "placeholder", AccountSearchHint);
             formCompletionHelper.EnterText(SearchTextBox, criteria);
             formCompletionHelper.Click(SearchButton);
             tableRowHelper.SelectRowFromTable("view", config.AccountId);
             return new AccountOverviewPage(_context);
+        }
+
+        private UserInformationOverviewPage SearchAndViewUserInformation(string criteria)
+        {
+            formCompletionHelper.SelectRadioOptionByForAttribute(RadioLabels, "UserSearchType");
+            pageInteractionHelper.WaitForElementToChange(SearchTextBox, "placeholder", UserSearchHint);
+            formCompletionHelper.EnterText(SearchTextBox, criteria);
+            formCompletionHelper.Click(SearchButton);
+            tableRowHelper.SelectRowFromTable("view", config.EmailAddress);
+            return new UserInformationOverviewPage(_context);
         }
     }
 }

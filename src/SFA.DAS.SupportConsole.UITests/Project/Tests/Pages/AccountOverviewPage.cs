@@ -3,6 +3,18 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
 {
+    public class UserInformationOverviewPage : SupportConsoleBasePage
+    {
+        protected override string PageTitle => config.Name;
+
+        protected override By PageHeader => By.CssSelector(".heading-secondary");
+
+        public UserInformationOverviewPage(ScenarioContext context) : base(context)
+        {
+            VerifyPage();
+        }
+    }
+    
     public class AccountOverviewPage : SupportConsoleBasePage
     {
         protected override string PageTitle => "Department for Education";
