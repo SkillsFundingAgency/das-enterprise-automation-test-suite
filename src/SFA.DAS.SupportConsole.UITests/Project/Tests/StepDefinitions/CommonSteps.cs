@@ -25,7 +25,5 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.StepDefinitions
 
         [Given(@"the User is on the Account details page")]
         public void GivenTheUserIsOnTheAccountDetailsPage() => _stepsHelper.SearchAndViewAccount();
-
-
     }
 }
