@@ -5,20 +5,22 @@ namespace SFA.DAS.UI.FrameworkHelpers
 {
     public class TableRowHelper 
     {
-        private readonly IWebDriver _webDriver;
+        private readonly PageInteractionHelper _pageInteractionHelper;
         private readonly FormCompletionHelper _formCompletionHelper;
+        private readonly RegexHelper _regexHelper;
 
-        public TableRowHelper(IWebDriver webDriver, FormCompletionHelper formCompletionHelper)
+        public TableRowHelper(PageInteractionHelper pageInteractionHelper, FormCompletionHelper formCompletionHelper, RegexHelper regexHelper)
         {
-            _webDriver = webDriver;
             _formCompletionHelper = formCompletionHelper;
+            _pageInteractionHelper = pageInteractionHelper;
+            _regexHelper = regexHelper;
         }
 
         public void SelectRowFromTable(string byLinkText, string byKey, string tableSelector = "table")
         {
-            var table = _webDriver.FindElement(By.CssSelector(tableSelector));
+            var table = _pageInteractionHelper.FindElement(By.CssSelector(tableSelector));
             var tableRows = table.FindElements(By.CssSelector("tbody tr"));
-            var links = _webDriver.FindElements(By.PartialLinkText(byLinkText));
+            var links = _pageInteractionHelper.FindElements(By.PartialLinkText(byLinkText));
             int i = 0;
             foreach (IWebElement tableRow in tableRows)
             {
@@ -30,6 +32,29 @@ namespace SFA.DAS.UI.FrameworkHelpers
                 i++;
             }
             throw new System.Exception($"Test Exception: Could not find link with text '{byLinkText}' using key '{byKey}' and selector '{tableSelector}'");
+        }
+
+        public void SelectRowFromTable(string byLinkText, string byKey, By nextPage, By noOfPages, string tableSelector = "table")
+        {
+             if (_pageInteractionHelper.FindElements(nextPage).Any())
+            {
+                int NoOfpages = _regexHelper.GetMaxNoOfPages(_pageInteractionHelper.GetText(noOfPages));
+
+                for (int i = 1; i <= NoOfpages - 1; i++)
+                {
+                    try
+                    {
+                        SelectRowFromTable(byLinkText, byKey, tableSelector);
+                        return;
+                    }
+                    catch (System.Exception)
+                    {
+                        _formCompletionHelper.ClickElement(nextPage);
+                    }
+                }
+            }
+
+            SelectRowFromTable(byLinkText, byKey, tableSelector);
         }
     }
 }

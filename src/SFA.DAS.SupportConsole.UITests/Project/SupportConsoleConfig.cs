@@ -5,7 +5,8 @@
         public string SupportConsoleUrl { get; set; }
         public string Name { get; set; }
         public string EmailAddress { get; set; }
-        public string AccountId { get; set; }
+        public string PublicAccountId { get; set; }
+        public string HashedAccountId { get; set; }
         public string AccountName { get; set; }
         public string PayeScheme { get; set; }
         public string CurrentLevyBalance {get;set;}

@@ -70,13 +70,13 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Features.MA.Search
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("SC_Ma_Search_01 Search By account name or PAYE scheme")]
+        [NUnit.Framework.DescriptionAttribute("SC_Ma_Search_01 Search By Hashed account id, account name or PAYE scheme")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("supportconsole")]
         [NUnit.Framework.CategoryAttribute("masupportconsole")]
-        public virtual void SC_Ma_Search_01SearchByAccountNameOrPAYEScheme()
+        public virtual void SC_Ma_Search_01SearchByHashedAccountIdAccountNameOrPAYEScheme()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("SC_Ma_Search_01 Search By account name or PAYE scheme", null, new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("SC_Ma_Search_01 Search By Hashed account id, account name or PAYE scheme", null, new string[] {
                         "regression",
                         "supportconsole",
                         "masupportconsole"});
@@ -86,7 +86,7 @@ this.ScenarioInitialize(scenarioInfo);
 #line 7
  testRunner.Given("the User is logged into Support Console", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 8
- testRunner.Then("the user can search by account name or PAYE scheme", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the user can search by Hashed account id, account name or PAYE scheme", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
