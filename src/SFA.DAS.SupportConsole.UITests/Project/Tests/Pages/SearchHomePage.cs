@@ -26,10 +26,10 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
 
         public AccountOverviewPage SearchAndViewAccount()
         {
-            _formCompletionHelper.SelectRadioOptionByForAttribute(AccountsRadioButton, "AccountSearchType");
-            _formCompletionHelper.EnterText(SearchTextBox, _config.AccountId);
-            _formCompletionHelper.Click(SearchButton);
-            _tableRowHelper.SelectRowFromTable("view", _config.AccountId);
+            formCompletionHelper.SelectRadioOptionByForAttribute(AccountsRadioButton, "AccountSearchType");
+            formCompletionHelper.EnterText(SearchTextBox, config.AccountId);
+            formCompletionHelper.Click(SearchButton);
+            tableRowHelper.SelectRowFromTable("view", config.AccountId);
             return new AccountOverviewPage(_context);
         }
     }

@@ -24,13 +24,13 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
 
         public CohortDetailsPage ClickViewThisCohortButton()
         {
-            _formCompletionHelper.Click(ViewThisCohortButton);
+            formCompletionHelper.Click(ViewThisCohortButton);
             return new CohortDetailsPage(_context);
         }
 
         public string GetCohortRefNumber()
         {
-            return _pageInteractionHelper.GetText(CohortRefNumber);
+            return pageInteractionHelper.GetText(CohortRefNumber);
         }
     }
 }

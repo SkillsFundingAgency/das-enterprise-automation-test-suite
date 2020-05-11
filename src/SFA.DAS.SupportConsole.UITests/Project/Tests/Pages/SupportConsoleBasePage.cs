@@ -8,12 +8,11 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
     public abstract class SupportConsoleBasePage : BasePage
     {
         #region Helpers and Context
-        private readonly ScenarioContext _context;
-        protected readonly FormCompletionHelper _formCompletionHelper;
-        protected readonly PageInteractionHelper _pageInteractionHelper;
-        protected readonly SupportConsoleConfig _config;
-        protected readonly RegexHelper _regexHelper;
-        protected readonly TableRowHelper _tableRowHelper;
+        protected readonly FormCompletionHelper formCompletionHelper;
+        protected readonly PageInteractionHelper pageInteractionHelper;
+        protected readonly SupportConsoleConfig config;
+        protected readonly RegexHelper regexHelper;
+        protected readonly TableRowHelper tableRowHelper;
         #endregion
 
         protected By OrganisationsMenuLink => By.LinkText("Organisations");
@@ -23,14 +22,13 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
 
         public SupportConsoleBasePage(ScenarioContext context) : base(context)
         {
-            _context = context;
-            _formCompletionHelper = context.Get<FormCompletionHelper>();
-            _pageInteractionHelper = context.Get<PageInteractionHelper>();
-            _config = context.GetSupportConsoleConfig<SupportConsoleConfig>();
-            _tableRowHelper = context.Get<TableRowHelper>();
-            _regexHelper = context.Get<RegexHelper>();
+            formCompletionHelper = context.Get<FormCompletionHelper>();
+            pageInteractionHelper = context.Get<PageInteractionHelper>();
+            config = context.GetSupportConsoleConfig<SupportConsoleConfig>();
+            tableRowHelper = context.Get<TableRowHelper>();
+            regexHelper = context.Get<RegexHelper>();
         }
 
-        public void ClickFinanceMenuLink() => _formCompletionHelper.Click(FinanceLink);       
+        public void ClickFinanceMenuLink() => formCompletionHelper.Click(FinanceLink);       
     }
 }

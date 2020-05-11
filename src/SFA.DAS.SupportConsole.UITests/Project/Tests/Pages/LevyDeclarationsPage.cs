@@ -11,7 +11,7 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
 
         public LevyDeclarationsPage(ScenarioContext context) : base(context)
         {
-            VerifyPage(() => _pageInteractionHelper.FindElements(PageHeader));
+            VerifyPage(() => pageInteractionHelper.FindElements(PageHeader));
         }
     }
 }

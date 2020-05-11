@@ -21,20 +21,20 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
             _context = context;
             ClickOrganisationsLink(); //Doing this to refresh the page as the Header dissappears at times - known issue
             VerifyPage();
-            VerifyPage(PageHeaderWithAccountDetails, _config.AccountDetails);
+            VerifyPage(PageHeaderWithAccountDetails, config.AccountDetails);
         }
 
-        public void ClickTeamMembersLink() => _formCompletionHelper.Click(TeamMembersLink);
+        public void ClickTeamMembersLink() => formCompletionHelper.Click(TeamMembersLink);
 
         public CommitmentsSearchPage ClickCommitmentsMenuLink()
         {
-            _formCompletionHelper.Click(CommitmentsMenuLink);
+            formCompletionHelper.Click(CommitmentsMenuLink);
             return new CommitmentsSearchPage(_context);
         }
 
         private AccountOverviewPage ClickOrganisationsLink()
         {
-            _formCompletionHelper.Click(OrganisationsMenuLink);
+            formCompletionHelper.Click(OrganisationsMenuLink);
             return this;
         }
     }

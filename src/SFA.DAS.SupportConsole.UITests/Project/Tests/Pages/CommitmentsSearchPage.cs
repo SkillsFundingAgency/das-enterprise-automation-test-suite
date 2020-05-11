@@ -39,24 +39,24 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
 
         private void EnterTextInSearchBox(string searchText)
         {
-            _formCompletionHelper.EnterText(SearchTextBox, searchText);
+            formCompletionHelper.EnterText(SearchTextBox, searchText);
         }
 
         public CommitmentsSearchPage SelectUlnSearchTypeRadioButton()
         {
-            _formCompletionHelper.SelectRadioOptionByForAttribute(UlnRadioButton, "UnlSearchType");
+            formCompletionHelper.SelectRadioOptionByForAttribute(UlnRadioButton, "UnlSearchType");
             return this;
         }
 
         private void ClickSearchButton()
         {
-            _formCompletionHelper.Click(SearchButton);
+            formCompletionHelper.Click(SearchButton);
         }
 
         public UlnSearchResultsPage SearchForULN()
         {
             SelectUlnSearchTypeRadioButton();
-            EnterTextInSearchBox(_config.Uln);
+            EnterTextInSearchBox(config.Uln);
             ClickSearchButton();
             return new UlnSearchResultsPage(_context);
         }
@@ -76,14 +76,14 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
         public CohortSummaryPage SearchForCohort()
         {
             SelectCohortRefSearchTypeRadioButton();
-            EnterTextInSearchBox(_config.CohortRef);
+            EnterTextInSearchBox(config.CohortRef);
             ClickSearchButton();
             return new CohortSummaryPage(_context);
         }
 
         public CommitmentsSearchPage SelectCohortRefSearchTypeRadioButton()
         {
-            _formCompletionHelper.SelectRadioOptionByForAttribute(CohortRefRadioButton, "CohortSearchType");
+            formCompletionHelper.SelectRadioOptionByForAttribute(CohortRefRadioButton, "CohortSearchType");
             return this;
         }
 
@@ -95,7 +95,7 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
 
         public void SearchWithUnauthorisedCohortAccess()
         {
-            EnterTextInSearchBox(_config.CohortNotAssociatedToAccount);
+            EnterTextInSearchBox(config.CohortNotAssociatedToAccount);
             ClickSearchButton();
         }
 
@@ -107,12 +107,12 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
 
         public string GetCommitmentsSearchPageErrorText()
         {
-            return _pageInteractionHelper.GetText(CommitmentsSearchPageErrorText);
+            return pageInteractionHelper.GetText(CommitmentsSearchPageErrorText);
         }
 
         public string GetSearchTextBoxHelpText()
         {
-            return _pageInteractionHelper.GetTextFromPlaceholderAttributeOfAnElement(SearchTextBoxHelpText);
+            return pageInteractionHelper.GetTextFromPlaceholderAttributeOfAnElement(SearchTextBoxHelpText);
         }
     }
 }

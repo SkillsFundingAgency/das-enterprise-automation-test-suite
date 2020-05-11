@@ -18,7 +18,7 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
 
         public UlnDetailsPage SelectULN()
         {
-            _tableRowHelper.SelectRowFromTable("View", _config.UlnName);
+            tableRowHelper.SelectRowFromTable("View", config.UlnName);
             return new UlnDetailsPage(_context);
         }
     }

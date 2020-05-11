@@ -29,25 +29,25 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
         {
             string func(char[] chars, int position) => chars.ElementAt(position - 1).ToString();
 
-            _payeschemechars = _config.PayeScheme.Replace("/", string.Empty).ToCharArray();
+            _payeschemechars = config.PayeScheme.Replace("/", string.Empty).ToCharArray();
 
-            var text = _pageInteractionHelper.GetText(PayeChallengeLabel);
+            var text = pageInteractionHelper.GetText(PayeChallengeLabel);
             
-            (int x, int y) = _regexHelper.GetPayeChallenge(text);
+            (int x, int y) = regexHelper.GetPayeChallenge(text);
 
             EnterPayeChallenge(func(_payeschemechars, x), func(_payeschemechars, y));
         }
 
-        public void EnterCorrectLevybalance() => _formCompletionHelper.EnterText(LevyBalance, _config.CurrentLevyBalance);
+        public void EnterCorrectLevybalance() => formCompletionHelper.EnterText(LevyBalance, config.CurrentLevyBalance);
 
-        public void Submit() => _formCompletionHelper.ClickElement(SubmitButton);
+        public void Submit() => formCompletionHelper.ClickElement(SubmitButton);
 
-        public void VerifyChallengeResponseErrorMessage(string errorMessage) => _pageInteractionHelper.VerifyText(Challenge_ErrorMessage, errorMessage);
+        public void VerifyChallengeResponseErrorMessage(string errorMessage) => pageInteractionHelper.VerifyText(Challenge_ErrorMessage, errorMessage);
 
         private void EnterPayeChallenge(string char1, string char2)
         {
-            _formCompletionHelper.EnterText(Challenge1, char1);
-            _formCompletionHelper.EnterText(Challenge2, char2);
+            formCompletionHelper.EnterText(Challenge1, char1);
+            formCompletionHelper.EnterText(Challenge2, char2);
         }
     }
 }

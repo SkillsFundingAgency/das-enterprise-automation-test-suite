@@ -16,13 +16,13 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
 
         public void ClickViewUlnLink()
         {
-            _formCompletionHelper.Click(UlnViewLink);
-            _pageInteractionHelper.WaitforURLToChange("CommitmentApprenticeDetail");
+            formCompletionHelper.Click(UlnViewLink);
+            pageInteractionHelper.WaitforURLToChange("CommitmentApprenticeDetail");
         }
 
         public string GetCohortRefNumber()
         {
-            return _pageInteractionHelper.GetText(CohortRefNumber);
+            return pageInteractionHelper.GetText(CohortRefNumber);
         }
     }
 }

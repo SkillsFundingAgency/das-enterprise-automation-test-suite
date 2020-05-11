@@ -18,20 +18,20 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Features.MA.Tier2
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.0.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("SC_T2_01")]
-    public partial class SC_T2_01Feature
+    [NUnit.Framework.DescriptionAttribute("SC_Ma_T2_01")]
+    public partial class SC_Ma_T2_01Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "SC_T2_01.feature"
+#line 1 "SC_Ma_T2_01.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "SC_T2_01", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "SC_Ma_T2_01", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -70,13 +70,13 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Features.MA.Tier2
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("SC_T2_01_Tier2Navigation")]
+        [NUnit.Framework.DescriptionAttribute("SC_Ma_T2_01_Tier2Navigation")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("supportconsole")]
         [NUnit.Framework.CategoryAttribute("masupportconsole")]
-        public virtual void SC_T2_01_Tier2Navigation()
+        public virtual void SC_Ma_T2_01_Tier2Navigation()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("SC_T2_01_Tier2Navigation", null, new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("SC_Ma_T2_01_Tier2Navigation", null, new string[] {
                         "regression",
                         "supportconsole",
                         "masupportconsole"});

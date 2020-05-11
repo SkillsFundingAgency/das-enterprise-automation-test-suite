@@ -5,7 +5,7 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
 {
     public class UlnDetailsPage : SupportConsoleBasePage
     {
-        protected override string PageTitle => _config.UlnName;
+        protected override string PageTitle => config.UlnName;
         private string StatusSectionHeaderText => "Status";
         private string ApprenticeSectionHeaderText => "Apprentice";
         private string TrainingSectionHeaderText => "Training";
@@ -24,11 +24,11 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
 
         public void VerifyUlnDetailsPageHeaders()
         {
-            _pageInteractionHelper.VerifyText(StatusSectionHeader, StatusSectionHeaderText);
-            _pageInteractionHelper.VerifyText(ApprenticeSectionHeader, ApprenticeSectionHeaderText);
-            _pageInteractionHelper.VerifyText(TrainingSectionHeader, TrainingSectionHeaderText);
-            _pageInteractionHelper.VerifyText(DatesSectionHeader, DatesSectionHeaderText);
-            _pageInteractionHelper.VerifyText(PaymentsSectionHeader, PaymentsSectionHeaderText);
+            pageInteractionHelper.VerifyText(StatusSectionHeader, StatusSectionHeaderText);
+            pageInteractionHelper.VerifyText(ApprenticeSectionHeader, ApprenticeSectionHeaderText);
+            pageInteractionHelper.VerifyText(TrainingSectionHeader, TrainingSectionHeaderText);
+            pageInteractionHelper.VerifyText(DatesSectionHeader, DatesSectionHeaderText);
+            pageInteractionHelper.VerifyText(PaymentsSectionHeader, PaymentsSectionHeaderText);
         }
     }
 }

@@ -27,14 +27,14 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
 
         public LevyDeclarationsPage ViewLevyDeclarations()
         {
-            _formCompletionHelper.Click(LevyDeclarationsViewLink);
+            formCompletionHelper.Click(LevyDeclarationsViewLink);
             return new LevyDeclarationsPage(_context);
         }
 
         public void ViewTransactions()
         {
-            _formCompletionHelper.Click(TransactionsViewLink);
-            _pageInteractionHelper.VerifyText(CurrentBalance, "Current balance");
+            formCompletionHelper.Click(TransactionsViewLink);
+            pageInteractionHelper.VerifyText(CurrentBalance, "Current balance");
         }
 
     }
