@@ -9,6 +9,8 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
 
         protected override By PageHeader => By.CssSelector(".heading-xlarge");
 
+        private By TeamMembersTable => By.CssSelector("table.responsive");
+
         #region Helpers and Context
         private readonly ScenarioContext _context;
         #endregion
@@ -17,6 +19,7 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
         {
             _context = context;
             VerifyPage();
+            VerifyPage(TeamMembersTable);
         }
 
         public UserInformationOverviewPage GoToUserInformationOverviewPage()
