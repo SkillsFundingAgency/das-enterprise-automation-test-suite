@@ -51,7 +51,8 @@ namespace SFA.DAS.Campaigns.UITests
         public void ThenVerifyTheLinksAreNotBrokenOnHowDoTheyWorkPage()
         {
             _howDoTheyWorkPage = new HowDoTheyWorkPage(_context);
-            _howDoTheyWorkPage.CheckHiringAnApprenticeIconPage()
+            _howDoTheyWorkPage.NavigateToHireAnApprenticePage()
+                //.CheckHiringAnApprenticeIconPage()
                 .ClickHowDoTheyWorkLink()
                 .CheckUpSkillingYourCurrentStaffPage()
                 .ClickHowDoTheyWorkLink()

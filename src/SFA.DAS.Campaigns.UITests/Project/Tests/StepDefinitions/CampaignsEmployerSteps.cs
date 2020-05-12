@@ -24,11 +24,17 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
         [Given(@"the user navigates to hiring an apprentice page")]
         public void GivenTheUserNavigatesToHiringAnApprenticePage() => GoToEmployerHubPage().NavigateToHireAnApprenticePage();
 
+        [Given(@"the user navigates to Upskilling Your Current Staff page")]
+        public void GivenTheUserNavigatesToUpskillingYourCurrentStaffPage() => GoToEmployerHubPage().NavigateToUpSkillingYourCurrentStaffPage();
+
         [Given(@"the user navigates to the end point assessments page")]
         public void GivenTheUserNavigatesToTheEndPointAssessmentsPage() => GoToEmployerHubPage().NavigateToEndPointAssesmentPage();
 
-        [Given(@"the user navigates to the preparing and monitoring page")]
-        public void GivenTheUserNavigatesToThePreparingAndMonitoringPage() => GoToEmployerHubPage().NavigateToPreparingAndMonitoringPage();
+        //[Given(@"the user navigates to the preparing and monitoring page")]
+        //public void GivenTheUserNavigatesToThePreparingAndMonitoringPage() => GoToEmployerHubPage().NavigateToPreparingAndMonitoringPage();
+
+        [Given(@"the user navigates to the training your apprentice page")]
+        public void GivenTheUserNavigatesToTheTrainingYourApprenticePage() => GoToEmployerHubPage().NavigateToTrainingYourApprenticePage();
 
         [Given(@"the user navigates to choose the right apprenticeship page")]
         public void GivenTheUserNavigatesToChooseTheRightApprenticeshipPage() => GoToEmployerHubPage().NavigateToChooseTheRightApprenticeshipPage();

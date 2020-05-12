@@ -26,10 +26,13 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
 
         protected By EmployerBenefits => By.CssSelector("#link-nav-app-benefits");
 
-        //protected By FundingAnApprenticeship => By.CssSelector("#link-nav-emp-step-1");
-        protected By FundingAnApprenticeship => By.XPath("//a[contains(@class, 'nav__link') and contains(text(), 'Funding an apprenticeship')]");
-        //protected By FundingAnApprenticeship => By.XPath("//a[contains(@class, 'nav__link') and contains(text(), ' Upskilling your current staff')]");
         protected By HiringAnApprentice => By.CssSelector("#link-nav-emp-hdw-1");
+
+        protected By UpskillingYourCurrentStaff => By.CssSelector("#link-nav-emp-hdw-2");
+
+        protected By FundingAnApprenticeship => By.CssSelector("#link-nav-emp-hdw-3");
+
+        protected By TrainingYourApprenticeship => By.CssSelector("#link-nav-emp-hdw-4");
 
         protected By EndPointAssessments => By.CssSelector("#link-nav-emp-hdw-6");
 
@@ -56,6 +59,10 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
         public FundingAnApprenticeshipPage NavigateToFundingAnApprenticeshipPage() => NavigateToHowDoTheyWork(FundingAnApprenticeship, (c) => new FundingAnApprenticeshipPage(c));
 
         public HireAnApprenticePage NavigateToHireAnApprenticePage() => NavigateToHowDoTheyWork(HiringAnApprentice, (c) => new HireAnApprenticePage(c));
+
+        public TrainingYourApprenticePage NavigateToTrainingYourApprenticePage() => NavigateToHowDoTheyWork(TrainingYourApprenticeship, (c) => new TrainingYourApprenticePage(c));
+
+        public UpSkillingYourCurrentStaffPage NavigateToUpSkillingYourCurrentStaffPage() => NavigateToHowDoTheyWork(UpskillingYourCurrentStaff, (c) => new UpSkillingYourCurrentStaffPage(c));
 
         public EndPointAssessmentPage NavigateToEndPointAssesmentPage() => NavigateToHowDoTheyWork(EndPointAssessments, (c) => new EndPointAssessmentPage(c));
 

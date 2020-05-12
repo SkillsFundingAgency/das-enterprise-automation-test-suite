@@ -3,7 +3,7 @@
 @campaigns
 @employer
 @regression
-Scenario: CA_EMP_06_Check Preparing and Monitoring Page Details
-	Given the user navigates to the preparing and monitoring page
+Scenario: CA_EMP_06_Check Training Your Apprentice Page Details
+	Given the user navigates to the training your apprentice page
 	Then the links are not broken
-	And the video links are not broken
+	#And the video links are not broken
