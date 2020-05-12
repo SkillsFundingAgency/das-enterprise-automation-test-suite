@@ -39,8 +39,8 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
         [Given(@"the user navigates to search for an apprenticeship page")]
         public void GivenTheUserNavigatesToSearchForAnApprenticeshipPage() => GoToEmployerHubPage().NavigateToFindAnApprenticeshipPage();
 
-        private FireItUpHomePage GoToFireItUpHomePage() => _stepsHelper.GoToFireItUpHomePage();
+        public FireItUpHomePage GoToFireItUpHomePage() => _stepsHelper.GoToFireItUpHomePage();
 
-        private EmployerHubPage GoToEmployerHubPage() => GoToFireItUpHomePage().NavigateToEmployerHubPage();
+        public EmployerHubPage GoToEmployerHubPage() => GoToFireItUpHomePage().NavigateToEmployerHubPage();
     }
 }

@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.Provider
+namespace SFA.DAS.Campaigns.UITests.Project.Tests.Features.Employer
 {
     using TechTalk.SpecFlow;
     
@@ -18,23 +18,20 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.Provider
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.0.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("AP_Pro_03_ProviderAddsReservationAddEditDeleteApprentice")]
-    [NUnit.Framework.CategoryAttribute("approvals")]
-    public partial class AP_Pro_03_ProviderAddsReservationAddEditDeleteApprenticeFeature
+    [NUnit.Framework.DescriptionAttribute("CA_EMP_10")]
+    public partial class CA_EMP_10Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "AP_Pro_03_ProviderAddsReservationAddEditDeleteApprentice.feature"
+#line 1 "CA_EMP_10.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "AP_Pro_03_ProviderAddsReservationAddEditDeleteApprentice", "\tAs a valid provider user \r\n\tI want to be able to get funding for a non-levy empl" +
-                    "oyer\r\n\tSo that provider can book courses for a certain training period", ProgrammingLanguage.CSharp, new string[] {
-                        "approvals"});
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "CA_EMP_10", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -73,31 +70,23 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.Provider
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("AP_Pro_03 Provider makes reservation adds edits and deletes apprentice for non-le" +
-            "vy employer")]
+        [NUnit.Framework.DescriptionAttribute("CA_EMPP_10_Check The links on How do they work Page")]
+        [NUnit.Framework.CategoryAttribute("campaigns")]
+        [NUnit.Framework.CategoryAttribute("employer")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("nonlevyproviderscenarios")]
-        [NUnit.Framework.CategoryAttribute("selectstandardcourse")]
-        public virtual void AP_Pro_03ProviderMakesReservationAddsEditsAndDeletesApprenticeForNon_LevyEmployer()
+        public virtual void CA_EMPP_10_CheckTheLinksOnHowDoTheyWorkPage()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_Pro_03 Provider makes reservation adds edits and deletes apprentice for non-le" +
-                    "vy employer", null, new string[] {
-                        "regression",
-                        "nonlevyproviderscenarios",
-                        "selectstandardcourse"});
-#line 10
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CA_EMPP_10_Check The links on How do they work Page", null, new string[] {
+                        "campaigns",
+                        "employer",
+                        "regression"});
+#line 6
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 11
- testRunner.Given("An Employer has given create reservation permission to a provider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 12
- testRunner.Then("Provider can make a reservation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 13
- testRunner.And("Provider can add an apprentice", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 14
- testRunner.And("Provider can edit an apprentice", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 15
- testRunner.And("Provider can delete an apprentice", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 7
+ testRunner.Given("the user navigates to the How do they work page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 8
+ testRunner.Then("verify the links are not broken on How do they work page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

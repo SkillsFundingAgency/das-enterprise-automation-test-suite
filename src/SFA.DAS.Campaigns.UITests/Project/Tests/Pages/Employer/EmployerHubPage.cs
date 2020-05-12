@@ -26,11 +26,12 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
 
         protected By EmployerBenefits => By.CssSelector("#link-nav-app-benefits");
 
-        protected By FundingAnApprenticeship => By.CssSelector("#link-nav-emp-step-1");
+        //protected By FundingAnApprenticeship => By.CssSelector("#link-nav-emp-step-1");
+        protected By FundingAnApprenticeship => By.XPath("//a[contains(@class, 'nav__link') and contains(text(), 'Funding an apprenticeship')]");
+        //protected By FundingAnApprenticeship => By.XPath("//a[contains(@class, 'nav__link') and contains(text(), ' Upskilling your current staff')]");
+        protected By HiringAnApprentice => By.CssSelector("#link-nav-emp-hdw-1");
 
-        protected By HiringAnApprentice => By.CssSelector("#link-nav-emp-step-4");
-
-        protected By EndPointAssessments => By.CssSelector("#link-nav-emp-step-6");
+        protected By EndPointAssessments => By.CssSelector("#link-nav-emp-hdw-6");
 
         protected By PreparingAndMonitoring => By.CssSelector("#link-nav-emp-step-5");
 
@@ -56,7 +57,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
 
         public HireAnApprenticePage NavigateToHireAnApprenticePage() => NavigateToHowDoTheyWork(HiringAnApprentice, (c) => new HireAnApprenticePage(c));
 
-        public EndPointAssesmentPage NavigateToEndPointAssesmentPage() => NavigateToHowDoTheyWork(EndPointAssessments, (c) => new EndPointAssesmentPage(c));
+        public EndPointAssessmentPage NavigateToEndPointAssesmentPage() => NavigateToHowDoTheyWork(EndPointAssessments, (c) => new EndPointAssessmentPage(c));
 
         public PreparingAndMonitoringPage NavigateToPreparingAndMonitoringPage() => NavigateToHowDoTheyWork(PreparingAndMonitoring, (c) => new PreparingAndMonitoringPage(c));
 
@@ -70,6 +71,11 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
             return new SearchForAnApprenticeshipPage(_context);
         }
 
+        public HowDoTheyWorkPage ClickHowDoTheyWorkLink()
+        {
+            formCompletionHelper.ClickElement(HowDoTheyWork);
+            return new HowDoTheyWorkPage(_context);
+        }
         private TResult NavigateToAreApprenticeshipRightForYou<TResult>(By childLocator, Func<ScenarioContext, TResult> func) => NavigateTo(AreApprenticeshipRightForYou, childLocator, func);
 
         private TResult NavigateToHowDoTheyWork<TResult>(By childLocator, Func<ScenarioContext, TResult> func) => NavigateTo(HowDoTheyWork, childLocator, func);
