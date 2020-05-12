@@ -19,5 +19,11 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay.OrganisationChe
             _context = context;
             VerifyPage();
         }
+
+        public GWApplicationOverviewPage SelectLegalNameAndContinue()
+        {
+            SelectPassAndContinue();
+            return new GWApplicationOverviewPage(_context);
+        }
     }
  }

@@ -1,5 +1,7 @@
-﻿using SFA.DAS.Roatp.UITests.Project;
+﻿using OpenQA.Selenium;
+using SFA.DAS.Roatp.UITests.Project;
 using SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpAdmin;
+using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay;
 using SFA.DAS.UI.Framework.TestSupport;
 using TechTalk.SpecFlow;
 
@@ -8,6 +10,8 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages
    public class StaffDashboardPage : RoatpAdminBasePage
     {
         protected override string PageTitle => "Staff dashboard";
+
+        private By GatewayApplicationLink => By.XPath("(//a['govuk-link'])[8]");
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
@@ -18,6 +22,12 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages
         {
             _context = context;
             _config = context.GetRoatpConfig<RoatpConfig>();
+        }
+
+        public GatewayLandingPage AccessGatewayApplications()
+        {
+            formCompletionHelper.ClickElement(GatewayApplicationLink);
+            return new GatewayLandingPage(_context);
         }
     }
 }

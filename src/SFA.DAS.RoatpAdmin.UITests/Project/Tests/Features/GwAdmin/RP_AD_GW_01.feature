@@ -6,4 +6,6 @@
 @newroatpadmin
 @regression
 Scenario: RP_AD_GW_01_Sample test
-When the gateway admin lands on the Dashboard
+Given the admin lands on the Dashboard
+When the gateway admin assess all sections as PASS
+Then the gateway admin completes assessment by confirming the Gateway outcome as PASS
