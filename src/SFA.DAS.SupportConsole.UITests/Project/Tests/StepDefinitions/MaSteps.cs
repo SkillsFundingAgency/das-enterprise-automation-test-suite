@@ -12,15 +12,28 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.StepDefinitions
 
         public MaSteps(ScenarioContext context) => _context = context;
 
-        [Then(@"the user can search by account name or PAYE scheme")]
-        public void ThenTheUserCanSearchByAccountNameOrPAYEScheme()
+        [Then(@"the user can search by Hashed account id, account name or PAYE scheme")]
+        public void ThenTheUserCanSearchByHashedAccountIdAccountNameOrPAYEScheme()
         {
             new SearchHomePage(_context)
+                 .GoToSearchHomePage()
+                 .SearchByHashedAccountIdAndViewAccount()
                  .GoToSearchHomePage()
                  .SearchByAccountNameAndViewAccount()
                  .GoToSearchHomePage()
                  .SearchByPayeSchemeAndViewAccount()
                  .GoToSearchHomePage();
+        }
+
+        [Then(@"the user can search by name or email address")]
+        public void ThenTheUserCanSearchByNameOrEmailAddress()
+        {
+            new SearchHomePage(_context)
+                  .GoToSearchHomePage()
+                  .SearchByNameAndView()
+                  .GoToSearchHomePage()
+                  .SearchByEmailAddressAndView()
+                  .GoToSearchHomePage();
         }
 
         [When(@"the user navigates to finance page")]

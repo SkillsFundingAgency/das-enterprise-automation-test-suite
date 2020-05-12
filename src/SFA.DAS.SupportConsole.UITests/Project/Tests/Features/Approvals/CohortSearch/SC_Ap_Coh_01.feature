@@ -1,9 +1,9 @@
-﻿Feature: SC_ApCoh_01
+﻿Feature: SC_Ap_Coh_01
 
 @regression
 @supportconsole
 @approvalssupportconsole
-Scenario: SC_ApCoh_01 - View Cohort details
+Scenario: SC_Ap_Coh_01 - View Cohort details
 	Given the User is logged into Support Console
 	And the User is on the Account details page
 	When the User searches for a Cohort

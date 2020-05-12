@@ -5,7 +5,7 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
 {
     public class AccountOverviewPage : SupportConsoleBasePage
     {
-        protected override string PageTitle => "Department for Education";
+        protected override string PageTitle => config.AccountName;
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
