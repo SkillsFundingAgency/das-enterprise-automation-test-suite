@@ -36,7 +36,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         public void SelectRowFromTable(string byLinkText, string byKey, By nextPage, By noOfPages, string tableSelector = "table")
         {
-             if (_pageInteractionHelper.FindElements(nextPage).Any())
+             if (_pageInteractionHelper.IsElementDisplayed(nextPage))
             {
                 int NoOfpages = _regexHelper.GetMaxNoOfPages(_pageInteractionHelper.GetText(noOfPages));
 

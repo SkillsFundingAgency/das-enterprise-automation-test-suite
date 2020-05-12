@@ -43,7 +43,7 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
             EnterPayeChallenge(func(_payeschemechars, x), func(_payeschemechars, y));
         }
 
-        public void EnterCorrectLevybalance() => formCompletionHelper.EnterText(LevyBalance, config.CurrentLevyBalance);
+        public void EnterCorrectLevybalance() => formCompletionHelper.EnterText(LevyBalance, regexHelper.GetLevyBalance(config.CurrentLevyBalance));
 
         public void Submit() => formCompletionHelper.ClickElement(SubmitButton);
 
