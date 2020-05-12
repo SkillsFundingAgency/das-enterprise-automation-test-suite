@@ -11,8 +11,8 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Gateway
         internal GWApplicationOverviewPage CompleteYourOrganisation_Section1_Support(GWApplicationOverviewPage gwApplicationOverviewPage)
         {
             return gwApplicationOverviewPage
-            .Access_Section1_LegalName();
-
+            .Access_Section1_LegalName()
+            .SelectPassAndContinue();
         }
     }
 }

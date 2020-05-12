@@ -23,24 +23,26 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
             _frameworkConfig = context.Get<FrameworkConfig>();
         }
 
-        protected void SelectPassAndContinue()
-        {
-            SelectRadioOptionByText("Pass");
-            Continue();
-        }
-
-        protected void SelectFailAndContinue(string text)
+        public  GWApplicationOverviewPage SelectFailAndContinue(string text)
         {
             SelectRadioOptionByText("Fail");
             formCompletionHelper.EnterText(EnterCommentsForFail, text);
             Continue();
+            return new GWApplicationOverviewPage(_context);
         }
 
-        protected void SelectInProgressAndContinue()
+        public GWApplicationOverviewPage SelectInProgressAndContinue()
         {
             SelectRadioOptionByText("InProgress");
             Continue();
+            return new GWApplicationOverviewPage(_context);
         }
 
+        public GWApplicationOverviewPage SelectPassAndContinue()
+        {
+            SelectRadioOptionByText("Pass");
+            Continue();
+            return new GWApplicationOverviewPage(_context);
+        }
     }
 }
