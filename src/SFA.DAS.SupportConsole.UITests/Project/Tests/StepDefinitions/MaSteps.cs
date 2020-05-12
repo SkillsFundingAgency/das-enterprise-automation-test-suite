@@ -9,6 +9,7 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.StepDefinitions
         private readonly ScenarioContext _context;
         private ChallengePage _challengePage;
         private FinancePage _financePage;
+        private TeamMembersPage _teamMembersPage;
 
         public MaSteps(ScenarioContext context) => _context = context;
 
@@ -71,9 +72,9 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.StepDefinitions
         public void ThenTheUserCanViewTransactions() => _financePage.ViewTransactions();
 
         [When(@"the user navigates to team members page")]
-        public void WhenTheUserNavigatesToTeamMembersPage() => new AccountOverviewPage(_context).ClickTeamMembersLink();
+        public void WhenTheUserNavigatesToTeamMembersPage() => _teamMembersPage = new AccountOverviewPage(_context).ClickTeamMembersLink();
 
-        [Then(@"the user is redirected to team members page")]
-        public void ThenTheUserIsRedirectedToTeamMembersPage() => new TeamMembersPage(_context);
+        [Then(@"the user can view employer user information")]
+        public void ThenTheUserCanViewEmployerUserInformation() => _teamMembersPage.GoToUserInformationOverviewPage();
     }
 }
