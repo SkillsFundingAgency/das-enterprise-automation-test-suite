@@ -1,6 +1,5 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
-using SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
@@ -27,7 +26,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.DynamicHomePage
         private By ReviewApprenticeDetailsButton => By.LinkText("Review apprentice details");
         private By VerifyViewApprenticeDetailsLink => By.LinkText("View apprentice details");
         private By DynamicHomeContinueButton => By.LinkText("Continue");
-        public DynamicHomePages(ScenarioContext context) : base(context) 
+
+        public DynamicHomePages(ScenarioContext context, bool navigate = false) : base(context, navigate) 
         {
             _context = context;
             _formCompletionHelper = context.Get<FormCompletionHelper>();
@@ -61,10 +61,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.DynamicHomePage
             _pageInteractionHelper.VerifyText(VerifyViewApprenticeDetailsLink, VerifyViewApprenticeDetails);
             return new DynamicHomePages(_context);
         }
+
         public DynamicHomePages VerifyReserveFundingPanel()
         {
             pageInteractionHelper.VerifyText(ContinueSettingUpAnApprenticeship, "Continue setting up an apprenticeship");
-            return new DynamicHomePages(_context);
+            return this;
         }
     }
 }

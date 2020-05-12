@@ -40,4 +40,8 @@
     }
 
     public class EPAOAdminUser : LoginUser { }
+
+    public class SupportConsoleTier1User : LoginUser { }
+
+    public class SupportConsoleTier2User : LoginUser { }
 }

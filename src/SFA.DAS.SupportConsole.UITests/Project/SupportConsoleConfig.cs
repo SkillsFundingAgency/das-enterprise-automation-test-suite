@@ -3,9 +3,10 @@
     public class SupportConsoleConfig
     {
         public string SupportConsoleUrl { get; set; }
-        public string LoginUsername { get; set; }
-        public string LoginPassword { get; set; }
         public string AccountId { get; set; }
+        public string AccountName { get; set; }
+        public string PayeScheme { get; set; }
+        public string CurrentLevyBalance {get;set;}
         public string AccountDetails { get; set; }
         public string Uln { get; set; }
         public string UlnName { get; set; }

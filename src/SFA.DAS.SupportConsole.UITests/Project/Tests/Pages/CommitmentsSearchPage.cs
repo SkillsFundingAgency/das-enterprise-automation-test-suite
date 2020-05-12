@@ -1,11 +1,9 @@
 ﻿using OpenQA.Selenium;
 using TechTalk.SpecFlow;
-using SFA.DAS.UI.FrameworkHelpers;
-using SFA.DAS.UI.Framework.TestSupport;
 
 namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
 {
-    public class CommitmentsSearchPage : BasePage
+    public class CommitmentsSearchPage : SupportConsoleBasePage
     {
         protected override string PageTitle => "Department for Education";
         public string SearchSectionHeaderText => "Search";
@@ -21,9 +19,6 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
-        private readonly FormCompletionHelper _formCompletionHelper;
-        private readonly PageInteractionHelper _pageInteractionHelper;
-        private readonly SupportConsoleConfig _config;
         #endregion
 
         #region Locators
@@ -39,32 +34,29 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
         public CommitmentsSearchPage(ScenarioContext context) : base(context)
         {
             _context = context;
-            _formCompletionHelper = context.Get<FormCompletionHelper>();
-            _pageInteractionHelper = context.Get<PageInteractionHelper>();
-            _config = context.GetSupportConsoleConfig<SupportConsoleConfig>();
             VerifyPage(SearchSectionHeader, SearchSectionHeaderText);
         }
 
         private void EnterTextInSearchBox(string searchText)
         {
-            _formCompletionHelper.EnterText(SearchTextBox, searchText);
+            formCompletionHelper.EnterText(SearchTextBox, searchText);
         }
 
         public CommitmentsSearchPage SelectUlnSearchTypeRadioButton()
         {
-            _formCompletionHelper.SelectRadioOptionByForAttribute(UlnRadioButton, "UnlSearchType");
+            formCompletionHelper.SelectRadioOptionByForAttribute(UlnRadioButton, "UnlSearchType");
             return this;
         }
 
         private void ClickSearchButton()
         {
-            _formCompletionHelper.Click(SearchButton);
+            formCompletionHelper.Click(SearchButton);
         }
 
         public UlnSearchResultsPage SearchForULN()
         {
             SelectUlnSearchTypeRadioButton();
-            EnterTextInSearchBox(_config.Uln);
+            EnterTextInSearchBox(config.Uln);
             ClickSearchButton();
             return new UlnSearchResultsPage(_context);
         }
@@ -84,14 +76,14 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
         public CohortSummaryPage SearchForCohort()
         {
             SelectCohortRefSearchTypeRadioButton();
-            EnterTextInSearchBox(_config.CohortRef);
+            EnterTextInSearchBox(config.CohortRef);
             ClickSearchButton();
             return new CohortSummaryPage(_context);
         }
 
         public CommitmentsSearchPage SelectCohortRefSearchTypeRadioButton()
         {
-            _formCompletionHelper.SelectRadioOptionByForAttribute(CohortRefRadioButton, "CohortSearchType");
+            formCompletionHelper.SelectRadioOptionByForAttribute(CohortRefRadioButton, "CohortSearchType");
             return this;
         }
 
@@ -103,7 +95,7 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
 
         public void SearchWithUnauthorisedCohortAccess()
         {
-            EnterTextInSearchBox(_config.CohortNotAssociatedToAccount);
+            EnterTextInSearchBox(config.CohortNotAssociatedToAccount);
             ClickSearchButton();
         }
 
@@ -115,12 +107,12 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
 
         public string GetCommitmentsSearchPageErrorText()
         {
-            return _pageInteractionHelper.GetText(CommitmentsSearchPageErrorText);
+            return pageInteractionHelper.GetText(CommitmentsSearchPageErrorText);
         }
 
         public string GetSearchTextBoxHelpText()
         {
-            return _pageInteractionHelper.GetTextFromPlaceholderAttributeOfAnElement(SearchTextBoxHelpText);
+            return pageInteractionHelper.GetTextFromPlaceholderAttributeOfAnElement(SearchTextBoxHelpText);
         }
     }
 }
