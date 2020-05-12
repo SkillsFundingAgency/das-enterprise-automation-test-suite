@@ -16,8 +16,8 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.GwAdmin
             _loginStepsHelper = new RoatpAdminLoginStepsHelper(_context);
         }
 
-        [When(@"the gateway admin lands on the Dashboard")]
-        public void WhenTheGatewayAdminLandsOnTheDashboard() => GoToGatewayLandingPage();
+        [Given(@"the admin lands on the Dashboard")]
+        public void GivenTheAdminLandsOnTheDashboard() => GoToGatewayLandingPage();
 
         private StaffDashboardPage GoToGatewayLandingPage()
         {
@@ -25,5 +25,18 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.GwAdmin
 
             return new StaffDashboardPage(_context);
         }
+
+        [When(@"the gateway admin assess all sections as PASS")]
+        public void WhenTheGatewayAdminAssessAllSectionsAsPASS()
+        {
+            ScenarioContext.Current.Pending();
+        }
+
+        [Then(@"the gateway admin completes assessment by confirming the Gateway outcome as PASS")]
+        public void ThenTheGatewayAdminCompletesAssessmentByConfirmingTheGatewayOutcomeAsPASS()
+        {
+            ScenarioContext.Current.Pending();
+        }
+
     }
 }

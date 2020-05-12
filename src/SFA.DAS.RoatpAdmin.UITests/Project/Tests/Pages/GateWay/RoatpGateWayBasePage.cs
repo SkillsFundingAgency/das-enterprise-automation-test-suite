@@ -1,5 +1,6 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.Roatp.UITests.Project.Helpers.RoatpApply;
+using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay;
 using SFA.DAS.UI.Framework;
 using System;
 using System.Linq;
