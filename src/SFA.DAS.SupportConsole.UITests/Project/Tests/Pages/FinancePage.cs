@@ -13,8 +13,6 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
         private readonly ScenarioContext _context;
         #endregion
 
-        private By LevyDeclarationsViewLink => By.LinkText("view");
-
         private By TransactionsViewLink => By.LinkText("Transactions");
 
         private By CurrentBalance => By.CssSelector(".data__purple-block");
@@ -27,7 +25,17 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
 
         public LevyDeclarationsPage ViewLevyDeclarations()
         {
-            formCompletionHelper.Click(LevyDeclarationsViewLink);
+            var paye = config.PayeScheme.ToCharArray();
+
+            string obscurepaye = string.Empty;
+            
+            for (int i = 0; i < paye.Length ; i++)
+            {
+                obscurepaye += ((i == 0 || i == paye.Length - 1 || paye[i].ToString() == "/") ? paye[i].ToString() : "*");
+            }
+            
+            tableRowHelper.SelectRowFromTable("view", obscurepaye);
+            
             return new LevyDeclarationsPage(_context);
         }
 
