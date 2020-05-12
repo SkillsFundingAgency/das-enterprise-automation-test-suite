@@ -1,24 +1,16 @@
 ﻿using OpenQA.Selenium;
 using TechTalk.SpecFlow;
-using SFA.DAS.UI.FrameworkHelpers;
-using SFA.DAS.UI.Framework.TestSupport;
 
 namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
 {
-    public class UlnDetailsPage : BasePage
+    public class UlnDetailsPage : SupportConsoleBasePage
     {
-        protected override string PageTitle => _config.UlnName;
+        protected override string PageTitle => config.UlnName;
         private string StatusSectionHeaderText => "Status";
         private string ApprenticeSectionHeaderText => "Apprentice";
         private string TrainingSectionHeaderText => "Training";
         private string DatesSectionHeaderText => "Dates";
         private string PaymentsSectionHeaderText => "Payment";
-
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        private readonly SupportConsoleConfig _config;
-        private readonly PageInteractionHelper _pageInteractionHelper;
-        #endregion
 
         #region Locators
         private By StatusSectionHeader => By.XPath("//h2[contains(text(),'Status')]");
@@ -28,21 +20,15 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
         private By PaymentsSectionHeader => By.XPath("//h2[contains(text(),'Payment')]");
         #endregion
 
-        public UlnDetailsPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            _config = context.GetSupportConsoleConfig<SupportConsoleConfig>();
-            _pageInteractionHelper = context.Get<PageInteractionHelper>();
-            VerifyPage();
-        }
+        public UlnDetailsPage(ScenarioContext context) : base(context) => VerifyPage();
 
         public void VerifyUlnDetailsPageHeaders()
         {
-            _pageInteractionHelper.VerifyText(StatusSectionHeader, StatusSectionHeaderText);
-            _pageInteractionHelper.VerifyText(ApprenticeSectionHeader, ApprenticeSectionHeaderText);
-            _pageInteractionHelper.VerifyText(TrainingSectionHeader, TrainingSectionHeaderText);
-            _pageInteractionHelper.VerifyText(DatesSectionHeader, DatesSectionHeaderText);
-            _pageInteractionHelper.VerifyText(PaymentsSectionHeader, PaymentsSectionHeaderText);
+            pageInteractionHelper.VerifyText(StatusSectionHeader, StatusSectionHeaderText);
+            pageInteractionHelper.VerifyText(ApprenticeSectionHeader, ApprenticeSectionHeaderText);
+            pageInteractionHelper.VerifyText(TrainingSectionHeader, TrainingSectionHeaderText);
+            pageInteractionHelper.VerifyText(DatesSectionHeader, DatesSectionHeaderText);
+            pageInteractionHelper.VerifyText(PaymentsSectionHeader, PaymentsSectionHeaderText);
         }
     }
 }

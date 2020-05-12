@@ -6,7 +6,8 @@
 @regression
 @addpayedetails
 Scenario: RV2_E_DHLV_01 Employer creates vacancy from dynamic homepage journey and approve	and close vacancy
-	Given the user reserves funding from the dynamic home page
+	Given The User creates NonLevyEmployer account and sign an agreement
+	And the employer reserves funding from the dynamic home page
 	And the employer continue to add vacancy in the Recruitment 
 	When the Employer creates first submitted vacancy 'National Minimum Wage'
 	And the Reviewer Approves the vacancy

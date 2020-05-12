@@ -1,9 +1,17 @@
-﻿using System.Text.RegularExpressions;
+﻿using System;
+using System.Text.RegularExpressions;
 
 namespace SFA.DAS.UI.FrameworkHelpers
 {
     public class RegexHelper
     {
+        public (int,int) GetPayeChallenge(string question)
+        {
+            var matches = Regex.Matches(question, @"[0-9]{1}", RegexOptions.None);
+
+            return (Int16.Parse(matches[0].Value), Int16.Parse(matches[1].Value));
+        }
+
         public string GetAccountId(string url)
         {
             Match match = Regex.Match(url, @"\/[A-Z0-9]{6}\/");
