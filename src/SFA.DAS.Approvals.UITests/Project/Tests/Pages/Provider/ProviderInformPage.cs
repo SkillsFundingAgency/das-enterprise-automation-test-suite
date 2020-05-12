@@ -26,10 +26,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         protected override string PageTitle => "What you'll need";
 
-        public ProviderSelectEmployerPage SelectChangeTheEmployer()
+        public ChangeOfEmployerSelectEmployerPage SelectChangeTheEmployer()
         {
             _formCompletionHelper.Click(ChangeTheEmployerButton);
-            return new ProviderSelectEmployerPage(_context);
+            return new ChangeOfEmployerSelectEmployerPage(_context);
         }
     }
 }

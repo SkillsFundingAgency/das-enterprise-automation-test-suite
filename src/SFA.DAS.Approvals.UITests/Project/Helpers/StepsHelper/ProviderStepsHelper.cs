@@ -229,14 +229,21 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
              .SubmitApproveAndSendToEmployerForApproval()
              .SendInstructionsToEmployerForAnApprovedCohort();
         }
-        public ProviderSelectEmployerPage StartChangeOfEmployerJourney()
+
+        public ChangeOfEmployerRequestedPage StartChangeOfEmployerJourney()
         {
             return GoToProviderHomePage()
                 .GoToProviderManageYourApprenticePage()
                 .SelectViewCurrentApprenticeDetails()
                 .ClickChangeEmployerLink()
-                .SelectChangeTheEmployer();
+                .SelectChangeTheEmployer()
+                .SelectNewEmployer()
+                .ConfirmNewEmployer()
+                .EndNewStartDateAndContinue()
+                .EnterNewEndDateAndContinue()
+                .EnterNewPriceAndContinue()
+                .VerifyAndSubmitChangeOfEmployerRequest()
+                .VerifyChangeOfEmployerHasBeenRequested();
         }
-
     }
 }
