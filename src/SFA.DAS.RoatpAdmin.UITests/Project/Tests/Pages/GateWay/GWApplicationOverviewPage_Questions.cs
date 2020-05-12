@@ -42,33 +42,33 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay
         private string OrganisationsCriminalandComplianceChecks_1 => "Composition with creditors";
         private string OrganisationsCriminalandComplianceChecks_2 => "Failed to pay back funds";
         private string OrganisationsCriminalandComplianceChecks_3 => "Contract terminated early by a public body";
-        private string OrganisationsCriminalandComplianceChecks_4 => "Legal name";
-        private string OrganisationsCriminalandComplianceChecks_5 => "Legal name";
-        private string OrganisationsCriminalandComplianceChecks_6 => "Legal name";
-        private string OrganisationsCriminalandComplianceChecks_7 => "Legal name";
-        private string OrganisationsCriminalandComplianceChecks_8 => "Legal name";
-        private string OrganisationsCriminalandComplianceChecks_9 => "Legal name";
-        private string OrganisationsCriminalandComplianceChecks_10 => "Legal name";
-        private string OrganisationsCriminalandComplianceChecks_11 => "Legal name";
-        private string OrganisationsCriminalandComplianceChecks_12 => "Legal name";
+        private string OrganisationsCriminalandComplianceChecks_4 => "Withdrawn from a contract with a public body";
+        private string OrganisationsCriminalandComplianceChecks_5 => "Register of Training Organisations (RoTO)";
+        private string OrganisationsCriminalandComplianceChecks_6 => "Funding removed from any education bodies";
+        private string OrganisationsCriminalandComplianceChecks_7 => "Removed from any professional or trade registers";
+        private string OrganisationsCriminalandComplianceChecks_8 => "Initial Teacher Training accreditation";
+        private string OrganisationsCriminalandComplianceChecks_9 => "Removed from any charity register";
+        private string OrganisationsCriminalandComplianceChecks_10 => "Investigated due to safeguarding issues";
+        private string OrganisationsCriminalandComplianceChecks_11 => "Investigated due to whistleblowing issues";
+        private string OrganisationsCriminalandComplianceChecks_12 => "Insolvency or winding up proceedings";
         #endregion
 
         #region Section-6
         private string PeopleinControlsCriminalandComplianceChecks => "6. People in control’s criminal and compliance checks";
-        private string PeopleinControlsCriminalandComplianceChecks_1 => "Legal name";
-        private string PeopleinControlsCriminalandComplianceChecks_2 => "Legal name";
-        private string PeopleinControlsCriminalandComplianceChecks_3 => "Legal name";
-        private string PeopleinControlsCriminalandComplianceChecks_4 => "Legal name";
-        private string PeopleinControlsCriminalandComplianceChecks_5 => "Legal name";
-        private string PeopleinControlsCriminalandComplianceChecks_6 => "Legal name";
-        private string PeopleinControlsCriminalandComplianceChecks_7 => "Legal name";
-        private string PeopleinControlsCriminalandComplianceChecks_8 => "Legal name";
-        private string PeopleinControlsCriminalandComplianceChecks_9 => "Legal name";
+        private string PeopleinControlsCriminalandComplianceChecks_1 => "Unspent criminal convictions";
+        private string PeopleinControlsCriminalandComplianceChecks_2 => "Failed to pay back funds";
+        private string PeopleinControlsCriminalandComplianceChecks_3 => "Investigated for fraud or irregularities";
+        private string PeopleinControlsCriminalandComplianceChecks_4 => "Ongoing investigations for fraud or irregularities";
+        private string PeopleinControlsCriminalandComplianceChecks_5 => "Contract terminated early by a public body";
+        private string PeopleinControlsCriminalandComplianceChecks_6 => "Withdrawn from a contract with a public body";
+        private string PeopleinControlsCriminalandComplianceChecks_7 => "Breached tax payments or social security contributions";
+        private string PeopleinControlsCriminalandComplianceChecks_8 => "Register of Removed Trustees";
+        private string PeopleinControlsCriminalandComplianceChecks_9 => "Been made bankrupt";
         #endregion
 
         #region Section-7
         private string OverallGatewayOutcome => "7. Overall gateway outcome";
-        private string OverallGatewayOutcome_1 => "Legal name";
+        private string OverallGatewayOutcome_1 => "Confirm gateway outcome";
         #endregion
     }
 }
