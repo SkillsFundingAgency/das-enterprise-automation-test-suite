@@ -1,0 +1,64 @@
+﻿using SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply;
+using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay;
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Gateway
+{
+    public class OrganisationChecks_Section1Helpers
+    {
+        internal GWApplicationOverviewPage PassOrganisationChekcs_LegalName(GWApplicationOverviewPage gwApplicationOverviewPage)
+        {
+            return gwApplicationOverviewPage
+            .Access_Section1_LegalName()
+            .SelectPassAndContinue()
+            .VerifyLegalName_Section1(StatusHelper_AdminPage.StatusPass);
+        }
+
+        internal GWApplicationOverviewPage PassOrganisationChekcs_TradingName(GWApplicationOverviewPage gwApplicationOverviewPage)
+        {
+            return gwApplicationOverviewPage
+            .Access_Section1_TradingName()
+            .SelectPassAndContinue()
+            .VerifyTradingName_Section1(StatusHelper_AdminPage.StatusPass);
+        }
+
+        internal GWApplicationOverviewPage PassOrganisationChekcs_OrganisationStatus(GWApplicationOverviewPage gwApplicationOverviewPage)
+        {
+            return gwApplicationOverviewPage
+            .Access_Section1_OrganisationStatus()
+            .SelectPassAndContinue()
+            .VerifyOrganisationStatus_Section1(StatusHelper_AdminPage.StatusPass);
+        }
+
+        internal GWApplicationOverviewPage PassOrganisationChekcs_Address(GWApplicationOverviewPage gwApplicationOverviewPage)
+        {
+            return gwApplicationOverviewPage
+            .Access_Section1_Address()
+            .SelectPassAndContinue()
+            .VerifyAddress_Section1(StatusHelper_AdminPage.StatusPass);
+        }
+        internal GWApplicationOverviewPage PassOrganisationChekcs_ICONumber(GWApplicationOverviewPage gwApplicationOverviewPage)
+        {
+            return gwApplicationOverviewPage
+            .Access_Section1_IcoRegistrationNumber()
+            .SelectPassAndContinue()
+            .VerifyICOregistrationnumber_Section1(StatusHelper_AdminPage.StatusPass);
+        }
+        internal GWApplicationOverviewPage PassOrganisationChekcs_WebsiteAddress(GWApplicationOverviewPage gwApplicationOverviewPage)
+        {
+            return gwApplicationOverviewPage
+            .Access_Section1_WebsiteAddress()
+            .SelectPassAndContinue()
+            .VerifyWebsiteaddress_Section1(StatusHelper_AdminPage.StatusPass);
+        }
+        internal GWApplicationOverviewPage PassOrganisationChekcs_OrganisationHighRisk(GWApplicationOverviewPage gwApplicationOverviewPage)
+        {
+            return gwApplicationOverviewPage
+            .Access_Section1_OrganisationHighRisk()
+            .SelectPassAndContinue()
+            .VerifyOrganisationhighrisk_Section1(StatusHelper_AdminPage.StatusPass);
+        }
+    }
+}

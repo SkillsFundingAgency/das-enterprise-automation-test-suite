@@ -98,10 +98,10 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay
         #endregion
 
         #region Section-5 Organisation's Criminal And Compliance Checks
-        public CompositionWithCreditorsPage Access_Section5_CompositionWithCreditors()
+        public CompositionWithCreditorsCheckPage Access_Section5_CompositionWithCreditors()
         {
             NavigateToTask(OrganisationsCriminalAndComplianceChecks, OrganisationsCriminalAndComplianceChecks_1);
-            return new CompositionWithCreditorsPage(_context);
+            return new CompositionWithCreditorsCheckPage(_context);
         }
         public FailedToPayBackFundsCheckPage Access_Section5_FailedToPayBackFunds()
         {
@@ -153,10 +153,10 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay
             NavigateToTask(OrganisationsCriminalAndComplianceChecks, OrganisationsCriminalAndComplianceChecks_11);
             return new InvestigatedDuetoWhistleBlowingIssuesCheckPage(_context);
         }
-        public InsolvencyOrWindingUpProceedingsPage Access_Section5_InsolvencyOrWindingUpProceedings()
+        public SubjectToInsolvencyCheckPage Access_Section5_InsolvencyOrWindingUpProceedings()
         {
             NavigateToTask(OrganisationsCriminalAndComplianceChecks, OrganisationsCriminalAndComplianceChecks_12);
-            return new InsolvencyOrWindingUpProceedingsPage(_context);
+            return new SubjectToInsolvencyCheckPage(_context);
         }
         #endregion
 
@@ -196,7 +196,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay
             NavigateToTask(PeopleInControlsCriminalAndComplianceChecks, PeopleInControlsCriminalAndComplianceChecks_7);
             return new BreachedTaxPaymentsCheckPage(_context);
         }
-        public RegisterOfRemovedTrusteesCheckPage Access_Section6_RegisterOfREmovedTrustees()
+        public RegisterOfRemovedTrusteesCheckPage Access_Section6_RegisterOfRemovedTrustees()
         {
             NavigateToTask(PeopleInControlsCriminalAndComplianceChecks, PeopleInControlsCriminalAndComplianceChecks_8);
             return new RegisterOfRemovedTrusteesCheckPage(_context);
