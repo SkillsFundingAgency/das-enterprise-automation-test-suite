@@ -18,9 +18,9 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay
         #endregion
 
         #region Section-2
-        private string PeopleincontrolChecks => "2. People in control checks";
-        private string PeopleincontrolChecks_1 => "People in control";
-        private string PeopleincontrolChecks_2 => "People in control high risk";
+        private string PeopleInControlChecks => "2. People in control checks";
+        private string PeopleInControlChecks_1 => "People in control";
+        private string PeopleInControlChecks_2 => "People in control high risk";
         #endregion
 
         #region Section-3
@@ -38,32 +38,32 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay
         #endregion
 
         #region Section-5
-        private string OrganisationsCriminalandComplianceChecks => "5. Organisation’s criminal and compliance checks";
-        private string OrganisationsCriminalandComplianceChecks_1 => "Composition with creditors";
-        private string OrganisationsCriminalandComplianceChecks_2 => "Failed to pay back funds";
-        private string OrganisationsCriminalandComplianceChecks_3 => "Contract terminated early by a public body";
-        private string OrganisationsCriminalandComplianceChecks_4 => "Withdrawn from a contract with a public body";
-        private string OrganisationsCriminalandComplianceChecks_5 => "Register of Training Organisations (RoTO)";
-        private string OrganisationsCriminalandComplianceChecks_6 => "Funding removed from any education bodies";
-        private string OrganisationsCriminalandComplianceChecks_7 => "Removed from any professional or trade registers";
-        private string OrganisationsCriminalandComplianceChecks_8 => "Initial Teacher Training accreditation";
-        private string OrganisationsCriminalandComplianceChecks_9 => "Removed from any charity register";
-        private string OrganisationsCriminalandComplianceChecks_10 => "Investigated due to safeguarding issues";
-        private string OrganisationsCriminalandComplianceChecks_11 => "Investigated due to whistleblowing issues";
-        private string OrganisationsCriminalandComplianceChecks_12 => "Insolvency or winding up proceedings";
+        private string OrganisationsCriminalAndComplianceChecks => "5. Organisation’s criminal and compliance checks";
+        private string OrganisationsCriminalAndComplianceChecks_1 => "Composition with creditors";
+        private string OrganisationsCriminalAndComplianceChecks_2 => "Failed to pay back funds";
+        private string OrganisationsCriminalAndComplianceChecks_3 => "Contract terminated early by a public body";
+        private string OrganisationsCriminalAndComplianceChecks_4 => "Withdrawn from a contract with a public body";
+        private string OrganisationsCriminalAndComplianceChecks_5 => "Register of Training Organisations (RoTO)";
+        private string OrganisationsCriminalAndComplianceChecks_6 => "Funding removed from any education bodies";
+        private string OrganisationsCriminalAndComplianceChecks_7 => "Removed from any professional or trade registers";
+        private string OrganisationsCriminalAndComplianceChecks_8 => "Initial Teacher Training accreditation";
+        private string OrganisationsCriminalAndComplianceChecks_9 => "Removed from any charity register";
+        private string OrganisationsCriminalAndComplianceChecks_10 => "Investigated due to safeguarding issues";
+        private string OrganisationsCriminalAndComplianceChecks_11 => "Investigated due to whistleblowing issues";
+        private string OrganisationsCriminalAndComplianceChecks_12 => "Insolvency or winding up proceedings";
         #endregion
 
         #region Section-6
-        private string PeopleinControlsCriminalandComplianceChecks => "6. People in control’s criminal and compliance checks";
-        private string PeopleinControlsCriminalandComplianceChecks_1 => "Unspent criminal convictions";
-        private string PeopleinControlsCriminalandComplianceChecks_2 => "Failed to pay back funds";
-        private string PeopleinControlsCriminalandComplianceChecks_3 => "Investigated for fraud or irregularities";
-        private string PeopleinControlsCriminalandComplianceChecks_4 => "Ongoing investigations for fraud or irregularities";
-        private string PeopleinControlsCriminalandComplianceChecks_5 => "Contract terminated early by a public body";
-        private string PeopleinControlsCriminalandComplianceChecks_6 => "Withdrawn from a contract with a public body";
-        private string PeopleinControlsCriminalandComplianceChecks_7 => "Breached tax payments or social security contributions";
-        private string PeopleinControlsCriminalandComplianceChecks_8 => "Register of Removed Trustees";
-        private string PeopleinControlsCriminalandComplianceChecks_9 => "Been made bankrupt";
+        private string PeopleInControlsCriminalAndComplianceChecks => "6. People in control’s criminal and compliance checks";
+        private string PeopleInControlsCriminalAndComplianceChecks_1 => "Unspent criminal convictions";
+        private string PeopleInControlsCriminalAndComplianceChecks_2 => "Failed to pay back funds";
+        private string PeopleInControlsCriminalAndComplianceChecks_3 => "Investigated for fraud or irregularities";
+        private string PeopleInControlsCriminalAndComplianceChecks_4 => "Ongoing investigations for fraud or irregularities";
+        private string PeopleInControlsCriminalAndComplianceChecks_5 => "Contract terminated early by a public body";
+        private string PeopleInControlsCriminalAndComplianceChecks_6 => "Withdrawn from a contract with a public body";
+        private string PeopleInControlsCriminalAndComplianceChecks_7 => "Breached tax payments or social security contributions";
+        private string PeopleInControlsCriminalAndComplianceChecks_8 => "Register of Removed Trustees";
+        private string PeopleInControlsCriminalAndComplianceChecks_9 => "Been made bankrupt";
         #endregion
 
         #region Section-7
