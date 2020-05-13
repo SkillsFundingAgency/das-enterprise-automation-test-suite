@@ -40,6 +40,8 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
             var driverLocationConfig = new DriverLocationConfig { ChromeWebDriver = Configurator.ChromeWebDriver, GeckoWebDriver = Configurator.GeckoWebDriver, IEWebDriver = Configurator.IEWebDriver };
 
             _context.Set(driverLocationConfig);
+
+            _context.Set(new UrlConfig())
         }
     }
 }
