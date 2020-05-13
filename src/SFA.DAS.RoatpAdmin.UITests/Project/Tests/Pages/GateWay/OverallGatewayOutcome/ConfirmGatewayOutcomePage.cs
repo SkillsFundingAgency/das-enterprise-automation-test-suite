@@ -8,7 +8,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay.OrganisationChe
 {
     public class ConfirmGatewayOutcomePage : RoatpGateWayBasePage
     {
-        protected override string PageTitle => "Subject to insolvency or winding up proceedings in the last 3 years check";
+        protected override string PageTitle => "Confirm gateway outcome";
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
@@ -18,6 +18,13 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay.OrganisationChe
         {
             _context = context;
             VerifyPage();
+        }
+
+        public FinalConfirmationPage PassThisApplicationAndContinue()
+        {
+            SelectRadioOptionByText("Pass this application");
+            Continue();
+            return new FinalConfirmationPage(_context);
         }
     }
 }
