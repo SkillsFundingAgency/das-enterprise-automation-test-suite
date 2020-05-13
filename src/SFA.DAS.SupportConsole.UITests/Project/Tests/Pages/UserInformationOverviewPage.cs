@@ -9,9 +9,6 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
 
         protected override By PageHeader => By.CssSelector(".heading-secondary");
 
-        public UserInformationOverviewPage(ScenarioContext context) : base(context)
-        {
-            VerifyPage();
-        }
+        public UserInformationOverviewPage(ScenarioContext context) : base(context) => VerifyPage();
     }
 }

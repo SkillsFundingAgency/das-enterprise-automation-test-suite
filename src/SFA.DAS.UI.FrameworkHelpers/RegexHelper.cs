@@ -12,10 +12,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
             return Int16.Parse(TrimAnySpace(Regex.Replace(match.Value, @"of", string.Empty)));
         }
 
-        public string GetLevyBalance(string levybalance)
-        {
-            return Regex.Replace(levybalance, @",|\.[0-9]*", string.Empty);
-        }
+        public string GetLevyBalance(string levybalance) => Regex.Replace(levybalance, @",|\.[0-9]*", string.Empty);
 
         public (int,int) GetPayeChallenge(string question)
         {
