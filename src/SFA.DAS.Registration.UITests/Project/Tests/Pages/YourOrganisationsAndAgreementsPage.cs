@@ -16,7 +16,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         private By AddNewOrganisationButton => By.LinkText("Add an organisation");
         private By TableCells => By.XPath("//td");
         private By ViewAgreementLink => By.LinkText("View all agreements");
-        private By OrgRemovedMessageInHeader = By.Id("error-summary-title");
+        private By OrgRemovedMessageInHeader = By.XPath("//h3");
         private By RemoveLinkBesideNewlyAddedOrg => By.LinkText($"Remove organisation");
         #endregion
 
