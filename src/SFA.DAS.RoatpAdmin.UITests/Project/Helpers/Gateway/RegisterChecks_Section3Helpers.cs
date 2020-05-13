@@ -6,7 +6,7 @@ using System.Text;
 
 namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Gateway
 {
-    public class RegisterChecks_Section1Helpers
+    public class RegisterChecks_Section3Helpers
     {
         internal GWApplicationOverviewPage PassRegisterChecks_ROATP(GWApplicationOverviewPage gwApplicationOverviewPage)
         {

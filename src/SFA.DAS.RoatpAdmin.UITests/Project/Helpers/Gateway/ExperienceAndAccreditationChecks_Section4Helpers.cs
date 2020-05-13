@@ -5,7 +5,7 @@ using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay;
 
 namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Gateway
 {
-    public class ExperienceAndAccreditationChecks_Section1Helpers
+    public class ExperienceAndAccreditationChecks_Section4Helpers
     {
         internal GWApplicationOverviewPage PassExperienceAndAccreditationChecks_OfficeForStudent(GWApplicationOverviewPage gwApplicationOverviewPage)
         {

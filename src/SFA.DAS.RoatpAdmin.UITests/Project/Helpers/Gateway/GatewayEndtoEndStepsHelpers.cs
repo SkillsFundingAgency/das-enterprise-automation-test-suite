@@ -6,13 +6,89 @@ using System.Text;
 
 namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Gateway
 {
-   public class GatewayEndtoEndStepsHelpers 
-   {
-        internal GWApplicationOverviewPage CompleteYourOrganisation_Section1_Support(GWApplicationOverviewPage gwApplicationOverviewPage)
+    public class GatewayEndtoEndStepsHelpers
+    {
+        private readonly OrganisationChecks_Section1Helpers _organisationChecksSectionHelpers;
+        private readonly PeopleInControlChecks_Section2Helpers _peopleInControlChecksSectionHelpers;
+        private readonly RegisterChecks_Section3Helpers _registerChecks_SectionHelpers;
+        private readonly ExperienceAndAccreditationChecks_Section4Helpers _experienceAndAccreditationChecks_SectionHelpers;
+        private readonly OrganisationsCriminalAndComplianceChecks_Section5Helpers _organisationsCriminalAndComplianceChecks_SectionHelpers;
+        private readonly PeopleInControlCriminalAndComplianceChecks_Section6Helpers _peopleInControlCriminalAndComplianceChecksSectionHelpers;
+
+        public GatewayEndtoEndStepsHelpers()
         {
-            return gwApplicationOverviewPage
-            .Access_Section1_LegalName()
-            .SelectPassAndContinue();
+            _organisationChecksSectionHelpers = new OrganisationChecks_Section1Helpers();
+            _peopleInControlChecksSectionHelpers = new PeopleInControlChecks_Section2Helpers();
+            _registerChecks_SectionHelpers = new RegisterChecks_Section3Helpers();
+            _experienceAndAccreditationChecks_SectionHelpers = new ExperienceAndAccreditationChecks_Section4Helpers();
+            _organisationsCriminalAndComplianceChecks_SectionHelpers = new OrganisationsCriminalAndComplianceChecks_Section5Helpers();
+            _peopleInControlCriminalAndComplianceChecksSectionHelpers = new PeopleInControlCriminalAndComplianceChecks_Section6Helpers();
+        }
+
+        internal GWApplicationOverviewPage CompleteOrganisationChecks_Section1(GWApplicationOverviewPage gwApplicationOverviewPage)
+        {
+            gwApplicationOverviewPage = _organisationChecksSectionHelpers.PassOrganisationChecks_LegalName(gwApplicationOverviewPage);
+            gwApplicationOverviewPage = _organisationChecksSectionHelpers.PassOrganisationChecks_TradingName(gwApplicationOverviewPage);
+            gwApplicationOverviewPage = _organisationChecksSectionHelpers.PassOrganisationChecks_OrganisationStatus(gwApplicationOverviewPage);
+            gwApplicationOverviewPage = _organisationChecksSectionHelpers.PassOrganisationChecks_Address(gwApplicationOverviewPage);
+            gwApplicationOverviewPage = _organisationChecksSectionHelpers.PassOrganisationChecks_ICONumber(gwApplicationOverviewPage);
+            gwApplicationOverviewPage = _organisationChecksSectionHelpers.PassOrganisationChecks_WebsiteAddress(gwApplicationOverviewPage);
+            gwApplicationOverviewPage = _organisationChecksSectionHelpers.PassOrganisationChecks_OrganisationHighRisk(gwApplicationOverviewPage);
+            return gwApplicationOverviewPage;
+        }
+
+        internal GWApplicationOverviewPage CompletePeopleInControlChecks_Section2(GWApplicationOverviewPage gwApplicationOverviewPage)
+        {
+            gwApplicationOverviewPage = _peopleInControlChecksSectionHelpers.PassPeopleInControlChecks_PeopleInControl(gwApplicationOverviewPage);
+            gwApplicationOverviewPage = _peopleInControlChecksSectionHelpers.PassPeopleInControlChecks_PeopleInControlHighRisk(gwApplicationOverviewPage);
+            return gwApplicationOverviewPage;
+        }
+
+        internal GWApplicationOverviewPage CompleteRegisterChecks_Section3(GWApplicationOverviewPage gwApplicationOverviewPage)
+        {
+            gwApplicationOverviewPage = _registerChecks_SectionHelpers.PassRegisterChecks_ROATP(gwApplicationOverviewPage);
+            gwApplicationOverviewPage = _registerChecks_SectionHelpers.PassRegisterChecks_RegisterOfEndPointAssessmentOrganisations(gwApplicationOverviewPage);
+            return gwApplicationOverviewPage;
+        }
+
+        internal GWApplicationOverviewPage CompleteExperienceAndAccreditationChecks_Section4(GWApplicationOverviewPage gwApplicationOverviewPage)
+        {
+            gwApplicationOverviewPage = _experienceAndAccreditationChecks_SectionHelpers.PassExperienceAndAccreditationChecks_OfficeForStudent(gwApplicationOverviewPage);
+            gwApplicationOverviewPage = _experienceAndAccreditationChecks_SectionHelpers.PassExperienceAndAccreditationChecks_InitialTeacherTraining(gwApplicationOverviewPage);
+            gwApplicationOverviewPage = _experienceAndAccreditationChecks_SectionHelpers.PassExperienceAndAccreditationChecks_Ofsted(gwApplicationOverviewPage);
+            gwApplicationOverviewPage = _experienceAndAccreditationChecks_SectionHelpers.PassExperienceAndAccreditationChecks_SubcontractorDeclaration(gwApplicationOverviewPage);
+            return gwApplicationOverviewPage;
+        }
+
+        internal GWApplicationOverviewPage CompleteOrganisationsCriminalAndComplianceChecks_Section5(GWApplicationOverviewPage gwApplicationOverviewPage)
+        {
+            gwApplicationOverviewPage = _organisationsCriminalAndComplianceChecks_SectionHelpers.PassOrganisationsCriminalAndComplianceChecks_CompositionWithCreditors(gwApplicationOverviewPage);
+            gwApplicationOverviewPage = _organisationsCriminalAndComplianceChecks_SectionHelpers.PassOrganisationsCriminalAndComplianceChecks_FailedToPayBackFunds(gwApplicationOverviewPage);
+            gwApplicationOverviewPage = _organisationsCriminalAndComplianceChecks_SectionHelpers.PassOrganisationsCriminalAndComplianceChecks_ContractTerminatedEarlyByPublicBody(gwApplicationOverviewPage);
+            gwApplicationOverviewPage = _organisationsCriminalAndComplianceChecks_SectionHelpers.PassOrganisationsCriminalAndComplianceChecks_WithDrawnFromContractEarlyByPublicBody(gwApplicationOverviewPage);
+            gwApplicationOverviewPage = _organisationsCriminalAndComplianceChecks_SectionHelpers.PassOrganisationsCriminalAndComplianceChecks_RegisterOfTrainingOrganisations(gwApplicationOverviewPage);
+            gwApplicationOverviewPage = _organisationsCriminalAndComplianceChecks_SectionHelpers.PassOrganisationsCriminalAndComplianceChecks_FudingRemovedFromAnyEducationBodies(gwApplicationOverviewPage);
+            gwApplicationOverviewPage = _organisationsCriminalAndComplianceChecks_SectionHelpers.PassOrganisationsCriminalAndComplianceChecks_RemovedFromAnyProfessionalOrTradeBodies(gwApplicationOverviewPage);
+            gwApplicationOverviewPage = _organisationsCriminalAndComplianceChecks_SectionHelpers.PassOrganisationsCriminalAndComplianceChecks_ITTAccreditation(gwApplicationOverviewPage);
+            gwApplicationOverviewPage = _organisationsCriminalAndComplianceChecks_SectionHelpers.PassOrganisationsCriminalAndComplianceChecks_RemovedFromAnyCharityRegister(gwApplicationOverviewPage);
+            gwApplicationOverviewPage = _organisationsCriminalAndComplianceChecks_SectionHelpers.PassOrganisationsCriminalAndComplianceChecks_InvestigatedDueToSafeGuardingIssues(gwApplicationOverviewPage);
+            gwApplicationOverviewPage = _organisationsCriminalAndComplianceChecks_SectionHelpers.PassOrganisationsCriminalAndComplianceChecks_InvestigatedDuetoWhistleBlowingIssues(gwApplicationOverviewPage);
+            gwApplicationOverviewPage = _organisationsCriminalAndComplianceChecks_SectionHelpers.PassOrganisationsCriminalAndComplianceChecks_InsolvencyOrWindingProceedings(gwApplicationOverviewPage);
+            return gwApplicationOverviewPage;
+        }
+
+        internal GWApplicationOverviewPage CompletePeopleInControlCriminalAndComplianceChecks_Section6(GWApplicationOverviewPage gwApplicationOverviewPage)
+        {
+            gwApplicationOverviewPage = _peopleInControlCriminalAndComplianceChecksSectionHelpers.PassOrganisationsCriminalAndComplianceChecks_UnSpentCriminalConvictions(gwApplicationOverviewPage);
+            gwApplicationOverviewPage = _peopleInControlCriminalAndComplianceChecksSectionHelpers.PassOrganisationsCriminalAndComplianceChecks_FailedToPayBackFunds(gwApplicationOverviewPage);
+            gwApplicationOverviewPage = _peopleInControlCriminalAndComplianceChecksSectionHelpers.PassOrganisationsCriminalAndComplianceChecks_InvestigatedForFraudOrIrregularities(gwApplicationOverviewPage);
+            gwApplicationOverviewPage = _peopleInControlCriminalAndComplianceChecksSectionHelpers.PassOrganisationsCriminalAndComplianceChecks_OngoingInvestigationForFraudOrIrregularities(gwApplicationOverviewPage);
+            gwApplicationOverviewPage = _peopleInControlCriminalAndComplianceChecksSectionHelpers.PassOrganisationsCriminalAndComplianceChecks_ContractTerminatedEarlyByPublicBody(gwApplicationOverviewPage);
+            gwApplicationOverviewPage = _peopleInControlCriminalAndComplianceChecksSectionHelpers.PassOrganisationsCriminalAndComplianceChecks_WithdrawnFromContractWithApublic(gwApplicationOverviewPage);
+            gwApplicationOverviewPage = _peopleInControlCriminalAndComplianceChecksSectionHelpers.PassOrganisationsCriminalAndComplianceChecks_BreachedTaxPaymentsOrSocialSecurityContributions(gwApplicationOverviewPage);
+            gwApplicationOverviewPage = _peopleInControlCriminalAndComplianceChecksSectionHelpers.PassOrganisationsCriminalAndComplianceChecks_RegisterOfRemovedTrustees(gwApplicationOverviewPage);
+            gwApplicationOverviewPage = _peopleInControlCriminalAndComplianceChecksSectionHelpers.PassOrganisationsCriminalAndComplianceChecks_BeenMadeBankrupt(gwApplicationOverviewPage);
+            return gwApplicationOverviewPage;
         }
     }
 }

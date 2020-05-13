@@ -5,7 +5,7 @@ using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay;
 
 namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Gateway
 {
-   public  class OrganisationsCriminalAndComplianceChecks_Section1Helpers
+   public  class OrganisationsCriminalAndComplianceChecks_Section5Helpers
     {
         internal GWApplicationOverviewPage PassOrganisationsCriminalAndComplianceChecks_CompositionWithCreditors(GWApplicationOverviewPage gwApplicationOverviewPage)
         {

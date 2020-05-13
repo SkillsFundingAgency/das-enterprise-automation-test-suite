@@ -5,7 +5,7 @@ using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay;
 
 namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Gateway
 {
-    public class PeopleInControlCriminalAndComplianceChecks_Section1Helpers
+    public class PeopleInControlCriminalAndComplianceChecks_Section6Helpers
     {
         internal GWApplicationOverviewPage PassOrganisationsCriminalAndComplianceChecks_UnSpentCriminalConvictions(GWApplicationOverviewPage gwApplicationOverviewPage)
         {

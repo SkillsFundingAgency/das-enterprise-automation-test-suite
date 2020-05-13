@@ -8,7 +8,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Gateway
 {
     public class OrganisationChecks_Section1Helpers
     {
-        internal GWApplicationOverviewPage PassOrganisationChekcs_LegalName(GWApplicationOverviewPage gwApplicationOverviewPage)
+        internal GWApplicationOverviewPage PassOrganisationChecks_LegalName(GWApplicationOverviewPage gwApplicationOverviewPage)
         {
             return gwApplicationOverviewPage
             .Access_Section1_LegalName()
@@ -16,7 +16,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Gateway
             .VerifyLegalName_Section1(StatusHelper_AdminPage.StatusPass);
         }
 
-        internal GWApplicationOverviewPage PassOrganisationChekcs_TradingName(GWApplicationOverviewPage gwApplicationOverviewPage)
+        internal GWApplicationOverviewPage PassOrganisationChecks_TradingName(GWApplicationOverviewPage gwApplicationOverviewPage)
         {
             return gwApplicationOverviewPage
             .Access_Section1_TradingName()
@@ -24,7 +24,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Gateway
             .VerifyTradingName_Section1(StatusHelper_AdminPage.StatusPass);
         }
 
-        internal GWApplicationOverviewPage PassOrganisationChekcs_OrganisationStatus(GWApplicationOverviewPage gwApplicationOverviewPage)
+        internal GWApplicationOverviewPage PassOrganisationChecks_OrganisationStatus(GWApplicationOverviewPage gwApplicationOverviewPage)
         {
             return gwApplicationOverviewPage
             .Access_Section1_OrganisationStatus()
@@ -32,28 +32,28 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Gateway
             .VerifyOrganisationStatus_Section1(StatusHelper_AdminPage.StatusPass);
         }
 
-        internal GWApplicationOverviewPage PassOrganisationChekcs_Address(GWApplicationOverviewPage gwApplicationOverviewPage)
+        internal GWApplicationOverviewPage PassOrganisationChecks_Address(GWApplicationOverviewPage gwApplicationOverviewPage)
         {
             return gwApplicationOverviewPage
             .Access_Section1_Address()
             .SelectPassAndContinue()
             .VerifyAddress_Section1(StatusHelper_AdminPage.StatusPass);
         }
-        internal GWApplicationOverviewPage PassOrganisationChekcs_ICONumber(GWApplicationOverviewPage gwApplicationOverviewPage)
+        internal GWApplicationOverviewPage PassOrganisationChecks_ICONumber(GWApplicationOverviewPage gwApplicationOverviewPage)
         {
             return gwApplicationOverviewPage
             .Access_Section1_IcoRegistrationNumber()
             .SelectPassAndContinue()
             .VerifyICOregistrationnumber_Section1(StatusHelper_AdminPage.StatusPass);
         }
-        internal GWApplicationOverviewPage PassOrganisationChekcs_WebsiteAddress(GWApplicationOverviewPage gwApplicationOverviewPage)
+        internal GWApplicationOverviewPage PassOrganisationChecks_WebsiteAddress(GWApplicationOverviewPage gwApplicationOverviewPage)
         {
             return gwApplicationOverviewPage
             .Access_Section1_WebsiteAddress()
             .SelectPassAndContinue()
             .VerifyWebsiteaddress_Section1(StatusHelper_AdminPage.StatusPass);
         }
-        internal GWApplicationOverviewPage PassOrganisationChekcs_OrganisationHighRisk(GWApplicationOverviewPage gwApplicationOverviewPage)
+        internal GWApplicationOverviewPage PassOrganisationChecks_OrganisationHighRisk(GWApplicationOverviewPage gwApplicationOverviewPage)
         {
             return gwApplicationOverviewPage
             .Access_Section1_OrganisationHighRisk()
