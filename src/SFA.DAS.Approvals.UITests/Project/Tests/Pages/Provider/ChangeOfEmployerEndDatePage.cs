@@ -23,7 +23,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         public ChangeOfEmployerPricePage EnterNewEndDateAndContinue()
         {
             _formCompletionHelper.EnterText(EndDateMonth, DateTime.UtcNow.Month.ToString());
-            _formCompletionHelper.EnterText(EndDateYear, DateTime.UtcNow.Year.ToString());
+            _formCompletionHelper.EnterText(EndDateYear, DateTime.UtcNow.AddYears(1).Year.ToString());
             Continue();
             return new ChangeOfEmployerPricePage(_context);
         }
