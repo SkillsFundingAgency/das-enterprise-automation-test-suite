@@ -1,9 +1,9 @@
-﻿Feature: SC_ApCoh_02
+﻿Feature: SC_Ap_Coh_02
 
 @regression
 @supportconsole
 @approvalssupportconsole
-Scenario: SC_ApCoh_02 - Invalid Cohort search
+Scenario: SC_Ap_Coh_02 - Invalid Cohort search
 	Given the User is logged into Support Console
 	And the User is on the Account details page
 	When the User searches with a invalid Cohort Ref

@@ -1,9 +1,9 @@
-﻿Feature: SC_ApULN_02
+﻿Feature: SC_Ap_ULN_02
 
 @regression
 @supportconsole
 @approvalssupportconsole
-Scenario: SC_ApULN_02 - Invalid ULN search
+Scenario: SC_Ap_ULN_02 - Invalid ULN search
 	Given the User is logged into Support Console
 	And the User is on the Account details page
 	When the User searches with a invalid ULN

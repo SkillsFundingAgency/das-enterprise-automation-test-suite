@@ -27,7 +27,12 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
     
         public void EnterCorrectPaye()
         {
-            string func(char[] chars, int position) => chars.ElementAt(position - 1).ToString();
+            string func(char[] chars, int position)
+            {
+                var digit = chars.ElementAt(position - 1).ToString();
+                objectContext.Set($"challenge position {position}", digit);
+                return digit;
+            }
 
             _payeschemechars = config.PayeScheme.Replace("/", string.Empty).ToCharArray();
 
@@ -38,7 +43,7 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
             EnterPayeChallenge(func(_payeschemechars, x), func(_payeschemechars, y));
         }
 
-        public void EnterCorrectLevybalance() => formCompletionHelper.EnterText(LevyBalance, config.CurrentLevyBalance);
+        public void EnterCorrectLevybalance() => formCompletionHelper.EnterText(LevyBalance, regexHelper.GetLevyBalance(config.CurrentLevyBalance));
 
         public void Submit() => formCompletionHelper.ClickElement(SubmitButton);
 

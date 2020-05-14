@@ -5,7 +5,7 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
 {
     public class AccountOverviewPage : SupportConsoleBasePage
     {
-        protected override string PageTitle => "Department for Education";
+        protected override string PageTitle => config.AccountName;
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
@@ -19,12 +19,16 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
         public AccountOverviewPage(ScenarioContext context) : base(context)
         {
             _context = context;
-            ClickOrganisationsLink(); //Doing this to refresh the page as the Header dissappears at times - known issue
+            RefreshPage(); //Doing this to refresh the page as the Header dissappears at times - known issue
             VerifyPage();
             VerifyPage(PageHeaderWithAccountDetails, config.AccountDetails);
         }
 
-        public void ClickTeamMembersLink() => formCompletionHelper.Click(TeamMembersLink);
+        public TeamMembersPage ClickTeamMembersLink()
+        {
+            formCompletionHelper.Click(TeamMembersLink);
+            return new TeamMembersPage(_context);
+        }
 
         public CommitmentsSearchPage ClickCommitmentsMenuLink()
         {
@@ -32,10 +36,6 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
             return new CommitmentsSearchPage(_context);
         }
 
-        private AccountOverviewPage ClickOrganisationsLink()
-        {
-            formCompletionHelper.Click(OrganisationsMenuLink);
-            return this;
-        }
+        private void RefreshPage() => formCompletionHelper.Click(OrganisationsMenuLink);
     }
 }
