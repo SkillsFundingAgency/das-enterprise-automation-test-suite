@@ -1,4 +1,6 @@
-﻿namespace SFA.DAS.Registration.UITests.Project
+﻿using SFA.DAS.UI.Framework;
+
+namespace SFA.DAS.Registration.UITests.Project
 {
     public class RegistrationConfig
     {
@@ -6,7 +8,7 @@
 
         public string RE_AccountPassword { get; set; }
 
-        public string EmployerApprenticeshipServiceBaseURL { get; set; }
+        public string EmployerApprenticeshipServiceBaseURL => UrlConfig.EmployerApprenticeshipServiceBaseURL;
 
         public string RE_ConfirmCode { get; set; }
 
