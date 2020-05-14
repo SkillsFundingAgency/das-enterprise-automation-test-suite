@@ -26,9 +26,4 @@ namespace SFA.DAS.Registration.UITests.Project
     {
         public string RE_PregDbConnectionString { get; set; }
     }
-
-    public class MailinatorConfig
-    {
-        public string MailinatorURL { get; set; }
-    }
 }

@@ -41,7 +41,6 @@ namespace SFA.DAS.ConfigurationBuilder
             .AddJsonFile("appsettings.MongoDbConfig.json", true)
             .AddJsonFile("appsettings.TimeOutConfig.json", true)
             .AddJsonFile("appsettings.BrowserStack.json", true)
-            .AddJsonFile("appsettings.UrlConfig.json", true)
             .AddJsonFile("appsettings.Project.json", true)
             .AddJsonFile("appsettings.Project.BrowserStack.json", true)
             .AddJsonFile($"appsettings.{EnvironmentName}.json", true)
@@ -49,7 +48,6 @@ namespace SFA.DAS.ConfigurationBuilder
             .AddUserSecrets("BrowserStackSecrets")
             .AddUserSecrets($"{ProjectName}_Secrets")
             .AddUserSecrets($"{ProjectName}_{EnvironmentName}_Secrets")
-            .AddUserSecrets($"Url_{EnvironmentName}_Secrets")
             .AddUserSecrets("MongoDbSecrets")
             .AddUserSecrets("TestExecutionSecrets")
             .Build();
