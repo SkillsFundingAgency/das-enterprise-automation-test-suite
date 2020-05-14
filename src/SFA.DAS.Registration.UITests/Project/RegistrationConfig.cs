@@ -16,14 +16,4 @@ namespace SFA.DAS.Registration.UITests.Project
 
         public string RE_AccountsDbConnectionString { get; set; }
     }
-
-    public class TprConfig
-    {
-        public string RE_TPRDbConnectionString { get; set; }
-    }
-
-    public class ProviderLeadRegistrationConfig
-    {
-        public string RE_PregDbConnectionString { get; set; }
-    }
 }
