@@ -8,7 +8,7 @@
         public static string EPAOAssessmentServiceUrl => $"https://{EnvironmentConfig.EnvironmentName}-assessors.apprenticeships.education.gov.uk";
         public static string EmployerApprenticeshipServiceBaseURL => $"https://{EnvironmentConfig.EnvironmentName}-eas.apprenticeships.education.gov.uk/";
         public static string FAABaseUrl => $"https://{EnvironmentConfig.EnvironmentName}.findapprenticeship.service.gov.uk/";
-        public static string FATUrl => EnvironmentConfig.IsTestEnvironment ? "https ://test-fatweb.apprenticeships.education.gov.uk/" : $"https://{EnvironmentConfig.EnvironmentName}-findapprenticeshiptraining.apprenticeships.education.gov.uk";
+        public static string FATUrl => EnvironmentConfig.IsTestEnvironment ? "https://test-fatweb.apprenticeships.education.gov.uk/" : $"https://{EnvironmentConfig.EnvironmentName}-findapprenticeshiptraining.apprenticeships.education.gov.uk";
         public static string MailinatorURL => "https://www.mailinator.com/";
         public static string ManageBaseUrl => $"https://{EnvironmentConfig.EnvironmentName}-manageapprenticeship.apprenticeships.education.gov.uk/";
         public static string ProviderBaseUrl => $"https://{EnvironmentConfig.EnvironmentName}-pas.apprenticeships.education.gov.uk/";
