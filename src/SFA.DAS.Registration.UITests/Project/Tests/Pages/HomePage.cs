@@ -1,6 +1,7 @@
 ﻿using SFA.DAS.UI.FrameworkHelpers;
 using OpenQA.Selenium;
 using TechTalk.SpecFlow;
+using SFA.DAS.Registration.UITests.Project.Tests.Pages.InterimPages;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 {

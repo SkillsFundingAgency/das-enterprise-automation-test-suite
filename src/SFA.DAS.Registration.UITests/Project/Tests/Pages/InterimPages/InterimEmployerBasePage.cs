@@ -7,7 +7,7 @@ using SFA.DAS.UI.FrameworkHelpers;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages.YourTeamPages;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages.PAYESchemesPages;
 
-namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
+namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.InterimPages
 {
     public abstract class InterimEmployerBasePage : Navigate
     {
