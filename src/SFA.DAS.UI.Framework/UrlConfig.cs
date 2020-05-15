@@ -1,21 +1,19 @@
 ﻿namespace SFA.DAS.UI.Framework
 {
-    public class UrlConfig
+    public static class UrlConfig
     {
-        public string AdminBaseUrl { get; set; }
-        public string ApplyBaseUrl { get; set; }
-        public string AskBaseURL { get; set; }
-        public string CABaseURL { get; set; }
-        public string EPAOAssessmentOpportunityFinderUrl { get; set; }
-        public string EPAOAssessmentServiceUrl { get; set; }
-        public string EmployerApprenticeshipServiceBaseURL { get; set; }
-        public string FAABaseUrl { get; set; }
-        public string FATUrl { get; set; }
-        public string MailinatorURL { get; set; }
-        public string ManageBaseUrl { get; set; }
-        public string ProviderBaseUrl { get; set; }
-        public string RAAV2QABaseUrl { get; set; }
-        public string RecruitBaseUrl { get; set; }
-        public string SupportConsoleUrl { get; set; }
+        public static string AdminBaseUrl => $"https://{EnvironmentConfig.EnvironmentName}-admin.apprenticeships.education.gov.uk/";
+        public static string ApplyBaseUrl => $"https://{EnvironmentConfig.EnvironmentName}-apply.apprenticeships.education.gov.uk/";
+        public static string CABaseURL => EnvironmentConfig.IsPPEnvironment ? "https://preprod.apprenticeships.gov.uk/" : $"https://{EnvironmentConfig.EnvironmentName}.apprenticeships.gov.uk/";
+        public static string EPAOAssessmentServiceUrl => $"https://{EnvironmentConfig.EnvironmentName}-assessors.apprenticeships.education.gov.uk";
+        public static string EmployerApprenticeshipServiceBaseURL => $"https://{EnvironmentConfig.EnvironmentName}-eas.apprenticeships.education.gov.uk/";
+        public static string FAABaseUrl => $"https://{EnvironmentConfig.EnvironmentName}.findapprenticeship.service.gov.uk/";
+        public static string FATUrl => EnvironmentConfig.IsTestEnvironment ? "https://test-fatweb.apprenticeships.education.gov.uk/" : $"https://{EnvironmentConfig.EnvironmentName}-findapprenticeshiptraining.apprenticeships.education.gov.uk";
+        public static string MailinatorURL => "https://www.mailinator.com/";
+        public static string ManageBaseUrl => $"https://{EnvironmentConfig.EnvironmentName}-manageapprenticeship.apprenticeships.education.gov.uk/";
+        public static string ProviderBaseUrl => $"https://{EnvironmentConfig.EnvironmentName}-pas.apprenticeships.education.gov.uk/";
+        public static string RAAV2QABaseUrl => $"https://{EnvironmentConfig.EnvironmentName}-review.apprenticeships.education.gov.uk/";
+        public static string RecruitBaseUrl => $"https://{EnvironmentConfig.EnvironmentName}.recruit-apprentice.service.gov.uk/";
+        public static string SupportConsoleUrl => $"https://{EnvironmentConfig.EnvironmentName}-console.apprenticeships.education.gov.uk/";
     }
 }
