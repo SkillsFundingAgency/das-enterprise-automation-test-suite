@@ -4,12 +4,12 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.YourTeamPages
 {
-    public class InvitationSentPage : InterimEmployerBasePage
+    public class InvitationSentPage : InterimHomeBasePage
     {
         protected override string PageTitle => "Invitation sent";
-        protected override By PageHeader => By.CssSelector("h1");
-        protected override string Linktext => "Home";
 
-        public InvitationSentPage(ScenarioContext context) : base(context, false) => VerifyPage();
+        protected override By PageHeader => By.CssSelector("h1");
+
+        public InvitationSentPage(ScenarioContext context) : base(context, false) { }
     }
 }

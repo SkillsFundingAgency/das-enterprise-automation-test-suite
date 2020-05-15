@@ -42,10 +42,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.InterimPages
 
         public HomePage GoToHomePage() => new HomePage(_context, true);
 
-        public YourOrganisationsAndAgreementsPage GoToYourOrganisationsAndAgreementsPage()
-        {
-            return new YourOrganisationsAndAgreementsPage(_context, true);
-        }
+        public YourOrganisationsAndAgreementsPage GoToYourOrganisationsAndAgreementsPage() => new YourOrganisationsAndAgreementsPage(_context, true);
 
         public YourAccountsPage GoToYourAccountsPage()
         {

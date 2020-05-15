@@ -13,14 +13,11 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         private By AddNewOrganisationButton => By.LinkText("Add an organisation");
         private By TableCells => By.XPath("//td");
         private By ViewAgreementLink => By.LinkText("View all agreements");
-        private By OrgRemovedMessageInHeader = By.XPath("//h3");
+        private By OrgRemovedMessageInHeader => By.XPath("//h3");
         private By RemoveLinkBesideNewlyAddedOrg => By.LinkText($"Remove organisation");
         #endregion
 
-        public YourOrganisationsAndAgreementsPage(ScenarioContext context, bool navigate = false) : base(context, navigate)
-        {
-            _context = context;
-        }
+        public YourOrganisationsAndAgreementsPage(ScenarioContext context, bool navigate = false) : base(context, navigate) => _context = context;
 
         public string GetTransfersStatus() => pageInteractionHelper.GetText(TransferStatus);
 
