@@ -63,7 +63,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
             }
 
             WebDriver.Manage().Window.Maximize();
-            if (Configurator.IsVstsExecution) WebDriver.Manage().Window.Size = new Size(1920, 1080);
+            if (Configurator.IsVstsExecution) WebDriver.Manage().Window.FullScreen();
             WebDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(_frameworkConfig.TimeOutConfig.PageNavigation);
             var currentWindow = WebDriver.CurrentWindowHandle;
             WebDriver.SwitchTo().Window(currentWindow);
