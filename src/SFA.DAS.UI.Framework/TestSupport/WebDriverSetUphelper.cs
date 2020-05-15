@@ -6,6 +6,7 @@ using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.IE;
 using TechTalk.SpecFlow;
 using SFA.DAS.ConfigurationBuilder;
+using System.Drawing;
 
 namespace SFA.DAS.UI.Framework.TestSupport
 {
@@ -34,17 +35,14 @@ namespace SFA.DAS.UI.Framework.TestSupport
             {
                 case bool _ when browser.IsFirefox():
                     WebDriver = new FirefoxDriver(_objectContext.GetFireFoxDriverLocation());
-                    WebDriver.Manage().Window.Maximize();
                     break;
 
                 case bool _ when browser.IsChrome():
-
                     WebDriver = ChromeDriver(new List<string>());
                     break;
 
                 case bool _ when browser.IsIe():
                     WebDriver = new InternetExplorerDriver(_objectContext.GetIeDriverLocation());
-                    WebDriver.Manage().Window.Maximize();
                     break;
 
                 case bool _ when browser.IsZap():
@@ -65,6 +63,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
             }
 
             WebDriver.Manage().Window.Maximize();
+            if (Configurator.IsVstsExecution) WebDriver.Manage().Window.Size = new Size(1920, 1080);
             WebDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(_frameworkConfig.TimeOutConfig.PageNavigation);
             var currentWindow = WebDriver.CurrentWindowHandle;
             WebDriver.SwitchTo().Window(currentWindow);
