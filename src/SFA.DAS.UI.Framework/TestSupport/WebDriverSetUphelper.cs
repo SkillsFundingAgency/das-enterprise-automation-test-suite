@@ -6,18 +6,14 @@ using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.IE;
 using TechTalk.SpecFlow;
 using SFA.DAS.ConfigurationBuilder;
-using System.Drawing;
 
 namespace SFA.DAS.UI.Framework.TestSupport
 {
     public class WebDriverSetupHelper
     {
         private IWebDriver WebDriver;
-
         private readonly ScenarioContext _context;
-
         private readonly ObjectContext _objectContext;
-
         private readonly FrameworkConfig _frameworkConfig;
 
         public WebDriverSetupHelper(ScenarioContext context)
@@ -63,10 +59,8 @@ namespace SFA.DAS.UI.Framework.TestSupport
             }
 
             WebDriver.Manage().Window.Maximize();
-            if (Configurator.IsVstsExecution) WebDriver.Manage().Window.Size = new Size(1920, 2000);
             WebDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(_frameworkConfig.TimeOutConfig.PageNavigation);
-            var currentWindow = WebDriver.CurrentWindowHandle;
-            WebDriver.SwitchTo().Window(currentWindow);
+            WebDriver.SwitchTo().Window(WebDriver.CurrentWindowHandle);
             WebDriver.Manage().Cookies.DeleteAllCookies();
 
             _context.SetWebDriver(WebDriver);
