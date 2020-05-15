@@ -17,9 +17,6 @@ namespace SFA.DAS.Approvals.UITests.Project
         }
 
         [AfterScenario(Order = 9)]
-        public void AddUln()
-        {
-            _datahelper?.Ulns.ForEach((x) => _objectcontext.SetUln(x));
-        }
+        public void AddUln() => _datahelper?.Ulns.ForEach((x) => _objectcontext.SetUln(x));
     }
 }

@@ -1,8 +1,5 @@
 ﻿using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.UI.Framework.TestSupport;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2_QA.UITests.Project
@@ -20,7 +17,7 @@ namespace SFA.DAS.RAA_V2_QA.UITests.Project
         }
 
         [BeforeScenario(Order = 2)]
-        public void SetUpTestProjectConfiguration()
+        public void SetUpRAAV2QAProjectConfiguration()
         {
             var config = _configSection.GetConfigSection<RAAV2QAConfig>();
             _context.SetRAAV2QAConfig(config);

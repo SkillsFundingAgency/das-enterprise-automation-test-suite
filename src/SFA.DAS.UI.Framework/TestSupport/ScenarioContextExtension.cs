@@ -29,7 +29,6 @@ namespace SFA.DAS.UI.Framework.TestSupport
         #region Setters
         public static void SetRoatpConfig<T>(this ScenarioContext context, T value) => Set(context, value, RoatpProjectConfigKey);
         public static void SetRegistrationConfig<T>(this ScenarioContext context, T value) => Set(context, value, RegistrationProjectConfigKey);
-        public static void SetMailinatorConfig<T>(this ScenarioContext context, T value) => Set(context, value, MailinatorConfigKey);
         public static void SetTprConfig<T>(this ScenarioContext context, T value) => Set(context, value, TprProjectConfigKey);
         public static void SetProviderLeadRegistrationConfig<T>(this ScenarioContext context, T value) => Set(context, value, ProviderLeadRegistrationConfigKey);
         public static void SetApprovalsConfig<T>(this ScenarioContext context, T value) => Set(context, value, ApprovalsProjectConfigKey);
@@ -52,7 +51,6 @@ namespace SFA.DAS.UI.Framework.TestSupport
         public static T GetRoatpConfig<T>(this ScenarioContext context) => Get<T>(context, RoatpProjectConfigKey);
         public static T GetFATConfig<T>(this ScenarioContext context) => Get<T>(context, FATProjectConfigKey);
         public static T GetRegistrationConfig<T>(this ScenarioContext context) => Get<T>(context, RegistrationProjectConfigKey);
-        public static T GetMailinatorConfig<T>(this ScenarioContext context) => Get<T>(context, MailinatorConfigKey);
         public static T GetTprConfig<T>(this ScenarioContext context) => Get<T>(context, TprProjectConfigKey);
         public static T GetProviderLeadRegistrationConfig<T>(this ScenarioContext context) => Get<T>(context, ProviderLeadRegistrationConfigKey);
         public static T GetApprovalsConfig<T>(this ScenarioContext context) => Get<T>(context, ApprovalsProjectConfigKey);
