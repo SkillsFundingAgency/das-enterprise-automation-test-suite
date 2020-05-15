@@ -52,7 +52,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
         public void WhenTheEmployerFavouritesMultipleApprenticeship()
         {
             _searchResultsPage = _searchResultsPage.SearchApprenticeship("Business and Administration");
-            _searchResultsPage = _searchResultsPage.SearchApprenticeship("IT");
+            _searchResultsPage = _searchResultsPage.SearchApprenticeship("Beauty Therapy");
             _searchResultsPage = _searchResultsPage.SearchApprenticeship("Construction");
             _empFavpage = _searchResultsPage.GoToEmployerFavouritesPage();
             _empFavpage.VerifyCount(3);

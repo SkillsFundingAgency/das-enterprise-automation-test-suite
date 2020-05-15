@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using SFA.DAS.EmployerFinance.UITests.Project.Tests.Pages;
+using SFA.DAS.Registration.UITests.Project.Tests.Pages;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EmployerFinance.UITests.Project.Tests.StepDefinitions
@@ -11,6 +12,9 @@ namespace SFA.DAS.EmployerFinance.UITests.Project.Tests.StepDefinitions
         private FinancePage _financePage;
 
         public EmployerFinanceSteps(ScenarioContext context) => _context = context;
+
+        [Then(@"'Set up an apprenticeship' section is displayed")]
+        public void ThenSetUpAnApprnticeshipSectionIsDisplayed() => new HomePage(_context).VerifySetupAnApprenticeshipSection();
 
         [Then(@"'Your funding reservations' and 'Your finances' links are displayed in the Finances section")]
         public void ThenAndLinksAreDisplayedInTheFinancesSection() => new HomePageFinancesSection(_context).VerifyYourFinancesSectionLinksForANonLevyUser();

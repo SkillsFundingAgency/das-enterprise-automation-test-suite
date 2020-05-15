@@ -21,10 +21,7 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.StepDefinitions
         }
 
         [When(@"the User searches for an ULN")]
-        public void WhenTheUserSearchesForAnULN()
-        {
-            _stepsHelper.SearchForUln();
-        }
+        public void WhenTheUserSearchesForAnULN() => _stepsHelper.SearchForUln();
 
         [Then(@"the ULN details are displayed")]
         public void ThenTheULNDetailsAreDisplayed()
@@ -36,16 +33,10 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.StepDefinitions
         }
 
         [When(@"the User searches with a invalid ULN")]
-        public void WhenTheUserSearchesWithAInvalidULN()
-        {
-            _stepsHelper.SearchWithInvalidUln(false);
-        }
+        public void WhenTheUserSearchesWithAInvalidULN() => _stepsHelper.SearchWithInvalidUln(false);
 
         [When(@"the User searches with a invalid ULN having special characters")]
-        public void WhenTheUserSearchesWithAInvalidULNHavingSpecialCharacters()
-        {
-            _stepsHelper.SearchWithInvalidUln(true);
-        }
+        public void WhenTheUserSearchesWithAInvalidULNHavingSpecialCharacters() => _stepsHelper.SearchWithInvalidUln(true);
 
         [Then(@"appropriate ULN error message is shown to the user")]
         public void ThenAppropriateUlnErrorMessageIsShownToTheUser()
@@ -55,10 +46,7 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.StepDefinitions
         }
 
         [When(@"the User searches for a Cohort")]
-        public void WhenTheUserSearchesForACohort()
-        {
-            _stepsHelper.SearchForCohort();
-        }
+        public void WhenTheUserSearchesForACohort() => _stepsHelper.SearchForCohort();
 
         [When(@"the User clicks on 'View this cohort' button")]
         public void WhenTheUserClicksOnButton()
@@ -77,16 +65,10 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.StepDefinitions
         }
 
         [Then(@"the ULN details page is displayed")]
-        public void ThenTheULNDetailsPageIsDisplayed()
-        {
-            new UlnDetailsPage(_context).VerifyUlnDetailsPageHeaders();
-        }
+        public void ThenTheULNDetailsPageIsDisplayed() => new UlnDetailsPage(_context).VerifyUlnDetailsPageHeaders();
 
         [When(@"the User searches with a invalid Cohort Ref")]
-        public void WhenTheUserSearchesWithAInvalidCohortRef()
-        {
-            _stepsHelper.SearchWithInvalidCohort(false);
-        }
+        public void WhenTheUserSearchesWithAInvalidCohortRef() => _stepsHelper.SearchWithInvalidCohort(false);
 
         [Then(@"appropriate Cohort error message is shown to the user")]
         public void ThenAppropriateCohortErrorMessageIsShownToTheUser()
@@ -96,16 +78,10 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.StepDefinitions
         }
 
         [When(@"the User searches with a invalid Cohort Ref having special characters")]
-        public void WhenTheUserSearchesWithAInvalidCohortRefHavingSpecialCharacters()
-        {
-            _stepsHelper.SearchWithInvalidCohort(true);
-        }
+        public void WhenTheUserSearchesWithAInvalidCohortRefHavingSpecialCharacters() => _stepsHelper.SearchWithInvalidCohort(true);
 
         [When(@"the user tries to view another Employer's Cohort Ref")]
-        public void WhenTheUserTriesToViewAnotherEmployerSCohortRef()
-        {
-            _stepsHelper.SearchWithUnauthorisedCohortAccess();
-        }
+        public void WhenTheUserTriesToViewAnotherEmployerSCohortRef() => _stepsHelper.SearchWithUnauthorisedCohortAccess();
 
         [Then(@"unauthorised Cohort access error message is shown to the user")]
         public void ThenUnauthorisedCohortAccessErrorMessageIsShownToTheUser()

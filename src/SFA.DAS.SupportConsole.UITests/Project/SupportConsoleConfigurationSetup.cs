@@ -1,4 +1,6 @@
 ﻿using SFA.DAS.ConfigurationBuilder;
+using SFA.DAS.Login.Service;
+using SFA.DAS.Login.Service.Helpers;
 using SFA.DAS.UI.Framework.TestSupport;
 using TechTalk.SpecFlow;
 
@@ -19,8 +21,11 @@ namespace SFA.DAS.SupportConsole.UITests.Project
         [BeforeScenario(Order = 2)]
         public void SetUpSupportConsoleProjectConfiguration()
         {
-            var config = _configSection.GetConfigSection<SupportConsoleConfig>();
-            _context.SetSupportConsoleConfig(config);
+            _context.SetSupportConsoleConfig(_configSection.GetConfigSection<SupportConsoleConfig>());
+
+            _context.SetUser(_configSection.GetConfigSection<SupportConsoleTier1User>());
+
+            _context.SetUser(_configSection.GetConfigSection<SupportConsoleTier2User>());
         }
     }
 }

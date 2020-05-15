@@ -1,9 +1,26 @@
-﻿using System.Text.RegularExpressions;
+﻿using System;
+using System.Text.RegularExpressions;
 
 namespace SFA.DAS.UI.FrameworkHelpers
 {
     public class RegexHelper
     {
+        public int GetMaxNoOfPages(string question)
+        {
+            var match = Regex.Match(question, @"of [0-9]*", RegexOptions.None);
+
+            return Int16.Parse(TrimAnySpace(Regex.Replace(match.Value, @"of", string.Empty)));
+        }
+
+        public string GetLevyBalance(string levybalance) => Regex.Replace(levybalance, @",|\.[0-9]*", string.Empty);
+
+        public (int,int) GetPayeChallenge(string question)
+        {
+            var matches = Regex.Matches(question, @"[0-9]{1}", RegexOptions.None);
+
+            return (Int16.Parse(matches[0].Value), Int16.Parse(matches[1].Value));
+        }
+
         public string GetAccountId(string url)
         {
             Match match = Regex.Match(url, @"\/[A-Z0-9]{6}\/");

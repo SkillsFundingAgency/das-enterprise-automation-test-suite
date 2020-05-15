@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Features.Approvals.CohortSearch
+namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Features.MA.Challenge
 {
     using TechTalk.SpecFlow;
     
@@ -18,20 +18,20 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Features.Approvals.Cohort
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.0.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("SC_ApCoh_03")]
-    public partial class SC_ApCoh_03Feature
+    [NUnit.Framework.DescriptionAttribute("SC_Ma_Challenge_02")]
+    public partial class SC_Ma_Challenge_02Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "SC_ApCoh_03.feature"
+#line 1 "SC_Ma_Challenge_02.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "SC_ApCoh_03", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "SC_Ma_Challenge_02", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -70,27 +70,35 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Features.Approvals.Cohort
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("SC_ApCoh_03 - Search for a unauthorised Cohort")]
+        [NUnit.Framework.DescriptionAttribute("SC_Ma_Challenge_02 Submit incorrect details")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("supportconsole")]
-        [NUnit.Framework.CategoryAttribute("approvalssupportconsole")]
-        public virtual void SC_ApCoh_03_SearchForAUnauthorisedCohort()
+        [NUnit.Framework.CategoryAttribute("masupportconsole")]
+        public virtual void SC_Ma_Challenge_02SubmitIncorrectDetails()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("SC_ApCoh_03 - Search for a unauthorised Cohort", null, new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("SC_Ma_Challenge_02 Submit incorrect details", null, new string[] {
                         "regression",
                         "supportconsole",
-                        "approvalssupportconsole"});
-#line 6
+                        "masupportconsole"});
+#line 7
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 7
- testRunner.Given("the User is logged into Support Console", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 8
- testRunner.And("the User is on the Account details page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Given("the Tier 1 User is logged into Support Console", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 9
- testRunner.When("the user tries to view another Employer\'s Cohort Ref", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.And("the User is on the Account details page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 10
- testRunner.Then("unauthorised Cohort access error message is shown to the user", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.When("the user navigates to finance page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 11
+ testRunner.Then("the user is redirected to a challenge page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 12
+ testRunner.When("the user enters invalid payscheme", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 13
+ testRunner.But("enters correct levybalance", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "But ");
+#line 14
+ testRunner.When("the user submits the challenge", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 15
+ testRunner.Then("the user should see the error message Incorrect information entered.", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
