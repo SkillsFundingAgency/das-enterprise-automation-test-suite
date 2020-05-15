@@ -8,16 +8,10 @@ namespace SFA.DAS.UI.Framework.Hooks.AfterScenario
     {
         private readonly BrowserStackTearDownHelper _helper;
 
-        public BrowserStackTearDown(ScenarioContext context)
-        {
-            _helper = new BrowserStackTearDownHelper(context);
-        }
+        public BrowserStackTearDown(ScenarioContext context) => _helper = new BrowserStackTearDownHelper(context);
 
         [AfterScenario(Order = 12)]
-        public void InformBrowserStackOnFailure()
-        {
-            _helper.InformBrowserStackOnFailure();
-        }
+        public void InformBrowserStackOnFailure() => _helper.InformBrowserStackOnFailure();
     }
 }
 

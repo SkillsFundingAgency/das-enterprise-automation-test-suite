@@ -2,6 +2,7 @@
 using SFA.DAS.UI.FrameworkHelpers;
 using SFA.DAS.UI.Framework.TestSupport;
 using OpenQA.Selenium;
+using SFA.DAS.ConfigurationBuilder;
 
 namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
 {
@@ -9,6 +10,7 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
     {
         #region Helpers and Context
         private readonly ScenarioContext _context;
+        protected readonly ObjectContext objectContext;
         protected readonly FormCompletionHelper formCompletionHelper;
         protected readonly PageInteractionHelper pageInteractionHelper;
         protected readonly SupportConsoleConfig config;
@@ -25,6 +27,7 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
         public SupportConsoleBasePage(ScenarioContext context) : base(context)
         {
             _context = context;
+            objectContext = context.Get<ObjectContext>();
             formCompletionHelper = context.Get<FormCompletionHelper>();
             pageInteractionHelper = context.Get<PageInteractionHelper>();
             config = context.GetSupportConsoleConfig<SupportConsoleConfig>();
