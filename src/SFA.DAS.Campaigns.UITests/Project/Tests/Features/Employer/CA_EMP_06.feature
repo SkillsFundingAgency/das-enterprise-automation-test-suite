@@ -6,4 +6,4 @@
 Scenario: CA_EMP_06_Check Training Your Apprentice Page Details
 	Given the user navigates to the training your apprentice page
 	Then the links are not broken
-	#And the video links are not broken
+

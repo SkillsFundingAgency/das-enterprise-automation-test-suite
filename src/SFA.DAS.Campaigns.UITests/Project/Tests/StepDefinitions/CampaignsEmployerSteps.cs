@@ -30,9 +30,6 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
         [Given(@"the user navigates to the end point assessments page")]
         public void GivenTheUserNavigatesToTheEndPointAssessmentsPage() => GoToEmployerHubPage().NavigateToEndPointAssesmentPage();
 
-        //[Given(@"the user navigates to the preparing and monitoring page")]
-        //public void GivenTheUserNavigatesToThePreparingAndMonitoringPage() => GoToEmployerHubPage().NavigateToPreparingAndMonitoringPage();
-
         [Given(@"the user navigates to the training your apprentice page")]
         public void GivenTheUserNavigatesToTheTrainingYourApprenticePage() => GoToEmployerHubPage().NavigateToTrainingYourApprenticePage();
 

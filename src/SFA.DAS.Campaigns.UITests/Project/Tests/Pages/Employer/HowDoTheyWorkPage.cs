@@ -13,6 +13,9 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
         private readonly By _fundingAnApprenticeshipIconLink = By.Id("flow-link-3");
         private readonly By _trainingYourApprenticeIconLink = By.Id("flow-link-4");
         private readonly By _endPointAssessmentsIconLink = By.Id("flow-link-5");
+        private readonly By _levyPayerYes = By.Id("levyPayerYes");
+        private readonly By _levyPayerNo = By.Id("levyPayerNo");
+        private readonly By _continueButton = By.XPath("//button[ contains(@class,  'button')  and contains(text(), 'Continue')]");
         #endregion
 
 
@@ -59,6 +62,11 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
             return new EndPointAssessmentPage(_context);
         }
 
+        public HireAnApprenticePage ClickContinueButton()
+        {
+            formCompletionHelper.ClickElement(_continueButton);
+            return new HireAnApprenticePage(_context);
+        }
 
     }
 }
