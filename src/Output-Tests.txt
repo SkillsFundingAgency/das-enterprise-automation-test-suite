@@ -1,0 +1,185 @@
+﻿[5/15/2020 11:25:54 AM Informational] ------ Discover test started ------
+[5/15/2020 11:25:58 AM Warning] No test is available in C:\Users\smahmood\Documents\Campaign\das-enterprise-automation-test-suite\src\SFA.DAS.Approvals.UITests\SFA.DAS.Approvals.UITests.csproj C:\Users\smahmood\Documents\Campaign\das-enterprise-automation-test-suite\src\SFA.DAS.Campaigns.UITests\SFA.DAS.Campaigns.UITests.csproj C:\Users\smahmood\Documents\Campaign\das-enterprise-automation-test-suite\src\SFA.DAS.ConfigurationBuilder\SFA.DAS.ConfigurationBuilder.csproj C:\Users\smahmood\Documents\Campaign\das-enterprise-automation-test-suite\src\SFA.DAS.EmployerFinance.UITests\SFA.DAS.EmployerFinance.UITests.csproj C:\Users\smahmood\Documents\Campaign\das-enterprise-automation-test-suite\src\SFA.DAS.EPAO.UITests\SFA.DAS.EPAO.UITests.csproj C:\Users\smahmood\Documents\Campaign\das-enterprise-automation-test-suite\src\SFA.DAS.FAA.UITests\SFA.DAS.FAA.UITests.csproj C:\Users\smahmood\Documents\Campaign\das-enterprise-automation-test-suite\src\SFA.DAS.FAT.UITests\SFA.DAS.FAT.UITests.csproj C:\Users\smahmood\Documents\Campaign\das-enterprise-automation-test-suite\src\SFA.DAS.IdamsLogin.Service\SFA.DAS.IdamsLogin.Service.csproj C:\Users\smahmood\Documents\Campaign\das-enterprise-automation-test-suite\src\SFA.DAS.Login.Service\SFA.DAS.Login.Service.csproj C:\Users\smahmood\Documents\Campaign\das-enterprise-automation-test-suite\src\SFA.DAS.MongoDb.DataGenerator\SFA.DAS.MongoDb.DataGenerator.csproj C:\Users\smahmood\Documents\Campaign\das-enterprise-automation-test-suite\src\SFA.DAS.PayeCreation.Tests\SFA.DAS.PayeCreation.Tests.csproj C:\Users\smahmood\Documents\Campaign\das-enterprise-automation-test-suite\src\SFA.DAS.ProviderLogin.Service\SFA.DAS.ProviderLogin.Service.csproj C:\Users\smahmood\Documents\Campaign\das-enterprise-automation-test-suite\src\SFA.DAS.RAA-V1.UITests\SFA.DAS.RAA-V1.UITests.csproj C:\Users\smahmood\Documents\Campaign\das-enterprise-automation-test-suite\src\SFA.DAS.RAA-V2-Employer.UITests\SFA.DAS.RAA-V2-Employer.UITests.csproj C:\Users\smahmood\Documents\Campaign\das-enterprise-automation-test-suite\src\SFA.DAS.RAA-V2-Provider.UITests\SFA.DAS.RAA-V2-Provider.UITests.csproj C:\Users\smahmood\Documents\Campaign\das-enterprise-automation-test-suite\src\SFA.DAS.RAA-V2-QA.UITests\SFA.DAS.RAA-V2-QA.UITests.csproj C:\Users\smahmood\Documents\Campaign\das-enterprise-automation-test-suite\src\SFA.DAS.RAA-V2.Service\SFA.DAS.RAA-V2.Service.csproj C:\Users\smahmood\Documents\Campaign\das-enterprise-automation-test-suite\src\SFA.DAS.RAA.DataGenerator\SFA.DAS.RAA.DataGenerator.csproj C:\Users\smahmood\Documents\Campaign\das-enterprise-automation-test-suite\src\SFA.DAS.Registration.UITests\SFA.DAS.Registration.UITests.csproj C:\Users\smahmood\Documents\Campaign\das-enterprise-automation-test-suite\src\SFA.DAS.Roatp.UITests\SFA.DAS.Roatp.UITests.csproj C:\Users\smahmood\Documents\Campaign\das-enterprise-automation-test-suite\src\SFA.DAS.RoatpAdmin.UITests\SFA.DAS.RoatpAdmin.UITests.csproj C:\Users\smahmood\Documents\Campaign\das-enterprise-automation-test-suite\src\SFA.DAS.SupportConsole.UITests\SFA.DAS.SupportConsole.UITests.csproj C:\Users\smahmood\Documents\Campaign\das-enterprise-automation-test-suite\src\SFA.DAS.TestDataExport\SFA.DAS.TestDataExport.csproj C:\Users\smahmood\Documents\Campaign\das-enterprise-automation-test-suite\src\SFA.DAS.UI.FrameworkHelpers\SFA.DAS.UI.FrameworkHelpers.csproj C:\Users\smahmood\Documents\Campaign\das-enterprise-automation-test-suite\src\SFA.DAS.UI.Framework\SFA.DAS.UI.Framework.csproj. Make sure that test discoverer & executors are registered and platform & framework version settings are appropriate and try again.
+[5/15/2020 11:25:58 AM Informational] ========== Discover test finished: 0 found (0:00:04.0926533) ==========
+[5/15/2020 11:26:12 AM Informational] ------ Run test started ------
+[5/15/2020 11:26:17 AM Informational] NUnit Adapter 3.13.0.0: Test execution started
+[5/15/2020 11:26:17 AM Informational] Debugging all tests in C:\Users\smahmood\Documents\Campaign\das-enterprise-automation-test-suite\src\SFA.DAS.Campaigns.UITests\bin\Debug\netcoreapp2.2\SFA.DAS.Campaigns.UITests.dll
+[5/15/2020 11:26:17 AM Informational]    NUnit3TestExecutor converted 24 of 24 NUnit test cases
+[5/15/2020 11:41:01 AM Informational] NUnit Adapter 3.13.0.0: Test execution complete
+[5/15/2020 11:41:02 AM Informational] ========== Run test finished: 1 run (0:14:49.9057226) ==========
+[5/15/2020 11:41:30 AM Informational] ------ Discover test started ------
+[5/15/2020 11:41:38 AM Warning] No test is available in C:\Users\smahmood\Documents\Campaign\das-enterprise-automation-test-suite\src\SFA.DAS.Approvals.UITests\SFA.DAS.Approvals.UITests.csproj C:\Users\smahmood\Documents\Campaign\das-enterprise-automation-test-suite\src\SFA.DAS.Campaigns.UITests\SFA.DAS.Campaigns.UITests.csproj C:\Users\smahmood\Documents\Campaign\das-enterprise-automation-test-suite\src\SFA.DAS.ConfigurationBuilder\SFA.DAS.ConfigurationBuilder.csproj C:\Users\smahmood\Documents\Campaign\das-enterprise-automation-test-suite\src\SFA.DAS.EmployerFinance.UITests\SFA.DAS.EmployerFinance.UITests.csproj C:\Users\smahmood\Documents\Campaign\das-enterprise-automation-test-suite\src\SFA.DAS.EPAO.UITests\SFA.DAS.EPAO.UITests.csproj C:\Users\smahmood\Documents\Campaign\das-enterprise-automation-test-suite\src\SFA.DAS.FAA.UITests\SFA.DAS.FAA.UITests.csproj C:\Users\smahmood\Documents\Campaign\das-enterprise-automation-test-suite\src\SFA.DAS.FAT.UITests\SFA.DAS.FAT.UITests.csproj C:\Users\smahmood\Documents\Campaign\das-enterprise-automation-test-suite\src\SFA.DAS.IdamsLogin.Service\SFA.DAS.IdamsLogin.Service.csproj C:\Users\smahmood\Documents\Campaign\das-enterprise-automation-test-suite\src\SFA.DAS.Login.Service\SFA.DAS.Login.Service.csproj C:\Users\smahmood\Documents\Campaign\das-enterprise-automation-test-suite\src\SFA.DAS.MongoDb.DataGenerator\SFA.DAS.MongoDb.DataGenerator.csproj C:\Users\smahmood\Documents\Campaign\das-enterprise-automation-test-suite\src\SFA.DAS.PayeCreation.Tests\SFA.DAS.PayeCreation.Tests.csproj C:\Users\smahmood\Documents\Campaign\das-enterprise-automation-test-suite\src\SFA.DAS.ProviderLogin.Service\SFA.DAS.ProviderLogin.Service.csproj C:\Users\smahmood\Documents\Campaign\das-enterprise-automation-test-suite\src\SFA.DAS.RAA-V1.UITests\SFA.DAS.RAA-V1.UITests.csproj C:\Users\smahmood\Documents\Campaign\das-enterprise-automation-test-suite\src\SFA.DAS.RAA-V2-Employer.UITests\SFA.DAS.RAA-V2-Employer.UITests.csproj C:\Users\smahmood\Documents\Campaign\das-enterprise-automation-test-suite\src\SFA.DAS.RAA-V2-Provider.UITests\SFA.DAS.RAA-V2-Provider.UITests.csproj C:\Users\smahmood\Documents\Campaign\das-enterprise-automation-test-suite\src\SFA.DAS.RAA-V2-QA.UITests\SFA.DAS.RAA-V2-QA.UITests.csproj C:\Users\smahmood\Documents\Campaign\das-enterprise-automation-test-suite\src\SFA.DAS.RAA-V2.Service\SFA.DAS.RAA-V2.Service.csproj C:\Users\smahmood\Documents\Campaign\das-enterprise-automation-test-suite\src\SFA.DAS.RAA.DataGenerator\SFA.DAS.RAA.DataGenerator.csproj C:\Users\smahmood\Documents\Campaign\das-enterprise-automation-test-suite\src\SFA.DAS.Registration.UITests\SFA.DAS.Registration.UITests.csproj C:\Users\smahmood\Documents\Campaign\das-enterprise-automation-test-suite\src\SFA.DAS.Roatp.UITests\SFA.DAS.Roatp.UITests.csproj C:\Users\smahmood\Documents\Campaign\das-enterprise-automation-test-suite\src\SFA.DAS.RoatpAdmin.UITests\SFA.DAS.RoatpAdmin.UITests.csproj C:\Users\smahmood\Documents\Campaign\das-enterprise-automation-test-suite\src\SFA.DAS.SupportConsole.UITests\SFA.DAS.SupportConsole.UITests.csproj C:\Users\smahmood\Documents\Campaign\das-enterprise-automation-test-suite\src\SFA.DAS.TestDataExport\SFA.DAS.TestDataExport.csproj C:\Users\smahmood\Documents\Campaign\das-enterprise-automation-test-suite\src\SFA.DAS.UI.FrameworkHelpers\SFA.DAS.UI.FrameworkHelpers.csproj C:\Users\smahmood\Documents\Campaign\das-enterprise-automation-test-suite\src\SFA.DAS.UI.Framework\SFA.DAS.UI.Framework.csproj. Make sure that test discoverer & executors are registered and platform & framework version settings are appropriate and try again.
+[5/15/2020 11:41:38 AM Informational] ========== Discover test finished: 0 found (0:00:07.8025808) ==========
+[5/15/2020 11:42:07 AM Informational] ------ Discover test started ------
+[5/15/2020 11:42:08 AM Warning] No test is available in C:\Users\smahmood\Documents\Campaign\das-enterprise-automation-test-suite\src\SFA.DAS.UI.Framework\SFA.DAS.UI.Framework.csproj. Make sure that test discoverer & executors are registered and platform & framework version settings are appropriate and try again.
+[5/15/2020 11:42:08 AM Informational] ========== Discover test finished: 0 found (0:00:01.6780821) ==========
+[5/15/2020 11:42:08 AM Informational] ------ Discover test started ------
+[5/15/2020 11:42:10 AM Informational] NUnit Adapter 3.13.0.0: Test discovery starting
+[5/15/2020 11:42:10 AM Informational] NUnit Adapter 3.13.0.0: Test discovery complete
+[5/15/2020 11:42:11 AM Informational] NUnit Adapter 3.13.0.0: Test discovery starting
+[5/15/2020 11:42:11 AM Informational] NUnit Adapter 3.13.0.0: Test discovery complete
+[5/15/2020 11:42:12 AM Informational] NUnit Adapter 3.13.0.0: Test discovery starting
+[5/15/2020 11:42:13 AM Informational] NUnit Adapter 3.13.0.0: Test discovery complete
+[5/15/2020 11:42:13 AM Informational] NUnit Adapter 3.13.0.0: Test discovery starting
+[5/15/2020 11:42:14 AM Informational] NUnit Adapter 3.13.0.0: Test discovery complete
+[5/15/2020 11:42:15 AM Informational] NUnit Adapter 3.13.0.0: Test discovery starting
+[5/15/2020 11:42:15 AM Informational] NUnit Adapter 3.13.0.0: Test discovery complete
+[5/15/2020 11:42:16 AM Informational] NUnit Adapter 3.13.0.0: Test discovery starting
+[5/15/2020 11:42:16 AM Informational] NUnit Adapter 3.13.0.0: Test discovery complete
+[5/15/2020 11:42:17 AM Warning] No test is available in C:\Users\smahmood\Documents\Campaign\das-enterprise-automation-test-suite\src\SFA.DAS.MongoDb.DataGenerator\bin\Debug\netcoreapp2.2\SFA.DAS.MongoDb.DataGenerator.dll. Make sure that test discoverer & executors are registered and platform & framework version settings are appropriate and try again.
+[5/15/2020 11:42:18 AM Informational] NUnit Adapter 3.13.0.0: Test discovery starting
+[5/15/2020 11:42:18 AM Informational] NUnit Adapter 3.13.0.0: Test discovery complete
+[5/15/2020 11:42:19 AM Informational] NUnit Adapter 3.13.0.0: Test discovery starting
+[5/15/2020 11:42:19 AM Informational] NUnit Adapter 3.13.0.0: Test discovery complete
+[5/15/2020 11:42:20 AM Informational] NUnit Adapter 3.13.0.0: Test discovery starting
+[5/15/2020 11:42:20 AM Informational] NUnit Adapter 3.13.0.0: Test discovery complete
+[5/15/2020 11:42:21 AM Informational] NUnit Adapter 3.13.0.0: Test discovery starting
+[5/15/2020 11:42:21 AM Informational] NUnit Adapter 3.13.0.0: Test discovery complete
+[5/15/2020 11:42:22 AM Informational] NUnit Adapter 3.13.0.0: Test discovery starting
+[5/15/2020 11:42:22 AM Informational] NUnit Adapter 3.13.0.0: Test discovery complete
+[5/15/2020 11:42:23 AM Warning] No test is available in C:\Users\smahmood\Documents\Campaign\das-enterprise-automation-test-suite\src\SFA.DAS.RAA.DataGenerator\bin\Debug\netcoreapp2.2\SFA.DAS.RAA.DataGenerator.dll. Make sure that test discoverer & executors are registered and platform & framework version settings are appropriate and try again.
+[5/15/2020 11:42:23 AM Informational] NUnit Adapter 3.13.0.0: Test discovery starting
+[5/15/2020 11:42:24 AM Informational] NUnit Adapter 3.13.0.0: Test discovery complete
+[5/15/2020 11:42:25 AM Informational] NUnit Adapter 3.13.0.0: Test discovery starting
+[5/15/2020 11:42:25 AM Informational] NUnit Adapter 3.13.0.0: Test discovery complete
+[5/15/2020 11:42:26 AM Informational] NUnit Adapter 3.13.0.0: Test discovery starting
+[5/15/2020 11:42:26 AM Informational] NUnit Adapter 3.13.0.0: Test discovery complete
+[5/15/2020 11:42:27 AM Informational] NUnit Adapter 3.13.0.0: Test discovery starting
+[5/15/2020 11:42:27 AM Informational] NUnit Adapter 3.13.0.0: Test discovery complete
+[5/15/2020 11:42:27 AM Error] Microsoft.VisualStudio.TestPlatform.ObjectModel.TestPlatformException: Unable to find C:\Users\smahmood\Documents\Campaign\das-enterprise-automation-test-suite\src\SFA.DAS.UI.FrameworkHelpers\bin\Debug\netcoreapp2.2\testhost.dll. Please publish your test project and retry.
+   at Microsoft.VisualStudio.TestPlatform.CrossPlatEngine.Hosting.DotnetTestHostManager.GetTestHostPath(String runtimeConfigDevPath, String depsFilePath, String sourceDirectory)
+   at Microsoft.VisualStudio.TestPlatform.CrossPlatEngine.Hosting.DotnetTestHostManager.GetTestHostProcessStartInfo(IEnumerable`1 sources, IDictionary`2 environmentVariables, TestRunnerConnectionInfo connectionInfo)
+   at Microsoft.VisualStudio.TestPlatform.CrossPlatEngine.Client.ProxyOperationManager.SetupChannel(IEnumerable`1 sources)
+   at Microsoft.VisualStudio.TestPlatform.CrossPlatEngine.Client.ProxyDiscoveryManager.DiscoverTests(DiscoveryCriteria discoveryCriteria, ITestDiscoveryEventsHandler2 eventHandler)
+[5/15/2020 11:42:27 AM Informational] ========== Discover test finished: 350 found (0:00:18.7693817) ==========
+[5/15/2020 11:43:05 AM Informational] ------ Run test started ------
+[5/15/2020 11:43:09 AM Informational] NUnit Adapter 3.13.0.0: Test execution started
+[5/15/2020 11:43:09 AM Informational] Debugging selected tests in C:\Users\smahmood\Documents\Campaign\das-enterprise-automation-test-suite\src\SFA.DAS.Campaigns.UITests\bin\Debug\netcoreapp2.2\SFA.DAS.Campaigns.UITests.dll
+[5/15/2020 11:43:09 AM Informational]    NUnit3TestExecutor converted 27 of 27 NUnit test cases
+[5/15/2020 11:45:43 AM Error] The active test run was aborted. Reason: 
+[5/15/2020 11:45:43 AM Informational] ========== Run test finished: 0 run (0:02:37.9769515) ==========
+[5/15/2020 11:46:53 AM Informational] ------ Discover test started ------
+[5/15/2020 11:46:58 AM Warning] No test is available in C:\Users\smahmood\Documents\Campaign\das-enterprise-automation-test-suite\src\SFA.DAS.Approvals.UITests\SFA.DAS.Approvals.UITests.csproj C:\Users\smahmood\Documents\Campaign\das-enterprise-automation-test-suite\src\SFA.DAS.Campaigns.UITests\SFA.DAS.Campaigns.UITests.csproj C:\Users\smahmood\Documents\Campaign\das-enterprise-automation-test-suite\src\SFA.DAS.ConfigurationBuilder\SFA.DAS.ConfigurationBuilder.csproj C:\Users\smahmood\Documents\Campaign\das-enterprise-automation-test-suite\src\SFA.DAS.EmployerFinance.UITests\SFA.DAS.EmployerFinance.UITests.csproj C:\Users\smahmood\Documents\Campaign\das-enterprise-automation-test-suite\src\SFA.DAS.EPAO.UITests\SFA.DAS.EPAO.UITests.csproj C:\Users\smahmood\Documents\Campaign\das-enterprise-automation-test-suite\src\SFA.DAS.FAA.UITests\SFA.DAS.FAA.UITests.csproj C:\Users\smahmood\Documents\Campaign\das-enterprise-automation-test-suite\src\SFA.DAS.FAT.UITests\SFA.DAS.FAT.UITests.csproj C:\Users\smahmood\Documents\Campaign\das-enterprise-automation-test-suite\src\SFA.DAS.Login.Service\SFA.DAS.Login.Service.csproj C:\Users\smahmood\Documents\Campaign\das-enterprise-automation-test-suite\src\SFA.DAS.ProviderLogin.Service\SFA.DAS.ProviderLogin.Service.csproj C:\Users\smahmood\Documents\Campaign\das-enterprise-automation-test-suite\src\SFA.DAS.RAA-V1.UITests\SFA.DAS.RAA-V1.UITests.csproj C:\Users\smahmood\Documents\Campaign\das-enterprise-automation-test-suite\src\SFA.DAS.RAA-V2-Employer.UITests\SFA.DAS.RAA-V2-Employer.UITests.csproj C:\Users\smahmood\Documents\Campaign\das-enterprise-automation-test-suite\src\SFA.DAS.RAA-V2-Provider.UITests\SFA.DAS.RAA-V2-Provider.UITests.csproj C:\Users\smahmood\Documents\Campaign\das-enterprise-automation-test-suite\src\SFA.DAS.RAA-V2-QA.UITests\SFA.DAS.RAA-V2-QA.UITests.csproj C:\Users\smahmood\Documents\Campaign\das-enterprise-automation-test-suite\src\SFA.DAS.Registration.UITests\SFA.DAS.Registration.UITests.csproj C:\Users\smahmood\Documents\Campaign\das-enterprise-automation-test-suite\src\SFA.DAS.Roatp.UITests\SFA.DAS.Roatp.UITests.csproj C:\Users\smahmood\Documents\Campaign\das-enterprise-automation-test-suite\src\SFA.DAS.RoatpAdmin.UITests\SFA.DAS.RoatpAdmin.UITests.csproj C:\Users\smahmood\Documents\Campaign\das-enterprise-automation-test-suite\src\SFA.DAS.SupportConsole.UITests\SFA.DAS.SupportConsole.UITests.csproj C:\Users\smahmood\Documents\Campaign\das-enterprise-automation-test-suite\src\SFA.DAS.UI.FrameworkHelpers\SFA.DAS.UI.FrameworkHelpers.csproj C:\Users\smahmood\Documents\Campaign\das-enterprise-automation-test-suite\src\SFA.DAS.UI.Framework\SFA.DAS.UI.Framework.csproj. Make sure that test discoverer & executors are registered and platform & framework version settings are appropriate and try again.
+[5/15/2020 11:46:58 AM Informational] ========== Discover test finished: 0 found (0:00:04.9389816) ==========
+[5/15/2020 11:47:21 AM Informational] ------ Discover test started ------
+[5/15/2020 11:47:23 AM Informational] NUnit Adapter 3.13.0.0: Test discovery starting
+[5/15/2020 11:47:23 AM Informational] NUnit Adapter 3.13.0.0: Test discovery complete
+[5/15/2020 11:47:24 AM Informational] NUnit Adapter 3.13.0.0: Test discovery starting
+[5/15/2020 11:47:24 AM Informational] NUnit Adapter 3.13.0.0: Test discovery complete
+[5/15/2020 11:47:25 AM Informational] NUnit Adapter 3.13.0.0: Test discovery starting
+[5/15/2020 11:47:25 AM Informational] NUnit Adapter 3.13.0.0: Test discovery complete
+[5/15/2020 11:47:26 AM Informational] NUnit Adapter 3.13.0.0: Test discovery starting
+[5/15/2020 11:47:26 AM Informational] NUnit Adapter 3.13.0.0: Test discovery complete
+[5/15/2020 11:47:27 AM Informational] NUnit Adapter 3.13.0.0: Test discovery starting
+[5/15/2020 11:47:27 AM Informational] NUnit Adapter 3.13.0.0: Test discovery complete
+[5/15/2020 11:47:28 AM Informational] NUnit Adapter 3.13.0.0: Test discovery starting
+[5/15/2020 11:47:28 AM Informational] NUnit Adapter 3.13.0.0: Test discovery complete
+[5/15/2020 11:47:29 AM Warning] No test is available in C:\Users\smahmood\Documents\Campaign\das-enterprise-automation-test-suite\src\SFA.DAS.MongoDb.DataGenerator\bin\Debug\netcoreapp2.2\SFA.DAS.MongoDb.DataGenerator.dll. Make sure that test discoverer & executors are registered and platform & framework version settings are appropriate and try again.
+[5/15/2020 11:47:29 AM Informational] NUnit Adapter 3.13.0.0: Test discovery starting
+[5/15/2020 11:47:30 AM Informational] NUnit Adapter 3.13.0.0: Test discovery complete
+[5/15/2020 11:47:30 AM Informational] NUnit Adapter 3.13.0.0: Test discovery starting
+[5/15/2020 11:47:31 AM Informational] NUnit Adapter 3.13.0.0: Test discovery complete
+[5/15/2020 11:47:31 AM Informational] NUnit Adapter 3.13.0.0: Test discovery starting
+[5/15/2020 11:47:32 AM Informational] NUnit Adapter 3.13.0.0: Test discovery complete
+[5/15/2020 11:47:32 AM Informational] NUnit Adapter 3.13.0.0: Test discovery starting
+[5/15/2020 11:47:33 AM Informational] NUnit Adapter 3.13.0.0: Test discovery complete
+[5/15/2020 11:47:33 AM Informational] NUnit Adapter 3.13.0.0: Test discovery starting
+[5/15/2020 11:47:34 AM Informational] NUnit Adapter 3.13.0.0: Test discovery complete
+[5/15/2020 11:47:34 AM Warning] No test is available in C:\Users\smahmood\Documents\Campaign\das-enterprise-automation-test-suite\src\SFA.DAS.RAA.DataGenerator\bin\Debug\netcoreapp2.2\SFA.DAS.RAA.DataGenerator.dll. Make sure that test discoverer & executors are registered and platform & framework version settings are appropriate and try again.
+[5/15/2020 11:47:35 AM Informational] NUnit Adapter 3.13.0.0: Test discovery starting
+[5/15/2020 11:47:35 AM Informational] NUnit Adapter 3.13.0.0: Test discovery complete
+[5/15/2020 11:47:36 AM Informational] NUnit Adapter 3.13.0.0: Test discovery starting
+[5/15/2020 11:47:36 AM Informational] NUnit Adapter 3.13.0.0: Test discovery complete
+[5/15/2020 11:47:37 AM Informational] NUnit Adapter 3.13.0.0: Test discovery starting
+[5/15/2020 11:47:37 AM Informational] NUnit Adapter 3.13.0.0: Test discovery complete
+[5/15/2020 11:47:38 AM Informational] NUnit Adapter 3.13.0.0: Test discovery starting
+[5/15/2020 11:47:38 AM Informational] NUnit Adapter 3.13.0.0: Test discovery complete
+[5/15/2020 11:47:38 AM Error] Microsoft.VisualStudio.TestPlatform.ObjectModel.TestPlatformException: Unable to find C:\Users\smahmood\Documents\Campaign\das-enterprise-automation-test-suite\src\SFA.DAS.UI.FrameworkHelpers\bin\Debug\netcoreapp2.2\testhost.dll. Please publish your test project and retry.
+   at Microsoft.VisualStudio.TestPlatform.CrossPlatEngine.Hosting.DotnetTestHostManager.GetTestHostPath(String runtimeConfigDevPath, String depsFilePath, String sourceDirectory)
+   at Microsoft.VisualStudio.TestPlatform.CrossPlatEngine.Hosting.DotnetTestHostManager.GetTestHostProcessStartInfo(IEnumerable`1 sources, IDictionary`2 environmentVariables, TestRunnerConnectionInfo connectionInfo)
+   at Microsoft.VisualStudio.TestPlatform.CrossPlatEngine.Client.ProxyOperationManager.SetupChannel(IEnumerable`1 sources)
+   at Microsoft.VisualStudio.TestPlatform.CrossPlatEngine.Client.ProxyDiscoveryManager.DiscoverTests(DiscoveryCriteria discoveryCriteria, ITestDiscoveryEventsHandler2 eventHandler)
+[5/15/2020 11:47:38 AM Informational] ========== Discover test finished: 353 found (0:00:16.9793733) ==========
+[5/15/2020 11:47:47 AM Informational] ------ Run test started ------
+[5/15/2020 11:47:47 AM Informational] NUnit Adapter 3.13.0.0: Test execution started
+[5/15/2020 11:47:47 AM Informational] Running selected tests in C:\Users\smahmood\Documents\Campaign\das-enterprise-automation-test-suite\src\SFA.DAS.Campaigns.UITests\bin\Debug\netcoreapp2.2\SFA.DAS.Campaigns.UITests.dll
+[5/15/2020 11:47:48 AM Informational]    NUnit3TestExecutor converted 24 of 24 NUnit test cases
+[5/15/2020 11:48:01 AM Warning] 
+Retry Count : 1
+Scenario Title : CA_AP_01_Check Real stories Page Details
+Exception : javascript error: Failed to execute 'elementsFromPoint' on 'Document': The provided double value is non-finite.
+  (Session info: chrome=81.0.4044.138)
+[5/15/2020 11:48:09 AM Informational] NUnit Adapter 3.13.0.0: Test execution complete
+[5/15/2020 11:48:09 AM Informational] ========== Run test finished: 1 run (0:00:22.7546244) ==========
+[5/15/2020 11:48:52 AM Informational] ------ Run test started ------
+[5/15/2020 11:48:53 AM Informational] NUnit Adapter 3.13.0.0: Test execution started
+[5/15/2020 11:48:53 AM Informational] Running selected tests in C:\Users\smahmood\Documents\Campaign\das-enterprise-automation-test-suite\src\SFA.DAS.Campaigns.UITests\bin\Debug\netcoreapp2.2\SFA.DAS.Campaigns.UITests.dll
+[5/15/2020 11:48:53 AM Informational]    NUnit3TestExecutor converted 24 of 24 NUnit test cases
+[5/15/2020 11:50:30 AM Informational] NUnit Adapter 3.13.0.0: Test execution complete
+[5/15/2020 11:50:30 AM Informational] ========== Run test finished: 1 run (0:01:38.2169812) ==========
+[5/15/2020 11:50:41 AM Informational] ------ Run test started ------
+[5/15/2020 11:50:41 AM Informational] NUnit Adapter 3.13.0.0: Test execution started
+[5/15/2020 11:50:41 AM Informational] Running selected tests in C:\Users\smahmood\Documents\Campaign\das-enterprise-automation-test-suite\src\SFA.DAS.Campaigns.UITests\bin\Debug\netcoreapp2.2\SFA.DAS.Campaigns.UITests.dll
+[5/15/2020 11:50:42 AM Informational]    NUnit3TestExecutor converted 24 of 24 NUnit test cases
+[5/15/2020 11:52:46 AM Warning] 
+Retry Count : 1
+Scenario Title : CA_E2E_01_Employer favourites Apprenticeship and a Training Provider and removes them
+Exception : Page verification failed:
+ Expected: TRAINING PROVIDER RESULTS page
+ Found: YOUTH WORK page
+[5/15/2020 11:53:43 AM Warning] 
+Retry Count : 1
+Scenario Title : CA_E2E_03_Employer adds multiple favourites
+Exception : Page verification failed:
+ Expected: TRAINING PROVIDER RESULTS page
+ Found: BEAUTY THERAPY: BEAUTY THERAPY MASSAGE page
+[5/15/2020 11:54:00 AM Warning] 
+Retry Count : 1
+Scenario Title : CA_EMP_03_Check Funding An Apprenticeship Page Details
+Exception : Page verification failed:
+ Expected: HOW MUCH IS IT GOING TO COST? page
+ Found: REAL STORIES page
+[5/15/2020 11:54:01 AM Warning] 
+Retry Count : 2
+Scenario Title : CA_EMP_03_Check Funding An Apprenticeship Page Details
+Exception : Page verification failed:
+ Expected: HOW MUCH IS IT GOING TO COST? page
+ Found: REAL STORIES page
+[5/15/2020 11:54:04 AM Warning] 
+Retry Count : 3
+Scenario Title : CA_EMP_03_Check Funding An Apprenticeship Page Details
+Exception : Page verification failed:
+ Expected: HOW MUCH IS IT GOING TO COST? page
+ Found: REAL STORIES page
+[5/15/2020 11:54:20 AM Warning] 
+Retry Count : 1
+Scenario Title : CA_E2E_03_Employer adds multiple favourites
+Exception : Page verification failed:
+ Expected: TRAINING PROVIDER RESULTS page
+ Found: BUSINESS AND ADMINISTRATION page
+[5/15/2020 11:54:39 AM Warning] 
+Retry Count : 1
+Scenario Title : CA_E2E_03_Employer adds multiple favourites
+Exception : Page verification failed:
+ Expected: TRAINING PROVIDER RESULTS page
+ Found: BEAUTY THERAPY: BEAUTY THERAPY MASSAGE page
+[5/15/2020 11:54:54 AM Warning] 
+Retry Count : 1
+Scenario Title : CA_E2E_03_Employer adds multiple favourites
+Exception : Page verification failed:
+ Expected: TRAINING PROVIDER RESULTS page
+ Found: CONSTRUCTION CIVIL ENGINEERING: CONSTRUCTION OPERATIONS page
+[5/15/2020 11:56:39 AM Informational] NUnit Adapter 3.13.0.0: Test execution complete
+[5/15/2020 11:56:39 AM Informational] ========== Run test finished: 24 run (0:05:58.4152369) ==========
+[5/15/2020 12:01:44 PM Informational] ------ Run test started ------
+[5/15/2020 12:01:45 PM Informational] NUnit Adapter 3.13.0.0: Test execution started
+[5/15/2020 12:01:45 PM Informational] Running selected tests in C:\Users\smahmood\Documents\Campaign\das-enterprise-automation-test-suite\src\SFA.DAS.Campaigns.UITests\bin\Debug\netcoreapp2.2\SFA.DAS.Campaigns.UITests.dll
+[5/15/2020 12:01:45 PM Informational]    NUnit3TestExecutor converted 24 of 24 NUnit test cases
+[5/15/2020 12:03:06 PM Informational] NUnit Adapter 3.13.0.0: Test execution complete
+[5/15/2020 12:03:06 PM Informational] ========== Run test finished: 1 run (0:01:22.3542943) ==========
+[5/15/2020 12:03:54 PM Informational] ------ Run test started ------
+[5/15/2020 12:03:54 PM Informational] NUnit Adapter 3.13.0.0: Test execution started
+[5/15/2020 12:03:55 PM Informational] Running selected tests in C:\Users\smahmood\Documents\Campaign\das-enterprise-automation-test-suite\src\SFA.DAS.Campaigns.UITests\bin\Debug\netcoreapp2.2\SFA.DAS.Campaigns.UITests.dll
+[5/15/2020 12:03:55 PM Informational]    NUnit3TestExecutor converted 24 of 24 NUnit test cases
+[5/15/2020 12:05:16 PM Informational] NUnit Adapter 3.13.0.0: Test execution complete
+[5/15/2020 12:05:16 PM Informational] ========== Run test finished: 1 run (0:01:22.1986064) ==========
