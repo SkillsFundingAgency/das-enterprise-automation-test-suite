@@ -1,17 +1,14 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
-using SFA.DAS.Registration.UITests.Project.Helpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 {
-    public class YourOrganisationsAndAgreementsPage : InterimEmployerBasePage
+    public class YourOrganisationsAndAgreementsPage : InterimYourOrganisationsAndAgreementsPage
     {
-        protected override string PageTitle => "Your organisations and agreements";
         private readonly ScenarioContext _context;
 
         #region Locators
-        protected override string Linktext => "Your organisations and agreements";
         private By TransferStatus => By.XPath("//p[3]");
         private By AddNewOrganisationButton => By.LinkText("Add an organisation");
         private By TableCells => By.XPath("//td");

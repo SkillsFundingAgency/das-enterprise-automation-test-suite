@@ -1,6 +1,7 @@
 ﻿using NUnit.Framework;
 using SFA.DAS.EmployerFinance.UITests.Project.Tests.Pages;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages;
+using SFA.DAS.Registration.UITests.Project.Tests.Pages.InterimPages;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EmployerFinance.UITests.Project.Tests.StepDefinitions
@@ -25,6 +26,37 @@ namespace SFA.DAS.EmployerFinance.UITests.Project.Tests.StepDefinitions
         [When(@"the Employer navigates to 'Finance' Page")]
         public void WhenTheEmployerNavigatesFinancePage() => _financePage = new HomePageFinancesSection(_context).NavigateToFinancePage();
 
+        [Then(@"the employer can navigate to home page")]
+        public void ThenTheEmployerCanNavigateToHomePage() => _financePage.GoToHomePage();
+
+        [Then(@"the employer can navigate to recruitment page")]
+        public void ThenTheEmployerCanNavigateToRecruitment()
+        {
+            new InterimFinanceHomePage(_context, true);
+
+            new InterimRecruitmentHomePage(_context, true);
+        }
+
+        [Then(@"the employer can navigate to apprentice page")]
+        public void ThenTheEmployerCanNavigateToApprentice()
+        {
+            new InterimFinanceHomePage(_context, true);
+
+            new InterimApprenticesHomePage(_context, true);
+        }
+
+        [Then(@"the employer can navigate to your team page")]
+        public void ThenTheEmployerCanNavigateToYourTeamPage()
+        {
+            new InterimFinanceHomePage(_context, true);
+
+            new InterimYourTeamPage(_context, true);
+        }
+
+        [Then(@"the employer can navigate to account settings page")]
+        public void ThenTheEmployerCanNavigateToAccountSettingsPage() => new InterimFinanceHomePage(_context, true).GoToYourAccountsPage();
+
+
         [Then(@"'View transactions', 'Download transactions' and 'Transfers' links are displayed")]
         public void ThenAndLinksAreDisplayed() => _financePage.IsViewTransactionsLinkPresent().IsDownloadTransactionsLinkPresent().IsTransfersLinkPresent();
 
@@ -48,7 +80,7 @@ namespace SFA.DAS.EmployerFinance.UITests.Project.Tests.StepDefinitions
             Assert.AreEqual(expectedFundsSpentLabel, _financePage.GetFundsSpentLabel());
             Assert.AreEqual(expectedEstimatesLabel, _financePage.GetEstimatesLabel());
             Assert.AreEqual(expectedEstimatedTotalFundsText, _financePage.GetEstimatedTotalFundsText());
-            Assert.AreEqual(expectedEstimatedPlannedSpendingText, _financePage.getEstimatedPlannedSpendingText());
+            Assert.AreEqual(expectedEstimatedPlannedSpendingText, _financePage.GetEstimatedPlannedSpendingText());
         }
     }
 }

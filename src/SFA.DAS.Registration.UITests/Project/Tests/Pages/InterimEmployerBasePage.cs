@@ -28,7 +28,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         private By NotificationSettingsLink => By.PartialLinkText("Notification");
         private By SignOutLink => By.LinkText("Sign out");
         private By YourTeamLink => By.LinkText("Your team");
-        private By MoreLink => By.LinkText("More");
         private By PAYESchemesLink => By.LinkText("PAYE schemes");
         #endregion
 
@@ -42,8 +41,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         }
 
         public HomePage GoToHomePage() => new HomePage(_context, true);
-
-        public HomePage HomePage() => new HomePage(_context);
 
         public YourOrganisationsAndAgreementsPage GoToYourOrganisationsAndAgreementsPage()
         {
@@ -105,15 +102,9 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         public PAYESchemesPage GotoPAYESchemesPage()
         {
-            ClickMoreLinkIfPresent();
+            OpenSubMenu();
             formCompletionHelper.Click(PAYESchemesLink);
             return new PAYESchemesPage(_context);
-        }
-
-        private void ClickMoreLinkIfPresent()
-        {
-            if (pageInteractionHelper.IsElementDisplayed(MoreLink))
-                formCompletionHelper.Click(MoreLink);
         }
     }
 }
