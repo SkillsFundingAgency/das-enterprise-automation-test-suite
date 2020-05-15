@@ -12,7 +12,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => "Staff dashboard";
 
-        private By GatewayApplicationLink => By.XPath("(//a['govuk-link'])[8]");
+        private By GatewayApplicationLink => By.XPath("(//a['govuk-link'])[10]");
 
         #region Helpers and Context
         private readonly ScenarioContext _context;

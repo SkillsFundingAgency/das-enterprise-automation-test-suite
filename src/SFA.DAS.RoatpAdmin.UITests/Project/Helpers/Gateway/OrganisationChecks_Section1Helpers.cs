@@ -24,6 +24,12 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Gateway
             .VerifyTradingName_Section1(StatusHelper_AdminPage.StatusPass);
         }
 
+        internal GWApplicationOverviewPage NotRequiredOrganisationChecks_TradingName(GWApplicationOverviewPage gwApplicationOverviewPage)
+        {
+            return gwApplicationOverviewPage
+           .VerifyTradingName_Section1(StatusHelper_AdminPage.NotRequired);
+        }
+
         internal GWApplicationOverviewPage PassOrganisationChecks_OrganisationStatus(GWApplicationOverviewPage gwApplicationOverviewPage)
         {
             return gwApplicationOverviewPage

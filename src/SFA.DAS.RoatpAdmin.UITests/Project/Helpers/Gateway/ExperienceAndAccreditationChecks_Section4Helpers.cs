@@ -22,6 +22,20 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Gateway
             .SelectPassAndContinue()
             .VerifyInitialteachertraining_ITT_Section4(StatusHelper_AdminPage.StatusPass);
         }
+
+        internal GWApplicationOverviewPage NotRequiredExperienceAndAccreditationChecks_OFS_ITT(GWApplicationOverviewPage gwApplicationOverviewPage)
+        {
+            return gwApplicationOverviewPage
+           .VerifyOfficeforStudent_OFS_Section4(StatusHelper_AdminPage.NotRequired)
+           .VerifyInitialteachertraining_ITT_Section4(StatusHelper_AdminPage.NotRequired);
+        }
+
+        internal GWApplicationOverviewPage NotRequiredExperienceAndAccreditationChecks_SubContractor(GWApplicationOverviewPage gwApplicationOverviewPage)
+        {
+            return gwApplicationOverviewPage
+           .VerifySubcontractordeclaration_Section4(StatusHelper_AdminPage.NotRequired);
+        }
+
         internal GWApplicationOverviewPage PassExperienceAndAccreditationChecks_Ofsted(GWApplicationOverviewPage gwApplicationOverviewPage)
         {
             return gwApplicationOverviewPage
