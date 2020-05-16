@@ -1,5 +1,4 @@
 ﻿Feature: RV1_CTV_02
-A short summary of the feature
 
 @raa-v1
 @v1_e2e

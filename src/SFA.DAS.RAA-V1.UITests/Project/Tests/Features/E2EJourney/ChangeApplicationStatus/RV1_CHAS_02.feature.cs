@@ -80,15 +80,15 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Features.E2EJourney.ChangeApplica
                         "raa-v1",
                         "regression",
                         "apprenticeshipvacancy"});
-#line 7
+#line 6
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 8
+#line 7
  testRunner.Given("the apprenticeship vacancy is Live in Recruit with an application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 9
+#line 8
  testRunner.Then("Provider is able to change the status of the In progress application to \'Successf" +
                     "ul\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 10
+#line 9
  testRunner.And("the candidate is able to dismiss the Notifications in FAA \'Successful\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();

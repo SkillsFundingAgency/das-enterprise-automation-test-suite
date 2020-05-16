@@ -1,9 +1,9 @@
 ﻿Feature: RV1_CPS_01
 
-Background: 
-Given the Applicant creates new FAA account
+Background:
+	Given the Applicant creates new FAA account
 
-@raa-v1	
+@raa-v1
 @apprenticeshipvacancy
 @regression
 @FAALoginNewCredentials

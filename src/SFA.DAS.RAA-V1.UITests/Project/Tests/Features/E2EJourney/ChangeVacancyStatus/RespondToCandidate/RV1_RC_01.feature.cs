@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Features.E2EJourney.ChangeVacancyStatus.ResponceToCandidate
+namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Features.E2EJourney.ChangeVacancyStatus.RespondToCandidate
 {
     using TechTalk.SpecFlow;
     

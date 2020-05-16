@@ -1,8 +1,7 @@
-﻿@raa-v1
+﻿Feature: RV1_FATV_01
+
+@raa-v1
 @regression
-Feature: RV1_FATV_01
-
-
 @adddifferentlocation
 Scenario Outline: RV1_FATV_01 search for an existing traineeship vacancy
 	Given the Provider initiates Create Apprenticeship Vacancy in Recruit
@@ -18,6 +17,5 @@ Scenario Outline: RV1_FATV_01 search for an existing traineeship vacancy
 	And the traineeship can be found based on 'CV11 6QF','10 miles'
 
 	Examples:
-		| location               | 
+		| location               |
 		| Add different location |
-	

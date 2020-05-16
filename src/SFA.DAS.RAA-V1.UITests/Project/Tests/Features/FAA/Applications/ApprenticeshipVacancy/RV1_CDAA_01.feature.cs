@@ -79,16 +79,16 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Features.FAA.Applications.Apprent
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("RV1_CDAA_01 - creating draft application and deleting it in FAA")]
-        [NUnit.Framework.CategoryAttribute("apprenticeshipvacancy")]
-        [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("raa-v1")]
+        [NUnit.Framework.CategoryAttribute("regression")]
+        [NUnit.Framework.CategoryAttribute("apprenticeshipvacancy")]
         [NUnit.Framework.CategoryAttribute("FAALoginNewCredentials")]
         public virtual void RV1_CDAA_01_CreatingDraftApplicationAndDeletingItInFAA()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV1_CDAA_01 - creating draft application and deleting it in FAA", null, new string[] {
-                        "apprenticeshipvacancy",
-                        "regression",
                         "raa-v1",
+                        "regression",
+                        "apprenticeshipvacancy",
                         "FAALoginNewCredentials"});
 #line 10
 this.ScenarioInitialize(scenarioInfo);
@@ -96,11 +96,11 @@ this.ScenarioInitialize(scenarioInfo);
 #line 3
 this.FeatureBackground();
 #line 11
-testRunner.Given("the apprenticeship vacancy is Live in Recruit with no application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("the apprenticeship vacancy is Live in Recruit with no application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 12
-testRunner.When("draft application is created in FAA", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("draft application is created in FAA", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 13
-testRunner.Then("Candidate is able to delete draft application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("Candidate is able to delete draft application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

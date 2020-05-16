@@ -1,6 +1,4 @@
-﻿@raa-v1
-@regression
-Feature: RV1_FAAV_01
+﻿Feature: RV1_FAAV_01
 
 @raa-v1
 @apprenticeshipvacancy
@@ -20,7 +18,7 @@ Scenario Outline: RV1_FAAV_01 search for an existing apprenticeship vacancy
 	And the apprenticeship can be found based on 'E1 7LL','Job title'
 	And the apprenticeship can be found based on 'E1 7LL','Employer'
 	And the apprenticeship can be found based on 'E1 7LL','Description'
-	
+
 	Examples:
-		| location					  | anonymity | DisabilityConfident | ApplicationMethod | ApprenticeshipType | HoursPerWeek | VacancyDuration | NoOfPositions | 
-		| Add different location      | Yes       | Yes                 | Online            | Standard           | 42           | 52              | 3             |
+		| location               | anonymity | DisabilityConfident | ApplicationMethod | ApprenticeshipType | HoursPerWeek | VacancyDuration | NoOfPositions |
+		| Add different location | Yes       | Yes                 | Online            | Standard           | 42           | 52              | 3             |

@@ -12,5 +12,5 @@ Scenario Outline: RV1_AVWO_02 - Post Apprenticeship Vacancy Based On Location an
 	Then Provider is able to submit the vacancy for approval
 
 	Examples:
-		| location					  | WageType   | NoOfPositions |
+		| location                    | WageType   | NoOfPositions |
 		| Set as a nationwide vacancy | Fixed wage | 3             |

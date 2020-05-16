@@ -82,11 +82,11 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Features.E2EJourney.ChangeVacancy
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 6
-testRunner.Given("the traineeship vacancy is Live in Recruit with no application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("the traineeship vacancy is Live in Recruit with no application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 7
-testRunner.Then("Provider is able to close this vacancy with no application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("Provider is able to close this vacancy with no application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 8
-testRunner.Then("the Traineeship Vacancy is not found on FAA", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the Traineeship Vacancy is not found on FAA", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
