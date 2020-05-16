@@ -15,7 +15,6 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Gateway
         private readonly ExperienceAndAccreditationChecks_Section4Helpers _experienceAndAccreditationChecks_SectionHelpers;
         private readonly OrganisationsCriminalAndComplianceChecks_Section5Helpers _organisationsCriminalAndComplianceChecks_SectionHelpers;
         private readonly PeopleInControlCriminalAndComplianceChecks_Section6Helpers _peopleInControlCriminalAndComplianceChecksSectionHelpers;
-        private ScenarioContext context;
 
         public GatewayEndtoEndStepsHelpers()
         {
@@ -27,10 +26,6 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Gateway
             _peopleInControlCriminalAndComplianceChecksSectionHelpers = new PeopleInControlCriminalAndComplianceChecks_Section6Helpers();
         }
 
-        public GatewayEndtoEndStepsHelpers(ScenarioContext context)
-        {
-            this.context = context;
-        }
 
         internal GWApplicationOverviewPage CompleteOrganisationChecks_Section1_TradingNameNotRequired(GWApplicationOverviewPage gwApplicationOverviewPage)
         {
@@ -60,10 +55,10 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Gateway
 
         internal GWApplicationOverviewPage CompleteExperienceAndAccreditationChecks_Section4_NotRequired_OFS_ITT_SubContractor(GWApplicationOverviewPage gwApplicationOverviewPage)
         {
-            gwApplicationOverviewPage = _experienceAndAccreditationChecks_SectionHelpers.NotRequiredExperienceAndAccreditationChecks_OFS_ITT(gwApplicationOverviewPage);
+           // gwApplicationOverviewPage = _experienceAndAccreditationChecks_SectionHelpers.NotRequiredExperienceAndAccreditationChecks_OFS_ITT(gwApplicationOverviewPage);
             //gwApplicationOverviewPage = _experienceAndAccreditationChecks_SectionHelpers.PassExperienceAndAccreditationChecks_InitialTeacherTraining(gwApplicationOverviewPage);
             gwApplicationOverviewPage = _experienceAndAccreditationChecks_SectionHelpers.PassExperienceAndAccreditationChecks_Ofsted(gwApplicationOverviewPage);
-            gwApplicationOverviewPage = _experienceAndAccreditationChecks_SectionHelpers.NotRequiredExperienceAndAccreditationChecks_SubContractor(gwApplicationOverviewPage);
+           // gwApplicationOverviewPage = _experienceAndAccreditationChecks_SectionHelpers.NotRequiredExperienceAndAccreditationChecks_SubContractor(gwApplicationOverviewPage);
             return gwApplicationOverviewPage;
         }
 
@@ -109,12 +104,11 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Gateway
             return gwApplicationOverviewPage;
         }
 
-        internal FinalConfirmationPage ConfirmGatewayOutcomeAsPass(GWApplicationOverviewPage gwApplicationOverviewPage)
+        internal void ConfirmGatewayOutcomeAsPass(GWApplicationOverviewPage gwApplicationOverviewPage)
         {
             gwApplicationOverviewPage.Access_Section7_ConfirmGateWayOutcome()
                  .PassThisApplicationAndContinue()
                  .YesSurePassThisApplicationAndGoToGovernance();
-            return new FinalConfirmationPage(context);
         }
     }
 }

@@ -72,6 +72,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Features.GwAdmin
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("RP_AD_GW_01_Sample test")]
         [NUnit.Framework.CategoryAttribute("notestdata")]
+        [NUnit.Framework.CategoryAttribute("resetApplicationToNew")]
         [NUnit.Framework.CategoryAttribute("roatp")]
         [NUnit.Framework.CategoryAttribute("roatpadmin")]
         [NUnit.Framework.CategoryAttribute("newroatpadmin")]
@@ -80,20 +81,21 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Features.GwAdmin
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_AD_GW_01_Sample test", null, new string[] {
                         "notestdata",
+                        "resetApplicationToNew",
                         "roatp",
                         "roatpadmin",
                         "newroatpadmin",
                         "regression"});
-#line 8
+#line 9
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 9
-testRunner.Given("the admin lands on the Dashboard", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 10
-testRunner.When("the admin access the GatewayApplications", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+testRunner.Given("the admin lands on the Dashboard", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 11
-testRunner.When("the gateway admin assess all sections as PASS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+testRunner.When("the admin access the GatewayApplications", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 12
+testRunner.When("the gateway admin assess all sections as PASS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 13
 testRunner.Then("the gateway admin completes assessment by confirming the Gateway outcome as PASS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();

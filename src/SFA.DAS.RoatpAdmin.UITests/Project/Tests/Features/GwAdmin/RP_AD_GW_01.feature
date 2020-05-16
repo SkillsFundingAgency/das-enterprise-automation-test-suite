@@ -1,6 +1,7 @@
 ﻿Feature: RP_AD_GW_01
 
 @notestdata
+@resetApplicationToNew
 @roatp
 @roatpadmin
 @newroatpadmin

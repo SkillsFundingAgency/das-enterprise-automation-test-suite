@@ -62,5 +62,11 @@ namespace SFA.DAS.Roatp.UITests.Project
 
         [BeforeScenario(Order = 35)]
         public void NavigateToRoatpAdmin() => _webDriver.Navigate().GoToUrl(_config.AdminBaseUrl);
+
+        [BeforeScenario(Order = 36)]
+        public void ClearDownGateWayAdminData()
+        {
+            if (_context.ScenarioInfo.Tags.Contains("resetApplicationToNew")) { _adminClearDownDataHelpers.GateWayClearDownDataFromApply(); }
+        }
     }
 }

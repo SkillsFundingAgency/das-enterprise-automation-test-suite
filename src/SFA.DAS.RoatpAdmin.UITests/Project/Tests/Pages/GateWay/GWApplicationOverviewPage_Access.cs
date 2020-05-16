@@ -62,7 +62,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay
         }
         public PeopleInControlHighRiskCheckPage Access_Section2_PeopleInControlHighRisk()
         {
-            NavigateToTask(OrganisationChecks, PeopleInControlChecks_2);
+            NavigateToTask(PeopleInControlChecks, PeopleInControlChecks_2);
             return new PeopleInControlHighRiskCheckPage(_context);
         }
         #endregion
@@ -114,10 +114,10 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay
             NavigateToTask(OrganisationsCriminalAndComplianceChecks, OrganisationsCriminalAndComplianceChecks_2);
             return new FailedToPayBackFundsCheckPage(_context);
         }
-        public ContractTerminatedByPublicBodyCheckPage Access_Section5_ContractTErminatedEarlyByPublicBody()
+        public ContractTerminatedEarlyCheckPage Access_Section5_ContractTErminatedEarlyByPublicBody()
         {
             NavigateToTask(OrganisationsCriminalAndComplianceChecks, OrganisationsCriminalAndComplianceChecks_3);
-            return new ContractTerminatedByPublicBodyCheckPage(_context);
+            return new ContractTerminatedEarlyCheckPage(_context);
         }
         public WithdrawnFromContractWithPublicBodyCheckPage Access_Section5_WithdrawnFromContractWithPublicBody()
         {
@@ -139,10 +139,10 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay
             NavigateToTask(OrganisationsCriminalAndComplianceChecks, OrganisationsCriminalAndComplianceChecks_7);
             return new RemovedFromProfessionalOrTradeRegistersCheckPage(_context);
         }
-        public InitialTeacherTrainingCheckPage Access_Section5_InitialTeacherTrainingAccreditation()
+        public ITTInLastThreeYearsCheckPage Access_Section5_InitialTeacherTrainingAccreditation()
         {
             NavigateToTask(OrganisationsCriminalAndComplianceChecks, OrganisationsCriminalAndComplianceChecks_8);
-            return new InitialTeacherTrainingCheckPage(_context);
+            return new ITTInLastThreeYearsCheckPage(_context);
         }
         public RemovedFromAnyCharityRegisterCheckPage Access_Section5_RemovedFromCharityRegister()
         {
@@ -217,7 +217,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay
         #region Section-7 OverallGatewayOutcome
         public ConfirmGatewayOutcomePage Access_Section7_ConfirmGateWayOutcome()
         {
-            NavigateToTask(OverallGatewayOutcome, OverallGatewayOutcome_1);
+            formCompletionHelper.ClickLinkByText("Confirm gateway outcome");
             return new ConfirmGatewayOutcomePage(_context);
         }
         #endregion
