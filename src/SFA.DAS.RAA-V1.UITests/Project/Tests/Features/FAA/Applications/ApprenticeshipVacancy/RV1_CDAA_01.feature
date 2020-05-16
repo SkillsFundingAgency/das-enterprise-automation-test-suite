@@ -1,7 +1,7 @@
 ﻿Feature: RV1_CDAA_01
 
 Background:
-	Given the Applicant creates new FAA account
+	Given the Applicant creates a new FAA account
 
 @raa-v1
 @regression

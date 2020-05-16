@@ -134,23 +134,6 @@ namespace SFA.DAS.FAA.UITests.Project.Helpers
             }
         }
 
-        private FAA_ApprenticeSummaryPage SearchByReferenceNumber()
-        {
-            if (_objectContext.IsApprenticeshipVacancyType())
-                return FindAnApprenticeship().SearchByReferenceNumber();
-            else
-                return FindATraineeship().SearchByReferenceNumber();
-        }
-
-        private FAA_ApprenticeSummaryPage SearchByCategory() => FindAnApprenticeship().BrowseVacancy().SelectBrowsedVacancy();
-
-
-        private FAA_MyApplicationsHomePage OpenFAAHomePageinNewtab()
-        {
-            _tabHelper.OpenInNewTab(_config.FAABaseUrl);
-            return new FAA_FindAnApprenticeshipHomePage(_context).MyApplications();
-        }
-
         public void CheckNationWideVacancies()
         {
             FAA_ApprenticeSearchResultsPage _faaApprenticeshipSearchResultsPage = new FAA_ApprenticeSearchResultsPage(_context);
@@ -172,6 +155,22 @@ namespace SFA.DAS.FAA.UITests.Project.Helpers
             GoToSettingsPage().ChangePhoneNumberSettings().EnterVerificationCode().VerifySuccessfulVerificationText();
         }
 
+        private FAA_ApprenticeSummaryPage SearchByReferenceNumber()
+        {
+            if (_objectContext.IsApprenticeshipVacancyType())
+                return FindAnApprenticeship().SearchByReferenceNumber();
+            else
+                return FindATraineeship().SearchByReferenceNumber();
+        }
+
+        private FAA_MyApplicationsHomePage OpenFAAHomePageinNewtab()
+        {
+            _tabHelper.OpenInNewTab(_config.FAABaseUrl);
+            return new FAA_FindAnApprenticeshipHomePage(_context).MyApplications();
+        }
+
         private FAA_SettingsPage GoToSettingsPage() => GoToFAAHomePage().GoToSettings();
+
+        private FAA_ApprenticeSummaryPage SearchByCategory() => FindAnApprenticeship().BrowseVacancy().SelectBrowsedVacancy();
     }
 }

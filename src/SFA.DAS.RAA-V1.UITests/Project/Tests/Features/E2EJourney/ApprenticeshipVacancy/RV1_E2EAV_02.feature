@@ -6,7 +6,7 @@
 @apprenticeshipvacancy
 @FAALoginNewCredentials
 Scenario Outline: RV1_E2EAV_02 - Create, Approve and Apply for a Apprenticeship Vacancy and make it Successful and delete candidate account
-	Given the Applicant creates new FAA account
+	Given the Applicant creates a new FAA account
 	Given the Provider initiates Create Apprenticeship Vacancy in Recruit
 	When the Provider chooses the employer '<location>','<NoOfPositions>'
 	And the Provider chooses their '<anonymity>'

@@ -1,5 +1,4 @@
 ﻿Feature: FAA_SearchVacancy_01
-	
 
 @raa-v1
 @regression
