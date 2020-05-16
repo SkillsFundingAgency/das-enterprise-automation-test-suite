@@ -27,5 +27,13 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.RoatpAdmin
 
             SqlDatabaseConnectionHelper.ExecuteSqlCommand(_applyDatabaseConnectionString, GateWayResetQuery);
         }
+
+        public void FHAClearDwnDataFromApply()
+        {
+            var FhaResetQuery = $"UPDATE Apply set GatewayReviewStatus = 'Pass' , Applicationstatus = 'GatewayAssessed'," +
+                $" FinancialReviewStatus = 'New', FinancialGrade = NULL WHERE UKPRN = '10083833' ";
+
+            SqlDatabaseConnectionHelper.ExecuteSqlCommand(_applyDatabaseConnectionString, FhaResetQuery);
+        }
     }
 }

@@ -68,5 +68,11 @@ namespace SFA.DAS.Roatp.UITests.Project
         {
             if (_context.ScenarioInfo.Tags.Contains("resetApplicationToNew")) { _adminClearDownDataHelpers.GateWayClearDownDataFromApply(); }
         }
+
+        [BeforeScenario(Order = 37)]
+        public void ClearDownFHAAdminData()
+        {
+            if (_context.ScenarioInfo.Tags.Contains("resetFhaApplicationToNew")) { _adminClearDownDataHelpers.FHAClearDwnDataFromApply(); }
+        }
     }
 }

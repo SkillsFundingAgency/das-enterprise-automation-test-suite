@@ -19,10 +19,10 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Financial
             _context = context;
             VerifyPage();
         }
-        public FinancialHealthAssessmentOverviewPage SelectingNewApplication()
+        public FinancialHealthAssessmentOverviewPage SelectNewApplication()
         {
             //formCompletionHelper.ClickElement(NewApplicationLink);
-            formCompletionHelper.ClickLinkByText("INDUSTRY VETERANS LTD");
+            formCompletionHelper.ClickLinkByText("COLEMAN TRAINING & CONSULTANCY");
             return new FinancialHealthAssessmentOverviewPage(_context);
         }
     }
