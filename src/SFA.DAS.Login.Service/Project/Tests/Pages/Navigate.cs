@@ -15,6 +15,8 @@ namespace SFA.DAS.Login.Service.Project.Tests.Pages
 
         protected By GlobalNavLink => By.CssSelector("#global-nav-links li a, #navigation li a, .das-navigation__link");
 
+        private By MoreLink => By.LinkText("More");
+
         protected abstract string Linktext { get; }
 
         protected Navigate(ScenarioContext context, bool navigate) : base(context)
@@ -29,9 +31,18 @@ namespace SFA.DAS.Login.Service.Project.Tests.Pages
         {
             if (navigate)
             {
+                OpenSubMenu();
+         
                 var link = pageInteractionHelper.GetLink(GlobalNavLink, Linktext);
+                
                 formCompletionHelper.ClickElement(link);
             }
+        }
+
+        protected void OpenSubMenu()
+        {
+            if (Linktext == "PAYE schemes" && pageInteractionHelper.IsElementDisplayed(MoreLink)) { formCompletionHelper.Click(MoreLink); }
+                
         }
     }
 }

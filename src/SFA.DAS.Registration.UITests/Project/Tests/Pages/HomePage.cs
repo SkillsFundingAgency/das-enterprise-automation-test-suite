@@ -1,14 +1,12 @@
 ﻿using SFA.DAS.UI.FrameworkHelpers;
 using OpenQA.Selenium;
 using TechTalk.SpecFlow;
+using SFA.DAS.Registration.UITests.Project.Tests.Pages.InterimPages;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 {
-    public class HomePage : InterimEmployerBasePage
+    public class HomePage : InterimHomeBasePage
     {
-        protected override string PageTitle => objectContext.GetOrganisationName();
-        protected override string Linktext => "Home";
-
         private readonly RegexHelper _regexHelper;
         private readonly ScenarioContext _context;
 
