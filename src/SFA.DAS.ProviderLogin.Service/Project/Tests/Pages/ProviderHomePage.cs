@@ -11,10 +11,6 @@ namespace SFA.DAS.ProviderLogin.Service.Pages
 
         protected override string Linktext => "Home";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
         protected By CreateACohortLink => By.LinkText("Create a cohort");
 
         protected By ProviderManageYourApprenticesLink => By.LinkText("Manage your apprentices");
@@ -27,7 +23,7 @@ namespace SFA.DAS.ProviderLogin.Service.Pages
 
         protected By InvitedEmployers => By.LinkText("View invited employers");
 
-        public ProviderHomePage(ScenarioContext context, bool navigate = false) : base(context, navigate) => _context = context;
+        public ProviderHomePage(ScenarioContext context, bool navigate = false) : base(context, navigate) { }
 
         public bool CreateCohortPermissionLinkIsDisplayed() => pageInteractionHelper.IsElementDisplayed(CreateACohortLink);
     }

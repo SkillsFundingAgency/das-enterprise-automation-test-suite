@@ -150,9 +150,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         [Then(@"the Employer Home page is displayed")]
         public void TheEmployerHomePageIsDisplayed()
         {
-            var accountid = new HomePage(_context)
-                .HomePage()
-                .AccountId();
+            var accountid = new HomePage(_context).AccountId();
 
             _objectContext.SetAccountId(accountid);
         }
@@ -268,7 +266,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         [Then(@"the Employer is Not allowed to Remove the first Org added")]
         public void ThenTheEmployerIsNotAllowedToRemoveTheFirstOrgAdded()
         {
-            
              Assert.AreEqual(_homePage.GoToYourOrganisationsAndAgreementsPage().IsRemoveLinkBesideNewlyAddedOrg(), false);
              _homePage = new HomePage(_context, true); 
         }
