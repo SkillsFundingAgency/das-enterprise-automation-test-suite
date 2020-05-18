@@ -1,4 +1,4 @@
-﻿using SFA.DAS.FAT.UITests.Project;
+﻿using SFA.DAS.Roatp.UITests.Project;
 using SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply;
 using System;
 using System.Collections.Generic;
@@ -22,7 +22,6 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Financial
         }
         public FinancialHealthAssessmentOverviewPage SelectNewApplication()
         {
-            //formCompletionHelper.ClickElement(NewApplicationLink);
             formCompletionHelper.ClickLinkByText( objectContext.GetProviderName());
             return new FinancialHealthAssessmentOverviewPage(_context);
         }

@@ -28,7 +28,6 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Gateway
             .SelectPassAndContinue()
             .VerifyInvestigatedforfraudorirregularities_Section6(StatusHelper_AdminPage.StatusPass);
         }
-
         internal GWApplicationOverviewPage PassOrganisationsCriminalAndComplianceChecks_OngoingInvestigationForFraudOrIrregularities(GWApplicationOverviewPage gwApplicationOverviewPage)
         {
             return gwApplicationOverviewPage
@@ -36,7 +35,6 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Gateway
             .SelectPassAndContinue()
             .VerifyOngoinginvestigationsforfraudorirregularities_Section6(StatusHelper_AdminPage.StatusPass);
         }
-
         internal GWApplicationOverviewPage PassOrganisationsCriminalAndComplianceChecks_ContractTerminatedEarlyByPublicBody(GWApplicationOverviewPage gwApplicationOverviewPage)
         {
             return gwApplicationOverviewPage

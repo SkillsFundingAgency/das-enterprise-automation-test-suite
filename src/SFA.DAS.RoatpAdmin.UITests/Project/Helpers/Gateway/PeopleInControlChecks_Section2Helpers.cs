@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-
 namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Gateway
 {
    public class PeopleInControlChecks_Section2Helpers
@@ -16,7 +15,6 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Gateway
             .SelectPassAndContinue()
             .VerifyPeopleincontrol_Section2(StatusHelper_AdminPage.StatusPass);
         }
-
         internal GWApplicationOverviewPage PassPeopleInControlChecks_PeopleInControlHighRisk(GWApplicationOverviewPage gwApplicationOverviewPage)
         {
             return gwApplicationOverviewPage

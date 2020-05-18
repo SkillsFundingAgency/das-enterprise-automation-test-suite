@@ -1,5 +1,4 @@
-﻿using OpenQA.Selenium;
-using SFA.DAS.FAT.UITests.Project;
+﻿using SFA.DAS.Roatp.UITests.Project;
 using SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply;
 using System;
 using System.Collections.Generic;
@@ -12,7 +11,6 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay
     {
         protected override string PageTitle => "New";
 
-        //private By NewApplicationLink = By.XPath("//a[text()='INDUSTRY VETERANS LTD']");
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
@@ -26,10 +24,8 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay
 
         public GWApplicationOverviewPage SelectingNewApplication()
         {
-            //formCompletionHelper.ClickElement(NewApplicationLink);
             formCompletionHelper.ClickLinkByText(objectContext.GetProviderName());
             return new GWApplicationOverviewPage(_context);
         }
-
     }
 }

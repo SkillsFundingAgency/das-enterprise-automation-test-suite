@@ -13,7 +13,6 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.GwAdmin
         private readonly RoatpAdminLoginStepsHelper _loginStepsHelper;
         private readonly GatewayEndtoEndStepsHelpers _gatewayEndToEndStepsHelpers;
         private GWApplicationOverviewPage _gwApplicationOverviewPage;
-      //  private FinalConfirmationPage _finalConfirmationPage;
 
         public GwAdminSteps(ScenarioContext context)
         {

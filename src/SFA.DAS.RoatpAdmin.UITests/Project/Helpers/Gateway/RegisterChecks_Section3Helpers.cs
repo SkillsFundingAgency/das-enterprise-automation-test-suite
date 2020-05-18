@@ -15,7 +15,6 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Gateway
             .SelectPassAndContinue()
             .VerifyRoATP_Section3(StatusHelper_AdminPage.StatusPass);
         }
-
         internal GWApplicationOverviewPage PassRegisterChecks_RegisterOfEndPointAssessmentOrganisations(GWApplicationOverviewPage gwApplicationOverviewPage)
         {
             return gwApplicationOverviewPage
