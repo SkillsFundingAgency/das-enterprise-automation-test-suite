@@ -21,9 +21,9 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.RoatpAdmin
         public void GateWayClearDownDataFromApply()
         {
             var GateWayResetQuery = $" DECLARE @ApplicationID UNIQUEIDENTIFIER; " +
-            $" SELECT @ApplicationID = ApplicationId FROM dbo.apply WHERE ukprn = '10047117';" +
+            $" SELECT @ApplicationID = ApplicationId FROM dbo.apply WHERE [UKPRN] = {_objectContext.GetUkprn()} " +
             $" DELETE FROM dbo.gatewayanswer WHERE ApplicationId = @ApplicationID; " +
-            $" UPDATE Apply set GatewayReviewStatus = 'New' , Applicationstatus = 'Submitted' WHERE UKPRN = '10047117' " ;
+            $" UPDATE Apply set GatewayReviewStatus = 'New' , Applicationstatus = 'Submitted' WHERE [UKPRN] = {_objectContext.GetUkprn()} ";
 
             SqlDatabaseConnectionHelper.ExecuteSqlCommand(_applyDatabaseConnectionString, GateWayResetQuery);
         }
@@ -31,7 +31,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.RoatpAdmin
         public void FHAClearDwnDataFromApply()
         {
             var FhaResetQuery = $"UPDATE Apply set GatewayReviewStatus = 'Pass' , Applicationstatus = 'GatewayAssessed'," +
-                $" FinancialReviewStatus = 'New', FinancialGrade = NULL WHERE UKPRN = '10083833' ";
+                $" FinancialReviewStatus = 'New', FinancialGrade = NULL WHERE [UKPRN] = {_objectContext.GetUkprn()} ";
 
             SqlDatabaseConnectionHelper.ExecuteSqlCommand(_applyDatabaseConnectionString, FhaResetQuery);
         }

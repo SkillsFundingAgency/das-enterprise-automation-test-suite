@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.FAT.UITests.Project;
 using SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply;
 using System;
 using System.Collections.Generic;
@@ -26,7 +27,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay
         public GWApplicationOverviewPage SelectingNewApplication()
         {
             //formCompletionHelper.ClickElement(NewApplicationLink);
-            formCompletionHelper.ClickLinkByText("INDUSTRY VETERANS LTD");
+            formCompletionHelper.ClickLinkByText(objectContext.GetProviderName());
             return new GWApplicationOverviewPage(_context);
         }
 

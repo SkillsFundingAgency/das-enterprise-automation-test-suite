@@ -1,6 +1,5 @@
 ﻿Feature: RP_AD_FHA_01
 
-@notestdata
 @resetFhaApplicationToNew
 @roatp
 @roatpadmin

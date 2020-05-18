@@ -71,7 +71,6 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Features.GwAdmin
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("RP_AD_GW_01")]
-        [NUnit.Framework.CategoryAttribute("notestdata")]
         [NUnit.Framework.CategoryAttribute("resetApplicationToNew")]
         [NUnit.Framework.CategoryAttribute("roatp")]
         [NUnit.Framework.CategoryAttribute("roatpadmin")]
@@ -81,23 +80,22 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Features.GwAdmin
         public virtual void RP_AD_GW_01()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_AD_GW_01", null, new string[] {
-                        "notestdata",
                         "resetApplicationToNew",
                         "roatp",
                         "roatpadmin",
                         "newroatpadmin",
                         "rpadgw01",
                         "regression"});
-#line 10
+#line 9
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 11
+#line 10
 testRunner.Given("the admin lands on the Dashboard", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 12
+#line 11
 testRunner.When("the admin access the GatewayApplications", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 13
+#line 12
 testRunner.And("the gateway admin assess all sections as PASS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 14
+#line 13
 testRunner.Then("the gateway admin completes assessment by confirming the Gateway outcome as PASS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();

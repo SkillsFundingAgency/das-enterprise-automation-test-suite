@@ -71,7 +71,6 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Features.Financial
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("RP_AD_FHA_01")]
-        [NUnit.Framework.CategoryAttribute("notestdata")]
         [NUnit.Framework.CategoryAttribute("resetFhaApplicationToNew")]
         [NUnit.Framework.CategoryAttribute("roatp")]
         [NUnit.Framework.CategoryAttribute("roatpadmin")]
@@ -81,21 +80,20 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Features.Financial
         public virtual void RP_AD_FHA_01()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_AD_FHA_01", null, new string[] {
-                        "notestdata",
                         "resetFhaApplicationToNew",
                         "roatp",
                         "roatpadmin",
                         "newroatpadmin",
                         "rpadfha01",
                         "regression"});
-#line 10
+#line 9
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 11
+#line 10
 testRunner.Given("the admin lands on the Dashboard", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 12
+#line 11
 testRunner.When("the admin access the FinancialApplications", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 13
+#line 12
 testRunner.Then("the Financial assessor completes assessment by confirming the Gateway outcome as " +
                     "Outstanding", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
