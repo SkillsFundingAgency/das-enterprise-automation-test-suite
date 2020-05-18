@@ -1,21 +1,17 @@
 ﻿using SFA.DAS.RAA_V2.Service.Project.Tests.Pages;
-using SFA.DAS.Registration.UITests.Project.Tests.Pages;
 using TechTalk.SpecFlow;
 using SFA.DAS.RAA_V2.Service.Project.Helpers;
 using OpenQA.Selenium;
+using SFA.DAS.Registration.UITests.Project.Tests.Pages.InterimPages;
 
 namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer
 {
-    public class RecruitmentHomePage : InterimEmployerBasePage
+    public class RecruitmentHomePage : InterimRecruitmentHomePage
     {
         #region Helpers and Context
         private readonly ScenarioContext _context;
         private readonly SearchVacancyPageHelper _searchVacancyPageHelper;  
         #endregion
-
-        protected override string PageTitle => "Recruitment";
-
-        protected override string Linktext => "Recruitment";
 
         protected override By AcceptCookieButton => By.CssSelector("#btn-cookie-accept");
 
