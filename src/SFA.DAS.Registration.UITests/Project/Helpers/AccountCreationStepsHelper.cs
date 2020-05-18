@@ -47,18 +47,6 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
             _loginCredentialsHelper.SetIsLevy();
         }
 
-        public void AssertManuallyAddedAddressDetailsAndCompleteRegistration(CheckYourDetailsPage checkYourDetailsPage)
-        {
-            var manuallyEnteredAddress = $"{_registrationDataHelper.FirstLineAddressForManualEntry} " +
-                                            $"{_registrationDataHelper.CityNameForManualEntry} " +
-                                            $"{_registrationDataHelper.PostCodeForManualEntry}";
-            Assert.AreEqual(manuallyEnteredAddress, checkYourDetailsPage.GetManuallyAddedOrganisationAddress());
-
-            checkYourDetailsPage.ClickYesTheseDetailsAreCorrectButtonInCheckYourDetailsPage()
-                        .SelectViewAgreementNowAndContinue()
-                        .SignAgreement();
-        }
-
         public CheckYourDetailsPage AddPayeDetailsForSingleOrgAornRoute(AddAPAYESchemePage addAPAYESchemePage) =>
             addAPAYESchemePage.AddAORN().EnterAornAndPayeDetailsForSingleOrgScenarioAndContinue();
 

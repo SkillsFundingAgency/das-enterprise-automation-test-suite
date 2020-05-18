@@ -233,14 +233,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             ThenTheNewOrgAddedIsShownInTheAccountOrganisationsList();
         }
 
-        [Then(@"the Employer is able check the details entered in the 'Check your details' page and complete registration")]
-        public void ThenTheEmployerChecksTheDetailsEnteredAndCompletesRegistration()
-        {
-            Assert.AreEqual(_registrationDataHelper.CharityTypeOrg3Number, _checkYourDetailsPage.GetManuallyAddedOrganisationNumber());
-            Assert.AreEqual(_registrationDataHelper.CharityTypeOrg3Name, _checkYourDetailsPage.GetManuallyAddedOrganisationName());
-            _accountCreationStepsHelper.AssertManuallyAddedAddressDetailsAndCompleteRegistration(_checkYourDetailsPage);
-        }
-
         [Then(@"ApprenticeshipEmployerType in Account table is marked as (.*)")]
         public void ThenApprenticeshipEmployerTypeInAccountTableIsMarkedAs(string expectedApprenticeshipEmployerType)
         {
@@ -255,10 +247,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
                 .ClickContinueToYourAgreementButtonInAboutYourAgreementPage()
                 .SignAgreement();
         }
-
-        [When(@"an Employer initiates adding an Org of Charity Type Whose Address is Not in the Charity Commission database")]
-        public void WhenAnEmployerInitiatesAddingAnOrgOfCharityTypeWhoseAddressIsNotInTheCharityCommissionDatabase()
-            => CreateAnUserAcountAndAddPaye();
 
         [Then(@"'Start adding apprentices now' task link is displayed under Tasks pane")]
         public void ThenTaskLinkIsDisplayedUnderTasksPane() => _homePage.VerifyStartAddingApprenticesNowTaskLink();
