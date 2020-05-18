@@ -12,8 +12,6 @@ namespace SFA.DAS.Login.Service.Project.Tests.Pages
         protected readonly FormCompletionHelper formCompletionHelper;
         protected readonly TableRowHelper tableRowHelper;
         protected readonly TabHelper tabHelper;
-        private readonly bool _gotourl;
-        private readonly string _url;
         #endregion
 
         protected By GlobalNavLink => By.CssSelector("#global-nav-links li a, #navigation li a, .das-navigation__link");
