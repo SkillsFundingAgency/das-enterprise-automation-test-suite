@@ -177,7 +177,6 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
         private void CloneVacancy()
         {
             _raaStepsHelper.GoToRAAHomePage(false).CloneAVacancy().ClickOnSaveAndContinueButton();
-            _raaEmployerInformation.ClickOnSaveAndContinueButton();
             _enterTrainingDetails = _raaStepsHelper.EnterBasicVacancyDetails();
 
             if (_objectContext.IsApprenticeshipVacancyType())

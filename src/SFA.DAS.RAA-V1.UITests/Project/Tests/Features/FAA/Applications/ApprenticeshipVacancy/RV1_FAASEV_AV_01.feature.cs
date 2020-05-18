@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Features.E2EJourney.ApprenticeshipVacancy
+namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Features.FAA.Applications.ApprenticeshipVacancy
 {
     using TechTalk.SpecFlow;
     
@@ -18,20 +18,20 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Features.E2EJourney.Apprenticeshi
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.0.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("RV1_E2EAV_02")]
-    public partial class RV1_E2EAV_02Feature
+    [NUnit.Framework.DescriptionAttribute("RV1_FAASEV_AV_01")]
+    public partial class RV1_FAASEV_AV_01Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "RV1_E2EAV_02.feature"
+#line 1 "RV1_FAASEV_AV_01.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "RV1_E2EAV_02", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "RV1_FAASEV_AV_01", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -69,68 +69,63 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Features.E2EJourney.Apprenticeshi
             testRunner.CollectScenarioErrors();
         }
         
-        public virtual void RV1_E2EAV_02_CreateApproveAndApplyForAApprenticeshipVacancyAndMakeItSuccessfulAndDeleteCandidateAccount(string location, string anonymity, string disabilityConfident, string applicationMethod, string apprenticeshipType, string hoursPerWeek, string vacancyDuration, string noOfPositions, string qualificationDetails, string workExperience, string trainingCourse, string[] exampleTags)
+        public virtual void RV1_FAASEV_AV_01SearchForAnExistingApprenticeshipVacancy(string location, string anonymity, string disabilityConfident, string applicationMethod, string apprenticeshipType, string hoursPerWeek, string vacancyDuration, string noOfPositions, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "raa-v1",
-                    "v1_e2e",
-                    "regression",
                     "apprenticeshipvacancy",
-                    "FAALoginNewCredentials"};
+                    "regression"};
             if ((exampleTags != null))
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
             }
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV1_E2EAV_02 - Create, Approve and Apply for a Apprenticeship Vacancy and make it" +
-                    " Successful and delete candidate account", null, @__tags);
-#line 8
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV1_FAASEV_AV_01 search for an existing apprenticeship vacancy", null, @__tags);
+#line 6
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 9
- testRunner.Given("the Applicant creates a new FAA account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 10
+#line 7
  testRunner.Given("the Provider initiates Create Apprenticeship Vacancy in Recruit", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 11
+#line 8
  testRunner.When(string.Format("the Provider chooses the employer \'{0}\',\'{1}\'", location, noOfPositions), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 12
+#line 9
  testRunner.And(string.Format("the Provider chooses their \'{0}\'", anonymity), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 13
+#line 10
  testRunner.And(string.Format("the Provider fills out details for an Offline Vacancy \'{0}\',\'{1}\',\'{2}\',\'{3}\',\'{4" +
                         "}\',\'{5}\'", location, disabilityConfident, applicationMethod, apprenticeshipType, hoursPerWeek, vacancyDuration), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 14
+#line 11
  testRunner.Then("Provider is able to submit the vacancy for approval", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 15
+#line 12
  testRunner.Then("the Reviewer approves the vacancy", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 13
+ testRunner.When("an applicant is on the Find an Apprenticeship Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 14
+ testRunner.Then("the apprenticeship can be found based on \'E1 7LL\',\'2 miles\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 15
+ testRunner.And("the apprenticeship can be found based on \'SE16\',\'5 miles\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 16
- testRunner.When(string.Format("the Applicant apply for a Vacancy in FAA \'{0}\',\'{1}\',\'{2}\'", qualificationDetails, workExperience, trainingCourse), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.And("the apprenticeship can be found based on \'SE9 5QE\',\'15 miles\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 17
- testRunner.Then("Provider can to make the application to be \'Successful\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("the apprenticeship can be found based on \'E1 7TF\',\'England\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 18
- testRunner.Then("the Provider is able to search and select a Candidate", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("the apprenticeship can be found based on \'E1 7LL\',\'Job title\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 19
- testRunner.And("the reviewer is able to search and select a candidate", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("the apprenticeship can be found based on \'E1 7LL\',\'Employer\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 20
- testRunner.When("Applicant Deletes the FAA Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 21
- testRunner.Then("the Candidate is removed from the Recruit", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 22
- testRunner.And("the Candidate is removed from the Manage", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("the apprenticeship can be found based on \'E1 7LL\',\'Description\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RV1_E2EAV_02 - Create, Approve and Apply for a Apprenticeship Vacancy and make it" +
-            " Successful and delete candidate account: Set as a nationwide vacancy")]
+        [NUnit.Framework.DescriptionAttribute("RV1_FAASEV_AV_01 search for an existing apprenticeship vacancy: Add different loc" +
+            "ation")]
         [NUnit.Framework.CategoryAttribute("raa-v1")]
-        [NUnit.Framework.CategoryAttribute("v1_e2e")]
-        [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("apprenticeshipvacancy")]
-        [NUnit.Framework.CategoryAttribute("FAALoginNewCredentials")]
-        public virtual void RV1_E2EAV_02_CreateApproveAndApplyForAApprenticeshipVacancyAndMakeItSuccessfulAndDeleteCandidateAccount_SetAsANationwideVacancy()
+        [NUnit.Framework.CategoryAttribute("regression")]
+        public virtual void RV1_FAASEV_AV_01SearchForAnExistingApprenticeshipVacancy_AddDifferentLocation()
         {
-#line 8
-this.RV1_E2EAV_02_CreateApproveAndApplyForAApprenticeshipVacancyAndMakeItSuccessfulAndDeleteCandidateAccount("Set as a nationwide vacancy", "Yes", "Yes", "Online", "Standard", "42", "52", "3", "Yes", "No", "No", ((string[])(null)));
+#line 6
+this.RV1_FAASEV_AV_01SearchForAnExistingApprenticeshipVacancy("Add different location", "Yes", "Yes", "Online", "Standard", "42", "52", "3", ((string[])(null)));
 #line hidden
         }
     }
