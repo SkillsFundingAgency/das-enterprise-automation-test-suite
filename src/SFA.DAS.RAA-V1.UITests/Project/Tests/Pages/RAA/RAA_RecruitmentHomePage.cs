@@ -81,19 +81,19 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
 
         public RAA_ClosedVacancyPreviewPage SearchClosedVacancy()
         {
-            SearchByReferenceNumber("Closed");
+            SearchByReferenceNumber();
             return new RAA_ClosedVacancyPreviewPage(_context);
         }
 
         public RAA_VacancySummaryPage SearchLiveVacancy()
         {
-            SearchByReferenceNumber("Live");
+            SearchByReferenceNumber();
             return new RAA_VacancySummaryPage(_context);
         }
 
         public RAA_PreviewBasePage SearchLiveVacancyWithNoApplications()
         {
-            SearchByReferenceNumber("Live");
+            SearchByReferenceNumber();
 
             if(_objectContext.IsApprenticeshipVacancyType())
             {
@@ -107,7 +107,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
 
         public RAA_PreviewBasePage SearchReferredVacancy()
         {
-            SearchByReferenceNumber("Referred");
+            SearchByReferenceNumber();
 
             if (_objectContext.IsApprenticeshipVacancyType())
             {
@@ -119,9 +119,8 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
             }
         }
 
-        private void SearchByReferenceNumber(string vacancyType)
+        private void SearchByReferenceNumber()
         {
-         
             IWebElement func()
             {
                 //_pageInteractionHelper expects some element back and fails when page is running slow and element is not available 
@@ -129,7 +128,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
                 var vacancies = _pageInteractionHelper.FindElements(VacancyTitle);                
 
                 foreach (var vac in vacancies)
-                {                    
+                {
                     if (vac.Text == vacancyTitledataHelper.VacancyTitle)
                     {
                         return vac;

@@ -1,9 +1,9 @@
-﻿Feature: RV1_WDAV_01
+﻿Feature: RV1_E2EWDAV_01
 
 @raa-v1
 @regression
 @apprenticeshipvacancy
-Scenario Outline: RV1_WDAV_01 - Withdraw Apprenticeship Vacancy
+Scenario Outline: RV1_E2EWDAV_01 - Withdraw Apprenticeship Vacancy
 	Given the apprenticeship vacancy is Live in Recruit
 		| location   | anonymity   | DisabilityConfident   | ApplicationMethod   | ApprenticeshipType   | HoursPerWeek   | VacancyDuration   | NoOfPositions   | QualificationDetails   | WorkExperience   | TrainingCourse   |
 		| <location> | <anonymity> | <DisabilityConfident> | <ApplicationMethod> | <ApprenticeshipType> | <HoursPerWeek> | <VacancyDuration> | <NoOfPositions> | <QualificationDetails> | <WorkExperience> | <TrainingCourse> |

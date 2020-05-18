@@ -40,7 +40,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
             _retryHelper.RetryOnWebDriverException(() => func(element));
         }
 
-        public bool WaitforURLToChange(string expected) 
+        public bool WaitforURLToChange(string expected)
         {
             bool func()
             {
