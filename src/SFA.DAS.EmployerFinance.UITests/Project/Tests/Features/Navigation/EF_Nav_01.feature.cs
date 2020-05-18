@@ -70,11 +70,13 @@ namespace SFA.DAS.EmployerFinance.UITests.Project.Tests.Features.Navigation
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("EF_Nav_01_Navigate to EAS sub-sites from Finance Page")]
+        [NUnit.Framework.DescriptionAttribute("EF_Nav_01_Navigate to EAS sub sites from Finance Page")]
+        [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("employerfinance")]
-        public virtual void EF_Nav_01_NavigateToEASSub_SitesFromFinancePage()
+        public virtual void EF_Nav_01_NavigateToEASSubSitesFromFinancePage()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EF_Nav_01_Navigate to EAS sub-sites from Finance Page", null, new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EF_Nav_01_Navigate to EAS sub sites from Finance Page", null, new string[] {
+                        "regression",
                         "employerfinance"});
 #line 5
 this.ScenarioInitialize(scenarioInfo);

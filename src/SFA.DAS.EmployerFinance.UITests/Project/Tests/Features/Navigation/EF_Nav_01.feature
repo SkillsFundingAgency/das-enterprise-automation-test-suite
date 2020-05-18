@@ -1,8 +1,8 @@
 ﻿Feature: EF_Nav_01
 
-#@regression
+@regression
 @employerfinance
-Scenario: EF_Nav_01_Navigate to EAS sub-sites from Finance Page
+Scenario: EF_Nav_01_Navigate to EAS sub sites from Finance Page
 	Given the Employer logins using existing Levy Account
 	When the Employer navigates to 'Finance' Page
 	Then the employer can navigate to home page
