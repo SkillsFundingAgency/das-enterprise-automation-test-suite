@@ -30,15 +30,15 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.InterimPages
         private By PAYESchemesLink => By.LinkText("PAYE schemes");
         #endregion
 
-        protected InterimEmployerBasePage(ScenarioContext context, bool navigate) : base(context, navigate)
+        protected InterimEmployerBasePage(ScenarioContext context, bool navigate) : this(context, navigate, false) { }
+
+        protected InterimEmployerBasePage(ScenarioContext context, bool navigate, bool gotourl) : base(context, navigate, gotourl ? UrlConfig.EmployerApprenticeshipServiceBaseURL : string.Empty) 
         {
             _context = context;
             config = context.GetRegistrationConfig<RegistrationConfig>();
             objectContext = context.Get<ObjectContext>();
             VerifyPage();
         }
-
-        protected InterimEmployerBasePage(ScenarioContext context, bool navigate, bool gotourl) : base(context, navigate, UrlConfig.EmployerApprenticeshipServiceBaseURL) { }
 
         public HomePage GoToHomePage() => new HomePage(_context, true);
 
