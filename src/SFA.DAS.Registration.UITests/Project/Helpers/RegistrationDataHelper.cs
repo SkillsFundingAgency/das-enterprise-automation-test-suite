@@ -17,7 +17,6 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
             InvalidGGId = RandomAlphaNumericString(10);
             InvalidGGPassword = RandomNumericString(10);
             InvalidCompanyNumber = RandomNumericString(10);
-            OrgNameForManualEntry = $"Manually Added Organisation_{DateTime.Now.ToString("ddMMMyyyy_HHmmss")}";
             CompanyTypeOrg = organisationName;
         }
 
@@ -41,12 +40,6 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
         public string CharityTypeOrg2Number => "202918";
         public string CharityTypeOrg2Name => "OXFAM";
         public string CharityTypeOrg2Address => "OXFAM, 2700 JOHN SMITH DRIVE, OXFORD BUSINESS PARK SOUTH, OXFORD, OX4 2JY";
-        public string CharityTypeOrg3Number => "277444";
-        public string CharityTypeOrg3Name => "OXFAM (INDIA) TRUST";
-        public string OrgNameForManualEntry { get; }
-        public string FirstLineAddressForManualEntry => "5 Quinton Road";
-        public string CityNameForManualEntry => "Coventry";
-        public string PostCodeForManualEntry => "CV1 2WT";
         public string InvalidPaye => $"{RandomNumericString(3)}/{RandomAlphaNumericString(7)}";
         public string InvalidAornNumber => $"A{GetDateTimeValue()}";
         private string RandomAlphaNumericString(int length) => _randomDataGenerator.GenerateRandomAlphanumericString(length);
