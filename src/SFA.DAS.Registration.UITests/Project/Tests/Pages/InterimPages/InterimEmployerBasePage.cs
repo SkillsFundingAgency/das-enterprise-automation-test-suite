@@ -3,9 +3,9 @@ using SFA.DAS.ConfigurationBuilder;
 using OpenQA.Selenium;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.Login.Service.Project.Tests.Pages;
-using SFA.DAS.UI.FrameworkHelpers;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages.YourTeamPages;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages.PAYESchemesPages;
+using SFA.DAS.UI.Framework;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.InterimPages
 {
@@ -15,7 +15,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.InterimPages
         private readonly ScenarioContext _context;
         protected readonly RegistrationConfig config;
         protected readonly ObjectContext objectContext;
-        protected readonly TabHelper _tabHelper;
         #endregion
 
         #region Locators
@@ -34,11 +33,12 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.InterimPages
         protected InterimEmployerBasePage(ScenarioContext context, bool navigate) : base(context, navigate)
         {
             _context = context;
-            _tabHelper = _context.Get<TabHelper>();
             config = context.GetRegistrationConfig<RegistrationConfig>();
             objectContext = context.Get<ObjectContext>();
             VerifyPage();
         }
+
+        protected InterimEmployerBasePage(ScenarioContext context, bool navigate, bool gotourl) : base(context, navigate, UrlConfig.EmployerApprenticeshipServiceBaseURL) { }
 
         public HomePage GoToHomePage() => new HomePage(_context, true);
 
@@ -46,41 +46,41 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.InterimPages
 
         public YourAccountsPage GoToYourAccountsPage()
         {
-            formCompletionHelper.ClickElement(SettingsLink);
+            NavigateToSettings();
             formCompletionHelper.ClickElement(YourAccountsLink);
             return new YourAccountsPage(_context);
         }
 
         public HelpArticlesPage GoToHelpPage()
         {
-            _tabHelper.OpenInNewTab(() => formCompletionHelper.ClickElement(HelpLink));
+            tabHelper.OpenInNewTab(() => formCompletionHelper.ClickElement(HelpLink));
             return new HelpArticlesPage(_context);
         }
 
         public RenameAccountPage GoToRenameAccountPage()
         {
-            formCompletionHelper.ClickElement(SettingsLink);
+            NavigateToSettings();
             formCompletionHelper.ClickElement(RenameAccountLink);
             return new RenameAccountPage(_context);
         }
 
         public ChangeYourPasswordPage GoToChangeYourPasswordPage()
         {
-            formCompletionHelper.ClickElement(SettingsLink);
+            NavigateToSettings();
             formCompletionHelper.ClickElement(ChangePasswordLink);
             return new ChangeYourPasswordPage(_context);
         }
 
         public ChangeYourEmailAddressPage GoToChangeYourEmailAddressPage()
         {
-            formCompletionHelper.ClickElement(SettingsLink);
+            NavigateToSettings();
             formCompletionHelper.ClickElement(ChangeEmailAddressLink);
             return new ChangeYourEmailAddressPage(_context);
         }
 
         public NotificationSettingsPage GoToNotificationSettingsPage()
         {
-            formCompletionHelper.ClickElement(SettingsLink);
+            NavigateToSettings();
             formCompletionHelper.ClickElement(NotificationSettingsLink);
             return new NotificationSettingsPage(_context);
         }
@@ -103,5 +103,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.InterimPages
             formCompletionHelper.Click(PAYESchemesLink);
             return new PAYESchemesPage(_context);
         }
+
+        private void NavigateToSettings() => formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(SettingsLink));
     }
 }
