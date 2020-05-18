@@ -1,15 +1,14 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.Registration.UITests.Project.Tests.Pages.InterimPages;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.YourTeamPages
 {
-    public class YourTeamPage : InterimEmployerBasePage
+    public class YourTeamPage : InterimYourTeamPage
     {
-        protected override string PageTitle => "Your team";
         private readonly ScenarioContext _context;
 
         #region Locators
-        protected override string Linktext => "Your team";
         private By InviteANewMemberButton => By.Id("addNewUser");
         private By ViewMemberLink(string email) => By.XPath($"//div[text()='{email}']/../..//td[@class='link-right']/a");
         private By InvitationActionHeader => By.CssSelector(".bold-large");
