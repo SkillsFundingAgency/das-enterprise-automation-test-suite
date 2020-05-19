@@ -88,11 +88,11 @@ this.ScenarioInitialize(scenarioInfo);
 #line 8
  testRunner.Then("the employer can navigate to finance page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 9
- testRunner.Then("the employer can navigate to apprentice page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("the employer can navigate to apprentice page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 10
- testRunner.Then("the employer can navigate to your team page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("the employer can navigate to your team page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 11
- testRunner.Then("the employer can navigate to account settings page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("the employer can navigate to account settings page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 12
  testRunner.And("the employer can navigate to rename account settings page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 13

@@ -26,8 +26,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.InterimPages
         private By ChangeEmailAddressLink => By.LinkText("Change your email address");
         private By NotificationSettingsLink => By.PartialLinkText("Notification");
         private By SignOutLink => By.LinkText("Sign out");
-        private By YourTeamLink => By.LinkText("Your team");
-        private By PAYESchemesLink => By.LinkText("PAYE schemes");
         #endregion
 
         protected InterimEmployerBasePage(ScenarioContext context, bool navigate) : this(context, navigate, false) { }
@@ -91,18 +89,9 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.InterimPages
             return new YouveLoggedOutPage(_context);
         }
 
-        public YourTeamPage GotoYourTeamPage()
-        {
-            formCompletionHelper.Click(YourTeamLink);
-            return new YourTeamPage(_context);
-        }
+        public YourTeamPage GotoYourTeamPage() => new YourTeamPage(_context, true);
 
-        public PAYESchemesPage GotoPAYESchemesPage()
-        {
-            OpenSubMenu();
-            formCompletionHelper.Click(PAYESchemesLink);
-            return new PAYESchemesPage(_context);
-        }
+        public PAYESchemesPage GotoPAYESchemesPage() => new PAYESchemesPage(_context, true);
 
         private void NavigateToSettings() => formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(SettingsLink));
     }

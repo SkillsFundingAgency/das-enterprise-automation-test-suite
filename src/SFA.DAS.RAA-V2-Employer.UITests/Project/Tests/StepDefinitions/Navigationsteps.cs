@@ -8,7 +8,6 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
     [Binding]
     public class Navigationsteps
     {
-
         private readonly ScenarioContext _context;
         private readonly EmployerStepsHelper _employerStepsHelper;
 
@@ -41,12 +40,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
         }
 
         [Then(@"the employer can navigate to your team page")]
-        public void ThenTheEmployerCanNavigateToYourTeamPage()
-        {
-            new InterimRecruitmentHomePage(_context, true);
-
-            new InterimYourTeamPage(_context, true);
-        }
+        public void ThenTheEmployerCanNavigateToYourTeamPage() => new InterimRecruitmentHomePage(_context, true, true).GotoYourTeamPage();
 
         [Then(@"the employer can navigate to account settings page")]
         public void ThenTheEmployerCanNavigateToAccountSettingsPage() => new InterimRecruitmentHomePage(_context, true, true).GoToYourAccountsPage();
