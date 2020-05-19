@@ -1,6 +1,5 @@
 ﻿Feature: AP_Nav_01
 
-@regression
 @approvals
 @approvalsnavigation
 Scenario: AP_Nav_01_Navigate to EAS sub sites from Apprentice Page

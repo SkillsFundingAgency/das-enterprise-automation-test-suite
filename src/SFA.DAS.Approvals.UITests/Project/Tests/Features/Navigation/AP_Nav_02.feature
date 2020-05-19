@@ -1,6 +1,5 @@
 ﻿Feature: AP_Nav_02
 
-@regression
 @approvals
 @managefundingnavigation
 Scenario: AP_Nav_02_Navigate to EAS sub sites from Manage Funding Page
