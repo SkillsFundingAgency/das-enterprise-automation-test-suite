@@ -1,13 +1,11 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.Registration.UITests.Project.Tests.Pages;
+using SFA.DAS.Registration.UITests.Project.Tests.Pages.InterimPages;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
-    public class ApprenticesHomePage : InterimEmployerBasePage
+    public class ApprenticesHomePage : InterimApprenticesHomePage
     {
-        protected override string PageTitle => "Apprentices";
-
         #region Helpers and Context
         private readonly ScenarioContext _context;
         #endregion
@@ -15,8 +13,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private By AddAnApprenticeLink => By.LinkText("Add an apprentice");
         private By YourCohortsLink => By.LinkText("Your cohorts");
         private By ManageYourApprenticesLink => By.LinkText("Manage your apprentices");
-
-        protected override string Linktext => "Apprentices";
 
         public ApprenticesHomePage(ScenarioContext context, bool navigate = false) : base(context, navigate)
         {
@@ -40,6 +36,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             formCompletionHelper.ClickElement(ManageYourApprenticesLink);
             return new ManageYourApprenticesPage(_context);
         }
+
+        internal FinancePage GoToFinancePage() => new FinancePage(_context, true);
     }
 }
 

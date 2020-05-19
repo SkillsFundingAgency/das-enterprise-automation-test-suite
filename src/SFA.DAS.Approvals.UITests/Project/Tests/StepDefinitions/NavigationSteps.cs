@@ -1,4 +1,5 @@
 ﻿using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
+using SFA.DAS.Registration.UITests.Project.Tests.Pages.InterimPages;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
@@ -10,27 +11,40 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
         public NavigationSteps(ScenarioContext context) => _context = context;
 
-        [Then(@"the Employer is able to navigate back and forth from Apprentices to 'Finance' Page")]
-        public void ThenTheEmployerIsAbleToNavigateBackAndForthFromApprenticesToFinancePage()
-        {
-            NavigateToApprenticesPage();
-            new FinancePage(_context, true);
-        }
+        [When(@"the Employer navigates to 'Apprentice' Page")]
+        public void WhenTheEmployerNavigatesToPage() => NavigateToApprenticesPage();
 
-        [Then(@"the Employer is able to navigate back and forth from Apprentices to 'Your Team' Page")]
-        public void ThenTheEmployerIsAbleToNavigateBackAndForthFromApprenticesToYourTeamPage() => NavigateToApprenticesPage().GotoYourTeamPage();
+        [Then(@"the employer can navigate to finance page")]
+        public void ThenTheEmployerCanNavigateToFinancePage() => NavigateToApprenticesPage().GoToFinancePage();
 
-        [Then(@"the Employer is able to navigate back and forth from Apprentices to 'Your organisations and agreements' Page")]
-        public void ThenTheEmployerIsAbleToNavigateBackAndForthFromApprenticesToYourOrganisationsAndAgreementsPage() =>
-            NavigateToApprenticesPage().GoToYourOrganisationsAndAgreementsPage();
+        [Then(@"the employer can navigate to your team page")]
+        public void ThenTheEmployerCanNavigateToYourTeamPage() => new InterimApprenticesHomePage(_context, true, true).GotoYourTeamPage();
 
-        [Then(@"the Employer is able to navigate back and forth from Apprentices to 'PAYE schemes' Page")]
-        public void ThenTheEmployerIsAbleToNavigateBackAndForthFromApprenticesToPayeSchemesPage()
-        {
-            NavigateToApprenticesPage().GotoPAYESchemesPage();
-            NavigateToApprenticesPage();
-        }
+        [Then(@"the employer can navigate to paye scheme page")]
+        public void ThenTheEmployerCanNavigateToPayeSchemePage() => new InterimApprenticesHomePage(_context, true, true).GotoPAYESchemesPage();
+
+        [Then(@"the employer can navigate to your organisation and agreement page")]
+        public void ThenTheEmployerCanNavigateToYourOrganisationAndAgreementPage() => new InterimApprenticesHomePage(_context, true, true).GoToYourOrganisationsAndAgreementsPage();
+
+        [Then(@"the employer can navigate to account settings page")]
+        public void ThenTheEmployerCanNavigateToAccountSettingsPage() => new InterimApprenticesHomePage(_context, true, true).GoToYourAccountsPage();
+
+        [Then(@"the employer can navigate to rename account settings page")]
+        public void ThenTheEmployerCanNavigateToRenameAccountSettingsPage() => new InterimApprenticesHomePage(_context, true, true).GoToRenameAccountPage();
+
+        [Then(@"the employer can navigate to change your password settings page")]
+        public void ThenTheEmployerCanNavigateToChangeYourPasswordSettingsPage() => new InterimApprenticesHomePage(_context, true, true).GoToChangeYourPasswordPage();
+
+        [Then(@"the employer can navigate to change your email address settings page")]
+        public void ThenTheEmployerCanNavigateToChangeYourEmailAddressSettingsPage() => new InterimApprenticesHomePage(_context, true, true).GoToChangeYourEmailAddressPage();
+
+        [Then(@"the employer can navigate to notification settings page")]
+        public void ThenTheEmployerCanNavigateToNotificationSettingsPage() => new InterimApprenticesHomePage(_context, true, true).GoToNotificationSettingsPage();
+
+        [Then(@"the employer can navigate to help settings page")]
+        public void ThenTheEmployerCanNavigateToHelpSettingsPage() => new InterimApprenticesHomePage(_context, true, true).GoToHelpPage();
 
         private ApprenticesHomePage NavigateToApprenticesPage() => new ApprenticesHomePage(_context, true);
+
     }
 }

@@ -25,7 +25,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
     public class CommonSteps
     {
         private readonly RAAStepsHelper _raaStepsHelper;
-        private readonly ManageStepsHelper _manageStepsHelper; 
+        private readonly ManageStepsHelper _manageStepsHelper;
         private readonly FAAStepsHelper _faaStepsHelper;
         private bool _exitFromWebsite;
         private bool _applyForVacancy;
@@ -39,24 +39,14 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
             _applyForVacancy = true;
         }
 
-
         [Given(@"the traineeship vacancy is Live in Recruit")]
-        public void GivenTheTraineeshipVacancyIsLiveInRecruit(Table table)
-        {
-            AddTraineeshipVacancy(table.CreateInstance<RAATableData>());
-        }
+        public void GivenTheTraineeshipVacancyIsLiveInRecruit(Table table) => AddTraineeshipVacancy(table.CreateInstance<RAATableData>());
 
         [Given(@"the traineeship vacancy is Live in Recruit near '(.*)'")]
-        public void GivenTheTraineeshipVacancyIsLiveInRecruitNear(string postCode)
-        {
-            AddTraineeshipVacancy(TestData(postCode));
-        }
+        public void GivenTheTraineeshipVacancyIsLiveInRecruitNear(string postCode) => AddTraineeshipVacancy(TestData(postCode));
 
         [Given(@"the apprenticeship vacancy is Live in Recruit")]
-        public void GivenTheApprenticeshipVacancyIsLiveInRecruit(Table table)
-        {
-            AddApprenticeshipVacancy(table.CreateInstance<RAATableData>());
-        }
+        public void GivenTheApprenticeshipVacancyIsLiveInRecruit(Table table) => AddApprenticeshipVacancy(table.CreateInstance<RAATableData>());
 
         [Given(@"the traineeship vacancy is Live in Recruit with no application")]
         public void GivenTheTraineeshipVacancyIsLiveInRecruitWithNoApplication()
@@ -75,22 +65,13 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
         }
 
         [Given(@"the apprenticeship vacancy is Live in Recruit with an application")]
-        public void GivenTheApprenticeshipVacancyIsLiveInRecruitWithAnApplication()
-        {
-            AddApprenticeshipVacancy();
-        }
+        public void GivenTheApprenticeshipVacancyIsLiveInRecruitWithAnApplication() => AddApprenticeshipVacancy();
 
         [Given(@"the traineeship vacancy is Live in Recruit with an application")]
-        public void GivenTheTraineeshipVacancyIsLiveInRecruitWithAnApplication()
-        {
-            AddTraineeshipVacancy();
-        }
+        public void GivenTheTraineeshipVacancyIsLiveInRecruitWithAnApplication() => AddTraineeshipVacancy();
 
         [Given(@"the apprenticeship vacancy is Live in Recruit near '(.*)'")]
-        public void GivenTheApprenticeshipVacancyIsLiveInRecruitNear(string postCode)
-        {
-            AddApprenticeshipVacancy(TestData(postCode));
-        }
+        public void GivenTheApprenticeshipVacancyIsLiveInRecruitNear(string postCode) => AddApprenticeshipVacancy(TestData(postCode));
 
         private RAATableData TestData(string postCode)
         {
@@ -158,35 +139,22 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
         private void VacancyIsLiveInRecruit(RAATableData dataset)
         {
             _raaStepsHelper.ApproveVacanacy().ExitFromWebsite();
-
             _manageStepsHelper.ApproveAVacancy(true);
 
             if (_applyForVacancy)
-            {
                 _faaStepsHelper.ApplyForAVacancy(dataset.QualificationDetails, dataset.WorkExperience, dataset.TrainingCourse);
-            }
 
             var raa_homePage = _raaStepsHelper.GoToRAAHomePage(true);
-            
+
             if (_applyForVacancy)
-            {
                 raa_homePage.SearchLiveVacancy();
-            }
             else
-            {
                 raa_homePage.SearchLiveVacancyWithNoApplications();
-            }
-            
+
             if (_exitFromWebsite)
-            {
                 raa_homePage.ExitFromWebsite();
-            }
         }
 
-        private string PostCodeTestData(RAATableData dataset)
-        {
-            return string.IsNullOrEmpty(dataset.PostCode) ? "1 The Vale London N10 1AD" : dataset.PostCode;
-        }
+        private string PostCodeTestData(RAATableData dataset) => string.IsNullOrEmpty(dataset.PostCode) ? "1 The Vale London N10 1AD" : dataset.PostCode;
     }
 }
-

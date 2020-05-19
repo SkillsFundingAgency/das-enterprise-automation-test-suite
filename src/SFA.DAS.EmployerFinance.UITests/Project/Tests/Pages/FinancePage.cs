@@ -92,6 +92,6 @@ namespace SFA.DAS.EmployerFinance.UITests.Project.Tests.Pages
 
         public string GetEstimatedTotalFundsText() => pageInteractionHelper.GetText(EstimatedTotalFundingText);
 
-        public string getEstimatedPlannedSpendingText() => pageInteractionHelper.GetText(EstimatedPlannedSpendingText);
+        public string GetEstimatedPlannedSpendingText() => pageInteractionHelper.GetText(EstimatedPlannedSpendingText);
     }
 }

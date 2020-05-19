@@ -80,12 +80,12 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Features.LoginToFAA
                         "raa-v1",
                         "regression",
                         "FAALoginNewCredentials"});
-#line 7
+#line 6
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 8
+#line 7
  testRunner.When("an Applicant initiates Account creation journey", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 9
+#line 8
  testRunner.Then("Applicant is redirected to Activation Page when Login With Unactivated email", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();

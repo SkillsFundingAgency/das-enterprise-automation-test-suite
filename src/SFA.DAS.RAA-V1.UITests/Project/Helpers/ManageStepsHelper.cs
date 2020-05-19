@@ -3,7 +3,6 @@ using SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.Manage;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.UI.FrameworkHelpers;
-using System.Linq;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
@@ -26,12 +25,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
             _config = context.GetRAAV1Config<RAAV1Config>();
         }
 
-        public void ApproveAVacancy(bool restart)
-        {
-            GoToManageHomePage(restart)
-            .ReviewAVacancy()
-            .ApproveAVacancy();
-        }
+        public void ApproveAVacancy(bool restart) => GoToManageHomePage(restart).ReviewAVacancy().ApproveAVacancy();
        
         public Manage_HomePage GoToManageHomePage(bool restart)
         {
@@ -45,9 +39,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
                 _tabHelper.GoToUrl(_config.ManageBaseUrl);
             }
 
-            new Manage_IndexPage(_context)
-               .ClickAgencyButton()
-               .LoginToAccess1Staff();
+            new Manage_IndexPage(_context).ClickAgencyButton().LoginToAccess1Staff();
 
             return new SignInPage(_context).SubmitManageLoginDetails();
         }

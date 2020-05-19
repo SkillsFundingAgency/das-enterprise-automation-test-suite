@@ -28,8 +28,8 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.StepDefinitions
 
         public void ThenTheApplicantIsAbleToCreateAFAAAccount() => _faaStepsHelper.CreateFAAAccount(accountCreationPage);
 
-        [Given(@"the Applicant creates new FAA account")]
-        public void GivenTheApplicantCreatesNewFAAAccount()
+        [Given(@"the Applicant creates a new FAA account")]
+        public void GivenTheApplicantCreatesANewFAAAccount()
         {
             accountCreationPage = _faaStepsHelper.StartFAAAccountCreation();
             _faaStepsHelper.CreateFAAAccount(accountCreationPage);

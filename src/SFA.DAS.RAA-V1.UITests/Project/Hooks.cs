@@ -37,9 +37,6 @@ namespace SFA.DAS.RAA_V1.UITests.Project
         }
 
         [BeforeScenario("apprenticeshipvacancy", Order = 33)]
-        public void SetApprenticeshipVacancyType()
-        {
-            _objectContext.SetApprenticeshipVacancyType();
-        }
+        public void SetApprenticeshipVacancyType() => _objectContext.SetApprenticeshipVacancyType();
     }
 }
