@@ -24,7 +24,7 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
 
         public UserInformationOverviewPage GoToUserInformationOverviewPage()
         {
-            tableRowHelper.SelectRowFromTable(config.Name, "support console");
+            tableRowHelper.SelectRowFromTable(config.Name, config.EmailAddress);
             return new UserInformationOverviewPage(_context);
         }
     }
