@@ -9,7 +9,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
     [Binding]
     public class ManageFundingEmployerSteps
     {
-        private YourFundingReservationsPage _yourFundingReservationsPage;
+        private ManageFundingHomePage _yourFundingReservationsPage;
         private readonly ManageFundingEmployerStepsHelper _reservationStepsHelper;
 
         public ManageFundingEmployerSteps(ScenarioContext context) => _reservationStepsHelper = new ManageFundingEmployerStepsHelper(context);
