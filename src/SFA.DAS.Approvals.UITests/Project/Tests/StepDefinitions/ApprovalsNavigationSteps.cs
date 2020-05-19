@@ -4,12 +4,12 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 {
-    [Binding]
-    public class NavigationSteps
+    [Binding, Scope(Tag = "approvalsnavigation")]
+    public class ApprovalsNavigationSteps
     {
         private readonly ScenarioContext _context;
 
-        public NavigationSteps(ScenarioContext context) => _context = context;
+        public ApprovalsNavigationSteps(ScenarioContext context) => _context = context;
 
         [When(@"the Employer navigates to 'Apprentice' Page")]
         public void WhenTheEmployerNavigatesToPage() => NavigateToApprenticesPage();

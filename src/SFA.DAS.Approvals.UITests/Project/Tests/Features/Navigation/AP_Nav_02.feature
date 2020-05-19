@@ -1,11 +1,11 @@
-﻿Feature: AP_Nav_01
+﻿Feature: AP_Nav_02
 
 @regression
 @approvals
-@approvalsnavigation
-Scenario: AP_Nav_01_Navigate to EAS sub sites from Apprentice Page
+@managefundingnavigation
+Scenario: AP_Nav_02_Navigate to EAS sub sites from Manage Funding Page
 	Given the Employer logins using existing Levy Account
-	When the Employer navigates to 'Apprentice' Page
+	When the Employer navigates to 'Manage Funding' Page
 	Then the employer can navigate to home page
 	Then the employer can navigate to finance page
 	And the employer can navigate to paye scheme page
