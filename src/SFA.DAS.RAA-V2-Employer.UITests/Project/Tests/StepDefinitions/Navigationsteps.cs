@@ -20,9 +20,6 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
         [When(@"the Employer navigates to 'Recruit' Page")]
         public void WhenTheEmployerNavigatesToPage() => _employerStepsHelper.GoToRecruitmentHomePage();
 
-        [Then(@"the employer can navigate to home page")]
-        public void ThenTheEmployerCanNavigateToHomePage() => new HomePage(_context, true);
-
         [Then(@"the employer can navigate to finance page")]
         public void ThenTheEmployerCanNavigateToFinancePage()
         {

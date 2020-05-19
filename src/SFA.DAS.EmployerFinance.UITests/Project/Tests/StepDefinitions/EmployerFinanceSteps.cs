@@ -26,9 +26,6 @@ namespace SFA.DAS.EmployerFinance.UITests.Project.Tests.StepDefinitions
         [When(@"the Employer navigates to 'Finance' Page")]
         public void WhenTheEmployerNavigatesFinancePage() => _financePage = new HomePageFinancesSection(_context).NavigateToFinancePage();
 
-        [Then(@"the employer can navigate to home page")]
-        public void ThenTheEmployerCanNavigateToHomePage() => _financePage.GoToHomePage();
-
         [Then(@"the employer can navigate to recruitment page")]
         public void ThenTheEmployerCanNavigateToRecruitment()
         {
