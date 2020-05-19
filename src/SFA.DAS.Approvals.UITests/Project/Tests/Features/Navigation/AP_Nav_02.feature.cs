@@ -84,7 +84,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.Navigation
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 7
- testRunner.Given("the Employer logins using existing Levy Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("the Employer logins using existing NonLevy Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 8
  testRunner.When("the Employer navigates to \'Manage Funding\' Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 9

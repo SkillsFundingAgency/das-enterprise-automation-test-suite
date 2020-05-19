@@ -4,7 +4,7 @@
 @approvals
 @managefundingnavigation
 Scenario: AP_Nav_02_Navigate to EAS sub sites from Manage Funding Page
-	Given the Employer logins using existing Levy Account
+	Given the Employer logins using existing NonLevy Account
 	When the Employer navigates to 'Manage Funding' Page
 	Then the employer can navigate to home page
 	Then the employer can navigate to finance page
