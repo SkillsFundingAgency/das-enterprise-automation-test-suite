@@ -36,6 +36,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             formCompletionHelper.ClickElement(ManageYourApprenticesLink);
             return new ManageYourApprenticesPage(_context);
         }
+
+        internal FinancePage GoToFinancePage() => new FinancePage(_context, true);
     }
 }
 

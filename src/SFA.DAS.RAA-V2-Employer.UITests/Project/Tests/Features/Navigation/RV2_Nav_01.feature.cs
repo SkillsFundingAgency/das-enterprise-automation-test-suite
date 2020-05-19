@@ -70,12 +70,12 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Features.Navigation
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RV2_Nav_01_Navigate to EAS sub-sites from Recruit Page")]
+        [NUnit.Framework.DescriptionAttribute("RV2_Nav_01_Navigate to EAS sub sites from Recruit Page")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("raa-v2")]
-        public virtual void RV2_Nav_01_NavigateToEASSub_SitesFromRecruitPage()
+        public virtual void RV2_Nav_01_NavigateToEASSubSitesFromRecruitPage()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV2_Nav_01_Navigate to EAS sub-sites from Recruit Page", null, new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV2_Nav_01_Navigate to EAS sub sites from Recruit Page", null, new string[] {
                         "regression",
                         "raa-v2"});
 #line 5
