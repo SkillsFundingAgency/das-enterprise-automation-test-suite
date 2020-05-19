@@ -13,7 +13,6 @@ namespace SFA.DAS.FAA.UITests.Project
     {
         private readonly ScenarioContext _context;
         private readonly ObjectContext _objectContext;
-        private FAAConfig _fAAConfig;
 
         public Hooks(ScenarioContext context)
         {
@@ -25,37 +24,25 @@ namespace SFA.DAS.FAA.UITests.Project
         public void SetUpHelpers()
         {
             var random = _context.Get<RandomDataGenerator>();
-
             bool isCloneVacancy = _context.ScenarioInfo.Tags.Contains("clonevacancy");
-
-            _context.Set(new VacancyTitleDatahelper(random, isCloneVacancy));
-
-            _context.Set(new FAADataHelper(random));
-
             var regexHelper = _context.Get<RegexHelper>();
-            
-            var objectContext = _context.Get<ObjectContext>();
-
             var pageInteractionHelper = _context.Get<PageInteractionHelper>();
 
-            _context.Set(new VacancyReferenceHelper(pageInteractionHelper, objectContext, regexHelper));
+            _context.Set(new VacancyTitleDatahelper(random, isCloneVacancy));
+            _context.Set(new FAADataHelper(random));
+            _context.Set(new VacancyReferenceHelper(pageInteractionHelper, _objectContext, regexHelper));
         }
 
         [BeforeScenario(Order = 33)]
         public void LoginWithNewAccount()
         {
-            _fAAConfig = _context.GetFAAConfig<FAAConfig>();
-            
             var fAAnewcreds = _context.Get<FAADataHelper>();
-            
+            var fAAConfig = _context.GetFAAConfig<FAAConfig>();
+
             if (_context.ScenarioInfo.Tags.Contains("FAALoginNewCredentials"))
-            {
                 _objectContext.SetFAALogin(fAAnewcreds.EmailId, fAAnewcreds.Password, fAAnewcreds.FirstName, fAAnewcreds.LastName);
-            }
             else
-            {
-                _objectContext.SetFAALogin(_fAAConfig.FAAUserName, _fAAConfig.FAAPassword,_fAAConfig.FAAFirstName,_fAAConfig.FAALastName);
-            }
+                _objectContext.SetFAALogin(fAAConfig.FAAUserName, fAAConfig.FAAPassword, fAAConfig.FAAFirstName, fAAConfig.FAALastName);
         }
     }
 }

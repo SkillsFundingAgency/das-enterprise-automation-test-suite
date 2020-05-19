@@ -42,7 +42,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 
         public FAA_MyApplicationsHomePage(ScenarioContext context) : base(context)
         {
-            _context = context;            
+            _context = context;
             _formCompletionHelper = context.Get<FormCompletionHelper>();
             _pageIntercationHelper = context.Get<PageInteractionHelper>();
             _dataHelper = context.Get<VacancyTitleDatahelper>();
@@ -70,12 +70,12 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 
         private void VerifyVacancySuccessfulNotification()
         {
-            _pageIntercationHelper.VerifyText(NotificationText, "Your application for "+_dataHelper.VacancyTitle+" has been successful."); 
+            _pageIntercationHelper.VerifyText(NotificationText, "Your application for " + _dataHelper.VacancyTitle + " has been successful.");
         }
 
         private void VerifyVacancyUnsuccessfulNotification()
         {
-            _pageIntercationHelper.VerifyText(NotificationText, "Your application for "+_dataHelper.VacancyTitle+" has been unsuccessful.");
+            _pageIntercationHelper.VerifyText(NotificationText, "Your application for " + _dataHelper.VacancyTitle + " has been unsuccessful.");
         }
 
         public void DismissSuccessfulNotification()
@@ -84,7 +84,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
             _formCompletionHelper.Click(DismissNotification);
         }
 
-        public  FAA_MyApplicationsHomePage DismissUnsuccessfulNotification()
+        public FAA_MyApplicationsHomePage DismissUnsuccessfulNotification()
         {
             VerifyVacancyUnsuccessfulNotification();
             _formCompletionHelper.Click(DismissNotification);
@@ -109,7 +109,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
         private void DeleteDraft()
         {
             var element = _pageIntercationHelper.GetLinkContains(SavedVacancy, _dataHelper.VacancyTitle);
-            
+
             var id = element.GetAttribute("href").Replace($"{_fAAConfig.FAABaseUrl}{VacancyDetailshref}", string.Empty);
 
             _formCompletionHelper.ClickElement(DeleteVacancy(id));

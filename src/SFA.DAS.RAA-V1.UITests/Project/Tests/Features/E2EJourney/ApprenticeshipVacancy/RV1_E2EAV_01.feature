@@ -16,5 +16,5 @@ Scenario Outline: RV1_E2EAV_01 - Create, Approve and Apply for a Apprenticeship 
 	Then the vacancy can be viewed anonymously
 
 	Examples:
-		| location					  | anonymity | DisabilityConfident | ApplicationMethod | ApprenticeshipType | HoursPerWeek | VacancyDuration | NoOfPositions | QualificationDetails | WorkExperience | TrainingCourse |
-		| Use the main employer address      | Yes       | Yes                 | Online            | Standard           | 42           | 52              | 3             | No                   | Yes            | No             |
+		| location                      | anonymity | DisabilityConfident | ApplicationMethod | ApprenticeshipType | HoursPerWeek | VacancyDuration | NoOfPositions | QualificationDetails | WorkExperience | TrainingCourse |
+		| Use the main employer address | Yes       | Yes                 | Online            | Standard           | 42           | 52              | 3             | No                   | Yes            | No             |

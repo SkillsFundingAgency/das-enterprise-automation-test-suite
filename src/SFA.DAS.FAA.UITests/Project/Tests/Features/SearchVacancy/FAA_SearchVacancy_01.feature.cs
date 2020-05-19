@@ -80,14 +80,14 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Features.SearchVacancy
                     "lts and distance on the vacancies", null, new string[] {
                         "raa-v1",
                         "regression"});
-#line 6
+#line 5
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 7
+#line 6
  testRunner.Given("an applicant is on the Find an Apprenticeship Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 8
+#line 7
  testRunner.When("the candidate search for Nationwide Vacancies \'CV1\',\'England\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 9
+#line 8
  testRunner.Then("the Sort results is changed by closing date and distance is not displayed on the " +
                     "vacancies", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
