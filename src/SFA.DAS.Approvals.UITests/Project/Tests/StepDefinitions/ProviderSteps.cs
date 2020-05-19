@@ -104,25 +104,5 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             _providerStepsHelper.DeleteCohort(_providerReviewYourCohortPage);
         }
-
-        [Given(@"the provider has an apprentice with a stopped status")]
-        public void GivenTheProviderHasAnApprenticeWithAStoppedStatus()
-        {
-            _loginHelper.Login(_context.GetUser<LevyUser>(), true);
-
-            var cohortReference = _employerStepsHelper.EmployerApproveAndSendToProvider(1);
-
-            _employerStepsHelper.SetCohortReference(cohortReference);
-
-            _providerStepsHelper.Approve();
-
-            _employerStepsHelper.StopApprenticeThisMonth();
-        }
-
-        [When(@"the provider starts the change of employer journey")]
-        public void WhenTheProviderStartsTheChangeOfEmployerJourney()
-        {
-            _providerStepsHelper.StartChangeOfEmployerJourney();
-        }
     }
 }
