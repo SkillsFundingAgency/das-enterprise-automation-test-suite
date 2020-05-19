@@ -70,11 +70,13 @@ namespace SFA.DAS.EmployerFinance.UITests.Project.Tests.Features.Navigation
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("EF_Nav_01_Navigate to EAS sub-sites from Finance Page")]
+        [NUnit.Framework.DescriptionAttribute("EF_Nav_01_Navigate to EAS sub sites from Finance Page")]
+        [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("employerfinance")]
-        public virtual void EF_Nav_01_NavigateToEASSub_SitesFromFinancePage()
+        public virtual void EF_Nav_01_NavigateToEASSubSitesFromFinancePage()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EF_Nav_01_Navigate to EAS sub-sites from Finance Page", null, new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EF_Nav_01_Navigate to EAS sub sites from Finance Page", null, new string[] {
+                        "regression",
                         "employerfinance"});
 #line 5
 this.ScenarioInitialize(scenarioInfo);
@@ -86,13 +88,23 @@ this.ScenarioInitialize(scenarioInfo);
 #line 8
  testRunner.Then("the employer can navigate to home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 9
- testRunner.Then("the employer can navigate to recruitment page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("the employer can navigate to recruitment page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 10
- testRunner.Then("the employer can navigate to apprentice page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("the employer can navigate to apprentice page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 11
- testRunner.Then("the employer can navigate to your team page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("the employer can navigate to your team page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 12
- testRunner.Then("the employer can navigate to account settings page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("the employer can navigate to account settings page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 13
+ testRunner.And("the employer can navigate to rename account settings page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 14
+ testRunner.And("the employer can navigate to change your password settings page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 15
+ testRunner.And("the employer can navigate to change your email address settings page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 16
+ testRunner.And("the employer can navigate to notification settings page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 17
+ testRunner.And("the employer can navigate to help settings page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
