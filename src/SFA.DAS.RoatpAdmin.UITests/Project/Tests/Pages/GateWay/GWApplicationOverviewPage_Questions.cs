@@ -31,8 +31,8 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay
 
         #region Section-4
         private string ExperienceAndAccreditationChecks => "4. Experience and accreditation checks";
-        private string ExperienceAndAccreditationChecks_1 => "Office for Student(OfS)";
-        private string ExperienceAndAccreditationChecks_2 => "Initial teacher training(ITT)";
+        private string ExperienceAndAccreditationChecks_1 => "Office for Student";
+        private string ExperienceAndAccreditationChecks_2 => "Initial teacher training";
         private string ExperienceAndAccreditationChecks_3 => "Ofsted";
         private string ExperienceAndAccreditationChecks_4 => "Subcontractor declaration";
         #endregion
