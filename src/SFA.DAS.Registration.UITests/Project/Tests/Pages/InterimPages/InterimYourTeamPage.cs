@@ -2,7 +2,7 @@
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.InterimPages
 {
-    public class InterimYourTeamPage : InterimEmployerBasePage
+    public abstract class InterimYourTeamPage : InterimEmployerBasePage
     {
         protected override string PageTitle => "Your team";
 

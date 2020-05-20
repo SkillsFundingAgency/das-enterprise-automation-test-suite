@@ -1,13 +1,15 @@
-﻿Feature: EF_Nav_01
+﻿Feature: AP_Nav_02
 
-@employerfinance
-Scenario: EF_Nav_01_Navigate to EAS sub sites from Finance Page
-	Given the Employer logins using existing Levy Account
-	When the Employer navigates to 'Finance' Page
+@approvals
+@managefundingnavigation
+Scenario: AP_Nav_02_Navigate to EAS sub sites from Manage Funding Page
+	Given the Employer logins using existing NonLevy Account
+	When the Employer navigates to 'Manage Funding' Page
 	Then the employer can navigate to home page
-	And the employer can navigate to recruitment page
-	And the employer can navigate to apprentice page
+	Then the employer can navigate to finance page
+	And the employer can navigate to paye scheme page
 	And the employer can navigate to your team page
+	And the employer can navigate to your organisation and agreement page
 	And the employer can navigate to account settings page
 	And the employer can navigate to rename account settings page
 	And the employer can navigate to change your password settings page

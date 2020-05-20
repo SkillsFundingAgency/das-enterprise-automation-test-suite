@@ -8,7 +8,8 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.InterimPages
 
         protected override string Linktext => "Apprentices";
 
-        public InterimApprenticesHomePage(ScenarioContext context, bool navigate) : base(context, navigate) { }
+        public InterimApprenticesHomePage(ScenarioContext context, bool navigate) : this(context, navigate, false) { }
+
+        public InterimApprenticesHomePage(ScenarioContext context, bool navigate, bool gotourl) : base(context, navigate, gotourl) { }
     }
 }
-

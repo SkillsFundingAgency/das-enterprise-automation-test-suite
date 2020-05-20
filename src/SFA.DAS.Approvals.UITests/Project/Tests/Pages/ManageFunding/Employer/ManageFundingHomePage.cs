@@ -1,15 +1,14 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common;
+using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
+using SFA.DAS.Registration.UITests.Project.Tests.Pages.InterimPages;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
 {
-    public class YourFundingReservationsPage : FundingBasePage
+    public class ManageFundingHomePage : InterimManageFundingHomePage
     {
-        protected override string PageTitle => "Your funding reservations";
-        private By ReserveFundingFirstButton => By.LinkText("Reserve funding");
-        private By ReserveFundingSecondButton => By.LinkText("Reserve funding");
+        private By ReserveFundingLink => By.LinkText("Reserve funding");
         private By ReserveMoreFundingLink => By.LinkText("Reserve more funding");
         private By DeleteLink => By.LinkText("Delete");
 
@@ -19,7 +18,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
         private readonly FormCompletionHelper _formCompletionHelper;
         #endregion
 
-        public YourFundingReservationsPage(ScenarioContext context) : base(context)
+        public ManageFundingHomePage(ScenarioContext context, bool navigate = false) : base(context, navigate)
         {
             _context = context;
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
@@ -29,9 +28,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
     
         public ReserveFundingToTrainAndAssessAnApprenticePage ClickReserveFundingButton()
         {
-            if (_pageInteractionHelper.IsElementPresent(ReserveFundingFirstButton))
+            if (_pageInteractionHelper.IsElementPresent(ReserveFundingLink))
             {
-                formCompletionHelper.ClickElement(ReserveFundingFirstButton);
+                formCompletionHelper.ClickElement(ReserveFundingLink);
             }
             
             if (_pageInteractionHelper.IsElementPresent(ReserveMoreFundingLink))
@@ -40,28 +39,22 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
             }
             return new ReserveFundingToTrainAndAssessAnApprenticePage(_context);
         }
+
         public DeleteReservationPage DeleteUnusedFunding()
         {
             _formCompletionHelper.ClickElement(DeleteLink);
             return new DeleteReservationPage(_context);
         }
+
+        public bool CheckIfDeleteLinkIsPresent() => _pageInteractionHelper.IsElementPresent(DeleteLink);
         
-        public bool CheckIfDeleteLinkIsPresent()
-        {
-            if(_pageInteractionHelper.IsElementPresent(DeleteLink))
-            { 
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
         public DoYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage ClickReserveMoreFundingLink()
         {
             ClickReserveFundingButton();
-            formCompletionHelper.ClickElement(ReserveFundingSecondButton);
+            formCompletionHelper.ClickElement(ReserveFundingLink);
             return new DoYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage(_context);
         }
+
+        internal FinancePage GoToFinancePage() => new FinancePage(_context, true);
     }
 }

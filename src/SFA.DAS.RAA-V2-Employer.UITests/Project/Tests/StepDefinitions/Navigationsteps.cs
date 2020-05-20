@@ -8,7 +8,6 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
     [Binding]
     public class Navigationsteps
     {
-
         private readonly ScenarioContext _context;
         private readonly EmployerStepsHelper _employerStepsHelper;
 
@@ -20,9 +19,6 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
 
         [When(@"the Employer navigates to 'Recruit' Page")]
         public void WhenTheEmployerNavigatesToPage() => _employerStepsHelper.GoToRecruitmentHomePage();
-
-        [Then(@"the employer can navigate to home page")]
-        public void ThenTheEmployerCanNavigateToHomePage() => new HomePage(_context, true);
 
         [Then(@"the employer can navigate to finance page")]
         public void ThenTheEmployerCanNavigateToFinancePage()
@@ -41,15 +37,25 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
         }
 
         [Then(@"the employer can navigate to your team page")]
-        public void ThenTheEmployerCanNavigateToYourTeamPage()
-        {
-            new InterimRecruitmentHomePage(_context, true);
-
-            new InterimYourTeamPage(_context, true);
-        }
+        public void ThenTheEmployerCanNavigateToYourTeamPage() => new InterimRecruitmentHomePage(_context, true, true).GotoYourTeamPage();
 
         [Then(@"the employer can navigate to account settings page")]
-        public void ThenTheEmployerCanNavigateToAccountSettingsPage() => new InterimRecruitmentHomePage(_context, true).GoToYourAccountsPage();
+        public void ThenTheEmployerCanNavigateToAccountSettingsPage() => new InterimRecruitmentHomePage(_context, true, true).GoToYourAccountsPage();
+
+        [Then(@"the employer can navigate to rename account settings page")]
+        public void ThenTheEmployerCanNavigateToRenameAccountSettingsPage() => new InterimRecruitmentHomePage(_context, true, true).GoToRenameAccountPage();
+
+        [Then(@"the employer can navigate to change your password settings page")]
+        public void ThenTheEmployerCanNavigateToChangeYourPasswordSettingsPage() => new InterimRecruitmentHomePage(_context, true, true).GoToChangeYourPasswordPage();
+
+        [Then(@"the employer can navigate to change your email address settings page")]
+        public void ThenTheEmployerCanNavigateToChangeYourEmailAddressSettingsPage() => new InterimRecruitmentHomePage(_context, true, true).GoToChangeYourEmailAddressPage();
+
+        [Then(@"the employer can navigate to notification settings page")]
+        public void ThenTheEmployerCanNavigateToNotificationSettingsPage() => new InterimRecruitmentHomePage(_context, true, true).GoToNotificationSettingsPage();
+
+        [Then(@"the employer can navigate to help settings page")]
+        public void ThenTheEmployerCanNavigateToHelpSettingsPage() => new InterimRecruitmentHomePage(_context, true, true).GoToHelpPage();
 
     }
 }
