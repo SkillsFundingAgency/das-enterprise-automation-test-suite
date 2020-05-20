@@ -1,19 +1,11 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.UI.Framework.TestSupport;
-using SFA.DAS.UI.FrameworkHelpers;
+using System;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Login.Service.Project.Tests.Pages
 {
-    public abstract class Navigate : BasePage
-    {
-        #region Helpers and Context
-        protected readonly PageInteractionHelper pageInteractionHelper;
-        protected readonly FormCompletionHelper formCompletionHelper;
-        protected readonly TableRowHelper tableRowHelper;
-        protected readonly TabHelper tabHelper;
-        #endregion
-
+    public abstract class Navigate : NavigateBase
+    {       
         protected By GlobalNavLink => By.CssSelector("#global-nav-links li a, #navigation li a, .das-navigation__link");
 
         private By MoreLink => By.LinkText("More");
@@ -22,33 +14,23 @@ namespace SFA.DAS.Login.Service.Project.Tests.Pages
 
         protected Navigate(ScenarioContext context, bool navigate) : this(context, navigate, string.Empty) { }
     
-        protected Navigate(ScenarioContext context, bool navigate, string url) : base(context)
-        {
-            pageInteractionHelper = context.Get<PageInteractionHelper>();
-            formCompletionHelper = context.Get<FormCompletionHelper>();
-            tableRowHelper = context.Get<TableRowHelper>();
-            tabHelper = context.Get<TabHelper>();
+        protected Navigate(ScenarioContext context, bool navigate, string url) : base(context, url) => NavigateTo(navigate);
 
-            if (!(string.IsNullOrEmpty(url))) { tabHelper.GoToUrl(url); }
+        protected Navigate(ScenarioContext context, Action navigate, string url) : base(context, url) => NavigateTo(navigate);
 
-            NavigateTo(navigate);
-        }
+        private void NavigateTo(Action navigate) => navigate.Invoke();
 
-        protected void NavigateTo(bool navigate)
+        private void NavigateTo(bool navigate)
         {
             if (navigate)
             {
-                OpenSubMenu();
-         
+                if (pageInteractionHelper.IsElementDisplayed(MoreLink)) 
+                    formCompletionHelper.Click(MoreLink); 
+
                 var link = pageInteractionHelper.GetLink(GlobalNavLink, Linktext);
                 
                 formCompletionHelper.ClickElement(link);
             }
-        }
-
-        protected void OpenSubMenu()
-        {
-            if (Linktext == "PAYE schemes" && pageInteractionHelper.IsElementDisplayed(MoreLink)) { formCompletionHelper.Click(MoreLink); }
         }
     }
 }

@@ -6,6 +6,7 @@ using SFA.DAS.Login.Service.Project.Tests.Pages;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages.YourTeamPages;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages.PAYESchemesPages;
 using SFA.DAS.UI.Framework;
+using System;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.InterimPages
 {
@@ -30,13 +31,23 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.InterimPages
 
         protected InterimEmployerBasePage(ScenarioContext context, bool navigate) : this(context, navigate, false) { }
 
-        protected InterimEmployerBasePage(ScenarioContext context, bool navigate, bool gotourl) : base(context, navigate, gotourl ? UrlConfig.EmployerApprenticeshipServiceBaseURL : string.Empty) 
+        protected InterimEmployerBasePage(ScenarioContext context, bool navigate, bool gotourl) : base(context, navigate, GoToUrl(gotourl))
         {
             _context = context;
             config = context.GetRegistrationConfig<RegistrationConfig>();
             objectContext = context.Get<ObjectContext>();
             VerifyPage();
         }
+
+        protected InterimEmployerBasePage(ScenarioContext context, Action navigate, bool gotourl) : base(context, navigate, GoToUrl(gotourl))
+        {
+            _context = context;
+            config = context.GetRegistrationConfig<RegistrationConfig>();
+            objectContext = context.Get<ObjectContext>();
+            VerifyPage();
+        }
+
+        private static string GoToUrl(bool gotourl) => gotourl ? UrlConfig.EmployerApprenticeshipServiceBaseURL : string.Empty;
 
         public HomePage GoToHomePage() => new HomePage(_context, true);
 

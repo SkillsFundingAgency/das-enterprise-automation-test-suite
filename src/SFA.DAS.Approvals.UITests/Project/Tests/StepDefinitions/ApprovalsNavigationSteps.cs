@@ -4,18 +4,18 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 {
-    [Binding]
-    public class NavigationSteps
+    [Binding, Scope(Tag = "approvalsnavigation")]
+    public class ApprovalsNavigationSteps
     {
         private readonly ScenarioContext _context;
 
-        public NavigationSteps(ScenarioContext context) => _context = context;
+        public ApprovalsNavigationSteps(ScenarioContext context) => _context = context;
 
         [When(@"the Employer navigates to 'Apprentice' Page")]
-        public void WhenTheEmployerNavigatesToPage() => NavigateToApprenticesPage();
+        public void WhenTheEmployerNavigatesToPage() => GoToApprenticesHomePage();
 
         [Then(@"the employer can navigate to finance page")]
-        public void ThenTheEmployerCanNavigateToFinancePage() => NavigateToApprenticesPage().GoToFinancePage();
+        public void ThenTheEmployerCanNavigateToFinancePage() => GoToApprenticesHomePage().GoToFinancePage();
 
         [Then(@"the employer can navigate to your team page")]
         public void ThenTheEmployerCanNavigateToYourTeamPage() => new InterimApprenticesHomePage(_context, true, true).GotoYourTeamPage();
@@ -44,7 +44,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Then(@"the employer can navigate to help settings page")]
         public void ThenTheEmployerCanNavigateToHelpSettingsPage() => new InterimApprenticesHomePage(_context, true, true).GoToHelpPage();
 
-        private ApprenticesHomePage NavigateToApprenticesPage() => new ApprenticesHomePage(_context, true);
+        private ApprenticesHomePage GoToApprenticesHomePage() => new ApprenticesHomePage(_context, true);
 
     }
 }
