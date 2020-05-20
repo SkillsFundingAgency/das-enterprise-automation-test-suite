@@ -19,7 +19,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.ChangeOfParty.ChangeO
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("AP_COE_01_HappyPath")]
-    [NUnit.Framework.CategoryAttribute("approvals")]
+    [NUnit.Framework.CategoryAttribute("changeOfEmployer")]
     public partial class AP_COE_01_HappyPathFeature
     {
         
@@ -33,7 +33,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.ChangeOfParty.ChangeO
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "AP_COE_01_HappyPath", null, ProgrammingLanguage.CSharp, new string[] {
-                        "approvals"});
+                        "changeOfEmployer"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -73,11 +73,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.ChangeOfParty.ChangeO
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Change Of Employer")]
-        [NUnit.Framework.CategoryAttribute("changeOfEmployer")]
+        [NUnit.Framework.CategoryAttribute("regression")]
         public virtual void ChangeOfEmployer()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Change Of Employer", null, new string[] {
-                        "changeOfEmployer"});
+                        "regression"});
 #line 5
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
