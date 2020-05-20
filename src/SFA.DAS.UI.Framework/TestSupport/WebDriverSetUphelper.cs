@@ -6,6 +6,7 @@ using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.IE;
 using TechTalk.SpecFlow;
 using SFA.DAS.ConfigurationBuilder;
+using OpenQA.Selenium.Remote;
 
 namespace SFA.DAS.UI.Framework.TestSupport
 {
