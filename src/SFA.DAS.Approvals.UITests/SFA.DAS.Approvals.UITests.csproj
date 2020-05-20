@@ -61,7 +61,4 @@
     </None>
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Project\Tests\Features\ChangeOfParty\ChangeOfProvider\" />
-  </ItemGroup>
 </Project>
