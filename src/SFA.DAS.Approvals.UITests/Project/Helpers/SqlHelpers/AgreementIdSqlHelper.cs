@@ -1,4 +1,5 @@
-﻿using SFA.DAS.UI.Framework.TestSupport;
+﻿using SFA.DAS.Registration.UITests.Project;
+using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using System;
 using System.Collections.Generic;
@@ -13,9 +14,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
         private readonly ScenarioContext _context;
         private readonly string _connectionString;
          
-        public AgreementIdSqlHelper(ApprovalsConfig approvalsConfig) : base(approvalsConfig.EasAccDbConnectionString)
+        public AgreementIdSqlHelper(RegistrationConfig registrationConfig) : base(registrationConfig.RE_AccountsDbConnectionString)
         {
-            _connectionString = approvalsConfig.EasAccDbConnectionString;
+            _connectionString = registrationConfig.RE_AccountsDbConnectionString;
         }
 
         public string GetAgreementId(string email, string name)

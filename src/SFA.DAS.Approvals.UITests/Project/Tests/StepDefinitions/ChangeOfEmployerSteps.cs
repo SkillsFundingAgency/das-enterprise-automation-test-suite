@@ -67,6 +67,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             _providerStepsHelper.StartChangeOfEmployerJourney();
 
+            //_providerStepsHelper.ValidateBanner(text, lockedCohort);
+
             var _newcohortReference = _commitmentsSqlDataHelper.GetNewcohortReference(Convert.ToString(_dataHelper.Ulns.First()));
 
             _employerStepsHelper.UpdateCohortReference(_newcohortReference);
