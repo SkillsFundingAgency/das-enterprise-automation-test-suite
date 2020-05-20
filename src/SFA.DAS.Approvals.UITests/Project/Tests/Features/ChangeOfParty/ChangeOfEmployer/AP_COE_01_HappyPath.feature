@@ -1,7 +1,7 @@
-﻿@approvals
+﻿@changeOfEmployer
 Feature: AP_COE_01_HappyPath
 
-@changeOfEmployer
+@regression
 Scenario: Change Of Employer
 	Given the provider has an apprentice with a stopped status
 	When provider sends COE request to new employer
