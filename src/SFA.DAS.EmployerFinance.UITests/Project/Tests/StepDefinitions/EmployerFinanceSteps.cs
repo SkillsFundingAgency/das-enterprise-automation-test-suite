@@ -26,9 +26,6 @@ namespace SFA.DAS.EmployerFinance.UITests.Project.Tests.StepDefinitions
         [When(@"the Employer navigates to 'Finance' Page")]
         public void WhenTheEmployerNavigatesFinancePage() => _financePage = new HomePageFinancesSection(_context).NavigateToFinancePage();
 
-        [Then(@"the employer can navigate to home page")]
-        public void ThenTheEmployerCanNavigateToHomePage() => _financePage.GoToHomePage();
-
         [Then(@"the employer can navigate to recruitment page")]
         public void ThenTheEmployerCanNavigateToRecruitment()
         {
@@ -46,16 +43,25 @@ namespace SFA.DAS.EmployerFinance.UITests.Project.Tests.StepDefinitions
         }
 
         [Then(@"the employer can navigate to your team page")]
-        public void ThenTheEmployerCanNavigateToYourTeamPage()
-        {
-            new InterimFinanceHomePage(_context, true);
-
-            new InterimYourTeamPage(_context, true);
-        }
+        public void ThenTheEmployerCanNavigateToYourTeamPage() => new InterimFinanceHomePage(_context, true, true).GotoYourTeamPage();
 
         [Then(@"the employer can navigate to account settings page")]
-        public void ThenTheEmployerCanNavigateToAccountSettingsPage() => new InterimFinanceHomePage(_context, true).GoToYourAccountsPage();
+        public void ThenTheEmployerCanNavigateToAccountSettingsPage() => new InterimFinanceHomePage(_context, true, true).GoToYourAccountsPage();
 
+        [Then(@"the employer can navigate to rename account settings page")]
+        public void ThenTheEmployerCanNavigateToRenameAccountSettingsPage() => new InterimFinanceHomePage(_context, true, true).GoToRenameAccountPage();
+
+        [Then(@"the employer can navigate to change your password settings page")]
+        public void ThenTheEmployerCanNavigateToChangeYourPasswordSettingsPage() => new InterimFinanceHomePage(_context, true, true).GoToChangeYourPasswordPage();
+
+        [Then(@"the employer can navigate to change your email address settings page")]
+        public void ThenTheEmployerCanNavigateToChangeYourEmailAddressSettingsPage() => new InterimFinanceHomePage(_context, true, true).GoToChangeYourEmailAddressPage();
+
+        [Then(@"the employer can navigate to notification settings page")]
+        public void ThenTheEmployerCanNavigateToNotificationSettingsPage() => new InterimFinanceHomePage(_context, true, true).GoToNotificationSettingsPage();
+
+        [Then(@"the employer can navigate to help settings page")]
+        public void ThenTheEmployerCanNavigateToHelpSettingsPage() => new InterimFinanceHomePage(_context, true, true).GoToHelpPage();
 
         [Then(@"'View transactions', 'Download transactions' and 'Transfers' links are displayed")]
         public void ThenAndLinksAreDisplayed() => _financePage.IsViewTransactionsLinkPresent().IsDownloadTransactionsLinkPresent().IsTransfersLinkPresent();

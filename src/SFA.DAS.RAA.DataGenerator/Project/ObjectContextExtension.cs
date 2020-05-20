@@ -33,7 +33,7 @@ namespace SFA.DAS.RAA.DataGenerator.Project
 
         public static (string username, string password, string firstname, string lastname) GetFAALogin(this ObjectContext objectContext)
         {
-            return (objectContext.Get(FAAUsername), 
+            return (objectContext.Get(FAAUsername),
                 objectContext.Get(FAAPassword),
                 objectContext.Get(FAAFirstname),
                 objectContext.Get(FAALastname));
@@ -47,7 +47,7 @@ namespace SFA.DAS.RAA.DataGenerator.Project
         public static void SetFAARestart(this ObjectContext objectContext) => objectContext.Set(FAARestart, true);
         public static bool IsFAARestart(this ObjectContext objectContext) => objectContext.KeyExists<bool>(FAARestart);
         public static void SetVacancyReference(this ObjectContext objectContext, string value) => objectContext.Set(VacancyReference, value);
-        public static string GetVacancyReference(this ObjectContext objectContext) => objectContext.Get(VacancyReference);     
+        public static string GetVacancyReference(this ObjectContext objectContext) => objectContext.Get(VacancyReference);
         public static void SetVacancyTitle(this ObjectContext objectContext, string value) => objectContext.Replace(VacancyTitle, value);
         public static string GetVacancyTitle(this ObjectContext objectContext) => objectContext.KeyExists<bool>(VacancyTitle) ? objectContext.Get(VacancyTitle) : string.Empty;
         public static void SetEmployerName(this ObjectContext objectContext, string value) => objectContext.Set(EmployerName, value);

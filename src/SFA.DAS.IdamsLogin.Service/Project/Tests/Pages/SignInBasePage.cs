@@ -8,18 +8,16 @@ namespace SFA.DAS.IdamsLogin.Service.Project.Tests.Pages
     public abstract class SignInBasePage : BasePage
     {
         protected override By PageHeader => By.CssSelector(".pageTitle");
-
         protected override string PageTitle => "Sign in";
-
-        #region Helpers and Context
         private readonly FormCompletionHelper _formCompletionHelper;
-        #endregion
 
+        #region Locators
         protected By UsernameField => By.Id("username");
         protected By PasswordField => By.Id("password");
         protected By SignInButton => By.XPath("//button[@value='Log in']");
+        #endregion
 
-        public SignInBasePage(ScenarioContext context) : base(context)
+        protected SignInBasePage(ScenarioContext context) : base(context)
         {
             _formCompletionHelper = context.Get<FormCompletionHelper>();
             VerifyPage();

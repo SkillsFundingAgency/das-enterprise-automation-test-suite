@@ -7,7 +7,7 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => config.Name;
 
-        protected override By PageHeader => By.CssSelector(".heading-secondary");
+        protected override By PageHeader => By.CssSelector(".heading-large__equal-margins");
 
         public UserInformationOverviewPage(ScenarioContext context) : base(context) => VerifyPage();
     }
