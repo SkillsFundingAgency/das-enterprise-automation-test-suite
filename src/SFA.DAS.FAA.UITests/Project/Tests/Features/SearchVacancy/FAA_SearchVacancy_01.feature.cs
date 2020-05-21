@@ -72,22 +72,24 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Features.SearchVacancy
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("FAA_SearchVacancy_01 - Search Nationwide Vacancy in FAA and checkin the sort resu" +
             "lts and distance on the vacancies")]
+        [NUnit.Framework.CategoryAttribute("faa")]
         [NUnit.Framework.CategoryAttribute("raa-v1")]
         [NUnit.Framework.CategoryAttribute("regression")]
         public virtual void FAA_SearchVacancy_01_SearchNationwideVacancyInFAAAndCheckinTheSortResultsAndDistanceOnTheVacancies()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("FAA_SearchVacancy_01 - Search Nationwide Vacancy in FAA and checkin the sort resu" +
                     "lts and distance on the vacancies", null, new string[] {
+                        "faa",
                         "raa-v1",
                         "regression"});
-#line 5
+#line 6
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 6
- testRunner.Given("an applicant is on the Find an Apprenticeship Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 7
- testRunner.When("the candidate search for Nationwide Vacancies \'CV1\',\'England\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.Given("an applicant is on the Find an Apprenticeship Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 8
+ testRunner.When("the candidate search for Nationwide Vacancies \'CV1\',\'England\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 9
  testRunner.Then("the Sort results is changed by closing date and distance is not displayed on the " +
                     "vacancies", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
