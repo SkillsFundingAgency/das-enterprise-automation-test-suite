@@ -25,7 +25,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
             string query = $@"SELECT Reference FROM Commitment cmt
                                 INNER JOIN Apprenticeship app
                                 ON cmt.id = app.CommitmentId
-                                WHERE app.ULN = {ULN}
+                                WHERE app.ULN = '{ULN}'
                                 AND app.ContinuationOfId is not null
                                 ORDER BY app.CreatedOn DESC";
 

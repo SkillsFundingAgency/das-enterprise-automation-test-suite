@@ -10,15 +10,17 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
     {
         private readonly FormCompletionHelper _formCompletionHelper;
         private readonly ScenarioContext _context;
+        protected override string PageTitle => "New training end date";
         private By EndDateMonth => By.Name("EndMonth");
         private By EndDateYear => By.Name("EndYear");
+
+
         public ChangeOfEmployerEndDatePage(ScenarioContext context) : base(context)
         {
             _context = context;
             _formCompletionHelper = context.Get<FormCompletionHelper>();
-        }
-
-        protected override string PageTitle { get; }
+            VerifyPage();
+        }       
 
         public ChangeOfEmployerPricePage EnterNewEndDateAndContinue()
         {

@@ -6,12 +6,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
     public class ChangeOfEmployerConfirmNewEmployerPage : BasePage
     {
         private ScenarioContext _context;
+        protected override string PageTitle => "Confirm new employer";
+
         public ChangeOfEmployerConfirmNewEmployerPage(ScenarioContext context) : base(context)
         {
             _context = context;
+            VerifyPage();
         }
-
-        protected override string PageTitle { get; }
 
         public ChangeOfEmployerStartDatePage ConfirmNewEmployer()
         {

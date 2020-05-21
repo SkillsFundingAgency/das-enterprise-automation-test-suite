@@ -10,19 +10,18 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
     {
         private readonly FormCompletionHelper _formCompletionHelper;
         private readonly ScenarioContext _context;
+        protected override string PageTitle => "New training start date";
         private By StartDateMonth => By.Name("StartMonth");
         private By StartDateYear => By.Name("StartYear");
         public ChangeOfEmployerStartDatePage(ScenarioContext context) : base(context)
         {
             _context = context;
             _formCompletionHelper = context.Get<FormCompletionHelper>();
+            VerifyPage();
         }
-
-        protected override string PageTitle { get; }
 
         public ChangeOfEmployerEndDatePage EndNewStartDateAndContinue()
         {
-            //VerifyPage();
             _formCompletionHelper.EnterText(StartDateMonth, DateTime.UtcNow.Month.ToString());
             _formCompletionHelper.EnterText(StartDateYear, DateTime.UtcNow.Year.ToString());
             Continue();
