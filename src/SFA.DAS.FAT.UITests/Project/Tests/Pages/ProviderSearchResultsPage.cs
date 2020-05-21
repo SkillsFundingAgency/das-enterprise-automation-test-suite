@@ -6,6 +6,9 @@ namespace SFA.DAS.FAT.UITests.Project.Tests.Pages
     public class ProviderSearchResultsPage : FATBasePage
     {
         protected override string PageTitle => "Search results";
+
+        protected override By FirstResultLink => By.CssSelector("#provider-results a");
+
         private readonly ScenarioContext _context;
 
         public ProviderSearchResultsPage(ScenarioContext context) : base(context)
