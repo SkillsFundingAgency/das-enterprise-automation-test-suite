@@ -1,7 +1,7 @@
 ﻿Feature: AP_Nav_01
 
-@regression
 @approvals
+@approvalsnavigation
 Scenario: AP_Nav_01_Navigate to EAS sub sites from Apprentice Page
 	Given the Employer logins using existing Levy Account
 	When the Employer navigates to 'Apprentice' Page

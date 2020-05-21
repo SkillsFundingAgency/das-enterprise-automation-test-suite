@@ -1,6 +1,5 @@
 ﻿Feature: RV2_Nav_01
 
-@regression
 @raa-v2
 Scenario: RV2_Nav_01_Navigate to EAS sub sites from Recruit Page
 	When the Employer navigates to 'Recruit' Page

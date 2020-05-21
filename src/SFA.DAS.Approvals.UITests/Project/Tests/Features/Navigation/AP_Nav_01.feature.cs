@@ -71,13 +71,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.Navigation
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("AP_Nav_01_Navigate to EAS sub sites from Apprentice Page")]
-        [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("approvals")]
+        [NUnit.Framework.CategoryAttribute("approvalsnavigation")]
         public virtual void AP_Nav_01_NavigateToEASSubSitesFromApprenticePage()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_Nav_01_Navigate to EAS sub sites from Apprentice Page", null, new string[] {
-                        "regression",
-                        "approvals"});
+                        "approvals",
+                        "approvalsnavigation"});
 #line 5
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();

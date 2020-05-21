@@ -13,4 +13,3 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.InterimPages
         public InterimApprenticesHomePage(ScenarioContext context, bool navigate, bool gotourl) : base(context, navigate, gotourl) { }
     }
 }
-

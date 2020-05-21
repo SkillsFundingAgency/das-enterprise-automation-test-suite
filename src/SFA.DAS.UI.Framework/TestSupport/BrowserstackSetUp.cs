@@ -37,7 +37,16 @@ namespace SFA.DAS.UI.Framework.TestSupport
             AddAdditionalCapability(chromeOption, "browserstack.timezone", options.TimeZone);
             AddAdditionalCapability(chromeOption, "browserstack.console", "info");
 
-            return new RemoteWebDriver(new Uri(options.ServerName), chromeOption);
+            var remoteWebDriver = new RemoteWebDriver(new Uri(options.ServerName), chromeOption);
+
+            var allowsDetection = remoteWebDriver as IAllowsFileDetection;
+            
+            if (allowsDetection != null)
+            {
+                allowsDetection.FileDetector = new LocalFileDetector();
+            }
+
+            return remoteWebDriver;
         }
 
         private static void CheckBrowserStackLogin(BrowserStackSetting options)
