@@ -1,9 +1,10 @@
-﻿@changeOfEmployer
+﻿@approvals
 Feature: AP_COE_01_HappyPath
 
 @regression
+@changeOfEmployer
 Scenario: Change Of Employer
-	Given the provider has an apprentice with a stopped status
+	Given the provider has an apprentice with stopped status
 	When provider sends COE request to new employer
 	And new employer aproves the cohort
 	Then a new live apprenticeship record is created 

@@ -47,8 +47,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         }
 
 
-        [Given(@"the provider has an apprentice with a stopped status")]
-        public void GivenTheProviderHasAnApprenticeWithAStoppedStatus()
+        [Given(@"the provider has an apprentice with stopped status")]
+        public void GivenTheProviderHasAnApprenticeWithStoppedStatus()
         {         
             _objectContext.UpdateOrganisationName(_oldEmployer);
             Login();
