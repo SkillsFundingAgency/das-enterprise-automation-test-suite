@@ -20,7 +20,7 @@ namespace SFA.DAS.FAT.UITests.Project.Tests.Pages
         protected override By BackLink => By.CssSelector("a.link-back");
         protected By SearchTextField => By.Id("keywords");
         protected virtual By SearchButton => By.Id("submit-keywords");
-        protected virtual By FirstResultLink => By.CssSelector("h2.result-title a");
+        protected virtual By FirstResultLink => By.CssSelector("#provider-search-results a");
         #endregion
 
         protected FATBasePage(ScenarioContext context) : base(context)
@@ -41,9 +41,7 @@ namespace SFA.DAS.FAT.UITests.Project.Tests.Pages
 
         public ProviderSummaryPage SelectFirstProviderResult()
         {
-            var firstLinkText = pageInteractionHelper.GetText(FirstResultLink);
-            objectContext.SetProviderName(firstLinkText);
-            formCompletionHelper.ClickLinkByText(firstLinkText);
+            formCompletionHelper.ClickElement(FirstResultLink);
             return new ProviderSummaryPage(_context);
         }
     }
