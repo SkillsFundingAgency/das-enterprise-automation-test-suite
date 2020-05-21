@@ -41,7 +41,9 @@ namespace SFA.DAS.FAT.UITests.Project.Tests.Pages
 
         public ProviderSummaryPage SelectFirstProviderResult()
         {
-            formCompletionHelper.ClickElement(FirstResultLink);
+            var firstLinkText = pageInteractionHelper.GetText(FirstResultLink);
+            objectContext.SetProviderName(firstLinkText);
+            formCompletionHelper.ClickLinkByText(firstLinkText);
             return new ProviderSummaryPage(_context);
         }
     }

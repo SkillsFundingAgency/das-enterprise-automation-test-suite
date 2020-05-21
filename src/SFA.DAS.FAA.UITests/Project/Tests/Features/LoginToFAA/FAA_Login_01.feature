@@ -1,5 +1,6 @@
 ﻿Feature: FAA_Login_01
 
+@faa
 @raa-v1
 @regression
 @FAALoginNewCredentials
