@@ -1,11 +1,20 @@
-﻿using TechTalk.SpecFlow;
+﻿using OpenQA.Selenium;
+using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 {
     public class HelpArticlesPage : RegistrationBasePage
     {
-        protected override string PageTitle => "Help articles";
+        protected override string PageTitle => "Sign in to Apprenticeship Service Support SANDBOX";
 
-        public HelpArticlesPage(ScenarioContext context) : base(context) => VerifyPage();
+        protected override By PageHeader => By.CssSelector(".title");
+
+        public HelpArticlesPage(ScenarioContext context) : base(context)
+        {
+            tabHelper.SwitchToFrame();
+            VerifyPage();
+            tabHelper.SwitchToDefaultContent();
+        }
+
     }
 }
