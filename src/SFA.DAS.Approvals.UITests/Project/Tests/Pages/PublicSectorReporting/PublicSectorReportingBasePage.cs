@@ -31,7 +31,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
             formCompletionHelper = context.Get<FormCompletionHelper>();
             pageInteractionHelper = context.Get<PageInteractionHelper>();
             objectContext = context.Get<ObjectContext>();
-            registrationConfig = context.Get<RegistrationConfig>();
+            registrationConfig = context.GetRegistrationConfig<RegistrationConfig>();
             dataHelper = context.Get<PublicSectorReportingDataHelper>();
         }
     }
