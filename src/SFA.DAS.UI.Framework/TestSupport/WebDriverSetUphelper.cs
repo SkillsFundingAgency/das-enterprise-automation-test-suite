@@ -12,21 +12,15 @@ namespace SFA.DAS.UI.Framework.TestSupport
     public class WebDriverSetupHelper
     {
         private IWebDriver WebDriver;
-
         private readonly ScenarioContext _context;
-
         private readonly ObjectContext _objectContext;
-
         private readonly FrameworkConfig _frameworkConfig;
-
-        private readonly EnvironmentConfig _executionConfig;
 
         public WebDriverSetupHelper(ScenarioContext context)
         {
             _context = context;
             _objectContext = context.Get<ObjectContext>();
             _frameworkConfig = context.Get<FrameworkConfig>();
-            _executionConfig = context.Get<EnvironmentConfig>();
         }
 
         public IWebDriver SetupWebDriver()
@@ -37,17 +31,14 @@ namespace SFA.DAS.UI.Framework.TestSupport
             {
                 case bool _ when browser.IsFirefox():
                     WebDriver = new FirefoxDriver(_objectContext.GetFireFoxDriverLocation());
-                    WebDriver.Manage().Window.Maximize();
                     break;
 
                 case bool _ when browser.IsChrome():
-
                     WebDriver = ChromeDriver(new List<string>());
                     break;
 
                 case bool _ when browser.IsIe():
                     WebDriver = new InternetExplorerDriver(_objectContext.GetIeDriverLocation());
-                    WebDriver.Manage().Window.Maximize();
                     break;
 
                 case bool _ when browser.IsZap():
@@ -60,7 +51,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
 
                 case bool _ when browser.IsCloudExecution():
                     _frameworkConfig.BrowserStackSetting.Name = _context.ScenarioInfo.Title;
-                    WebDriver = BrowserStackSetup.Init(_frameworkConfig.BrowserStackSetting, _executionConfig);
+                    WebDriver = BrowserStackSetup.Init(_frameworkConfig.BrowserStackSetting);
                     break;
 
                 default:
@@ -69,8 +60,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
 
             WebDriver.Manage().Window.Maximize();
             WebDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(_frameworkConfig.TimeOutConfig.PageNavigation);
-            var currentWindow = WebDriver.CurrentWindowHandle;
-            WebDriver.SwitchTo().Window(currentWindow);
+            WebDriver.SwitchTo().Window(WebDriver.CurrentWindowHandle);
             WebDriver.Manage().Cookies.DeleteAllCookies();
 
             _context.SetWebDriver(WebDriver);

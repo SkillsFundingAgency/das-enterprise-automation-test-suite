@@ -7,9 +7,6 @@ using SFA.DAS.Login.Service.Helpers;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
@@ -55,7 +52,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
         public void WhenTheEmployerFavouritesMultipleApprenticeship()
         {
             _searchResultsPage = _searchResultsPage.SearchApprenticeship("Business and Administration");
-            _searchResultsPage = _searchResultsPage.SearchApprenticeship("IT");
+            _searchResultsPage = _searchResultsPage.SearchApprenticeship("Beauty Therapy");
             _searchResultsPage = _searchResultsPage.SearchApprenticeship("Construction");
             _empFavpage = _searchResultsPage.GoToEmployerFavouritesPage();
             _empFavpage.VerifyCount(3);
@@ -105,7 +102,9 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
             foreach (var item in _campaignsDataHelper.CourseId)
             {
                 _objectContext.SetCourseId(item);
-                _empFavpage = _empFavpage.DeleteApprenticeshipFavourites();
+                EmployerFavouritesPage _empFavpage = new EmployerFavouritesPage(_context);
+                    _empFavpage.DeleteApprenticeshipAndProviderFavourites()
+                    .ClickConfirmRemoveButton();
             }
         }
 
@@ -141,7 +140,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
         }
 
         [Then(@"there are no items in the favourites")]
-        public void ThenThereAreNoItemsInTheFavourites() => _tabHelper.OpenInNewTab(_campaignsConfig.CA_BaseUrl, _campaignsConfig.BasketView);
+        public void ThenThereAreNoItemsInTheFavourites() => _tabHelper.OpenInNewTab(_campaignsConfig.CA_BaseUrl, _campaignsConfig.BasketViewPath);
 
     }
 }

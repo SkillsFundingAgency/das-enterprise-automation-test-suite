@@ -77,24 +77,26 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.Provider
             "vy employer")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("nonlevyproviderscenarios")]
+        [NUnit.Framework.CategoryAttribute("selectstandardcourse")]
         public virtual void AP_Pro_03ProviderMakesReservationAddsEditsAndDeletesApprenticeForNon_LevyEmployer()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_Pro_03 Provider makes reservation adds edits and deletes apprentice for non-le" +
                     "vy employer", null, new string[] {
                         "regression",
-                        "nonlevyproviderscenarios"});
-#line 9
+                        "nonlevyproviderscenarios",
+                        "selectstandardcourse"});
+#line 10
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 10
- testRunner.Given("An Employer has given create reservation permission to a provider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 11
- testRunner.Then("Provider can make a reservation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Given("An Employer has given create reservation permission to a provider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 12
- testRunner.And("Provider can add an apprentice", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Then("Provider can make a reservation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 13
- testRunner.And("Provider can edit an apprentice", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("Provider can add an apprentice", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 14
+ testRunner.And("Provider can edit an apprentice", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 15
  testRunner.And("Provider can delete an apprentice", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();

@@ -45,9 +45,5 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Project\Helpers\" />
-  </ItemGroup>
   
 </Project>

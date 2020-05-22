@@ -1,19 +1,18 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.MongoDb.DataGenerator;
+using SFA.DAS.Registration.UITests.Project.Tests.Pages.InterimPages;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.PAYESchemesPages
 {
-    public class PAYESchemesPage : InterimEmployerBasePage
+    public class PAYESchemesPage : InterimPAYESchemesPage
     {
-        protected override string PageTitle => "PAYE schemes";
         private readonly ScenarioContext _context;
 
         #region Locators
-        protected override string Linktext => "PAYE schemes";
         private By AddNewSchemeButton => By.Id("addNewPaye");
         private By PayeDetailsLink => By.XPath($"//td[contains(text(),'{SecondPaye}')]/following-sibling::td//a");
-        private By PAYERemovedHeaderInfo => By.CssSelector("h2.govuk-error-summary__title");
+        private By PAYERemovedHeaderInfo => By.CssSelector("h3.das-notification__heading");
         private string SecondPaye => objectContext.GetGatewayPaye(1);
         #endregion
 

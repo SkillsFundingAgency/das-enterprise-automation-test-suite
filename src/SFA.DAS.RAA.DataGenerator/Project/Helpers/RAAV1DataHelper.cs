@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.UI.Framework;
 using SFA.DAS.UI.FrameworkHelpers;
 using System;
 using System.Collections.Generic;
@@ -123,6 +124,6 @@ namespace SFA.DAS.RAA.DataGenerator
 
         private string WebsiteUrl(string url) => $"https://www.{url}.com";
 
-        public string TrainingStandard => "Accountancy / Taxation Professional";
+        public string TrainingStandard => EnvironmentConfig.IsTestEnvironment ? "Accountancy Taxation Professional" : "Accountancy / Taxation Professional";
     }
 }

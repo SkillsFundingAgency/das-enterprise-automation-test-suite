@@ -74,21 +74,23 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.NonLevy
             "")]
         [NUnit.Framework.CategoryAttribute("approvals")]
         [NUnit.Framework.CategoryAttribute("regression")]
+        [NUnit.Framework.CategoryAttribute("selectstandardcourse")]
         public virtual void AP_NL_E2E_03ProviderApprovesAndThenTheNon_LevyEmployerApprovesTheCohort()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_NL_E2E_03 Provider approves and then the non-levy Employer approves the cohort" +
                     "", null, new string[] {
                         "approvals",
-                        "regression"});
-#line 5
+                        "regression",
+                        "selectstandardcourse"});
+#line 6
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 6
- testRunner.Given("An Employer has given create reservation permission to a provider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 7
+ testRunner.Given("An Employer has given create reservation permission to a provider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 8
     testRunner.When("Provider creates a reservation and adds 2 apprentices and approves the cohort and" +
                     " sends to Employer to approve", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 8
+#line 9
  testRunner.Then("the Employer approves the cohorts", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();

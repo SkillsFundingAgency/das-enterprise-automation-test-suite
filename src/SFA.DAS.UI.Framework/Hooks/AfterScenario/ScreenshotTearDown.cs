@@ -29,8 +29,6 @@ namespace SFA.DAS.UI.Framework.Hooks.AfterScenario
                     var webDriver = _context.GetWebDriver();
                     var directory = _objectContext.GetDirectory();
 
-                    _objectContext.SetUrl(webDriver.Url);
-
                     ScreenshotHelper.TakeScreenShot(webDriver, directory, scenarioTitle);
                 }
                 catch (Exception ex)

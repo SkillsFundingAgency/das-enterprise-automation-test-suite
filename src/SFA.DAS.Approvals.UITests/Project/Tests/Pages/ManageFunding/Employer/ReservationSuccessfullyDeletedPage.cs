@@ -29,10 +29,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
             return new ReservationSuccessfullyDeletedPage(_context);
         }
 
-        public YourFundingReservationsPage ClickConfirmButton()
+        public ManageFundingHomePage ClickConfirmButton()
         {
             Continue();
-            return new YourFundingReservationsPage(_context);
+            return new ManageFundingHomePage(_context);
         }
     }
 }

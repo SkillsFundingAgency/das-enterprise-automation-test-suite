@@ -18,12 +18,7 @@ namespace SFA.DAS.MongoDb.DataGenerator.Helpers
             return (EnglishFraction, EnglishFractioncalculatedAt, table);
         }
 
-        public static (decimal fraction, DateTime calculatedAt, Table levyDeclarations) LevyFunds()
-        {
-            var table = GetTableHeader();
-            table.AddRow("19-20", "1", "62000", "80000", "2019-05-15");
-            return (EnglishFraction, EnglishFractioncalculatedAt, table);
-        }
+        public static (decimal fraction, DateTime calculatedAt, Table levyDeclarations) LevyFunds() => LevyFunds("15", "9999");
 
         public static (decimal fraction, DateTime calculatedAt, Table levyDeclarations) LevyFunds(string duration, string levyPerMonth, DateTime dateTime = default(DateTime))
         {

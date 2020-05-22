@@ -15,8 +15,8 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
         private readonly RAAV1Config _config;
         private readonly TabHelper _tabHelper;
         private readonly RestartWebDriverHelper _helper;
-        private const string _applicationName = "Recruit";
-        
+        private string ApplicationName => "Recruit";
+
         public RAAStepsHelper(ScenarioContext context)
         {
             _context = context;
@@ -28,30 +28,24 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
 
         public void GoToRAA()
         {
-            _objectContext.SetCurrentApplicationName(_applicationName);
+            _objectContext.SetCurrentApplicationName(ApplicationName);
             _tabHelper.GoToUrl(_config.RecruitBaseUrl);
         }
 
         internal RAA_RecruitmentHomePage GoToRAAHomePage(bool restrat)
         {
             if (restrat)
-            {
-                _helper.RestartWebDriver(_config.RecruitBaseUrl, _applicationName);
-            }
+                _helper.RestartWebDriver(_config.RecruitBaseUrl, ApplicationName);
             else
-            {
                 GoToRAA();
-            }
 
             return SubmitRecruitmentLoginDetails();
         }
 
-
         internal RAA_EmployerSelectionPage CreateANewVacancy()
         {
             GoToRAA();
-            return SubmitRecruitmentLoginDetails()
-                .CreateANewVacancy();
+            return SubmitRecruitmentLoginDetails().CreateANewVacancy();
         }
 
         internal RAA_EmployerInformationPage ChoosesTheEmployer(RAA_EmployerSelectionPage employerSelection, string location, string noOfpositions)
@@ -140,16 +134,6 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
             EnterRequirementsAndExtraQuestions(requirementsAndProspects, applicationMethod);
         }
 
-        private void EnterRequirementsAndExtraQuestions(RAA_RequirementsAndProspectsPage requirementsAndProspects, string applicationMethod)
-        {
-            EnterRequirementsAndProspects(requirementsAndProspects);
-
-            if (applicationMethod != "Offline")
-            {
-                EnterExtraQuestions();
-            }
-        }
-
         internal RAA_EnterTrainingDetailsPage EnterBasicVacancyDetails()
         {
             return new RAA_BasicVacancyDetailsPage(_context)
@@ -178,7 +162,6 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
                    .EnterEmailDetails()
                    .GotoOpportunityDetailsPage();
         }
-
 
         internal RAA_EnterFurtherDetailsPage EnterTrainingDetails(RAA_EnterTrainingDetailsPage enterTrainingDetails, string apprenticeShip)
         {
@@ -263,20 +246,23 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
             RAA_PreviewBasePage previewPage;
 
             if (_objectContext.IsApprenticeshipVacancyType())
-            {
                 previewPage = new RAA_VacancyPreviewPage(_context);
-            }
             else
-            {
                 previewPage = new RAA_OppurtunityPreviewPage(_context);
-            }
 
-            var vacancyReferencepage = previewPage.ClickSubmitForApprovalButton();
+            var vacancyReferencePage = previewPage.ClickSubmitForApprovalButton();
+            vacancyReferencePage.SetVacancyReference();
 
-            vacancyReferencepage.SetVacancyReference();
-
-            return vacancyReferencepage;
+            return vacancyReferencePage;
         }
+
+        public RAA_CandidateApplicationPage SelectACandidate() => Search().SelectACandidate();
+
+        public void SearchForDeletedCandidate() => Search().VerifyCandidateDeletion();
+
+        private RAA_SearchCandidatesPage Search() => GoToRAAHomePage(true).SearchCandidates().Search();
+
+        public void VerifyCandidateUpdatedDetails() => SelectACandidate().VerifyUpdatedCandidateDetails();
 
         private RAA_RecruitmentHomePage SubmitRecruitmentLoginDetails()
         {
@@ -286,15 +272,14 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
 
             return new SignInPage(_context)
                 .SubmitRecruitmentLoginDetails();
-        }   
-        
-        public RAA_CandidateApplicationPage SelectACandidate() => Search().SelectACandidate();
+        }
 
-        public void SearchForDeletedCandidate() => Search().VerifyCandidateDeletion();
+        private void EnterRequirementsAndExtraQuestions(RAA_RequirementsAndProspectsPage requirementsAndProspects, string applicationMethod)
+        {
+            EnterRequirementsAndProspects(requirementsAndProspects);
 
-        private RAA_SearchCandidatesPage Search() => GoToRAAHomePage(true).SearchCandidates().Search();
-
-        public void VerifyCandidateUpdatedDetails() => SelectACandidate().VerifyUpdatedCandidateDetails();
-
+            if (applicationMethod != "Offline")
+                EnterExtraQuestions();
+        }
     }
 }

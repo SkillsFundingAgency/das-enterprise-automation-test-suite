@@ -1,19 +1,17 @@
 ﻿using SFA.DAS.UI.FrameworkHelpers;
 using OpenQA.Selenium;
 using TechTalk.SpecFlow;
-using SFA.DAS.Registration.UITests.Project.Helpers;
+using SFA.DAS.Registration.UITests.Project.Tests.Pages.InterimPages;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 {
-    public class HomePage : InterimEmployerBasePage
+    public class HomePage : InterimHomeBasePage
     {
-        protected override string PageTitle => objectContext.GetOrganisationName();
-        protected override string Linktext => "Home";
-
         private readonly RegexHelper _regexHelper;
         private readonly ScenarioContext _context;
 
         #region Locators
+        protected By StartNowButton => By.LinkText("Start now");
         protected By YourFundingReservationsLink => By.LinkText("Your funding reservations");
         protected By YourFinancesLink => By.LinkText("Your finances");
         private By PublicAccountIdLocator => By.CssSelector(".heading-secondary");
@@ -22,13 +20,9 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         private By StartAddingApprenticesNowTaskLink => By.LinkText("Start adding apprentices now");
         private By AccountNameText => By.CssSelector("p.heading-xlarge");
         private By YourSavedFavouritesLink => By.CssSelector(".das-favourites-link__text");
+        private By ContinueTo => By.LinkText("Continue");
+        private By SetUpAnApprenticeshipSectionHeader => By.Id("set-up-an-apprenticeship");
         #endregion
-
-        protected By ContinueSettingUpAnApprenticeship => By.Id("call-to-action-continue-setting-up-an-apprenticeship");
-
-        protected By ContinueTo => By.LinkText("Continue");
-
-        protected By StartNowButton => By.LinkText("Start now");
 
         public HomePage(ScenarioContext context, bool navigate) : base(context, navigate)
         {
@@ -61,15 +55,19 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         }
 
         public void ContinueToCreateAdvert() => formCompletionHelper.ClickElement(ContinueTo);
-
-        public void VerifyReserveFundingPanel() => pageInteractionHelper.VerifyText(ContinueSettingUpAnApprenticeship, "Continue setting up an apprenticeship");
-
+      
         public void VerifyStartAddingApprenticesNowTaskLink() => VerifyPage(StartAddingApprenticesNowTaskLink);
 
         public YourSavedFavouritesPage GoToYourSavedFavourites()
         {
             formCompletionHelper.Click(YourSavedFavouritesLink);
             return new YourSavedFavouritesPage(_context);
+        }
+
+        public void VerifySetupAnApprenticeshipSection()
+        {
+            VerifyPage(SetUpAnApprenticeshipSectionHeader);
+            VerifyPage(StartNowButton);
         }
     }
 }

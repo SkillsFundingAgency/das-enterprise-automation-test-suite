@@ -66,9 +66,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
             int noOfPages = 1;
 
             if (_pageInteractionHelper.IsElementDisplayed(NoOfPagesCssSelector))
-            {
                 noOfPages = int.Parse(_pageInteractionHelper.GetText(NoOfPagesCssSelector).Split("of")[1].Trim());
-            }
 
             return noOfPages;
         }
