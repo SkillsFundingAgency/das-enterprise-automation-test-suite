@@ -8,7 +8,9 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.InterimPages
     {
         protected override string PageTitle => "Your funding reservations";
 
-        protected override string Linktext => "Your funding reservations";
+        protected override string Linktext => Link;
+
+        private static string Link => "Your funding reservations";
 
         public InterimManageFundingHomePage(ScenarioContext context, bool navigate) : this(context, navigate, false) { }
 
@@ -24,11 +26,10 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.InterimPages
 
                     var helper = context.Get<FormCompletionHelper>();
 
-                    helper.ClickLinkByText("Your funding reservations");
+                    helper.ClickLinkByText(Link);
                 };
             }
-            return null;
-            
+            return null;            
         }
     }
 }

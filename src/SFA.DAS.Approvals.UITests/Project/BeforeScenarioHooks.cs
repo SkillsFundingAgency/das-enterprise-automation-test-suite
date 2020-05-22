@@ -62,6 +62,8 @@ namespace SFA.DAS.Approvals.UITests.Project
             _context.Set(new EditedApprenticeCourseDataHelper(randomCoursehelper, apprenticeCourseDataHelper));
 
             _context.Set(new DataLockSqlHelper(_approvalsConfig, _datahelper, apprenticeCourseDataHelper));
+
+            _context.Set(new PublicSectorReportingDataHelper(random));
         }
     }
 }
