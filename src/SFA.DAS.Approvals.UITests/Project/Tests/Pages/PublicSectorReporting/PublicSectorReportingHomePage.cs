@@ -21,15 +21,17 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
             VerifyPage();
         }
 
-        public AnnualApprenticeshipReturnPage CreateNewReport()
+        public PublicSectorTargetDatePage CreateNewReport()
         {
             SelectRadioOptionByText("Create a new report");
-            return new AnnualApprenticeshipReturnPage(_context);
+            Continue();
+            return new PublicSectorTargetDatePage(_context);
         }
 
         public SubmittedReportspage ViewSubmittedReport()
         {
             SelectRadioOptionByText("View a submitted report");
+            Continue();
             return new SubmittedReportspage(_context);
         }
 

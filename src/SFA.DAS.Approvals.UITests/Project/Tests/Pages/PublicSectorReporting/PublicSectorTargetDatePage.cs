@@ -3,17 +3,19 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
 {
-    public class AnnualApprenticeshipReturnPage : PublicSectorReportingBasePage
+    public class PublicSectorTargetDatePage : PublicSectorReportingBasePage
     {
-        protected override string PageTitle => "Annual apprenticeship return";
+        protected override string PageTitle => "public sector apprenticeship target data";
 
-        protected override By ContinueButton => By.CssSelector("#SubmitSelectOptionForm");
+        protected override By PageHeader => By.CssSelector("#content .heading-large");
 
+        protected override By ContinueButton => By.CssSelector("#report-create-start");
+        
         #region Helpers and Context
         private readonly ScenarioContext _context;
         #endregion
 
-        public AnnualApprenticeshipReturnPage(ScenarioContext context) : base(context)
+        public PublicSectorTargetDatePage(ScenarioContext context) : base(context)
         {
             _context = context;
             VerifyPage();
