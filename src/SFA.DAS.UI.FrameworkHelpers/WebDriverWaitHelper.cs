@@ -19,24 +19,16 @@ namespace SFA.DAS.UI.FrameworkHelpers
             _pagenavigationWait = WebDriverWait(timeOutConfig.PageNavigation);
         }
 
-        internal bool WaitUntil(Func<bool> condition)
-        {
-            var implicitWait = WebDriverWait(_timeOutConfig.ImplicitWait);
+        //internal bool WaitUntil(Func<bool> condition)
+        //{
+        //    var implicitWait = WebDriverWait(_timeOutConfig.ImplicitWait);
+        //    implicitWait.IgnoreExceptionTypes(typeof(WebDriverTimeoutException));
 
-            implicitWait.IgnoreExceptionTypes(typeof(WebDriverTimeoutException));
+        //    bool result = implicitWait.Until(_ => condition());
+        //    return result;
+        //}
 
-            bool result = false;
-
-            implicitWait.Until(driver => 
-            {
-                result = condition();
-                return result; 
-            });
-
-            return result;
-        }
-
-        internal void WaitForElementToBePresent(By locator) => _implicitWait.Until(ExpectedConditions.ElementExists(locator));
+        internal bool WaitUntil(Func<bool> condition) => _implicitWait.Until(_ => condition());
 
         internal void WaitForElementToBeDisplayed(By locator) => _implicitWait.Until(ExpectedConditions.ElementIsVisible(locator));
 
@@ -49,6 +41,8 @@ namespace SFA.DAS.UI.FrameworkHelpers
         internal void TurnOffImplicitWaits() => _webDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromMilliseconds(500);
 
         internal void TurnOnImplicitWaits() => _webDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(_timeOutConfig.ImplicitWait);
+
+        internal void WaitForUrlChange(string urlText) => _pagenavigationWait.Until(ExpectedConditions.UrlContains(urlText));
 
         private bool IsDocumentReady(IWebDriver driver) => ((IJavaScriptExecutor)driver).ExecuteScript("return document.readyState").Equals("complete");
 

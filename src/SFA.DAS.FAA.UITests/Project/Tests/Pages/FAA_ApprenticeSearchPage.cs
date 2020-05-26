@@ -40,7 +40,8 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
         private By KeywordDropDown => By.Id("SearchField");
         private By KeywordTextField => By.Id("Keywords");
         private By VerifyMobile => By.CssSelector("a[href='/verifymobile']");
-        
+        private By DisabilityConfidentCheckBox => By.CssSelector("label.block-label");
+
         public FAA_ApprenticeSearchPage(ScenarioContext context) : base(context)
         {
             _context = context;
@@ -55,13 +56,13 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
         }
 
         public FAA_ApprenticeSearchResultsPage SearchForAVacancy(string location, string searchParameter, string apprenticeshipLevel, string disabilityConfident)
-        {           
+        {
             _formCompletionHelper.EnterText(Location, location);
             _formCompletionHelper.SelectFromDropDownByText(ApprenticeshipLevel, apprenticeshipLevel);
+
             if (disabilityConfident == "Yes")
-            {
-                _formCompletionHelper.SelectCheckBoxByText("Disability Confident");
-            }
+                _formCompletionHelper.SelectCheckbox(DisabilityConfidentCheckBox);
+
             switch (searchParameter)
             {
                 case "Job title":
@@ -86,14 +87,14 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
                         urlDistance = searchParameter.Substring(0, index).TrimEnd();
                     }
                     _formCompletionHelper.SelectFromDropDownByText(Distance, searchParameter);
-                    SearchByKeyword(string.Empty,string.Empty, "WithinDistance=" + urlDistance);                     
+                    SearchByKeyword(string.Empty, string.Empty, "WithinDistance=" + urlDistance);
                     break;
             }
-            
+
             return new FAA_ApprenticeSearchResultsPage(_context);
         }
 
-        private void SearchByKeyword(string searchParameter,string searchText, string urlCheck)
+        private void SearchByKeyword(string searchParameter, string searchText, string urlCheck)
         {
             if (!string.IsNullOrEmpty(searchText))
             {
@@ -106,7 +107,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 
         public new FAA_ApprenticeSummaryPage SearchByReferenceNumber()
         {
-            SearchVacancyInFAA();            
+            SearchVacancyInFAA();
             return new FAA_ApprenticeSummaryPage(_context);
         }
 
@@ -139,7 +140,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
             _pageInteractionHelper.VerifyText(VerifyPhoneNumberText, _faadataHelper.PhoneNumberVerificationText);
             _formCompletionHelper.ClickElement(VerifyMobile);
             return new FAA_PhoneNumberVerificationPage(_context);
-        } 
+        }
 
         public FAA_ApprenticeSearchResultsPage BrowseVacancy()
         {

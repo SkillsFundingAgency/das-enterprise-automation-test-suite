@@ -27,9 +27,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages
         public Manage_HomePage SubmitManageLoginDetails()
         {
             SubmitValidLoginDetails(_config.ManageUserName, _config.ManagePassword);
-
             _pageInteractionHelper.WaitforURLToChange("/dashboard");
-
             return new Manage_HomePage(_context);
         }
 

@@ -140,35 +140,33 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         private Action Click(IWebElement element) => () => element.Click();
 
-        private TimeSpan[] SetTimeOut() 
-        {
-            switch (true)
-            {
-                case bool _ when _scenarioInfo.Tags.Contains("raa-v1"):
-                    return new TimeSpan[] { TimeSpan.FromSeconds(3), TimeSpan.FromSeconds(4), TimeSpan.FromSeconds(5) };
-                default:
-                    return new TimeSpan[] { TimeSpan.FromSeconds(1), TimeSpan.FromSeconds(2), TimeSpan.FromSeconds(3) };
-            }           
-        }
+        //private TimeSpan[] SetTimeOut()
+        //{
+        //    switch (true)
+        //    {
+        //        case bool _ when _scenarioInfo.Tags.Contains("raa-v1"):
+        //            return new TimeSpan[] { TimeSpan.FromSeconds(5), TimeSpan.FromSeconds(10), TimeSpan.FromSeconds(15) };
+        //        default:
+        //            return new TimeSpan[] { TimeSpan.FromSeconds(1), TimeSpan.FromSeconds(2), TimeSpan.FromSeconds(3) };
+        //    }
+        //}
+
+        private TimeSpan[] SetTimeOut() => new TimeSpan[] { TimeSpan.FromSeconds(1), TimeSpan.FromSeconds(2), TimeSpan.FromSeconds(3) };
 
         private (Action beforeAction, Action afterAction) ResizeWindow()
         {
             void beforeAction() => _webDriver.Manage().Window.Size = new Size(1920, 1080);
             void afterAction() => _webDriver.Manage().Window.Maximize();
-
             return (beforeAction, afterAction);
         }
 
         private (Action beforeAction, Action afterAction) ScrollIntoView(IWebElement element)
         {
             void beforeAction() => ((IJavaScriptExecutor)_webDriver).ExecuteScript("arguments[0].scrollIntoView(true);", element);
-
             return (beforeAction, null);
         }
 
-        private void Report(int retryCount, Exception exception)
-        {
+        private void Report(int retryCount, Exception exception) =>
             TestContext.Progress.WriteLine($"{Environment.NewLine}Retry Count : {retryCount}{Environment.NewLine}Scenario Title : {_scenarioTitle}{Environment.NewLine}Exception : {exception.Message}");
-        }
     }
 }

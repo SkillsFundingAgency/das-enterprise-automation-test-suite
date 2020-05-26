@@ -1,8 +1,6 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
-using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.RAA.DataGenerator;
-using SFA.DAS.RAA.DataGenerator.Project;
 using SFA.DAS.UI.FrameworkHelpers;
 using System;
 using TechTalk.SpecFlow;
@@ -19,9 +17,9 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
         private readonly FormCompletionHelper _formCompletionHelper;
         private readonly FAADataHelper _faaDataHelper;
         private readonly VacancyTitleDatahelper _vacancyTitleDataHelper;
-        private readonly ObjectContext _objectContext;
         private readonly ScenarioContext _context;
         #endregion
+
         private By NationwideVacancies => By.Id("nationwideLocationTypeLink");
         private By SortResults => By.Id("sort-results");
         private By NationwideVacanciesText => By.Id("multiple-positions-nationwide");
@@ -29,15 +27,12 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
         private By DisplayResults => By.Id("results-per-page");
         private By VacanciesList => By.ClassName("vacancy-link");
 
-
-
         public FAA_ApprenticeSearchResultsPage(ScenarioContext context) : base(context)
         {
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
             _faaDataHelper = context.Get<FAADataHelper>();
             _vacancyTitleDataHelper = context.Get<VacancyTitleDatahelper>();
-            _objectContext = context.Get<ObjectContext>();
             _context = context;
             VerifyPage();
         }
@@ -55,13 +50,10 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
             IWebElement selectElement = _pageInteractionHelper.FindElement(SortResults);
             SelectElement selectedValue = new SelectElement(selectElement);
             string selectedText = selectedValue.SelectedOption.Text;
-            _pageInteractionHelper.VerifyText(selectedText, "Closing date");            
+            _pageInteractionHelper.VerifyText(selectedText, "Closing date");
         }
 
-        protected void CheckNationwideVacanciesText()
-        {
-            _pageInteractionHelper.VerifyText(NationwideVacanciesText, _faaDataHelper.NationwideVacanciesText);
-        }
+        protected void CheckNationwideVacanciesText() => _pageInteractionHelper.VerifyText(NationwideVacanciesText, _faaDataHelper.NationwideVacanciesText);
 
         protected void ClickNationwideVacancies()
         {
@@ -73,24 +65,22 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
                     throw new Exception("No Nationwide Vacancies found");
                 }
                 return elementDisplayed;
-            }, () => _formCompletionHelper.Click(NationwideVacancies));           
-
+            }, () => _formCompletionHelper.Click(NationwideVacancies));
         }
 
         public FAA_ApprenticeSummaryPage SelectBrowsedVacancy()
         {
             ChangeSortOrderToRecentlyAdded();
             ChangeSortResultsTo50Vacancies();
-            _formCompletionHelper.Click(VacancyLink);            
+            _formCompletionHelper.Click(VacancyLink);
             return new FAA_ApprenticeSummaryPage(_context);
         }
 
         public bool CheckVacancyIsDisplayedBasedOnSearchCriteria(string postCode, string searchParameter)
         {
             if (searchParameter == "Job title" || searchParameter == "Employer" || searchParameter == "Description")
-            {
                 ChangeSortOrderToRecentlyAdded();
-            }
+
             ChangeSortResultsTo50Vacancies();
             bool vacanciesFound = FoundVacancies();
             if (vacanciesFound)
@@ -116,6 +106,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
             _formCompletionHelper.SelectFromDropDownByValue(SortResults, "RecentlyAdded");
             _pageInteractionHelper.WaitforURLToChange("sortType=RecentlyAdded");
         }
+
         private void ChangeSortResultsTo50Vacancies()
         {
             if (_pageInteractionHelper.IsElementDisplayed(DisplayResults))
