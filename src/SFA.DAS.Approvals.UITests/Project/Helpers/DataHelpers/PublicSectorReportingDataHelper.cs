@@ -1,6 +1,6 @@
 ﻿using SFA.DAS.UI.FrameworkHelpers;
 
-namespace SFA.DAS.Approvals.UITests.Project.Helpers
+namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
 {
     public class PublicSectorReportingDataHelper
     {
@@ -30,17 +30,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers
         internal string EmployerPlanning { get; }
         internal string EmployerComments { get; }
         internal string NoofEmployees2019 { get; }
-
         internal string NoofEmployees2020 { get; }
-
         internal string NoofNewEmployees { get; }
-
         internal string NoofApprentices2019 { get; }
-
         internal string NoofApprentices2020 { get; }
-
         internal string NoofNewApprentices { get; }
-
         internal string NoofFullTimeEmployees { get; }
     }
 }

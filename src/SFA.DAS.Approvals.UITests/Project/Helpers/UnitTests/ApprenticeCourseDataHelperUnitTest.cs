@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using NUnit.Framework;
+using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
 
 namespace SFA.DAS.Approvals.UITests.Project.Helpers.UnitTests
 {
@@ -31,7 +32,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.UnitTests
         public void WaitingTostartApprentice(int i)
         {
             //Arrange 
-            var randomcourseHelper = new RandomCourseHelper(new UI.FrameworkHelpers.RandomDataGenerator(), false);
+            var randomcourseHelper = new RandomCourseDataHelper(new UI.FrameworkHelpers.RandomDataGenerator(), false);
             var apprentice = new ApprenticeCourseDataHelper(randomcourseHelper, ApprenticeStatus.WaitingToStart);
 
             //Assert
@@ -63,7 +64,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.UnitTests
         public void LiveApprentice(int x)
         {
             //Arrange 
-            var randomcourseHelper = new RandomCourseHelper(new UI.FrameworkHelpers.RandomDataGenerator(), false);
+            var randomcourseHelper = new RandomCourseDataHelper(new UI.FrameworkHelpers.RandomDataGenerator(), false);
             var apprentice = new ApprenticeCourseDataHelper(randomcourseHelper, ApprenticeStatus.Live);
 
             //Assert

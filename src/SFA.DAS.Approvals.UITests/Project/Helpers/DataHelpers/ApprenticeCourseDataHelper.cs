@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace SFA.DAS.Approvals.UITests.Project.Helpers
+namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
 {
     public enum ApprenticeStatus
     {
@@ -18,14 +18,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers
         private readonly DateTime _nextAcademicYearStartDate;
         private readonly DateTime _nextAcademicYearEndDate;
         private readonly ApprenticeStatus _apprenticeStatus;
-        private readonly RandomCourseHelper _randomCourseHelper;
+        private readonly RandomCourseDataHelper _randomCourseHelper;
 
         private const int acadamicYearStartMonth = 8;
         private const int acadamicYearEndMonth = 7;
         private const int acadamicYearStartDay = 1;
         private const int acadamicYearEndDay = 31;
 
-        public ApprenticeCourseDataHelper(RandomCourseHelper randomCourseHelper, ApprenticeStatus apprenticeStatus)
+        public ApprenticeCourseDataHelper(RandomCourseDataHelper randomCourseHelper, ApprenticeStatus apprenticeStatus)
         {
             _randomCourseHelper = randomCourseHelper;
             _apprenticeStatus = apprenticeStatus;
@@ -55,7 +55,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers
         private DateTime GenerateCourseStartDate()
         {
             DateTime start = _currentAcademicYearStartDate;
-            DateTime end = (_randomCourseHelper.RandomNumber % 2 == 0) ? _currentAcademicYearEndDate : DateTime.Now;
+            DateTime end = _randomCourseHelper.RandomNumber % 2 == 0 ? _currentAcademicYearEndDate : DateTime.Now;
             int range = (end - start).Days;
             var randomStartDate = start.AddDays(new Random().Next(range));
             return _apprenticeStatus == ApprenticeStatus.Live ? GetLiveApprenticeStartDate(randomStartDate) :
@@ -77,7 +77,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers
                 int range = (_nextAcademicYearStartDate - start).Days - 1;
                 return start.AddDays(new Random().Next(range));
             }
-            
+
             return dateTime.Date <= now.Date ? RandomStartDate() : IsThisMonthAndYear(dateTime) ? RandomStartDate() : dateTime;
         }
 

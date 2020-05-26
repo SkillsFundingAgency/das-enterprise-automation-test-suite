@@ -1,11 +1,11 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.Approvals.UITests.Project.Helpers;
 using SFA.DAS.Registration.UITests.Project.Helpers;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.UI.FrameworkHelpers;
 using System;
 using TechTalk.SpecFlow;
+using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 {
