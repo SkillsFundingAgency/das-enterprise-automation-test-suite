@@ -5,7 +5,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
 {
     public class SubmittedDetailsPage : PublicSectorReportingBasePage
     {
-        protected override string PageTitle => "Submitted reports";
+        protected override By PageHeader => By.CssSelector(".heading-xlarge");
+
+        protected override string PageTitle => "Submitted details";
         
         #region Helpers and Context
         private readonly ScenarioContext _context;

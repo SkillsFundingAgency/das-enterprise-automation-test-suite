@@ -1,10 +1,13 @@
-﻿using SFA.DAS.UI.FrameworkHelpers;
+﻿using OpenQA.Selenium;
+using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
 {
     public class SubmittedReportspage : PublicSectorReportingBasePage
     {
+        protected override By PageHeader => By.CssSelector(".heading-xlarge");
+
         protected override string PageTitle => "Submitted reports";
 
         #region Helpers and Context

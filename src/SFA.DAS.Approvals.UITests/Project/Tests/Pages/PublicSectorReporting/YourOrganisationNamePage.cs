@@ -5,7 +5,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
 {
     public class YourOrganisationNamePage : PublicSectorReportingBasePage
     {
-        protected override string PageTitle => "Your organisation"; 
+        protected override string PageTitle => "Your organisation";
 
         #region Helpers and Context
         private readonly ScenarioContext _context;

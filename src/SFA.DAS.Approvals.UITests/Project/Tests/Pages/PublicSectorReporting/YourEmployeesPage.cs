@@ -11,6 +11,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
         private readonly ScenarioContext _context;
         #endregion
 
+        private By NoOfEmployees2019 => By.CssSelector("#z0__Answer");
+        private By NoOfEmployees2020 => By.CssSelector("#z1__Answer");
+        private By NoOfEmployees => By.CssSelector("#z2__Answer");
+
         public YourEmployeesPage(ScenarioContext context) : base(context)
         {
             _context = context;
@@ -19,9 +23,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
 
         public ReportYourProgressPage EnterEmployeesDetails()
         {
-            formCompletionHelper.EnterTextByLabel(LabelCssSelector, "Number of employees who were working in England on 31 March 2019", dataHelper.NoofEmployees2019);
-            formCompletionHelper.EnterTextByLabel(LabelCssSelector, "Number of employees who were working in England on 31 March 2020", dataHelper.NoofEmployees2020);
-            formCompletionHelper.EnterTextByLabel(LabelCssSelector, "Number of new employees who started working for you in England between 1 April 2019 to 31 March 2020", dataHelper.NoofNewEmployees);
+            formCompletionHelper.EnterText(NoOfEmployees2019, dataHelper.NoofEmployees2019);
+            formCompletionHelper.EnterText(NoOfEmployees2020, dataHelper.NoofEmployees2020);
+            formCompletionHelper.EnterText(NoOfEmployees, dataHelper.NoofNewEmployees);
             Continue();
             return new ReportYourProgressPage(_context);
         }

@@ -7,8 +7,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
     {
         protected override string PageTitle => "public sector apprenticeship target data";
 
-        protected override By PageHeader => By.CssSelector("#content .heading-large");
-
         protected override By ContinueButton => By.CssSelector("#report-create-start");
         
         #region Helpers and Context

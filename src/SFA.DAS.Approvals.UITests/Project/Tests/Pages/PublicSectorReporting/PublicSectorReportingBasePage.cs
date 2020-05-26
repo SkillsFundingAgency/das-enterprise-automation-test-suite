@@ -10,7 +10,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
 {
     public abstract class PublicSectorReportingBasePage : BasePage
     {
-        protected By LabelCssSelector => By.CssSelector("label.form-label-bold");
+        protected override By PageHeader => By.CssSelector("#content .heading-large");
 
         protected By Textarea => By.CssSelector("textarea");
 

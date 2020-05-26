@@ -1,10 +1,13 @@
-﻿using TechTalk.SpecFlow;
+﻿using OpenQA.Selenium;
+using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
 {
     public class ReportYourProgressPage : PublicSectorReportingBasePage
     {
         protected override string PageTitle => "Reporting your progress towards the public sector apprenticeship target";
+
+        protected override By PageHeader => By.CssSelector(".heading-xlarge");
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
@@ -15,8 +18,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
 
         private static string Employees => "Number of employees who work in England";
         private static string Apprentices => "Number of apprentices who work in England";
-        private static string FullTime => "Number of full-time equivalents who work in England(optional)";
-
+        private static string FullTime => "Number of full-time equivalents who work in England (optional)";
 
         private static string Actions => "What actions have you taken this year to meet the target? How do these compare to the actions taken in the previous year?";
         private static string Challenges => "What challenges have you faced this year in your efforts to meet the target? How do these compare to the challenges experienced in the previous year?";

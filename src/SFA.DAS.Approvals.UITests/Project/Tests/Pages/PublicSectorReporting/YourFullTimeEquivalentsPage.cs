@@ -1,13 +1,17 @@
-﻿using TechTalk.SpecFlow;
+﻿using OpenQA.Selenium;
+using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
 {
     public class YourFullTimeEquivalentsPage : PublicSectorReportingBasePage
     {
         protected override string PageTitle => "Your full-time equivalents";
+        
         #region Helpers and Context
         private readonly ScenarioContext _context;
         #endregion
+
+        private By NoOfFullTime => By.CssSelector("#z0__Answer");
 
         public YourFullTimeEquivalentsPage(ScenarioContext context) : base(context)
         {
@@ -17,7 +21,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
 
         public ReportYourProgressPage EnterFullTimeEmployeesDetails()
         {
-            formCompletionHelper.EnterTextByLabel(LabelCssSelector, "Number of full-time equivalents (optional)", dataHelper.NoofFullTimeEmployees);
+            formCompletionHelper.EnterText(NoOfFullTime, dataHelper.NoofFullTimeEmployees);
             Continue();
             return new ReportYourProgressPage(_context);
         }

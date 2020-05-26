@@ -7,6 +7,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
     {
         protected override string PageTitle => "Review details";
 
+        protected override By PageHeader => By.CssSelector(".heading-xlarge");
+
         protected override By ContinueButton => By.CssSelector("#report-summary-continue");
 
         #region Helpers and Context
