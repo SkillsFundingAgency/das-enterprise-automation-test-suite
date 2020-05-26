@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.Login.Service.Project.Tests.Pages;
 using SFA.DAS.UI.FrameworkHelpers;
 using System;
@@ -16,6 +17,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private readonly PageInteractionHelper _pageInteractionHelper;
         private readonly FormCompletionHelper _formCompletionHelper;
         private readonly ScenarioContext _context;
+        private readonly TableRowHelper _tableRowHelper;
+        private readonly ObjectContext _objectContext;
         #endregion
 
         private By NumberOfCohortsForReview => By.CssSelector("#Review span.das-card-figure");
@@ -26,6 +29,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             _context = context;
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
+            _tableRowHelper = context.Get<TableRowHelper>();
+            _objectContext = context.Get<ObjectContext>();
             VerifyPage();
         }
 
@@ -51,6 +56,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             }
 
             throw new Exception("No cohorts available with employers");
+        }
+
+        public ProviderReviewYourCohortPage SelectViewCurrentCohortDetails()
+        {
+            _tableRowHelper.SelectRowFromTable("Details", _objectContext.GetCohortReference());
+            return new ProviderReviewYourCohortPage(_context);
         }
     }
 }

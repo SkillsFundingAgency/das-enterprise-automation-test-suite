@@ -61,12 +61,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                 .SendInstructionsToEmployerForAnApprovedCohort();
         }
 
-        public ProviderReviewYourCohortPage AddApprenticeAndSavesWithoutSendingEmployerForApproval(int numberOfApprentices)
+        public ProviderYourCohortsPage AddApprenticeAndSavesWithoutSendingEmployerForApproval(int numberOfApprentices)
         {
-           return AddApprentice(numberOfApprentices)
-                .SelectSaveAndContinue()
-                .SubmitSaveButDontSendToEmployer()
-                .SelectViewCurrentCohortDetails();
+            return AddApprentice(numberOfApprentices)
+                 .SelectSaveAndContinue()
+                 .SubmitSaveButDontSendToEmployer();
         }
 
         public ProviderReviewYourCohortPage AddApprentice(ProviderAddApprenticeDetailsPage _providerAddApprenticeDetailsPage, int numberOfApprentices)

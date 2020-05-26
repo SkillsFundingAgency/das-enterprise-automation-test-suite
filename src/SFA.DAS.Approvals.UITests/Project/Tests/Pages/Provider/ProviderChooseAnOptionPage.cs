@@ -43,10 +43,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             return new ProviderMessageForEmployerPage(_context);
         }
 
-        public ProviderCohortSavedPage SubmitSaveButDontSendToEmployer()
+        public ProviderYourCohortsPage SubmitSaveButDontSendToEmployer()
         {
             SelectOption("SaveStatus-Save");
-            return new ProviderCohortSavedPage(_context);
+            return new ProviderYourCohortsPage(_context);
         }
 
         private void SelectOption(string option)
