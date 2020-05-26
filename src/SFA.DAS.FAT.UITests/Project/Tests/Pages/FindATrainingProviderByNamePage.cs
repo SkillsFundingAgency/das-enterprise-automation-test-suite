@@ -9,7 +9,7 @@ namespace SFA.DAS.FAT.UITests.Project.Tests.Pages
         private readonly ScenarioContext _context;
 
         #region Locators
-        protected override By FirstResultLink => By.CssSelector(".results");
+        protected override By FirstResultLink => By.CssSelector("#provider-search-results a");
         private By SearchTextBox => By.Id("searchTerm");
         private By SearchOption => By.Id("submit-keywords");
         #endregion

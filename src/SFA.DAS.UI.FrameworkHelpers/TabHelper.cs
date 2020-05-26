@@ -11,6 +11,14 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         public TabHelper(IWebDriver webDriver) => _webDriver = webDriver;
 
+        private By Iframe => By.CssSelector("iframe");
+
+        public void SwitchToFrame() => SwitchToFrame(Iframe);
+
+        public void SwitchToFrame(By by) => _webDriver.SwitchTo().Frame(_webDriver.FindElement(by));
+
+        public void SwitchToDefaultContent() => _webDriver.SwitchTo().DefaultContent();
+
         public void OpenInNewTab(Action action)
         {
             var existingTabs = ExistingTabs();

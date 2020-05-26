@@ -10,6 +10,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
     public abstract class RegistrationBasePage : BasePage
     {
         #region Helpers and Context
+        protected readonly TabHelper tabHelper;
         protected readonly FormCompletionHelper formCompletionHelper;
         protected readonly PageInteractionHelper pageInteractionHelper;
         protected readonly RegistrationConfig config;
@@ -28,6 +29,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         protected RegistrationBasePage(ScenarioContext context) : base(context)
         {
             _context = context;
+            tabHelper = context.Get<TabHelper>();
             formCompletionHelper = context.Get<FormCompletionHelper>();
             pageInteractionHelper = context.Get<PageInteractionHelper>();
             config = context.GetRegistrationConfig<RegistrationConfig>();

@@ -60,10 +60,10 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.InterimPages
             return new YourAccountsPage(_context);
         }
 
-        public HelpArticlesPage GoToHelpPage()
+        public EmployerHelpPage GoToHelpPage()
         {
             tabHelper.OpenInNewTab(() => formCompletionHelper.ClickElement(HelpLink));
-            return new HelpArticlesPage(_context);
+            return new EmployerHelpPage(_context);
         }
 
         public RenameAccountPage GoToRenameAccountPage()
