@@ -13,7 +13,6 @@ Scenario Outline: RV1_FAASEV_AV_01 search for an existing apprenticeship vacancy
 	When an applicant is on the Find an Apprenticeship Page
 	Then the apprenticeship can be found based on 'E1 7LL','2 miles'
 	And the apprenticeship can be found based on 'SE16','5 miles'
-	And the apprenticeship can be found based on 'SE9 5QE','15 miles'
 	And the apprenticeship can be found based on 'E1 7TF','England'
 	And the apprenticeship can be found based on 'E1 7LL','Job title'
 	And the apprenticeship can be found based on 'E1 7LL','Employer'

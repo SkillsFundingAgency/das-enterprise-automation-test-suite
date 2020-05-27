@@ -38,22 +38,6 @@ namespace SFA.DAS.UI.FrameworkHelpers
             _retryHelper.RetryOnWebDriverException(() => func(element));
         }
 
-        //public bool WaitforURLToChange(string expected)
-        //{
-        //    bool func()
-        //    {
-        //        var actual = _webDriver.Url;
-        //        if (actual.Contains(expected))
-        //            return true;
-
-        //        throw new Exception("Url verification failed:"
-        //        + "\n Expected: " + expected + " page"
-        //        + "\n Found: " + actual + " page");
-        //    }
-
-        //    return VerifyPage(func);
-        //}
-
         public void WaitforURLToChange(string urlText) => _webDriverWaitHelper.WaitForUrlChange(urlText);
 
         public void WaitForElementToBeClickable(By locator) => _webDriverWaitHelper.WaitForElementToBeClickable(locator);

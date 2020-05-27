@@ -26,6 +26,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
         private By VacancyLink => By.LinkText(_vacancyTitleDataHelper.VacancyTitle);
         private By DisplayResults => By.Id("results-per-page");
         private By VacanciesList => By.ClassName("vacancy-link");
+        private By SearchAgainLink => By.Id("start-again-link");
 
         public FAA_ApprenticeSearchResultsPage(ScenarioContext context) : base(context)
         {
@@ -76,12 +77,13 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
             return new FAA_ApprenticeSummaryPage(_context);
         }
 
-        public bool CheckVacancyIsDisplayedBasedOnSearchCriteria(string postCode, string searchParameter)
+        public FAA_ApprenticeSearchResultsPage CheckVacancyIsDisplayedBasedOnSearchCriteria(string locationPostCode, string searchCriteriaOrDistance)
         {
-            if (searchParameter == "Job title" || searchParameter == "Employer" || searchParameter == "Description")
+            if (searchCriteriaOrDistance == "Job title" || searchCriteriaOrDistance == "Employer" || searchCriteriaOrDistance == "Description")
                 ChangeSortOrderToRecentlyAdded();
 
             ChangeSortResultsTo50Vacancies();
+
             bool vacanciesFound = FoundVacancies();
             if (vacanciesFound)
             {
@@ -89,16 +91,21 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
                 foreach (var vacancy in vacanciesCount)
                 {
                     if (vacancy.Text.Contains(_vacancyTitleDataHelper.VacancyTitle))
-                    {
-                        return true;
-                    }
+                        return this;
                 }
+
+                throw new Exception($"VacancyTitle Not found in VacanciesList within '{searchCriteriaOrDistance}' of '{locationPostCode}'");
             }
             else
             {
-                throw new Exception($"No apprenticeship found based on given search criteria '{searchParameter}' and '{postCode}'");
+                throw new Exception($"No apprenticeship found based on given search criteria '{searchCriteriaOrDistance}' and '{locationPostCode}'");
             }
-            return false;
+        }
+
+        public FAA_ApprenticeSearchPage ClickOnSearchAgainLink()
+        {
+            _formCompletionHelper.Click(SearchAgainLink);
+            return new FAA_ApprenticeSearchPage(_context);
         }
 
         private void ChangeSortOrderToRecentlyAdded()

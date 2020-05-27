@@ -6,7 +6,7 @@ using SFA.DAS.UI.FrameworkHelpers;
 using System;
 using TechTalk.SpecFlow;
 using SFA.DAS.RAA.DataGenerator.Project;
-
+using NUnit.Framework;
 
 namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 {
@@ -37,8 +37,8 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
         private By AccountancyCheckBox => By.Id("sub-category-stdsec.46");
         private By BrowseButton => By.Id("browse-button");
         private By UpdateResults => By.Id("search-button");
-        private By KeywordDropDown => By.Id("SearchField");
-        private By KeywordTextField => By.Id("Keywords");
+        private By KeywordsDropDownField => By.Id("SearchField");
+        private By KeywordsTextField => By.Id("Keywords");
         private By VerifyMobile => By.CssSelector("a[href='/verifymobile']");
         private By DisabilityConfidentCheckBox => By.CssSelector("label.block-label");
 
@@ -55,38 +55,38 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
             VerifyPage();
         }
 
-        public FAA_ApprenticeSearchResultsPage SearchForAVacancy(string location, string searchParameter, string apprenticeshipLevel, string disabilityConfident)
+        public FAA_ApprenticeSearchResultsPage SearchForAVacancy(string locationPostCode, string searchCriteriaOrDistanceDropDownValue, string apprenticeshipLevel, string disabilityConfident)
         {
-            _formCompletionHelper.EnterText(Location, location);
+            _formCompletionHelper.EnterText(Location, locationPostCode);
             _formCompletionHelper.SelectFromDropDownByText(ApprenticeshipLevel, apprenticeshipLevel);
 
             if (disabilityConfident == "Yes")
                 _formCompletionHelper.SelectCheckbox(DisabilityConfidentCheckBox);
 
-            switch (searchParameter)
+            switch (searchCriteriaOrDistanceDropDownValue)
             {
                 case "Job title":
-                    SearchByKeyword(searchParameter, _dataHelper.VacancyTitle, "Keywords=" + _dataHelper.VacancyTitle);
+                    SearchByKeyword(searchCriteriaOrDistanceDropDownValue, _dataHelper.VacancyTitle, "Keywords=" + _dataHelper.VacancyTitle);
                     break;
 
                 case "Employer":
                     var empName = _objectContext.GetEmployerName();
-                    SearchByKeyword(searchParameter, empName, "SearchField=Employer");
+                    SearchByKeyword(searchCriteriaOrDistanceDropDownValue, empName, "SearchField=Employer");
                     break;
 
                 case "Description":
                     var empDesc = _objectContext.GetVacancyShortDescription();
-                    SearchByKeyword(searchParameter, empDesc, "SearchField=Description");
+                    SearchByKeyword(searchCriteriaOrDistanceDropDownValue, empDesc, "SearchField=Description");
                     break;
 
                 default:
                     string urlDistance = "0";
-                    if (searchParameter != "England")
+                    if (searchCriteriaOrDistanceDropDownValue != "England")
                     {
-                        int index = searchParameter.LastIndexOf("miles");
-                        urlDistance = searchParameter.Substring(0, index).TrimEnd();
+                        int index = searchCriteriaOrDistanceDropDownValue.LastIndexOf("miles");
+                        urlDistance = searchCriteriaOrDistanceDropDownValue.Substring(0, index).TrimEnd();
                     }
-                    _formCompletionHelper.SelectFromDropDownByText(Distance, searchParameter);
+                    _formCompletionHelper.SelectFromDropDownByText(Distance, searchCriteriaOrDistanceDropDownValue);
                     SearchByKeyword(string.Empty, string.Empty, "WithinDistance=" + urlDistance);
                     break;
             }
@@ -94,15 +94,16 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
             return new FAA_ApprenticeSearchResultsPage(_context);
         }
 
-        private void SearchByKeyword(string searchParameter, string searchText, string urlCheck)
+        private void SearchByKeyword(string searchCriteriaOrDistanceDropDownValue, string keywordsTextFieldValue, string urlTextToCheck)
         {
-            if (!string.IsNullOrEmpty(searchText))
+            if (!string.IsNullOrEmpty(keywordsTextFieldValue))
             {
-                _formCompletionHelper.SelectFromDropDownByText(KeywordDropDown, searchParameter);
-                _formCompletionHelper.EnterText(KeywordTextField, searchText);
+                _formCompletionHelper.SelectFromDropDownByText(KeywordsDropDownField, searchCriteriaOrDistanceDropDownValue);
+                _formCompletionHelper.EnterText(KeywordsTextField, keywordsTextFieldValue);
             }
+
             _formCompletionHelper.Click(Search);
-            _pageInteractionHelper.WaitforURLToChange(urlCheck);
+            _pageInteractionHelper.WaitforURLToChange(urlTextToCheck);
         }
 
         public new FAA_ApprenticeSummaryPage SearchByReferenceNumber()

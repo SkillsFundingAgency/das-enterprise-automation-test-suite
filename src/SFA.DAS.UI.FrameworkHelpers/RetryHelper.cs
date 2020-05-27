@@ -140,17 +140,6 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         private Action Click(IWebElement element) => () => element.Click();
 
-        //private TimeSpan[] SetTimeOut()
-        //{
-        //    switch (true)
-        //    {
-        //        case bool _ when _scenarioInfo.Tags.Contains("raa-v1"):
-        //            return new TimeSpan[] { TimeSpan.FromSeconds(5), TimeSpan.FromSeconds(10), TimeSpan.FromSeconds(15) };
-        //        default:
-        //            return new TimeSpan[] { TimeSpan.FromSeconds(1), TimeSpan.FromSeconds(2), TimeSpan.FromSeconds(3) };
-        //    }
-        //}
-
         private TimeSpan[] SetTimeOut() => new TimeSpan[] { TimeSpan.FromSeconds(1), TimeSpan.FromSeconds(2), TimeSpan.FromSeconds(3) };
 
         private (Action beforeAction, Action afterAction) ResizeWindow()
