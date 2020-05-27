@@ -22,6 +22,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private By ReviewChangesLink => By.LinkText("Review changes");
         private By EditApprenticeDetailsLink => By.LinkText("Edit apprentice");
         private By ViewIlrMismatchDetailsLink => By.LinkText("View details");
+        private By ChangeEmployerLink => By.Id("change-employer-link");
         private By ChangeRequestMessage => By.ClassName("das-notification");
         private By Name => By.Id("apprentice-name");
         private By DateOfBirth => By.Id("apprentice-dob");
@@ -52,6 +53,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         {
             _formCompletionHelper.ClickElement(ViewIlrMismatchDetailsLink);
             return new ProviderDetailsOfILRDataMismatchPage(_context);
+        }
+
+        public ProviderInformPage ClickChangeEmployerLink()
+        {
+            _formCompletionHelper.Click(ChangeEmployerLink);
+            return new ProviderInformPage(_context);
         }
 
         public void ConfirmChangeRequestPendingMessage()
