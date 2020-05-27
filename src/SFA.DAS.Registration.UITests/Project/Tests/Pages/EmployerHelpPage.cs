@@ -5,16 +5,10 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 {
     public class EmployerHelpPage : RegistrationBasePage
     {
-        protected override string PageTitle => "Sign in to Apprenticeship Service Support SANDBOX";
+        protected override string PageTitle { get; }
 
-        protected override By PageHeader => By.CssSelector(".title");
+        protected override By PageHeader => By.CssSelector("body");
 
-        public EmployerHelpPage(ScenarioContext context) : base(context)
-        {
-            tabHelper.SwitchToFrame();
-            VerifyPage();
-            tabHelper.SwitchToDefaultContent();
-        }
-
+        public EmployerHelpPage(ScenarioContext context) : base(context) => VerifyPage(PageHeader);
     }
 }
