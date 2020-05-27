@@ -6,11 +6,11 @@ using SFA.DAS.Registration.UITests.Project.Helpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.ConfigurationBuilder;
-using SFA.DAS.Approvals.UITests.Project.Helpers;
 using System;
 using System.Linq;
 using SFA.DAS.Registration.UITests.Project;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages;
+using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 {
@@ -22,11 +22,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         private readonly ApprenticeDataHelper _dataHelper;
         private readonly ProviderStepsHelper _providerStepsHelper;
         private readonly EmployerStepsHelper _employerStepsHelper;
-        private readonly EmployerPortalLoginHelper _loginHelper;
         private readonly CommitmentsSqlDataHelper _commitmentsSqlDataHelper;
         private readonly MultipleAccountsLoginHelper _multipleAccountsLoginHelper;
-
-        private HomePage _homePage;
 
         private readonly string _oldEmployer;
         private readonly string _newEmployer;
@@ -38,7 +35,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _dataHelper = context.Get<ApprenticeDataHelper>();
             _providerStepsHelper = new ProviderStepsHelper(context);
             _employerStepsHelper = new EmployerStepsHelper(context);
-            _loginHelper = new EmployerPortalLoginHelper(context);
             _commitmentsSqlDataHelper = new CommitmentsSqlDataHelper(context.GetApprovalsConfig<ApprovalsConfig>());
             _multipleAccountsLoginHelper = new MultipleAccountsLoginHelper(context);
             _oldEmployer = context.GetRegistrationConfig<RegistrationConfig>().RE_OrganisationName;
@@ -51,6 +47,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         public void GivenTheProviderHasAnApprenticeWithStoppedStatus()
         {         
             _objectContext.UpdateOrganisationName(_oldEmployer);
+
             Login();
 
             var cohortReference = _employerStepsHelper.EmployerApproveAndSendToProvider(1);
@@ -88,6 +85,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             manageYourApprenticePage.VerifyApprenticeExists();
         }
 
-        private void Login() => _homePage = _multipleAccountsLoginHelper.Login(_context.GetUser<TransfersUser>(), true);
+        private void Login() => _multipleAccountsLoginHelper.Login(_context.GetUser<TransfersUser>(), true);
     }
 }

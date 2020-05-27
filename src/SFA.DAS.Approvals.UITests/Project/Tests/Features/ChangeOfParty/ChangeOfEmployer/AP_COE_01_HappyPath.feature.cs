@@ -19,7 +19,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.ChangeOfParty.ChangeO
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("AP_COE_01_HappyPath")]
-    [NUnit.Framework.CategoryAttribute("changeOfEmployer")]
+    [NUnit.Framework.CategoryAttribute("approvals")]
     public partial class AP_COE_01_HappyPathFeature
     {
         
@@ -33,7 +33,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.ChangeOfParty.ChangeO
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "AP_COE_01_HappyPath", null, ProgrammingLanguage.CSharp, new string[] {
-                        "changeOfEmployer"});
+                        "approvals"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,20 +74,22 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.ChangeOfParty.ChangeO
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Change Of Employer")]
         [NUnit.Framework.CategoryAttribute("regression")]
+        [NUnit.Framework.CategoryAttribute("changeOfEmployer")]
         public virtual void ChangeOfEmployer()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Change Of Employer", null, new string[] {
-                        "regression"});
-#line 5
+                        "regression",
+                        "changeOfEmployer"});
+#line 6
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 6
- testRunner.Given("the provider has an apprentice with a stopped status", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 7
- testRunner.When("provider sends COE request to new employer", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.Given("the provider has an apprentice with stopped status", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 8
- testRunner.And("new employer aproves the cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.When("provider sends COE request to new employer", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 9
+ testRunner.And("new employer aproves the cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 10
  testRunner.Then("a new live apprenticeship record is created", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();

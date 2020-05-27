@@ -2,12 +2,11 @@
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.UI.FrameworkHelpers;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using TechTalk.SpecFlow;
 using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
+using SFA.DAS.Registration.UITests.Project;
 
 namespace SFA.DAS.Approvals.UITests.Project
 {
