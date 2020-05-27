@@ -73,21 +73,19 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.PublicSectorReporting
         [NUnit.Framework.DescriptionAttribute("AP_PSR_01_CreateAndAmendReport")]
         [NUnit.Framework.CategoryAttribute("approvals")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
         public virtual void AP_PSR_01_CreateAndAmendReport()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_PSR_01_CreateAndAmendReport", null, new string[] {
                         "approvals",
-                        "regression",
-                        "addpayedetails"});
-#line 6
+                        "regression"});
+#line 5
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
+#line 6
+testRunner.Given("the Employer logins using existing NonLevy Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 7
-testRunner.Given("The User creates NonLevyEmployer account and sign an agreement", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 8
 testRunner.Then("the employer can create a new report", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 9
+#line 8
 testRunner.And("then employer can edit a submitted report", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
