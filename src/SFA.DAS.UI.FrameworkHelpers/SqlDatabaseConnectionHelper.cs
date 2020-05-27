@@ -1,6 +1,7 @@
 ﻿using Dapper;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 
 namespace SFA.DAS.UI.FrameworkHelpers
@@ -40,15 +41,25 @@ namespace SFA.DAS.UI.FrameworkHelpers
             }
         }
 
-        public static List<object[]> ReadDataFromDataBase(string queryToExecute, string connectionString)
+        public static List<object[]> ReadDataFromDataBase(string queryToExecute, string connectionString, Dictionary<String, String> parameters = null)
         {
             try
             {
                 using (SqlConnection databaseConnection = new SqlConnection(connectionString))
                 {
-                    databaseConnection.Open();
                     using (SqlCommand command = new SqlCommand(queryToExecute, databaseConnection))
                     {
+                        command.CommandType = CommandType.Text;
+
+                        if (parameters != null)
+                        {
+                            foreach (KeyValuePair<String, String> param in parameters)
+                            {
+                                command.Parameters.AddWithValue(param.Key, param.Value);
+                            }
+                        }                        
+
+                        databaseConnection.Open();
                         SqlDataReader dataReader = command.ExecuteReader();
                         List<object[]> result = new List<object[]>();
                         while (dataReader.Read())

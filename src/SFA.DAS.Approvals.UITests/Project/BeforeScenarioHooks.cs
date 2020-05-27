@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using TechTalk.SpecFlow;
 using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
+using SFA.DAS.Registration.UITests.Project;
 
 namespace SFA.DAS.Approvals.UITests.Project
 {
@@ -18,6 +19,7 @@ namespace SFA.DAS.Approvals.UITests.Project
         private readonly ObjectContext _objectcontext;
         private ApprenticeDataHelper _datahelper;
         private readonly ApprovalsConfig _approvalsConfig;
+        private readonly RegistrationConfig _registrationConfig;
         private readonly ProviderPermissionsConfig _providerPermissionsConfig;
 
         public BeforeScenarioHooks(ScenarioContext context)
@@ -25,6 +27,7 @@ namespace SFA.DAS.Approvals.UITests.Project
             _context = context;
             _objectcontext = context.Get<ObjectContext>();
             _approvalsConfig = context.GetApprovalsConfig<ApprovalsConfig>();
+            _registrationConfig = context.GetRegistrationConfig<RegistrationConfig>();
             _providerPermissionsConfig = context.GetProviderPermissionConfig<ProviderPermissionsConfig>();
         }
 
@@ -62,6 +65,8 @@ namespace SFA.DAS.Approvals.UITests.Project
             _context.Set(new EditedApprenticeCourseDataHelper(randomCoursehelper, apprenticeCourseDataHelper));
 
             _context.Set(new DataLockSqlHelper(_approvalsConfig, _datahelper, apprenticeCourseDataHelper));
+
+            _context.Set(new AgreementIdSqlHelper(_registrationConfig));
         }
     }
 }
