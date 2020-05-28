@@ -196,6 +196,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             
         }
 
+        [Then(@"Standard gov\.uk footer should be displayed at the bottom of the page")]
+        public void ThenStandardGov_UkFooterShouldBeDisplayedAtTheBottomOfThePage()
+        {
+            _apprenticesHomePage = new ApprenticesHomePage(_context, true);
+            _apprenticesHomePage.ValidateFooter();
+        }
+
         [Then(@"Standard cookie banner should be displayed at the top of the page")]
         public void ThenStandardCookieBannerShouldBeDisplayedAtTheTopOfThePage()
         {
@@ -203,13 +210,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _apprenticesHomePage.ValidateCookiesBanner();
         }
 
-
-        [Then(@"Standard gov\.uk footer should be displayed at the bottom of the page")]
-        public void ThenStandardGov_UkFooterShouldBeDisplayedAtTheBottomOfThePage()
+        [Then(@"the Help widget is displayed on bottom right hand corner")]
+        public void ThenTheHelpWidgetIsDisplayedOnBottomRightHandCorner()
         {
             _apprenticesHomePage = new ApprenticesHomePage(_context, true);
-            _apprenticesHomePage.ValidateFooter();
+
         }
+
 
 
 

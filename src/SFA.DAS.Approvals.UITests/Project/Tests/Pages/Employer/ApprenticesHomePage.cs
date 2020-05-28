@@ -86,5 +86,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             Assert.IsTrue(_pageInteractionHelper.IsElementDisplayed(CookiesSettingsButton), "Validate cookie settings button on cookies banner");
         }
 
+        public void ValidateHelpWidget()
+        {
+
+        }
+
     }
 }
