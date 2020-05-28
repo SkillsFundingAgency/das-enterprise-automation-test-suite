@@ -16,7 +16,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
             VerifyPage();
         }
 
-        public SignInToRegisterPage SelectOptionToSignInTOASAccountAndContinue()
+        public SignInToRegisterPage SelectOptionToSignInToASAccountAndContinue()
         {
             SelectRadioOptionByForAttribute("FirstTimeSignin-No");
             Continue();
