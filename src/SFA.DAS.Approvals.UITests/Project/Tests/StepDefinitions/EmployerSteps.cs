@@ -214,6 +214,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         public void ThenTheHelpWidgetIsDisplayedOnBottomRightHandCorner()
         {
             _apprenticesHomePage = new ApprenticesHomePage(_context, true);
+            _apprenticesHomePage.ValidateHelpWidget();
 
         }
 
