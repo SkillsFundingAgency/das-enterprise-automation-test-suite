@@ -1,13 +1,11 @@
-﻿using SFA.DAS.Approvals.UITests.Project.Helpers;
-using SFA.DAS.UI.Framework.TestSupport;
+﻿using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.UI.FrameworkHelpers;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using TechTalk.SpecFlow;
 using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
+using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.Registration.UITests.Project;
 
 namespace SFA.DAS.Approvals.UITests.Project
@@ -56,7 +54,7 @@ namespace SFA.DAS.Approvals.UITests.Project
 
             var selectstandardcourse = _context.ScenarioInfo.Tags.Contains("selectstandardcourse");
 
-            var randomCoursehelper = new RandomCourseHelper(random, selectstandardcourse);
+            var randomCoursehelper = new RandomCourseDataHelper(random, selectstandardcourse);
 
             var apprenticeCourseDataHelper = new ApprenticeCourseDataHelper(randomCoursehelper, apprenticeStatus);
 
@@ -67,6 +65,10 @@ namespace SFA.DAS.Approvals.UITests.Project
             _context.Set(new DataLockSqlHelper(_approvalsConfig, _datahelper, apprenticeCourseDataHelper));
 
             _context.Set(new AgreementIdSqlHelper(_registrationConfig));
+
+            _context.Set(new PublicSectorReportingDataHelper(random));
+
+            _context.Set(new PublicSectorReportingSqlDataHelper(_approvalsConfig));
         }
     }
 }

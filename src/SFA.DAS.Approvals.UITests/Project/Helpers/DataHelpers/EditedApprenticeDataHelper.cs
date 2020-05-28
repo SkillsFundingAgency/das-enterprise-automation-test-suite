@@ -1,8 +1,8 @@
 ﻿using SFA.DAS.UI.FrameworkHelpers;
 
-namespace SFA.DAS.Approvals.UITests.Project.Helpers
+namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
 {
-    public class EditedApprenticeDataHelper 
+    public class EditedApprenticeDataHelper
     {
         private readonly RandomDataGenerator _randomDataGenerator;
 

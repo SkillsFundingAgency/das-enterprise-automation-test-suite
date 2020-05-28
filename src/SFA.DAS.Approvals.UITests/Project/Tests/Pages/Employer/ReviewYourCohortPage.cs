@@ -1,6 +1,6 @@
 ﻿using System;
 using OpenQA.Selenium;
-using SFA.DAS.Approvals.UITests.Project.Helpers;
+using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer;
 using SFA.DAS.UI.FrameworkHelpers;
