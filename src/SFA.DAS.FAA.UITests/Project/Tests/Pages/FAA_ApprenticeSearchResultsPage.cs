@@ -1,9 +1,5 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
-using SFA.DAS.ConfigurationBuilder;
-using SFA.DAS.RAA.DataGenerator;
-using SFA.DAS.RAA.DataGenerator.Project;
-using SFA.DAS.UI.FrameworkHelpers;
 using System;
 using TechTalk.SpecFlow;
 using System.Collections.Generic;
@@ -15,32 +11,18 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
         protected override string PageTitle => "Search results";
 
         #region Helpers and Context
-        private readonly PageInteractionHelper _pageInteractionHelper;
-        private readonly FormCompletionHelper _formCompletionHelper;
-        private readonly FAADataHelper _faaDataHelper;
-        private readonly VacancyTitleDatahelper _vacancyTitleDataHelper;
-        private readonly ObjectContext _objectContext;
         private readonly ScenarioContext _context;
         #endregion
+
         private By NationwideVacancies => By.Id("nationwideLocationTypeLink");
         private By SortResults => By.Id("sort-results");
         private By NationwideVacanciesText => By.Id("multiple-positions-nationwide");
-        private By VacancyLink => By.LinkText(_vacancyTitleDataHelper.VacancyTitle);
+        private By VacancyLink => By.LinkText(_vacancytitledataHelper.VacancyTitle);
         private By DisplayResults => By.Id("results-per-page");
         private By VacanciesList => By.ClassName("vacancy-link");
 
 
-
-        public FAA_ApprenticeSearchResultsPage(ScenarioContext context) : base(context)
-        {
-            _pageInteractionHelper = context.Get<PageInteractionHelper>();
-            _formCompletionHelper = context.Get<FormCompletionHelper>();
-            _faaDataHelper = context.Get<FAADataHelper>();
-            _vacancyTitleDataHelper = context.Get<VacancyTitleDatahelper>();
-            _objectContext = context.Get<ObjectContext>();
-            _context = context;
-            VerifyPage();
-        }
+        public FAA_ApprenticeSearchResultsPage(ScenarioContext context) : base(context) => _context = context;
 
         public void CheckSortOrderAndDistance()
         {
@@ -60,7 +42,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 
         protected void CheckNationwideVacanciesText()
         {
-            _pageInteractionHelper.VerifyText(NationwideVacanciesText, _faaDataHelper.NationwideVacanciesText);
+            _pageInteractionHelper.VerifyText(NationwideVacanciesText, _faadataHelper.NationwideVacanciesText);
         }
 
         protected void ClickNationwideVacancies()
@@ -98,7 +80,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
                 List<IWebElement> vacanciesCount = _pageInteractionHelper.FindElements(VacanciesList);
                 foreach (var vacancy in vacanciesCount)
                 {
-                    if (vacancy.Text.Contains(_vacancyTitleDataHelper.VacancyTitle))
+                    if (vacancy.Text.Contains(_vacancytitledataHelper.VacancyTitle))
                     {
                         return true;
                     }

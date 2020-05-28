@@ -1,6 +1,4 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.RAA.DataGenerator;
-using SFA.DAS.UI.FrameworkHelpers;
 using System;
 using System.Collections.Generic;
 using TechTalk.SpecFlow;
@@ -10,10 +8,8 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
     public class FAA_TraineeshipSearchResultsPage : FAA_SearchVacancyBasePage
     {
         protected override string PageTitle => "Search results";
+
         #region Helpers and Context
-        private readonly FormCompletionHelper _formCompletionHelper;
-        private readonly PageInteractionHelper _pageInteractionHelper;
-        private readonly VacancyTitleDatahelper _dataHelper;
         private readonly ScenarioContext _context;        
         #endregion
 
@@ -24,14 +20,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
         private By VacanciesList => By.ClassName("vacancy-link");
         private By DisplayResults => By.Id("results-per-page");
 
-        public FAA_TraineeshipSearchResultsPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            _formCompletionHelper = context.Get<FormCompletionHelper>();
-            _pageInteractionHelper = context.Get<PageInteractionHelper>();
-            _dataHelper = context.Get<VacancyTitleDatahelper>();
-            VerifyPage();
-        }
+        public FAA_TraineeshipSearchResultsPage(ScenarioContext context) : base(context) => _context = context;
 
         public FAA_TraineeshipSearchResultsPage SearchForAVacancy(string location, string distance)
         {
@@ -51,11 +40,12 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
             }            
 
             List<IWebElement> vacanciesCount = _pageInteractionHelper.FindElements(VacanciesList);
+            
             bool status = false;
             
             foreach (var vacancy in vacanciesCount)
             {
-                if(vacancy.Text.Contains(_dataHelper.VacancyTitle))
+                if(vacancy.Text.Contains(_vacancytitledataHelper.VacancyTitle))
                 {
                     status = true;
                     break;
@@ -63,7 +53,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
             }
             if(!status)
             {
-                throw new Exception($"Vacancy title: {_dataHelper.VacancyTitle} Not Found");
+                throw new Exception($"Vacancy title: {_vacancytitledataHelper.VacancyTitle} Not Found");
             }
             return new FAA_TraineeshipSearchResultsPage(_context);
         }

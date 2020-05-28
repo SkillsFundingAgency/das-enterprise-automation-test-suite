@@ -5,20 +5,12 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 {
-    public class FAA_WithdrawSuccessfulPage : BasePage
+    public class FAA_WithdrawSuccessfulPage : FAABasePage
     {
-        protected override string PageTitle => $"You've successfully withdrawn from {_dataHelper.VacancyTitle}";
+        protected override string PageTitle => $"You've successfully withdrawn from {_vacancytitledataHelper.VacancyTitle}";
 
         protected override By PageHeader => By.CssSelector("#SuccessMessageText");
 
-        #region Helpers and Context
-        private readonly VacancyTitleDatahelper _dataHelper;
-        #endregion
-
-        public FAA_WithdrawSuccessfulPage(ScenarioContext context) : base(context)
-        {
-            _dataHelper = context.Get<VacancyTitleDatahelper>();
-            VerifyPage();
-        }
+        public FAA_WithdrawSuccessfulPage(ScenarioContext context) : base(context) { }
     }
 }

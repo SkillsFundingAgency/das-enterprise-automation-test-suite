@@ -1,11 +1,10 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 {
-    public class FAA_Indexpage : BasePage
+    public class FAA_Indexpage : FAABasePage
     {
         protected override string PageTitle => "Find an apprenticeship";
 
@@ -22,9 +21,6 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
         public FAA_Indexpage(ScenarioContext context) : base(context)
         {
             _context = context;
-            _formCompletionHelper = context.Get<FormCompletionHelper>();
-            _pageInteractionHelper = context.Get<PageInteractionHelper>();
-            VerifyPage();
             AcceptCookies();
         }
 

@@ -1,27 +1,16 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.RAA.DataGenerator;
-using SFA.DAS.ConfigurationBuilder;
-using SFA.DAS.UI.Framework.TestSupport;
-using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 using SFA.DAS.RAA.DataGenerator.Project;
 using System;
-using System.Globalization;
 
 namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 {
-    public class FAA_ApprenticeSummaryPage : BasePage
+    public class FAA_ApprenticeSummaryPage : FAABasePage
     {
-        protected override string PageTitle => _dataHelper.VacancyTitle;
+        protected override string PageTitle => _vacancytitledataHelper.VacancyTitle;
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
-        private readonly ObjectContext _objectContext;
-        private readonly VacancyTitleDatahelper _dataHelper;
-        private readonly FormCompletionHelper _formCompletionHelper;
-        private readonly PageInteractionHelper _pageInteractionHelper;        
-        private readonly RegexHelper _regexHelper;
-        private readonly FAADataHelper _faaDataHelper;
         #endregion
 
         private By ApplyButton => By.Id("apply-button");
@@ -41,13 +30,6 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
         public FAA_ApprenticeSummaryPage(ScenarioContext context) : base(context)
         {
             _context = context;
-            _objectContext = context.Get<ObjectContext>();
-            _dataHelper = context.Get<VacancyTitleDatahelper>();
-            _formCompletionHelper = context.Get<FormCompletionHelper>();
-            _pageInteractionHelper = context.Get<PageInteractionHelper>();
-            _regexHelper = context.Get<RegexHelper>();
-            _faaDataHelper = context.Get<FAADataHelper>();
-            VerifyPage();
             if (!_objectContext.IsRAAV1()) { VerifyEmployerDetails(); }
         }
 
@@ -73,10 +55,10 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
         public void VerifyNewDates()
         {
 
-            DateTime Date = _faaDataHelper.NewVacancyClosing;
+            DateTime Date = _faadataHelper.NewVacancyClosing;
             string actualClosingDate = Date.ToString("dd MMM yyyy");
 
-            DateTime PossibleStartDate = _faaDataHelper.NewVacancyStart;
+            DateTime PossibleStartDate = _faadataHelper.NewVacancyStart;
             string actualStartDate = PossibleStartDate.ToString("dd MMM yyyy");
 
             _pageInteractionHelper.VerifyText(ClosingDate, "Closing date: " + actualClosingDate + "");
@@ -89,8 +71,8 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
             string[] wageRange = displayedWageFAA.Split('-');
             string minWage =_regexHelper.GetVacancyCurrentWage(wageRange[0]);
             string maxWage = _regexHelper.GetVacancyCurrentWage(wageRange[1]);
-            _pageInteractionHelper.VerifyText(minWage,_faaDataHelper.NewCustomMinWagePerWeek);
-            _pageInteractionHelper.VerifyText(maxWage,_faaDataHelper.NewCustomMaxWagePerWeek);
+            _pageInteractionHelper.VerifyText(minWage,_faadataHelper.NewCustomMinWagePerWeek);
+            _pageInteractionHelper.VerifyText(maxWage,_faadataHelper.NewCustomMaxWagePerWeek);
         }
 
         public FAA_ApprenticeSummaryPage ConfirmDraftVacancyDeletion()

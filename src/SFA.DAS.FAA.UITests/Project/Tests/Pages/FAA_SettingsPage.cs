@@ -11,7 +11,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 {
-    public class FAA_SettingsPage : BasePage
+    public class FAA_SettingsPage : FAABasePage
     {
         protected override string PageTitle => "Settings";
 
@@ -26,32 +26,16 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
         private By UpdateDetailsButton => By.Id("update-details-button");
 
         #region Helpers and Context
-        private readonly PageInteractionHelper _pageInteractionHelper;
-        private readonly ScenarioContext _context;     
-        private readonly FAADataHelper _dataHelper;        
-        private readonly FormCompletionHelper _formCompletionHelper;
-        private readonly ObjectContext _objectcontext;
-        
+        private readonly ScenarioContext _context;
         #endregion
     
-        public FAA_SettingsPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            _objectcontext = context.Get<ObjectContext>();
-            _pageInteractionHelper = context.Get<PageInteractionHelper>();
-            _formCompletionHelper = context.Get<FormCompletionHelper>();
-            _dataHelper = context.Get<FAADataHelper>();
-            VerifyPage();
-        }
+        public FAA_SettingsPage(ScenarioContext context) : base(context) => _context = context;
 
-        public void VerifySuccessfulVerificationText()
-        {
-            _pageInteractionHelper.VerifyText(SuccessfulMobileVerificationText, _dataHelper.SuccessfulPhoneVerificationText);
-        } 
+        public void VerifySuccessfulVerificationText() => _pageInteractionHelper.VerifyText(SuccessfulMobileVerificationText, _faadataHelper.SuccessfulPhoneVerificationText);
 
         public FAA_ConfirmAccountDeletionPage DeleteYourAccount()
         {
-            var (username, password, _ , _) = _objectcontext.GetFAALogin();
+            var (username, password, _ , _) = _objectContext.GetFAALogin();
             _formCompletionHelper.Click(DeleteYourAccountLink);
             _formCompletionHelper.EnterText(UsernameField, username);
             _formCompletionHelper.EnterText(PasswordField, password);
@@ -61,7 +45,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 
         public FAA_ChangeYourEmailAddressPage ChangeTheEmailIdSettings()
         {
-            _formCompletionHelper.EnterText(Postcode_Address, _dataHelper.NewPostCode);
+            _formCompletionHelper.EnterText(Postcode_Address, _faadataHelper.NewPostCode);
             _formCompletionHelper.Click(UpdateDetailsButton);
             _formCompletionHelper.Click(ChangeEmailIdLink);
             return new FAA_ChangeYourEmailAddressPage(_context);
@@ -69,7 +53,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 
         public FAA_PhoneNumberVerificationPage ChangePhoneNumberSettings()
         {
-            _formCompletionHelper.EnterText(PhoneNumberField, _dataHelper.NewPhoneNumber);
+            _formCompletionHelper.EnterText(PhoneNumberField, _faadataHelper.NewPhoneNumber);
             _formCompletionHelper.Click(UpdateDetailsButton);
             return new FAA_PhoneNumberVerificationPage(_context);
         }

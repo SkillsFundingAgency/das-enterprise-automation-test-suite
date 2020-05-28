@@ -1,21 +1,14 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.RAA.DataGenerator;
-using SFA.DAS.UI.Framework.TestSupport;
-using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 {
-    public class FAA_SignInPage : BasePage
+    public class FAA_SignInPage : FAABasePage
     {
         protected override string PageTitle => "Sign in";
 
         #region Helpers and Context
-        private readonly FormCompletionHelper _formCompletionHelper;
         private readonly ScenarioContext _context;
-        private readonly FAAConfig _config;
-        private readonly FAADataHelper _dataHelper;
-        private readonly PageInteractionHelper _PageInteractionhelper;
         #endregion
 
         private By UsernameField => By.CssSelector("#EmailAddress");
@@ -29,13 +22,9 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
         private By ChangeSettingsInfo => By.Id("SuccessMessageText");
         
 
-        public FAA_SignInPage(ScenarioContext context) : base(context)
+        public FAA_SignInPage(ScenarioContext context) : base(context, false)
         {
             _context = context;
-            _formCompletionHelper = context.Get<FormCompletionHelper>();
-            _config = context.GetFAAConfig<FAAConfig>();
-            _dataHelper = context.Get<FAADataHelper>();
-            _PageInteractionhelper = context.Get<PageInteractionHelper>();
             VerifyPage(UsernameField);
         }
 
@@ -64,14 +53,8 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
             return new FAA_CreateAnAccountPage(_context);
         }
 
-        public void ConfirmAccountDeletion()
-        {
-            _PageInteractionhelper.VerifyText(ChangeSettingsInfo, "Your account has been deleted"); 
-        }
+        public void ConfirmAccountDeletion() => _pageInteractionHelper.VerifyText(ChangeSettingsInfo, "Your account has been deleted"); 
 
-        public void ConfirmEmailAddressUpdate()
-        {
-            _PageInteractionhelper.VerifyText(ChangeSettingsInfo, "Your email address has been updated, please login using your new details.");
-        }
+        public void ConfirmEmailAddressUpdate() => _pageInteractionHelper.VerifyText(ChangeSettingsInfo, "Your email address has been updated, please login using your new details.");
     }
 }

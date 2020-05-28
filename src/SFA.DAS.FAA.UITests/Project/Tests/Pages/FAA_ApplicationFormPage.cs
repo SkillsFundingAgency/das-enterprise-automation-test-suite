@@ -1,20 +1,14 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.RAA.DataGenerator;
-using SFA.DAS.UI.Framework.TestSupport;
-using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 {
-    public class FAA_ApplicationFormPage : BasePage
+    public class FAA_ApplicationFormPage : FAABasePage
     {
         protected override string PageTitle => "Application form";
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
-        private readonly FAADataHelper _dataHelper;
-        private readonly FormCompletionHelper _formCompletionHelper;
-        private readonly PageInteractionHelper  _pageInteractionHelper;
         #endregion
 
         #region
@@ -62,28 +56,21 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 
         #endregion
 
-        public FAA_ApplicationFormPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            _dataHelper = context.Get<FAADataHelper>();
-            _formCompletionHelper = context.Get<FormCompletionHelper>();
-            _pageInteractionHelper = context.Get<PageInteractionHelper>();
-            VerifyPage();
-        }
+        public FAA_ApplicationFormPage(ScenarioContext context) : base(context) => _context = context;
 
         public void EnterEducation()
         {
-            _formCompletionHelper.EnterText(Education, _dataHelper.EducationSchoolOrCollege);
+            _formCompletionHelper.EnterText(Education, _faadataHelper.EducationSchoolOrCollege);
         }
 
         public void EnterStartedYear()
         {
-            _formCompletionHelper.EnterText(StartedYear, _dataHelper.YearsAttended.Year.ToString());
+            _formCompletionHelper.EnterText(StartedYear, _faadataHelper.YearsAttended.Year.ToString());
         }
 
         public void EnterFinishedYear()
         {
-            _formCompletionHelper.EnterText(FinishedYear, _dataHelper.YearsAttended.Year.ToString());
+            _formCompletionHelper.EnterText(FinishedYear, _faadataHelper.YearsAttended.Year.ToString());
         }
 
         public void EnterQualificationdetails(string qualificationDetails)
@@ -95,10 +82,10 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
             else
             {
                 _formCompletionHelper.Click(YesQualifications);
-                _formCompletionHelper.SelectFromDropDownByText(TypeOfQualification, _dataHelper.TypeOfQualification);
-                _formCompletionHelper.EnterText(InputYear, _dataHelper.QualificationYear);
-                _formCompletionHelper.EnterText(Subject, _dataHelper.QualificationSubject);
-                _formCompletionHelper.EnterText(Grade, _dataHelper.QualificationGrade);
+                _formCompletionHelper.SelectFromDropDownByText(TypeOfQualification, _faadataHelper.TypeOfQualification);
+                _formCompletionHelper.EnterText(InputYear, _faadataHelper.QualificationYear);
+                _formCompletionHelper.EnterText(Subject, _faadataHelper.QualificationSubject);
+                _formCompletionHelper.EnterText(Grade, _faadataHelper.QualificationGrade);
                 _formCompletionHelper.Click(SaveThisQualificationLink);
             }
         }
@@ -112,13 +99,13 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
             else
             {
                 _formCompletionHelper.Click(YesWorkExperience);
-                _formCompletionHelper.EnterText(Employer, _dataHelper.WorkExperienceEmployer);
-                _formCompletionHelper.EnterText(JobTitle, _dataHelper.WorkExperienceJobTitle);
-                _formCompletionHelper.EnterText(MainDuties, _dataHelper.WorkExperienceMainDuties);
-                _formCompletionHelper.SelectFromDropDownByValue(StartedMonth, _dataHelper.WorkExperienceStarted.Month.ToString());
-                _formCompletionHelper.EnterText(FromYear, _dataHelper.WorkExperienceStarted.Year.ToString());
-                _formCompletionHelper.SelectFromDropDownByValue(FinishedMonth, _dataHelper.WorkExperienceFinished.Month.ToString());
-                _formCompletionHelper.EnterText(ToYear, _dataHelper.WorkExperienceFinished.Year.ToString());
+                _formCompletionHelper.EnterText(Employer, _faadataHelper.WorkExperienceEmployer);
+                _formCompletionHelper.EnterText(JobTitle, _faadataHelper.WorkExperienceJobTitle);
+                _formCompletionHelper.EnterText(MainDuties, _faadataHelper.WorkExperienceMainDuties);
+                _formCompletionHelper.SelectFromDropDownByValue(StartedMonth, _faadataHelper.WorkExperienceStarted.Month.ToString());
+                _formCompletionHelper.EnterText(FromYear, _faadataHelper.WorkExperienceStarted.Year.ToString());
+                _formCompletionHelper.SelectFromDropDownByValue(FinishedMonth, _faadataHelper.WorkExperienceFinished.Month.ToString());
+                _formCompletionHelper.EnterText(ToYear, _faadataHelper.WorkExperienceFinished.Year.ToString());
                 _formCompletionHelper.Click(SaveWorkExperience);
             }
         }
@@ -132,41 +119,41 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
             else
             {
                 _formCompletionHelper.Click(YesTrainingCourse);
-                _formCompletionHelper.EnterText(ProviderDetails, _dataHelper.TrainingCoursesProvider);
-                _formCompletionHelper.EnterText(CourseTitle, _dataHelper.TrainingCoursesCourseTitle);
+                _formCompletionHelper.EnterText(ProviderDetails, _faadataHelper.TrainingCoursesProvider);
+                _formCompletionHelper.EnterText(CourseTitle, _faadataHelper.TrainingCoursesCourseTitle);
 
-                _formCompletionHelper.SelectFromDropDownByValue(TrainingHistoryFromMonth, _dataHelper.TrainingCoursesFrom.Month.ToString());
-                _formCompletionHelper.EnterText(TrainigHistoryFromYear, _dataHelper.TrainingCoursesFrom.Year.ToString());
-                _formCompletionHelper.SelectFromDropDownByValue(TrainingHistoryToMonth, _dataHelper.TrainingCoursesTo.Month.ToString());
-                _formCompletionHelper.EnterText(TrainingHistoryToYear, _dataHelper.TrainingCoursesTo.Year.ToString());
+                _formCompletionHelper.SelectFromDropDownByValue(TrainingHistoryFromMonth, _faadataHelper.TrainingCoursesFrom.Month.ToString());
+                _formCompletionHelper.EnterText(TrainigHistoryFromYear, _faadataHelper.TrainingCoursesFrom.Year.ToString());
+                _formCompletionHelper.SelectFromDropDownByValue(TrainingHistoryToMonth, _faadataHelper.TrainingCoursesTo.Month.ToString());
+                _formCompletionHelper.EnterText(TrainingHistoryToYear, _faadataHelper.TrainingCoursesTo.Year.ToString());
                 _formCompletionHelper.Click(SaveTrainingCourse);
             }
         }
 
         public void EnterStrengths()
         {
-            _formCompletionHelper.EnterText(Strengths, _dataHelper.Strengths);
+            _formCompletionHelper.EnterText(Strengths, _faadataHelper.Strengths);
         }
 
         public void EnterSkills()
         {
-            _formCompletionHelper.EnterText(Skills, _dataHelper.Skills);
+            _formCompletionHelper.EnterText(Skills, _faadataHelper.Skills);
         }
 
         public void EnterHobbiesAndInterests()
         {
-            _formCompletionHelper.EnterText(HobbiesAndInterests, _dataHelper.HobbiesAndInterests);
+            _formCompletionHelper.EnterText(HobbiesAndInterests, _faadataHelper.HobbiesAndInterests);
         }
 
         public void AnswerAdditionalQuestions()
         {
             if (_pageInteractionHelper.IsElementDisplayed(FirstQuestion))
             {
-                _formCompletionHelper.EnterText(FirstQuestion, _dataHelper.AdditionalQuestions1);
+                _formCompletionHelper.EnterText(FirstQuestion, _faadataHelper.AdditionalQuestions1);
             }
             if (_pageInteractionHelper.IsElementDisplayed(SecondQuestion))
             {
-                _formCompletionHelper.EnterText(SecondQuestion, _dataHelper.AdditionalQuestions1);
+                _formCompletionHelper.EnterText(SecondQuestion, _faadataHelper.AdditionalQuestions1);
             }
         }
 
