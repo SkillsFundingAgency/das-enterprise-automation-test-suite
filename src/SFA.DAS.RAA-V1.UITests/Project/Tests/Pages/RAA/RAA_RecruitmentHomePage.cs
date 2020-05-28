@@ -30,13 +30,12 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         private By VacancyTitle => By.CssSelector(".vac-title");
         private By InlineText => By.CssSelector(".sfa-display-inline");
         private By VacancyFilters => By.CssSelector(".column-one-quarter .bold-xsmall");
-        private By NoOfVacancy => By.CssSelector(".bold-xlarge");
         private By CloneLink => By.CssSelector("a");
         private By VacancyFilter => By.CssSelector(".column-one-quarter .vacancy-filter");
-        private By VacancyStatus => By.CssSelector(".bold-xsmall");
         private By VacancyTables => By.CssSelector("#vacancies-table tbody tr");
         private By NextPage => By.CssSelector(".page-navigation__btn.next");
         private By NoOfPagesCssSelector => By.CssSelector(".page-navigation__btn.next .counter");
+        private By ExpectedVacancyTitle(string vacancyReference) => By.CssSelector($"a[href='/vacancy/preview?vacancyReferenceNumber={vacancyReference}']");
 
         public RAA_RecruitmentHomePage(ScenarioContext context, bool navigate) : base(context, navigate)
         {
@@ -95,7 +94,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         {
             SearchByReferenceNumber();
 
-            if(_objectContext.IsApprenticeshipVacancyType())
+            if (_objectContext.IsApprenticeshipVacancyType())
             {
                 return new RAA_VacancyPreviewPage(_context);
             }
@@ -121,31 +120,15 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
 
         private void SearchByReferenceNumber()
         {
-            IWebElement func()
-            {
-                //_pageInteractionHelper expects some element back and fails when page is running slow and element is not available 
-                var dummyElement = _pageInteractionHelper.FindElements(VacancyFilter);
-                var vacancies = _pageInteractionHelper.FindElements(VacancyTitle);                
-
-                foreach (var vac in vacancies)
-                {
-                    if (vac.Text == vacancyTitledataHelper.VacancyTitle)
-                    {
-                        return vac;
-                    }
-                }
-
-                return dummyElement[0];
-            }
-
             ApprenticeshipVacancyType();
 
+            var vacancyReferenceNumber = _objectContext.GetVacancyReference();
             formCompletionHelper.SelectFromDropDownByValue(VacancySearchMode, "ReferenceNumber");
-            formCompletionHelper.EnterText(VacancySearchText, _objectContext.GetVacancyReference());
+            formCompletionHelper.EnterText(VacancySearchText, vacancyReferenceNumber);
             formCompletionHelper.ClickElement(() => _pageInteractionHelper.FindElement(SearchVacancy));
-            _pageInteractionHelper.WaitForElementToChange(func, AttributeHelper.InnerText, vacancyTitledataHelper.VacancyTitle);            
 
-            formCompletionHelper.ClickLinkByText(VacancyTitle, vacancyTitledataHelper.VacancyTitle);
+            _pageInteractionHelper.WaitForElementToBeClickable(ExpectedVacancyTitle(vacancyReferenceNumber));
+            formCompletionHelper.Click(VacancyTitle);
         }
 
         private void SearchByVacancyTitleContains(string filter)
@@ -173,8 +156,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         private IWebElement RandomElementAt(Func<IWebElement, bool> func)
         {
             _vacancyHelper = new RandomVacancyHelper(_pageInteractionHelper, formCompletionHelper, _objectContext);
-
             return _vacancyHelper.RandomElementAt(func, VacancyTables, VacancyTitle, NextPage, NoOfPagesCssSelector);
         }
-    }   
+    }
 }

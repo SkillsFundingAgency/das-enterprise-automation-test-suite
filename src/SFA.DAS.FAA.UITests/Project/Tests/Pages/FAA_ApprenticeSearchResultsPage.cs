@@ -21,11 +21,8 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
         #endregion
 
         private By NationwideVacancies => By.Id("nationwideLocationTypeLink");
-        private By SortResults => By.Id("sort-results");
         private By NationwideVacanciesText => By.Id("multiple-positions-nationwide");
         private By VacancyLink => By.LinkText(_vacancyTitleDataHelper.VacancyTitle);
-        private By DisplayResults => By.Id("results-per-page");
-        private By VacanciesList => By.ClassName("vacancy-link");
         private By SearchAgainLink => By.Id("start-again-link");
 
         public FAA_ApprenticeSearchResultsPage(ScenarioContext context) : base(context)
@@ -106,12 +103,6 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
         {
             _formCompletionHelper.Click(SearchAgainLink);
             return new FAA_ApprenticeSearchPage(_context);
-        }
-
-        private void ChangeSortOrderToRecentlyAdded()
-        {
-            _formCompletionHelper.SelectFromDropDownByValue(SortResults, "RecentlyAdded");
-            _pageInteractionHelper.WaitforURLToChange("sortType=RecentlyAdded");
         }
 
         private void ChangeSortResultsTo50Vacancies()

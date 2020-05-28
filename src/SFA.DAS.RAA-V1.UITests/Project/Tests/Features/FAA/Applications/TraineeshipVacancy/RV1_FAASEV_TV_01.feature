@@ -11,10 +11,7 @@ Scenario Outline: RV1_FAASEV_TV_01 search for an existing traineeship vacancy
 	Then Provider is able to submit the vacancy for approval
 	Then the Reviewer approves the vacancy
 	When an applicant is on the Find an Traineeship Page
-	And searched based on 'CV3 5ER'
-	Then the traineeship can be found based on 'CV3 1HX','2 miles'
-	And the traineeship can be found based on 'CV6 6GE','5 miles'
-	And the traineeship can be found based on 'CV11 6QF','10 miles'
+	Then the traineeship is found based on location search of 'CV1 2NJ'
 
 	Examples:
 		| location               |

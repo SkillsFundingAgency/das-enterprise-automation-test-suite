@@ -14,11 +14,10 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
         private readonly ScenarioContext _context;
         private readonly FAADataHelper _dataHelper;
         private readonly FormCompletionHelper _formCompletionHelper;
-        private readonly PageInteractionHelper  _pageInteractionHelper;
+        private readonly PageInteractionHelper _pageInteractionHelper;
         #endregion
 
         #region
-        private By ApplicationFormHeading => By.Id("appTourStart");
         private By Education => By.Id("Candidate_Education_NameOfMostRecentSchoolCollege");
         private By StartedYear => By.Id("Candidate_Education_FromYear");
         private By FinishedYear => By.Id("Candidate_Education_ToYear");
@@ -55,11 +54,8 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
         private By HobbiesAndInterests => By.Id("Candidate_AboutYou_WhatAreYourHobbiesInterests");
         private By SaveAndContinue => By.Id("apply-button");
         private By AcceptSubmit => By.Id("AcceptSubmitLabel");
-        private By SignOut => By.XPath("//a[contains(.,'Sign out')]");
-        private By MyApplications => By.CssSelector("#myapplications-link");
+        private By MyApplications => By.CssSelector("a#myapplications-link");
         private By Save => By.Id("save-button");
-
-
         #endregion
 
         public FAA_ApplicationFormPage(ScenarioContext context) : base(context)
@@ -71,20 +67,11 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
             VerifyPage();
         }
 
-        public void EnterEducation()
-        {
-            _formCompletionHelper.EnterText(Education, _dataHelper.EducationSchoolOrCollege);
-        }
+        public void EnterEducation() => _formCompletionHelper.EnterText(Education, _dataHelper.EducationSchoolOrCollege);
 
-        public void EnterStartedYear()
-        {
-            _formCompletionHelper.EnterText(StartedYear, _dataHelper.YearsAttended.Year.ToString());
-        }
+        public void EnterStartedYear() => _formCompletionHelper.EnterText(StartedYear, _dataHelper.YearsAttended.Year.ToString());
 
-        public void EnterFinishedYear()
-        {
-            _formCompletionHelper.EnterText(FinishedYear, _dataHelper.YearsAttended.Year.ToString());
-        }
+        public void EnterFinishedYear() => _formCompletionHelper.EnterText(FinishedYear, _dataHelper.YearsAttended.Year.ToString());
 
         public void EnterQualificationdetails(string qualificationDetails)
         {
@@ -143,20 +130,11 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
             }
         }
 
-        public void EnterStrengths()
-        {
-            _formCompletionHelper.EnterText(Strengths, _dataHelper.Strengths);
-        }
+        public void EnterStrengths() => _formCompletionHelper.EnterText(Strengths, _dataHelper.Strengths);
 
-        public void EnterSkills()
-        {
-            _formCompletionHelper.EnterText(Skills, _dataHelper.Skills);
-        }
+        public void EnterSkills() => _formCompletionHelper.EnterText(Skills, _dataHelper.Skills);
 
-        public void EnterHobbiesAndInterests()
-        {
-            _formCompletionHelper.EnterText(HobbiesAndInterests, _dataHelper.HobbiesAndInterests);
-        }
+        public void EnterHobbiesAndInterests() => _formCompletionHelper.EnterText(HobbiesAndInterests, _dataHelper.HobbiesAndInterests);
 
         public void AnswerAdditionalQuestions()
         {
@@ -170,15 +148,9 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
             }
         }
 
-        public void ClickSaveAndContinue()
-        {
-            _formCompletionHelper.Click(SaveAndContinue);
-        }
+        public void ClickSaveAndContinue() => _formCompletionHelper.Click(SaveAndContinue);
 
-        public void SelectAcceptSubmit()
-        {
-            _formCompletionHelper.SendKeys(AcceptSubmit, Keys.Space);
-        }
+        public void SelectAcceptSubmit() => _formCompletionHelper.SendKeys(AcceptSubmit, Keys.Space);
 
         public FAA_ApprenticeshipApplicationSubmittedPage SubmitApprenticeshipApplication()
         {
@@ -192,23 +164,11 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
             return new FAA_TraineeshipApplicationSubmittedPage(_context);
         }
 
-        public void ClickSignOut()
-        {
-            _formCompletionHelper.Click(SignOut);
-        }
-
-        public void GoToMyApplications()
-        {
-            if (_pageInteractionHelper.IsElementDisplayed(MyApplications))
-            {
-                _formCompletionHelper.Click(MyApplications);
-            }
-        }
-
         public FAA_MyApplicationsHomePage ClickSave()
         {
             _formCompletionHelper.Click(Save);
-            GoToMyApplications();
+            _formCompletionHelper.Click(MyApplications);
+            _pageInteractionHelper.AcceptAlertIfPresent(true);
             return new FAA_MyApplicationsHomePage(_context);
         }
     }

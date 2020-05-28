@@ -12,7 +12,6 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.StepDefinitions
         private FAA_ApprenticeSearchPage _apprenticeSearchPage;
         private FAA_ApprenticeSearchResultsPage _apprenticeSearchResultspage;
         private FAA_TraineeshipSearchPage _traineeshipSearchPage;
-        private FAA_TraineeshipSearchResultsPage _traineeshipSearchResultsPage;
 
         public FAAFindApplicationSteps(ScenarioContext context) => _faaStepsHelper = new FAAStepsHelper(context);
 
@@ -37,15 +36,8 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.StepDefinitions
         [When(@"an applicant is on the Find an Traineeship Page")]
         public void WhenAnApplicantIsOnTheFindAnTraineeshipPage() => _traineeshipSearchPage = _faaStepsHelper.FindATraineeship();
 
-        [When(@"searched based on '(.*)'")]
-        public void WhenSearchedBasedOn(string postCode) => _traineeshipSearchResultsPage = _traineeshipSearchPage.SearchForAVacancy(postCode);
-
-        [Then(@"the traineeship can be found based on '(.*)','(.*)'")]
-        public void ThenTheTraineeshipCanBeFoundBasedOn(string postCode, string distance)
-        {
-            _traineeshipSearchResultsPage = _traineeshipSearchResultsPage.SearchForAVacancy(postCode, distance);
-            Assert.AreEqual(true, _traineeshipSearchResultsPage.FoundVacancies(), $"No traineeship found within '{distance}' of '{postCode}'");
-        }
+        [Then(@"the traineeship is found based on location search of '(.*)'")]
+        public void ThenTheTraineeshipIsFoundBasedOnLocationSearch(string postCode) => _traineeshipSearchPage.SearchForAVacancy(postCode).CheckVacancyIsDisplayed(postCode);
 
         [Then(@"the Sort results is changed by closing date and distance is not displayed on the vacancies")]
         public void ThenTheSortResultsIsChangedByClosingDateAndDistanceIsJotDisplayedOnTheVacancies() => _faaStepsHelper.CheckNationWideVacancies();

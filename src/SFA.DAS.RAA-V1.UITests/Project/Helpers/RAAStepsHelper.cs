@@ -267,6 +267,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
         private RAA_RecruitmentHomePage SubmitRecruitmentLoginDetails()
         {
             new RAA_IndexPage(_context)
+                .AcceptCookies()
                 .ClickOnSignInButton()
                 .LoginToPireanPreprod();
 
