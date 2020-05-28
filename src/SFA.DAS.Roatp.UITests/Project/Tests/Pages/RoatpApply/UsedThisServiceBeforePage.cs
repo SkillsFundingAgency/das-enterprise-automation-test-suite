@@ -4,7 +4,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
 {
     public class UsedThisServiceBeforePage : RoatpApplyBasePage
     {
-        protected override string PageTitle => "Is this your first time using the apprenticeship service (AS) sign in?";
+        protected override string PageTitle => "Do you have an apprenticeship service (AS) sign in account?";
         
         #region Helpers and Context
         private readonly ScenarioContext _context;
@@ -16,7 +16,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
             VerifyPage();
         }
 
-        public SignInToRegisterPage SelectingNoOptionForFirstTimeSignInAndContinue()
+        public SignInToRegisterPage SelectingYesOptionForASSignInAccountAndContinue()
         {
             SelectRadioOptionByForAttribute("FirstTimeSignin-No");
             Continue();
