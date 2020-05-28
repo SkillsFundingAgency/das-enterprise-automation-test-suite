@@ -27,7 +27,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.RoatpApply
         {
             return new ServiceStartPage(_context)
                 .ClickApplyNow()
-                .SelectingYesOptionForASSignInAccountAndContinue()
+                .SelectOptionToSignInTOASAccountAndContinue()
                 .SubmitValidUserDetails()
                 .EnterOrgTypeCompanyProvidersUkprn();
         }
