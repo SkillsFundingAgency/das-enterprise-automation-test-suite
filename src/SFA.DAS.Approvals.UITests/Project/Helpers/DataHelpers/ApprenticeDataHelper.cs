@@ -4,9 +4,9 @@ using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.UI.FrameworkHelpers;
 
-namespace SFA.DAS.Approvals.UITests.Project.Helpers
+namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
 {
-    public class ApprenticeDataHelper 
+    public class ApprenticeDataHelper
     {
         private readonly RandomDataGenerator _randomDataGenerator;
         private readonly CommitmentsSqlDataHelper _commitmentsdataHelper;
@@ -16,7 +16,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers
         {
             _objectContext = objectContext;
             _randomDataGenerator = randomDataGenerator;
-            _commitmentsdataHelper = commitmentsdataHelper;         
+            _commitmentsdataHelper = commitmentsdataHelper;
             ApprenticeFirstname = $"F_{_randomDataGenerator.GenerateRandomAlphabeticString(10)}";
             ApprenticeLastname = $"L_{_randomDataGenerator.GenerateRandomAlphabeticString(10)}";
             DateOfBirthDay = _randomDataGenerator.GenerateRandomDateOfMonth();
@@ -28,7 +28,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers
             _apprenticeid = 0;
         }
 
-        public string ApprenticeFirstname { get; private set; }      
+        public string ApprenticeFirstname { get; private set; }
 
         public string ApprenticeLastname { get; private set; }
 
