@@ -1,7 +1,9 @@
-﻿namespace SFA.DAS.FAT.UITests
+﻿using SFA.DAS.UI.Framework;
+
+namespace SFA.DAS.FAT.UITests
 {
     public class FATConfig
     {
-        public string FATUrl { get; set; }
+        public string FATUrl => UrlConfig.FATUrl;
     }
 }

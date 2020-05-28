@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using System;
+using OpenQA.Selenium;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.UI.FrameworkHelpers;
@@ -61,12 +62,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                 .SendInstructionsToEmployerForAnApprovedCohort();
         }
 
-        public ProviderReviewYourCohortPage AddApprenticeAndSavesWithoutSendingEmployerForApproval(int numberOfApprentices)
+        public ProviderYourCohortsPage AddApprenticeAndSavesWithoutSendingEmployerForApproval(int numberOfApprentices)
         {
-           return AddApprentice(numberOfApprentices)
-                .SelectSaveAndContinue()
-                .SubmitSaveButDontSendToEmployer()
-                .SelectViewCurrentCohortDetails();
+            return AddApprentice(numberOfApprentices)
+                 .SelectSaveAndContinue()
+                 .SubmitSaveButDontSendToEmployer();
         }
 
         public ProviderReviewYourCohortPage AddApprentice(ProviderAddApprenticeDetailsPage _providerAddApprenticeDetailsPage, int numberOfApprentices)
@@ -227,6 +227,22 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
              .SelectSaveAndContinue()
              .SubmitApproveAndSendToEmployerForApproval()
              .SendInstructionsToEmployerForAnApprovedCohort();
+        }
+
+        public ChangeOfEmployerRequestedPage StartChangeOfEmployerJourney()
+        {
+            return GoToProviderHomePage()
+                .GoToProviderManageYourApprenticePage()
+                .SelectViewCurrentApprenticeDetails()
+                .ClickChangeEmployerLink()
+                .SelectChangeTheEmployer()
+                .SelectNewEmployer()
+                .ConfirmNewEmployer()
+                .EndNewStartDateAndContinue()
+                .EnterNewEndDateAndContinue()
+                .EnterNewPriceAndContinue()
+                .VerifyAndSubmitChangeOfEmployerRequest()
+                .VerifyChangeOfEmployerHasBeenRequested();
         }
     }
 }

@@ -1,6 +1,5 @@
 ﻿using SFA.DAS.UI.FrameworkHelpers;
 using System;
-using System.Collections.Generic;
 namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
 {
     public class CommitmentsSqlDataHelper : SqlDbHelper
@@ -19,5 +18,19 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
         }
 
         public int GetApprenticeshipId(string uln) => Convert.ToInt32(GetDataAsObject($"SELECT Id from [dbo].[Apprenticeship] WHERE ULN = '{uln}' AND PaymentStatus >= 1"));
+
+        public string GetNewcohortReference(string ULN)
+        {
+            string query = $@"SELECT Reference FROM Commitment cmt
+                                INNER JOIN Apprenticeship app
+                                ON cmt.id = app.CommitmentId
+                                WHERE app.ULN = '{ULN}'
+                                AND app.ContinuationOfId is not null
+                                ORDER BY app.CreatedOn DESC";
+
+            var x = GetDataAsObject(query);
+
+            return Convert.ToString(GetDataAsObject(query));
+        }
     }
 }

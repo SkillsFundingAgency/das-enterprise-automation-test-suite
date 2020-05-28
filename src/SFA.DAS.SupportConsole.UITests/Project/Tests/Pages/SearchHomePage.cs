@@ -1,45 +1,64 @@
 ﻿using OpenQA.Selenium;
 using TechTalk.SpecFlow;
-using SFA.DAS.UI.FrameworkHelpers;
-using SFA.DAS.UI.Framework.TestSupport;
 
 namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Pages
 {
-    public class SearchHomePage : BasePage
+    public class SearchHomePage : SupportConsoleBasePage
     {
         protected override string PageTitle => "Search";
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
-        private readonly FormCompletionHelper _formCompletionHelper;
-        private readonly TableRowHelper _tableRowHelper;
-        private readonly SupportConsoleConfig _config;
-
         #endregion
 
         #region Locators
         protected override By PageHeader => By.CssSelector(".heading-large");
-        private By AccountsRadioButton => By.CssSelector("label");
+        private By SearchOptionsLabels => By.CssSelector("label");
         private By SearchButton => By.Id("searchButton");
         private By SearchTextBox => By.Id("search-main");
+        private By NextPage => By.CssSelector(".page-navigation .next");
+        private By NoOfPages => By.CssSelector(".page-navigation .next .counter");
         #endregion
+
+        private string AccountSearchHint => "Enter account name, account ID or PAYE scheme";
+        private string UserSearchHint => "Enter name or email address";
 
         public SearchHomePage(ScenarioContext context) : base(context)
         {
             _context = context;
-            _formCompletionHelper = context.Get<FormCompletionHelper>();
-            _tableRowHelper = context.Get<TableRowHelper>();
-            _config = context.GetSupportConsoleConfig<SupportConsoleConfig>();
             VerifyPage();
         }
 
-        public AccountOverviewPage SearchAndViewAccount()
+        public UserInformationOverviewPage SearchByNameAndView() => SearchAndViewUserInformation(config.Name);
+
+        public UserInformationOverviewPage SearchByEmailAddressAndView() => SearchAndViewUserInformation(config.EmailAddress);
+        
+        public AccountOverviewPage SearchByPublicAccountIdAndViewAccount() => SearchAndViewAccount(config.PublicAccountId);
+
+        public AccountOverviewPage SearchByHashedAccountIdAndViewAccount() => SearchAndViewAccount(config.HashedAccountId);
+
+        public AccountOverviewPage SearchByAccountNameAndViewAccount() => SearchAndViewAccount(config.AccountName);
+
+        public AccountOverviewPage SearchByPayeSchemeAndViewAccount() => SearchAndViewAccount(config.PayeScheme);
+
+        private AccountOverviewPage SearchAndViewAccount(string criteria)
         {
-            _formCompletionHelper.SelectRadioOptionByForAttribute(AccountsRadioButton, "AccountSearchType");
-            _formCompletionHelper.EnterText(SearchTextBox, _config.AccountId);
-            _formCompletionHelper.Click(SearchButton);
-            _tableRowHelper.SelectRowFromTable("view", _config.AccountId);
+            formCompletionHelper.SelectRadioOptionByForAttribute(SearchOptionsLabels, "AccountSearchType");
+            pageInteractionHelper.WaitForElementToChange(SearchTextBox, "placeholder", AccountSearchHint);
+            formCompletionHelper.EnterText(SearchTextBox, criteria);
+            formCompletionHelper.Click(SearchButton);
+            tableRowHelper.SelectRowFromTable("view", config.PublicAccountId, NextPage, NoOfPages);
             return new AccountOverviewPage(_context);
+        }
+
+        private UserInformationOverviewPage SearchAndViewUserInformation(string criteria)
+        {
+            formCompletionHelper.SelectRadioOptionByForAttribute(SearchOptionsLabels, "UserSearchType");
+            pageInteractionHelper.WaitForElementToChange(SearchTextBox, "placeholder", UserSearchHint);
+            formCompletionHelper.EnterText(SearchTextBox, criteria);
+            formCompletionHelper.Click(SearchButton);
+            tableRowHelper.SelectRowFromTable("view", config.EmailAddress, NextPage, NoOfPages);
+            return new UserInformationOverviewPage(_context);
         }
     }
 }

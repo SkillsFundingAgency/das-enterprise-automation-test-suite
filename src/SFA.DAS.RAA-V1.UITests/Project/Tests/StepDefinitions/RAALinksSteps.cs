@@ -14,7 +14,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
             _context = context;
             _raaStepsHelper = new RAAStepsHelper(context);
         }
-        
+
         [Then(@"the Provider is able to search and select a Candidate")]
         public void ThenTheProviderIsAbleToSearchAndSelectACandidate() => _raaStepsHelper.SelectACandidate();
 

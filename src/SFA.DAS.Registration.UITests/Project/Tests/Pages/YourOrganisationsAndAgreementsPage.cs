@@ -1,29 +1,23 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
-using SFA.DAS.Registration.UITests.Project.Helpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 {
-    public class YourOrganisationsAndAgreementsPage : InterimEmployerBasePage
+    public class YourOrganisationsAndAgreementsPage : InterimYourOrganisationsAndAgreementsPage
     {
-        protected override string PageTitle => "Your organisations and agreements";
         private readonly ScenarioContext _context;
 
         #region Locators
-        protected override string Linktext => "Your organisations and agreements";
         private By TransferStatus => By.XPath("//p[3]");
         private By AddNewOrganisationButton => By.LinkText("Add an organisation");
         private By TableCells => By.XPath("//td");
         private By ViewAgreementLink => By.LinkText("View all agreements");
-        private By OrgRemovedMessageInHeader = By.Id("error-summary-title");
+        private By OrgRemovedMessageInHeader => By.XPath("//h3");
         private By RemoveLinkBesideNewlyAddedOrg => By.LinkText($"Remove organisation");
         #endregion
 
-        public YourOrganisationsAndAgreementsPage(ScenarioContext context, bool navigate = false) : base(context, navigate)
-        {
-            _context = context;
-        }
+        public YourOrganisationsAndAgreementsPage(ScenarioContext context, bool navigate = false) : base(context, navigate) => _context = context;
 
         public string GetTransfersStatus() => pageInteractionHelper.GetText(TransferStatus);
 

@@ -17,10 +17,6 @@ namespace SFA.DAS.FAA.UITests.Project
         }
 
         [BeforeScenario(Order = 2)]
-        public void SetUpTestProjectConfiguration()
-        {
-            var config = _configSection.GetConfigSection<FAAConfig>();
-            _context.SetFAAConfig(config);
-        }
+        public void SetUpTestProjectConfiguration() => _context.SetFAAConfig(_configSection.GetConfigSection<FAAConfig>());
     }
 }

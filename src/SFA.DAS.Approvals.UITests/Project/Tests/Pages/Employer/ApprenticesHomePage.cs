@@ -1,15 +1,13 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
-using SFA.DAS.Registration.UITests.Project.Tests.Pages;
+using SFA.DAS.Registration.UITests.Project.Tests.Pages.InterimPages;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
-    public class ApprenticesHomePage : InterimEmployerBasePage
+    public class ApprenticesHomePage : InterimApprenticesHomePage
     {
-        protected override string PageTitle => "Apprentices";
-
         #region Helpers and Context
         private readonly ScenarioContext _context;
         private readonly PageInteractionHelper _pageInteractionHelper;
@@ -29,8 +27,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         private By CookiesAcceptButton = By.Id("btn-cookie-accept");
         private By CookiesSettingsButton = By.Id("btn-cookie-settings");
-
-        protected override string Linktext => "Apprentices";
 
         public ApprenticesHomePage(ScenarioContext context, bool navigate = false) : base(context, navigate)
         {
@@ -58,6 +54,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             return new ManageYourApprenticesPage(_context);
         }
 
+        internal FinancePage GoToFinancePage() => new FinancePage(_context, true);
         public SetpaymentOrderPage ClickSetPaymentOrderLink()
         {
             formCompletionHelper.ClickElement(SetPaymentOrder);

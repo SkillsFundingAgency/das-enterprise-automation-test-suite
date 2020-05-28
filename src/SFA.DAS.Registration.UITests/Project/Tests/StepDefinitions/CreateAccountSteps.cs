@@ -108,34 +108,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
                 .ContinueToAboutYourAgreementPage()
                 .SelectViewAgreementNowAndContinue();
         }
-
-        [When(@"the Employer Creates a new organisation and adds the details manually")]
-        public CheckYourDetailsPage WhenTheEmployerCreatesANewOrganisationAndAddsTheDetailsManually()
-        {
-            _checkYourDetailsPage = WhenAnEmployerEntersAnInvalidCompanyNumberForOrgSearchInOrganisationSearchPage()
-                .ClickEnterYourDetailsManuallyLinkInSelectYourOrganisationPage()
-                .EnterOrganisationNameAndContinueInEnterYourOrganisationNamePage()
-                .ClickEnterAddressManullyLinkInFindOrganisationAddressPage()
-                .EnterAddressDetailsAndContinue();
-
-            _objectContext.UpdateOrganisationName(_registrationDataHelper.OrgNameForManualEntry);
-
-            return new CheckYourDetailsPage(_context);
-        }
-
-        [Then(@"the Employer validates error messages for manually entering blank Organisation and Address details")]
-        public void ThenTheEmployerValidatesErrorMessagesForManuallyEnteringBlankOrganisationAndAddressDetails()
-        {
-            WhenAnEmployerEntersAnInvalidCompanyNumberForOrgSearchInOrganisationSearchPage()
-                .ClickEnterYourDetailsManuallyLinkInSelectYourOrganisationPage()
-                .LeaveOrganisationNameBlankAndContinueInEnterYourOrganisationNamePage()
-                .VerifyErrorMessagesInEnterYourOrganisationNamePage()
-                .EnterOrganisationNameAndContinueInEnterYourOrganisationNamePage()
-                .ClickEnterAddressManullyLinkInFindOrganisationAddressPage()
-                .ClickContinueWithOutEnteringDetailsInEnterYourOrganisationsAddressPage()
-                .VerifyErrorMessagesInEnterYourOrganisationsAddressPage();
-        }
-
+       
         [When(@"enters an Invalid Company number for Org search")]
         public SelectYourOrganisationPage WhenAnEmployerEntersAnInvalidCompanyNumberForOrgSearchInOrganisationSearchPage()
         {
@@ -177,9 +150,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         [Then(@"the Employer Home page is displayed")]
         public void TheEmployerHomePageIsDisplayed()
         {
-            var accountid = new HomePage(_context)
-                .HomePage()
-                .AccountId();
+            var accountid = new HomePage(_context).AccountId();
 
             _objectContext.SetAccountId(accountid);
         }
@@ -232,15 +203,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
                 .SelectYourOrganisation(orgType);
         }
 
-        [When(@"the Employer initiates adding another Org of 'ManuallyAddredOrg' Type")]
-        public void WhenTheEmployerInitiatesAddingAnotherOrgOfManuallyAddredOrgType()
-        {
-            _homePage.GoToYourOrganisationsAndAgreementsPage()
-                .ClickAddNewOrganisationButton();
-
-            WhenTheEmployerCreatesANewOrganisationAndAddsTheDetailsManually();
-        }
-
         [When(@"the Employer initiates adding same Org of (Company|PublicSector|Charity) Type again")]
         public void WhenTheEmployerInitiatesAddingSameOrgTypeAgain(OrgType orgType) =>
             _selectYourOrganisationPage = _accountCreationStepsHelper.SearchForAnotherOrg(_homePage, orgType);
@@ -271,21 +233,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             ThenTheNewOrgAddedIsShownInTheAccountOrganisationsList();
         }
 
-        [Then(@"the Employer is able check the details entered in the 'Check your details' page and complete registration")]
-        public void ThenTheEmployerChecksTheDetailsEnteredAndCompletesRegistration()
-        {
-            Assert.AreEqual(_registrationDataHelper.CharityTypeOrg3Number, _checkYourDetailsPage.GetManuallyAddedOrganisationNumber());
-            Assert.AreEqual(_registrationDataHelper.CharityTypeOrg3Name, _checkYourDetailsPage.GetManuallyAddedOrganisationName());
-            _accountCreationStepsHelper.AssertManuallyAddedAddressDetailsAndCompleteRegistration(_checkYourDetailsPage);
-        }
-
-        [Then(@"the Employer is able check the details entered manually in the 'Check your details' page and complete registration")]
-        public void ThenTheEmployerIsAbleCheckTheDetailsEnteredManuallyInThePageAndCompleteRegistration()
-        {
-            Assert.AreEqual(_registrationDataHelper.OrgNameForManualEntry, _checkYourDetailsPage.GetManuallyAddedOrganisationName());
-            _accountCreationStepsHelper.AssertManuallyAddedAddressDetailsAndCompleteRegistration(_checkYourDetailsPage);
-        }
-
         [Then(@"ApprenticeshipEmployerType in Account table is marked as (.*)")]
         public void ThenApprenticeshipEmployerTypeInAccountTableIsMarkedAs(string expectedApprenticeshipEmployerType)
         {
@@ -301,28 +248,12 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
                 .SignAgreement();
         }
 
-        [When(@"an Employer initiates adding an Org of Charity Type Whose Address is Not in the Charity Commission database")]
-        public void WhenAnEmployerInitiatesAddingAnOrgOfCharityTypeWhoseAddressIsNotInTheCharityCommissionDatabase()
-            => CreateAnUserAcountAndAddPaye();
-
-        [When(@"adds the Organisation address details manually")]
-        public void WhenAddsTheOrganisationAddressDetailsManually()
-        {
-            _checkYourDetailsPage = _searchForYourOrganisationPage.SearchForAnOrganisation(_registrationDataHelper.CharityTypeOrg3Number)
-                                        .SelectYourOrganisation(_registrationDataHelper.CharityTypeOrg3Name)
-                                        .ClickEnterAddressManullyLinkInFindOrganisationAddressPage()
-                                        .EnterAddressDetailsAndContinue();
-
-            _objectContext.UpdateOrganisationName(_registrationDataHelper.CharityTypeOrg3Name);
-        }
-
         [Then(@"'Start adding apprentices now' task link is displayed under Tasks pane")]
         public void ThenTaskLinkIsDisplayedUnderTasksPane() => _homePage.VerifyStartAddingApprenticesNowTaskLink();
 
         [Then(@"the Employer is Not allowed to Remove the first Org added")]
         public void ThenTheEmployerIsNotAllowedToRemoveTheFirstOrgAdded()
         {
-            
              Assert.AreEqual(_homePage.GoToYourOrganisationsAndAgreementsPage().IsRemoveLinkBesideNewlyAddedOrg(), false);
              _homePage = new HomePage(_context, true); 
         }

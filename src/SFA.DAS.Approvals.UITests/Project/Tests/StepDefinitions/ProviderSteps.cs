@@ -77,7 +77,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [When(@"Provider adds (.*) apprentices and saves without sending to the employer")]
         public void WhenProviderAddsApprenticesAndSavesWithoutSendingToTheEmployer(int numberOfApprentices)
         {
-            _providerReviewYourCohortPage = _providerStepsHelper.AddApprenticeAndSavesWithoutSendingEmployerForApproval(numberOfApprentices);
+            _providerStepsHelper.AddApprenticeAndSavesWithoutSendingEmployerForApproval(numberOfApprentices);
+            _providerReviewYourCohortPage = _providerStepsHelper.EditApprentice();
         }
 
         [Then(@"Provider is able to edit all apprentices before approval")]

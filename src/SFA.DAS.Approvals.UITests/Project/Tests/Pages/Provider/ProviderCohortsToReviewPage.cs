@@ -8,7 +8,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 {
     public class ProviderCohortsToReviewPage : BasePage
     {
-        protected override string PageTitle => "Cohorts to review, update or approve";
+        protected override string PageTitle => "Apprentice details ready for review";
 
         #region Helpers and Context
         private readonly TableRowHelper _tableRowHelper;

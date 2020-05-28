@@ -20,7 +20,6 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         private By ContactumberField => By.CssSelector("#ContactNumber");
         private By EmailField => By.CssSelector("#ContactEmail");
         private By SaveAndContinueButton => By.Id("createVacancyButton");
-        private By Iframe => By.CssSelector("iframe");
         private By TraineeshipDropdown => By.Id("s2id_SectorCodeName");
         private By TrainingBody => By.XPath("//body");
 
@@ -67,9 +66,9 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
 
         public RAA_EnterTrainingDetailsPage EnterTrainingToBeProvided()
         {
-            _webDriver.SwitchTo().Frame(_webDriver.FindElement(Iframe));
+            tabHelper.SwitchToFrame();
             formCompletionHelper.EnterText(TrainingBody, dataHelper.TrainingDetails);
-            _webDriver.SwitchTo().DefaultContent();
+            tabHelper.SwitchToDefaultContent();
             return this;
         }
 

@@ -71,12 +71,14 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Features.LoginToFAA
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("FAA_Login_01 -  Login to FAA with Unactivated registered Email")]
+        [NUnit.Framework.CategoryAttribute("faa")]
         [NUnit.Framework.CategoryAttribute("raa-v1")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("FAALoginNewCredentials")]
         public virtual void FAA_Login_01_LoginToFAAWithUnactivatedRegisteredEmail()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("FAA_Login_01 -  Login to FAA with Unactivated registered Email", null, new string[] {
+                        "faa",
                         "raa-v1",
                         "regression",
                         "FAALoginNewCredentials"});

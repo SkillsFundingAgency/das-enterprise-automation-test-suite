@@ -70,25 +70,33 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Features.GwAdmin
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RP_AD_GW_01_Sample test")]
-        [NUnit.Framework.CategoryAttribute("notestdata")]
+        [NUnit.Framework.DescriptionAttribute("RP_AD_GW_01")]
+        [NUnit.Framework.CategoryAttribute("resetApplicationToNew")]
         [NUnit.Framework.CategoryAttribute("roatp")]
         [NUnit.Framework.CategoryAttribute("roatpadmin")]
         [NUnit.Framework.CategoryAttribute("newroatpadmin")]
+        [NUnit.Framework.CategoryAttribute("rpadgw01")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public virtual void RP_AD_GW_01_SampleTest()
+        public virtual void RP_AD_GW_01()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_AD_GW_01_Sample test", null, new string[] {
-                        "notestdata",
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_AD_GW_01", null, new string[] {
+                        "resetApplicationToNew",
                         "roatp",
                         "roatpadmin",
                         "newroatpadmin",
+                        "rpadgw01",
                         "regression"});
-#line 8
+#line 9
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 9
-testRunner.When("the gateway admin lands on the Dashboard", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 10
+testRunner.Given("the admin lands on the Dashboard", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 11
+testRunner.When("the admin access the GatewayApplications", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 12
+testRunner.And("the gateway admin assess all sections as PASS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 13
+testRunner.Then("the gateway admin completes assessment by confirming the Gateway outcome as PASS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

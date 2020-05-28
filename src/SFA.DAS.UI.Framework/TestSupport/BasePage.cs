@@ -17,7 +17,6 @@ namespace SFA.DAS.UI.Framework.TestSupport
         private readonly IWebDriver _webDriver;
         private readonly ScreenShotTitleGenerator _screenShotTitleGenerator;
         private readonly string _directory;
-        private readonly string _browser;
         #endregion
 
         protected virtual By PageHeader => By.CssSelector(".govuk-heading-xl, .heading-xlarge, .govuk-heading-l, .govuk-panel__title");
@@ -25,7 +24,6 @@ namespace SFA.DAS.UI.Framework.TestSupport
         protected virtual By BackLink => By.CssSelector(".govuk-back-link, .back-link");
         protected virtual By RadioLabels => By.CssSelector(".govuk-radios__label");
         protected virtual By CheckBoxLabels => By.CssSelector(".govuk-checkboxes__label");
-
         protected abstract string PageTitle { get; }
 
         protected virtual By AcceptCookieButton { get; }
@@ -39,7 +37,6 @@ namespace SFA.DAS.UI.Framework.TestSupport
             _screenShotTitleGenerator = context.Get<ScreenShotTitleGenerator>();
             var objectContext = context.Get<ObjectContext>();
             _directory = objectContext.GetDirectory();
-            _browser = objectContext.GetBrowser();
             
             if (_frameworkConfig.IsVstsExecution)
                 ScreenshotHelper.TakeScreenShot(_webDriver, _directory, _screenShotTitleGenerator.GetNextCount());
