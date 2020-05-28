@@ -25,7 +25,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
         protected readonly PublicSectorReportingDataHelper dataHelper;
         #endregion
 
-        public PublicSectorReportingBasePage(ScenarioContext context) : base(context)
+        protected PublicSectorReportingBasePage(ScenarioContext context) : base(context)
         {
             tabHelper = context.Get<TabHelper>();
             formCompletionHelper = context.Get<FormCompletionHelper>();

@@ -82,11 +82,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.PublicSectorReporting
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 6
-testRunner.Given("the Employer logins using existing NonLevy Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("the Employer logins using existing NonLevy Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 7
-testRunner.Then("the employer can create a new report", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the employer can create a new report", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 8
-testRunner.And("then employer can edit a submitted report", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("then employer can edit a submitted report", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
