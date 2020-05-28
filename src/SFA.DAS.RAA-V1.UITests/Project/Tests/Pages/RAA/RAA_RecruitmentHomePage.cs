@@ -6,8 +6,6 @@ using SFA.DAS.UI.FrameworkHelpers;
 using System;
 using System.Linq;
 using TechTalk.SpecFlow;
-using System.Drawing;
-using System.Collections.ObjectModel;
 
 namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
 {
@@ -17,7 +15,6 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
-        private readonly RegexHelper _regexHelper;
         private readonly ObjectContext _objectContext;
         private readonly PageInteractionHelper _pageInteractionHelper;
         private RandomVacancyHelper _vacancyHelper;
@@ -31,18 +28,16 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         private By InlineText => By.CssSelector(".sfa-display-inline");
         private By VacancyFilters => By.CssSelector(".column-one-quarter .bold-xsmall");
         private By CloneLink => By.CssSelector("a");
-        private By VacancyFilter => By.CssSelector(".column-one-quarter .vacancy-filter");
         private By VacancyTables => By.CssSelector("#vacancies-table tbody tr");
         private By NextPage => By.CssSelector(".page-navigation__btn.next");
         private By NoOfPagesCssSelector => By.CssSelector(".page-navigation__btn.next .counter");
-        private By ExpectedVacancyTitle(string vacancyReference) => By.CssSelector($"a[href='/vacancy/preview?vacancyReferenceNumber={vacancyReference}']");
+        private By ExpectedVacancyTitle => By.PartialLinkText(vacancyTitledataHelper.VacancyTitle);
 
         public RAA_RecruitmentHomePage(ScenarioContext context, bool navigate) : base(context, navigate)
         {
             _context = context;
             _objectContext = context.Get<ObjectContext>();
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
-            _regexHelper = context.Get<RegexHelper>();
         }
 
         public RAA_SearchCandidatesPage SearchCandidates()
@@ -95,13 +90,9 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
             SearchByReferenceNumber();
 
             if (_objectContext.IsApprenticeshipVacancyType())
-            {
                 return new RAA_VacancyPreviewPage(_context);
-            }
             else
-            {
                 return new RAA_OppurtunityPreviewPage(_context);
-            }
         }
 
         public RAA_PreviewBasePage SearchReferredVacancy()
@@ -109,26 +100,21 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
             SearchByReferenceNumber();
 
             if (_objectContext.IsApprenticeshipVacancyType())
-            {
                 return new RAA_VacancyPreviewPage(_context);
-            }
             else
-            {
                 return new RAA_OppurtunityPreviewPage(_context);
-            }
         }
 
         private void SearchByReferenceNumber()
         {
             ApprenticeshipVacancyType();
 
-            var vacancyReferenceNumber = _objectContext.GetVacancyReference();
             formCompletionHelper.SelectFromDropDownByValue(VacancySearchMode, "ReferenceNumber");
-            formCompletionHelper.EnterText(VacancySearchText, vacancyReferenceNumber);
+            formCompletionHelper.EnterText(VacancySearchText, _objectContext.GetVacancyReference());
             formCompletionHelper.ClickElement(() => _pageInteractionHelper.FindElement(SearchVacancy));
 
-            _pageInteractionHelper.WaitForElementToBeClickable(ExpectedVacancyTitle(vacancyReferenceNumber));
-            formCompletionHelper.Click(VacancyTitle);
+            _pageInteractionHelper.WaitForElementToBeClickable(ExpectedVacancyTitle);
+            formCompletionHelper.Click(ExpectedVacancyTitle);
         }
 
         private void SearchByVacancyTitleContains(string filter)

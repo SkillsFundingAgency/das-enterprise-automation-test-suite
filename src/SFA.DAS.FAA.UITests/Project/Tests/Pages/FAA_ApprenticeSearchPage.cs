@@ -6,7 +6,6 @@ using SFA.DAS.UI.FrameworkHelpers;
 using System;
 using TechTalk.SpecFlow;
 using SFA.DAS.RAA.DataGenerator.Project;
-using NUnit.Framework;
 
 namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 {
@@ -33,10 +32,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
         private By VerifyPhoneNumberText => By.Id("InfoMessageText");
         private By Browse => By.LinkText("Browse");
         private By Category => By.Id("category-ssat1.ahr");
-        private By AccountancySubCategory => By.Id("category-ssat1_ahr-details");
-        private By AccountancyCheckBox => By.Id("sub-category-stdsec.46");
         private By BrowseButton => By.Id("browse-button");
-        private By UpdateResults => By.Id("search-button");
         private By KeywordsDropDownField => By.Id("SearchField");
         private By KeywordsTextField => By.Id("Keywords");
         private By VerifyMobile => By.CssSelector("a[href='/verifymobile']");
@@ -148,14 +144,10 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
             _formCompletionHelper.Click(Browse);
             _pageInteractionHelper.WaitforURLToChange("searchMode=Category");
             _formCompletionHelper.SelectRadioOptionByLocator(Category);
-            _formCompletionHelper.Click(BrowseButton);
-            _pageInteractionHelper.WaitforURLToChange("ApprenticeshipLevel");
-            _formCompletionHelper.Click(AccountancySubCategory);
-            _formCompletionHelper.Click(AccountancyCheckBox);
             _formCompletionHelper.EnterText(Location, "CV1 2NJ");
             _formCompletionHelper.SelectFromDropDownByText(Distance, "England");
-            _formCompletionHelper.Click(UpdateResults);
-            _pageInteractionHelper.WaitforURLToChange("DisplaySubCategory=true");
+            _formCompletionHelper.Click(BrowseButton);
+            _pageInteractionHelper.WaitforURLToChange("ApprenticeshipLevel");
             return new FAA_ApprenticeSearchResultsPage(_context);
         }
     }
