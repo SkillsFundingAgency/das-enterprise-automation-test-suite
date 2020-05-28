@@ -1,5 +1,4 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
@@ -9,8 +8,6 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
         protected override string PageTitle => "Find an apprenticeship";
 
         #region Helpers and Context
-        private readonly FormCompletionHelper _formCompletionHelper;
-        private readonly PageInteractionHelper _pageInteractionHelper;
         private readonly ScenarioContext _context;
         #endregion
 
@@ -26,7 +23,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 
         public FAA_SignInPage GoToSignInPage()
         {
-            _formCompletionHelper.Click(SignIn);
+            formCompletionHelper.Click(SignIn);
             return new FAA_SignInPage(_context);
         }
 
