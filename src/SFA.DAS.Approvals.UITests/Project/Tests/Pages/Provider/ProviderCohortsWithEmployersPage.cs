@@ -7,7 +7,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 {
     public class ProviderCohortsWithEmployersPage : BasePage
     {
-        protected override string PageTitle => "Cohorts with employers";
+        protected override string PageTitle => "Apprentice details with employer";
 
         #region Helpers and Context
         private readonly TableRowHelper _tableRowHelper;

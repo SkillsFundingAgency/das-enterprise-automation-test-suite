@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.Login.Service.Project.Tests.Pages;
 using SFA.DAS.UI.FrameworkHelpers;
 using System;
@@ -8,7 +9,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 {
     public class ProviderYourCohortsPage : Navigate
     {
-        protected override string PageTitle => "Your cohorts";
+        protected override string PageTitle => "Apprentice requests";
 
         protected override string Linktext => "Apprentice requests";
 
@@ -16,16 +17,20 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private readonly PageInteractionHelper _pageInteractionHelper;
         private readonly FormCompletionHelper _formCompletionHelper;
         private readonly ScenarioContext _context;
+        private readonly TableRowHelper _tableRowHelper;
+        private readonly ObjectContext _objectContext;
         #endregion
 
-        private By NumberOfCohortsForReview => By.CssSelector(".bold-xxlarge");
-        private By NumberOfCohortsWithEmployers => By.XPath("(//h2[@class='bold-xxlarge'])[2]");
+        private By NumberOfCohortsForReview => By.CssSelector("#Review span.das-card-figure");
+        private By NumberOfCohortsWithEmployers => By.CssSelector("#WithEmployer span.das-card-figure");
 
         public ProviderYourCohortsPage(ScenarioContext context, bool navigate = false) : base(context, navigate)
         {
             _context = context;
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
+            _tableRowHelper = context.Get<TableRowHelper>();
+            _objectContext = context.Get<ObjectContext>();
             VerifyPage();
         }
 
@@ -51,6 +56,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             }
 
             throw new Exception("No cohorts available with employers");
+        }
+
+        public ProviderReviewYourCohortPage SelectViewCurrentCohortDetails()
+        {
+            _tableRowHelper.SelectRowFromTable("Details", _objectContext.GetCohortReference());
+            return new ProviderReviewYourCohortPage(_context);
         }
     }
 }

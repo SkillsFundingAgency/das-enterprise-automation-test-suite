@@ -72,12 +72,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.ChangeOfParty.ChangeO
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Change Of Employer")]
+        [NUnit.Framework.DescriptionAttribute("AP_COE_01_Change Of Employer_HappyPath")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("changeOfEmployer")]
-        public virtual void ChangeOfEmployer()
+        public virtual void AP_COE_01_ChangeOfEmployer_HappyPath()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Change Of Employer", null, new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_COE_01_Change Of Employer_HappyPath", null, new string[] {
                         "regression",
                         "changeOfEmployer"});
 #line 6
