@@ -12,26 +12,26 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 
         public FAA_SearchVacancyBasePage(ScenarioContext context) : base(context) { }
     
-        public bool FoundVacancies() => !_pageInteractionHelper.IsElementDisplayed(NoSearchResults);
+        public bool FoundVacancies() => !pageInteractionHelper.IsElementDisplayed(NoSearchResults);
 
         protected void SearchByReferenceNumber()
         {
-            _pageInteractionHelper.Verify(() =>
+            pageInteractionHelper.Verify(() =>
             {
-                var elementDisplayed = _pageInteractionHelper.IsElementDisplayed(NoSearchResults);
+                var elementDisplayed = pageInteractionHelper.IsElementDisplayed(NoSearchResults);
                 if (elementDisplayed)
                 {
-                     throw new Exception($"Element verification failed: No Search result found for Vacancy {_objectContext.GetVacancyReference()}");
+                     throw new Exception($"Element verification failed: No Search result found for Vacancy {objectContext.GetVacancyReference()}");
                 }
                 return elementDisplayed;
-            }, () => _formCompletionHelper.Click(Search));
+            }, () => formCompletionHelper.Click(Search));
         }
 
         protected void WaitforURLToChange(string distance)
         {
             var urlChange = distance.Contains("miles") ? distance.Split(" ")[0] : "0";
 
-            _pageInteractionHelper.WaitforURLToChange($"WithinDistance={urlChange}");
+            pageInteractionHelper.WaitforURLToChange($"WithinDistance={urlChange}");
         }        
     }
 }

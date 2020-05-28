@@ -34,49 +34,49 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 
         public FAA_ActivateYourAccountPage SubmitAccountCreationDetails()
         {
-            _formCompletionHelper.EnterText(FirstName, _faadataHelper.FirstName);
-            _formCompletionHelper.EnterText(LastName, _faadataHelper.LastName);
-            _formCompletionHelper.EnterText(DOB_Day, _faadataHelper.DOB_Day);
-            _formCompletionHelper.EnterText(DOB_Month, _faadataHelper.DOB_Month);
-            _formCompletionHelper.EnterText(DOB_Year, _faadataHelper.DOB_Year);
+            formCompletionHelper.EnterText(FirstName, faadataHelper.FirstName);
+            formCompletionHelper.EnterText(LastName, faadataHelper.LastName);
+            formCompletionHelper.EnterText(DOB_Day, faadataHelper.DOB_Day);
+            formCompletionHelper.EnterText(DOB_Month, faadataHelper.DOB_Month);
+            formCompletionHelper.EnterText(DOB_Year, faadataHelper.DOB_Year);
             SelectAddress();
-            _formCompletionHelper.EnterText(EmailId, _faadataHelper.EmailId);
-            _formCompletionHelper.EnterText(PhoneNumber, _faadataHelper.PhoneNumber);
-            _formCompletionHelper.EnterText(Password, _faadataHelper.Password);
-            _formCompletionHelper.EnterText(ConfirmPassword, _faadataHelper.Password);
-            _formCompletionHelper.ClickElement(() => _pageInteractionHelper.FindElement(AcceptTermsAndConditions));
-            _formCompletionHelper.Click(CreateAccountButton);
-            _pageInteractionHelper.WaitforURLToChange("activation");
+            formCompletionHelper.EnterText(EmailId, faadataHelper.EmailId);
+            formCompletionHelper.EnterText(PhoneNumber, faadataHelper.PhoneNumber);
+            formCompletionHelper.EnterText(Password, faadataHelper.Password);
+            formCompletionHelper.EnterText(ConfirmPassword, faadataHelper.Password);
+            formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(AcceptTermsAndConditions));
+            formCompletionHelper.Click(CreateAccountButton);
+            pageInteractionHelper.WaitforURLToChange("activation");
             return new FAA_ActivateYourAccountPage(_context);
         }
 
         public void SelectAddress()
         {
-            _formCompletionHelper.EnterText(PostCode, _faadataHelper.PostCode);
-            _pageInteractionHelper.WaitUntilAnyElements(PostCodeAutoSuggestResults);
-            _formCompletionHelper.ClickElement(() => _faadataHelper.GetRandomElementFromListOfElements(_pageInteractionHelper.FindElements(PostCodeAutoSuggestResults)));
+            formCompletionHelper.EnterText(PostCode, faadataHelper.PostCode);
+            pageInteractionHelper.WaitUntilAnyElements(PostCodeAutoSuggestResults);
+            formCompletionHelper.ClickElement(() => faadataHelper.GetRandomElementFromListOfElements(pageInteractionHelper.FindElements(PostCodeAutoSuggestResults)));
         }
 
         public void SubmitAccountCreationDetailsWithRegisteredEmail()
         {
-            _formCompletionHelper.EnterText(FirstName, _faadataHelper.FirstName);
-            _formCompletionHelper.EnterText(LastName, _faadataHelper.LastName);
-            _formCompletionHelper.EnterText(DOB_Day, _faadataHelper.DOB_Day);
-            _formCompletionHelper.EnterText(DOB_Month, _faadataHelper.DOB_Month);
-            _formCompletionHelper.EnterText(DOB_Year, _faadataHelper.DOB_Year);
+            formCompletionHelper.EnterText(FirstName, faadataHelper.FirstName);
+            formCompletionHelper.EnterText(LastName, faadataHelper.LastName);
+            formCompletionHelper.EnterText(DOB_Day, faadataHelper.DOB_Day);
+            formCompletionHelper.EnterText(DOB_Month, faadataHelper.DOB_Month);
+            formCompletionHelper.EnterText(DOB_Year, faadataHelper.DOB_Year);
             SelectAddress();
-            _formCompletionHelper.EnterText(EmailId, _config.FAAUserName);
-            _formCompletionHelper.EnterText(PhoneNumber, _faadataHelper.PhoneNumber);
-            _formCompletionHelper.EnterText(Password, _faadataHelper.Password);
-            _formCompletionHelper.EnterText(ConfirmPassword, _faadataHelper.Password);
-            _formCompletionHelper.ClickElement(() => _pageInteractionHelper.FindElement(AcceptTermsAndConditions));
-            _formCompletionHelper.Click(CreateAccountButton);
+            formCompletionHelper.EnterText(EmailId, faaconfig.FAAUserName);
+            formCompletionHelper.EnterText(PhoneNumber, faadataHelper.PhoneNumber);
+            formCompletionHelper.EnterText(Password, faadataHelper.Password);
+            formCompletionHelper.EnterText(ConfirmPassword, faadataHelper.Password);
+            formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(AcceptTermsAndConditions));
+            formCompletionHelper.Click(CreateAccountButton);
             CheckTheValidationMessagesForAlreadyRegisteredEmail();
         }
 
         public void CheckTheValidationMessagesForAlreadyRegisteredEmail()
         {
-            _pageInteractionHelper.VerifyText(RegisteredEmailErrorMessage, _faadataHelper.CreateAccountWithRegisteredEmailErrorMessage);            
+            pageInteractionHelper.VerifyText(RegisteredEmailErrorMessage, faadataHelper.CreateAccountWithRegisteredEmailErrorMessage);            
         }
     }
 }

@@ -21,17 +21,17 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
             // this is temp work aound as the redirection is not working correctly.
             VerifyPage(() =>
             {
-                var uri = new Uri(new Uri(_config.FAABaseUrl), $"verifymobile");
-                _tabHelper.GoToUrl(uri.AbsoluteUri);
-                return _pageInteractionHelper.FindElements(PageHeader);
+                var uri = new Uri(new Uri(faaconfig.FAABaseUrl), $"verifymobile");
+                tabHelper.GoToUrl(uri.AbsoluteUri);
+                return pageInteractionHelper.FindElements(PageHeader);
             }, PageTitle);
         }
 
         public FAA_SettingsPage EnterVerificationCode()
         {            
-            _formCompletionHelper.EnterText(EnterCode, _faadataHelper.PhoneNumberVerificationCode);
-            _formCompletionHelper.Click(VerifyNumber);
-            _pageInteractionHelper.WaitforURLToChange("settings");
+            formCompletionHelper.EnterText(EnterCode, faadataHelper.PhoneNumberVerificationCode);
+            formCompletionHelper.Click(VerifyNumber);
+            pageInteractionHelper.WaitforURLToChange("settings");
             return new FAA_SettingsPage(_context);
         }
     }

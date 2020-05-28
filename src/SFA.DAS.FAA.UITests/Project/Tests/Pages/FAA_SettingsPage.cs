@@ -24,30 +24,30 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
     
         public FAA_SettingsPage(ScenarioContext context) : base(context) => _context = context;
 
-        public void VerifySuccessfulVerificationText() => _pageInteractionHelper.VerifyText(SuccessfulMobileVerificationText, _faadataHelper.SuccessfulPhoneVerificationText);
+        public void VerifySuccessfulVerificationText() => pageInteractionHelper.VerifyText(SuccessfulMobileVerificationText, faadataHelper.SuccessfulPhoneVerificationText);
 
         public FAA_ConfirmAccountDeletionPage DeleteYourAccount()
         {
-            var (username, password, _ , _) = _objectContext.GetFAALogin();
-            _formCompletionHelper.Click(DeleteYourAccountLink);
-            _formCompletionHelper.EnterText(UsernameField, username);
-            _formCompletionHelper.EnterText(PasswordField, password);
-            _formCompletionHelper.Click(DeleteAccountButton);
+            var (username, password, _ , _) = objectContext.GetFAALogin();
+            formCompletionHelper.Click(DeleteYourAccountLink);
+            formCompletionHelper.EnterText(UsernameField, username);
+            formCompletionHelper.EnterText(PasswordField, password);
+            formCompletionHelper.Click(DeleteAccountButton);
             return new FAA_ConfirmAccountDeletionPage(_context);
         }
 
         public FAA_ChangeYourEmailAddressPage ChangeTheEmailIdSettings()
         {
-            _formCompletionHelper.EnterText(Postcode_Address, _faadataHelper.NewPostCode);
-            _formCompletionHelper.Click(UpdateDetailsButton);
-            _formCompletionHelper.Click(ChangeEmailIdLink);
+            formCompletionHelper.EnterText(Postcode_Address, faadataHelper.NewPostCode);
+            formCompletionHelper.Click(UpdateDetailsButton);
+            formCompletionHelper.Click(ChangeEmailIdLink);
             return new FAA_ChangeYourEmailAddressPage(_context);
         }
 
         public FAA_PhoneNumberVerificationPage ChangePhoneNumberSettings()
         {
-            _formCompletionHelper.EnterText(PhoneNumberField, _faadataHelper.NewPhoneNumber);
-            _formCompletionHelper.Click(UpdateDetailsButton);
+            formCompletionHelper.EnterText(PhoneNumberField, faadataHelper.NewPhoneNumber);
+            formCompletionHelper.Click(UpdateDetailsButton);
             return new FAA_PhoneNumberVerificationPage(_context);
         }
     }

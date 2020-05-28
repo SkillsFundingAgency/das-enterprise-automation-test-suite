@@ -42,19 +42,19 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 
         private void FAASignIn(string emailId, string password)
         {
-            _formCompletionHelper.EnterText(UsernameField, emailId);
-            _formCompletionHelper.EnterText(PasswordField, password);
-            _formCompletionHelper.ClickElement(SignInButton);
+            formCompletionHelper.EnterText(UsernameField, emailId);
+            formCompletionHelper.EnterText(PasswordField, password);
+            formCompletionHelper.ClickElement(SignInButton);
         }
 
         public FAA_CreateAnAccountPage ClickCreateAnAccountLink()
         {
-            _formCompletionHelper.Click(CreateAnAccountLink);
+            formCompletionHelper.Click(CreateAnAccountLink);
             return new FAA_CreateAnAccountPage(_context);
         }
 
-        public void ConfirmAccountDeletion() => _pageInteractionHelper.VerifyText(ChangeSettingsInfo, "Your account has been deleted"); 
+        public void ConfirmAccountDeletion() => pageInteractionHelper.VerifyText(ChangeSettingsInfo, "Your account has been deleted"); 
 
-        public void ConfirmEmailAddressUpdate() => _pageInteractionHelper.VerifyText(ChangeSettingsInfo, "Your email address has been updated, please login using your new details.");
+        public void ConfirmEmailAddressUpdate() => pageInteractionHelper.VerifyText(ChangeSettingsInfo, "Your email address has been updated, please login using your new details.");
     }
 }

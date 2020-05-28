@@ -37,67 +37,67 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 
         public FAA_ApprenticeSearchPage FindAnApprenticeship()
         {
-            _formCompletionHelper.Click(FindAnApprenticeshipLink);
+            formCompletionHelper.Click(FindAnApprenticeshipLink);
             return new FAA_ApprenticeSearchPage(_context);
         }
 
         public FAA_TraineeshipSearchPage FindATraineeship()
         {
-            _formCompletionHelper.Click(FindTraineeshipLink);
+            formCompletionHelper.Click(FindTraineeshipLink);
             return new FAA_TraineeshipSearchPage(_context);
         }
 
         public FAA_SettingsPage GoToSettings()
         {
-            _formCompletionHelper.Click(Settings);
+            formCompletionHelper.Click(Settings);
             return new FAA_SettingsPage(_context);
         }
 
         private void VerifyVacancySuccessfulNotification()
         {
-            _pageInteractionHelper.VerifyText(NotificationText, "Your application for " + _vacancytitledataHelper.VacancyTitle + " has been successful.");
+            pageInteractionHelper.VerifyText(NotificationText, "Your application for " + vacancytitledataHelper.VacancyTitle + " has been successful.");
         }
 
         private void VerifyVacancyUnsuccessfulNotification()
         {
-            _pageInteractionHelper.VerifyText(NotificationText, "Your application for " + _vacancytitledataHelper.VacancyTitle + " has been unsuccessful.");
+            pageInteractionHelper.VerifyText(NotificationText, "Your application for " + vacancytitledataHelper.VacancyTitle + " has been unsuccessful.");
         }
 
         public void DismissSuccessfulNotification()
         {
             VerifyVacancySuccessfulNotification();
-            _formCompletionHelper.Click(DismissNotification);
+            formCompletionHelper.Click(DismissNotification);
         }
 
         public FAA_MyApplicationsHomePage DismissUnsuccessfulNotification()
         {
             VerifyVacancyUnsuccessfulNotification();
-            _formCompletionHelper.Click(DismissNotification);
+            formCompletionHelper.Click(DismissNotification);
             return this;
         }
 
         public FAA_YourFeedbackPage ReadFeedback()
         {
-            _formCompletionHelper.Click(ReadFeedbackLink);
+            formCompletionHelper.Click(ReadFeedbackLink);
             return new FAA_YourFeedbackPage(_context);
         }
 
         public FAA_ApprenticeSummaryPage ConfirmVacancyDeletion()
         {
-            _pageInteractionHelper.WaitforURLToChange("myapplications");
+            pageInteractionHelper.WaitforURLToChange("myapplications");
             DeleteDraft();
-            _pageInteractionHelper.VerifyText(DraftVacancyDeletionInfoText, "You've successfully removed the " + _vacancytitledataHelper.VacancyTitle + " apprenticeship");
-            _formCompletionHelper.Click(VacancyDeletedLink);
+            pageInteractionHelper.VerifyText(DraftVacancyDeletionInfoText, "You've successfully removed the " + vacancytitledataHelper.VacancyTitle + " apprenticeship");
+            formCompletionHelper.Click(VacancyDeletedLink);
             return new FAA_ApprenticeSummaryPage(_context);
         }
 
         private void DeleteDraft()
         {
-            var element = _pageInteractionHelper.GetLinkContains(SavedVacancy, _vacancytitledataHelper.VacancyTitle);
+            var element = pageInteractionHelper.GetLinkContains(SavedVacancy, vacancytitledataHelper.VacancyTitle);
 
-            var id = element.GetAttribute("href").Replace($"{_config.FAABaseUrl}{VacancyDetailshref}", string.Empty);
+            var id = element.GetAttribute("href").Replace($"{faaconfig.FAABaseUrl}{VacancyDetailshref}", string.Empty);
 
-            _formCompletionHelper.ClickElement(DeleteVacancy(id));
+            formCompletionHelper.ClickElement(DeleteVacancy(id));
         }
     }
 }

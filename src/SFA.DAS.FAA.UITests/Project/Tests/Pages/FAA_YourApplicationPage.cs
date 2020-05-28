@@ -17,10 +17,10 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 
         public FAA_WithDrawConfirmationPage Withdraw()
         {
-            _formCompletionHelper.ClickLinkByText("Withdraw my application");
+            formCompletionHelper.ClickLinkByText("Withdraw my application");
             return new FAA_WithDrawConfirmationPage(_context);
         }
 
-        public string ApplicationStatus() => _pageInteractionHelper.GetText(Status);
+        public string ApplicationStatus() => pageInteractionHelper.GetText(Status);
     }
 }

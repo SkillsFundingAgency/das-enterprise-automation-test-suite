@@ -34,22 +34,22 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 
         private void SearchVacancyInFAA()
         {
-            _formCompletionHelper.EnterText(Location, string.Empty);
-            _formCompletionHelper.Click(Search);
-            _formCompletionHelper.EnterText(ReferenceNumber, _objectContext.GetVacancyReference());
+            formCompletionHelper.EnterText(Location, string.Empty);
+            formCompletionHelper.Click(Search);
+            formCompletionHelper.EnterText(ReferenceNumber, objectContext.GetVacancyReference());
             base.SearchByReferenceNumber();
         }
 
         private void EnterPostCode(string location)
         {
-            _formCompletionHelper.EnterText(Location, location);
-            _formCompletionHelper.Click(Search);
+            formCompletionHelper.EnterText(Location, location);
+            formCompletionHelper.Click(Search);
         }
 
         public FAA_TraineeshipSearchResultsPage SearchForAVacancy(string location)
         {
             EnterPostCode(location);      
-            _pageInteractionHelper.WaitforURLToChange("/traineeships/search?Hash=");
+            pageInteractionHelper.WaitforURLToChange("/traineeships/search?Hash=");
 
             return new FAA_TraineeshipSearchResultsPage(_context);
         }

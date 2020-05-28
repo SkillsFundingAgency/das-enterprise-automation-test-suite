@@ -18,14 +18,14 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 
         public FAA_ApprenticeSearchPage ClickSaveAndContinue()
         {
-            _formCompletionHelper.Click(SaveAndContinue);
-            _pageInteractionHelper.WaitforURLToChange("apprenticeshipsearch");
+            formCompletionHelper.Click(SaveAndContinue);
+            pageInteractionHelper.WaitforURLToChange("apprenticeshipsearch");
             return new FAA_ApprenticeSearchPage(_context);
         }
 
         public FAA_ApprenticeSearchPage ClickSkipLink()
         {
-            _formCompletionHelper.Click(SkipLink);
+            formCompletionHelper.Click(SkipLink);
             return new FAA_ApprenticeSearchPage(_context);
         }
     }

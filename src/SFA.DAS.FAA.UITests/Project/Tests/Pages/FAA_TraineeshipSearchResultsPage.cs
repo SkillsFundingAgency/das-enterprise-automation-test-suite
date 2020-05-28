@@ -24,28 +24,28 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 
         public FAA_TraineeshipSearchResultsPage SearchForAVacancy(string location, string distance)
         {
-            _formCompletionHelper.EnterText(Location, location);
+            formCompletionHelper.EnterText(Location, location);
 
-            _formCompletionHelper.SelectFromDropDownByText(Distance, distance);
+            formCompletionHelper.SelectFromDropDownByText(Distance, distance);
 
-            _formCompletionHelper.Click(Search);
+            formCompletionHelper.Click(Search);
 
             WaitforURLToChange(distance);
-            _formCompletionHelper.SelectFromDropDownByValue(SortOrder, "RecentlyAdded");
-            if (_pageInteractionHelper.IsElementDisplayed(DisplayResults))
+            formCompletionHelper.SelectFromDropDownByValue(SortOrder, "RecentlyAdded");
+            if (pageInteractionHelper.IsElementDisplayed(DisplayResults))
             {
-                _pageInteractionHelper.FocusTheElement(DisplayResults);
-                _formCompletionHelper.SelectFromDropDownByValue(DisplayResults, "50");
-                _pageInteractionHelper.WaitforURLToChange("resultsPerPage=50");
+                pageInteractionHelper.FocusTheElement(DisplayResults);
+                formCompletionHelper.SelectFromDropDownByValue(DisplayResults, "50");
+                pageInteractionHelper.WaitforURLToChange("resultsPerPage=50");
             }            
 
-            List<IWebElement> vacanciesCount = _pageInteractionHelper.FindElements(VacanciesList);
+            List<IWebElement> vacanciesCount = pageInteractionHelper.FindElements(VacanciesList);
             
             bool status = false;
             
             foreach (var vacancy in vacanciesCount)
             {
-                if(vacancy.Text.Contains(_vacancytitledataHelper.VacancyTitle))
+                if(vacancy.Text.Contains(vacancytitledataHelper.VacancyTitle))
                 {
                     status = true;
                     break;
@@ -53,7 +53,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
             }
             if(!status)
             {
-                throw new Exception($"Vacancy title: {_vacancytitledataHelper.VacancyTitle} Not Found");
+                throw new Exception($"Vacancy title: {vacancytitledataHelper.VacancyTitle} Not Found");
             }
             return new FAA_TraineeshipSearchResultsPage(_context);
         }

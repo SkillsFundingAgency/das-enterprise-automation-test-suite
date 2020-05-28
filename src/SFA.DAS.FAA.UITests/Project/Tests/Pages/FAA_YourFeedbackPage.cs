@@ -14,8 +14,8 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 
         public void VerifyReadFeedbackText()
         {
-            _pageInteractionHelper.VerifyText(FeedbackText, _faadataHelper.OptionalMessage);
-            _formCompletionHelper.Click(SignOutLink);
+            pageInteractionHelper.VerifyText(FeedbackText, faadataHelper.OptionalMessage);
+            formCompletionHelper.Click(SignOutLink);
         }
     }
 }

@@ -19,15 +19,15 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 
         public FAA_ActivateYourAccountPage2 EnterActivationCode()
         {
-            _formCompletionHelper.EnterText(ActivationCode, _faadataHelper.ActivationCode);
-            _formCompletionHelper.Click(ActivateAccount);
-            _pageInteractionHelper.WaitforURLToChange("tellusmore");
+            formCompletionHelper.EnterText(ActivationCode, faadataHelper.ActivationCode);
+            formCompletionHelper.Click(ActivateAccount);
+            pageInteractionHelper.WaitforURLToChange("tellusmore");
             return new FAA_ActivateYourAccountPage2(_context);
         }
 
         public FAA_SignInPage ClickSignOut()
         {
-            _formCompletionHelper.Click(SignOut);
+            formCompletionHelper.Click(SignOut);
             return new FAA_SignInPage(_context);
         }
     }

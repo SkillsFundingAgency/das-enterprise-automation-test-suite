@@ -17,7 +17,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
         private By NationwideVacancies => By.Id("nationwideLocationTypeLink");
         private By SortResults => By.Id("sort-results");
         private By NationwideVacanciesText => By.Id("multiple-positions-nationwide");
-        private By VacancyLink => By.LinkText(_vacancytitledataHelper.VacancyTitle);
+        private By VacancyLink => By.LinkText(vacancytitledataHelper.VacancyTitle);
         private By DisplayResults => By.Id("results-per-page");
         private By VacanciesList => By.ClassName("vacancy-link");
 
@@ -33,29 +33,29 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 
         protected void CheckSortOrder()
         {
-            _pageInteractionHelper.WaitforURLToChange("LocationType=National");
-            IWebElement selectElement = _pageInteractionHelper.FindElement(SortResults);
+            pageInteractionHelper.WaitforURLToChange("LocationType=National");
+            IWebElement selectElement = pageInteractionHelper.FindElement(SortResults);
             SelectElement selectedValue = new SelectElement(selectElement);
             string selectedText = selectedValue.SelectedOption.Text;
-            _pageInteractionHelper.VerifyText(selectedText, "Closing date");            
+            pageInteractionHelper.VerifyText(selectedText, "Closing date");            
         }
 
         protected void CheckNationwideVacanciesText()
         {
-            _pageInteractionHelper.VerifyText(NationwideVacanciesText, _faadataHelper.NationwideVacanciesText);
+            pageInteractionHelper.VerifyText(NationwideVacanciesText, faadataHelper.NationwideVacanciesText);
         }
 
         protected void ClickNationwideVacancies()
         {
-            _pageInteractionHelper.Verify(() =>
+            pageInteractionHelper.Verify(() =>
             {
-                var elementDisplayed = _pageInteractionHelper.IsElementDisplayed(NoSearchResults);
+                var elementDisplayed = pageInteractionHelper.IsElementDisplayed(NoSearchResults);
                 if (elementDisplayed)
                 {
                     throw new Exception("No Nationwide Vacancies found");
                 }
                 return elementDisplayed;
-            }, () => _formCompletionHelper.Click(NationwideVacancies));           
+            }, () => formCompletionHelper.Click(NationwideVacancies));           
 
         }
 
@@ -63,7 +63,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
         {
             ChangeSortOrderToRecentlyAdded();
             ChangeSortResultsTo50Vacancies();
-            _formCompletionHelper.Click(VacancyLink);            
+            formCompletionHelper.Click(VacancyLink);            
             return new FAA_ApprenticeSummaryPage(_context);
         }
 
@@ -77,10 +77,10 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
             bool vacanciesFound = FoundVacancies();
             if (vacanciesFound)
             {
-                List<IWebElement> vacanciesCount = _pageInteractionHelper.FindElements(VacanciesList);
+                List<IWebElement> vacanciesCount = pageInteractionHelper.FindElements(VacanciesList);
                 foreach (var vacancy in vacanciesCount)
                 {
-                    if (vacancy.Text.Contains(_vacancytitledataHelper.VacancyTitle))
+                    if (vacancy.Text.Contains(vacancytitledataHelper.VacancyTitle))
                     {
                         return true;
                     }
@@ -95,16 +95,16 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 
         private void ChangeSortOrderToRecentlyAdded()
         {
-            _formCompletionHelper.SelectFromDropDownByValue(SortResults, "RecentlyAdded");
-            _pageInteractionHelper.WaitforURLToChange("sortType=RecentlyAdded");
+            formCompletionHelper.SelectFromDropDownByValue(SortResults, "RecentlyAdded");
+            pageInteractionHelper.WaitforURLToChange("sortType=RecentlyAdded");
         }
         private void ChangeSortResultsTo50Vacancies()
         {
-            if (_pageInteractionHelper.IsElementDisplayed(DisplayResults))
+            if (pageInteractionHelper.IsElementDisplayed(DisplayResults))
             {
-                _pageInteractionHelper.FocusTheElement(DisplayResults);
-                _formCompletionHelper.SelectFromDropDownByValue(DisplayResults, "50");
-                _pageInteractionHelper.WaitforURLToChange("resultsPerPage=50");
+                pageInteractionHelper.FocusTheElement(DisplayResults);
+                formCompletionHelper.SelectFromDropDownByValue(DisplayResults, "50");
+                pageInteractionHelper.WaitforURLToChange("resultsPerPage=50");
             }
         }
     }

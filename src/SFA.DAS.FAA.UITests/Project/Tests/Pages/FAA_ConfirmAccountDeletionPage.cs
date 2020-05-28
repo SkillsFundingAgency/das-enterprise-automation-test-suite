@@ -17,7 +17,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 
         public FAA_SignInPage DeleteAccount()
         {
-            _formCompletionHelper.Click(DeleteAccountButton);
+            formCompletionHelper.Click(DeleteAccountButton);
             return new FAA_SignInPage(_context);
         }
     }
