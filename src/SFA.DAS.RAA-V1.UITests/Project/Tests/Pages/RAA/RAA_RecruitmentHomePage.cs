@@ -32,6 +32,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         private By NextPage => By.CssSelector(".page-navigation__btn.next");
         private By NoOfPagesCssSelector => By.CssSelector(".page-navigation__btn.next .counter");
         private By ExpectedVacancyTitle => By.PartialLinkText(vacancyTitledataHelper.VacancyTitle);
+        private By ReferenceNumberSearchResetCircleSymbol => By.CssSelector(".fa.fa-times-circle");
 
         public RAA_RecruitmentHomePage(ScenarioContext context, bool navigate) : base(context, navigate)
         {
@@ -113,7 +114,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
             formCompletionHelper.EnterText(VacancySearchText, _objectContext.GetVacancyReference());
             formCompletionHelper.ClickElement(() => _pageInteractionHelper.FindElement(SearchVacancy));
 
-            _pageInteractionHelper.WaitForElementToBeClickable(ExpectedVacancyTitle);
+            _pageInteractionHelper.WaitForElementToBeDisplayed(ReferenceNumberSearchResetCircleSymbol);
             formCompletionHelper.Click(ExpectedVacancyTitle);
         }
 
