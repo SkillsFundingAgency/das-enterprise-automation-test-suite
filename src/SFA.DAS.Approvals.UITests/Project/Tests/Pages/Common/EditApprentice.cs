@@ -9,9 +9,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
         private By TrainingCost => By.Id("Cost");
         private By TrainingCourseContainer => By.CssSelector(".select2-container");
 
-        public EditApprentice(ScenarioContext context) : base(context)
-        {
-        }
+        public EditApprentice(ScenarioContext context, bool verifypage = true) : base(context, verifypage) { }
 
         protected abstract void SelectCourse();
 
@@ -24,7 +22,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
 
         private EditApprentice EditCost()
         {
-            formCompletionHelper.EnterText(TrainingCost, "2" + dataHelper.TrainingPrice);
+            formCompletionHelper.EnterText(TrainingCost, "2" + editedApprenticeDataHelper.TrainingPrice);
             return this;
         }
 

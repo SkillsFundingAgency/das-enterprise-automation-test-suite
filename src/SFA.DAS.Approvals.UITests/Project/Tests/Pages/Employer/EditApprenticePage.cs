@@ -45,12 +45,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         public ConfirmChangesPage EditCostCourseAndReference()
         {
-            EditCostCourseAndReference(dataHelper.EmployerReference);
+            EditCostCourseAndReference(editedApprenticeDataHelper.EmployerReference);
             return ConfirmChangesPage();
         }
         public ConfirmChangesPage EditApprenticeNameDobAndReference()
         {
-            EditApprenticeNameDobAndReference(dataHelper.EmployerReference);
+            EditApprenticeNameDobAndReference(editedApprenticeDataHelper.EmployerReference);
             return ConfirmChangesPage();
         }
         protected override void SelectCourse()

@@ -1,7 +1,6 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.Login.Service.Project.Tests.Pages;
-using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ProviderLogin.Service.Pages

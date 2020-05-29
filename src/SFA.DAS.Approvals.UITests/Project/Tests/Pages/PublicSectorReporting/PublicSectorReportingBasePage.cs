@@ -11,6 +11,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.PublicSectorReporting
 
         protected override By ContinueButton => By.CssSelector("button.button[type='submit']");
 
-        protected PublicSectorReportingBasePage(ScenarioContext context, bool verifypage = true) : base(context) { }
+        protected PublicSectorReportingBasePage(ScenarioContext context, bool verifypage = true) : base(context, verifypage) { }
     }
 }
