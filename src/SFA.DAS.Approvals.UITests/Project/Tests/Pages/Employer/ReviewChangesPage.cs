@@ -22,7 +22,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         }
 
         private By ConfirmChangesOptions => By.CssSelector(".selection-button-radio");
-        protected override By ContinueButton => By.CssSelector("#submit-rev-change");
+        protected override By ContinueButton => By.CssSelector("#submit-rev-change, #submit-req-changes");
 
         public EditedApprenticeDetailsPage SelectApproveChangesAndSubmit()
         {
