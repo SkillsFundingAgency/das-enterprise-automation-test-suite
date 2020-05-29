@@ -13,11 +13,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.ProviderLeadRegistrat
 
         private By ChangeDetailsLink => By.CssSelector(".govuk-link[type='submit'][value='Change']");
 
-        public CheckDetailsPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public CheckDetailsPage(ScenarioContext context) : base(context) => _context = context;
 
         public EmployerAccountIsReadyPage InviteEmployer()
         {
