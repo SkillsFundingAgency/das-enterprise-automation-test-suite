@@ -15,7 +15,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         #endregion
 
         private By AcceptChangesOptions => By.CssSelector(".selection-button-radio");
-        private By FinishButton => By.CssSelector(".button");
+        private By FinishButton => By.CssSelector("#submit-confirm-changes");
 
         public ProviderConfirmChangesPage(ScenarioContext context) : base(context)
         {
