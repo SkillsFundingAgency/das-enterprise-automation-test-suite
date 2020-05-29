@@ -10,11 +10,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         private By TransferLink => By.LinkText("Transfers");
 
-        public FinancePage(ScenarioContext context, bool navigate = false) : base(context, navigate)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public FinancePage(ScenarioContext context, bool navigate = false) : base(context, navigate) => _context = context;
 
         internal TransfersPage OpenTransfers()
         {

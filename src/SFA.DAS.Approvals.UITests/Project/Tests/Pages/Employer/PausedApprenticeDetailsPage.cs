@@ -7,11 +7,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
     public class PausedApprenticeDetailsPage : ConfirmApprenticeStatus
     {
         protected override string PageTitle => "Apprenticeship paused";
+
         protected override By PageHeader => By.CssSelector("h1.heading-large");
 
-        public PausedApprenticeDetailsPage(ScenarioContext context): base(context)
-        {
-            
-        }
-    }
+        public PausedApprenticeDetailsPage(ScenarioContext context): base(context) { }
+}
 }

@@ -1,5 +1,6 @@
 ﻿using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.ConfigurationBuilder;
+using SFA.DAS.ProviderLogin.Service;
 using SFA.DAS.Registration.UITests.Project;
 using SFA.DAS.Registration.UITests.Project.Helpers;
 using SFA.DAS.UI.Framework.TestSupport;
@@ -19,6 +20,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages
         protected readonly PageInteractionHelper pageInteractionHelper;
         protected readonly ObjectContext objectContext;
         protected readonly RegistrationConfig registrationConfig;
+        protected readonly ApprovalsConfig approvalsConfig;
+        protected readonly TransfersConfig transfersConfig;
+        protected readonly ProviderConfig providerConfig;
         protected readonly PublicSectorReportingDataHelper dataHelper;
         protected readonly ApprenticeDataHelper apprenticeDataHelper;
         protected readonly EditedApprenticeDataHelper editedApprenticeDataHelper;
@@ -35,6 +39,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages
             pageInteractionHelper = context.Get<PageInteractionHelper>();
             objectContext = context.Get<ObjectContext>();
             registrationConfig = context.GetRegistrationConfig<RegistrationConfig>();
+            providerConfig = context.GetProviderConfig<ProviderConfig>();
+            approvalsConfig = context.GetApprovalsConfig<ApprovalsConfig>();
+            transfersConfig = context.GetTransfersConfig<TransfersConfig>();
             loginCredentialsHelper = context.Get<LoginCredentialsHelper>();
             dataHelper = context.Get<PublicSectorReportingDataHelper>();
             apprenticeDataHelper = context.Get<ApprenticeDataHelper>();

@@ -1,27 +1,20 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.UI.Framework.TestSupport;
-using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
 {
-    public abstract class ChangeApprenticeStatus : BasePage
+    public abstract class ChangeApprenticeStatus : ApprovalsBasePage
     {
         private By ConfirmResumeOptions => By.CssSelector(".selection-button-radio");
         private By ConfirmButton => By.Id("submit-status-change");
 
-        private readonly FormCompletionHelper _formCompletionHelper;
 
-        public ChangeApprenticeStatus(ScenarioContext context) : base(context)
-        {
-            _formCompletionHelper = context.Get<FormCompletionHelper>();
-            VerifyPage();
-        }
-
+        public ChangeApprenticeStatus(ScenarioContext context) : base(context) { }
+        
         public void SelectYesAndConfirm()
         {
-            _formCompletionHelper.SelectRadioOptionByForAttribute(ConfirmResumeOptions, "ChangeConfirmed-True");
-            _formCompletionHelper.ClickElement(ConfirmButton);
+            formCompletionHelper.SelectRadioOptionByForAttribute(ConfirmResumeOptions, "ChangeConfirmed-True");
+            formCompletionHelper.ClickElement(ConfirmButton);
         }
     }
 }

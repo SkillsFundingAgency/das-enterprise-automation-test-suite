@@ -1,30 +1,19 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.Approvals.UITests.Project.Tests.Pages.DynamicHomePage;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer;
-using SFA.DAS.UI.Framework.TestSupport;
-using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
-    public class StartAddingApprenticesPage : BasePage
+    public class StartAddingApprenticesPage : ApprovalsBasePage
     {
         protected override string PageTitle => "Start adding apprentices";
         protected override By ContinueButton => By.Id("continue-button");
 
         #region Helpers and Context
-        private readonly PageInteractionHelper _pageInteractionHelper;
-        private readonly FormCompletionHelper _formCompletionHelper;
         private readonly ScenarioContext _context;
         #endregion
 
-        public StartAddingApprenticesPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            _pageInteractionHelper = context.Get<PageInteractionHelper>();
-            _formCompletionHelper = context.Get<FormCompletionHelper>();
-            VerifyPage();
-        }
+        public StartAddingApprenticesPage(ScenarioContext context) : base(context) => _context = context;
 
         public AddApprenticeDetailsPage EmployerAddsApprentices()
         {
@@ -42,13 +31,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         private StartAddingApprenticesPage EmployerAgreesToAdds()
         {
-            _formCompletionHelper.SelectRadioOptionByText(RadioLabels, "I will add apprentices");
+            formCompletionHelper.SelectRadioOptionByText(RadioLabels, "I will add apprentices");
             return this;
         }
 
         private StartAddingApprenticesPage EmployerSendsToProviderToAdd()
         {
-            _formCompletionHelper.SelectRadioOptionByText(RadioLabels, "I would like my provider to add apprentices");
+            formCompletionHelper.SelectRadioOptionByText(RadioLabels, "I would like my provider to add apprentices");
             return this;
         }
 

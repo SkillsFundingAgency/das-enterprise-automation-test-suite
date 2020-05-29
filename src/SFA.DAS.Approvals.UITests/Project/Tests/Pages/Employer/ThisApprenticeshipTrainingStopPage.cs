@@ -1,20 +1,15 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
-using SFA.DAS.UI.Framework.TestSupport;
-using SFA.DAS.UI.FrameworkHelpers;
 using System;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
-    public class ThisApprenticeshipTrainingStopPage : BasePage
+    public class ThisApprenticeshipTrainingStopPage : ApprovalsBasePage
     {
         protected override string PageTitle => "When did this apprenticeship training stop?";
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
-        private readonly ApprenticeCourseDataHelper _dataHelper;
-        private readonly FormCompletionHelper _formCompletionHelper;
         #endregion
 
         private By MonthField => By.Id("DateOfChange_Month");
@@ -23,13 +18,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private By NewStopDate_Month => By.Id("NewStopDate_Month");
         private By NewStopDate_Year => By.Id("NewStopDate_Year");
 
-        public ThisApprenticeshipTrainingStopPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            _dataHelper = context.Get<ApprenticeCourseDataHelper>();
-            _formCompletionHelper = context.Get<FormCompletionHelper>();
-            VerifyPage();
-        }
+        public ThisApprenticeshipTrainingStopPage(ScenarioContext context) : base(context) => _context = context;
 
         public StopApprenticeshipPage EditStopDateToThisMonthAndSubmit()
         {
@@ -40,8 +29,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         public NewStopDateApprenticeDetailsPage EditStopDateToCourseStartDateAndSubmit()
         {
-            _formCompletionHelper.EnterText(NewStopDate_Month, _dataHelper.CourseStartDate.Month);
-            _formCompletionHelper.EnterText(NewStopDate_Year, _dataHelper.CourseStartDate.Year);
+            formCompletionHelper.EnterText(NewStopDate_Month, apprenticeCourseDataHelper.CourseStartDate.Month);
+            formCompletionHelper.EnterText(NewStopDate_Year, apprenticeCourseDataHelper.CourseStartDate.Year);
             Continue();
             return new NewStopDateApprenticeDetailsPage(_context);
         }
@@ -49,8 +38,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private void EnterTheStopDate()
         {
             DateTime stopDate = DateTime.Now;
-            _formCompletionHelper.EnterText(MonthField, stopDate.Month);
-            _formCompletionHelper.EnterText(YearField, stopDate.Year);
+            formCompletionHelper.EnterText(MonthField, stopDate.Month);
+            formCompletionHelper.EnterText(YearField, stopDate.Year);
         }
     }
 }
