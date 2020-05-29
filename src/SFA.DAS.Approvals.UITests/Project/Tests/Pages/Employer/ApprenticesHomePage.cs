@@ -28,9 +28,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private By CookiesAcceptButton = By.Id("btn-cookie-accept");
         private By CookiesSettingsButton = By.Id("btn-cookie-settings");
 
-        private By HelpWidgetButton =
-            By.ClassName(
-                "wrapper-AtBcr u-isActionable u-textLeft u-inlineBlock u-borderNone u-textBold u-textNoWrap Arrange Arrange--middle u-userLauncherColor");
+        private By zenHelpWidgetScript1 = By.Id("ze-snippet");
+        private By zenHelpWidgetScript2 = By.Id("co-snippet");
 
         public ApprenticesHomePage(ScenarioContext context, bool navigate = false) : base(context, navigate)
         {
@@ -89,7 +88,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         public void ValidateHelpWidget()
         {
-            Assert.IsTrue(_pageInteractionHelper.IsElementDisplayed(HelpWidgetButton), "Validate help widget button in the bottom right");
+            Assert.IsTrue(_pageInteractionHelper.IsElementPresent(zenHelpWidgetScript1), "Validate help widget button in the bottom right");
+            Assert.IsTrue(_pageInteractionHelper.IsElementPresent(zenHelpWidgetScript2), "Validate help widget button in the bottom right");
         }
 
     }
