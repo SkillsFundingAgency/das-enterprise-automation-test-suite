@@ -168,7 +168,6 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
         {
             _formCompletionHelper.Click(Save);
             _formCompletionHelper.Click(MyApplications);
-            _pageInteractionHelper.AcceptAlertIfPresent(true);
             return new FAA_MyApplicationsHomePage(_context);
         }
     }

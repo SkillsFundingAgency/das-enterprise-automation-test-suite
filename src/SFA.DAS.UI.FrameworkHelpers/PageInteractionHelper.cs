@@ -252,30 +252,5 @@ namespace SFA.DAS.UI.FrameworkHelpers
         }
 
         public bool GetElementSelectedStatus(By locator) => FindElement(locator).Selected;
-
-        public void AcceptAlertIfPresent(bool accept)
-        {
-            if (IsAlertPresent())
-            {
-                IAlert alert = _webDriver.SwitchTo().Alert();
-                if (accept)
-                    alert.Accept();
-                else
-                    alert.Dismiss();
-            }
-        }
-
-        private bool IsAlertPresent()
-        {
-            try
-            {
-                _webDriver.SwitchTo().Alert();
-                return true;
-            }
-            catch (Exception)
-            {
-                return false;
-            }
-        }
     }
 }
