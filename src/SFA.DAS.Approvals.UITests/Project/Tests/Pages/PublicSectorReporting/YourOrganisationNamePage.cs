@@ -1,7 +1,7 @@
 ﻿using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
+namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.PublicSectorReporting
 {
     public class YourOrganisationNamePage : PublicSectorReportingBasePage
     {
@@ -15,12 +15,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
 
         private By OrganisatiponNameInput => By.CssSelector("#Report_OrganisationName");
 
-        public YourOrganisationNamePage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
-
+        public YourOrganisationNamePage(ScenarioContext context) : base(context) => _context = context;
+        
         public ReportYourProgressPage EnterNameOftheOrganisation()
         {
             formCompletionHelper.EnterText(OrganisatiponNameInput, registrationConfig.RE_OrganisationName);

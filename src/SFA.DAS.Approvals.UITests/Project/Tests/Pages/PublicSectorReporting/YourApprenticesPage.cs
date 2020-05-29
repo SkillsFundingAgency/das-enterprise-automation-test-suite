@@ -1,12 +1,12 @@
 ﻿using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
+namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.PublicSectorReporting
 {
     public class YourApprenticesPage : PublicSectorReportingBasePage
     {
         protected override string PageTitle => "Your apprentices";
-        
+
         #region Helpers and Context
         private readonly ScenarioContext _context;
         #endregion
@@ -16,11 +16,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
         private By NoOfApprentices => By.CssSelector("#z2__Answer");
 
 
-        public YourApprenticesPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public YourApprenticesPage(ScenarioContext context) : base(context) => _context = context;
 
         public ReportYourProgressPage EnterApprenticeDetails()
         {
