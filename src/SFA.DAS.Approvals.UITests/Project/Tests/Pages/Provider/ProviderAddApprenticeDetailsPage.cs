@@ -40,18 +40,18 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             formCompletionHelper.EnterText(DateOfBirthMonth, apprenticeDataHelper.DateOfBirthMonth);
             formCompletionHelper.EnterText(DateOfBirthYear, apprenticeDataHelper.DateOfBirthYear);
             formCompletionHelper.EnterText(Uln, apprenticeDataHelper.Uln());
-            formCompletionHelper.SelectFromDropDownByValue(TrainingCourseContainer, coursedataHelper.Course);
+            formCompletionHelper.SelectFromDropDownByValue(TrainingCourseContainer, apprenticeCourseDataHelper.Course);
             formCompletionHelper.ClickElement(StartDateMonth);
-            formCompletionHelper.EnterText(StartDateMonth, coursedataHelper.CourseStartDate.Month);
-            formCompletionHelper.EnterText(StartDateYear, coursedataHelper.CourseStartDate.Year);
+            formCompletionHelper.EnterText(StartDateMonth, apprenticeCourseDataHelper.CourseStartDate.Month);
+            formCompletionHelper.EnterText(StartDateYear, apprenticeCourseDataHelper.CourseStartDate.Year);
             if (!loginCredentialsHelper.IsLevy && !objectContext.IsProviderMakesReservationForNonLevyEmployers())
             {
                 DateTime now = DateTime.Now;
                 formCompletionHelper.EnterText(StartDateMonth, now.Month);
                 formCompletionHelper.EnterText(StartDateYear, now.Year);
             }
-            formCompletionHelper.EnterText(EndDateMonth, coursedataHelper.CourseEndDate.Month);
-            formCompletionHelper.EnterText(EndDateYear, coursedataHelper.CourseEndDate.Year);
+            formCompletionHelper.EnterText(EndDateMonth, apprenticeCourseDataHelper.CourseEndDate.Month);
+            formCompletionHelper.EnterText(EndDateYear, apprenticeCourseDataHelper.CourseEndDate.Year);
             formCompletionHelper.EnterText(TrainingCost, apprenticeDataHelper.TrainingPrice);
             formCompletionHelper.EnterText(EmployerReference, apprenticeDataHelper.EmployerReference);
             formCompletionHelper.ClickElement(AddButton);

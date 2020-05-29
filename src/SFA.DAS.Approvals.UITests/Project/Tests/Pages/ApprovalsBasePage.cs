@@ -23,7 +23,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages
         protected readonly ApprenticeDataHelper apprenticeDataHelper;
         protected readonly EditedApprenticeDataHelper editedApprenticeDataHelper;
         protected readonly EditedApprenticeCourseDataHelper editedApprenticeCourseDataHelper; 
-        protected readonly ApprenticeCourseDataHelper coursedataHelper;
+        protected readonly ApprenticeCourseDataHelper apprenticeCourseDataHelper;
         #endregion
 
         protected ApprovalsBasePage(ScenarioContext context, bool verifypage = true) : base(context)
@@ -39,7 +39,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages
             dataHelper = context.Get<PublicSectorReportingDataHelper>();
             apprenticeDataHelper = context.Get<ApprenticeDataHelper>();
             editedApprenticeDataHelper = context.Get<EditedApprenticeDataHelper>();
-            coursedataHelper = context.Get<ApprenticeCourseDataHelper>();
+            apprenticeCourseDataHelper = context.Get<ApprenticeCourseDataHelper>();
             editedApprenticeCourseDataHelper = context.Get<EditedApprenticeCourseDataHelper>();
             if (verifypage) VerifyPage();
         }
