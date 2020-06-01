@@ -22,7 +22,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
                 var elementDisplayed = pageInteractionHelper.IsElementDisplayed(NoSearchResults);
                 if (elementDisplayed)
                 {
-                     throw new Exception($"Element verification failed: No Search result found for Vacancy {_objectContext.GetVacancyReference()}");
+                     throw new Exception($"Element verification failed: No Search result found for Vacancy {objectContext.GetVacancyReference()}");
                 }
                 return elementDisplayed;
             }, () => formCompletionHelper.Click(Search));

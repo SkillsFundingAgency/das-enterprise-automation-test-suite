@@ -40,7 +40,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
             switch (searchCriteriaOrDistanceDropDownValue)
             {
                 case "Job title":
-                    SearchByKeyword(searchCriteriaOrDistanceDropDownValue, vacancytitledataHelper.VacancyTitle, "Keywords=" + vacancytitledataHelper.VacancyTitle);
+                    SearchByKeyword(searchCriteriaOrDistanceDropDownValue, vacancyTitleDataHelper.VacancyTitle, "Keywords=" + vacancyTitleDataHelper.VacancyTitle);
                     break;
 
                 case "Employer":
@@ -105,14 +105,14 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
             }
             else
             {
-                var uri = new Uri(new Uri(faaconfig.FAABaseUrl), $"apprenticeship/{vacancyRef}");
+                var uri = new Uri(new Uri(faaConfig.FAABaseUrl), $"apprenticeship/{vacancyRef}");
                 tabHelper.GoToUrl(uri.AbsoluteUri);
             }
         }
 
         public FAA_PhoneNumberVerificationPage VerifyPhoneNumberVerificationText()
         {
-            pageInteractionHelper.VerifyText(VerifyPhoneNumberText, faadataHelper.PhoneNumberVerificationText);
+            pageInteractionHelper.VerifyText(VerifyPhoneNumberText, faaDataHelper.PhoneNumberVerificationText);
             formCompletionHelper.ClickElement(VerifyMobile);
             return new FAA_PhoneNumberVerificationPage(_context);
         }

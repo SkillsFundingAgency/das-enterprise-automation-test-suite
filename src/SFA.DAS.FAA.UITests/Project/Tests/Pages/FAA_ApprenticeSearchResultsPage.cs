@@ -16,7 +16,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 
         private By NationwideVacancies => By.Id("nationwideLocationTypeLink");
         private By NationwideVacanciesText => By.Id("multiple-positions-nationwide");
-        private By VacancyLink => By.LinkText(vacancytitledataHelper.VacancyTitle);
+        private By VacancyLink => By.LinkText(vacancyTitleDataHelper.VacancyTitle);
         private By SearchAgainLink => By.Id("start-again-link");
 
         public FAA_ApprenticeSearchResultsPage(ScenarioContext context) : base(context) => _context = context;
@@ -37,7 +37,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
             pageInteractionHelper.VerifyText(selectedText, "Closing date");
         }
 
-        protected void CheckNationwideVacanciesText() => pageInteractionHelper.VerifyText(NationwideVacanciesText, faadataHelper.NationwideVacanciesText);
+        protected void CheckNationwideVacanciesText() => pageInteractionHelper.VerifyText(NationwideVacanciesText, faaDataHelper.NationwideVacanciesText);
 
         protected void ClickNationwideVacancies()
         {
@@ -73,7 +73,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
                 List<IWebElement> vacanciesCount = pageInteractionHelper.FindElements(VacanciesList);
                 foreach (var vacancy in vacanciesCount)
                 {
-                    if (vacancy.Text.Contains(vacancytitledataHelper.VacancyTitle))
+                    if (vacancy.Text.Contains(vacancyTitleDataHelper.VacancyTitle))
                         return this;
                 }
 

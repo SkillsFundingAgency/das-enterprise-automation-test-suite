@@ -27,14 +27,14 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
             {
                 foreach (var vacancy in vacanciesCount)
                 {
-                    if (vacancy.Text.Contains(vacancytitledataHelper.VacancyTitle))
+                    if (vacancy.Text.Contains(vacancyTitleDataHelper.VacancyTitle))
                         return this;
                 }
                 throw new Exception($"VacancyTitle Not found in VacanciesList within the '{locationPostCode}'");
             }
             else
             {
-                throw new Exception($"Vacancy title: {vacancytitledataHelper.VacancyTitle} Not Found");
+                throw new Exception($"Vacancy title: {vacancyTitleDataHelper.VacancyTitle} Not Found");
             }
         }
     }
