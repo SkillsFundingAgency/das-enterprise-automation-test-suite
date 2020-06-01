@@ -23,7 +23,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         }
 
         private By ChangeTypeOptions => By.CssSelector(".selection-button-radio");
-        protected override By ContinueButton => By.CssSelector(".button");
+        protected override By ContinueButton => By.CssSelector("#submit-change-status");
 
         public PauseApprenticePage SelectPauseAndContinue()
         {
