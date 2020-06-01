@@ -12,16 +12,11 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Apprentice
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
-        private readonly TabHelper _tabhelper;
         #endregion
 
         private By SearchResults => By.CssSelector(".link-faa-more-details-title");
 
-        public YourResultsPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            _tabhelper = context.Get<TabHelper>();
-        }
+        public YourResultsPage(ScenarioContext context) : base(context) => _context = context;
 
         public ApprenticeshipSummaryPage SelectFirstSearchResult()
         {
@@ -29,7 +24,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Apprentice
 
             objectContext.SetVacancyTitle(firstresult.Text);
 
-            _tabhelper.OpenInNewTab(() => formCompletionHelper.ClickElement(SearchResults));
+            tabHelper.OpenInNewTab(() => formCompletionHelper.ClickElement(SearchResults));
 
             return new ApprenticeshipSummaryPage(_context);
         }

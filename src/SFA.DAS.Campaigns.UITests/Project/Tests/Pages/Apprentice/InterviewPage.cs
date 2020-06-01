@@ -6,7 +6,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Apprentice
     {
         protected override string PageTitle => "INTERVIEW";
 
-        public InterviewPage(ScenarioContext context) : base(context) => VerifyHeadings();
+        public InterviewPage(ScenarioContext context) : base(context, false) => VerifyHeadings();
 
         private void VerifyHeadings()
         {

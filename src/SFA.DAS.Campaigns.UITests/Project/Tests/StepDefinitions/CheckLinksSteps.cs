@@ -11,9 +11,9 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
         public CheckLinksSteps(ScenarioContext context) => _context = context;
 
         [Then(@"the links are not broken")]
-        public void ThenTheLinksAreNotBroken() => new CampaingnsPage(_context).VerifyLinks();
+        public void ThenTheLinksAreNotBroken() => new CampaingnsPage(_context, false).VerifyLinks();
 
         [Then(@"the video links are not broken")]
-        public void ThenTheVideoLinksAreNotBroken() => new CampaingnsPage(_context).VerifyVideoLinks();
+        public void ThenTheVideoLinksAreNotBroken() => new CampaingnsPage(_context, false).VerifyVideoLinks();
     }
 }

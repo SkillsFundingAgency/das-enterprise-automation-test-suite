@@ -17,10 +17,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Apprentice
 
         private By UpdateResults => By.CssSelector("#button-faa-update-results");
 
-        public ResultsPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-        }
+        public ResultsPage(ScenarioContext context) : base(context) => _context = context;
 
         public YourResultsPage VerifySearchResults()
         {
