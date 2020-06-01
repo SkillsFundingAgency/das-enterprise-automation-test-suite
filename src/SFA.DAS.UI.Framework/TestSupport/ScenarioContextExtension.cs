@@ -63,7 +63,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
         public static T GetEPAOConfig<T>(this ScenarioContext context) => Get<T>(context, EPAOProjectConfigKey);
         public static T GetCampaignsConfig<T>(this ScenarioContext context) => Get<T>(context, CampaignsConfigKey);
         public static IWebDriver GetWebDriver(this ScenarioContext context) => Get<IWebDriver>(context, WebDriverKey);
-        public static T Get<T>(ScenarioContext context, string key) => (context.ContainsKey(key)) ? context.Get<T>(key): default;
+        public static T Get<T>(ScenarioContext context, string key) => context.GetValue<T>(key);
         #endregion
     }
 }
