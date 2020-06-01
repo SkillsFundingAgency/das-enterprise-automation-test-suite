@@ -1,8 +1,8 @@
-﻿Feature: AP_Emp_01_LinksOnApprenticePage
+﻿Feature: AP_Nav_03
 
-
-@mytag
-Scenario: Validate all links on Apprentice home page are functional
+@regression
+@approvals
+Scenario: AP_Nav_03
 	Given Employer navigates to Apprentices home page
 	Then Standard gov.uk footer should be displayed at the bottom of the page
 	And Standard cookie banner should be displayed at the top of the page
