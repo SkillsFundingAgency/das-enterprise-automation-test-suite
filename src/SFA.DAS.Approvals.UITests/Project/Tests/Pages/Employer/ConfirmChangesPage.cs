@@ -12,7 +12,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         #endregion
 
         private By AcceptChangesOptions => By.CssSelector(".selection-button-radio");
-        private By FinishButton => By.CssSelector(".button");
+        private By FinishButton => By.CssSelector("#submit-confirm-change");
 
         public ConfirmChangesPage(ScenarioContext context) : base(context) => _context = context;
 

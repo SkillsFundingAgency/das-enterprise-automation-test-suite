@@ -14,7 +14,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         private By MonthField => By.Id("DateOfChange_Month");
         private By YearField => By.Id("DateOfChange_Year");
-        protected override By ContinueButton => By.CssSelector(".button");
+        protected override By ContinueButton => By.CssSelector("#submit-apply-change");
         private By NewStopDate_Month => By.Id("NewStopDate_Month");
         private By NewStopDate_Year => By.Id("NewStopDate_Year");
 
