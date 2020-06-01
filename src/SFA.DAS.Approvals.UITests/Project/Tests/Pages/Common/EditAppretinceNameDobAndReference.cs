@@ -20,7 +20,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
         protected virtual By Reference => By.CssSelector("#EmployerRef, #Reference, #ProviderRef");
         protected virtual By UpdateDetailsButton => By.CssSelector("#submit-edit-app, #submit-edit-details, #continue-button");
 
-        public EditAppretinceNameDobAndReference(ScenarioContext context, bool verifypage = true) : base(context, verifypage) { }
+        protected EditAppretinceNameDobAndReference(ScenarioContext context, bool verifypage = true) : base(context, verifypage) { }
 
         public void EditApprenticeNameDobAndReference(string reference)
         {

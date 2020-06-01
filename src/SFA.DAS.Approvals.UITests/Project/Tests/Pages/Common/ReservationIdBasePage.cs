@@ -7,7 +7,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
     {
         private By MessageLocator => By.TagName("body");
 
-        public ReservationIdBasePage(ScenarioContext context) : base(context) { }
+        protected ReservationIdBasePage(ScenarioContext context) : base(context) { }
 
         public void VerifySucessMessage()
         {
