@@ -8,10 +8,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
 
         public ChooseTheTrainingProviderPage(ScenarioContext context) : base(context) => VerifyHeadings();
 
-        private void VerifyHeadings()
-        {
-            pageInteractionHelper.VerifyText(Heading1, "MISUNDERSTANDINGS AND MYTHS");
-        }
+        private void VerifyHeadings() => pageInteractionHelper.VerifyText(Heading1, "MISUNDERSTANDINGS AND MYTHS");
     }
 }
 

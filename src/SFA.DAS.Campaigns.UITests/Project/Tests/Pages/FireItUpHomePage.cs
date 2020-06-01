@@ -4,9 +4,6 @@ using SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer;
 using SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Parent;
 using SFA.DAS.Campaigns.UITests.Project.Tests.Pages.RegisterInterest;
 using SFA.DAS.Campaigns.UITests.Project.Tests.Pages.TheCalling;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
@@ -35,11 +32,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
 
         private By TheCalling => By.CssSelector("#homepage-thecalling-banner-link");
 
-        public FireItUpHomePage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public FireItUpHomePage(ScenarioContext context) : base(context) => _context = context;
 
         public FireItUpHomePage AcceptCookieAndAlert()
         {

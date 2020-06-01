@@ -6,6 +6,6 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Apprentice
     {
         protected override string PageTitle => "WHAT IS AN APPRENTICESHIP?";
 
-        public WhatIsAnApprenticeshipPage(ScenarioContext context) : base(context) => VerifyPage();
+        public WhatIsAnApprenticeshipPage(ScenarioContext context) : base(context) { }
     }
 }

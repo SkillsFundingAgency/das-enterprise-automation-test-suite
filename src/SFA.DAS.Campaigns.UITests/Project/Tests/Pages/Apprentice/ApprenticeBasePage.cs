@@ -7,6 +7,6 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Apprentice
     {
         protected override By PageHeader => By.CssSelector(".heading-xl");
 
-        protected ApprenticeBasePage(ScenarioContext context) : base(context) { }
+        protected ApprenticeBasePage(ScenarioContext context, bool verifypage = true) : base(context, verifypage) { }
     }
 }

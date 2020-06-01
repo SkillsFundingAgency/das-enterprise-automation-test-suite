@@ -1,22 +1,12 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.Campaigns.UITests.Project.Helpers;
-using SFA.DAS.ConfigurationBuilder;
-using SFA.DAS.UI.Framework.TestSupport;
-using SFA.DAS.UI.FrameworkHelpers;
 using System;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
 {
-    public class CampaingnsPage : BasePage
+    public class CampaingnsPage : CampaingnsBasePage
     {
         #region Helpers and Context
-        protected readonly ObjectContext objectContext;
-        protected readonly PageInteractionHelper pageInteractionHelper;
-        protected readonly FormCompletionHelper formCompletionHelper;
-        protected readonly CampaignsConfig campaignsConfig;
-        protected readonly CampaignsDataHelper campaignsDataHelper;
-        protected readonly TabHelper tabHelper;
         private readonly ScenarioContext _context;
         #endregion
 
@@ -30,16 +20,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
 
         protected override string PageTitle => "";
 
-        public CampaingnsPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            objectContext = context.Get<ObjectContext>();
-            formCompletionHelper = context.Get<FormCompletionHelper>();
-            pageInteractionHelper = context.Get<PageInteractionHelper>();
-            campaignsConfig = context.GetCampaignsConfig<CampaignsConfig>();
-            campaignsDataHelper = context.Get<CampaignsDataHelper>();
-            tabHelper = context.Get<TabHelper>();
-        }
+        public CampaingnsPage(ScenarioContext context, bool verifypage = true) : base(context, verifypage) => _context = context;
 
         public void VerifyLinks() => VerifyLinks(Links, "href", (x) => x.Text);
 
