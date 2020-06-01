@@ -8,9 +8,6 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
 
         public EmpBenefitsPage(ScenarioContext context) : base(context) => VerifyHeadings();
 
-        private void VerifyHeadings()
-        {
-            pageInteractionHelper.VerifyText(Heading1, "THE BENEFITS TO YOUR ORGANISATION");
-        }
+        private void VerifyHeadings() => pageInteractionHelper.VerifyText(Heading1, "THE BENEFITS TO YOUR ORGANISATION");
     }
 }

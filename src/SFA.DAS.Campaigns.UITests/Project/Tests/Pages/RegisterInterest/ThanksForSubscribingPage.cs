@@ -11,7 +11,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.RegisterInterest
 
         private By NameDetails => By.CssSelector(".heading-emphasise");
 
-        public ThanksForSubscribingPage(ScenarioContext context) : base(context) => VerifyPage();
+        public ThanksForSubscribingPage(ScenarioContext context) : base(context) { }
 
         public void VerifyDetail() => pageInteractionHelper.VerifyText(NameDetails, $"{campaignsDataHelper.FullName.ToUpper()}");
     }
