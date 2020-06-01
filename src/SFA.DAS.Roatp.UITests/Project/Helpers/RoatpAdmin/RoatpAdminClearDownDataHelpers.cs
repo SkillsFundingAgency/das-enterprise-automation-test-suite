@@ -23,7 +23,8 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.RoatpAdmin
             var GateWayResetQuery = $" DECLARE @ApplicationID UNIQUEIDENTIFIER; " +
             $" SELECT @ApplicationID = ApplicationId FROM dbo.apply WHERE [UKPRN] = {_objectContext.GetUkprn()} " +
             $" DELETE FROM dbo.gatewayanswer WHERE ApplicationId = @ApplicationID; " +
-            $" UPDATE Apply set GatewayReviewStatus = 'New' , Applicationstatus = 'Submitted' WHERE [UKPRN] = {_objectContext.GetUkprn()} ";
+            $" UPDATE Apply set GatewayReviewStatus = 'New' , Applicationstatus = 'Submitted' WHERE [UKPRN] = {_objectContext.GetUkprn()} " +
+            $" UPDATE Apply set FinancialReviewStatus = 'New' , FinancialGrade = NULL WHERE [UKPRN] = {_objectContext.GetUkprn()} ";
 
             SqlDatabaseConnectionHelper.ExecuteSqlCommand(_applyDatabaseConnectionString, GateWayResetQuery);
         }
