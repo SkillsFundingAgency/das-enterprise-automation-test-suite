@@ -1,12 +1,9 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.RAA.DataGenerator;
-using SFA.DAS.UI.Framework.TestSupport;
-using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 {
-    public class VacanciesPage : BasePage
+    public class VacanciesPage : RAAV2CSSBasePage
     {
         protected override string PageTitle => "Vacancies";
 
@@ -14,24 +11,12 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
-        private readonly PageInteractionHelper _pageInteractionHelper;
-        private readonly FormCompletionHelper _formCompletionHelper;
-        private readonly TableRowHelper _tableRowHelper;
-        private readonly VacancyTitleDatahelper _vacancyTitleDatahelper;
         #endregion
 
         private By Filter => By.CssSelector("#Filter");
 
         
-        public VacanciesPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            _pageInteractionHelper = context.Get<PageInteractionHelper>();
-            _formCompletionHelper = context.Get<FormCompletionHelper>();
-            _tableRowHelper = context.Get<TableRowHelper>();
-            _vacancyTitleDatahelper = context.Get<VacancyTitleDatahelper>();
-            VerifyPage();
-        }
+        public VacanciesPage(ScenarioContext context) : base(context) => _context = context;
 
         public ApprenticeshipTrainingPage GoToApprenticeshipTrainingPage()
         {
@@ -47,9 +32,9 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         private void DraftVacancy()
         {
-            _formCompletionHelper.SelectFromDropDownByValue(Filter, "Draft");
-            _pageInteractionHelper.WaitforURLToChange($"Filter=Draft");
-            _tableRowHelper.SelectRowFromTable("Edit and submit", _vacancyTitleDatahelper.VacancyTitle);
+            formCompletionHelper.SelectFromDropDownByValue(Filter, "Draft");
+            pageInteractionHelper.WaitforURLToChange($"Filter=Draft");
+            tableRowHelper.SelectRowFromTable("Edit and submit", vacancyTitleDataHelper.VacancyTitle);
         }        
     }
 }
