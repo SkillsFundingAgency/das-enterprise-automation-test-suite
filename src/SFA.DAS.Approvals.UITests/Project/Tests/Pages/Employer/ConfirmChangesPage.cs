@@ -1,33 +1,25 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.UI.Framework.TestSupport;
-using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
-    public class ConfirmChangesPage : BasePage
+    public class ConfirmChangesPage : ApprovalsBasePage
     {
         protected override string PageTitle => "Confirm changes";
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
-        private readonly FormCompletionHelper _formCompletionHelper;
         #endregion
 
         private By AcceptChangesOptions => By.CssSelector(".selection-button-radio");
         private By FinishButton => By.CssSelector("#submit-confirm-change");
 
-        public ConfirmChangesPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            _formCompletionHelper = context.Get<FormCompletionHelper>();
-            VerifyPage();
-        }
+        public ConfirmChangesPage(ScenarioContext context) : base(context) => _context = context;
 
         public ApprenticeDetailsPage AcceptChangesAndSubmit()
         {
-            _formCompletionHelper.SelectRadioOptionByForAttribute(AcceptChangesOptions, "changes-confirmed-true");
-            _formCompletionHelper.ClickElement(FinishButton);
+            formCompletionHelper.SelectRadioOptionByForAttribute(AcceptChangesOptions, "changes-confirmed-true");
+            formCompletionHelper.ClickElement(FinishButton);
             return new ApprenticeDetailsPage(_context);
         }
     }

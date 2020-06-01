@@ -31,7 +31,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.ProviderLeadRegistrat
             FirstName = registrationDataHelper.FirstName;
             LastName = registrationDataHelper.LastName;
             Email = objectContext.GetRegisteredEmail();
-            VerifyPage();
         }
 
         public CheckDetailsPage EnterRegistrationDetailsAndContinue()

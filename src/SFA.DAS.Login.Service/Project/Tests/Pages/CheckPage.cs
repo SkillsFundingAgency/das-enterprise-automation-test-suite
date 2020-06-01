@@ -12,17 +12,11 @@ namespace SFA.DAS.Login.Service.Project.Tests.Pages
         protected abstract By Identifier { get; }
 
         #region Helpers and Context
-        private readonly PageInteractionHelper _pageInteractionHelper;
+        protected readonly PageInteractionHelper _pageInteractionHelper;
         #endregion
 
-        public CheckPage(ScenarioContext context) : base(context)
-        {
-            _pageInteractionHelper = context.Get<PageInteractionHelper>();
-        }
+        public CheckPage(ScenarioContext context) : base(context) => _pageInteractionHelper = context.Get<PageInteractionHelper>();
 
-        public bool IsPageDisplayed()
-        {
-            return _pageInteractionHelper.IsElementDisplayed(Identifier);
-        }
+        public bool IsPageDisplayed() => _pageInteractionHelper.IsElementDisplayed(Identifier);
     }
 }

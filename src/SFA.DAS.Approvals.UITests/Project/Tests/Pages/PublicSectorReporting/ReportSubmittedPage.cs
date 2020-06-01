@@ -1,7 +1,7 @@
 ﻿using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
+namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.PublicSectorReporting
 {
     public class ReportSubmittedPage : PublicSectorReportingBasePage
     {
@@ -9,6 +9,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
 
         protected override By PageHeader => By.CssSelector(".heading-xlarge");
 
-        public ReportSubmittedPage(ScenarioContext context) : base(context) => VerifyPage();
+        public ReportSubmittedPage(ScenarioContext context) : base(context) { }
     }
 }

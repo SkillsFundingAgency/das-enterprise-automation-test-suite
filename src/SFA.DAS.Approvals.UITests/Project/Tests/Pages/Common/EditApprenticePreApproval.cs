@@ -7,14 +7,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
     {
         private readonly ScenarioContext _context;
 
-        public EditApprenticePreApproval(ScenarioContext context) : base(context)
-        {
-            _context = context;
-        }
+        protected EditApprenticePreApproval(ScenarioContext context, bool verifypage = true) : base(context, verifypage) => _context = context;
 
         public ReviewYourCohortPage EditApprenticePreApprovalAndSubmit()
         {
-            EditApprenticeNameDobAndReference(dataHelper.EmployerReference);
+            EditApprenticeNameDobAndReference(editedApprenticeDataHelper.EmployerReference);
             return new ReviewYourCohortPage(_context);
         }
     }

@@ -8,9 +8,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         protected override string PageTitle => "New stop date confirmed";
         protected override By PageHeader => By.CssSelector("h1.heading-large");
 
-        public NewStopDateApprenticeDetailsPage(ScenarioContext context) : base(context)
-        {
-            VerifyPage();
-        }
+        public NewStopDateApprenticeDetailsPage(ScenarioContext context) : base(context) { }
     }
 }
