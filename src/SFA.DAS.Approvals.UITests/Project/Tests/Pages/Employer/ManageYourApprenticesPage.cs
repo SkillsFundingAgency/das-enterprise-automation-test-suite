@@ -1,25 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using OpenQA.Selenium;
-using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
-using SFA.DAS.UI.Framework.TestSupport;
-using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
-    public class ManageYourApprenticesPage : BasePage
+    public class ManageYourApprenticesPage : ApprovalsBasePage
     {
         protected override string PageTitle => "Manage your apprentices";
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
-        private readonly ApprenticeDataHelper _dataHelper;
-        private readonly EditedApprenticeDataHelper _editedApprenticeDataHelper;
-        private readonly TableRowHelper _tableRowHelper;
-        private readonly FormCompletionHelper _formCompletionHelper;
-        private readonly PageInteractionHelper _pageInteractionHelper;
         #endregion
 
         private By ApprenticeSearchField => By.Id("searchTerm");
@@ -30,43 +21,34 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private By DownloadFilteredDataLink => By.PartialLinkText("Download filtered data");
         private By NextPageLink => By.PartialLinkText("Next");
         private By ApprenticeInfoRow => By.CssSelector("tbody tr");
-        private By ViewApprenticeFullName => By.PartialLinkText(_dataHelper.ApprenticeFullName);
+        private By ViewApprenticeFullName => By.PartialLinkText(apprenticeDataHelper.ApprenticeFullName);
 
-        public ManageYourApprenticesPage(ScenarioContext context): base(context)
-        {
-            _context = context;
-            _dataHelper = context.Get<ApprenticeDataHelper>();
-            _editedApprenticeDataHelper = context.Get<EditedApprenticeDataHelper>();
-            _formCompletionHelper = context.Get<FormCompletionHelper>();
-            _pageInteractionHelper = context.Get<PageInteractionHelper>();
-            _tableRowHelper = context.Get<TableRowHelper>();
-            VerifyPage();
-        }
+        public ManageYourApprenticesPage(ScenarioContext context): base(context) => _context = context;
 
         internal ApprenticeDetailsPage SelectViewCurrentApprenticeDetails()
         {
-            SearchForApprentice(_dataHelper.ApprenticeFirstname);
+            SearchForApprentice(apprenticeDataHelper.ApprenticeFirstname);
 
-            var apprenticeRows = _pageInteractionHelper.FindElements(ApprenticeInfoRow);
-            var detailsLinks = _pageInteractionHelper.FindElement(ViewApprenticeFullName);
+            var apprenticeRows = pageInteractionHelper.FindElements(ApprenticeInfoRow);
+            var detailsLinks = pageInteractionHelper.FindElement(ViewApprenticeFullName);
 
             int i = 0;
             foreach (IWebElement apprenticeRow in apprenticeRows)
             {
-                if (apprenticeRow.Text.Contains(_dataHelper.ApprenticeFullName))
+                if (apprenticeRow.Text.Contains(apprenticeDataHelper.ApprenticeFullName))
                 {
-                    _formCompletionHelper.ClickElement(detailsLinks);
+                    formCompletionHelper.ClickElement(detailsLinks);
                     return new ApprenticeDetailsPage(_context);
                 }
                 i++;
             }
-            if (_pageInteractionHelper.IsElementDisplayed(NextPageLink))
+            if (pageInteractionHelper.IsElementDisplayed(NextPageLink))
             {
-                _formCompletionHelper.ClickElement(NextPageLink);
+                formCompletionHelper.ClickElement(NextPageLink);
             }
             else
             {
-                throw new Exception("Apprentice with - " + _dataHelper.ApprenticeFullName + " - name is not found");
+                throw new Exception("Apprentice with - " + apprenticeDataHelper.ApprenticeFullName + " - name is not found");
             }
 
             return new ApprenticeDetailsPage(_context);
@@ -74,27 +56,27 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         private ManageYourApprenticesPage SearchForApprentice(string apprenticeName)
         {
-            _formCompletionHelper.EnterText(ApprenticeSearchField, apprenticeName);
-            _formCompletionHelper.ClickElement(SearchButton);
+            formCompletionHelper.EnterText(ApprenticeSearchField, apprenticeName);
+            formCompletionHelper.ClickElement(SearchButton);
             return new ManageYourApprenticesPage(_context);
         }
 
         internal void VerifyApprenticeExists()
         {
-            _pageInteractionHelper.Verify(() =>
+            pageInteractionHelper.Verify(() =>
             {
-                return _pageInteractionHelper.FindElements(ApprenticesTable).Any();
-            }, () => SearchForApprentice(_editedApprenticeDataHelper.ApprenticeEditedFullName));
+                return pageInteractionHelper.FindElements(ApprenticesTable).Any();
+            }, () => SearchForApprentice(editedApprenticeDataHelper.ApprenticeEditedFullName));
         }
 
         public ManageYourApprenticesPage Filter(string filterText)
         {
-            _formCompletionHelper.SelectFromDropDownByText(SelectFilterDropdown, filterText);
-            _formCompletionHelper.ClickElement(ApplyFilter);
+            formCompletionHelper.SelectFromDropDownByText(SelectFilterDropdown, filterText);
+            formCompletionHelper.ClickElement(ApplyFilter);
             return new ManageYourApprenticesPage(_context);
         }
 
-        public bool DownloadFilteredDataLinkIsDisplayed() => _pageInteractionHelper.IsElementDisplayed(DownloadFilteredDataLink);
+        public bool DownloadFilteredDataLinkIsDisplayed() => pageInteractionHelper.IsElementDisplayed(DownloadFilteredDataLink);
     }
 }
 

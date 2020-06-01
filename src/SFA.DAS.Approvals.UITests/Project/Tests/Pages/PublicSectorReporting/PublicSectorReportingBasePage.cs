@@ -1,14 +1,9 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
-using SFA.DAS.ConfigurationBuilder;
-using SFA.DAS.Registration.UITests.Project;
-using SFA.DAS.UI.Framework.TestSupport;
-using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
+namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.PublicSectorReporting
 {
-    public abstract class PublicSectorReportingBasePage : BasePage
+    public abstract class PublicSectorReportingBasePage : ApprovalsBasePage
     {
         protected override By PageHeader => By.CssSelector("#content .heading-large");
 
@@ -16,23 +11,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
 
         protected override By ContinueButton => By.CssSelector("button.button[type='submit']");
 
-        #region Helpers and Context
-        protected readonly TabHelper tabHelper;
-        protected readonly FormCompletionHelper formCompletionHelper;
-        protected readonly PageInteractionHelper pageInteractionHelper;
-        protected readonly ObjectContext objectContext;
-        protected readonly RegistrationConfig registrationConfig;
-        protected readonly PublicSectorReportingDataHelper dataHelper;
-        #endregion
-
-        protected PublicSectorReportingBasePage(ScenarioContext context) : base(context)
-        {
-            tabHelper = context.Get<TabHelper>();
-            formCompletionHelper = context.Get<FormCompletionHelper>();
-            pageInteractionHelper = context.Get<PageInteractionHelper>();
-            objectContext = context.Get<ObjectContext>();
-            registrationConfig = context.GetRegistrationConfig<RegistrationConfig>();
-            dataHelper = context.Get<PublicSectorReportingDataHelper>();
-        }
+        protected PublicSectorReportingBasePage(ScenarioContext context, bool verifypage = true) : base(context, verifypage) { }
     }
 }

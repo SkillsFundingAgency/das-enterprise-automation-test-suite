@@ -1,12 +1,10 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
-using SFA.DAS.UI.Framework.TestSupport;
-using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
 {
-    public class ChooseAReservationPage : BasePage
+    public class ChooseAReservationPage : ApprovalsBasePage
     {
         protected override string PageTitle => "Choose a Reservation";
         private By CreateANewReservationRadioButton => By.CssSelector(".govuk-label--s");
@@ -14,22 +12,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
         private By ChooseCourseReservation => By.XPath("(//div[@class='govuk-radios']//div[@class='govuk-radios__item'])[1]");
         
         #region Helpers and Context
-        private readonly PageInteractionHelper _pageInteractionHelper;
-        private readonly FormCompletionHelper _formCompletionHelper;
         private readonly ScenarioContext _context;
         #endregion
 
-        public ChooseAReservationPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            _pageInteractionHelper = context.Get<PageInteractionHelper>();
-            _formCompletionHelper = context.Get<FormCompletionHelper>();
-            VerifyPage();
-        }
+        public ChooseAReservationPage(ScenarioContext context) : base(context) => _context = context;
 
         public ChooseAReservationPage ChooseCreateANewReservationRadioButton()
         {
-            _formCompletionHelper.SelectRadioOptionByForAttribute(CreateANewReservationRadioButton, "CreateNew");
+            formCompletionHelper.SelectRadioOptionByForAttribute(CreateANewReservationRadioButton, "CreateNew");
             return new ChooseAReservationPage(_context);
         }
 
@@ -40,7 +30,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
         }
         public AddApprenticeDetailsPage DynamicHomePageClickSaveAndContinueToAddAnApprentices()
         {
-            _formCompletionHelper.Click(ChooseCourseReservation);
+            formCompletionHelper.Click(ChooseCourseReservation);
             Continue();
             return new AddApprenticeDetailsPage(_context);
         }

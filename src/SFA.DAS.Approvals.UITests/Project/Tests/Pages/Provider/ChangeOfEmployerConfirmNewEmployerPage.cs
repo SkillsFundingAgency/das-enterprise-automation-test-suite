@@ -1,19 +1,14 @@
-﻿using SFA.DAS.UI.Framework.TestSupport;
-using TechTalk.SpecFlow;
+﻿using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 {
-    public class ChangeOfEmployerConfirmNewEmployerPage : BasePage
+    public class ChangeOfEmployerConfirmNewEmployerPage : ApprovalsBasePage
     {
         private ScenarioContext _context;
         protected override string PageTitle => "Confirm new employer";
 
-        public ChangeOfEmployerConfirmNewEmployerPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
-
+        public ChangeOfEmployerConfirmNewEmployerPage(ScenarioContext context) : base(context) => _context = context;
+        
         public ChangeOfEmployerStartDatePage ConfirmNewEmployer()
         {
             SelectRadioOptionByForAttribute("confirm-true");

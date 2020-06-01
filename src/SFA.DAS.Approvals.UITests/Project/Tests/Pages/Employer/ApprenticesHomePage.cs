@@ -14,10 +14,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private By YourCohortsLink => By.LinkText("Your cohorts");
         private By ManageYourApprenticesLink => By.LinkText("Manage your apprentices");
 
-        public ApprenticesHomePage(ScenarioContext context, bool navigate = false) : base(context, navigate)
-        {
-            _context = context;
-        }
+        public ApprenticesHomePage(ScenarioContext context, bool navigate = false) : base(context, navigate) => _context = context;
 
         public AddAnApprenitcePage AddAnApprentice()
         {

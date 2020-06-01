@@ -1,7 +1,7 @@
 ﻿using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
+namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.PublicSectorReporting
 {
     public class ConfirmAmendReportPage : PublicSectorReportingBasePage
     {
@@ -15,11 +15,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
 
         protected override By ContinueButton => By.CssSelector("#report-confirm-amend");
 
-        public ConfirmAmendReportPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public ConfirmAmendReportPage(ScenarioContext context) : base(context) => _context = context;
 
         public ReportYourProgressPage ConfirmAmend()
         {

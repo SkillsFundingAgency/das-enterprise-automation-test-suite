@@ -1,44 +1,31 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.Registration.UITests.Project;
-using SFA.DAS.UI.Framework.TestSupport;
-using SFA.DAS.ConfigurationBuilder;
-using SFA.DAS.UI.FrameworkHelpers;
 using System.Linq;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider
 {
-    public class ProviderChooseAnEmployerNonLevyPage : BasePage
+    public class ProviderChooseAnEmployerNonLevyPage : ApprovalsBasePage
     {
         protected override string PageTitle => "Choose an employer";
 
         #region Helpers and Context
-        private readonly TableRowHelper _tableRowHelper;
-        private readonly PageInteractionHelper _pageInteractionHelper;
         private readonly ScenarioContext _context;
-        private readonly ObjectContext _objectContext;
         #endregion
 
         private By EmployersAvailable => By.CssSelector("table tbody tr");
 
-        public ProviderChooseAnEmployerNonLevyPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            _objectContext = context.Get<ObjectContext>();
-            _tableRowHelper = context.Get<TableRowHelper>();
-            _pageInteractionHelper = context.Get<PageInteractionHelper>();
-            VerifyPage();
-        }
+        public ProviderChooseAnEmployerNonLevyPage(ScenarioContext context) : base(context) => _context = context;
 
         internal ProviderConfirmEmployerNonLevyPage ChooseAnEmployerNonLevy()
         {
-            _tableRowHelper.SelectRowFromTable("Select", _objectContext.GetAgreementId());
+            tableRowHelper.SelectRowFromTable("Select", objectContext.GetAgreementId());
             return new ProviderConfirmEmployerNonLevyPage(_context);
         }
 
         internal bool CanChooseAnEmployer()
         {
-            var rows = _pageInteractionHelper.FindElements(EmployersAvailable).ToList();
+            var rows = pageInteractionHelper.FindElements(EmployersAvailable).ToList();
 
             if (rows.Count == 0)
             {
@@ -46,7 +33,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider
             }
             else
             {
-                return rows.Any(x => x.Text.Contains(_objectContext.GetAgreementId()));
+                return rows.Any(x => x.Text.Contains(objectContext.GetAgreementId()));
             }
         }
     }

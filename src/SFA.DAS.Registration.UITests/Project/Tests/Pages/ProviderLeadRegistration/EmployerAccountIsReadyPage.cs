@@ -9,7 +9,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.ProviderLeadRegistrat
 
         protected override By PageHeader => By.CssSelector(".govuk-panel--confirmation");
 
-        public EmployerAccountIsReadyPage(ScenarioContext context) : base(context) => VerifyPage();
-
+        public EmployerAccountIsReadyPage(ScenarioContext context) : base(context) { }
     }
 }

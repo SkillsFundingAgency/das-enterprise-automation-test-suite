@@ -1,31 +1,24 @@
 ﻿using System;
 using OpenQA.Selenium;
-using SFA.DAS.UI.Framework.TestSupport;
-using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 {
-    public class ChangeOfEmployerEndDatePage : BasePage
+    public class ChangeOfEmployerEndDatePage : ApprovalsBasePage
     {
-        private readonly FormCompletionHelper _formCompletionHelper;
-        private readonly ScenarioContext _context;
         protected override string PageTitle => "New training end date";
+
         private By EndDateMonth => By.Name("EndMonth");
         private By EndDateYear => By.Name("EndYear");
 
+        private readonly ScenarioContext _context;
 
-        public ChangeOfEmployerEndDatePage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            _formCompletionHelper = context.Get<FormCompletionHelper>();
-            VerifyPage();
-        }       
+        public ChangeOfEmployerEndDatePage(ScenarioContext context) : base(context) => _context = context;
 
         public ChangeOfEmployerPricePage EnterNewEndDateAndContinue()
         {
-            _formCompletionHelper.EnterText(EndDateMonth, DateTime.UtcNow.Month.ToString());
-            _formCompletionHelper.EnterText(EndDateYear, DateTime.UtcNow.AddYears(1).Year.ToString());
+            formCompletionHelper.EnterText(EndDateMonth, DateTime.UtcNow.Month.ToString());
+            formCompletionHelper.EnterText(EndDateYear, DateTime.UtcNow.AddYears(1).Year.ToString());
             Continue();
             return new ChangeOfEmployerPricePage(_context);
         }

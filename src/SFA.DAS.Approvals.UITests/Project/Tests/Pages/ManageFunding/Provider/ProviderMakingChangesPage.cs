@@ -1,7 +1,5 @@
-﻿using OpenQA.Selenium;
-using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common;
+﻿using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
-using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider
@@ -11,17 +9,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider
         protected override string PageTitle => "You have successfully reserved funding for apprenticeship training";
 		
 		#region Helpers and Context
-		private readonly FormCompletionHelper _formCompletionHelper;
         private readonly ScenarioContext _context;
         #endregion
 
-        public ProviderMakingChangesPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            _formCompletionHelper = context.Get<FormCompletionHelper>();
-            VerifyPage();
-        }
-        
+        public ProviderMakingChangesPage(ScenarioContext context) : base(context) => _context = context;
+
         internal ApprovalsProviderHomePage GoToHomePage()
         {
             SelectRadioOptionByForAttribute("WhatsNext-home");
