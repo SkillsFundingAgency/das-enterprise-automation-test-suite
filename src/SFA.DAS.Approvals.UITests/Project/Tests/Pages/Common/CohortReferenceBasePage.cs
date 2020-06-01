@@ -8,7 +8,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
         private By Instructions => By.CssSelector(".govuk-summary-list__row, .instructionSent tbody");
         private By KeyIdentifier => By.CssSelector(".govuk-summary-list__key, tr > td");
 
-        public CohortReferenceBasePage(ScenarioContext context, bool verifypage = true) : base(context, verifypage) { }
+        protected CohortReferenceBasePage(ScenarioContext context, bool verifypage = true) : base(context, verifypage) { }
     
         public string CohortReference()
         {

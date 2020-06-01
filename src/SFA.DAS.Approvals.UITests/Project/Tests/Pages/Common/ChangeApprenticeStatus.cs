@@ -9,7 +9,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
         private By ConfirmButton => By.Id("submit-status-change");
 
 
-        public ChangeApprenticeStatus(ScenarioContext context) : base(context) { }
+        protected ChangeApprenticeStatus(ScenarioContext context) : base(context) { }
         
         public void SelectYesAndConfirm()
         {

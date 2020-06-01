@@ -9,7 +9,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
 
         private By TrainingCourseContainer => By.CssSelector(".select2-container");
 
-        public EditApprentice(ScenarioContext context, bool verifypage = true) : base(context, verifypage) { }
+        protected EditApprentice(ScenarioContext context, bool verifypage = true) : base(context, verifypage) { }
 
         protected abstract void SelectCourse();
 
