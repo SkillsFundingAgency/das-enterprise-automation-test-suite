@@ -46,6 +46,7 @@ namespace SFA.DAS.RAA.DataGenerator
             VacancyClosing = DateTime.Today.AddMonths(2).AddDays(3);
             NewVacancyClosing = VacancyClosing.AddDays(15);
             NewVacancyStart = NewVacancyClosing.AddDays(15);
+            OptionalMessage = _randomDataGenerator.GenerateRandomAlphabeticString(30);
         }
 
         public DateTime NewVacancyClosing { get; }
@@ -141,5 +142,7 @@ namespace SFA.DAS.RAA.DataGenerator
         public string CreateAccountWithRegisteredEmailErrorMessage => "Your email address has already been activated. Please try signing in again. If you’ve forgotten your password you can reset it.";
 
         public string NationwideVacanciesText => "This apprenticeship has multiple positions across England.";        
+
+        public string OptionalMessage { get; }
     }
 }
