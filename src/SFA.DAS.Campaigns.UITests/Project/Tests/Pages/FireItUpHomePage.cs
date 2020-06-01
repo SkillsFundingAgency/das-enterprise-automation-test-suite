@@ -23,8 +23,6 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
 
         private By CookieButton => By.CssSelector("#link-cookie-accept");
 
-        private By DoNotAlert => By.CssSelector("#alert-countries-stay");
-
         private By Apprentice => By.CssSelector("a[href*='apprentice']");
 
         private By Employer => By.CssSelector("a[href*='employer']");
@@ -48,9 +46,6 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
             if (pageInteractionHelper.WaitUntilAnyElements(CookieButton))
                 formCompletionHelper.ClickElement(CookieButton);
 
-            if (pageInteractionHelper.WaitUntilAnyElements(DoNotAlert))
-                formCompletionHelper.ClickElement(DoNotAlert);
-            
             return new FireItUpHomePage(_context);
         }
 
