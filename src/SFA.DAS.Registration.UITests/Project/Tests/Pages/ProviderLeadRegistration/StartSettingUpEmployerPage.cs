@@ -11,11 +11,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.ProviderLeadRegistrat
 
         protected override By ContinueButton => By.CssSelector(".govuk-button--start");
 
-        public StartSettingUpEmployerPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public StartSettingUpEmployerPage(ScenarioContext context) : base(context) => _context = context;
 
         public EnterTheEmployerDetailsPage Start()
         {

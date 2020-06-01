@@ -3,7 +3,7 @@ using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages.InterimPages;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
+namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.PublicSectorReporting
 {
     public class PublicSectorReportingHomePage : InterimPublicSectorReportingHomePage
     {
@@ -15,11 +15,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
 
         protected override By ContinueButton => By.CssSelector("input[type='submit'][value='Continue']");
 
-        public PublicSectorReportingHomePage(ScenarioContext context, bool navigate = false) : base(context, navigate)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public PublicSectorReportingHomePage(ScenarioContext context, bool navigate = false) : base(context, navigate) => _context = context;
 
         public PublicSectorTargetDatePage CreateNewReport()
         {

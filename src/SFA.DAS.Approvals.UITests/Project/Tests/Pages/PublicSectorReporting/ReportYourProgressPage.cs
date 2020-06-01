@@ -1,7 +1,7 @@
 ﻿using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
+namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.PublicSectorReporting
 {
     public class ReportYourProgressPage : PublicSectorReportingBasePage
     {
@@ -29,11 +29,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
         #endregion
 
 
-        public ReportYourProgressPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public ReportYourProgressPage(ScenarioContext context) : base(context) => _context = context;
 
         public YourOrganisationNamePage GoToYourOrganisationNamePage()
         {

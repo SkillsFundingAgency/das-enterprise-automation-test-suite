@@ -1,7 +1,6 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages.InterimPages;
-using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
@@ -14,44 +13,40 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
-        private readonly PageInteractionHelper _pageInteractionHelper;
-        private readonly FormCompletionHelper _formCompletionHelper;
         #endregion
 
         public ManageFundingHomePage(ScenarioContext context, bool navigate = false) : base(context, navigate)
         {
             _context = context;
-            _pageInteractionHelper = context.Get<PageInteractionHelper>();
-            _formCompletionHelper = context.Get<FormCompletionHelper>();
             VerifyPage();
         }
     
         public ReserveFundingToTrainAndAssessAnApprenticePage ClickReserveFundingButton()
         {
-            if (_pageInteractionHelper.IsElementPresent(ReserveFundingLink))
+            if (pageInteractionHelper.IsElementPresent(ReserveFundingLink))
             {
-                formCompletionHelper.ClickElement(ReserveFundingLink);
+                base.formCompletionHelper.ClickElement(ReserveFundingLink);
             }
             
-            if (_pageInteractionHelper.IsElementPresent(ReserveMoreFundingLink))
+            if (pageInteractionHelper.IsElementPresent(ReserveMoreFundingLink))
             {
-                formCompletionHelper.ClickElement(ReserveMoreFundingLink);
+                base.formCompletionHelper.ClickElement(ReserveMoreFundingLink);
             }
             return new ReserveFundingToTrainAndAssessAnApprenticePage(_context);
         }
 
         public DeleteReservationPage DeleteUnusedFunding()
         {
-            _formCompletionHelper.ClickElement(DeleteLink);
+            formCompletionHelper.ClickElement(DeleteLink);
             return new DeleteReservationPage(_context);
         }
 
-        public bool CheckIfDeleteLinkIsPresent() => _pageInteractionHelper.IsElementPresent(DeleteLink);
+        public bool CheckIfDeleteLinkIsPresent() => pageInteractionHelper.IsElementPresent(DeleteLink);
         
         public DoYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage ClickReserveMoreFundingLink()
         {
             ClickReserveFundingButton();
-            formCompletionHelper.ClickElement(ReserveFundingLink);
+            base.formCompletionHelper.ClickElement(ReserveFundingLink);
             return new DoYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage(_context);
         }
 
