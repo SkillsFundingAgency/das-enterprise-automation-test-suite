@@ -1,11 +1,10 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.RAA.DataGenerator.Project;
 using TechTalk.SpecFlow;
-using SFA.DAS.RAA_V2.Service.Project.Tests.Pages;
 
 namespace SFA.DAS.RAA_V2_QA.UITests.Project.Tests.Pages.Reviewer
 {
-    public class Reviewer_HomePage : RAAV2CSSBasePage
+    public class Reviewer_HomePage : RAAV2QABasePage
     {
         protected override By PageHeader => ReviewVacancyButton;
 
