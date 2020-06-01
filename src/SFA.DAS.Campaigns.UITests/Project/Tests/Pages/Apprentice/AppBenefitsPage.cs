@@ -6,7 +6,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Apprentice
     {
         protected override string PageTitle => "WHAT ARE THE BENEFITS FOR ME?";
 
-        public AppBenefitsPage(ScenarioContext context) : base(context, false) => VerifyHeadings();
+        public AppBenefitsPage(ScenarioContext context) : base(context) => VerifyHeadings();
 
         private void VerifyHeadings()
         {

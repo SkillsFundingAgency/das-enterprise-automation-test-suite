@@ -11,6 +11,6 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Apprentice
 
         private By PageDescription => By.ClassName("lead-paragraph");
 
-        public ApprenticeRealStoriesPage(ScenarioContext context) : base(context, false) => pageInteractionHelper.VerifyText(PageDescription, ExpectedPageDescription);
+        public ApprenticeRealStoriesPage(ScenarioContext context) : base(context) => pageInteractionHelper.VerifyText(PageDescription, ExpectedPageDescription);
     }
 }
