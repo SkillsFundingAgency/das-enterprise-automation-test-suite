@@ -10,7 +10,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
 
         protected virtual By TotalCost => By.CssSelector(".dynamic-cost-display .bold-xlarge, .govuk-table__cell > strong");
 
-        public ReviewYourCohort(ScenarioContext context, bool verifypage = true) : base(context, verifypage) { }
+        protected ReviewYourCohort(ScenarioContext context, bool verifypage = true) : base(context, verifypage) { }
 
         protected List<IWebElement> TotalNoOfEditableApprentices() => pageInteractionHelper.GetLinks("Edit");
 

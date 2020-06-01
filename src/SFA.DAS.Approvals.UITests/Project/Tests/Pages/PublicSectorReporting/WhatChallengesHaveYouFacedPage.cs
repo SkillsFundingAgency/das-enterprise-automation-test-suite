@@ -14,7 +14,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.PublicSectorReporting
 
         public ReportYourProgressPage EnterChallengesDetails()
         {
-            formCompletionHelper.EnterText(Textarea, dataHelper.EmployerChallenges);
+            formCompletionHelper.EnterText(Textarea, publicSectorReportingDataHelper.EmployerChallenges);
             Continue();
             return new ReportYourProgressPage(_context);
         }

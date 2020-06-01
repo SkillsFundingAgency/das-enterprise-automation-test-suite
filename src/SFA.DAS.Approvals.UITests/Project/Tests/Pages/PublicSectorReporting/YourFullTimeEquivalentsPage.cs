@@ -17,7 +17,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.PublicSectorReporting
 
         public ReportYourProgressPage EnterFullTimeEmployeesDetails()
         {
-            formCompletionHelper.EnterText(NoOfFullTime, dataHelper.NoofFullTimeEmployees);
+            formCompletionHelper.EnterText(NoOfFullTime, publicSectorReportingDataHelper.NoofFullTimeEmployees);
             Continue();
             return new ReportYourProgressPage(_context);
         }
