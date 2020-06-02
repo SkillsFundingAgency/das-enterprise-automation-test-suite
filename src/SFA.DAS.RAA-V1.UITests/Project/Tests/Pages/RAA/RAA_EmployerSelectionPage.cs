@@ -24,7 +24,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         public RAA_EmployerInformationPage SelectAnEmployer()
         {
             var links = _pageInteractionHelper.GetLinks(SelectEmployerLinks, "Select employer");
-            formCompletionHelper.ClickElement(dataHelper.Employers(links));
+            formCompletionHelper.ClickElement(rAAV1DataHelper.Employers(links));
             return new RAA_EmployerInformationPage(_context);
         }
     }

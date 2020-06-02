@@ -66,15 +66,15 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         public void EmployerWishesToBeAnonymous()
         {
             formCompletionHelper.SelectRadioOptionByText("No, the employer wants to remain anonymous");
-            formCompletionHelper.EnterText(EmployerDescription, dataHelper.EmployerDescription);
-            formCompletionHelper.EnterText(EmployerReason, dataHelper.EmployerReason);
+            formCompletionHelper.EnterText(EmployerDescription, rAAV1DataHelper.EmployerDescription);
+            formCompletionHelper.EnterText(EmployerReason, rAAV1DataHelper.EmployerReason);
             SaveAndContinue();
         }
 
         public void EmployerDoesNotWantToBeAnonymous()
         {
             formCompletionHelper.SelectRadioOptionByText("Yes");
-            formCompletionHelper.EnterText(EmployerWebsiteUrlOptional, dataHelper.EmployerWebsiteUrl);
+            formCompletionHelper.EnterText(EmployerWebsiteUrlOptional, rAAV1DataHelper.EmployerWebsiteUrl);
             SaveAndContinue();
         }
 
@@ -88,7 +88,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         {
             tabHelper.SwitchToFrame();
             formCompletionHelper.SendKeys(AboutTheEmployerBody, (Keys.Tab + Keys.Control + "a" + Keys.Delete));
-            formCompletionHelper.SendKeys(AboutTheEmployerBody,dataHelper.EmployerBody);
+            formCompletionHelper.SendKeys(AboutTheEmployerBody,rAAV1DataHelper.EmployerBody);
             formCompletionHelper.SendKeys(AboutTheEmployerBody, Keys.Delete);
             tabHelper.SwitchToDefaultContent();
             return this;

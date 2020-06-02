@@ -1,20 +1,12 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.RAA.DataGenerator;
-using SFA.DAS.UI.Framework.TestSupport;
-using SFA.DAS.UI.FrameworkHelpers;
+using SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.Manage
 {
-    public abstract class Manage_HeaderSectionBasePage : BasePage
+    public abstract class Manage_HeaderSectionBasePage : RAAV1BasePage
     {
-
         #region Helpers and Context
-        protected readonly PageInteractionHelper pageInteractionHelper;
-        protected readonly FormCompletionHelper formCompletionHelper;
-        protected readonly TableRowHelper tableRowHelper;
-        protected readonly RAAV1DataHelper raadataHelper;
-        protected readonly VacancyTitleDatahelper vacancyTitleDataHelper;
         private readonly ScenarioContext _context;
         #endregion
 
@@ -22,16 +14,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.Manage
         private By SignOutCss => By.Id("signout-link");
         private By AdminLink => By.Id("adminLink");
 
-        public Manage_HeaderSectionBasePage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            pageInteractionHelper = context.Get<PageInteractionHelper>();
-            formCompletionHelper = context.Get<FormCompletionHelper>();
-            tableRowHelper = context.Get<TableRowHelper>();
-            raadataHelper = context.Get<RAAV1DataHelper>();
-            vacancyTitleDataHelper = context.Get<VacancyTitleDatahelper>();
-            VerifyPage();
-        }
+        public Manage_HeaderSectionBasePage(ScenarioContext context) : base(context) => _context = context;
 
         protected void SignOut()
         {
@@ -39,10 +22,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.Manage
             formCompletionHelper.Click(SignOutCss);
         }
 
-        protected void AgentHome()
-        {
-            formCompletionHelper.Click(AgencyHomeCss);
-        }
+        protected void AgentHome() => formCompletionHelper.Click(AgencyHomeCss);
         
         public Manage_AdminFunctionsPage NavigateToAdminFuntionsPage()
         {

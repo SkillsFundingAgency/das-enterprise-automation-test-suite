@@ -23,13 +23,13 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
 
         public RAA_ExtraQuestionsPage EnterFirstQuestion()
         {
-            formCompletionHelper.EnterText(FirstQuestion, dataHelper.FirstQuestion);
+            formCompletionHelper.EnterText(FirstQuestion, rAAV1DataHelper.FirstQuestion);
             return this;
         }
 
         public RAA_ExtraQuestionsPage EnterSecondQuestion()
         {
-            formCompletionHelper.EnterText(SecondQuestion, dataHelper.SecondQuestion);
+            formCompletionHelper.EnterText(SecondQuestion, rAAV1DataHelper.SecondQuestion);
             return this;
         }
 
