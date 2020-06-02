@@ -17,8 +17,8 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         public EditVacancyPage EnterVacancyDates()
         {
-            ClosingDate(dataHelper.EditedVacancyClosing);
-            StartDate(dataHelper.EditedVacancyStart);
+            ClosingDate(rAAV2DataHelper.EditedVacancyClosing);
+            StartDate(rAAV2DataHelper.EditedVacancyStart);
             Continue();
             return new EditVacancyPage(_context);
         }
@@ -26,7 +26,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         public EditVacancyPage EnterPossibleStartDate()
         {
             // Vacancy dates are edited.
-            StartDate(dataHelper.EditedVacancyStart);
+            StartDate(rAAV2DataHelper.EditedVacancyStart);
             formCompletionHelper.ClickLinkByText("Cancel");
             return new EditVacancyPage(_context);
         }

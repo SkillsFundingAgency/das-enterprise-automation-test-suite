@@ -30,9 +30,9 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         public ConfirmQualificationsPage EnterQualifications()
         {
             formCompletionHelper.SelectFromDropDownByText(QualificationType, "A Level or equivalent");
-            formCompletionHelper.EnterText(Subject, dataHelper.DesiredQualificationsSubject);
-            formCompletionHelper.EnterText(Grade, dataHelper.DesiredQualificationsGrade);
-            formCompletionHelper.ClickElement(() => dataHelper.GetRandomElementFromListOfElements(_pageInteractionHelper.FindElements(RadioLabels)));
+            formCompletionHelper.EnterText(Subject, rAAV2DataHelper.DesiredQualificationsSubject);
+            formCompletionHelper.EnterText(Grade, rAAV2DataHelper.DesiredQualificationsGrade);
+            formCompletionHelper.ClickElement(() => rAAV2DataHelper.GetRandomElementFromListOfElements(_pageInteractionHelper.FindElements(RadioLabels)));
             Continue();
             return new ConfirmQualificationsPage(_context);
         }

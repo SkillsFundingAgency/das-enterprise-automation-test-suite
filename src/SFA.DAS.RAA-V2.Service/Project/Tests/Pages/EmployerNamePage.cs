@@ -49,8 +49,8 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         public ChooseApprenticeshipLocationPage ChooseExistingTradingName()
         {
             SelectRadioOptionByForAttribute("existing-trading-name");
-            formCompletionHelper.EnterText(NewTradingName, dataHelper.EmployerTradingName);
-            SetEmployerName(dataHelper.EmployerTradingName);
+            formCompletionHelper.EnterText(NewTradingName, rAAV2DataHelper.EmployerTradingName);
+            SetEmployerName(rAAV2DataHelper.EmployerTradingName);
             Continue();
             return new ChooseApprenticeshipLocationPage(_context);
         }
@@ -58,9 +58,9 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         public ChooseApprenticeshipLocationPage ChooseAnonymous()
         {
             SelectRadioOptionByForAttribute("anonymous");
-            formCompletionHelper.EnterText(EmployerDescription, dataHelper.EmployerDescription);
-            SetEmployerName(dataHelper.EmployerDescription);
-            formCompletionHelper.EnterText(EmployerReason, dataHelper.EmployerReason);
+            formCompletionHelper.EnterText(EmployerDescription, rAAV2DataHelper.EmployerDescription);
+            SetEmployerName(rAAV2DataHelper.EmployerDescription);
+            formCompletionHelper.EnterText(EmployerReason, rAAV2DataHelper.EmployerReason);
             Continue();
             return new ChooseApprenticeshipLocationPage(_context);
         }

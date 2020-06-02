@@ -22,8 +22,8 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         public DurationPage EnterImportantDates(bool disabilityConfidence)
         {
-            ClosingDate(dataHelper.VacancyClosing);
-            StartDate(dataHelper.VacancyStart);
+            ClosingDate(rAAV2DataHelper.VacancyClosing);
+            StartDate(rAAV2DataHelper.VacancyStart);
 
             if (disabilityConfidence)
             {
