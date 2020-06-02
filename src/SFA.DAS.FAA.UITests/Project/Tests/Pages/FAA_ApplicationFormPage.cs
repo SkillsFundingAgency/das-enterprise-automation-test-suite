@@ -50,7 +50,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
         private By SaveAndContinue => By.Id("apply-button");
         private By AcceptSubmit => By.Id("AcceptSubmitLabel");
         private By SignOut => By.XPath("//a[contains(.,'Sign out')]");
-        private By MyApplications => By.CssSelector("#myapplications-link");
+        private By MyApplications => By.CssSelector("a#myapplications-link");
         private By Save => By.Id("save-button");
 
 
@@ -179,23 +179,10 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
             return new FAA_TraineeshipApplicationSubmittedPage(_context);
         }
 
-        public void ClickSignOut()
-        {
-            formCompletionHelper.Click(SignOut);
-        }
-
-        public void GoToMyApplications()
-        {
-            if (pageInteractionHelper.IsElementDisplayed(MyApplications))
-            {
-                formCompletionHelper.Click(MyApplications);
-            }
-        }
-
         public FAA_MyApplicationsHomePage ClickSave()
         {
             formCompletionHelper.Click(Save);
-            GoToMyApplications();
+            formCompletionHelper.Click(MyApplications);
             return new FAA_MyApplicationsHomePage(_context);
         }
     }
