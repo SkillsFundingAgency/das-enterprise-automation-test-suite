@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ConfigurationBuilder
 {
@@ -17,5 +18,9 @@ namespace SFA.DAS.ConfigurationBuilder
                 dictionary.Add(key, value);
             }
         }
+
+        public static T GetValue<T>(this SpecFlowContext context) => context.TryGetValue<T>(out var value) ? value : default;
+
+        public static T GetValue<T>(this Dictionary<string, object> context, string key) => context.TryGetValue(key, out var value) ? (T)value : default;
     }
 }

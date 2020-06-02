@@ -7,7 +7,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 {
     public class VacancyPreviewPart2Page : RAAV2CSSBasePage
     {
-        protected override string PageTitle => dataHelper.VacancyTitle;
+        protected override string PageTitle => rAAV2DataHelper.VacancyTitle;
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
