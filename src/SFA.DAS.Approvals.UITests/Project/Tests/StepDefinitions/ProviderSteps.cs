@@ -51,7 +51,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [When(@"the provider adds Ulns and approves the cohorts and sends to employer")]
         public void WhenTheProviderAddsUlnsAndApprovesTheCohortsAndSendsToEmployer()
         {
-            var providerReviewYourCohortPage = _providerStepsHelper.EditApprentice();
+            var providerReviewYourCohortPage = _providerStepsHelper.EditApprentice(true);
 
             providerReviewYourCohortPage.SelectSaveAndContinue()
                 .SubmitApproveAndSendToEmployerForApproval()
