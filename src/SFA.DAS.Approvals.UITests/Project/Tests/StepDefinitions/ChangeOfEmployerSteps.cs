@@ -97,6 +97,18 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _providerStepsHelper.ApprovesTheCohortsAndSendsToEmployer();
         }
 
+        [When(@"Provider deletes the Cohort")]
+        public void WhenProviderDeletesTheCohort()
+        {
+            _providerStepsHelper.DeleteCohort(_providerStepsHelper.CurrentCohortDetails());
+        }
+
+        [Then(@"provider can change employer again")]
+        public void ThenProviderCanChangeEmployerAgain()
+        {
+            _providerStepsHelper.StartChangeOfEmployerJourney();
+        }
+
         private void Login() => _multipleAccountsLoginHelper.Login(_context.GetUser<TransfersUser>(), true);
     }
 }
