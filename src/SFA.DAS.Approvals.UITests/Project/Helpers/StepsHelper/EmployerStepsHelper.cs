@@ -28,6 +28,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 
         public void Approve() => EmployerReviewCohort().EmployerDoesSecondApproval();
 
+        public void Reject() => EmployerReviewCohort().EmployerSendsToTrainingProviderForReview();
+
         internal ReviewYourCohortPage OpenRejectedCohort() => 
             GoToEmployerApprenticesHomePage()
               .ClickYourCohortsLink()
