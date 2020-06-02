@@ -17,7 +17,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
 
         public void EnterVacancyClosingDate()
         {
-            DateTime closingDate = dataHelper.NewVacancyClosing;
+            DateTime closingDate = rAAV1DataHelper.NewVacancyClosing;
             string month = closingDate.Month.ToString();
             string year = closingDate.Year.ToString();
             string day = closingDate.Day.ToString();
@@ -28,7 +28,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
 
         public void EnterPossibleStartDate()
         {
-            DateTime startDate = dataHelper.NewVacancyStart;
+            DateTime startDate = rAAV1DataHelper.NewVacancyStart;
             var month = startDate.Month.ToString();
             var year = startDate.Year.ToString();
             var day = startDate.Day.ToString();
