@@ -27,7 +27,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         public ConfirmApprenticeshipTrainingPage EnterTrainingTitle()
         {
-            formCompletionHelper.EnterText(ProgrammeId, dataHelper.TrainingTitle);
+            formCompletionHelper.EnterText(ProgrammeId, rAAV2DataHelper.TrainingTitle);
             formCompletionHelper.ClickElement(() =>
             {
                 pageInteractionHelper.WaitUntilAnyElements(FirstOption);

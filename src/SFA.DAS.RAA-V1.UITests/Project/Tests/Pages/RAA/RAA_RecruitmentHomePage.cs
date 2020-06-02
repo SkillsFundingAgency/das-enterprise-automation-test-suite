@@ -1,13 +1,10 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.RAA.DataGenerator.Project;
 using SFA.DAS.RAA_V1.UITests.Project.Helpers;
-using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.UI.FrameworkHelpers;
 using System;
 using System.Linq;
 using TechTalk.SpecFlow;
-using System.Drawing;
-using System.Collections.ObjectModel;
 
 namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
 {
@@ -17,10 +14,6 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
-        private readonly RegexHelper _regexHelper;
-        private readonly ObjectContext _objectContext;
-        private readonly PageInteractionHelper _pageInteractionHelper;
-        private RandomVacancyHelper _vacancyHelper;
         #endregion
 
         private By CreateANewVacancyButton => By.Id("new-vacancy-button");
@@ -33,18 +26,13 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         private By NoOfVacancy => By.CssSelector(".bold-xlarge");
         private By CloneLink => By.CssSelector("a");
         private By VacancyFilter => By.CssSelector(".column-one-quarter .vacancy-filter");
-        private By VacancyStatus => By.CssSelector(".bold-xsmall");
         private By VacancyTables => By.CssSelector("#vacancies-table tbody tr");
         private By NextPage => By.CssSelector(".page-navigation__btn.next");
         private By NoOfPagesCssSelector => By.CssSelector(".page-navigation__btn.next .counter");
+        private By ReferenceNumberSearchResetCircleSymbol => By.CssSelector(".fa.fa-times-circle");
 
-        public RAA_RecruitmentHomePage(ScenarioContext context, bool navigate) : base(context, navigate)
-        {
-            _context = context;
-            _objectContext = context.Get<ObjectContext>();
-            _pageInteractionHelper = context.Get<PageInteractionHelper>();
-            _regexHelper = context.Get<RegexHelper>();
-        }
+        public RAA_RecruitmentHomePage(ScenarioContext context, bool navigate) : base(context, navigate) => _context = context;
+            
 
         public RAA_SearchCandidatesPage SearchCandidates()
         {
@@ -65,7 +53,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
             IWebElement element()
             {
                 var randomElement = RandomElementAt((str) => !str.Text.Contains("(Applications managed externally)"));
-                return _pageInteractionHelper.FindElements(randomElement, CloneLink).LastOrDefault();
+                return pageInteractionHelper.FindElements(randomElement, CloneLink).LastOrDefault();
             }
 
             formCompletionHelper.RetryClickOnException(element);
@@ -95,7 +83,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         {
             SearchByReferenceNumber();
 
-            if(_objectContext.IsApprenticeshipVacancyType())
+            if(objectContext.IsApprenticeshipVacancyType())
             {
                 return new RAA_VacancyPreviewPage(_context);
             }
@@ -109,7 +97,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         {
             SearchByReferenceNumber();
 
-            if (_objectContext.IsApprenticeshipVacancyType())
+            if (objectContext.IsApprenticeshipVacancyType())
             {
                 return new RAA_VacancyPreviewPage(_context);
             }
@@ -124,8 +112,8 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
             IWebElement func()
             {
                 //_pageInteractionHelper expects some element back and fails when page is running slow and element is not available 
-                var dummyElement = _pageInteractionHelper.FindElements(VacancyFilter);
-                var vacancies = _pageInteractionHelper.FindElements(VacancyTitle);                
+                var dummyElement = pageInteractionHelper.FindElements(VacancyFilter);
+                var vacancies = pageInteractionHelper.FindElements(VacancyTitle);                
 
                 foreach (var vac in vacancies)
                 {
@@ -141,9 +129,10 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
             ApprenticeshipVacancyType();
 
             formCompletionHelper.SelectFromDropDownByValue(VacancySearchMode, "ReferenceNumber");
-            formCompletionHelper.EnterText(VacancySearchText, _objectContext.GetVacancyReference());
-            formCompletionHelper.ClickElement(() => _pageInteractionHelper.FindElement(SearchVacancy));
-            _pageInteractionHelper.WaitForElementToChange(func, AttributeHelper.InnerText, vacancyTitledataHelper.VacancyTitle);            
+            formCompletionHelper.EnterText(VacancySearchText, objectContext.GetVacancyReference());
+            formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(SearchVacancy));
+            pageInteractionHelper.WaitForElementToChange(func, AttributeHelper.InnerText, vacancyTitledataHelper.VacancyTitle);
+            pageInteractionHelper.WaitUntilAnyElements(ReferenceNumberSearchResetCircleSymbol);
 
             formCompletionHelper.ClickLinkByText(VacancyTitle, vacancyTitledataHelper.VacancyTitle);
         }
@@ -156,25 +145,25 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
             formCompletionHelper.SelectFromDropDownByValue(VacancySearchMode, "VacancyTitle");
             var searchTerm = vacancyTitledataHelper.VacancyTitleDate.AddDays(-10).ToString("MMMyyyy");
             formCompletionHelper.EnterText(VacancySearchText, $"{searchTerm}_");
-            formCompletionHelper.ClickElement(() => _pageInteractionHelper.FindElement(SearchVacancy));
+            formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(SearchVacancy));
             formCompletionHelper.ClickLinkByText(VacancyFilters, filter);
-            _pageInteractionHelper.WaitforURLToChange($"FilterType={filtertype(filter)}");
+            pageInteractionHelper.WaitforURLToChange($"FilterType={filtertype(filter)}");
         }
 
         private void ApprenticeshipVacancyType()
         {
-            if (!_objectContext.IsApprenticeshipVacancyType())
+            if (!objectContext.IsApprenticeshipVacancyType())
             {
                 formCompletionHelper.ClickLinkByText("Traineeships");
-                _pageInteractionHelper.WaitForElementToChange(InlineText, "Your opportunities");
+                pageInteractionHelper.WaitForElementToChange(InlineText, "Your opportunities");
             }
         }
 
         private IWebElement RandomElementAt(Func<IWebElement, bool> func)
         {
-            _vacancyHelper = new RandomVacancyHelper(_pageInteractionHelper, formCompletionHelper, _objectContext);
+            randomVacancyHelper = new RandomVacancyHelper(pageInteractionHelper, formCompletionHelper, objectContext);
 
-            return _vacancyHelper.RandomElementAt(func, VacancyTables, VacancyTitle, NextPage, NoOfPagesCssSelector);
+            return randomVacancyHelper.RandomElementAt(func, VacancyTables, VacancyTitle, NextPage, NoOfPagesCssSelector);
         }
     }   
 }

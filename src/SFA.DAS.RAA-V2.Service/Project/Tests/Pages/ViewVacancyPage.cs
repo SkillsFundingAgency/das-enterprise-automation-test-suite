@@ -1,5 +1,4 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.RAA.DataGenerator;
 
 using TechTalk.SpecFlow;
 
@@ -9,7 +8,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
     {
         protected override By PageHeader => By.CssSelector("#vacancy-header");
 
-        protected override string PageTitle => _titleDatahelper.VacancyTitle;
+        protected override string PageTitle => vacancyTitleDataHelper.VacancyTitle;
 
         protected override By EmployerName => By.CssSelector(".govuk-caption-xl");
 
@@ -19,31 +18,21 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         protected override By DisabilityConfident => By.CssSelector("img.disability-confident-logo");
 
-        #region Helpers and Context
-        private readonly VacancyTitleDatahelper _titleDatahelper;
-        private readonly RAAV2DataHelper _rAAV2EmployerDataHelper;
-        #endregion
-
-        public ViewVacancyPage(ScenarioContext context) : base(context)
-        {
-            _titleDatahelper = context.Get<VacancyTitleDatahelper>();
-            _rAAV2EmployerDataHelper = context.Get<RAAV2DataHelper>();
-            VerifyPage();
-        }
-
+        public ViewVacancyPage(ScenarioContext context) : base(context) { }
+        
         public void VerifyWageType(string wageType)
         {
             string wageAmount;
             switch (wageType)
             {
                 case "National Minimum Wage":
-                    wageAmount = _rAAV2EmployerDataHelper.NationalMinimumWage;
+                    wageAmount = rAAV2DataHelper.NationalMinimumWage;
                     break;
                 case "Fixed Wage Type":
-                    wageAmount = _rAAV2EmployerDataHelper.FixedWageForApprentices;
+                    wageAmount = rAAV2DataHelper.FixedWageForApprentices;
                     break;
                 default:
-                    wageAmount = _rAAV2EmployerDataHelper.NationalMinimumWageForApprentices;
+                    wageAmount = rAAV2DataHelper.NationalMinimumWageForApprentices;
                     break;
             };
 

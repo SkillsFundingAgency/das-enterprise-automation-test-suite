@@ -27,9 +27,9 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         public VacancyPreviewPart2Page EnterDescription()
         {
-            _pageInteractionHelper.SwitchFrame(VacancyDescription, iframeBody, dataHelper.VacancyShortDescription);
-            _pageInteractionHelper.SwitchFrame(TrainingDescription, iframeBody, dataHelper.TrainingDetails);
-            _pageInteractionHelper.SwitchFrame(OutcomeDescription, iframeBody, dataHelper.VacancyOutcome);
+            _pageInteractionHelper.SwitchFrame(VacancyDescription, iframeBody, rAAV2DataHelper.VacancyShortDescription);
+            _pageInteractionHelper.SwitchFrame(TrainingDescription, iframeBody, rAAV2DataHelper.TrainingDetails);
+            _pageInteractionHelper.SwitchFrame(OutcomeDescription, iframeBody, rAAV2DataHelper.VacancyOutcome);
             Continue();
             return new VacancyPreviewPart2Page(_context);
         }

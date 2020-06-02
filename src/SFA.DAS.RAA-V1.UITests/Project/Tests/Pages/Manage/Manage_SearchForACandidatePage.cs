@@ -52,7 +52,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.Manage
         public Manage_MyApplicationsPage ViewApplications()
         {
             List<IWebElement> filteredRows = pageInteractionHelper.GetLinks("Select candidate");
-            formCompletionHelper.ClickElement(() => raadataHelper.GetRandomElementFromListOfElements(filteredRows));
+            formCompletionHelper.ClickElement(() => rAAV1DataHelper.GetRandomElementFromListOfElements(filteredRows));
             return new Manage_MyApplicationsPage(_context);
         }
 

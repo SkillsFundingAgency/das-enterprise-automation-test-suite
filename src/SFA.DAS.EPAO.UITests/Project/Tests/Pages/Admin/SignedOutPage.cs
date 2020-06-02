@@ -4,7 +4,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
 {
-    public class SignedOutPage : BasePage
+    public class SignedOutPage : EPAOAdmin_BasePage
     {
         protected override By PageHeader => By.CssSelector("#mainContent");
 

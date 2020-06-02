@@ -1,12 +1,9 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.RAA.DataGenerator;
-using SFA.DAS.UI.Framework.TestSupport;
-using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
 {
-    public abstract class RAA_HeaderSectionBasePage : BasePage
+    public abstract class RAA_HeaderSectionBasePage : RAAV1BasePage
     {
         private By SignOut => By.Id("signout-link");
 
@@ -14,23 +11,8 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
 
         private By Admin => By.CssSelector("#adminLink");
 
-        #region Helpers and Context
-        protected readonly FormCompletionHelper formCompletionHelper;
-        protected readonly RAAV1DataHelper dataHelper;
-        protected readonly VacancyTitleDatahelper vacancyTitledataHelper;
-        protected readonly PageInteractionHelper pageInteractionHelper;
-        protected readonly FAADataHelper faaDataHelper;
-        protected readonly TabHelper tabHelper;
-        #endregion
-
-        public RAA_HeaderSectionBasePage(ScenarioContext context, bool navigate = false) : base(context)
+        public RAA_HeaderSectionBasePage(ScenarioContext context, bool navigate = false) : base(context, false)
         {
-            dataHelper = context.Get<RAAV1DataHelper>();
-            vacancyTitledataHelper = context.Get<VacancyTitleDatahelper>();
-            formCompletionHelper = context.Get<FormCompletionHelper>();
-            pageInteractionHelper = context.Get<PageInteractionHelper>();
-            tabHelper = context.Get<TabHelper>();
-            faaDataHelper = context.Get<FAADataHelper>();
             if (navigate) { NavigateToHome(); }
             VerifyPage();
         }
@@ -39,10 +21,6 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
 
         protected void NavigateToAdmin() => formCompletionHelper.Click(Admin);
 
-
-        public void ExitFromWebsite()
-        {
-            formCompletionHelper.Click(SignOut);
-        }
+        public void ExitFromWebsite() => formCompletionHelper.Click(SignOut);
     }
 }

@@ -37,8 +37,8 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
 
         public RAA_BasicVacancyDetailsPage EnterVacancyShortDescription()
         {
-            formCompletionHelper.EnterText(VacancyShortDescription, dataHelper.VacancyShortDescription);
-            SetVacancyShortDescription(dataHelper.VacancyShortDescription);
+            formCompletionHelper.EnterText(VacancyShortDescription, rAAV1DataHelper.VacancyShortDescription);
+            SetVacancyShortDescription(rAAV1DataHelper.VacancyShortDescription);
             return this;
         }
 
@@ -76,8 +76,8 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
             else if (onlineoffline == "Offline")
             {
                 formCompletionHelper.SelectRadioOptionByText("Candidates will apply through an external website");
-                formCompletionHelper.EnterText(OfflineVacancyUrl, dataHelper.VacancyWebsiteUrl);
-                formCompletionHelper.EnterText(OfflineApplicationProcess, dataHelper.ApplicationProcess);
+                formCompletionHelper.EnterText(OfflineVacancyUrl, rAAV1DataHelper.VacancyWebsiteUrl);
+                formCompletionHelper.EnterText(OfflineApplicationProcess, rAAV1DataHelper.ApplicationProcess);
             }
             return this;
         }

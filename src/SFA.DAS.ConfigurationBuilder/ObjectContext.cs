@@ -16,7 +16,7 @@ namespace SFA.DAS.ConfigurationBuilder
 
         public T Get<T>() => Get<T>(typeof(T).FullName);
 
-        public T Get<T>(string key) => _objects.TryGetValue(key, out var value) ? (T)value : default(T);
+        public T Get<T>(string key) => _objects.GetValue<T>(key);
 
         public IEnumerable<T> GetAll<T>() => _objects.Values.OfType<T>();
 
