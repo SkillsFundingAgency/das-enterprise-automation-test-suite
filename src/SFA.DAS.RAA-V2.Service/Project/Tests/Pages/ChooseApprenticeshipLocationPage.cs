@@ -42,7 +42,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         private void DifferentLocation()
         {
             SelectRadioOptionByForAttribute("other-location");
-            formCompletionHelper.ClickElement(() => { formCompletionHelper.EnterText(AddressLine1, dataHelper.EmployerAddress); return _pageInteractionHelper.FindElement(MenuItems); });
+            formCompletionHelper.ClickElement(() => { formCompletionHelper.EnterText(AddressLine1, rAAV2DataHelper.EmployerAddress); return _pageInteractionHelper.FindElement(MenuItems); });
         }
     }
 }

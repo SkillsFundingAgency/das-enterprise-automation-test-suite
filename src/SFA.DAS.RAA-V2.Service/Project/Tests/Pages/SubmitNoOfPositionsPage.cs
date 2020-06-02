@@ -34,7 +34,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         private void EnterNumberOfVacancy()
         {
-            formCompletionHelper.EnterText(NumberOfPositions, dataHelper.NumberOfVacancy);
+            formCompletionHelper.EnterText(NumberOfPositions, rAAV2DataHelper.NumberOfVacancy);
             Continue();
             pageInteractionHelper.WaitforURLToChange("employer");
         }

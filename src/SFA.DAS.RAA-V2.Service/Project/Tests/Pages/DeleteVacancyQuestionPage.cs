@@ -6,7 +6,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 {
     public class DeleteVacancyQuestionPage : RAAV2CSSBasePage
     {
-        protected override string PageTitle => dataHelper.VacancyTitle;
+        protected override string PageTitle => rAAV2DataHelper.VacancyTitle;
 
         private string SubTitle => "Are you sure you want to delete the vacancy?";
 

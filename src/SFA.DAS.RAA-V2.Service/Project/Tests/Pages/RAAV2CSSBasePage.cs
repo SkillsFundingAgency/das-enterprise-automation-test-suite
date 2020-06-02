@@ -11,7 +11,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
     {
         protected readonly VacancyTitleDatahelper vacancyTitleDataHelper;
         protected readonly VacancyReferenceHelper vacancyReferenceHelper;
-        protected readonly RAAV2DataHelper dataHelper;
+        protected readonly RAAV2DataHelper rAAV2DataHelper;
         protected readonly TabHelper tabHelper;
         protected readonly TableRowHelper tableRowHelper;
         protected readonly FormCompletionHelper formCompletionHelper;
@@ -24,7 +24,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         {
             vacancyReferenceHelper = context.Get<VacancyReferenceHelper>();
             vacancyTitleDataHelper = context.Get<VacancyTitleDatahelper>();
-            dataHelper = context.Get<RAAV2DataHelper>();
+            rAAV2DataHelper = context.Get<RAAV2DataHelper>();
             formCompletionHelper = context.Get<FormCompletionHelper>();
             pageInteractionHelper = context.Get<PageInteractionHelper>();
             objectContext = context.Get<ObjectContext>();

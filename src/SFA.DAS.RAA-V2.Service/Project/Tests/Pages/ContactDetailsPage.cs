@@ -31,9 +31,9 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         public VacancyPreviewPart2Page EnterContactDetails()
         {
-            formCompletionHelper.EnterText(ContactName(), dataHelper.ContactName);
-            formCompletionHelper.EnterText(ContactEmail(), dataHelper.Email);
-            formCompletionHelper.EnterText(ContactPhone(), dataHelper.ContactNumber);
+            formCompletionHelper.EnterText(ContactName(), rAAV2DataHelper.ContactName);
+            formCompletionHelper.EnterText(ContactEmail(), rAAV2DataHelper.Email);
+            formCompletionHelper.EnterText(ContactPhone(), rAAV2DataHelper.ContactNumber);
             Continue();
             return new VacancyPreviewPart2Page(_context);
         }
