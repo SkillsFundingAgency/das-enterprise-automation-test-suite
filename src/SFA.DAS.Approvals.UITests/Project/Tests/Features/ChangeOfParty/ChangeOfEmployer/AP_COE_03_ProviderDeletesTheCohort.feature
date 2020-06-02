@@ -1,4 +1,8 @@
-﻿Feature: AP_COE_03_ProviderDeletesTheCohort
+﻿@approvals
+Feature: AP_COE_03_ProviderDeletesTheCohort
+
+@regression
+@changeOfEmployer
 Scenario: AP_COE_03_ProviderDeletesTheCohort
 	Given the provider has an apprentice with stopped status
 	When provider sends COE request to new employer
