@@ -5,7 +5,6 @@ using OpenQA.Selenium;
 using System.Drawing;
 using OpenQA.Selenium.Interactions;
 using TechTalk.SpecFlow;
-using System.Linq;
 
 namespace SFA.DAS.UI.FrameworkHelpers
 {
@@ -139,6 +138,17 @@ namespace SFA.DAS.UI.FrameworkHelpers
         private Action ClickEvent(IWebElement element) => () => new Actions(_webDriver).MoveToElement(element).Click(element).Perform();
 
         private Action Click(IWebElement element) => () => element.Click();
+
+        //private TimeSpan[] SetTimeOut()
+        //{
+        //    switch (true)
+        //    {
+        //        case bool _ when _scenarioInfo.Tags.Contains("raa-v1"):
+        //            return new TimeSpan[] { TimeSpan.FromSeconds(5), TimeSpan.FromSeconds(10), TimeSpan.FromSeconds(15) };
+        //        default:
+        //            return new TimeSpan[] { TimeSpan.FromSeconds(1), TimeSpan.FromSeconds(2), TimeSpan.FromSeconds(3) };
+        //    }
+        //}
 
         private TimeSpan[] SetTimeOut() => new TimeSpan[] { TimeSpan.FromSeconds(1), TimeSpan.FromSeconds(2), TimeSpan.FromSeconds(3) };
 

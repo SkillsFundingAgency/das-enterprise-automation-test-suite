@@ -9,7 +9,20 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => "Search results";
 
+        private By LocationTextBox => By.Id("Location");
+        private By DistanceDropDown => By.Id("loc-within");
+
         public FAA_TraineeshipSearchResultsPage(ScenarioContext context) : base(context) { }
+
+        public FAA_TraineeshipSearchResultsPage SearchForAVacancy(string locationPostCode, string distance)
+        {
+            formCompletionHelper.EnterText(LocationTextBox, locationPostCode);
+            formCompletionHelper.SelectFromDropDownByText(DistanceDropDown, distance);
+            formCompletionHelper.Click(Search);
+
+            pageInteractionHelper.WaitforURLToChange(distance);
+            return this;
+        }
 
         public FAA_TraineeshipSearchResultsPage CheckVacancyIsDisplayed(string locationPostCode)
         {

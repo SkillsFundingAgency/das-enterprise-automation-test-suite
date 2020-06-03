@@ -19,7 +19,22 @@ namespace SFA.DAS.UI.FrameworkHelpers
             _pagenavigationWait = WebDriverWait(timeOutConfig.PageNavigation);
         }
 
-        internal bool WaitUntil(Func<bool> condition) => _implicitWait.Until(_ => condition());
+        internal bool WaitUntil(Func<bool> condition)
+        {
+            var implicitWait = WebDriverWait(_timeOutConfig.ImplicitWait);
+
+            implicitWait.IgnoreExceptionTypes(typeof(WebDriverTimeoutException));
+
+            bool result = false;
+
+            implicitWait.Until(driver =>
+            {
+                result = condition();
+                return result;
+            });
+
+            return result;
+        }
 
         internal void WaitForElementToBeDisplayed(By locator) => _implicitWait.Until(ExpectedConditions.ElementIsVisible(locator));
 

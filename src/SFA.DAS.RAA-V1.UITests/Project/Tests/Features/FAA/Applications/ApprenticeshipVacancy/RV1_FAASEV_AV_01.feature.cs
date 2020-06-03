@@ -103,12 +103,14 @@ this.ScenarioInitialize(scenarioInfo);
 #line 15
  testRunner.And("the apprenticeship can be found based on \'SE16\',\'5 miles\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 16
- testRunner.And("the apprenticeship can be found based on \'E1 7TF\',\'England\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("the apprenticeship can be found based on \'SE9 5QE\',\'15 miles\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 17
- testRunner.And("the apprenticeship can be found based on \'E1 7LL\',\'Job title\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("the apprenticeship can be found based on \'E1 7TF\',\'England\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 18
- testRunner.And("the apprenticeship can be found based on \'E1 7LL\',\'Employer\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("the apprenticeship can be found based on \'E1 7LL\',\'Job title\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 19
+ testRunner.And("the apprenticeship can be found based on \'E1 7LL\',\'Employer\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 20
  testRunner.And("the apprenticeship can be found based on \'E1 7LL\',\'Description\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
