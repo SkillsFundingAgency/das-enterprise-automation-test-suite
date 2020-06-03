@@ -1,8 +1,8 @@
-﻿Feature: AP_Nav_03
+﻿@approvals
+Feature: AP_Nav_03
 
 @regression
-@approvals
-@managefundingnavigation
+@approvalsnavigation
 Scenario: AP_Nav_03_Navigate to different links from Apprentices Page
 	Given Employer navigates to Apprentices home page
 	Then Standard gov.uk footer should be displayed at the bottom of the page

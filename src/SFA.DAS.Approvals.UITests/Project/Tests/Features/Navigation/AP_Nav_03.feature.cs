@@ -19,6 +19,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.Navigation
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("AP_Nav_03")]
+    [NUnit.Framework.CategoryAttribute("approvals")]
     public partial class AP_Nav_03Feature
     {
         
@@ -31,7 +32,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.Navigation
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "AP_Nav_03", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "AP_Nav_03", null, ProgrammingLanguage.CSharp, new string[] {
+                        "approvals"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -72,14 +74,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.Navigation
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("AP_Nav_03_Navigate to different links from Apprentices Page")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("approvals")]
-        [NUnit.Framework.CategoryAttribute("managefundingnavigation")]
+        [NUnit.Framework.CategoryAttribute("approvalsnavigation")]
         public virtual void AP_Nav_03_NavigateToDifferentLinksFromApprenticesPage()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_Nav_03_Navigate to different links from Apprentices Page", null, new string[] {
                         "regression",
-                        "approvals",
-                        "managefundingnavigation"});
+                        "approvalsnavigation"});
 #line 6
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
