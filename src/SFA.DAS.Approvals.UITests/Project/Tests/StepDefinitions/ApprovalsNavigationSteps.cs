@@ -8,6 +8,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
     public class ApprovalsNavigationSteps
     {
         private readonly ScenarioContext _context;
+        private readonly ApprenticesHomePage _apprenticesHomePage;
 
         public ApprovalsNavigationSteps(ScenarioContext context) => _context = context;
 
@@ -45,6 +46,53 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         public void ThenTheEmployerCanNavigateToHelpSettingsPage() => new InterimApprenticesHomePage(_context, true, true).GoToHelpPage();
 
         private ApprenticesHomePage GoToApprenticesHomePage() => new ApprenticesHomePage(_context, true);
+
+        [Then(@"Standard gov\.uk footer should be displayed at the bottom of the page")]
+        public void ThenStandardGov_UkFooterShouldBeDisplayedAtTheBottomOfThePage()
+        {
+            _apprenticesHomePage = new ApprenticesHomePage(_context, true);
+            _apprenticesHomePage.ValidateFooter();
+        }
+
+        [Then(@"Standard cookie banner should be displayed at the top of the page")]
+        public void ThenStandardCookieBannerShouldBeDisplayedAtTheTopOfThePage()
+        {
+            _apprenticesHomePage = new ApprenticesHomePage(_context, true);
+            _apprenticesHomePage.ValidateCookiesBanner();
+        }
+
+        [Then(@"the Help widget is displayed on bottom right hand corner")]
+        public void ThenTheHelpWidgetIsDisplayedOnBottomRightHandCorner()
+        {
+            _apprenticesHomePage = new ApprenticesHomePage(_context, true);
+            _apprenticesHomePage.ValidateHelpWidget();
+        }
+
+        [Then(@"'(.*)' link should direct user to '(.*)' page")]
+        public void ThenLinkShouldDirectUserToPage(string link, string page)
+        {
+            _apprenticesHomePage = new ApprenticesHomePage(_context, true);
+
+            switch (link)
+            {
+                case "Set payment order":
+                    _apprenticesHomePage.ClickSetPaymentOrderLink();
+                    break;
+                case "Report public sector apprenticeship target":
+                    _apprenticesHomePage.ClickReportPublicSectorApprenticeshipTargetLink();
+                    break;
+                case "Manage your apprentices":
+                    _apprenticesHomePage.ClickManageYourApprenticesLink();
+                    break;
+                case "Your cohorts":
+                    _apprenticesHomePage.ClickYourCohortsLink();
+                    break;
+                case "Add an apprentice":
+                    _apprenticesHomePage.AddAnApprentice();
+                    break;
+                default:
+                    break;
+            }
 
     }
 }
