@@ -3,18 +3,13 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
-    public class ReportPublicSectorApprenticeshipTargetPage : BasePage
+    public class ReportPublicSectorApprenticeshipTargetPage : ApprovalsBasePage
     {
 
         protected override string PageTitle => "Annual apprenticeship return";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
         public ReportPublicSectorApprenticeshipTargetPage(ScenarioContext context) : base(context)
         {
-            _context = context;
             VerifyPage();
         }
     }
