@@ -8,7 +8,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
     public class ApprovalsNavigationSteps
     {
         private readonly ScenarioContext _context;
-        private readonly ApprenticesHomePage _apprenticesHomePage;
+        private ApprenticesHomePage _apprenticesHomePage;
 
         public ApprovalsNavigationSteps(ScenarioContext context) => _context = context;
 
@@ -93,6 +93,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                 default:
                     break;
             }
-
+        }
     }
 }
