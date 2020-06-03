@@ -69,13 +69,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _employerStepsHelper.UpdateCohortReference(_newcohortReference);
         }
 
-        [When(@"new employer aproves the cohort")]
-        public void WhenNewEmployerAprovesTheCohort()
+        [When(@"new employer approves the cohort")]
+        public void WhenNewEmployerApprovesTheCohort()
         {
             _objectContext.UpdateOrganisationName(_newEmployer);
             _employerStepsHelper.Approve();
         }
-
 
         [Then(@"a new live apprenticeship record is created")]
         public void ThenANewLiveApprenticeshipRecordIsCreated()
@@ -83,6 +82,31 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             var manageYourApprenticePage = _employerStepsHelper.GoToManageYourApprenticesPage();
 
             manageYourApprenticePage.VerifyApprenticeExists();
+        }
+
+        [When(@"new employer rejects the cohort")]
+        public void WhenNewEmployerRejectsTheCohort()
+        {
+            _objectContext.UpdateOrganisationName(_newEmployer);
+            _employerStepsHelper.Reject();
+        }
+
+        [When(@"Provider Approves the Cohort")]
+        public void WhenProviderApprovesTheCohort()
+        {
+            _providerStepsHelper.ApprovesTheCohortsAndSendsToEmployer();
+        }
+
+        [When(@"Provider deletes the Cohort")]
+        public void WhenProviderDeletesTheCohort()
+        {
+            _providerStepsHelper.DeleteCohort(_providerStepsHelper.CurrentCohortDetails());
+        }
+
+        [Then(@"provider can change employer again")]
+        public void ThenProviderCanChangeEmployerAgain()
+        {
+            _providerStepsHelper.StartChangeOfEmployerJourney();
         }
 
         private void Login() => _multipleAccountsLoginHelper.Login(_context.GetUser<TransfersUser>(), true);

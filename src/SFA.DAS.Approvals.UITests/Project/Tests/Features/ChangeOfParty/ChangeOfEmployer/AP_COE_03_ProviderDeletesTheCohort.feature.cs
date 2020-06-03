@@ -18,21 +18,21 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.ChangeOfParty.ChangeO
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.0.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("AP_COE_01_HappyPath")]
+    [NUnit.Framework.DescriptionAttribute("AP_COE_03_ProviderDeletesTheCohort")]
     [NUnit.Framework.CategoryAttribute("approvals")]
-    public partial class AP_COE_01_HappyPathFeature
+    public partial class AP_COE_03_ProviderDeletesTheCohortFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "AP_COE_01_HappyPath.feature"
+#line 1 "AP_COE_03_ProviderDeletesTheCohort.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "AP_COE_01_HappyPath", null, ProgrammingLanguage.CSharp, new string[] {
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "AP_COE_03_ProviderDeletesTheCohort", null, ProgrammingLanguage.CSharp, new string[] {
                         "approvals"});
             testRunner.OnFeatureStart(featureInfo);
         }
@@ -72,12 +72,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.ChangeOfParty.ChangeO
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("AP_COE_01_Change Of Employer_HappyPath")]
+        [NUnit.Framework.DescriptionAttribute("AP_COE_03_ProviderDeletesTheCohort")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("changeOfEmployer")]
-        public virtual void AP_COE_01_ChangeOfEmployer_HappyPath()
+        public virtual void AP_COE_03_ProviderDeletesTheCohort()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_COE_01_Change Of Employer_HappyPath", null, new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_COE_03_ProviderDeletesTheCohort", null, new string[] {
                         "regression",
                         "changeOfEmployer"});
 #line 6
@@ -88,9 +88,11 @@ this.ScenarioInitialize(scenarioInfo);
 #line 8
  testRunner.When("provider sends COE request to new employer", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 9
- testRunner.And("new employer approves the cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("new employer rejects the cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 10
- testRunner.Then("a new live apprenticeship record is created", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("Provider deletes the Cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 11
+ testRunner.Then("provider can change employer again", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
