@@ -8,16 +8,37 @@ namespace SFA.DAS.ProviderFeedback.UITests
     public class PFStepDefinitions
     {
         private readonly ScenarioContext _context;
+        private ProviderFeedbackHomePage _providerFeedbackHomePage;
+        private ProviderFeedbackCheckYourAnswers _providerFeedbackCheckYourAnswers;
 
-        public PFStepDefinitions(ScenarioContext context)
-        {
-            _context = context;
-        }
+        public PFStepDefinitions(ScenarioContext context) => _context = context;
 
         [Given(@"the user on the homepage")]
-        public void GivenTheUserOnTheHomepage()
+        public void GivenTheUserOnTheHomepage() => _providerFeedbackHomePage = new ProviderFeedbackHomePage(_context);
+
+        [When(@"the user skips the question and selects a rating")]
+        public void WhenTheUserSkipsTheQuestionAndSelectsARating()
         {
-            new ProviderFeedbackHomePage(_context);
+            _providerFeedbackCheckYourAnswers = _providerFeedbackHomePage
+                .StartNow()
+                .SkipQuestion1()
+                .SkipQuestion2()
+                .SelectVPoorAndContinue();
         }
+
+        [Then(@"the user can change the answers")]
+        public void ThenTheUserCanChangeTheAnswers()
+        {
+            _providerFeedbackCheckYourAnswers.ChangeQuestionOne()
+                .ContinueToCheckYourAnswers()
+                .ChangeQuestionTwo()
+                .ContinueToCheckYourAnswers()
+                .ChangeQuestionThree()
+                .SelectGoodAndContinue()
+                .SubmitAnswersNow();
+        }
+
+        [Then(@"the user can not resubmit the feedback")]
+        public void ThenTheUserCanNotResubmitTheFeedback() => new ProviderFeedbackAlreadySubmittedPage(_context);
     }
 }
