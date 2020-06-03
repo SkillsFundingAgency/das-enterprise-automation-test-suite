@@ -36,11 +36,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Apprentice
         private readonly ScenarioContext _context;
         #endregion
 
-        public ApprenticeHubPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public ApprenticeHubPage(ScenarioContext context, bool verifypage = true) : base(context, verifypage) => _context = context;
 
         public ApprenticeRealStoriesPage NavigateToRealStoriesPage() => NavigateToAreApprenticeshipRightForYou(RealStories, (c) => new ApprenticeRealStoriesPage(c));
 

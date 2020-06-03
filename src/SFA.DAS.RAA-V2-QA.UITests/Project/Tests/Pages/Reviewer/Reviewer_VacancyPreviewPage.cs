@@ -6,11 +6,7 @@ namespace SFA.DAS.RAA_V2_QA.UITests.Project.Tests.Pages.Reviewer
 {
     public class Reviewer_VacancyPreviewPage : ApproveVacancyBasePage
     {
-        protected override string PageTitle => _vacancyTitleDatahelper.VacancyTitle;
-
-        #region Helpers and Context
-        private readonly VacancyTitleDatahelper _vacancyTitleDatahelper;
-        #endregion
+        protected override string PageTitle => vacancyTitleDataHelper.VacancyTitle;
 
         protected override By EmployerName => By.ClassName("govuk-caption-xl");
 
@@ -18,12 +14,8 @@ namespace SFA.DAS.RAA_V2_QA.UITests.Project.Tests.Pages.Reviewer
 
         protected override By DisabilityConfident => By.CssSelector("img.disability-confident-logo");
 
-        public Reviewer_VacancyPreviewPage(ScenarioContext context) : base(context)
-        {
-            _vacancyTitleDatahelper = context.Get<VacancyTitleDatahelper>();
-            VerifyPage();
-        }
-
+        public Reviewer_VacancyPreviewPage(ScenarioContext context) : base(context) { }
+        
         public new Reviewer_VacancyPreviewPage VerifyEmployerName()
         {
             base.VerifyEmployerName();

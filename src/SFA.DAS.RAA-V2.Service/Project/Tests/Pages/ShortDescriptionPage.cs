@@ -21,7 +21,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         public VacancyPreviewPart2Page EnterBriefOverview()
         {
-            formCompletionHelper.EnterText(ShortDescription, dataHelper.VacancyBriefOverview);
+            formCompletionHelper.EnterText(ShortDescription, rAAV2DataHelper.VacancyBriefOverview);
             Continue();
             return new VacancyPreviewPart2Page(_context);
         }

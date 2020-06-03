@@ -15,11 +15,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Parent
         private readonly ScenarioContext _context;
         #endregion
 
-        public ParentHubPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public ParentHubPage(ScenarioContext context) : base(context) => _context = context;
 
         public HelpShapeTheirCareerPage NavigateToTheirCareerPage()
         {

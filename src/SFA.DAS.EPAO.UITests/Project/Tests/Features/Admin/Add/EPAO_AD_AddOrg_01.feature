@@ -1,7 +1,6 @@
 ﻿Feature: EPAO_AD_AddOrg_01
 
 
-@ignore
 @epao
 @epaoadmin
 @regression

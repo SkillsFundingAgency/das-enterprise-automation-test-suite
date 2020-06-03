@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.EPAO.UITests.Project.Tests.Features.Apply
+namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.ChangeOfParty.ChangeOfEmployer
 {
     using TechTalk.SpecFlow;
     
@@ -18,20 +18,22 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Features.Apply
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.0.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("EPAO_AP_03")]
-    public partial class EPAO_AP_03Feature
+    [NUnit.Framework.DescriptionAttribute("AP_COE_02_NewEmployerRequestsChange")]
+    [NUnit.Framework.CategoryAttribute("approvals")]
+    public partial class AP_COE_02_NewEmployerRequestsChangeFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "EPAO_AP_03.feature"
+#line 1 "AP_COE_02_NewEmployerRequestsChange.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "EPAO_AP_03", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "AP_COE_02_NewEmployerRequestsChange", null, ProgrammingLanguage.CSharp, new string[] {
+                        "approvals"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -70,23 +72,29 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Features.Apply
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("EPAO_AP_03 - Apply Additional Standard")]
-        [NUnit.Framework.CategoryAttribute("epao")]
-        [NUnit.Framework.CategoryAttribute("epaoapply")]
+        [NUnit.Framework.DescriptionAttribute("AP_COE_02_NewEmployerRequestsChange")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public virtual void EPAO_AP_03_ApplyAdditionalStandard()
+        [NUnit.Framework.CategoryAttribute("changeOfEmployer")]
+        public virtual void AP_COE_02_NewEmployerRequestsChange()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EPAO_AP_03 - Apply Additional Standard", null, new string[] {
-                        "epao",
-                        "epaoapply",
-                        "regression"});
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_COE_02_NewEmployerRequestsChange", null, new string[] {
+                        "regression",
+                        "changeOfEmployer"});
 #line 6
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 7
- testRunner.Given("the Standard Apply User is logged into Assessment Service Application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("the provider has an apprentice with stopped status", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 8
- testRunner.Then("the user can apply to assess a standard", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.When("provider sends COE request to new employer", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 10
+ testRunner.And("new employer rejects the cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 12
+ testRunner.And("Provider Approves the Cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 13
+ testRunner.And("new employer approves the cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 14
+ testRunner.Then("a new live apprenticeship record is created", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

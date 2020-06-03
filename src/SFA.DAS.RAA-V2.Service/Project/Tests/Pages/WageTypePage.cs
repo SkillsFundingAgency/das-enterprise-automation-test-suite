@@ -36,13 +36,13 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         public PreviewYourVacancyPage SelectFixedWageType()
         {
             SelectRadioOptionByForAttribute("wage-type-fixed");
-            formCompletionHelper.EnterText(FixedWageYearlyAmount, dataHelper.FixedWageYearlyAmount);
+            formCompletionHelper.EnterText(FixedWageYearlyAmount, rAAV2DataHelper.FixedWageYearlyAmount);
             return ContinueToPreviewYourVacancyPage();
         }
 
         private PreviewYourVacancyPage ContinueToPreviewYourVacancyPage()
         {
-            formCompletionHelper.EnterText(WageAdditionalInformation, dataHelper.OptionalMessage);
+            formCompletionHelper.EnterText(WageAdditionalInformation, rAAV2DataHelper.OptionalMessage);
             Continue();
             pageInteractionHelper.WaitforURLToChange("part1-complete");
             return new PreviewYourVacancyPage(_context);

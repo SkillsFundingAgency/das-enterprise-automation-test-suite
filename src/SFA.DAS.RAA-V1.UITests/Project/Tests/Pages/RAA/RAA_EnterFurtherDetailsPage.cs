@@ -38,7 +38,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
 
         public RAA_EnterFurtherDetailsPage EnterWorkingInformation()
         {
-            formCompletionHelper.EnterText(WorkingWeek, dataHelper.WorkkingWeek);
+            formCompletionHelper.EnterText(WorkingWeek, rAAV1DataHelper.WorkkingWeek);
             return this;
         }
 
@@ -84,7 +84,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         {
             formCompletionHelper.SelectRadioOptionByText("Custom wage");
             formCompletionHelper.SelectRadioOptionByText("Fixed wage");
-            formCompletionHelper.EnterText(FixedWageAmount, dataHelper.FixedWagePerWeek);
+            formCompletionHelper.EnterText(FixedWageAmount, rAAV1DataHelper.FixedWagePerWeek);
             formCompletionHelper.SelectFromDropDownByValue(WageUnit, "Weekly");
             return this;
         }
@@ -93,8 +93,8 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         {
             formCompletionHelper.SelectRadioOptionByText("Custom wage");
             formCompletionHelper.SelectRadioOptionByText("Wage range");
-            formCompletionHelper.EnterText(WageAmountLowerBound, dataHelper.CustomMinWagePerWeek);
-            formCompletionHelper.EnterText(WageAmountUpperBound, dataHelper.CustomMaxWagePerWeek);
+            formCompletionHelper.EnterText(WageAmountLowerBound, rAAV1DataHelper.CustomMinWagePerWeek);
+            formCompletionHelper.EnterText(WageAmountUpperBound, rAAV1DataHelper.CustomMaxWagePerWeek);
             formCompletionHelper.SelectFromDropDownByValue(WageUnit, "Weekly");
             return this;
         }
@@ -119,7 +119,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
 
         public RAA_EnterFurtherDetailsPage EnterVacancyDescription()
         {
-            formCompletionHelper.SendKeys(Iframe, Keys.Tab + dataHelper.VacancyDescription);
+            formCompletionHelper.SendKeys(Iframe, Keys.Tab + rAAV1DataHelper.VacancyDescription);
             return this;
         }
     }

@@ -27,9 +27,9 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         {
             formCompletionHelper.Click(ApplicationCheckbox);
 
-            formCompletionHelper.EnterText(RecipientEmailAddress, dataHelper.ShareApplicationEmail);
+            formCompletionHelper.EnterText(RecipientEmailAddress, rAAV1DataHelper.ShareApplicationEmail);
 
-            formCompletionHelper.EnterText(OptionalMessage, dataHelper.OptionalMessage);
+            formCompletionHelper.EnterText(OptionalMessage, rAAV1DataHelper.OptionalMessage);
 
             formCompletionHelper.ClickButtonByText("Send");
 

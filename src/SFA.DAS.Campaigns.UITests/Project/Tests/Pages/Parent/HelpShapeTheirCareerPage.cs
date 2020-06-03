@@ -9,14 +9,6 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Parent
 
         protected override By PageHeader => By.CssSelector(".heading-xl");
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public HelpShapeTheirCareerPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public HelpShapeTheirCareerPage(ScenarioContext context) : base(context) { }
     }
 }

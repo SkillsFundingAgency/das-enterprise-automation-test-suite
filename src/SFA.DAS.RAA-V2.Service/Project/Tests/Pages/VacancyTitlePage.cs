@@ -42,9 +42,9 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         private void ChangeVacancyTitle()
         {
-            formCompletionHelper.EnterText(Title, $"{dataHelper.VacancyTitle}");
+            formCompletionHelper.EnterText(Title, $"{rAAV2DataHelper.VacancyTitle}");
             Continue();
-            _objectContext.SetVacancyTitle(dataHelper.VacancyTitle);
+            _objectContext.SetVacancyTitle(rAAV2DataHelper.VacancyTitle);
         }
     }
 }

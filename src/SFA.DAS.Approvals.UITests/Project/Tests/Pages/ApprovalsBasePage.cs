@@ -43,11 +43,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages
             approvalsConfig = context.GetApprovalsConfig<ApprovalsConfig>();
             transfersConfig = context.GetTransfersConfig<TransfersConfig>();
             loginCredentialsHelper = context.Get<LoginCredentialsHelper>();
-            publicSectorReportingDataHelper = context.Get<PublicSectorReportingDataHelper>();
-            apprenticeDataHelper = context.Get<ApprenticeDataHelper>();
-            editedApprenticeDataHelper = context.Get<EditedApprenticeDataHelper>();
-            apprenticeCourseDataHelper = context.Get<ApprenticeCourseDataHelper>();
-            editedApprenticeCourseDataHelper = context.Get<EditedApprenticeCourseDataHelper>();
+            publicSectorReportingDataHelper = context.GetValue<PublicSectorReportingDataHelper>();
+            apprenticeDataHelper = context.GetValue<ApprenticeDataHelper>();
+            editedApprenticeDataHelper = context.GetValue<EditedApprenticeDataHelper>();
+            apprenticeCourseDataHelper = context.GetValue<ApprenticeCourseDataHelper>();
+            editedApprenticeCourseDataHelper = context.GetValue<EditedApprenticeCourseDataHelper>();
             if (verifypage) VerifyPage();
         }
     }

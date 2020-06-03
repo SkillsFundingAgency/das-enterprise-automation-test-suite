@@ -1,6 +1,5 @@
 ﻿Feature: EPAO_AS_UOD_01
 
-@ignore
 @epao
 @assessmentservice
 @regression

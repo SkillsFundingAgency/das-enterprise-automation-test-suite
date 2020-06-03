@@ -27,7 +27,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
 
         public RAA_VacancySummaryPage ChangeStatus(string newstatus)
         {
-            formCompletionHelper.EnterText(Notes, dataHelper.OptionalMessage);
+            formCompletionHelper.EnterText(Notes, rAAV1DataHelper.OptionalMessage);
 
             string forAttribute = string.Empty;
             switch (true)
@@ -62,7 +62,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
 
             if (newstatus == "Unsuccessful")
             {
-                formCompletionHelper.EnterText(CandidateFeedback, dataHelper.OptionalMessage);
+                formCompletionHelper.EnterText(CandidateFeedback, rAAV1DataHelper.OptionalMessage);
                 formCompletionHelper.ClickButtonByText("Confirm and send");
                 formCompletionHelper.ClickButtonByText("Return to vacancy applications");
             }

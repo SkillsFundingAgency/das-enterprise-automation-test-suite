@@ -42,19 +42,19 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
 
         public RAA_MultipleVacancyLocationPage EnterAdditionalLocationInformation()
         {
-            formCompletionHelper.EnterText(AdditionalLocationInformation, dataHelper.AdditionalLocationInformation);
+            formCompletionHelper.EnterText(AdditionalLocationInformation, rAAV1DataHelper.AdditionalLocationInformation);
             return this;
         }
 
         public RAA_MultipleVacancyLocationPage EnterNumberOfVacancy()
         {
-            formCompletionHelper.EnterText(NumberOfVacancy, dataHelper.NumberOfVacancy);
+            formCompletionHelper.EnterText(NumberOfVacancy, rAAV1DataHelper.NumberOfVacancy);
             return this;
         }
 
         public RAA_MultipleVacancyLocationPage EnterNumberOfVacancy2()
         {
-            formCompletionHelper.EnterText(NumberOfVacancy2, dataHelper.NumberOfVacancy);
+            formCompletionHelper.EnterText(NumberOfVacancy2, rAAV1DataHelper.NumberOfVacancy);
             return this;
         }
         public void ClickSaveAndContinue()

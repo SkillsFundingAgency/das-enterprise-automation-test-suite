@@ -26,7 +26,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         public VacancyPreviewPart2Page SelectSkill()
         {
-            formCompletionHelper.ClickElement(() => dataHelper.GetRandomElementFromListOfElements(_pageInteractionHelper.FindElements(Skills)));
+            formCompletionHelper.ClickElement(() => rAAV2DataHelper.GetRandomElementFromListOfElements(_pageInteractionHelper.FindElements(Skills)));
             formCompletionHelper.Click(SaveAndContinue);
             return new VacancyPreviewPart2Page(_context);
         }
