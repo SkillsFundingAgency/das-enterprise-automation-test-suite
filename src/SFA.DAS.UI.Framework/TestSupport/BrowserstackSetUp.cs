@@ -5,14 +5,11 @@ using OpenQA.Selenium.Chrome;
 
 namespace SFA.DAS.UI.Framework.TestSupport
 {
-    public class BrowserStackSetup
+    public static class BrowserStackSetup
     {
         private static readonly string _buildDateTime;
 
-        static BrowserStackSetup()
-        {
-            _buildDateTime = DateTime.Now.ToString("ddMMMyyyy_HH:mm:ss").ToUpper();
-        }
+        static BrowserStackSetup() => _buildDateTime = DateTime.Now.ToString("ddMMMyyyy_HH:mm:ss").ToUpper();
 
         public static IWebDriver Init(BrowserStackSetting options)
         {
@@ -20,8 +17,10 @@ namespace SFA.DAS.UI.Framework.TestSupport
 
             var chromeOption = new ChromeOptions
             {
-                AcceptInsecureCertificates = true
+                AcceptInsecureCertificates = true,
+                UnhandledPromptBehavior = UnhandledPromptBehavior.Accept
             };
+
             AddAdditionalCapability(chromeOption, "browser", options.Browser);
             AddAdditionalCapability(chromeOption, "browser_version", options.BrowserVersion);
             AddAdditionalCapability(chromeOption, "os", options.Os);
@@ -39,12 +38,8 @@ namespace SFA.DAS.UI.Framework.TestSupport
 
             var remoteWebDriver = new RemoteWebDriver(new Uri(options.ServerName), chromeOption);
 
-            var allowsDetection = remoteWebDriver as IAllowsFileDetection;
-            
-            if (allowsDetection != null)
-            {
+            if (remoteWebDriver is IAllowsFileDetection allowsDetection)
                 allowsDetection.FileDetector = new LocalFileDetector();
-            }
 
             return remoteWebDriver;
         }
@@ -55,9 +50,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
                 throw new Exception("Please enter browserstack credentials");
         }
 
-        private static void AddAdditionalCapability(ChromeOptions chromeOptions, string capabilityName, object capabilityValue)
-        {
+        private static void AddAdditionalCapability(ChromeOptions chromeOptions, string capabilityName, object capabilityValue) =>
             chromeOptions.AddAdditionalCapability(capabilityName, capabilityValue, true);
-        }
     }
 }

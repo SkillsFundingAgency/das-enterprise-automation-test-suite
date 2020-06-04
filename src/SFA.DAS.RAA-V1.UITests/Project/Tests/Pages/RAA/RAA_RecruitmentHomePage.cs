@@ -1,7 +1,6 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.RAA.DataGenerator.Project;
 using SFA.DAS.RAA_V1.UITests.Project.Helpers;
-using SFA.DAS.UI.FrameworkHelpers;
 using System;
 using System.Linq;
 using TechTalk.SpecFlow;
@@ -23,16 +22,14 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         private By VacancyTitle => By.CssSelector(".vac-title");
         private By InlineText => By.CssSelector(".sfa-display-inline");
         private By VacancyFilters => By.CssSelector(".column-one-quarter .bold-xsmall");
-        private By NoOfVacancy => By.CssSelector(".bold-xlarge");
         private By CloneLink => By.CssSelector("a");
-        private By VacancyFilter => By.CssSelector(".column-one-quarter .vacancy-filter");
         private By VacancyTables => By.CssSelector("#vacancies-table tbody tr");
         private By NextPage => By.CssSelector(".page-navigation__btn.next");
         private By NoOfPagesCssSelector => By.CssSelector(".page-navigation__btn.next .counter");
+        private By ExpectedVacancyTitle => By.PartialLinkText(vacancyTitledataHelper.VacancyTitle);
         private By ReferenceNumberSearchResetCircleSymbol => By.CssSelector(".fa.fa-times-circle");
 
         public RAA_RecruitmentHomePage(ScenarioContext context, bool navigate) : base(context, navigate) => _context = context;
-            
 
         public RAA_SearchCandidatesPage SearchCandidates()
         {
@@ -83,14 +80,10 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         {
             SearchByReferenceNumber();
 
-            if(objectContext.IsApprenticeshipVacancyType())
-            {
+            if (objectContext.IsApprenticeshipVacancyType())
                 return new RAA_VacancyPreviewPage(_context);
-            }
             else
-            {
                 return new RAA_OppurtunityPreviewPage(_context);
-            }
         }
 
         public RAA_PreviewBasePage SearchReferredVacancy()
@@ -98,43 +91,21 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
             SearchByReferenceNumber();
 
             if (objectContext.IsApprenticeshipVacancyType())
-            {
                 return new RAA_VacancyPreviewPage(_context);
-            }
             else
-            {
                 return new RAA_OppurtunityPreviewPage(_context);
-            }
         }
 
         private void SearchByReferenceNumber()
         {
-            IWebElement func()
-            {
-                //_pageInteractionHelper expects some element back and fails when page is running slow and element is not available 
-                var dummyElement = pageInteractionHelper.FindElements(VacancyFilter);
-                var vacancies = pageInteractionHelper.FindElements(VacancyTitle);                
-
-                foreach (var vac in vacancies)
-                {
-                    if (vac.Text == vacancyTitledataHelper.VacancyTitle)
-                    {
-                        return vac;
-                    }
-                }
-
-                return dummyElement[0];
-            }
-
             ApprenticeshipVacancyType();
 
             formCompletionHelper.SelectFromDropDownByValue(VacancySearchMode, "ReferenceNumber");
             formCompletionHelper.EnterText(VacancySearchText, objectContext.GetVacancyReference());
             formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(SearchVacancy));
-            pageInteractionHelper.WaitForElementToChange(func, AttributeHelper.InnerText, vacancyTitledataHelper.VacancyTitle);
-            pageInteractionHelper.WaitUntilAnyElements(ReferenceNumberSearchResetCircleSymbol);
 
-            formCompletionHelper.ClickLinkByText(VacancyTitle, vacancyTitledataHelper.VacancyTitle);
+            pageInteractionHelper.WaitForElementToBeDisplayed(ReferenceNumberSearchResetCircleSymbol);
+            formCompletionHelper.Click(ExpectedVacancyTitle);
         }
 
         private void SearchByVacancyTitleContains(string filter)
@@ -162,8 +133,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         private IWebElement RandomElementAt(Func<IWebElement, bool> func)
         {
             randomVacancyHelper = new RandomVacancyHelper(pageInteractionHelper, formCompletionHelper, objectContext);
-
             return randomVacancyHelper.RandomElementAt(func, VacancyTables, VacancyTitle, NextPage, NoOfPagesCssSelector);
         }
-    }   
+    }
 }

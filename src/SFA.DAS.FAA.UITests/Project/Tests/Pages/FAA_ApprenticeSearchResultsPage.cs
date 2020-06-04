@@ -15,12 +15,9 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
         #endregion
 
         private By NationwideVacancies => By.Id("nationwideLocationTypeLink");
-        private By SortResults => By.Id("sort-results");
         private By NationwideVacanciesText => By.Id("multiple-positions-nationwide");
-        private By VacancyLink => By.LinkText(vacancytitledataHelper.VacancyTitle);
-        private By DisplayResults => By.Id("results-per-page");
-        private By VacanciesList => By.ClassName("vacancy-link");
-
+        private By VacancyLink => By.LinkText(vacancyTitleDataHelper.VacancyTitle);
+        private By SearchAgainLink => By.Id("start-again-link");
 
         public FAA_ApprenticeSearchResultsPage(ScenarioContext context) : base(context) => _context = context;
 
@@ -37,13 +34,10 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
             IWebElement selectElement = pageInteractionHelper.FindElement(SortResults);
             SelectElement selectedValue = new SelectElement(selectElement);
             string selectedText = selectedValue.SelectedOption.Text;
-            pageInteractionHelper.VerifyText(selectedText, "Closing date");            
+            pageInteractionHelper.VerifyText(selectedText, "Closing date");
         }
 
-        protected void CheckNationwideVacanciesText()
-        {
-            pageInteractionHelper.VerifyText(NationwideVacanciesText, faadataHelper.NationwideVacanciesText);
-        }
+        protected void CheckNationwideVacanciesText() => pageInteractionHelper.VerifyText(NationwideVacanciesText, faaDataHelper.NationwideVacanciesText);
 
         protected void ClickNationwideVacancies()
         {
@@ -55,49 +49,48 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
                     throw new Exception("No Nationwide Vacancies found");
                 }
                 return elementDisplayed;
-            }, () => formCompletionHelper.Click(NationwideVacancies));           
-
+            }, () => formCompletionHelper.Click(NationwideVacancies));
         }
 
         public FAA_ApprenticeSummaryPage SelectBrowsedVacancy()
         {
             ChangeSortOrderToRecentlyAdded();
             ChangeSortResultsTo50Vacancies();
-            formCompletionHelper.Click(VacancyLink);            
+            formCompletionHelper.Click(VacancyLink);
             return new FAA_ApprenticeSummaryPage(_context);
         }
 
-        public bool CheckVacancyIsDisplayedBasedOnSearchCriteria(string postCode, string searchParameter)
+        public FAA_ApprenticeSearchResultsPage CheckVacancyIsDisplayedBasedOnSearchCriteria(string locationPostCode, string searchCriteriaOrDistance)
         {
-            if (searchParameter == "Job title" || searchParameter == "Employer" || searchParameter == "Description")
-            {
+            if (searchCriteriaOrDistance == "Job title" || searchCriteriaOrDistance == "Employer" || searchCriteriaOrDistance == "Description")
                 ChangeSortOrderToRecentlyAdded();
-            }
+
             ChangeSortResultsTo50Vacancies();
+
             bool vacanciesFound = FoundVacancies();
             if (vacanciesFound)
             {
                 List<IWebElement> vacanciesCount = pageInteractionHelper.FindElements(VacanciesList);
                 foreach (var vacancy in vacanciesCount)
                 {
-                    if (vacancy.Text.Contains(vacancytitledataHelper.VacancyTitle))
-                    {
-                        return true;
-                    }
+                    if (vacancy.Text.Contains(vacancyTitleDataHelper.VacancyTitle))
+                        return this;
                 }
+
+                throw new Exception($"VacancyTitle Not found in VacanciesList within '{searchCriteriaOrDistance}' of '{locationPostCode}'");
             }
             else
             {
-                throw new Exception($"No apprenticeship found based on given search criteria '{searchParameter}' and '{postCode}'");
+                throw new Exception($"No apprenticeship found based on given search criteria '{searchCriteriaOrDistance}' and '{locationPostCode}'");
             }
-            return false;
         }
 
-        private void ChangeSortOrderToRecentlyAdded()
+        public FAA_ApprenticeSearchPage ClickOnSearchAgainLink()
         {
-            formCompletionHelper.SelectFromDropDownByValue(SortResults, "RecentlyAdded");
-            pageInteractionHelper.WaitforURLToChange("sortType=RecentlyAdded");
+            formCompletionHelper.Click(SearchAgainLink);
+            return new FAA_ApprenticeSearchPage(_context);
         }
+
         private void ChangeSortResultsTo50Vacancies()
         {
             if (pageInteractionHelper.IsElementDisplayed(DisplayResults))

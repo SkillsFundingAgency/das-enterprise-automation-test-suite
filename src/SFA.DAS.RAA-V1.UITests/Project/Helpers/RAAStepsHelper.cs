@@ -57,7 +57,6 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
                 case "Use the main employer address":
                     raaEmployerInformation = raaEmployerInformation.UseTheMainEmployerAddress(noOfpositions);
                     break;
-
                 case "Add different location":
                     raaEmployerInformation = raaEmployerInformation.AddDifferentLocation();
                     break;
@@ -267,6 +266,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
         private RAA_RecruitmentHomePage SubmitRecruitmentLoginDetails()
         {
             new RAA_IndexPage(_context)
+                .AcceptCookies()
                 .ClickOnSignInButton()
                 .LoginToPireanPreprod();
 

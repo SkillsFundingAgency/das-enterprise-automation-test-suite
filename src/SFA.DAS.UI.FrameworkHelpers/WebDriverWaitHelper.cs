@@ -27,16 +27,14 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
             bool result = false;
 
-            implicitWait.Until(driver => 
+            implicitWait.Until(driver =>
             {
                 result = condition();
-                return result; 
+                return result;
             });
 
             return result;
         }
-
-        internal void WaitForElementToBePresent(By locator) => _implicitWait.Until(ExpectedConditions.ElementExists(locator));
 
         internal void WaitForElementToBeDisplayed(By locator) => _implicitWait.Until(ExpectedConditions.ElementIsVisible(locator));
 
@@ -49,6 +47,8 @@ namespace SFA.DAS.UI.FrameworkHelpers
         internal void TurnOffImplicitWaits() => _webDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromMilliseconds(500);
 
         internal void TurnOnImplicitWaits() => _webDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(_timeOutConfig.ImplicitWait);
+
+        internal void WaitForUrlChange(string urlText) => _pagenavigationWait.Until(ExpectedConditions.UrlContains(urlText));
 
         private bool IsDocumentReady(IWebDriver driver) => ((IJavaScriptExecutor)driver).ExecuteScript("return document.readyState").Equals("complete");
 

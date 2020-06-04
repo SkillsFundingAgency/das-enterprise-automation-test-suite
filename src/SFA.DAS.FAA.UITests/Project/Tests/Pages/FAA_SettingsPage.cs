@@ -24,7 +24,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
     
         public FAA_SettingsPage(ScenarioContext context) : base(context) => _context = context;
 
-        public void VerifySuccessfulVerificationText() => pageInteractionHelper.VerifyText(SuccessfulMobileVerificationText, faadataHelper.SuccessfulPhoneVerificationText);
+        public void VerifySuccessfulVerificationText() => pageInteractionHelper.VerifyText(SuccessfulMobileVerificationText, faaDataHelper.SuccessfulPhoneVerificationText);
 
         public FAA_ConfirmAccountDeletionPage DeleteYourAccount()
         {
@@ -38,7 +38,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 
         public FAA_ChangeYourEmailAddressPage ChangeTheEmailIdSettings()
         {
-            formCompletionHelper.EnterText(Postcode_Address, faadataHelper.NewPostCode);
+            formCompletionHelper.EnterText(Postcode_Address, faaDataHelper.NewPostCode);
             formCompletionHelper.Click(UpdateDetailsButton);
             formCompletionHelper.Click(ChangeEmailIdLink);
             return new FAA_ChangeYourEmailAddressPage(_context);
@@ -46,7 +46,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 
         public FAA_PhoneNumberVerificationPage ChangePhoneNumberSettings()
         {
-            formCompletionHelper.EnterText(PhoneNumberField, faadataHelper.NewPhoneNumber);
+            formCompletionHelper.EnterText(PhoneNumberField, faaDataHelper.NewPhoneNumber);
             formCompletionHelper.Click(UpdateDetailsButton);
             return new FAA_PhoneNumberVerificationPage(_context);
         }
