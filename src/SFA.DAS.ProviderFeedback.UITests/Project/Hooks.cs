@@ -1,5 +1,4 @@
-﻿using OpenQA.Selenium;
-using SFA.DAS.ConfigurationBuilder;
+﻿using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.ProviderFeedback.UITests.Project.Helpers;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
@@ -15,6 +14,7 @@ namespace SFA.DAS.ProviderFeedback.UITests.Project
         private readonly ScenarioContext _context;
         private TabHelper _tabHelper;
         private readonly ObjectContext _objectContext;
+        private string _uniqueSurveyCode;
 
         public Hooks(ScenarioContext context)
         {
@@ -29,6 +29,8 @@ namespace SFA.DAS.ProviderFeedback.UITests.Project
             _providerFeedbackSqlHelper = new ProviderFeedbackSqlHelper(_providerFeedbackConfig);
 
             _context.Set(_providerFeedbackSqlHelper);
+
+            _context.Set(new ProviderFeedbackDatahelper(_context.Get<RandomDataGenerator>()));
         }
 
         [BeforeScenario(Order = 22)]
@@ -36,11 +38,14 @@ namespace SFA.DAS.ProviderFeedback.UITests.Project
         {
             _tabHelper = _context.Get<TabHelper>();
 
-            var uniqueSurveyCode = _providerFeedbackSqlHelper.GetUniqueSurveyCode();
+            _uniqueSurveyCode = _providerFeedbackSqlHelper.GetUniqueSurveyCode();
 
-            _objectContext.SetUniqueSurveyCode(uniqueSurveyCode);
+            _objectContext.SetUniqueSurveyCode(_uniqueSurveyCode);
 
-            _tabHelper.GoToUrl(_providerFeedbackConfig.ProviderFeedbackUrl, uniqueSurveyCode);
+            _tabHelper.GoToUrl(_providerFeedbackConfig.ProviderFeedbackUrl, _uniqueSurveyCode);
         }
+
+        [AfterScenario(Order = 34)]
+        public void ClearDownGetUniqueSurveyCodeData() => _providerFeedbackSqlHelper.ClearDownDataFromUniqueSurveyCode(_uniqueSurveyCode);
     }
 }

@@ -29,13 +29,5 @@ namespace SFA.DAS.ProviderFeedback.UITests.Project.Tests.Pages
             SelectOptionAndContinue();
             return new ProviderFeedbackCheckYourAnswers(_context);
         }
-
-        private void SelectOptionAndContinue()
-        {
-            formCompletionHelper.SelectCheckBoxByText(Labels, "Communication with employers");
-            formCompletionHelper.SelectCheckBoxByText(Labels, "Training facilities");
-            formCompletionHelper.SelectCheckBoxByText(Labels, "Improving apprentice skills");
-            Continue();
-        }
     }
 }

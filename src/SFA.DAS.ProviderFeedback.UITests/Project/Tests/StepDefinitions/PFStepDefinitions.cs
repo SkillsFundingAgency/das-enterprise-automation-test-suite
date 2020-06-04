@@ -26,8 +26,8 @@ namespace SFA.DAS.ProviderFeedback.UITests
                 .SelectVPoorAndContinue();
         }
 
-        [Then(@"the user can change the answers")]
-        public void ThenTheUserCanChangeTheAnswers()
+        [Then(@"the user can change the answers and submits")]
+        public void ThenTheUserCanChangeTheAnswersAndSubmits()
         {
             _providerFeedbackCheckYourAnswers.ChangeQuestionOne()
                 .ContinueToCheckYourAnswers()

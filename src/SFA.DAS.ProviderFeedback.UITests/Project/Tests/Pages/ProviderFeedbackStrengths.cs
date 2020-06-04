@@ -30,13 +30,5 @@ namespace SFA.DAS.ProviderFeedback.UITests.Project.Tests.Pages
             formCompletionHelper.ClickLinkByText("Skip this question");
             return new ProviderFeedbackImprove(_context);
         }
-
-        private void SelectOptionAndContinue()
-        {
-            formCompletionHelper.SelectCheckBoxByText(Labels, "Initial assessment of apprentices");
-            formCompletionHelper.SelectCheckBoxByText(Labels, "Training facilities");
-            formCompletionHelper.SelectCheckBoxByText(Labels, "Providing the right training at the right time");
-            Continue();
-        }
     }
 }
