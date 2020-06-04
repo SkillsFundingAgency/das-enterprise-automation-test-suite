@@ -1,4 +1,5 @@
-﻿using TechTalk.SpecFlow;
+﻿using OpenQA.Selenium;
+using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ProviderFeedback.UITests.Project.Tests.Pages
 {
@@ -6,6 +7,15 @@ namespace SFA.DAS.ProviderFeedback.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => "Feedback complete";
 
+        private By HaveConcerns => By.CssSelector("details summary");
+
         public ProviderFeedbackCompletePage(ScenarioContext context) : base(context) { }
+
+        public void CanComplaint()
+        {
+            formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(HaveConcerns));
+
+            formCompletionHelper.ClickLinkByText("make a formal complaint");
+        }
     }
 }

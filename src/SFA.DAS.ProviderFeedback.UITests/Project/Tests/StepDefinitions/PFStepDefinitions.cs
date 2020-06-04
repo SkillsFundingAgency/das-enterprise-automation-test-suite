@@ -38,6 +38,14 @@ namespace SFA.DAS.ProviderFeedback.UITests
                 .SubmitAnswersNow();
         }
 
+        [Then(@"the user can submit a complaint")]
+        public void ThenTheUserCanSubmitAComplaint()
+        {
+            _providerFeedbackCheckYourAnswers
+                .SubmitAnswersNow()
+                .CanComplaint();
+        }
+
         [Then(@"the user can not resubmit the feedback")]
         public void ThenTheUserCanNotResubmitTheFeedback() => new ProviderFeedbackAlreadySubmittedPage(_context);
     }

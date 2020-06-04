@@ -42,7 +42,7 @@ namespace SFA.DAS.ProviderFeedback.UITests.Project.Tests.Pages
 
         protected void SelectOptionAndContinue()
         {
-            List<string> checkboxList = pageInteractionHelper.FindElements(Labels).Select(x => x.Text).ToList();
+            List<string> checkboxList = pageInteractionHelper.FindElements(Labels).Select(x => x.Text).Where(y => !string.IsNullOrEmpty(y)).ToList();
 
             for (int i = 0; i <= 2; i++)
             {
