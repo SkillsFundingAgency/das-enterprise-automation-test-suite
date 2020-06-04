@@ -127,9 +127,8 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         public void SignTheAgreement()
         {
             _homePage = _signAgreementPage
-                .SignAgreement();
-
-            _homePage.VerifySucessSummary("Agreement accepted");
+                .SignAgreement()
+                .ClickOnViewYourAccountButton();
 
             SetAgreementId(_homePage);
         }

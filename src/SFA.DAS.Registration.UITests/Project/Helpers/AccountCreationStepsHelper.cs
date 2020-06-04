@@ -93,7 +93,8 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
                  .SelectYourOrganisation(orgType)
                  .ContinueToAboutYourAgreementPage()
                  .SelectViewAgreementNowAndContinue()
-                 .SignAgreement();
+                 .SignAgreement()
+                 .ClickOnViewYourAccountButton();
         }
 
         public void SetFirstAccountOrganisationName(OrgType orgType) =>
