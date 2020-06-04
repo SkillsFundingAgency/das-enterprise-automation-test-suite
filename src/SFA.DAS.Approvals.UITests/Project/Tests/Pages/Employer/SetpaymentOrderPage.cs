@@ -7,9 +7,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
     {
         protected override string PageTitle => "Set payment order";
 
-        public SetpaymentOrderPage(ScenarioContext context) : base(context)
-        {
-            VerifyPage();
-        }
+        public SetpaymentOrderPage(ScenarioContext context) : base(context) { }
+
     }
 }

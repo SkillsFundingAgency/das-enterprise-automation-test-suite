@@ -8,9 +8,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         protected override string PageTitle => "Annual apprenticeship return";
 
-        public ReportPublicSectorApprenticeshipTargetPage(ScenarioContext context) : base(context)
-        {
-            VerifyPage();
-        }
+        public ReportPublicSectorApprenticeshipTargetPage(ScenarioContext context) : base(context) { } 
+
+
     }
 }
