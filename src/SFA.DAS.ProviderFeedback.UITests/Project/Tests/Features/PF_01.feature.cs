@@ -70,14 +70,14 @@ namespace SFA.DAS.ProviderFeedback.UITests.Project.Tests.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("User Submit Mandatory Information and user Cannot Resubmit Feedback Once Submitte" +
-            "d")]
+        [NUnit.Framework.DescriptionAttribute("PF_01 User Submit Mandatory Information and user Cannot Resubmit Feedback Once Su" +
+            "bmitted")]
         [NUnit.Framework.CategoryAttribute("providerfeedback")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public virtual void UserSubmitMandatoryInformationAndUserCannotResubmitFeedbackOnceSubmitted()
+        public virtual void PF_01UserSubmitMandatoryInformationAndUserCannotResubmitFeedbackOnceSubmitted()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User Submit Mandatory Information and user Cannot Resubmit Feedback Once Submitte" +
-                    "d", null, new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("PF_01 User Submit Mandatory Information and user Cannot Resubmit Feedback Once Su" +
+                    "bmitted", null, new string[] {
                         "providerfeedback",
                         "regression"});
 #line 5
