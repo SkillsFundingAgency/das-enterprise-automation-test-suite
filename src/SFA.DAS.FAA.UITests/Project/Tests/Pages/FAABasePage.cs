@@ -9,13 +9,13 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
     public abstract class FAABasePage : BasePage
     {
         #region Helpers and Context
-        protected readonly FAADataHelper faadataHelper;
+        protected readonly FAADataHelper faaDataHelper;
         protected readonly FormCompletionHelper formCompletionHelper;
         protected readonly PageInteractionHelper pageInteractionHelper;
         protected readonly ObjectContext objectContext;
-        protected readonly VacancyTitleDatahelper vacancytitledataHelper;
+        protected readonly VacancyTitleDatahelper vacancyTitleDataHelper;
         protected readonly TabHelper tabHelper;
-        protected readonly FAAConfig faaconfig;
+        protected readonly FAAConfig faaConfig;
         protected readonly RegexHelper regexHelper;
         #endregion
 
@@ -24,10 +24,10 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
             objectContext = context.Get<ObjectContext>();
             formCompletionHelper = context.Get<FormCompletionHelper>();
             pageInteractionHelper = context.Get<PageInteractionHelper>();
-            vacancytitledataHelper = context.Get<VacancyTitleDatahelper>();
+            vacancyTitleDataHelper = context.Get<VacancyTitleDatahelper>();
             tabHelper = context.Get<TabHelper>();
-            faaconfig = context.GetFAAConfig<FAAConfig>();
-            faadataHelper = context.Get<FAADataHelper>();
+            faaConfig = context.GetFAAConfig<FAAConfig>();
+            faaDataHelper = context.Get<FAADataHelper>();
             formCompletionHelper = context.Get<FormCompletionHelper>();
             pageInteractionHelper = context.Get<PageInteractionHelper>();
             regexHelper = context.Get<RegexHelper>();

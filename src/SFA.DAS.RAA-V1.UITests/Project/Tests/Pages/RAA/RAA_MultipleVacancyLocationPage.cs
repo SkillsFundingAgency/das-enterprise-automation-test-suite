@@ -12,7 +12,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         #endregion
 
         private By EnterVacancyLocation => By.Id("postcode-search");
-        private By AddressResults => By.CssSelector(".ui-menu-item");
+        private By AddressResults => By.CssSelector("li.ui-menu-item");
         private By NumberOfVacancy => By.Id("addresses_0__numberofpositions");
         private By NumberOfVacancy2 => By.Id("addresses_1__numberofpositions");
         private By AdditionalLocationInformation => By.Id("AdditionalLocationInformation");
@@ -27,12 +27,11 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
 
             formCompletionHelper.ClickElement(() =>
             {
-                pageInteractionHelper.WaitUntilAnyElements(AddressResults);
-
+                pageInteractionHelper.WaitForElementToBeClickable(AddressResults);
                 return pageInteractionHelper.FindElement(AddressResults);
             });
 
-            return new RAA_MultipleVacancyLocationPage(_context);
+            return this;
         }
 
         public RAA_MultipleVacancyLocationPage ClickAddAnotherLocationLink()

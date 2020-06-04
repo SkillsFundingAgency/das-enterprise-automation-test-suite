@@ -123,7 +123,6 @@ namespace SFA.DAS.UI.FrameworkHelpers
         public void ClickButtonByText(params string[] buttons)
         {
             string text = buttons.First(x => GetElementByText(ButtonCssSelector, x) != null);
-
             ClickElementByText(ButtonCssSelector, text);
         }
 

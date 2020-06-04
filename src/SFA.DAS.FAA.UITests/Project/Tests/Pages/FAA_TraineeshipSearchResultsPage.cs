@@ -9,53 +9,46 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => "Search results";
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;        
-        #endregion
+        private By LocationTextBox => By.Id("Location");
+        private By DistanceDropDown => By.Id("loc-within");
 
-        private By Location => By.Id("Location");
-        private By ReferenceNumber => By.Id("ReferenceNumber");
-        private By Distance => By.Id("loc-within");
-        private By SortOrder => By.Id("sort-results");
-        private By VacanciesList => By.ClassName("vacancy-link");
-        private By DisplayResults => By.Id("results-per-page");
+        public FAA_TraineeshipSearchResultsPage(ScenarioContext context) : base(context) { }
 
-        public FAA_TraineeshipSearchResultsPage(ScenarioContext context) : base(context) => _context = context;
-
-        public FAA_TraineeshipSearchResultsPage SearchForAVacancy(string location, string distance)
+        public FAA_TraineeshipSearchResultsPage SearchForAVacancy(string locationPostCode, string distance)
         {
-            formCompletionHelper.EnterText(Location, location);
-
-            formCompletionHelper.SelectFromDropDownByText(Distance, distance);
-
+            formCompletionHelper.EnterText(LocationTextBox, locationPostCode);
+            formCompletionHelper.SelectFromDropDownByText(DistanceDropDown, distance);
             formCompletionHelper.Click(Search);
 
-            WaitforURLToChange(distance);
-            formCompletionHelper.SelectFromDropDownByValue(SortOrder, "RecentlyAdded");
+            pageInteractionHelper.WaitforURLToChange(distance);
+            return this;
+        }
+
+        public FAA_TraineeshipSearchResultsPage CheckVacancyIsDisplayed(string locationPostCode)
+        {
             if (pageInteractionHelper.IsElementDisplayed(DisplayResults))
             {
                 pageInteractionHelper.FocusTheElement(DisplayResults);
                 formCompletionHelper.SelectFromDropDownByValue(DisplayResults, "50");
                 pageInteractionHelper.WaitforURLToChange("resultsPerPage=50");
-            }            
+            }
+
+            ChangeSortOrderToRecentlyAdded();
 
             List<IWebElement> vacanciesCount = pageInteractionHelper.FindElements(VacanciesList);
-            
-            bool status = false;
-            
-            foreach (var vacancy in vacanciesCount)
+            if (vacanciesCount.Count > 0)
             {
-                if(vacancy.Text.Contains(vacancytitledataHelper.VacancyTitle))
+                foreach (var vacancy in vacanciesCount)
                 {
-                    status = true;
-                    break;
+                    if (vacancy.Text.Contains(vacancyTitleDataHelper.VacancyTitle))
+                        return this;
                 }
+                throw new Exception($"VacancyTitle Not found in VacanciesList within the '{locationPostCode}'");
             }
-            if(!status)
+            else
             {
-                throw new Exception($"Vacancy title: {vacancytitledataHelper.VacancyTitle} Not Found");
+                throw new Exception($"Vacancy title: {vacancyTitleDataHelper.VacancyTitle} Not Found");
             }
-            return new FAA_TraineeshipSearchResultsPage(_context);
         }
     }
 }

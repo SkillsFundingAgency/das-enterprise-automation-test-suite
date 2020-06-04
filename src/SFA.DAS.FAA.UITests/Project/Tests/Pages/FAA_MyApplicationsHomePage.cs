@@ -55,12 +55,12 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 
         private void VerifyVacancySuccessfulNotification()
         {
-            pageInteractionHelper.VerifyText(NotificationText, "Your application for " + vacancytitledataHelper.VacancyTitle + " has been successful.");
+            pageInteractionHelper.VerifyText(NotificationText, "Your application for " + vacancyTitleDataHelper.VacancyTitle + " has been successful.");
         }
 
         private void VerifyVacancyUnsuccessfulNotification()
         {
-            pageInteractionHelper.VerifyText(NotificationText, "Your application for " + vacancytitledataHelper.VacancyTitle + " has been unsuccessful.");
+            pageInteractionHelper.VerifyText(NotificationText, "Your application for " + vacancyTitleDataHelper.VacancyTitle + " has been unsuccessful.");
         }
 
         public void DismissSuccessfulNotification()
@@ -86,16 +86,16 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
         {
             pageInteractionHelper.WaitforURLToChange("myapplications");
             DeleteDraft();
-            pageInteractionHelper.VerifyText(DraftVacancyDeletionInfoText, "You've successfully removed the " + vacancytitledataHelper.VacancyTitle + " apprenticeship");
+            pageInteractionHelper.VerifyText(DraftVacancyDeletionInfoText, "You've successfully removed the " + vacancyTitleDataHelper.VacancyTitle + " apprenticeship");
             formCompletionHelper.Click(VacancyDeletedLink);
             return new FAA_ApprenticeSummaryPage(_context);
         }
 
         private void DeleteDraft()
         {
-            var element = pageInteractionHelper.GetLinkContains(SavedVacancy, vacancytitledataHelper.VacancyTitle);
+            var element = pageInteractionHelper.GetLinkContains(SavedVacancy, vacancyTitleDataHelper.VacancyTitle);
 
-            var id = element.GetAttribute("href").Replace($"{faaconfig.FAABaseUrl}{VacancyDetailshref}", string.Empty);
+            var id = element.GetAttribute("href").Replace($"{faaConfig.FAABaseUrl}{VacancyDetailshref}", string.Empty);
 
             formCompletionHelper.ClickElement(DeleteVacancy(id));
         }

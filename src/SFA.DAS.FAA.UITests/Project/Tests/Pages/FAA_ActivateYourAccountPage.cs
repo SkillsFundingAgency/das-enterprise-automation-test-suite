@@ -19,7 +19,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 
         public FAA_ActivateYourAccountPage2 EnterActivationCode()
         {
-            formCompletionHelper.EnterText(ActivationCode, faadataHelper.ActivationCode);
+            formCompletionHelper.EnterText(ActivationCode, faaDataHelper.ActivationCode);
             formCompletionHelper.Click(ActivateAccount);
             pageInteractionHelper.WaitforURLToChange("tellusmore");
             return new FAA_ActivateYourAccountPage2(_context);

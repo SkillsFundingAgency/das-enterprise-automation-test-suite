@@ -9,10 +9,11 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
     {
         protected By NoSearchResults => By.Id("search-no-results-title");
         protected By Search => By.Id("search-button");
+        protected By VacanciesList => By.ClassName("vacancy-link");
+        protected By DisplayResults => By.Id("results-per-page");
+        protected By SortResults => By.Id("sort-results");
 
-        public FAA_SearchVacancyBasePage(ScenarioContext context) : base(context) { }
-    
-        public bool FoundVacancies() => !pageInteractionHelper.IsElementDisplayed(NoSearchResults);
+        protected FAA_SearchVacancyBasePage(ScenarioContext context) : base(context) { }
 
         protected void SearchByReferenceNumber()
         {
@@ -27,11 +28,12 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
             }, () => formCompletionHelper.Click(Search));
         }
 
-        protected void WaitforURLToChange(string distance)
+        protected void ChangeSortOrderToRecentlyAdded()
         {
-            var urlChange = distance.Contains("miles") ? distance.Split(" ")[0] : "0";
+            formCompletionHelper.SelectFromDropDownByValue(SortResults, "RecentlyAdded");
+            pageInteractionHelper.WaitforURLToChange("sortType=RecentlyAdded");
+        }
 
-            pageInteractionHelper.WaitforURLToChange($"WithinDistance={urlChange}");
-        }        
+        public bool FoundVacancies() => !pageInteractionHelper.IsElementDisplayed(NoSearchResults);
     }
 }

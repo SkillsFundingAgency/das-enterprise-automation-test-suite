@@ -7,7 +7,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 {
     public class FAA_ApprenticeSummaryPage : FAABasePage
     {
-        protected override string PageTitle => vacancytitledataHelper.VacancyTitle;
+        protected override string PageTitle => vacancyTitleDataHelper.VacancyTitle;
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
@@ -55,10 +55,10 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
         public void VerifyNewDates()
         {
 
-            DateTime Date = faadataHelper.NewVacancyClosing;
+            DateTime Date = faaDataHelper.NewVacancyClosing;
             string actualClosingDate = Date.ToString("dd MMM yyyy");
 
-            DateTime PossibleStartDate = faadataHelper.NewVacancyStart;
+            DateTime PossibleStartDate = faaDataHelper.NewVacancyStart;
             string actualStartDate = PossibleStartDate.ToString("dd MMM yyyy");
 
             pageInteractionHelper.VerifyText(ClosingDate, "Closing date: " + actualClosingDate + "");
@@ -71,8 +71,8 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
             string[] wageRange = displayedWageFAA.Split('-');
             string minWage =regexHelper.GetVacancyCurrentWage(wageRange[0]);
             string maxWage = regexHelper.GetVacancyCurrentWage(wageRange[1]);
-            pageInteractionHelper.VerifyText(minWage,faadataHelper.NewCustomMinWagePerWeek);
-            pageInteractionHelper.VerifyText(maxWage,faadataHelper.NewCustomMaxWagePerWeek);
+            pageInteractionHelper.VerifyText(minWage,faaDataHelper.NewCustomMinWagePerWeek);
+            pageInteractionHelper.VerifyText(maxWage,faaDataHelper.NewCustomMaxWagePerWeek);
         }
 
         public FAA_ApprenticeSummaryPage ConfirmDraftVacancyDeletion()

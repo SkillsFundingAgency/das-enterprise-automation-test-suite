@@ -22,9 +22,9 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         public RAAV2CSSBasePage(ScenarioContext context, bool verifypage = true) : base(context) 
         {
-            vacancyReferenceHelper = context.Get<VacancyReferenceHelper>();
-            vacancyTitleDataHelper = context.Get<VacancyTitleDatahelper>();
-            rAAV2DataHelper = context.Get<RAAV2DataHelper>();
+            vacancyReferenceHelper = context.GetValue<VacancyReferenceHelper>();
+            vacancyTitleDataHelper = context.GetValue<VacancyTitleDatahelper>();
+            rAAV2DataHelper = context.GetValue<RAAV2DataHelper>();
             formCompletionHelper = context.Get<FormCompletionHelper>();
             pageInteractionHelper = context.Get<PageInteractionHelper>();
             objectContext = context.Get<ObjectContext>();

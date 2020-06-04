@@ -22,11 +22,11 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 
         public FAA_SignInPage ChangeEmailAddress()
         {
-            formCompletionHelper.EnterText(EmailAddress, faadataHelper.ChangedEmailId);
+            formCompletionHelper.EnterText(EmailAddress, faaDataHelper.ChangedEmailId);
             formCompletionHelper.Click(SendCodeButton);
             pageInteractionHelper.VerifyText(SuccessMessageText, "A verification code has been sent to your new email address.");
-            formCompletionHelper.EnterText(VerificationCode, faadataHelper.ActivationCode);
-            formCompletionHelper.EnterText(VerifyPassword, faadataHelper.Password);
+            formCompletionHelper.EnterText(VerificationCode, faaDataHelper.ActivationCode);
+            formCompletionHelper.EnterText(VerifyPassword, faaDataHelper.Password);
             formCompletionHelper.Click(VerifyEmailButton);
             return new FAA_SignInPage(_context);
         }
