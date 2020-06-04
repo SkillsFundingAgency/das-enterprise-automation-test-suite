@@ -15,5 +15,6 @@
         public static string RAAV2QABaseUrl => $"https://{EnvironmentConfig.EnvironmentName}-review.apprenticeships.education.gov.uk/";
         public static string RecruitBaseUrl => $"https://{EnvironmentConfig.EnvironmentName}.recruit-apprentice.service.gov.uk/";
         public static string SupportConsoleUrl => $"https://{EnvironmentConfig.EnvironmentName}-console.apprenticeships.education.gov.uk/";
+        public static string ProviderFeedbackUrl => $"https://{EnvironmentConfig.EnvironmentName}-feedback.apprenticeships.education.gov.uk/";
     }
 }
