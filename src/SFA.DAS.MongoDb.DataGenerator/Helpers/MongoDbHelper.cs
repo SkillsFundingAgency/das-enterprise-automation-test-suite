@@ -1,8 +1,5 @@
 ﻿using MongoDB.Bson;
-using MongoDB.Driver;
 using SFA.DAS.UI.FrameworkHelpers;
-using System;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace SFA.DAS.MongoDb.DataGenerator.Helpers
@@ -12,7 +9,7 @@ namespace SFA.DAS.MongoDb.DataGenerator.Helpers
         private readonly MongoDbConnectionHelper _connectionHelper;
         private readonly IMongoDbDataGenerator _dataGenerator;
         private readonly string _collectionName;
-        
+
         public MongoDbHelper(MongoDbConnectionHelper connectionHelper, IMongoDbDataGenerator datagenerator)
         {
             _connectionHelper = connectionHelper;

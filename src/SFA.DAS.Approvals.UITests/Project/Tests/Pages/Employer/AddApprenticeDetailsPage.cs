@@ -1,23 +1,18 @@
-﻿using OpenQA.Selenium;
-using SFA.DAS.Approvals.UITests.Project.Helpers;
-using SFA.DAS.UI.Framework.TestSupport;
-using SFA.DAS.UI.FrameworkHelpers;
+﻿using System.Linq;
+using NUnit.Framework;
+using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
-    public class AddApprenticeDetailsPage : BasePage
+    public class AddApprenticeDetailsPage : ApprovalsBasePage
     {
         protected override string PageTitle => "Add apprentice details";
 
         protected override By PageHeader => By.CssSelector(".govuk-heading-xl");
 
         #region Helpers and Context
-        private readonly PageInteractionHelper _pageInteractionHelper;
-        private readonly FormCompletionHelper _formCompletionHelper;
         private readonly ScenarioContext _context;
-        private readonly ApprovalsConfig _config;
-        private readonly ApprovalsDataHelper _dataHelper;
         #endregion
 
         private By FirstNameField => By.Id("FirstName");
@@ -32,35 +27,44 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private By EndDateYear => By.Id("EndYear");
         private By TrainingCost => By.Id("Cost");
         private By EmployerReference => By.Id("Reference");
-        private By SaveAndContinueButton => By.CssSelector(".govuk-button");
+        private By SaveAndContinueButton => By.CssSelector("#main-content .govuk-button");
 
-        public AddApprenticeDetailsPage(ScenarioContext context) : base(context)
+        public AddApprenticeDetailsPage(ScenarioContext context) : base(context) => _context = context;
+
+        public ReviewYourCohortPage SubmitValidApprenticeDetails(bool isMF)
         {
-            _context = context;
-            _config = context.GetApprovalsConfig<ApprovalsConfig>();
-            _dataHelper = context.Get<ApprovalsDataHelper>();
-            _pageInteractionHelper = context.Get<PageInteractionHelper>();
-            _formCompletionHelper = context.Get<FormCompletionHelper>();
-            VerifyPage();
+            formCompletionHelper.EnterText(FirstNameField, apprenticeDataHelper.ApprenticeFirstname);
+            formCompletionHelper.EnterText(LastNameField, apprenticeDataHelper.ApprenticeLastname);
+            formCompletionHelper.EnterText(DateOfBirthDay, apprenticeDataHelper.DateOfBirthDay);
+            formCompletionHelper.EnterText(DateOfBirthMonth, apprenticeDataHelper.DateOfBirthMonth);
+            formCompletionHelper.EnterText(DateOfBirthYear, apprenticeDataHelper.DateOfBirthYear);
+            formCompletionHelper.SelectFromDropDownByValue(TrainingCourseContainer, apprenticeCourseDataHelper.Course);
+            formCompletionHelper.ClickElement(StartDateMonth);
+            if(isMF==false)
+            {
+                formCompletionHelper.EnterText(StartDateMonth, apprenticeCourseDataHelper.CourseStartDate.Month);
+                formCompletionHelper.EnterText(StartDateYear, apprenticeCourseDataHelper.CourseStartDate.Year);
+            }
+            formCompletionHelper.EnterText(EndDateMonth, apprenticeCourseDataHelper.CourseEndDate.Month);
+            formCompletionHelper.EnterText(EndDateYear, apprenticeCourseDataHelper.CourseEndDate.Year);
+            formCompletionHelper.EnterText(TrainingCost, apprenticeDataHelper.TrainingPrice);
+            formCompletionHelper.EnterText(EmployerReference, apprenticeDataHelper.EmployerReference);
+            formCompletionHelper.ClickElement(SaveAndContinueButton);
+            return new ReviewYourCohortPage(_context);
+        }
+        public YouMustCompleteAllApprenticeDetailsPage DraftDynamicHomePageSubmitValidApprenticeDetails()
+        {
+            formCompletionHelper.EnterText(FirstNameField, apprenticeDataHelper.ApprenticeFirstname);
+            formCompletionHelper.EnterText(LastNameField, apprenticeDataHelper.ApprenticeLastname);
+            formCompletionHelper.ClickElement(SaveAndContinueButton);
+            return new YouMustCompleteAllApprenticeDetailsPage(_context);
         }
 
-        public ReviewYourCohortPage SubmitValidApprenticeDetails()
+        public AddApprenticeDetailsPage ConfirmOnlyStandardCoursesAreSelectable()
         {
-            _formCompletionHelper.EnterText(FirstNameField, _dataHelper.ApprenticeFirstname);
-            _formCompletionHelper.EnterText(LastNameField, _dataHelper.ApprenticeLastname);
-            _formCompletionHelper.EnterText(DateOfBirthDay, _dataHelper.DateOfBirthDay);
-            _formCompletionHelper.EnterText(DateOfBirthMonth, _dataHelper.DateOfBirthMonth);
-            _formCompletionHelper.EnterText(DateOfBirthYear, _dataHelper.DateOfBirthYear);
-            _formCompletionHelper.SelectFromDropDownByValue(TrainingCourseContainer, _dataHelper.RandomCourse());
-            _formCompletionHelper.ClickElement(StartDateMonth);
-            _formCompletionHelper.EnterText(StartDateMonth, _dataHelper.CourseStartDate.Month);
-            _formCompletionHelper.EnterText(StartDateYear, _dataHelper.CourseStartDate.Year);
-            _formCompletionHelper.EnterText(EndDateMonth, _dataHelper.CourseEndDate.Month);
-            _formCompletionHelper.EnterText(EndDateYear, _dataHelper.CourseEndDate.Year);
-            _formCompletionHelper.EnterText(TrainingCost, _dataHelper.TrainingPrice);
-            _formCompletionHelper.EnterText(EmployerReference, _dataHelper.EmployerReference);
-            _formCompletionHelper.ClickElement(SaveAndContinueButton);
-            return new ReviewYourCohortPage(_context);
+            var options = formCompletionHelper.GetAllDropDownOptions(TrainingCourseContainer);
+            Assert.True(options.All(x => x.Contains("(Standard)")));
+            return this;
         }
     }
 }

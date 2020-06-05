@@ -1,55 +1,45 @@
-﻿using System;
+﻿using OpenQA.Selenium;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace SFA.DAS.UI.FrameworkHelpers
 {
     public class RandomDataGenerator
     {
-        private const string Alphabets = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        private const string Alphabets = LowerCaseAlphabets + UpperCaseAlphabets;
+        private const string LowerCaseAlphabets = "abcdefghijklmnopqrstuvwxyz";
+        private const string UpperCaseAlphabets = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         private const string Numbers = "0123456789";
+        private const string WholeNumbers = "123456789";
         private const string SpecialChars = "!@£$%^&*()_+{}:<>?-=[];',./";
 
-        public string GenerateRandomAlphabeticString(int length)
+        public string GenerateRandomAlphabeticString(int length) => GenerateRandomString(Alphabets, length);
+
+        public string GenerateRandomNumber(int length) => GenerateRandomString(Numbers, length);
+
+        public string GenerateRandomWholeNumber(int length) => GenerateRandomString(WholeNumbers, length);
+
+        public string GenerateRandomAlphanumericString(int length) => GenerateRandomString(Alphabets + Numbers, length);
+
+        public string GenerateRandomAlphanumericStringWithSpecialCharacters(int length) => GenerateRandomString(Alphabets + Numbers + SpecialChars, length);
+
+        public string GenerateRandomPassword(int noOfUppercaseLetters, int noOfLowerCaseLetters, int noOfNumbers, int noOfSpecialChars)
         {
-            return GenerateRandomString(Alphabets, length);
+            var randomString = GenerateRandomString(LowerCaseAlphabets, noOfUppercaseLetters);
+            randomString += GenerateRandomString(UpperCaseAlphabets, noOfLowerCaseLetters);
+            randomString += GenerateRandomString(Numbers, noOfNumbers);
+            randomString += GenerateRandomString(SpecialChars, noOfSpecialChars);
+            return randomString;
         }
 
-        public string GenerateRandomNumber(int length)
-        {
-            return GenerateRandomString(Numbers, length);
-        }
+        public string GenerateRandomEmail() => GenerateRandomAlphanumericString(10) + DateTime.Now.Millisecond + "@example.com";
 
-        public string GenerateRandomAlphanumericString(int length)
-        {
-            return GenerateRandomString(Alphabets + Numbers, length);
-        }
+        public int GenerateRandomDateOfMonth() => GenerateRandomNumberBetweenTwoValues(1, 28);
 
-        public string GenerateRandomAlphanumericStringWithSpecialCharacters(int length)
-        {
-            return GenerateRandomString(Alphabets + Numbers + SpecialChars, length);
-        }
+        public int GenerateRandomMonth() => GenerateRandomNumberBetweenTwoValues(1, 13);
 
-        public string GenerateRandomEmail()
-        {
-            var emailDomain = "@example.com";
-            return GenerateRandomAlphanumericString(10) + DateTime.Now.Millisecond + emailDomain;
-        }
-
-        public int GenerateRandomDateOfMonth()
-        {
-            return GenerateRandomNumberBetweenTwoValues(1, 28);
-        }
-
-        public int GenerateRandomMonth()
-        {
-            return GenerateRandomNumberBetweenTwoValues(1, 13);
-        }
-
-        public int GenerateRandomNumberBetweenTwoValues(int min, int max)
-        {
-            var rand = new Random();
-            return rand.Next(min, max);
-        }
+        public int GenerateRandomNumberBetweenTwoValues(int min, int max) => new Random().Next(min, max);
 
         public int GenerateRandomDobYear()
         {
@@ -72,6 +62,13 @@ namespace SFA.DAS.UI.FrameworkHelpers
                 randomUln = (long.Parse(randomUln) + 1).ToString();
             }
             throw new Exception("Unable to generate ULN");
+        }
+
+        public IWebElement GetRandomElementFromListOfElements(List<IWebElement> elements)
+        {
+            var randomNumber = GenerateRandomNumberBetweenTwoValues(0, elements.Count - 1);
+
+            return elements[randomNumber];
         }
 
         private bool IsValidCheckSum(string uln)

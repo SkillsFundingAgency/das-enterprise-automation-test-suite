@@ -1,44 +1,39 @@
 ﻿using OpenQA.Selenium;
-using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace SFA.DAS.UI.FrameworkHelpers
 {
-    public class FormCompletionHelper 
+    public class FormCompletionHelper : WebElementInteractionHelper
     {
         private readonly IWebDriver _webDriver;
         private readonly WebDriverWaitHelper _webDriverWaitHelper;
         private readonly RetryHelper _retryHelper;
 
-        public FormCompletionHelper(IWebDriver webDriver, WebDriverWaitHelper webDriverWaitHelper, RetryHelper retryHelper)
+        public FormCompletionHelper(IWebDriver webDriver, WebDriverWaitHelper webDriverWaitHelper, RetryHelper retryHelper) : base(webDriver)
         {
             _webDriver = webDriver;
             _webDriverWaitHelper = webDriverWaitHelper;
             _retryHelper = retryHelper;
         }
 
-        public void SelectRadioButton(IWebElement element)
-        {
-            ClickElement(element);
-        }
+        public void RetryClickOnException(Func<IWebElement> element) => _retryHelper.RetryClickOnException(element);
 
-        public void SelectRadioButton(By locator)
-        {
-            SelectRadioButton(_webDriver.FindElement(locator));
-        }
+        public void ClickElement(Func<IWebElement> element, Action retryAction = null) => _retryHelper.RetryClickOnWebDriverException(element, retryAction);
 
-        public void ClickElement(IWebElement element, bool useAction = false)
-        {
-            _retryHelper.RetryOnElementClickInterceptedException(element, useAction);
-        }
+        public void ClickElement(IWebElement element) => _retryHelper.RetryOnElementClickInterceptedException(element, true);
 
-        public void ClickElement(By locator, bool useAction = false)
+        //links are Intercepted by Help menu.
+        public void ClickInterceptedElement(IWebElement element) => _retryHelper.RetryOnElementClickInterceptedException(element, false);
+
+        public void ClickElement(By locator)
         {
             _webDriverWaitHelper.WaitForElementToBeClickable(locator);
-            ClickElement(_webDriver.FindElement(locator), useAction);
+            ClickElement(_webDriver.FindElement(locator));
         }
+
+        public void Click(By locator) => ClickElement(locator);
 
         public void EnterText(IWebElement element, string text)
         {
@@ -48,46 +43,65 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         public void EnterText(By locator, string text)
         {
+            _webDriverWaitHelper.WaitForElementToBeDisplayed(locator);
             EnterText(_webDriver.FindElement(locator), text);
         }
 
-        public void EnterText(By locator, int text)
+        public IEnumerable<string> GetAllDropDownOptions(By bySelect)
         {
-            EnterText(locator, text.ToString());
+            var webElement = _webDriver.FindElement(bySelect);
+            return SelectElement(webElement).Options.Where(x => !string.IsNullOrEmpty(x.GetAttribute("value"))).Select(x => x.Text);
         }
 
-        public void EnterText(IWebElement element, int value)
+        public void SendKeys(By locator, string Key)
         {
-            EnterText(element, value.ToString());
+            _webDriverWaitHelper.WaitForElementToBeDisplayed(locator);
+            _webDriver.FindElement(locator).SendKeys(Key);
         }
 
-        public void SelectFromDropDownByValue(By @by, string value)
-        {
-            SelectFromDropDownByValue(_webDriver.FindElement(by), value);
-        }
+        public void EnterText(By locator, int text) => EnterText(locator, text.ToString());
 
-        public void SelectFromDropDownByText(By @by, string text)
-        {
-            SelectFromDropDownByText(_webDriver.FindElement(by), text);
-        }
+        public void EnterText(IWebElement element, int value) => EnterText(element, value.ToString());
 
-        public void SelectFromDropDownByValue(IWebElement element, string value)
-        {
-            SelectElement(element).SelectByValue(value);
-        }
+        public void SelectByIndex(By @by, int index) => SelectByIndex(_webDriver.FindElement(by), index);
 
-        public void SelectFromDropDownByText(IWebElement element, string text)
-        {
-            SelectElement(element).SelectByText(text);
-        }
+        public void SelectFromDropDownByValue(By @by, string value) => SelectFromDropDownByValue(_webDriver.FindElement(by), value);
 
-        public void SelectCheckBox(IWebElement element)
+        public void SelectFromDropDownByText(By @by, string text) => SelectFromDropDownByText(_webDriver.FindElement(by), text);
+
+        private void SelectByIndex(IWebElement element, int index) => SelectElement(element).SelectByIndex(index);
+
+        private void SelectFromDropDownByValue(IWebElement element, string value) => SelectElement(element).SelectByValue(value);
+
+        private void SelectFromDropDownByText(IWebElement element, string text) => SelectElement(element).SelectByText(text);
+
+        public void SelectCheckbox(IWebElement element)
         {
-            if(element.Displayed && !element.Selected)
-            {
+            if (!element.Selected)
                 element.Click();
-            }
         }
+
+        public void UnSelectCheckbox(IWebElement element)
+        {
+            if (element.Selected)
+                element.Click();
+        }
+
+        public void UnSelectCheckbox(By locator)
+        {
+            IWebElement element = _webDriver.FindElement(locator);
+            UnSelectCheckbox(element);
+        }
+
+        public void SelectCheckbox(By locator)
+        {
+            IWebElement element = _webDriver.FindElement(locator);
+            SelectCheckbox(element);
+        }
+
+        public void SelectCheckBoxByText(By locator, string text) => ClickElementByText(locator, text);
+
+        public void SelectCheckBoxByText(string text) => ClickElementByText(CheckBoxCssSelector, text);
 
         public void SelectRadioOptionByForAttribute(By locator, string forAttribute)
         {
@@ -98,24 +112,26 @@ namespace SFA.DAS.UI.FrameworkHelpers
                 ClickElement(radioToSelect);
         }
 
-        public void SelectRadioOptionByText(By locator, String text)
-        {
-            IList<IWebElement> radios = _webDriver.FindElements(locator);
+        public void SelectRadioOptionByText(By locator, string text) => ClickElementByText(locator, text);
 
-            for (int i = 0; i < radios.Count; i++)
-            {
-                String str = radios.ElementAt(i).Text;
-                if (str.Equals(text))
-                {
-                    radios.ElementAt(i).Click();
-                    return;
-                }
-            }
+        public void SelectRadioOptionByText(string text) => ClickElementByText(RadioButtonCssSelector, text);
+
+        public void SelectRadioOptionByLocator(By locator) => ClickElement(_webDriver.FindElement(locator));
+
+        public void EnterTextByLabel(By labellocator, string labeltext, string text) => EnterText(GetElementByText(labellocator, labeltext).FindElement(InputCssSelector), text);
+
+        private void ClickElementByText(By locator, string text) => ClickElement(() => GetElementByText(locator, text));
+
+        public void ClickLinkByText(By locator, string text) => ClickElementByText(locator, text);
+
+        public void ClickLinkByText(string text) => ClickElementByText(LinkCssSelector, text);
+
+        public void ClickButtonByText(params string[] buttons)
+        {
+            string text = buttons.First(x => GetElementByText(ButtonCssSelector, x) != null);
+            ClickElementByText(ButtonCssSelector, text);
         }
 
-        private SelectElement SelectElement(IWebElement element)
-        {
-            return new SelectElement(element);
-        }
+        public void ClickButtonByText(string text) => ClickElementByText(ButtonCssSelector, text);
     }
 }

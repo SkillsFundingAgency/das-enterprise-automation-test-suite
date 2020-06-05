@@ -1,66 +1,64 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.MongoDb.DataGenerator;
-using SFA.DAS.UI.Framework.TestSupport;
-using SFA.DAS.UI.FrameworkHelpers;
+using SFA.DAS.ConfigurationBuilder;
 using TechTalk.SpecFlow;
+using SFA.DAS.Registration.UITests.Project.Tests.Pages.PAYESchemesPages;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 {
-    public class GgSignInPage : BasePage
+    public class GgSignInPage : RegistrationBasePage
     {
         protected override string PageTitle => "Sign in";
+        protected override By PageHeader => By.CssSelector(".content__body h1");
 
-        #region Helpers and Context
-        private readonly PageInteractionHelper _pageInteractionHelper;
-        private readonly FormCompletionHelper _formCompletionHelper;
         private readonly ScenarioContext _context;
-        private readonly ProjectConfig _config;
-        private readonly string _gatewayid;
-        private readonly string _gatewaypassword;
-        #endregion
+        private readonly ObjectContext _objectContext;
 
+        #region Locators
         private By UserIdInput => By.Id("userId");
-
         private By PasswordInput => By.Id("password");
-
         private By SignInButton => By.CssSelector("input.button");
+        private By ErrorMessageText => By.Id("errors");
+        #endregion
 
         public GgSignInPage(ScenarioContext context) : base(context)
         {
             _context = context;
-            _config = context.GetProjectConfig<ProjectConfig>();
-            _pageInteractionHelper = context.Get<PageInteractionHelper>();
-            _formCompletionHelper = context.Get<FormCompletionHelper>();
-            _gatewayid = context.Get<ObjectContext>().GetGatewayId();
-            _gatewaypassword = context.Get<ObjectContext>().GetGatewayPassword();
+            _objectContext = _context.Get<ObjectContext>();
             VerifyPage();
         }
-        protected override By PageHeader => By.CssSelector(".content__body h1");
 
-        public OrganisationSearchPage SignInTo()
+        public SearchForYourOrganisationPage SignInTo(int index)
         {
-            EnterUserID().
-                EnterUserPassword().
-                SignIn();
-            return new OrganisationSearchPage(_context);
+            EnterGateWayCredentialsAndSignIn(index);
+            return new SearchForYourOrganisationPage(_context);
         }
 
-        private GgSignInPage EnterUserID()
+        public ConfirmPAYESchemePage EnterPayeDetailsAndContinue(int index)
         {
-            _formCompletionHelper.EnterText(UserIdInput, _gatewayid);
+            EnterGateWayCredentialsAndSignIn(index);
+            return new ConfirmPAYESchemePage(_context);
+        }
+
+        public GgSignInPage SignInWithInvalidDetails()
+        {
+            SignInTo(registrationDataHelper.InvalidGGId, registrationDataHelper.InvalidGGPassword);
             return this;
         }
 
-        private GgSignInPage EnterUserPassword()
+        public string GetErrorMessage() => pageInteractionHelper.GetText(ErrorMessageText);
+
+        private void EnterGateWayCredentialsAndSignIn(int index)
         {
-            _formCompletionHelper.EnterText(PasswordInput, _gatewaypassword);
-            return this;
+            var gatewaydetails = _objectContext.GetGatewayCreds(index);
+            SignInTo(gatewaydetails.GatewayId, gatewaydetails.GatewayPassword);
         }
 
-        private GgSignInPage SignIn()
+        private void SignInTo(string id, string password)
         {
-            _formCompletionHelper.ClickElement(SignInButton);
-            return this;
+            formCompletionHelper.EnterText(UserIdInput, id);
+            formCompletionHelper.EnterText(PasswordInput, password);
+            formCompletionHelper.ClickElement(SignInButton);
         }
     }
 }

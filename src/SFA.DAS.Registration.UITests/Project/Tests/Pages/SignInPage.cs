@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.Login.Service.Helpers;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
@@ -8,69 +9,65 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
     public class SignInPage : BasePage
     {
         protected override string PageTitle => "Sign in";
-
-        #region Helpers and Context
-        private readonly PageInteractionHelper _pageInteractionHelper;
-        private readonly FormCompletionHelper _formCompletionHelper;
         private readonly ScenarioContext _context;
-        private readonly ProjectConfig _config;
-        #endregion
+        private readonly FormCompletionHelper _formCompletionHelper;
 
-        private By CreateAnAccountLink => By.LinkText("create an account");
-
+        #region Locators
         private By EmailAddressInput => By.Id("EmailAddress");
-
         private By PasswordInput => By.Id("Password");
-
         private By SignInButton => By.Id("button-signin");
-
+        private By HeaderInformationMessage => By.CssSelector(".bold-large");
         private By ForgottenYourPasswordLink => By.LinkText("Forgotten your password?");
-
-        private By BackLink => By.CssSelector(".link-back");
+        #endregion
 
         public SignInPage(ScenarioContext context) : base(context)
         {
             _context = context;
-            _pageInteractionHelper = context.Get<PageInteractionHelper>();
             _formCompletionHelper = context.Get<FormCompletionHelper>();
-            _config = context.GetProjectConfig<ProjectConfig>();
             VerifyPage();
-        }
-
-        public RegisterPage CreateAnAccount()
-        {
-            _formCompletionHelper.ClickElement(CreateAnAccountLink);
-            return new RegisterPage(_context);
         }
 
         public HomePage Login(LoginUser loginUser)
         {
-             EnterEmailAddress(loginUser.Username)
-            .EnterPassword(loginUser.Password)
-            .SignIn();
+            EnterLoginDetailsAndClickSignIn(loginUser.Username, loginUser.Password);
             return new HomePage(_context);
         }
 
-        private SignInPage EnterEmailAddress(string username)
+        public ConfirmYourIdentityPage LoginWithUnActivatedAccount(string userName, string password)
         {
-            _formCompletionHelper.EnterText(EmailAddressInput, username);
-            return this;
+            EnterLoginDetailsAndClickSignIn(userName, password);
+            return new ConfirmYourIdentityPage(_context);
         }
 
-        private SignInPage EnterPassword(string password)
+        public MyAccountWithOutPayePage LoginToMyAccountWithOutPaye(LoginUser loginUser)
         {
+            EnterLoginDetailsAndClickSignIn(loginUser.Username, loginUser.Password);
+            return new MyAccountWithOutPayePage(_context);
+        }
+
+        public YourAccountsPage MultipleAccountLogin(LoginUser loginUser)
+        {
+            EnterLoginDetailsAndClickSignIn(loginUser.Username, loginUser.Password);
+            return new YourAccountsPage(_context);
+        }
+
+        public void EnterLoginDetailsAndClickSignIn(string userName, string password)
+        {
+            _formCompletionHelper.EnterText(EmailAddressInput, userName);
             _formCompletionHelper.EnterText(PasswordInput, password);
-            return this;
-        }
-
-        private void SignIn()
-        {
             _formCompletionHelper.ClickElement(SignInButton);
         }
 
-        private void ForgottenYourPassword()
+        public SignInPage CheckHeaderInformationMessageOnSignInPage(string info)
         {
-            _formCompletionHelper.ClickElement(ForgottenYourPasswordLink);
+            VerifyPage(HeaderInformationMessage, info);
+            return this;
+        }
+
+        public ResetYourPasswordPage ClickForgottenYourPasswordLink()
+        {
+            _formCompletionHelper.Click(ForgottenYourPasswordLink);
+            return new ResetYourPasswordPage(_context);
         }
     }
 }

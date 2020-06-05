@@ -1,26 +1,22 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.UI.Framework.TestSupport;
-using SFA.DAS.UI.FrameworkHelpers;
+using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common;
+using SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider;
 using System.Collections.Generic;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 {
-    public class ProviderReviewYourCohortPage : BasePage
+    public class ProviderReviewYourCohortPage : ReviewYourCohort
     {
         protected override string PageTitle => "Review your cohort";
 
         #region Helpers and Context
-        private readonly PageInteractionHelper _pageInteractionHelper;
-        private readonly FormCompletionHelper _formCompletionHelper;
-        private readonly TableRowHelper _tableRowHelper;
-        private readonly ScenarioContext _context;
-        private readonly ObjectContext _objectContext;
-        #endregion
+		private readonly ScenarioContext _context;
+		#endregion
 
-        private By AddAnApprenticeButton => By.ClassName("button-secondary");
+		private By PireanPreprodButton => By.XPath("//span[contains(text(),'Pirean Preprod')]");
 
-        private By TotalApprentices => By.CssSelector(".providerList tbody tr");
+		private By AddAnApprenticeButton => By.ClassName("button-secondary");
 
         private By ApprenticeUlnField => By.CssSelector("tbody tr td:nth-of-type(2)");
 
@@ -30,48 +26,60 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         private By SaveAndContinueButton => By.ClassName("finishEditingBtn");
 
-        public ProviderReviewYourCohortPage(ScenarioContext context) : base(context)
+        protected override By TotalApprentices => By.CssSelector(".providerList tbody tr");
+
+        private By DeleteCohortbutton => By.ClassName("delete-button");
+
+		public ProviderReviewYourCohortPage(ScenarioContext context) : base(context) => _context = context;
+
+        internal ProviderChooseAReservationPage SelectAddAnApprenticeUsingReservation()
         {
-            _context = context;
-            _objectContext = context.Get<ObjectContext>();
-            _pageInteractionHelper = context.Get<PageInteractionHelper>();
-            _formCompletionHelper = context.Get<FormCompletionHelper>();
-            _tableRowHelper = context.Get<TableRowHelper>();
-            VerifyPage();
-        }
-        internal ProviderAddApprenticeDetailsPage SelectAddAnApprentice()
-        {
-            _formCompletionHelper.ClickElement(AddAnApprenticeButton);
-            return new ProviderAddApprenticeDetailsPage(_context);
+            formCompletionHelper.ClickElement(AddAnApprenticeButton);
+            return new ProviderChooseAReservationPage(_context);
         }
 
-        public int TotalNoOfApprentices()
+        internal ProviderAddApprenticeDetailsPage SelectAddAnApprentice()
         {
-            return _pageInteractionHelper.FindElements(TotalApprentices).Count;
+            formCompletionHelper.ClickElement(AddAnApprenticeButton);
+			if (pageInteractionHelper.IsElementDisplayed(PireanPreprodButton))
+			{
+				formCompletionHelper.ClickElement(PireanPreprodButton);
+			}
+			return new ProviderAddApprenticeDetailsPage(_context);
         }
 
         public List<IWebElement> ApprenticeUlns()
         {
-            return _pageInteractionHelper.FindElements(ApprenticeUlnField);
+            return base.pageInteractionHelper.FindElements(ApprenticeUlnField);
         }
 
         public ProviderEditApprenticeDetailsPage SelectEditApprentice(int apprenticeNumber = 0)
         {
-            IList<IWebElement> editApprenticeLinks = _pageInteractionHelper.FindElements(EditApprenticeLink);
-            _formCompletionHelper.ClickElement(editApprenticeLinks[apprenticeNumber]);
-            return new ProviderEditApprenticeDetailsPage(_context);
+            IList<IWebElement> editApprenticeLinks = base.pageInteractionHelper.FindElements(EditApprenticeLink);
+			formCompletionHelper.ClickElement(editApprenticeLinks[apprenticeNumber]);
+			if (pageInteractionHelper.IsElementDisplayed(PireanPreprodButton))
+			{
+				formCompletionHelper.ClickElement(PireanPreprodButton);
+			}
+			return new ProviderEditApprenticeDetailsPage(_context);
         }
 
         public ProviderChooseAnOptionPage SelectContinueToApproval()
         {
-            _formCompletionHelper.ClickElement(ContinueToApprovalButton);
+            formCompletionHelper.ClickElement(ContinueToApprovalButton);
             return new ProviderChooseAnOptionPage(_context);
         }
 
         public ProviderChooseAnOptionPage SelectSaveAndContinue()
         {
-            _formCompletionHelper.ClickElement(SaveAndContinueButton);
+            formCompletionHelper.ClickElement(SaveAndContinueButton);
             return new ProviderChooseAnOptionPage(_context);
+        }
+
+        public ProviderConfirmCohortDeletionPage SelectDeleteCohort()
+        {
+            formCompletionHelper.ClickElement(DeleteCohortbutton);
+            return new ProviderConfirmCohortDeletionPage(_context);
         }
     }
 }

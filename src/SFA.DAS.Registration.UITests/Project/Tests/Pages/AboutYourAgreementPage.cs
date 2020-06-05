@@ -1,35 +1,24 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.Registration.UITests.Project.Tests.Pages.InterimPages;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 {
-    public class AboutYourAgreementPage : InterimBasePage
+    public class AboutYourAgreementPage : InterimYourOrganisationsAndAgreementsPage
     {
         protected override string PageTitle => "About your agreement";
 
-        #region Helpers and Context
         private readonly ScenarioContext _context;
-        #endregion
 
-        private By AgreementButton => By.CssSelector("input.button");
+        protected override By ContinueButton => By.CssSelector("input[value='Continue to your agreement']");
 
-        protected override string Linktext => "Your organisations and agreements";
 
-        public AboutYourAgreementPage(ScenarioContext context, bool navigate = false) : base(context, navigate)
+        public AboutYourAgreementPage(ScenarioContext context) : base(context, false) => _context = context;
+
+        public SignAgreementPage ClickContinueToYourAgreementButtonInAboutYourAgreementPage()
         {
-            _context = context;
-        }
-
-        public SignAgreementPage ContinueWithAgreement()
-        {
-            Agreement();
+            Continue();
             return new SignAgreementPage(_context);
-        }
-
-        private AboutYourAgreementPage Agreement()
-        {
-            formCompletionHelper.ClickElement(AgreementButton);
-            return this;
         }
     }
 }

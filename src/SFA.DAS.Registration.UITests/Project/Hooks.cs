@@ -1,98 +1,75 @@
-﻿using NUnit.Framework;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
+using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.MongoDb.DataGenerator;
 using SFA.DAS.MongoDb.DataGenerator.Helpers;
 using SFA.DAS.Registration.UITests.Project.Helpers;
 using SFA.DAS.UI.Framework.TestSupport;
-using System.Linq;
+using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Registration.UITests.Project
 {
     [Binding]
-    public class Hooks          
+    public class Hooks
     {
         private readonly ScenarioContext _context;
-        private readonly ProjectConfig _config;
+        private readonly RegistrationConfig _config;
+        private readonly TprConfig _tprconfig;
+        private readonly ProviderLeadRegistrationConfig _providerLeadRegistrationConfig;
         private readonly IWebDriver _webDriver;
         private readonly ObjectContext _objectContext;
-        private string _empRef;
-        private RegistrationDatahelpers _registrationDatahelpers;
-        private LoginCredentialsHelper _loginCredentialsHelper;
-
+        private PregSqlDataHelper _pregSqlDataHelper;
+        
         public Hooks(ScenarioContext context)
         {
             _context = context;
             _webDriver = context.GetWebDriver();
-            _config = context.GetProjectConfig<ProjectConfig>();
+            _config = context.GetRegistrationConfig<RegistrationConfig>();
+            _tprconfig = context.GetTprConfig<TprConfig>();
+            _providerLeadRegistrationConfig = context.GetProviderLeadRegistrationConfig<ProviderLeadRegistrationConfig>();
             _objectContext = context.Get<ObjectContext>();
         }
 
         [BeforeScenario(Order = 21)]
         public void Navigate()
         {
-            var url = _config.RE_BaseUrl;
+            var url = _config.EmployerApprenticeshipServiceBaseURL;
             _webDriver.Navigate().GoToUrl(url);
         }
 
         [BeforeScenario(Order = 22)]
         public void SetUpDataHelpers()
         {
-            var domainName = _context.ScenarioInfo.Tags.Contains("eoiaccount") ? "eoi.com" : "gmail.com";
-
             var dataHelper = new DataHelper(_config.TwoDigitProjectCode);
 
-            _context.Set(dataHelper);
+            _objectContext.SetDataHelper(dataHelper);
+           
+            var registrationDatahelpers = new RegistrationDataHelper(dataHelper.GatewayUsername, _config.RE_AccountPassword, _config.RE_OrganisationName, _context.Get<RandomDataGenerator>());
 
-            _registrationDatahelpers = new RegistrationDatahelpers(dataHelper.GatewayUsername, _config.RE_AccountPassword, domainName);
+            _context.Set(registrationDatahelpers);
 
-            _context.Set(_registrationDatahelpers);
+            _context.Set(new LoginCredentialsHelper(_objectContext));
 
-            _loginCredentialsHelper = new LoginCredentialsHelper(_objectContext);
+            _objectContext.SetOrganisationName(_config.RE_OrganisationName);
 
-            _context.Set(_loginCredentialsHelper);
+            _context.Set(new RegistrationSqlDataHelper(_config));
+
+            _context.Set(new TprSqlDataHelper(_tprconfig, _objectContext, registrationDatahelpers));
+
+            _objectContext.SetRegisteredEmail(registrationDatahelpers.RandomEmail);
         }
 
         [BeforeScenario(Order = 23)]
-        [Scope(Tag = "addpayedetails")]
-        public void SetUpMongoDbHelpers()
+        [Scope(Tag = "providerleadregistration")]
+        public void SetUpProviderLeadRegistrationDataHelpers()
         {
-            var datagenerator = new MongoDbDataGenerator(_context);
+            _pregSqlDataHelper = new PregSqlDataHelper(_providerLeadRegistrationConfig);
 
-            datagenerator.AddGatewayUsers();
-
-            _empRef = _objectContext.GetGatewayPaye();
-
-            _loginCredentialsHelper.SetLoginCredentials(_registrationDatahelpers.RandomEmail, _registrationDatahelpers.Password);
+            _context.Set(_pregSqlDataHelper);
         }
 
-        [AfterScenario(Order = 21)]
-        [Scope(Tag = "addpayedetails")]
-        public void DeletePayeDetails()
-        {
-            if (_context.TryGetValue(typeof(DeclarationsDataGenerator).FullName, out MongoDbHelper levyDecMongoDbHelper))
-            {
-                levyDecMongoDbHelper.AsyncDeleteData().Wait();
-                TestContext.Progress.WriteLine($"Declarations Deleted for, EmpRef: {_empRef}");
-
-                if (_context.TryGetValue(typeof(EnglishFractionDataGenerator).FullName, out MongoDbHelper englishFractionMongoDbHelper))
-                {
-                    englishFractionMongoDbHelper.AsyncDeleteData().Wait();
-                    TestContext.Progress.WriteLine($"English Fraction Deleted for, EmpRef: {_empRef}");
-                }                
-            }
-
-            if (_context.TryGetValue(typeof(EmpRefLinksDataGenerator).FullName, out MongoDbHelper emprefMongoDbHelper))
-            {
-                emprefMongoDbHelper.AsyncDeleteData().Wait();
-                TestContext.Progress.WriteLine($"EmpRef Links Deleted, EmpRef: {_empRef}");
-            }
-
-            if (_context.TryGetValue(typeof(GatewayUserDataGenerator).FullName, out MongoDbHelper gatewayusermongoDbHelper))
-            {
-                gatewayusermongoDbHelper.AsyncDeleteData().Wait();
-                TestContext.Progress.WriteLine($"Gateway User Deleted, EmpRef: {_empRef}");
-            }
-        }
+        [AfterScenario(Order = 22)]
+        [Scope(Tag = "providerleadregistration")]
+        public void ClearInvitation() => _pregSqlDataHelper.DeleteInvitation(_objectContext.GetRegisteredEmail());
     }
 }

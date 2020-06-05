@@ -1,4 +1,6 @@
-﻿using OpenQA.Selenium.Remote;
+﻿using System;
+using SFA.DAS.ConfigurationBuilder;
+using SFA.DAS.TestDataExport;
 using SFA.DAS.UI.Framework.TestSupport;
 using TechTalk.SpecFlow;
 
@@ -10,7 +12,6 @@ namespace SFA.DAS.UI.Framework.Hooks.AfterScenario
         private readonly ScenarioContext _context;
         private readonly ObjectContext _objectContext;
 
-
         public ScreenshotTeardown(ScenarioContext context)
         {
             _context = context;
@@ -18,26 +19,24 @@ namespace SFA.DAS.UI.Framework.Hooks.AfterScenario
         }
 
         [AfterScenario(Order = 11)]
-
         public void TakeScreenshotOnFailure()
         {
-            var scenarioTitle = _context.ScenarioInfo.Title;
-            var options = _context.Get<FrameworkConfig>();
-            var browser = _objectContext.GetBrowser();
             if (_context.TestError != null)
             {
-                switch (true)
+                try
                 {
-                    case bool _ when browser.IsCloudExecution():
-                        RemoteWebDriver remoteWebDriver = (RemoteWebDriver)_context.GetWebDriver();
-                        BrowserStackTeardown.MarkTestAsFailed(remoteWebDriver, options.BrowserStackSetting, scenarioTitle, _context.TestError.Message);
-                        break;
-                    default:
-                        var webDriver = _context.GetWebDriver();
-                        ScreenshotHelper.TakeScreenShot(webDriver, scenarioTitle, true);
-                        break;
+                    var scenarioTitle = _context.ScenarioInfo.Title;
+                    var webDriver = _context.GetWebDriver();
+                    var directory = _objectContext.GetDirectory();
+
+                    ScreenshotHelper.TakeScreenShot(webDriver, directory, scenarioTitle);
+                }
+                catch (Exception ex)
+                {
+                    _objectContext.SetAfterScenarioException(ex);
                 }
             }
         }
     }
 }
+

@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using OpenQA.Selenium.Remote;
+using SFA.DAS.ConfigurationBuilder;
+using SFA.DAS.UI.Framework.TestSupport;
 using System.IO;
 using System.Reflection;
-using NUnit.Framework;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.Firefox;
-using OpenQA.Selenium.IE;
-using SFA.DAS.UI.Framework.Project.Tests.TestSupport;
-using SFA.DAS.UI.Framework.TestSupport;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
@@ -18,13 +12,13 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
     {
         private readonly string DriverPath;
 
-        private IWebDriver WebDriver;
-
-        private readonly ScenarioContext _context;
-
         private readonly ObjectContext _objectContext;
 
+        private readonly WebDriverSetupHelper _webDriverSetupHelper;
+
         private readonly FrameworkConfig _frameworkConfig;
+
+        private readonly DriverLocationConfig _driverLocationConfig;
 
         private const string ChromeDriverServiceName = "chromedriver.exe";
 
@@ -35,102 +29,55 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
         public WebDriverSetup(ScenarioContext context)
         {
             DriverPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-            _context = context;
             _objectContext = context.Get<ObjectContext>();
+            _webDriverSetupHelper = new WebDriverSetupHelper(context);
             _frameworkConfig = context.Get<FrameworkConfig>();
+            _driverLocationConfig = context.Get<DriverLocationConfig>();
         }
-
 
         [BeforeScenario(Order = 3)]
         public void SetupWebDriver()
         {
-            var browser = _objectContext.GetBrowser();
+            _objectContext.SetFireFoxDriverLocation(FindDriverServiceLocation(FirefoxDriverServiceName));
             
-            switch (true)
+            _objectContext.SetChromeDriverLocation(FindDriverServiceLocation(ChromeDriverServiceName));
+            
+            _objectContext.SetIeDriverLocation(FindDriverServiceLocation(InternetExplorerDriverServiceName));
+
+            var browser = _objectContext.GetBrowser();
+
+            var webDriver = _webDriverSetupHelper.SetupWebDriver();
+
+            if (!browser.IsCloudExecution())
             {
-                case bool _ when browser.IsFirefox():
-                    WebDriver = new FirefoxDriver(FindDriverService(FirefoxDriverServiceName));
-                    WebDriver.Manage().Window.Maximize();
-                    break;
+                var wb = webDriver as RemoteWebDriver;
+                var cap = wb.Capabilities;
 
-                case bool _ when browser.IsChrome():
-
-                    WebDriver = ChromeDriver(new List<string>());
-                    break;
-
-                case bool _ when browser.IsIe():
-                    WebDriver = new InternetExplorerDriver(FindDriverService(InternetExplorerDriverServiceName));
-                    WebDriver.Manage().Window.Maximize();
-                    break;
-
-                case bool _ when browser.IsZap():
-                    InitialiseZapProxyChrome();
-                    break;
-
-                case bool _ when browser.IsChromeHeadless():
-                    WebDriver = ChromeDriver(new List<string>() { "--headless" });
-                    break;
-               
-
-                case bool _ when browser.IsCloudExecution():
-                    _frameworkConfig.BrowserStackSetting.Name = _context.ScenarioInfo.Title;
-                    WebDriver = BrowserStackSetup.Init(_frameworkConfig.BrowserStackSetting);
-                    break;
-
-                default:
-                    throw new Exception("Driver name - " + browser + " does not match OR this framework does not support the webDriver specified");
+                _objectContext.SetBrowserName(cap["browserName"]);
+                _objectContext.SetBrowserVersion(cap["browserVersion"]);
             }
-
-            WebDriver.Manage().Window.Maximize();
-            WebDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(_frameworkConfig.TimeOutConfig.PageNavigation);
-            var currentWindow = WebDriver.CurrentWindowHandle;
-            WebDriver.SwitchTo().Window(currentWindow);
-            WebDriver.Manage().Cookies.DeleteAllCookies();
-
-            _context.SetWebDriver(WebDriver);
         }
 
-        private string FindDriverService(string executableName)
-        {
-            TestContext.Progress.WriteLine($"DriverPath : {DriverPath}, Executable Name : {executableName}");
+        private string FindDriverServiceLocation(string executableName) => _frameworkConfig.IsVstsExecution ? FindVstsDriverServiceLocation(executableName) : FindLocalDriverServiceLocation(executableName);
 
+        private string FindLocalDriverServiceLocation(string executableName)
+        {
             FileInfo[] file = Directory.GetParent(DriverPath).GetFiles(executableName, SearchOption.AllDirectories);
 
-            var info = file.Length != 0 ? file[0].DirectoryName : DriverPath;
-
-            TestContext.Progress.WriteLine($"Driver Service should be available under: {info}");
-
-            return info;
+            return file.Length != 0 ? file[0].DirectoryName : DriverPath;
         }
 
-        private void InitialiseZapProxyChrome()
+        private string FindVstsDriverServiceLocation(string executableName)
         {
-            const string PROXY = "localhost:8080";
-            var chromeOptions = new ChromeOptions();
-            var proxy = new Proxy
+            switch (true)
             {
-                HttpProxy = PROXY,
-                SslProxy = PROXY,
-                FtpProxy = PROXY
-            };
-            chromeOptions.Proxy = proxy;
-
-            WebDriver = new ChromeDriver(FindDriverService(ChromeDriverServiceName), chromeOptions);
-        }
-
-        private ChromeDriver ChromeDriver(List<string> arguments)
-        {
-            arguments.Add("no-sandbox");
-            return new ChromeDriver(FindDriverService(ChromeDriverServiceName),
-                                                 AddArguments(arguments),
-                                                 TimeSpan.FromMinutes(_frameworkConfig.TimeOutConfig.CommandTimeout));
-        }
-
-        private ChromeOptions AddArguments(List<string> arguments)
-        {
-            var chromeOptions = new ChromeOptions();
-            arguments.ForEach((x) => chromeOptions.AddArgument(x));
-            return chromeOptions;
+                case bool _ when (executableName == FirefoxDriverServiceName):
+                    return _driverLocationConfig.GeckoWebDriver;
+                case bool _ when (executableName == InternetExplorerDriverServiceName):
+                    return _driverLocationConfig.IEWebDriver;
+                default:
+                    return _driverLocationConfig.ChromeWebDriver;
+            }
         }
     }
 }

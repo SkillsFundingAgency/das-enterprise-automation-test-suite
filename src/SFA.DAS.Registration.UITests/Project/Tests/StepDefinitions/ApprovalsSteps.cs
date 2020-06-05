@@ -1,8 +1,4 @@
-﻿using SFA.DAS.Registration.UITests.Project.Tests.Pages;
-using SFA.DAS.UI.Framework.TestSupport;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using SFA.DAS.Registration.UITests.Project.Helpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
@@ -10,31 +6,12 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
     [Binding]
     public class ApprovalsSteps
     {
-        private readonly ScenarioContext _context;
-        private readonly ObjectContext _objectContext;
+        private readonly ApprovalsStepsHelper _stepsHelper;
 
-        public ApprovalsSteps(ScenarioContext context)
-        {
-            _context = context;
-            _objectContext = _context.Get<ObjectContext>();
-        }
+        public ApprovalsSteps(ScenarioContext context) => _stepsHelper = new ApprovalsStepsHelper(context);
 
-        [Given(@"the User creates Employer account and sign an agreement")]
-        public void GivenTheUserCreatesEmployerAccountAndSignAnAgreement()
-        {
-             new IndexPage(_context)
-                .CreateAccount()
-                .Register()
-                .ContinueToGetApprenticeshipFunding()
-                .AddPaye()
-                .SelectGovermentGateway()
-                .ContinueToGGSignIn()
-                .SignInTo()
-                .SearchForAnOrganisation()
-                .SelectYourOrganisation()
-                .ContinueToAboutYourAgreementPage()
-                .ContinueWithAgreement()
-                .SignAgreement();
-        }
+
+        [Given(@"The User creates NonLevyEmployer account and sign an agreement")]
+        public void TheUserCreatesNonLevyEmployerAccountAndSignAnAgreement() => _stepsHelper.CreatesAccountAndSignAnAgreement();
     }
 }

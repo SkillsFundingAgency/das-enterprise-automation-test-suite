@@ -1,40 +1,73 @@
 ﻿using SFA.DAS.UI.FrameworkHelpers;
 using OpenQA.Selenium;
-using SFA.DAS.UI.Framework.TestSupport;
 using TechTalk.SpecFlow;
+using SFA.DAS.Registration.UITests.Project.Tests.Pages.InterimPages;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 {
-    public class HomePage : InterimBasePage
+    public class HomePage : InterimHomeBasePage
     {
-        protected override string PageTitle => config.RE_OrganisationName.ToUpper();
-
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
         private readonly RegexHelper _regexHelper;
+        private readonly ScenarioContext _context;
+
+        #region Locators
+        protected By StartNowButton => By.LinkText("Start now");
+        protected By YourFundingReservationsLink => By.LinkText("Your funding reservations");
+        protected By YourFinancesLink => By.LinkText("Your finances");
+        private By PublicAccountIdLocator => By.CssSelector(".heading-secondary");
+        private By SucessSummary => By.CssSelector(".success-summary");
+        private By AcceptYourAgreementLink => By.LinkText("Accept your agreement");
+        private By StartAddingApprenticesNowTaskLink => By.LinkText("Start adding apprentices now");
+        private By AccountNameText => By.CssSelector("p.heading-xlarge");
+        private By YourSavedFavouritesLink => By.CssSelector(".das-favourites-link__text");
+        private By ContinueTo => By.LinkText("Continue");
+        private By SetUpAnApprenticeshipSectionHeader => By.Id("set-up-an-apprenticeship");
         #endregion
 
-        private By PublicAccountId => By.CssSelector(".heading-secondary");
-
-        private By SucessSummary => By.CssSelector(".success-summary");
-
-        
-        internal HomePage(ScenarioContext context, bool navigate = false) : base(context, navigate)
+        public HomePage(ScenarioContext context, bool navigate) : base(context, navigate)
         {
             _context = context;
             _regexHelper = context.Get<RegexHelper>();
         }
 
-        protected override string Linktext => "Home";
+        public HomePage(ScenarioContext context) : this(context, false) { }
 
-        public void VerifySucessSummary()
+        public HomePage VerifySucessSummary(string message)
         {
-            pageInteractionHelper.VerifyText(SucessSummary, "All agreements signed");
+            pageInteractionHelper.VerifyText(SucessSummary, message);
+            return this;
         }
 
-        public string AccountID()
+        public HomePage VerifyAccountName(string name)
         {
-            return _regexHelper.GetAccountId(pageInteractionHelper.GetUrl());
+            pageInteractionHelper.VerifyText(AccountNameText, name);
+            return this;
+        }
+
+        public string AccountId() => _regexHelper.GetAccountId(pageInteractionHelper.GetUrl());
+
+        public string PublicAccountId() => _regexHelper.GetPublicAccountId(pageInteractionHelper.GetText(PublicAccountIdLocator));
+
+        public AboutYourAgreementPage ClickAcceptYourAgreementLinkInHomePagePanel()
+        {
+            formCompletionHelper.Click(AcceptYourAgreementLink);
+            return new AboutYourAgreementPage(_context);
+        }
+
+        public void ContinueToCreateAdvert() => formCompletionHelper.ClickElement(ContinueTo);
+      
+        public void VerifyStartAddingApprenticesNowTaskLink() => VerifyPage(StartAddingApprenticesNowTaskLink);
+
+        public YourSavedFavouritesPage GoToYourSavedFavourites()
+        {
+            formCompletionHelper.Click(YourSavedFavouritesLink);
+            return new YourSavedFavouritesPage(_context);
+        }
+
+        public void VerifySetupAnApprenticeshipSection()
+        {
+            VerifyPage(SetUpAnApprenticeshipSectionHeader);
+            VerifyPage(StartNowButton);
         }
     }
 }
