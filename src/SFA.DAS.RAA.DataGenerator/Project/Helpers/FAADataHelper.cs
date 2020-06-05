@@ -5,48 +5,45 @@ namespace SFA.DAS.RAA.DataGenerator
 {
     public class FAADataHelper : RandomElementHelper
     {
-        private readonly RandomDataGenerator _randomDataGenerator;
-
         public FAADataHelper(RandomDataGenerator randomDataGenerator) : base(randomDataGenerator)
         {            
             var datetime = DateTime.Now;            
-            _randomDataGenerator = randomDataGenerator;            
-            EducationSchoolOrCollege = _randomDataGenerator.GenerateRandomAlphabeticString(10);
+            EducationSchoolOrCollege = this.randomDataGenerator.GenerateRandomAlphabeticString(10);
             YearsAttended = datetime.AddYears(-1);
             QualificationYear = YearsAttended.Year.ToString();
-            QualificationSubject = _randomDataGenerator.GenerateRandomAlphabeticString(5);
-            QualificationGrade = _randomDataGenerator.GenerateRandomAlphabeticString(1);
-            WorkExperienceEmployer = _randomDataGenerator.GenerateRandomAlphabeticString(8);
-            WorkExperienceJobTitle = _randomDataGenerator.GenerateRandomAlphabeticString(15);
-            WorkExperienceMainDuties = _randomDataGenerator.GenerateRandomAlphabeticString(29);
+            QualificationSubject = this.randomDataGenerator.GenerateRandomAlphabeticString(5);
+            QualificationGrade = this.randomDataGenerator.GenerateRandomAlphabeticString(1);
+            WorkExperienceEmployer = this.randomDataGenerator.GenerateRandomAlphabeticString(8);
+            WorkExperienceJobTitle = this.randomDataGenerator.GenerateRandomAlphabeticString(15);
+            WorkExperienceMainDuties = this.randomDataGenerator.GenerateRandomAlphabeticString(29);
             WorkExperienceFinished = YearsAttended.AddMonths(-5);
             WorkExperienceStarted = WorkExperienceFinished.AddMonths(-5);
             TrainingCoursesProvider = WorkExperienceEmployer;
             TrainingCoursesCourseTitle = QualificationSubject;
             TrainingCoursesTo = WorkExperienceFinished;
             TrainingCoursesFrom = WorkExperienceStarted;
-            Strengths = _randomDataGenerator.GenerateRandomAlphabeticString(99);
-            Skills = _randomDataGenerator.GenerateRandomAlphabeticString(99);
-            HobbiesAndInterests = _randomDataGenerator.GenerateRandomAlphabeticString(99);
-            AdditionalQuestions1 = _randomDataGenerator.GenerateRandomAlphabeticString(59);
-            AdditionalQuestions2 = _randomDataGenerator.GenerateRandomAlphabeticString(59);
-            InterviewSupport = _randomDataGenerator.GenerateRandomAlphabeticString(22);
-            FirstName = _randomDataGenerator.GenerateRandomAlphabeticString(5);
-            NewFirstName = _randomDataGenerator.GenerateRandomAlphabeticString(5);
-            NewLastName = _randomDataGenerator.GenerateRandomAlphabeticString(5);            
-            LastName = _randomDataGenerator.GenerateRandomAlphabeticString(10);
-            DOB_Day = _randomDataGenerator.GenerateRandomDateOfMonth();
-            DOB_Month = _randomDataGenerator.GenerateRandomMonth();
-            DOB_Year = _randomDataGenerator.GenerateRandomDobYear();
-            EmailId = _randomDataGenerator.GenerateRandomEmail();
-            ChangedEmailId = _randomDataGenerator.GenerateRandomEmail();
-            PhoneNumber = _randomDataGenerator.GenerateRandomNumber(10);
-            NewPhoneNumber = _randomDataGenerator.GenerateRandomNumber(10);
-            Password = _randomDataGenerator.GenerateRandomPassword(4, 4, 1, 1);
+            Strengths = this.randomDataGenerator.GenerateRandomAlphabeticString(99);
+            Skills = this.randomDataGenerator.GenerateRandomAlphabeticString(99);
+            HobbiesAndInterests = this.randomDataGenerator.GenerateRandomAlphabeticString(99);
+            AdditionalQuestions1 = this.randomDataGenerator.GenerateRandomAlphabeticString(59);
+            AdditionalQuestions2 = this.randomDataGenerator.GenerateRandomAlphabeticString(59);
+            InterviewSupport = this.randomDataGenerator.GenerateRandomAlphabeticString(22);
+            FirstName = this.randomDataGenerator.GenerateRandomAlphabeticString(5);
+            NewFirstName = this.randomDataGenerator.GenerateRandomAlphabeticString(5);
+            NewLastName = this.randomDataGenerator.GenerateRandomAlphabeticString(5);
+            LastName = this.randomDataGenerator.GenerateRandomAlphabeticString(10);
+            DOB_Day = this.randomDataGenerator.GenerateRandomDateOfMonth();
+            DOB_Month = this.randomDataGenerator.GenerateRandomMonth();
+            DOB_Year = this.randomDataGenerator.GenerateRandomDobYear();
+            EmailId = this.randomDataGenerator.GenerateRandomEmail();
+            ChangedEmailId = this.randomDataGenerator.GenerateRandomEmail();
+            PhoneNumber = this.randomDataGenerator.GenerateRandomNumber(10);
+            NewPhoneNumber = this.randomDataGenerator.GenerateRandomNumber(10);
+            Password = this.randomDataGenerator.GenerateRandomPassword(4, 4, 1, 1);
             VacancyClosing = DateTime.Today.AddMonths(2).AddDays(3);
             NewVacancyClosing = VacancyClosing.AddDays(15);
             NewVacancyStart = NewVacancyClosing.AddDays(15);
-            OptionalMessage = _randomDataGenerator.GenerateRandomAlphabeticString(30);
+            OptionalMessage = this.randomDataGenerator.GenerateRandomAlphabeticString(30);
         }
 
         public DateTime NewVacancyClosing { get; }
@@ -54,7 +51,6 @@ namespace SFA.DAS.RAA.DataGenerator
         public DateTime NewVacancyStart { get; }
 
         public DateTime VacancyClosing { get; }
-
         
         public string NewCustomMinWagePerWeek { get; set; }
 

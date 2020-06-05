@@ -14,7 +14,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
             }
             string sqlQueryToSetDataLockSuccessStatus = $"UPDATE Apprenticeship SET HasHadDataLockSuccess = 1 WHERE ULN = '{uln}'";
 
-            SqlDatabaseConnectionHelper.ExecuteSqlCommand(connectionString, sqlQueryToSetDataLockSuccessStatus);
+            ExecuteSqlCommand(sqlQueryToSetDataLockSuccessStatus);
         }
 
         public int GetApprenticeshipId(string uln) => Convert.ToInt32(GetDataAsObject($"SELECT Id from [dbo].[Apprenticeship] WHERE ULN = '{uln}' AND PaymentStatus >= 1"));
