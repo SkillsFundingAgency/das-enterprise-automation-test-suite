@@ -9,6 +9,8 @@ namespace SFA.DAS.EPAO.UITests.Project
         public string AssessmentOpportunityFinderPath => "/find-an-assessment-opportunity";
         public string ApprenticeNameWithSingleStandard { get; set; }
         public string ApprenticeUlnWithSingleStandard { get; set; }
+        public string ApprenticeNameDeleteWithAStandardHavingLearningOption { get; set; }
+        public string ApprenticeUlnDeleteWithAStandardHavingLearningOption { get; set; }
         public string ApprenticeNameWithMultipleStandards { get; set; }
         public string ApprenticeUlnWithMultipleStandards { get; set; }
         public string ApprenticeNameWithAStandardHavingLearningOption { get; set; }

@@ -22,17 +22,18 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
 
         public void SelectGradeAndEnterDate(string grade)
         {
-            if (grade == "Passed")
+            switch (grade)
             {
-                formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(PassRadioButton));
-                Continue();
-                new AS_AchievementDatePage(_context).EnterAchievementGradeDateAndContinue();
-            }
-            else if (grade == "Failed")
-            {
-                formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(FailRadioButton));
-                Continue();
-                new AS_ApprenticeFailedDatePage(_context).EnterAchievementGradeDateAndContinue();
+                case "Passed":
+                    formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(PassRadioButton));
+                    Continue();
+                    new AS_AchievementDatePage(_context).EnterAchievementGradeDateAndContinue();
+                    break;
+               case "Failed":
+                    formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(FailRadioButton));
+                    Continue();
+                    new AS_ApprenticeFailedDatePage(_context).EnterAchievementGradeDateAndContinue();
+                    break;
             }
         }
 

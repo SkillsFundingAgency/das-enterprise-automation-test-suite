@@ -16,7 +16,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
             CurrentMonth = DateTime.Now.Month;
             CurrentYear = DateTime.Now.Year;
             RandomEmail = GetDateTimeValue() + "@mailinator.com";
-            RandomWebsiteAddress = "http://www.TEST" + GetDateTimeValue() + ".com";
+            RandomWebsiteAddress = "www.TEST" + GetDateTimeValue() + ".com";
         }
 
         public int CurrentDay { get; }
@@ -34,6 +34,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
         public string GetRandomNumber(int length) => randomDataGenerator.GenerateRandomNumber(length);
 
         public string GetRandomAlphabeticString(int length) => randomDataGenerator.GenerateRandomAlphabeticString(length);
+        public string GetRandomAlphanumericString(int length) => randomDataGenerator.GenerateRandomAlphanumericStringWithSpecialCharacters(length);
 
         public IWebElement GetRandomElementFromListOfElements(List<IWebElement> options) => randomDataGenerator.GetRandomElementFromListOfElements(options);
 
