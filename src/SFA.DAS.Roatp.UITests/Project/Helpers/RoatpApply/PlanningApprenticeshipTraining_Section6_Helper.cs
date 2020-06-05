@@ -16,8 +16,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.RoatpApply
                 .SelectStandardsFrameworksAndContinue()
                 .EnterTextRegardingReadyToDeliverTrainingAndContinue()
                 .EnterTextRegardingEngageWithEPAOandContinue()
-                .EnterTextForEngageAndWorkWithAwardingBodiesMainRouteAndContinue()
-                .EnterContactDetailsAndContinue()
+                .EnterTextForEngageAndWorkWithAwardingBodies()
                 .VerifyTypeOfTrainning_Section6(StatusHelper.StatusCompleted);
         }
         internal ApplicationOverviewPage CompletePlanningApprenticeshipTraining_2_Charity(ApplicationOverviewPage applicationOverviewPage)
@@ -28,7 +27,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.RoatpApply
                 .SelectYesForTransitionFromFrameworksToStandardsAndContinue()
                 .EnterTextForTransitionFromFramewordsToStandardsAndContinueEmployerRoute()
                 .EnterTextRegardingEngageWithEPAOandContinue()
-                .EnterTextForEngageAndWorkWithAwardingBodiesEmployerRouteAndContinue()
+                .EnterTextForEngageAndWorkWithAwardingBodies()
                 .VerifyTypeOfTrainning_Section6(StatusHelper.StatusCompleted);
         }
         internal ApplicationOverviewPage CompletePlanningApprenticeshipTraining_2_Support(ApplicationOverviewPage applicationOverviewPage)

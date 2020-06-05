@@ -1,8 +1,6 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.UI.FrameworkHelpers;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace SFA.DAS.Campaigns.UITests.Project.Helpers
 {

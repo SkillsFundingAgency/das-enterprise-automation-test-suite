@@ -58,6 +58,17 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                 .SendInstructionsToEmployerForAnApprovedCohort();
         }
 
+        [When(@"the provider adds Ulns confirms courses are standards and approves the cohorts and sends to employer")]
+        public void WhenTheProviderAddsUlnsConfirmsCoursesAreStandardsAndApprovesTheCohortsAndSendsToEmployer()
+        {
+            var providerReviewYourCohortPage = _providerStepsHelper.EditApprentice(true);
+
+            providerReviewYourCohortPage.SelectSaveAndContinue()
+                .SubmitApproveAndSendToEmployerForApproval()
+                .SendInstructionsToEmployerForAnApprovedCohort();
+        }
+
+
         [Then(@"Provider is able to view the cohort with employer")]
         public void ThenProviderIsAbleToViewTheCohortWithEmployer()
         {

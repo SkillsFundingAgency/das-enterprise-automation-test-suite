@@ -17,7 +17,7 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
         {
             var id = GetData($"SELECT Id from [employer_account].[User] where Email = '{email}'");
             var accountId = GetData($"SELECT AccountId FROM [employer_account].[Membership] where UserId = {id}");
-            SqlDatabaseConnectionHelper.ExecuteSqlCommand(connectionString, $"UPDATE [employer_account].[AccountLegalEntity] set Name = 'Changed Org Name' where AccountId = {accountId}");
+            ExecuteSqlCommand($"UPDATE [employer_account].[AccountLegalEntity] set Name = 'Changed Org Name' where AccountId = {accountId}");
         }
     }
 }

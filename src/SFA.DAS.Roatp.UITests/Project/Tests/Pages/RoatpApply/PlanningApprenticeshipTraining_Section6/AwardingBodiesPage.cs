@@ -19,13 +19,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.PlanningApprentic
             VerifyPage();
         }
 
-        public ContactAboutTheApprenticeshipsPage EnterTextForEngageAndWorkWithAwardingBodiesMainRouteAndContinue()
-        {
-            EnterLongTextAreaAndContinue(applydataHelpers.EngageWithAwardingBodies);
-            return new ContactAboutTheApprenticeshipsPage(_context);
-        }
-
-        public ApplicationOverviewPage EnterTextForEngageAndWorkWithAwardingBodiesEmployerRouteAndContinue()
+        public ApplicationOverviewPage EnterTextForEngageAndWorkWithAwardingBodies()
         {
             EnterLongTextAreaAndContinue(applydataHelpers.EngageWithAwardingBodies);
             return new ApplicationOverviewPage(_context);
