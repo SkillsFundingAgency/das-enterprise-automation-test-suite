@@ -11,11 +11,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private readonly ScenarioContext _context;
         #endregion
 
-
-        public PauseApprenticePage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-        }
+        public PauseApprenticePage(ScenarioContext context) : base(context) => _context = context;
 
         public new PausedApprenticeDetailsPage SelectYesAndConfirm()
         {

@@ -38,8 +38,8 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         private VacancyPreviewPart2Page ApplicationMethodExternal()
         {
             SelectRadioOptionByForAttribute("application-method-external");
-            formCompletionHelper.EnterText(ApplicationUrl, dataHelper.EmployerWebsiteUrl);
-            formCompletionHelper.EnterText(ApplicationInstructions, dataHelper.OptionalMessage);
+            formCompletionHelper.EnterText(ApplicationUrl, rAAV2DataHelper.EmployerWebsiteUrl);
+            formCompletionHelper.EnterText(ApplicationInstructions, rAAV2DataHelper.OptionalMessage);
             return SaveAndContinue();
         }
 

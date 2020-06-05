@@ -9,6 +9,6 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.TheCalling
 
         protected override By PageHeader => By.CssSelector(".thecalling-site-heading");
 
-        public TheCallingPage(ScenarioContext context) : base(context) => VerifyPage();
+        public TheCallingPage(ScenarioContext context) : base(context) { }
     }
 }

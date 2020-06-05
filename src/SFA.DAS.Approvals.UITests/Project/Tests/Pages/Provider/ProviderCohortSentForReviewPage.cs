@@ -1,15 +1,11 @@
-﻿using SFA.DAS.UI.Framework.TestSupport;
-using TechTalk.SpecFlow;
+﻿using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 {
-    public class ProviderCohortSentForReviewPage : BasePage
+    public class ProviderCohortSentForReviewPage : ApprovalsBasePage
     {
         protected override string PageTitle => "Cohort sent for review";
 
-        public ProviderCohortSentForReviewPage(ScenarioContext context) : base(context)
-        {
-            VerifyPage();
-        }   
+        public ProviderCohortSentForReviewPage(ScenarioContext context) : base(context) { }
     }
 }

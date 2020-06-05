@@ -9,6 +9,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
     public class ApprovalsProviderHomePage : ProviderHomePage
     {
         protected By YourCohortsLink => By.LinkText("Apprentice requests");
+
         #region Helpers and Context
         private readonly FormCompletionHelper _formCompletionHelper;
         private readonly ScenarioContext _context;

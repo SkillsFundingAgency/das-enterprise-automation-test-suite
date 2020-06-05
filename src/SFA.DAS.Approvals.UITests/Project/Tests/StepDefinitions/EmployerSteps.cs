@@ -13,12 +13,16 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         private ReviewYourCohortPage _reviewYourCohortPage;
         private readonly ObjectContext _objectContext;
         private ApprenticeDetailsPage _apprenticeDetailsPage;
-        
+
         public EmployerSteps(ScenarioContext context)
         {
             _objectContext = context.Get<ObjectContext>();
             _employerStepsHelper = new EmployerStepsHelper(context);
         }
+
+        [StepArgumentTransformation(@"(does ?.*)")]
+        public bool DoesToBool(string value) => value == "does";
+
 
         [Then(@"Employer is able to Pause the apprentice")]
         public void ThenEmployerIsAbleToPauseTheApprentice()
@@ -151,10 +155,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _employerStepsHelper.SetCohortReference(cohortReference);
         }
 
-        [When(@"the Employer uses the reservation and adds (\d) cohort and sends to provider")]
-        public void TheEmployerUsesTheReservationAndAddsCohortAndSendsToProvider(int numberOfApprentices)
+        [When(@"the Employer uses the reservation and (.*) confirm only standard courses are selectable and adds (\d) cohort and sends to provider")]
+        public void TheEmployerUsesTheReservationAndAddsCohortAndSendsToProvider(bool shouldConfirmOnlyStandardCoursesSelectable, int numberOfApprentices)
         {
-            _reviewYourCohortPage = _employerStepsHelper.NonLevyEmployerAddsApprenticesUsingReservations(numberOfApprentices);
+            _reviewYourCohortPage = _employerStepsHelper.NonLevyEmployerAddsApprenticesUsingReservations(numberOfApprentices, shouldConfirmOnlyStandardCoursesSelectable);
 
             var cohortReference = _reviewYourCohortPage.EmployerSendsToTrainingProviderForReview()
                 .CohortReference();

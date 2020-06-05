@@ -1,6 +1,6 @@
 ﻿using TechTalk.SpecFlow;
 
-namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
+namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.PublicSectorReporting
 {
     public class WhatActionsHaveYouTakenPage : PublicSectorReportingBasePage
     {
@@ -9,15 +9,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
         private readonly ScenarioContext _context;
         #endregion
 
-        public WhatActionsHaveYouTakenPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public WhatActionsHaveYouTakenPage(ScenarioContext context) : base(context) => _context = context;
 
         public ReportYourProgressPage EnterActionDetails()
         {
-            formCompletionHelper.EnterText(Textarea, dataHelper.EmployerActions);
+            formCompletionHelper.EnterText(Textarea, publicSectorReportingDataHelper.EmployerActions);
             Continue();
             return new ReportYourProgressPage(_context);
         }

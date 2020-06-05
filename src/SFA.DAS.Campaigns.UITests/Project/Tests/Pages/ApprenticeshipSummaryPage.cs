@@ -12,7 +12,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
 
         private By VacancyTitle => By.CssSelector("#vacancy-title");
 
-        public ApprenticeshipSummaryPage(ScenarioContext context) : base(context) => VerifyPage();
+        public ApprenticeshipSummaryPage(ScenarioContext context) : base(context) { }
 
         public void VerifyVacancyTitle() => pageInteractionHelper.GetText(VacancyTitle).ContainsCompareCaseInsensitive(objectContext.GetVacancyTitle());
     }

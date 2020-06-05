@@ -23,8 +23,8 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         }
         public VacancyPreviewPart2Page EnterEmployerDescription()
         {
-            formCompletionHelper.EnterText(EmployerDescription, dataHelper.EmployerDescription);
-            formCompletionHelper.EnterText(EmployerWebsiteUrl, dataHelper.EmployerWebsiteUrl);
+            formCompletionHelper.EnterText(EmployerDescription, rAAV2DataHelper.EmployerDescription);
+            formCompletionHelper.EnterText(EmployerWebsiteUrl, rAAV2DataHelper.EmployerWebsiteUrl);
             Continue();
             return new VacancyPreviewPart2Page(_context);
         }

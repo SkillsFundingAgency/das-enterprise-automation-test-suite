@@ -1,7 +1,6 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages;
-using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.DynamicHomePage
@@ -10,8 +9,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.DynamicHomePage
     {
         #region Helpers and Context
         private readonly ScenarioContext _context;
-        private readonly FormCompletionHelper _formCompletionHelper;
-        private readonly PageInteractionHelper _pageInteractionHelper;
         #endregion
 
         private string VerifyDraftStatusMessage => "DRAFT";
@@ -27,44 +24,39 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.DynamicHomePage
         private By VerifyViewApprenticeDetailsLink => By.LinkText("View apprentice details");
         private By DynamicHomeContinueButton => By.LinkText("Continue");
 
-        public DynamicHomePages(ScenarioContext context, bool navigate = false) : base(context, navigate) 
-        {
-            _context = context;
-            _formCompletionHelper = context.Get<FormCompletionHelper>();
-            _pageInteractionHelper = context.Get<PageInteractionHelper>();
-        }
-        
+        public DynamicHomePages(ScenarioContext context, bool navigate = false) : base(context, navigate) => _context = context;
+
         public DoYouKnowWhichCourseYourApprenticeWillTakePage StartNowToReserveFunding()
         {
-            _formCompletionHelper.ClickElement(StartNowButton);
+            formCompletionHelper.ClickElement(StartNowButton);
             return new DoYouKnowWhichCourseYourApprenticeWillTakePage(_context);
         }
         public EditApprenticePage CheckDraftStatusAndAddDetails()
         {
-            _pageInteractionHelper.VerifyText(VerifyDraftStatus, VerifyDraftStatusMessage);
-            _formCompletionHelper.Click(DynamicHomeContinueButton);
+            pageInteractionHelper.VerifyText(VerifyDraftStatus, VerifyDraftStatusMessage);
+            formCompletionHelper.Click(DynamicHomeContinueButton);
             return new EditApprenticePage(_context);
         }
         public DynamicHomePages CheckWithTrainingProviderStatus()
         {
-            _pageInteractionHelper.VerifyText(VerifyWithTrainingProviderStatus, VerifyWithTrainingProviderStatusMessage);
+            pageInteractionHelper.VerifyText(VerifyWithTrainingProviderStatus, VerifyWithTrainingProviderStatusMessage);
             return  new DynamicHomePages(_context);
         }
         public AfterEditApproveApprenticeDetailsPage CheckReadyToReviewStatus()
         {
-            _pageInteractionHelper.VerifyText(VerifyReadyToReviewStatus, VerifyReadyToReviewStatusMessage);
-            _formCompletionHelper.Click(ReviewApprenticeDetailsButton);
+            pageInteractionHelper.VerifyText(VerifyReadyToReviewStatus, VerifyReadyToReviewStatusMessage);
+            formCompletionHelper.Click(ReviewApprenticeDetailsButton);
             return new AfterEditApproveApprenticeDetailsPage(_context);
         }
         public DynamicHomePages VerifyYourFundingReservationsLink()
         {
-            _pageInteractionHelper.VerifyText(VerifyViewApprenticeDetailsLink, VerifyViewApprenticeDetails);
+            pageInteractionHelper.VerifyText(VerifyViewApprenticeDetailsLink, VerifyViewApprenticeDetails);
             return new DynamicHomePages(_context);
         }
 
         public DynamicHomePages VerifyReserveFundingPanel()
         {
-            pageInteractionHelper.VerifyText(ContinueSettingUpAnApprenticeship, "Continue setting up an apprenticeship");
+            base.pageInteractionHelper.VerifyText(ContinueSettingUpAnApprenticeship, "Continue setting up an apprenticeship");
             return this;
         }
     }
