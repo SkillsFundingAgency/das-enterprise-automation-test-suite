@@ -13,10 +13,10 @@ namespace SFA.DAS.ProviderFeedback.UITests.Project.Tests.Pages
 
         public ProviderFeedbackHomePage(ScenarioContext context) : base(context) => _context = context;
 
-        public ProviderFeedbackStrengths StartNow()
+        public ProviderFeedbackStrengthsPage StartNow()
         {
             formCompletionHelper.ClickElement(StartButton);
-            return new ProviderFeedbackStrengths(_context);
+            return new ProviderFeedbackStrengthsPage(_context);
         }
     }
 }

@@ -4,13 +4,13 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.ProviderFeedback.UITests
 {
     [Binding]
-    public class PFStepDefinitions
+    public class ProviderFeedbackSteps
     {
         private readonly ScenarioContext _context;
         private ProviderFeedbackHomePage _providerFeedbackHomePage;
-        private ProviderFeedbackCheckYourAnswers _providerFeedbackCheckYourAnswers;
+        private ProviderFeedbackCheckYourAnswersPage _providerFeedbackCheckYourAnswers;
 
-        public PFStepDefinitions(ScenarioContext context) => _context = context;
+        public ProviderFeedbackSteps(ScenarioContext context) => _context = context;
 
         [Given(@"the user on the homepage")]
         public void GivenTheUserOnTheHomepage() => _providerFeedbackHomePage = new ProviderFeedbackHomePage(_context);

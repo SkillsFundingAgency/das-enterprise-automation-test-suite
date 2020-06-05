@@ -23,7 +23,7 @@ namespace SFA.DAS.ProviderFeedback.UITests.Project.Tests.Pages
         protected readonly PageInteractionHelper pageInteractionHelper;
         protected readonly ObjectContext objectContext;
         protected readonly ProviderFeedbackConfig providerFeedbackConfig;
-        protected readonly ProviderFeedbackDatahelper providerFeedbackDatahelper;
+        protected readonly ProviderFeedbackDataHelper providerFeedbackDatahelper;
         #endregion
 
         protected ProviderFeedbackBasePage(ScenarioContext context, bool verifypage = true) : base(context)
@@ -35,7 +35,7 @@ namespace SFA.DAS.ProviderFeedback.UITests.Project.Tests.Pages
             formCompletionHelper = context.Get<FormCompletionHelper>();
             pageInteractionHelper = context.Get<PageInteractionHelper>();
             objectContext = context.Get<ObjectContext>();
-            providerFeedbackDatahelper = context.GetValue<ProviderFeedbackDatahelper>();
+            providerFeedbackDatahelper = context.GetValue<ProviderFeedbackDataHelper>();
             if (verifypage) VerifyPage();
         }
 

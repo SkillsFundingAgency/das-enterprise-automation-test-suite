@@ -3,7 +3,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ProviderFeedback.UITests.Project.Tests.Pages
 {
-    public class ProviderFeedbackCheckYourAnswers : ProviderFeedbackBasePage
+    public class ProviderFeedbackCheckYourAnswersPage : ProviderFeedbackBasePage
     {
         protected override string PageTitle => "Check your answers";
 
@@ -17,24 +17,24 @@ namespace SFA.DAS.ProviderFeedback.UITests.Project.Tests.Pages
 
         private By SubmitAnswers => By.CssSelector("button[type='submit']");
 
-        public ProviderFeedbackCheckYourAnswers(ScenarioContext context) : base(context) => _context = context;
+        public ProviderFeedbackCheckYourAnswersPage(ScenarioContext context) : base(context) => _context = context;
 
-        public ProviderFeedbackStrengths ChangeQuestionOne()
+        public ProviderFeedbackStrengthsPage ChangeQuestionOne()
         {
             formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(ChangeQuestionOneLink));
-            return new ProviderFeedbackStrengths(_context);
+            return new ProviderFeedbackStrengthsPage(_context);
         }
 
-        public ProviderFeedbackImprove ChangeQuestionTwo()
+        public ProviderFeedbackImprovePage ChangeQuestionTwo()
         {
             formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(ChangeQuestionTwoLink));
-            return new ProviderFeedbackImprove(_context);
+            return new ProviderFeedbackImprovePage(_context);
         }
 
-        public ProviderFeedbackOverallRating ChangeQuestionThree()
+        public ProviderFeedbackOverallRatingPage ChangeQuestionThree()
         {
             formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(ChangeQuestionThreeLink));
-            return new ProviderFeedbackOverallRating(_context);
+            return new ProviderFeedbackOverallRatingPage(_context);
         }
 
         public ProviderFeedbackCompletePage SubmitAnswersNow()

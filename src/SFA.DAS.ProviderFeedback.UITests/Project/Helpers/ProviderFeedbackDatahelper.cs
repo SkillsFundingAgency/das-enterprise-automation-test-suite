@@ -2,8 +2,8 @@
 
 namespace SFA.DAS.ProviderFeedback.UITests.Project.Helpers
 {
-    public class ProviderFeedbackDatahelper : RandomElementHelper
+    public class ProviderFeedbackDataHelper : RandomElementHelper
     {
-        public ProviderFeedbackDatahelper(RandomDataGenerator randomDataGenerator) : base(randomDataGenerator) { }
+        public ProviderFeedbackDataHelper(RandomDataGenerator randomDataGenerator) : base(randomDataGenerator) { }
     }
 }

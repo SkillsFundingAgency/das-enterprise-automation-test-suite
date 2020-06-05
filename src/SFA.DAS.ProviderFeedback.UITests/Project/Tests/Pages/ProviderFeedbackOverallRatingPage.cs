@@ -3,7 +3,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ProviderFeedback.UITests.Project.Tests.Pages
 {
-    public class ProviderFeedbackOverallRating : ProviderFeedbackBasePage
+    public class ProviderFeedbackOverallRatingPage : ProviderFeedbackBasePage
     {
         protected override string PageTitle => "Overall rating";
 
@@ -19,20 +19,20 @@ namespace SFA.DAS.ProviderFeedback.UITests.Project.Tests.Pages
 
         private By VeryPoorOption => By.CssSelector("label[for='VeryPoor']");
 
-        public ProviderFeedbackOverallRating(ScenarioContext context) : base(context) => _context = context;
+        public ProviderFeedbackOverallRatingPage(ScenarioContext context) : base(context) => _context = context;
 
-        public ProviderFeedbackCheckYourAnswers SelectVPoorAndContinue()
+        public ProviderFeedbackCheckYourAnswersPage SelectVPoorAndContinue()
         {
             formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(VeryPoorOption));
             Continue();
-            return new ProviderFeedbackCheckYourAnswers(_context);
+            return new ProviderFeedbackCheckYourAnswersPage(_context);
         }
 
-        public ProviderFeedbackCheckYourAnswers SelectGoodAndContinue()
+        public ProviderFeedbackCheckYourAnswersPage SelectGoodAndContinue()
         {
             formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(GoodOption));
             Continue();
-            return new ProviderFeedbackCheckYourAnswers(_context);
+            return new ProviderFeedbackCheckYourAnswersPage(_context);
         }
     }
 }
