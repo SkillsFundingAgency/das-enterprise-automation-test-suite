@@ -1,5 +1,4 @@
-﻿using NUnit.Framework;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.ProviderFeedback.UITests.Project.Helpers;
 using SFA.DAS.UI.Framework.TestSupport;
