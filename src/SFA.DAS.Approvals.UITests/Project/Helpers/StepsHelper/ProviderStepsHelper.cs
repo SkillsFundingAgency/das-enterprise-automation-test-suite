@@ -112,7 +112,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                 .SelectViewCurrentCohortDetails();
         }
 
-        public ProviderReviewYourCohortPage EditApprentice(ProviderReviewYourCohortPage providerReviewYourCohortPage)
+        public ProviderReviewYourCohortPage EditApprentice(ProviderReviewYourCohortPage providerReviewYourCohortPage, bool shouldCheckCoursesAreStandards = false)
         {
             var totalNoOfApprentices = _objectContext.GetNoOfApprentices();
 
@@ -124,8 +124,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                 {
                     if (uln.Text.Equals("–"))
                     {
-                        providerReviewYourCohortPage = providerReviewYourCohortPage.SelectEditApprentice(j)
-                                                      .EnterUlnAndSave();
+                        var providerEditApprenticeDetailsPage = providerReviewYourCohortPage.SelectEditApprentice(j);
+
+                        if (shouldCheckCoursesAreStandards)
+                        {
+                            providerEditApprenticeDetailsPage.ConfirmOnlyStandardCoursesAreSelectable();
+                        }
+
+                        providerEditApprenticeDetailsPage.EnterUlnAndSave();
                         break;
                     }
                     j++;
@@ -135,9 +141,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             return providerReviewYourCohortPage;
         }
 
-        public ProviderReviewYourCohortPage EditApprentice()
+        public ProviderReviewYourCohortPage EditApprentice(bool shouldCheckCoursesAreStandards = false)
         {
-            return EditApprentice(CurrentCohortDetails());
+            return EditApprentice(CurrentCohortDetails(), shouldCheckCoursesAreStandards);
         }
 
         public ProviderReviewYourCohortPage EditAllDetailsOfApprentice(ProviderReviewYourCohortPage providerReviewYourCohortPage)
