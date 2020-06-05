@@ -1,41 +1,62 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.UI.Framework.TestSupport;
-using SFA.DAS.UI.FrameworkHelpers;
-using System.Linq;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using TechTalk.SpecFlow;
+using static SFA.DAS.Registration.UITests.Project.Helpers.EnumHelper;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 {
-    public class SelectYourOrganisationPage : BasePage
+    public class SelectYourOrganisationPage : RegistrationBasePage
     {
         protected override string PageTitle => "Select your organisation";
-
-        #region Helpers and Context
-        private readonly PageInteractionHelper _pageInteractionHelper;
-        private readonly FormCompletionHelper _formCompletionHelper;
         private readonly ScenarioContext _context;
-        private readonly ProjectConfig _config;
-        #endregion
 
-        private By OrganisationLink() => By.CssSelector("button.link-button");
+        #region Locators
+        private By OrganisationLink => By.CssSelector("button[type=submit]");
+        private By SearchResultsText => By.Id("inline-search-hint");
+        private By TextBelowOrgNameInResults(string orgName) => By.XPath($"//p[text()='{orgName}']/following-sibling::p");
+        #endregion
 
         public SelectYourOrganisationPage(ScenarioContext context) : base(context)
         {
             _context = context;
-            _pageInteractionHelper = context.Get<PageInteractionHelper>();
-            _formCompletionHelper = context.Get<FormCompletionHelper>();
-            _config = context.GetProjectConfig<ProjectConfig>();
             VerifyPage();
         }
-        public CheckYourDetailsPage SelectYourOrganisation()
+
+        public CheckYourDetailsPage SelectYourOrganisation(OrgType orgType = OrgType.Default)
         {
-            _formCompletionHelper.ClickElement(SearchLinkUrl(_config.RE_OrganisationName.ToUpper()));
+            switch (orgType)
+            {
+                case OrgType.Company:
+                    formCompletionHelper.ClickElement(SearchLinkUrl(registrationDataHelper.CompanyTypeOrg));
+                    break;
+                case OrgType.Company2:
+                    formCompletionHelper.ClickElement(SearchLinkUrl(registrationDataHelper.CompanyTypeOrg2));
+                    break;
+                case OrgType.PublicSector:
+                    formCompletionHelper.ClickElement(SearchLinkUrl(registrationDataHelper.PublicSectorTypeOrg));
+                    break;
+                case OrgType.Charity:
+                    formCompletionHelper.ClickElement(SearchLinkUrl(registrationDataHelper.CharityTypeOrg1Name));
+                    break;
+                case OrgType.Charity2:
+                    formCompletionHelper.ClickElement(SearchLinkUrl(registrationDataHelper.CharityTypeOrg2Name));
+                    break;
+                case OrgType.Default:
+                    formCompletionHelper.ClickElement(SearchLinkUrl(objectContext.GetOrganisationName()));
+                    break;
+            }
+
             return new CheckYourDetailsPage(_context);
         }
 
-        private IWebElement SearchLinkUrl(string searchText) => _pageInteractionHelper.GetLink(OrganisationLink(), searchText);
+        public string GetSearchResultsText() => pageInteractionHelper.GetText(SearchResultsText);
+
+        public bool VerifyOrgAlreadyAddedMessage() =>
+            pageInteractionHelper.VerifyText(pageInteractionHelper.GetText(TextBelowOrgNameInResults(objectContext.GetOrganisationName())), "Already added");
+
+        private IWebElement SearchLinkUrl(string searchText)
+        {
+            objectContext.UpdateOrganisationName(searchText);
+            return pageInteractionHelper.GetLink(OrganisationLink, searchText);
+        }
     }
 }

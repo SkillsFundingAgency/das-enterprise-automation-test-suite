@@ -1,9 +1,12 @@
 ﻿using Dapper;
+using System;
+using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 
 namespace SFA.DAS.UI.FrameworkHelpers
 {
-    public class SqlDatabaseConncetionHelper
+    public static class SqlDatabaseConnectionHelper
     {
         public static int ExecuteSqlCommand(string connectionString, string queryToExecute, object dynamicParameters = null)
         {
@@ -14,13 +17,65 @@ namespace SFA.DAS.UI.FrameworkHelpers
             }
         }
 
-        public static SqlDataReader ReadDataFromDataBase(string queryToExecute, string connectionString)
+        public static int ExecuteSqlCommand(String connectionString, String queryToExecute, Dictionary<String, String> parameters)
         {
-            using (var databaseConnection = new SqlConnection(connectionString))
+            try
             {
-                databaseConnection.Open();
-                var command = new SqlCommand(queryToExecute, databaseConnection);
-                return command.ExecuteReader();
+                using (SqlConnection databaseConnection = new SqlConnection(connectionString))
+                {
+                    databaseConnection.Open();
+                    using (SqlCommand command = new SqlCommand(queryToExecute, databaseConnection))
+                    {
+                        foreach (KeyValuePair<String, String> param in parameters)
+                        {
+                            command.Parameters.AddWithValue(param.Key, param.Value);
+                        }
+                        return command.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (Exception exception)
+            {
+                throw new Exception("Exception occurred while executing SQL query"
+                    + "\n Exception: " + exception);
+            }
+        }
+
+        public static List<object[]> ReadDataFromDataBase(string queryToExecute, string connectionString, Dictionary<String, String> parameters = null)
+        {
+            try
+            {
+                using (SqlConnection databaseConnection = new SqlConnection(connectionString))
+                {
+                    using (SqlCommand command = new SqlCommand(queryToExecute, databaseConnection))
+                    {
+                        command.CommandType = CommandType.Text;
+
+                        if (parameters != null)
+                        {
+                            foreach (KeyValuePair<String, String> param in parameters)
+                            {
+                                command.Parameters.AddWithValue(param.Key, param.Value);
+                            }
+                        }                        
+
+                        databaseConnection.Open();
+                        SqlDataReader dataReader = command.ExecuteReader();
+                        List<object[]> result = new List<object[]>();
+                        while (dataReader.Read())
+                        {
+                            object[] items = new object[100];
+                            dataReader.GetValues(items);
+                            result.Add(items);
+                        }
+                        return result;
+                    }
+                }
+            }
+            catch (Exception exception)
+            {
+                throw new Exception("Exception occurred while executing SQL query"
+                    + "\n Exception: " + exception);
             }
         }
     }

@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
-using SFA.DAS.UI.Framework.TestSupport;
+using SFA.DAS.ConfigurationBuilder;
+using SFA.DAS.Login.Service.Helpers;
 
 namespace SFA.DAS.Registration.UITests.Project.Helpers
 {
@@ -7,18 +8,14 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
     {
         private readonly ObjectContext _objectContext;
 
-        public LoginCredentialsHelper(ObjectContext objectContext)
-        {
-            _objectContext = objectContext;
-        }
+        public LoginCredentialsHelper(ObjectContext objectContext) => _objectContext = objectContext;
 
         public bool IsLevy { get; private set; }
 
         internal void SetLoginCredentials(LoginUser loginUser, bool isLevy)
         {
-            _objectContext.SetLoginCredentials(loginUser.Username, loginUser.Password);
+            SetLoginCredentials(loginUser.Username, loginUser.Password);
             IsLevy = isLevy;
-            Reportusername(loginUser.Username);
         }
 
         internal void SetLoginCredentials(string username, string password)
@@ -27,19 +24,10 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
             Reportusername(username);
         }
 
-        internal void SetIsLevy()
-        {
-            IsLevy = true;
-        }
+        public void SetIsLevy() => IsLevy = true;
 
-        public LoginUser GetLoginCredentials()
-        {
-            return _objectContext.GetLoginCredentials();
-        }
+        public LoginUser GetLoginCredentials() => _objectContext.GetLoginCredentials();
 
-        private void Reportusername(string username)
-        {
-            TestContext.Progress.WriteLine($"Email : {username}");
-        }
+        private void Reportusername(string username) => TestContext.Progress.WriteLine($"Email : {username}");
     }
 }

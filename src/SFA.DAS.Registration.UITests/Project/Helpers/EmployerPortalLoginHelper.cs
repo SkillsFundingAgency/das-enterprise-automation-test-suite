@@ -1,38 +1,44 @@
 ﻿using SFA.DAS.Registration.UITests.Project.Tests.Pages;
 using TechTalk.SpecFlow;
+using SFA.DAS.ConfigurationBuilder;
+using SFA.DAS.Login.Service.Helpers;
 
 namespace SFA.DAS.Registration.UITests.Project.Helpers
 {
     public class EmployerPortalLoginHelper : IReLoginHelper
     {
         private readonly ScenarioContext _context;
-        private readonly LoginCredentialsHelper _loginCredentialsHelper;
+        protected readonly ObjectContext objectContext;
+        protected readonly LoginCredentialsHelper loginCredentialsHelper;
 
         public EmployerPortalLoginHelper(ScenarioContext context)
         {
             _context = context;
-            _loginCredentialsHelper = context.Get<LoginCredentialsHelper>();
+            objectContext = context.Get<ObjectContext>();
+            loginCredentialsHelper = context.Get<LoginCredentialsHelper>();
         }
 
-        public bool IsSignInPageDisplayed()
+        public bool IsSignInPageDisplayed() => new CheckSignInPage(_context).IsPageDisplayed();
+
+        public bool IsIndexPageDisplayed() => new CheckIndexPage(_context).IsPageDisplayed();
+
+        public bool IsYourAccountPageDisplayed() => new CheckYourAccountPage(_context).IsPageDisplayed();
+
+        public HomePage ReLogin() => new SignInPage(_context).Login(loginCredentialsHelper.GetLoginCredentials());
+
+        protected virtual HomePage Login(LoginUser loginUser) => new IndexPage(_context).ClickSignInLinkOnIndexPage().Login(loginUser);
+
+        public HomePage Login(LoginUser loginUser, bool isLevy)
         {
-            return new CheckSignInPage(_context)
-                .IsPageDisplayed();
+            loginCredentialsHelper.SetLoginCredentials(loginUser, isLevy);
+
+            var homePage = Login(loginUser);
+
+            objectContext.SetAccountId(homePage.AccountId());
+
+            return homePage;
         }
 
-        public void ReLogin()
-        {
-            var loginCredentials = _loginCredentialsHelper.GetLoginCredentials();
-
-            new SignInPage(_context)
-                .Login(loginCredentials);
-        }
-
-        public HomePage Login(LoginUser loginUser)
-        {
-            return new IndexPage(_context)
-                .SignIn()
-                .Login(loginUser);
-        }
+        public HomePage Login(NonLevyUser nonLevyUser) => Login(nonLevyUser, false);
     }
 }

@@ -7,56 +7,129 @@ using System.Linq;
 
 namespace SFA.DAS.UI.FrameworkHelpers
 {
-    public class PageInteractionHelper
+    public class PageInteractionHelper : WebElementInteractionHelper
     {
         private readonly IWebDriver _webDriver;
         private readonly WebDriverWaitHelper _webDriverWaitHelper;
         private readonly RetryHelper _retryHelper;
 
-        public PageInteractionHelper(IWebDriver webDriver, WebDriverWaitHelper webDriverWaitHelper, RetryHelper retryHelper)
+        public PageInteractionHelper(IWebDriver webDriver, WebDriverWaitHelper webDriverWaitHelper, RetryHelper retryHelper) : base(webDriver)
         {
             _webDriver = webDriver;
             _webDriverWaitHelper = webDriverWaitHelper;
             _retryHelper = retryHelper;
         }
 
-        public bool VerifyPage(By locator, string expected, Action beforeAction = null)
+        public void WaitForElementToChange(By locator, string text) => _webDriverWaitHelper.TextToBePresentInElementLocated(locator, text);
+
+        public void WaitForElementToChange(By locator, string attribute, string value) => WaitForElementToChange(() => FindElement(locator), attribute, value);
+
+        public void WaitForElementToChange(Func<IWebElement> element, string attribute, string value)
+        {
+            bool func(Func<IWebElement> webelement)
+            {
+                var actual = webelement().GetAttribute(attribute);
+                if (actual.Contains(value))
+                    return true;
+
+                throw new WebDriverException($"Expected {attribute}=\"{value}\", Actual {attribute}=\"{actual}\"");
+            }
+
+            _retryHelper.RetryOnWebDriverException(() => func(element));
+        }
+
+        //public bool WaitforURLToChange(string expected)
+        //{
+        //    bool func()
+        //    {
+        //        var actual = _webDriver.Url;
+        //        if (actual.Contains(expected))
+        //        {
+        //            return true;
+        //        }
+
+        //        throw new Exception("Url verification failed:"
+        //        + "\n Expected: " + expected + " page"
+        //        + "\n Found: " + actual + " page");
+        //    }
+
+        //    return VerifyPage(func);
+        //}
+
+        public void WaitforURLToChange(string urlText) => _webDriverWaitHelper.WaitForUrlChange(urlText);
+
+        public void WaitForElementToBeClickable(By locator) => _webDriverWaitHelper.WaitForElementToBeClickable(locator);
+
+        public void WaitForElementToBeDisplayed(By locator) => _webDriverWaitHelper.WaitForElementToBeDisplayed(locator);
+
+        public bool VerifyPage(Func<List<IWebElement>> elements, string expected)
         {
             bool func()
             {
-                _webDriverWaitHelper.WaitForPageToLoad();
-                var actual = GetText(locator);
-                if (actual.Contains(expected))
-                {
+                var actual = elements().Select(x => x.Text).ToList();
+                if (actual.Any(x => x.Contains(expected)))
                     return true;
-                }
 
                 throw new Exception("Page verification failed:"
                     + "\n Expected: " + expected + " page"
-                    + "\n Found: " + actual + " page");
+                    + "\n Found: " + string.Join(",", actual) + " page");
             }
-            
+
+            return VerifyPage(func);
+        }
+
+        public bool VerifyPage(Func<IWebElement> element, string expected, Action retryAction = null)
+        {
+            bool func()
+            {
+                var actual = GetText(element, retryAction);
+                if (actual.Contains(expected))
+                    return true;
+
+                throw new Exception("Page verification failed:"
+                + "\n Expected: " + expected + " page"
+                + "\n Found: " + actual + " page");
+            }
+
+            return VerifyPage(func);
+        }
+
+        public bool VerifyPage(By locator) => VerifyPage(Func(locator));
+
+        public bool VerifyPage(By locator, string expected) => VerifyPage(() => FindElement(locator), expected);
+
+        public bool VerifyPageAfterRefresh(By locator)
+        {
+            void beforeAction() => _webDriverWaitHelper.WaitForPageToLoad();
+
+            void retryAction() => _webDriver.Navigate().Refresh();
+
+            return _retryHelper.RetryOnException(Func(locator), beforeAction, retryAction);
+        }
+
+        public void Verify(Func<bool> func, Action beforeAction) => _retryHelper.RetryOnException(func, beforeAction);
+
+        private bool VerifyPage(Func<bool> func)
+        {
+            void beforeAction() => _webDriverWaitHelper.WaitForPageToLoad();
+
             return _retryHelper.RetryOnException(func, beforeAction);
         }
 
-        public bool VerifyPage(string actual, string expected1, string expected2)
+        public bool VerifyText(string actual, string expected1, string expected2)
         {
             if (actual.Contains(expected1) || actual.Contains(expected2))
-            {
                 return true;
-            }
 
-            throw new Exception("Page verification failed: "
-                + "\n Expected: " + expected1 + " or " + expected2 + " pages"
-                + "\n Found: " + actual + " page");
+            throw new Exception("Text verification failed: "
+                + "\n Expected: '" + expected1 + "' or '" + expected2 + "' text"
+                + "\n Found: '" + actual + "' page");
         }
 
         public bool VerifyText(String actual, string expected)
         {
             if (actual.Contains(expected))
-            {
                 return true;
-            }
 
             throw new Exception("Text verification failed: "
                 + "\n Expected: " + expected
@@ -69,19 +142,6 @@ namespace SFA.DAS.UI.FrameworkHelpers
             return VerifyText(actual, expected);
         }
 
-        public bool VerifyValueAttributeOfAnElement(By locator, string expected)
-        {
-            var actual = _webDriver.FindElement(locator).GetAttribute("value");
-            if (actual.Contains(expected))
-            {
-                return true;
-            }
-
-            throw new Exception("Value verification failed: "
-                + "\n Expected: " + expected
-                + "\n Found: " + actual);
-        }
-
         public string GetTextFromElementsGroup(By locator)
         {
             string text = null;
@@ -92,14 +152,12 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
             return text;
         }
-        public int GetCountOfElementsGroup(By locator)
-        {
-            return _webDriver.FindElements(locator).Count;
-        }
+
+        public IEnumerable<string> GetStringCollectionFromElementsGroup(By locator) => FindElements(locator).Select(e => e.Text);
 
         public bool IsElementPresent(By locator)
         {
-            TurnOffImplicitWaits();
+            _webDriverWaitHelper.TurnOffImplicitWaits();
             try
             {
                 _webDriver.FindElement(locator);
@@ -117,7 +175,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         public bool IsElementDisplayed(By locator)
         {
-            TurnOffImplicitWaits();
+            _webDriverWaitHelper.TurnOffImplicitWaits();
             try
             {
                 return _webDriver.FindElement(locator).Displayed;
@@ -139,10 +197,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
             _webDriverWaitHelper.WaitForElementToBeDisplayed(locator);
         }
 
-        public void FocusTheElement(IWebElement element)
-        {
-            new Actions(_webDriver).MoveToElement(element).Perform();
-        }
+        public void FocusTheElement(IWebElement element) => new Actions(_webDriver).MoveToElement(element).Perform();
 
         public void UnFocusTheElement(By locator)
         {
@@ -151,14 +206,13 @@ namespace SFA.DAS.UI.FrameworkHelpers
             _webDriverWaitHelper.WaitForElementToBeDisplayed(locator);
         }
 
-        public void UnFocusTheElement(IWebElement element)
-        {
-            new Actions(_webDriver).MoveToElement(element).Perform();
-        }
+        public void UnFocusTheElement(IWebElement element) => new Actions(_webDriver).MoveToElement(element).Perform();
 
-        public void TurnOffImplicitWaits()
+        public void SwitchFrame(By iFrameFieldLocator, By iFrameBodyLocator, string text)
         {
-            _webDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromMilliseconds(500);
+            _webDriver.SwitchTo().Frame(_webDriver.FindElement(iFrameFieldLocator));
+            ((IJavaScriptExecutor)_webDriver).ExecuteScript($"arguments[0].innerHTML = '{text}'", _webDriver.FindElement(iFrameBodyLocator));
+            _webDriver.SwitchTo().DefaultContent();
         }
 
         public void SwitchToFrame(By locator)
@@ -167,28 +221,54 @@ namespace SFA.DAS.UI.FrameworkHelpers
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.FrameToBeAvailableAndSwitchToIt(locator));
         }
 
-        public string GetText(By locator) => GetText(_webDriver.FindElement(locator));
+        public string GetText(By locator) => GetText(() => FindElement(locator));
+
+        public string GetText(Func<IWebElement> element, Action retryAction = null) => _retryHelper.RetryOnWebDriverException<string>(() => element().Text, retryAction);
+
+        public string GetTextFromPlaceholderAttributeOfAnElement(By by) => FindElement(by).GetAttribute(AttributeHelper.Placeholder);
+
+        public string GetTextFromValueAttributeOfAnElement(By by) => FindElement(by).GetAttribute(AttributeHelper.Value);
 
         public string GetText(IWebElement webElement) => webElement.Text;
 
         public string GetUrl() => _webDriver.Url;
 
-        public IWebElement GetLink(By by, string linkText) => _webDriver.FindElements(by).ToList().First(x => x.GetAttribute("innerText") == linkText);
+        public IWebElement GetLink(By by, string linkText) => GetLink(by, (x) => x == linkText);
 
-        public string GetRowData(By tableIdentifier, string rowIdentifier)
+        public IWebElement GetLinkContains(By by, string linkText) => GetLink(by, (x) => x.ContainsCompareCaseInsensitive(linkText));
+
+        public string GetRowData(By tableIdentifier, By keyIdentifier, params string[] rowIdentifier) => FindElements(tableIdentifier).Where(x => x.FindElements(keyIdentifier).Any(y => rowIdentifier.Any(r => y?.Text == r))).SingleOrDefault()?.Text;
+
+        public IWebElement FindElement(By locator) => _webDriver.FindElement(locator);
+
+        public IWebElement FindElement(IWebElement element, By locator) => element.FindElement(locator);
+
+        public List<IWebElement> FindElements(IWebElement element, By locator) => element.FindElements(locator).ToList();
+
+        public List<IWebElement> FindElements(By locator) => _webDriver.FindElements(locator).ToList();
+
+        public bool WaitUntilAnyElements(By locator) => _webDriverWaitHelper.WaitUntil(() => FindElements(locator).Count > 0);
+
+        public IWebElement GetLinkByHref(string hrefContains) => FindElements(LinkCssSelector).First(x => x.GetAttribute("href").ContainsCompareCaseInsensitive(hrefContains));
+
+        public IWebElement GetLink(By by, Func<string, bool> func) => FindElements(by).First(x => func(x.GetAttribute(AttributeHelper.InnerText)));
+
+        public List<IWebElement> GetLinks(By by, string linkText) => FindElements(by).Where(x => x.GetAttribute(AttributeHelper.InnerText) == linkText).ToList();
+
+        public List<IWebElement> GetLinks(string linkText) => FindElements(LinkCssSelector).Where(x => x.GetAttribute(AttributeHelper.InnerText).ContainsCompareCaseInsensitive(linkText)).ToList();
+
+        public List<string> GetAvailableOptions(By @by) => SelectElement(FindElement(by)).Options.Where(t => !string.IsNullOrEmpty(t.Text)).Select(x => x.Text).ToList();
+
+        private Func<bool> Func(By locator)
         {
-            return GetRows(tableIdentifier).Where(x => x.FindElements(By.CssSelector("td")).Any(y => y?.Text == rowIdentifier)).SingleOrDefault()?.Text;
+            return () =>
+            {
+                if (FindElements(locator).Count > 0)
+                    return true;
+                throw new Exception($"Page verification failed:{locator} is not found");
+            };
         }
 
-        public List<IWebElement> GetRows(By tableIdentifier)
-        {
-            return _webDriver.FindElement(tableIdentifier).FindElements(By.CssSelector("tr")).ToList();
-        }
-
-        public List<IWebElement> FindElements(By locator)
-        {
-            return _webDriver.FindElements(locator).ToList();
-        }
-
+        public bool GetElementSelectedStatus(By locator) => FindElement(locator).Selected;
     }
 }

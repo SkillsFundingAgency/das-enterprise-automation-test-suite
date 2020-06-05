@@ -1,4 +1,4 @@
-﻿using SFA.DAS.UI.Framework.TestSupport;
+﻿using SFA.DAS.ConfigurationBuilder;
 
 namespace SFA.DAS.Approvals.UITests.Project
 {
@@ -8,37 +8,37 @@ namespace SFA.DAS.Approvals.UITests.Project
         private const string NoOfApprentices = "noofapprentices";
         private const string ApprenticeTotalCost = "apprenticetotalcost";
         private const string CohortReference = "cohortreference";
-
+        private const string ApprenticeId = "apprenticeid";
+        private const string ReservationId = "reservationid";
+        private const string ProviderMakesReservationForNonLevyEmployers = "providermakesreservationfornonlevyemployers";
         #endregion
-        internal static void SetNoOfApprentices(this ObjectContext objectContext, string value)
-        {
-            objectContext.Replace(NoOfApprentices, value);
-        }
 
-        internal static void SetApprenticeTotalCost(this ObjectContext objectContext, string value)
-        {
-            objectContext.Replace(ApprenticeTotalCost, value);
-        }
+        internal static void SetProviderMakesReservationForNonLevyEmployers(this ObjectContext objectContext) => 
+            objectContext.Set(ProviderMakesReservationForNonLevyEmployers, true);
 
-        internal static void SetCohortReference(this ObjectContext objectContext, string value)
-        {
-            objectContext.Set(CohortReference, value);
-        }
+        internal static void SetNoOfApprentices(this ObjectContext objectContext, int value) => objectContext.Replace(NoOfApprentices, value);
 
-        internal static string GetApprenticeTotalCost(this ObjectContext objectContext)
-        {
-            return objectContext.Get(ApprenticeTotalCost);
-        }
+        internal static void SetApprenticeTotalCost(this ObjectContext objectContext, string value) => objectContext.Replace(ApprenticeTotalCost, value);
 
-        internal static string GetNoOfApprentices(this ObjectContext objectContext)
-        {
-            return objectContext.Get(NoOfApprentices);
-        }
+        internal static void SetCohortReference(this ObjectContext objectContext, string value) => objectContext.Set(CohortReference, value);
 
-        internal static string GetCohortReference(this ObjectContext objectContext)
-        {
-            return objectContext.Get(CohortReference);
-        }
+        internal static void UpdateCohortReference(this ObjectContext objectContext, string value) => objectContext.Update(CohortReference, value);
+
+        internal static void SetApprenticeId(this ObjectContext objectContext, int value) => objectContext.Set(ApprenticeId, value);
+
+        internal static void SetReservationId(this ObjectContext objectContext, string value) => objectContext.Replace(ReservationId, value);
+
+        internal static void SetUln(this ObjectContext objectContext, string value) => objectContext.Set($"Uln_{value}", value);
+
+        internal static bool IsProviderMakesReservationForNonLevyEmployers(this ObjectContext objectContext) => 
+            objectContext.KeyExists<bool>(ProviderMakesReservationForNonLevyEmployers);
+        
+        internal static string GetApprenticeTotalCost(this ObjectContext objectContext) => objectContext.Get(ApprenticeTotalCost);
+
+        internal static int GetNoOfApprentices(this ObjectContext objectContext) => objectContext.Get<int>(NoOfApprentices);
+
+        internal static string GetCohortReference(this ObjectContext objectContext) => objectContext.Get(CohortReference);
+
+        internal static string GetReservationId(this ObjectContext objectContext) => objectContext.Get(ReservationId);
     }
-
 }

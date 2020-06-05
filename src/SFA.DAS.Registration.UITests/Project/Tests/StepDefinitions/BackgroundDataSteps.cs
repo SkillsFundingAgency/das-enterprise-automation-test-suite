@@ -1,8 +1,7 @@
 ﻿using SFA.DAS.MongoDb.DataGenerator;
+using SFA.DAS.MongoDb.DataGenerator.Helpers;
 using SFA.DAS.Registration.UITests.Project.Helpers;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
@@ -21,20 +20,18 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             _levyDeclarationHelper = new MongoDbDataGenerator(_context);
         }
 
-        [Given(@"I have levy declarations")]
-        public void GivenIHaveLevyDeclarations()
-        {
-            var table = new Table("Year", "Month", "LevyDueYTD", "LevyAllowanceForFullYear", "SubmissionDate");
-            table.AddRow("19-20", "1", "62000", "80000", "2019-05-15");
-            _levyDeclarationHelper.AddLevyDeclarations(1.00m, new DateTime(2019, 01, 15), table);
-            _loginCredentialsHelper.SetIsLevy();
-        }
-
-
         [Given(@"the following levy declarations with english fraction of (.*) calculated at (.*)")]
         public void GivenTheFollowingLevyDeclarationsWithEnglishFractionOfCalculatedAt(decimal fraction, DateTime calculatedAt, Table table)
         {
             _levyDeclarationHelper.AddLevyDeclarations(fraction, calculatedAt, table);
+            _loginCredentialsHelper.SetIsLevy();
+        }
+
+        [Given(@"levy declarations are added for the past (.*) months with levypermonth as (.*)")]
+        public void GivenLevyDeclarationsIsAddedForPastMonthsWithLevypermonthAs(string duration, string levyPerMonth)
+        {
+            var (fraction, calculatedAt, levyDeclarations) = LevyDeclarationDataHelper.LevyFunds(duration, levyPerMonth);
+            _levyDeclarationHelper.AddLevyDeclarations(fraction, calculatedAt, levyDeclarations);
             _loginCredentialsHelper.SetIsLevy();
         }
     }

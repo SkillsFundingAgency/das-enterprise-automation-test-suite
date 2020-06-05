@@ -1,47 +1,60 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.UI.FrameworkHelpers;
 using System.Linq;
 
 namespace SFA.DAS.UI.FrameworkHelpers
 {
     public class TableRowHelper 
     {
-        private readonly IWebDriver _webDriver;
+        private readonly PageInteractionHelper _pageInteractionHelper;
         private readonly FormCompletionHelper _formCompletionHelper;
+        private readonly RegexHelper _regexHelper;
 
-        public TableRowHelper(IWebDriver webDriver, FormCompletionHelper formCompletionHelper)
+        public TableRowHelper(PageInteractionHelper pageInteractionHelper, FormCompletionHelper formCompletionHelper, RegexHelper regexHelper)
         {
-            _webDriver = webDriver;
             _formCompletionHelper = formCompletionHelper;
+            _pageInteractionHelper = pageInteractionHelper;
+            _regexHelper = regexHelper;
         }
 
-        public void SelectRowFromTable(string byLinkText, string byKey)
+        public void SelectRowFromTable(string byLinkText, string byKey, string tableSelector = "table")
         {
-            var table = _webDriver.FindElement(By.TagName("table"));
+            var table = _pageInteractionHelper.FindElement(By.CssSelector(tableSelector));
             var tableRows = table.FindElements(By.CssSelector("tbody tr"));
-            var links = _webDriver.FindElements(By.PartialLinkText(byLinkText));
+            var links = _pageInteractionHelper.FindElements(By.PartialLinkText(byLinkText));
             int i = 0;
             foreach (IWebElement tableRow in tableRows)
             {
                 if (tableRow.Text.Contains(byKey))
                 {
-                    _formCompletionHelper.ClickElement(links[i]);
-                    break;
+                    _formCompletionHelper.ClickInterceptedElement(links[i]);
+                    return;
                 }
                 i++;
             }
+            throw new System.Exception($"Test Exception: Could not find link with text '{byLinkText}' using key '{byKey}' and selector '{tableSelector}'");
         }
 
-        public void SelectRowForMultipleTables(string byLinkText, string byKey)
+        public void SelectRowFromTable(string byLinkText, string byKey, By nextPage, By noOfPages, string tableSelector = "table")
         {
-            var tableRows = _webDriver.FindElements(By.TagName("tr"));
-            var requiredRow = (from tr in tableRows
-                               from td in tr.FindElements(By.TagName("td"))
-                               where td.Text.Trim() == byKey
-                               select tr)?.FirstOrDefault();
+             if (_pageInteractionHelper.IsElementDisplayed(nextPage))
+            {
+                int NoOfpages = _regexHelper.GetMaxNoOfPages(_pageInteractionHelper.GetText(noOfPages));
 
-            var linkToClick = requiredRow.FindElement(By.LinkText(byLinkText));
-            _formCompletionHelper.ClickElement(linkToClick);
+                for (int i = 1; i <= NoOfpages - 1; i++)
+                {
+                    try
+                    {
+                        SelectRowFromTable(byLinkText, byKey, tableSelector);
+                        return;
+                    }
+                    catch (System.Exception)
+                    {
+                        _formCompletionHelper.ClickElement(nextPage);
+                    }
+                }
+            }
+
+            SelectRowFromTable(byLinkText, byKey, tableSelector);
         }
     }
 }

@@ -1,0 +1,18 @@
+{
+  "bindingCulture": {
+    "feature": "en-GB"
+  },
+  "language": {
+    "feature": "en-GB"
+  },
+  "stepAssemblies": [
+    { "assembly": "SFA.DAS.UI.Framework" },
+    { "assembly": "SFA.DAS.ConfigurationBuilder" },
+    { "assembly": "SFA.DAS.TestDataExport" },
+    { "assembly": "SFA.DAS.Registration.UITests" },
+    { "assembly": "SFA.DAS.ProviderLogin.Service" }
+  ],
+  "generator": {
+    "allowRowTests" : false
+  }
+}

@@ -1,37 +1,20 @@
-﻿using SFA.DAS.UI.Framework.TestSupport;
-using SFA.DAS.UI.FrameworkHelpers;
-using TechTalk.SpecFlow;
+﻿using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
-    public class CohortsForReviewPage : BasePage
+    public class CohortsForReviewPage : ApprovalsBasePage
     {
-        protected override string PageTitle => "Cohorts for review";
+        protected override string PageTitle => "Apprentice details ready for review";
 
         #region Helpers and Context
-        private readonly PageInteractionHelper _pageInteractionHelper;
-        private readonly FormCompletionHelper _formCompletionHelper;
         private readonly ScenarioContext _context;
-        private readonly ApprovalsConfig _config;
-        private readonly ObjectContext _objectContext;
-        private readonly TableRowHelper _tableRowHelper;
         #endregion
 
-
-        public CohortsForReviewPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            _objectContext = context.Get<ObjectContext>();
-            _config = context.GetApprovalsConfig<ApprovalsConfig>();
-            _pageInteractionHelper = context.Get<PageInteractionHelper>();
-            _formCompletionHelper = context.Get<FormCompletionHelper>();
-            _tableRowHelper = context.Get<TableRowHelper>();
-            VerifyPage();
-        }
+        public CohortsForReviewPage(ScenarioContext context) : base(context) => _context = context;
 
         public ReviewYourCohortPage SelectViewCurrentCohortDetails()
         {
-            _tableRowHelper.SelectRowFromTable("Details", _objectContext.GetCohortReference());
+            tableRowHelper.SelectRowFromTable("Details", objectContext.GetCohortReference());
             return new ReviewYourCohortPage(_context);
         }
     }

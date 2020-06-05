@@ -1,69 +1,86 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.UI.Framework.TestSupport;
-using SFA.DAS.UI.FrameworkHelpers;
+using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common;
+using SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
-    public class ReviewYourCohortPage : BasePage
+    public class ReviewYourCohortPage : ReviewYourCohort
     {
-        protected override string PageTitle => "Review your cohort";
+        protected override string PageTitle => _pageTitle;
 
         #region Helpers and Context
-        private readonly PageInteractionHelper _pageInteractionHelper;
-        private readonly FormCompletionHelper _formCompletionHelper;
         private readonly ScenarioContext _context;
-        private readonly ApprovalsConfig _config;
+        private readonly string _pageTitle;
         #endregion
 
-        private By AddAnApprenticeButton => By.ClassName("button-secondary");
-        private By SaveAndContinueButton => By.ClassName("finishEditingBtn");
-        private By ContinueToApprovalButton => By.ClassName("finishEditingBtn");
-        private By EditApprenticeLink => By.LinkText("Edit");
-        private By DeleteCohortbutton => By.ClassName("delete-button");
-        private By TotalCost => By.CssSelector(".dynamic-cost-display .bold-xlarge");
-        private By Apprentices => By.CssSelector(".all-apps .bold-xlarge");
+        private By ApproveMessage => By.CssSelector("#approve-details");
+		private By ReviewMessage => By.CssSelector("#send-details");
+		private By SaveSubmit => By.CssSelector("#main-content .govuk-button");
 
-        public ReviewYourCohortPage(ScenarioContext context) : base(context)
+
+        public ReviewYourCohortPage(ScenarioContext context) : base(context, false)
         {
             _context = context;
-            _config = context.GetApprovalsConfig<ApprovalsConfig>();
-            _pageInteractionHelper = context.Get<PageInteractionHelper>();
-            _formCompletionHelper = context.Get<FormCompletionHelper>();
+            var noOfApprentice = TotalNoOfApprentices();
+	        _pageTitle = noOfApprentice == 1 ? "Approve apprentice details" : $"Approve {noOfApprentice} apprentices' details";
             VerifyPage();
+        }
+
+        public EditApprenticePage SelectEditApprentice(int apprenticeNumber = 0)
+        {
+            var editApprenticeLinks = TotalNoOfEditableApprentices();
+            formCompletionHelper.ClickElement(editApprenticeLinks[apprenticeNumber]);
+			return new EditApprenticePage(_context);
         }
 
         public AddApprenticeDetailsPage SelectAddAnApprentice()
         {
-            ClickElement(AddAnApprenticeButton);
+            AddAnApprentice();
             return new AddApprenticeDetailsPage(_context);
         }
 
-        public ChooseAnOptionPage SelectContinueToApproval()
+        public ChooseAReservationPage SelectAddAnApprenticeUsingReservation()
         {
-            ClickElement(ContinueToApprovalButton);
-            return new ChooseAnOptionPage(_context);
+            AddAnApprentice();
+            return new ChooseAReservationPage(_context);
         }
 
-        public string ApprenticeTotalCost()
+        public YourCohortRequestsPage SaveAndExit()
         {
-            return _pageInteractionHelper.GetText(TotalCost);
+            formCompletionHelper.ClickLinkByText("Save and exit");
+            return new YourCohortRequestsPage(_context);
         }
 
-        public string NoOfApprentice()
+		public ApprenticeDetailsApprovedAndSentToTrainingProviderPage EmployerFirstApproveAndNotifyTrainingProvider()
+		{
+			SelectRadioOptionByForAttribute("radio-approve");
+			formCompletionHelper.EnterText(ApproveMessage, apprenticeDataHelper.MessageToProvider);
+			formCompletionHelper.Click(SaveSubmit);
+			return new ApprenticeDetailsApprovedAndSentToTrainingProviderPage(_context);
+		}
+
+		public NotificationSentToTrainingProviderPage EmployerSendsToTrainingProviderForReview()
         {
-            return _pageInteractionHelper.GetText(Apprentices);
+            SelectRadioOptionByForAttribute("radio-send");
+			formCompletionHelper.EnterText(ReviewMessage, apprenticeDataHelper.MessageToProvider);
+            formCompletionHelper.Click(SaveSubmit);
+            return new NotificationSentToTrainingProviderPage(_context);
         }
 
-        public ChooseAnOptionPage SaveAndContinue()
+		public ApprenticeDetailsApprovedPage EmployerDoesSecondApproval()
         {
-            ClickElement(SaveAndContinueButton);
-            return new ChooseAnOptionPage(_context);
+            SelectRadioOptionByForAttribute("radio-approve");
+            formCompletionHelper.Click(SaveSubmit);
+            return new ApprenticeDetailsApprovedPage(_context);
         }
 
-        private void ClickElement(By locator)
+        public ConfirmCohortDeletionPage SelectDeleteThisGroup()
         {
-            _formCompletionHelper.ClickElement(locator, true);
+            formCompletionHelper.ClickLinkByText("Delete this group");
+            return new ConfirmCohortDeletionPage(_context);
         }
+
+        private void AddAnApprentice() => formCompletionHelper.ClickLinkByText("Add another apprentice");
     }
 }
