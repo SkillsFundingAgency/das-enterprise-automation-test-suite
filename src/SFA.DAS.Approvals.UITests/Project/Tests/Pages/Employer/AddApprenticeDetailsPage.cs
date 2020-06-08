@@ -1,4 +1,6 @@
-﻿using OpenQA.Selenium;
+﻿using System.Linq;
+using NUnit.Framework;
+using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
@@ -56,6 +58,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             formCompletionHelper.EnterText(LastNameField, apprenticeDataHelper.ApprenticeLastname);
             formCompletionHelper.ClickElement(SaveAndContinueButton);
             return new YouMustCompleteAllApprenticeDetailsPage(_context);
-        }       
+        }
+
+        public AddApprenticeDetailsPage ConfirmOnlyStandardCoursesAreSelectable()
+        {
+            var options = formCompletionHelper.GetAllDropDownOptions(TrainingCourseContainer);
+            Assert.True(options.All(x => x.Contains("(Standard)")));
+            return this;
+        }
     }
 }

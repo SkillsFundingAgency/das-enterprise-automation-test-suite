@@ -70,13 +70,13 @@ namespace SFA.DAS.ProviderFeedback.UITests.Project.Tests.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("User Submit Mandatory Information and user Cannot Resubmit Feedback Once Submitte" +
+        [NUnit.Framework.DescriptionAttribute("PF_01 User Submit All Information and user Cannot Resubmit Feedback Once Submitte" +
             "d")]
         [NUnit.Framework.CategoryAttribute("providerfeedback")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public virtual void UserSubmitMandatoryInformationAndUserCannotResubmitFeedbackOnceSubmitted()
+        public virtual void PF_01UserSubmitAllInformationAndUserCannotResubmitFeedbackOnceSubmitted()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User Submit Mandatory Information and user Cannot Resubmit Feedback Once Submitte" +
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("PF_01 User Submit All Information and user Cannot Resubmit Feedback Once Submitte" +
                     "d", null, new string[] {
                         "providerfeedback",
                         "regression"});
@@ -85,6 +85,12 @@ this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 6
  testRunner.Given("the user on the homepage", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 7
+ testRunner.When("the user skips the question and selects a rating", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 8
+ testRunner.Then("the user can change the answers and submits", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 9
+ testRunner.And("the user can not resubmit the feedback", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }

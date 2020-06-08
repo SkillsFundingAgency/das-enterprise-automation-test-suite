@@ -47,6 +47,12 @@ namespace SFA.DAS.UI.FrameworkHelpers
             EnterText(_webDriver.FindElement(locator), text);
         }
 
+        public IEnumerable<string> GetAllDropDownOptions(By bySelect)
+        {
+            var webElement = _webDriver.FindElement(bySelect);
+            return SelectElement(webElement).Options.Where(x => !string.IsNullOrEmpty(x.GetAttribute("value"))).Select(x => x.Text);
+        }
+
         public void SendKeys(By locator, string Key)
         {
             _webDriverWaitHelper.WaitForElementToBeDisplayed(locator);

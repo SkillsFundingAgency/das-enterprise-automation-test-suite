@@ -44,8 +44,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
             };
 
             SqlDatabaseConnectionHelper.ExecuteSqlCommand(
-                connectionString,
                 sqlQueryFromFile,
+                connectionString,
                 sqlParameters);
         }
     }

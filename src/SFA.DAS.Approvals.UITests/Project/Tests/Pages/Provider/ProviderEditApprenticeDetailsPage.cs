@@ -1,5 +1,10 @@
 ﻿using OpenQA.Selenium;
 using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using Dynamitey;
+using NUnit.Framework;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
@@ -68,6 +73,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         {
             formCompletionHelper.ClickElement(DeleteButton);
             return new ProviderConfirmApprenticeDeletionPage(_context);
+        }
+
+        public ProviderEditApprenticeDetailsPage ConfirmOnlyStandardCoursesAreSelectable()
+        {
+            var options = formCompletionHelper.GetAllDropDownOptions(TrainingCourseContainer);
+            Assert.True(options.All(x => x.Contains("(Standard)")));
+            return this;
         }
     }
 }
