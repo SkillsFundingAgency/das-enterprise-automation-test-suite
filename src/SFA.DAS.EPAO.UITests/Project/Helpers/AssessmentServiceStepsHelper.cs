@@ -121,11 +121,11 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
                 .ClickViewOrganisationDetailsLink();
         }
 
-        public string InviteAUser(AS_LoggedInHomePage _loggedInHomePage, EPAODataHelper dataHelper)
+        public string InviteAUser(AS_LoggedInHomePage _loggedInHomePage)
         {
             return _loggedInHomePage.ClickManageUsersLink()
                 .ClickInviteNewUserButton()
-                .EnterUserDetailsAndSendInvite(dataHelper);      
+                .EnterUserDetailsAndSendInvite();      
         }
     }
 }

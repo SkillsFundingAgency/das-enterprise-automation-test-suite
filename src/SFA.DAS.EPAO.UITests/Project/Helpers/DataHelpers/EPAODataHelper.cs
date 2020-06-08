@@ -3,9 +3,9 @@ using SFA.DAS.UI.FrameworkHelpers;
 using System;
 using System.Collections.Generic;
 
-namespace SFA.DAS.EPAO.UITests.Project.Helpers
+namespace SFA.DAS.EPAO.UITests.Project.Helpers.DataHelpers
 {
-    public class EPAODataHelper : RandomDataGeneratorHelper
+    public abstract class EPAODataHelper : RandomDataGeneratorHelper
     {
         public EPAODataHelper(RandomDataGenerator randomDataGenerator) : base(randomDataGenerator)
         {
@@ -24,9 +24,6 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
         public string TownName => "Coventry";
         public string CountyName => "Warwick";
         public string PostCode => "CV1 2WT";
-        public string InvalidOrgNameWithAlphabets => "asfasfasdfasdf";
-        public string InvalidOrgNameWithNumbers => "54678900";
-        public string InvalidOrgNameWithAWord => "EPA01";
 
         public string GetRandomNumber(int length) => randomDataGenerator.GenerateRandomNumber(length);
 

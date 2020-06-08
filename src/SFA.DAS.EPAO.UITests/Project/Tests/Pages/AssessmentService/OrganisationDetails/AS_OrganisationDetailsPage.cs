@@ -44,7 +44,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.Organisatio
             return new AS_ChangeWebsitePage(_context);
         }
 
-        private void ClickLinkByHref(string href) => formCompletionHelper.ClickElement(pageInteractionHelper.GetLinkByHref(href));
+        private void ClickLinkByHref(string href) => formCompletionHelper.ClickInterceptedElement(pageInteractionHelper.GetLinkByHref(href));
     }
 
     public class AS_ChangeOrganisationDetailsPage : EPAO_BasePage

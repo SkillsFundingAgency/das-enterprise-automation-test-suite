@@ -1,5 +1,5 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.EPAO.UITests.Project.Helpers;
+using SFA.DAS.EPAO.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.UI.Framework;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
@@ -14,7 +14,8 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages
         protected readonly FormCompletionHelper formCompletionHelper;
         protected readonly PageInteractionHelper pageInteractionHelper;
         protected readonly TableRowHelper tableRowHelper;
-        protected readonly EPAODataHelper dataHelper;
+        protected readonly EPAOApplyDataHelper ePAOApplyDataHelper;
+        protected readonly EPAOAssesmentServiceDataHelper ePAOAssesmentServiceDataHelper;
         protected readonly EPAOApplyStandardDataHelper standardDataHelper;
         protected readonly EPAOAdminDataHelper ePAOAdminDataHelper;
         protected readonly EPAOConfig ePAOConfig;
@@ -33,7 +34,8 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages
             formCompletionHelper = context.Get<FormCompletionHelper>();
             pageInteractionHelper = context.Get<PageInteractionHelper>();
             tableRowHelper = context.Get<TableRowHelper>();
-            dataHelper = context.Get<EPAODataHelper>();
+            ePAOApplyDataHelper = context.Get<EPAOApplyDataHelper>();
+            ePAOAssesmentServiceDataHelper = context.Get<EPAOAssesmentServiceDataHelper>();
             standardDataHelper = context.Get<EPAOApplyStandardDataHelper>();
             ePAOAdminDataHelper = context.Get<EPAOAdminDataHelper>();
             ePAOConfig = context.GetEPAOConfig<EPAOConfig>();
@@ -46,6 +48,6 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages
             Continue();
         }
                
-        protected void ClickRandomElement(By locator) => formCompletionHelper.ClickElement(() => dataHelper.GetRandomElementFromListOfElements(pageInteractionHelper.FindElements(locator)));
+        protected void ClickRandomElement(By locator) => formCompletionHelper.ClickElement(() => ePAOAdminDataHelper.GetRandomElementFromListOfElements(pageInteractionHelper.FindElements(locator)));
     }
 }

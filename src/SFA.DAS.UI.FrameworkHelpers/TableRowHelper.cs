@@ -1,5 +1,4 @@
 ﻿using OpenQA.Selenium;
-using System.Linq;
 
 namespace SFA.DAS.UI.FrameworkHelpers
 {
@@ -26,7 +25,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
             {
                 if (tableRow.Text.Contains(byKey))
                 {
-                    _formCompletionHelper.ClickElement(links[i]);
+                    _formCompletionHelper.ClickInterceptedElement(links[i]);
                     return;
                 }
                 i++;

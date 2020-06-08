@@ -1,11 +1,11 @@
 ﻿using SFA.DAS.UI.FrameworkHelpers;
 
-namespace SFA.DAS.EPAO.UITests.Project.Helpers
+namespace SFA.DAS.EPAO.UITests.Project.Helpers.DataHelpers
 {
     public class EPAOApplyStandardDataHelper : EPAODataHelper
     {
         public EPAOApplyStandardDataHelper(RandomDataGenerator randomDataGenerator) : base(randomDataGenerator) { }
-        
+
         public string ApplyforStandard => "Software developer";
 
         public string ApplyforStandardCode => "2";
