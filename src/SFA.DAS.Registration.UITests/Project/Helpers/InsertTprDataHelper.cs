@@ -11,7 +11,7 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
         {
             lock (_object)
             {
-                int tprUniqueId = ReadDataFromDataBase(connectionString, "SELECT MAX([TPRUniqueId]) FROM [Tpr].[Organisation]") + 1;
+                int tprUniqueId = ReadDataFromDataBase("SELECT MAX([TPRUniqueId]) FROM [Tpr].[Organisation]", connectionString) + 1;
 
                 var organisationName = $"AutomationTestFor{orgType}Aorn{tprUniqueId}";
 
