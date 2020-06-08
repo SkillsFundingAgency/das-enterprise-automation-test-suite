@@ -1,11 +1,8 @@
-﻿using OpenQA.Selenium;
-using SFA.DAS.UI.Framework.TestSupport;
-using SFA.DAS.UI.FrameworkHelpers;
-using TechTalk.SpecFlow;
+﻿using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
 {
-    public class DeleteReservationPage : BasePage
+    public class DeleteReservationPage : ApprovalsBasePage
     {
         protected override string PageTitle => "Delete Reservation";
 
@@ -13,11 +10,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
         private readonly ScenarioContext _context;
         #endregion
 
-        public DeleteReservationPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public DeleteReservationPage(ScenarioContext context) : base(context) => _context = context;
 
         internal ReservationSuccessfullyDeletedPage YesDeleteThisReservation()
         {

@@ -2,6 +2,8 @@
 using TechTalk.SpecFlow;
 using NUnit.Framework;
 using SFA.DAS.IdamsLogin.Service.Project.Tests.Pages;
+using SFA.DAS.Login.Service.Helpers;
+using SFA.DAS.Login.Service;
 
 namespace SFA.DAS.SupportConsole.UITests.Project.Helpers
 {
@@ -9,19 +11,13 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Helpers
     {
         private readonly ScenarioContext _context;
 
-        public StepsHelper(ScenarioContext context)
-        {
-            _context = context;
-        }
+        public StepsHelper(ScenarioContext context) => _context = context;
 
-        public SearchHomePage LoginToSupportConsole()
-        {
-            new IdamsPage(_context).LoginToAccess1Staff();
+        public SearchHomePage Tier1LoginToSupportConsole() => LoginToSupportConsole(_context.GetUser<SupportConsoleTier1User>());
+        
+        public SearchHomePage Tier2LoginToSupportConsole() => LoginToSupportConsole(_context.GetUser<SupportConsoleTier2User>());
 
-            return new SignInPage(_context).SignInWithValidDetails();
-        }
-
-        public AccountOverviewPage SearchAndViewAccount() => new SearchHomePage(_context).SearchAndViewAccount();
+        public AccountOverviewPage SearchAndViewAccount() => new SearchHomePage(_context).SearchByPublicAccountIdAndViewAccount();
 
         public UlnSearchResultsPage SearchForUln() => new AccountOverviewPage(_context).ClickCommitmentsMenuLink().SearchForULN();
 
@@ -61,5 +57,12 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Helpers
         public CohortSummaryPage SearchForCohort() => new AccountOverviewPage(_context).ClickCommitmentsMenuLink().SearchForCohort();
 
         void VerifyCohortSearchTextBoxHelpTextContent(CommitmentsSearchPage commitmentsSearchPage) => Assert.AreEqual(commitmentsSearchPage.GetSearchTextBoxHelpText(), commitmentsSearchPage.CohortSearchTextBoxHelpTextContent, "Search Textbox Help text mismatch in CommitmentsSearchPage");
+
+        private SearchHomePage LoginToSupportConsole(LoginUser loginUser)
+        {
+            new IdamsPage(_context).LoginToAccess1Staff();
+
+            return new SignInPage(_context).SignInWithValidDetails(loginUser);
+        }
     }
 }

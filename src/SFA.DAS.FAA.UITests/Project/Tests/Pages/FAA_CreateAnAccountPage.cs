@@ -1,21 +1,14 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.RAA.DataGenerator;
-using SFA.DAS.UI.Framework.TestSupport;
-using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 {
-    public class FAA_CreateAnAccountPage : BasePage
+    public class FAA_CreateAnAccountPage : FAABasePage
     {
         protected override string PageTitle => "Create an account";
 
         #region Helpers and Context
-        private readonly FormCompletionHelper _formCompletionHelper;
-        private readonly PageInteractionHelper _pageInteractionHelper;
         private readonly ScenarioContext _context;
-        private readonly FAADataHelper _dataHelper;
-        private readonly FAAConfig _config;
         #endregion
 
         #region Locators
@@ -37,61 +30,53 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 
         #endregion
 
-        public FAA_CreateAnAccountPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            _dataHelper = context.Get<FAADataHelper>();
-            _formCompletionHelper = context.Get<FormCompletionHelper>();
-            _pageInteractionHelper = context.Get<PageInteractionHelper>();
-            _config = context.GetFAAConfig<FAAConfig>(); 
-            VerifyPage();
-        }
+        public FAA_CreateAnAccountPage(ScenarioContext context) : base(context) => _context = context;
 
         public FAA_ActivateYourAccountPage SubmitAccountCreationDetails()
         {
-            _formCompletionHelper.EnterText(FirstName, _dataHelper.FirstName);
-            _formCompletionHelper.EnterText(LastName, _dataHelper.LastName);
-            _formCompletionHelper.EnterText(DOB_Day, _dataHelper.DOB_Day);
-            _formCompletionHelper.EnterText(DOB_Month, _dataHelper.DOB_Month);
-            _formCompletionHelper.EnterText(DOB_Year, _dataHelper.DOB_Year);
+            formCompletionHelper.EnterText(FirstName, faaDataHelper.FirstName);
+            formCompletionHelper.EnterText(LastName, faaDataHelper.LastName);
+            formCompletionHelper.EnterText(DOB_Day, faaDataHelper.DOB_Day);
+            formCompletionHelper.EnterText(DOB_Month, faaDataHelper.DOB_Month);
+            formCompletionHelper.EnterText(DOB_Year, faaDataHelper.DOB_Year);
             SelectAddress();
-            _formCompletionHelper.EnterText(EmailId, _dataHelper.EmailId);
-            _formCompletionHelper.EnterText(PhoneNumber, _dataHelper.PhoneNumber);
-            _formCompletionHelper.EnterText(Password, _dataHelper.Password);
-            _formCompletionHelper.EnterText(ConfirmPassword, _dataHelper.Password);
-            _formCompletionHelper.ClickElement(() => _pageInteractionHelper.FindElement(AcceptTermsAndConditions));
-            _formCompletionHelper.Click(CreateAccountButton);
-            _pageInteractionHelper.WaitforURLToChange("activation");
+            formCompletionHelper.EnterText(EmailId, faaDataHelper.EmailId);
+            formCompletionHelper.EnterText(PhoneNumber, faaDataHelper.PhoneNumber);
+            formCompletionHelper.EnterText(Password, faaDataHelper.Password);
+            formCompletionHelper.EnterText(ConfirmPassword, faaDataHelper.Password);
+            formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(AcceptTermsAndConditions));
+            formCompletionHelper.Click(CreateAccountButton);
+            pageInteractionHelper.WaitforURLToChange("activation");
             return new FAA_ActivateYourAccountPage(_context);
         }
 
         public void SelectAddress()
         {
-            _formCompletionHelper.EnterText(PostCode, _dataHelper.PostCode);
-            _pageInteractionHelper.WaitUntilAnyElements(PostCodeAutoSuggestResults);
-            _formCompletionHelper.ClickElement(() => _dataHelper.GetRandomElementFromListOfElements(_pageInteractionHelper.FindElements(PostCodeAutoSuggestResults)));
+            formCompletionHelper.EnterText(PostCode, faaDataHelper.PostCode);
+            pageInteractionHelper.WaitUntilAnyElements(PostCodeAutoSuggestResults);
+            formCompletionHelper.ClickElement(() => faaDataHelper.GetRandomElementFromListOfElements(pageInteractionHelper.FindElements(PostCodeAutoSuggestResults)));
         }
 
         public void SubmitAccountCreationDetailsWithRegisteredEmail()
         {
-            _formCompletionHelper.EnterText(FirstName, _dataHelper.FirstName);
-            _formCompletionHelper.EnterText(LastName, _dataHelper.LastName);
-            _formCompletionHelper.EnterText(DOB_Day, _dataHelper.DOB_Day);
-            _formCompletionHelper.EnterText(DOB_Month, _dataHelper.DOB_Month);
-            _formCompletionHelper.EnterText(DOB_Year, _dataHelper.DOB_Year);
+            formCompletionHelper.EnterText(FirstName, faaDataHelper.FirstName);
+            formCompletionHelper.EnterText(LastName, faaDataHelper.LastName);
+            formCompletionHelper.EnterText(DOB_Day, faaDataHelper.DOB_Day);
+            formCompletionHelper.EnterText(DOB_Month, faaDataHelper.DOB_Month);
+            formCompletionHelper.EnterText(DOB_Year, faaDataHelper.DOB_Year);
             SelectAddress();
-            _formCompletionHelper.EnterText(EmailId, _config.FAAUserName);
-            _formCompletionHelper.EnterText(PhoneNumber, _dataHelper.PhoneNumber);
-            _formCompletionHelper.EnterText(Password, _dataHelper.Password);
-            _formCompletionHelper.EnterText(ConfirmPassword, _dataHelper.Password);
-            _formCompletionHelper.ClickElement(() => _pageInteractionHelper.FindElement(AcceptTermsAndConditions));
-            _formCompletionHelper.Click(CreateAccountButton);
+            formCompletionHelper.EnterText(EmailId, faaConfig.FAAUserName);
+            formCompletionHelper.EnterText(PhoneNumber, faaDataHelper.PhoneNumber);
+            formCompletionHelper.EnterText(Password, faaDataHelper.Password);
+            formCompletionHelper.EnterText(ConfirmPassword, faaDataHelper.Password);
+            formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(AcceptTermsAndConditions));
+            formCompletionHelper.Click(CreateAccountButton);
             CheckTheValidationMessagesForAlreadyRegisteredEmail();
         }
 
         public void CheckTheValidationMessagesForAlreadyRegisteredEmail()
         {
-            _pageInteractionHelper.VerifyText(RegisteredEmailErrorMessage, _dataHelper.CreateAccountWithRegisteredEmailErrorMessage);            
+            pageInteractionHelper.VerifyText(RegisteredEmailErrorMessage, faaDataHelper.CreateAccountWithRegisteredEmailErrorMessage);            
         }
     }
 }

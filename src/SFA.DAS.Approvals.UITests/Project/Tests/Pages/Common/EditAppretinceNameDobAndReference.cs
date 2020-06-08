@@ -1,16 +1,11 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.Approvals.UITests.Project.Helpers;
-using SFA.DAS.UI.Framework.TestSupport;
-using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
 {
-    public abstract class EditAppretinceNameDobAndReference : BasePage
+    public abstract class EditAppretinceNameDobAndReference : ApprovalsBasePage
     {
         #region Helpers and Context
-        protected readonly FormCompletionHelper formCompletionHelper;
-        protected readonly EditedApprenticeDataHelper dataHelper;
         #endregion
 
         protected virtual By FirstNameField => By.Id("FirstName");
@@ -25,12 +20,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
         protected virtual By Reference => By.CssSelector("#EmployerRef, #Reference, #ProviderRef");
         protected virtual By UpdateDetailsButton => By.CssSelector("#submit-edit-app, #submit-edit-details, #continue-button");
 
-        public EditAppretinceNameDobAndReference(ScenarioContext context) : base(context)
-        {
-            formCompletionHelper = context.Get<FormCompletionHelper>();
-            dataHelper = context.Get<EditedApprenticeDataHelper>();
-            VerifyPage();
-        }
+        protected EditAppretinceNameDobAndReference(ScenarioContext context, bool verifypage = true) : base(context, verifypage) { }
 
         public void EditApprenticeNameDobAndReference(string reference)
         {
@@ -40,18 +30,15 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
 
         private EditAppretinceNameDobAndReference EditNameDobAndReference(string reference)
         {
-            formCompletionHelper.EnterText(FirstNameField, dataHelper.SetCurrentApprenticeEditedFirstname());
-            formCompletionHelper.EnterText(LastNameField, dataHelper.SetCurrentApprenticeEditedLastname());
-            formCompletionHelper.EnterText(DateOfBirthDay, dataHelper.DateOfBirthDay);
-            formCompletionHelper.EnterText(DateOfBirthMonth, dataHelper.DateOfBirthMonth);
-            formCompletionHelper.EnterText(DateOfBirthYear, dataHelper.DateOfBirthYear);
+            formCompletionHelper.EnterText(FirstNameField, editedApprenticeDataHelper.SetCurrentApprenticeEditedFirstname());
+            formCompletionHelper.EnterText(LastNameField, editedApprenticeDataHelper.SetCurrentApprenticeEditedLastname());
+            formCompletionHelper.EnterText(DateOfBirthDay, editedApprenticeDataHelper.DateOfBirthDay);
+            formCompletionHelper.EnterText(DateOfBirthMonth, editedApprenticeDataHelper.DateOfBirthMonth);
+            formCompletionHelper.EnterText(DateOfBirthYear, editedApprenticeDataHelper.DateOfBirthYear);
             formCompletionHelper.EnterText(Reference, reference);
             return this;
         }
 
-        private void Update()
-        {
-            formCompletionHelper.ClickElement(UpdateDetailsButton);
-        }
+        private void Update() => formCompletionHelper.ClickElement(UpdateDetailsButton);
     }
 }

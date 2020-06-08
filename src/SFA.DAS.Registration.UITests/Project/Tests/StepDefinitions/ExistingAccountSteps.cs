@@ -42,5 +42,8 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
 
         [Then(@"Employer is able to navigate to Help Page")]
         public void ThenEmployerIsAbleToNavigateToHelpPage() => _homePage.GoToHelpPage();
+
+        [Then(@"the employer can navigate to home page")]
+        public void ThenTheEmployerCanNavigateToHomePage() => new HomePage(_context, true);
     }
 }

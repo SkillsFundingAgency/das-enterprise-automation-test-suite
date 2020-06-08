@@ -18,31 +18,31 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
 
         public RAA_RequirementsAndProspectsPage EnterDesiredSkillsText()
         {
-            formCompletionHelper.SendKeys(DesiredSkillsText, Keys.Tab + dataHelper.DesiredSkills);
+            formCompletionHelper.SendKeys(DesiredSkillsText, Keys.Tab + rAAV1DataHelper.DesiredSkills);
             return this;
         }
 
         public RAA_RequirementsAndProspectsPage EnterPersonalQualitiesText()
         {
-            formCompletionHelper.SendKeys(PersonalQualitiesText, Keys.Tab + dataHelper.PersonalQualities);
+            formCompletionHelper.SendKeys(PersonalQualitiesText, Keys.Tab + rAAV1DataHelper.PersonalQualities);
             return this;
         }
 
         public RAA_RequirementsAndProspectsPage EnterDesiredQualificationsText()
         {
-            formCompletionHelper.SendKeys(DesiredQualificationsText, Keys.Tab + dataHelper.DesiredQualifications);
+            formCompletionHelper.SendKeys(DesiredQualificationsText, Keys.Tab + rAAV1DataHelper.DesiredQualifications);
             return this;
         }
 
         public RAA_RequirementsAndProspectsPage EnterFutureProspectsText()
         {
-            formCompletionHelper.SendKeys(FutureProspectsText, Keys.Tab + dataHelper.FutureProspects);
+            formCompletionHelper.SendKeys(FutureProspectsText, Keys.Tab + rAAV1DataHelper.FutureProspects);
             return this;
         }
 
         public RAA_RequirementsAndProspectsPage EnterThingsToConsiderText()
         {
-            formCompletionHelper.SendKeys(ThingsToConsiderText, Keys.Tab + dataHelper.ThingsToConsider);
+            formCompletionHelper.SendKeys(ThingsToConsiderText, Keys.Tab + rAAV1DataHelper.ThingsToConsider);
             return this;
         }
 

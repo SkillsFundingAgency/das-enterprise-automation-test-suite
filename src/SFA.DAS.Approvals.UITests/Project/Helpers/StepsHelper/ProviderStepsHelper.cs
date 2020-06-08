@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using System;
+using OpenQA.Selenium;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.UI.FrameworkHelpers;
@@ -61,12 +62,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                 .SendInstructionsToEmployerForAnApprovedCohort();
         }
 
-        public ProviderReviewYourCohortPage AddApprenticeAndSavesWithoutSendingEmployerForApproval(int numberOfApprentices)
+        public ProviderYourCohortsPage AddApprenticeAndSavesWithoutSendingEmployerForApproval(int numberOfApprentices)
         {
-           return AddApprentice(numberOfApprentices)
-                .SelectSaveAndContinue()
-                .SubmitSaveButDontSendToEmployer()
-                .SelectViewCurrentCohortDetails();
+            return AddApprentice(numberOfApprentices)
+                 .SelectSaveAndContinue()
+                 .SubmitSaveButDontSendToEmployer();
         }
 
         public ProviderReviewYourCohortPage AddApprentice(ProviderAddApprenticeDetailsPage _providerAddApprenticeDetailsPage, int numberOfApprentices)
@@ -112,7 +112,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                 .SelectViewCurrentCohortDetails();
         }
 
-        public ProviderReviewYourCohortPage EditApprentice(ProviderReviewYourCohortPage providerReviewYourCohortPage)
+        public ProviderReviewYourCohortPage EditApprentice(ProviderReviewYourCohortPage providerReviewYourCohortPage, bool shouldCheckCoursesAreStandards = false)
         {
             var totalNoOfApprentices = _objectContext.GetNoOfApprentices();
 
@@ -124,8 +124,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                 {
                     if (uln.Text.Equals("–"))
                     {
-                        providerReviewYourCohortPage = providerReviewYourCohortPage.SelectEditApprentice(j)
-                                                      .EnterUlnAndSave();
+                        var providerEditApprenticeDetailsPage = providerReviewYourCohortPage.SelectEditApprentice(j);
+
+                        if (shouldCheckCoursesAreStandards)
+                        {
+                            providerEditApprenticeDetailsPage.ConfirmOnlyStandardCoursesAreSelectable();
+                        }
+
+                        providerEditApprenticeDetailsPage.EnterUlnAndSave();
                         break;
                     }
                     j++;
@@ -135,9 +141,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             return providerReviewYourCohortPage;
         }
 
-        public ProviderReviewYourCohortPage EditApprentice()
+        public ProviderReviewYourCohortPage EditApprentice(bool shouldCheckCoursesAreStandards = false)
         {
-            return EditApprentice(CurrentCohortDetails());
+            return EditApprentice(CurrentCohortDetails(), shouldCheckCoursesAreStandards);
         }
 
         public ProviderReviewYourCohortPage EditAllDetailsOfApprentice(ProviderReviewYourCohortPage providerReviewYourCohortPage)
@@ -227,6 +233,22 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
              .SelectSaveAndContinue()
              .SubmitApproveAndSendToEmployerForApproval()
              .SendInstructionsToEmployerForAnApprovedCohort();
+        }
+
+        public ChangeOfEmployerRequestedPage StartChangeOfEmployerJourney()
+        {
+            return GoToProviderHomePage()
+                .GoToProviderManageYourApprenticePage()
+                .SelectViewCurrentApprenticeDetails()
+                .ClickChangeEmployerLink()
+                .SelectChangeTheEmployer()
+                .SelectNewEmployer()
+                .ConfirmNewEmployer()
+                .EndNewStartDateAndContinue()
+                .EnterNewEndDateAndContinue()
+                .EnterNewPriceAndContinue()
+                .VerifyAndSubmitChangeOfEmployerRequest()
+                .VerifyChangeOfEmployerHasBeenRequested();
         }
     }
 }

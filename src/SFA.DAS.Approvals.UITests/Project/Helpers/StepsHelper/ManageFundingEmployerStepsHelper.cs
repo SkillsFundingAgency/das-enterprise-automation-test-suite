@@ -11,7 +11,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
         
         public ManageFundingEmployerStepsHelper(ScenarioContext context) => _context = context;
 
-        public DoYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage GoToReserveFunding() => GoToManageFunding().ClickReserveMoreFundingLink();
+        public DoYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage GoToReserveFunding() => GoToManageFundingHomePage().ClickReserveMoreFundingLink();
 
         public DynamicHomePages CreateReservationViaDynamicHomePageTriageJourney()
         {
@@ -50,9 +50,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                 .ClickConfirmButton();
         }
 
-        public YourFundingReservationsPage DeleteAllUnusedFunding()
+        public ManageFundingHomePage DeleteAllUnusedFunding()
         {
-            var yourFundingReservationsPage = GoToManageFunding();
+            var yourFundingReservationsPage = GoToManageFundingHomePage();
 
             while (yourFundingReservationsPage.CheckIfDeleteLinkIsPresent())
             {
@@ -65,7 +65,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             return yourFundingReservationsPage;
         }
 
-        private YourFundingReservationsPage GoToManageFunding() => new YourFundingReservationsHomePage(_context).OpenYourFundingReservations();
+        private ManageFundingHomePage GoToManageFundingHomePage() => new ManageFundingHomePage(_context, true);
 
         private DynamicHomePages GoToDynamicHomePage() => new DynamicHomePages(_context);
     }

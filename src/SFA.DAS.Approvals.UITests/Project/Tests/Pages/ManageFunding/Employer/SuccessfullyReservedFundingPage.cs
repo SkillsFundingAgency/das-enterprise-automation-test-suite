@@ -2,7 +2,6 @@
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.DynamicHomePage;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
-using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
@@ -13,23 +12,17 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
         protected override By ContinueButton => By.CssSelector("main button");
 
         #region Helpers and Context
-        private readonly FormCompletionHelper _formCompletionHelper;
         private readonly ScenarioContext _context;
         #endregion
 
         private By AddApprenticeRadioButton => By.CssSelector("label[for=WhatsNext-add]");
 
-        public SuccessfullyReservedFundingPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            _formCompletionHelper = context.Get<FormCompletionHelper>();
-            VerifyPage();
-        }
+        public SuccessfullyReservedFundingPage(ScenarioContext context) : base(context) => _context = context;
 
         public DynamicHomePages GoToDynamicHomePage()
         {
             SelectRadioOptionByForAttribute("WhatsNext-home");
-            _formCompletionHelper.ClickElement(ContinueButton);
+            formCompletionHelper.ClickElement(ContinueButton);
             return new DynamicHomePages(_context);
         }
 
@@ -47,6 +40,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
             return new AddApprenticeDetailsPage(_context);
         }
 
-        private void ChooseToAddApprenticeRadioButton() => _formCompletionHelper.ClickElement(AddApprenticeRadioButton);
+        private void ChooseToAddApprenticeRadioButton() => formCompletionHelper.ClickElement(AddApprenticeRadioButton);
     }
 }

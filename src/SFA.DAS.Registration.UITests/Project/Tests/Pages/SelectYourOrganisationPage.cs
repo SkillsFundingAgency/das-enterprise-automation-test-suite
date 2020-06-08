@@ -13,7 +13,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         private By OrganisationLink => By.CssSelector("button[type=submit]");
         private By SearchResultsText => By.Id("inline-search-hint");
         private By TextBelowOrgNameInResults(string orgName) => By.XPath($"//p[text()='{orgName}']/following-sibling::p");
-        private By EnterYourDetailsManuallyLink => By.LinkText("enter your details manually.");
         #endregion
 
         public SelectYourOrganisationPage(ScenarioContext context) : base(context)
@@ -49,22 +48,10 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             return new CheckYourDetailsPage(_context);
         }
 
-        public FindOrganisationAddressPage SelectYourOrganisation(string orgName)
-        {
-            formCompletionHelper.ClickElement(SearchLinkUrl(orgName));
-            return new FindOrganisationAddressPage(_context);
-        }
-
         public string GetSearchResultsText() => pageInteractionHelper.GetText(SearchResultsText);
 
         public bool VerifyOrgAlreadyAddedMessage() =>
             pageInteractionHelper.VerifyText(pageInteractionHelper.GetText(TextBelowOrgNameInResults(objectContext.GetOrganisationName())), "Already added");
-
-        public EnterYourOrganisationNamePage ClickEnterYourDetailsManuallyLinkInSelectYourOrganisationPage()
-        {
-            formCompletionHelper.Click(EnterYourDetailsManuallyLink);
-            return new EnterYourOrganisationNamePage(_context);
-        }
 
         private IWebElement SearchLinkUrl(string searchText)
         {

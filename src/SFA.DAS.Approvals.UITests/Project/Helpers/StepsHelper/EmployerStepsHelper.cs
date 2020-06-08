@@ -28,6 +28,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 
         public void Approve() => EmployerReviewCohort().EmployerDoesSecondApproval();
 
+        public void Reject() => EmployerReviewCohort().EmployerSendsToTrainingProviderForReview();
+
         internal ReviewYourCohortPage OpenRejectedCohort() => 
             GoToEmployerApprenticesHomePage()
               .ClickYourCohortsLink()
@@ -109,6 +111,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 
         internal void SetCohortReference(string cohortReference) => _objectContext.SetCohortReference(cohortReference);
 
+        internal void UpdateCohortReference(string cohortReference) => _objectContext.UpdateCohortReference(cohortReference);
+
         private StartAddingApprenticesPage ConfirmProviderDetailsAreCorrect(ApprenticesHomePage apprenticesHomePage)
         {
             var addTrainingProviderDetailsPage = apprenticesHomePage
@@ -175,8 +179,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                 .NonLevyEmployerAddsApprentices();
         }
 
-        public ReviewYourCohortPage NonLevyEmployerAddsApprenticeDetails(bool isTransfersFunds, AddApprenticeDetailsPage addApprenticeDetailsPage, int count)
+        public ReviewYourCohortPage NonLevyEmployerAddsApprenticeDetails(bool isTransfersFunds, AddApprenticeDetailsPage addApprenticeDetailsPage, int count, bool shouldConfirmOnlyStandardCoursesSelectable = false)
         {
+            if (shouldConfirmOnlyStandardCoursesSelectable)
+            {
+                addApprenticeDetailsPage.ConfirmOnlyStandardCoursesAreSelectable();
+            }
             _reviewYourCohortPage = addApprenticeDetailsPage.SubmitValidApprenticeDetails(true);
             string apprenticeTotalCost = _reviewYourCohortStepsHelper.ApprenticeTotalCost(_reviewYourCohortPage);
             int noOfApprentice = _reviewYourCohortStepsHelper.NoOfApprentice(_reviewYourCohortPage, count);
@@ -185,7 +193,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             return new ReviewYourCohortPage(_context);
         }
 
-        public ReviewYourCohortPage NonLevyEmployerAddsApprenticesUsingReservations(int numberOfApprentices)
+        public ReviewYourCohortPage NonLevyEmployerAddsApprenticesUsingReservations(int numberOfApprentices, bool shouldConfirmOnlyStandardCoursesSelectable = false)
         {
             var doYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage = _employerReservationStepsHelper.GoToReserveFunding();
 
@@ -194,7 +202,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             var addApprenticeDetailsPage = NonLevyEmployerAddsProviderDetails();
             for (int i = 1; i <= numberOfApprentices; i++)
             {
-                var reviewYourCohortPage = NonLevyEmployerAddsApprenticeDetails(false, addApprenticeDetailsPage, i);
+                var reviewYourCohortPage = NonLevyEmployerAddsApprenticeDetails(false, addApprenticeDetailsPage, i, shouldConfirmOnlyStandardCoursesSelectable);
                 if (i < numberOfApprentices)
                 {
                     reviewYourCohortPage.SelectAddAnApprenticeUsingReservation()

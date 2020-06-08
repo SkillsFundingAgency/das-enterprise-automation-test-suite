@@ -1,6 +1,6 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.Login.Service.Project.Tests.Pages;
-using SFA.DAS.UI.FrameworkHelpers;
 using System;
 using TechTalk.SpecFlow;
 
@@ -8,33 +8,31 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 {
     public class ProviderYourCohortsPage : Navigate
     {
-        protected override string PageTitle => "Your cohorts";
+        protected override string PageTitle => "Apprentice requests";
 
         protected override string Linktext => "Apprentice requests";
 
         #region Helpers and Context
-        private readonly PageInteractionHelper _pageInteractionHelper;
-        private readonly FormCompletionHelper _formCompletionHelper;
         private readonly ScenarioContext _context;
+        private readonly ObjectContext _objectContext;
         #endregion
 
-        private By NumberOfCohortsForReview => By.CssSelector(".bold-xxlarge");
-        private By NumberOfCohortsWithEmployers => By.XPath("(//h2[@class='bold-xxlarge'])[2]");
+        private By NumberOfCohortsForReview => By.CssSelector("#Review span.das-card-figure");
+        private By NumberOfCohortsWithEmployers => By.CssSelector("#WithEmployer span.das-card-figure");
 
         public ProviderYourCohortsPage(ScenarioContext context, bool navigate = false) : base(context, navigate)
         {
             _context = context;
-            _pageInteractionHelper = context.Get<PageInteractionHelper>();
-            _formCompletionHelper = context.Get<FormCompletionHelper>();
+            _objectContext = context.Get<ObjectContext>();
             VerifyPage();
         }
 
         public ProviderCohortsToReviewPage GoToCohortsToReviewPage()
         {
-            var providerReadyForReviewCohorts = Convert.ToInt32(_pageInteractionHelper.GetText(NumberOfCohortsForReview));
+            var providerReadyForReviewCohorts = Convert.ToInt32(pageInteractionHelper.GetText(NumberOfCohortsForReview));
             if (providerReadyForReviewCohorts > 0)
             {
-                _formCompletionHelper.ClickElement(NumberOfCohortsForReview);
+                formCompletionHelper.ClickElement(NumberOfCohortsForReview);
                 return new ProviderCohortsToReviewPage(_context);
             }
 
@@ -43,14 +41,20 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         internal ProviderCohortsWithEmployersPage GoToCohortsWithEmployers()
         {
-            var providerWithEmployerCohorts = Convert.ToInt32(_pageInteractionHelper.GetText(NumberOfCohortsWithEmployers));
+            var providerWithEmployerCohorts = Convert.ToInt32(pageInteractionHelper.GetText(NumberOfCohortsWithEmployers));
             if (providerWithEmployerCohorts > 0)
             {
-                _formCompletionHelper.ClickElement(NumberOfCohortsWithEmployers);
+                formCompletionHelper.ClickElement(NumberOfCohortsWithEmployers);
                 return new ProviderCohortsWithEmployersPage(_context);
             }
 
             throw new Exception("No cohorts available with employers");
+        }
+
+        public ProviderReviewYourCohortPage SelectViewCurrentCohortDetails()
+        {
+            tableRowHelper.SelectRowFromTable("Details", _objectContext.GetCohortReference());
+            return new ProviderReviewYourCohortPage(_context);
         }
     }
 }

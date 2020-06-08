@@ -16,6 +16,7 @@ namespace SFA.DAS.Roatp.UITests.Project
         private readonly ObjectContext _objectContext;
         private RoatpAdminUkprnDataHelpers _adminUkprnDataHelpers;
         private readonly RoatpAdminClearDownDataHelpers _adminClearDownDataHelpers;
+        private readonly RoatpApplyClearDownDataHelpers _roatpApplyClearDownDataHelpers;
         private readonly RoatpConfig _config;
         private readonly IWebDriver _webDriver;
 
@@ -25,7 +26,8 @@ namespace SFA.DAS.Roatp.UITests.Project
             _objectContext = context.Get<ObjectContext>();
             _webDriver = context.GetWebDriver();
             _config = context.GetRoatpConfig<RoatpConfig>();
-            _adminClearDownDataHelpers = new RoatpAdminClearDownDataHelpers(_objectContext, _config);
+            _adminClearDownDataHelpers = new RoatpAdminClearDownDataHelpers(_config);
+            _roatpApplyClearDownDataHelpers = new RoatpApplyClearDownDataHelpers(_config);
         }
 
         [BeforeScenario(Order = 32)]
@@ -57,10 +59,22 @@ namespace SFA.DAS.Roatp.UITests.Project
         [BeforeScenario(Order = 34)]
         public void ClearDownAdminData()
         {
-            if (_context.ScenarioInfo.Tags.Contains("deletetrainingprovider")) { _adminClearDownDataHelpers.DeleteTrainingProvider(); }
+            if (_context.ScenarioInfo.Tags.Contains("deletetrainingprovider")) { _adminClearDownDataHelpers.DeleteTrainingProvider(_objectContext.GetUkprn()); }
         }
 
         [BeforeScenario(Order = 35)]
         public void NavigateToRoatpAdmin() => _webDriver.Navigate().GoToUrl(_config.AdminBaseUrl);
+
+        [BeforeScenario(Order = 36)]
+        public void ClearDownGateWayAdminData()
+        {
+            if (_context.ScenarioInfo.Tags.Contains("resetApplicationToNew")) { _roatpApplyClearDownDataHelpers.GateWayClearDownDataFromApply(_objectContext.GetUkprn()); }
+        }
+
+        [BeforeScenario(Order = 37)]
+        public void ClearDownFHAAdminData()
+        {
+            if (_context.ScenarioInfo.Tags.Contains("resetFhaApplicationToNew")) { _roatpApplyClearDownDataHelpers.FHAClearDwnDataFromApply(_objectContext.GetUkprn()); }
+        }
     }
 }

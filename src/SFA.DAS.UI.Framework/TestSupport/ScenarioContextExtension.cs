@@ -23,13 +23,12 @@ namespace SFA.DAS.UI.Framework.TestSupport
         private const string FATProjectConfigKey = "fatprojectconfigkey";
         private const string EPAOProjectConfigKey = "epaoprojectconfigkey";
         private const string CampaignsConfigKey = "campaignsprojectconfigkey";
-        private const string MailinatorConfigKey = "mailinatorconfigkey";
+        private const string ProviderFeedbackConfigKey = "providerfeedbackprojectconfigkey";
         #endregion
 
         #region Setters
         public static void SetRoatpConfig<T>(this ScenarioContext context, T value) => Set(context, value, RoatpProjectConfigKey);
         public static void SetRegistrationConfig<T>(this ScenarioContext context, T value) => Set(context, value, RegistrationProjectConfigKey);
-        public static void SetMailinatorConfig<T>(this ScenarioContext context, T value) => Set(context, value, MailinatorConfigKey);
         public static void SetTprConfig<T>(this ScenarioContext context, T value) => Set(context, value, TprProjectConfigKey);
         public static void SetProviderLeadRegistrationConfig<T>(this ScenarioContext context, T value) => Set(context, value, ProviderLeadRegistrationConfigKey);
         public static void SetApprovalsConfig<T>(this ScenarioContext context, T value) => Set(context, value, ApprovalsProjectConfigKey);
@@ -43,6 +42,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
         public static void SetFAAConfig<T>(this ScenarioContext context, T value) => Set(context, value, FAAProjectConfigKey);
         public static void SetEPAOConfig<T>(this ScenarioContext context, T value) => Set(context, value, EPAOProjectConfigKey);
         public static void SetCampaignsConfig<T>(this ScenarioContext context, T value) => Set(context, value, CampaignsConfigKey);
+        public static void SetProviderFeedbackConfig<T>(this ScenarioContext context, T value) => Set(context, value, ProviderFeedbackConfigKey);
         public static void SetWebDriver(this ScenarioContext context, IWebDriver webDriver) => Replace(context, webDriver, WebDriverKey);      
         private static void Replace<T>(ScenarioContext context, T value, string key) => context.Replace(key, value);
         private static void Set<T>(ScenarioContext context, T value, string key) => context.Set(value, key);
@@ -52,7 +52,6 @@ namespace SFA.DAS.UI.Framework.TestSupport
         public static T GetRoatpConfig<T>(this ScenarioContext context) => Get<T>(context, RoatpProjectConfigKey);
         public static T GetFATConfig<T>(this ScenarioContext context) => Get<T>(context, FATProjectConfigKey);
         public static T GetRegistrationConfig<T>(this ScenarioContext context) => Get<T>(context, RegistrationProjectConfigKey);
-        public static T GetMailinatorConfig<T>(this ScenarioContext context) => Get<T>(context, MailinatorConfigKey);
         public static T GetTprConfig<T>(this ScenarioContext context) => Get<T>(context, TprProjectConfigKey);
         public static T GetProviderLeadRegistrationConfig<T>(this ScenarioContext context) => Get<T>(context, ProviderLeadRegistrationConfigKey);
         public static T GetApprovalsConfig<T>(this ScenarioContext context) => Get<T>(context, ApprovalsProjectConfigKey);
@@ -65,8 +64,9 @@ namespace SFA.DAS.UI.Framework.TestSupport
         public static T GetSupportConsoleConfig<T>(this ScenarioContext context) => Get<T>(context, SupportConsoleProjectConfigKey);
         public static T GetEPAOConfig<T>(this ScenarioContext context) => Get<T>(context, EPAOProjectConfigKey);
         public static T GetCampaignsConfig<T>(this ScenarioContext context) => Get<T>(context, CampaignsConfigKey);
+        public static T GetProviderFeedbackConfig<T>(this ScenarioContext context) => Get<T>(context, ProviderFeedbackConfigKey);
         public static IWebDriver GetWebDriver(this ScenarioContext context) => Get<IWebDriver>(context, WebDriverKey);
-        public static T Get<T>(ScenarioContext context, string key) => context.Get<T>(key);
+        public static T Get<T>(ScenarioContext context, string key) => context.GetValue<T>(key);
         #endregion
     }
 }

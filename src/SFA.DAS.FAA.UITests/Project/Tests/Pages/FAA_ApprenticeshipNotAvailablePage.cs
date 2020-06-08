@@ -1,18 +1,11 @@
-﻿using SFA.DAS.UI.Framework.TestSupport;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using TechTalk.SpecFlow;
+﻿using TechTalk.SpecFlow;
 
 namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 {
-    public class FAA_ApprenticeshipNotAvailablePage : BasePage
+    public class FAA_ApprenticeshipNotAvailablePage : FAABasePage
     {
         protected override string PageTitle => "Apprenticeship no longer available";
 
-        public FAA_ApprenticeshipNotAvailablePage(ScenarioContext context) : base(context)
-        {
-            VerifyPage();
-        }
+        public FAA_ApprenticeshipNotAvailablePage(ScenarioContext context) : base(context) { }
     }
 }

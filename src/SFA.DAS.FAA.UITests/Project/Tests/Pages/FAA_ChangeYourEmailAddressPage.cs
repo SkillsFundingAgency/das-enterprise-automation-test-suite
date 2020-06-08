@@ -1,15 +1,9 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.RAA.DataGenerator;
-using SFA.DAS.UI.Framework.TestSupport;
-using SFA.DAS.UI.FrameworkHelpers;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 {
-    public class FAA_ChangeYourEmailAddressPage : BasePage
+    public class FAA_ChangeYourEmailAddressPage : FAABasePage
     {
         protected override string PageTitle => "Change your email address";
 
@@ -22,28 +16,18 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
-        private readonly FormCompletionHelper _formCompletionHelper;
-        private readonly FAADataHelper _faaDataHelper;
-        private readonly PageInteractionHelper _pageInteractionHelper;        
         #endregion
 
-        public FAA_ChangeYourEmailAddressPage(ScenarioContext context ): base(context)
-        {
-            _context = context;
-            VerifyPage();
-            _formCompletionHelper = context.Get<FormCompletionHelper>();
-            _faaDataHelper = context.Get<FAADataHelper>();
-            _pageInteractionHelper = context.Get<PageInteractionHelper>();
-        }
+        public FAA_ChangeYourEmailAddressPage(ScenarioContext context) : base(context) => _context = context;
 
         public FAA_SignInPage ChangeEmailAddress()
         {
-            _formCompletionHelper.EnterText(EmailAddress, _faaDataHelper.ChangedEmailId);
-            _formCompletionHelper.Click(SendCodeButton);
-            _pageInteractionHelper.VerifyText(SuccessMessageText, "A verification code has been sent to your new email address.");
-            _formCompletionHelper.EnterText(VerificationCode, _faaDataHelper.ActivationCode);
-            _formCompletionHelper.EnterText(VerifyPassword, _faaDataHelper.Password);
-            _formCompletionHelper.Click(VerifyEmailButton);
+            formCompletionHelper.EnterText(EmailAddress, faaDataHelper.ChangedEmailId);
+            formCompletionHelper.Click(SendCodeButton);
+            pageInteractionHelper.VerifyText(SuccessMessageText, "A verification code has been sent to your new email address.");
+            formCompletionHelper.EnterText(VerificationCode, faaDataHelper.ActivationCode);
+            formCompletionHelper.EnterText(VerifyPassword, faaDataHelper.Password);
+            formCompletionHelper.Click(VerifyEmailButton);
             return new FAA_SignInPage(_context);
         }
     }

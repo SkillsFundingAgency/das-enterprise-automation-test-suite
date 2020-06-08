@@ -1,11 +1,9 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.UI.Framework.TestSupport;
-using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
 {
-    public class DoYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage : BasePage
+    public class DoYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage : ApprovalsBasePage
     {
         protected override string PageTitle => "Do you know which apprenticeship training your apprentice will take?";
         private By YesRadioButton => By.CssSelector("label[for=ApprenticeTrainingKnown]");
@@ -15,29 +13,21 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
         protected override By ContinueButton => By.CssSelector("#main-content .govuk-button");
 
         #region Helpers and Context
-        private readonly PageInteractionHelper _pageInteractionHelper;
-        private readonly FormCompletionHelper _formCompletionHelper;
         private readonly ScenarioContext _context;
         #endregion
 
-        public DoYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            _pageInteractionHelper = context.Get<PageInteractionHelper>();
-            _formCompletionHelper = context.Get<FormCompletionHelper>();
-            VerifyPage();
-        }
+        public DoYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage(ScenarioContext context) : base(context) => _context = context;
 
         public DoYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage ClickYesRadioButton()
         {
-            _formCompletionHelper.ClickElement(YesRadioButton);
+            formCompletionHelper.ClickElement(YesRadioButton);
             return new DoYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage(_context);
         }
 
         public DoYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage EnterSelectForACourseAndSubmit()
         {
-            _formCompletionHelper.EnterText(TrainingCourseContainer, "Food Technologist - Level");
-            _formCompletionHelper.ClickElement(StandardCourseOption);
+            formCompletionHelper.EnterText(TrainingCourseContainer, "Food Technologist - Level");
+            formCompletionHelper.ClickElement(StandardCourseOption);
             return new DoYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage(_context);
         }
 

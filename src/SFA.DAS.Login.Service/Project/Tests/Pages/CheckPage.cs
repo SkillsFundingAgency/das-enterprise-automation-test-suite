@@ -5,24 +5,14 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Login.Service.Project.Tests.Pages
 {
-    public abstract class CheckPage : BasePage
+    public abstract class CheckPage : LoginBasePage
     {
         protected override string PageTitle { get; }
 
         protected abstract By Identifier { get; }
 
-        #region Helpers and Context
-        private readonly PageInteractionHelper _pageInteractionHelper;
-        #endregion
+        public CheckPage(ScenarioContext context) : base(context) { }
 
-        public CheckPage(ScenarioContext context) : base(context)
-        {
-            _pageInteractionHelper = context.Get<PageInteractionHelper>();
-        }
-
-        public bool IsPageDisplayed()
-        {
-            return _pageInteractionHelper.IsElementDisplayed(Identifier);
-        }
+        public bool IsPageDisplayed() => pageInteractionHelper.IsElementDisplayed(Identifier);
     }
 }

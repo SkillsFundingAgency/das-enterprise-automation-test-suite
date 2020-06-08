@@ -25,11 +25,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.RegisterInterest
 
         private By RegisterMyInterest => By.CssSelector("#btn-register-interest-complete");
 
-        public RegisterInterestPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public RegisterInterestPage(ScenarioContext context) : base(context) => _context = context;
 
         public RegisterMyInterestSuccessPage RegisterInterestAsAnApprentice()
         {

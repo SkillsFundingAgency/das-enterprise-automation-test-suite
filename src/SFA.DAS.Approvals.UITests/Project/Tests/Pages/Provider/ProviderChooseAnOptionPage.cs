@@ -1,29 +1,20 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.UI.Framework.TestSupport;
-using SFA.DAS.ConfigurationBuilder;
-using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 {
-    public class ProviderChooseAnOptionPage : BasePage
+    public class ProviderChooseAnOptionPage : ApprovalsBasePage
     {
         protected override string PageTitle => "Choose an option";
 
         #region Helpers and Context
-        private readonly FormCompletionHelper _formCompletionHelper;
         private readonly ScenarioContext _context;
         #endregion
 
         private By CohortApproveOptions => By.CssSelector(".selection-button-radio");
         protected override By ContinueButton => By.Id("paymentPlan");
 
-        public ProviderChooseAnOptionPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            _formCompletionHelper = context.Get<FormCompletionHelper>();
-            VerifyPage();
-        }
+        public ProviderChooseAnOptionPage(ScenarioContext context) : base(context) => _context = context;
 
         public ProviderMessageForEmployerPage SubmitSendToEmployerToReview()
         {
@@ -43,15 +34,15 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             return new ProviderMessageForEmployerPage(_context);
         }
 
-        public ProviderCohortSavedPage SubmitSaveButDontSendToEmployer()
+        public ProviderYourCohortsPage SubmitSaveButDontSendToEmployer()
         {
             SelectOption("SaveStatus-Save");
-            return new ProviderCohortSavedPage(_context);
+            return new ProviderYourCohortsPage(_context);
         }
 
         private void SelectOption(string option)
         {
-            _formCompletionHelper.SelectRadioOptionByForAttribute(CohortApproveOptions, option);
+            formCompletionHelper.SelectRadioOptionByForAttribute(CohortApproveOptions, option);
             Continue();
         }
     }

@@ -1,6 +1,5 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.RAA_V2.Service.Project.Tests.Pages;
-using SFA.DAS.UI.FrameworkHelpers;
 using System.Collections.Generic;
 using System.Linq;
 using TechTalk.SpecFlow;
@@ -9,11 +8,6 @@ namespace SFA.DAS.RAA_V2_QA.UITests.Project.Tests.Pages.Reviewer
 {
     public abstract class ApproveVacancyBasePage : VerifyDetailsBasePage
     {
-        #region Helpers and Context
-        private readonly PageInteractionHelper _pageInteractionHelper;
-        private readonly FormCompletionHelper _formCompletionHelper;
-        #endregion
-
         private By ErrorsCheckboxes => By.Name("SelectedAutomatedQaResults");
 
         private By ReviewerComment => By.CssSelector("#ReviewerComment");
@@ -24,23 +18,19 @@ namespace SFA.DAS.RAA_V2_QA.UITests.Project.Tests.Pages.Reviewer
 
         private By VacancyQALink => By.LinkText("Vacancy QA");
 
-        public ApproveVacancyBasePage(ScenarioContext context) : base(context)
-        {
-            _pageInteractionHelper = context.Get<PageInteractionHelper>();
-            _formCompletionHelper = context.Get<FormCompletionHelper>();
-        }
-
+        public ApproveVacancyBasePage(ScenarioContext context, bool verifypage = true) : base(context, verifypage) { }
+        
         public void Approve()
         {
             var errors = ErrorsCheckboxElements();
 
             foreach (var error in errors)
             {
-                _formCompletionHelper.UnSelectCheckbox(error);
+                formCompletionHelper.UnSelectCheckbox(error);
             }
 
-            _formCompletionHelper.Click(SubmitButton);
-            _pageInteractionHelper.WaitforURLToChange("reviews");
+            formCompletionHelper.Click(SubmitButton);
+            pageInteractionHelper.WaitforURLToChange("reviews");
         }
 
         public void Refer()
@@ -49,14 +39,14 @@ namespace SFA.DAS.RAA_V2_QA.UITests.Project.Tests.Pages.Reviewer
 
             if (errors.Count == 0)
             {
-                _formCompletionHelper.SelectCheckbox(_pageInteractionHelper.FindElement(TitleFieldIdentifiers));
+                formCompletionHelper.SelectCheckbox(pageInteractionHelper.FindElement(TitleFieldIdentifiers));
             }
 
-            _formCompletionHelper.EnterText(ReviewerComment, "Refered");
-            _formCompletionHelper.Click(SubmitButton);
-            _formCompletionHelper.Click(VacancyQALink);
+            formCompletionHelper.EnterText(ReviewerComment, "Refered");
+            formCompletionHelper.Click(SubmitButton);
+            formCompletionHelper.Click(VacancyQALink);
         }
 
-        private List<IWebElement> ErrorsCheckboxElements() => _pageInteractionHelper.FindElements(ErrorsCheckboxes).ToList();
+        private List<IWebElement> ErrorsCheckboxElements() => pageInteractionHelper.FindElements(ErrorsCheckboxes).ToList();
     }
 }

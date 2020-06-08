@@ -2,22 +2,18 @@
 using SFA.DAS.UI.FrameworkHelpers;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace SFA.DAS.Roatp.UITests.Project.Helpers.RoatpApply
 {
-    public class RoatpApplyClearDownDataHelpers
+    public class RoatpApplyClearDownDataHelpers : SqlDbHelper
     {
         private readonly ObjectContext _objectContext;
-        private readonly string _applyDatabaseConnectionString;
         private readonly string _qnaDatabaseConnectionString;
-
         private string Emptyguid => Guid.Empty.ToString();
 
-        public RoatpApplyClearDownDataHelpers(ObjectContext objectContext, RoatpConfig roatpConfig)
-        {
+        public RoatpApplyClearDownDataHelpers(ObjectContext objectContext, RoatpConfig roatpConfig) : base(roatpConfig.ApplyDatabaseConnectionString)
+        { 
             _objectContext = objectContext;
-            _applyDatabaseConnectionString = roatpConfig.ApplyDatabaseConnectionString;
             _qnaDatabaseConnectionString = roatpConfig.QnaDatabaseConnectionString;
         }
 
@@ -27,19 +23,19 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.RoatpApply
                                            $"inner join Contacts c on a.OrganisationId = c.ApplyOrganisationID " +
                                            $"where c.Email ='{_objectContext.GetEmail()}' ";
 
-            var queryResult = SqlDatabaseConnectionHelper.ReadDataFromDataBase(applicationIdQuery, _applyDatabaseConnectionString);
+            var queryResult = SqlDatabaseConnectionHelper.ReadDataFromDataBase(applicationIdQuery, connectionString);
 
             return queryResult == null || queryResult.Count == 0 ? Emptyguid : ClearDownDataFromApply(queryResult);
         }
 
         public int ClearDownDataFromQna(string applicationId)
         {
-            var DeleteDataFromQnaQuery =
+            var deleteDataFromQnaQuery =
                 $"DELETE FROM ApplicationSections WHERE applicationid = '{applicationId}'" +
                 $"DELETE FROM ApplicationSequences WHERE applicationid = '{applicationId}' " +
                 $"DELETE FROM Applications WHERE id = '{applicationId}' ;";
 
-            return applicationId == Emptyguid ? 0 : SqlDatabaseConnectionHelper.ExecuteSqlCommand(_qnaDatabaseConnectionString, DeleteDataFromQnaQuery);
+            return applicationId == Emptyguid ? 0 : SqlDatabaseConnectionHelper.ExecuteSqlCommand(deleteDataFromQnaQuery, _qnaDatabaseConnectionString);
         }
 
         public int WhiteListProviders()
@@ -50,7 +46,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.RoatpApply
                 $"INSERT INTO WhitelistedProviders([UKPRN]) VALUES({_objectContext.GetUkprn()}) " +
                 $"END";
 
-            return SqlDatabaseConnectionHelper.ExecuteSqlCommand(_applyDatabaseConnectionString, insertWhiteListProviderQuery);
+            return ExecuteSqlCommand(insertWhiteListProviderQuery);
         }
 
         private string ClearDownDataFromApply(List<object[]> queryResult)
@@ -65,11 +61,9 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.RoatpApply
                 $"UPDATE dbo.Contacts SET ApplyOrganisationID = NULL WHERE Email = '{email}';" +
                 $"DELETE FROM dbo.Organisations WHERE Id = @OrganisationID;";
 
-            SqlDatabaseConnectionHelper.ExecuteSqlCommand(_applyDatabaseConnectionString, query);
+            ExecuteSqlCommand(query);
 
             return applicationId;
         }
-
-
     }
 }

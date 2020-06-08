@@ -1,6 +1,5 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.ConfigurationBuilder;
-using SFA.DAS.RAA.DataGenerator;
 using SFA.DAS.RAA.DataGenerator.Project;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
@@ -13,7 +12,6 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         protected override string PageTitle => "Check employer information";
 
         #region Helpers and Context
-        private readonly IWebDriver _webDriver;
         private readonly PageInteractionHelper _pageInteractionHelper;
         private readonly ObjectContext _objectContext;
         #endregion
@@ -28,8 +26,6 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
 
         private By AboutTheEmployerBody => By.XPath("//body");
 
-        private By IFrame => By.CssSelector("iframe");
-
         private By EmployerWebsiteUrlOptional => By.Id("EmployerWebsiteUrl");
 
         private By VacancyLocationHeading => By.ClassName("heading-xlarge");
@@ -41,7 +37,6 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         public RAA_EmployerInformationPage(ScenarioContext context) : base(context)
         {
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
-            _webDriver = context.GetWebDriver();
             _objectContext = context.Get<ObjectContext>();
         }
 
@@ -71,15 +66,15 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         public void EmployerWishesToBeAnonymous()
         {
             formCompletionHelper.SelectRadioOptionByText("No, the employer wants to remain anonymous");
-            formCompletionHelper.EnterText(EmployerDescription, dataHelper.EmployerDescription);
-            formCompletionHelper.EnterText(EmployerReason, dataHelper.EmployerReason);
+            formCompletionHelper.EnterText(EmployerDescription, rAAV1DataHelper.EmployerDescription);
+            formCompletionHelper.EnterText(EmployerReason, rAAV1DataHelper.EmployerReason);
             SaveAndContinue();
         }
 
         public void EmployerDoesNotWantToBeAnonymous()
         {
             formCompletionHelper.SelectRadioOptionByText("Yes");
-            formCompletionHelper.EnterText(EmployerWebsiteUrlOptional, dataHelper.EmployerWebsiteUrl);
+            formCompletionHelper.EnterText(EmployerWebsiteUrlOptional, rAAV1DataHelper.EmployerWebsiteUrl);
             SaveAndContinue();
         }
 
@@ -91,11 +86,11 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
 
         private RAA_EmployerInformationPage EnterAboutTheEmployerInformation()
         {
-            _webDriver.SwitchTo().Frame(_webDriver.FindElement(IFrame));
-            _webDriver.FindElement(AboutTheEmployerBody).SendKeys(Keys.Tab + Keys.Control + "a" + Keys.Delete);
-            _webDriver.FindElement(AboutTheEmployerBody).SendKeys(dataHelper.EmployerBody);
-            _webDriver.FindElement(AboutTheEmployerBody).SendKeys(Keys.Delete);
-            _webDriver.SwitchTo().DefaultContent();
+            tabHelper.SwitchToFrame();
+            formCompletionHelper.SendKeys(AboutTheEmployerBody, (Keys.Tab + Keys.Control + "a" + Keys.Delete));
+            formCompletionHelper.SendKeys(AboutTheEmployerBody,rAAV1DataHelper.EmployerBody);
+            formCompletionHelper.SendKeys(AboutTheEmployerBody, Keys.Delete);
+            tabHelper.SwitchToDefaultContent();
             return this;
         }
 

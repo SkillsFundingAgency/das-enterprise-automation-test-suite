@@ -9,7 +9,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.ProviderLeadRegistrat
     {
         protected override string PageTitle => "Invited employers";
 
-        public InvitedEmployersPage(ScenarioContext context) : base(context) { VerifyPage(); }
+        public InvitedEmployersPage(ScenarioContext context) : base(context) { }
 
         private By TRows => By.CssSelector("tbody tr");
         private By THeader => By.CssSelector("thead th");

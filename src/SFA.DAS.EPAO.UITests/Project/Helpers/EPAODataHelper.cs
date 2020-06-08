@@ -16,7 +16,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
             CurrentMonth = DateTime.Now.Month;
             CurrentYear = DateTime.Now.Year;
             RandomEmail = GetDateTimeValue() + "@mailinator.com";
-            RandomWebsiteAddress = "http://www.TEST" + GetDateTimeValue() + ".com";
+            RandomWebsiteAddress = "www.TEST" + GetDateTimeValue() + ".com";
         }
 
         public int CurrentDay { get; }

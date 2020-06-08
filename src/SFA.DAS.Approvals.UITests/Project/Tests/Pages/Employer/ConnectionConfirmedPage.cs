@@ -1,19 +1,16 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages;
-using SFA.DAS.UI.Framework.TestSupport;
-using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
-    public class ConnectionConfirmedPage : BasePage
+    public class ConnectionConfirmedPage : ApprovalsBasePage
     {
         protected override string PageTitle => "Connection confirmed";
 
         protected override By PageHeader => By.ClassName("bold-large");
 
         #region Helpers and Context
-        private readonly FormCompletionHelper _formCompletionHelper;
         private readonly ScenarioContext _context;
         #endregion
 
@@ -21,16 +18,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         private By GoToHomePageRadioButton => By.CssSelector(".selection-button-radio");
 
-        public ConnectionConfirmedPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            _formCompletionHelper = context.Get<FormCompletionHelper>();
-            VerifyPage();
-        }
+        public ConnectionConfirmedPage(ScenarioContext context) : base(context) => _context = context;
 
         public HomePage GoToHomePage()
         {
-            _formCompletionHelper.SelectRadioOptionByText(GoToHomePageRadioButton, "Go back to the homepage");
+            formCompletionHelper.SelectRadioOptionByText(GoToHomePageRadioButton, "Go back to the homepage");
             Continue();
             return new HomePage(_context);
         }

@@ -1,23 +1,13 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.RAA.DataGenerator;
-using SFA.DAS.UI.Framework.TestSupport;
-using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
 {
-    public class RAA_RegistrationPage : BasePage
+    public class RAA_RegistrationPage : RAAV1BasePage
     {
         protected override By PageHeader => By.CssSelector(".pageTitle");
 
         protected override string PageTitle => "Registration";
-
-        #region Helpers and Context
-        private readonly PageInteractionHelper _pageInteractionHelper;
-        private readonly FormCompletionHelper _formCompletionHelper;
-        private readonly ScenarioContext _context;
-        private readonly RAAV1RegistrationDataHelper _dataHelper;
-        #endregion
 
         private By Title => By.Id("title");
         private By FirstName => By.Id("firstName");
@@ -30,33 +20,26 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         private By ButtonRegister => By.CssSelector(".form-buttons .btn");
         private By ConfirmationText => By.CssSelector(".pageSubtitle");
 
-        public RAA_RegistrationPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            _pageInteractionHelper = context.Get<PageInteractionHelper>();
-            _formCompletionHelper = context.Get<FormCompletionHelper>();
-            _dataHelper = context.Get<RAAV1RegistrationDataHelper>();
-            VerifyPage();
-        }
+        public RAA_RegistrationPage(ScenarioContext context) : base(context) { }
 
         public RAA_RegistrationPage Register()
         {
-            _formCompletionHelper.SelectFromDropDownByText(Title, _dataHelper.Title);
-            _formCompletionHelper.EnterText(FirstName, _dataHelper.FirstName);
-            _formCompletionHelper.EnterText(LastName, _dataHelper.LastName);
-            _formCompletionHelper.EnterText(EmailAddress, _dataHelper.EmailAddress);
-            _formCompletionHelper.EnterText(MobileNumber, _dataHelper.MobileNumber);
-            _formCompletionHelper.EnterText(Password, _dataHelper.Password);
-            _formCompletionHelper.EnterText(ConfirmPassword, _dataHelper.Password);
-            _formCompletionHelper.Click(AcceptTermsAndCondition);
-            _formCompletionHelper.Click(ButtonRegister);
+            formCompletionHelper.SelectFromDropDownByText(Title, rAAV1RegistrationDataHelper.Title);
+            formCompletionHelper.EnterText(FirstName, rAAV1RegistrationDataHelper.FirstName);
+            formCompletionHelper.EnterText(LastName, rAAV1RegistrationDataHelper.LastName);
+            formCompletionHelper.EnterText(EmailAddress, rAAV1RegistrationDataHelper.EmailAddress);
+            formCompletionHelper.EnterText(MobileNumber, rAAV1RegistrationDataHelper.MobileNumber);
+            formCompletionHelper.EnterText(Password, rAAV1RegistrationDataHelper.Password);
+            formCompletionHelper.EnterText(ConfirmPassword, rAAV1RegistrationDataHelper.Password);
+            formCompletionHelper.Click(AcceptTermsAndCondition);
+            formCompletionHelper.Click(ButtonRegister);
             return this;
         }
 
         public string FormInfoText()
         {
-            _pageInteractionHelper.WaitforURLToChange("registrationEmailSent");
-            return _pageInteractionHelper.GetText(ConfirmationText);
+            pageInteractionHelper.WaitforURLToChange("registrationEmailSent");
+            return pageInteractionHelper.GetText(ConfirmationText);
         }
     }
 }

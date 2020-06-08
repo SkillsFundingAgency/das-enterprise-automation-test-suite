@@ -9,10 +9,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         private readonly ScenarioContext _context;
 
-        public ResumeApprenticePage(ScenarioContext context) : base(context)
-        {
-            _context = context;          
-        }
+        public ResumeApprenticePage(ScenarioContext context) : base(context) => _context = context;
 
         public new ResumedApprenticeDetailsPage SelectYesAndConfirm()
         {

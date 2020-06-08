@@ -72,12 +72,14 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Features.SearchVacancy
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("FAA_SearchVacancy_01 - Search Nationwide Vacancy in FAA and checkin the sort resu" +
             "lts and distance on the vacancies")]
+        [NUnit.Framework.CategoryAttribute("faa")]
         [NUnit.Framework.CategoryAttribute("raa-v1")]
         [NUnit.Framework.CategoryAttribute("regression")]
         public virtual void FAA_SearchVacancy_01_SearchNationwideVacancyInFAAAndCheckinTheSortResultsAndDistanceOnTheVacancies()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("FAA_SearchVacancy_01 - Search Nationwide Vacancy in FAA and checkin the sort resu" +
                     "lts and distance on the vacancies", null, new string[] {
+                        "faa",
                         "raa-v1",
                         "regression"});
 #line 6

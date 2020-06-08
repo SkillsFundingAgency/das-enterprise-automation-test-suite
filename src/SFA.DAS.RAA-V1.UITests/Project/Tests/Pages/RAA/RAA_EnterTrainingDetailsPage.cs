@@ -20,7 +20,6 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         private By ContactumberField => By.CssSelector("#ContactNumber");
         private By EmailField => By.CssSelector("#ContactEmail");
         private By SaveAndContinueButton => By.Id("createVacancyButton");
-        private By Iframe => By.CssSelector("iframe");
         private By TraineeshipDropdown => By.Id("s2id_SectorCodeName");
         private By TrainingBody => By.XPath("//body");
 
@@ -35,7 +34,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         {
             void SelectRandomCourse(By locator)
             {
-                for (int i = 0; i < dataHelper.RandomNumber; i++)
+                for (int i = 0; i < rAAV1DataHelper.RandomNumber; i++)
                 {
                     formCompletionHelper.SendKeys(locator, Keys.ArrowDown);
                 }
@@ -54,7 +53,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
                 case "Standard":
                     formCompletionHelper.SelectRadioOptionByText("Standard");
                     formCompletionHelper.Click(StandardsDropDownMenu);
-                    formCompletionHelper.SelectFromDropDownByText(StandardsDropDownMenu, dataHelper.TrainingStandard);
+                    formCompletionHelper.SelectFromDropDownByText(StandardsDropDownMenu, rAAV1DataHelper.TrainingStandard);
                     break;
 
                 case "Traineeship":
@@ -67,27 +66,27 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
 
         public RAA_EnterTrainingDetailsPage EnterTrainingToBeProvided()
         {
-            _webDriver.SwitchTo().Frame(_webDriver.FindElement(Iframe));
-            formCompletionHelper.EnterText(TrainingBody, dataHelper.TrainingDetails);
-            _webDriver.SwitchTo().DefaultContent();
+            tabHelper.SwitchToFrame();
+            formCompletionHelper.EnterText(TrainingBody, rAAV1DataHelper.TrainingDetails);
+            tabHelper.SwitchToDefaultContent();
             return this;
         }
 
         public RAA_EnterTrainingDetailsPage EnterContactName()
         {
-            formCompletionHelper.EnterText(ContactNameField, dataHelper.TrainingContactName);
+            formCompletionHelper.EnterText(ContactNameField, rAAV1DataHelper.TrainingContactName);
             return this;
         }
 
         public RAA_EnterTrainingDetailsPage ContactTelephone()
         {
-            formCompletionHelper.EnterText(ContactumberField, dataHelper.TrainingContactNumber);
+            formCompletionHelper.EnterText(ContactumberField, rAAV1DataHelper.TrainingContactNumber);
             return this;
         }
 
         public RAA_EnterTrainingDetailsPage EnterEmailDetails()
         {
-            formCompletionHelper.EnterText(EmailField, dataHelper.TrainingEmail);
+            formCompletionHelper.EnterText(EmailField, rAAV1DataHelper.TrainingEmail);
             return this;
         }
 

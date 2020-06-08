@@ -1,4 +1,5 @@
-﻿using SFA.DAS.UI.FrameworkHelpers;
+﻿using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
+using SFA.DAS.UI.FrameworkHelpers;
 using System;
 using System.Collections.Generic;
 
@@ -43,8 +44,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
             };
 
             SqlDatabaseConnectionHelper.ExecuteSqlCommand(
-                connectionString,
                 sqlQueryFromFile,
+                connectionString,
                 sqlParameters);
         }
     }

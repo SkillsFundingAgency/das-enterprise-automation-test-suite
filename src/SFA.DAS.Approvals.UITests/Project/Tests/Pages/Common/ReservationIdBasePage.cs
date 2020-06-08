@@ -1,26 +1,13 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.UI.Framework.TestSupport;
-using SFA.DAS.ConfigurationBuilder;
-using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
 {
-    public abstract class ReservationIdBasePage : BasePage
+    public abstract class ReservationIdBasePage : ApprovalsBasePage
     {
-        #region Helpers and Context
-        protected readonly PageInteractionHelper pageInteractionHelper;
-        protected readonly ObjectContext objectContext;
-        #endregion
-
         private By MessageLocator => By.TagName("body");
 
-        public ReservationIdBasePage(ScenarioContext context) : base(context)
-        {
-            pageInteractionHelper = context.Get<PageInteractionHelper>();
-            objectContext = context.Get<ObjectContext>();
-            VerifyPage();
-        }
+        protected ReservationIdBasePage(ScenarioContext context) : base(context) { }
 
         public void VerifySucessMessage()
         {

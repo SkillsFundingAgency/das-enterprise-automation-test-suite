@@ -1,0 +1,14 @@
+﻿using OpenQA.Selenium;
+using System.Collections.Generic;
+
+namespace SFA.DAS.UI.FrameworkHelpers
+{
+    public abstract class RandomElementHelper
+    {
+        protected readonly RandomDataGenerator randomDataGenerator;
+
+        public RandomElementHelper(RandomDataGenerator randomDataGenerator) => this.randomDataGenerator = randomDataGenerator;
+
+        public T GetRandomElementFromListOfElements<T>(List<T> elements) => randomDataGenerator.GetRandomElementFromListOfElements(elements);
+    }
+}

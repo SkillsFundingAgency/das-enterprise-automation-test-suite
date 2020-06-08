@@ -1,5 +1,4 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.Approvals.UITests.Project.Helpers;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common;
 using TechTalk.SpecFlow;
 
@@ -11,39 +10,26 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
-        private readonly EditedApprenticeDataHelper _dataHelper;
-        private readonly EditedApprenticeCourseDataHelper _coursedataHelper;
         #endregion
+
         protected By CourseCode => By.Id("CourseCode");
 
-        public ProviderEditApprenticePage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            _dataHelper = context.Get<EditedApprenticeDataHelper>();
-            _coursedataHelper = context.Get<EditedApprenticeCourseDataHelper>();
-            VerifyPage();
-        }
+        public ProviderEditApprenticePage(ScenarioContext context) : base(context) => _context = context;
 
         public ProviderConfirmChangesPage EditCostCourseAndReference()
         {
-            EditCostCourseAndReference(_dataHelper.ProviderRefernce);
+            EditCostCourseAndReference(editedApprenticeDataHelper.ProviderRefernce);
             return ProviderConfirmChangesPage();
         }
 
         public ProviderConfirmChangesPage EditApprenticeNameDobAndReference()
         {
-            EditApprenticeNameDobAndReference(_dataHelper.ProviderRefernce);
+            EditApprenticeNameDobAndReference(editedApprenticeDataHelper.ProviderRefernce);
             return ProviderConfirmChangesPage();
         }
 
-        protected override void SelectCourse()
-        {
-            formCompletionHelper.SelectFromDropDownByValue(CourseCode, _coursedataHelper.EditedCourse);
-        }
+        protected override void SelectCourse() => formCompletionHelper.SelectFromDropDownByValue(CourseCode, editedApprenticeCourseDataHelper.EditedCourse);
 
-        private ProviderConfirmChangesPage ProviderConfirmChangesPage()
-        {
-            return new ProviderConfirmChangesPage(_context);
-        }
+        private ProviderConfirmChangesPage ProviderConfirmChangesPage() => new ProviderConfirmChangesPage(_context);
     }
 }

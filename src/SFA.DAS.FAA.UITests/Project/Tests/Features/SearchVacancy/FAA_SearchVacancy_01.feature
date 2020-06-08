@@ -1,6 +1,6 @@
 ﻿Feature: FAA_SearchVacancy_01
-	
 
+@faa
 @raa-v1
 @regression
 Scenario: FAA_SearchVacancy_01 - Search Nationwide Vacancy in FAA and checkin the sort results and distance on the vacancies

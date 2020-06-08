@@ -10,8 +10,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         protected override string PageTitle => "Apprenticeship resumed";
         protected override By PageHeader => By.CssSelector("h1.heading-large");
 
-        public ResumedApprenticeDetailsPage(ScenarioContext context) : base(context)
-        {
-        }
+        public ResumedApprenticeDetailsPage(ScenarioContext context) : base(context) { }
     }
 }

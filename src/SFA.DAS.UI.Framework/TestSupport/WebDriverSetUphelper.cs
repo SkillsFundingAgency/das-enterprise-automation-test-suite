@@ -12,11 +12,8 @@ namespace SFA.DAS.UI.Framework.TestSupport
     public class WebDriverSetupHelper
     {
         private IWebDriver WebDriver;
-
         private readonly ScenarioContext _context;
-
         private readonly ObjectContext _objectContext;
-
         private readonly FrameworkConfig _frameworkConfig;
 
         public WebDriverSetupHelper(ScenarioContext context)
@@ -34,17 +31,14 @@ namespace SFA.DAS.UI.Framework.TestSupport
             {
                 case bool _ when browser.IsFirefox():
                     WebDriver = new FirefoxDriver(_objectContext.GetFireFoxDriverLocation());
-                    WebDriver.Manage().Window.Maximize();
                     break;
 
                 case bool _ when browser.IsChrome():
-
                     WebDriver = ChromeDriver(new List<string>());
                     break;
 
                 case bool _ when browser.IsIe():
                     WebDriver = new InternetExplorerDriver(_objectContext.GetIeDriverLocation());
-                    WebDriver.Manage().Window.Maximize();
                     break;
 
                 case bool _ when browser.IsZap():
@@ -66,8 +60,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
 
             WebDriver.Manage().Window.Maximize();
             WebDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(_frameworkConfig.TimeOutConfig.PageNavigation);
-            var currentWindow = WebDriver.CurrentWindowHandle;
-            WebDriver.SwitchTo().Window(currentWindow);
+            WebDriver.SwitchTo().Window(WebDriver.CurrentWindowHandle);
             WebDriver.Manage().Cookies.DeleteAllCookies();
 
             _context.SetWebDriver(WebDriver);
@@ -103,6 +96,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
         {
             var chromeOptions = new ChromeOptions();
             arguments.ForEach((x) => chromeOptions.AddArgument(x));
+            chromeOptions.UnhandledPromptBehavior = UnhandledPromptBehavior.Accept;
             return chromeOptions;
         }
     }

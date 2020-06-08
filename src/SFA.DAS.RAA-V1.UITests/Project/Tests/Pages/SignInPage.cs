@@ -1,5 +1,4 @@
-﻿using OpenQA.Selenium;
-using SFA.DAS.IdamsLogin.Service.Project.Tests.Pages;
+﻿using SFA.DAS.IdamsLogin.Service.Project.Tests.Pages;
 using SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.Manage;
 using SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA;
 using SFA.DAS.UI.Framework.TestSupport;
@@ -28,9 +27,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages
         public Manage_HomePage SubmitManageLoginDetails()
         {
             SubmitValidLoginDetails(_config.ManageUserName, _config.ManagePassword);
-
             _pageInteractionHelper.WaitforURLToChange("/dashboard");
-
             return new Manage_HomePage(_context);
         }
 
@@ -42,7 +39,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages
 
         public RAA_InvalidCredentialsSignInPage SubmitRecruitmentInvalidLoginDetails()
         {
-            SubmitValidLoginDetails($"{_config.RecruitUserName}1",$"{_config.RecruitUserName}1");
+            SubmitValidLoginDetails($"{_config.RecruitUserName}1", $"{_config.RecruitUserName}1");
             return new RAA_InvalidCredentialsSignInPage(_context);
         }
 
