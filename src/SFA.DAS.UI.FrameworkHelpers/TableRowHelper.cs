@@ -26,7 +26,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
             {
                 if (tableRow.Text.Contains(byKey))
                 {
-                    _formCompletionHelper.ClickInterceptedElement(links[i]);
+                    _formCompletionHelper.ClickElement(links[i]);
                     return;
                 }
                 i++;

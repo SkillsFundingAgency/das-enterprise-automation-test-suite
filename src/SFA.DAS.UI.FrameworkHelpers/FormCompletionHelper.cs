@@ -22,10 +22,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         public void ClickElement(Func<IWebElement> element, Action retryAction = null) => _retryHelper.RetryClickOnWebDriverException(element, retryAction);
 
-        public void ClickElement(IWebElement element) => _retryHelper.RetryOnElementClickInterceptedException(element, true);
-
-        //links are Intercepted by Help menu.
-        public void ClickInterceptedElement(IWebElement element) => _retryHelper.RetryOnElementClickInterceptedException(element, false);
+        public void ClickElement(IWebElement element) => _retryHelper.RetryOnElementClickInterceptedException(element);
 
         public void ClickElement(By locator)
         {
