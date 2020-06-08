@@ -32,7 +32,6 @@ namespace SFA.DAS.Campaigns.UITests
         {
             _howDoTheyWorkPage = new HowDoTheyWorkPage(_context);
             _howDoTheyWorkPage.NavigateToHireAnApprenticePage()
-                //.CheckHiringAnApprenticeIconPage()
                 .ClickHowDoTheyWorkLink()
                 .CheckUpSkillingYourCurrentStaffPage()
                 .ClickHowDoTheyWorkLink()
@@ -40,7 +39,6 @@ namespace SFA.DAS.Campaigns.UITests
                 .ClickHowDoTheyWorkLink()
                 .CheckTrainYourApprenticePage()
                 .ClickHowDoTheyWorkLink()
-                //.CheckEndPointAssessmentPage();
                 .NavigateToEndPointAssesmentPage();
          
 
