@@ -5,14 +5,12 @@ using System.Collections.Generic;
 
 namespace SFA.DAS.Roatp.UITests.Project.Helpers.RoatpAdmin
 {
-    public class RoatpAdminDataHelpers
+    public class RoatpAdminDataHelpers : RandomDataGeneratorHelper
     {
-        private readonly RandomDataGenerator _randomDataGenerator;
-
-        public RoatpAdminDataHelpers(RandomDataGenerator randomDataGenerator) => _randomDataGenerator = randomDataGenerator;
+        public RoatpAdminDataHelpers(RandomDataGenerator randomDataGenerator) : base(randomDataGenerator) { }
 
         public DateTime Dob => DateTime.Now.AddYears(-45);
 
-        public IWebElement GetRandomElementFromListOfElements(List<IWebElement> options) => _randomDataGenerator.GetRandomElementFromListOfElements(options);
+        public IWebElement GetRandomElementFromListOfElements(List<IWebElement> options) => GetRandomElementFromListOfElements(options);
     }
 }

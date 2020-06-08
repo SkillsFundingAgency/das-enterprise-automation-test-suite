@@ -5,13 +5,10 @@ using System.Collections.Generic;
 
 namespace SFA.DAS.EPAO.UITests.Project.Helpers
 {
-    public class EPAODataHelper : RandomElementHelper
+    public class EPAODataHelper : RandomDataGeneratorHelper
     {
-        protected readonly RandomDataGenerator randomDataGenerator;
-
         public EPAODataHelper(RandomDataGenerator randomDataGenerator) : base(randomDataGenerator)
         {
-            this.randomDataGenerator = randomDataGenerator;
             CurrentDay = DateTime.Now.Day;
             CurrentMonth = DateTime.Now.Month;
             CurrentYear = DateTime.Now.Year;
@@ -35,7 +32,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
 
         public string GetRandomAlphabeticString(int length) => randomDataGenerator.GenerateRandomAlphabeticString(length);
 
-        public IWebElement GetRandomElementFromListOfElements(List<IWebElement> options) => randomDataGenerator.GetRandomElementFromListOfElements(options);
+        public IWebElement GetRandomElementFromListOfElements(List<IWebElement> options) => GetRandomElementFromListOfElements(options);
 
         private string GetDateTimeValue() => DateTime.Now.ToString("ddMMMyyyyHHmmss").ToUpper();
     }

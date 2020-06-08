@@ -2,21 +2,18 @@
 
 namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
 {
-    public class EditedApprenticeDataHelper
+    public class EditedApprenticeDataHelper : RandomDataGeneratorHelper
     {
-        private readonly RandomDataGenerator _randomDataGenerator;
-
-        public EditedApprenticeDataHelper(RandomDataGenerator randomDataGenerator, ApprenticeDataHelper apprenticeDataHelper)
+        public EditedApprenticeDataHelper(RandomDataGenerator randomDataGenerator, ApprenticeDataHelper apprenticeDataHelper) : base(randomDataGenerator)
         {
-            _randomDataGenerator = randomDataGenerator;
             ApprenticeEditedFirstname = apprenticeDataHelper.ApprenticeFirstname;
             ApprenticeEditedLastname = apprenticeDataHelper.ApprenticeLastname;
-            DateOfBirthDay = _randomDataGenerator.GenerateRandomDateOfMonth();
-            DateOfBirthMonth = _randomDataGenerator.GenerateRandomMonth();
-            DateOfBirthYear = _randomDataGenerator.GenerateRandomDobYear();
-            EmployerReference = _randomDataGenerator.GenerateRandomAlphanumericString(10);
-            ProviderRefernce = _randomDataGenerator.GenerateRandomAlphanumericString(10);
-            TrainingPrice = "2" + _randomDataGenerator.GenerateRandomNumber(3);
+            DateOfBirthDay = this.randomDataGenerator.GenerateRandomDateOfMonth();
+            DateOfBirthMonth = this.randomDataGenerator.GenerateRandomMonth();
+            DateOfBirthYear = this.randomDataGenerator.GenerateRandomDobYear();
+            EmployerReference = this.randomDataGenerator.GenerateRandomAlphanumericString(10);
+            ProviderRefernce = this.randomDataGenerator.GenerateRandomAlphanumericString(10);
+            TrainingPrice = "2" + this.randomDataGenerator.GenerateRandomNumber(3);
         }
 
         public int DateOfBirthDay { get; }
@@ -35,13 +32,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
 
         public string SetCurrentApprenticeEditedFirstname()
         {
-            ApprenticeEditedFirstname = _randomDataGenerator.GenerateRandomAlphabeticString(8);
+            ApprenticeEditedFirstname = randomDataGenerator.GenerateRandomAlphabeticString(8);
             return ApprenticeEditedFirstname;
         }
 
         public string SetCurrentApprenticeEditedLastname()
         {
-            ApprenticeEditedLastname = _randomDataGenerator.GenerateRandomAlphabeticString(12);
+            ApprenticeEditedLastname = randomDataGenerator.GenerateRandomAlphabeticString(12);
             return ApprenticeEditedLastname;
         }
 

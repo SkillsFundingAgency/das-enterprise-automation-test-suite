@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace SFA.DAS.RAA.DataGenerator
 {
-    public class RAAV1DataHelper : RandomElementHelper
+    public class RAAV1DataHelper : RandomDataGeneratorHelper
     {
         private readonly RegexHelper _regexHelper;
 
@@ -48,7 +48,7 @@ namespace SFA.DAS.RAA.DataGenerator
 
         public IWebElement Employers(List<IWebElement> links)
         {
-            var randomEmployer = randomDataGenerator.GetRandomElementFromListOfElements(links);
+            var randomEmployer = GetRandomElementFromListOfElements(links);
 
             EmployerErn = _regexHelper.GetEmployerERN(randomEmployer.GetAttribute("href"));
 
