@@ -12,7 +12,6 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
         private readonly ScenarioContext _context;
         #endregion
 
-        private By _levelLowToHigh = By.Id("SearchQuery_SortOrder");
         private By Keywords => By.CssSelector("#Keywords");
         
         private By Search => By.CssSelector("#employer-apprenticeship-search");
@@ -32,17 +31,10 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
         {
             formCompletionHelper.EnterText(Keywords, keyword);
             formCompletionHelper.ClickElement(Search);
-            //set level low to high
-            SetLevelLowToHigh();
             AddFavourite();
             return new SearchResultsPage(_context);
         }
 
-
-        private void SetLevelLowToHigh()
-        {
-            formCompletionHelper.SelectByIndex(_levelLowToHigh, 2);
-        }
         public SummaryOfThisApprenticeshipPage GoToSummaryOfThisApprenticeshipPage()
         {
             formCompletionHelper.ClickElement(Apprenticeship);
@@ -58,6 +50,5 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
         private void AddFavourite() => AddFavourite(
             (a) => { campaignsDataHelper.CourseId.Add(a); objectContext.SetCourseId(a); },
             (e) => e.First());
-
     }
 }

@@ -18,7 +18,6 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
         private readonly By _continueButton = By.XPath("//button[ contains(@class,  'button')  and contains(text(), 'Continue')]");
         #endregion
 
-
         #region Helpers and Context
         private readonly ScenarioContext _context;
         private readonly HireAnApprenticePage _hireAnApprenticePage;
@@ -30,11 +29,9 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
             VerifyPage();
         }
 
-
         public HireAnApprenticePage CheckHiringAnApprenticeIconPage()
         {
             formCompletionHelper.ClickElement(_hiringAnApprenticeIconLink);
-
             return new HireAnApprenticePage(_context);
         }
 
@@ -67,6 +64,5 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
             formCompletionHelper.ClickElement(_continueButton);
             return new HireAnApprenticePage(_context);
         }
-
     }
 }

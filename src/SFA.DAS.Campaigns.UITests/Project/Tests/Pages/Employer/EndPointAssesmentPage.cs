@@ -5,7 +5,6 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
 {
     public class EndPointAssessmentPage : EmployerBasePage
     {
-
         protected override string PageTitle => "END-POINT ASSESSMENTS";
 
         #region Page Object Elements
@@ -21,13 +20,9 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
         private void VerifyHeadings()
         {
             pageInteractionHelper.VerifyText(_subHeading1, "ASSESSING YOUR APPRENTICE");
-            //pageInteractionHelper.VerifyText(_subHeading2, "THE END-POINT ASSESSMENT");
             pageInteractionHelper.VerifyText(_subHeading3, "FINDING AN END-POINT ASSESSMENT ORGANISATION");
             pageInteractionHelper.VerifyText(_subHeading4, "THE COST OF AN END-POINT ASSESSMENT");
             pageInteractionHelper.VerifyText(_subHeading5, "CERTIFICATION");
-
         }
-
-
     }
 }

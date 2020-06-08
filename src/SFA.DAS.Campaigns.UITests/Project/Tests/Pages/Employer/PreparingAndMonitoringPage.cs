@@ -14,6 +14,5 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
             pageInteractionHelper.VerifyText(Heading2, "MONITORING");
         }
     }
-
 }
 

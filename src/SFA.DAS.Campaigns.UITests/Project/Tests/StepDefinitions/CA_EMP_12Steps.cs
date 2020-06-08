@@ -5,7 +5,6 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Campaigns.UITests
 {
-
     [Binding]
     public class CA_EMP_12Steps
 
@@ -14,6 +13,7 @@ namespace SFA.DAS.Campaigns.UITests
         private readonly ScenarioContext _context;
         private HowDoTheyWorkPage _howDoTheyWorkPage;
         private FundingAnApprenticeshipPage fundingAnApprenticeshipPage;
+
         public CA_EMP_12Steps(ScenarioContext context)
         {
             _context = context;
@@ -26,7 +26,6 @@ namespace SFA.DAS.Campaigns.UITests
             _howDoTheyWorkPage.ClickContinueButton()
                 .ClickHowDoTheyWorkLink()
                 .NavigateToFundingAnApprenticeshipPage();
-               
         }
         
         [Then(@"Verifies that correct content is displayed on Funding An Apprentice page")]
