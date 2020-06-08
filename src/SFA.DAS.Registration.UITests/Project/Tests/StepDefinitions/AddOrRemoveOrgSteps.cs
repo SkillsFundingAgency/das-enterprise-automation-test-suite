@@ -24,18 +24,15 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         }
 
         [Then(@"the Employer is Not allowed to Remove the first Org added")]
-        public void ThenTheEmployerIsNotAllowedToRemoveTheFirstOrgAdded()
-        {
-            Assert.AreEqual(_homePage.GoToYourOrganisationsAndAgreementsPage().IsRemoveLinkBesideNewlyAddedOrg(), false);
-            _homePage = new HomePage(_context, true);
-        }
+        public void ThenTheEmployerIsNotAllowedToRemoveTheFirstOrgAdded() =>
+            Assert.AreEqual(new HomePage(_context).GoToYourOrganisationsAndAgreementsPage().IsRemoveLinkBesideNewlyAddedOrg(), false);
 
         [Given(@"the Employer initiates adding another Org of (Company|PublicSector|Charity|Charity2) Type")]
         [When(@"the Employer initiates adding another Org of (Company|PublicSector|Charity|Charity2) Type")]
         public void WhenTheEmployerInitiatesAddingAnotherOrgType(OrgType orgType)
         {
             _registrationDataHelper.SetAccountNameAsOrgName = false;
-            _checkYourDetailsPage = _accountCreationStepsHelper.SearchForAnotherOrg(new HomePage(_context), orgType).SelectYourOrganisation(orgType);
+            _checkYourDetailsPage = _accountCreationStepsHelper.SearchForAnotherOrg(new HomePage(_context, true), orgType).SelectYourOrganisation(orgType);
         }
 
         [Then(@"the new Org added is shown in the Account Organisations list")]
