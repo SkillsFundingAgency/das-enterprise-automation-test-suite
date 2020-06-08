@@ -18,6 +18,7 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
             InvalidGGPassword = RandomNumericString(10);
             InvalidCompanyNumber = RandomNumericString(10);
             CompanyTypeOrg = organisationName;
+            SetAccountNameAsOrgName = true;
         }
 
         public string FirstName => "AutoFirstName";
@@ -32,6 +33,7 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
         public string InvalidGGPassword { get; }
         public string InvalidCompanyNumber { get; }
         public string CompanyTypeOrg { get; }
+        public bool SetAccountNameAsOrgName { get; set; }
         public string CompanyTypeOrg2 => "TESCO PLC";
         public string PublicSectorTypeOrg => "Royal School Hampstead";
         public string CharityTypeOrg1Number => "200895";
