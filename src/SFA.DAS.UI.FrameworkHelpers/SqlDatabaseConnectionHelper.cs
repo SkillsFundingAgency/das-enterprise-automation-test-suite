@@ -8,16 +8,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
 {
     public static class SqlDatabaseConnectionHelper
     {
-        public static int ExecuteSqlCommand(string connectionString, string queryToExecute, object dynamicParameters = null)
-        {
-            using (var connection = new SqlConnection(connectionString))
-            {
-                var affectedRows = connection.Execute(queryToExecute, dynamicParameters);
-                return affectedRows;
-            }
-        }
-
-        public static int ExecuteSqlCommand(String connectionString, String queryToExecute, Dictionary<String, String> parameters)
+        public static int ExecuteSqlCommand(string queryToExecute, string connectionString, Dictionary<string, string> parameters)
         {
             try
             {
@@ -26,7 +17,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
                     databaseConnection.Open();
                     using (SqlCommand command = new SqlCommand(queryToExecute, databaseConnection))
                     {
-                        foreach (KeyValuePair<String, String> param in parameters)
+                        foreach (KeyValuePair<string, string> param in parameters)
                         {
                             command.Parameters.AddWithValue(param.Key, param.Value);
                         }
@@ -41,7 +32,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
             }
         }
 
-        public static List<object[]> ReadDataFromDataBase(string queryToExecute, string connectionString, Dictionary<String, String> parameters = null)
+        public static List<object[]> ReadDataFromDataBase(string queryToExecute, string connectionString, Dictionary<string, string> parameters = null)
         {
             try
             {
@@ -53,7 +44,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
                         if (parameters != null)
                         {
-                            foreach (KeyValuePair<String, String> param in parameters)
+                            foreach (KeyValuePair<string, string> param in parameters)
                             {
                                 command.Parameters.AddWithValue(param.Key, param.Value);
                             }
@@ -76,6 +67,14 @@ namespace SFA.DAS.UI.FrameworkHelpers
             {
                 throw new Exception("Exception occurred while executing SQL query"
                     + "\n Exception: " + exception);
+            }
+        }
+
+        public static int ExecuteSqlCommand(string queryToExecute, string connectionString)
+        {
+            using (var connection = new SqlConnection(connectionString))
+            {
+                return connection.Execute(queryToExecute);
             }
         }
     }
