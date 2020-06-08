@@ -114,8 +114,8 @@ this.ScenarioInitialize(scenarioInfo);
 #line 17
  testRunner.Given("the Delete Assessor User is logged into Assessment Service Application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 18
- testRunner.Then("the User is able to rerequest the certificate certifying an Apprentice as \'Passed" +
-                    "\' which was\'ReRequesting\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the User is able to rerequest the certificate certifying an Apprentice as \'PassWi" +
+                    "thExcellence\' which was\'ReRequesting\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

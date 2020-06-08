@@ -84,7 +84,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
 
             new AS_WhatGradePage(_context).SelectGradeAndEnterDate(grade);
 
-            if (grade == "Passed")
+            if (grade == "PassWithExcellence")
                 new AS_ConfirmAddressPage(_context).ClickContinueInConfirmEmployerAddressPage()
                     .EnterRecipientDetailsAndContinue();
         }
@@ -109,7 +109,6 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
                 .ClickContinueInCheckAndSubmitAssessmentPage();
             }
         }
-
         public void RemoveChangeOrgDetailsPermissionForTheUser()
         {
             _loggedInHomePage.ClickManageUsersLink()
