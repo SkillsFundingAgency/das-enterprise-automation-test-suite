@@ -74,7 +74,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
 
         [Then(@"the Sign Agreement journey from the Account home page shows Accepted Agreement page with link to review other pending agreements")]
         public void ThenTheSignAgreementJourneyFromTheAccountHomePageShowsAcceptedAgreementPageWithLinkToReviewOtherPendingAgreements() =>
-            SignAgreementFromHomePage().CheckIfReviewAndAcceptYourOtherAgreementsLinkIsPresent().ClickOnViewYourAccountButton();
+            SignAgreementFromHomePage().ClickOnReviewAndAcceptYourOtherAgreementsLink();
 
         private void VerifyOrgDetails(string orgNumber, string OrgName, string orgAddress)
         {

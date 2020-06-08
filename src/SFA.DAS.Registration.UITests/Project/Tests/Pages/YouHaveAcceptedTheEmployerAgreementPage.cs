@@ -27,10 +27,10 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             return new HomePage(_context);
         }
 
-        public YouHaveAcceptedTheEmployerAgreementPage CheckIfReviewAndAcceptYourOtherAgreementsLinkIsPresent()
+        public YourOrganisationsAndAgreementsPage ClickOnReviewAndAcceptYourOtherAgreementsLink()
         {
-            VerifyPage(ReviewAndAcceptYourOtherAgreementsLink);
-            return this;
+            formCompletionHelper.Click(ReviewAndAcceptYourOtherAgreementsLink);
+            return new YourOrganisationsAndAgreementsPage(_context);
         }
     }
 }
