@@ -24,8 +24,6 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         public void ClickElement(IWebElement element) => _retryHelper.RetryOnElementClickInterceptedException(element);
 
-        public void ClickInterceptedElement(IWebElement element) => _retryHelper.RetryOnElementClickInterceptedException(element, false);
-
         public void ClickElement(By locator)
         {
             _webDriverWaitHelper.WaitForElementToBeClickable(locator);

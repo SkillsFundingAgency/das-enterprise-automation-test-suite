@@ -29,7 +29,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers.DataHelpers
 
         public string GetRandomAlphabeticString(int length) => randomDataGenerator.GenerateRandomAlphabeticString(length);
 
-        public IWebElement GetRandomElementFromListOfElements(List<IWebElement> options) => GetRandomElementFromListOfElements(options);
+        public IWebElement GetRandomElementFromListOfElements(List<IWebElement> options) => base.GetRandomElementFromListOfElements(options);
 
         private string GetDateTimeValue() => DateTime.Now.ToString("ddMMMyyyyHHmmss").ToUpper();
     }

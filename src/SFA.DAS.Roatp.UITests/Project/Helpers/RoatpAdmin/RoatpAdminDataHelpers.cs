@@ -11,6 +11,6 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.RoatpAdmin
 
         public DateTime Dob => DateTime.Now.AddYears(-45);
 
-        public IWebElement GetRandomElementFromListOfElements(List<IWebElement> options) => GetRandomElementFromListOfElements(options);
+        public IWebElement GetRandomElementFromListOfElements(List<IWebElement> options) => base.GetRandomElementFromListOfElements(options);
     }
 }
