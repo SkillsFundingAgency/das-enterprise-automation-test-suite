@@ -8,12 +8,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
         {
             ApprenticeEditedFirstname = apprenticeDataHelper.ApprenticeFirstname;
             ApprenticeEditedLastname = apprenticeDataHelper.ApprenticeLastname;
-            DateOfBirthDay = this.randomDataGenerator.GenerateRandomDateOfMonth();
-            DateOfBirthMonth = this.randomDataGenerator.GenerateRandomMonth();
-            DateOfBirthYear = this.randomDataGenerator.GenerateRandomDobYear();
-            EmployerReference = this.randomDataGenerator.GenerateRandomAlphanumericString(10);
-            ProviderRefernce = this.randomDataGenerator.GenerateRandomAlphanumericString(10);
-            TrainingPrice = "2" + this.randomDataGenerator.GenerateRandomNumber(3);
+            DateOfBirthDay = randomDataGenerator.GenerateRandomDateOfMonth();
+            DateOfBirthMonth = randomDataGenerator.GenerateRandomMonth();
+            DateOfBirthYear = randomDataGenerator.GenerateRandomDobYear();
+            EmployerReference = randomDataGenerator.GenerateRandomAlphanumericString(10);
+            ProviderRefernce = randomDataGenerator.GenerateRandomAlphanumericString(10);
+            TrainingPrice = "2" + randomDataGenerator.GenerateRandomNumber(3);
         }
 
         public int DateOfBirthDay { get; }
