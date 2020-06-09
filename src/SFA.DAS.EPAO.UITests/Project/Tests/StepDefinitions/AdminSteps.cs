@@ -2,6 +2,7 @@
 using SFA.DAS.EPAO.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin;
 using SFA.DAS.IdamsLogin.Service.Project.Tests.Pages;
+using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
@@ -24,7 +25,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
             _ePAOAdminDataHelper = context.Get<EPAOAdminDataHelper>();
             _ePAOAdminSqlDataHelper = context.Get<EPAOAdminSqlDataHelper>();
             _tabHelper = context.Get<TabHelper>();
-            _config = context.Get<EPAOConfig>();
+            _config = context.GetEPAOConfig<EPAOConfig>();
         }
 
         [Given(@"the admin appoves the assessor")]
@@ -65,7 +66,6 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
                 .GoToApprovedApplicationOverviewPage()
                 .ReturnToOrganisationApplicationsPage()
                 .ReturnToDashboard();
-
         }
 
 

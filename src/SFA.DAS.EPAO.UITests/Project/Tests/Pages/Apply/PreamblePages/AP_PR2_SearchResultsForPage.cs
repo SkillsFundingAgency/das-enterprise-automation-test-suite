@@ -9,7 +9,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.PreamblePages
         private readonly ScenarioContext _context;
 
         #region Locators
-        private By OrgLink => By.XPath($"//button[text()='{ApplyOrganisationName}']");
+        private By OrgLink => By.XPath($"//button[text()='{objectContext.GetApplyOrganisationName()}']");
         private By InvalidSearchResultText => By.CssSelector("#main-content .govuk-heading-m");
         private By SearchTextBox => By.Id("SearchString");
         #endregion

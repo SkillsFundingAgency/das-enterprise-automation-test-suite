@@ -40,7 +40,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
         private ApplicationOverviewPage GoToApplicationOverviewPage(By by)
         {
             formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(by));
-            formCompletionHelper.ClickLinkByText(ApplyOrganisationName);
+            formCompletionHelper.ClickLinkByText(objectContext.GetApplyOrganisationName());
             return new ApplicationOverviewPage(_context);
         }
     }
