@@ -89,7 +89,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             _homePage = _checkYourDetailsPage.ClickYesContinueButton().GoToHomePage();
         }
 
-        private YouHaveAcceptedTheEmployerAgreementPage SignAgreementFromHomePage() =>
-            _homePage.ClickAcceptYourAgreementLinkInHomePagePanel().ClickContinueToYourAgreementButtonInAboutYourAgreementPage().SignAgreement();
+        private YouHaveAcceptedTheEmployerAgreementPage SignAgreementFromHomePage() => _accountCreationStepsHelper.SignAgreementFromHomePage(_homePage);
     }
 }

@@ -96,6 +96,9 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
                  .ClickOnViewYourAccountButton();
         }
 
+        public YouHaveAcceptedTheEmployerAgreementPage SignAgreementFromHomePage(HomePage homePage) =>
+            homePage.ClickAcceptYourAgreementLinkInHomePagePanel().ClickContinueToYourAgreementButtonInAboutYourAgreementPage().SignAgreement();
+
         public void SetFirstAccountOrganisationName(OrgType orgType) =>
             _objectContext.SetFirstAccountOrganisationName(GetOrgName(orgType));
 

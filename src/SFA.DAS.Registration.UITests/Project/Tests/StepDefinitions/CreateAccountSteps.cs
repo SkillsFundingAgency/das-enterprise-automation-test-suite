@@ -201,10 +201,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         }
 
         [When(@"Signs the Agreement from Account HomePage Panel")]
-        public void WhenSignsTheAgreementFromAccountHomePagePanel() =>
-            _homePage.ClickAcceptYourAgreementLinkInHomePagePanel()
-                .ClickContinueToYourAgreementButtonInAboutYourAgreementPage()
-                .SignAgreement();
+        public void WhenSignsTheAgreementFromAccountHomePagePanel() => _accountCreationStepsHelper.SignAgreementFromHomePage(_homePage).ClickOnViewYourAccountButton();
 
         [Then(@"'Start adding apprentices now' task link is displayed under Tasks pane")]
         public void ThenTaskLinkIsDisplayedUnderTasksPane() => _homePage.VerifyStartAddingApprenticesNowTaskLink();
