@@ -26,6 +26,8 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages
 
         protected override By AcceptCookieButton => By.CssSelector(".das-cookie-banner__button-accept");
 
+        protected string ApplyOrganisationName => "BRUNEL UNIVERSITY LONDON";
+
         private By ChooseFile => By.ClassName("govuk-file-upload");
 
         public EPAO_BasePage(ScenarioContext context) : base(context)

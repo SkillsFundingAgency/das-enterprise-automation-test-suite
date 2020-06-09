@@ -95,6 +95,8 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("the Apply User completes the FHA section", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 12
  testRunner.Then("the application is allowed to be submitted", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 13
+ testRunner.Given("the admin appoves the assessor", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
             this.ScenarioCleanup();
         }

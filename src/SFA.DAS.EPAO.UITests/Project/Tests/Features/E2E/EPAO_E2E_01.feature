@@ -10,3 +10,4 @@ Scenario: EPAO_E2E_01 - Apply Approve and Add a standard
 	And the Apply User completes the Declarations section
 	And the Apply User completes the FHA section
 	Then the application is allowed to be submitted
+	Given the admin appoves the assessor
