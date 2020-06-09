@@ -24,7 +24,6 @@ namespace SFA.DAS.Campaigns.UITests
             _stepsHelper.GoToFireItUpHomePage()
                 .NavigateToEmployerHubPage()
                 .ClickHowDoTheyWorkLink();
-
         }
 
         [Then(@"verify the links are not broken on How do they work page")]
