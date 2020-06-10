@@ -163,7 +163,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
                     .EnterRecipientDetailsAndContinue();
             }
 
-            return null;
+            return new AS_CheckAndSubmitAssessmentPage(_context);
         }
     }
 }
