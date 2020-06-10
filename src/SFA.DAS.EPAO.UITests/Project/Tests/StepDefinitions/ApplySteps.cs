@@ -15,32 +15,17 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         private readonly ScenarioContext _context;
         private AP_ApplicationOverviewPage _applicationOverviewPage;
         private AS_CreateAnAccountPage _createAnAccountPage;
-        private readonly AssessmentServiceStepsHelper _stepsHelper;
         private readonly EPAOApplyDataHelper _dataHelper;
         private readonly ApplyStepsHelper _applyStepsHelper;
+        private readonly EPAOHomePageHelper _ePAOHomePageHelper;
 
         public ApplySteps(ScenarioContext context)
         {
             _context = context;
-            _stepsHelper = new AssessmentServiceStepsHelper(_context);
             _applyStepsHelper = new ApplyStepsHelper(_context);
             _dataHelper = context.Get<EPAOApplyDataHelper>();
+            _ePAOHomePageHelper = new EPAOHomePageHelper(_context);
         }
-
-        [Given(@"submits an Assessment Service Application")]
-        public void GivenSubmitsAnAssessmentServiceApplication()
-        {
-            _applicationOverviewPage = _applyStepsHelper.CompletePreambleJourney("Brunell School");
-
-            _applicationOverviewPage = _applyStepsHelper.CompleteOrganisationDetailsSection(_applicationOverviewPage);
-
-            _applicationOverviewPage = _applyStepsHelper.CompleteDeclarationsSection(_applicationOverviewPage);
-
-            _applicationOverviewPage = _applyStepsHelper.CompletesTheFHASection(_applicationOverviewPage);
-
-            _applyStepsHelper.SubmitApplication(_applicationOverviewPage);
-        }
-
 
         [When(@"the Apply User completes preamble journey")]
         public void WhenTheApplyUserCompletesPreambleJourney() => _applicationOverviewPage = _applyStepsHelper.CompletePreambleJourney("BRUNEL UNIVERSITY LONDON");
@@ -64,7 +49,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         public void ThenTheApplyUserIsAbleToSignoutFromTheApplication() => new AS_LoggedInHomePage(_context).ClickSignOutLink().ClickSignBackInLink();
 
         [When(@"the Apply User initiates Create Account journey")]
-        public void WhenTheApplyUserInitiatesCreateAccountJourney() => _createAnAccountPage = _stepsHelper.LaunchAssessmentServiceApplication().ClickCreateAnAccountLink();
+        public void WhenTheApplyUserInitiatesCreateAccountJourney() => _createAnAccountPage = _ePAOHomePageHelper.GoToEpaoAssessmentLandingPage().ClickCreateAnAccountLink();
 
         [Then(@"the Apply User is able to Create an Account")]
         public void ThenTheApplyUserIsAbleToCreateAnAccount() => _createAnAccountPage.EnterAccountDetailsAndClickCreateAccount();

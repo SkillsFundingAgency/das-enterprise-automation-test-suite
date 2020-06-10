@@ -1,8 +1,5 @@
 ﻿using SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService;
 using SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.OrganisationDetails;
-using SFA.DAS.Login.Service.Helpers;
-using SFA.DAS.UI.Framework.TestSupport;
-using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EPAO.UITests.Project.Helpers
@@ -10,24 +7,8 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
     public class AssessmentServiceStepsHelper
     {
         private readonly ScenarioContext _context;
-        private AS_LoggedInHomePage _loggedInHomePage;
-        private readonly TabHelper _tabHelper;
-        private EPAOConfig _ePAOConfig;
 
-        public AssessmentServiceStepsHelper(ScenarioContext context)
-        {
-            _context = context;
-            _tabHelper = context.Get<TabHelper>();
-            _ePAOConfig = context.GetEPAOConfig<EPAOConfig>();
-        }
-
-        public AS_LandingPage LaunchAssessmentServiceApplication()
-        {
-            _tabHelper.GoToUrl(_ePAOConfig.AssessmentServiceUrl);
-            return new AS_LandingPage(_context);
-        }
-
-        public AS_LoggedInHomePage LoginToAssessmentServiceApplication(LoginUser user) => _loggedInHomePage = new AS_LandingPage(_context).ClickStartButton().SignInWithValidDetails(user);   
+        public AssessmentServiceStepsHelper(ScenarioContext context) => _context = context;
 
         public void CertifyApprentice(string grade, string enrolledStandard)
         {
@@ -70,9 +51,9 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
             }
         }
 
-        public void RemoveChangeOrgDetailsPermissionForTheUser()
+        public void RemoveChangeOrgDetailsPermissionForTheUser(AS_LoggedInHomePage loggedInHomePage)
         {
-            _loggedInHomePage.ClickManageUsersLink()
+            loggedInHomePage.ClickManageUsersLink()
                 .ClickManageUserNameLink()
                 .ClickEditUserPermissionLink()
                 .UnSelectChangeOrganisationDetailsCheckBox()
@@ -121,11 +102,6 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
                 .ClickViewOrganisationDetailsLink();
         }
 
-        public string InviteAUser(AS_LoggedInHomePage _loggedInHomePage)
-        {
-            return _loggedInHomePage.ClickManageUsersLink()
-                .ClickInviteNewUserButton()
-                .EnterUserDetailsAndSendInvite();      
-        }
+        public string InviteAUser(AS_LoggedInHomePage loggedInHomePage) => loggedInHomePage.ClickManageUsersLink().ClickInviteNewUserButton().EnterUserDetailsAndSendInvite(); 
     }
 }

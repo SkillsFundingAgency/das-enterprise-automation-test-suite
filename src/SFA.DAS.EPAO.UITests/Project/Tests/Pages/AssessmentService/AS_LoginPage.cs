@@ -29,9 +29,9 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
             return new AS_LoggedInHomePage(_context);
         }
 
-        public AP_PR1_SearchForYourOrganisationPage SignInAsApplyUser()
+        public AP_PR1_SearchForYourOrganisationPage SignInAsApplyUser(LoginUser loginUser)
         {
-            EnterLoginDetails(_context.GetUser<EPAOApplyUser>());
+            EnterLoginDetails(loginUser);
             return new AP_PR1_SearchForYourOrganisationPage(_context);
         }
 

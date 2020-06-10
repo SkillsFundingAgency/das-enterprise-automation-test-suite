@@ -1,9 +1,6 @@
 ﻿using SFA.DAS.EPAO.UITests.Project.Helpers;
 using SFA.DAS.EPAO.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin;
-using SFA.DAS.IdamsLogin.Service.Project.Tests.Pages;
-using SFA.DAS.UI.Framework.TestSupport;
-using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
@@ -11,66 +8,23 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
     [Binding]
     public class AdminSteps
     {
-        private readonly TabHelper _tabHelper;
         private readonly ScenarioContext _context;
         private readonly EPAOAdminDataHelper _ePAOAdminDataHelper;
         private readonly EPAOAdminSqlDataHelper _ePAOAdminSqlDataHelper;
         private CertificateDetailsPage _certificateDetailsPage;
         private OrganisationDetailsPage _organisationDetailsPage;
-        private readonly EPAOConfig _config;
+        private readonly EPAOHomePageHelper _ePAOHomePageHelper;
 
         public AdminSteps(ScenarioContext context)
         {
             _context = context;
             _ePAOAdminDataHelper = context.Get<EPAOAdminDataHelper>();
             _ePAOAdminSqlDataHelper = context.Get<EPAOAdminSqlDataHelper>();
-            _tabHelper = context.Get<TabHelper>();
-            _config = context.GetEPAOConfig<EPAOConfig>();
+            _ePAOHomePageHelper = new EPAOHomePageHelper(_context);
         }
-
-        [Given(@"the admin appoves the assessor")]
-        public void GivenTheAdminAppovesTheAssessor()
-        {
-            _tabHelper.OpenInNewTab(_config.AdminBaseUrl);
-
-            var staffdashboard = GoToEpaoAdminHomePage();
-
-            staffdashboard = staffdashboard
-                .GoToNewOrganisationApplications()
-                .GoToNewApplicationOverviewPage()
-                .GoToNewOrganisationDetailsPage()
-                .SelectYesAndContinue()
-                .GoToNewOrgDeclarationsPage()
-                .SelectYesAndContinue()
-                .ReturnToOrganisationApplicationsPage()
-                .ReturnToDashboard();
-
-            staffdashboard = staffdashboard
-                .GoToNewFinancialAssesmentPage()
-                .GoToNewApplicationOverviewPage()
-                .SelectGoodAndContinue()
-                .ReturnToAccountHome()
-                .ReturnToDashboard();
-
-            staffdashboard = staffdashboard.GoToInProgressOrganisationApplication()
-                .GoToInProgressApplicationOverviewPage()
-                .GoToFinancialhealthAssesmentPage()
-                .SelectYesAndContinue()
-                .CompleteReview()
-                .ApproveApplication()
-                .ReturnToApplications()
-                .ReturnToDashboard();
-
-            staffdashboard
-                .GoToApprovedOrganisationApplication()
-                .GoToApprovedApplicationOverviewPage()
-                .ReturnToOrganisationApplicationsPage()
-                .ReturnToDashboard();
-        }
-
 
         [Then(@"the admin can add organisation")]
-        public void ThenTheAdminCanAddOrganisation() => GoToEpaoAdminHomePage().AddOrganisation().EnterDetails();
+        public void ThenTheAdminCanAddOrganisation() => _ePAOHomePageHelper.GoToEpaoAdminHomePage().AddOrganisation().EnterDetails();
 
         [Then(@"the admin can make organisation to be live")]
         public void ThenTheAdminCanMakeOrganisationToBeLive()
@@ -125,21 +79,14 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         public void ThenTheAdminCanSearchUsingOrganisationUkprn() => _organisationDetailsPage = SearchEpaoRegister(_ePAOAdminDataHelper.OrganisationUkprn);
 
         [Then(@"the admin can search batches")]
-        public void ThenTheAdminCanSearchBatches() => GoToEpaoAdminHomePage().SearchEPAOBatch().SearchBatches().VerifyingBatchDetails().SignOut();
+        public void ThenTheAdminCanSearchBatches() => _ePAOHomePageHelper.GoToEpaoAdminHomePage().SearchEPAOBatch().SearchBatches().VerifyingBatchDetails().SignOut();
 
         [Then(@"the admin can search using uln")]
-        public void ThenTheAdminCanSearchUsingUln() => _certificateDetailsPage = GoToEpaoAdminHomePage().Search().SearchFor(_ePAOAdminDataHelper.LearnerUln).SelectACertificate();
+        public void ThenTheAdminCanSearchUsingUln() => _certificateDetailsPage = _ePAOHomePageHelper.GoToEpaoAdminHomePage().Search().SearchFor(_ePAOAdminDataHelper.LearnerUln).SelectACertificate();
 
         [Then(@"the admin can access learners audit history")]
         public void ThenTheAdminCanAccessLearnersAuditHistory() => _certificateDetailsPage.ShowAllHistory();
 
-        private OrganisationDetailsPage SearchEpaoRegister(string keyword) => GoToEpaoAdminHomePage().SearchEPAO().SearchForAnOrganisation(keyword).SelectAnOrganisation();
-
-        private StaffDashboardPage GoToEpaoAdminHomePage()
-        {
-            new ServiceStartPage(_context).ClickStartNow().LoginToAccess1Staff();
-
-            return new SignInPage(_context).SignInWithValidDetails();
-        }
+        private OrganisationDetailsPage SearchEpaoRegister(string keyword) => _ePAOHomePageHelper.GoToEpaoAdminHomePage().SearchEPAO().SearchForAnOrganisation(keyword).SelectAnOrganisation();
     }
 }

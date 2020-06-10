@@ -3,7 +3,7 @@ using SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply;
 using SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.PreamblePages;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
+namespace SFA.DAS.EPAO.UITests.Project.Helpers
 {
     public class ApplyStepsHelper
     {
