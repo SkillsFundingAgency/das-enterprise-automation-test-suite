@@ -16,7 +16,6 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
         private AS_LoggedInHomePage _loggedInHomePage;
         private readonly TabHelper _tabHelper;
         private EPAOConfig _ePAOConfig;
-        private CertificateDetailsPage _certificateDetailsPage;
         private readonly EPAOAdminDataHelper _ePAOAdminDataHelper;
 
 
