@@ -1,4 +1,5 @@
 ﻿using SFA.DAS.EPAO.UITests.Project.Helpers;
+using SFA.DAS.EPAO.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply;
 using SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.PreamblePages;
 using SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService;
@@ -16,13 +17,13 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         private AP_ApplicationOverviewPage _applicationOverviewPage;
         private AS_CreateAnAccountPage _createAnAccountPage;
         private readonly AssessmentServiceStepsHelper _stepsHelper;
-        private readonly EPAODataHelper _dataHelper;
+        private readonly EPAOApplyDataHelper _dataHelper;
 
         public ApplySteps(ScenarioContext context)
         {
             _context = context;
             _stepsHelper = new AssessmentServiceStepsHelper(_context);
-            _dataHelper = context.Get<EPAODataHelper>();
+            _dataHelper = context.Get<EPAOApplyDataHelper>();
         }
 
         [When(@"the Apply User completes preamble journey")]

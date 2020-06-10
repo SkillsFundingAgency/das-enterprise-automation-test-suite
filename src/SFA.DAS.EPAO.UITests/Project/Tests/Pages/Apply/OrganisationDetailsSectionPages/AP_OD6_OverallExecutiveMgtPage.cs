@@ -21,9 +21,9 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.OrganisationDetailsSect
 
         public AP_OD7_OfqualRecognitionNumberPage EnterDetailsAndContinueInOEMPage()
         {
-            formCompletionHelper.EnterText(FullNameTextbox, dataHelper.GetRandomAlphabeticString(20));
+            formCompletionHelper.EnterText(FullNameTextbox, ePAOApplyDataHelper.GetRandomAlphabeticString(20));
             SelectRadioOptionByForAttribute("CD-14");
-            formCompletionHelper.EnterText(PostitionDetailsTextbox, dataHelper.GetRandomAlphabeticString(50));
+            formCompletionHelper.EnterText(PostitionDetailsTextbox, ePAOApplyDataHelper.GetRandomAlphabeticString(50));
             Continue();
             return new AP_OD7_OfqualRecognitionNumberPage(_context);
         }

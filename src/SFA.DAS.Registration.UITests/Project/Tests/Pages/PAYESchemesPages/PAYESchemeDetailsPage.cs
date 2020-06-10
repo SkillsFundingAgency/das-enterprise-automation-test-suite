@@ -21,7 +21,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.PAYESchemesPages
 
         public RemoveThisSchemePage ClickRemovePAYESchemeButton()
         {
-            formCompletionHelper.ClickInterceptedElement(pageInteractionHelper.FindElement(RemovePAYESchemeButton));
+            formCompletionHelper.ClickElement(pageInteractionHelper.FindElement(RemovePAYESchemeButton));
             return new RemoveThisSchemePage(_context);
         }
     }

@@ -1,6 +1,7 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.EPAO.UITests.Project.Helpers;
+using SFA.DAS.EPAO.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using System.Linq;
@@ -35,7 +36,9 @@ namespace SFA.DAS.EPAO.UITests.Project
 
             var r = _context.Get<RandomDataGenerator>();
 
-            _context.Set(new EPAODataHelper(r));
+            _context.Set(new EPAOAssesmentServiceDataHelper(r));
+
+            _context.Set(new EPAOApplyDataHelper(r));
 
             _context.Set(new EPAOApplyStandardDataHelper(r));
 

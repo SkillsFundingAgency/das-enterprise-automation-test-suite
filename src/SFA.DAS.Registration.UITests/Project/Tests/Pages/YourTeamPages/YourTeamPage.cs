@@ -28,7 +28,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.YourTeamPages
 
         public ViewTeamMemberPage ClickViewMemberLink(string email)
         {
-            formCompletionHelper.ClickInterceptedElement(pageInteractionHelper.FindElement(ViewMemberLink(email)));
+            formCompletionHelper.ClickElement(pageInteractionHelper.FindElement(ViewMemberLink(email)));
             return new ViewTeamMemberPage(_context);
         }
 
