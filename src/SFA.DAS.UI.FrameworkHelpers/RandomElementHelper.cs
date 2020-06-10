@@ -2,11 +2,11 @@
 
 namespace SFA.DAS.UI.FrameworkHelpers
 {
-    public abstract class RandomDataGeneratorHelper
+    public abstract class RandomElementHelper
     {
         protected readonly RandomDataGenerator randomDataGenerator;
 
-        public RandomDataGeneratorHelper(RandomDataGenerator randomDataGenerator) => this.randomDataGenerator = randomDataGenerator;
+        public RandomElementHelper(RandomDataGenerator randomDataGenerator) => this.randomDataGenerator = randomDataGenerator;
 
         public T GetRandomElementFromListOfElements<T>(List<T> elements)
         {

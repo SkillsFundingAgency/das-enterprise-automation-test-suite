@@ -6,7 +6,7 @@ using SFA.DAS.UI.FrameworkHelpers;
 
 namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
 {
-    public class ApprenticeDataHelper : RandomDataGeneratorHelper
+    public class ApprenticeDataHelper : RandomElementHelper
     {
         private readonly CommitmentsSqlDataHelper _commitmentsdataHelper;
         private readonly ObjectContext _objectContext;

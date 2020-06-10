@@ -2,7 +2,7 @@
 
 namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
 {
-    public class PublicSectorReportingDataHelper : RandomDataGeneratorHelper
+    public class PublicSectorReportingDataHelper : RandomElementHelper
     {
         public PublicSectorReportingDataHelper(RandomDataGenerator randomDataGenerator) : base(randomDataGenerator)
         {

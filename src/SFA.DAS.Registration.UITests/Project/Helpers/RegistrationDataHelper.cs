@@ -3,7 +3,7 @@ using System;
 
 namespace SFA.DAS.Registration.UITests.Project.Helpers
 {
-    public class RegistrationDataHelper : RandomDataGeneratorHelper
+    public class RegistrationDataHelper : RandomElementHelper
     {
         public RegistrationDataHelper(string gatewayUsername, string password, string organisationName, RandomDataGenerator randomDataGenerator) : base(randomDataGenerator)
         {

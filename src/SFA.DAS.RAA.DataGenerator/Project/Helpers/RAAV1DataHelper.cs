@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace SFA.DAS.RAA.DataGenerator
 {
-    public class RAAV1DataHelper : RandomDataGeneratorHelper
+    public class RAAV1DataHelper : RandomElementHelper
     {
         private readonly RegexHelper _regexHelper;
 

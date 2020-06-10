@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace SFA.DAS.RAA.DataGenerator
 {
-    public class RAAV2DataHelper : RandomDataGeneratorHelper
+    public class RAAV2DataHelper : RandomElementHelper
     {
         private readonly VacancyTitleDatahelper _vacancyTitleDatahelper;
 

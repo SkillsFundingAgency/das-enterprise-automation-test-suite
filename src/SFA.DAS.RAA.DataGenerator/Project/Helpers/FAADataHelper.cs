@@ -3,7 +3,7 @@ using System;
 
 namespace SFA.DAS.RAA.DataGenerator
 {
-    public class FAADataHelper : RandomDataGeneratorHelper
+    public class FAADataHelper : RandomElementHelper
     {
         public FAADataHelper(RandomDataGenerator randomDataGenerator) : base(randomDataGenerator)
         {            

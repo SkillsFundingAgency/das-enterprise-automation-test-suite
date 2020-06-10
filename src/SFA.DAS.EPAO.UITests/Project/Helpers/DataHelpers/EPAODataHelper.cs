@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace SFA.DAS.EPAO.UITests.Project.Helpers.DataHelpers
 {
-    public abstract class EPAODataHelper : RandomDataGeneratorHelper
+    public abstract class EPAODataHelper : RandomElementHelper
     {
         public EPAODataHelper(RandomDataGenerator randomDataGenerator) : base(randomDataGenerator)
         {

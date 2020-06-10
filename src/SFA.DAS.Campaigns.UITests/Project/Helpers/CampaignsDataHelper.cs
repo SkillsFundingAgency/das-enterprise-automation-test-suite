@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace SFA.DAS.Campaigns.UITests.Project.Helpers
 {
-    public class CampaignsDataHelper : RandomDataGeneratorHelper
+    public class CampaignsDataHelper : RandomElementHelper
     {
         public CampaignsDataHelper(RandomDataGenerator randomDataGenerator) : base(randomDataGenerator)
         {
