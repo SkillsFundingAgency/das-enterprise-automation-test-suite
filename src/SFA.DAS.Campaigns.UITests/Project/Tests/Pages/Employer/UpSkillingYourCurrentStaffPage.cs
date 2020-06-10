@@ -13,10 +13,6 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
         private readonly By _subHeading3 = By.XPath("//h2[contains (@class, 'heading-m' ) and contains(text(), 'You do not have to give them a different job')]");
         #endregion
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
         public UpSkillingYourCurrentStaffPage(ScenarioContext context) : base(context) => VerifyHeadings();
 
         private void VerifyHeadings()
