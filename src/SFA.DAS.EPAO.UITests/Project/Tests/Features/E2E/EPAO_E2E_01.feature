@@ -1,5 +1,6 @@
 ﻿Feature: EPAO_E2E_01
 
+@ignore
 @epao
 @epaoapply
 @regression
