@@ -50,6 +50,5 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
         private void AddFavourite() => AddFavourite(
             (a) => { campaignsDataHelper.CourseId.Add(a); objectContext.SetCourseId(a); },
             (e) => e.First());
-
     }
 }
