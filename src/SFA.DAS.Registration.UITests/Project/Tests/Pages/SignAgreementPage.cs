@@ -20,10 +20,10 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             VerifyPage(WantToSignRadioButton);
         }
 
-        public HomePage SignAgreement()
+        public YouHaveAcceptedTheEmployerAgreementPage SignAgreement()
         {
             Sign();
-            return new HomePage(_context);
+            return new YouHaveAcceptedTheEmployerAgreementPage(_context);
         }
 
         public DoYouGiveTrainingProviderPermissionToAddApprenticeRecordsPage ProviderLeadRegistrationSignAgreement()

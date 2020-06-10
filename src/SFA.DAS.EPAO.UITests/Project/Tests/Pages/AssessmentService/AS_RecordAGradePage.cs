@@ -34,6 +34,13 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
                     _ePAOSqlDataHelper.DeleteCertificate(ePAOConfig.ApprenticeUlnWithSingleStandard);
                     EnterApprentcieDetailsAndContinue(ePAOConfig.ApprenticeNameWithSingleStandard, ePAOConfig.ApprenticeUlnWithSingleStandard);
                     break;
+                case "deleting":
+                    _ePAOSqlDataHelper.DeleteCertificate(ePAOConfig.ApprenticeUlnDeleteWithAStandardHavingLearningOption);
+                    EnterApprentcieDetailsAndContinue(ePAOConfig.ApprenticeNameDeleteWithAStandardHavingLearningOption, ePAOConfig.ApprenticeUlnDeleteWithAStandardHavingLearningOption);
+                    break;
+                case "ReRequesting":
+                    EnterApprentcieDetailsAndContinue(ePAOConfig.ApprenticeNameDeleteWithAStandardHavingLearningOption, ePAOConfig.ApprenticeUlnDeleteWithAStandardHavingLearningOption);
+                    break;
                 case "more than one":
                     _ePAOSqlDataHelper.DeleteCertificate(ePAOConfig.ApprenticeUlnWithMultipleStandards);
                     EnterApprentcieDetailsAndContinue(ePAOConfig.ApprenticeNameWithMultipleStandards, ePAOConfig.ApprenticeUlnWithMultipleStandards);

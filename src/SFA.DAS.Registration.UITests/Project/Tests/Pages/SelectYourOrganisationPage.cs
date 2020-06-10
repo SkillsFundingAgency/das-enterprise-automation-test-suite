@@ -55,7 +55,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         private IWebElement SearchLinkUrl(string searchText)
         {
-            objectContext.UpdateOrganisationName(searchText);
+            objectContext.SetAdditionalOrganisationAddedName(searchText);
             return pageInteractionHelper.GetLink(OrganisationLink, searchText);
         }
     }

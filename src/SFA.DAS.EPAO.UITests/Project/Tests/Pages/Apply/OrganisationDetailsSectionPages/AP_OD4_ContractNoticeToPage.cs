@@ -28,15 +28,15 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.OrganisationDetailsSect
 
         public AP_OD5_UkprnPage EnterContactDetailsAndContinueInContractNoticeToPage()
         {
-            formCompletionHelper.EnterText(GivenNameTextbox, dataHelper.GetRandomAlphabeticString(10));
-            formCompletionHelper.EnterText(FamilyNameTextbox, dataHelper.GetRandomAlphabeticString(10));
+            formCompletionHelper.EnterText(GivenNameTextbox, ePAOApplyDataHelper.GetRandomAlphabeticString(10));
+            formCompletionHelper.EnterText(FamilyNameTextbox, ePAOApplyDataHelper.GetRandomAlphabeticString(10));
             formCompletionHelper.Click(EnterTheAddressManuallyLink);
-            formCompletionHelper.EnterText(AddressLine1Textbox, dataHelper.GetRandomNumber(3));
-            formCompletionHelper.EnterText(TownOrCityTextbox, dataHelper.TownName);
-            formCompletionHelper.EnterText(CountyTextbox, dataHelper.CountyName);
-            formCompletionHelper.EnterText(PostCodeTextbox, dataHelper.PostCode);
-            formCompletionHelper.EnterText(EmailAddressTextbox, dataHelper.RandomEmail);
-            formCompletionHelper.EnterText(TelephoneTextbox, dataHelper.GetRandomNumber(10));
+            formCompletionHelper.EnterText(AddressLine1Textbox, ePAOApplyDataHelper.GetRandomNumber(3));
+            formCompletionHelper.EnterText(TownOrCityTextbox, ePAOApplyDataHelper.TownName);
+            formCompletionHelper.EnterText(CountyTextbox, ePAOApplyDataHelper.CountyName);
+            formCompletionHelper.EnterText(PostCodeTextbox, ePAOApplyDataHelper.PostCode);
+            formCompletionHelper.EnterText(EmailAddressTextbox, ePAOApplyDataHelper.RandomEmail);
+            formCompletionHelper.EnterText(TelephoneTextbox, ePAOApplyDataHelper.GetRandomNumber(10));
             Continue();
             return new AP_OD5_UkprnPage(_context);
         }

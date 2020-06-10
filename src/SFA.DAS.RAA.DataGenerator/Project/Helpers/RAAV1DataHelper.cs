@@ -48,7 +48,7 @@ namespace SFA.DAS.RAA.DataGenerator
 
         public IWebElement Employers(List<IWebElement> links)
         {
-            var randomEmployer = randomDataGenerator.GetRandomElementFromListOfElements(links);
+            var randomEmployer = GetRandomElementFromListOfElements(links);
 
             EmployerErn = _regexHelper.GetEmployerERN(randomEmployer.GetAttribute("href"));
 
