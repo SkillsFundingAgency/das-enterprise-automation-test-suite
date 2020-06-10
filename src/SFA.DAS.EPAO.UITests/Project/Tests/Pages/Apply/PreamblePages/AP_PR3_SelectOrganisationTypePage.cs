@@ -9,7 +9,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.PreamblePages
         private readonly ScenarioContext _context;
 
         #region Locators
-        private By TrainingProviderRadioButton => By.Id("Training_Provider");
+        private By AwardingOrg => By.CssSelector("#Awarding_Organisations");
         #endregion
 
         public AP_PR3_SelectOrganisationTypePage(ScenarioContext context) : base(context)
@@ -20,7 +20,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.PreamblePages
 
         public AP_PR4_ConfirmOrganisationPage SelectTrainingProviderRadioButtonAndContinueInSelectOrgTypePage()
         {
-            formCompletionHelper.ClickElement(pageInteractionHelper.FindElement(TrainingProviderRadioButton));
+            formCompletionHelper.ClickElement(pageInteractionHelper.FindElement(AwardingOrg));
             Continue();
             return new AP_PR4_ConfirmOrganisationPage(_context);
         }
