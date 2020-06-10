@@ -1,5 +1,4 @@
-﻿using NUnit.Framework;
-using SFA.DAS.ConfigurationBuilder;
+﻿using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.MongoDb.DataGenerator;
 using SFA.DAS.MongoDb.DataGenerator.Helpers;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages;
@@ -93,8 +92,12 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
                  .SelectYourOrganisation(orgType)
                  .ContinueToAboutYourAgreementPage()
                  .SelectViewAgreementNowAndContinue()
-                 .SignAgreement();
+                 .SignAgreement()
+                 .ClickOnViewYourAccountButton();
         }
+
+        public YouHaveAcceptedTheEmployerAgreementPage SignAgreementFromHomePage(HomePage homePage) =>
+            homePage.ClickAcceptYourAgreementLinkInHomePagePanel().ClickContinueToYourAgreementButtonInAboutYourAgreementPage().SignAgreement();
 
         public void SetFirstAccountOrganisationName(OrgType orgType) =>
             _objectContext.SetFirstAccountOrganisationName(GetOrgName(orgType));

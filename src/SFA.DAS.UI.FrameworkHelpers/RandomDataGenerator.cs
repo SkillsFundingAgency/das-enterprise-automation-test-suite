@@ -64,7 +64,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
             throw new Exception("Unable to generate ULN");
         }
 
-        public IWebElement GetRandomElementFromListOfElements(List<IWebElement> elements)
+        public T GetRandomElementFromListOfElements<T>(List<T> elements)
         {
             var randomNumber = GenerateRandomNumberBetweenTwoValues(0, elements.Count - 1);
 

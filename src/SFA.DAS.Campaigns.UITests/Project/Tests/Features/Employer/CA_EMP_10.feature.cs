@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.Registration.UITests.Project.Tests.Features.ExistingAccount
+namespace SFA.DAS.Campaigns.UITests.Project.Tests.Features.Employer
 {
     using TechTalk.SpecFlow;
     
@@ -18,20 +18,20 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features.ExistingAccount
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.0.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("RE_EA_01")]
-    public partial class RE_EA_01Feature
+    [NUnit.Framework.DescriptionAttribute("CA_EMP_10")]
+    public partial class CA_EMP_10Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "RE_EA_01.feature"
+#line 1 "CA_EMP_10.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "RE_EA_01", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "CA_EMP_10", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -70,27 +70,23 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features.ExistingAccount
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RE_EA_01_Verify Login for Existing Levy Account and Navigation to Saved favourite" +
-            "s, Help and all Settings pages")]
+        [NUnit.Framework.DescriptionAttribute("CA_EMPP_10_Check The links on How do they work Page")]
+        [NUnit.Framework.CategoryAttribute("campaigns")]
+        [NUnit.Framework.CategoryAttribute("employer")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("registration")]
-        public virtual void RE_EA_01_VerifyLoginForExistingLevyAccountAndNavigationToSavedFavouritesHelpAndAllSettingsPages()
+        public virtual void CA_EMPP_10_CheckTheLinksOnHowDoTheyWorkPage()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RE_EA_01_Verify Login for Existing Levy Account and Navigation to Saved favourite" +
-                    "s, Help and all Settings pages", null, new string[] {
-                        "regression",
-                        "registration"});
-#line 5
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CA_EMPP_10_Check The links on How do they work Page", null, new string[] {
+                        "campaigns",
+                        "employer",
+                        "regression"});
+#line 6
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 6
- testRunner.When("the Employer logins using existing Levy Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 7
- testRunner.Then("Employer is able to navigate to all the link under Settings", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Given("the user navigates to the How do they work page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 8
- testRunner.And("Employer is able to navigate to Your saved favourites Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 9
- testRunner.And("Employer is able to navigate to Help Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Then("verify the links are not broken on How do they work page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
