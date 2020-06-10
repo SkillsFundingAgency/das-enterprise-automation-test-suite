@@ -87,8 +87,19 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         [When(@"the apply user applies for a standard")]
         public void WhenTheApplyUserAppliesForAStandard()
         {
-            throw new PendingStepException();
+            
         }
 
+        [Then(@"the admin approves the standard")]
+        public void ThenTheAdminApprovesTheStandard()
+        {
+            
+        }
+
+        [Then(@"make the epao live")]
+        public void ThenMakeTheEpaoLive()
+        {
+            
+        }
     }
 }

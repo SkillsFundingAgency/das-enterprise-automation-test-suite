@@ -27,7 +27,6 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         private AS_OrganisationDetailsPage _organisationDetailsPage;
         private AS_EditUserPermissionsPage _editUserPermissionsPage;
         private AS_UserDetailsPage _userDetailsPage;
-        private readonly EPAOSqlDataHelper _ePAOSqlDataHelper;
         private bool _permissionsSelected;
         private string _newUserEmailId;
         
@@ -39,7 +38,6 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
             _ePAOConfig = context.GetEPAOConfig<EPAOConfig>();
             _ePAOAssesmentServiceDataHelper = context.Get<EPAOAssesmentServiceDataHelper>();
             _ePAOApplyStandardData = context.Get<EPAOApplyStandardDataHelper>();
-            _ePAOSqlDataHelper = context.Get<EPAOSqlDataHelper>();
         }
 
         [Given(@"the (Assessor User|Delete Assessor User|Standard Apply User|Manage User|Apply User|) is logged into Assessment Service Application")]
@@ -47,9 +45,11 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         public void GivenTheUserIsLoggedIntoAssessmentServiceApplication(string user)
         {
             if (user.Equals("Assessor User"))
-                _loggedInHomePage = _stepsHelper.LoginToAssessmentServiceApplication(_context.GetUser<EPAOAssessorUser>());
+                _loggedInHomePage = _ePAOHomePageHelper.LoginInAsNonApplyUser(_context.GetUser<EPAOAssessorUser>());
+
             else if (user.Equals("Delete Assessor User"))
-                _loggedInHomePage = _stepsHelper.LoginToAssessmentServiceApplication(_context.GetUser<EPAODeleteAssessorUser>());
+                _loggedInHomePage = _ePAOHomePageHelper.LoginInAsNonApplyUser(_context.GetUser<EPAODeleteAssessorUser>());
+
             else if (user.Equals("Manage User"))
                 _loggedInHomePage = _ePAOHomePageHelper.LoginInAsNonApplyUser(_context.GetUser<EPAOManageUser>());
 
@@ -64,28 +64,33 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         [When(@"the User goes through certifying an Apprentice as '(.*)' who has enrolled for '(.*)' standard")]
         public void WhenTheUserGoesThroughCertifyingAnApprenticeAsWhoHasEnrolledForStandard(string grade, string enrolledStandard)
         {
-            _stepsHelper.CertifyApprentice(grade, enrolledStandard);
-            new AS_CheckAndSubmitAssessmentPage(_context).ClickContinueInCheckAndSubmitAssessmentPage();
+            var page = _stepsHelper.CertifyApprentice(grade, enrolledStandard);
+
+            page.ClickContinueInCheckAndSubmitAssessmentPage();
         }
 
         [When(@"the User requests wrong certificate certifying an Apprentice as '(.*)' which needs '(.*)'")]
         public void WhenTheUserRequestsWrongCertificateCertifyingAnApprenticeAsWhichNeeds(string grade, string enrolledStandard)
         {
-            _stepsHelper.DeleteApprenticeCertificateRecord(grade, enrolledStandard);
-            new AS_CheckAndSubmitAssessmentPage(_context).ClickContinueInCheckAndSubmitAssessmentPage();
+            var page = _stepsHelper.DeleteApprenticeCertificateRecord(grade, enrolledStandard);
+
+            page.ClickContinueInCheckAndSubmitAssessmentPage();
         }
 
         [Then(@"the Admin user can delete a certificate that has been incorrectly submitted")]
         public void ThenTheAdminUserCanDeleteACertificateThatHasBeenIncorrectlySubmitted()
         {
-            _stepsHelper.DeleteCertificate();
+            var staffdashboard = _ePAOHomePageHelper.GoToEpaoAdminHomePage(true);
+
+            _stepsHelper.DeleteCertificate(staffdashboard);
         }
 
         [Then(@"the User is able to rerequest the certificate certifying an Apprentice as '(.*)' which was'(.*)'")]
         public void ThenTheUserIsAbleToRerequestTheCertificateCertifyingAnApprenticeAsWhichWas(string grade, string enrolledStandard)
         {
-            _stepsHelper.ReRequestApprenticeCertificateRecord(grade, enrolledStandard);
-            new AS_CheckAndSubmitAssessmentPage(_context).ClickContinueInCheckAndSubmitAssessmentPage();
+            var page = _stepsHelper.ReRequestApprenticeCertificateRecord(grade, enrolledStandard);
+
+            page.ClickContinueInCheckAndSubmitAssessmentPage();
         }
         
         [When(@"the User goes through certifying a Privately funded Apprentice")]

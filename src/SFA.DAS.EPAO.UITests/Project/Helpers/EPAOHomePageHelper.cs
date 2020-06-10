@@ -24,8 +24,10 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
             _ePAOSqlDataHelper = context.Get<EPAOSqlDataHelper>();
         }
 
-        public StaffDashboardPage GoToEpaoAdminHomePage()
+        public StaffDashboardPage GoToEpaoAdminHomePage(bool openInNewTab = false)
         {
+            if (openInNewTab) { _tabHelper.OpenInNewTab(_ePAOConfig.AdminBaseUrl); }
+
             new ServiceStartPage(_context).ClickStartNow().LoginToAccess1Staff();
 
             return new SignInPage(_context).SignInWithValidDetails();

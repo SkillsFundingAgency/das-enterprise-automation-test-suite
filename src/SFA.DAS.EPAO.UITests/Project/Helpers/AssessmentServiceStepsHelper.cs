@@ -2,10 +2,6 @@
 using SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin;
 using SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService;
 using SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.OrganisationDetails;
-using SFA.DAS.IdamsLogin.Service.Project.Tests.Pages;
-using SFA.DAS.Login.Service.Helpers;
-using SFA.DAS.UI.Framework.TestSupport;
-using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EPAO.UITests.Project.Helpers
@@ -13,80 +9,44 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
     public class AssessmentServiceStepsHelper
     {
         private readonly ScenarioContext _context;
-        private AS_LoggedInHomePage _loggedInHomePage;
-        private readonly TabHelper _tabHelper;
-        private EPAOConfig _ePAOConfig;
-        private CertificateDetailsPage _certificateDetailsPage;
         private readonly EPAOAdminDataHelper _ePAOAdminDataHelper;
-
 
         public AssessmentServiceStepsHelper(ScenarioContext context)
         {
             _context = context;
-            _tabHelper = context.Get<TabHelper>();
-            _ePAOConfig = context.GetEPAOConfig<EPAOConfig>();
             _ePAOAdminDataHelper = context.Get<EPAOAdminDataHelper>();
         }
 
-        public AS_LandingPage LaunchAssessmentServiceApplication()
+        public AS_CheckAndSubmitAssessmentPage CertifyApprentice(string grade, string enrolledStandard)
         {
-            _tabHelper.GoToUrl(_ePAOConfig.AssessmentServiceUrl);
-            return new AS_LandingPage(_context);
-        }
-
-        public void CertifyApprentice(string grade, string enrolledStandard)
-        {
-            new AS_LoggedInHomePage(_context).ClickOnRecordAGrade()
-                .SearchApprentice(enrolledStandard)
-                .ClickConfirmInConfirmApprenticePage(enrolledStandard)
-                .ClickConfirmInDeclarationPage();
+            ConfirmDeclaration(enrolledStandard);
 
             if (enrolledStandard == "additional learning option")
                 new AS_WhichLearningOptionPage(_context).SelectLearningOptionAndContinue();
 
-            new AS_WhatGradePage(_context).SelectGradeAndEnterDate(grade);
-
-            if (grade == "Passed")
-                new AS_SearchEmployerAddressPage(_context).ClickEnterAddressManuallyLinkInSearchEmployerPage()
-                    .EnterEmployerAddressAndContinue()
-                    .ClickContinueInConfirmEmployerAddressPage()
-                    .EnterRecipientDetailsAndContinue();
+            return SelectGrade(grade);
         }
-        public void DeleteApprenticeCertificateRecord(string grade, string enrolledStandard)
+
+        public AS_CheckAndSubmitAssessmentPage DeleteApprenticeCertificateRecord(string grade, string enrolledStandard)
         {
-            new AS_LoggedInHomePage(_context).ClickOnRecordAGrade()
-                .SearchApprentice(enrolledStandard)
-                .ClickConfirmInConfirmApprenticePage(enrolledStandard)
-                .ClickConfirmInDeclarationPage();
+            ConfirmDeclaration(enrolledStandard);
 
             if (enrolledStandard == "deleting")
                 new AS_WhichLearningOptionPage(_context).SelectWhichLearningOptionAndContinue();
 
-            new AS_WhatGradePage(_context).SelectGradeAndEnterDate(grade);
-
-            if (grade == "Passed")
-                new AS_SearchEmployerAddressPage(_context).ClickEnterAddressManuallyLinkInSearchEmployerPage()
-                    .EnterEmployerAddressAndContinue()
-                    .ClickContinueInConfirmEmployerAddressPage()
-                    .EnterRecipientDetailsAndContinue();
+            return SelectGrade(grade);
         }
 
-        public void ReRequestApprenticeCertificateRecord(string grade, string enrolledStandard)
+        public AS_CheckAndSubmitAssessmentPage ReRequestApprenticeCertificateRecord(string grade, string enrolledStandard)
         {
-            new AS_LoggedInHomePage(_context).ClickOnRecordAGrade()
-                .SearchApprentice(enrolledStandard)
-                .ClickConfirmInConfirmApprenticePage(enrolledStandard)
-                .ClickConfirmInDeclarationPage();
+            ConfirmDeclaration(enrolledStandard);
 
             if (enrolledStandard == "ReRequesting")
                 new AS_WhichLearningOptionPage(_context).SelectWhichLearningOptionAndContinue();
 
-            new AS_WhatGradePage(_context).SelectGradeAndEnterDate(grade);
-
-            if (grade == "PassWithExcellence")
-                new AS_ConfirmAddressPage(_context).ClickContinueInConfirmEmployerAddressPage()
-                    .EnterRecipientDetailsAndContinue();
+            return SelectGrade(grade);
         }
+
         public void CertifyPrivatelyFundedApprentice(bool invalidDateScenario = false)
         {
             new AS_LoggedInHomePage(_context).ClickOnRecordAGrade()
@@ -160,28 +120,50 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
                 .ClickViewOrganisationDetailsLink();
         }
 
-        public string InviteAUser(AS_LoggedInHomePage _loggedInHomePage)
+        public string InviteAUser(AS_LoggedInHomePage _loggedInHomePage) => _loggedInHomePage.ClickManageUsersLink().ClickInviteNewUserButton().EnterUserDetailsAndSendInvite(); 
+
+        public void DeleteCertificate(StaffDashboardPage staffDashboardPage)
         {
-            return _loggedInHomePage.ClickManageUsersLink()
-                .ClickInviteNewUserButton()
-                .EnterUserDetailsAndSendInvite();      
+            staffDashboardPage
+                .Search()
+                .SearchFor(_ePAOAdminDataHelper.DeleteIncorrectRecordUln)
+                .SelectACertificate()
+                .ClickDeleteCertificateLink()
+                .ClickYesAndContinue()
+                .EnterAuditDetails()
+                .ClickDeleteCertificateButton()
+                .ClickReturnToDashboard();
         }
 
-        public void DeleteCertificate()
+        private void ConfirmDeclaration(string enrolledStandard)
         {
-            _tabHelper.GoToUrl(_ePAOConfig.AdminBaseUrl);
-            GoToEpaoAdminHomePage().Search().SearchFor(_ePAOAdminDataHelper.DeleteIncorrectRecordUln).SelectACertificate()
-               .ClickDeleteCertificateLink()
-               .ClickYesAndContinue()
-               .EnterAuditDetails()
-               .ClickDeleteCertificateButton()
-               .ClickReturnToDashboard();
+            new AS_LoggedInHomePage(_context)
+                .ClickOnRecordAGrade()
+                .SearchApprentice(enrolledStandard)
+                .ClickConfirmInConfirmApprenticePage(enrolledStandard)
+                .ClickConfirmInDeclarationPage();
         }
-        private StaffDashboardPage GoToEpaoAdminHomePage()
-        {
-            new ServiceStartPage(_context).ClickStartNow().LoginToAccess1Staff();
 
-            return new SignInPage(_context).SignInWithValidDetails();
+        private AS_CheckAndSubmitAssessmentPage SelectGrade(string grade)
+        {
+            new AS_WhatGradePage(_context).SelectGradeAndEnterDate(grade);
+
+            if (grade == "Passed")
+            {
+                return new AS_SearchEmployerAddressPage(_context)
+                .ClickEnterAddressManuallyLinkInSearchEmployerPage()
+                .EnterEmployerAddressAndContinue()
+                .ClickContinueInConfirmEmployerAddressPage()
+                .EnterRecipientDetailsAndContinue();
+            }
+            else if (grade == "PassWithExcellence")
+            {
+                return new AS_ConfirmAddressPage(_context)
+                    .ClickContinueInConfirmEmployerAddressPage()
+                    .EnterRecipientDetailsAndContinue();
+            }
+
+            return null;
         }
     }
 }
