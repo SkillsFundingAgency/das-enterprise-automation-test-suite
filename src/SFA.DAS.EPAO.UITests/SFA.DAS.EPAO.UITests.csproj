@@ -17,6 +17,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
+	
+   <ItemGroup>
+	<Content Include="..\Sample.pdf" Link="Sample.pdf">
+		<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	</Content>
+  </ItemGroup>
   
   <ItemGroup>
     <PackageReference Include="NUnit3TestAdapter" Version="3.14.0" />
