@@ -1,5 +1,4 @@
-﻿using OpenQA.Selenium;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace SFA.DAS.UI.FrameworkHelpers
 {
@@ -9,6 +8,11 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         public RandomElementHelper(RandomDataGenerator randomDataGenerator) => this.randomDataGenerator = randomDataGenerator;
 
-        public T GetRandomElementFromListOfElements<T>(List<T> elements) => randomDataGenerator.GetRandomElementFromListOfElements(elements);
+        public T GetRandomElementFromListOfElements<T>(List<T> elements)
+        {
+            var randomNumber = randomDataGenerator.GenerateRandomNumberBetweenTwoValues(0, elements.Count - 1);
+
+            return elements[randomNumber];
+        }
     }
 }

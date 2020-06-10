@@ -3,13 +3,10 @@ using System;
 
 namespace SFA.DAS.Registration.UITests.Project.Helpers
 {
-    public class RegistrationDataHelper
+    public class RegistrationDataHelper : RandomElementHelper
     {
-        private readonly RandomDataGenerator _randomDataGenerator;
-
-        public RegistrationDataHelper(string gatewayUsername, string password, string organisationName, RandomDataGenerator randomDataGenerator)
+        public RegistrationDataHelper(string gatewayUsername, string password, string organisationName, RandomDataGenerator randomDataGenerator) : base(randomDataGenerator)
         {
-            _randomDataGenerator = randomDataGenerator;
             RandomEmail = $"{gatewayUsername}@mailinator.com";
             AnotherRandomEmail = $"{gatewayUsername}_2@mailinator.com";
             AornNumber = $"A{GetDateTimeValue()}";
@@ -18,6 +15,7 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
             InvalidGGPassword = RandomNumericString(10);
             InvalidCompanyNumber = RandomNumericString(10);
             CompanyTypeOrg = organisationName;
+            SetAccountNameAsOrgName = true;
         }
 
         public string FirstName => "AutoFirstName";
@@ -32,6 +30,7 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
         public string InvalidGGPassword { get; }
         public string InvalidCompanyNumber { get; }
         public string CompanyTypeOrg { get; }
+        public bool SetAccountNameAsOrgName { get; set; }
         public string CompanyTypeOrg2 => "TESCO PLC";
         public string PublicSectorTypeOrg => "Royal School Hampstead";
         public string CharityTypeOrg1Number => "200895";
@@ -42,8 +41,8 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
         public string CharityTypeOrg2Address => "OXFAM, 2700 JOHN SMITH DRIVE, OXFORD BUSINESS PARK SOUTH, OXFORD, OX4 2JY";
         public string InvalidPaye => $"{RandomNumericString(3)}/{RandomAlphaNumericString(7)}";
         public string InvalidAornNumber => $"A{GetDateTimeValue()}";
-        private string RandomAlphaNumericString(int length) => _randomDataGenerator.GenerateRandomAlphanumericString(length);
-        private string RandomNumericString(int length) => _randomDataGenerator.GenerateRandomNumber(length);
+        private string RandomAlphaNumericString(int length) => randomDataGenerator.GenerateRandomAlphanumericString(length);
+        private string RandomNumericString(int length) => randomDataGenerator.GenerateRandomNumber(length);
         private string GetDateTimeValue() => DateTime.Now.ToString("ddMMyyHHmmss");
     }
 }

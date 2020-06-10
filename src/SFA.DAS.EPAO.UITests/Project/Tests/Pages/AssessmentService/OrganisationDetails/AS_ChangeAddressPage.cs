@@ -37,7 +37,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.Organisatio
 
         public AS_ConfirmContactAddressPage EnterEmployerAddressAndClickChangeAddressButton()
         {
-            formCompletionHelper.EnterText(AddressLine1TextBox, dataHelper.GetRandomNumber(3));
+            formCompletionHelper.EnterText(AddressLine1TextBox, ePAOAssesmentServiceDataHelper.GetRandomNumber(3));
             formCompletionHelper.EnterText(AddressLine2TextBox, "QuintonRoad");
             formCompletionHelper.EnterText(TownOrCityTextBox, "Coventry");
             formCompletionHelper.EnterText(PostCodeTextBox, "CV1 2WT");

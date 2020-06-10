@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using SFA.DAS.EPAO.UITests.Project.Helpers;
+using SFA.DAS.EPAO.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService;
 using SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.ManageUsers;
 using SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.OrganisationDetails;
@@ -16,7 +17,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         private readonly ScenarioContext _context;
         private readonly AssessmentServiceStepsHelper _stepsHelper;
         private readonly EPAOConfig _ePAOConfig;
-        private readonly EPAODataHelper _dataHelper;
+        private readonly EPAOAssesmentServiceDataHelper _ePAOAssesmentServiceDataHelper;
         private readonly EPAOApplyStandardDataHelper _ePAOApplyStandardData;
         private AS_RecordAGradePage _recordAGradePage;
         private AS_AchievementDatePage _achievementDatePage;
@@ -28,25 +29,27 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         private readonly EPAOSqlDataHelper _ePAOSqlDataHelper;
         private bool _permissionsSelected;
         private string _newUserEmailId;
-
+        
         public AssessmentServiceSteps(ScenarioContext context)
         {
             _context = context;
             _stepsHelper = new AssessmentServiceStepsHelper(_context);
             _ePAOConfig = context.GetEPAOConfig<EPAOConfig>();
-            _dataHelper = context.Get<EPAODataHelper>();
+            _ePAOAssesmentServiceDataHelper = context.Get<EPAOAssesmentServiceDataHelper>();
             _ePAOApplyStandardData = context.Get<EPAOApplyStandardDataHelper>();
             _ePAOSqlDataHelper = context.Get<EPAOSqlDataHelper>();
         }
 
-        [Given(@"the (Assessor User|Standard Apply User|Manage User|Apply User) is logged into Assessment Service Application")]
+        [Given(@"the (Assessor User|Delete Assessor User|Standard Apply User|Manage User|Apply User|) is logged into Assessment Service Application")]
         [When(@"the (Assessor User|Standard Apply User|Manage User|Apply User) is logged into Assessment Service Application")]
         public void GivenTheUserIsLoggedIntoAssessmentServiceApplication(string user)
         {
             _stepsHelper.LaunchAssessmentServiceApplication();
 
             if (user.Equals("Assessor User"))
-                _loggedInHomePage = _stepsHelper.LoginToAssessmentServiceApplication(_context.GetUser<EPAOAssessorUser>());            
+                _loggedInHomePage = _stepsHelper.LoginToAssessmentServiceApplication(_context.GetUser<EPAOAssessorUser>());
+            else if (user.Equals("Delete Assessor User"))
+                _loggedInHomePage = _stepsHelper.LoginToAssessmentServiceApplication(_context.GetUser<EPAODeleteAssessorUser>());
             else if (user.Equals("Manage User"))
                 _loggedInHomePage = _stepsHelper.LoginToAssessmentServiceApplication(_context.GetUser<EPAOManageUser>());
             else if (user.Equals("Standard Apply User"))
@@ -69,6 +72,26 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
             new AS_CheckAndSubmitAssessmentPage(_context).ClickContinueInCheckAndSubmitAssessmentPage();
         }
 
+        [When(@"the User requests wrong certificate certifying an Apprentice as '(.*)' which needs '(.*)'")]
+        public void WhenTheUserRequestsWrongCertificateCertifyingAnApprenticeAsWhichNeeds(string grade, string enrolledStandard)
+        {
+            _stepsHelper.DeleteApprenticeCertificateRecord(grade, enrolledStandard);
+            new AS_CheckAndSubmitAssessmentPage(_context).ClickContinueInCheckAndSubmitAssessmentPage();
+        }
+
+        [Then(@"the Admin user can delete a certificate that has been incorrectly submitted")]
+        public void ThenTheAdminUserCanDeleteACertificateThatHasBeenIncorrectlySubmitted()
+        {
+            _stepsHelper.DeleteCertificate();
+        }
+
+        [Then(@"the User is able to rerequest the certificate certifying an Apprentice as '(.*)' which was'(.*)'")]
+        public void ThenTheUserIsAbleToRerequestTheCertificateCertifyingAnApprenticeAsWhichWas(string grade, string enrolledStandard)
+        {
+            _stepsHelper.ReRequestApprenticeCertificateRecord(grade, enrolledStandard);
+            new AS_CheckAndSubmitAssessmentPage(_context).ClickContinueInCheckAndSubmitAssessmentPage();
+        }
+        
         [When(@"the User goes through certifying a Privately funded Apprentice")]
         public void WhenTheUserGoesThroughCertifyingAPrivatelyFundedApprentice() => _stepsHelper.CertifyPrivatelyFundedApprentice();
 
@@ -124,10 +147,10 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
                     _recordAGradePage.EnterApprentcieDetailsAndContinue("", _ePAOConfig.ApprenticeUlnWithSingleStandard);
                     break;
                 case "by entering valid Family name but ULN less than 10 digits":
-                    _recordAGradePage.EnterApprentcieDetailsAndContinue(_ePAOConfig.ApprenticeNameWithSingleStandard, _dataHelper.GetRandomNumber(9));
+                    _recordAGradePage.EnterApprentcieDetailsAndContinue(_ePAOConfig.ApprenticeNameWithSingleStandard, _ePAOAssesmentServiceDataHelper.GetRandomNumber(9));
                     break;
                 case "by entering valid Family name and Invalid ULN":
-                    _recordAGradePage.EnterApprentcieDetailsAndContinue(_ePAOConfig.ApprenticeNameWithSingleStandard, _dataHelper.GetRandomNumber(11));
+                    _recordAGradePage.EnterApprentcieDetailsAndContinue(_ePAOConfig.ApprenticeNameWithSingleStandard, _ePAOAssesmentServiceDataHelper.GetRandomNumber(11));
                     break;
             }
         }
@@ -146,7 +169,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         }
 
         [When(@"the User enters the future date")]
-        public void WhenTheUserEntersTheFutureDate() => _achievementDatePage.EnterAchievementGradeDateForPrivatelyFundedApprenticeAndContinue(_dataHelper.CurrentYear + 1);
+        public void WhenTheUserEntersTheFutureDate() => _achievementDatePage.EnterAchievementGradeDateForPrivatelyFundedApprenticeAndContinue(_ePAOAssesmentServiceDataHelper.CurrentYear + 1);
 
         [Then(@"(.*) is displayed in the Apprenticeship achievement date page")]
         public void ThenDateErrorIsDisplayedInTheApprenticeshipAchievementDatePage(string errorText) => Assert.AreEqual(_achievementDatePage.GetDateErrorText(), errorText);
@@ -241,7 +264,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         private string AddAssertResultText(bool condition) => condition ? "permission selected is not shown in 'User details' page" : "permission selected is not shown in 'User details' page";
 
         [When(@"the User initiates inviting a new user journey")]
-        public void WhenTheUserInitiatesInvitingANewUserJourney() => _newUserEmailId = _stepsHelper.InviteAUser(_loggedInHomePage, _dataHelper);
+        public void WhenTheUserInitiatesInvitingANewUserJourney() => _newUserEmailId = _stepsHelper.InviteAUser(_loggedInHomePage);
     
         [Then(@"a new User is invited and able to initiate inviting another user")]
         public void ThenANewUserIsInvitedAndAbleToInitiateInvitingAnotherUser() => new AS_UserInvitedPage(_context).ClickInviteSomeoneElseLink();

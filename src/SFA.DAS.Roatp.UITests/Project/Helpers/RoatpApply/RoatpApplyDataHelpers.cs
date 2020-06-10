@@ -3,12 +3,10 @@ using System;
 
 namespace SFA.DAS.Roatp.UITests.Project.Helpers.RoatpApply
 {
-    public class RoatpApplyDataHelpers
+    public class RoatpApplyDataHelpers : RandomElementHelper
     {
-        private readonly RandomDataGenerator _randomDataGenerator;
-        public RoatpApplyDataHelpers(RandomDataGenerator randomDataGenerator)
+        public RoatpApplyDataHelpers(RandomDataGenerator randomDataGenerator) : base(randomDataGenerator)
         {
-            _randomDataGenerator = randomDataGenerator;
             CompanyNumber = randomDataGenerator.GenerateRandomNumber(8);
             CompanyName = $"{CompanyNumber}EnterpriseTestDemo";
             IocNumber = randomDataGenerator.GenerateRandomAlphanumericString(8);
@@ -109,6 +107,6 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.RoatpApply
         public string ExampleToImproveEmployees { get; }
         public string ExampleToMaintainEmployees { get; }
         public string HowHasTheTeamOrPersonWorked { get; }
-        public string GenerateRandomWholeNumber(int length) => _randomDataGenerator.GenerateRandomWholeNumber(length);
+        public string GenerateRandomWholeNumber(int length) => randomDataGenerator.GenerateRandomWholeNumber(length);
     }
 }
