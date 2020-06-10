@@ -6,30 +6,28 @@ namespace SFA.DAS.RAA.DataGenerator
 {
     public class RAAV2DataHelper : RandomElementHelper
     {
-        private readonly RandomDataGenerator _randomDataGenerator;
         private readonly VacancyTitleDatahelper _vacancyTitleDatahelper;
 
         public RAAV2DataHelper(RandomDataGenerator randomDataGenerator, VacancyTitleDatahelper vacancyTitleDatahelper) : base(randomDataGenerator)
         {
-            _randomDataGenerator = randomDataGenerator;
             _vacancyTitleDatahelper = vacancyTitleDatahelper;
-            EmployerTradingName = $"{_randomDataGenerator.GenerateRandomAlphabeticString(10)}_EmployerName";
-            EmployerDescription = $"{_randomDataGenerator.GenerateRandomAlphabeticString(10)}_EmployerDescription";
-            EmployerReason = _randomDataGenerator.GenerateRandomAlphabeticString(10);
+            EmployerTradingName = $"{this.randomDataGenerator.GenerateRandomAlphabeticString(10)}_EmployerName";
+            EmployerDescription = $"{this.randomDataGenerator.GenerateRandomAlphabeticString(10)}_EmployerDescription";
+            EmployerReason = this.randomDataGenerator.GenerateRandomAlphabeticString(10);
             EmployerWebsiteUrl = WebsiteUrl(EmployerTradingName);
-            ContactName = _randomDataGenerator.GenerateRandomAlphabeticString(5);
+            ContactName = this.randomDataGenerator.GenerateRandomAlphabeticString(5);
             Email = $"{ContactName}@lorem.com";
-            VacancyShortDescription = _randomDataGenerator.GenerateRandomAlphabeticString(15);
-            VacancyOutcome = _randomDataGenerator.GenerateRandomAlphabeticString(22);
-            VacancyBriefOverview = _randomDataGenerator.GenerateRandomAlphabeticString(50);
-            TrainingDetails = _randomDataGenerator.GenerateRandomAlphabeticString(28);
-            WorkkingWeek = _randomDataGenerator.GenerateRandomAlphabeticString(15);
+            VacancyShortDescription = this.randomDataGenerator.GenerateRandomAlphabeticString(15);
+            VacancyOutcome = this.randomDataGenerator.GenerateRandomAlphabeticString(22);
+            VacancyBriefOverview = this.randomDataGenerator.GenerateRandomAlphabeticString(50);
+            TrainingDetails = this.randomDataGenerator.GenerateRandomAlphabeticString(28);
+            WorkkingWeek = this.randomDataGenerator.GenerateRandomAlphabeticString(15);
             VacancyClosing = DateTime.Today.AddMonths(2).AddDays(3);
             VacancyStart = VacancyClosing.AddMonths(1).AddDays(1);
             EditedVacancyClosing = VacancyStart.AddDays(14);
             EditedVacancyStart = EditedVacancyClosing.AddDays(14);
-            DesiredQualificationsSubject = _randomDataGenerator.GenerateRandomAlphabeticString(8);
-            OptionalMessage = _randomDataGenerator.GenerateRandomAlphabeticString(30);
+            DesiredQualificationsSubject = this.randomDataGenerator.GenerateRandomAlphabeticString(8);
+            OptionalMessage = this.randomDataGenerator.GenerateRandomAlphabeticString(30);
         }
 
         public string VacancyTitle => $"{_vacancyTitleDatahelper.VacancyTitle} apprenticeship";

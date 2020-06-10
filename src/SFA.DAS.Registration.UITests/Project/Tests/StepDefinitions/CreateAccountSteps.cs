@@ -31,7 +31,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         private SelectYourOrganisationPage _selectYourOrganisationPage;
         private SignAgreementPage _signAgreementPage;
         private CheckYourDetailsPage _checkYourDetailsPage;
-        private YourOrganisationsAndAgreementsPage _yourOrganisationsAndAgreementsPage;
         private TheseDetailsAreAlreadyInUsePage _theseDetailsAreAlreadyInUsePage;
         private EnterYourPAYESchemeDetailsPage _enterYourPAYESchemeDetailsPage;
         private UsingYourGovtGatewayDetailsPage _usingYourGovtGatewayDetailsPage;
@@ -100,15 +99,13 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         public void AddOrganisationDetails() => AddOrganisationTypeDetails(OrgType.Default);
 
         [When(@"adds (Company|PublicSector|Charity) Type Organisation details")]
-        public void AddOrganisationTypeDetails(OrgType orgType)
-        {
+        public void AddOrganisationTypeDetails(OrgType orgType) =>
             _signAgreementPage = _searchForYourOrganisationPage
                 .SearchForAnOrganisation(orgType)
                 .SelectYourOrganisation(orgType)
                 .ContinueToAboutYourAgreementPage()
                 .SelectViewAgreementNowAndContinue();
-        }
-       
+
         [When(@"enters an Invalid Company number for Org search")]
         public SelectYourOrganisationPage WhenAnEmployerEntersAnInvalidCompanyNumberForOrgSearchInOrganisationSearchPage()
         {
@@ -127,9 +124,8 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         public void SignTheAgreement()
         {
             _homePage = _signAgreementPage
-                .SignAgreement();
-
-            _homePage.VerifySucessSummary("Agreement accepted");
+                .SignAgreement()
+                .ClickOnViewYourAccountButton();
 
             SetAgreementId(_homePage);
         }
@@ -148,12 +144,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         public void DoNotSignTheAgreement() => _homePage = _signAgreementPage.DoNotSignAgreement();
 
         [Then(@"the Employer Home page is displayed")]
-        public void TheEmployerHomePageIsDisplayed()
-        {
-            var accountid = new HomePage(_context).AccountId();
-
-            _objectContext.SetAccountId(accountid);
-        }
+        public void TheEmployerHomePageIsDisplayed() => _objectContext.SetAccountId(new HomePage(_context).AccountId());
 
         [When(@"an Employer creates a Non Levy Account and Signs the Agreement")]
         public void GivenAnEmployerCreatesANonLevyAccountAndSignsTheAgreement() =>
@@ -195,43 +186,12 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             GivenAnEmployerAccountWithSpecifiedTypeOrgIsCreatedAndAgeementIsNotSigned(OrgType.Company);
         }
 
-        [Given(@"the Employer initiates adding another Org of (Company|PublicSector|Charity|Charity2) Type")]
-        [When(@"the Employer initiates adding another Org of (Company|PublicSector|Charity|Charity2) Type")]
-        public void WhenTheEmployerInitiatesAddingAnotherOrgType(OrgType orgType)
-        {
-            _checkYourDetailsPage = _accountCreationStepsHelper.SearchForAnotherOrg(_homePage, orgType)
-                .SelectYourOrganisation(orgType);
-        }
-
         [When(@"the Employer initiates adding same Org of (Company|PublicSector|Charity) Type again")]
         public void WhenTheEmployerInitiatesAddingSameOrgTypeAgain(OrgType orgType) =>
             _selectYourOrganisationPage = _accountCreationStepsHelper.SearchForAnotherOrg(_homePage, orgType);
 
-        [Then(@"the new Org added is shown in the Account Organisations list")]
-        public void ThenTheNewOrgAddedIsShownInTheAccountOrganisationsList()
-        {
-            _yourOrganisationsAndAgreementsPage = _checkYourDetailsPage.ClickYesContinueButton()
-                                                        .GoToYourOrganisationsAndAgreementsPage()
-                                                        .VerifyNewlyAddedOrgIsPresent();
-        }
-
         [Then(@"'Already added' message is shown to the User")]
-        public void ThenAlreadyAddedMessageIsShownToTheUser() =>
-            _selectYourOrganisationPage.VerifyOrgAlreadyAddedMessage();
-
-        [Then(@"the Employer is able check the details of the Charity Org added are displayed in the 'Check your details' page and Continue")]
-        public void ThenTheEmployerIsAbleToCheckTheDetailsOfTheCharityOrgAddedAreDisplayedInThePageAndContinue()
-        {
-            VerifyOrgDetails(_registrationDataHelper.CharityTypeOrg1Number, _registrationDataHelper.CharityTypeOrg1Name, _registrationDataHelper.CharityTypeOrg1Address);
-            ThenTheNewOrgAddedIsShownInTheAccountOrganisationsList();
-        }
-
-        [Then(@"the Employer is able check the details of the 2nd Charity Org added are displayed in the 'Check your details' page and Continue")]
-        public void ThenTheEmployerIsAbleToCheckTheDetailsOfThe2ndCharityOrgAddedAreDisplayedInThePageAndContinue()
-        {
-            VerifyOrgDetails(_registrationDataHelper.CharityTypeOrg2Number, _registrationDataHelper.CharityTypeOrg2Name, _registrationDataHelper.CharityTypeOrg2Address);
-            ThenTheNewOrgAddedIsShownInTheAccountOrganisationsList();
-        }
+        public void ThenAlreadyAddedMessageIsShownToTheUser() => _selectYourOrganisationPage.VerifyOrgAlreadyAddedMessage();
 
         [Then(@"ApprenticeshipEmployerType in Account table is marked as (.*)")]
         public void ThenApprenticeshipEmployerTypeInAccountTableIsMarkedAs(string expectedApprenticeshipEmployerType)
@@ -241,30 +201,10 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         }
 
         [When(@"Signs the Agreement from Account HomePage Panel")]
-        public void WhenSignsTheAgreementFromAccountHomePagePanel()
-        {
-            _homePage.ClickAcceptYourAgreementLinkInHomePagePanel()
-                .ClickContinueToYourAgreementButtonInAboutYourAgreementPage()
-                .SignAgreement();
-        }
+        public void WhenSignsTheAgreementFromAccountHomePagePanel() => _accountCreationStepsHelper.SignAgreementFromHomePage(_homePage).ClickOnViewYourAccountButton();
 
         [Then(@"'Start adding apprentices now' task link is displayed under Tasks pane")]
         public void ThenTaskLinkIsDisplayedUnderTasksPane() => _homePage.VerifyStartAddingApprenticesNowTaskLink();
-
-        [Then(@"the Employer is Not allowed to Remove the first Org added")]
-        public void ThenTheEmployerIsNotAllowedToRemoveTheFirstOrgAdded()
-        {
-             Assert.AreEqual(_homePage.GoToYourOrganisationsAndAgreementsPage().IsRemoveLinkBesideNewlyAddedOrg(), false);
-             _homePage = new HomePage(_context, true); 
-        }
-
-        [Then(@"Employer is Allowed to remove the second Org added from the account")]
-        public void ThenEmployerIsAllowedToRemoveTheSecondOrgAddedFromTheAccount()
-        {
-            _yourOrganisationsAndAgreementsPage.ClickOnRemoveAnOrgFromYourAccountLink()
-                  .SelectYesRadioOptionAndClickContinueInRemoveOrganisationPage()
-                  .VerifyOrgRemovedMessageInHeader();
-        }
 
         [Then(@"'These details are already in use' page is displayed when Another Employer tries to register the account with the same Aorn and Paye details")]
         public void ThenPageIsDisplayedWhenAnotherEmployerTriesToRegisterTheAccountWithTheSameAornAndPayeDetails()
@@ -544,13 +484,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         {
             AnUserAccountIsCreated();
             return AddPayeDetails();
-        }
-
-        private void VerifyOrgDetails(string orgNumber, string OrgName, string orgAddress)
-        {
-            Assert.AreEqual(orgNumber, _checkYourDetailsPage.GetOrganisationNumber());
-            Assert.AreEqual(OrgName, _checkYourDetailsPage.GetOrganisationName());
-            Assert.AreEqual(orgAddress, _checkYourDetailsPage.GetOrganisationAddress());
         }
 
         private void AddPayeAndOrgAndSignAgreement()
