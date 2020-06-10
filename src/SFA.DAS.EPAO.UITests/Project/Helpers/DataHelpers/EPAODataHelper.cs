@@ -3,15 +3,12 @@ using SFA.DAS.UI.FrameworkHelpers;
 using System;
 using System.Collections.Generic;
 
-namespace SFA.DAS.EPAO.UITests.Project.Helpers
+namespace SFA.DAS.EPAO.UITests.Project.Helpers.DataHelpers
 {
-    public class EPAODataHelper : RandomElementHelper
+    public abstract class EPAODataHelper : RandomElementHelper
     {
-        protected readonly RandomDataGenerator randomDataGenerator;
-
         public EPAODataHelper(RandomDataGenerator randomDataGenerator) : base(randomDataGenerator)
         {
-            this.randomDataGenerator = randomDataGenerator;
             CurrentDay = DateTime.Now.Day;
             CurrentMonth = DateTime.Now.Month;
             CurrentYear = DateTime.Now.Year;
@@ -27,15 +24,12 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
         public string TownName => "Coventry";
         public string CountyName => "Warwick";
         public string PostCode => "CV1 2WT";
-        public string InvalidOrgNameWithAlphabets => "asfasfasdfasdf";
-        public string InvalidOrgNameWithNumbers => "54678900";
-        public string InvalidOrgNameWithAWord => "EPA01";
 
         public string GetRandomNumber(int length) => randomDataGenerator.GenerateRandomNumber(length);
 
         public string GetRandomAlphabeticString(int length) => randomDataGenerator.GenerateRandomAlphabeticString(length);
 
-        public IWebElement GetRandomElementFromListOfElements(List<IWebElement> options) => randomDataGenerator.GetRandomElementFromListOfElements(options);
+        public IWebElement GetRandomElementFromListOfElements(List<IWebElement> options) => base.GetRandomElementFromListOfElements(options);
 
         private string GetDateTimeValue() => DateTime.Now.ToString("ddMMMyyyyHHmmss").ToUpper();
     }

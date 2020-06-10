@@ -11,7 +11,6 @@ namespace SFA.DAS.UI.FrameworkHelpers
     public class RetryHelper
     {
         private readonly IWebDriver _webDriver;
-        private readonly string _scenarioTitle;
         private readonly ScenarioInfo _scenarioInfo;
         private readonly TimeSpan[] TimeOut;
 
@@ -19,7 +18,6 @@ namespace SFA.DAS.UI.FrameworkHelpers
         {
             _webDriver = webDriver;
             _scenarioInfo = scenarioInfo;
-            _scenarioTitle = scenarioInfo.Title;
             TimeOut = SetTimeOut();
         }
 
@@ -79,7 +77,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         internal T RetryOnWebDriverException<T>(Func<T> func, Action retryAction = null)
         {
-            T result = default(T);
+            T result = default;
             Policy
                 .Handle<WebDriverException>()
                 .WaitAndRetry(TimeOut, (exception, timeSpan, retryCount, context) =>
@@ -98,7 +96,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
             return result;
         }
 
-        internal void RetryOnElementClickInterceptedException(IWebElement element, bool useAction)
+        internal void RetryOnElementClickInterceptedException(IWebElement element, bool useAction = true)
         {
             Action beforeAction = null, afterAction = null;
             Policy
@@ -139,17 +137,6 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         private Action Click(IWebElement element) => () => element.Click();
 
-        //private TimeSpan[] SetTimeOut()
-        //{
-        //    switch (true)
-        //    {
-        //        case bool _ when _scenarioInfo.Tags.Contains("raa-v1"):
-        //            return new TimeSpan[] { TimeSpan.FromSeconds(5), TimeSpan.FromSeconds(10), TimeSpan.FromSeconds(15) };
-        //        default:
-        //            return new TimeSpan[] { TimeSpan.FromSeconds(1), TimeSpan.FromSeconds(2), TimeSpan.FromSeconds(3) };
-        //    }
-        //}
-
         private TimeSpan[] SetTimeOut() => new TimeSpan[] { TimeSpan.FromSeconds(1), TimeSpan.FromSeconds(2), TimeSpan.FromSeconds(3) };
 
         private (Action beforeAction, Action afterAction) ResizeWindow()
@@ -166,6 +153,6 @@ namespace SFA.DAS.UI.FrameworkHelpers
         }
 
         private void Report(int retryCount, Exception exception) =>
-            TestContext.Progress.WriteLine($"{Environment.NewLine}Retry Count : {retryCount}{Environment.NewLine}Scenario Title : {_scenarioTitle}{Environment.NewLine}Exception : {exception.Message}");
+            TestContext.Progress.WriteLine($"{Environment.NewLine}Retry Count : {retryCount}{Environment.NewLine}Scenario Title : {_scenarioInfo.Title}{Environment.NewLine}Exception : {exception.Message}");
     }
 }

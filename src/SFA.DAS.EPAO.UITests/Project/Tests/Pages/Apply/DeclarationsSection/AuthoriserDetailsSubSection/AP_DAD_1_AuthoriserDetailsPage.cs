@@ -22,8 +22,8 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.DeclarationsSection.Aut
 
         public AP_DME_1_CriminalConvictionsPage EnterDetailsAndContinueInAuthoriserDetailsPagePage()
         {
-            formCompletionHelper.EnterText(NameTextbox, dataHelper.GetRandomAlphabeticString(20));
-            formCompletionHelper.EnterText(JobTitleTextbox, dataHelper.GetRandomAlphabeticString(10));
+            formCompletionHelper.EnterText(NameTextbox, ePAOApplyDataHelper.GetRandomAlphabeticString(20));
+            formCompletionHelper.EnterText(JobTitleTextbox, ePAOApplyDataHelper.GetRandomAlphabeticString(10));
             Continue();
             return new AP_DME_1_CriminalConvictionsPage(_context);
         }

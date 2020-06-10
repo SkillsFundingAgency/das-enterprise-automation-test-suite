@@ -1,13 +1,11 @@
-﻿using OpenQA.Selenium;
-using SFA.DAS.UI.FrameworkHelpers;
+﻿using SFA.DAS.UI.FrameworkHelpers;
 using System;
-using System.Collections.Generic;
 
-namespace SFA.DAS.EPAO.UITests.Project.Helpers
+namespace SFA.DAS.EPAO.UITests.Project.Helpers.DataHelpers
 {
     public class EPAOAdminDataHelper : EPAODataHelper
     {
-        public EPAOAdminDataHelper(RandomDataGenerator randomDataGenerator) : base(randomDataGenerator) 
+        public EPAOAdminDataHelper(RandomDataGenerator randomDataGenerator) : base(randomDataGenerator)
         {
             FirstName = GetRandomAlphabeticString(6);
             LastName = GetRandomAlphabeticString(6);

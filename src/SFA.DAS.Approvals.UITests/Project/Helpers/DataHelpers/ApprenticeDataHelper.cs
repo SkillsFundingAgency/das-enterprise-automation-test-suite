@@ -6,24 +6,22 @@ using SFA.DAS.UI.FrameworkHelpers;
 
 namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
 {
-    public class ApprenticeDataHelper
+    public class ApprenticeDataHelper : RandomElementHelper
     {
-        private readonly RandomDataGenerator _randomDataGenerator;
         private readonly CommitmentsSqlDataHelper _commitmentsdataHelper;
         private readonly ObjectContext _objectContext;
 
-        public ApprenticeDataHelper(ObjectContext objectContext, RandomDataGenerator randomDataGenerator, CommitmentsSqlDataHelper commitmentsdataHelper)
+        public ApprenticeDataHelper(ObjectContext objectContext, RandomDataGenerator randomDataGenerator, CommitmentsSqlDataHelper commitmentsdataHelper) : base(randomDataGenerator)
         {
             _objectContext = objectContext;
-            _randomDataGenerator = randomDataGenerator;
             _commitmentsdataHelper = commitmentsdataHelper;
-            ApprenticeFirstname = $"F_{_randomDataGenerator.GenerateRandomAlphabeticString(10)}";
-            ApprenticeLastname = $"L_{_randomDataGenerator.GenerateRandomAlphabeticString(10)}";
-            DateOfBirthDay = _randomDataGenerator.GenerateRandomDateOfMonth();
-            DateOfBirthMonth = _randomDataGenerator.GenerateRandomMonth();
-            DateOfBirthYear = _randomDataGenerator.GenerateRandomDobYear();
-            TrainingPrice = "1" + _randomDataGenerator.GenerateRandomNumber(3);
-            EmployerReference = _randomDataGenerator.GenerateRandomAlphanumericString(10);
+            ApprenticeFirstname = $"F_{this.randomDataGenerator.GenerateRandomAlphabeticString(10)}";
+            ApprenticeLastname = $"L_{this.randomDataGenerator.GenerateRandomAlphabeticString(10)}";
+            DateOfBirthDay = this.randomDataGenerator.GenerateRandomDateOfMonth();
+            DateOfBirthMonth = this.randomDataGenerator.GenerateRandomMonth();
+            DateOfBirthYear = this.randomDataGenerator.GenerateRandomDobYear();
+            TrainingPrice = "1" + this.randomDataGenerator.GenerateRandomNumber(3);
+            EmployerReference = this.randomDataGenerator.GenerateRandomAlphanumericString(10);
             Ulns = new List<string>();
             _apprenticeid = 0;
         }
@@ -52,7 +50,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
 
         public string Uln()
         {
-            var uln = _randomDataGenerator.GenerateRandomUln();
+            var uln = randomDataGenerator.GenerateRandomUln();
             Ulns.Add(uln);
             return uln;
         }

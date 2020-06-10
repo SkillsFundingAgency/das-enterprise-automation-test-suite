@@ -25,10 +25,10 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.OrganisationDetailsSect
 
         public AP_OD11_DirectorsDataPage EnterNumberAndContinueInDirectoDetailsPage()
         {
-            formCompletionHelper.EnterText(FullNameTextbox, dataHelper.GetRandomAlphabeticString(20));
-            formCompletionHelper.EnterText(MonthTextbox, dataHelper.CurrentMonth);
-            formCompletionHelper.EnterText(YearTextbox, dataHelper.CurrentYear - 30);
-            formCompletionHelper.EnterText(NumberOfSharesTextbox, dataHelper.GetRandomNumber(3));
+            formCompletionHelper.EnterText(FullNameTextbox, ePAOApplyDataHelper.GetRandomAlphabeticString(20));
+            formCompletionHelper.EnterText(MonthTextbox, ePAOApplyDataHelper.CurrentMonth);
+            formCompletionHelper.EnterText(YearTextbox, ePAOApplyDataHelper.CurrentYear - 30);
+            formCompletionHelper.EnterText(NumberOfSharesTextbox, ePAOApplyDataHelper.GetRandomNumber(3));
             formCompletionHelper.Click(SaveAndAddAnotherLink);
             formCompletionHelper.Click(SaveAndContinueButton);
             return new AP_OD11_DirectorsDataPage(_context);
