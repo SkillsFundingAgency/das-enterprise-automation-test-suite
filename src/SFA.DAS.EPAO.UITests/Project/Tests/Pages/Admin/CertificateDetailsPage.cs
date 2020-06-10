@@ -16,6 +16,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
         private By SearchButton => By.CssSelector("a.govuk-button[href*='/select']");
 
         private By History => By.CssSelector("#history");
+        private By DeleteCertificateLink => By.LinkText("Delete certificate");
 
         public CertificateDetailsPage(ScenarioContext context) : base(context)
         {
@@ -29,6 +30,11 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
             VerifyPage(History);
             VerifyPage(SearchButton, "Show summary");
             return new CertificateDetailsPage(_context);
+        }
+        public AreYouSureYouWantToDeletePage ClickDeleteCertificateLink()
+        {
+            formCompletionHelper.ClickElement(DeleteCertificateLink);
+            return new AreYouSureYouWantToDeletePage(_context);
         }
     }
 }

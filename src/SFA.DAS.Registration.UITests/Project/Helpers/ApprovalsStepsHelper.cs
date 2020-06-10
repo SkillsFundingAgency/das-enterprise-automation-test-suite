@@ -55,7 +55,8 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
                  .SelectYourOrganisation()
                  .ContinueToAboutYourAgreementPage()
                  .SelectViewAgreementNowAndContinue()
-                 .SignAgreement();
+                 .SignAgreement()
+                 .ClickOnViewYourAccountButton();
         }
     }
 }

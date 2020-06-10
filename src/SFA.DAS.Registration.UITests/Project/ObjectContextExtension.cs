@@ -15,6 +15,7 @@ namespace SFA.DAS.Registration.UITests.Project
         private const string RegisteredEmailKey = "registeredemailkey";
         private const string FirstAccountOrganisationNameKey = "firstaccountorganisationkamekey";
         private const string SecondAccountOrganisationNameKey = "secondaccountorganisationkamekey";
+        private const string AdditionalOrganisationAddedNameKey = "additionalorganisationaddednamekey";
         #endregion
 
         internal static void SetLoginCredentials(this ObjectContext objectContext, string loginusername, string loginpassword)
@@ -27,6 +28,7 @@ namespace SFA.DAS.Registration.UITests.Project
         internal static void SetAccountId(this ObjectContext objectContext, string accountid) => objectContext.Replace(AccountIdKey, accountid);
         internal static void SetAgreementId(this ObjectContext objectContext, string agreementId) => objectContext.Replace(AgreementIdKey, agreementId);
         public static void SetOrganisationName(this ObjectContext objectContext, string organisationName) => objectContext.Set(OrganisationNameKey, organisationName);
+        public static void SetAdditionalOrganisationAddedName(this ObjectContext objectContext, string organisationName) => objectContext.Replace(AdditionalOrganisationAddedNameKey, organisationName);
         public static void UpdateOrganisationName(this ObjectContext objectContext, string organisationName) => objectContext.Update(OrganisationNameKey, organisationName);
         public static void SetFirstAccountOrganisationName(this ObjectContext objectContext, string firstAccountOrganisationName) => objectContext.Set(FirstAccountOrganisationNameKey, firstAccountOrganisationName);
         public static void SetSecondAccountOrganisationName(this ObjectContext objectContext, string secondAccountOrganisationName) => objectContext.Set(SecondAccountOrganisationNameKey, secondAccountOrganisationName);
@@ -37,6 +39,7 @@ namespace SFA.DAS.Registration.UITests.Project
         public static string GetAgreementId(this ObjectContext objectContext) => objectContext.Get(AgreementIdKey);
         public static string GetPublicReceiverAccountId(this ObjectContext objectContext) => objectContext.Get(ReceiverPublicAccountIdkey);
         public static string GetOrganisationName(this ObjectContext objectContext) => objectContext.Get(OrganisationNameKey);
+        public static string GetAdditionalOrganisationAddedName(this ObjectContext objectContext) => objectContext.Get(AdditionalOrganisationAddedNameKey);
         public static string GetFirstAccountOrganisationName(this ObjectContext objectContext) => objectContext.Get(FirstAccountOrganisationNameKey);
         public static string GetSecondAccountOrganisationName(this ObjectContext objectContext) => objectContext.Get(SecondAccountOrganisationNameKey);
         public static string GetAccountId(this ObjectContext objectContext) => objectContext.Get(AccountIdKey);

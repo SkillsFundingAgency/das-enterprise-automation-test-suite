@@ -32,6 +32,8 @@
 
     public class EPAOAssessorUser : LoginUser { }
 
+    public class EPAODeleteAssessorUser : LoginUser { }
+
     public class EPAOManageUser : LoginUser { }
 
     public class EPAOApplyUser : LoginUser

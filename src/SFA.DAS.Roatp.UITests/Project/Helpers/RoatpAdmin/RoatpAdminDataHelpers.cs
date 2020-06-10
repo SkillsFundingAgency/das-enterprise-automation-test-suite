@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace SFA.DAS.Roatp.UITests.Project.Helpers.RoatpAdmin
 {
-    public class RoatpAdminDataHelpers : RandomDataGeneratorHelper
+    public class RoatpAdminDataHelpers : RandomElementHelper
     {
         public RoatpAdminDataHelpers(RandomDataGenerator randomDataGenerator) : base(randomDataGenerator) { }
 

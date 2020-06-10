@@ -3,7 +3,7 @@ using System;
 
 namespace SFA.DAS.Roatp.UITests.Project.Helpers.RoatpApply
 {
-    public class RoatpApplyDataHelpers : RandomDataGeneratorHelper
+    public class RoatpApplyDataHelpers : RandomElementHelper
     {
         public RoatpApplyDataHelpers(RandomDataGenerator randomDataGenerator) : base(randomDataGenerator)
         {

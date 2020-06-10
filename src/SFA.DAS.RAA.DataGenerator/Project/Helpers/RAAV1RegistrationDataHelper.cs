@@ -2,7 +2,7 @@
 
 namespace SFA.DAS.RAA.DataGenerator
 {
-    public class RAAV1RegistrationDataHelper : RandomDataGeneratorHelper
+    public class RAAV1RegistrationDataHelper : RandomElementHelper
     {
         public RAAV1RegistrationDataHelper(RandomDataGenerator randomDataGenerator) : base(randomDataGenerator)
         {

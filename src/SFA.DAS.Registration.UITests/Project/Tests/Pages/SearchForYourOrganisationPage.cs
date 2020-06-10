@@ -64,7 +64,8 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         private void EnterAndSetOrgName(string orgName)
         {
             formCompletionHelper.EnterText(SearchInput, orgName);
-            objectContext.UpdateOrganisationName(orgName);
+            if(registrationDataHelper.SetAccountNameAsOrgName)
+                objectContext.UpdateOrganisationName(orgName);
         }
     }
 }

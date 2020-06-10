@@ -20,5 +20,11 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
             Continue();
             return new AS_WhatGradePage(_context);
         }
+        public AS_WhatGradePage SelectWhichLearningOptionAndContinue()
+        {
+            SelectRadioOptionByText("Managing Assets & Responding to Major Incidents in the Water Environment"); 
+            Continue();
+            return new AS_WhatGradePage(_context);
+        }
     }
 }
