@@ -33,6 +33,8 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers.DataHelpers
 
         public string LearnerUln => "7278214419";
 
+        public string DeleteIncorrectRecordUln => "1164786210";
+
         public string FirstName { get; }
 
         public string LastName { get; }

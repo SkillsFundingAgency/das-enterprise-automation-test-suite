@@ -28,6 +28,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers.DataHelpers
         public string GetRandomNumber(int length) => randomDataGenerator.GenerateRandomNumber(length);
 
         public string GetRandomAlphabeticString(int length) => randomDataGenerator.GenerateRandomAlphabeticString(length);
+        public string GetRandomAlphanumericString(int length) => randomDataGenerator.GenerateRandomAlphanumericStringWithSpecialCharacters(length);
 
         public IWebElement GetRandomElementFromListOfElements(List<IWebElement> options) => base.GetRandomElementFromListOfElements(options);
 
