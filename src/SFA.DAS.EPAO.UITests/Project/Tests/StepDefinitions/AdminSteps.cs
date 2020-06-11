@@ -13,30 +13,27 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         private readonly EPAOAdminSqlDataHelper _ePAOAdminSqlDataHelper;
         private CertificateDetailsPage _certificateDetailsPage;
         private OrganisationDetailsPage _organisationDetailsPage;
-        private readonly EPAOHomePageHelper _ePAOHomePageHelper;
+        protected AdminStepshelper _adminStepshelper;
 
         public AdminSteps(ScenarioContext context)
         {
             _context = context;
             _ePAOAdminDataHelper = context.Get<EPAOAdminDataHelper>();
             _ePAOAdminSqlDataHelper = context.Get<EPAOAdminSqlDataHelper>();
-            _ePAOHomePageHelper = new EPAOHomePageHelper(_context);
+            _adminStepshelper = new AdminStepshelper(_context);
         }
 
         [Then(@"the admin can add organisation")]
-        public void ThenTheAdminCanAddOrganisation() => _ePAOHomePageHelper.GoToEpaoAdminHomePage().AddOrganisation().EnterDetails();
+        public void ThenTheAdminCanAddOrganisation() => _adminStepshelper.AddOrganisation();
 
         [Then(@"the admin can make organisation to be live")]
         public void ThenTheAdminCanMakeOrganisationToBeLive()
         {
-            _ePAOAdminSqlDataHelper.UpdateOrgStatusToNew(_ePAOAdminDataHelper.MakeLiveOrganisationEpaoId);
+            var epaoid = _ePAOAdminDataHelper.MakeLiveOrganisationEpaoId;
 
-            _organisationDetailsPage = SearchEpaoRegister(_ePAOAdminDataHelper.MakeLiveOrganisationEpaoId);
+            _ePAOAdminSqlDataHelper.UpdateOrgStatusToNew(epaoid);
 
-            _organisationDetailsPage = _organisationDetailsPage.VerifyOrganisationStatus("New")
-                .EditOrganisation()
-                .MakeOrgLive()
-                .VerifyOrganisationStatus("Live");
+            _organisationDetailsPage = _adminStepshelper.MakeEPAOOrganisationLive(epaoid);
         }
 
         [Then(@"the admin can edit the organisation")]
@@ -50,10 +47,10 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         }
 
         [Then(@"the admin can search using organisation name")]
-        public void ThenTheAdminCanSearchUsingOrganisationName() => _organisationDetailsPage = SearchEpaoRegister(_ePAOAdminDataHelper.OrganisationName);
+        public void ThenTheAdminCanSearchUsingOrganisationName() => _organisationDetailsPage = _adminStepshelper.SearchEpaoRegister(_ePAOAdminDataHelper.OrganisationName);
 
         [Then(@"the admin can search using organisation epao id")]
-        public void ThenTheAdminCanSearchUsingOrganisationEpaoId() => _organisationDetailsPage = SearchEpaoRegister(_ePAOAdminDataHelper.OrganisationEpaoId);
+        public void ThenTheAdminCanSearchUsingOrganisationEpaoId() => _organisationDetailsPage = _adminStepshelper.SearchEpaoRegister(_ePAOAdminDataHelper.OrganisationEpaoId);
 
         [Then(@"the admin can add contact details")]
         public void ThenTheAdminCanAddContactDetails() => _organisationDetailsPage = _organisationDetailsPage.AddNewContact().AddContact().ReturnToOrganisationDetailsPage().SelectContact().ReturnToOrganisationDetailsPage();
@@ -76,17 +73,15 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         }
         
         [Then(@"the admin can search using organisation ukprn")]
-        public void ThenTheAdminCanSearchUsingOrganisationUkprn() => _organisationDetailsPage = SearchEpaoRegister(_ePAOAdminDataHelper.OrganisationUkprn);
+        public void ThenTheAdminCanSearchUsingOrganisationUkprn() => _organisationDetailsPage = _adminStepshelper.SearchEpaoRegister(_ePAOAdminDataHelper.OrganisationUkprn);
 
         [Then(@"the admin can search batches")]
-        public void ThenTheAdminCanSearchBatches() => _ePAOHomePageHelper.GoToEpaoAdminHomePage().SearchEPAOBatch().SearchBatches().VerifyingBatchDetails().SignOut();
+        public void ThenTheAdminCanSearchBatches() => _adminStepshelper.GoToEpaoAdminHomePage().SearchEPAOBatch().SearchBatches().VerifyingBatchDetails().SignOut();
 
         [Then(@"the admin can search using uln")]
-        public void ThenTheAdminCanSearchUsingUln() => _certificateDetailsPage = _ePAOHomePageHelper.GoToEpaoAdminHomePage().Search().SearchFor(_ePAOAdminDataHelper.LearnerUln).SelectACertificate();
+        public void ThenTheAdminCanSearchUsingUln() => _certificateDetailsPage = _adminStepshelper.GoToEpaoAdminHomePage().Search().SearchFor(_ePAOAdminDataHelper.LearnerUln).SelectACertificate();
 
         [Then(@"the admin can access learners audit history")]
         public void ThenTheAdminCanAccessLearnersAuditHistory() => _certificateDetailsPage.ShowAllHistory();
-
-        private OrganisationDetailsPage SearchEpaoRegister(string keyword) => _ePAOHomePageHelper.GoToEpaoAdminHomePage().SearchEPAO().SearchForAnOrganisation(keyword).SelectAnOrganisation();
     }
 }

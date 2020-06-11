@@ -10,12 +10,16 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
     {
         private readonly ScenarioContext _context;
         private readonly ApplyStepsHelper _applyStepsHelper;
+        private readonly AdminStepshelper _adminStepshelper;
         private readonly EPAOHomePageHelper _ePAOHomePageHelper;
+
+        private string _e2eorgName => "Brunell School";
 
         public E2ESteps(ScenarioContext context)
         {
             _context = context;
             _applyStepsHelper = new ApplyStepsHelper(_context);
+            _adminStepshelper = new AdminStepshelper(_context);
             _ePAOHomePageHelper = new EPAOHomePageHelper(_context);
         }
 
@@ -24,7 +28,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         {
             _ePAOHomePageHelper.LoginInAsApplyUser(_context.GetUser<EPAOE2EApplyUser>());
 
-            var _applicationOverviewPage = _applyStepsHelper.CompletePreambleJourney("Brunell School");
+            var _applicationOverviewPage = _applyStepsHelper.CompletePreambleJourney(_e2eorgName);
 
             _applicationOverviewPage = _applyStepsHelper.CompleteOrganisationDetailsSection(_applicationOverviewPage);
 
@@ -36,42 +40,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         }
 
         [Given(@"the admin appoves the assessor")]
-        public void GivenTheAdminAppovesTheAssessor()
-        {
-            var staffdashboard = _ePAOHomePageHelper.GoToEpaoAdminHomePage(true);
-
-            staffdashboard = staffdashboard
-                .GoToNewOrganisationApplications()
-                .GoToNewApplicationOverviewPage()
-                .GoToNewOrganisationDetailsPage()
-                .SelectYesAndContinue()
-                .GoToNewOrgDeclarationsPage()
-                .SelectYesAndContinue()
-                .ReturnToOrganisationApplicationsPage()
-                .ReturnToDashboard();
-
-            staffdashboard = staffdashboard
-                .GoToNewFinancialAssesmentPage()
-                .GoToNewApplicationOverviewPage()
-                .SelectGoodAndContinue()
-                .ReturnToAccountHome()
-                .ReturnToDashboard();
-
-            staffdashboard = staffdashboard.GoToInProgressOrganisationApplication()
-                .GoToInProgressApplicationOverviewPage()
-                .GoToFinancialhealthAssesmentPage()
-                .SelectYesAndContinue()
-                .CompleteReview()
-                .ApproveApplication()
-                .ReturnToApplications()
-                .ReturnToDashboard();
-
-            staffdashboard
-                .GoToApprovedOrganisationApplication()
-                .GoToApprovedApplicationOverviewPage()
-                .ReturnToOrganisationApplicationsPage()
-                .ReturnToDashboard();
-        }
+        public void GivenTheAdminAppovesTheAssessor() => _adminStepshelper.ApproveAnOrganisation();
 
         [When(@"the apply user applies for a standard")]
         public void WhenTheApplyUserAppliesForAStandard()
@@ -82,15 +51,9 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         }
 
         [Then(@"the admin approves the standard")]
-        public void ThenTheAdminApprovesTheStandard()
-        {
-            
-        }
+        public void ThenTheAdminApprovesTheStandard() => _adminStepshelper.ApproveAStandard();
 
         [Then(@"make the epao live")]
-        public void ThenMakeTheEpaoLive()
-        {
-            
-        }
+        public void ThenMakeTheEpaoLive() => _adminStepshelper.MakeEPAOOrganisationLive(_e2eorgName);
     }
 }

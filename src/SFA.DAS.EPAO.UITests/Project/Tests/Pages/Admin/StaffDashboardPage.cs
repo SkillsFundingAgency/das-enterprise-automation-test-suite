@@ -14,6 +14,11 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
         private By NewOrganisationApplication => By.CssSelector("a.govuk-link[href='/OrganisationApplication#new']");
         private By InProgressOrganisationApplication => By.CssSelector("a.govuk-link[href='/OrganisationApplication#in-progress']");
         private By ApprovedOrganisationApplication => By.CssSelector("a.govuk-link[href='/OrganisationApplication#approved']");
+
+        private By NewStandardApplication => By.CssSelector("a.govuk-link[href='/StandardApplication#new']");
+        private By InProgressStandardApplication => By.CssSelector("a.govuk-link[href='/StandardApplication#in-progress']");
+        private By ApprovedStandardApplication => By.CssSelector("a.govuk-link[href='/StandardApplication#approved']");
+
         private By NewFinancialHeathAssesment => By.CssSelector("a.govuk-link[href='/Financial/Open']");
         private By SearchLink => By.CssSelector("a.govuk-link[href='/Search']");
         private By BatchSearch => By.CssSelector("a.govuk-link[href='/BatchSearch']");
@@ -78,6 +83,12 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
         {
             formCompletionHelper.ClickElement(NewFinancialHeathAssesment);
             return new FinancialAssesmentPage(_context);
+        }
+
+        public StandardApplicationsPage GoToNewStandardApplications()
+        {
+            formCompletionHelper.ClickElement(NewStandardApplication);
+            return new StandardApplicationsPage(_context);
         }
     }
 }

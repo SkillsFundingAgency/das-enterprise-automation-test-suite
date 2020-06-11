@@ -51,12 +51,6 @@ namespace SFA.DAS.EPAO.UITests.Project
         [Scope(Tag = "deleteorganisationstandards")]
         public void ClearStandards() => _ePAOAdminSqlDataHelper.DeleteOrganisationStandard(_ePAOAdminDataHelper.Standards, _ePAOAdminDataHelper.OrganisationEpaoId);
 
-        [BeforeScenario(Order = 34)]
-        public void Navigate()
-        {
-            if (_context.ScenarioInfo.Tags.Contains("epaoadmin")) { _webDriver.Navigate().GoToUrl(_config.AdminBaseUrl); }
-        }
-
         [AfterScenario(Order = 32)]
         [Scope(Tag = "deleteorganisationcontact")]
         public void ClearContact() => _ePAOAdminSqlDataHelper.DeleteContact(_ePAOAdminDataHelper.Email);

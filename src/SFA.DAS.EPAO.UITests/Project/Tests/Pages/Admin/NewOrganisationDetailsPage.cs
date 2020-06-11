@@ -16,11 +16,11 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
             VerifyPage();
         }
 
-        public ApplicationOverviewPage SelectYesAndContinue()
+        public OrganisationApplicationOverviewPage SelectYesAndContinue()
         {
             SelectRadioOptionByText("Yes");
             Continue();
-            return new ApplicationOverviewPage(_context);
+            return new OrganisationApplicationOverviewPage(_context);
         }
     }
 }

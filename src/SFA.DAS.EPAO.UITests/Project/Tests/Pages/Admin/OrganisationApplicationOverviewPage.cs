@@ -2,7 +2,7 @@
 
 namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
 {
-    public class ApplicationOverviewPage : EPAOAdmin_BasePage
+    public class OrganisationApplicationOverviewPage : EPAOAdmin_BasePage
     {
         protected override string PageTitle => "Application overview";
 
@@ -10,7 +10,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
         private readonly ScenarioContext _context;
         #endregion
 
-        public ApplicationOverviewPage(ScenarioContext context) : base(context)
+        public OrganisationApplicationOverviewPage(ScenarioContext context) : base(context)
         {
             _context = context;
             VerifyPage();

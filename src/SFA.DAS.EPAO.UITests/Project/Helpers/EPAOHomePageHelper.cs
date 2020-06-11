@@ -27,7 +27,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
 
         public StaffDashboardPage GoToEpaoAdminHomePage(bool openInNewTab = false)
         {
-            if (openInNewTab) { _tabHelper.OpenInNewTab(_ePAOConfig.AdminBaseUrl); }
+            OpenUrl(_ePAOConfig.AdminBaseUrl, openInNewTab);
 
             new ServiceStartPage(_context).ClickStartNow().LoginToAccess1Staff();
 
@@ -36,11 +36,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
 
         public AS_LandingPage GoToEpaoAssessmentLandingPage(bool openInNewTab = false)
         {
-            var url = _ePAOConfig.AssessmentServiceUrl;
-
-            if (openInNewTab) { _tabHelper.OpenInNewTab(url); }
-            
-            else { _tabHelper.GoToUrl(url); }
+            OpenUrl(_ePAOConfig.AssessmentServiceUrl, openInNewTab);
             
             return new AS_LandingPage(_context);
         }
@@ -66,5 +62,9 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
             return GoToEpaoAssessmentLandingPage().ClickStartButton().SignInWithValidDetails(loginUser);
         }
 
+        private void OpenUrl(string url, bool openInNewTab)
+        {
+            if (openInNewTab) { _tabHelper.OpenInNewTab(url); } else { _tabHelper.GoToUrl(url); }
+        }
     }
 }
