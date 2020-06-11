@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.EPAO.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.UI.Framework;
 using SFA.DAS.UI.Framework.TestSupport;
@@ -19,7 +20,8 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages
         protected readonly EPAOApplyStandardDataHelper standardDataHelper;
         protected readonly EPAOAdminDataHelper ePAOAdminDataHelper;
         protected readonly EPAOConfig ePAOConfig;
-        
+        protected readonly ObjectContext objectContext;  
+
         protected override By PageHeader => By.CssSelector(".govuk-heading-xl, .heading-xlarge, .govuk-heading-l, .govuk-panel__title, .govuk-fieldset__heading");
 
         protected override By ContinueButton => By.CssSelector("#main-content .govuk-button");
@@ -39,6 +41,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages
             standardDataHelper = context.Get<EPAOApplyStandardDataHelper>();
             ePAOAdminDataHelper = context.Get<EPAOAdminDataHelper>();
             ePAOConfig = context.GetEPAOConfig<EPAOConfig>();
+            objectContext = context.Get<ObjectContext>();
         }
 
         protected void UploadFile()

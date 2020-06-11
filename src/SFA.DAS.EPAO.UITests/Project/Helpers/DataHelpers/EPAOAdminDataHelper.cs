@@ -15,6 +15,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers.DataHelpers
             NewOrganisationUkprn = $"99{GetRandomNumber(6)}";
             CompanyNumber = $"76{GetRandomNumber(6)}";
             CharityNumber = $"9{GetRandomNumber(4)}-{GetRandomNumber(2)}";
+            FinancialAssesmentDueDate = DateTime.Today.AddDays(100);
         }
 
         public string Standards => "100";
@@ -64,5 +65,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers.DataHelpers
         public string StreetAddress2 => "Cheylsmore Avuene";
 
         public string StreetAddress3 => "Warkwickshire";
+
+        public DateTime FinancialAssesmentDueDate { get; }
     }
 }

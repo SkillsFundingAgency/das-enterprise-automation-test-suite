@@ -16,6 +16,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
     {
         private readonly ScenarioContext _context;
         private readonly AssessmentServiceStepsHelper _stepsHelper;
+        private readonly EPAOHomePageHelper _ePAOHomePageHelper;
         private readonly EPAOConfig _ePAOConfig;
         private readonly EPAOAssesmentServiceDataHelper _ePAOAssesmentServiceDataHelper;
         private readonly EPAOApplyStandardDataHelper _ePAOApplyStandardData;
@@ -26,7 +27,6 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         private AS_OrganisationDetailsPage _organisationDetailsPage;
         private AS_EditUserPermissionsPage _editUserPermissionsPage;
         private AS_UserDetailsPage _userDetailsPage;
-        private readonly EPAOSqlDataHelper _ePAOSqlDataHelper;
         private bool _permissionsSelected;
         private string _newUserEmailId;
         
@@ -34,62 +34,63 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         {
             _context = context;
             _stepsHelper = new AssessmentServiceStepsHelper(_context);
+            _ePAOHomePageHelper = new EPAOHomePageHelper(_context);
             _ePAOConfig = context.GetEPAOConfig<EPAOConfig>();
             _ePAOAssesmentServiceDataHelper = context.Get<EPAOAssesmentServiceDataHelper>();
             _ePAOApplyStandardData = context.Get<EPAOApplyStandardDataHelper>();
-            _ePAOSqlDataHelper = context.Get<EPAOSqlDataHelper>();
         }
 
         [Given(@"the (Assessor User|Delete Assessor User|Standard Apply User|Manage User|Apply User|) is logged into Assessment Service Application")]
         [When(@"the (Assessor User|Standard Apply User|Manage User|Apply User) is logged into Assessment Service Application")]
         public void GivenTheUserIsLoggedIntoAssessmentServiceApplication(string user)
         {
-            _stepsHelper.LaunchAssessmentServiceApplication();
-
             if (user.Equals("Assessor User"))
-                _loggedInHomePage = _stepsHelper.LoginToAssessmentServiceApplication(_context.GetUser<EPAOAssessorUser>());
+                _loggedInHomePage = _ePAOHomePageHelper.LoginInAsNonApplyUser(_context.GetUser<EPAOAssessorUser>());
+
             else if (user.Equals("Delete Assessor User"))
-                _loggedInHomePage = _stepsHelper.LoginToAssessmentServiceApplication(_context.GetUser<EPAODeleteAssessorUser>());
+                _loggedInHomePage = _ePAOHomePageHelper.LoginInAsNonApplyUser(_context.GetUser<EPAODeleteAssessorUser>());
+
             else if (user.Equals("Manage User"))
-                _loggedInHomePage = _stepsHelper.LoginToAssessmentServiceApplication(_context.GetUser<EPAOManageUser>());
+                _loggedInHomePage = _ePAOHomePageHelper.LoginInAsNonApplyUser(_context.GetUser<EPAOManageUser>());
+
             else if (user.Equals("Standard Apply User"))
-            {
-                var usercreds = _context.GetUser<EPAOStandardApplyUser>();
-                _ePAOSqlDataHelper.DeleteStandardApplicication(_ePAOApplyStandardData.ApplyforStandardCode, _ePAOApplyStandardData.StandardAssessorOrganisationEpaoId, usercreds.Username);
-                _loggedInHomePage = _stepsHelper.LoginToAssessmentServiceApplication(usercreds);
-            }
+                _loggedInHomePage = _ePAOHomePageHelper.LoginInAsNonApplyUser(_context.GetUser<EPAOStandardApplyUser>(), _ePAOApplyStandardData.ApplyforStandardCode, _ePAOApplyStandardData.StandardAssessorOrganisationEpaoId);
+            
             else if (user.Equals("Apply User"))
-            {
-                _ePAOSqlDataHelper.ResetApplyUser(_context.GetUser<EPAOApplyUser>().Username);
-                new AS_LandingPage(_context).ClickStartButton().SignInAsApplyUser();
-            }
+                _ePAOHomePageHelper.LoginInAsApplyUser(_context.GetUser<EPAOApplyUser>());
+            
         }
 
         [When(@"the User goes through certifying an Apprentice as '(.*)' who has enrolled for '(.*)' standard")]
         public void WhenTheUserGoesThroughCertifyingAnApprenticeAsWhoHasEnrolledForStandard(string grade, string enrolledStandard)
         {
-            _stepsHelper.CertifyApprentice(grade, enrolledStandard);
-            new AS_CheckAndSubmitAssessmentPage(_context).ClickContinueInCheckAndSubmitAssessmentPage();
+            var page = _stepsHelper.CertifyApprentice(grade, enrolledStandard);
+
+            page.ClickContinueInCheckAndSubmitAssessmentPage();
         }
 
         [When(@"the User requests wrong certificate certifying an Apprentice as '(.*)' which needs '(.*)'")]
         public void WhenTheUserRequestsWrongCertificateCertifyingAnApprenticeAsWhichNeeds(string grade, string enrolledStandard)
         {
-            _stepsHelper.DeleteApprenticeCertificateRecord(grade, enrolledStandard);
-            new AS_CheckAndSubmitAssessmentPage(_context).ClickContinueInCheckAndSubmitAssessmentPage();
+            var page = _stepsHelper.DeleteApprenticeCertificateRecord(grade, enrolledStandard);
+
+            page.ClickContinueInCheckAndSubmitAssessmentPage();
         }
 
         [Then(@"the Admin user can delete a certificate that has been incorrectly submitted")]
         public void ThenTheAdminUserCanDeleteACertificateThatHasBeenIncorrectlySubmitted()
         {
-            _stepsHelper.DeleteCertificate();
+            var staffdashboard = _ePAOHomePageHelper.GoToEpaoAdminHomePage(true);
+
+            _stepsHelper.DeleteCertificate(staffdashboard);
         }
 
         [Then(@"the User is able to rerequest the certificate certifying an Apprentice as '(.*)' which was'(.*)'")]
         public void ThenTheUserIsAbleToRerequestTheCertificateCertifyingAnApprenticeAsWhichWas(string grade, string enrolledStandard)
         {
-            _stepsHelper.ReRequestApprenticeCertificateRecord(grade, enrolledStandard);
-            new AS_CheckAndSubmitAssessmentPage(_context).ClickContinueInCheckAndSubmitAssessmentPage();
+            var page = _stepsHelper.ReRequestApprenticeCertificateRecord(grade, enrolledStandard);
+
+            page.ClickContinueInCheckAndSubmitAssessmentPage();
         }
         
         [When(@"the User goes through certifying a Privately funded Apprentice")]
@@ -203,8 +204,10 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         [When(@"the User navigates to Organisation details page")]
         public void WhenTheUserNavigatesToOrganisationDetailsPage()
         {
-            _stepsHelper.RemoveChangeOrgDetailsPermissionForTheUser();
+            _stepsHelper.RemoveChangeOrgDetailsPermissionForTheUser(_loggedInHomePage);
+
             _loggedInHomePage.ClickOrganisationDetailsTopMenuLink();
+
             new AS_ChangeOrganisationDetailsPage(_context).ClickAccessButton();
         }
 

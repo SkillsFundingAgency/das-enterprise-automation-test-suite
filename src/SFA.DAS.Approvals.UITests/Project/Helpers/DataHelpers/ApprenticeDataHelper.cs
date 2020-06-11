@@ -15,13 +15,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
         {
             _objectContext = objectContext;
             _commitmentsdataHelper = commitmentsdataHelper;
-            ApprenticeFirstname = $"F_{this.randomDataGenerator.GenerateRandomAlphabeticString(10)}";
-            ApprenticeLastname = $"L_{this.randomDataGenerator.GenerateRandomAlphabeticString(10)}";
-            DateOfBirthDay = this.randomDataGenerator.GenerateRandomDateOfMonth();
-            DateOfBirthMonth = this.randomDataGenerator.GenerateRandomMonth();
-            DateOfBirthYear = this.randomDataGenerator.GenerateRandomDobYear();
-            TrainingPrice = "1" + this.randomDataGenerator.GenerateRandomNumber(3);
-            EmployerReference = this.randomDataGenerator.GenerateRandomAlphanumericString(10);
+            ApprenticeFirstname = $"F_{randomDataGenerator.GenerateRandomAlphabeticString(10)}";
+            ApprenticeLastname = $"L_{randomDataGenerator.GenerateRandomAlphabeticString(10)}";
+            DateOfBirthDay = randomDataGenerator.GenerateRandomDateOfMonth();
+            DateOfBirthMonth = randomDataGenerator.GenerateRandomMonth();
+            DateOfBirthYear = randomDataGenerator.GenerateRandomDobYear();
+            TrainingPrice = "1" + randomDataGenerator.GenerateRandomNumber(3);
+            EmployerReference = randomDataGenerator.GenerateRandomAlphanumericString(10);
             Ulns = new List<string>();
             _apprenticeid = 0;
         }

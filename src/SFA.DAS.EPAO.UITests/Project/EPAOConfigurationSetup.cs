@@ -33,6 +33,8 @@ namespace SFA.DAS.EPAO.UITests.Project
 
             _context.SetUser(_configSection.GetConfigSection<EPAOApplyUser>());
 
+            _context.SetUser(_configSection.GetConfigSection<EPAOE2EApplyUser>());
+
             _context.SetUser(_configSection.GetConfigSection<EPAOAdminUser>());}
     }
 }
