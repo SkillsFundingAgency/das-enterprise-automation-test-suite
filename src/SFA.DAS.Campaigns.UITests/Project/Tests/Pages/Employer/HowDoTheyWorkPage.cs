@@ -20,7 +20,6 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
-        private readonly HireAnApprenticePage _hireAnApprenticePage;
         #endregion
 
         public HowDoTheyWorkPage(ScenarioContext context) : base(context)
