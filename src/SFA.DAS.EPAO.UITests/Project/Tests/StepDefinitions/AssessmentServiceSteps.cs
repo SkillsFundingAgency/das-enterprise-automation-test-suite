@@ -16,6 +16,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
     {
         private readonly ScenarioContext _context;
         private readonly AssessmentServiceStepsHelper _stepsHelper;
+        private readonly ApplyStepsHelper _applyStepsHelper;
         private readonly EPAOHomePageHelper _ePAOHomePageHelper;
         private readonly EPAOConfig _ePAOConfig;
         private readonly EPAOAssesmentServiceDataHelper _ePAOAssesmentServiceDataHelper;
@@ -34,6 +35,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         {
             _context = context;
             _stepsHelper = new AssessmentServiceStepsHelper(_context);
+            _applyStepsHelper = new ApplyStepsHelper(_context);
             _ePAOHomePageHelper = new EPAOHomePageHelper(_context);
             _ePAOConfig = context.GetEPAOConfig<EPAOConfig>();
             _ePAOAssesmentServiceDataHelper = context.Get<EPAOAssesmentServiceDataHelper>();
@@ -283,57 +285,6 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         }
 
         [Then(@"the user can apply to assess a standard")]
-        public void ThenTheUserCanApplyToAssessAStandard()
-        {
-           var applyToStandard = _loggedInHomePage.ApplyToAssessStandard()
-                .SelectApplication()
-                .StartApplication()
-                .Start()
-                .EnterStandardName()
-                .Apply()
-                .ConfirmAndApply()
-                .GoToApplyToStandard();
-
-            applyToStandard = applyToStandard.AccessYourPolicies_01()
-                .EnterRegNumber()
-                .UploadAuditPolicy()
-                .UploadPublicLiabilityInsurance()
-                .UploadProfessionalIndemnityInsurance()
-                .UploadEmployersLiabilityInsurance()
-                .UploadSafeguardingPolicy()
-                .UploadPreventAgendaPolicy()
-                .UploadConflictOfinterestPolicy()
-                .UploadMonitoringProcedure()
-                .UploadModerationProcesses()
-                .UploadComplaintsPolicy()
-                .UploadFairAccess()
-                .UploadConsistencyAssurance()
-                .EnterImproveTheQuality()
-                .EnterEngagement()
-                .EnterMembershipDetails()
-                .EnterHowManyAssessors()
-                .EnterHowManyEndPointAssessment()
-                .EnterVolume()
-                .EnterHowRecruitAndTrainAssessors()
-                .EnterExperience()
-                .EnterOccupationalExpertise()
-                .EnterDeliverEndPoint()
-                .EnterIntendToOutsource()
-                .EnterEngageWithEmployers()
-                .EnterManageAnyPotentialConflict()
-                .ChooseLocation()
-                .EnterDayToStart()
-                .EnterAssessmentPlan()
-                .EnterReviewAndMaintainPlan()
-                .EnterSecureITInfrastructurePlan()
-                .EnterAssessmentAdministration()
-                .EnterAssessmentProduct()
-                .EnterAssessmentContent()
-                .EnterCollationOutcome()
-                .EnterAssessmentResutls()
-                .EnterWebAddress();
-
-            applyToStandard.ReturnToApplicationOverview().Submit();
-        }
+        public void ThenTheUserCanApplyToAssessAStandard() => _applyStepsHelper.ApplyForAStandard(_loggedInHomePage.ApplyToAssessStandard().SelectApplication().StartApplication());
     }
 }

@@ -30,12 +30,6 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
         public ApplicationOverviewPage GoToInProgressApplicationOverviewPage() => GoToApplicationOverviewPage(InProgressTab);
 
         public ApplicationOverviewPage GoToApprovedApplicationOverviewPage() => GoToApplicationOverviewPage(ApprovedTab);
-        
-        public AssessmentSummaryPage CompleteReview()
-        {
-            Continue();
-            return new AssessmentSummaryPage(_context);
-        }
 
         private ApplicationOverviewPage GoToApplicationOverviewPage(By by)
         {

@@ -39,5 +39,11 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
             formCompletionHelper.ClickLinkByText("Return to applications");
             return new OrganisationApplicationsPage(_context);
         }
+
+        public AssessmentSummaryPage CompleteReview()
+        {
+            Continue();
+            return new AssessmentSummaryPage(_context);
+        }
     }
 }

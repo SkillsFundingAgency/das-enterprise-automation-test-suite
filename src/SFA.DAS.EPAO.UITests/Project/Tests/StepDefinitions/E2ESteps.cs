@@ -1,9 +1,6 @@
 ﻿using SFA.DAS.EPAO.UITests.Project.Helpers;
-using SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService;
 using SFA.DAS.Login.Service;
 using SFA.DAS.Login.Service.Helpers;
-using SFA.DAS.UI.Framework.TestSupport;
-using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
@@ -12,19 +9,13 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
     public class E2ESteps
     {
         private readonly ScenarioContext _context;
-        private readonly EPAOSqlDataHelper _ePAOSqlDataHelper;
         private readonly ApplyStepsHelper _applyStepsHelper;
-        private readonly EPAOConfig _config;
-        private readonly TabHelper _tabHelper;
         private readonly EPAOHomePageHelper _ePAOHomePageHelper;
 
         public E2ESteps(ScenarioContext context)
         {
             _context = context;
-            _ePAOSqlDataHelper = context.Get<EPAOSqlDataHelper>();
             _applyStepsHelper = new ApplyStepsHelper(_context);
-            _config = context.GetEPAOConfig<EPAOConfig>();
-            _tabHelper = context.Get<TabHelper>();
             _ePAOHomePageHelper = new EPAOHomePageHelper(_context);
         }
 
@@ -47,9 +38,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         [Given(@"the admin appoves the assessor")]
         public void GivenTheAdminAppovesTheAssessor()
         {
-            _tabHelper.OpenInNewTab(_config.AdminBaseUrl);
-
-            var staffdashboard = _ePAOHomePageHelper.GoToEpaoAdminHomePage();
+            var staffdashboard = _ePAOHomePageHelper.GoToEpaoAdminHomePage(true);
 
             staffdashboard = staffdashboard
                 .GoToNewOrganisationApplications()
@@ -87,7 +76,9 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         [When(@"the apply user applies for a standard")]
         public void WhenTheApplyUserAppliesForAStandard()
         {
-            
+            var page = _ePAOHomePageHelper.LoginInAsStandardApplyUser(_context.GetUser<EPAOE2EApplyUser>());
+
+            _applyStepsHelper.ApplyForAStandard(page);
         }
 
         [Then(@"the admin approves the standard")]

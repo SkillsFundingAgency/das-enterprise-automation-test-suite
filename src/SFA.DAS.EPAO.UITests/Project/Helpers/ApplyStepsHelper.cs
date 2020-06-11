@@ -1,6 +1,7 @@
 ﻿using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply;
 using SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.PreamblePages;
+using SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.ApplyToAssessStandard;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EPAO.UITests.Project.Helpers
@@ -90,6 +91,57 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
         }
 
         public void SubmitApplication(AP_ApplicationOverviewPage applicationOverviewPage) => applicationOverviewPage.ClickSubmitInApplicationOverviewPage();
+
+        public AS_ApplicationSubmittedPage ApplyForAStandard(AS_ApplyForAStandardPage aS_ApplyForAStandardPage)
+        {
+            var applyToStandard = aS_ApplyForAStandardPage
+                .Start()
+                .EnterStandardName()
+                .Apply()
+                .ConfirmAndApply()
+                .GoToApplyToStandard();
+
+            applyToStandard = applyToStandard.AccessYourPolicies_01()
+                .EnterRegNumber()
+                .UploadAuditPolicy()
+                .UploadPublicLiabilityInsurance()
+                .UploadProfessionalIndemnityInsurance()
+                .UploadEmployersLiabilityInsurance()
+                .UploadSafeguardingPolicy()
+                .UploadPreventAgendaPolicy()
+                .UploadConflictOfinterestPolicy()
+                .UploadMonitoringProcedure()
+                .UploadModerationProcesses()
+                .UploadComplaintsPolicy()
+                .UploadFairAccess()
+                .UploadConsistencyAssurance()
+                .EnterImproveTheQuality()
+                .EnterEngagement()
+                .EnterMembershipDetails()
+                .EnterHowManyAssessors()
+                .EnterHowManyEndPointAssessment()
+                .EnterVolume()
+                .EnterHowRecruitAndTrainAssessors()
+                .EnterExperience()
+                .EnterOccupationalExpertise()
+                .EnterDeliverEndPoint()
+                .EnterIntendToOutsource()
+                .EnterEngageWithEmployers()
+                .EnterManageAnyPotentialConflict()
+                .ChooseLocation()
+                .EnterDayToStart()
+                .EnterAssessmentPlan()
+                .EnterReviewAndMaintainPlan()
+                .EnterSecureITInfrastructurePlan()
+                .EnterAssessmentAdministration()
+                .EnterAssessmentProduct()
+                .EnterAssessmentContent()
+                .EnterCollationOutcome()
+                .EnterAssessmentResutls()
+                .EnterWebAddress();
+
+            return applyToStandard.ReturnToApplicationOverview().Submit();
+        }
 
     }
 }
