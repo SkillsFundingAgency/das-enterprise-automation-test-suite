@@ -13,7 +13,7 @@
     <Description>A generic repository wrapper for Specflow UI Framework integrated with donet core</Description>
     <PackageProjectUrl>https://accounts.manage-apprenticeships.service.gov.uk/service/index</PackageProjectUrl>
     <RepositoryUrl>https://github.com/SkillsFundingAgency/DFE-Standardised-Test-Automation-Framework/tree/master/src/SFA.DAS.UI.Framework</RepositoryUrl>
-    <PackageLicenseUrl>http://opensource.org/licenses/MS-PL</PackageLicenseUrl>
+    <PackageLicenseExpression>MS-PL</PackageLicenseExpression>
     <NeutralLanguage>en</NeutralLanguage>
     <PackageTags>specflow bdd gherkin borwserstack</PackageTags>
     <RepositoryType>git</RepositoryType>
