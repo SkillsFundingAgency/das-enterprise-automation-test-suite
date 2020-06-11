@@ -21,7 +21,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.PreamblePages
 
         public AP_PR2_SearchResultsForPage EnterOrgNameAndSearchInSearchForYourOrgPage()
         {
-            formCompletionHelper.EnterText(SearchTextBox, "Brunel");
+            formCompletionHelper.EnterText(SearchTextBox, objectContext.GetApplyOrganisationName());
             Continue();
             return new AP_PR2_SearchResultsForPage(_context);
         }

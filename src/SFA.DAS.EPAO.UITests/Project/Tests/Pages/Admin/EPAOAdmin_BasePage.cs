@@ -15,6 +15,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
         private By TRows => By.CssSelector(".govuk-summary-list__row");
         private By THeader => By.CssSelector(".govuk-summary-list__key");
         private By TData => By.CssSelector(".govuk-summary-list__value");
+        private By ReturnToDashboardlink => By.CssSelector("a[href='/Dashboard']");
 
         public EPAOAdmin_BasePage(ScenarioContext context) : base(context) => _context = context;
 
@@ -35,5 +36,12 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
             }
             throw new NotFoundException($"{headerName} not found");
         }
+
+        protected StaffDashboardPage ReturnToDashboard()
+        {
+            formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(ReturnToDashboardlink));
+            return new StaffDashboardPage(_context);
+        }
+
     }
 }

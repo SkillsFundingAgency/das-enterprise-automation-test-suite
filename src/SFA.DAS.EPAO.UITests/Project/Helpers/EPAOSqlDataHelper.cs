@@ -1,5 +1,4 @@
 ﻿using SFA.DAS.UI.FrameworkHelpers;
-using System;
 
 namespace SFA.DAS.EPAO.UITests.Project.Helpers
 {

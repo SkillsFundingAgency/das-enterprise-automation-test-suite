@@ -1,8 +1,4 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.UI.FrameworkHelpers;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
@@ -15,6 +11,10 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
         private readonly ScenarioContext _context;
         #endregion
 
+        private By NewOrganisationApplication => By.CssSelector("a.govuk-link[href='/OrganisationApplication#new']");
+        private By InProgressOrganisationApplication => By.CssSelector("a.govuk-link[href='/OrganisationApplication#in-progress']");
+        private By ApprovedOrganisationApplication => By.CssSelector("a.govuk-link[href='/OrganisationApplication#approved']");
+        private By NewFinancialHeathAssesment => By.CssSelector("a.govuk-link[href='/Financial/Open']");
         private By SearchLink => By.CssSelector("a.govuk-link[href='/Search']");
         private By BatchSearch => By.CssSelector("a.govuk-link[href='/BatchSearch']");
         private By Register => By.CssSelector("a.govuk-link[href='/Register']");
@@ -54,6 +54,30 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
         {
             formCompletionHelper.ClickElement(BatchSearch);
             return new BatchSearchPage(_context);
+        }
+
+        public OrganisationApplicationsPage GoToNewOrganisationApplications()
+        {
+            formCompletionHelper.ClickElement(NewOrganisationApplication);
+            return new OrganisationApplicationsPage(_context);
+        }
+
+        public OrganisationApplicationsPage GoToInProgressOrganisationApplication()
+        {
+            formCompletionHelper.ClickElement(InProgressOrganisationApplication);
+            return new OrganisationApplicationsPage(_context);
+        }
+
+        public OrganisationApplicationsPage GoToApprovedOrganisationApplication()
+        {
+            formCompletionHelper.ClickElement(ApprovedOrganisationApplication);
+            return new OrganisationApplicationsPage(_context);
+        }
+
+        public FinancialAssesmentPage GoToNewFinancialAssesmentPage()
+        {
+            formCompletionHelper.ClickElement(NewFinancialHeathAssesment);
+            return new FinancialAssesmentPage(_context);
         }
     }
 }
