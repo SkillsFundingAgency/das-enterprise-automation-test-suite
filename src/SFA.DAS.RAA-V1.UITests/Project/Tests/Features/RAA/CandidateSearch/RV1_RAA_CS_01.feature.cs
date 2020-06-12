@@ -72,12 +72,12 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Features.RAA.CandidateSearch
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("RV1_RAA_CS_01 - Search for a Candidate in Recruit")]
         [NUnit.Framework.CategoryAttribute("raa-v1")]
-        [NUnit.Framework.CategoryAttribute("regression")]
+        [NUnit.Framework.CategoryAttribute("awaiting-fix")]
         public virtual void RV1_RAA_CS_01_SearchForACandidateInRecruit()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV1_RAA_CS_01 - Search for a Candidate in Recruit", null, new string[] {
                         "raa-v1",
-                        "regression"});
+                        "awaiting-fix"});
 #line 5
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
