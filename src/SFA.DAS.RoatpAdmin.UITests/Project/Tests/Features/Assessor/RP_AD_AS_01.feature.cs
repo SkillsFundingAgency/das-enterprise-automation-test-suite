@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Features.Financial
+namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Features.Assessor
 {
     using TechTalk.SpecFlow;
     
@@ -18,20 +18,20 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Features.Financial
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.0.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("RP_AD_FHA_01")]
-    public partial class RP_AD_FHA_01Feature
+    [NUnit.Framework.DescriptionAttribute("RP_AD_AS_01")]
+    public partial class RP_AD_AS_01Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "RP_AD_FHA_01.feature"
+#line 1 "RP_AD_AS_01.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "RP_AD_FHA_01", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "RP_AD_AS_01", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -70,32 +70,35 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Features.Financial
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RP_AD_FHA_01")]
-        [NUnit.Framework.CategoryAttribute("resetFhaApplicationToNew")]
+        [NUnit.Framework.DescriptionAttribute("RP_AD_AS_01 Assess a Company type Application via Main provider route")]
         [NUnit.Framework.CategoryAttribute("roatp")]
-        [NUnit.Framework.CategoryAttribute("roatpadmin")]
+        [NUnit.Framework.CategoryAttribute("rpadas01")]
+        [NUnit.Framework.CategoryAttribute("roatpassessor")]
         [NUnit.Framework.CategoryAttribute("newroatpadmin")]
-        [NUnit.Framework.CategoryAttribute("rpadfha01")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public virtual void RP_AD_FHA_01()
+        public virtual void RP_AD_AS_01AssessACompanyTypeApplicationViaMainProviderRoute()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_AD_FHA_01", null, new string[] {
-                        "resetFhaApplicationToNew",
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_AD_AS_01 Assess a Company type Application via Main provider route", null, new string[] {
                         "roatp",
-                        "roatpadmin",
+                        "rpadas01",
+                        "roatpassessor",
                         "newroatpadmin",
-                        "rpadfha01",
                         "regression"});
-#line 9
+#line 8
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
+#line 9
+ testRunner.When("the Assessor1 is on the RoATP assessor applications dashboard", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 10
- testRunner.Given("the admin lands on the Dashboard", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Then("Assessor1 selects the Main provider route application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 11
- testRunner.When("the admin access the FinancialApplications", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.And("assesses all the sections of the Main provider application as PASS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 12
- testRunner.Then("the Financial assessor completes assessment by confirming the Gateway outcome as " +
-                    "Outstanding", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.When("the Assessor2 is on RoATP assessor applications dashboard", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 13
+ testRunner.Then("Assessor2 selects the Main provider route application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 14
+ testRunner.And("assesses all the sections of the Main provider application as PASS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }

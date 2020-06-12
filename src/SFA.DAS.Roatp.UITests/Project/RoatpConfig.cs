@@ -5,6 +5,7 @@ namespace SFA.DAS.Roatp.UITests.Project
     public class RoatpConfig
     {
         public string AdminBaseUrl => UrlConfig.AdminBaseUrl;
+        public string RoATPAssessorBaseUrl => UrlConfig.RoATPAssessorBaseUrl;
         public string AdminUserName { get; set; }
         public string AdminPassword { get; set; }
         public string ApplyBaseUrl => UrlConfig.ApplyBaseUrl;

@@ -52,6 +52,12 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.RoatpAdmin
                     new KeyValuePair<string, string>(providernamekey, "HENRI BAPTISTE"),
                     new KeyValuePair<string, string>(ukprnkey, "10054031"),
              });
+            _adminData.Add("rpadas01",
+            new List<KeyValuePair<string, string>>
+            {
+                    new KeyValuePair<string, string>(providernamekey, "Main provider"),
+                    new KeyValuePair<string, string>(ukprnkey, "10082318"),
+            });
         }
     }
 }

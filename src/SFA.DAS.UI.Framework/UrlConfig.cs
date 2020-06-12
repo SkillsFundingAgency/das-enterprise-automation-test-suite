@@ -3,6 +3,7 @@
     public static class UrlConfig
     {
         public static string AdminBaseUrl => $"https://{EnvironmentConfig.EnvironmentName}-admin.apprenticeships.education.gov.uk/";
+        public static string RoATPAssessorBaseUrl => $"https://{EnvironmentConfig.EnvironmentName}-roatp-assessor.apprenticeships.education.gov.uk/";
         public static string ApplyBaseUrl => $"https://{EnvironmentConfig.EnvironmentName}-apply.apprenticeships.education.gov.uk/";
         public static string CABaseURL => EnvironmentConfig.IsPPEnvironment ? "https://preprod.apprenticeships.gov.uk/" : $"https://{EnvironmentConfig.EnvironmentName}.apprenticeships.gov.uk/";
         public static string EPAOAssessmentServiceUrl => $"https://{EnvironmentConfig.EnvironmentName}-assessors.apprenticeships.education.gov.uk";
