@@ -1,6 +1,6 @@
 ﻿Feature: SC_Ap_ULN_02
 
-@regression
+@awaiting-fix
 @supportconsole
 @approvalssupportconsole
 Scenario: SC_Ap_ULN_02 - Invalid ULN search
