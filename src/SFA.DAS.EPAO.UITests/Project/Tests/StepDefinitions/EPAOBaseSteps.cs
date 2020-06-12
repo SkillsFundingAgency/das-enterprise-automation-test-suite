@@ -55,7 +55,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         protected AS_UserDetailsPage userDetailsPage;
         protected AS_OrganisationDetailsPage aS_OrganisationDetailsPage;
 
-        public EPAOBaseSteps(ScenarioContext context)
+        protected EPAOBaseSteps(ScenarioContext context)
         {
             ePAOConfig = context.GetEPAOConfig<EPAOConfig>();
             tabHelper = context.Get<TabHelper>();
