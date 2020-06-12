@@ -1,37 +1,26 @@
-﻿using SFA.DAS.EPAO.UITests.Project.Helpers;
-using SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin;
-using TechTalk.SpecFlow;
+﻿using SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin;
 
-namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
+namespace SFA.DAS.EPAO.UITests.Project.Helpers
 {
     public class AdminStepshelper
     {
-        private readonly ScenarioContext _context;
-        private readonly EPAOHomePageHelper _ePAOHomePageHelper;
+        public AdminStepshelper() { }
 
-        public AdminStepshelper(ScenarioContext context)
+        public OrganisationDetailsPage SearchEpaoRegister(StaffDashboardPage staffDashboardPage, string keyword) => staffDashboardPage.SearchEPAO().SearchForAnOrganisation(keyword).SelectAnOrganisation();
+
+        public OrganisationDetailsPage AddOrganisation(StaffDashboardPage staffDashboardPage) => staffDashboardPage.AddOrganisation().EnterDetails();
+
+        public OrganisationDetailsPage MakeEPAOOrganisationLive(StaffDashboardPage staffDashboardPage, string keyword)
         {
-            _context = context;
-            _ePAOHomePageHelper = new EPAOHomePageHelper(_context);
-        }
-
-        public StaffDashboardPage GoToEpaoAdminHomePage(bool openInNewTab = false) => _ePAOHomePageHelper.GoToEpaoAdminHomePage(openInNewTab);
-
-        public OrganisationDetailsPage SearchEpaoRegister(string keyword) => _ePAOHomePageHelper.GoToEpaoAdminHomePage().SearchEPAO().SearchForAnOrganisation(keyword).SelectAnOrganisation();
-
-        public OrganisationDetailsPage AddOrganisation() => GoToEpaoAdminHomePage().AddOrganisation().EnterDetails();
-
-        public OrganisationDetailsPage MakeEPAOOrganisationLive(string keyword)
-        {
-            return SearchEpaoRegister(keyword).VerifyOrganisationStatus("New")
+            return SearchEpaoRegister(staffDashboardPage, keyword).VerifyOrganisationStatus("New")
                 .EditOrganisation()
                 .MakeOrgLive()
                 .VerifyOrganisationStatus("Live");
         }
 
-        public StaffDashboardPage ApproveAStandard()
+        public StaffDashboardPage ApproveAStandard(StaffDashboardPage staffDashboardPage)
         {
-            return GoToEpaoAdminHomePage(true)
+            return staffDashboardPage
                 .GoToNewStandardApplications()
                 .GoToNewStandardApplicationOverviewPage()
                 .GoToApplyToAssessAStandardPage()
@@ -40,9 +29,9 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
                 .ReturnToDashboard();
         }
 
-        public StaffDashboardPage ApproveAnOrganisation()
+        public StaffDashboardPage ApproveAnOrganisation(StaffDashboardPage staffDashboardPage)
         {
-            var staffDashboardPage = GoToEpaoAdminHomePage(true)
+            staffDashboardPage = staffDashboardPage
                 .GoToNewOrganisationApplications()
                 .GoToNewOrganisationApplicationOverviewPage()
                 .GoToNewOrganisationDetailsPage()

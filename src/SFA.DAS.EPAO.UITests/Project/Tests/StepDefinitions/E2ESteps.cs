@@ -1,59 +1,66 @@
-﻿using SFA.DAS.EPAO.UITests.Project.Helpers;
-using SFA.DAS.Login.Service;
-using SFA.DAS.Login.Service.Helpers;
+﻿using SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.PreamblePages;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
 {
     [Binding]
-    public class E2ESteps
+    public class E2ESteps : EPAOBaseSteps
     {
-        private readonly ScenarioContext _context;
-        private readonly ApplyStepsHelper _applyStepsHelper;
-        private readonly AdminStepshelper _adminStepshelper;
-        private readonly EPAOHomePageHelper _ePAOHomePageHelper;
+        private string E2eOrgName => "Welling School";
 
-        private string _e2eorgName => "Brunell School";
+        private string E2EOrgStandardName => "Software developer";
 
-        public E2ESteps(ScenarioContext context)
-        {
-            _context = context;
-            _applyStepsHelper = new ApplyStepsHelper(_context);
-            _adminStepshelper = new AdminStepshelper(_context);
-            _ePAOHomePageHelper = new EPAOHomePageHelper(_context);
-        }
+        public E2ESteps(ScenarioContext context) : base(context) { }
 
         [Given(@"the apply user submits an Assessment Service Application")]
         public void GivenTheApplyUserSubmitsAnAssessmentServiceApplication()
         {
-            _ePAOHomePageHelper.LoginInAsApplyUser(_context.GetUser<EPAOE2EApplyUser>());
+            var searchForYourOrganisationPage = LoginInAsApplyUser();
 
-            var _applicationOverviewPage = _applyStepsHelper.CompletePreambleJourney(_e2eorgName);
+            var _applicationOverviewPage = applyStepsHelper.CompletePreambleJourney(searchForYourOrganisationPage, E2eOrgName);
 
-            _applicationOverviewPage = _applyStepsHelper.CompleteOrganisationDetailsSection(_applicationOverviewPage);
+            _applicationOverviewPage = applyStepsHelper.CompleteOrganisationDetailsSection(_applicationOverviewPage);
 
-            _applicationOverviewPage = _applyStepsHelper.CompleteDeclarationsSection(_applicationOverviewPage);
+            _applicationOverviewPage = applyStepsHelper.CompleteDeclarationsSection(_applicationOverviewPage);
 
-            _applicationOverviewPage = _applyStepsHelper.CompletesTheFHASection(_applicationOverviewPage);
+            _applicationOverviewPage = applyStepsHelper.CompletesTheFHASection(_applicationOverviewPage);
 
-            _applyStepsHelper.SubmitApplication(_applicationOverviewPage);
+            applyStepsHelper.SubmitApplication(_applicationOverviewPage);
         }
 
         [Given(@"the admin appoves the assessor")]
-        public void GivenTheAdminAppovesTheAssessor() => _adminStepshelper.ApproveAnOrganisation();
+        public void GivenTheAdminAppovesTheAssessor() => staffdashboardPage = adminStepshelper.ApproveAnOrganisation(ePAOHomePageHelper.GoToEpaoAdminHomePage(true));
 
         [When(@"the apply user applies for a standard")]
         public void WhenTheApplyUserAppliesForAStandard()
         {
-            var page = _ePAOHomePageHelper.LoginInAsStandardApplyUser(_context.GetUser<EPAOE2EApplyUser>());
+            var page = ePAOHomePageHelper.GoToEpaoApplyForAStandardPage();
 
-            _applyStepsHelper.ApplyForAStandard(page);
+            applyStepsHelper.ApplyForAStandard(page, E2EOrgStandardName);
         }
 
         [Then(@"the admin approves the standard")]
-        public void ThenTheAdminApprovesTheStandard() => _adminStepshelper.ApproveAStandard();
+        public void ThenTheAdminApprovesTheStandard() => staffdashboardPage = adminStepshelper.ApproveAStandard(ePAOHomePageHelper.GoToEpaoAdminStaffDashboardPage());
 
         [Then(@"make the epao live")]
-        public void ThenMakeTheEpaoLive() => _adminStepshelper.MakeEPAOOrganisationLive(_e2eorgName);
+        public void ThenMakeTheEpaoLive() => adminStepshelper.MakeEPAOOrganisationLive(staffdashboardPage, E2eOrgName);
+
+        private AP_PR1_SearchForYourOrganisationPage LoginInAsApplyUser()
+        {
+            var username = ePAOE2EApplyUser.Username;
+
+            ePAOApplySqlDataHelper.ResetApplyUserOrganisationId(username);
+
+            ePAOAdminSqlDataHelper.DeleteOrganisationStandardDeliveryArea(username);
+
+            ePAOAdminSqlDataHelper.DeleteOrganisationStanard(username);
+
+            ePAOAdminSqlDataHelper.DeleteEPAOOrganisation(username);
+
+            ePAOApplySqlDataHelper.ResetApplyUserEPAOId(username);
+
+            return ePAOHomePageHelper.LoginInAsApplyUser(ePAOE2EApplyUser);
+        }
+
     }
 }

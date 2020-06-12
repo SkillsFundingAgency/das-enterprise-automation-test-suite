@@ -8,20 +8,15 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
 {
     public class ApplyStepsHelper
     {
-        private readonly ScenarioContext _context;
         private readonly ObjectContext _objectContext;
 
-        public ApplyStepsHelper(ScenarioContext context)
-        {
-            _context = context;
-            _objectContext = context.Get<ObjectContext>();
-        }
+        public ApplyStepsHelper(ScenarioContext context) => _objectContext = context.Get<ObjectContext>();
 
-        public AP_ApplicationOverviewPage CompletePreambleJourney(string orgName)
+        public AP_ApplicationOverviewPage CompletePreambleJourney(AP_PR1_SearchForYourOrganisationPage searchForYourOrganisationPage, string orgName)
         {
             _objectContext.SetApplyOrganisationName(orgName);
 
-            return new AP_PR1_SearchForYourOrganisationPage(_context)
+            return searchForYourOrganisationPage
                 .EnterOrgNameAndSearchInSearchForYourOrgPage()
                 .ClickOrgLinkFromSearchResultsForPage()
                 .SelectTrainingProviderRadioButtonAndContinueInSelectOrgTypePage()
@@ -92,8 +87,10 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
 
         public void SubmitApplication(AP_ApplicationOverviewPage applicationOverviewPage) => applicationOverviewPage.ClickSubmitInApplicationOverviewPage();
 
-        public AS_ApplicationSubmittedPage ApplyForAStandard(AS_ApplyForAStandardPage aS_ApplyForAStandardPage)
+        public AS_ApplicationSubmittedPage ApplyForAStandard(AS_ApplyForAStandardPage aS_ApplyForAStandardPage, string standardName)
         {
+            _objectContext.SetApplyStandardName(standardName);
+
             var applyToStandard = aS_ApplyForAStandardPage
                 .Start()
                 .EnterStandardName()

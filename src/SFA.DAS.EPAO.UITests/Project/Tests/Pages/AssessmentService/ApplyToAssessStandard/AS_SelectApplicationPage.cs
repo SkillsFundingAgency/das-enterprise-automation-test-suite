@@ -20,7 +20,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.ApplyToAsse
 
         public AS_ApplicationOverviewPage SelectApplication()
         {
-            tableRowHelper.SelectRowFromTable("View", standardDataHelper.ApplyforStandard);
+            tableRowHelper.SelectRowFromTable("View", objectContext.GetApplyStandardName());
             return new AS_ApplicationOverviewPage(_context);
         }
     }
