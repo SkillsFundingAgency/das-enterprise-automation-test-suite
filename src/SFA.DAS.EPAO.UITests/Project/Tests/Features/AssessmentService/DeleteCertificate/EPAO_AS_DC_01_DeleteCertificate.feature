@@ -9,7 +9,7 @@ Scenario: EPAO_AS_DC_01A - Delete a Certficate
 	Then the Assessment is recorded and the User is able to navigate back to certifying another Apprentice
 	And  the Admin user can delete a certificate that has been incorrectly submitted
 
-
+@ignore
 @epao
 @assessmentservice
 @regression	

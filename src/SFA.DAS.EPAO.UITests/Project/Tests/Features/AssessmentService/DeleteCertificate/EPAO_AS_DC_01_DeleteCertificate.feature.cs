@@ -99,12 +99,14 @@ this.ScenarioInitialize(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("EPAO_AS_DC_01B - Recreate the Deleted Certficate")]
+        [NUnit.Framework.IgnoreAttribute("Ignored scenario")]
         [NUnit.Framework.CategoryAttribute("epao")]
         [NUnit.Framework.CategoryAttribute("assessmentservice")]
         [NUnit.Framework.CategoryAttribute("regression")]
         public virtual void EPAO_AS_DC_01B_RecreateTheDeletedCertficate()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EPAO_AS_DC_01B - Recreate the Deleted Certficate", null, new string[] {
+                        "ignore",
                         "epao",
                         "assessmentservice",
                         "regression"});

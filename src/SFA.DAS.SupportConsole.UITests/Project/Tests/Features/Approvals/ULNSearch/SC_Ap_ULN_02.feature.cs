@@ -71,13 +71,13 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Features.Approvals.ULNSea
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("SC_Ap_ULN_02 - Invalid ULN search")]
-        [NUnit.Framework.CategoryAttribute("regression")]
+        [NUnit.Framework.CategoryAttribute("awaiting-fix")]
         [NUnit.Framework.CategoryAttribute("supportconsole")]
         [NUnit.Framework.CategoryAttribute("approvalssupportconsole")]
         public virtual void SC_Ap_ULN_02_InvalidULNSearch()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("SC_Ap_ULN_02 - Invalid ULN search", null, new string[] {
-                        "regression",
+                        "awaiting-fix",
                         "supportconsole",
                         "approvalssupportconsole"});
 #line 6
