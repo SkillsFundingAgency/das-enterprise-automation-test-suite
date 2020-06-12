@@ -6,7 +6,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
     [Binding]
     public class E2ESteps : EPAOBaseSteps
     {
-        private string E2eOrgName => "Welling School";
+        private string E2eOrgName => "SWITHUN WELLSSCHOOL ACTIVITIES FUND";
 
         private string E2EOrgStandardName => "Software developer";
 
