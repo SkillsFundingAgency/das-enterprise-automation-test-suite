@@ -6,7 +6,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.InterimPages
     {
         protected override string PageTitle => "Recruitment";
 
-        protected override string Linktext => "Recruitment";
+        protected override string Linktext => "Adverts";
 
         public InterimRecruitmentHomePage(ScenarioContext context, bool navigate) : this(context, navigate, false) { }
 
