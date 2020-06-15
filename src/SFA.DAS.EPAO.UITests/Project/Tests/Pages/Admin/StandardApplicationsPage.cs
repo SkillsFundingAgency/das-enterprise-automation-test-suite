@@ -5,7 +5,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
 {
     public class StandardApplicationsPage : ApplicationBasePage
     {
-        protected override string PageTitle => "Organisation applications";
+        protected override string PageTitle => "Standard applications";
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
