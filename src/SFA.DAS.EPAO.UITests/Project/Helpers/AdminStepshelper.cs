@@ -51,11 +51,16 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
                 .ReturnToDashboard();
             }
 
-            staffDashboardPage = staffDashboardPage
+            var applicationOverview = staffDashboardPage
                 .GoToInProgressOrganisationApplication()
-                .GoToInProgressOrganisationApplicationOverviewPage()
-                .GoToFinancialhealthAssesmentPage()
-                .SelectYesAndContinue()
+                .GoToInProgressOrganisationApplicationOverviewPage();
+
+            if (approveFinancialAssesment)
+            {
+                applicationOverview = applicationOverview.GoToFinancialhealthAssesmentPage().SelectYesAndContinue();
+            }
+
+            staffDashboardPage = applicationOverview
                 .CompleteReview()
                 .ApproveApplication()
                 .ReturnToApplications()
