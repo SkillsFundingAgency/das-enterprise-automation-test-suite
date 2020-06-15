@@ -47,7 +47,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         }
 
         [Then(@"the admin approves the standard")]
-        public void ThenTheAdminApprovesTheStandard() => staffdashboardPage = adminStepshelper.ApproveAStandard(ePAOHomePageHelper.GoToEpaoAdminStaffDashboardPage());
+        public void ThenTheAdminApprovesTheStandard() => staffdashboardPage = adminStepshelper.ApproveAStandard(ePAOHomePageHelper.AlreadyLoginGoToEpaoAdminStaffDashboardPage());
 
         [Then(@"make the epao live")]
         public void ThenMakeTheEpaoLive() => adminStepshelper.MakeEPAOOrganisationLive(staffdashboardPage, E2eOrgName);

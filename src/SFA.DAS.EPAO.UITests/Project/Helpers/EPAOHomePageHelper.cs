@@ -27,25 +27,25 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
 
         public StaffDashboardPage LoginToEpaoAdminHomePage(bool openInNewTab = false)
         {
-            OpenAdminBaseUrl(openInNewTab);
+            var serviceStartPage = OpenAdminBaseUrl(openInNewTab);
 
-            new ServiceStartPage(_context).ClickStartNow().LoginToAccess1Staff();
+            serviceStartPage.StartNow().LoginToAccess1Staff();
 
             return new SignInPage(_context).SignInWithValidDetails();
         }
 
         public AS_LandingPage GoToEpaoAssessmentLandingPage(bool openInNewTab = false)
         {
-            OpenAssessmentServiceUrl(openInNewTab);
+            OpenUrl(_ePAOConfig.AssessmentServiceUrl, openInNewTab);
 
             return new AS_LandingPage(_context);
         }
 
         public AS_ApplyForAStandardPage GoToEpaoApplyForAStandardPage() => GoToEpaoAssessmentLandingPage(true).AlreadyLoginClickStartNowButton();
 
-        public StaffDashboardPage GoToEpaoAdminStaffDashboardPage()
+        public StaffDashboardPage AlreadyLoginGoToEpaoAdminStaffDashboardPage()
         {
-            OpenAdminBaseUrl(true);
+            OpenAdminBaseUrl(true).ClickStartNowButton();
 
             return new StaffDashboardPage(_context);
         }
@@ -61,9 +61,12 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
             return LoginInAsNonApplyUser(loginUser);
         }
 
-        private void OpenAssessmentServiceUrl(bool openInNewTab) => OpenUrl(_ePAOConfig.AssessmentServiceUrl, openInNewTab);
+        private ServiceStartPage OpenAdminBaseUrl(bool openInNewTab)
+        {
+            OpenUrl(_ePAOConfig.AdminBaseUrl, openInNewTab);
 
-        private void OpenAdminBaseUrl(bool openInNewTab) => OpenUrl(_ePAOConfig.AdminBaseUrl, openInNewTab);
+            return new ServiceStartPage(_context);
+        }
 
         private void OpenUrl(string url, bool openInNewTab)
         {

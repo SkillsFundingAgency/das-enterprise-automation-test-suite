@@ -11,14 +11,17 @@ namespace SFA.DAS.IdamsLogin.Service.Project.Tests.Pages
         private readonly ScenarioContext _context;
         #endregion
 
-        private By StartNow => By.CssSelector(".govuk-button--start");
+        private By StartNowCssSelector => By.CssSelector(".govuk-button--start");
 
         public ServiceStartPage(ScenarioContext context) : base(context) => _context = context;
 
-        public IdamsPage ClickStartNow()
+        public IdamsPage StartNow()
         {
-            formCompletionHelper.ClickElement(StartNow);
+            ClickStartNowButton();
             return new IdamsPage(_context);
         }
+
+        public void ClickStartNowButton() => formCompletionHelper.ClickElement(StartNowCssSelector);
+
     }
 }
