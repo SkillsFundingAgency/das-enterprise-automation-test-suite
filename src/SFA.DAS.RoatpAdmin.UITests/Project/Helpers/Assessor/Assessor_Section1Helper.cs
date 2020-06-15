@@ -10,7 +10,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
             return applicationAssessmentOverviewPage
             .Access_Section1_Link1()
             .SelectPassAndContinue()
-            .VerifySection1Link1Status(StatusHelper_AdminPage.StatusPass);
+            .VerifySection1Link1Status(StatusHelper.StatusPass);
         }
     }
 }
