@@ -69,7 +69,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         [Then(@"the admin can access learners audit history")]
         public void ThenTheAdminCanAccessLearnersAuditHistory() => certificateDetailsPage.ShowAllHistory();
 
-        private StaffDashboardPage GoToEpaoAdminHomePage() => ePAOHomePageHelper.GoToEpaoAdminHomePage();
+        private StaffDashboardPage GoToEpaoAdminHomePage() => ePAOHomePageHelper.LoginToEpaoAdminHomePage();
 
     }
 }

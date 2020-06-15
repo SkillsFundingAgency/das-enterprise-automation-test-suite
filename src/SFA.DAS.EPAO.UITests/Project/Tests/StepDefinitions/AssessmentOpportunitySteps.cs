@@ -28,7 +28,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         public void WhenTheUserClicksOnApplyToAssessThisStandard() => new AO_ApprovedStandardDetailsPage(_context).ClickApplyToThisStandardButton();
 
         [Then(@"the User is redirected to 'Assessment Service' application")]
-        public void ThenTheUserIsRedirectedToAssessmentServiceApplication() => new AS_LandingPage(_context).VerifyAS_LandingPage();
+        public void ThenTheUserIsRedirectedToAssessmentServiceApplication() => new AS_LandingPage(_context);
 
         [When(@"the User clicks on one of the standards listed under 'In-development' tab to view it")]
         public void WhenTheUserClicksOnOneOfTheStandardsListedUnderInDevelopmentTabToViewIt() => homePage.ClickInDevelopmentTab().ClickOnInDevelopmentStandardLink();

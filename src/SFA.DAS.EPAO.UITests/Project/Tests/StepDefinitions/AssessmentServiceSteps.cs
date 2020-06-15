@@ -53,7 +53,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         [Then(@"the Admin user can delete a certificate that has been incorrectly submitted")]
         public void ThenTheAdminUserCanDeleteACertificateThatHasBeenIncorrectlySubmitted()
         {
-            var staffdashboard = ePAOHomePageHelper.GoToEpaoAdminHomePage(true);
+            var staffdashboard = ePAOHomePageHelper.LoginToEpaoAdminHomePage(true);
 
             assessmentServiceStepsHelper.DeleteCertificate(staffdashboard);
         }

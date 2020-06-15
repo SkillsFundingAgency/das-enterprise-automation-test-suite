@@ -25,7 +25,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
             _ePAOSqlDataHelper = context.Get<EPAOApplySqlDataHelper>();
         }
 
-        public StaffDashboardPage GoToEpaoAdminHomePage(bool openInNewTab = false)
+        public StaffDashboardPage LoginToEpaoAdminHomePage(bool openInNewTab = false)
         {
             OpenAdminBaseUrl(openInNewTab);
 
@@ -34,19 +34,14 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
             return new SignInPage(_context).SignInWithValidDetails();
         }
 
-        public AS_LandingPage GoToEpaoAssessmentLandingPage()
+        public AS_LandingPage GoToEpaoAssessmentLandingPage(bool openInNewTab = false)
         {
-            OpenAssessmentServiceUrl(false);
+            OpenAssessmentServiceUrl(openInNewTab);
 
             return new AS_LandingPage(_context);
         }
 
-        public AS_ApplyForAStandardPage GoToEpaoApplyForAStandardPage()
-        {
-            OpenAssessmentServiceUrl(true);
-
-            return new AS_ApplyForAStandardPage(_context);
-        }
+        public AS_ApplyForAStandardPage GoToEpaoApplyForAStandardPage() => GoToEpaoAssessmentLandingPage(true).AlreadyLoginClickStartNowButton();
 
         public StaffDashboardPage GoToEpaoAdminStaffDashboardPage()
         {
@@ -55,9 +50,9 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
             return new StaffDashboardPage(_context);
         }
 
-        public AP_PR1_SearchForYourOrganisationPage LoginInAsApplyUser(LoginUser loginUser) => GoToEpaoAssessmentLandingPage().ClickStartButton().SignInAsApplyUser(loginUser);
+        public AP_PR1_SearchForYourOrganisationPage LoginInAsApplyUser(LoginUser loginUser) => GoToEpaoAssessmentLandingPage().ClickStartNowButton().SignInAsApplyUser(loginUser);
 
-        public AS_LoggedInHomePage LoginInAsNonApplyUser(LoginUser loginUser) => GoToEpaoAssessmentLandingPage().ClickStartButton().SignInWithValidDetails(loginUser);
+        public AS_LoggedInHomePage LoginInAsNonApplyUser(LoginUser loginUser) => GoToEpaoAssessmentLandingPage().ClickStartNowButton().SignInWithValidDetails(loginUser);
 
         public AS_LoggedInHomePage LoginInAsStandardApplyUser(LoginUser loginUser, string standardcode, string organisationId)
         {
