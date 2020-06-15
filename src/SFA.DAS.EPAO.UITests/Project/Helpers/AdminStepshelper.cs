@@ -29,7 +29,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
                 .ReturnToDashboard();
         }
 
-        public StaffDashboardPage ApproveAnOrganisation(StaffDashboardPage staffDashboardPage)
+        public StaffDashboardPage ApproveAnOrganisation(StaffDashboardPage staffDashboardPage, bool approveFinancialAssesment)
         {
             staffDashboardPage = staffDashboardPage
                 .GoToNewOrganisationApplications()
@@ -41,12 +41,15 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
                 .ReturnToOrganisationApplicationsPage()
                 .ReturnToDashboard();
 
-            staffDashboardPage = staffDashboardPage
+            if (approveFinancialAssesment)
+            {
+                staffDashboardPage = staffDashboardPage
                 .GoToNewFinancialAssesmentPage()
                 .GoToNewApplicationOverviewPage()
                 .SelectGoodAndContinue()
                 .ReturnToAccountHome()
                 .ReturnToDashboard();
+            }
 
             staffDashboardPage = staffDashboardPage
                 .GoToInProgressOrganisationApplication()

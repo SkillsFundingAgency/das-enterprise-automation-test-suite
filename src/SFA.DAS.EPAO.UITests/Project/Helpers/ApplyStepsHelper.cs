@@ -75,6 +75,8 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
                 .VerifyDeclarationsSectionCompletedText();
         }
 
+        public bool GoToFinancialHealthAssessmentLinkExists(AP_ApplicationOverviewPage applicationOverviewPage) => applicationOverviewPage.GoToFinancialHealthAssessmentLinkExists();
+
         public AP_ApplicationOverviewPage CompletesTheFHASection(AP_ApplicationOverviewPage applicationOverviewPage)
         {
             return applicationOverviewPage

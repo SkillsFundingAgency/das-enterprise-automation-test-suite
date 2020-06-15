@@ -6,9 +6,11 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
     [Binding]
     public class E2ESteps : EPAOBaseSteps
     {
-        private string E2eOrgName => "SWITHUN WELLSSCHOOL ACTIVITIES FUND";
+        private string E2eOrgName => "YOUTH FORCE LIMITED";
 
         private string E2EOrgStandardName => "Software developer";
+
+        private bool FinancialHealthAssessmentLinkExists;
 
         public E2ESteps(ScenarioContext context) : base(context) { }
 
@@ -23,13 +25,18 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
 
             _applicationOverviewPage = applyStepsHelper.CompleteDeclarationsSection(_applicationOverviewPage);
 
-            _applicationOverviewPage = applyStepsHelper.CompletesTheFHASection(_applicationOverviewPage);
+            FinancialHealthAssessmentLinkExists = applyStepsHelper.GoToFinancialHealthAssessmentLinkExists(_applicationOverviewPage);
+
+            if (FinancialHealthAssessmentLinkExists)
+            {
+                _applicationOverviewPage = applyStepsHelper.CompletesTheFHASection(_applicationOverviewPage);
+            }
 
             applyStepsHelper.SubmitApplication(_applicationOverviewPage);
         }
 
         [Given(@"the admin appoves the assessor")]
-        public void GivenTheAdminAppovesTheAssessor() => staffdashboardPage = adminStepshelper.ApproveAnOrganisation(ePAOHomePageHelper.GoToEpaoAdminHomePage(true));
+        public void GivenTheAdminAppovesTheAssessor() => staffdashboardPage = adminStepshelper.ApproveAnOrganisation(ePAOHomePageHelper.GoToEpaoAdminHomePage(true), FinancialHealthAssessmentLinkExists);
 
         [When(@"the apply user applies for a standard")]
         public void WhenTheApplyUserAppliesForAStandard()
