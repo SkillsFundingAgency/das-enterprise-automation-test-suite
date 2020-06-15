@@ -6,6 +6,8 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
     {
         public EPAOAdminSqlDataHelper(EPAOConfig ePAOConfig) : base(ePAOConfig.AssessorDbConnectionString) { }
 
+        public string GetEPAOId(string email) => GetData($"SELECT EndPointAssessorOrganisationId from Organisations where id = (select OrganisationId from Contacts where Email = '{email}')");
+
         public void DeleteOrganisation(string ukprn) => ExecuteSqlCommand($"DELETE FROM Organisations WHERE EndPointAssessorUkprn = '{ukprn}'");
 
         public void DeleteContact(string email) => ExecuteSqlCommand($"DELETE CONTACTS WHERE EMAIL = '{email}'");

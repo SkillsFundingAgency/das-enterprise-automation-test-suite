@@ -6,6 +6,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.OrganisationDetailsSect
     public class AP_OD1_TradingNamePage : EPAO_BasePage
     {
         protected override string PageTitle => "Does your organisation have a trading name?";
+
         private readonly ScenarioContext _context;
 
         #region Locators

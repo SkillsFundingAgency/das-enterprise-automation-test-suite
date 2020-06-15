@@ -12,6 +12,8 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
 
         private bool FinancialHealthAssessmentLinkExists;
 
+        private string Username;
+
         public E2ESteps(ScenarioContext context) : base(context) { }
 
         [Given(@"the apply user submits an Assessment Service Application")]
@@ -50,21 +52,21 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         public void ThenTheAdminApprovesTheStandard() => staffdashboardPage = adminStepshelper.ApproveAStandard(ePAOHomePageHelper.AlreadyLoginGoToEpaoAdminStaffDashboardPage());
 
         [Then(@"make the epao live")]
-        public void ThenMakeTheEpaoLive() => adminStepshelper.MakeEPAOOrganisationLive(staffdashboardPage, E2eOrgName);
+        public void ThenMakeTheEpaoLive() => adminStepshelper.MakeEPAOOrganisationLive(staffdashboardPage, ePAOAdminSqlDataHelper.GetEPAOId(Username));
 
         private AP_PR1_SearchForYourOrganisationPage LoginInAsApplyUser()
         {
-            var username = ePAOE2EApplyUser.Username;
+            Username = ePAOE2EApplyUser.Username;
 
-            ePAOApplySqlDataHelper.ResetApplyUserOrganisationId(username);
+            ePAOApplySqlDataHelper.ResetApplyUserOrganisationId(Username);
 
-            ePAOAdminSqlDataHelper.DeleteOrganisationStandardDeliveryArea(username);
+            ePAOAdminSqlDataHelper.DeleteOrganisationStandardDeliveryArea(Username);
 
-            ePAOAdminSqlDataHelper.DeleteOrganisationStanard(username);
+            ePAOAdminSqlDataHelper.DeleteOrganisationStanard(Username);
 
-            ePAOAdminSqlDataHelper.DeleteEPAOOrganisation(username);
+            ePAOAdminSqlDataHelper.DeleteEPAOOrganisation(Username);
 
-            ePAOApplySqlDataHelper.ResetApplyUserEPAOId(username);
+            ePAOApplySqlDataHelper.ResetApplyUserEPAOId(Username);
 
             return ePAOHomePageHelper.LoginInAsApplyUser(ePAOE2EApplyUser);
         }
