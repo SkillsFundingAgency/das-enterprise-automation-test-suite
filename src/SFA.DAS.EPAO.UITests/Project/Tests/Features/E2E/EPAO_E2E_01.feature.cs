@@ -85,6 +85,10 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Features.E2E
 #line 7
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
+#line 8
+testRunner.Given("the apply user submits an Assessment Service Application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 9
+ testRunner.And("the admin appoves the assessor", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 10
  testRunner.When("the apply user applies for a standard", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 11
