@@ -3,7 +3,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor.ProtectingYour
 {
     public class ActingAsASubcontractorPage : AssessorBasePage
     {
-        protected override string PageTitle => "Acting as a subcontractor";
+        protected override string PageTitle => "Overall responsibility for health and safety";
 
         public ActingAsASubcontractorPage(ScenarioContext context) : base(context) { }
     }
