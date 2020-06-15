@@ -19,7 +19,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
         protected readonly RoatpConfig roatpConfig;
         #endregion
 
-        public RoatpBasePage(ScenarioContext context) : base(context)
+        protected RoatpBasePage(ScenarioContext context) : base(context)
         {
             objectContext = context.Get<ObjectContext>();
             formCompletionHelper = context.Get<FormCompletionHelper>();

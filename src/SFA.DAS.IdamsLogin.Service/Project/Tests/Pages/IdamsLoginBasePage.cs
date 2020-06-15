@@ -11,7 +11,6 @@ namespace SFA.DAS.IdamsLogin.Service.Project.Tests.Pages
         protected IdamsLoginBasePage(ScenarioContext context, bool verifypage = true): base(context)
         {
             formCompletionHelper = context.Get<FormCompletionHelper>();
-
             if (verifypage) VerifyPage();
         }
     }

@@ -1,10 +1,4 @@
-﻿using OpenQA.Selenium;
-using SFA.DAS.UI.FrameworkHelpers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using TechTalk.SpecFlow;
-using SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply;
+﻿using SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply;
 
 namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay
 {

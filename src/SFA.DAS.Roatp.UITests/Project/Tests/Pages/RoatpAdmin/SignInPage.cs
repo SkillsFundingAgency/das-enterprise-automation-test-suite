@@ -1,8 +1,5 @@
 ﻿using SFA.DAS.IdamsLogin.Service.Project.Tests.Pages;
 using SFA.DAS.UI.Framework.TestSupport;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpAdmin

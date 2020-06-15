@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.IdamsLogin.Service.Project.Tests.Pages
@@ -8,6 +9,7 @@ namespace SFA.DAS.IdamsLogin.Service.Project.Tests.Pages
         protected override By PageHeader => By.CssSelector(".pageTitle");
 
         protected override string PageTitle => "Sign in";
+        protected readonly PageInteractionHelper pageInteractionHelper;
 
         #region Locators
         protected By UsernameField => By.Id("username");
@@ -15,7 +17,8 @@ namespace SFA.DAS.IdamsLogin.Service.Project.Tests.Pages
         protected By SignInButton => By.XPath("//button[@value='Log in']");
         #endregion
 
-        protected SignInBasePage(ScenarioContext context) : base(context) { }
+        protected SignInBasePage(ScenarioContext context) : base(context) =>
+            pageInteractionHelper = pageInteractionHelper = context.Get<PageInteractionHelper>();
 
         protected void SubmitValidLoginDetails(string username, string password)
         {
