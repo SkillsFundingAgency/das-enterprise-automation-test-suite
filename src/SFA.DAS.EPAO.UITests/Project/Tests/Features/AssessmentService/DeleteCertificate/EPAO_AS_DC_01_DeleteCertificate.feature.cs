@@ -99,23 +99,21 @@ this.ScenarioInitialize(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("EPAO_AS_DC_01B - Recreate the Deleted Certficate")]
-        [NUnit.Framework.IgnoreAttribute("Ignored scenario")]
         [NUnit.Framework.CategoryAttribute("epao")]
         [NUnit.Framework.CategoryAttribute("assessmentservice")]
         [NUnit.Framework.CategoryAttribute("regression")]
         public virtual void EPAO_AS_DC_01B_RecreateTheDeletedCertficate()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EPAO_AS_DC_01B - Recreate the Deleted Certficate", null, new string[] {
-                        "ignore",
                         "epao",
                         "assessmentservice",
                         "regression"});
-#line 16
+#line 15
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 17
+#line 16
  testRunner.Given("the Delete Assessor User is logged into Assessment Service Application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 18
+#line 17
  testRunner.Then("the User is able to rerequest the certificate certifying an Apprentice as \'PassWi" +
                     "thExcellence\' which was\'ReRequesting\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
