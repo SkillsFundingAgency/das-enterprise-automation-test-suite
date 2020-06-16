@@ -5,13 +5,17 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor
 {
     public partial class ApplicationAssessmentOverviewPage : AssessorBasePage
     {
-        private By StatusText (string linkText) => By.XPath($"//a[text()='{linkText}']/../following-sibling::strong");
+        private By StatusText(string linkText) => By.XPath($"//a[text()='{linkText}']/../following-sibling::strong");
+        private By StatusTextFromNotRequiredQuestion(string linkText) => By.XPath($"//span[contains(text(), '{linkText}')]/following-sibling::strong");
 
         public ApplicationAssessmentOverviewPage VerifyStatus(string linkText, string expectedStatus)
         {
             Assert.AreEqual(expectedStatus, pageInteractionHelper.GetText(StatusText(linkText)), $"Status of '{linkText}' is Incorrect");
             return new ApplicationAssessmentOverviewPage(_context);
         }
+
+        public void VerifyForNotRequiredStatus(string linkText, string expectedStatus) =>
+            Assert.AreEqual(expectedStatus, pageInteractionHelper.GetText(StatusTextFromNotRequiredQuestion(linkText)), $"Status of '{linkText}' is Incorrect");
 
         #region Section1
         public ApplicationAssessmentOverviewPage VerifySection1Link1Status(string status) => VerifyStatus(Section1_Link1, status);
@@ -32,7 +36,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor
 
         #region Section3
         public ApplicationAssessmentOverviewPage VerifySection3Link1Status(string status) => VerifyStatus(Section3_Link1, status);
-        public ApplicationAssessmentOverviewPage VerifySection3Link2Status(string status) => VerifyStatus(Section3_Link2, status);
+        public void VerifySection3Link2Status(string status) => VerifyForNotRequiredStatus(Section3_Link2, status);
         public ApplicationAssessmentOverviewPage VerifySection3Link3Status(string status) => VerifyStatus(Section3_Link3, status);
         public ApplicationAssessmentOverviewPage VerifySection3Link4Status(string status) => VerifyStatus(Section3_Link4, status);
         public ApplicationAssessmentOverviewPage VerifySection3Link5Status(string status) => VerifyStatus(Section3_Link5, status);

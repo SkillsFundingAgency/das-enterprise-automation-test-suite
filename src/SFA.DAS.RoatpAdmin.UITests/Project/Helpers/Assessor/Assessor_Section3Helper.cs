@@ -15,11 +15,8 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
             .VerifySection3Link1Status(StatusHelper.StatusPass);
         }
 
-        public ApplicationAssessmentOverviewPage CheckSupportingApprentices(ApplicationAssessmentOverviewPage applicationAssessmentOverviewPage)
-        {
-            return applicationAssessmentOverviewPage
-            .VerifySection3Link2Status(StatusHelper.NotRequired);
-        }
+        public void CheckSupportingApprentices(ApplicationAssessmentOverviewPage applicationAssessmentOverviewPage) =>
+            applicationAssessmentOverviewPage.VerifySection3Link2Status(StatusHelper.NotRequired);
 
         public ApplicationAssessmentOverviewPage PassForecastingStarts(ApplicationAssessmentOverviewPage applicationAssessmentOverviewPage)
         {
