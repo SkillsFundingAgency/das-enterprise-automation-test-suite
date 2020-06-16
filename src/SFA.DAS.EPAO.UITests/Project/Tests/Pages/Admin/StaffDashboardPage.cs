@@ -90,5 +90,11 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
             formCompletionHelper.ClickElement(NewStandardApplication);
             return new StandardApplicationsPage(_context);
         }
+
+        public StandardApplicationsPage GoToInProgressStandardApplication()
+        {
+            formCompletionHelper.ClickElement(InProgressStandardApplication);
+            return new StandardApplicationsPage(_context);
+        }
     }
 }

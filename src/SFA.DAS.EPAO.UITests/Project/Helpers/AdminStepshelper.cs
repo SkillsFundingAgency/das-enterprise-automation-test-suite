@@ -20,12 +20,20 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
 
         public StaffDashboardPage ApproveAStandard(StaffDashboardPage staffDashboardPage)
         {
-            return staffDashboardPage
+            staffDashboardPage = staffDashboardPage
                 .GoToNewStandardApplications()
                 .GoToNewStandardApplicationOverviewPage()
                 .GoToApplyToAssessAStandardPage()
                 .SelectYesAndContinue()
                 .ReturnToOrganisationApplicationsPage()
+                .ReturnToDashboard();
+
+            return staffDashboardPage
+                .GoToInProgressStandardApplication()
+                .GoToInProgressStandardApplicationOverviewPage()
+                .CompleteReview()
+                .ApproveApplication()
+                .ReturnToApplications()
                 .ReturnToDashboard();
         }
 
