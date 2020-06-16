@@ -20,6 +20,14 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
             ExecuteSqlCommand($"DELETE from Apply where OrganisationId = '{organisationId}'");
         }
 
+        public void DeleteAnyOtherOrganisationId(string applyUserEmail)
+        {
+            ExecuteSqlCommand($"DELETE from Contacts where OrganisationId = " +
+                $"(select id from Organisations where EndPointAssessorOrganisationId = " +
+                $"(select EndPointAssessorOrganisationId from Contacts where Email = '{applyUserEmail}') " +
+                $"and Email != '{applyUserEmail}')");
+        }
+
         public void ResetApplyUserEPAOId(string applyUserEmail) => ExecuteSqlCommand($"update Contacts set EndPointAssessorOrganisationId = null, [Status] = 'New' where Email = '{applyUserEmail}'");
 
         public void DeleteStandardApplicication(string standardcode, string organisationId, string userid) => ExecuteSqlCommand($"DELETE from [Apply] where OrganisationId = (select OrganisationId from Organisations WHERE EndPointAssessorOrganisationId = '{organisationId}') and CreatedBy = (select Id from Contacts where Email = '{userid}') and StandardCode = {standardcode}");

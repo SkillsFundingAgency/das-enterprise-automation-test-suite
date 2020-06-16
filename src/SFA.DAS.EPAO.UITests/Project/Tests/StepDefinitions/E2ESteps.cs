@@ -69,6 +69,8 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
 
             ePAOAdminSqlDataHelper.DeleteOrganisationStanard(Username);
 
+            ePAOApplySqlDataHelper.DeleteAnyOtherOrganisationId(Username);
+
             ePAOAdminSqlDataHelper.DeleteEPAOOrganisation(Username);
 
             ePAOApplySqlDataHelper.ResetApplyUserEPAOId(Username);
