@@ -7,9 +7,9 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor
     {
         private By StatusText (string linkText) => By.XPath($"//a[text()='{linkText}']/../following-sibling::strong");
 
-        public ApplicationAssessmentOverviewPage VerifyStatus(string linkText, string status)
+        public ApplicationAssessmentOverviewPage VerifyStatus(string linkText, string expectedStatus)
         {
-            Assert.AreEqual(status, pageInteractionHelper.GetText(StatusText(linkText)), $"Status of {linkText} is Incorrect");
+            Assert.AreEqual(expectedStatus, pageInteractionHelper.GetText(StatusText(linkText)), $"Status of '{linkText}' is Incorrect");
             return new ApplicationAssessmentOverviewPage(_context);
         }
 
@@ -35,6 +35,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor
         public ApplicationAssessmentOverviewPage VerifySection3Link2Status(string status) => VerifyStatus(Section3_Link2, status);
         public ApplicationAssessmentOverviewPage VerifySection3Link3Status(string status) => VerifyStatus(Section3_Link3, status);
         public ApplicationAssessmentOverviewPage VerifySection3Link4Status(string status) => VerifyStatus(Section3_Link4, status);
+        public ApplicationAssessmentOverviewPage VerifySection3Link5Status(string status) => VerifyStatus(Section3_Link4, status);
         #endregion
 
         #region Section4

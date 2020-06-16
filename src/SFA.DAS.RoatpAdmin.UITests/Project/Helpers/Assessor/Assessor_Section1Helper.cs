@@ -1,5 +1,4 @@
 ﻿using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor;
-using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay;
 
 namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
 {

@@ -11,8 +11,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor.ProtectingYour
 
         public SafeguardingPolicyIncludePreventDutyPolicyPage SelectPassAndContinueInAssessorOverallResponsibilityForSafeguardingPage()
         {
-            SelectRadioOptionByText("Pass");
-            Continue();
+            SelectPassAndContinueToSubSection();
             return new SafeguardingPolicyIncludePreventDutyPolicyPage(_context);
         }
     }

@@ -11,8 +11,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor.ProtectingYour
 
         public TellUsWhoHasOverallResponsibilityPage SelectPassAndContinueInHealthAndSafetyPolicyPage()
         {
-            SelectRadioOptionByText("Pass");
-            Continue();
+            SelectPassAndContinueToSubSection();
             return new TellUsWhoHasOverallResponsibilityPage(_context);
         }
     }

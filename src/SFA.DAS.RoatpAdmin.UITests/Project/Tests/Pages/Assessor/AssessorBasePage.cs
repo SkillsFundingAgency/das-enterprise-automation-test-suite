@@ -15,9 +15,14 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor
 
         public ApplicationAssessmentOverviewPage SelectPassAndContinue()
         {
+            SelectPassAndContinueToSubSection();
+            return new ApplicationAssessmentOverviewPage(_context);
+        }
+
+        public void SelectPassAndContinueToSubSection()
+        {
             SelectRadioOptionByText("Pass");
             Continue();
-            return new ApplicationAssessmentOverviewPage(_context);
         }
     }
 }
