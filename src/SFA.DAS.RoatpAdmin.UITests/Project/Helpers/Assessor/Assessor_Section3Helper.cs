@@ -1,0 +1,52 @@
+﻿using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor;
+
+namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
+{
+    public class Assessor_Section3Helper
+    {
+        public ApplicationAssessmentOverviewPage PassTypeOfApprenticeshipTraining(ApplicationAssessmentOverviewPage applicationAssessmentOverviewPage)
+        {
+            return applicationAssessmentOverviewPage
+            .Access_Section3_Link1()
+            .SelectPassAndContinueInDeliveringTrainingInApprenticeshipStandardsPage()
+            .SelectPassAndContinueInEngagingWithEndpointAssessmentOrganisationsPage()
+            .SelectPassAndContinueInEngagingWithEndpointAssessmentOrganisationsPage()
+            .SelectPassAndContinue()
+            .VerifySection3Link1Status(StatusHelper.StatusPass);
+        }
+
+        public ApplicationAssessmentOverviewPage CheckSupportingApprentices(ApplicationAssessmentOverviewPage applicationAssessmentOverviewPage)
+        {
+            return applicationAssessmentOverviewPage
+            .VerifySection3Link2Status(StatusHelper.NotRequired);
+        }
+
+        public ApplicationAssessmentOverviewPage PassForecastingStarts(ApplicationAssessmentOverviewPage applicationAssessmentOverviewPage)
+        {
+            return applicationAssessmentOverviewPage
+            .Access_Section3_Link3()
+            .SelectPassAndContinueInForecastingStartsPage()
+            .SelectPassAndContinueInReadyToDeliverTrainingAgainstForecastPage()
+            .SelectPassAndContinueInRecruitNewStaffToDeliverTrainingAgainstForecastPage()
+            .SelectPassAndContinue()
+            .VerifySection3Link3Status(StatusHelper.StatusPass);
+        }
+
+        public ApplicationAssessmentOverviewPage PassOffTheJobTraining(ApplicationAssessmentOverviewPage applicationAssessmentOverviewPage)
+        {
+            return applicationAssessmentOverviewPage
+            .Access_Section3_Link4()
+            .SelectPassAndContinueInOffTheJobTrainingPage()
+            .SelectPassAndContinue()
+            .VerifySection3Link4Status(StatusHelper.StatusPass);
+        }
+
+        public ApplicationAssessmentOverviewPage PassWhereWillYourApprenticesBeTrained(ApplicationAssessmentOverviewPage applicationAssessmentOverviewPage)
+        {
+            return applicationAssessmentOverviewPage
+            .Access_Section3_Link5()
+            .SelectPassAndContinue()
+            .VerifySection3Link5Status(StatusHelper.StatusPass);
+        }
+    }
+}

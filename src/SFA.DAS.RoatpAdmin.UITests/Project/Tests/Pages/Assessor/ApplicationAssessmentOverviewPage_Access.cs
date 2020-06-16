@@ -1,4 +1,5 @@
-﻿using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor.ProtectingYourApprenticesChecks;
+﻿using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor.PlanningApprenticeshipTrainingChecks;
+using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor.ProtectingYourApprenticesChecks;
 using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor.ReadinessToEngageChecks;
 
 namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor
@@ -65,6 +66,29 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor
         {
             NavigateToTask(Section2_Link6);
             return new WorkingWithSubcontractorsPage(_context);
+        }
+        #endregion
+
+        #region Section-3
+        public TypeOfApprenticeshipTrainingPage Access_Section3_Link1()
+        {
+            NavigateToTask(Section3_Link1);
+            return new TypeOfApprenticeshipTrainingPage(_context);
+        }
+        public ForecastingStartsPage Access_Section3_Link3()
+        {
+            NavigateToTask(Section3_Link3);
+            return new ForecastingStartsPage(_context);
+        }
+        public OffTheJobTrainingPage Access_Section3_Link4()
+        {
+            NavigateToTask(Section3_Link4);
+            return new OffTheJobTrainingPage(_context);
+        }
+        public WhereWillYourApprenticesBeTrainedPage Access_Section3_Link5()
+        {
+            NavigateToTask(Section3_Link5);
+            return new WhereWillYourApprenticesBeTrainedPage(_context);
         }
         #endregion
     }
