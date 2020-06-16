@@ -10,7 +10,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
     {
         protected override string PageTitle => "You can edit the following information:";
 
-        protected override By PageHeader => By.CssSelector(".govuk-heading-m");
+        protected override By PageHeader => By.CssSelector(".info-summary");
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
