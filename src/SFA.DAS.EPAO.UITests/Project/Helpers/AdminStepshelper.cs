@@ -33,7 +33,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
                 .GoToInProgressStandardApplicationOverviewPage()
                 .CompleteReview()
                 .ApproveApplication()
-                .ReturnToApplications()
+                .ReturnToStandardApplications()
                 .ReturnToDashboard();
         }
 
@@ -71,7 +71,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
             staffDashboardPage = applicationOverview
                 .CompleteReview()
                 .ApproveApplication()
-                .ReturnToApplications()
+                .ReturnToOrganisationApplications()
                 .ReturnToDashboard();
 
             return staffDashboardPage
