@@ -7,6 +7,7 @@ namespace SFA.DAS.EPAO.UITests.Project
         #region Constants
         private const string ApplyOrganisationName = "applyorganisationname";
         private const string ApplyStandardName = "applystandardname";
+        private const string OrganisationIdentifier = "organisationidentifier";
         #endregion
 
         public static void SetApplyOrganisationName(this ObjectContext objectContext, string value) => objectContext.Replace(ApplyOrganisationName, value);
@@ -14,5 +15,8 @@ namespace SFA.DAS.EPAO.UITests.Project
 
         public static void SetApplyStandardName(this ObjectContext objectContext, string value) => objectContext.Replace(ApplyStandardName, value);
         public static string GetApplyStandardName(this ObjectContext objectContext) => objectContext.Get(ApplyStandardName);
+
+        public static void SetOrganisationIdentifier(this ObjectContext objectContext, string value) => objectContext.Replace(OrganisationIdentifier, value);
+        public static string GetOrganisationIdentifier(this ObjectContext objectContext) => objectContext.Get(OrganisationIdentifier);
     }
 }

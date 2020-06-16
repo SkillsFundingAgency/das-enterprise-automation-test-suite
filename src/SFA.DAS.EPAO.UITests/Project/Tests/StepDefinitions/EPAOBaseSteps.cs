@@ -1,4 +1,5 @@
-﻿using SFA.DAS.EPAO.UITests.Project.Helpers;
+﻿using SFA.DAS.ConfigurationBuilder;
+using SFA.DAS.EPAO.UITests.Project.Helpers;
 using SFA.DAS.EPAO.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin;
 using SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply;
@@ -18,7 +19,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
     public class EPAOBaseSteps
     {
         protected readonly EPAOConfig ePAOConfig;
-
+        protected readonly ObjectContext objectContext;
         protected readonly TabHelper tabHelper;
 
         protected readonly EPAOE2EApplyUser ePAOE2EApplyUser;
@@ -57,6 +58,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
 
         protected EPAOBaseSteps(ScenarioContext context)
         {
+            objectContext = context.Get<ObjectContext>();
             ePAOConfig = context.GetEPAOConfig<EPAOConfig>();
             tabHelper = context.Get<TabHelper>();
 

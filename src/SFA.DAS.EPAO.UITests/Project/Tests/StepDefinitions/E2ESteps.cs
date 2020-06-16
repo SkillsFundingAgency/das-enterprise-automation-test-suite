@@ -52,7 +52,12 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         public void ThenTheAdminApprovesTheStandard() => staffdashboardPage = adminStepshelper.ApproveAStandard(ePAOHomePageHelper.AlreadyLoginGoToEpaoAdminStaffDashboardPage());
 
         [Then(@"make the epao live")]
-        public void ThenMakeTheEpaoLive() => adminStepshelper.MakeEPAOOrganisationLive(staffdashboardPage, ePAOAdminSqlDataHelper.GetEPAOId(Username));
+        public void ThenMakeTheEpaoLive()
+        {
+            objectContext.SetOrganisationIdentifier(ePAOAdminSqlDataHelper.GetEPAOId(Username));
+
+            adminStepshelper.MakeEPAOOrganisationLive(staffdashboardPage);
+        }
 
         private AP_PR1_SearchForYourOrganisationPage LoginInAsApplyUser()
         {

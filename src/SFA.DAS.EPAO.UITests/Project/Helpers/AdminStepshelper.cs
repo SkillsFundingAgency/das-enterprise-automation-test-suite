@@ -6,13 +6,13 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
     {
         public AdminStepshelper() { }
 
-        public OrganisationDetailsPage SearchEpaoRegister(StaffDashboardPage staffDashboardPage, string keyword) => staffDashboardPage.SearchEPAO().SearchForAnOrganisation(keyword).SelectAnOrganisation();
+        public OrganisationDetailsPage SearchEpaoRegister(StaffDashboardPage staffDashboardPage) => staffDashboardPage.SearchEPAO().SearchForAnOrganisation().SelectAnOrganisation();
 
         public OrganisationDetailsPage AddOrganisation(StaffDashboardPage staffDashboardPage) => staffDashboardPage.AddOrganisation().EnterDetails();
 
-        public OrganisationDetailsPage MakeEPAOOrganisationLive(StaffDashboardPage staffDashboardPage, string keyword)
+        public OrganisationDetailsPage MakeEPAOOrganisationLive(StaffDashboardPage staffDashboardPage)
         {
-            return SearchEpaoRegister(staffDashboardPage, keyword).VerifyOrganisationStatus("New")
+            return SearchEpaoRegister(staffDashboardPage).VerifyOrganisationStatus("New")
                 .EditOrganisation()
                 .MakeOrgLive()
                 .VerifyOrganisationStatus("Live");
