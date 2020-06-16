@@ -71,13 +71,13 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Features.Approvals.ULNSea
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("SC_Ap_ULN_01 - View ULN details")]
-        [NUnit.Framework.CategoryAttribute("regression")]
+        [NUnit.Framework.CategoryAttribute("awaiting-fix")]
         [NUnit.Framework.CategoryAttribute("supportconsole")]
         [NUnit.Framework.CategoryAttribute("approvalssupportconsole")]
         public virtual void SC_Ap_ULN_01_ViewULNDetails()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("SC_Ap_ULN_01 - View ULN details", null, new string[] {
-                        "regression",
+                        "awaiting-fix",
                         "supportconsole",
                         "approvalssupportconsole"});
 #line 6

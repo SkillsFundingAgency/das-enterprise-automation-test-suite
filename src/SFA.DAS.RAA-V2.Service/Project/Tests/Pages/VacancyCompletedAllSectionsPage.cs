@@ -7,7 +7,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
     {
         protected override string PageTitle => "You have completed all required sections";
 
-        protected override By PageHeader => By.CssSelector(".govuk-heading-m");
+        protected override By PageHeader => By.CssSelector(".info-summary__header-bar");
 
         public VacancyCompletedAllSectionsPage(ScenarioContext context) : base(context) { }
     }

@@ -71,13 +71,13 @@ namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Features.Approvals.Cohort
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("SC_Ap_Coh_02 - Invalid Cohort search")]
-        [NUnit.Framework.CategoryAttribute("regression")]
+        [NUnit.Framework.CategoryAttribute("awaiting-fix")]
         [NUnit.Framework.CategoryAttribute("supportconsole")]
         [NUnit.Framework.CategoryAttribute("approvalssupportconsole")]
         public virtual void SC_Ap_Coh_02_InvalidCohortSearch()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("SC_Ap_Coh_02 - Invalid Cohort search", null, new string[] {
-                        "regression",
+                        "awaiting-fix",
                         "supportconsole",
                         "approvalssupportconsole"});
 #line 6

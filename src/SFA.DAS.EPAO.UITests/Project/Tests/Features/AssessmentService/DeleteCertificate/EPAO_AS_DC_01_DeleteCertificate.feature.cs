@@ -108,12 +108,12 @@ this.ScenarioInitialize(scenarioInfo);
                         "epao",
                         "assessmentservice",
                         "regression"});
-#line 16
+#line 15
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 17
+#line 16
  testRunner.Given("the Delete Assessor User is logged into Assessment Service Application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 18
+#line 17
  testRunner.Then("the User is able to rerequest the certificate certifying an Apprentice as \'PassWi" +
                     "thExcellence\' which was\'ReRequesting\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden

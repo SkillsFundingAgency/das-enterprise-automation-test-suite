@@ -1,6 +1,6 @@
 ﻿Feature: SC_Ap_ULN_01
 
-@regression
+@awaiting-fix
 @supportconsole
 @approvalssupportconsole
 Scenario: SC_Ap_ULN_01 - View ULN details
