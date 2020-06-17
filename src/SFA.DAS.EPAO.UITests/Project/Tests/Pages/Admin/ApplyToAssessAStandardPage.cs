@@ -2,25 +2,25 @@
 
 namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
 {
-    public class NewOrgDeclarationsPage : EPAOAdmin_BasePage
+    public class ApplyToAssessAStandardPage : EPAOAdmin_BasePage
     {
-        protected override string PageTitle => "Declarations";
+        protected override string PageTitle => "Apply to assess a standard";
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
         #endregion
 
-        public NewOrgDeclarationsPage(ScenarioContext context) : base(context)
+        public ApplyToAssessAStandardPage(ScenarioContext context) : base(context)
         {
             _context = context;
             VerifyPage();
         }
 
-        public OrganisationApplicationOverviewPage SelectYesAndContinue()
+        public StandardApplicationOverviewPage SelectYesAndContinue()
         {
             SelectRadioOptionByText("Yes");
             Continue();
-            return new OrganisationApplicationOverviewPage(_context);
+            return new StandardApplicationOverviewPage(_context);
         }
     }
 }

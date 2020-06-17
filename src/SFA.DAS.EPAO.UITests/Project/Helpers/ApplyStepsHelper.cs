@@ -1,26 +1,22 @@
 ﻿using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply;
 using SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.PreamblePages;
+using SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.ApplyToAssessStandard;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EPAO.UITests.Project.Helpers
 {
     public class ApplyStepsHelper
     {
-        private readonly ScenarioContext _context;
         private readonly ObjectContext _objectContext;
 
-        public ApplyStepsHelper(ScenarioContext context)
-        {
-            _context = context;
-            _objectContext = context.Get<ObjectContext>();
-        }
+        public ApplyStepsHelper(ScenarioContext context) => _objectContext = context.Get<ObjectContext>();
 
-        public AP_ApplicationOverviewPage CompletePreambleJourney(string orgName)
+        public AP_ApplicationOverviewPage CompletePreambleJourney(AP_PR1_SearchForYourOrganisationPage searchForYourOrganisationPage, string orgName)
         {
             _objectContext.SetApplyOrganisationName(orgName);
 
-            return new AP_PR1_SearchForYourOrganisationPage(_context)
+            return searchForYourOrganisationPage
                 .EnterOrgNameAndSearchInSearchForYourOrgPage()
                 .ClickOrgLinkFromSearchResultsForPage()
                 .SelectTrainingProviderRadioButtonAndContinueInSelectOrgTypePage()
@@ -79,6 +75,8 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
                 .VerifyDeclarationsSectionCompletedText();
         }
 
+        public bool GoToFinancialHealthAssessmentLinkExists(AP_ApplicationOverviewPage applicationOverviewPage) => applicationOverviewPage.GoToFinancialHealthAssessmentLinkExists();
+
         public AP_ApplicationOverviewPage CompletesTheFHASection(AP_ApplicationOverviewPage applicationOverviewPage)
         {
             return applicationOverviewPage
@@ -90,6 +88,59 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
         }
 
         public void SubmitApplication(AP_ApplicationOverviewPage applicationOverviewPage) => applicationOverviewPage.ClickSubmitInApplicationOverviewPage();
+
+        public AS_ApplicationSubmittedPage ApplyForAStandard(AS_ApplyForAStandardPage aS_ApplyForAStandardPage, string standardName)
+        {
+            _objectContext.SetApplyStandardName(standardName);
+
+            var applyToStandard = aS_ApplyForAStandardPage
+                .Start()
+                .EnterStandardName()
+                .Apply()
+                .ConfirmAndApply()
+                .GoToApplyToStandard();
+
+            applyToStandard = applyToStandard.AccessYourPolicies_01()
+                .EnterRegNumber()
+                .UploadAuditPolicy()
+                .UploadPublicLiabilityInsurance()
+                .UploadProfessionalIndemnityInsurance()
+                .UploadEmployersLiabilityInsurance()
+                .UploadSafeguardingPolicy()
+                .UploadPreventAgendaPolicy()
+                .UploadConflictOfinterestPolicy()
+                .UploadMonitoringProcedure()
+                .UploadModerationProcesses()
+                .UploadComplaintsPolicy()
+                .UploadFairAccess()
+                .UploadConsistencyAssurance()
+                .EnterImproveTheQuality()
+                .EnterEngagement()
+                .EnterMembershipDetails()
+                .EnterHowManyAssessors()
+                .EnterHowManyEndPointAssessment()
+                .EnterVolume()
+                .EnterHowRecruitAndTrainAssessors()
+                .EnterExperience()
+                .EnterOccupationalExpertise()
+                .EnterDeliverEndPoint()
+                .EnterIntendToOutsource()
+                .EnterEngageWithEmployers()
+                .EnterManageAnyPotentialConflict()
+                .ChooseLocation()
+                .EnterDayToStart()
+                .EnterAssessmentPlan()
+                .EnterReviewAndMaintainPlan()
+                .EnterSecureITInfrastructurePlan()
+                .EnterAssessmentAdministration()
+                .EnterAssessmentProduct()
+                .EnterAssessmentContent()
+                .EnterCollationOutcome()
+                .EnterAssessmentResutls()
+                .EnterWebAddress();
+
+            return applyToStandard.ReturnToApplicationOverview().Submit();
+        }
 
     }
 }

@@ -40,6 +40,8 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply
             return new AP_DeclarationsBasePage(_context);
         }
 
+        public bool GoToFinancialHealthAssessmentLinkExists() => pageInteractionHelper.IsElementDisplayed(GoToFinancialHealthAssessmentLink);
+
         public AP_FHABasePage ClickGoToFinancialHealthAssessmentLinkInApplicationOverviewPage()
         {
             formCompletionHelper.Click(GoToFinancialHealthAssessmentLink);

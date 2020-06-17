@@ -8,7 +8,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
     {
         protected override string PageTitle => "Record a grade";
         private readonly ScenarioContext _context;
-        private readonly EPAOSqlDataHelper _ePAOSqlDataHelper;
+        private readonly EPAOApplySqlDataHelper _ePAOSqlDataHelper;
 
         #region Locators
         private By FamilyNameTextBox => By.Name("Surname");
@@ -22,7 +22,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
         public AS_RecordAGradePage(ScenarioContext context) : base(context)
         {
             _context = context;
-            _ePAOSqlDataHelper = context.Get<EPAOSqlDataHelper>();
+            _ePAOSqlDataHelper = context.Get<EPAOApplySqlDataHelper>();
             VerifyPage();
         }
 
