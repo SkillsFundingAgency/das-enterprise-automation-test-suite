@@ -4,8 +4,6 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
 {
     public class AdminStepshelper
     {
-        public AdminStepshelper() { }
-
         public OrganisationDetailsPage SearchEpaoRegister(StaffDashboardPage staffDashboardPage) => staffDashboardPage.SearchEPAO().SearchForAnOrganisation().SelectAnOrganisation();
 
         public OrganisationDetailsPage AddOrganisation(StaffDashboardPage staffDashboardPage) => staffDashboardPage.AddOrganisation().EnterDetails();
