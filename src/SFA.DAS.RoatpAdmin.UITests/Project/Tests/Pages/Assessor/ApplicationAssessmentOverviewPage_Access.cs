@@ -1,4 +1,5 @@
 ﻿using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor.DeliveringApprenticeshipTrainingChecks;
+using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor.EvaluatingApprenticeshipTrainingChecks;
 using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor.PlanningApprenticeshipTrainingChecks;
 using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor.ProtectingYourApprenticesChecks;
 using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor.ReadinessToEngageChecks;
@@ -123,6 +124,32 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor
         {
             NavigateToTask(Section4_Link6);
             return new PolicyForProfessionalDevelopmentOfEmployeesPage(_context);
+        }
+        #endregion
+
+        #region Section-5
+        public ProcessForEvaluatingTheQualityOfTrainingDeliveredPage Access_Section5_Link1()
+        {
+            NavigateToTask(Section5_Link1);
+            return new ProcessForEvaluatingTheQualityOfTrainingDeliveredPage(_context);
+        }
+        public ProcessForEvaluatingTheQualityOfApprenticeshipTrainingPage Access_Section5_Link2()
+        {
+            NavigateToTask(Section5_Link2);
+            return new ProcessForEvaluatingTheQualityOfApprenticeshipTrainingPage(_context);
+        }
+        public SystemsAndProcessesToCollectApprenticeshipDataPage Access_Section5_Link3()
+        {
+            NavigateToTask(Section5_Link3);
+            return new SystemsAndProcessesToCollectApprenticeshipDataPage(_context);
+        }
+        #endregion
+
+        #region Section-6
+        public AreYouSureThisApplicationIsReadyForModerationPage Access_Section6_Link1()
+        {
+            NavigateToTask(Section6_Link1);
+            return new AreYouSureThisApplicationIsReadyForModerationPage(_context);
         }
         #endregion
     }

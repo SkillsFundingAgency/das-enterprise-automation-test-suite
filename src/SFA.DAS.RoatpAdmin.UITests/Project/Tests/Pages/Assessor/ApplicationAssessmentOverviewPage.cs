@@ -48,5 +48,9 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor
         private string Section5_Link2 => "Process of evaluating the quality of apprenticeship training";
         private string Section5_Link3 => "Systems and processes to collect apprenticeship data";
         #endregion
+
+        #region Section-6
+        private string Section6_Link1 => "Ready for moderation";
+        #endregion
     }
 }
