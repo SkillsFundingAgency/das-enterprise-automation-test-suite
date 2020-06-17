@@ -16,10 +16,18 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
             VerifyPage();
         }
 
-        public OrganisationApplicationsPage ReturnToApplications()
+        public OrganisationApplicationsPage ReturnToOrganisationApplications()
         {
-            formCompletionHelper.ClickLinkByText("Return to applications");
+            ReturnToApplications();
             return new OrganisationApplicationsPage(_context);
         }
+
+        public StandardApplicationsPage ReturnToStandardApplications()
+        {
+            ReturnToApplications();
+            return new StandardApplicationsPage(_context);
+        }
+
+        private void ReturnToApplications() => formCompletionHelper.ClickLinkByText("Return to applications");
     }
 }

@@ -1,105 +1,82 @@
-﻿using SFA.DAS.EPAO.UITests.Project.Helpers;
-using SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService;
-using SFA.DAS.Login.Service;
-using SFA.DAS.Login.Service.Helpers;
-using SFA.DAS.UI.Framework.TestSupport;
-using SFA.DAS.UI.FrameworkHelpers;
+﻿using SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.PreamblePages;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
 {
     [Binding]
-    public class E2ESteps
+    public class E2ESteps : EPAOBaseSteps
     {
-        private readonly ScenarioContext _context;
-        private readonly EPAOSqlDataHelper _ePAOSqlDataHelper;
-        private readonly ApplyStepsHelper _applyStepsHelper;
-        private readonly EPAOConfig _config;
-        private readonly TabHelper _tabHelper;
-        private readonly EPAOHomePageHelper _ePAOHomePageHelper;
+        private string E2eOrgName => "YOUTH FORCE LIMITED";
 
-        public E2ESteps(ScenarioContext context)
-        {
-            _context = context;
-            _ePAOSqlDataHelper = context.Get<EPAOSqlDataHelper>();
-            _applyStepsHelper = new ApplyStepsHelper(_context);
-            _config = context.GetEPAOConfig<EPAOConfig>();
-            _tabHelper = context.Get<TabHelper>();
-            _ePAOHomePageHelper = new EPAOHomePageHelper(_context);
-        }
+        private string E2EOrgStandardName => "Software developer";
+
+        private bool FinancialHealthAssessmentLinkExists;
+
+        private string Username;
+
+        public E2ESteps(ScenarioContext context) : base(context) { }
 
         [Given(@"the apply user submits an Assessment Service Application")]
         public void GivenTheApplyUserSubmitsAnAssessmentServiceApplication()
         {
-            _ePAOHomePageHelper.LoginInAsApplyUser(_context.GetUser<EPAOE2EApplyUser>());
+            var searchForYourOrganisationPage = LoginInAsApplyUser();
 
-            var _applicationOverviewPage = _applyStepsHelper.CompletePreambleJourney("Brunell School");
+            var _applicationOverviewPage = applyStepsHelper.CompletePreambleJourney(searchForYourOrganisationPage, E2eOrgName);
 
-            _applicationOverviewPage = _applyStepsHelper.CompleteOrganisationDetailsSection(_applicationOverviewPage);
+            _applicationOverviewPage = applyStepsHelper.CompleteOrganisationDetailsSection(_applicationOverviewPage);
 
-            _applicationOverviewPage = _applyStepsHelper.CompleteDeclarationsSection(_applicationOverviewPage);
+            _applicationOverviewPage = applyStepsHelper.CompleteDeclarationsSection(_applicationOverviewPage);
 
-            _applicationOverviewPage = _applyStepsHelper.CompletesTheFHASection(_applicationOverviewPage);
+            FinancialHealthAssessmentLinkExists = applyStepsHelper.GoToFinancialHealthAssessmentLinkExists(_applicationOverviewPage);
 
-            _applyStepsHelper.SubmitApplication(_applicationOverviewPage);
+            if (FinancialHealthAssessmentLinkExists)
+            {
+                _applicationOverviewPage = applyStepsHelper.CompletesTheFHASection(_applicationOverviewPage);
+            }
+
+            applyStepsHelper.SubmitApplication(_applicationOverviewPage);
         }
 
         [Given(@"the admin appoves the assessor")]
-        public void GivenTheAdminAppovesTheAssessor()
-        {
-            _tabHelper.OpenInNewTab(_config.AdminBaseUrl);
-
-            var staffdashboard = _ePAOHomePageHelper.GoToEpaoAdminHomePage();
-
-            staffdashboard = staffdashboard
-                .GoToNewOrganisationApplications()
-                .GoToNewApplicationOverviewPage()
-                .GoToNewOrganisationDetailsPage()
-                .SelectYesAndContinue()
-                .GoToNewOrgDeclarationsPage()
-                .SelectYesAndContinue()
-                .ReturnToOrganisationApplicationsPage()
-                .ReturnToDashboard();
-
-            staffdashboard = staffdashboard
-                .GoToNewFinancialAssesmentPage()
-                .GoToNewApplicationOverviewPage()
-                .SelectGoodAndContinue()
-                .ReturnToAccountHome()
-                .ReturnToDashboard();
-
-            staffdashboard = staffdashboard.GoToInProgressOrganisationApplication()
-                .GoToInProgressApplicationOverviewPage()
-                .GoToFinancialhealthAssesmentPage()
-                .SelectYesAndContinue()
-                .CompleteReview()
-                .ApproveApplication()
-                .ReturnToApplications()
-                .ReturnToDashboard();
-
-            staffdashboard
-                .GoToApprovedOrganisationApplication()
-                .GoToApprovedApplicationOverviewPage()
-                .ReturnToOrganisationApplicationsPage()
-                .ReturnToDashboard();
-        }
+        public void GivenTheAdminAppovesTheAssessor() => staffdashboardPage = adminStepshelper.ApproveAnOrganisation(ePAOHomePageHelper.LoginToEpaoAdminHomePage(true), FinancialHealthAssessmentLinkExists);
 
         [When(@"the apply user applies for a standard")]
         public void WhenTheApplyUserAppliesForAStandard()
         {
-            
+            var page = ePAOHomePageHelper.GoToEpaoApplyForAStandardPage();
+
+            applyStepsHelper.ApplyForAStandard(page, E2EOrgStandardName);
         }
 
         [Then(@"the admin approves the standard")]
-        public void ThenTheAdminApprovesTheStandard()
-        {
-            
-        }
+        public void ThenTheAdminApprovesTheStandard() => staffdashboardPage = adminStepshelper.ApproveAStandard(ePAOHomePageHelper.AlreadyLoginGoToEpaoAdminStaffDashboardPage());
 
         [Then(@"make the epao live")]
         public void ThenMakeTheEpaoLive()
         {
-            
+            objectContext.SetOrganisationIdentifier(ePAOAdminSqlDataHelper.GetEPAOId(Username));
+
+            adminStepshelper.MakeEPAOOrganisationLive(staffdashboardPage);
         }
+
+        private AP_PR1_SearchForYourOrganisationPage LoginInAsApplyUser()
+        {
+            Username = ePAOE2EApplyUser.Username;
+
+            ePAOApplySqlDataHelper.ResetApplyUserOrganisationId(Username);
+
+            ePAOAdminSqlDataHelper.DeleteOrganisationStandardDeliveryArea(Username);
+
+            ePAOAdminSqlDataHelper.DeleteOrganisationStanard(Username);
+
+            ePAOApplySqlDataHelper.DeleteAnyOtherOrganisationId(Username);
+
+            ePAOAdminSqlDataHelper.DeleteEPAOOrganisation(Username);
+
+            ePAOApplySqlDataHelper.ResetApplyUserEPAOId(Username);
+
+            return ePAOHomePageHelper.LoginInAsApplyUser(ePAOE2EApplyUser);
+        }
+
     }
 }

@@ -3,7 +3,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
 {
-    public class OrganisationApplicationsPage : EPAOAdmin_BasePage
+    public class OrganisationApplicationsPage : ApplicationBasePage
     {
         protected override string PageTitle => "Organisation applications";
 
@@ -11,37 +11,18 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
         private readonly ScenarioContext _context;
         #endregion
 
-        private By NewTab => By.CssSelector("#tab_new");
-        private By InProgressTab => By.CssSelector("#tab_in-progress");
-        private By FeedbackTab => By.CssSelector("#tab_feedback");
-        private By ApprovedTab => By.CssSelector("#tab_approved");
+        public OrganisationApplicationsPage(ScenarioContext context) : base(context) => _context = context;
 
+        public OrganisationApplicationOverviewPage GoToNewOrganisationApplicationOverviewPage() => GoToOrganisationApplicationOverviewPage(NewTab);
 
-        public OrganisationApplicationsPage(ScenarioContext context) : base(context)
+        public OrganisationApplicationOverviewPage GoToInProgressOrganisationApplicationOverviewPage() => GoToOrganisationApplicationOverviewPage(InProgressTab);
+
+        public OrganisationApplicationOverviewPage GoToApprovedOrganisationApplicationOverviewPage() => GoToOrganisationApplicationOverviewPage(ApprovedTab);
+
+        private OrganisationApplicationOverviewPage GoToOrganisationApplicationOverviewPage(By by)
         {
-            _context = context;
-            VerifyPage();
-        }
-
-        public new StaffDashboardPage ReturnToDashboard() => base.ReturnToDashboard();
-
-        public ApplicationOverviewPage GoToNewApplicationOverviewPage() => GoToApplicationOverviewPage(NewTab);
-
-        public ApplicationOverviewPage GoToInProgressApplicationOverviewPage() => GoToApplicationOverviewPage(InProgressTab);
-
-        public ApplicationOverviewPage GoToApprovedApplicationOverviewPage() => GoToApplicationOverviewPage(ApprovedTab);
-        
-        public AssessmentSummaryPage CompleteReview()
-        {
-            Continue();
-            return new AssessmentSummaryPage(_context);
-        }
-
-        private ApplicationOverviewPage GoToApplicationOverviewPage(By by)
-        {
-            formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(by));
-            formCompletionHelper.ClickLinkByText(objectContext.GetApplyOrganisationName());
-            return new ApplicationOverviewPage(_context);
+            GoToApplicationOverviewPage(by);
+            return new OrganisationApplicationOverviewPage(_context);
         }
     }
 }

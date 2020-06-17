@@ -1,4 +1,5 @@
-﻿Feature: EPAO_AP_01
+﻿@resetapplyuserorganisationid
+Feature: EPAO_AP_01
 
 @epao
 @epaoapply

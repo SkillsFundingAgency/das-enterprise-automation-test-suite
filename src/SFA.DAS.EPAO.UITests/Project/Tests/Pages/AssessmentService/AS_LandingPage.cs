@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.ApplyToAssessStandard;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
@@ -20,15 +21,16 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
             AcceptCookies();
         }
 
-        public AS_LoginPage ClickStartButton()
+        public AS_LoginPage ClickStartNowButton()
         {
             formCompletionHelper.Click(StartNowButton);
             return new AS_LoginPage(_context);
         }
 
-        public AS_LandingPage VerifyAS_LandingPage()
+        public AS_ApplyForAStandardPage AlreadyLoginClickStartNowButton()
         {
-            return this;
+            formCompletionHelper.Click(StartNowButton);
+            return new AS_ApplyForAStandardPage(_context);
         }
 
         public AS_CreateAnAccountPage ClickCreateAnAccountLink()

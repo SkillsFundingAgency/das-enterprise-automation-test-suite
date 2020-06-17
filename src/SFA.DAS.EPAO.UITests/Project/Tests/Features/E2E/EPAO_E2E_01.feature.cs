@@ -71,22 +71,22 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Features.E2E
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("EPAO_E2E_01 - Apply Approve and Add a standard")]
-        [NUnit.Framework.IgnoreAttribute("Ignored scenario")]
         [NUnit.Framework.CategoryAttribute("epao")]
         [NUnit.Framework.CategoryAttribute("epaoapply")]
         [NUnit.Framework.CategoryAttribute("regression")]
+        [NUnit.Framework.CategoryAttribute("e2e")]
         public virtual void EPAO_E2E_01_ApplyApproveAndAddAStandard()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EPAO_E2E_01 - Apply Approve and Add a standard", null, new string[] {
-                        "ignore",
                         "epao",
                         "epaoapply",
-                        "regression"});
+                        "regression",
+                        "e2e"});
 #line 7
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 8
- testRunner.Given("the apply user submits an Assessment Service Application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+testRunner.Given("the apply user submits an Assessment Service Application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 9
  testRunner.And("the admin appoves the assessor", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 10

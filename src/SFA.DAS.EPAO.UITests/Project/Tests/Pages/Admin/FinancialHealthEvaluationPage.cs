@@ -11,9 +11,11 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
         private readonly ScenarioContext _context;
         #endregion
 
-        private By Day => By.CssSelector("#GoodFinancialDueDate.Day");
-        private By Month => By.CssSelector("#GoodFinancialDueDate.Month");
-        private By Year => By.CssSelector("#GoodFinancialDueDate.Year");
+        private By DayLabel => By.CssSelector("label[for='GoodFinancialDueDate.Day']");
+        private By MonthLabel => By.CssSelector("label[for='GoodFinancialDueDate.Month']");
+        private By YearLabel => By.CssSelector("label[for='GoodFinancialDueDate.Year']");
+        private By ParentElement => By.XPath("..");
+        private By InputElement => By.CssSelector("input");
 
         public FinancialHealthEvaluationPage(ScenarioContext context) : base(context)
         {
@@ -25,12 +27,14 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
         {
             SelectRadioOptionByText("Good");
             var duedate = ePAOAdminDataHelper.FinancialAssesmentDueDate;
-            formCompletionHelper.EnterText(Day, duedate.Day.ToString());
-            formCompletionHelper.EnterText(Month, duedate.Month.ToString());
-            formCompletionHelper.EnterText(Year, duedate.Year.ToString());
+            formCompletionHelper.EnterText(FindInputElement(DayLabel), duedate.Day.ToString());
+            formCompletionHelper.EnterText(FindInputElement(MonthLabel), duedate.Month.ToString());
+            formCompletionHelper.EnterText(FindInputElement(YearLabel), duedate.Year.ToString());
             Continue();
             return new EvaluationSubmittedPage(_context);
         }
+
+        private IWebElement FindInputElement(By @by) => pageInteractionHelper.FindElement(@by).FindElement(ParentElement).FindElement(InputElement);
     }
 }
 

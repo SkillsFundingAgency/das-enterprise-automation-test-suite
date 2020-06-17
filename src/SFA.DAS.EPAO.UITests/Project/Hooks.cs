@@ -1,10 +1,9 @@
-﻿using OpenQA.Selenium;
-using SFA.DAS.ConfigurationBuilder;
-using SFA.DAS.EPAO.UITests.Project.Helpers;
+﻿using SFA.DAS.EPAO.UITests.Project.Helpers;
 using SFA.DAS.EPAO.UITests.Project.Helpers.DataHelpers;
+using SFA.DAS.Login.Service;
+using SFA.DAS.Login.Service.Helpers;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
-using System.Linq;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EPAO.UITests.Project
@@ -14,21 +13,22 @@ namespace SFA.DAS.EPAO.UITests.Project
     {
         private readonly ScenarioContext _context;
         private readonly EPAOConfig _config;
-        private readonly IWebDriver _webDriver;
         private EPAOAdminDataHelper _ePAOAdminDataHelper;
         private EPAOAdminSqlDataHelper _ePAOAdminSqlDataHelper;
+        private EPAOApplySqlDataHelper _ePAOApplySqlDataHelper;
 
         public Hooks(ScenarioContext context)
         {
             _context = context;
-            _webDriver = context.GetWebDriver();
             _config = context.GetEPAOConfig<EPAOConfig>();
         }
 
         [BeforeScenario(Order = 32)]
         public void SetUpHelpers()
         {
-            _context.Set(new EPAOSqlDataHelper(_config));
+            _ePAOApplySqlDataHelper = new EPAOApplySqlDataHelper(_config);
+
+            _context.Set(_ePAOApplySqlDataHelper);
 
             _ePAOAdminSqlDataHelper = new EPAOAdminSqlDataHelper(_config);
 
@@ -52,10 +52,8 @@ namespace SFA.DAS.EPAO.UITests.Project
         public void ClearStandards() => _ePAOAdminSqlDataHelper.DeleteOrganisationStandard(_ePAOAdminDataHelper.Standards, _ePAOAdminDataHelper.OrganisationEpaoId);
 
         [BeforeScenario(Order = 34)]
-        public void Navigate()
-        {
-            if (_context.ScenarioInfo.Tags.Contains("epaoadmin")) { _webDriver.Navigate().GoToUrl(_config.AdminBaseUrl); }
-        }
+        [Scope(Tag = "resetapplyuserorganisationid")]
+        public void ResetApplyUserOrganisationId() => _ePAOApplySqlDataHelper.ResetApplyUserOrganisationId(_context.GetUser<EPAOApplyUser>().Username);
 
         [AfterScenario(Order = 32)]
         [Scope(Tag = "deleteorganisationcontact")]

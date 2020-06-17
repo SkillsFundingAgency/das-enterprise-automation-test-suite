@@ -1,7 +1,9 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.PreamblePages;
+using SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.ApplyToAssessStandard;
 using SFA.DAS.Login.Service;
 using SFA.DAS.Login.Service.Helpers;
+using System;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
@@ -35,11 +37,17 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
             return new AP_PR1_SearchForYourOrganisationPage(_context);
         }
 
-        public void EnterLoginDetails(LoginUser loginUser)
+        private void EnterLoginDetails(LoginUser loginUser)
         {
             formCompletionHelper.EnterText(EmailAddressTextBox, loginUser.Username);
             formCompletionHelper.EnterText(PasswordTextBox, loginUser.Password);
             Continue();
+        }
+
+        public AS_ApplyForAStandardPage SignInStandardAsApplyUser(LoginUser loginUser)
+        {
+            EnterLoginDetails(loginUser);
+            return new AS_ApplyForAStandardPage(_context);
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin;
 using SFA.DAS.EPAO.UITests.Project.Tests.Pages.Apply.PreamblePages;
 using SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService;
+using SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.ApplyToAssessStandard;
 using SFA.DAS.IdamsLogin.Service.Project.Tests.Pages;
 using SFA.DAS.Login.Service.Helpers;
 using SFA.DAS.UI.Framework.TestSupport;
@@ -14,47 +15,62 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
         private readonly ScenarioContext _context;
         private readonly TabHelper _tabHelper;
         private readonly EPAOConfig _ePAOConfig;
-        private readonly EPAOSqlDataHelper _ePAOSqlDataHelper;
+        private readonly EPAOApplySqlDataHelper _ePAOSqlDataHelper;
 
         public EPAOHomePageHelper(ScenarioContext context)
         {
             _context = context;
             _tabHelper = context.Get<TabHelper>();
             _ePAOConfig = context.GetEPAOConfig<EPAOConfig>();
-            _ePAOSqlDataHelper = context.Get<EPAOSqlDataHelper>();
+            _ePAOSqlDataHelper = context.Get<EPAOApplySqlDataHelper>();
         }
 
-        public StaffDashboardPage GoToEpaoAdminHomePage(bool openInNewTab = false)
+        public StaffDashboardPage LoginToEpaoAdminHomePage(bool openInNewTab = false)
         {
-            if (openInNewTab) { _tabHelper.OpenInNewTab(_ePAOConfig.AdminBaseUrl); }
+            var serviceStartPage = OpenAdminBaseUrl(openInNewTab);
 
-            new ServiceStartPage(_context).ClickStartNow().LoginToAccess1Staff();
+            serviceStartPage.StartNow().LoginToAccess1Staff();
 
             return new SignInPage(_context).SignInWithValidDetails();
         }
 
-        public AS_LandingPage GoToEpaoAssessmentLandingPage()
+        public AS_LandingPage GoToEpaoAssessmentLandingPage(bool openInNewTab = false)
         {
-            _tabHelper.GoToUrl(_ePAOConfig.AssessmentServiceUrl);
+            OpenUrl(_ePAOConfig.AssessmentServiceUrl, openInNewTab);
 
             return new AS_LandingPage(_context);
         }
 
-        public AP_PR1_SearchForYourOrganisationPage LoginInAsApplyUser(LoginUser loginUser)
-        {
-            _ePAOSqlDataHelper.ResetApplyUser(loginUser.Username);
+        public AS_ApplyForAStandardPage GoToEpaoApplyForAStandardPage() => GoToEpaoAssessmentLandingPage(true).AlreadyLoginClickStartNowButton();
 
-            return GoToEpaoAssessmentLandingPage().ClickStartButton().SignInAsApplyUser(loginUser);
+        public StaffDashboardPage AlreadyLoginGoToEpaoAdminStaffDashboardPage()
+        {
+            OpenAdminBaseUrl(true).ClickStartNowButton();
+
+            return new StaffDashboardPage(_context);
         }
 
-        public AS_LoggedInHomePage LoginInAsNonApplyUser(LoginUser loginUser) => GoToEpaoAssessmentLandingPage().ClickStartButton().SignInWithValidDetails(loginUser);
+        public AP_PR1_SearchForYourOrganisationPage LoginInAsApplyUser(LoginUser loginUser) => GoToEpaoAssessmentLandingPage().ClickStartNowButton().SignInAsApplyUser(loginUser);
 
-        public AS_LoggedInHomePage LoginInAsNonApplyUser(LoginUser loginUser, string standardReference, string organisationId)
+        public AS_LoggedInHomePage LoginInAsNonApplyUser(LoginUser loginUser) => GoToEpaoAssessmentLandingPage().ClickStartNowButton().SignInWithValidDetails(loginUser);
+
+        public AS_LoggedInHomePage LoginInAsStandardApplyUser(LoginUser loginUser, string standardcode, string organisationId)
         {
-            _ePAOSqlDataHelper.DeleteStandardApplicication(standardReference, organisationId, loginUser.Username);
+            _ePAOSqlDataHelper.DeleteStandardApplicication(standardcode, organisationId, loginUser.Username);
 
-            return GoToEpaoAssessmentLandingPage().ClickStartButton().SignInWithValidDetails(loginUser);
+            return LoginInAsNonApplyUser(loginUser);
         }
 
+        private ServiceStartPage OpenAdminBaseUrl(bool openInNewTab)
+        {
+            OpenUrl(_ePAOConfig.AdminBaseUrl, openInNewTab);
+
+            return new ServiceStartPage(_context);
+        }
+
+        private void OpenUrl(string url, bool openInNewTab)
+        {
+            if (openInNewTab) { _tabHelper.OpenInNewTab(url); } else { _tabHelper.GoToUrl(url); }
+        }
     }
 }

@@ -19,7 +19,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.ApplyToAsse
 
         public AS_StandardSearchResultsPage EnterStandardName()
         {
-            formCompletionHelper.EnterText(StandardName, standardDataHelper.ApplyforStandard);
+            formCompletionHelper.EnterText(StandardName, objectContext.GetApplyStandardName());
             Continue();
             return new AS_StandardSearchResultsPage(_context);
         }

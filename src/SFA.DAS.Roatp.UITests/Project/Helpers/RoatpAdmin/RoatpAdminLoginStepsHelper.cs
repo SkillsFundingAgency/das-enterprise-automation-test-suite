@@ -12,7 +12,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.RoatpAdmin
 
         public void SubmitValidLoginDetails()
         {
-            new ServiceStartPage(_context).ClickStartNow().LoginToAccess1Staff();
+            new ServiceStartPage(_context).StartNow().LoginToAccess1Staff();
 
             new SignInPage(_context).SubmitValidLoginDetails();
         }
