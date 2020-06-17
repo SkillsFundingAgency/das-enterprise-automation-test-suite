@@ -1,4 +1,5 @@
-﻿using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor.PlanningApprenticeshipTrainingChecks;
+﻿using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor.DeliveringApprenticeshipTrainingChecks;
+using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor.PlanningApprenticeshipTrainingChecks;
 using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor.ProtectingYourApprenticesChecks;
 using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor.ReadinessToEngageChecks;
 
@@ -89,6 +90,39 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor
         {
             NavigateToTask(Section3_Link5);
             return new WhereWillYourApprenticesBeTrainedPage(_context);
+        }
+        #endregion
+
+        #region Section-4
+        public OverallAccountabilityForApprenticeshipsPage Access_Section4_Link1()
+        {
+            NavigateToTask(Section4_Link1);
+            return new OverallAccountabilityForApprenticeshipsPage(_context);
+        }
+        public ManagementHierarchyForApprenticeshipsPage Access_Section4_Link2()
+        {
+            NavigateToTask(Section4_Link2);
+            return new ManagementHierarchyForApprenticeshipsPage(_context);
+        }
+        public QualityAndHighStandardsInApprenticeshipTrainingPage Access_Section4_Link3()
+        {
+            NavigateToTask(Section4_Link3);
+            return new QualityAndHighStandardsInApprenticeshipTrainingPage(_context);
+        }
+        public DevelopingAndDeliveringTrainingPage Access_Section4_Link4()
+        {
+            NavigateToTask(Section4_Link4);
+            return new DevelopingAndDeliveringTrainingPage(_context);
+        }
+        public YourSectorsAndEmployeesPage Access_Section4_Link5()
+        {
+            NavigateToTask(Section4_Link5);
+            return new YourSectorsAndEmployeesPage(_context);
+        }
+        public PolicyForProfessionalDevelopmentOfEmployeesPage Access_Section4_Link6()
+        {
+            NavigateToTask(Section4_Link6);
+            return new PolicyForProfessionalDevelopmentOfEmployeesPage(_context);
         }
         #endregion
     }
