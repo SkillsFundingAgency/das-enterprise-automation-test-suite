@@ -9,9 +9,10 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor
 
         public AreYouSureThisApplicationIsReadyForModerationPage(ScenarioContext context) : base(context) => _context = context;
 
-        public BlindAssessmentCompletePage SelectPassAndContinueInAreYouSureThisApplicationIsReadyForModerationPage()
+        public BlindAssessmentCompletePage SelectYesAndContinueInAreYouSureThisApplicationIsReadyForModerationPage()
         {
-            SelectPassAndContinueToSubSection();
+            SelectRadioOptionByForAttribute("OptionYes");
+            Continue();
             return new BlindAssessmentCompletePage(_context);
         }
     }
