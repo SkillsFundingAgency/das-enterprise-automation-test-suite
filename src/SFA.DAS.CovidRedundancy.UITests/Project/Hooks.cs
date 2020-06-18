@@ -7,6 +7,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.CovidRedundancy.UITests.Project
 {
+    [Binding ]
     public class Hooks
     {
         private readonly IWebDriver _webDriver;

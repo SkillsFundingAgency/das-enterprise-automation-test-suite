@@ -4,6 +4,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.CovidRedundancy.UITests.Project
 {
+    [Binding]
     public class CRConfigurationSetup
     {
         private readonly ScenarioContext _context;
