@@ -1,6 +1,6 @@
 ﻿using TechTalk.SpecFlow;
 
-namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor.ReadinessToEngageChecks
+namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor.S2_ReadinessToEngageChecks
 {
     public class ProcessToAssessEnglishAndMathsPage : AssessorBasePage
     {

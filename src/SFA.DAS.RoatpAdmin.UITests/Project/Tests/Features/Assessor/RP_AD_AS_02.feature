@@ -1,0 +1,16 @@
+﻿Feature: RP_AD_AS_02
+
+@roatp
+@rpadas02
+@roatpassessor
+@newroatpadmin
+@regression
+Scenario: RP_AD_AS_01 Assess a Company type Application via Sole provider route
+	When the Assessor1 is on the RoATP assessor applications dashboard
+	And selects the Supporting provider route application
+	Then the Assessor assesses all the sections of the Main provider application as PASS
+	And marks the Application as Ready for moderation
+	When the Assessor2 is on the RoATP assessor applications dashboard
+	And selects the Supporting provider route application
+	Then the Assessor assesses all the sections of the Main provider application as PASS
+	And marks the Application as Ready for moderation

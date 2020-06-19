@@ -1,8 +1,8 @@
 ﻿using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor.DeliveringApprenticeshipTrainingChecks;
 using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor.EvaluatingApprenticeshipTrainingChecks;
 using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor.PlanningApprenticeshipTrainingChecks;
-using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor.ProtectingYourApprenticesChecks;
-using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor.ReadinessToEngageChecks;
+using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor.S1_ProtectingYourApprenticesChecks;
+using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor.S2_ReadinessToEngageChecks;
 
 namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor
 {
