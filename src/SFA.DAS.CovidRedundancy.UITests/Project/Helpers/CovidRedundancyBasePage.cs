@@ -4,7 +4,7 @@ using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.CovidRedundancy.UITests.Project.Helpers
+namespace SFA.DAS.ApprenticeRedundancy.UITests.Project
 {
     public abstract class CovidRedundancyBasePage : BasePage
     { 
@@ -15,7 +15,7 @@ namespace SFA.DAS.CovidRedundancy.UITests.Project.Helpers
     protected readonly ObjectContext objectContext;
     protected readonly PageInteractionHelper pageInteractionHelper;
     protected readonly FormCompletionHelper formCompletionHelper;
-    protected readonly CRConfig cRConfig;
+    protected readonly ARConfig cRConfig;
     #endregion
 
     public CovidRedundancyBasePage(ScenarioContext context) : base(context)
@@ -23,7 +23,7 @@ namespace SFA.DAS.CovidRedundancy.UITests.Project.Helpers
         objectContext = context.Get<ObjectContext>();
         formCompletionHelper = context.Get<FormCompletionHelper>();
         pageInteractionHelper = context.Get<PageInteractionHelper>();
-        cRConfig = context.GetCRConfig<CRConfig>();
+        cRConfig = context.GetARConfig<ARConfig>();
     }
   }
 }

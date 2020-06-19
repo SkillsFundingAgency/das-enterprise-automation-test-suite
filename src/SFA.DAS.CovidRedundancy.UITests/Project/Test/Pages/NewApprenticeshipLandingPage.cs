@@ -1,12 +1,7 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.CovidRedundancy.UITests.Project.Helpers;
-using SFA.DAS.UI.FrameworkHelpers;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.CovidRedundancy.UITests.Project.Test.Pages
+namespace SFA.DAS.ApprenticeRedundancy.UITests.Project.Test.Pages
 {
     public class NewApprenticeshipLandingPage : CovidRedundancyBasePage
     {

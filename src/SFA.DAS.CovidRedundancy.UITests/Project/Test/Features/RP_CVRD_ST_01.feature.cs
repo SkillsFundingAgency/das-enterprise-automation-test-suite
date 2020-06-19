@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.CovidRedundancy.UITests.Project.Test.Features
+namespace SFA.DAS.ApprenticeRedundancy.UITests.Project.Test.Features
 {
     using TechTalk.SpecFlow;
     
@@ -18,8 +18,8 @@ namespace SFA.DAS.CovidRedundancy.UITests.Project.Test.Features
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.0.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("RP_CVRD_ST_01")]
-    public partial class RP_CVRD_ST_01Feature
+    [NUnit.Framework.DescriptionAttribute("AP_RD_ST_01")]
+    public partial class AP_RD_ST_01Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
@@ -31,7 +31,7 @@ namespace SFA.DAS.CovidRedundancy.UITests.Project.Test.Features
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "RP_CVRD_ST_01", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "AP_RD_ST_01", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -70,13 +70,13 @@ namespace SFA.DAS.CovidRedundancy.UITests.Project.Test.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RP_CVRD_ST_01_LandingOnApprenticeForm")]
-        [NUnit.Framework.CategoryAttribute("cvrd")]
+        [NUnit.Framework.DescriptionAttribute("AP_RD_ST_01_LandingOnApprenticeForm")]
+        [NUnit.Framework.CategoryAttribute("aprd")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public virtual void RP_CVRD_ST_01_LandingOnApprenticeForm()
+        public virtual void AP_RD_ST_01_LandingOnApprenticeForm()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_CVRD_ST_01_LandingOnApprenticeForm", null, new string[] {
-                        "cvrd",
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_RD_ST_01_LandingOnApprenticeForm", null, new string[] {
+                        "aprd",
                         "regression"});
 #line 5
 this.ScenarioInitialize(scenarioInfo);

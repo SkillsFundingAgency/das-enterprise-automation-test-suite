@@ -1,10 +1,6 @@
-﻿using SFA.DAS.CovidRedundancy.UITests.Project.Helpers;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using TechTalk.SpecFlow;
+﻿using TechTalk.SpecFlow;
 
-namespace SFA.DAS.CovidRedundancy.UITests.Project.Test.Pages
+namespace SFA.DAS.ApprenticeRedundancy.UITests.Project.Test.Pages
 {
     public class ApprenticeDetailsPage : CovidRedundancyBasePage
     {

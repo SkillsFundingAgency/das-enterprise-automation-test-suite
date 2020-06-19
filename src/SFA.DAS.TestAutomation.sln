@@ -65,7 +65,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.RoatpAdmin.UITests"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.ProviderFeedback.UITests", "SFA.DAS.ProviderFeedback.UITests\SFA.DAS.ProviderFeedback.UITests.csproj", "{561FE0AE-E0FD-4140-8E92-1345B6322DFB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SFA.DAS.CovidRedundancy.UITests", "SFA.DAS.CovidRedundancy.UITests\SFA.DAS.CovidRedundancy.UITests.csproj", "{4F0C858B-03D6-4B4C-9901-D92075A9AC94}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.ApprenticeRedundancy.UITests", "SFA.DAS.CovidRedundancy.UITests\SFA.DAS.ApprenticeRedundancy.UITests.csproj", "{4F0C858B-03D6-4B4C-9901-D92075A9AC94}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

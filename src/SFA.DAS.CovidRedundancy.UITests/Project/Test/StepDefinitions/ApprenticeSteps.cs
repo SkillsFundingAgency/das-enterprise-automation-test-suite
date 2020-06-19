@@ -1,10 +1,10 @@
-﻿using SFA.DAS.CovidRedundancy.UITests.Project.Test.Pages;
+﻿using SFA.DAS.ApprenticeRedundancy.UITests.Project.Test.Pages;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.CovidRedundancy.UITests.Project.Test.StepDefinitions
+namespace SFA.DAS.ApprenticeRedundancy.UITests.Project.Test.StepDefinitions
 {
     [Binding]
     public class ApprenticeSteps
