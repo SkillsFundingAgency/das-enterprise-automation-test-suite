@@ -9,7 +9,6 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.Assessor
     [Binding]
     public class AssessorSteps
     {
-        private readonly ScenarioContext _context;
         private readonly RoatpConfig _config;
         private readonly AssessorLoginStepsHelper _assessorLoginStepsHelper;
         private readonly RestartWebDriverHelper _restartWebDriverHelper;
@@ -19,11 +18,10 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.Assessor
 
         public AssessorSteps(ScenarioContext context)
         {
-            _context = context;
             _config = context.GetRoatpConfig<RoatpConfig>();
             _restartWebDriverHelper = new RestartWebDriverHelper(context);
-            _assessorLoginStepsHelper = new AssessorLoginStepsHelper(_context);
-            _assessorEndtoEndStepsHelper = new AssessorEndtoEndStepsHelper();
+            _assessorLoginStepsHelper = new AssessorLoginStepsHelper(context);
+            _assessorEndtoEndStepsHelper = new AssessorEndtoEndStepsHelper(context);
         }
 
         [When(@"the Assessor(1|2) is on the RoATP assessor applications dashboard")]

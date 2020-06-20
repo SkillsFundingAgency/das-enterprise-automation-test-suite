@@ -9,10 +9,16 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor.S3_PlanningApp
 
         public TypeOfApprenticeshipTrainingPage(ScenarioContext context) : base(context) => _context = context;
 
-        public DeliveringTrainingInApprenticeshipStandardsPage SelectPassAndContinueInDeliveringTrainingInApprenticeshipStandardsPage()
+        public DeliveringTrainingInApprenticeshipStandardsPage SelectPassAndContinueInDeliveringTrainingInApprenticeshipStandardsPage_MP()
         {
             SelectPassAndContinueToSubSection();
             return new DeliveringTrainingInApprenticeshipStandardsPage(_context);
+        }
+
+        public OfferingApprenticeshipFrameworksPage SelectPassAndContinueInDeliveringTrainingInApprenticeshipStandardsPage_SP()
+        {
+            SelectPassAndContinueToSubSection();
+            return new OfferingApprenticeshipFrameworksPage(_context);
         }
     }
 }

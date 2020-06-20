@@ -70,15 +70,15 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Features.Assessor
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RP_AD_AS_01 Assess a Company type Application via Sole provider route")]
+        [NUnit.Framework.DescriptionAttribute("RP_AD_AS_02 Assess a Soletrader type Application via Supporting provider route")]
         [NUnit.Framework.CategoryAttribute("roatp")]
         [NUnit.Framework.CategoryAttribute("rpadas02")]
         [NUnit.Framework.CategoryAttribute("roatpassessor")]
         [NUnit.Framework.CategoryAttribute("newroatpadmin")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public virtual void RP_AD_AS_01AssessACompanyTypeApplicationViaSoleProviderRoute()
+        public virtual void RP_AD_AS_02AssessASoletraderTypeApplicationViaSupportingProviderRoute()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_AD_AS_01 Assess a Company type Application via Sole provider route", null, new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_AD_AS_02 Assess a Soletrader type Application via Supporting provider route", null, new string[] {
                         "roatp",
                         "rpadas02",
                         "roatpassessor",

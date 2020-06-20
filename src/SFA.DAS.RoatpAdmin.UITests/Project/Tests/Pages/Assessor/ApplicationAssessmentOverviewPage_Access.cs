@@ -110,10 +110,15 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor
             NavigateToTask(Section4_Link3);
             return new QualityAndHighStandardsInApprenticeshipTrainingPage(_context);
         }
-        public DevelopingAndDeliveringTrainingPage Access_Section4_Link4()
+        public DevelopingAndDeliveringTrainingPage Access_Section4_Link4_ForMainProviderRoute()
         {
             NavigateToTask(Section4_Link4);
             return new DevelopingAndDeliveringTrainingPage(_context);
+        }
+        public SomeoneResponsibleForDevelopingAndDeliveringTrainingPage Access_Section4_Link4_ForSupportingProviderRoute()
+        {
+            NavigateToTask(Section4_Link4);
+            return new SomeoneResponsibleForDevelopingAndDeliveringTrainingPage(_context);
         }
         public YourSectorsAndEmployeesPage Access_Section4_Link5()
         {

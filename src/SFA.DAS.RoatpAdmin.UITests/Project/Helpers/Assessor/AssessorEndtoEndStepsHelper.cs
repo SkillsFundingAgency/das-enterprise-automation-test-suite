@@ -1,4 +1,5 @@
 ﻿using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor;
+using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
 {
@@ -10,13 +11,13 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
         private readonly Assessor_Section4Helper _assessor_Section4Helper;
         private readonly Assessor_Section5Helper _assessor_Section5Helper;
 
-        public AssessorEndtoEndStepsHelper()
+        public AssessorEndtoEndStepsHelper(ScenarioContext context)
         {
-            _assessor_Section1Helper = new Assessor_Section1Helper();
-            _assessor_Section2Helper = new Assessor_Section2Helper();
-            _assessor_Section3Helper = new Assessor_Section3Helper();
-            _assessor_Section4Helper = new Assessor_Section4Helper();
-            _assessor_Section5Helper = new Assessor_Section5Helper();
+            _assessor_Section1Helper = new Assessor_Section1Helper(context);
+            _assessor_Section2Helper = new Assessor_Section2Helper(context);
+            _assessor_Section3Helper = new Assessor_Section3Helper(context);
+            _assessor_Section4Helper = new Assessor_Section4Helper(context);
+            _assessor_Section5Helper = new Assessor_Section5Helper(context);
         }
 
         public ApplicationAssessmentOverviewPage CompleteAllSectionsWithPass(ApplicationAssessmentOverviewPage applicationAssessmentOverviewPage)
