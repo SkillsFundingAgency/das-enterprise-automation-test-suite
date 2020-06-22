@@ -1,9 +1,11 @@
-﻿using SFA.DAS.UI.Framework;
-
-namespace SFA.DAS.ProviderLogin.Service
+﻿namespace SFA.DAS.ProviderLogin.Service
 {
-    public class ProviderConfig : ProviderLoginConfig
+    public class ProviderConfig
     {
-        public string Provider_BaseUrl => UrlConfig.Provider_BaseUrl; 
+        public string UserId { get; set; }
+
+        public string Password { get; set; }
+
+        public string Ukprn { get; set; }
     }
 }

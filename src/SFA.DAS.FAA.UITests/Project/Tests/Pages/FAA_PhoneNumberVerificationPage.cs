@@ -1,5 +1,6 @@
 ﻿using System;
 using OpenQA.Selenium;
+using SFA.DAS.UI.Framework;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
@@ -21,7 +22,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
             // this is temp work aound as the redirection is not working correctly.
             VerifyPage(() =>
             {
-                var uri = new Uri(new Uri(faaConfig.FAA_BaseUrl), $"verifymobile");
+                var uri = new Uri(new Uri(UrlConfig.FAA_BaseUrl), $"verifymobile");
                 tabHelper.GoToUrl(uri.AbsoluteUri);
                 return pageInteractionHelper.FindElements(PageHeader);
             }, PageTitle);

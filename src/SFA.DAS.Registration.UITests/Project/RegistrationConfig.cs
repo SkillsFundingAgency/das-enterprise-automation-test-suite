@@ -1,14 +1,10 @@
-﻿using SFA.DAS.UI.Framework;
-
-namespace SFA.DAS.Registration.UITests.Project
+﻿namespace SFA.DAS.Registration.UITests.Project
 {
     public class RegistrationConfig
     {
         public string TwoDigitProjectCode { get; set; }
 
         public string RE_AccountPassword { get; set; }
-
-        public string EmployerApprenticeshipService_BaseUrl => UrlConfig.EmployerApprenticeshipService_BaseUrl;
 
         public string RE_ConfirmCode { get; set; }
 

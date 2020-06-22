@@ -1,5 +1,6 @@
 ﻿using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.ProviderFeedback.UITests.Project.Helpers;
+using SFA.DAS.UI.Framework;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
@@ -42,7 +43,7 @@ namespace SFA.DAS.ProviderFeedback.UITests.Project
 
             _objectContext.SetUniqueSurveyCode(_uniqueSurveyCode);
 
-            _tabHelper.GoToUrl(_providerFeedbackConfig.ProviderFeedback_BaseUrl, _uniqueSurveyCode);
+            _tabHelper.GoToUrl(UrlConfig.ProviderFeedback_BaseUrl, _uniqueSurveyCode);
         }
 
         [AfterScenario(Order = 34)]

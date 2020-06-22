@@ -1,5 +1,6 @@
 ﻿using SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentOpportunity;
 using SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService;
+using SFA.DAS.UI.Framework;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
@@ -14,7 +15,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions
         [When(@"the User visits the Assessment Opportunity Application")]
         public void WhenTheUserVisitsTheAssessmentOpportunityApplication()
         {
-            tabHelper.GoToUrl(ePAOConfig.EPAOAssessmentService_BaseUrl, ePAOConfig.AssessmentOpportunityFinderPath);
+            tabHelper.GoToUrl(UrlConfig.EPAOAssessmentService_BaseUrl, EPAOConfig.AssessmentOpportunityFinderPath);
             homePage = new AO_HomePage(_context);
         }
 

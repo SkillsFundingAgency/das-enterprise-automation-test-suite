@@ -5,6 +5,7 @@ using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 using SFA.DAS.RAA.DataGenerator.Project;
 using SFA.DAS.RAA.DataGenerator;
+using SFA.DAS.UI.Framework;
 
 namespace SFA.DAS.FAA.UITests.Project.Helpers
 {
@@ -44,9 +45,9 @@ namespace SFA.DAS.FAA.UITests.Project.Helpers
         public FAA_MyApplicationsHomePage GoToFAAHomePage()
         {
             if (_objectContext.IsFAARestart())
-                _helper.RestartWebDriver(_config.FAA_BaseUrl, _applicationName);
+                _helper.RestartWebDriver(UrlConfig.FAA_BaseUrl, _applicationName);
             else
-                _tabHelper.OpenInNewTab(_config.FAA_BaseUrl);
+                _tabHelper.OpenInNewTab(UrlConfig.FAA_BaseUrl);
 
             var (username, password, _, _) = _objectContext.GetFAALogin();
 
@@ -57,7 +58,7 @@ namespace SFA.DAS.FAA.UITests.Project.Helpers
 
         public FAA_CreateAnAccountPage StartFAAAccountCreation()
         {
-            _tabHelper.GoToUrl(_config.FAA_BaseUrl);
+            _tabHelper.GoToUrl(UrlConfig.FAA_BaseUrl);
 
             return new FAA_Indexpage(_context)
                 .GoToSignInPage()
@@ -165,7 +166,8 @@ namespace SFA.DAS.FAA.UITests.Project.Helpers
 
         private FAA_MyApplicationsHomePage OpenFAAHomePageinNewtab()
         {
-            _tabHelper.OpenInNewTab(_config.FAA_BaseUrl);
+            _tabHelper.OpenInNewTab(UrlConfig.FAA_BaseUrl);
+
             return new FAA_FindAnApprenticeshipHomePage(_context).MyApplications();
         }
 

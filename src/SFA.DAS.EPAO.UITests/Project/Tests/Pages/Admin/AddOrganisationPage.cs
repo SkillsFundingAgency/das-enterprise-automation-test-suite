@@ -1,4 +1,5 @@
-﻿using SFA.DAS.UI.FrameworkHelpers;
+﻿using SFA.DAS.UI.Framework;
+using SFA.DAS.UI.FrameworkHelpers;
 using System;
 using TechTalk.SpecFlow;
 
@@ -20,7 +21,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.Admin
             // this is temp work aound as the redirection is not working correctly.
             VerifyPage(() => 
             {
-                var uri = new Uri(new Uri(ePAOConfig.Admin_BaseUrl), $"register/add-organisation");
+                var uri = new Uri(new Uri(UrlConfig.Admin_BaseUrl), $"register/add-organisation");
                 _tabHelper.GoToUrl(uri.AbsoluteUri);
                 return pageInteractionHelper.FindElements(PageHeader);
             }, PageTitle);

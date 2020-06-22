@@ -25,9 +25,6 @@ namespace SFA.DAS.Campaigns.UITests.Project
             var regconfig = _configSection.GetConfigSection<RegistrationConfig>();
             _context.SetRegistrationConfig(regconfig);
 
-            var config = _configSection.GetConfigSection<CampaignsConfig>();
-            _context.SetCampaignsConfig(config);
-
             var user = _configSection.GetConfigSection<CampaingnsEmployerUser>();
             _context.SetUser(user);
         }

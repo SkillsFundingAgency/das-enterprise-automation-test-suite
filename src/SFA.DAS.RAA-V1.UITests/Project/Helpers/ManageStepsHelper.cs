@@ -4,6 +4,7 @@ using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
+using SFA.DAS.UI.Framework;
 
 namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
 {
@@ -31,12 +32,12 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
         {
             if (restart)
             {
-                _helper.RestartWebDriver(_config.Manage_BaseUrl, _applicationName);
+                _helper.RestartWebDriver(UrlConfig.Manage_BaseUrl, _applicationName);
             }
             else
             {
                 _objectContext.SetCurrentApplicationName(_applicationName);
-                _tabHelper.GoToUrl(_config.Manage_BaseUrl);
+                _tabHelper.GoToUrl(UrlConfig.Manage_BaseUrl);
             }
 
             new Manage_IndexPage(_context).ClickAgencyButton().LoginToAccess1Staff();

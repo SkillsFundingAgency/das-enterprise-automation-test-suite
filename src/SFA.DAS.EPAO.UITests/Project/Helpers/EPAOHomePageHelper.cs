@@ -4,6 +4,7 @@ using SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService;
 using SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService.ApplyToAssessStandard;
 using SFA.DAS.IdamsLogin.Service.Project.Tests.Pages;
 using SFA.DAS.Login.Service.Helpers;
+using SFA.DAS.UI.Framework;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
@@ -36,7 +37,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
 
         public AS_LandingPage GoToEpaoAssessmentLandingPage(bool openInNewTab = false)
         {
-            OpenUrl(_ePAOConfig.EPAOAssessmentService_BaseUrl, openInNewTab);
+            OpenUrl(UrlConfig.EPAOAssessmentService_BaseUrl, openInNewTab);
 
             return new AS_LandingPage(_context);
         }
@@ -63,7 +64,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
 
         private ServiceStartPage OpenAdminBaseUrl(bool openInNewTab)
         {
-            OpenUrl(_ePAOConfig.Admin_BaseUrl, openInNewTab);
+            OpenUrl(UrlConfig.Admin_BaseUrl, openInNewTab);
 
             return new ServiceStartPage(_context);
         }

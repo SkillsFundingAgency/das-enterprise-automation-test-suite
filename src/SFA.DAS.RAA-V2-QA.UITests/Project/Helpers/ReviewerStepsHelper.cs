@@ -5,6 +5,7 @@ using SFA.DAS.UI.FrameworkHelpers;
 using SFA.DAS.ConfigurationBuilder;
 using TechTalk.SpecFlow;
 using SFA.DAS.IdamsLogin.Service.Project.Tests.Pages;
+using SFA.DAS.UI.Framework;
 
 namespace SFA.DAS.RAA_V2_QA.UITests.Project.Helpers
 {
@@ -30,12 +31,12 @@ namespace SFA.DAS.RAA_V2_QA.UITests.Project.Helpers
         {
             if (restart)
             {
-                _helper.RestartWebDriver(_config.RAAV2QA_BaseUrl, _applicationName);
+                _helper.RestartWebDriver(UrlConfig.RAAV2QA_BaseUrl, _applicationName);
             }
             else
             {
                 _objectContext.SetCurrentApplicationName(_applicationName);
-                _tabHelper.OpenInNewTab(_config.RAAV2QA_BaseUrl);
+                _tabHelper.OpenInNewTab(UrlConfig.RAAV2QA_BaseUrl);
             }
 
             new IdamsPage(_context)

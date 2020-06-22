@@ -1,6 +1,7 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.Roatp.UITests.Project.Helpers.RoatpAdmin;
+using SFA.DAS.UI.Framework;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using System;
@@ -63,7 +64,7 @@ namespace SFA.DAS.Roatp.UITests.Project
         }
 
         [BeforeScenario(Order = 35)]
-        public void NavigateToRoatpAdmin() => _webDriver.Navigate().GoToUrl(_config.Admin_BaseUrl);
+        public void NavigateToRoatpAdmin() => _webDriver.Navigate().GoToUrl(UrlConfig.Admin_BaseUrl);
 
         [BeforeScenario(Order = 36)]
         public void ClearDownGateWayAdminData()

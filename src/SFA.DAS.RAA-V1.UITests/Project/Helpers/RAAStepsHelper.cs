@@ -5,6 +5,7 @@ using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
+using SFA.DAS.UI.Framework;
 
 namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
 {
@@ -29,13 +30,13 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
         public void GoToRAA()
         {
             _objectContext.SetCurrentApplicationName(ApplicationName);
-            _tabHelper.GoToUrl(_config.Recruit_BaseUrl);
+            _tabHelper.GoToUrl(UrlConfig.Recruit_BaseUrl);
         }
 
         internal RAA_RecruitmentHomePage GoToRAAHomePage(bool restrat)
         {
             if (restrat)
-                _helper.RestartWebDriver(_config.Recruit_BaseUrl, ApplicationName);
+                _helper.RestartWebDriver(UrlConfig.Recruit_BaseUrl, ApplicationName);
             else
                 GoToRAA();
 

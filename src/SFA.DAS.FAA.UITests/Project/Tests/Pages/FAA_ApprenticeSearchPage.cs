@@ -2,6 +2,7 @@
 using System;
 using TechTalk.SpecFlow;
 using SFA.DAS.RAA.DataGenerator.Project;
+using SFA.DAS.UI.Framework;
 
 namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 {
@@ -105,7 +106,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
             }
             else
             {
-                var uri = new Uri(new Uri(faaConfig.FAA_BaseUrl), $"apprenticeship/{vacancyRef}");
+                var uri = new Uri(new Uri(UrlConfig.FAA_BaseUrl), $"apprenticeship/{vacancyRef}");
                 tabHelper.GoToUrl(uri.AbsoluteUri);
             }
         }

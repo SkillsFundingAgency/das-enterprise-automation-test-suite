@@ -1,12 +1,8 @@
-﻿using SFA.DAS.UI.Framework;
-
-namespace SFA.DAS.EPAO.UITests.Project
+﻿namespace SFA.DAS.EPAO.UITests.Project
 {
     public class EPAOConfig
     {
-        public string Admin_BaseUrl => UrlConfig.Admin_BaseUrl;
-        public string EPAOAssessmentService_BaseUrl => UrlConfig.EPAOAssessmentService_BaseUrl;
-        public string AssessmentOpportunityFinderPath => "/find-an-assessment-opportunity";
+        public static string AssessmentOpportunityFinderPath => "/find-an-assessment-opportunity";
         public string ApprenticeNameWithSingleStandard { get; set; }
         public string ApprenticeUlnWithSingleStandard { get; set; }
         public string ApprenticeNameDeleteWithAStandardHavingLearningOption { get; set; }
