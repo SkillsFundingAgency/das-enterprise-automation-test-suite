@@ -3,7 +3,7 @@
 
 	<PropertyGroup>
 		<TargetFramework>netcoreapp2.2</TargetFramework>
-		<RootNamespace>SFA.DAS.CovidRedundancy.UITests</RootNamespace>
+		<RootNamespace>SFA.DAS.ApprenticeRedundancy.UITests</RootNamespace>
 		<IsPackable>false</IsPackable>
 	</PropertyGroup>
 
@@ -42,7 +42,7 @@
     <None Update="appsettings.Project.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="SFA.DAS.CovidRedundancy.UITests.runtimeconfig.json">
+    <None Update="SFA.DAS.ApprenticeRedundancy.UITests.runtimeconfig.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
