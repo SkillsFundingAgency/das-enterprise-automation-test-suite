@@ -16,6 +16,6 @@
         public static string Recruit_BaseUrl => $"https://{EnvironmentConfig.EnvironmentName}.recruit-apprentice.service.gov.uk/";
         public static string SupportConsole_BaseUrl => $"https://{EnvironmentConfig.EnvironmentName}-console.apprenticeships.education.gov.uk/";
         public static string ProviderFeedback_BaseUrl => $"https://{EnvironmentConfig.EnvironmentName}-feedback.apprenticeships.education.gov.uk/";
-        public static string CRUrl => $"https://{EnvironmentConfig.EnvironmentName}-as-apprentice-support.apprenticeships.education.gov.uk/";
+        public static string AR_BaseUrl => $"https://{EnvironmentConfig.EnvironmentName}-as-apprentice-support.apprenticeships.education.gov.uk/";
     }
 }
