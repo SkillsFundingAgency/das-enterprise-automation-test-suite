@@ -13,9 +13,9 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
     {
         private readonly ScenarioContext _context;
         private readonly ObjectContext _objectContext;
-        private readonly RAAV1Config _config;
         private readonly TabHelper _tabHelper;
         private readonly RestartWebDriverHelper _helper;
+
         private string ApplicationName => "Recruit";
         private readonly string _recruitBaseUrl;
 
@@ -23,7 +23,6 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
         {
             _context = context;
             _objectContext = context.Get<ObjectContext>();
-            _config = context.GetRAAV1Config<RAAV1Config>();
             _tabHelper = context.Get<TabHelper>();
             _helper = new RestartWebDriverHelper(context);
             _recruitBaseUrl = UrlConfig.Recruit_BaseUrl;

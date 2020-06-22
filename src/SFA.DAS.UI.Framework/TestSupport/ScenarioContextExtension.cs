@@ -20,7 +20,6 @@ namespace SFA.DAS.UI.Framework.TestSupport
         private const string FAAProjectConfigKey = "faaprojectconfigkey";
         private const string ProviderPermissionConfigKey = "providerpermissionconfigkey";
         private const string TransfersProjectConfigKey = "transfersprojectconfigkey";
-        private const string FATProjectConfigKey = "fatprojectconfigkey";
         private const string EPAOProjectConfigKey = "epaoprojectconfigkey";
         private const string ProviderFeedbackConfigKey = "providerfeedbackprojectconfigkey";
         private const string ARProjectConfigKey = "arprojectconfigkey";

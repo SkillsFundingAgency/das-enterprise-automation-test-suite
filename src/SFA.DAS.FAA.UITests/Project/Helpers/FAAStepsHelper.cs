@@ -12,7 +12,6 @@ namespace SFA.DAS.FAA.UITests.Project.Helpers
     public class FAAStepsHelper
     {
         private readonly ScenarioContext _context;
-        private readonly FAAConfig _config;
         private readonly RestartWebDriverHelper _helper;
         private readonly TabHelper _tabHelper;
         private readonly FAADataHelper _faaDataHelper;
@@ -24,7 +23,6 @@ namespace SFA.DAS.FAA.UITests.Project.Helpers
         {
             _context = context;
             _objectContext = context.Get<ObjectContext>();
-            _config = context.GetFAAConfig<FAAConfig>();
             _tabHelper = context.Get<TabHelper>();
             _faaDataHelper = context.Get<FAADataHelper>();
             _helper = new RestartWebDriverHelper(context);

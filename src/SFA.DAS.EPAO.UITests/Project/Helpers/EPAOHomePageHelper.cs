@@ -15,14 +15,12 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
     {
         private readonly ScenarioContext _context;
         private readonly TabHelper _tabHelper;
-        private readonly EPAOConfig _ePAOConfig;
         private readonly EPAOApplySqlDataHelper _ePAOSqlDataHelper;
 
         public EPAOHomePageHelper(ScenarioContext context)
         {
             _context = context;
             _tabHelper = context.Get<TabHelper>();
-            _ePAOConfig = context.GetEPAOConfig<EPAOConfig>();
             _ePAOSqlDataHelper = context.Get<EPAOApplySqlDataHelper>();
         }
 
