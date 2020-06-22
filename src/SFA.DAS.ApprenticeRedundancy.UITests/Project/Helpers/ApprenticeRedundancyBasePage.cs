@@ -6,7 +6,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeRedundancy.UITests.Project
 {
-    public abstract class CovidRedundancyBasePage : BasePage
+    public abstract class ApprenticeRedundancyBasePage : BasePage
     { 
     protected override By PageHeader => By.TagName("h1");
     protected override By ContinueButton => By.CssSelector("#main-content .govuk-button");
@@ -15,15 +15,15 @@ namespace SFA.DAS.ApprenticeRedundancy.UITests.Project
     protected readonly ObjectContext objectContext;
     protected readonly PageInteractionHelper pageInteractionHelper;
     protected readonly FormCompletionHelper formCompletionHelper;
-    protected readonly ARConfig cRConfig;
+    protected readonly ApprenticeRedundancyConfig aRConfig;
     #endregion
 
-    public CovidRedundancyBasePage(ScenarioContext context) : base(context)
+    public ApprenticeRedundancyBasePage(ScenarioContext context) : base(context)
     {
         objectContext = context.Get<ObjectContext>();
         formCompletionHelper = context.Get<FormCompletionHelper>();
         pageInteractionHelper = context.Get<PageInteractionHelper>();
-        cRConfig = context.GetARConfig<ARConfig>();
+        aRConfig = context.GetARConfig<ApprenticeRedundancyConfig>();
     }
   }
 }

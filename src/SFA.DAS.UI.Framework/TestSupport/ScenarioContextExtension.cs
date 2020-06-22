@@ -24,7 +24,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
         private const string EPAOProjectConfigKey = "epaoprojectconfigkey";
         private const string CampaignsConfigKey = "campaignsprojectconfigkey";
         private const string ProviderFeedbackConfigKey = "providerfeedbackprojectconfigkey";
-        private const string ARProjectConfigKey = "crprojectconfigkey";
+        private const string ARProjectConfigKey = "arprojectconfigkey";
         #endregion
 
         #region Setters

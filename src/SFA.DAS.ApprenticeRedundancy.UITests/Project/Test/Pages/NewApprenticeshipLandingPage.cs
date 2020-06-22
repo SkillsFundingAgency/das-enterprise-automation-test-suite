@@ -3,7 +3,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeRedundancy.UITests.Project.Test.Pages
 {
-    public class NewApprenticeshipLandingPage : CovidRedundancyBasePage
+    public class NewApprenticeshipLandingPage : ApprenticeRedundancyBasePage
     {
         protected override string PageTitle => "Find a new apprenticeship";
 

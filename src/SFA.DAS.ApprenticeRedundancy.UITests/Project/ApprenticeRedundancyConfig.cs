@@ -2,8 +2,8 @@
 
 namespace SFA.DAS.ApprenticeRedundancy.UITests.Project
 {
-    public class ARConfig
+    public class ApprenticeRedundancyConfig
     {
-        public string ARUrl => UrlConfig.ARUrl;
+        public string AR_BaseUrl => UrlConfig.AR_BaseUrl;
     }
 }

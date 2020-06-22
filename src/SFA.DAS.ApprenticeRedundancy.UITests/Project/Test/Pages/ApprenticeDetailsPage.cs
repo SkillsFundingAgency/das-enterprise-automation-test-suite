@@ -2,7 +2,7 @@
 
 namespace SFA.DAS.ApprenticeRedundancy.UITests.Project.Test.Pages
 {
-    public class ApprenticeDetailsPage : CovidRedundancyBasePage
+    public class ApprenticeDetailsPage : ApprenticeRedundancyBasePage
     {
         protected override string PageTitle => "Apprentice details";
 

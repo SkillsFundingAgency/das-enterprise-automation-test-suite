@@ -5,21 +5,21 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.ApprenticeRedundancy.UITests.Project
 {
     [Binding]
-    public class ARConfigurationSetup
+    public class ApprenticeRedundancyConfigurationSetup
     {
         private readonly ScenarioContext _context;
         private readonly IConfigSection _configSection;
 
-        public ARConfigurationSetup(ScenarioContext context)
+        public ApprenticeRedundancyConfigurationSetup(ScenarioContext context)
         {
             _context = context;
             _configSection = context.Get<IConfigSection>();
         }
 
         [BeforeScenario(Order = 2)]
-        public void SetUpARConfiguration()
+        public void SetUpApprenticeRedundancyConfiguration()
         {
-            var config = _configSection.GetConfigSection<ARConfig>();
+            var config = _configSection.GetConfigSection<ApprenticeRedundancyConfig>();
             _context.SetARConfig(config);
         }
     }
