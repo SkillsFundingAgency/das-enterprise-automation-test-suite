@@ -24,7 +24,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
         private const string EPAOProjectConfigKey = "epaoprojectconfigkey";
         private const string CampaignsConfigKey = "campaignsprojectconfigkey";
         private const string ProviderFeedbackConfigKey = "providerfeedbackprojectconfigkey";
-        private const string CRProjectConfigKey = "crprojectconfigkey";
+        private const string ARProjectConfigKey = "arprojectconfigkey";
         #endregion
 
         #region Setters
@@ -44,7 +44,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
         public static void SetEPAOConfig<T>(this ScenarioContext context, T value) => Set(context, value, EPAOProjectConfigKey);
         public static void SetCampaignsConfig<T>(this ScenarioContext context, T value) => Set(context, value, CampaignsConfigKey);
         public static void SetProviderFeedbackConfig<T>(this ScenarioContext context, T value) => Set(context, value, ProviderFeedbackConfigKey);
-        public static void SetCRConfig<T>(this ScenarioContext context, T value) => Set(context, value, CRProjectConfigKey);
+        public static void SetARConfig<T>(this ScenarioContext context, T value) => Set(context, value, ARProjectConfigKey);
         public static void SetWebDriver(this ScenarioContext context, IWebDriver webDriver) => Replace(context, webDriver, WebDriverKey);      
         private static void Replace<T>(ScenarioContext context, T value, string key) => context.Replace(key, value);
         private static void Set<T>(ScenarioContext context, T value, string key) => context.Set(value, key);
@@ -67,7 +67,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
         public static T GetEPAOConfig<T>(this ScenarioContext context) => Get<T>(context, EPAOProjectConfigKey);
         public static T GetCampaignsConfig<T>(this ScenarioContext context) => Get<T>(context, CampaignsConfigKey);
         public static T GetProviderFeedbackConfig<T>(this ScenarioContext context) => Get<T>(context, ProviderFeedbackConfigKey);
-        public static T GetCRConfig<T>(this ScenarioContext context) => Get<T>(context, CRProjectConfigKey);
+        public static T GetARConfig<T>(this ScenarioContext context) => Get<T>(context, ARProjectConfigKey);
         public static IWebDriver GetWebDriver(this ScenarioContext context) => Get<IWebDriver>(context, WebDriverKey);
         public static T Get<T>(ScenarioContext context, string key) => context.GetValue<T>(key);
         #endregion
