@@ -63,7 +63,7 @@ namespace SFA.DAS.Roatp.UITests.Project
         }
 
         [BeforeScenario(Order = 35)]
-        public void NavigateToRoatpAdmin() => _webDriver.Navigate().GoToUrl(_config.AdminBaseUrl);
+        public void NavigateToRoatpAdmin() => _webDriver.Navigate().GoToUrl(_config.Admin_BaseUrl);
 
         [BeforeScenario(Order = 36)]
         public void ClearDownGateWayAdminData()

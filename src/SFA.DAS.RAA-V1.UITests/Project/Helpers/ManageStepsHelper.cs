@@ -31,12 +31,12 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
         {
             if (restart)
             {
-                _helper.RestartWebDriver(_config.ManageBaseUrl, _applicationName);
+                _helper.RestartWebDriver(_config.Manage_BaseUrl, _applicationName);
             }
             else
             {
                 _objectContext.SetCurrentApplicationName(_applicationName);
-                _tabHelper.GoToUrl(_config.ManageBaseUrl);
+                _tabHelper.GoToUrl(_config.Manage_BaseUrl);
             }
 
             new Manage_IndexPage(_context).ClickAgencyButton().LoginToAccess1Staff();

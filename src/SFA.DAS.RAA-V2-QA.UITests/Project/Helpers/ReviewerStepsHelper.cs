@@ -30,12 +30,12 @@ namespace SFA.DAS.RAA_V2_QA.UITests.Project.Helpers
         {
             if (restart)
             {
-                _helper.RestartWebDriver(_config.RAAV2QABaseUrl, _applicationName);
+                _helper.RestartWebDriver(_config.RAAV2QA_BaseUrl, _applicationName);
             }
             else
             {
                 _objectContext.SetCurrentApplicationName(_applicationName);
-                _tabHelper.OpenInNewTab(_config.RAAV2QABaseUrl);
+                _tabHelper.OpenInNewTab(_config.RAAV2QA_BaseUrl);
             }
 
             new IdamsPage(_context)

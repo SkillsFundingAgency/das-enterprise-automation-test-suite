@@ -4,6 +4,6 @@ namespace SFA.DAS.FAT.UITests
 {
     public class FATConfig
     {
-        public string FATUrl => UrlConfig.FATUrl;
+        public string FAT_BaseUrl => UrlConfig.FAT_BaseUrl;
     }
 }

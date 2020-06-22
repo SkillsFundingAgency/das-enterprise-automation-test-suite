@@ -56,6 +56,6 @@ namespace SFA.DAS.Roatp.UITests.Project
         public void WhiteListProviders() => _applyClearDownDataHelpers.WhiteListProviders();
 
         [BeforeScenario(Order = 36)]
-        public void NavigateToRoatpApply() => _webDriver.Navigate().GoToUrl(_config.ApplyBaseUrl);
+        public void NavigateToRoatpApply() => _webDriver.Navigate().GoToUrl(_config.Apply_BaseUrl);
     }
 }

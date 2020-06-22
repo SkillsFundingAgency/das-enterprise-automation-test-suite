@@ -17,6 +17,6 @@ namespace SFA.DAS.FAT.UITests.Project
         }
 
         [BeforeScenario(Order = 21)]
-        public void NavigateToFATHomepage() => _webDriver.Navigate().GoToUrl(_config.FATUrl);
+        public void NavigateToFATHomepage() => _webDriver.Navigate().GoToUrl(_config.FAT_BaseUrl);
     }
 }

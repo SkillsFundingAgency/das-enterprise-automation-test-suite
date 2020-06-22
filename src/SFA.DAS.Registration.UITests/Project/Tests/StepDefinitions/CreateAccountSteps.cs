@@ -500,7 +500,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
 
         private void AttemptLogin(string loginId, string password) => _signInPage.EnterLoginDetailsAndClickSignIn(loginId, password);
 
-        private void VisitEmployerApprenticeshipSite() => _tabHelper.GoToUrl(_registrationConfig.EmployerApprenticeshipServiceBaseURL);
+        private void VisitEmployerApprenticeshipSite() => _tabHelper.GoToUrl(_registrationConfig.EmployerApprenticeshipService_BaseUrl);
 
         private void SignOutAndReLoginFromAddAPayeSchemePageDuringAccountCreation(AddAPAYESchemePage addAPAYESchemePage, string password) =>
             addAPAYESchemePage.SignOut().CickContinueInYouveLoggedOutPage().ClickSignInLinkOnIndexPage()

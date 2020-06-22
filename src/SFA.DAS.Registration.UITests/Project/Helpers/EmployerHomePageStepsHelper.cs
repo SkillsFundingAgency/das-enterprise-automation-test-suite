@@ -54,6 +54,6 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
             return new MyAccountWithOutPayePage(_context);
         }
 
-        private void OpenInNewTab() => _tabHelper.OpenInNewTab(_registrationConfig.EmployerApprenticeshipServiceBaseURL);
+        private void OpenInNewTab() => _tabHelper.OpenInNewTab(_registrationConfig.EmployerApprenticeshipService_BaseUrl);
     }
 }

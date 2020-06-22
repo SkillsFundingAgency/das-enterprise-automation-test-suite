@@ -36,7 +36,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
 
         public AS_LandingPage GoToEpaoAssessmentLandingPage(bool openInNewTab = false)
         {
-            OpenUrl(_ePAOConfig.AssessmentServiceUrl, openInNewTab);
+            OpenUrl(_ePAOConfig.EPAOAssessmentService_BaseUrl, openInNewTab);
 
             return new AS_LandingPage(_context);
         }
@@ -63,7 +63,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers
 
         private ServiceStartPage OpenAdminBaseUrl(bool openInNewTab)
         {
-            OpenUrl(_ePAOConfig.AdminBaseUrl, openInNewTab);
+            OpenUrl(_ePAOConfig.Admin_BaseUrl, openInNewTab);
 
             return new ServiceStartPage(_context);
         }

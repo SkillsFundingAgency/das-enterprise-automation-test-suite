@@ -44,9 +44,9 @@ namespace SFA.DAS.FAA.UITests.Project.Helpers
         public FAA_MyApplicationsHomePage GoToFAAHomePage()
         {
             if (_objectContext.IsFAARestart())
-                _helper.RestartWebDriver(_config.FAABaseUrl, _applicationName);
+                _helper.RestartWebDriver(_config.FAA_BaseUrl, _applicationName);
             else
-                _tabHelper.OpenInNewTab(_config.FAABaseUrl);
+                _tabHelper.OpenInNewTab(_config.FAA_BaseUrl);
 
             var (username, password, _, _) = _objectContext.GetFAALogin();
 
@@ -57,7 +57,7 @@ namespace SFA.DAS.FAA.UITests.Project.Helpers
 
         public FAA_CreateAnAccountPage StartFAAAccountCreation()
         {
-            _tabHelper.GoToUrl(_config.FAABaseUrl);
+            _tabHelper.GoToUrl(_config.FAA_BaseUrl);
 
             return new FAA_Indexpage(_context)
                 .GoToSignInPage()
@@ -165,7 +165,7 @@ namespace SFA.DAS.FAA.UITests.Project.Helpers
 
         private FAA_MyApplicationsHomePage OpenFAAHomePageinNewtab()
         {
-            _tabHelper.OpenInNewTab(_config.FAABaseUrl);
+            _tabHelper.OpenInNewTab(_config.FAA_BaseUrl);
             return new FAA_FindAnApprenticeshipHomePage(_context).MyApplications();
         }
 

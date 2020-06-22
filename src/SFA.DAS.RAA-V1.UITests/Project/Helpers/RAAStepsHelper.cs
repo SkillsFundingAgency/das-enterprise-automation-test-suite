@@ -29,13 +29,13 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
         public void GoToRAA()
         {
             _objectContext.SetCurrentApplicationName(ApplicationName);
-            _tabHelper.GoToUrl(_config.RecruitBaseUrl);
+            _tabHelper.GoToUrl(_config.Recruit_BaseUrl);
         }
 
         internal RAA_RecruitmentHomePage GoToRAAHomePage(bool restrat)
         {
             if (restrat)
-                _helper.RestartWebDriver(_config.RecruitBaseUrl, ApplicationName);
+                _helper.RestartWebDriver(_config.Recruit_BaseUrl, ApplicationName);
             else
                 GoToRAA();
 

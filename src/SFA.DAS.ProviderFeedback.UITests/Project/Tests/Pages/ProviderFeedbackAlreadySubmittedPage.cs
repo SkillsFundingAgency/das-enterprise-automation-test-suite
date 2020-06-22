@@ -8,7 +8,7 @@ namespace SFA.DAS.ProviderFeedback.UITests.Project.Tests.Pages
 
         public ProviderFeedbackAlreadySubmittedPage(ScenarioContext context) : base(context, false) 
         {
-            tabHelper.OpenInNewTab(providerFeedbackConfig.ProviderFeedbackUrl, objectContext.GetUniqueSurveyCode());
+            tabHelper.OpenInNewTab(providerFeedbackConfig.ProviderFeedback_BaseUrl, objectContext.GetUniqueSurveyCode());
             VerifyPage();
         }
     }

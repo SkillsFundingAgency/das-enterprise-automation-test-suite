@@ -4,7 +4,7 @@ namespace SFA.DAS.SupportConsole.UITests.Project
 {
     public class SupportConsoleConfig
     {
-        public string SupportConsoleUrl => UrlConfig.SupportConsoleUrl;
+        public string SupportConsole_BaseUrl => UrlConfig.SupportConsole_BaseUrl;
         public string Name { get; set; }
         public string EmailAddress { get; set; }
         public string PublicAccountId { get; set; }

@@ -95,7 +95,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
         {
             var element = pageInteractionHelper.GetLinkContains(SavedVacancy, vacancyTitleDataHelper.VacancyTitle);
 
-            var id = element.GetAttribute("href").Replace($"{faaConfig.FAABaseUrl}{VacancyDetailshref}", string.Empty);
+            var id = element.GetAttribute("href").Replace($"{faaConfig.FAA_BaseUrl}{VacancyDetailshref}", string.Empty);
 
             formCompletionHelper.ClickElement(DeleteVacancy(id));
         }

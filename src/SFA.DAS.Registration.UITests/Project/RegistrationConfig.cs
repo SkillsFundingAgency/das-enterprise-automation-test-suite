@@ -8,7 +8,7 @@ namespace SFA.DAS.Registration.UITests.Project
 
         public string RE_AccountPassword { get; set; }
 
-        public string EmployerApprenticeshipServiceBaseURL => UrlConfig.EmployerApprenticeshipServiceBaseURL;
+        public string EmployerApprenticeshipService_BaseUrl => UrlConfig.EmployerApprenticeshipService_BaseUrl;
 
         public string RE_ConfirmCode { get; set; }
 

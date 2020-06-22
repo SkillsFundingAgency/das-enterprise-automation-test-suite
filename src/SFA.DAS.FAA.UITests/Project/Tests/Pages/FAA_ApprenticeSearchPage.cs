@@ -105,7 +105,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
             }
             else
             {
-                var uri = new Uri(new Uri(faaConfig.FAABaseUrl), $"apprenticeship/{vacancyRef}");
+                var uri = new Uri(new Uri(faaConfig.FAA_BaseUrl), $"apprenticeship/{vacancyRef}");
                 tabHelper.GoToUrl(uri.AbsoluteUri);
             }
         }

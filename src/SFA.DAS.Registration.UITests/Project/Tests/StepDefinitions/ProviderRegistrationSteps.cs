@@ -50,7 +50,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         [When(@"the employer sets up the user")]
         public void WhenTheEmployerSetsUpTheUser()
         {
-            var uri = new Uri(new Uri($"https://accounts.{new Uri(_config.EmployerApprenticeshipServiceBaseURL).Host}"), $"/service/register/{_pregSqlDataHelper.GetReference(_objectContext.GetRegisteredEmail())}").AbsoluteUri;
+            var uri = new Uri(new Uri($"https://accounts.{new Uri(_config.EmployerApprenticeshipService_BaseUrl).Host}"), $"/service/register/{_pregSqlDataHelper.GetReference(_objectContext.GetRegisteredEmail())}").AbsoluteUri;
 
             _tabHelper.OpenInNewTab(uri);
 

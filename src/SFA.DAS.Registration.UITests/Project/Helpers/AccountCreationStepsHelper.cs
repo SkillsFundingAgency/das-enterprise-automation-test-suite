@@ -102,7 +102,7 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
         public void SetFirstAccountOrganisationName(OrgType orgType) =>
             _objectContext.SetFirstAccountOrganisationName(GetOrgName(orgType));
 
-        public void RelaunchApplication() => _restartWebDriverHelper.RestartWebDriver(_registrationConfig.EmployerApprenticeshipServiceBaseURL, "EAS");
+        public void RelaunchApplication() => _restartWebDriverHelper.RestartWebDriver(_registrationConfig.EmployerApprenticeshipService_BaseUrl, "EAS");
 
         private string GetOrgName(OrgType orgType)
         {

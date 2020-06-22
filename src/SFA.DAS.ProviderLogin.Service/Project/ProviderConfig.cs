@@ -4,6 +4,6 @@ namespace SFA.DAS.ProviderLogin.Service
 {
     public class ProviderConfig : ProviderLoginConfig
     {
-        public string ProviderBaseUrl => UrlConfig.ProviderBaseUrl; 
+        public string Provider_BaseUrl => UrlConfig.Provider_BaseUrl; 
     }
 }

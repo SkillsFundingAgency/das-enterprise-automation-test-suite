@@ -6,6 +6,6 @@ namespace SFA.DAS.ProviderFeedback.UITests.Project
     {
         public string ProviderFeedbackDbConnectionString { get; set; }
 
-        public string ProviderFeedbackUrl => UrlConfig.ProviderFeedbackUrl;
+        public string ProviderFeedback_BaseUrl => UrlConfig.ProviderFeedback_BaseUrl;
     }
 }

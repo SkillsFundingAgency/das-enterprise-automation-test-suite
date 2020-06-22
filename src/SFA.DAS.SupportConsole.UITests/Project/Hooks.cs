@@ -21,7 +21,7 @@ namespace SFA.DAS.SupportConsole.UITests.Project
         [BeforeScenario(Order = 21)]
         public void Navigate()
         {
-            var url = _config.SupportConsoleUrl;
+            var url = _config.SupportConsole_BaseUrl;
             _webDriver.Navigate().GoToUrl(url);
         }
     }

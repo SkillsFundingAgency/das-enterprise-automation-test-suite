@@ -56,7 +56,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
             StringAssert.Contains("We have sent you an email for verification.", text);
         }
 
-        private void GoToRecruitBaseUrl() => _tabHelper.GoToUrl(_config.RecruitBaseUrl);
+        private void GoToRecruitBaseUrl() => _tabHelper.GoToUrl(_config.Recruit_BaseUrl);
 
         private SignInPage GotoSignInPage()
         {
