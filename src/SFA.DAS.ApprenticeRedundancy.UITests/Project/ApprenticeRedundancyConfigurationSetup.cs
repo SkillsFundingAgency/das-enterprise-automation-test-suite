@@ -2,24 +2,25 @@
 using SFA.DAS.UI.Framework.TestSupport;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.CovidRedundancy.UITests.Project
+namespace SFA.DAS.ApprenticeRedundancy.UITests.Project
 {
-    public class CRConfigurationSetup
+    [Binding]
+    public class ApprenticeRedundancyConfigurationSetup
     {
         private readonly ScenarioContext _context;
         private readonly IConfigSection _configSection;
 
-        public CRConfigurationSetup(ScenarioContext context)
+        public ApprenticeRedundancyConfigurationSetup(ScenarioContext context)
         {
             _context = context;
             _configSection = context.Get<IConfigSection>();
         }
 
         [BeforeScenario(Order = 2)]
-        public void SetUpCRConfiguration()
+        public void SetUpApprenticeRedundancyConfiguration()
         {
-            var config = _configSection.GetConfigSection<CRConfig>();
-            _context.SetCRConfig(config);
+            var config = _configSection.GetConfigSection<ApprenticeRedundancyConfig>();
+            _context.SetARConfig(config);
         }
     }
 }

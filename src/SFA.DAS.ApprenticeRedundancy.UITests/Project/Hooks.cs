@@ -5,20 +5,21 @@ using System.Collections.Generic;
 using System.Text;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.CovidRedundancy.UITests.Project
+namespace SFA.DAS.ApprenticeRedundancy.UITests.Project
 {
+    [Binding ]
     public class Hooks
     {
         private readonly IWebDriver _webDriver;
-        private readonly CRConfig _config;
+        private readonly ApprenticeRedundancyConfig _config;
 
         public Hooks(ScenarioContext context)
         {
             _webDriver = context.GetWebDriver();
-            _config = context.GetCRConfig<CRConfig>();
+            _config = context.GetARConfig<ApprenticeRedundancyConfig>();
         }
 
         [BeforeScenario(Order = 21)]
-        public void NavigateToCovidSupportHomepage() => _webDriver.Navigate().GoToUrl(_config.CRUrl);
+        public void NavigateToCovidSupportHomepage() => _webDriver.Navigate().GoToUrl(_config.AR_BaseUrl);
     }
 }
