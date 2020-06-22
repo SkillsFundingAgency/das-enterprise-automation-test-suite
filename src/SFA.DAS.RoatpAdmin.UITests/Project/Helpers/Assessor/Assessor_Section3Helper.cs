@@ -44,7 +44,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
             }
         }
 
-        public ApplicationAssessmentOverviewPage CheckSupportingApprentices(ApplicationAssessmentOverviewPage applicationAssessmentOverviewPage)
+        public ApplicationAssessmentOverviewPage PassSupportingApprentices(ApplicationAssessmentOverviewPage applicationAssessmentOverviewPage)
         {
             if (_context.ScenarioInfo.Tags.Contains("rpadas03"))
             {
@@ -57,8 +57,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
             }
             else
             {
-                applicationAssessmentOverviewPage.VerifySection3Link2Status(StatusHelper.NotRequired);
-                return applicationAssessmentOverviewPage;
+                return applicationAssessmentOverviewPage.VerifySection3Link2Status(StatusHelper.NotRequired);
             }
         }
 

@@ -41,23 +41,31 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
 
         public ApplicationAssessmentOverviewPage PassDevelopingAndDeliveringTraining(ApplicationAssessmentOverviewPage applicationAssessmentOverviewPage)
         {
-            if (_context.ScenarioInfo.Tags.Contains("rpadas01") || _context.ScenarioInfo.Tags.Contains("rpadas03"))
+            if (_context.ScenarioInfo.Tags.Contains("rpadas01"))
             {
                 return applicationAssessmentOverviewPage
                     .Access_Section4_Link4_ForMainProviderRoute()
-                    .SelectPassAndContinueInDevelopingAndDeliveringTrainingPage()
+                    .SelectPassAndContinueInDevelopingAndDeliveringTrainingPage_MP()
                     .SelectPassAndContinueInWhoTheTeamWorkedWithPage()
                     .SelectPassAndContinueInHowTheTeamWorkedWithPage()
                     .SelectPassAndContinue()
                     .VerifySection4Link4Status(StatusHelper.StatusPass);
             }
-            else
+            else if (_context.ScenarioInfo.Tags.Contains("rpadas02"))
             {
                 return applicationAssessmentOverviewPage
                     .Access_Section4_Link4_ForSupportingProviderRoute()
                     .SelectPassAndContinueInSomeoneResponsibleForDevelopingAndDeliveringTrainingPage()
                     .SelectPassAndContinueInWhoHasThisPersonHasWorkedWithToDevelopAndDeliverTrainingPage()
                     .SelectPassAndContinueInHowHasThisPersonHasWorkedWithEmployersToDevelopAndDeliverTrainingPage()
+                    .SelectPassAndContinue()
+                    .VerifySection4Link4Status(StatusHelper.StatusPass);
+            }
+            else
+            {
+                return applicationAssessmentOverviewPage
+                    .Access_Section4_Link4_ForMainProviderRoute()
+                    .SelectPassAndContinueInDevelopingAndDeliveringTrainingPage_EP()
                     .SelectPassAndContinue()
                     .VerifySection4Link4Status(StatusHelper.StatusPass);
             }
