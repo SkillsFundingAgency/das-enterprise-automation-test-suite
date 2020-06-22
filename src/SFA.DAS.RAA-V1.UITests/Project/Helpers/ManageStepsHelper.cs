@@ -12,10 +12,10 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
     {
         private readonly ScenarioContext _context;
         private readonly ObjectContext _objectContext;
-        private readonly RAAV1Config _config;
         private readonly RestartWebDriverHelper _helper;
         private readonly TabHelper _tabHelper;
         private const string _applicationName = "Manage";
+        private readonly string _manageBaseUrl;
 
         public ManageStepsHelper(ScenarioContext context)
         {
@@ -23,7 +23,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
             _objectContext = context.Get<ObjectContext>();
             _helper = new RestartWebDriverHelper(context);
             _tabHelper = context.Get<TabHelper>();
-            _config = context.GetRAAV1Config<RAAV1Config>();
+            _manageBaseUrl = UrlConfig.Manage_BaseUrl;
         }
 
         public void ApproveAVacancy(bool restart) => GoToManageHomePage(restart).ReviewAVacancy().ApproveAVacancy();
@@ -32,12 +32,13 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
         {
             if (restart)
             {
-                _helper.RestartWebDriver(UrlConfig.Manage_BaseUrl, _applicationName);
+                _helper.RestartWebDriver(_manageBaseUrl, _applicationName);
             }
             else
             {
                 _objectContext.SetCurrentApplicationName(_applicationName);
-                _tabHelper.GoToUrl(UrlConfig.Manage_BaseUrl);
+
+                _tabHelper.GoToUrl(_manageBaseUrl);
             }
 
             new Manage_IndexPage(_context).ClickAgencyButton().LoginToAccess1Staff();

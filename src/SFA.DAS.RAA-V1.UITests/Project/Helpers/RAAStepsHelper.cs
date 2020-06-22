@@ -17,6 +17,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
         private readonly TabHelper _tabHelper;
         private readonly RestartWebDriverHelper _helper;
         private string ApplicationName => "Recruit";
+        private readonly string _recruitBaseUrl;
 
         public RAAStepsHelper(ScenarioContext context)
         {
@@ -25,18 +26,20 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Helpers
             _config = context.GetRAAV1Config<RAAV1Config>();
             _tabHelper = context.Get<TabHelper>();
             _helper = new RestartWebDriverHelper(context);
+            _recruitBaseUrl = UrlConfig.Recruit_BaseUrl;
         }
 
         public void GoToRAA()
         {
             _objectContext.SetCurrentApplicationName(ApplicationName);
-            _tabHelper.GoToUrl(UrlConfig.Recruit_BaseUrl);
+
+            _tabHelper.GoToUrl(_recruitBaseUrl);
         }
 
         internal RAA_RecruitmentHomePage GoToRAAHomePage(bool restrat)
         {
             if (restrat)
-                _helper.RestartWebDriver(UrlConfig.Recruit_BaseUrl, ApplicationName);
+                _helper.RestartWebDriver(_recruitBaseUrl, ApplicationName);
             else
                 GoToRAA();
 
