@@ -16,9 +16,18 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
             {
                 return applicationAssessmentOverviewPage
                     .Access_Section3_Link1()
-                    .SelectPassAndContinueInDeliveringTrainingInApprenticeshipStandardsPage_MP()
+                    .SelectPassAndContinueInTypeOfApprenticeshipTrainingPage_MP()
                     .SelectPassAndContinueInEngagingWithEndpointAssessmentOrganisationsPage()
                     .SelectPassAndContinueInEngagingWithEndpointAssessmentOrganisationsPage()
+                    .SelectPassAndContinue()
+                    .VerifySection3Link1Status(StatusHelper.StatusPass);
+            }
+            else if (_context.ScenarioInfo.Tags.Contains("rpadas02"))
+            {
+                return applicationAssessmentOverviewPage
+                    .Access_Section3_Link1()
+                    .SelectPassAndContinueInTypeOfApprenticeshipTrainingPage_SP()
+                    .SelectPassAndContinueInOfferingApprenticeshipFrameworksPage()
                     .SelectPassAndContinue()
                     .VerifySection3Link1Status(StatusHelper.StatusPass);
             }
@@ -26,19 +35,36 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
             {
                 return applicationAssessmentOverviewPage
                     .Access_Section3_Link1()
-                    .SelectPassAndContinueInDeliveringTrainingInApprenticeshipStandardsPage_SP()
+                    .SelectPassAndContinueInTypeOfApprenticeshipTrainingPage_SP()
                     .SelectPassAndContinueInOfferingApprenticeshipFrameworksPage()
+                    .SelectPassAndContinueInTransitioningFromApprenticeshipFrameworksToApprenticeshipStandardsPage()
+                    .SelectPassAndContinueInEngagingWithEndpointAssessmentOrganisationsPage()
                     .SelectPassAndContinue()
                     .VerifySection3Link1Status(StatusHelper.StatusPass);
             }
         }
 
-        public void CheckSupportingApprentices(ApplicationAssessmentOverviewPage applicationAssessmentOverviewPage) =>
-            applicationAssessmentOverviewPage.VerifySection3Link2Status(StatusHelper.NotRequired);
+        public ApplicationAssessmentOverviewPage CheckSupportingApprentices(ApplicationAssessmentOverviewPage applicationAssessmentOverviewPage)
+        {
+            if (_context.ScenarioInfo.Tags.Contains("rpadas03"))
+            {
+                return applicationAssessmentOverviewPage
+                    .Access_Section3_Link2()
+                    .SelectPassAndContinueInSupportingApprenticesPage()
+                    .SelectPassAndContinueInWaysOfSupportingApprenticesPage()
+                    .SelectPassAndContinue()
+                    .VerifySection3Link1Status(StatusHelper.StatusPass);
+            }
+            else
+            {
+                applicationAssessmentOverviewPage.VerifySection3Link2Status(StatusHelper.NotRequired);
+                return applicationAssessmentOverviewPage;
+            }
+        }
 
         public ApplicationAssessmentOverviewPage PassForecastingStarts(ApplicationAssessmentOverviewPage applicationAssessmentOverviewPage)
         {
-            if (_context.ScenarioInfo.Tags.Contains("rpadas01"))
+            if (_context.ScenarioInfo.Tags.Contains("rpadas01") || _context.ScenarioInfo.Tags.Contains("rpadas03"))
             {
                 return applicationAssessmentOverviewPage
                     .Access_Section3_Link3()
@@ -57,7 +83,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
 
         public ApplicationAssessmentOverviewPage PassOffTheJobTraining(ApplicationAssessmentOverviewPage applicationAssessmentOverviewPage)
         {
-            if (_context.ScenarioInfo.Tags.Contains("rpadas01"))
+            if (_context.ScenarioInfo.Tags.Contains("rpadas01") || _context.ScenarioInfo.Tags.Contains("rpadas03"))
             {
                 return applicationAssessmentOverviewPage
                     .Access_Section3_Link4()
@@ -74,7 +100,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
 
         public ApplicationAssessmentOverviewPage PassWhereWillYourApprenticesBeTrained(ApplicationAssessmentOverviewPage applicationAssessmentOverviewPage)
         {
-            if (_context.ScenarioInfo.Tags.Contains("rpadas01"))
+            if (_context.ScenarioInfo.Tags.Contains("rpadas01") || _context.ScenarioInfo.Tags.Contains("rpadas03"))
             {
                 return applicationAssessmentOverviewPage
                 .Access_Section3_Link5()

@@ -10,6 +10,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor
 
         public By AssignToMeLinkForMainProvider => By.XPath("//td[contains(text(),'Main provider')]//following-sibling::td//a");
         public By AssignToMeLinkForSupportingProvider => By.XPath("//td[contains(text(),'Supporting provider')]//following-sibling::td//a");
+        public By AssignToMeLinkForEmployerProvider => By.XPath("//td[contains(text(),'Employer provider')]//following-sibling::td//a");
 
         public AssessorApplicationsPage(ScenarioContext context) : base(context) => _context = context;
 
@@ -22,6 +23,12 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor
         public ApplicationAssessmentOverviewPage AssessorSelectsAssignToMeForSupportingProvider()
         {
             formCompletionHelper.Click(AssignToMeLinkForSupportingProvider);
+            return new ApplicationAssessmentOverviewPage(_context);
+        }
+
+        public ApplicationAssessmentOverviewPage AssessorSelectsAssignToMeForEmployerProvider()
+        {
+            formCompletionHelper.Click(AssignToMeLinkForEmployerProvider);
             return new ApplicationAssessmentOverviewPage(_context);
         }
     }

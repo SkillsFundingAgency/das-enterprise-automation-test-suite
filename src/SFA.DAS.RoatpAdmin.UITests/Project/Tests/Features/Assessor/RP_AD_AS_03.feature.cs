@@ -18,20 +18,20 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Features.Assessor
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.0.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("RP_AD_AS_01")]
-    public partial class RP_AD_AS_01Feature
+    [NUnit.Framework.DescriptionAttribute("RP_AD_AS_03")]
+    public partial class RP_AD_AS_03Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "RP_AD_AS_01.feature"
+#line 1 "RP_AD_AS_03.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "RP_AD_AS_01", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "RP_AD_AS_03", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -70,17 +70,17 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Features.Assessor
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RP_AD_AS_01 Assess a Company type Application via Main provider route")]
+        [NUnit.Framework.DescriptionAttribute("RP_AD_AS_03 Assess a Charity type Application via Employer provider route")]
         [NUnit.Framework.CategoryAttribute("roatp")]
-        [NUnit.Framework.CategoryAttribute("rpadas01")]
+        [NUnit.Framework.CategoryAttribute("rpadas03")]
         [NUnit.Framework.CategoryAttribute("roatpassessor")]
         [NUnit.Framework.CategoryAttribute("newroatpadmin")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public virtual void RP_AD_AS_01AssessACompanyTypeApplicationViaMainProviderRoute()
+        public virtual void RP_AD_AS_03AssessACharityTypeApplicationViaEmployerProviderRoute()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_AD_AS_01 Assess a Company type Application via Main provider route", null, new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_AD_AS_03 Assess a Charity type Application via Employer provider route", null, new string[] {
                         "roatp",
-                        "rpadas01",
+                        "rpadas03",
                         "roatpassessor",
                         "newroatpadmin",
                         "regression"});
@@ -90,7 +90,7 @@ this.ScenarioInitialize(scenarioInfo);
 #line 9
  testRunner.When("the Assessor1 is on the RoATP assessor applications dashboard", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 10
- testRunner.And("selects the Main provider route application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("selects the Employer provider route application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 11
  testRunner.Then("the Assessor assesses all the sections of the application as PASS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 12
@@ -98,7 +98,7 @@ this.ScenarioInitialize(scenarioInfo);
 #line 13
  testRunner.When("the Assessor2 is on the RoATP assessor applications dashboard", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 14
- testRunner.And("selects the Main provider route application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("selects the Employer provider route application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 15
  testRunner.Then("the Assessor assesses all the sections of the application as PASS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 16

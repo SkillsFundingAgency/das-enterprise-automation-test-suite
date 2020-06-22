@@ -92,7 +92,7 @@ this.ScenarioInitialize(scenarioInfo);
 #line 10
  testRunner.And("selects the Supporting provider route application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 11
- testRunner.Then("the Assessor assesses all the sections of the Main provider application as PASS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the Assessor assesses all the sections of the application as PASS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 12
  testRunner.And("marks the Application as Ready for moderation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 13
@@ -100,7 +100,7 @@ this.ScenarioInitialize(scenarioInfo);
 #line 14
  testRunner.And("selects the Supporting provider route application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 15
- testRunner.Then("the Assessor assesses all the sections of the Main provider application as PASS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the Assessor assesses all the sections of the application as PASS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 16
  testRunner.And("marks the Application as Ready for moderation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden

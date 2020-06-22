@@ -77,6 +77,11 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor
             NavigateToTask(Section3_Link1);
             return new TypeOfApprenticeshipTrainingPage(_context);
         }
+        public SupportingApprenticesPage Access_Section3_Link2()
+        {
+            NavigateToTask(Section3_Link2);
+            return new SupportingApprenticesPage(_context);
+        }
         public ForecastingStartsPage Access_Section3_Link3()
         {
             NavigateToTask(Section3_Link3);

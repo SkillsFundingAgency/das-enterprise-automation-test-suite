@@ -6,6 +6,13 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor.S3_PlanningApp
     {
         protected override string PageTitle => "Transitioning from apprenticeship frameworks to apprenticeship standards";
 
-        public TransitioningFromApprenticeshipFrameworksToApprenticeshipStandardsPage(ScenarioContext context) : base(context) { }
+        private readonly ScenarioContext _context;
+        public TransitioningFromApprenticeshipFrameworksToApprenticeshipStandardsPage(ScenarioContext context) : base(context) => _context = context;
+
+        public EngagingWithEndpointAssessmentOrganisationsPage SelectPassAndContinueInTransitioningFromApprenticeshipFrameworksToApprenticeshipStandardsPage()
+        {
+            SelectPassAndContinueToSubSection();
+            return new EngagingWithEndpointAssessmentOrganisationsPage(_context);
+        }
     }
 }

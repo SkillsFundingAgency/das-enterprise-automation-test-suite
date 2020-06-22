@@ -46,8 +46,12 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.Assessor
         public void AndSelectsTheSupportingProviderRouteApplication() =>
             _applicationAssessmentOverviewPage = _assessorApplicationsPage.AssessorSelectsAssignToMeForSupportingProvider();
 
-        [Then(@"the Assessor assesses all the sections of the Main provider application as PASS")]
-        public void ThenTheAssessorAssessesAllTheSectionsOfTheMainProviderApplicationAsPASS() =>
+        [When(@"selects the Employer provider route application")]
+        public void WhenSelectsTheEmployerProviderRouteApplication() =>
+            _applicationAssessmentOverviewPage = _assessorApplicationsPage.AssessorSelectsAssignToMeForEmployerProvider();
+
+        [Then(@"the Assessor assesses all the sections of the application as PASS")]
+        public void ThenTheAssessorAssessesAllTheSectionsOfTheApplicationAsPASS() =>
             _assessorEndtoEndStepsHelper.CompleteAllSectionsWithPass(_applicationAssessmentOverviewPage);
 
         [Then(@"marks the Application as Ready for moderation")]

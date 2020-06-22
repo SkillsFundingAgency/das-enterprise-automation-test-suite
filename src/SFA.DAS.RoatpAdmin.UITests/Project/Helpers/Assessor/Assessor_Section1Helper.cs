@@ -12,7 +12,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
 
         public ApplicationAssessmentOverviewPage PassContinuityPlanForApprenticeshipTraining(ApplicationAssessmentOverviewPage applicationAssessmentOverviewPage)
         {
-            if (_context.ScenarioInfo.Tags.Contains("rpadas01"))
+            if (_context.ScenarioInfo.Tags.Contains("rpadas01") || _context.ScenarioInfo.Tags.Contains("rpadas03"))
             {
                 return applicationAssessmentOverviewPage
                     .Access_Section1_Link1()

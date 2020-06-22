@@ -1,16 +1,16 @@
-﻿Feature: RP_AD_AS_01
+﻿Feature: RP_AD_AS_03
 
 @roatp
-@rpadas01
+@rpadas03
 @roatpassessor
 @newroatpadmin
 @regression
-Scenario: RP_AD_AS_01 Assess a Company type Application via Main provider route
+Scenario: RP_AD_AS_03 Assess a Charity type Application via Employer provider route
 	When the Assessor1 is on the RoATP assessor applications dashboard
-	And selects the Main provider route application
+	And selects the Employer provider route application
 	Then the Assessor assesses all the sections of the application as PASS
 	And marks the Application as Ready for moderation
 	When the Assessor2 is on the RoATP assessor applications dashboard
-	And selects the Main provider route application
+	And selects the Employer provider route application
 	Then the Assessor assesses all the sections of the application as PASS
 	And marks the Application as Ready for moderation

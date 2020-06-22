@@ -41,7 +41,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
 
         public ApplicationAssessmentOverviewPage PassDevelopingAndDeliveringTraining(ApplicationAssessmentOverviewPage applicationAssessmentOverviewPage)
         {
-            if (_context.ScenarioInfo.Tags.Contains("rpadas01"))
+            if (_context.ScenarioInfo.Tags.Contains("rpadas01") || _context.ScenarioInfo.Tags.Contains("rpadas03"))
             {
                 return applicationAssessmentOverviewPage
                     .Access_Section4_Link4_ForMainProviderRoute()
