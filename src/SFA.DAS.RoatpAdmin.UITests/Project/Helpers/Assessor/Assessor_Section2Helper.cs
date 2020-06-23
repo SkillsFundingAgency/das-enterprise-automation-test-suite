@@ -12,12 +12,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
 
         public ApplicationAssessmentOverviewPage PassEngagingWithEmployers(ApplicationAssessmentOverviewPage applicationAssessmentOverviewPage)
         {
-            if (_context.ScenarioInfo.Tags.Contains("rpadas02") || _context.ScenarioInfo.Tags.Contains("rpadas03"))
-            {
-                return applicationAssessmentOverviewPage
-                    .VerifySection2Link1Status(StatusHelper.NotRequired);
-            }
-            else
+            if (_context.ScenarioInfo.Tags.Contains("rpadas01"))
             {
                 return applicationAssessmentOverviewPage
                     .Access_Section2_Link1()
@@ -27,16 +22,16 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
                     .SelectPassAndContinue()
                     .VerifySection2Link1Status(StatusHelper.StatusPass);
             }
+            else
+            {
+                return applicationAssessmentOverviewPage
+                    .VerifySection2Link1Status(StatusHelper.NotRequired);
+            }
         }
 
         public ApplicationAssessmentOverviewPage PassComplaintsPolicy(ApplicationAssessmentOverviewPage applicationAssessmentOverviewPage)
         {
-            if (_context.ScenarioInfo.Tags.Contains("rpadas02") || _context.ScenarioInfo.Tags.Contains("rpadas03"))
-            {
-                return applicationAssessmentOverviewPage
-                    .VerifySection2Link2Status(StatusHelper.NotRequired);
-            }
-            else
+            if (_context.ScenarioInfo.Tags.Contains("rpadas01"))
             {
                 return applicationAssessmentOverviewPage
                     .Access_Section2_Link2()
@@ -44,21 +39,26 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
                     .SelectPassAndContinue()
                     .VerifySection2Link2Status(StatusHelper.StatusPass);
             }
+            else
+            {
+                return applicationAssessmentOverviewPage
+                    .VerifySection2Link2Status(StatusHelper.NotRequired);
+            }
         }
 
         public ApplicationAssessmentOverviewPage PassContractForServicesTemplate(ApplicationAssessmentOverviewPage applicationAssessmentOverviewPage)
         {
-            if (_context.ScenarioInfo.Tags.Contains("rpadas02") || _context.ScenarioInfo.Tags.Contains("rpadas03"))
-            {
-                return applicationAssessmentOverviewPage
-                    .VerifySection2Link3Status(StatusHelper.NotRequired);
-            }
-            else
+            if (_context.ScenarioInfo.Tags.Contains("rpadas01"))
             {
                 return applicationAssessmentOverviewPage
                     .Access_Section2_Link3()
                     .SelectPassAndContinue()
                     .VerifySection2Link3Status(StatusHelper.StatusPass);
+            }
+            else
+            {
+                return applicationAssessmentOverviewPage
+                    .VerifySection2Link3Status(StatusHelper.NotRequired);
             }
         }
 

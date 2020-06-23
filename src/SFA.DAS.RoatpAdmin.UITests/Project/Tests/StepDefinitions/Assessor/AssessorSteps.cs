@@ -24,14 +24,14 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.Assessor
             _assessorEndtoEndStepsHelper = new AssessorEndtoEndStepsHelper(context);
         }
 
-        [When(@"the Assessor(1|2) is on the RoATP assessor applications dashboard")]
-        public void WhenTheAssessorIsOnTheRoATPAssessorApplicationsDashboard(int assessorUser)
+        [When(@"the (Assessor1|Assessor2) is on the RoATP assessor applications dashboard")]
+        public void WhenTheAssessorIsOnTheRoATPAssessorApplicationsDashboard(string assessorUser)
         {
-            if (assessorUser == 1)
+            if (assessorUser.Equals("Assessor1"))
             {
                 _assessorApplicationsPage = _assessorLoginStepsHelper.Assessor1Login();
             }
-            else
+            else if (assessorUser.Equals("Assessor2"))
             {
                 _restartWebDriverHelper.RestartWebDriver(_config.RoATPAssessorBaseUrl, "RoatpAdmin");
                 _assessorApplicationsPage = _assessorLoginStepsHelper.Assessor2Login();
