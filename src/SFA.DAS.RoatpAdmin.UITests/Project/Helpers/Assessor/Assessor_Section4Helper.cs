@@ -46,7 +46,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
                 return applicationAssessmentOverviewPage
                     .Access_Section4_Link4_ForMainProviderRoute()
                     .SelectPassAndContinueInDevelopingAndDeliveringTrainingPage_MP()
-                    .SelectPassAndContinueInWhoTheTeamWorkedWithPage()
+                    .SelectPassAndContinueInWhoTheTeamHaveWorkedWithPage()
                     .SelectPassAndContinueInHowTheTeamWorkedWithPage()
                     .SelectPassAndContinue()
                     .VerifySection4Link4Status(StatusHelper.StatusPass);

@@ -9,10 +9,10 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor.S4_DeliveringA
 
         public DevelopingAndDeliveringTrainingPage(ScenarioContext context) : base(context) => _context = context;
 
-        public WhoTheTeamWorkedWithPage SelectPassAndContinueInDevelopingAndDeliveringTrainingPage_MP()
+        public WhoTheTeamHaveWorkedWithPage SelectPassAndContinueInDevelopingAndDeliveringTrainingPage_MP()
         {
             SelectPassAndContinueToSubSection();
-            return new WhoTheTeamWorkedWithPage(_context);
+            return new WhoTheTeamHaveWorkedWithPage(_context);
         }
 
         public SomeoneResponsibleForDevelopingAndDeliveringTrainingPage SelectPassAndContinueInDevelopingAndDeliveringTrainingPage_EP()

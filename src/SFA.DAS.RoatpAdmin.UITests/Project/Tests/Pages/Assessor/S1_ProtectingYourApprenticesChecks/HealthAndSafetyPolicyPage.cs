@@ -9,10 +9,10 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor.S1_ProtectingY
 
         public HealthAndSafetyPolicyPage(ScenarioContext context) : base(context) => _context = context;
 
-        public TellUsWhoHasOverallResponsibilityPage SelectPassAndContinueInHealthAndSafetyPolicyPage()
+        public OverallResponsibilityForHealthAndSafetyPage SelectPassAndContinueInHealthAndSafetyPolicyPage()
         {
             SelectPassAndContinueToSubSection();
-            return new TellUsWhoHasOverallResponsibilityPage(_context);
+            return new OverallResponsibilityForHealthAndSafetyPage(_context);
         }
     }
 }
