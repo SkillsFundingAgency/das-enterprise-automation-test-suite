@@ -13,12 +13,12 @@ namespace SFA.DAS.TestDataExport.AfterScenario
     [Binding]
     public class TestDataTearDown
     {
-        private readonly ScenarioContext _context;
         private readonly ObjectContext _objectContext;
+        private readonly string _scenarioTitle;
 
         public TestDataTearDown(ScenarioContext context)
         {
-            _context = context;
+            _scenarioTitle = context.ScenarioInfo.Title;
             _objectContext = context.Get<ObjectContext>();
         }
 
@@ -27,7 +27,7 @@ namespace SFA.DAS.TestDataExport.AfterScenario
         {
             _objectContext.SetAfterScenarioExceptions(new List<Exception>());
             
-            string fileName = $"{DateTime.Now:HH-mm-ss}_{_context.ScenarioInfo.Title}.txt".RemoveSpace();
+            string fileName = $"{DateTime.Now:HH-mm-ss}_{_scenarioTitle}.txt".RemoveSpace();
 
             string directory = _objectContext.GetDirectory();
 
@@ -36,6 +36,8 @@ namespace SFA.DAS.TestDataExport.AfterScenario
             List<TestData> records = new List<TestData>();
 
             var testDatas = _objectContext.GetAll();
+
+            TestContext.Progress.WriteLine($"{testDatas.Count} test datas available for {_scenarioTitle}");
 
             testDatas.ToList().ForEach(x => records.Add(new TestData { Key = x.Key, Value = testDatas[x.Key].ToString() }));
             try
