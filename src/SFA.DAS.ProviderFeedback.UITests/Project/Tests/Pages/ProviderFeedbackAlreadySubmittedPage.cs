@@ -1,4 +1,5 @@
-﻿using TechTalk.SpecFlow;
+﻿using SFA.DAS.UI.Framework;
+using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ProviderFeedback.UITests.Project.Tests.Pages
 {
@@ -8,7 +9,7 @@ namespace SFA.DAS.ProviderFeedback.UITests.Project.Tests.Pages
 
         public ProviderFeedbackAlreadySubmittedPage(ScenarioContext context) : base(context, false) 
         {
-            tabHelper.OpenInNewTab(providerFeedbackConfig.ProviderFeedbackUrl, objectContext.GetUniqueSurveyCode());
+            tabHelper.OpenInNewTab(UrlConfig.ProviderFeedback_BaseUrl, objectContext.GetUniqueSurveyCode());
             VerifyPage();
         }
     }

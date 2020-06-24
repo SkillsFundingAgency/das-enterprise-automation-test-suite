@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.UI.Framework;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
@@ -95,7 +96,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
         {
             var element = pageInteractionHelper.GetLinkContains(SavedVacancy, vacancyTitleDataHelper.VacancyTitle);
 
-            var id = element.GetAttribute("href").Replace($"{faaConfig.FAABaseUrl}{VacancyDetailshref}", string.Empty);
+            var id = element.GetAttribute("href").Replace($"{UrlConfig.FAA_BaseUrl}{VacancyDetailshref}", string.Empty);
 
             formCompletionHelper.ClickElement(DeleteVacancy(id));
         }

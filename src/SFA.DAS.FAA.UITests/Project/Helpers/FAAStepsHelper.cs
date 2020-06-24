@@ -5,27 +5,28 @@ using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 using SFA.DAS.RAA.DataGenerator.Project;
 using SFA.DAS.RAA.DataGenerator;
+using SFA.DAS.UI.Framework;
 
 namespace SFA.DAS.FAA.UITests.Project.Helpers
 {
     public class FAAStepsHelper
     {
         private readonly ScenarioContext _context;
-        private readonly FAAConfig _config;
         private readonly RestartWebDriverHelper _helper;
         private readonly TabHelper _tabHelper;
         private readonly FAADataHelper _faaDataHelper;
         private readonly ObjectContext _objectContext;
         private const string _applicationName = "FindApprenticeship";
+        private readonly string _faaBaseUrl;
 
         public FAAStepsHelper(ScenarioContext context)
         {
             _context = context;
             _objectContext = context.Get<ObjectContext>();
-            _config = context.GetFAAConfig<FAAConfig>();
             _tabHelper = context.Get<TabHelper>();
             _faaDataHelper = context.Get<FAADataHelper>();
             _helper = new RestartWebDriverHelper(context);
+            _faaBaseUrl = UrlConfig.FAA_BaseUrl;
         }
 
         public string GetApplicationStatus()
@@ -44,9 +45,9 @@ namespace SFA.DAS.FAA.UITests.Project.Helpers
         public FAA_MyApplicationsHomePage GoToFAAHomePage()
         {
             if (_objectContext.IsFAARestart())
-                _helper.RestartWebDriver(_config.FAABaseUrl, _applicationName);
+                _helper.RestartWebDriver(_faaBaseUrl, _applicationName);
             else
-                _tabHelper.OpenInNewTab(_config.FAABaseUrl);
+                _tabHelper.OpenInNewTab(_faaBaseUrl);
 
             var (username, password, _, _) = _objectContext.GetFAALogin();
 
@@ -57,7 +58,7 @@ namespace SFA.DAS.FAA.UITests.Project.Helpers
 
         public FAA_CreateAnAccountPage StartFAAAccountCreation()
         {
-            _tabHelper.GoToUrl(_config.FAABaseUrl);
+            _tabHelper.GoToUrl(_faaBaseUrl);
 
             return new FAA_Indexpage(_context)
                 .GoToSignInPage()
@@ -165,7 +166,8 @@ namespace SFA.DAS.FAA.UITests.Project.Helpers
 
         private FAA_MyApplicationsHomePage OpenFAAHomePageinNewtab()
         {
-            _tabHelper.OpenInNewTab(_config.FAABaseUrl);
+            _tabHelper.OpenInNewTab(_faaBaseUrl);
+
             return new FAA_FindAnApprenticeshipHomePage(_context).MyApplications();
         }
 

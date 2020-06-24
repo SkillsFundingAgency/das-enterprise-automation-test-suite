@@ -12,7 +12,6 @@ namespace SFA.DAS.FAT.UITests.Project.Tests.Pages
         protected readonly FormCompletionHelper formCompletionHelper;
         protected readonly PageInteractionHelper pageInteractionHelper;
         protected readonly ObjectContext objectContext;
-        protected readonly FATConfig config;
         private readonly ScenarioContext _context;
         #endregion
 
@@ -29,7 +28,6 @@ namespace SFA.DAS.FAT.UITests.Project.Tests.Pages
             formCompletionHelper = context.Get<FormCompletionHelper>();
             pageInteractionHelper = context.Get<PageInteractionHelper>();
             objectContext = context.Get<ObjectContext>();
-            config = context.GetFATConfig<FATConfig>();
         }
 
         public void SearchApprenticeship(string searchTerm)

@@ -4,6 +4,7 @@ using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
+using SFA.DAS.UI.Framework;
 
 namespace SFA.DAS.Registration.UITests.Project.Helpers
 {
@@ -54,6 +55,6 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
             return new MyAccountWithOutPayePage(_context);
         }
 
-        private void OpenInNewTab() => _tabHelper.OpenInNewTab(_registrationConfig.EmployerApprenticeshipServiceBaseURL);
+        private void OpenInNewTab() => _tabHelper.OpenInNewTab(UrlConfig.EmployerApprenticeshipService_BaseUrl);
     }
 }
