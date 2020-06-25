@@ -32,7 +32,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer
         public CreateVacancyPage CreateANewVacancy()
         {
             AcceptCookies();
-            formCompletionHelper.ClickLinkByText("Create vacancy");
+            formCompletionHelper.ClickLinkByText("Create an advert");
             return new CreateVacancyPage(_context);
         }
 
