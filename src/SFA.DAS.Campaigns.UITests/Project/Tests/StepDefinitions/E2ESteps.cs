@@ -5,6 +5,7 @@ using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.Login.Service;
 using SFA.DAS.Login.Service.Helpers;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages;
+using SFA.DAS.UI.Framework;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
@@ -24,7 +25,6 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
         private SignInPage _signInPage;
         private readonly CampaignsDataHelper _campaignsDataHelper;
         private readonly TabHelper _tabHelper;
-        private readonly CampaignsConfig _campaignsConfig;
         private readonly ObjectContext _objectContext;
 
         public E2ESteps(ScenarioContext context)
@@ -34,7 +34,6 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
             _stepsHelper = new CampaignsStepsHelper(context);
             _campaignsDataHelper = context.Get<CampaignsDataHelper>();
             _tabHelper = context.Get<TabHelper>();
-            _campaignsConfig = context.GetCampaignsConfig<CampaignsConfig>();
         }
 
         [Given(@"the employer searches for an apprenticeship")]
@@ -140,7 +139,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
         }
 
         [Then(@"there are no items in the favourites")]
-        public void ThenThereAreNoItemsInTheFavourites() => _tabHelper.OpenInNewTab(_campaignsConfig.CA_BaseUrl, _campaignsConfig.BasketViewPath);
+        public void ThenThereAreNoItemsInTheFavourites() => _tabHelper.OpenInNewTab(UrlConfig.CA_BaseUrl, CampaignsConfig.BasketViewPath);
 
     }
 }

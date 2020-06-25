@@ -1,6 +1,7 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.Roatp.UITests.Project.Helpers.RoatpAdmin;
+using SFA.DAS.UI.Framework;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using System;
@@ -67,9 +68,9 @@ namespace SFA.DAS.Roatp.UITests.Project
         public void Navigate()
         {
             if (_context.ScenarioInfo.Tags.Contains("roatpadmin"))
-                _webDriver.Navigate().GoToUrl(_config.AdminBaseUrl);
+                _webDriver.Navigate().GoToUrl(UrlConfig.Admin_BaseUrl);
             else if (_context.ScenarioInfo.Tags.Contains("roatpassessor"))
-                _webDriver.Navigate().GoToUrl(_config.RoATPAssessorBaseUrl);
+                _webDriver.Navigate().GoToUrl(UrlConfig.RoATPAssessor_BaseUrl);
         }
 
         [BeforeScenario(Order = 36)]
