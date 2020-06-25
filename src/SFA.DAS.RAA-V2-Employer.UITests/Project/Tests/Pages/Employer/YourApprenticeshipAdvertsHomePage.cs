@@ -6,7 +6,7 @@ using SFA.DAS.Registration.UITests.Project.Tests.Pages.InterimPages;
 
 namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer
 {
-    public class RecruitmentHomePage : InterimRecruitmentHomePage
+    public class YourApprenticeshipAdvertsHomePage : InterimYourApprenticeshipAdvertsHomePage
     {
         #region Helpers and Context
         private readonly ScenarioContext _context;
@@ -17,7 +17,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer
 
         private readonly By StartNow = By.CssSelector("[data-automation='create-vacancy']");
 
-        public RecruitmentHomePage(ScenarioContext context, bool navigate = false) : base(context, navigate)
+        public YourApprenticeshipAdvertsHomePage(ScenarioContext context, bool navigate = false) : base(context, navigate)
         {
             _context = context;
             _searchVacancyPageHelper = new SearchVacancyPageHelper(context);
@@ -36,7 +36,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer
             return new CreateVacancyPage(_context);
         }
 
-        private new RecruitmentHomePage AcceptCookies()
+        private new YourApprenticeshipAdvertsHomePage AcceptCookies()
         {
             base.AcceptCookies();
             return this;

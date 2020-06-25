@@ -23,7 +23,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
         [Then(@"the employer can navigate to finance page")]
         public void ThenTheEmployerCanNavigateToFinancePage()
         {
-            new InterimRecruitmentHomePage(_context, true);
+            new InterimYourApprenticeshipAdvertsHomePage(_context, true);
 
             new InterimFinanceHomePage(_context, true);
         }
@@ -31,31 +31,31 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
         [Then(@"the employer can navigate to apprentice page")]
         public void ThenTheEmployerCanNavigateToApprenticePage()
         {
-            new InterimRecruitmentHomePage(_context, true);
+            new InterimYourApprenticeshipAdvertsHomePage(_context, true);
 
             new InterimApprenticesHomePage(_context, true);
         }
 
         [Then(@"the employer can navigate to your team page")]
-        public void ThenTheEmployerCanNavigateToYourTeamPage() => new InterimRecruitmentHomePage(_context, true, true).GotoYourTeamPage();
+        public void ThenTheEmployerCanNavigateToYourTeamPage() => new InterimYourApprenticeshipAdvertsHomePage(_context, true, true).GotoYourTeamPage();
 
         [Then(@"the employer can navigate to account settings page")]
-        public void ThenTheEmployerCanNavigateToAccountSettingsPage() => new InterimRecruitmentHomePage(_context, true, true).GoToYourAccountsPage();
+        public void ThenTheEmployerCanNavigateToAccountSettingsPage() => new InterimYourApprenticeshipAdvertsHomePage(_context, true, true).GoToYourAccountsPage();
 
         [Then(@"the employer can navigate to rename account settings page")]
-        public void ThenTheEmployerCanNavigateToRenameAccountSettingsPage() => new InterimRecruitmentHomePage(_context, true, true).GoToRenameAccountPage();
+        public void ThenTheEmployerCanNavigateToRenameAccountSettingsPage() => new InterimYourApprenticeshipAdvertsHomePage(_context, true, true).GoToRenameAccountPage();
 
         [Then(@"the employer can navigate to change your password settings page")]
-        public void ThenTheEmployerCanNavigateToChangeYourPasswordSettingsPage() => new InterimRecruitmentHomePage(_context, true, true).GoToChangeYourPasswordPage();
+        public void ThenTheEmployerCanNavigateToChangeYourPasswordSettingsPage() => new InterimYourApprenticeshipAdvertsHomePage(_context, true, true).GoToChangeYourPasswordPage();
 
         [Then(@"the employer can navigate to change your email address settings page")]
-        public void ThenTheEmployerCanNavigateToChangeYourEmailAddressSettingsPage() => new InterimRecruitmentHomePage(_context, true, true).GoToChangeYourEmailAddressPage();
+        public void ThenTheEmployerCanNavigateToChangeYourEmailAddressSettingsPage() => new InterimYourApprenticeshipAdvertsHomePage(_context, true, true).GoToChangeYourEmailAddressPage();
 
         [Then(@"the employer can navigate to notification settings page")]
-        public void ThenTheEmployerCanNavigateToNotificationSettingsPage() => new InterimRecruitmentHomePage(_context, true, true).GoToNotificationSettingsPage();
+        public void ThenTheEmployerCanNavigateToNotificationSettingsPage() => new InterimYourApprenticeshipAdvertsHomePage(_context, true, true).GoToNotificationSettingsPage();
 
         [Then(@"the employer can navigate to help settings page")]
-        public void ThenTheEmployerCanNavigateToHelpSettingsPage() => new InterimRecruitmentHomePage(_context, true, true).GoToHelpPage();
+        public void ThenTheEmployerCanNavigateToHelpSettingsPage() => new InterimYourApprenticeshipAdvertsHomePage(_context, true, true).GoToHelpPage();
 
     }
 }
