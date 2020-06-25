@@ -37,7 +37,7 @@ namespace SFA.DAS.TestDataExport.AfterScenario
 
             var testdataset = _objectContext.GetAll();
 
-            TestContext.Progress.WriteLine($"{testdataset.Count} test datas available for {_scenarioTitle}");
+            TestContext.Progress.WriteLine($"{testdataset.Count} test data set are available for {_scenarioTitle}");
 
             testdataset.ToList().ForEach(x => records.Add(new TestData { Key = x.Key, Value = testdataset[x.Key].ToString() }));
             try
