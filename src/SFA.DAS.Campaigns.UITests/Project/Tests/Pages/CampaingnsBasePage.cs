@@ -12,7 +12,6 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
         protected readonly ObjectContext objectContext;
         protected readonly PageInteractionHelper pageInteractionHelper;
         protected readonly FormCompletionHelper formCompletionHelper;
-        protected readonly CampaignsConfig campaignsConfig;
         protected readonly CampaignsDataHelper campaignsDataHelper;
         protected readonly TabHelper tabHelper;
         #endregion
@@ -22,7 +21,6 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
             objectContext = context.Get<ObjectContext>();
             formCompletionHelper = context.Get<FormCompletionHelper>();
             pageInteractionHelper = context.Get<PageInteractionHelper>();
-            campaignsConfig = context.GetCampaignsConfig<CampaignsConfig>();
             campaignsDataHelper = context.Get<CampaignsDataHelper>();
             tabHelper = context.Get<TabHelper>();
 

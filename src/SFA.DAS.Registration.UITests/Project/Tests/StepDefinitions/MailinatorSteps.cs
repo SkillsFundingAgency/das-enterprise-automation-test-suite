@@ -24,7 +24,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         [Then(@"the User receives Access code notification to the registered email")]
         public void ThenTheUserReceivesAccessCodeNotificationToTheRegisteredEmail()
         {
-            _tabHelper.OpenInNewTab(UrlConfig.MailinatorURL);
+            _tabHelper.OpenInNewTab(UrlConfig.Mailinator_BaseUrl);
             new MailinatorLandingPage(_context).EnterEmailAndClickOnGoButton(_objectContext.GetRegisteredEmail())
                 .ClickOnEmail()
                 .VerifyAccessCode("ABC123");

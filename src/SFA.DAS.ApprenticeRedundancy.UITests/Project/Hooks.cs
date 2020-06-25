@@ -3,9 +3,9 @@ using SFA.DAS.UI.Framework;
 using SFA.DAS.UI.Framework.TestSupport;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.SupportConsole.UITests.Project
+namespace SFA.DAS.ApprenticeRedundancy.UITests.Project
 {
-    [Binding]
+    [Binding ]
     public class Hooks
     {
         private readonly IWebDriver _webDriver;
@@ -13,6 +13,6 @@ namespace SFA.DAS.SupportConsole.UITests.Project
         public Hooks(ScenarioContext context) => _webDriver = context.GetWebDriver();
 
         [BeforeScenario(Order = 21)]
-        public void Navigate() => _webDriver.Navigate().GoToUrl(UrlConfig.SupportConsole_BaseUrl);
+        public void NavigateToCovidSupportHomepage() => _webDriver.Navigate().GoToUrl(UrlConfig.AR_BaseUrl);
     }
 }

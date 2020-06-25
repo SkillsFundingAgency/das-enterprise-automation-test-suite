@@ -20,6 +20,7 @@ namespace SFA.DAS.RAA_V2_QA.UITests.Project
         public void SetUpRAAV2QAProjectConfiguration()
         {
             var config = _configSection.GetConfigSection<RAAV2QAConfig>();
+
             _context.SetRAAV2QAConfig(config);
         }
     }
