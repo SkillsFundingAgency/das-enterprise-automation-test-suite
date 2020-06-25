@@ -15,7 +15,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
             if (_context.ScenarioInfo.Tags.Contains("rpadas01") || _context.ScenarioInfo.Tags.Contains("rpadas03"))
             {
                 return applicationAssessmentOverviewPage
-                    .Access_Section1_Link1()
+                    .Access_Section1_ContinuityPlanForApprenticeshipTraining()
                     .SelectPassAndContinue()
                     .VerifySection1Link1Status(StatusHelper.StatusPass);
             }
@@ -29,7 +29,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
         public ApplicationAssessmentOverviewPage PassEqualityAndDiversityPolicy(ApplicationAssessmentOverviewPage applicationAssessmentOverviewPage)
         {
             return applicationAssessmentOverviewPage
-                .Access_Section1_Link2()
+                .Access_Section1_EqualityAndDiversityPolicy()
                 .SelectPassAndContinue()
                 .VerifySection1Link2Status(StatusHelper.StatusPass);
         }
@@ -37,7 +37,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
         public ApplicationAssessmentOverviewPage PassSafeguardingAndPreventDutyPolicy(ApplicationAssessmentOverviewPage applicationAssessmentOverviewPage)
         {
             return applicationAssessmentOverviewPage
-                .Access_Section1_Link3()
+                .Access_Section1_SafeguardingAndPreventDutyPolicy()
                 .SelectPassAndContinueInSafeguardingAndPreventDutyPolicyPage()
                 .SelectPassAndContinueInAssessorOverallResponsibilityForSafeguardingPage()
                 .SelectPassAndContinue()
@@ -47,7 +47,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
         public ApplicationAssessmentOverviewPage PassHealthAndSafetyPolicy(ApplicationAssessmentOverviewPage applicationAssessmentOverviewPage)
         {
             return applicationAssessmentOverviewPage
-                .Access_Section1_Link4()
+                .Access_Section1_HealthAndSafetyPolicy()
                 .SelectPassAndContinueInHealthAndSafetyPolicyPage()
                 .SelectPassAndContinue()
                 .VerifySection1Link4Status(StatusHelper.StatusPass);
@@ -56,7 +56,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
         public ApplicationAssessmentOverviewPage PassActingAsASubcontractor(ApplicationAssessmentOverviewPage applicationAssessmentOverviewPage)
         {
             return applicationAssessmentOverviewPage
-                .Access_Section1_Link5()
+                .Access_Section1_ActingAsASubcontractor()
                 .SelectPassAndContinue()
                 .VerifySection1Link5Status(StatusHelper.StatusPass);
         }

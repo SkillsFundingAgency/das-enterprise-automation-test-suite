@@ -83,7 +83,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
         public void MarkApplicationAsReadyForModeration(ApplicationAssessmentOverviewPage applicationAssessmentOverviewPage)
         {
             applicationAssessmentOverviewPage
-                .Access_Section6_Link1()
+                .Access_Section6_ReadyForModeration()
                 .SelectYesAndContinueInAreYouSureThisApplicationIsReadyForModerationPage()
                 .GoToRoATPAssessorApplicationsPage();
         }

@@ -15,7 +15,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
             if (_context.ScenarioInfo.Tags.Contains("rpadas01"))
             {
                 return applicationAssessmentOverviewPage
-                    .Access_Section2_Link1()
+                    .Access_Section2_EngagingWithEmployers()
                     .SelectPassAndContinueInEngagingWithEmployersPage()
                     .SelectPassAndContinueInManagingRelationshipWithEmployersPage()
                     .SelectPassAndContinueInOverallResponsibilityForManagingRelationshipsWithEmployersPage()
@@ -34,7 +34,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
             if (_context.ScenarioInfo.Tags.Contains("rpadas01"))
             {
                 return applicationAssessmentOverviewPage
-                    .Access_Section2_Link2()
+                    .Access_Section2_ComplaintsPolicy()
                     .SelectPassAndContinueInComplaintsPolicyPage()
                     .SelectPassAndContinue()
                     .VerifySection2Link2Status(StatusHelper.StatusPass);
@@ -51,7 +51,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
             if (_context.ScenarioInfo.Tags.Contains("rpadas01"))
             {
                 return applicationAssessmentOverviewPage
-                    .Access_Section2_Link3()
+                    .Access_Section2_ContractForServicesTemplate()
                     .SelectPassAndContinue()
                     .VerifySection2Link3Status(StatusHelper.StatusPass);
             }
@@ -67,7 +67,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
             if (_context.ScenarioInfo.Tags.Contains("rpadas01") || _context.ScenarioInfo.Tags.Contains("rpadas03"))
             {
                 return applicationAssessmentOverviewPage
-                    .Access_Section2_Link4()
+                    .Access_Section2_CommitmentStatementTemplate()
                     .SelectPassAndContinue()
                     .VerifySection2Link4Status(StatusHelper.StatusPass);
             }
@@ -83,7 +83,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
             if (_context.ScenarioInfo.Tags.Contains("rpadas01") || _context.ScenarioInfo.Tags.Contains("rpadas03"))
             {
                 return applicationAssessmentOverviewPage
-                    .Access_Section2_Link5()
+                    .Access_Section2_PriorLearningOfApprentices()
                     .SelectPassAndContinueInPriorLearningOfApprenticesPage()
                     .SelectPassAndContinue()
                     .VerifySection2Link5Status(StatusHelper.StatusPass);
@@ -100,7 +100,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
             if (_context.ScenarioInfo.Tags.Contains("rpadas01") || _context.ScenarioInfo.Tags.Contains("rpadas03"))
             {
                 return applicationAssessmentOverviewPage
-                    .Access_Section2_Link6()
+                    .Access_Section2_WorkingWithSubcontractors()
                     .SelectPassAndContinueInWorkingWithSubcontractorsPage()
                     .SelectPassAndContinue()
                     .VerifySection2Link6Status(StatusHelper.StatusPass);

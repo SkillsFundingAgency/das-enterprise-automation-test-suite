@@ -15,7 +15,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
         public ApplicationAssessmentOverviewPage PassOverallAccountabilityForApprenticeships(ApplicationAssessmentOverviewPage applicationAssessmentOverviewPage)
         {
             return applicationAssessmentOverviewPage
-                .Access_Section4_Link1()
+                .Access_Section4_OverallAccountabilityForApprenticeships()
                 .SelectPassAndContinue()
                 .VerifySection4Link1Status(StatusHelper.StatusPass);
         }
@@ -23,7 +23,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
         public ApplicationAssessmentOverviewPage PassManagementHierarchyForApprenticeships(ApplicationAssessmentOverviewPage applicationAssessmentOverviewPage)
         {
             return applicationAssessmentOverviewPage
-                .Access_Section4_Link2()
+                .Access_Section4_ManagementHierarchyForApprenticeships()
                 .SelectPassAndContinue()
                 .VerifySection4Link2Status(StatusHelper.StatusPass);
         }
@@ -31,7 +31,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
         public ApplicationAssessmentOverviewPage PassQualityAndHighStandardsInApprenticeshipTraining(ApplicationAssessmentOverviewPage applicationAssessmentOverviewPage)
         {
             return applicationAssessmentOverviewPage
-                .Access_Section4_Link3()
+                .Access_Section4_QualityAndHighStandardsInApprenticeshipTraining()
                 .SelectPassAndContinueInQualityAndHighStandardsInApprenticeshipTrainingPage()
                 .SelectPassAndContinueInHowExpectationsForQualityPage()
                 .SelectPassAndContinueInOverallResponsibilityForMaintainingExpectationsPage()
@@ -44,7 +44,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
             if (_context.ScenarioInfo.Tags.Contains("rpadas01"))
             {
                 return applicationAssessmentOverviewPage
-                    .Access_Section4_Link4_ForMainProviderRoute()
+                    .Access_Section4_DevelopingAndDeliveringTraining_ForMainProviderRoute()
                     .SelectPassAndContinueInDevelopingAndDeliveringTrainingPage_MP()
                     .SelectPassAndContinueInWhoTheTeamHaveWorkedWithPage()
                     .SelectPassAndContinueInHowTheTeamWorkedWithPage()
@@ -54,7 +54,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
             else if (_context.ScenarioInfo.Tags.Contains("rpadas02"))
             {
                 return applicationAssessmentOverviewPage
-                    .Access_Section4_Link4_ForSupportingProviderRoute()
+                    .Access_Section4_DevelopingAndDeliveringTraining_ForSupportingProviderRoute()
                     .SelectPassAndContinueInSomeoneResponsibleForDevelopingAndDeliveringTrainingPage()
                     .SelectPassAndContinueInWhoHasThisPersonHasWorkedWithToDevelopAndDeliverTrainingPage()
                     .SelectPassAndContinueInHowHasThisPersonHasWorkedWithEmployersToDevelopAndDeliverTrainingPage()
@@ -64,7 +64,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
             else
             {
                 return applicationAssessmentOverviewPage
-                    .Access_Section4_Link4_ForMainProviderRoute()
+                    .Access_Section4_DevelopingAndDeliveringTraining_ForMainProviderRoute()
                     .SelectPassAndContinueInDevelopingAndDeliveringTrainingPage_EP()
                     .SelectPassAndContinue()
                     .VerifySection4Link4Status(StatusHelper.StatusPass);
@@ -74,7 +74,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
         public ApplicationAssessmentOverviewPage PassYourSectorsAndEmployees(ApplicationAssessmentOverviewPage applicationAssessmentOverviewPage)
         {
             _yourSectorsAndEmployeesPage = applicationAssessmentOverviewPage
-                .Access_Section4_Link5()
+                .Access_Section4_YourSectorsAndEmployees()
                 .NavigateToDeliveringTrainingInDigitalSectorPage()
                 .SelectPassAndContinueInDeliveringTrainingInDigitalSectorPage();
 
@@ -88,7 +88,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
         public ApplicationAssessmentOverviewPage PassPolicyForProfessionalDevelopmentOfEmployees(ApplicationAssessmentOverviewPage applicationAssessmentOverviewPage)
         {
             return applicationAssessmentOverviewPage
-                .Access_Section4_Link6()
+                .Access_Section4_PolicyForProfessionalDevelopmentOfEmployees()
                 .SelectPassAndContinueInPolicyForProfessionalDevelopmentOfEmployeesPage()
                 .SelectPassAndContinueInAnExampleOfHowThePolicyToImprovePage()
                 .SelectPassAndContinue()

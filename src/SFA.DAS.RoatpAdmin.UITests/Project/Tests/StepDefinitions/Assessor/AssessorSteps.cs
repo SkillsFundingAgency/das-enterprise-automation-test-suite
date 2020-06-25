@@ -2,14 +2,13 @@
 using SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor;
 using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor;
 using SFA.DAS.UI.Framework.TestSupport;
-using SFA.DAS.Roatp.UITests.Project;
+using SFA.DAS.UI.Framework;
 
 namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.Assessor
 {
     [Binding]
     public class AssessorSteps
     {
-        private readonly RoatpConfig _config;
         private readonly AssessorLoginStepsHelper _assessorLoginStepsHelper;
         private readonly RestartWebDriverHelper _restartWebDriverHelper;
         private AssessorApplicationsPage _assessorApplicationsPage;
@@ -18,7 +17,6 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.Assessor
 
         public AssessorSteps(ScenarioContext context)
         {
-            _config = context.GetRoatpConfig<RoatpConfig>();
             _restartWebDriverHelper = new RestartWebDriverHelper(context);
             _assessorLoginStepsHelper = new AssessorLoginStepsHelper(context);
             _assessorEndtoEndStepsHelper = new AssessorEndtoEndStepsHelper(context);
@@ -33,7 +31,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.Assessor
             }
             else if (assessorUser.Equals("Assessor2"))
             {
-                _restartWebDriverHelper.RestartWebDriver(_config.RoATPAssessorBaseUrl, "RoatpAdmin");
+                _restartWebDriverHelper.RestartWebDriver(UrlConfig.RoATPAssessor_BaseUrl, "RoatpAdmin");
                 _assessorApplicationsPage = _assessorLoginStepsHelper.Assessor2Login();
             }
         }

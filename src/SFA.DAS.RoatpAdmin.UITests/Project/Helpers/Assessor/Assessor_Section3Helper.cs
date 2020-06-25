@@ -15,7 +15,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
             if (_context.ScenarioInfo.Tags.Contains("rpadas01"))
             {
                 return applicationAssessmentOverviewPage
-                    .Access_Section3_Link1()
+                    .Access_Section3_TypeOfApprenticeshipTraining()
                     .SelectPassAndContinueInTypeOfApprenticeshipTrainingPage_MP()
                     .SelectPassAndContinueInEngagingWithEndpointAssessmentOrganisationsPage()
                     .SelectPassAndContinueInEngagingWithEndpointAssessmentOrganisationsPage()
@@ -25,7 +25,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
             else if (_context.ScenarioInfo.Tags.Contains("rpadas02"))
             {
                 return applicationAssessmentOverviewPage
-                    .Access_Section3_Link1()
+                    .Access_Section3_TypeOfApprenticeshipTraining()
                     .SelectPassAndContinueInTypeOfApprenticeshipTrainingPage_SP()
                     .SelectPassAndContinueInOfferingApprenticeshipFrameworksPage()
                     .SelectPassAndContinue()
@@ -34,7 +34,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
             else
             {
                 return applicationAssessmentOverviewPage
-                    .Access_Section3_Link1()
+                    .Access_Section3_TypeOfApprenticeshipTraining()
                     .SelectPassAndContinueInTypeOfApprenticeshipTrainingPage_SP()
                     .SelectPassAndContinueInOfferingApprenticeshipFrameworksPage()
                     .SelectPassAndContinueInTransitioningFromApprenticeshipFrameworksToApprenticeshipStandardsPage()
@@ -49,7 +49,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
             if (_context.ScenarioInfo.Tags.Contains("rpadas03"))
             {
                 return applicationAssessmentOverviewPage
-                    .Access_Section3_Link2()
+                    .Access_Section3_SupportingApprentices()
                     .SelectPassAndContinueInSupportingApprenticesPage()
                     .SelectPassAndContinueInWaysOfSupportingApprenticesPage()
                     .SelectPassAndContinue()
@@ -66,7 +66,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
             if (_context.ScenarioInfo.Tags.Contains("rpadas01") || _context.ScenarioInfo.Tags.Contains("rpadas03"))
             {
                 return applicationAssessmentOverviewPage
-                    .Access_Section3_Link3()
+                    .Access_Section3_ForecastingStarts()
                     .SelectPassAndContinueInForecastingStartsPage()
                     .SelectPassAndContinueInReadyToDeliverTrainingAgainstForecastPage()
                     .SelectPassAndContinueInRecruitNewStaffToDeliverTrainingAgainstForecastPage()
@@ -85,7 +85,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
             if (_context.ScenarioInfo.Tags.Contains("rpadas01") || _context.ScenarioInfo.Tags.Contains("rpadas03"))
             {
                 return applicationAssessmentOverviewPage
-                    .Access_Section3_Link4()
+                    .Access_Section3_OffTheJobTraining()
                     .SelectPassAndContinueInOffTheJobTrainingPage()
                     .SelectPassAndContinue()
                     .VerifySection3Link4Status(StatusHelper.StatusPass);
@@ -102,7 +102,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor
             if (_context.ScenarioInfo.Tags.Contains("rpadas01") || _context.ScenarioInfo.Tags.Contains("rpadas03"))
             {
                 return applicationAssessmentOverviewPage
-                .Access_Section3_Link5()
+                .Access_Section3_WhereWillYourApprenticesBeTrained()
                 .SelectPassAndContinue()
                 .VerifySection3Link5Status(StatusHelper.StatusPass);
             }
