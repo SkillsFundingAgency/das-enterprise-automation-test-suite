@@ -22,6 +22,7 @@ steps:
     updateAssemblyInfo: true
 
 - task: UseDotNet@2
+  displayName: use dotnet core 3.x
   inputs:
     packageType: 'sdk'
     version: '3.x'
