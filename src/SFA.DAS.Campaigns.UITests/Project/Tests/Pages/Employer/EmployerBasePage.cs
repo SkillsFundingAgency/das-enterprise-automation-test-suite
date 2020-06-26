@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.UI.Framework;
 using System;
 using System.Collections.Generic;
 using TechTalk.SpecFlow;
@@ -26,7 +27,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
             });
         }
 
-        protected void GoToBasket() => tabHelper.OpenInNewTab(campaignsConfig.CA_BaseUrl, campaignsConfig.BasketViewPath);
+        protected void GoToBasket() => tabHelper.OpenInNewTab(UrlConfig.CA_BaseUrl, CampaignsConfig.BasketViewPath);
 
         public bool VerifyCount(int count) => (count == 0) ? !pageInteractionHelper.IsElementDisplayed(FavCount) : VerifyPage(FavCount, count.ToString());
     }

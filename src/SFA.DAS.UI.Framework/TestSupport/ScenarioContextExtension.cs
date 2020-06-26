@@ -20,9 +20,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
         private const string FAAProjectConfigKey = "faaprojectconfigkey";
         private const string ProviderPermissionConfigKey = "providerpermissionconfigkey";
         private const string TransfersProjectConfigKey = "transfersprojectconfigkey";
-        private const string FATProjectConfigKey = "fatprojectconfigkey";
         private const string EPAOProjectConfigKey = "epaoprojectconfigkey";
-        private const string CampaignsConfigKey = "campaignsprojectconfigkey";
         private const string ProviderFeedbackConfigKey = "providerfeedbackprojectconfigkey";
         private const string ARProjectConfigKey = "arprojectconfigkey";
         #endregion
@@ -36,13 +34,11 @@ namespace SFA.DAS.UI.Framework.TestSupport
         public static void SetProviderConfig<T>(this ScenarioContext context, T value) => Set(context, value, ProviderConfigKey);
         public static void SetProviderPermissionConfig<T>(this ScenarioContext context, T value) => Set(context, value, ProviderPermissionConfigKey);
         public static void SetTransfersConfig<T>(this ScenarioContext context, T value) => Set(context, value, TransfersProjectConfigKey);
-        public static void SetFATConfig<T>(this ScenarioContext context, T value) => Set(context, value, FATProjectConfigKey);
         public static void SetSupportConsoleConfig<T>(this ScenarioContext context, T value) => Set(context, value, SupportConsoleProjectConfigKey);
         public static void SetRAAV1Config<T>(this ScenarioContext context, T value) => Set(context, value, RAAV1ProjectConfigKey);
         public static void SetRAAV2QAConfig<T>(this ScenarioContext context, T value) => Set(context, value, RAAV2QAProjectConfigKey);
         public static void SetFAAConfig<T>(this ScenarioContext context, T value) => Set(context, value, FAAProjectConfigKey);
         public static void SetEPAOConfig<T>(this ScenarioContext context, T value) => Set(context, value, EPAOProjectConfigKey);
-        public static void SetCampaignsConfig<T>(this ScenarioContext context, T value) => Set(context, value, CampaignsConfigKey);
         public static void SetProviderFeedbackConfig<T>(this ScenarioContext context, T value) => Set(context, value, ProviderFeedbackConfigKey);
         public static void SetARConfig<T>(this ScenarioContext context, T value) => Set(context, value, ARProjectConfigKey);
         public static void SetWebDriver(this ScenarioContext context, IWebDriver webDriver) => Replace(context, webDriver, WebDriverKey);      
@@ -52,7 +48,6 @@ namespace SFA.DAS.UI.Framework.TestSupport
 
         #region Getters
         public static T GetRoatpConfig<T>(this ScenarioContext context) => Get<T>(context, RoatpProjectConfigKey);
-        public static T GetFATConfig<T>(this ScenarioContext context) => Get<T>(context, FATProjectConfigKey);
         public static T GetRegistrationConfig<T>(this ScenarioContext context) => Get<T>(context, RegistrationProjectConfigKey);
         public static T GetTprConfig<T>(this ScenarioContext context) => Get<T>(context, TprProjectConfigKey);
         public static T GetProviderLeadRegistrationConfig<T>(this ScenarioContext context) => Get<T>(context, ProviderLeadRegistrationConfigKey);
@@ -65,7 +60,6 @@ namespace SFA.DAS.UI.Framework.TestSupport
         public static T GetFAAConfig<T>(this ScenarioContext context) => Get<T>(context, FAAProjectConfigKey);
         public static T GetSupportConsoleConfig<T>(this ScenarioContext context) => Get<T>(context, SupportConsoleProjectConfigKey);
         public static T GetEPAOConfig<T>(this ScenarioContext context) => Get<T>(context, EPAOProjectConfigKey);
-        public static T GetCampaignsConfig<T>(this ScenarioContext context) => Get<T>(context, CampaignsConfigKey);
         public static T GetProviderFeedbackConfig<T>(this ScenarioContext context) => Get<T>(context, ProviderFeedbackConfigKey);
         public static T GetARConfig<T>(this ScenarioContext context) => Get<T>(context, ARProjectConfigKey);
         public static IWebDriver GetWebDriver(this ScenarioContext context) => Get<IWebDriver>(context, WebDriverKey);

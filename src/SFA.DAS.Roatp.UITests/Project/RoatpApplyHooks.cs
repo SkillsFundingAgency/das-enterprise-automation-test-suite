@@ -1,6 +1,7 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.Roatp.UITests.Project.Helpers.RoatpApply;
+using SFA.DAS.UI.Framework;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using System.Collections.Generic;
@@ -56,6 +57,6 @@ namespace SFA.DAS.Roatp.UITests.Project
         public void WhiteListProviders() => _applyClearDownDataHelpers.WhiteListProviders();
 
         [BeforeScenario(Order = 36)]
-        public void NavigateToRoatpApply() => _webDriver.Navigate().GoToUrl(_config.ApplyBaseUrl);
+        public void NavigateToRoatpApply() => _webDriver.Navigate().GoToUrl(UrlConfig.Apply_BaseUrl);
     }
 }

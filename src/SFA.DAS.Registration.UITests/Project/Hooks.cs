@@ -3,6 +3,7 @@ using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.MongoDb.DataGenerator;
 using SFA.DAS.MongoDb.DataGenerator.Helpers;
 using SFA.DAS.Registration.UITests.Project.Helpers;
+using SFA.DAS.UI.Framework;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
@@ -31,11 +32,7 @@ namespace SFA.DAS.Registration.UITests.Project
         }
 
         [BeforeScenario(Order = 21)]
-        public void Navigate()
-        {
-            var url = _config.EmployerApprenticeshipServiceBaseURL;
-            _webDriver.Navigate().GoToUrl(url);
-        }
+        public void Navigate() => _webDriver.Navigate().GoToUrl(UrlConfig.EmployerApprenticeshipService_BaseUrl);
 
         [BeforeScenario(Order = 22)]
         public void SetUpDataHelpers()

@@ -2,7 +2,7 @@
 
 namespace SFA.DAS.Approvals.UITests.Project
 {
-    public class ProviderPermissionsConfig : ProviderLoginConfig
+    public class ProviderPermissionsConfig : ProviderConfig
     {
         public string PermissionsDbConnectionString { get; set; }
 
