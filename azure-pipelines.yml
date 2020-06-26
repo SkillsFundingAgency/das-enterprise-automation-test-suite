@@ -21,12 +21,6 @@ steps:
   inputs:
     updateAssemblyInfo: true
 
-- task: UseDotNet@2
-  displayName: use dotnet core 3.x
-  inputs:
-    packageType: 'sdk'
-    version: '3.x'
-
 - task: DotNetCoreCLI@2
   displayName: dotnet restore
   inputs:
