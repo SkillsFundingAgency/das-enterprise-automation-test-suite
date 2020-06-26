@@ -7,6 +7,7 @@ using NUnit.Framework;
 using System.IO;
 using SFA.DAS.UI.FrameworkHelpers;
 using SFA.DAS.ConfigurationBuilder;
+using System.Globalization;
 
 namespace SFA.DAS.TestDataExport.AfterScenario
 {
@@ -44,11 +45,9 @@ namespace SFA.DAS.TestDataExport.AfterScenario
             {
                 using (var writer = new StreamWriter(filePath))
                 {
-                    using (var csv = new CsvWriter(writer))
-                    {
-                        csv.WriteRecords(records);
-                        writer?.Flush();
-                    }
+                    using var csv = new CsvWriter(writer, CultureInfo.InvariantCulture);
+                    csv.WriteRecords(records);
+                    writer?.Flush();
                 }
                 TestContext.AddTestAttachment(filePath, fileName);
             }
