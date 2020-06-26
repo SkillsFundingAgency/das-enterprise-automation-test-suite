@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.ApprenticeRedundancy.UITests.Project.Helpers;
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
@@ -16,6 +17,7 @@ namespace SFA.DAS.ApprenticeRedundancy.UITests.Project
     protected readonly PageInteractionHelper pageInteractionHelper;
     protected readonly FormCompletionHelper formCompletionHelper;
     protected readonly ApprenticeRedundancyConfig aRConfig;
+    protected readonly ApprenticeRedundancyDataHelper apprenticeRedundancyDataHelper;
     #endregion
 
     public ApprenticeRedundancyBasePage(ScenarioContext context) : base(context)
@@ -23,7 +25,9 @@ namespace SFA.DAS.ApprenticeRedundancy.UITests.Project
         objectContext = context.Get<ObjectContext>();
         formCompletionHelper = context.Get<FormCompletionHelper>();
         pageInteractionHelper = context.Get<PageInteractionHelper>();
+        apprenticeRedundancyDataHelper = context.Get<ApprenticeRedundancyDataHelper>();
         aRConfig = context.GetARConfig<ApprenticeRedundancyConfig>();
+       
+        }
     }
-  }
 }
