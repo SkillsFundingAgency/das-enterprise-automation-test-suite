@@ -23,7 +23,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="CsvHelper" Version="12.1.2" />
+    <PackageReference Include="CsvHelper" Version="15.0.5" />
     <PackageReference Include="RestSharp" Version="106.6.10" />
   </ItemGroup>
 
