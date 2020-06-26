@@ -44,11 +44,9 @@ namespace SFA.DAS.TestDataExport.AfterScenario
             {
                 using (var writer = new StreamWriter(filePath))
                 {
-                    using (var csv = new CsvWriter(writer))
-                    {
-                        csv.WriteRecords(records);
-                        writer?.Flush();
-                    }
+                    using var csv = new CsvWriter(writer);
+                    csv.WriteRecords(records);
+                    writer?.Flush();
                 }
                 TestContext.AddTestAttachment(filePath, fileName);
             }
