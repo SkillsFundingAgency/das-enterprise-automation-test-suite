@@ -1,7 +1,4 @@
 ﻿using SFA.DAS.ApprenticeRedundancy.UITests.Project.Test.Pages;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeRedundancy.UITests.Project.Test.StepDefinitions
