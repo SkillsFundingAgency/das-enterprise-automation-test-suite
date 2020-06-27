@@ -47,4 +47,8 @@
     </None>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Project\Test\Pages\Employer\" />
+  </ItemGroup>
+
 </Project>

@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.ApprenticeRedundancy.UITests.Project.Test.Pages.Apprentice;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
@@ -34,12 +35,15 @@ namespace SFA.DAS.ApprenticeRedundancy.UITests.Project.Test.Pages
             _context = context;
             VerifyPage();
         }
-        public void CompleteApprenticeDetails()
+        public CheckYourAnswersPage CompleteApprenticeDetails()
         {
             formCompletionHelper.EnterText(FullName, apprenticeRedundancyDataHelper.FullName);
             formCompletionHelper.EnterText(EmailAddress, apprenticeRedundancyDataHelper.Email);
             formCompletionHelper.EnterText(PhoneNumber, apprenticeRedundancyDataHelper.ContactNumber);
-            formCompletionHelper.EnterText(Day,apprenticeRedundancyDataHelper.Day);
+            var dobcalc = apprenticeRedundancyDataHelper.Dob(4);
+            formCompletionHelper.EnterText(Day,dobcalc.Day);
+            formCompletionHelper.EnterText(Month, dobcalc.Month);
+            formCompletionHelper.EnterText(Year, dobcalc.Year);
             formCompletionHelper.EnterText(Month, apprenticeRedundancyDataHelper.Month);
             formCompletionHelper.EnterText(Year, apprenticeRedundancyDataHelper.Year);
             formCompletionHelper.SelectRadioOptionByLocator(UpdatesYes);
@@ -51,14 +55,14 @@ namespace SFA.DAS.ApprenticeRedundancy.UITests.Project.Test.Pages
             formCompletionHelper.EnterText(Employer, apprenticeRedundancyDataHelper.Employer);
             formCompletionHelper.EnterText(EmployerLocation, apprenticeRedundancyDataHelper.Location);
             formCompletionHelper.EnterText(TrainingProvider, apprenticeRedundancyDataHelper.TrainingProvider);
-            var dobcalc = apprenticeRedundancyDataHelper.Dob(2);
-            formCompletionHelper.EnterText(ApprenticeshipMonth, dobcalc.Month);
-            formCompletionHelper.EnterText(ApprenticeshipYear, dobcalc.Year);
+            formCompletionHelper.EnterText(ApprenticeshipMonth, apprenticeRedundancyDataHelper.Months);
+            formCompletionHelper.EnterText(ApprenticeshipYear, apprenticeRedundancyDataHelper.Years);
             formCompletionHelper.SelectRadioOptionByLocator(JobseekerAllowance);
             formCompletionHelper.SelectCheckBoxByText(LocationAndSectors, "Business, Administration and Law");
             formCompletionHelper.SelectCheckBoxByText(LocationAndSectors, "Health, Public Services and Care");
             formCompletionHelper.SelectCheckBoxByText(LocationAndSectors,"Education and Training");
             Continue();
+            return new CheckYourAnswersPage(_context);
         }
     }
 }

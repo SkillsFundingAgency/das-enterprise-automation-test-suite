@@ -82,7 +82,7 @@ namespace SFA.DAS.ApprenticeRedundancy.UITests.Project.Test.Features
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 6
-testRunner.Given("the Apprentice Lands on Apprentice details form", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+testRunner.Given("the Apprentice Completes Apprentice details form successfully", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
             this.ScenarioCleanup();
         }

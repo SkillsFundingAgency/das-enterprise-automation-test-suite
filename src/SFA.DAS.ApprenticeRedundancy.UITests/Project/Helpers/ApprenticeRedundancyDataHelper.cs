@@ -11,11 +11,11 @@ namespace SFA.DAS.ApprenticeRedundancy.UITests.Project.Helpers
     {
         public ApprenticeRedundancyDataHelper(RandomDataGenerator randomDataGenerator) : base(randomDataGenerator)
         {
-            ContactNumber = randomDataGenerator.GenerateRandomNumber(8);
             Months = randomDataGenerator.GenerateRandomNumberBetweenTwoValues(0,11);
+            Years = randomDataGenerator.GenerateRandomNumberBetweenTwoValues(0, 9);
         }
 
-        public DateTime Dob(int x) => DateTime.Now.AddYears(-40 + x);
+        public DateTime Dob(int x) => DateTime.Now.AddYears(-15 + x);
         public string FullName => "Apprentice Smith";
         public string JobRole => "Employee";
         public string Email => "test.demo@digital.education.gov.uk";
@@ -28,7 +28,8 @@ namespace SFA.DAS.ApprenticeRedundancy.UITests.Project.Helpers
         public string Employer = "Apprentice Digital Education";
         public string TrainingProvider = "TEST Regression";
         public int Months { get; }
-        public string ContactNumber { get; }
+        public string ContactNumber = "+4409839867 ext (1234) 07809839867 ext (12343232)";
+        public int Years { get;  }
 
     }
 }

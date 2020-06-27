@@ -3,4 +3,4 @@
 @aprd
 @regression
 Scenario: AP_RD_ST_01_LandingOnApprenticeForm
-Given the Apprentice Lands on Apprentice details form
+Given the Apprentice Completes Apprentice details form successfully
