@@ -7,18 +7,19 @@ using NUnit.Framework;
 using System.IO;
 using SFA.DAS.UI.FrameworkHelpers;
 using SFA.DAS.ConfigurationBuilder;
+using System.Globalization;
 
 namespace SFA.DAS.TestDataExport.AfterScenario
 {
     [Binding]
     public class TestDataTearDown
     {
-        private readonly ScenarioContext _context;
         private readonly ObjectContext _objectContext;
+        private readonly string _scenarioTitle;
 
         public TestDataTearDown(ScenarioContext context)
         {
-            _context = context;
+            _scenarioTitle = context.ScenarioInfo.Title;
             _objectContext = context.Get<ObjectContext>();
         }
 
@@ -27,7 +28,7 @@ namespace SFA.DAS.TestDataExport.AfterScenario
         {
             _objectContext.SetAfterScenarioExceptions(new List<Exception>());
             
-            string fileName = $"{DateTime.Now:HH-mm-ss}_{_context.ScenarioInfo.Title}.txt".RemoveSpace();
+            string fileName = $"{DateTime.Now:HH-mm-ss}_{_scenarioTitle}.txt".RemoveSpace();
 
             string directory = _objectContext.GetDirectory();
 
@@ -35,18 +36,18 @@ namespace SFA.DAS.TestDataExport.AfterScenario
             
             List<TestData> records = new List<TestData>();
 
-            var testDatas = _objectContext.GetAll();
+            var testdataset = _objectContext.GetAll();
 
-            testDatas.ToList().ForEach(x => records.Add(new TestData { Key = x.Key, Value = testDatas[x.Key].ToString() }));
+            TestContext.Progress.WriteLine($"{testdataset.Count} test data set are available for {_scenarioTitle}");
+
+            testdataset.ToList().ForEach(x => records.Add(new TestData { Key = x.Key, Value = testdataset[x.Key].ToString() }));
             try
             {
                 using (var writer = new StreamWriter(filePath))
                 {
-                    using (var csv = new CsvWriter(writer))
-                    {
-                        csv.WriteRecords(records);
-                        writer?.Flush();
-                    }
+                    using var csv = new CsvWriter(writer, CultureInfo.InvariantCulture);
+                    csv.WriteRecords(records);
+                    writer?.Flush();
                 }
                 TestContext.AddTestAttachment(filePath, fileName);
             }

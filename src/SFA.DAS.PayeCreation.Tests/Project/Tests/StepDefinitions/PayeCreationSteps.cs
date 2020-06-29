@@ -4,6 +4,7 @@ using TechTalk.SpecFlow;
 using SFA.DAS.MongoDb.DataGenerator.Helpers;
 using NUnit.Framework;
 using System.Linq;
+using SFA.DAS.PayeCreation.Tests.Project;
 
 namespace SFA.DAS.PayeCreation.Project.Tests.StepDefinitions
 {
@@ -32,6 +33,8 @@ namespace SFA.DAS.PayeCreation.Project.Tests.StepDefinitions
             int.TryParse(noofpayefromconfig, out int noofpaye);
 
             noofpaye = noofpaye < 100 ? noofpaye : 100;
+
+            _objectContext.SetNoOfPayeRequested(noofpaye);
 
             for (int i = 0; i < noofpaye; i++)
             {
