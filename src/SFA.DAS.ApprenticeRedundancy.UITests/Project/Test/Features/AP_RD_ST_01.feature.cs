@@ -74,17 +74,19 @@ namespace SFA.DAS.ApprenticeRedundancy.UITests.Project.Test.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("AP_RD_ST_01_LandingOnApprenticeForm")]
+        [NUnit.Framework.DescriptionAttribute("AP_RD_ST_01_HappyPathApprenticeForm")]
         [NUnit.Framework.CategoryAttribute("aprd")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public virtual void AP_RD_ST_01_LandingOnApprenticeForm()
+        [NUnit.Framework.CategoryAttribute("aprd01")]
+        public virtual void AP_RD_ST_01_HappyPathApprenticeForm()
         {
             string[] tagsOfScenario = new string[] {
                     "aprd",
-                    "regression"};
+                    "regression",
+                    "aprd01"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_RD_ST_01_LandingOnApprenticeForm", null, tagsOfScenario, argumentsOfScenario);
-#line 5
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_RD_ST_01_HappyPathApprenticeForm", null, tagsOfScenario, argumentsOfScenario);
+#line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -104,8 +106,8 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 6
-testRunner.Given("the Apprentice Lands on Apprentice details form", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 7
+testRunner.Given("the Apprentice Completes Apprentice details form successfully", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
             }
             this.ScenarioCleanup();
