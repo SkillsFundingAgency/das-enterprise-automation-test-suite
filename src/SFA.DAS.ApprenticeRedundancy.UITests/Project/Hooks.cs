@@ -28,10 +28,7 @@ namespace SFA.DAS.ApprenticeRedundancy.UITests.Project
         public void NavigateToCovidSupportHomepage() => _webDriver.Navigate().GoToUrl(_config.AR_BaseUrl);
 
         [BeforeScenario(Order = 22)]
-        public void SetUpHelpers()
-        {
-            _context.Set(new ApprenticeRedundancyDataHelper(_context.Get<RandomDataGenerator>()));
+        public void SetUpHelpers() => _context.Set(new ApprenticeRedundancyDataHelper(_context.Get<RandomDataGenerator>()));
 
-        }
     }
 }
