@@ -1,6 +1,7 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.ApprenticeRedundancy.UITests.Project.Helpers;
 using SFA.DAS.ConfigurationBuilder;
+using SFA.DAS.UI.Framework;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using System;
@@ -25,7 +26,7 @@ namespace SFA.DAS.ApprenticeRedundancy.UITests.Project
         }
 
         [BeforeScenario(Order = 21)]
-        public void NavigateToCovidSupportHomepage() => _webDriver.Navigate().GoToUrl(_config.AR_BaseUrl);
+        public void NavigateToCovidSupportHomepage() => _webDriver.Navigate().GoToUrl(UrlConfig.AR_BaseUrl);
 
         [BeforeScenario(Order = 22)]
         public void SetUpHelpers() => _context.Set(new ApprenticeRedundancyDataHelper(_context.Get<RandomDataGenerator>()));

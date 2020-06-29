@@ -9,6 +9,7 @@ namespace SFA.DAS.ApprenticeRedundancy.UITests.Project.Test.Pages
     {
         protected override string PageTitle => "Apprentice details";
 
+        #region Element Locators
         private By FullName = By.Id("FullName");
         private By EmailAddress = By.Id("Email");
         private By Day = By.Id("BirthDay");
@@ -25,6 +26,7 @@ namespace SFA.DAS.ApprenticeRedundancy.UITests.Project.Test.Pages
         private By JobseekerAllowance = By.Id("ClaimingJobseekersAllowance");
         private By LocationAndSectors = By.CssSelector(".govuk-checkboxes__item");
         private By PhoneNumber = By.Id("PhoneNumber");
+        #endregion
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
@@ -40,12 +42,10 @@ namespace SFA.DAS.ApprenticeRedundancy.UITests.Project.Test.Pages
             formCompletionHelper.EnterText(FullName, apprenticeRedundancyDataHelper.FullName);
             formCompletionHelper.EnterText(EmailAddress, apprenticeRedundancyDataHelper.Email);
             formCompletionHelper.EnterText(PhoneNumber, apprenticeRedundancyDataHelper.ContactNumber);
-            var dobcalc = apprenticeRedundancyDataHelper.Dob(4);
-            formCompletionHelper.EnterText(Day,dobcalc.Day);
+            var dobcalc = apprenticeRedundancyDataHelper.Dob(3);
+            formCompletionHelper.EnterText(Day, dobcalc.Day);
             formCompletionHelper.EnterText(Month, dobcalc.Month);
             formCompletionHelper.EnterText(Year, dobcalc.Year);
-            formCompletionHelper.EnterText(Month, apprenticeRedundancyDataHelper.Month);
-            formCompletionHelper.EnterText(Year, apprenticeRedundancyDataHelper.Year);
             formCompletionHelper.SelectRadioOptionByLocator(UpdatesYes);
             formCompletionHelper.EnterText(Postcode, apprenticeRedundancyDataHelper.Postcode);
             formCompletionHelper.SelectCheckBoxByText(LocationAndSectors, "East Midlands");

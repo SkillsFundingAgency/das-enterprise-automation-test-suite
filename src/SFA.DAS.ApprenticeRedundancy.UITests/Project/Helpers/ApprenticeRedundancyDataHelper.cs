@@ -15,14 +15,12 @@ namespace SFA.DAS.ApprenticeRedundancy.UITests.Project.Helpers
             Years = randomDataGenerator.GenerateRandomNumberBetweenTwoValues(0, 9);
         }
 
-        public DateTime Dob(int x) => DateTime.Now.AddYears(-15 + x);
+        public DateTime Dob(int x) => DateTime.Now.AddYears(-20 + x);
         public string FullName => "Apprentice Smith";
         public string JobRole => "Employee";
         public string Email => "test.demo@digital.education.gov.uk";
         public string Postcode => "CV22 4NX";
-        public string Day => "10";
-        public string Month => "11";
-        public string Year => "2000";
+
         public string PreviousApprenticeshipTraining = "Information Technology";
         public string Location = "Coventry";
         public string Employer = "Apprentice Digital Education";
