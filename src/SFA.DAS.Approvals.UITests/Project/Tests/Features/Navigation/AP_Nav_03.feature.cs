@@ -119,12 +119,9 @@ this.ScenarioInitialize(scenarioInfo);
 #line 10
  testRunner.And("the Help widget is displayed on bottom right hand corner", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 11
- testRunner.Then("\'Set payment order\' link should direct user to \'Set payment order\' page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
 #line 12
- testRunner.And("\'Report public sector apprenticeship target\' link should direct user to \'Annual a" +
-                        "pprenticeship return\' page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Then("\'Report public sector apprenticeship target\' link should direct user to \'Annual a" +
+                        "pprenticeship return\' page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 13
  testRunner.And("\'Manage your apprentices\' link should direct user to \'Manage your apprentices\' pa" +
