@@ -9,7 +9,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         private By ConfirmDeleteOptions => By.CssSelector(".selection-button-radio");
 
-        protected override By ContinueButton => By.CssSelector(".button");
+        protected override By ContinueButton => By.CssSelector("#submit-delete-cohort");
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
