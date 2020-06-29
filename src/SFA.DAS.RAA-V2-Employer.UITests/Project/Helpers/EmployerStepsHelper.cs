@@ -99,7 +99,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
             return new DoYouNeedToCreateAnAdvertPage(_context).ClickYesRadioButtonTakesToRecruitment().ClickStartNow();
         }
 
-        internal RecruitmentHomePage GoToRecruitmentHomePage()
+        internal YourApprenticeshipAdvertsHomePage GoToRecruitmentHomePage()
         {
             _loginhelper.Login(_context.GetUser<RAAV2EmployerUser>(), true);
 
@@ -123,6 +123,6 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
 
         private SubmitNoOfPositionsPage EnterTrainingDetails(ApprenticeshipTrainingPage apprenticeshipTrainingPage) => apprenticeshipTrainingPage.EnterTrainingTitle().ConfirmTrainingAndContinue().ChooseTrainingProvider().ConfirmTrainingProviderAndContinue();
 
-        private RecruitmentHomePage NavigateToRecruitmentHomePage() => new RecruitmentHomePage(_context, true);
+        private YourApprenticeshipAdvertsHomePage NavigateToRecruitmentHomePage() => new YourApprenticeshipAdvertsHomePage(_context, true);
     }
 }
