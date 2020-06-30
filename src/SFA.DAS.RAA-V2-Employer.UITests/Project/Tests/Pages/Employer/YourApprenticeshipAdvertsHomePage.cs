@@ -9,7 +9,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer
 {
     public class YourApprenticeshipAdvertsHomePage : InterimYourApprenticeshipAdvertsHomePage
     {
-        protected override string PageTitle => _context.ScenarioInfo.Tags.Contains("addpayedetails") ? "Recruitment" : "Your apprenticeship adverts";
+        protected override string PageTitle => tags.Contains("addpayedetails") ? "Recruitment" : "Your apprenticeship adverts";
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
