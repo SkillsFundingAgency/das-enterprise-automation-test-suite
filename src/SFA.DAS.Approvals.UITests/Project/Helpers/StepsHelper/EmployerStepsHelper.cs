@@ -32,7 +32,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 
         internal ReviewYourCohortPage OpenRejectedCohort() => 
             GoToEmployerApprenticesHomePage()
-              .ClickYourCohortsLink()
+              .ClickApprenticeRequestsLink()
               .GoToCohortsReadyForReview()
               .SelectViewCurrentCohortDetails();
 
@@ -79,7 +79,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
         internal ReviewYourCohortPage EmployerReviewCohort()
         {
             var employerReviewYourCohortPage = GoToEmployerApprenticesHomePage()
-                .ClickYourCohortsLink()
+                .ClickApprenticeRequestsLink()
                 .GoToCohortsReadyForReview()
                 .SelectViewCurrentCohortDetails();
 
