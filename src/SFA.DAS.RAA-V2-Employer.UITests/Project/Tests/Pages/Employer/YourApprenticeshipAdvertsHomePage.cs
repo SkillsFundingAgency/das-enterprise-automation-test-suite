@@ -3,11 +3,14 @@ using TechTalk.SpecFlow;
 using SFA.DAS.RAA_V2.Service.Project.Helpers;
 using OpenQA.Selenium;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages.InterimPages;
+using System.Linq;
 
 namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer
 {
     public class YourApprenticeshipAdvertsHomePage : InterimYourApprenticeshipAdvertsHomePage
     {
+        protected override string PageTitle => _context.ScenarioInfo.Tags.Contains("addpayedetails") ? "Recruitment" : "Your apprenticeship adverts";
+
         #region Helpers and Context
         private readonly ScenarioContext _context;
         private readonly SearchVacancyPageHelper _searchVacancyPageHelper;  
