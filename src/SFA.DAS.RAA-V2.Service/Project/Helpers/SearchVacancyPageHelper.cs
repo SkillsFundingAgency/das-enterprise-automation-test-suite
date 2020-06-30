@@ -34,7 +34,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Helpers
 
         public ManageVacancyPage SelectLiveVacancy()
         {
-            _formCompletionHelper.ClickLinkByText("Live vacancies");
+            _formCompletionHelper.ClickLinkByText("Live adverts");
             _pageInteractionHelper.WaitforURLToChange($"filter=Live");
             _formCompletionHelper.ClickElement(_dataHelper.GetRandomElementFromListOfElements(_pageInteractionHelper.FindElements(Manage)));
             return new ManageVacancyPage(_context);

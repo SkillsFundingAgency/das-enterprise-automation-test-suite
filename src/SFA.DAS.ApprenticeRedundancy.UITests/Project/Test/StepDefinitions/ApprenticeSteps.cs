@@ -1,7 +1,4 @@
 ﻿using SFA.DAS.ApprenticeRedundancy.UITests.Project.Test.Pages;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeRedundancy.UITests.Project.Test.StepDefinitions
@@ -13,8 +10,8 @@ namespace SFA.DAS.ApprenticeRedundancy.UITests.Project.Test.StepDefinitions
 
         public ApprenticeSteps(ScenarioContext context) => _context = context;
 
-        [Given(@"the Apprentice Lands on Apprentice details form")]
-        public void GivenTheApprenticeLandsOnApprenticeDetailsForm()  => new NewApprenticeshipLandingPage(_context).SelectAprpenticesStartnow();
+        [Given(@"the Apprentice Completes Apprentice details form successfully")]
+        public void GivenTheApprenticeCompletesApprenticeDetailsFormSuccessfully() => new NewApprenticeshipLandingPage(_context).SelectAprpenticesStartnow().CompleteApprenticeDetails().ConfirmAnswers();
 
     }
 }
