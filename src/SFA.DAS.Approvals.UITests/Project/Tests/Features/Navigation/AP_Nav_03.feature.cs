@@ -120,20 +120,13 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("the Help widget is displayed on bottom right hand corner", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 11
- testRunner.Then("\'Set payment order\' link should direct user to \'Set payment order\' page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("\'Manage your apprentices\' link should direct user to \'Manage your apprentices\' pa" +
+                        "ge", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 12
- testRunner.And("\'Report public sector apprenticeship target\' link should direct user to \'Annual a" +
-                        "pprenticeship return\' page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("\'Apprentice requests\' link should direct user to \'Your cohort requests\' page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 13
- testRunner.And("\'Manage your apprentices\' link should direct user to \'Manage your apprentices\' pa" +
-                        "ge", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 14
- testRunner.And("\'Your cohorts\' link should direct user to \'Your cohort requests\' page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 15
  testRunner.And("\'Add an apprentice\' link should direct user to \'Add an apprentice\' page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }

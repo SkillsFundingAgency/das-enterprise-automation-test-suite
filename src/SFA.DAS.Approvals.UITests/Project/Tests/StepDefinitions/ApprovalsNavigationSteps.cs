@@ -84,8 +84,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                 case "Manage your apprentices":
                     _apprenticesHomePage.ClickManageYourApprenticesLink();
                     break;
-                case "Your cohorts":
-                    _apprenticesHomePage.ClickYourCohortsLink();
+                case "Apprentice requests":
+                    _apprenticesHomePage.ClickApprenticeRequestsLink();
                     break;
                 case "Add an apprentice":
                     _apprenticesHomePage.AddAnApprentice();

@@ -14,7 +14,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         #endregion
 
         private By AddAnApprenticeLink => By.LinkText("Add an apprentice");
-        private By YourCohortsLink => By.LinkText("Your cohorts");
+        private By ApprenticeRequestsLink => By.LinkText("Apprentice requests");
         private By ManageYourApprenticesLink => By.LinkText("Manage your apprentices");
         private By SetPaymentOrder => By.LinkText("Set payment order");
         private By ReportPublicSectorApprenticeshipTarget => By.LinkText("Report public sector apprenticeship target");
@@ -43,9 +43,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             return new AddAnApprenitcePage(_context);
         }
 
-        public YourCohortRequestsPage ClickYourCohortsLink()
+        public YourCohortRequestsPage ClickApprenticeRequestsLink()
         {
-            formCompletionHelper.ClickElement(YourCohortsLink);
+            formCompletionHelper.ClickElement(ApprenticeRequestsLink);
             return new YourCohortRequestsPage(_context);
         }
 

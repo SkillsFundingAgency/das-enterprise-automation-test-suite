@@ -1,7 +1,7 @@
 ﻿
-	SELECT ael.PublicHashedId 
-	FROM [employer_account].[AccountLegalEntity] ael
-	WHERE ael.AccountId = 
+SELECT ale.PublicHashedId 
+	FROM [employer_account].[AccountLegalEntity] ale
+	WHERE ale.AccountId = 
 		(
 			SELECT TOP 1 acc.Id
 			FROM [employer_account].[Membership] msp
@@ -12,4 +12,6 @@
 			WHERE usr.Email =  @email
 			AND Name Like @name
 		)
+	AND ale.SignedAgreementId is not null
+
 
