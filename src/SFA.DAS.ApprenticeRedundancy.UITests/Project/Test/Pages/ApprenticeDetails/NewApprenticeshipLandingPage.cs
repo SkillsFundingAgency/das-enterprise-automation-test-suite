@@ -5,7 +5,7 @@ namespace SFA.DAS.ApprenticeRedundancy.UITests.Project.Test.Pages
 {
     public class NewApprenticeshipLandingPage : ApprenticeRedundancyBasePage
     {
-        protected override string PageTitle => "Find a new apprenticeship";
+        protected override string PageTitle => "Find another apprenticeship";
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
@@ -19,7 +19,7 @@ namespace SFA.DAS.ApprenticeRedundancy.UITests.Project.Test.Pages
         }
         public ApprenticeDetailsPage SelectAprpenticesStartnow()
         {
-            formCompletionHelper.Click(StartNowButtonForApprentice);
+            Continue();
             return new ApprenticeDetailsPage(_context);
         }
     }

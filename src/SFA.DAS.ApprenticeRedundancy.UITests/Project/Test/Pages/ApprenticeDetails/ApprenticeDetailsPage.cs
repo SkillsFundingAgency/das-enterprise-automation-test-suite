@@ -37,7 +37,7 @@ namespace SFA.DAS.ApprenticeRedundancy.UITests.Project.Test.Pages
             _context = context;
             VerifyPage();
         }
-        public CheckYourAnswersPage CompleteApprenticeDetails()
+        public Apprentice_CheckYourAnswersPage CompleteApprenticeDetails()
         {
             formCompletionHelper.EnterText(FullName, apprenticeRedundancyDataHelper.FullName);
             formCompletionHelper.EnterText(EmailAddress, apprenticeRedundancyDataHelper.Email);
@@ -62,7 +62,7 @@ namespace SFA.DAS.ApprenticeRedundancy.UITests.Project.Test.Pages
             formCompletionHelper.SelectCheckBoxByText(LocationAndSectors, "Health, Public Services and Care");
             formCompletionHelper.SelectCheckBoxByText(LocationAndSectors,"Education and Training");
             Continue();
-            return new CheckYourAnswersPage(_context);
+            return new Apprentice_CheckYourAnswersPage(_context);
         }
     }
 }

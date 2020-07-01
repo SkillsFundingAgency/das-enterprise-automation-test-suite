@@ -7,6 +7,11 @@
 		<IsPackable>false</IsPackable>
 	</PropertyGroup>
 
+
+	<ItemGroup>
+	  <SpecFlowObsoleteCodeBehindFiles Remove="Project\Test\Features\AP_RD_ST_01 - Copy.feature.cs" />
+	</ItemGroup>
+
 	<ItemGroup>
 		<Compile Include="..\NUnitConfigurator.cs" Link="NUnitConfigurator.cs">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -36,6 +41,12 @@
 		<ProjectReference Include="..\SFA.DAS.UI.Framework\SFA.DAS.UI.Framework.csproj" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Compile Update="Project\Test\Features\AP_RD_Employer_02.feature.cs">
+	    <DependentUpon>AP_RD_Employer_02.feature</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
   <ItemGroup>
     <None Update="appsettings.Environment.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -52,7 +63,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Project\Test\Pages\Employer\" />
+    <SpecFlowFeatureFiles Update="Project\Test\Features\AP_RD_Employer_02.feature">
+      <Visible>$(UsingMicrosoftNETSdk)</Visible>
+      <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
+    </SpecFlowFeatureFiles>
   </ItemGroup>
-
 </Project>

@@ -20,22 +20,22 @@ namespace SFA.DAS.ApprenticeRedundancy.UITests.Project.Test.Features
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.3.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("AP_RD_ST_01")]
-    public partial class AP_RD_ST_01Feature
+    [NUnit.Framework.DescriptionAttribute("AP_RD_ST_02")]
+    public partial class AP_RD_ST_02Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private string[] _featureTags = ((string[])(null));
         
-#line 1 "AP_RD_ST_01.feature"
+#line 1 "AP_RD_Employer_02.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "AP_RD_ST_01", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "AP_RD_ST_02", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,18 +74,18 @@ namespace SFA.DAS.ApprenticeRedundancy.UITests.Project.Test.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("AP_RD_ST_01_HappyPathApprenticeForm")]
+        [NUnit.Framework.DescriptionAttribute("AP_RD_Employer_02_HappyPathEmployerForm")]
         [NUnit.Framework.CategoryAttribute("aprd")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("aprd01")]
-        public virtual void AP_RD_ST_01_HappyPathApprenticeForm()
+        [NUnit.Framework.CategoryAttribute("aprd02")]
+        public virtual void AP_RD_Employer_02_HappyPathEmployerForm()
         {
             string[] tagsOfScenario = new string[] {
                     "aprd",
                     "regression",
-                    "aprd01"};
+                    "aprd02"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_RD_ST_01_HappyPathApprenticeForm", null, tagsOfScenario, argumentsOfScenario);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_RD_Employer_02_HappyPathEmployerForm", null, tagsOfScenario, argumentsOfScenario);
 #line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -107,7 +107,7 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 7
-testRunner.Given("the Apprentice Completes Apprentice details form successfully", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+testRunner.Given("the Employer Completes Employer details form successfully", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
             }
             this.ScenarioCleanup();
