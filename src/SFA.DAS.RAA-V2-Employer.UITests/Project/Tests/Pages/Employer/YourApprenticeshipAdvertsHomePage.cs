@@ -14,8 +14,8 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer
         #endregion
 
         protected override By AcceptCookieButton => By.CssSelector("#btn-cookie-accept");
-
         private readonly By StartNow = By.CssSelector("[data-automation='create-vacancy']");
+        private readonly By CreateAnAdvertButton = By.LinkText("Create an advert");
 
         public YourApprenticeshipAdvertsHomePage(ScenarioContext context, bool navigate = false) : base(context, navigate)
         {
@@ -29,11 +29,11 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer
             return new VacancyTitlePage(_context);
         }
 
-        public CreateVacancyPage CreateANewVacancy()
+        public CreateAnAdvertPage CreateAnAdvert()
         {
             AcceptCookies();
-            formCompletionHelper.ClickLinkByText("Create an advert");
-            return new CreateVacancyPage(_context);
+            formCompletionHelper.Click(CreateAnAdvertButton);
+            return new CreateAnAdvertPage(_context);
         }
 
         private new YourApprenticeshipAdvertsHomePage AcceptCookies()
@@ -42,8 +42,8 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer
             return this;
         }
 
-        public ManageVacancyPage SelectLiveVacancy() => _searchVacancyPageHelper.SelectLiveVacancy();
+        public ManageVacancyPage SelectLiveAdvert() => _searchVacancyPageHelper.SelectLiveVacancy();
 
-        public ManageVacancyPage SearchVacancyByVacancyReference() => _searchVacancyPageHelper.SearchVacancyByVacancyReference();
+        public ManageVacancyPage SearchAdvertByReferenceNumber() => _searchVacancyPageHelper.SearchVacancyByVacancyReference();
     }
 }

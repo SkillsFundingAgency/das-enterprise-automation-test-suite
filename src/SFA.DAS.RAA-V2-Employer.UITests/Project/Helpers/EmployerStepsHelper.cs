@@ -39,7 +39,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
             SearchVacancyByVacancyReference().NavigateToViewVacancyPage().VerifyDisabilityConfident();
         }
 
-        internal void CloneAVacancy() =>  _stepsHelper.SubmitVacancy(GoToRecruitmentHomePage().SelectLiveVacancy().CloneVacancy().SelectYes().UpdateTitle().UpdateVacancyTitle().UpdateApplicationProcess().ApplicationMethod(true));
+        internal void CloneAVacancy() =>  _stepsHelper.SubmitVacancy(GoToRecruitmentHomePage().SelectLiveAdvert().CloneVacancy().SelectYes().UpdateTitle().UpdateVacancyTitle().UpdateApplicationProcess().ApplicationMethod(true));
 
         internal void EditVacancyDates() => SearchVacancyByVacancyReferenceInNewTab().EditVacancy().EditVacancyCloseDate().EnterVacancyDates().EditVacancyStartDate().EnterPossibleStartDate().PublishVacancy();
 
@@ -60,9 +60,9 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
 
         internal void CreateANewVacancy(string wageType)
         {
-            var employernamePage = SelectOrganisation();
+            var whichEmployerNameDoYouWantOnYourAdvertPage = SelectOrganisation();
 
-            var locationPage = _stepsHelper.ChooseEmployerName(employernamePage, string.Empty);
+            var locationPage = _stepsHelper.ChooseEmployerNameForEmployerJourney(whichEmployerNameDoYouWantOnYourAdvertPage, string.Empty);
 
             var previewPage = _stepsHelper.PreviewVacancy(locationPage, wageType);
 
@@ -78,9 +78,9 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
 
         internal VacancyPreviewPart2Page CreateDraftVacancy(VacancyTitlePage vacancyTitlePage, string wageType)
         {
-            var employernamePage = SelectOrganisationForNewAccount(vacancyTitlePage);
+            var whichEmployerNameDoYouWantOnYourAdvertPage = SelectOrganisationForNewAccount(vacancyTitlePage);
 
-            var locationPage = _stepsHelper.ChooseEmployerName(employernamePage, string.Empty);
+            var locationPage = _stepsHelper.ChooseEmployerNameForEmployerJourney(whichEmployerNameDoYouWantOnYourAdvertPage, string.Empty);
 
             return _stepsHelper.PreviewVacancy(locationPage, wageType);
         }
@@ -89,9 +89,9 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
 
         internal VacancyPreviewPart2Page PreviewVacancy(string employername, bool isEmployerAddress, bool disabilityConfidence)
         {
-            var employernamePage = SelectOrganisation();
+            var whichEmployerNameDoYouWantOnYourAdvertPage = SelectOrganisation();
 
-            return _stepsHelper.PreviewVacancy(employernamePage, employername, isEmployerAddress, disabilityConfidence);
+            return _stepsHelper.PreviewVacancyForEmployerJourney(whichEmployerNameDoYouWantOnYourAdvertPage, employername, isEmployerAddress, disabilityConfidence);
         }
         internal VacancyTitlePage GoToAddAnAdvert()
         {
@@ -113,13 +113,17 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
             return SearchVacancyByVacancyReference();
         }
 
-        private ManageVacancyPage SearchVacancyByVacancyReference() => NavigateToRecruitmentHomePage().SearchVacancyByVacancyReference();
+        private ManageVacancyPage SearchVacancyByVacancyReference() => NavigateToRecruitmentHomePage().SearchAdvertByReferenceNumber();
 
-        private ApprenticeshipTrainingPage EnterVacancyTitle() => GoToRecruitmentHomePage().CreateANewVacancy().CreateNewVacancy().EnterVacancyTitle();
+        private ApprenticeshipTrainingPage EnterVacancyTitle() => GoToRecruitmentHomePage().CreateAnAdvert().CreateNewAdvert().EnterVacancyTitle();
 
-        private EmployerNamePage SelectOrganisation() => EnterTrainingDetails(EnterVacancyTitle()).SubmitNoOfPositions().SelectOrganisation();
+        private WhichEmployerNameDoYouWantOnYourAdvertPage SelectOrganisation() => EnterTrainingDetails(EnterVacancyTitle()).SubmitNoOfPositionsAndNavigateToSelectOrganisationPage().SelectOrganisation();
 
-        private EmployerNamePage SelectOrganisationForNewAccount(VacancyTitlePage vacancyTitlePage) => EnterTrainingDetails(vacancyTitlePage.EnterVacancyTitleForTheFirstVacancy().SelectYes()).SubmitNoOfPositionsAndNavigateToEmployerNamePage();
+        private WhichEmployerNameDoYouWantOnYourAdvertPage SelectOrganisationForNewAccount(VacancyTitlePage vacancyTitlePage)
+        {
+            EnterTrainingDetails(vacancyTitlePage.EnterVacancyTitleForTheFirstVacancy().SelectYes()).EnterNumberOfPositionsAndContinue();
+            return new WhichEmployerNameDoYouWantOnYourAdvertPage(_context);
+        }
 
         private SubmitNoOfPositionsPage EnterTrainingDetails(ApprenticeshipTrainingPage apprenticeshipTrainingPage) => apprenticeshipTrainingPage.EnterTrainingTitle().ConfirmTrainingAndContinue().ChooseTrainingProvider().ConfirmTrainingProviderAndContinue();
 
