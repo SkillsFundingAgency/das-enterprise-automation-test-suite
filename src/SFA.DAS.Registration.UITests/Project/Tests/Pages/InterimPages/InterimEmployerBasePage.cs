@@ -16,7 +16,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.InterimPages
         private readonly ScenarioContext _context;
         protected readonly RegistrationConfig config;
         protected readonly ObjectContext objectContext;
-        protected readonly string[] tags;
         #endregion
 
         #region Locators
@@ -37,7 +36,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.InterimPages
             _context = context;
             config = context.GetRegistrationConfig<RegistrationConfig>();
             objectContext = context.Get<ObjectContext>();
-            tags = context.ScenarioInfo.Tags;
             VerifyPage();
         }
 
