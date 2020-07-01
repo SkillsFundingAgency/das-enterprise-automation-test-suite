@@ -27,10 +27,10 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer
             _searchVacancyPageHelper = new SearchVacancyPageHelper(context);
         }
 
-        public VacancyTitlePage ClickStartNow()
+        public WhatDoYouWantToCallThisAdvertPage ClickStartNow()
         {
             formCompletionHelper.Click(StartNow);
-            return new VacancyTitlePage(_context);
+            return new WhatDoYouWantToCallThisAdvertPage(_context);
         }
 
         public CreateAnAdvertPage CreateAnAdvert()

@@ -69,16 +69,16 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
             _stepsHelper.SubmitVacancy(previewPage, true, false);
         }
 
-        internal void CreateSubmittedVacancy(VacancyTitlePage vacancyTitlePage, string wageType)
+        internal void CreateSubmittedVacancy(WhatDoYouWantToCallThisAdvertPage whatDoYouWantToCallThisAdvertPage, string wageType)
         {
-            var previewPage = CreateDraftVacancy(vacancyTitlePage, wageType);
+            var previewPage = CreateDraftVacancy(whatDoYouWantToCallThisAdvertPage, wageType);
 
             _stepsHelper.SubmitVacancy(previewPage, true, false);
         }
 
-        internal VacancyPreviewPart2Page CreateDraftVacancy(VacancyTitlePage vacancyTitlePage, string wageType)
+        internal VacancyPreviewPart2Page CreateDraftVacancy(WhatDoYouWantToCallThisAdvertPage whatDoYouWantToCallThisAdvertPage, string wageType)
         {
-            var whichEmployerNameDoYouWantOnYourAdvertPage = SelectOrganisationForNewAccount(vacancyTitlePage);
+            var whichEmployerNameDoYouWantOnYourAdvertPage = SelectOrganisationForNewAccount(whatDoYouWantToCallThisAdvertPage);
 
             var locationPage = _stepsHelper.ChooseEmployerNameForEmployerJourney(whichEmployerNameDoYouWantOnYourAdvertPage, string.Empty);
 
@@ -93,7 +93,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
 
             return _stepsHelper.PreviewVacancyForEmployerJourney(whichEmployerNameDoYouWantOnYourAdvertPage, employername, isEmployerAddress, disabilityConfidence);
         }
-        internal VacancyTitlePage GoToAddAnAdvert()
+        internal WhatDoYouWantToCallThisAdvertPage GoToAddAnAdvert()
         {
             new RecruitmentDynamicHomePage(_context, true).ContinueToCreateAdvert();
             return new DoYouNeedToCreateAnAdvertPage(_context).ClickYesRadioButtonTakesToRecruitment().ClickStartNow();
@@ -119,9 +119,9 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
 
         private WhichEmployerNameDoYouWantOnYourAdvertPage SelectOrganisation() => EnterTrainingDetails(EnterVacancyTitle()).SubmitNoOfPositionsAndNavigateToSelectOrganisationPage().SelectOrganisation();
 
-        private WhichEmployerNameDoYouWantOnYourAdvertPage SelectOrganisationForNewAccount(VacancyTitlePage vacancyTitlePage)
+        private WhichEmployerNameDoYouWantOnYourAdvertPage SelectOrganisationForNewAccount(WhatDoYouWantToCallThisAdvertPage whatDoYouWantToCallThisAdvertPage)
         {
-            EnterTrainingDetails(vacancyTitlePage.EnterVacancyTitleForTheFirstVacancy().SelectYes()).EnterNumberOfPositionsAndContinue();
+            EnterTrainingDetails(whatDoYouWantToCallThisAdvertPage.EnterVacancyTitleForTheFirstVacancy().SelectYes()).EnterNumberOfPositionsAndContinue();
             return new WhichEmployerNameDoYouWantOnYourAdvertPage(_context);
         }
 
