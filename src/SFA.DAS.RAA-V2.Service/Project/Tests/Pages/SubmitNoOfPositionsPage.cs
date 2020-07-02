@@ -20,19 +20,13 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
             _context = context;
         }
 
-        public SelectOrganisationPage SubmitNoOfPositions()
+        public SelectOrganisationPage SubmitNoOfPositionsAndNavigateToSelectOrganisationPage()
         {
-            EnterNumberOfVacancy();
+            EnterNumberOfPositionsAndContinue();
             return new SelectOrganisationPage(_context);
         }
 
-        public EmployerNamePage SubmitNoOfPositionsAndNavigateToEmployerNamePage()
-        {
-            EnterNumberOfVacancy();
-            return new EmployerNamePage(_context);
-        }
-
-        private void EnterNumberOfVacancy()
+        public void EnterNumberOfPositionsAndContinue()
         {
             formCompletionHelper.EnterText(NumberOfPositions, rAAV2DataHelper.NumberOfVacancy);
             Continue();

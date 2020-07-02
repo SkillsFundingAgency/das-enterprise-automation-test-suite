@@ -32,7 +32,7 @@ namespace SFA.DAS.RAA.DataGenerator
 
         public string VacancyTitle => $"{_vacancyTitleDatahelper.VacancyTitle} apprenticeship";
 
-        public string TrainingTitle => AvailableTraining.RandomOrDefault();
+        public string TrainingTitle => "Abattoir Worker, Level 2 (GCSE)";
 
         public string EmployerAddress => AvailableAddress.RandomOrDefault();
 
@@ -43,9 +43,9 @@ namespace SFA.DAS.RAA.DataGenerator
         public string EmployerDescription { get; }
 
         public string EmployerReason { get; }
-        
+
         public string EmployerWebsiteUrl { get; }
-        
+
         public string ContactName { get; }
 
         public string ContactNumber => "07777777777";
@@ -86,7 +86,7 @@ namespace SFA.DAS.RAA.DataGenerator
 
         public string DesiredQualificationsGrade => "A Level";
 
-        public string NumberOfVacancy => "2" ;
+        public string NumberOfVacancy => "2";
 
         public string OptionalMessage { get; }
 
@@ -94,12 +94,6 @@ namespace SFA.DAS.RAA.DataGenerator
 
         private List<string> AvailableProviders => new List<string> { "BALTIC TRAINING SERVICES LIMITED 10019026" };
 
-        private List<string> AvailableTraining => new List<string>
-        {
-            "Software Tester, Level 4 (Higher national certificate)",
-        };
-
-        private List<string> AvailableAddress => new List<string>
-        {"0","1", "2", "3", "4", "5", "6", "7", "8", "9"};
+        private List<string> AvailableAddress => new List<string> {"0","1", "2", "3", "4", "5", "6", "7", "8", "9"};
     }
 }
