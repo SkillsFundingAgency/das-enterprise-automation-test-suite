@@ -32,7 +32,6 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
             tableRowHelper = context.Get<TableRowHelper>();
 
             if (verifypage) { VerifyPage(); }
-
         }
 
         protected new RAAV2CSSBasePage SelectRadioOptionByForAttribute(string value)

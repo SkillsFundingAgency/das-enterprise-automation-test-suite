@@ -12,7 +12,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         #endregion
 
         private By DoYouWantToRequestChangesOptions => By.CssSelector(".selection-button-radio");
-        private By FinishButton => By.ClassName("button");
+        private By FinishButton => By.CssSelector("#fix-mismatch, #finish");
 
         public ProviderChangeApprenticeDetailsPage(ScenarioContext context) : base(context) => _context = context;
 

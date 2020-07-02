@@ -20,11 +20,11 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
             _pageInteractionHelper = context.Get<PageInteractionHelper>();
         }
 
-        public EmployerNamePage SelectOrganisation()
+        public WhichEmployerNameDoYouWantOnYourAdvertPage SelectOrganisation()
         {
             formCompletionHelper.ClickElement(() => rAAV2DataHelper.GetRandomElementFromListOfElements(_pageInteractionHelper.FindElements(RadioLabels)));
             Continue();
-            return new EmployerNamePage(_context);
+            return new WhichEmployerNameDoYouWantOnYourAdvertPage(_context);
         }
     }
 }

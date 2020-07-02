@@ -37,7 +37,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
             _screenShotTitleGenerator = context.Get<ScreenShotTitleGenerator>();
             var objectContext = context.Get<ObjectContext>();
             _directory = objectContext.GetDirectory();
-            
+
             if (_frameworkConfig.IsVstsExecution)
                 ScreenshotHelper.TakeScreenShot(_webDriver, _directory, _screenShotTitleGenerator.GetNextCount());
         }

@@ -8,14 +8,18 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer
 {
     public class YourApprenticeshipAdvertsHomePage : InterimYourApprenticeshipAdvertsHomePage
     {
+        //we removed the page title check temporary because if a known situation,
+        //remove this line once the recuirment landing page is dev done.
+        protected override string PageTitle => "";
+
         #region Helpers and Context
         private readonly ScenarioContext _context;
         private readonly SearchVacancyPageHelper _searchVacancyPageHelper;  
         #endregion
 
         protected override By AcceptCookieButton => By.CssSelector("#btn-cookie-accept");
-
         private readonly By StartNow = By.CssSelector("[data-automation='create-vacancy']");
+        private readonly By CreateAnAdvertButton = By.LinkText("Create an advert");
 
         public YourApprenticeshipAdvertsHomePage(ScenarioContext context, bool navigate = false) : base(context, navigate)
         {
@@ -23,17 +27,17 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer
             _searchVacancyPageHelper = new SearchVacancyPageHelper(context);
         }
 
-        public VacancyTitlePage ClickStartNow()
+        public WhatDoYouWantToCallThisAdvertPage ClickStartNow()
         {
             formCompletionHelper.Click(StartNow);
-            return new VacancyTitlePage(_context);
+            return new WhatDoYouWantToCallThisAdvertPage(_context);
         }
 
-        public CreateVacancyPage CreateANewVacancy()
+        public CreateAnAdvertPage CreateAnAdvert()
         {
             AcceptCookies();
-            formCompletionHelper.ClickLinkByText("Create an advert");
-            return new CreateVacancyPage(_context);
+            formCompletionHelper.Click(CreateAnAdvertButton);
+            return new CreateAnAdvertPage(_context);
         }
 
         private new YourApprenticeshipAdvertsHomePage AcceptCookies()
@@ -42,8 +46,8 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer
             return this;
         }
 
-        public ManageVacancyPage SelectLiveVacancy() => _searchVacancyPageHelper.SelectLiveVacancy();
+        public ManageVacancyPage SelectLiveAdvert() => _searchVacancyPageHelper.SelectLiveVacancy();
 
-        public ManageVacancyPage SearchVacancyByVacancyReference() => _searchVacancyPageHelper.SearchVacancyByVacancyReference();
+        public ManageVacancyPage SearchAdvertByReferenceNumber() => _searchVacancyPageHelper.SearchVacancyByVacancyReference();
     }
 }
