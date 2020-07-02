@@ -8,9 +8,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer
 {
     public class YourApprenticeshipAdvertsHomePage : InterimYourApprenticeshipAdvertsHomePage
     {
-        //we removed the page title check temporary because if a known situation,
-        //remove this line once the recuirment landing page is dev done.
-        protected override string PageTitle => "";
+        protected override string PageTitle => "Your apprenticeship adverts";
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
@@ -19,18 +17,10 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer
 
         protected override By AcceptCookieButton => By.CssSelector("#btn-cookie-accept");
 
-        private readonly By StartNow = By.CssSelector("[data-automation='create-vacancy']");
-
         public YourApprenticeshipAdvertsHomePage(ScenarioContext context, bool navigate = false) : base(context, navigate)
         {
             _context = context;
             _searchVacancyPageHelper = new SearchVacancyPageHelper(context);
-        }
-
-        public VacancyTitlePage ClickStartNow()
-        {
-            formCompletionHelper.Click(StartNow);
-            return new VacancyTitlePage(_context);
         }
 
         public CreateVacancyPage CreateANewVacancy()
