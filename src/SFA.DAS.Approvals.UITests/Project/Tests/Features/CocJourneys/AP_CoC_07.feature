@@ -3,6 +3,7 @@ Feature: AP_CoC_07
 
 @regression
 @waitingtostartapprentice
+@selectstandardcourse
 @cocscenarios
 Scenario: AP_CoC_07 Provider requests changes to cost and course After ILR match on waiting to start Apprentice and Employer approves
 	Given the Employer has approved apprentice

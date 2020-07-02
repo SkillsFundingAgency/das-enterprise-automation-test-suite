@@ -74,7 +74,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
             DateTime RandomStartDate()
             {
                 var start = now.AddMonths(1);
-                int range = (_nextAcademicYearStartDate - start).Days - 1;
+                int range = (_nextAcademicYearStartDate - start).Days;
+                range = (range > 0) ? range - 1 : 0;
                 return start.AddDays(new Random().Next(range));
             }
 

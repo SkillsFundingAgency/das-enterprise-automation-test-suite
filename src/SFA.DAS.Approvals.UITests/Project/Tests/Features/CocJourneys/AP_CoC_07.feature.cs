@@ -81,17 +81,19 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.CocJourneys
             " to start Apprentice and Employer approves")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("waitingtostartapprentice")]
+        [NUnit.Framework.CategoryAttribute("selectstandardcourse")]
         [NUnit.Framework.CategoryAttribute("cocscenarios")]
         public virtual void AP_CoC_07ProviderRequestsChangesToCostAndCourseAfterILRMatchOnWaitingToStartApprenticeAndEmployerApproves()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
                     "waitingtostartapprentice",
+                    "selectstandardcourse",
                     "cocscenarios"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_CoC_07 Provider requests changes to cost and course After ILR match on waiting" +
                     " to start Apprentice and Employer approves", null, tagsOfScenario, argumentsOfScenario);
-#line 7
+#line 8
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -111,13 +113,13 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 8
+#line 9
  testRunner.Given("the Employer has approved apprentice", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 9
+#line 10
  testRunner.When("the provider edits cost and course and confirm the changes after ILR match", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 10
+#line 11
  testRunner.Then("the Employer can review and approve the changes", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
