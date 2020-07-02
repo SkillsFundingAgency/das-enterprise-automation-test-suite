@@ -16,19 +16,12 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer
         #endregion
 
         protected override By AcceptCookieButton => By.CssSelector("#btn-cookie-accept");
-        private readonly By StartNow = By.CssSelector("[data-automation='create-vacancy']");
         private readonly By CreateAnAdvertButton = By.LinkText("Create an advert");
 
         public YourApprenticeshipAdvertsHomePage(ScenarioContext context, bool navigate = false) : base(context, navigate)
         {
             _context = context;
             _searchVacancyPageHelper = new SearchVacancyPageHelper(context);
-        }
-
-        public WhatDoYouWantToCallThisAdvertPage ClickStartNow()
-        {
-            formCompletionHelper.Click(StartNow);
-            return new WhatDoYouWantToCallThisAdvertPage(_context);
         }
 
         public CreateAnAdvertPage CreateAnAdvert()

@@ -1,11 +1,5 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.RAA_V2.Service.Project.Tests.Pages;
-using SFA.DAS.Registration.UITests.Project.Tests.Pages;
-using SFA.DAS.Registration.UITests.Project.Tests.Pages.InterimPages;
-using SFA.DAS.UI.FrameworkHelpers;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer
@@ -23,10 +17,10 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer
             VerifyPage();
         }
 
-        public VacancyTitlePage ClickStartNow()
+        public WhatDoYouWantToCallThisAdvertPage ClickStartNow()
         {
             formCompletionHelper.Click(StartNow);
-            return new VacancyTitlePage(_context);
+            return new WhatDoYouWantToCallThisAdvertPage(_context);
         }
     }  
 }
