@@ -102,7 +102,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
                 "Enter what the apprentice will be doing",
                 "Enter the training the apprentice will take and the qualification the apprentice will get",
                 "Enter the expected career progression after this apprenticeship",
-                "You must include a skill or quality",
+                "Select the skills and personal qualities youd like the applicant to have",
                 "You must add a qualification",
                 "You must select an application method",
             };
