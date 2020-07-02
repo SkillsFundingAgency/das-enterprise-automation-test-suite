@@ -12,21 +12,22 @@ namespace SFA.DAS.RAA_V2.Service.Project.Helpers
         public void VerifyWageType(ManageVacancyPage manageVacancyPage, string wageType)
             => manageVacancyPage.NavigateToViewVacancyPage().VerifyWageType(wageType);
 
-        public void ApplicantSucessful(ManageVacancyPage manageVacancyPage) 
+        public void ApplicantSucessful(ManageVacancyPage manageVacancyPage)
             => manageVacancyPage.NavigateToManageApplicant().MakeApplicantSucessful().NotifyApplicant();
 
-        public void ApplicantUnsucessful(ManageVacancyPage manageVacancyPage) 
+        public void ApplicantUnsucessful(ManageVacancyPage manageVacancyPage)
             => manageVacancyPage.NavigateToManageApplicant().MakeApplicantUnsucessful().NotifyApplicant();
-        
+
         public VacancyPreviewPart2Page PreviewVacancy(EmployerNamePage employernamePage, string employername, bool isEmployerAddress, bool disabilityConfidence)
         {
             var locationPage = ChooseEmployerName(employernamePage, employername);
+            return FillApprenticeshipDetails(locationPage, isEmployerAddress, disabilityConfidence);
+        }
 
-            return locationPage.ChooseAddress(isEmployerAddress)
-                .EnterImportantDates(disabilityConfidence)
-                .EnterDuration()
-                .SelectNationalMinimumWage()
-                .PreviewVacancy();
+        public VacancyPreviewPart2Page PreviewVacancyForEmployerJourney(WhichEmployerNameDoYouWantOnYourAdvertPage whichEmployerNameDoYouWantOnYourAdvertPage, string employername, bool isEmployerAddress, bool disabilityConfidence)
+        {
+            var locationPage = ChooseEmployerNameForEmployerJourney(whichEmployerNameDoYouWantOnYourAdvertPage, employername);
+            return FillApprenticeshipDetails(locationPage, isEmployerAddress, disabilityConfidence);
         }
 
         public VacancyPreviewPart2Page PreviewVacancy(ChooseApprenticeshipLocationPage locationPage, string wageType)
@@ -61,6 +62,19 @@ namespace SFA.DAS.RAA_V2.Service.Project.Helpers
                     return employernamePage.ChooseAnonymous();
                 default:
                     return employernamePage.ChooseRegisteredName();
+            };
+        }
+
+        public ChooseApprenticeshipLocationPage ChooseEmployerNameForEmployerJourney(WhichEmployerNameDoYouWantOnYourAdvertPage whichEmployerNameDoYouWantOnYourAdvertPage, string employername)
+        {
+            switch (employername)
+            {
+                case "existing-trading-name":
+                    return whichEmployerNameDoYouWantOnYourAdvertPage.ChooseExistingTradingName();
+                case "anonymous":
+                    return whichEmployerNameDoYouWantOnYourAdvertPage.ChooseAnonymous();
+                default:
+                    return whichEmployerNameDoYouWantOnYourAdvertPage.ChooseRegisteredName();
             };
         }
 
@@ -106,5 +120,8 @@ namespace SFA.DAS.RAA_V2.Service.Project.Helpers
             return new VacancyCompletedAllSectionsPage(_context);
         }
 
+        private VacancyPreviewPart2Page FillApprenticeshipDetails(ChooseApprenticeshipLocationPage locationPage, bool isEmployerAddress, bool disabilityConfidence) =>
+            locationPage.ChooseAddress(isEmployerAddress).EnterImportantDates(disabilityConfidence).EnterDuration()
+                .SelectNationalMinimumWage().PreviewVacancy();
     }
 }

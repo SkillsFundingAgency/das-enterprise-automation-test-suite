@@ -16,10 +16,9 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         #endregion
 
         private By TrainingProviderSearch => By.CssSelector("#TrainingProviderSearch");
-
         private By FirstOption => By.CssSelector("#TrainingProviderSearch__option--0");
-
         protected override By ContinueButton => By.CssSelector("[data-automation='btn-continue']");
+
         public ChooseTrainingProviderPage(ScenarioContext context) : base(context)
         {
             _context = context;
@@ -36,7 +35,6 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
             Continue();
 
             return new ConfirmTrainingProviderPage(_context);
-            
         }
     }
 }
