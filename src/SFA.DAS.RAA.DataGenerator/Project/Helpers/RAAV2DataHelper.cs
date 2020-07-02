@@ -32,7 +32,7 @@ namespace SFA.DAS.RAA.DataGenerator
 
         public string VacancyTitle => $"{_vacancyTitleDatahelper.VacancyTitle} apprenticeship";
 
-        public string TrainingTitle => AvailableTraining.RandomOrDefault();
+        public string TrainingTitle => "Abattoir Worker, Level 2 (GCSE)";
 
         public string EmployerAddress => AvailableAddress.RandomOrDefault();
 
@@ -93,8 +93,6 @@ namespace SFA.DAS.RAA.DataGenerator
         private string WebsiteUrl(string url) => $"www.{url}.com";
 
         private List<string> AvailableProviders => new List<string> { "BALTIC TRAINING SERVICES LIMITED 10019026" };
-
-        private List<string> AvailableTraining => new List<string> { "Software" };
 
         private List<string> AvailableAddress => new List<string> {"0","1", "2", "3", "4", "5", "6", "7", "8", "9"};
     }
