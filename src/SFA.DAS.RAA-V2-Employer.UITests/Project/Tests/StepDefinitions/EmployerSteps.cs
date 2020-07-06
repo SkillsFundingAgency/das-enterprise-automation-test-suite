@@ -97,11 +97,11 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
         {
             List<string> expectedMessges = new List<string>
             {
-                "You must provide an overview of the vacancy",
+                "Enter a short description of the apprenticeship",
                 "Enter what the apprentice will be doing",
                 "Enter the training the apprentice will take and the qualification the apprentice will get",
                 "Enter the expected career progression after this apprenticeship",
-                "Select the skills and personal qualities youd like the applicant to have",
+                "Select the skills and personal qualities you'd like the applicant to have",
                 "You must add a qualification",
                 "You must select an application method",
             };
