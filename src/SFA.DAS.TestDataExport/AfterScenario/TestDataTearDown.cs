@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using TechTalk.SpecFlow;
 using NUnit.Framework;
 using System.IO;
-using SFA.DAS.UI.FrameworkHelpers;
 using SFA.DAS.ConfigurationBuilder;
 using System.Globalization;
 
@@ -28,7 +27,7 @@ namespace SFA.DAS.TestDataExport.AfterScenario
         {
             _objectContext.SetAfterScenarioExceptions(new List<Exception>());
             
-            string fileName = $"{DateTime.Now:HH-mm-ss}_{_scenarioTitle}.txt".RemoveSpace();
+            string fileName = $"TESTDATA_{DateTime.Now:HH-mm-ss-fffff}.txt";
 
             string directory = _objectContext.GetDirectory();
 
