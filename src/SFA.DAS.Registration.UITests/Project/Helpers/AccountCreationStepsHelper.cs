@@ -17,7 +17,6 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
         private readonly MongoDbDataGenerator _mongoDbDataGenerator;
         private readonly LoginCredentialsHelper _loginCredentialsHelper;
         private readonly RestartWebDriverHelper _restartWebDriverHelper;
-        private readonly RegistrationConfig _registrationConfig;
         private readonly ObjectContext _objectContext;
 
         public AccountCreationStepsHelper(ScenarioContext context)
@@ -27,7 +26,6 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
             _loginCredentialsHelper = context.Get<LoginCredentialsHelper>();
             _restartWebDriverHelper = new RestartWebDriverHelper(context);
             _mongoDbDataGenerator = new MongoDbDataGenerator(_context);
-            _registrationConfig = context.GetRegistrationConfig<RegistrationConfig>();
             _objectContext = _context.Get<ObjectContext>();
         }
 
