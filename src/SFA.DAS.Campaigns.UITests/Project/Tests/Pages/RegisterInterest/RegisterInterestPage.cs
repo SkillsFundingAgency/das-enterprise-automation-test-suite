@@ -19,9 +19,9 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.RegisterInterest
 
         private By EmailField => By.Id("Email");
 
-        private By RadioLabel => By.CssSelector(".radios__label");
+        private By IncludeInUserResearch = By.Id("IncludeInUR");
 
-        private By CheckBoxLabel => By.CssSelector(".checkboxes__label");
+        private By RadioLabel => By.CssSelector(".radios__label");
 
         private By RegisterMyInterest => By.CssSelector("#btn-register-interest-complete");
 
@@ -45,7 +45,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.RegisterInterest
             formCompletionHelper.EnterText(LastNameField, campaignsDataHelper.Lastname);
             formCompletionHelper.EnterText(EmailField, campaignsDataHelper.Email);
             formCompletionHelper.SelectRadioOptionByText(RadioLabel, role);
-            formCompletionHelper.SelectCheckBoxByText(CheckBoxLabel, "receive emails");
+            formCompletionHelper.SelectCheckbox(IncludeInUserResearch);
             formCompletionHelper.ClickElement(RegisterMyInterest);
         }
     }

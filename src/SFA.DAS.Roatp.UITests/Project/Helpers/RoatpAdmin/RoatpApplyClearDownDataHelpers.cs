@@ -24,5 +24,16 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.RoatpAdmin
 
             ExecuteSqlCommand(FhaResetQuery);
         }
+
+        public void AssessorClearDownDataFromApply(string ukprn)
+        {
+            var AssessorResetQuery = $" DECLARE @ApplicationID UNIQUEIDENTIFIER; " +
+            $" SELECT @ApplicationID = ApplicationId FROM dbo.apply WHERE [UKPRN] = {ukprn} " +
+            $" DELETE FROM dbo.AssessorPageReviewOutcome WHERE ApplicationId = @ApplicationID; " +
+            " Update dbo.Apply set  [Assessor1UserId] = null, [Assessor2UserId] = null, [Assessor1Name] = null, [Assessor2Name] = null," +
+            " [Assessor1ReviewStatus] = null, [Assessor2ReviewStatus] = null where ApplicationId = @ApplicationID";
+
+            ExecuteSqlCommand(AssessorResetQuery);
+        }
     }
 }

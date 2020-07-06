@@ -4,9 +4,7 @@ using SFA.DAS.Roatp.UITests.Project.Helpers.RoatpApply;
 using SFA.DAS.UI.Framework;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Roatp.UITests.Project
@@ -31,7 +29,7 @@ namespace SFA.DAS.Roatp.UITests.Project
         }
 
         [BeforeScenario(Order = 32)]
-        public void SetUpHelpers() 
+        public void SetUpHelpers()
         {
             _applyUkprnDataHelpers = new RoatpApplyUkprnDataHelpers();
             _context.Set(_applyUkprnDataHelpers);

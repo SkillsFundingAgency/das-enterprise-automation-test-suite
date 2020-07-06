@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay
+﻿namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers
 {
-   public static class StatusHelper_AdminPage
+    public static class StatusHelper
     {
         internal static string StatusPass => "PASS";
 
