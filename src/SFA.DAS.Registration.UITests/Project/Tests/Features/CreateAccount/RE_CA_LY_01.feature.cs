@@ -77,14 +77,16 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features.CreateAccount
         [NUnit.Framework.DescriptionAttribute("RE_CA_LY_01_Create a Levy Account and Not Sign the Agreement")]
         [NUnit.Framework.CategoryAttribute("levy")]
         [NUnit.Framework.CategoryAttribute("addpayedetails")]
+        [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         public virtual void RE_CA_LY_01_CreateALevyAccountAndNotSignTheAgreement()
         {
             string[] tagsOfScenario = new string[] {
                     "levy",
-                    "addpayedetails"};
+                    "addpayedetails",
+                    "donottakescreenshot"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RE_CA_LY_01_Create a Levy Account and Not Sign the Agreement", null, tagsOfScenario, argumentsOfScenario);
-#line 5
+#line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -104,13 +106,13 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 6
+#line 7
  testRunner.Given("levy declarations are added for the past 15 months with levypermonth as 10000", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 7
+#line 8
  testRunner.When("an Employer Account with Company Type Org is created and agreement is Not Signed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 8
+#line 9
  testRunner.Then("ApprenticeshipEmployerType in Account table is marked as 1", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
