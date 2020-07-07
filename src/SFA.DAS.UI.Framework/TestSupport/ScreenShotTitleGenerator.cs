@@ -13,7 +13,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
 
         public string GetNextCount()
         {
-            return $"{(++count).ToString("D2")}_{DateTime.Now.ToString("fffff")}";
+            return $"{(++count).ToString("D2")}_{DateTime.Now:fffff}";
         }
     }
 }

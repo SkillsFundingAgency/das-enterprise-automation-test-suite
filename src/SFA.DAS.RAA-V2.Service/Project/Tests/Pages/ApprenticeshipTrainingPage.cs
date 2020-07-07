@@ -17,7 +17,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         private By FirstOption => By.CssSelector("#SelectedProgrammeId__option--0");
 
-        private By CancelLink => By.CssSelector(".das-button-link");
+        private By CancelLink => By.LinkText("Cancel");
 
         public ApprenticeshipTrainingPage(ScenarioContext context) : base(context)
         {
