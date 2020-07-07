@@ -72,7 +72,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Then(@"Employer is able to view saved cohort from Draft")]
         public void ThenEmployerIsAbleToViewSavedCohortFromDraft()
         {
-            _apprenticeRequestsPage.GoToDraftCohorts()
+            _apprenticeRequestsPage.GoToDrafts()
                 .SelectViewCurrentCohortDetails();
         }
 
