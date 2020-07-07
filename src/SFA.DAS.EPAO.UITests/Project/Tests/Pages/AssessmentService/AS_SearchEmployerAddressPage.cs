@@ -5,7 +5,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.AssessmentService
 {
     public class AS_SearchEmployerAddressPage : EPAO_BasePage
     {
-        protected override string PageTitle => "Search for the employer's address";
+        protected override string PageTitle => "Search for the address that you’d like us to send the certificate to";
         protected override By PageHeader => By.CssSelector(".js-search-address-heading");
         private readonly ScenarioContext _context;
 
