@@ -9,7 +9,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
     public class EmployerSteps
     {
         private readonly EmployerStepsHelper _employerStepsHelper;
-        private YourCohortRequestsPage _yourCohortRequestsPage;
+        private ApprenticeRequestsPage _apprenticeRequestsPage;
         private ReviewYourCohortPage _reviewYourCohortPage;
         private readonly ObjectContext _objectContext;
         private ApprenticeDetailsPage _apprenticeDetailsPage;
@@ -66,13 +66,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             var x = _reviewYourCohortPage.CohortReferenceFromUrl();
             _objectContext.SetCohortReference(x);
 
-            _yourCohortRequestsPage = _reviewYourCohortPage.SaveAndExit();
+            _apprenticeRequestsPage = _reviewYourCohortPage.SaveAndExit();
         }
 
         [Then(@"Employer is able to view saved cohort from Draft")]
         public void ThenEmployerIsAbleToViewSavedCohortFromDraft()
         {
-            _yourCohortRequestsPage.GoToDraftCohorts()
+            _apprenticeRequestsPage.GoToDraftCohorts()
                 .SelectViewCurrentCohortDetails();
         }
 
