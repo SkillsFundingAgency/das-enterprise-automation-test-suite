@@ -43,10 +43,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             return new AddAnApprenitcePage(_context);
         }
 
-        public YourCohortRequestsPage ClickApprenticeRequestsLink()
+        public ApprenticeRequestsPage ClickApprenticeRequestsLink()
         {
             formCompletionHelper.ClickElement(ApprenticeRequestsLink);
-            return new YourCohortRequestsPage(_context);
+            return new ApprenticeRequestsPage(_context);
         }
 
         public ManageYourApprenticesPage ClickManageYourApprenticesLink()
