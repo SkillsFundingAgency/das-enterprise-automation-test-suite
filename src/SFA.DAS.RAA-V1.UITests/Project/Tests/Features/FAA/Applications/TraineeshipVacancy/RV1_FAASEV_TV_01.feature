@@ -1,6 +1,7 @@
 ﻿Feature: RV1_FAASEV_TV_01
 
 @raa-v1
+@faa
 @regression
 @adddifferentlocation
 Scenario Outline: RV1_FAASEV_TV_01 search for an existing traineeship vacancy

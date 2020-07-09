@@ -1,6 +1,7 @@
 ﻿Feature: RV1_FAASEV_AV_01
 
 @raa-v1
+@faa
 @apprenticeshipvacancy
 @regression
 Scenario Outline: RV1_FAASEV_AV_01 search for an existing apprenticeship vacancy
