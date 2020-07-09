@@ -1,6 +1,7 @@
 ﻿Feature: RV1_FAACDA_01
 
 @raa-v1
+@faa
 @regression
 @apprenticeshipvacancy
 @FAALoginNewCredentials
