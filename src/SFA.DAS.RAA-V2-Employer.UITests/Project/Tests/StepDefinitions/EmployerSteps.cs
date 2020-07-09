@@ -16,16 +16,15 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
         private readonly ScenarioContext _context;
         private readonly EmployerHomePageStepsHelper _homePageStepsHelper;
         private readonly RAAV2DataHelper _rAAV2DataHelper;
-        private readonly EmployerStepsHelper _employerStepsHelper;        
+        private readonly EmployerStepsHelper _employerStepsHelper;
 
         private VacanciesPage _vacanciesPage;
         private VacancyPreviewPart2Page _vacancyPreviewPart2Page;
         private VacancyPreviewPart2WithErrorsPage _vacancyPreviewPart2WithErrorsPage;
         private RecruitmentDynamicHomePage _dynamicHomePage;
-        private VacancyTitlePage _vacancyTitlePage;
+        private WhatDoYouWantToCallThisAdvertPage _whatDoYouWantToCallThisAdvertPage;
 
-
-        public EmployerSteps(ScenarioContext context) 
+        public EmployerSteps(ScenarioContext context)
         {
             _context = context;
             _rAAV2DataHelper = context.Get<RAAV2DataHelper>();
@@ -41,7 +40,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
 
         [When(@"the Employer submits the vacancy")]
         public void WhenTheEmployerSubmitsTheVacancy() => _vacancyPreviewPart2WithErrorsPage = _vacancyPreviewPart2Page.SubmitVacancyWithMissingData();
-        
+
         [When(@"the Employer saves the vacancy as a draft")]
         public void WhenTheEmployerSavesTheVacancyAsADraft() => _vacanciesPage = _vacancyPreviewPart2Page.ReturnToDashboard();
 
@@ -59,7 +58,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
 
         [Given(@"the Employer can create a vacancy by entering all the Optional fields")]
         public void GivenTheEmployerCanCreateAVacancyByEnteringAllTheOptionalFields() => _employerStepsHelper.CreateANewVacancy("anonymous", true, true);
-        
+
         [Given(@"the Employer creates a vacancy by selecting different work location")]
         public void GivenTheEmployerCreatesAVacancyBySelectingDifferentWorkLocation() => _employerStepsHelper.CreateANewVacancy("legal-entity-name", false);
 
@@ -80,7 +79,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
 
         [Then(@"the Employer can close the vacancy")]
         public void ThenTheEmployerCanCloseTheVacancy() => _employerStepsHelper.CloseVacancy();
-        
+
         [Then(@"the Employer can edit the vacancy")]
         public void ThenTheEmployerCanEditTheVacancy() => _employerStepsHelper.EditVacancyDates();
 
@@ -98,11 +97,11 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
         {
             List<string> expectedMessges = new List<string>
             {
-                "You must provide an overview of the vacancy",
-                "You must provide information on what the apprenticeship will involve",
-                "You must provide information on the training to be provided",
-                "You must provide information on what to expect at the end of the apprenticeship",
-                "You must include a skill or quality",
+                "Enter a short description of the apprenticeship",
+                "Enter what the apprentice will be doing",
+                "Enter the training the apprentice will take and the qualification the apprentice will get",
+                "Enter the expected career progression after this apprenticeship",
+                "Select the skills and personal qualities you'd like the applicant to have",
                 "You must add a qualification",
                 "You must select an application method",
             };
@@ -114,12 +113,12 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
 
         [Then(@"the Employer verify '(National Minimum Wage For Apprentices|National Minimum Wage|Fixed Wage Type)' the wage option selected in the Preview page")]
         public void ThenTheEmployerVerifyTheWageOptionSelectedInThePreviewPage(string wageType) => _employerStepsHelper.VerifyWageType(wageType);
-        
+
         [When(@"the Employer creates first Draft vacancy '(.*)'")]
-        public void GivenTheEmployerCreatesFirstDraftVacancy(string wageType) => _employerStepsHelper.CreateDraftVacancy(_vacancyTitlePage, wageType).AddBriefOverview().EnterBriefOverview().ReturnToDashboard();
-        
+        public void GivenTheEmployerCreatesFirstDraftVacancy(string wageType) => _employerStepsHelper.CreateDraftVacancy(_whatDoYouWantToCallThisAdvertPage, wageType).AddBriefOverview().EnterBriefOverview().ReturnToDashboard();
+
         [Given(@"the employer continue to add vacancy in the Recruitment")]
-        public void ThenTheEmployerContinueToAddVacancyInTheRecruitment() => _vacancyTitlePage = _employerStepsHelper.GoToAddAnAdvert();
+        public void ThenTheEmployerContinueToAddVacancyInTheRecruitment() => _whatDoYouWantToCallThisAdvertPage = _employerStepsHelper.GoToAddAnAdvert();
 
         [Then(@"the vacancy details is displayed on the Dynamic home page with Status '(DRAFT|CLOSED|PENDING REVIEW|LIVE|REJECTED)'")]
         public void GivenTheVacancyDetailsIsDisplayedOnTheDynamicHomePageWithStatus(string status)
@@ -142,7 +141,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
                 case "LIVE":
                     _dynamicHomePage = new RecruitmentDynamicHomePage(_context, true).ConfirmLiveVacancyDetails(status);
                     break;
-            }                    
+            }
         }
 
         [Then(@"Employer can go to vacancy dashboard")]
@@ -155,7 +154,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
         public void ThenEmployerCanContinueCreatingAnAdvert() => _dynamicHomePage.ContinueCreatingYourAdvert();
 
         [When(@"the Employer creates first submitted vacancy '(National Minimum Wage|National Minimum Wage For Apprentices|Fixed Wage Type)'")]
-        public void GivenTheEmployerCreatesFirstSubmittedVacancy(string wageType) => _employerStepsHelper.CreateSubmittedVacancy(_vacancyTitlePage, wageType);
+        public void GivenTheEmployerCreatesFirstSubmittedVacancy(string wageType) => _employerStepsHelper.CreateSubmittedVacancy(_whatDoYouWantToCallThisAdvertPage, wageType);
 
         [Given(@"the Employer logs into Employer account")]
         public void GivenTheEmployerLogsIntoEmployerAccount() => _homePageStepsHelper.GotoEmployerHomePage();

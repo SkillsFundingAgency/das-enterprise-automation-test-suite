@@ -10,7 +10,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Roatp.UITests.Project
 {
-    [Binding, Scope(Tag = "roatpadmin")]
+    [Binding, Scope(Tag = "roatpadmin"), Scope(Tag = "roatpassessor")]
     public class RoatpAdminHooks
     {
         private readonly ScenarioContext _context;
@@ -60,22 +60,38 @@ namespace SFA.DAS.Roatp.UITests.Project
         [BeforeScenario(Order = 34)]
         public void ClearDownAdminData()
         {
-            if (_context.ScenarioInfo.Tags.Contains("deletetrainingprovider")) { _adminClearDownDataHelpers.DeleteTrainingProvider(_objectContext.GetUkprn()); }
+            if (_context.ScenarioInfo.Tags.Contains("deletetrainingprovider"))
+                _adminClearDownDataHelpers.DeleteTrainingProvider(_objectContext.GetUkprn());
         }
 
         [BeforeScenario(Order = 35)]
-        public void NavigateToRoatpAdmin() => _webDriver.Navigate().GoToUrl(UrlConfig.Admin_BaseUrl);
+        public void Navigate()
+        {
+            if (_context.ScenarioInfo.Tags.Contains("roatpadmin"))
+                _webDriver.Navigate().GoToUrl(UrlConfig.Admin_BaseUrl);
+            else if (_context.ScenarioInfo.Tags.Contains("roatpassessor"))
+                _webDriver.Navigate().GoToUrl(UrlConfig.RoATPAssessor_BaseUrl);
+        }
 
         [BeforeScenario(Order = 36)]
         public void ClearDownGateWayAdminData()
         {
-            if (_context.ScenarioInfo.Tags.Contains("resetApplicationToNew")) { _roatpApplyClearDownDataHelpers.GateWayClearDownDataFromApply(_objectContext.GetUkprn()); }
+            if (_context.ScenarioInfo.Tags.Contains("resetApplicationToNew"))
+                _roatpApplyClearDownDataHelpers.GateWayClearDownDataFromApply(_objectContext.GetUkprn());
         }
 
         [BeforeScenario(Order = 37)]
         public void ClearDownFHAAdminData()
         {
-            if (_context.ScenarioInfo.Tags.Contains("resetFhaApplicationToNew")) { _roatpApplyClearDownDataHelpers.FHAClearDwnDataFromApply(_objectContext.GetUkprn()); }
+            if (_context.ScenarioInfo.Tags.Contains("resetFhaApplicationToNew"))
+                _roatpApplyClearDownDataHelpers.FHAClearDwnDataFromApply(_objectContext.GetUkprn());
+        }
+
+        [BeforeScenario(Order = 38)]
+        public void ClearDownAssessorAdminData()
+        {
+            if (_context.ScenarioInfo.Tags.Contains("roatpassessor"))
+                _roatpApplyClearDownDataHelpers.AssessorClearDownDataFromApply(_objectContext.GetUkprn());
         }
     }
 }

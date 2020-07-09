@@ -14,6 +14,7 @@ variables:
 
 pool:
   name: 'DAS - Continuous Integration'
+  demands: Agent.OS -equals Linux
 
 steps:
 - task: gittools.gitversion-preview.gitversion-task.GitVersion@5

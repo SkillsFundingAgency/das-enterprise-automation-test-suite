@@ -1,8 +1,4 @@
-﻿using SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply;
-using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay;
 
 namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Gateway
 {
@@ -13,15 +9,14 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Gateway
             return gwApplicationOverviewPage
             .Access_Section3_ROATP()
             .SelectPassAndContinue()
-            .VerifyRoATP_Section3(StatusHelper_AdminPage.StatusPass);
+            .VerifyRoATP_Section3(StatusHelper.StatusPass);
         }
         internal GWApplicationOverviewPage PassRegisterChecks_RegisterOfEndPointAssessmentOrganisations(GWApplicationOverviewPage gwApplicationOverviewPage)
         {
             return gwApplicationOverviewPage
             .Access_Section3_RegisterOfEPAO()
             .SelectPassAndContinue()
-            .VerifyRegisterofendpointassessmentorganisations_Section3(StatusHelper_AdminPage.StatusPass);
+            .VerifyRegisterofendpointassessmentorganisations_Section3(StatusHelper.StatusPass);
         }
-
     }
 }

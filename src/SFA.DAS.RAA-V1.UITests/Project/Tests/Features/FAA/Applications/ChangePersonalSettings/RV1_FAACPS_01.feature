@@ -4,6 +4,7 @@ Background:
 	Given the Applicant creates a new FAA account
 
 @raa-v1
+@faa
 @apprenticeshipvacancy
 @regression
 @FAALoginNewCredentials

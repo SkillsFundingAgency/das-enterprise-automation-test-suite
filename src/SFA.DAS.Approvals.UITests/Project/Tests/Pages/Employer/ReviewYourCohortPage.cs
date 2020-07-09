@@ -46,10 +46,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             return new ChooseAReservationPage(_context);
         }
 
-        public YourCohortRequestsPage SaveAndExit()
+        public ApprenticeRequestsPage SaveAndExit()
         {
             formCompletionHelper.ClickLinkByText("Save and exit");
-            return new YourCohortRequestsPage(_context);
+            return new ApprenticeRequestsPage(_context);
         }
 
 		public ApprenticeDetailsApprovedAndSentToTrainingProviderPage EmployerFirstApproveAndNotifyTrainingProvider()
