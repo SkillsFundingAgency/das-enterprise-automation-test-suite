@@ -13,10 +13,10 @@ namespace SFA.DAS.ApprenticeRedundancy.UITests.Project.Helpers
         public ApprenticeHelpers(ScenarioContext context) => _context = context;
         internal ApprenticeConfirmationPage CompleteApprenticeForm_HappyPath(MainLandingPage mainLandingPage)
         {
-           mainLandingPage. NavigateToFindAnotherApprenticeship()
+           mainLandingPage.NavigateToFindAnotherApprenticeship()
             .SelectAprpenticesStartnow()
                 .CompleteApprenticeDetails()
-                .ConfirmAnswers();
+                .ConfirmApprenticeAnswers();
             return new ApprenticeConfirmationPage(_context);
         }
     }

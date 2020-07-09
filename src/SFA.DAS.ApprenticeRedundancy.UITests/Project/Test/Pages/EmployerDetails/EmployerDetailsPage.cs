@@ -9,13 +9,16 @@ namespace SFA.DAS.ApprenticeRedundancy.UITests.Project.Test.Pages.EmployerDetail
 {
     public class EmployerDetailsPage : ApprenticeRedundancyBasePage
     {
-        protected override string PageTitle => "Employer details";
+        protected override string PageTitle => "Tell us about your apprenticeship opportunity";
 
         private By OrganisationName = By.Id("OrganisationName");
         private By ContactName = By.Id("ContactName");
         private By Email = By.Id("Email");
         private By PhoneNumber = By.Id("PhoneNumber");
-        private By Wwbstite = By.Id("Website");
+        private By Webstite = By.Id("Website");
+        private By LocationAndSectors = By.CssSelector(".govuk-checkboxes__item");
+        private By MoreDetail = By.Id("ApprenticeshipMoreDetails");
+        private By FeedbackYes = By.Id("ContactableForFeedback");
 
         #region Helpers and Context  
         private readonly ScenarioContext _context;
@@ -26,10 +29,23 @@ namespace SFA.DAS.ApprenticeRedundancy.UITests.Project.Test.Pages.EmployerDetail
             _context = context;
             VerifyPage();
         }
-        //public Employer_CheckYourAnswersPage CompleteEmployersDetails()
-        //{
-        //    formCompletionHelper.EnterText()
-        //    return new Employer_CheckYourAnswersPage(_context);
-        //}
+        public Employer_CheckYourAnswersPage CompleteEmployersDetails()
+        {
+            formCompletionHelper.EnterText(OrganisationName, apprenticeRedundancyDataHelper.OrganisationName);
+            formCompletionHelper.EnterText(Email, apprenticeRedundancyDataHelper.Email);
+            formCompletionHelper.EnterText(Webstite, apprenticeRedundancyDataHelper.Website);
+            formCompletionHelper.SelectCheckBoxByText(LocationAndSectors, "North West");
+            formCompletionHelper.SelectCheckBoxByText(LocationAndSectors, "West Midlands");
+            formCompletionHelper.SelectCheckBoxByText(LocationAndSectors, "Yorkshire and the Humber");
+            formCompletionHelper.SelectCheckBoxByText(LocationAndSectors, "Health and science");
+            formCompletionHelper.SelectCheckBoxByText(LocationAndSectors, "Protective services");
+            formCompletionHelper.SelectCheckBoxByText(LocationAndSectors, "Transport and logistics");
+            formCompletionHelper.EnterText(MoreDetail, apprenticeRedundancyDataHelper.LongText);
+            formCompletionHelper.EnterText(ContactName, apprenticeRedundancyDataHelper.FullName);
+            formCompletionHelper.EnterText(PhoneNumber, apprenticeRedundancyDataHelper.ContactNumber);
+            formCompletionHelper.SelectRadioOptionByLocator( FeedbackYes );
+            Continue();
+            return new Employer_CheckYourAnswersPage(_context);
+        }
     }
 }

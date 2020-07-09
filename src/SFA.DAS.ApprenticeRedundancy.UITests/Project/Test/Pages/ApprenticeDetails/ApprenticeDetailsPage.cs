@@ -23,7 +23,7 @@ namespace SFA.DAS.ApprenticeRedundancy.UITests.Project.Test.Pages
         private By TrainingProvider = By.Id("TrainingProvider");
         private By ApprenticeshipMonth = By.Id("LeftOnApprenticeshipMonths");
         private By ApprenticeshipYear = By.Id("LeftOnApprenticeshipYears");
-        private By JobseekerAllowance = By.Id("ClaimingJobseekersAllowance");
+        private By FeedbackYes = By.Id("ContactableForFeedback");
         private By LocationAndSectors = By.CssSelector(".govuk-checkboxes__item");
         private By PhoneNumber = By.Id("PhoneNumber");
         #endregion
@@ -47,6 +47,7 @@ namespace SFA.DAS.ApprenticeRedundancy.UITests.Project.Test.Pages
             formCompletionHelper.EnterText(Month, dobcalc.Month);
             formCompletionHelper.EnterText(Year, dobcalc.Year);
             formCompletionHelper.SelectRadioOptionByLocator(UpdatesYes);
+            formCompletionHelper.SelectRadioOptionByLocator(FeedbackYes);
             formCompletionHelper.EnterText(Postcode, apprenticeRedundancyDataHelper.Postcode);
             formCompletionHelper.SelectCheckBoxByText(LocationAndSectors, "East Midlands");
             formCompletionHelper.SelectCheckBoxByText(LocationAndSectors, "South West");   
@@ -57,10 +58,9 @@ namespace SFA.DAS.ApprenticeRedundancy.UITests.Project.Test.Pages
             formCompletionHelper.EnterText(TrainingProvider, apprenticeRedundancyDataHelper.TrainingProvider);
             formCompletionHelper.EnterText(ApprenticeshipMonth, apprenticeRedundancyDataHelper.Months);
             formCompletionHelper.EnterText(ApprenticeshipYear, apprenticeRedundancyDataHelper.Years);
-            formCompletionHelper.SelectRadioOptionByLocator(JobseekerAllowance);
-            formCompletionHelper.SelectCheckBoxByText(LocationAndSectors, "Business, Administration and Law");
-            formCompletionHelper.SelectCheckBoxByText(LocationAndSectors, "Health, Public Services and Care");
-            formCompletionHelper.SelectCheckBoxByText(LocationAndSectors,"Education and Training");
+            formCompletionHelper.SelectCheckBoxByText(LocationAndSectors, "Business and administration");
+            formCompletionHelper.SelectCheckBoxByText(LocationAndSectors, "Care services");
+            formCompletionHelper.SelectCheckBoxByText(LocationAndSectors, "Education and training");
             Continue();
             return new Apprentice_CheckYourAnswersPage(_context);
         }

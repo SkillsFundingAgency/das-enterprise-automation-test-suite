@@ -8,14 +8,14 @@ namespace SFA.DAS.ApprenticeRedundancy.UITests.Project.Test.StepDefinitions
     public class EmployerSteps
     {
         private readonly ScenarioContext _context;
-        private readonly ApprenticeHelpers _apprenticeHeleprs;
+        private readonly EmployerHelper _employerHelepr;
 
         public EmployerSteps(ScenarioContext context) 
         {   _context = context;
-            _apprenticeHeleprs = new ApprenticeHelpers(context);
+            _employerHelepr = new EmployerHelper(context);
         }     
 
         [Given(@"the Employer Completes Employer details form successfully")]
-        public void GivenTheEmployerCompletesEmployerDetailsFormSuccessfully() => _apprenticeHeleprs.CompleteApprenticeForm_HappyPath(new MainLandingPage(_context));
+        public void GivenTheEmployerCompletesEmployerDetailsFormSuccessfully() => _employerHelepr.CompleteEmployerForm_HappyPath(new MainLandingPage(_context));
     }
 }

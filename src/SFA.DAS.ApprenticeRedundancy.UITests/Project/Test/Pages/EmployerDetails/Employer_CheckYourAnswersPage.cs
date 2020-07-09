@@ -17,7 +17,7 @@ namespace SFA.DAS.ApprenticeRedundancy.UITests.Project.Test.Pages.EmployerDetail
             _context = context;
             VerifyPage();
         }
-        public EmployerConfirmationPage ConfirmAnswers()
+        public EmployerConfirmationPage ConfirmEmployerAnswers()
         {
             Continue();
             return new EmployerConfirmationPage(_context);
