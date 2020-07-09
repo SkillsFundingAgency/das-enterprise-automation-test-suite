@@ -77,6 +77,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Features.FAA.Applications.Apprent
         {
             string[] @__tags = new string[] {
                     "raa-v1",
+                    "faa",
                     "apprenticeshipvacancy",
                     "regression"};
             if ((exampleTags != null))
@@ -94,7 +95,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Features.FAA.Applications.Apprent
             argumentsOfScenario.Add("VacancyDuration", vacancyDuration);
             argumentsOfScenario.Add("NoOfPositions", noOfPositions);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV1_FAASEV_AV_01 search for an existing apprenticeship vacancy", null, tagsOfScenario, argumentsOfScenario);
-#line 6
+#line 7
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -114,47 +115,47 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 7
+#line 8
  testRunner.Given("the Provider initiates Create Apprenticeship Vacancy in Recruit", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 8
+#line 9
  testRunner.When(string.Format("the Provider chooses the employer \'{0}\',\'{1}\'", location, noOfPositions), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 9
+#line 10
  testRunner.And(string.Format("the Provider chooses their \'{0}\'", anonymity), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 10
+#line 11
  testRunner.And(string.Format("the Provider fills out details for an Offline Vacancy \'{0}\',\'{1}\',\'{2}\',\'{3}\',\'{4" +
                             "}\',\'{5}\'", location, disabilityConfident, applicationMethod, apprenticeshipType, hoursPerWeek, vacancyDuration), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 11
+#line 12
  testRunner.Then("Provider is able to submit the vacancy for approval", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 12
+#line 13
  testRunner.Then("the Reviewer approves the vacancy", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 13
+#line 14
  testRunner.When("an applicant is on the Find an Apprenticeship Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 14
+#line 15
  testRunner.Then("the apprenticeship can be found based on \'E1 7LL\',\'2 miles\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 15
+#line 16
  testRunner.And("the apprenticeship can be found based on \'SE16\',\'5 miles\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 16
+#line 17
  testRunner.And("the apprenticeship can be found based on \'SE9 5QE\',\'15 miles\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 17
+#line 18
  testRunner.And("the apprenticeship can be found based on \'E1 7TF\',\'England\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 18
+#line 19
  testRunner.And("the apprenticeship can be found based on \'E1 7LL\',\'Job title\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 19
+#line 20
  testRunner.And("the apprenticeship can be found based on \'E1 7LL\',\'Employer\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 20
+#line 21
  testRunner.And("the apprenticeship can be found based on \'E1 7LL\',\'Description\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
@@ -165,11 +166,12 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.DescriptionAttribute("RV1_FAASEV_AV_01 search for an existing apprenticeship vacancy: Add different loc" +
             "ation")]
         [NUnit.Framework.CategoryAttribute("raa-v1")]
+        [NUnit.Framework.CategoryAttribute("faa")]
         [NUnit.Framework.CategoryAttribute("apprenticeshipvacancy")]
         [NUnit.Framework.CategoryAttribute("regression")]
         public virtual void RV1_FAASEV_AV_01SearchForAnExistingApprenticeshipVacancy_AddDifferentLocation()
         {
-#line 6
+#line 7
 this.RV1_FAASEV_AV_01SearchForAnExistingApprenticeshipVacancy("Add different location", "Yes", "Yes", "Online", "Standard", "42", "52", "3", ((string[])(null)));
 #line hidden
         }

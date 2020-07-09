@@ -86,6 +86,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Features.FAA.Applications.ChangeP
         [NUnit.Framework.DescriptionAttribute("RV1_FAACPS_01 - Changing candidate details in FAA and checking the changes in Rec" +
             "ruit and Manage")]
         [NUnit.Framework.CategoryAttribute("raa-v1")]
+        [NUnit.Framework.CategoryAttribute("faa")]
         [NUnit.Framework.CategoryAttribute("apprenticeshipvacancy")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("FAALoginNewCredentials")]
@@ -93,13 +94,14 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Features.FAA.Applications.ChangeP
         {
             string[] tagsOfScenario = new string[] {
                     "raa-v1",
+                    "faa",
                     "apprenticeshipvacancy",
                     "regression",
                     "FAALoginNewCredentials"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV1_FAACPS_01 - Changing candidate details in FAA and checking the changes in Rec" +
                     "ruit and Manage", null, tagsOfScenario, argumentsOfScenario);
-#line 10
+#line 11
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -122,22 +124,22 @@ this.ScenarioInitialize(scenarioInfo);
 #line 3
 this.FeatureBackground();
 #line hidden
-#line 11
+#line 12
  testRunner.Given("the apprenticeship vacancy is Live in Recruit with an application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 12
+#line 13
  testRunner.Then("the Provider is able to search and select a Candidate", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 13
+#line 14
  testRunner.And("the reviewer is able to search and select a candidate", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 14
+#line 15
  testRunner.When("the Candidate changes Personal Settings", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 15
+#line 16
  testRunner.Then("the Candidate details are updated in Recruit", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 16
+#line 17
  testRunner.And("the Candidate details is updated in Manage", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
