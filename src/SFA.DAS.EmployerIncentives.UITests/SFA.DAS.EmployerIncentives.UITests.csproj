@@ -41,7 +41,7 @@
     <None Update="appsettings.Project.BrowserStack.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="SFA.DAS.EmployerIncentives.UITests.json">
+    <None Update="SFA.DAS.EmployerIncentives.UITests.runtimeconfig.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
