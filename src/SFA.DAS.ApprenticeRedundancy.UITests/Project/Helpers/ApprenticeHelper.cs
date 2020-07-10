@@ -6,11 +6,11 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeRedundancy.UITests.Project.Helpers
 {
-    public class ApprenticeHelpers
+    public class ApprenticeHelper
     {
         private readonly ScenarioContext _context;
 
-        public ApprenticeHelpers(ScenarioContext context) => _context = context;
+        public ApprenticeHelper(ScenarioContext context) => _context = context;
         internal ApprenticeConfirmationPage CompleteApprenticeForm_HappyPath(MainLandingPage mainLandingPage)
         {
            mainLandingPage.NavigateToFindAnotherApprenticeship()
