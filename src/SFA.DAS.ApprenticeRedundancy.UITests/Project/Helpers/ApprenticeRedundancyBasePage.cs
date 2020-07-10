@@ -28,6 +28,6 @@ namespace SFA.DAS.ApprenticeRedundancy.UITests.Project
         apprenticeRedundancyDataHelper = context.Get<ApprenticeRedundancyDataHelper>();
         aRConfig = context.GetARConfig<ApprenticeRedundancyConfig>();
        
-        }
+     }
     }
 }
