@@ -75,15 +75,15 @@ namespace SFA.DAS.ApprenticeRedundancy.UITests.Project.Test.Features.AR_Admin
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("AP_RD_Download_Apprentice_Details_01_HappyPath")]
-        [NUnit.Framework.CategoryAttribute("apprenticeRedundancy")]
         [NUnit.Framework.CategoryAttribute("aprdadmin")]
+        [NUnit.Framework.CategoryAttribute("aprd")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("aprdad01")]
         public virtual void AP_RD_Download_Apprentice_Details_01_HappyPath()
         {
             string[] tagsOfScenario = new string[] {
-                    "apprenticeRedundancy",
                     "aprdadmin",
+                    "aprd",
                     "regression",
                     "aprdad01"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();

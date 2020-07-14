@@ -75,14 +75,14 @@ namespace SFA.DAS.ApprenticeRedundancy.UITests.Project.Test.Features.AR_Support
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("AP_RD_Employer_02_HappyPathEmployerForm")]
-        [NUnit.Framework.CategoryAttribute("apprenticeRedundancy")]
+        [NUnit.Framework.CategoryAttribute("aprdsupport")]
         [NUnit.Framework.CategoryAttribute("aprd")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("aprd02")]
         public virtual void AP_RD_Employer_02_HappyPathEmployerForm()
         {
             string[] tagsOfScenario = new string[] {
-                    "apprenticeRedundancy",
+                    "aprdsupport",
                     "aprd",
                     "regression",
                     "aprd02"};

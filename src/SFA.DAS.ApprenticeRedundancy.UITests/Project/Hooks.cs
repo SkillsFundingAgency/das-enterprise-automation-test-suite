@@ -12,7 +12,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeRedundancy.UITests.Project
 {
-    [Binding, Scope(Tag = "aprd"), Scope(Tag = "aprdadmin")]
+    [Binding, Scope(Tag = "aprdsupport"), Scope(Tag = "aprdadmin")]
     public class Hooks
     {
         private readonly ScenarioContext _context;
@@ -29,7 +29,7 @@ namespace SFA.DAS.ApprenticeRedundancy.UITests.Project
         [BeforeScenario(Order = 21)]
         public void NavigateToCovidSupportHomepage()
         {
-            if (_context.ScenarioInfo.Tags.Contains("aprd"))
+            if (_context.ScenarioInfo.Tags.Contains("aprdsupport"))
                 _webDriver.Navigate().GoToUrl(UrlConfig.AR_BaseUrl);
             else if (_context.ScenarioInfo.Tags.Contains("aprdadmin"))
                 _webDriver.Navigate().GoToUrl(UrlConfig.AR_AdminBaseUrl);

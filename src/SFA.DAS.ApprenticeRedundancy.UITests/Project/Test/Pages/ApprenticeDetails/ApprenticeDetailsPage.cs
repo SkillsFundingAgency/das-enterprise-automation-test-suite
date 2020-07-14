@@ -60,7 +60,7 @@ namespace SFA.DAS.ApprenticeRedundancy.UITests.Project.Test.Pages
             formCompletionHelper.EnterText(ApprenticeshipYear, apprenticeRedundancyDataHelper.Years);
             formCompletionHelper.SelectCheckBoxByText(LocationAndSectors, "Business and administration");
             formCompletionHelper.SelectCheckBoxByText(LocationAndSectors, "Care services");
-            formCompletionHelper.SelectCheckBoxByText(LocationAndSectors, "Education and training");
+            formCompletionHelper.SelectCheckBoxByText(LocationAndSectors, "Education and childcare");
             Continue();
             return new Apprentice_CheckYourAnswersPage(_context);
         }

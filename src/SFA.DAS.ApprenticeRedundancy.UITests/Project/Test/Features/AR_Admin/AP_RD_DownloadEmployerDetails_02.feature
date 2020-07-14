@@ -1,7 +1,7 @@
 ﻿Feature: AP_RD_AD_02
 
-@apprenticeRedundancy
 @aprdadmin
+@aprd
 @regression
 @aprdad02
 Scenario: AP_RD_Download_Employer_Details_02_HappyPath

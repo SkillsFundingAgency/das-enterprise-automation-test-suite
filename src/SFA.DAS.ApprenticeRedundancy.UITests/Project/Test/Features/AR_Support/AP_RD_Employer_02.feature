@@ -1,6 +1,6 @@
 ﻿Feature: AP_RD_ST_02
 
-@apprenticeRedundancy
+@aprdsupport
 @aprd
 @regression
 @aprd02
