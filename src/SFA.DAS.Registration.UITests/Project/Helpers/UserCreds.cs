@@ -14,7 +14,8 @@
         public string Password { get; private set; }
         public string OrgName { get; private set; }
         internal int Index { get; private set; }
+        public string Accountid { get; internal set; }
 
-        public override string ToString() => $"Email address:'{EmailAddress}', Password:'{Password}', Organisation Name:'{OrgName}'";
+        public override string ToString() => $"Email address:{EmailAddress},{Accountid},Password:'{Password}', Organisation Name:'{OrgName}'";
     }
 }

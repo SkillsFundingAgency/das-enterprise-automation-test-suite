@@ -38,7 +38,7 @@ namespace SFA.DAS.Registration.UITests.Project
         internal static void SetRegisteredEmail(this ObjectContext objectContext, string value) => objectContext.Replace(RegisteredEmailAddress, value);
         internal static void SetUserCreds(this ObjectContext objectContext, string emailaddress, string password, string orgName, int index) =>
             objectContext.Replace<UserCreds>(UserCredsKey(index), new UserCreds(emailaddress, password, orgName, index));
-
+        internal static void UdpateUserCreds(this ObjectContext objectContext, string accountid, int index) => objectContext.Get<UserCreds>(UserCredsKey(index)).Accountid = accountid;
 
         public static string GetReceiverAccountId(this ObjectContext objectContext) => objectContext.Get(ReceiverAccountIdkey);
         public static string GetAgreementId(this ObjectContext objectContext) => objectContext.Get(AgreementIdKey);

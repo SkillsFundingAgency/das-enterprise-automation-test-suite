@@ -7,7 +7,7 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
     {
         public RegistrationDataHelper(string gatewayUsername, string password, string organisationName, RandomDataGenerator randomDataGenerator) : base(randomDataGenerator)
         {
-            RandomEmail = $"{gatewayUsername}@mailinator.com";
+            RandomEmail = $"{gatewayUsername}@perftest.com";
             AnotherRandomEmail = $"{gatewayUsername}_2@mailinator.com";
             AornNumber = $"A{GetDateTimeValue()}";
             Password = password;

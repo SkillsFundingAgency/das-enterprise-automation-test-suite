@@ -3,7 +3,35 @@
 @levy
 @addpayedetails
 @donottakescreenshot
-Scenario: RE_CA_LY_01_Create a Levy Account and Not Sign the Agreement
+Scenario Outline: RE_CA_LY_01_Create a Levy Account and Not Sign the Agreement
 	Given levy declarations are added for the past 15 months with levypermonth as 10000
-	When an Employer Account with Company Type Org is created and agreement is Not Signed
+	When an Employer Account with Company Type Org is created and agreement is Signed
 	Then ApprenticeshipEmployerType in Account table is marked as 1
+
+	Examples: 
+	| testdata |
+	| 1        |
+	| 2        |
+	| 3        |
+	| 4        |
+	| 5        |
+	| 6        |
+	| 7        |
+	| 8        |
+	| 9        |
+	| 10       |
+	| 11       |
+	| 12       |
+	| 13       |
+	| 14       |
+	| 15       |
+	| 16       |
+	| 17       |
+	| 18       |
+	| 19       |
+	| 20       |
+	| 21       |
+	| 22       |
+	| 23       |
+	| 24       |
+	| 25       |
