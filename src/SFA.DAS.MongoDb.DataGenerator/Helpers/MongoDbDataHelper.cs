@@ -10,7 +10,7 @@
 
         public string GatewayPassword => _dataHelper.GatewayPassword;
 
-        public string EmpRef => $"{_dataHelper.NextNumber}/{_dataHelper.TwoDigitProjectCode}{_dataHelper.EmpRefDigits}";
+        public string EmpRef => $"{_dataHelper.NextNumber}/{_dataHelper.Usernameprefix}{_dataHelper.EmpRefDigits}";
 
         public string Name => $"End To End Scenario for {GatewayId}";
     }
