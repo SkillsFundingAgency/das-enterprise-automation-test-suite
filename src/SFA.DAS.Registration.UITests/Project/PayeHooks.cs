@@ -19,14 +19,12 @@ namespace SFA.DAS.Registration.UITests.Project
         private LoginCredentialsHelper _loginCredentialsHelper;
         private MongoDbDataGenerator _mongoDbDataGenerator;
         private MongoDbDataGenerator _anotherMongoDbDataGenerator;
-        private readonly RegistrationConfig _config;
         private List<string> _empRefs;
 
         public PayeHooks(ScenarioContext context)
         {
             _context = context;
             _objectContext = context.Get<ObjectContext>();
-            _config = context.GetRegistrationConfig<RegistrationConfig>();
         }
 
         [BeforeScenario(Order = 23)]
@@ -56,20 +54,20 @@ namespace SFA.DAS.Registration.UITests.Project
 
         [BeforeScenario(Order = 26)]
         [Scope(Tag = "addanothernonlevypayedetails")]
-        public void SetUpAnotherNonLevyPayeDetails() => AddAnotherPayeDetails();
+        public void SetUpAnotherNonLevyPayeDetails() => AddAnotherPayeDetails(false);
 
         [BeforeScenario(Order = 27)]
         [Scope(Tag = "addanotherlevypayedetails")]
         public void SetUpAnotherLevyPayeDetails()
         {
-            AddAnotherPayeDetails();
+            AddAnotherPayeDetails(true);
 
             AddFunds(_anotherMongoDbDataGenerator, FundType.LevyFund);
         }
 
-        private void AddAnotherPayeDetails()
+        private void AddAnotherPayeDetails(bool isLevy)
         {
-            _objectContext.SetDataHelper(new DataHelper(_config.TwoDigitProjectCode));
+            _objectContext.SetDataHelper(new DataHelper(isLevy));
 
             _anotherMongoDbDataGenerator = new MongoDbDataGenerator(_context);
 

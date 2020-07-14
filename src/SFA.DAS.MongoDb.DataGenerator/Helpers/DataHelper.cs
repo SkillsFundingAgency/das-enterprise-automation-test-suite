@@ -6,9 +6,9 @@ namespace SFA.DAS.MongoDb.DataGenerator.Helpers
     {
         private readonly DateTime _dateTime;
 
-        public DataHelper(string code)
+        public DataHelper(bool isLevy)
         {
-            TwoDigitProjectCode = code;
+            Usernameprefix = isLevy ? "LE" : "NL";
             _dateTime = DateTime.Now;
             EmpRefDigits = _dateTime.ToString("fffff");
             NextNumber = NextNumberGenerator.GetNextCount();
@@ -16,7 +16,7 @@ namespace SFA.DAS.MongoDb.DataGenerator.Helpers
             GatewayPassword = "password";
         }
 
-        public string TwoDigitProjectCode { get; }
+        public string Usernameprefix { get; }
 
         public string EmpRefDigits { get; }
 
@@ -26,9 +26,6 @@ namespace SFA.DAS.MongoDb.DataGenerator.Helpers
 
         public string GatewayPassword { get; }
 
-        private string GenerateRandomUserName()
-        {
-            return $"{TwoDigitProjectCode}_Test_{NextNumber}_{_dateTime.ToString("ddMMMyyyy_HHmmss")}{EmpRefDigits}";
-        }
+        private string GenerateRandomUserName() => $"{Usernameprefix}_Test_{NextNumber}_{_dateTime:ddMMMyyyy_HHmmss}{EmpRefDigits}";
     }
 }
