@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.ApprenticeRedundancy.UITests.Project.Test.Features
+namespace SFA.DAS.ApprenticeRedundancy.UITests.Project.Test.Features.AR_Support
 {
     using TechTalk.SpecFlow;
     using System;
@@ -75,18 +75,20 @@ namespace SFA.DAS.ApprenticeRedundancy.UITests.Project.Test.Features
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("AP_RD_Apprentice_01_HappyPathApprenticeForm")]
+        [NUnit.Framework.CategoryAttribute("apprenticeRedundancy")]
         [NUnit.Framework.CategoryAttribute("aprd")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("aprd01")]
         public virtual void AP_RD_Apprentice_01_HappyPathApprenticeForm()
         {
             string[] tagsOfScenario = new string[] {
+                    "apprenticeRedundancy",
                     "aprd",
                     "regression",
                     "aprd01"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_RD_Apprentice_01_HappyPathApprenticeForm", null, tagsOfScenario, argumentsOfScenario);
-#line 6
+#line 7
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -106,7 +108,7 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 7
+#line 8
 testRunner.Given("the Apprentice Completes Apprentice details form successfully", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
             }
