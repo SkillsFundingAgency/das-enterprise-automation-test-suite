@@ -6,6 +6,7 @@ using SFA.DAS.Registration.UITests.Project.Helpers;
 using SFA.DAS.UI.Framework;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
+using System.Linq;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Registration.UITests.Project
@@ -37,7 +38,7 @@ namespace SFA.DAS.Registration.UITests.Project
         [BeforeScenario(Order = 22)]
         public void SetUpDataHelpers()
         {
-            var dataHelper = new DataHelper(_config.TwoDigitProjectCode);
+            var dataHelper = new DataHelper(_context.ScenarioInfo.Tags.Contains("addlevyfunds") || _context.ScenarioInfo.Tags.Contains("addtransferslevyfunds"));
 
             _objectContext.SetDataHelper(dataHelper);
            
