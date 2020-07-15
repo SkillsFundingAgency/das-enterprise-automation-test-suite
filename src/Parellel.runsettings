@@ -14,6 +14,6 @@
 	<!-- NUnit3 adapter, uncomment sections to set as appropriate, numeric, booleans, enums have their default values below, except RandomSeed -->
 	<!-- For documentation, see https://github.com/nunit/docs/wiki/Tips-And-Tricks -->
 	<NUnit>
-		<NumberOfTestWorkers>__NumberOfTestWorkers__</NumberOfTestWorkers>
+		<NumberOfTestWorkers>5</NumberOfTestWorkers>
 	</NUnit>
 </RunSettings>
