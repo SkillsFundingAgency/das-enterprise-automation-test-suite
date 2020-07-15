@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <RootNamespace>SFA.DAS.FAT.UITests</RootNamespace>
-	<RunSettingsFilePath>SFA.DAS.FAT.UITests.runsettings</RunSettingsFilePath> 
+	<RunSettingsFilePath>$(MSBuildProjectDirectory)\SFA.DAS.FAT.UITests.runsettings</RunSettingsFilePath> 
     <IsPackable>false</IsPackable>
   </PropertyGroup>
 
