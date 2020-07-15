@@ -14,6 +14,12 @@
   </ItemGroup>
 
   <ItemGroup>
+	<Compile Include="..\NUnitConfigurator.cs" Link="NUnitConfigurator.cs">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	</Compile>
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.6.1" />
     <PackageReference Include="NUnit3TestAdapter" Version="3.16.1">
       <PrivateAssets>all</PrivateAssets>
