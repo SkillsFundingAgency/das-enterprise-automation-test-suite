@@ -43,8 +43,5 @@
     <None Update="SFA.DAS.FAT.UITests.runtimeconfig.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-	 <None Update="SFA.DAS.FAT.UITests.runsettings">
-	   <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-	 </None>
   </ItemGroup>
 </Project>
