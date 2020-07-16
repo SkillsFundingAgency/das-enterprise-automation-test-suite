@@ -9,7 +9,7 @@ namespace SFA.DAS.ApprenticeRedundancy.UITests.Project.Test.Pages.AR_Admin
 {
    public class ApprenticeMatchingDashBoardPage : ApprenticeRedundancyBasePage
     {
-        protected override string PageTitle => "Welcome, s Allroatprole";
+        protected override string PageTitle => "Welcome,";
 
         private By ReportType => By.Id("ReportType");
         private By FromDate => By.Id("FromDate");

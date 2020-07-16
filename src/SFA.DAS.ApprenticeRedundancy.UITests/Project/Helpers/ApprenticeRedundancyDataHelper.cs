@@ -14,7 +14,8 @@ namespace SFA.DAS.ApprenticeRedundancy.UITests.Project.Helpers
         }
 
         public DateTime Dob(int x) => DateTime.Now.AddYears(-20 + x);
-        public string FullName => "Apprentice Smith";
+        public string FirstName => "Apprentice";
+        public string LastName => "Smith";
         public string JobRole => "Employee";
         public string Email => "test.demo@digital.education.gov.uk";
         public string Postcode => "CV22 4NX";

@@ -10,7 +10,8 @@ namespace SFA.DAS.ApprenticeRedundancy.UITests.Project.Test.Pages
         protected override string PageTitle => "Apprentice details";
 
         #region Element Locators
-        private By FullName = By.Id("FullName");
+        private By FirstName = By.Id("FirstName");
+        private By LastName = By.Id("LastName");
         private By EmailAddress = By.Id("Email");
         private By Day = By.Id("BirthDay");
         private By Month = By.Id("BirthMonth");
@@ -39,7 +40,8 @@ namespace SFA.DAS.ApprenticeRedundancy.UITests.Project.Test.Pages
         }
         public Apprentice_CheckYourAnswersPage CompleteApprenticeDetails()
         {
-            formCompletionHelper.EnterText(FullName, apprenticeRedundancyDataHelper.FullName);
+            formCompletionHelper.EnterText(FirstName, apprenticeRedundancyDataHelper.FirstName);
+            formCompletionHelper.EnterText(LastName, apprenticeRedundancyDataHelper.LastName);
             formCompletionHelper.EnterText(EmailAddress, apprenticeRedundancyDataHelper.Email);
             formCompletionHelper.EnterText(PhoneNumber, apprenticeRedundancyDataHelper.ContactNumber);
             var dobcalc = apprenticeRedundancyDataHelper.Dob(3);
