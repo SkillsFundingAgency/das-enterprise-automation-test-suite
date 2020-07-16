@@ -41,11 +41,14 @@ namespace SFA.DAS.Registration.UITests.Project
             var dataHelper = new DataHelper(
                    _context.ScenarioInfo.Tags.Contains("addlevyfunds") 
                 || _context.ScenarioInfo.Tags.Contains("addtransferslevyfunds") 
-                || _context.ScenarioInfo.Tags.Contains("levy"));
+                || _context.ScenarioInfo.Tags.Contains("levy")
+                || _context.ScenarioInfo.Tags.Contains("perftestlevy")); 
 
             _objectContext.SetDataHelper(dataHelper);
-           
-            var registrationDatahelpers = new RegistrationDataHelper(dataHelper.GatewayUsername, _config.RE_AccountPassword, _config.RE_OrganisationName, _context.Get<RandomDataGenerator>());
+
+            var emaildomain = (_context.ScenarioInfo.Tags.Contains("perftestnonlevy") || _context.ScenarioInfo.Tags.Contains("perftestlevy")) ? "perftest.com" : "mailinator.com";
+
+            var registrationDatahelpers = new RegistrationDataHelper($"{dataHelper.GatewayUsername}@{emaildomain}", _config.RE_AccountPassword, _config.RE_OrganisationName, _context.Get<RandomDataGenerator>());
 
             _context.Set(registrationDatahelpers);
 

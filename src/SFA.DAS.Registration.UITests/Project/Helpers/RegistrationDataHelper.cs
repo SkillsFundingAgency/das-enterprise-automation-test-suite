@@ -5,10 +5,10 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
 {
     public class RegistrationDataHelper : RandomElementHelper
     {
-        public RegistrationDataHelper(string gatewayUsername, string password, string organisationName, RandomDataGenerator randomDataGenerator) : base(randomDataGenerator)
+        public RegistrationDataHelper(string emailaddress, string password, string organisationName, RandomDataGenerator randomDataGenerator) : base(randomDataGenerator)
         {
-            RandomEmail = $"{gatewayUsername}@perftest.com";
-            AnotherRandomEmail = $"{gatewayUsername}_2@mailinator.com";
+            RandomEmail = emailaddress;
+            AnotherRandomEmail = randomDataGenerator.GenerateRandomEmail();
             AornNumber = $"A{GetDateTimeValue()}";
             Password = password;
             InvalidGGId = RandomAlphaNumericString(10);
