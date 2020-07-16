@@ -1,9 +1,9 @@
-﻿Feature: RE_CA_PF_NL_02
+﻿Feature: AP_CA_PF_NL_01
 
 @perftestnonlevy
 @addpayedetails
 @donottakescreenshot
-Scenario Outline: RE_CA_PF_NL_02_Create a NonLevy Employer Account and grant Create Cohort permission to a provider
+Scenario Outline: AP_CA_PF_NL_01_Create a NonLevy Employer Account and grant Create Cohort permission to a provider
 	When an Employer Account with Company Type Org is created and agreement is Signed
 	Then add accountid to the test data
 	And create cohort permission is granted to a provider

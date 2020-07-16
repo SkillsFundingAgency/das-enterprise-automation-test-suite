@@ -20,8 +20,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.CreateAccount
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.3.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("RE_CA_PF_NL_02")]
-    public partial class RE_CA_PF_NL_02Feature
+    [NUnit.Framework.DescriptionAttribute("AP_CA_PF_NL_01")]
+    public partial class AP_CA_PF_NL_01Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
@@ -35,7 +35,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.CreateAccount
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "RE_CA_PF_NL_02", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "AP_CA_PF_NL_01", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -73,7 +73,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.CreateAccount
             testRunner.CollectScenarioErrors();
         }
         
-        public virtual void RE_CA_PF_NL_02_CreateANonLevyEmployerAccountAndGrantCreateCohortPermissionToAProvider(string testdata, string[] exampleTags)
+        public virtual void AP_CA_PF_NL_01_CreateANonLevyEmployerAccountAndGrantCreateCohortPermissionToAProvider(string testdata, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "perftestnonlevy",
@@ -86,7 +86,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.CreateAccount
             string[] tagsOfScenario = @__tags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             argumentsOfScenario.Add("testdata", testdata);
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RE_CA_PF_NL_02_Create a NonLevy Employer Account and grant Create Cohort permissi" +
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_CA_PF_NL_01_Create a NonLevy Employer Account and grant Create Cohort permissi" +
                     "on to a provider", null, tagsOfScenario, argumentsOfScenario);
 #line 6
 this.ScenarioInitialize(scenarioInfo);
@@ -122,327 +122,327 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RE_CA_PF_NL_02_Create a NonLevy Employer Account and grant Create Cohort permissi" +
+        [NUnit.Framework.DescriptionAttribute("AP_CA_PF_NL_01_Create a NonLevy Employer Account and grant Create Cohort permissi" +
             "on to a provider: 1")]
         [NUnit.Framework.CategoryAttribute("perftestnonlevy")]
         [NUnit.Framework.CategoryAttribute("addpayedetails")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
-        public virtual void RE_CA_PF_NL_02_CreateANonLevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_1()
+        public virtual void AP_CA_PF_NL_01_CreateANonLevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_1()
         {
 #line 6
-this.RE_CA_PF_NL_02_CreateANonLevyEmployerAccountAndGrantCreateCohortPermissionToAProvider("1", ((string[])(null)));
+this.AP_CA_PF_NL_01_CreateANonLevyEmployerAccountAndGrantCreateCohortPermissionToAProvider("1", ((string[])(null)));
 #line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RE_CA_PF_NL_02_Create a NonLevy Employer Account and grant Create Cohort permissi" +
+        [NUnit.Framework.DescriptionAttribute("AP_CA_PF_NL_01_Create a NonLevy Employer Account and grant Create Cohort permissi" +
             "on to a provider: 2")]
         [NUnit.Framework.CategoryAttribute("perftestnonlevy")]
         [NUnit.Framework.CategoryAttribute("addpayedetails")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
-        public virtual void RE_CA_PF_NL_02_CreateANonLevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_2()
+        public virtual void AP_CA_PF_NL_01_CreateANonLevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_2()
         {
 #line 6
-this.RE_CA_PF_NL_02_CreateANonLevyEmployerAccountAndGrantCreateCohortPermissionToAProvider("2", ((string[])(null)));
+this.AP_CA_PF_NL_01_CreateANonLevyEmployerAccountAndGrantCreateCohortPermissionToAProvider("2", ((string[])(null)));
 #line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RE_CA_PF_NL_02_Create a NonLevy Employer Account and grant Create Cohort permissi" +
+        [NUnit.Framework.DescriptionAttribute("AP_CA_PF_NL_01_Create a NonLevy Employer Account and grant Create Cohort permissi" +
             "on to a provider: 3")]
         [NUnit.Framework.CategoryAttribute("perftestnonlevy")]
         [NUnit.Framework.CategoryAttribute("addpayedetails")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
-        public virtual void RE_CA_PF_NL_02_CreateANonLevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_3()
+        public virtual void AP_CA_PF_NL_01_CreateANonLevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_3()
         {
 #line 6
-this.RE_CA_PF_NL_02_CreateANonLevyEmployerAccountAndGrantCreateCohortPermissionToAProvider("3", ((string[])(null)));
+this.AP_CA_PF_NL_01_CreateANonLevyEmployerAccountAndGrantCreateCohortPermissionToAProvider("3", ((string[])(null)));
 #line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RE_CA_PF_NL_02_Create a NonLevy Employer Account and grant Create Cohort permissi" +
+        [NUnit.Framework.DescriptionAttribute("AP_CA_PF_NL_01_Create a NonLevy Employer Account and grant Create Cohort permissi" +
             "on to a provider: 4")]
         [NUnit.Framework.CategoryAttribute("perftestnonlevy")]
         [NUnit.Framework.CategoryAttribute("addpayedetails")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
-        public virtual void RE_CA_PF_NL_02_CreateANonLevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_4()
+        public virtual void AP_CA_PF_NL_01_CreateANonLevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_4()
         {
 #line 6
-this.RE_CA_PF_NL_02_CreateANonLevyEmployerAccountAndGrantCreateCohortPermissionToAProvider("4", ((string[])(null)));
+this.AP_CA_PF_NL_01_CreateANonLevyEmployerAccountAndGrantCreateCohortPermissionToAProvider("4", ((string[])(null)));
 #line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RE_CA_PF_NL_02_Create a NonLevy Employer Account and grant Create Cohort permissi" +
+        [NUnit.Framework.DescriptionAttribute("AP_CA_PF_NL_01_Create a NonLevy Employer Account and grant Create Cohort permissi" +
             "on to a provider: 5")]
         [NUnit.Framework.CategoryAttribute("perftestnonlevy")]
         [NUnit.Framework.CategoryAttribute("addpayedetails")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
-        public virtual void RE_CA_PF_NL_02_CreateANonLevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_5()
+        public virtual void AP_CA_PF_NL_01_CreateANonLevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_5()
         {
 #line 6
-this.RE_CA_PF_NL_02_CreateANonLevyEmployerAccountAndGrantCreateCohortPermissionToAProvider("5", ((string[])(null)));
+this.AP_CA_PF_NL_01_CreateANonLevyEmployerAccountAndGrantCreateCohortPermissionToAProvider("5", ((string[])(null)));
 #line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RE_CA_PF_NL_02_Create a NonLevy Employer Account and grant Create Cohort permissi" +
+        [NUnit.Framework.DescriptionAttribute("AP_CA_PF_NL_01_Create a NonLevy Employer Account and grant Create Cohort permissi" +
             "on to a provider: 6")]
         [NUnit.Framework.CategoryAttribute("perftestnonlevy")]
         [NUnit.Framework.CategoryAttribute("addpayedetails")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
-        public virtual void RE_CA_PF_NL_02_CreateANonLevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_6()
+        public virtual void AP_CA_PF_NL_01_CreateANonLevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_6()
         {
 #line 6
-this.RE_CA_PF_NL_02_CreateANonLevyEmployerAccountAndGrantCreateCohortPermissionToAProvider("6", ((string[])(null)));
+this.AP_CA_PF_NL_01_CreateANonLevyEmployerAccountAndGrantCreateCohortPermissionToAProvider("6", ((string[])(null)));
 #line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RE_CA_PF_NL_02_Create a NonLevy Employer Account and grant Create Cohort permissi" +
+        [NUnit.Framework.DescriptionAttribute("AP_CA_PF_NL_01_Create a NonLevy Employer Account and grant Create Cohort permissi" +
             "on to a provider: 7")]
         [NUnit.Framework.CategoryAttribute("perftestnonlevy")]
         [NUnit.Framework.CategoryAttribute("addpayedetails")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
-        public virtual void RE_CA_PF_NL_02_CreateANonLevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_7()
+        public virtual void AP_CA_PF_NL_01_CreateANonLevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_7()
         {
 #line 6
-this.RE_CA_PF_NL_02_CreateANonLevyEmployerAccountAndGrantCreateCohortPermissionToAProvider("7", ((string[])(null)));
+this.AP_CA_PF_NL_01_CreateANonLevyEmployerAccountAndGrantCreateCohortPermissionToAProvider("7", ((string[])(null)));
 #line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RE_CA_PF_NL_02_Create a NonLevy Employer Account and grant Create Cohort permissi" +
+        [NUnit.Framework.DescriptionAttribute("AP_CA_PF_NL_01_Create a NonLevy Employer Account and grant Create Cohort permissi" +
             "on to a provider: 8")]
         [NUnit.Framework.CategoryAttribute("perftestnonlevy")]
         [NUnit.Framework.CategoryAttribute("addpayedetails")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
-        public virtual void RE_CA_PF_NL_02_CreateANonLevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_8()
+        public virtual void AP_CA_PF_NL_01_CreateANonLevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_8()
         {
 #line 6
-this.RE_CA_PF_NL_02_CreateANonLevyEmployerAccountAndGrantCreateCohortPermissionToAProvider("8", ((string[])(null)));
+this.AP_CA_PF_NL_01_CreateANonLevyEmployerAccountAndGrantCreateCohortPermissionToAProvider("8", ((string[])(null)));
 #line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RE_CA_PF_NL_02_Create a NonLevy Employer Account and grant Create Cohort permissi" +
+        [NUnit.Framework.DescriptionAttribute("AP_CA_PF_NL_01_Create a NonLevy Employer Account and grant Create Cohort permissi" +
             "on to a provider: 9")]
         [NUnit.Framework.CategoryAttribute("perftestnonlevy")]
         [NUnit.Framework.CategoryAttribute("addpayedetails")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
-        public virtual void RE_CA_PF_NL_02_CreateANonLevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_9()
+        public virtual void AP_CA_PF_NL_01_CreateANonLevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_9()
         {
 #line 6
-this.RE_CA_PF_NL_02_CreateANonLevyEmployerAccountAndGrantCreateCohortPermissionToAProvider("9", ((string[])(null)));
+this.AP_CA_PF_NL_01_CreateANonLevyEmployerAccountAndGrantCreateCohortPermissionToAProvider("9", ((string[])(null)));
 #line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RE_CA_PF_NL_02_Create a NonLevy Employer Account and grant Create Cohort permissi" +
+        [NUnit.Framework.DescriptionAttribute("AP_CA_PF_NL_01_Create a NonLevy Employer Account and grant Create Cohort permissi" +
             "on to a provider: 10")]
         [NUnit.Framework.CategoryAttribute("perftestnonlevy")]
         [NUnit.Framework.CategoryAttribute("addpayedetails")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
-        public virtual void RE_CA_PF_NL_02_CreateANonLevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_10()
+        public virtual void AP_CA_PF_NL_01_CreateANonLevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_10()
         {
 #line 6
-this.RE_CA_PF_NL_02_CreateANonLevyEmployerAccountAndGrantCreateCohortPermissionToAProvider("10", ((string[])(null)));
+this.AP_CA_PF_NL_01_CreateANonLevyEmployerAccountAndGrantCreateCohortPermissionToAProvider("10", ((string[])(null)));
 #line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RE_CA_PF_NL_02_Create a NonLevy Employer Account and grant Create Cohort permissi" +
+        [NUnit.Framework.DescriptionAttribute("AP_CA_PF_NL_01_Create a NonLevy Employer Account and grant Create Cohort permissi" +
             "on to a provider: 11")]
         [NUnit.Framework.CategoryAttribute("perftestnonlevy")]
         [NUnit.Framework.CategoryAttribute("addpayedetails")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
-        public virtual void RE_CA_PF_NL_02_CreateANonLevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_11()
+        public virtual void AP_CA_PF_NL_01_CreateANonLevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_11()
         {
 #line 6
-this.RE_CA_PF_NL_02_CreateANonLevyEmployerAccountAndGrantCreateCohortPermissionToAProvider("11", ((string[])(null)));
+this.AP_CA_PF_NL_01_CreateANonLevyEmployerAccountAndGrantCreateCohortPermissionToAProvider("11", ((string[])(null)));
 #line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RE_CA_PF_NL_02_Create a NonLevy Employer Account and grant Create Cohort permissi" +
+        [NUnit.Framework.DescriptionAttribute("AP_CA_PF_NL_01_Create a NonLevy Employer Account and grant Create Cohort permissi" +
             "on to a provider: 12")]
         [NUnit.Framework.CategoryAttribute("perftestnonlevy")]
         [NUnit.Framework.CategoryAttribute("addpayedetails")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
-        public virtual void RE_CA_PF_NL_02_CreateANonLevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_12()
+        public virtual void AP_CA_PF_NL_01_CreateANonLevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_12()
         {
 #line 6
-this.RE_CA_PF_NL_02_CreateANonLevyEmployerAccountAndGrantCreateCohortPermissionToAProvider("12", ((string[])(null)));
+this.AP_CA_PF_NL_01_CreateANonLevyEmployerAccountAndGrantCreateCohortPermissionToAProvider("12", ((string[])(null)));
 #line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RE_CA_PF_NL_02_Create a NonLevy Employer Account and grant Create Cohort permissi" +
+        [NUnit.Framework.DescriptionAttribute("AP_CA_PF_NL_01_Create a NonLevy Employer Account and grant Create Cohort permissi" +
             "on to a provider: 13")]
         [NUnit.Framework.CategoryAttribute("perftestnonlevy")]
         [NUnit.Framework.CategoryAttribute("addpayedetails")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
-        public virtual void RE_CA_PF_NL_02_CreateANonLevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_13()
+        public virtual void AP_CA_PF_NL_01_CreateANonLevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_13()
         {
 #line 6
-this.RE_CA_PF_NL_02_CreateANonLevyEmployerAccountAndGrantCreateCohortPermissionToAProvider("13", ((string[])(null)));
+this.AP_CA_PF_NL_01_CreateANonLevyEmployerAccountAndGrantCreateCohortPermissionToAProvider("13", ((string[])(null)));
 #line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RE_CA_PF_NL_02_Create a NonLevy Employer Account and grant Create Cohort permissi" +
+        [NUnit.Framework.DescriptionAttribute("AP_CA_PF_NL_01_Create a NonLevy Employer Account and grant Create Cohort permissi" +
             "on to a provider: 14")]
         [NUnit.Framework.CategoryAttribute("perftestnonlevy")]
         [NUnit.Framework.CategoryAttribute("addpayedetails")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
-        public virtual void RE_CA_PF_NL_02_CreateANonLevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_14()
+        public virtual void AP_CA_PF_NL_01_CreateANonLevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_14()
         {
 #line 6
-this.RE_CA_PF_NL_02_CreateANonLevyEmployerAccountAndGrantCreateCohortPermissionToAProvider("14", ((string[])(null)));
+this.AP_CA_PF_NL_01_CreateANonLevyEmployerAccountAndGrantCreateCohortPermissionToAProvider("14", ((string[])(null)));
 #line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RE_CA_PF_NL_02_Create a NonLevy Employer Account and grant Create Cohort permissi" +
+        [NUnit.Framework.DescriptionAttribute("AP_CA_PF_NL_01_Create a NonLevy Employer Account and grant Create Cohort permissi" +
             "on to a provider: 15")]
         [NUnit.Framework.CategoryAttribute("perftestnonlevy")]
         [NUnit.Framework.CategoryAttribute("addpayedetails")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
-        public virtual void RE_CA_PF_NL_02_CreateANonLevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_15()
+        public virtual void AP_CA_PF_NL_01_CreateANonLevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_15()
         {
 #line 6
-this.RE_CA_PF_NL_02_CreateANonLevyEmployerAccountAndGrantCreateCohortPermissionToAProvider("15", ((string[])(null)));
+this.AP_CA_PF_NL_01_CreateANonLevyEmployerAccountAndGrantCreateCohortPermissionToAProvider("15", ((string[])(null)));
 #line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RE_CA_PF_NL_02_Create a NonLevy Employer Account and grant Create Cohort permissi" +
+        [NUnit.Framework.DescriptionAttribute("AP_CA_PF_NL_01_Create a NonLevy Employer Account and grant Create Cohort permissi" +
             "on to a provider: 16")]
         [NUnit.Framework.CategoryAttribute("perftestnonlevy")]
         [NUnit.Framework.CategoryAttribute("addpayedetails")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
-        public virtual void RE_CA_PF_NL_02_CreateANonLevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_16()
+        public virtual void AP_CA_PF_NL_01_CreateANonLevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_16()
         {
 #line 6
-this.RE_CA_PF_NL_02_CreateANonLevyEmployerAccountAndGrantCreateCohortPermissionToAProvider("16", ((string[])(null)));
+this.AP_CA_PF_NL_01_CreateANonLevyEmployerAccountAndGrantCreateCohortPermissionToAProvider("16", ((string[])(null)));
 #line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RE_CA_PF_NL_02_Create a NonLevy Employer Account and grant Create Cohort permissi" +
+        [NUnit.Framework.DescriptionAttribute("AP_CA_PF_NL_01_Create a NonLevy Employer Account and grant Create Cohort permissi" +
             "on to a provider: 17")]
         [NUnit.Framework.CategoryAttribute("perftestnonlevy")]
         [NUnit.Framework.CategoryAttribute("addpayedetails")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
-        public virtual void RE_CA_PF_NL_02_CreateANonLevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_17()
+        public virtual void AP_CA_PF_NL_01_CreateANonLevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_17()
         {
 #line 6
-this.RE_CA_PF_NL_02_CreateANonLevyEmployerAccountAndGrantCreateCohortPermissionToAProvider("17", ((string[])(null)));
+this.AP_CA_PF_NL_01_CreateANonLevyEmployerAccountAndGrantCreateCohortPermissionToAProvider("17", ((string[])(null)));
 #line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RE_CA_PF_NL_02_Create a NonLevy Employer Account and grant Create Cohort permissi" +
+        [NUnit.Framework.DescriptionAttribute("AP_CA_PF_NL_01_Create a NonLevy Employer Account and grant Create Cohort permissi" +
             "on to a provider: 18")]
         [NUnit.Framework.CategoryAttribute("perftestnonlevy")]
         [NUnit.Framework.CategoryAttribute("addpayedetails")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
-        public virtual void RE_CA_PF_NL_02_CreateANonLevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_18()
+        public virtual void AP_CA_PF_NL_01_CreateANonLevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_18()
         {
 #line 6
-this.RE_CA_PF_NL_02_CreateANonLevyEmployerAccountAndGrantCreateCohortPermissionToAProvider("18", ((string[])(null)));
+this.AP_CA_PF_NL_01_CreateANonLevyEmployerAccountAndGrantCreateCohortPermissionToAProvider("18", ((string[])(null)));
 #line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RE_CA_PF_NL_02_Create a NonLevy Employer Account and grant Create Cohort permissi" +
+        [NUnit.Framework.DescriptionAttribute("AP_CA_PF_NL_01_Create a NonLevy Employer Account and grant Create Cohort permissi" +
             "on to a provider: 19")]
         [NUnit.Framework.CategoryAttribute("perftestnonlevy")]
         [NUnit.Framework.CategoryAttribute("addpayedetails")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
-        public virtual void RE_CA_PF_NL_02_CreateANonLevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_19()
+        public virtual void AP_CA_PF_NL_01_CreateANonLevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_19()
         {
 #line 6
-this.RE_CA_PF_NL_02_CreateANonLevyEmployerAccountAndGrantCreateCohortPermissionToAProvider("19", ((string[])(null)));
+this.AP_CA_PF_NL_01_CreateANonLevyEmployerAccountAndGrantCreateCohortPermissionToAProvider("19", ((string[])(null)));
 #line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RE_CA_PF_NL_02_Create a NonLevy Employer Account and grant Create Cohort permissi" +
+        [NUnit.Framework.DescriptionAttribute("AP_CA_PF_NL_01_Create a NonLevy Employer Account and grant Create Cohort permissi" +
             "on to a provider: 20")]
         [NUnit.Framework.CategoryAttribute("perftestnonlevy")]
         [NUnit.Framework.CategoryAttribute("addpayedetails")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
-        public virtual void RE_CA_PF_NL_02_CreateANonLevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_20()
+        public virtual void AP_CA_PF_NL_01_CreateANonLevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_20()
         {
 #line 6
-this.RE_CA_PF_NL_02_CreateANonLevyEmployerAccountAndGrantCreateCohortPermissionToAProvider("20", ((string[])(null)));
+this.AP_CA_PF_NL_01_CreateANonLevyEmployerAccountAndGrantCreateCohortPermissionToAProvider("20", ((string[])(null)));
 #line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RE_CA_PF_NL_02_Create a NonLevy Employer Account and grant Create Cohort permissi" +
+        [NUnit.Framework.DescriptionAttribute("AP_CA_PF_NL_01_Create a NonLevy Employer Account and grant Create Cohort permissi" +
             "on to a provider: 21")]
         [NUnit.Framework.CategoryAttribute("perftestnonlevy")]
         [NUnit.Framework.CategoryAttribute("addpayedetails")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
-        public virtual void RE_CA_PF_NL_02_CreateANonLevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_21()
+        public virtual void AP_CA_PF_NL_01_CreateANonLevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_21()
         {
 #line 6
-this.RE_CA_PF_NL_02_CreateANonLevyEmployerAccountAndGrantCreateCohortPermissionToAProvider("21", ((string[])(null)));
+this.AP_CA_PF_NL_01_CreateANonLevyEmployerAccountAndGrantCreateCohortPermissionToAProvider("21", ((string[])(null)));
 #line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RE_CA_PF_NL_02_Create a NonLevy Employer Account and grant Create Cohort permissi" +
+        [NUnit.Framework.DescriptionAttribute("AP_CA_PF_NL_01_Create a NonLevy Employer Account and grant Create Cohort permissi" +
             "on to a provider: 22")]
         [NUnit.Framework.CategoryAttribute("perftestnonlevy")]
         [NUnit.Framework.CategoryAttribute("addpayedetails")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
-        public virtual void RE_CA_PF_NL_02_CreateANonLevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_22()
+        public virtual void AP_CA_PF_NL_01_CreateANonLevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_22()
         {
 #line 6
-this.RE_CA_PF_NL_02_CreateANonLevyEmployerAccountAndGrantCreateCohortPermissionToAProvider("22", ((string[])(null)));
+this.AP_CA_PF_NL_01_CreateANonLevyEmployerAccountAndGrantCreateCohortPermissionToAProvider("22", ((string[])(null)));
 #line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RE_CA_PF_NL_02_Create a NonLevy Employer Account and grant Create Cohort permissi" +
+        [NUnit.Framework.DescriptionAttribute("AP_CA_PF_NL_01_Create a NonLevy Employer Account and grant Create Cohort permissi" +
             "on to a provider: 23")]
         [NUnit.Framework.CategoryAttribute("perftestnonlevy")]
         [NUnit.Framework.CategoryAttribute("addpayedetails")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
-        public virtual void RE_CA_PF_NL_02_CreateANonLevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_23()
+        public virtual void AP_CA_PF_NL_01_CreateANonLevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_23()
         {
 #line 6
-this.RE_CA_PF_NL_02_CreateANonLevyEmployerAccountAndGrantCreateCohortPermissionToAProvider("23", ((string[])(null)));
+this.AP_CA_PF_NL_01_CreateANonLevyEmployerAccountAndGrantCreateCohortPermissionToAProvider("23", ((string[])(null)));
 #line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RE_CA_PF_NL_02_Create a NonLevy Employer Account and grant Create Cohort permissi" +
+        [NUnit.Framework.DescriptionAttribute("AP_CA_PF_NL_01_Create a NonLevy Employer Account and grant Create Cohort permissi" +
             "on to a provider: 24")]
         [NUnit.Framework.CategoryAttribute("perftestnonlevy")]
         [NUnit.Framework.CategoryAttribute("addpayedetails")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
-        public virtual void RE_CA_PF_NL_02_CreateANonLevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_24()
+        public virtual void AP_CA_PF_NL_01_CreateANonLevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_24()
         {
 #line 6
-this.RE_CA_PF_NL_02_CreateANonLevyEmployerAccountAndGrantCreateCohortPermissionToAProvider("24", ((string[])(null)));
+this.AP_CA_PF_NL_01_CreateANonLevyEmployerAccountAndGrantCreateCohortPermissionToAProvider("24", ((string[])(null)));
 #line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RE_CA_PF_NL_02_Create a NonLevy Employer Account and grant Create Cohort permissi" +
+        [NUnit.Framework.DescriptionAttribute("AP_CA_PF_NL_01_Create a NonLevy Employer Account and grant Create Cohort permissi" +
             "on to a provider: 25")]
         [NUnit.Framework.CategoryAttribute("perftestnonlevy")]
         [NUnit.Framework.CategoryAttribute("addpayedetails")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
-        public virtual void RE_CA_PF_NL_02_CreateANonLevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_25()
+        public virtual void AP_CA_PF_NL_01_CreateANonLevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_25()
         {
 #line 6
-this.RE_CA_PF_NL_02_CreateANonLevyEmployerAccountAndGrantCreateCohortPermissionToAProvider("25", ((string[])(null)));
+this.AP_CA_PF_NL_01_CreateANonLevyEmployerAccountAndGrantCreateCohortPermissionToAProvider("25", ((string[])(null)));
 #line hidden
         }
     }
