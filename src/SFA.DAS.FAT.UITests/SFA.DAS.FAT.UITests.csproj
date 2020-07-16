@@ -3,19 +3,20 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <RootNamespace>SFA.DAS.FAT.UITests</RootNamespace>
+	<RunSettingsFilePath>$(MSBuildProjectDirectory)\SFA.DAS.FAT.UITests.runsettings</RunSettingsFilePath> 
     <IsPackable>false</IsPackable>
   </PropertyGroup>
-
-  <ItemGroup>
-    <Compile Include="..\NUnitConfigurator.cs" Link="NUnitConfigurator.cs">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Compile>
-  </ItemGroup>
 
   <ItemGroup>
     <Content Include="..\specflow.json" Link="specflow.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+	<Compile Include="..\NUnitConfigurator.cs" Link="NUnitConfigurator.cs">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	</Compile>
   </ItemGroup>
 
   <ItemGroup>
