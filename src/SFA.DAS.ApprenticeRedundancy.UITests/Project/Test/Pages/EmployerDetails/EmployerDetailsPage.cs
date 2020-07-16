@@ -12,7 +12,8 @@ namespace SFA.DAS.ApprenticeRedundancy.UITests.Project.Test.Pages.EmployerDetail
         protected override string PageTitle => "Tell us about your apprenticeship opportunity";
 
         private By OrganisationName = By.Id("OrganisationName");
-        private By ContactName = By.Id("ContactName");
+        private By ContactFirstName = By.Id("ContactFirstName");
+        private By ContactLastName = By.Id("ContactLastName");
         private By Email = By.Id("Email");
         private By PhoneNumber = By.Id("PhoneNumber");
         private By Webstite = By.Id("Website");
@@ -41,7 +42,8 @@ namespace SFA.DAS.ApprenticeRedundancy.UITests.Project.Test.Pages.EmployerDetail
             formCompletionHelper.SelectCheckBoxByText(LocationAndSectors, "Protective services");
             formCompletionHelper.SelectCheckBoxByText(LocationAndSectors, "Transport and logistics");
             formCompletionHelper.EnterText(MoreDetail, apprenticeRedundancyDataHelper.LongText);
-            formCompletionHelper.EnterText(ContactName, apprenticeRedundancyDataHelper.FullName);
+            formCompletionHelper.EnterText(ContactFirstName, apprenticeRedundancyDataHelper.FirstName);
+            formCompletionHelper.EnterText(ContactLastName, apprenticeRedundancyDataHelper.LastName);
             formCompletionHelper.EnterText(PhoneNumber, apprenticeRedundancyDataHelper.ContactNumber);
             formCompletionHelper.SelectRadioOptionByLocator( FeedbackYes );
             Continue();
