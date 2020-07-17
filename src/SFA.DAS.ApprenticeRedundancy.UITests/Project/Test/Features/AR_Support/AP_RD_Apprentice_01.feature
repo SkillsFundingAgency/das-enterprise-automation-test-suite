@@ -1,5 +1,6 @@
 ﻿Feature: AP_RD_ST_01
 
+@aprdsupport
 @aprd
 @regression
 @aprd01

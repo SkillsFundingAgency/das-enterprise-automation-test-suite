@@ -60,6 +60,14 @@ steps:
     TargetFolder: '$(build.artifactstagingdirectory)/publish'
     OverWrite: true
 
+- task: CopyFiles@2
+  displayName: 'Copy Files to: $(build.artifactstagingdirectory)'
+  inputs:
+    Contents: |     
+      src/**/*.runsettings
+    TargetFolder: '$(build.artifactstagingdirectory)/publish/runsettings'
+    OverWrite: true
+
 - task: ArchiveFiles@2
   inputs:
     rootFolderOrFile: '$(build.artifactstagingdirectory)/tests'

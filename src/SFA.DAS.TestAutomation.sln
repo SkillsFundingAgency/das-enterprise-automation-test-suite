@@ -67,7 +67,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.ProviderFeedback.UI
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.ApprenticeRedundancy.UITests", "SFA.DAS.ApprenticeRedundancy.UITests\SFA.DAS.ApprenticeRedundancy.UITests.csproj", "{118FEC73-770A-4705-B2CF-7A4C33F59481}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SFA.DAS.EmployerIncentives.UITests", "SFA.DAS.EmployerIncentives.UITests\SFA.DAS.EmployerIncentives.UITests.csproj", "{23391A9B-833C-47F8-9F7D-29E885CD200B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.EmployerIncentives.UITests", "SFA.DAS.EmployerIncentives.UITests\SFA.DAS.EmployerIncentives.UITests.csproj", "{23391A9B-833C-47F8-9F7D-29E885CD200B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{6E0426D3-BE06-45D9-AE74-262AE19F53A0}"
+	ProjectSection(SolutionItems) = preProject
+		Parellel.runsettings = Parellel.runsettings
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

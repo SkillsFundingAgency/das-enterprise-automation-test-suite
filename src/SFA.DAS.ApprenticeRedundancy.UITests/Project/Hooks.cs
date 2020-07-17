@@ -6,12 +6,13 @@ using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeRedundancy.UITests.Project
 {
-    [Binding]
+    [Binding, Scope(Tag = "aprdsupport"), Scope(Tag = "aprdadmin")]
     public class Hooks
     {
         private readonly ScenarioContext _context;
@@ -26,7 +27,13 @@ namespace SFA.DAS.ApprenticeRedundancy.UITests.Project
         }
 
         [BeforeScenario(Order = 21)]
-        public void NavigateToCovidSupportHomepage() => _webDriver.Navigate().GoToUrl(UrlConfig.AR_BaseUrl);
+        public void NavigateToCovidSupportHomepage()
+        {
+            if (_context.ScenarioInfo.Tags.Contains("aprdsupport"))
+                _webDriver.Navigate().GoToUrl(UrlConfig.AR_BaseUrl);
+            else if (_context.ScenarioInfo.Tags.Contains("aprdadmin"))
+                _webDriver.Navigate().GoToUrl(UrlConfig.AR_AdminBaseUrl);
+        }
 
         [BeforeScenario(Order = 22)]
         public void SetUpHelpers() => _context.Set(new ApprenticeRedundancyDataHelper(_context.Get<RandomDataGenerator>()));
