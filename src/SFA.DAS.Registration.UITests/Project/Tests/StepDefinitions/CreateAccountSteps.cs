@@ -198,7 +198,16 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         public void ThenApprenticeshipEmployerTypeInAccountTableIsMarkedAs(string expectedApprenticeshipEmployerType)
         {
             var actualApprenticeshipEmployerType = _registrationSqlDataHelper.GetAccountApprenticeshipEmployerType(_registrationDataHelper.RandomEmail);
+            
             Assert.AreEqual(expectedApprenticeshipEmployerType, actualApprenticeshipEmployerType);
+        }
+
+        [Then(@"add accountid to the test data")]
+        public void ThenAddAccountidToTheTestData()
+        {
+            var acountid = _registrationSqlDataHelper.GetAccountId(_registrationDataHelper.RandomEmail);
+
+            _objectContext.UdpateUserCreds(acountid, 0);
         }
 
         [When(@"Signs the Agreement from Account HomePage Panel")]
