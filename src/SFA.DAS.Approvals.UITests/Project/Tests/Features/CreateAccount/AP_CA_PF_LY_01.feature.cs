@@ -73,7 +73,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.CreateAccount
             testRunner.CollectScenarioErrors();
         }
         
-        public virtual void AP_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement(string testdata, string[] exampleTags)
+        public virtual void AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider(string testdata, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "perftestlevy",
@@ -86,7 +86,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.CreateAccount
             string[] tagsOfScenario = @__tags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             argumentsOfScenario.Add("testdata", testdata);
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_CA_PF_LY_01_Create a Levy Account and Sign the Agreement", null, tagsOfScenario, argumentsOfScenario);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_CA_PF_LY_01_Create a Levy Employer Account and grant Create Cohort permission " +
+                    "to a provider", null, tagsOfScenario, argumentsOfScenario);
 #line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -124,302 +125,327 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("AP_CA_PF_LY_01_Create a Levy Account and Sign the Agreement: 1")]
+        [NUnit.Framework.DescriptionAttribute("AP_CA_PF_LY_01_Create a Levy Employer Account and grant Create Cohort permission " +
+            "to a provider: 1")]
         [NUnit.Framework.CategoryAttribute("perftestlevy")]
         [NUnit.Framework.CategoryAttribute("addpayedetails")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
-        public virtual void AP_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement_1()
+        public virtual void AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_1()
         {
 #line 6
-this.AP_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement("1", ((string[])(null)));
+this.AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider("1", ((string[])(null)));
 #line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("AP_CA_PF_LY_01_Create a Levy Account and Sign the Agreement: 2")]
+        [NUnit.Framework.DescriptionAttribute("AP_CA_PF_LY_01_Create a Levy Employer Account and grant Create Cohort permission " +
+            "to a provider: 2")]
         [NUnit.Framework.CategoryAttribute("perftestlevy")]
         [NUnit.Framework.CategoryAttribute("addpayedetails")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
-        public virtual void AP_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement_2()
+        public virtual void AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_2()
         {
 #line 6
-this.AP_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement("2", ((string[])(null)));
+this.AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider("2", ((string[])(null)));
 #line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("AP_CA_PF_LY_01_Create a Levy Account and Sign the Agreement: 3")]
+        [NUnit.Framework.DescriptionAttribute("AP_CA_PF_LY_01_Create a Levy Employer Account and grant Create Cohort permission " +
+            "to a provider: 3")]
         [NUnit.Framework.CategoryAttribute("perftestlevy")]
         [NUnit.Framework.CategoryAttribute("addpayedetails")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
-        public virtual void AP_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement_3()
+        public virtual void AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_3()
         {
 #line 6
-this.AP_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement("3", ((string[])(null)));
+this.AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider("3", ((string[])(null)));
 #line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("AP_CA_PF_LY_01_Create a Levy Account and Sign the Agreement: 4")]
+        [NUnit.Framework.DescriptionAttribute("AP_CA_PF_LY_01_Create a Levy Employer Account and grant Create Cohort permission " +
+            "to a provider: 4")]
         [NUnit.Framework.CategoryAttribute("perftestlevy")]
         [NUnit.Framework.CategoryAttribute("addpayedetails")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
-        public virtual void AP_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement_4()
+        public virtual void AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_4()
         {
 #line 6
-this.AP_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement("4", ((string[])(null)));
+this.AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider("4", ((string[])(null)));
 #line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("AP_CA_PF_LY_01_Create a Levy Account and Sign the Agreement: 5")]
+        [NUnit.Framework.DescriptionAttribute("AP_CA_PF_LY_01_Create a Levy Employer Account and grant Create Cohort permission " +
+            "to a provider: 5")]
         [NUnit.Framework.CategoryAttribute("perftestlevy")]
         [NUnit.Framework.CategoryAttribute("addpayedetails")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
-        public virtual void AP_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement_5()
+        public virtual void AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_5()
         {
 #line 6
-this.AP_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement("5", ((string[])(null)));
+this.AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider("5", ((string[])(null)));
 #line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("AP_CA_PF_LY_01_Create a Levy Account and Sign the Agreement: 6")]
+        [NUnit.Framework.DescriptionAttribute("AP_CA_PF_LY_01_Create a Levy Employer Account and grant Create Cohort permission " +
+            "to a provider: 6")]
         [NUnit.Framework.CategoryAttribute("perftestlevy")]
         [NUnit.Framework.CategoryAttribute("addpayedetails")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
-        public virtual void AP_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement_6()
+        public virtual void AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_6()
         {
 #line 6
-this.AP_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement("6", ((string[])(null)));
+this.AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider("6", ((string[])(null)));
 #line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("AP_CA_PF_LY_01_Create a Levy Account and Sign the Agreement: 7")]
+        [NUnit.Framework.DescriptionAttribute("AP_CA_PF_LY_01_Create a Levy Employer Account and grant Create Cohort permission " +
+            "to a provider: 7")]
         [NUnit.Framework.CategoryAttribute("perftestlevy")]
         [NUnit.Framework.CategoryAttribute("addpayedetails")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
-        public virtual void AP_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement_7()
+        public virtual void AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_7()
         {
 #line 6
-this.AP_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement("7", ((string[])(null)));
+this.AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider("7", ((string[])(null)));
 #line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("AP_CA_PF_LY_01_Create a Levy Account and Sign the Agreement: 8")]
+        [NUnit.Framework.DescriptionAttribute("AP_CA_PF_LY_01_Create a Levy Employer Account and grant Create Cohort permission " +
+            "to a provider: 8")]
         [NUnit.Framework.CategoryAttribute("perftestlevy")]
         [NUnit.Framework.CategoryAttribute("addpayedetails")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
-        public virtual void AP_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement_8()
+        public virtual void AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_8()
         {
 #line 6
-this.AP_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement("8", ((string[])(null)));
+this.AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider("8", ((string[])(null)));
 #line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("AP_CA_PF_LY_01_Create a Levy Account and Sign the Agreement: 9")]
+        [NUnit.Framework.DescriptionAttribute("AP_CA_PF_LY_01_Create a Levy Employer Account and grant Create Cohort permission " +
+            "to a provider: 9")]
         [NUnit.Framework.CategoryAttribute("perftestlevy")]
         [NUnit.Framework.CategoryAttribute("addpayedetails")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
-        public virtual void AP_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement_9()
+        public virtual void AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_9()
         {
 #line 6
-this.AP_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement("9", ((string[])(null)));
+this.AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider("9", ((string[])(null)));
 #line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("AP_CA_PF_LY_01_Create a Levy Account and Sign the Agreement: 10")]
+        [NUnit.Framework.DescriptionAttribute("AP_CA_PF_LY_01_Create a Levy Employer Account and grant Create Cohort permission " +
+            "to a provider: 10")]
         [NUnit.Framework.CategoryAttribute("perftestlevy")]
         [NUnit.Framework.CategoryAttribute("addpayedetails")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
-        public virtual void AP_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement_10()
+        public virtual void AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_10()
         {
 #line 6
-this.AP_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement("10", ((string[])(null)));
+this.AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider("10", ((string[])(null)));
 #line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("AP_CA_PF_LY_01_Create a Levy Account and Sign the Agreement: 11")]
+        [NUnit.Framework.DescriptionAttribute("AP_CA_PF_LY_01_Create a Levy Employer Account and grant Create Cohort permission " +
+            "to a provider: 11")]
         [NUnit.Framework.CategoryAttribute("perftestlevy")]
         [NUnit.Framework.CategoryAttribute("addpayedetails")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
-        public virtual void AP_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement_11()
+        public virtual void AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_11()
         {
 #line 6
-this.AP_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement("11", ((string[])(null)));
+this.AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider("11", ((string[])(null)));
 #line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("AP_CA_PF_LY_01_Create a Levy Account and Sign the Agreement: 12")]
+        [NUnit.Framework.DescriptionAttribute("AP_CA_PF_LY_01_Create a Levy Employer Account and grant Create Cohort permission " +
+            "to a provider: 12")]
         [NUnit.Framework.CategoryAttribute("perftestlevy")]
         [NUnit.Framework.CategoryAttribute("addpayedetails")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
-        public virtual void AP_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement_12()
+        public virtual void AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_12()
         {
 #line 6
-this.AP_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement("12", ((string[])(null)));
+this.AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider("12", ((string[])(null)));
 #line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("AP_CA_PF_LY_01_Create a Levy Account and Sign the Agreement: 13")]
+        [NUnit.Framework.DescriptionAttribute("AP_CA_PF_LY_01_Create a Levy Employer Account and grant Create Cohort permission " +
+            "to a provider: 13")]
         [NUnit.Framework.CategoryAttribute("perftestlevy")]
         [NUnit.Framework.CategoryAttribute("addpayedetails")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
-        public virtual void AP_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement_13()
+        public virtual void AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_13()
         {
 #line 6
-this.AP_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement("13", ((string[])(null)));
+this.AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider("13", ((string[])(null)));
 #line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("AP_CA_PF_LY_01_Create a Levy Account and Sign the Agreement: 14")]
+        [NUnit.Framework.DescriptionAttribute("AP_CA_PF_LY_01_Create a Levy Employer Account and grant Create Cohort permission " +
+            "to a provider: 14")]
         [NUnit.Framework.CategoryAttribute("perftestlevy")]
         [NUnit.Framework.CategoryAttribute("addpayedetails")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
-        public virtual void AP_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement_14()
+        public virtual void AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_14()
         {
 #line 6
-this.AP_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement("14", ((string[])(null)));
+this.AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider("14", ((string[])(null)));
 #line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("AP_CA_PF_LY_01_Create a Levy Account and Sign the Agreement: 15")]
+        [NUnit.Framework.DescriptionAttribute("AP_CA_PF_LY_01_Create a Levy Employer Account and grant Create Cohort permission " +
+            "to a provider: 15")]
         [NUnit.Framework.CategoryAttribute("perftestlevy")]
         [NUnit.Framework.CategoryAttribute("addpayedetails")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
-        public virtual void AP_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement_15()
+        public virtual void AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_15()
         {
 #line 6
-this.AP_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement("15", ((string[])(null)));
+this.AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider("15", ((string[])(null)));
 #line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("AP_CA_PF_LY_01_Create a Levy Account and Sign the Agreement: 16")]
+        [NUnit.Framework.DescriptionAttribute("AP_CA_PF_LY_01_Create a Levy Employer Account and grant Create Cohort permission " +
+            "to a provider: 16")]
         [NUnit.Framework.CategoryAttribute("perftestlevy")]
         [NUnit.Framework.CategoryAttribute("addpayedetails")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
-        public virtual void AP_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement_16()
+        public virtual void AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_16()
         {
 #line 6
-this.AP_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement("16", ((string[])(null)));
+this.AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider("16", ((string[])(null)));
 #line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("AP_CA_PF_LY_01_Create a Levy Account and Sign the Agreement: 17")]
+        [NUnit.Framework.DescriptionAttribute("AP_CA_PF_LY_01_Create a Levy Employer Account and grant Create Cohort permission " +
+            "to a provider: 17")]
         [NUnit.Framework.CategoryAttribute("perftestlevy")]
         [NUnit.Framework.CategoryAttribute("addpayedetails")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
-        public virtual void AP_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement_17()
+        public virtual void AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_17()
         {
 #line 6
-this.AP_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement("17", ((string[])(null)));
+this.AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider("17", ((string[])(null)));
 #line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("AP_CA_PF_LY_01_Create a Levy Account and Sign the Agreement: 18")]
+        [NUnit.Framework.DescriptionAttribute("AP_CA_PF_LY_01_Create a Levy Employer Account and grant Create Cohort permission " +
+            "to a provider: 18")]
         [NUnit.Framework.CategoryAttribute("perftestlevy")]
         [NUnit.Framework.CategoryAttribute("addpayedetails")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
-        public virtual void AP_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement_18()
+        public virtual void AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_18()
         {
 #line 6
-this.AP_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement("18", ((string[])(null)));
+this.AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider("18", ((string[])(null)));
 #line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("AP_CA_PF_LY_01_Create a Levy Account and Sign the Agreement: 19")]
+        [NUnit.Framework.DescriptionAttribute("AP_CA_PF_LY_01_Create a Levy Employer Account and grant Create Cohort permission " +
+            "to a provider: 19")]
         [NUnit.Framework.CategoryAttribute("perftestlevy")]
         [NUnit.Framework.CategoryAttribute("addpayedetails")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
-        public virtual void AP_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement_19()
+        public virtual void AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_19()
         {
 #line 6
-this.AP_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement("19", ((string[])(null)));
+this.AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider("19", ((string[])(null)));
 #line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("AP_CA_PF_LY_01_Create a Levy Account and Sign the Agreement: 20")]
+        [NUnit.Framework.DescriptionAttribute("AP_CA_PF_LY_01_Create a Levy Employer Account and grant Create Cohort permission " +
+            "to a provider: 20")]
         [NUnit.Framework.CategoryAttribute("perftestlevy")]
         [NUnit.Framework.CategoryAttribute("addpayedetails")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
-        public virtual void AP_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement_20()
+        public virtual void AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_20()
         {
 #line 6
-this.AP_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement("20", ((string[])(null)));
+this.AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider("20", ((string[])(null)));
 #line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("AP_CA_PF_LY_01_Create a Levy Account and Sign the Agreement: 21")]
+        [NUnit.Framework.DescriptionAttribute("AP_CA_PF_LY_01_Create a Levy Employer Account and grant Create Cohort permission " +
+            "to a provider: 21")]
         [NUnit.Framework.CategoryAttribute("perftestlevy")]
         [NUnit.Framework.CategoryAttribute("addpayedetails")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
-        public virtual void AP_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement_21()
+        public virtual void AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_21()
         {
 #line 6
-this.AP_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement("21", ((string[])(null)));
+this.AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider("21", ((string[])(null)));
 #line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("AP_CA_PF_LY_01_Create a Levy Account and Sign the Agreement: 22")]
+        [NUnit.Framework.DescriptionAttribute("AP_CA_PF_LY_01_Create a Levy Employer Account and grant Create Cohort permission " +
+            "to a provider: 22")]
         [NUnit.Framework.CategoryAttribute("perftestlevy")]
         [NUnit.Framework.CategoryAttribute("addpayedetails")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
-        public virtual void AP_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement_22()
+        public virtual void AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_22()
         {
 #line 6
-this.AP_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement("22", ((string[])(null)));
+this.AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider("22", ((string[])(null)));
 #line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("AP_CA_PF_LY_01_Create a Levy Account and Sign the Agreement: 23")]
+        [NUnit.Framework.DescriptionAttribute("AP_CA_PF_LY_01_Create a Levy Employer Account and grant Create Cohort permission " +
+            "to a provider: 23")]
         [NUnit.Framework.CategoryAttribute("perftestlevy")]
         [NUnit.Framework.CategoryAttribute("addpayedetails")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
-        public virtual void AP_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement_23()
+        public virtual void AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_23()
         {
 #line 6
-this.AP_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement("23", ((string[])(null)));
+this.AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider("23", ((string[])(null)));
 #line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("AP_CA_PF_LY_01_Create a Levy Account and Sign the Agreement: 24")]
+        [NUnit.Framework.DescriptionAttribute("AP_CA_PF_LY_01_Create a Levy Employer Account and grant Create Cohort permission " +
+            "to a provider: 24")]
         [NUnit.Framework.CategoryAttribute("perftestlevy")]
         [NUnit.Framework.CategoryAttribute("addpayedetails")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
-        public virtual void AP_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement_24()
+        public virtual void AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_24()
         {
 #line 6
-this.AP_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement("24", ((string[])(null)));
+this.AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider("24", ((string[])(null)));
 #line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("AP_CA_PF_LY_01_Create a Levy Account and Sign the Agreement: 25")]
+        [NUnit.Framework.DescriptionAttribute("AP_CA_PF_LY_01_Create a Levy Employer Account and grant Create Cohort permission " +
+            "to a provider: 25")]
         [NUnit.Framework.CategoryAttribute("perftestlevy")]
         [NUnit.Framework.CategoryAttribute("addpayedetails")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
-        public virtual void AP_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement_25()
+        public virtual void AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider_25()
         {
 #line 6
-this.AP_CA_PF_LY_01_CreateALevyAccountAndSignTheAgreement("25", ((string[])(null)));
+this.AP_CA_PF_LY_01_CreateALevyEmployerAccountAndGrantCreateCohortPermissionToAProvider("25", ((string[])(null)));
 #line hidden
         }
     }
