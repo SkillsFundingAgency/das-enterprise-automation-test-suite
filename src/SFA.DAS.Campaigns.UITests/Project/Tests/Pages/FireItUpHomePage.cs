@@ -3,7 +3,6 @@ using SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Apprentice;
 using SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer;
 using SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Parent;
 using SFA.DAS.Campaigns.UITests.Project.Tests.Pages.RegisterInterest;
-using SFA.DAS.Campaigns.UITests.Project.Tests.Pages.TheCalling;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
@@ -64,12 +63,6 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
         {
             formCompletionHelper.ClickElement(Employer);
             return new EmployerHubPage(_context);
-        }
-
-        public TheCallingPage NavigateToTheCallingPage()
-        {
-            formCompletionHelper.ClickElement(TheCalling);
-            return new TheCallingPage(_context);
         }
     }
 }
