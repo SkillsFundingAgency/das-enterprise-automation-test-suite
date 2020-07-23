@@ -28,6 +28,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         {
             _context = context;
             _regexHelper = context.Get<RegexHelper>();
+            base.AcceptCookies();
         }
 
         public HomePage(ScenarioContext context) : this(context, false) { }
