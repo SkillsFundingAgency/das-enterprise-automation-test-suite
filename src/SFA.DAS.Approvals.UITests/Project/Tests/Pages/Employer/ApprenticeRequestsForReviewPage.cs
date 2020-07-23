@@ -14,7 +14,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         public ReviewYourCohortPage SelectViewCurrentCohortDetails()
         {
-            tableRowHelper.SelectRowFromTable("Details", objectContext.GetCohortReference());
+            tableRowHelper.SelectRowFromTableDescending("Details", objectContext.GetCohortReference());
             return new ReviewYourCohortPage(_context);
         }
     }
