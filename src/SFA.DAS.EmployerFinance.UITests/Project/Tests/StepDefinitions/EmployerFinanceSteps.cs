@@ -88,5 +88,12 @@ namespace SFA.DAS.EmployerFinance.UITests.Project.Tests.StepDefinitions
             Assert.AreEqual(expectedEstimatedTotalFundsText, _financePage.GetEstimatedTotalFundsText());
             Assert.AreEqual(expectedEstimatedPlannedSpendingText, _financePage.GetEstimatedPlannedSpendingText());
         }
+
+        [Then(@"Employer can add, edit and remove apprenticeship funding projection")]
+        public void ThenEmployerCanAddEditAndRemoveApprenticeshipFundingProjection()
+        {
+            _financePage.GoToFundingProjectionPage().GoToEstimateFundingProjectionPage();
+        }
+
     }
 }

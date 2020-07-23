@@ -1,4 +1,5 @@
-﻿using TechTalk.SpecFlow;
+﻿using OpenQA.Selenium;
+using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EmployerFinance.UITests.Project.Tests.Pages
 {
@@ -6,6 +7,20 @@ namespace SFA.DAS.EmployerFinance.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => "Funding projection";
 
-        public FundingProjectionPage(ScenarioContext context) : base(context) => VerifyPage();
+        private readonly ScenarioContext _context;
+
+        private By EstimateButton => By.CssSelector("a[href*='forecasting/estimations/start']");
+
+        public FundingProjectionPage(ScenarioContext context) : base(context)
+        {
+            _context = context;
+            VerifyPage();
+        }
+
+        public EstimateFundingProjectionPage GoToEstimateFundingProjectionPage()
+        {
+            formCompletionHelper.Click(EstimateButton);
+            return new EstimateFundingProjectionPage(_context);
+        }
     }
 }
