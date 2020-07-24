@@ -23,7 +23,7 @@ namespace SFA.DAS.EmployerFinance.UITests.Project.Tests.Pages
 
         public EstimatedCostsPage Edit()
         {
-            formCompletionHelper.EnterText(NoOfApprentice, 1);
+            formCompletionHelper.EnterText(NoOfApprentice, 2);
             formCompletionHelper.Click(TotalFundingCost);
             formCompletionHelper.Click(SaveButton);
             return new EstimatedCostsPage(_context);

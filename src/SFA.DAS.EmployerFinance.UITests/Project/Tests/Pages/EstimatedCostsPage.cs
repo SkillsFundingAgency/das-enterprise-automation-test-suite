@@ -25,14 +25,14 @@ namespace SFA.DAS.EmployerFinance.UITests.Project.Tests.Pages
 
         public EstimatedCostsPage VerifyTabs()
         {
-            formCompletionHelper.Click(ApprenticeshipAddedTab);
             formCompletionHelper.Click(AccountFundsTab);
+            formCompletionHelper.Click(ApprenticeshipAddedTab);
             return this;
         }
 
         public EditApprenticeshipsPage EditApprenticeships()
         {
-            formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(EditApprenticeshipsLink));
+            formCompletionHelper.ClickElement(EditApprenticeshipsLink);
             return new EditApprenticeshipsPage(_context);
         }
 
