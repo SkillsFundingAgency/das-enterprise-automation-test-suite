@@ -5,7 +5,7 @@ namespace SFA.DAS.EmployerFinance.UITests.Project.Tests.Pages
 {
     public class AddApprenticeshipsToEstimateCostPage : EmployerFinanceBasePage
     {
-        protected override string PageTitle => "Estimate apprenticeships you could fund";
+        protected override string PageTitle => "Add apprenticeships to estimate cost";
 
         private By ApprenticeshipCombobox => By.CssSelector(".select2-selection");
 
@@ -19,14 +19,17 @@ namespace SFA.DAS.EmployerFinance.UITests.Project.Tests.Pages
 
         private By StartDateYear => By.CssSelector("input#startDateYear");
 
+        private By SaveButton => By.CssSelector("#save");
+
         private readonly ScenarioContext _context;
+
         public AddApprenticeshipsToEstimateCostPage(ScenarioContext context) : base(context)
         {
             _context = context;
             VerifyPage();
         }
 
-        public void EnterDetails()
+        public EstimatedCostsPage Add()
         {
             formCompletionHelper.Click(ApprenticeshipCombobox);
             formCompletionHelper.EnterText(ApprenticeshipInputBox, "software tester");
@@ -34,6 +37,8 @@ namespace SFA.DAS.EmployerFinance.UITests.Project.Tests.Pages
             formCompletionHelper.EnterText(NoOfApprentice, 1);
             formCompletionHelper.EnterText(StartDateMonth, apprenticeCourseStartDateDataHelper.CourseStartDate.Month);
             formCompletionHelper.EnterText(StartDateYear, apprenticeCourseStartDateDataHelper.CourseStartDate.Year);
+            formCompletionHelper.Click(SaveButton);
+            return new EstimatedCostsPage(_context);
         }
     }
 }

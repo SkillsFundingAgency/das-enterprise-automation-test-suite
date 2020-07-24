@@ -92,7 +92,16 @@ namespace SFA.DAS.EmployerFinance.UITests.Project.Tests.StepDefinitions
         [Then(@"Employer can add, edit and remove apprenticeship funding projection")]
         public void ThenEmployerCanAddEditAndRemoveApprenticeshipFundingProjection()
         {
-            _financePage.GoToFundingProjectionPage().GoToEstimateFundingProjectionPage();
+            _financePage
+                .GoToFundingProjectionPage()
+                .GoToEstimateFundingProjectionPage()
+                .Start()
+                .Add()
+                .VerifyTabs()
+                .EditApprenticeships()
+                .Edit()
+                .RemoveApprenticeships()
+                .ConfirmRemoveApprenticeship();
         }
 
     }

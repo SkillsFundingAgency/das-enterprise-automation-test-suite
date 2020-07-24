@@ -77,14 +77,16 @@ namespace SFA.DAS.EmployerFinance.UITests.Project.Tests.Features.FundingProjecti
         [NUnit.Framework.DescriptionAttribute("EF_FP_01 - Verify Funding Projection pages navigation for Existing Levy Employer")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("employerfinance")]
+        [NUnit.Framework.CategoryAttribute("waitingtostartapprentice")]
         public virtual void EF_FP_01_VerifyFundingProjectionPagesNavigationForExistingLevyEmployer()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
-                    "employerfinance"};
+                    "employerfinance",
+                    "waitingtostartapprentice"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EF_FP_01 - Verify Funding Projection pages navigation for Existing Levy Employer", null, tagsOfScenario, argumentsOfScenario);
-#line 5
+#line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -104,13 +106,13 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 6
+#line 7
  testRunner.Given("the Employer logins using existing Levy Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 7
+#line 8
  testRunner.When("the Employer navigates to \'Finance\' Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 8
+#line 9
  testRunner.Then("Employer can add, edit and remove apprenticeship funding projection", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
