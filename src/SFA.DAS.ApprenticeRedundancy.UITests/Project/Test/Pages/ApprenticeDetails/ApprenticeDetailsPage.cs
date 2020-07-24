@@ -31,7 +31,6 @@ namespace SFA.DAS.ApprenticeRedundancy.UITests.Project.Test.Pages
         private By AnotherEthnicBackground = By.Id("ethnicity-conditional-50-52");
         private By EthnicBackgroundText = By.Id("ethnicity-conditional-50-52-text");
         private By GenderMale = By.Id("gender-11");
-        private By ErrorMessages => By.CssSelector(".govuk-error-summary");
         #endregion
 
         #region Helpers and Context
