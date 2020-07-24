@@ -1,7 +1,10 @@
-﻿using SFA.DAS.ApprenticeRedundancy.UITests.Project.Helpers;
+﻿using NUnit.Framework;
+using SFA.DAS.ApprenticeRedundancy.UITests.Project.Helpers;
 using SFA.DAS.ApprenticeRedundancy.UITests.Project.Test.Pages;
 using SFA.DAS.ApprenticeRedundancy.UITests.Project.Test.Pages.Admin;
 using SFA.DAS.ApprenticeRedundancy.UITests.Project.Test.Pages.AR_Admin;
+using System.Collections.Generic;
+using System.Linq;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeRedundancy.UITests.Project.Test.StepDefinitions
@@ -23,7 +26,6 @@ namespace SFA.DAS.ApprenticeRedundancy.UITests.Project.Test.StepDefinitions
         private ApprenticeMatchingDashBoardPage GoToApprenticeRedundancyAdminHomePage()
         {
             _aR_LoginStepsHelper.SubmitValidLoginDetails();
-
             return new ApprenticeMatchingDashBoardPage(_context);
         }
 
@@ -41,5 +43,26 @@ namespace SFA.DAS.ApprenticeRedundancy.UITests.Project.Test.StepDefinitions
             apprenticeMatchingDashBoardPage.SelectEmployerReportAndDownload();
         }
 
+        [When(@"the Admin do not complete all the mandatory fields")]
+        public void WhenTheAdminDoNotCompleteAllTheMandatoryFields()
+        {
+            ApprenticeMatchingDashBoardPage apprenticeMatchingDashBoardPage = new ApprenticeMatchingDashBoardPage(_context);
+            apprenticeMatchingDashBoardPage.ContinueWithoutSelectingReportAndDate();
+        }
+
+        [Then(@"Errors displayed for not completing the mandatory information on Admin Download")]
+        public void ThenErrorsDisplayedForNotCompletingTheMandatoryInformationOnAdminDownload()
+        {
+            List<string> expectedApprenticeErrorMessages = new List<string>
+            {
+               "Select if you want to download the employer or apprentice report",
+               "Enter a matching report 'from' date",
+               "Enter a matching report 'to' date",
+            };
+            ApprenticeMatchingDashBoardPage _apprenticeMatchingDashBoardPage = new ApprenticeMatchingDashBoardPage(_context);
+            var actualMessages = _apprenticeMatchingDashBoardPage.GetErrorMessages();
+
+            Assert.IsTrue(expectedApprenticeErrorMessages.All(x => actualMessages.Contains(x)), $"Not all Admin error messages are found");
+        }
     }
 }

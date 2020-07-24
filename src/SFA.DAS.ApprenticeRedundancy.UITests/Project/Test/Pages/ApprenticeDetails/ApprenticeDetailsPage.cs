@@ -56,7 +56,7 @@ namespace SFA.DAS.ApprenticeRedundancy.UITests.Project.Test.Pages
             formCompletionHelper.SelectRadioOptionByLocator(FeedbackYes);
             formCompletionHelper.EnterText(Postcode, apprenticeRedundancyDataHelper.Postcode);
             formCompletionHelper.SelectCheckBoxByText(LocationAndSectors, "East Midlands");
-            formCompletionHelper.SelectCheckBoxByText(LocationAndSectors, "South West");   
+            formCompletionHelper.SelectCheckBoxByText(LocationAndSectors, "South West");
             formCompletionHelper.SelectCheckBoxByText(LocationAndSectors, "Greater London");
             formCompletionHelper.EnterText(PreviousTraining, apprenticeRedundancyDataHelper.PreviousApprenticeshipTraining);
             formCompletionHelper.EnterText(Employer, apprenticeRedundancyDataHelper.Employer);
@@ -73,6 +73,12 @@ namespace SFA.DAS.ApprenticeRedundancy.UITests.Project.Test.Pages
             formCompletionHelper.SelectRadioOptionByLocator(GenderMale);
             Continue();
             return new Apprentice_CheckYourAnswersPage(_context);
+        }
+
+        public ApprenticeDetailsPage ContinueToApprenticeCheckAnswersPage()
+        {
+            Continue();
+            return this;
         }
     }
 }

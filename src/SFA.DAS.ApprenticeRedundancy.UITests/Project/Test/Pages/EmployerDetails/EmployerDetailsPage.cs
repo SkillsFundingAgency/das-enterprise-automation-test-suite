@@ -49,5 +49,11 @@ namespace SFA.DAS.ApprenticeRedundancy.UITests.Project.Test.Pages.EmployerDetail
             Continue();
             return new Employer_CheckYourAnswersPage(_context);
         }
+
+        public EmployerDetailsPage ContinueToEmployerCheckAnswersPage()
+        {
+            Continue();
+            return this;
+        }
     }
 }
