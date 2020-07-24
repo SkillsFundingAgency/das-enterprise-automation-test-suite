@@ -7,6 +7,7 @@ using TechTalk.SpecFlow;
 using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.Registration.UITests.Project;
+using SFA.DAS.Registration.UITests.Project.Helpers;
 
 namespace SFA.DAS.Approvals.UITests.Project
 {
@@ -56,7 +57,7 @@ namespace SFA.DAS.Approvals.UITests.Project
 
             var randomCoursehelper = new RandomCourseDataHelper(random, selectstandardcourse);
 
-            var apprenticeCourseDataHelper = new ApprenticeCourseDataHelper(randomCoursehelper, apprenticeStatus);
+            var apprenticeCourseDataHelper = new ApprenticeCourseDataHelper(random, randomCoursehelper, apprenticeStatus);
 
             _context.Set(apprenticeCourseDataHelper);
 

@@ -16,5 +16,11 @@ namespace SFA.DAS.EmployerFinance.UITests.Project.Tests.Pages
             _context = context;
             VerifyPage();
         }
+
+        public AddApprenticeshipsToEstimateCostPage Start()
+        {
+            formCompletionHelper.Click(StartButton);
+            return new AddApprenticeshipsToEstimateCostPage(_context);
+        }
     }
 }
