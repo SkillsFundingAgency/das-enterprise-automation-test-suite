@@ -35,10 +35,6 @@ namespace SFA.DAS.Approvals.UITests.Project
         {
             var random = _context.Get<RandomDataGenerator>();
 
-            var apprenticeStatus = _context.ScenarioInfo.Tags.Contains("liveapprentice") ? ApprenticeStatus.Live :
-                                   _context.ScenarioInfo.Tags.Contains("currentacademicyearstartdate") ? ApprenticeStatus.CurrentAcademicYearStartDate :
-                                   _context.ScenarioInfo.Tags.Contains("waitingtostartapprentice") ? ApprenticeStatus.WaitingToStart : ApprenticeStatus.Random;
-
             var commitmentsdatahelper = new CommitmentsSqlDataHelper(_approvalsConfig);
 
             _context.Set(commitmentsdatahelper);
@@ -57,7 +53,9 @@ namespace SFA.DAS.Approvals.UITests.Project
 
             var randomCoursehelper = new RandomCourseDataHelper(random, selectstandardcourse);
 
-            var apprenticeCourseDataHelper = new ApprenticeCourseDataHelper(random, randomCoursehelper, apprenticeStatus);
+            var apprenticeStatus = _context.Get<ApprenticeStatus>();
+
+            var apprenticeCourseDataHelper = new ApprenticeCourseDataHelper(randomCoursehelper, apprenticeStatus);
 
             _context.Set(apprenticeCourseDataHelper);
 

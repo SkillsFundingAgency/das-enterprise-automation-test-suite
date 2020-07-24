@@ -38,6 +38,14 @@ namespace SFA.DAS.Registration.UITests.Project
         [BeforeScenario(Order = 22)]
         public void SetUpDataHelpers()
         {
+            var apprenticeStatus = _context.ScenarioInfo.Tags.Contains("liveapprentice") ? ApprenticeStatus.Live :
+                       _context.ScenarioInfo.Tags.Contains("currentacademicyearstartdate") ? ApprenticeStatus.CurrentAcademicYearStartDate :
+                       _context.ScenarioInfo.Tags.Contains("waitingtostartapprentice") ? ApprenticeStatus.WaitingToStart : ApprenticeStatus.Random;
+
+            _context.Set(apprenticeStatus);
+
+            _context.Set(new ApprenticeCourseStartDateDataHelper(apprenticeStatus));
+
             var dataHelper = new DataHelper(
                    _context.ScenarioInfo.Tags.Contains("addlevyfunds") 
                 || _context.ScenarioInfo.Tags.Contains("addtransferslevyfunds") 

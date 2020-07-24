@@ -32,6 +32,8 @@ namespace SFA.DAS.EmployerFinance.UITests.Project.Tests.Pages
             formCompletionHelper.EnterText(ApprenticeshipInputBox, "software tester");
             formCompletionHelper.Click(ApprenticeshipOptions);
             formCompletionHelper.EnterText(NoOfApprentice, 1);
+            formCompletionHelper.EnterText(StartDateMonth, apprenticeCourseStartDateDataHelper.CourseStartDate.Month);
+            formCompletionHelper.EnterText(StartDateYear, apprenticeCourseStartDateDataHelper.CourseStartDate.Year);
         }
     }
 }
