@@ -10,7 +10,7 @@ namespace SFA.DAS.ApprenticeRedundancy.UITests.Project.Helpers
             Months = randomDataGenerator.GenerateRandomNumberBetweenTwoValues(0, 11);
             Years = randomDataGenerator.GenerateRandomNumberBetweenTwoValues(0, 9);
             LongText = randomDataGenerator.GenerateRandomAlphabeticString(500);
-
+            EthnicAndGenderText = randomDataGenerator.GenerateRandomAlphabeticString(50);
         }
 
         public DateTime Dob(int x) => DateTime.Now.AddYears(-20 + x);
@@ -30,5 +30,6 @@ namespace SFA.DAS.ApprenticeRedundancy.UITests.Project.Helpers
         public string OrganisationName => "Regression Test";
         public string Website => "www.Regressiontest.com";
         public string GetFromdate => "2020-07-01";
+        public string EthnicAndGenderText { get; }
     }
 }

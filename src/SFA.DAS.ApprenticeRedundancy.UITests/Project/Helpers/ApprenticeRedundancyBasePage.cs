@@ -11,6 +11,7 @@ namespace SFA.DAS.ApprenticeRedundancy.UITests.Project
     { 
     protected override By PageHeader => By.TagName("h1");
     protected override By ContinueButton => By.CssSelector("#main-content .govuk-button");
+    private By ErrorMessages => By.CssSelector(".govuk-error-summary");
 
     #region Helpers and Context
     protected readonly ObjectContext objectContext;
@@ -21,13 +22,17 @@ namespace SFA.DAS.ApprenticeRedundancy.UITests.Project
     #endregion
 
     public ApprenticeRedundancyBasePage(ScenarioContext context) : base(context)
-    {
-        objectContext = context.Get<ObjectContext>();
-        formCompletionHelper = context.Get<FormCompletionHelper>();
-        pageInteractionHelper = context.Get<PageInteractionHelper>();
-        apprenticeRedundancyDataHelper = context.Get<ApprenticeRedundancyDataHelper>();
-        aRConfig = context.GetARConfig<ApprenticeRedundancyConfig>();
-       
-     }
+       {
+           objectContext = context.Get<ObjectContext>();
+           formCompletionHelper = context.Get<FormCompletionHelper>();
+           pageInteractionHelper = context.Get<PageInteractionHelper>();
+           apprenticeRedundancyDataHelper = context.Get<ApprenticeRedundancyDataHelper>();
+           aRConfig = context.GetARConfig<ApprenticeRedundancyConfig>();   
+        }
+
+    public string GetErrorMessages()
+        {
+            return pageInteractionHelper.GetText(ErrorMessages);
+        }
     }
 }
