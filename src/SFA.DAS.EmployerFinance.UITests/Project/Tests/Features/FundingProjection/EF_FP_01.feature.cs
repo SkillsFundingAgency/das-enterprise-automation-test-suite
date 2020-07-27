@@ -77,13 +77,13 @@ namespace SFA.DAS.EmployerFinance.UITests.Project.Tests.Features.FundingProjecti
         [NUnit.Framework.DescriptionAttribute("EF_FP_01 - Verify Funding Projection pages navigation for Existing Levy Employer")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("employerfinance")]
-        [NUnit.Framework.CategoryAttribute("waitingtostartapprentice")]
+        [NUnit.Framework.CategoryAttribute("addapprenticetoestimatecost")]
         public virtual void EF_FP_01_VerifyFundingProjectionPagesNavigationForExistingLevyEmployer()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
                     "employerfinance",
-                    "waitingtostartapprentice"};
+                    "addapprenticetoestimatecost"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EF_FP_01 - Verify Funding Projection pages navigation for Existing Levy Employer", null, tagsOfScenario, argumentsOfScenario);
 #line 6

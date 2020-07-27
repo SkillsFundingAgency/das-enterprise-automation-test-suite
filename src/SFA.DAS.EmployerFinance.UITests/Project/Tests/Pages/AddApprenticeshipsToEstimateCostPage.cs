@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using System;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EmployerFinance.UITests.Project.Tests.Pages
@@ -31,12 +32,13 @@ namespace SFA.DAS.EmployerFinance.UITests.Project.Tests.Pages
 
         public EstimatedCostsPage Add()
         {
+            var date = DateTime.Now; 
             formCompletionHelper.Click(ApprenticeshipCombobox);
             formCompletionHelper.EnterText(ApprenticeshipInputBox, "software tester");
             formCompletionHelper.Click(ApprenticeshipOptions);
             formCompletionHelper.EnterText(NoOfApprentice, 1);
-            formCompletionHelper.EnterText(StartDateMonth, apprenticeCourseStartDateDataHelper.CourseStartDate.Month);
-            formCompletionHelper.EnterText(StartDateYear, apprenticeCourseStartDateDataHelper.CourseStartDate.Year);
+            formCompletionHelper.EnterText(StartDateMonth, date.Month);
+            formCompletionHelper.EnterText(StartDateYear, date.Year);
             formCompletionHelper.Click(SaveButton);
             return new EstimatedCostsPage(_context);
         }

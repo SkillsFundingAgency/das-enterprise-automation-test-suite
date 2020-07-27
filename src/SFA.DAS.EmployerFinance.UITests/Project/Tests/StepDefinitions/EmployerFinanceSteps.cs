@@ -95,8 +95,29 @@ namespace SFA.DAS.EmployerFinance.UITests.Project.Tests.StepDefinitions
             _financePage
                 .GoToFundingProjectionPage()
                 .GoToEstimateFundingProjectionPage()
-                .Start()
-                .Add()
+                .ClickStart();
+
+            AddApprenticeshipsToEstimateCostPage addApprenticeshipsToEstimateCostPage;
+
+            if (new RemoveApprenticeshipCheckPage(_context).IsPageDisplayed())
+            {
+                var estimatedCostsPage = new EstimatedCostsPage(_context);
+
+                var existingApprenticeship = estimatedCostsPage.ExistingApprenticeships();
+
+                for (int i = 0; i < existingApprenticeship; i++)
+                {
+                    estimatedCostsPage = estimatedCostsPage.RemoveApprenticeships().ConfirmRemoveApprenticeship();
+                }
+
+                addApprenticeshipsToEstimateCostPage = estimatedCostsPage.AddApprenticeships();
+            }
+            else
+            {
+                addApprenticeshipsToEstimateCostPage = new AddApprenticeshipsToEstimateCostPage(_context);
+            }
+
+            addApprenticeshipsToEstimateCostPage.Add()
                 .VerifyTabs()
                 .EditApprenticeships()
                 .Edit()

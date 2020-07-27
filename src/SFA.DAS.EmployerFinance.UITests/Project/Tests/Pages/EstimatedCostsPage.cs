@@ -13,9 +13,13 @@ namespace SFA.DAS.EmployerFinance.UITests.Project.Tests.Pages
 
         private By AccountFundsTab => By.CssSelector("a[href='#account-funds']");
 
+        private By AddApprenticeshipsLink => By.CssSelector("a[href*='apprenticeship/add']");
+
         private By EditApprenticeshipsLink => By.CssSelector("a[href*='EditApprenticeships']");
 
         private By RemoveApprenticeshipLink => By.CssSelector("a[href*='ConfirmRemoval']");
+
+        private By AccountFundsTable => By.CssSelector("#account-funds table tbody tr");
 
         public EstimatedCostsPage(ScenarioContext context) : base(context)
         {
@@ -26,8 +30,15 @@ namespace SFA.DAS.EmployerFinance.UITests.Project.Tests.Pages
         public EstimatedCostsPage VerifyTabs()
         {
             formCompletionHelper.Click(AccountFundsTab);
+            VerifyPage(AccountFundsTable);
             formCompletionHelper.Click(ApprenticeshipAddedTab);
             return this;
+        }
+
+        public AddApprenticeshipsToEstimateCostPage AddApprenticeships()
+        {
+            formCompletionHelper.ClickElement(AddApprenticeshipsLink);
+            return new AddApprenticeshipsToEstimateCostPage(_context);
         }
 
         public EditApprenticeshipsPage EditApprenticeships()
@@ -41,5 +52,8 @@ namespace SFA.DAS.EmployerFinance.UITests.Project.Tests.Pages
             formCompletionHelper.Click(RemoveApprenticeshipLink);
             return new RemoveApprenticeshipsPage(_context);
         }
+
+        public int ExistingApprenticeships() => pageInteractionHelper.FindElements(RemoveApprenticeshipLink).Count;
+
     }
 }
