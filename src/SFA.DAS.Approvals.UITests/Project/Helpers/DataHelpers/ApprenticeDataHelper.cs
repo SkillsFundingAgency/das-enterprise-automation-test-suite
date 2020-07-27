@@ -41,6 +41,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
         public string TrainingPrice { get; }
 
         public string EmployerReference { get; }
+        public string MadeRedundant { get; set; }
 
         public string MessageToProvider => $"Apprentice {ApprenticeFullName}, Total Cost {_objectContext.GetApprenticeTotalCost()}";
 
