@@ -25,12 +25,15 @@ namespace SFA.DAS.ApprenticeRedundancy.UITests.Project.Test.Pages
         private By ApprenticeshipMonth = By.Id("LeftOnApprenticeshipMonths");
         private By ApprenticeshipYear = By.Id("LeftOnApprenticeshipYears");
         private By FeedbackYes = By.Id("ContactableForFeedback");
-        private By LocationAndSectors = By.CssSelector(".govuk-checkboxes__item");
+        private By Locations = By.CssSelector(".govuk-checkboxes__item");
         private By PhoneNumber = By.Id("PhoneNumber");
         private By AnotherEthnicGroup = By.Id("ethnicity-50");
         private By AnotherEthnicBackground = By.Id("ethnicity-conditional-50-52");
         private By EthnicBackgroundText = By.Id("ethnicity-conditional-50-52-text");
         private By GenderMale = By.Id("gender-11");
+        private By SectorBusiness = By.Id("Sectors-2");
+        private By SectorCareServices = By.Id("Sectors-3");
+        private By SectorEducation = By.Id("Sectors-8");
         #endregion
 
         #region Helpers and Context
@@ -55,18 +58,18 @@ namespace SFA.DAS.ApprenticeRedundancy.UITests.Project.Test.Pages
             formCompletionHelper.SelectRadioOptionByLocator(UpdatesYes);
             formCompletionHelper.SelectRadioOptionByLocator(FeedbackYes);
             formCompletionHelper.EnterText(Postcode, apprenticeRedundancyDataHelper.Postcode);
-            formCompletionHelper.SelectCheckBoxByText(LocationAndSectors, "East Midlands");
-            formCompletionHelper.SelectCheckBoxByText(LocationAndSectors, "South West");
-            formCompletionHelper.SelectCheckBoxByText(LocationAndSectors, "Greater London");
+            formCompletionHelper.SelectCheckBoxByText(Locations, "East Midlands");
+            formCompletionHelper.SelectCheckBoxByText(Locations, "South West");
+            formCompletionHelper.SelectCheckBoxByText(Locations, "Greater London");
             formCompletionHelper.EnterText(PreviousTraining, apprenticeRedundancyDataHelper.PreviousApprenticeshipTraining);
             formCompletionHelper.EnterText(Employer, apprenticeRedundancyDataHelper.Employer);
             formCompletionHelper.EnterText(EmployerLocation, apprenticeRedundancyDataHelper.Location);
             formCompletionHelper.EnterText(TrainingProvider, apprenticeRedundancyDataHelper.TrainingProvider);
             formCompletionHelper.EnterText(ApprenticeshipMonth, apprenticeRedundancyDataHelper.Months);
             formCompletionHelper.EnterText(ApprenticeshipYear, apprenticeRedundancyDataHelper.Years);
-            formCompletionHelper.SelectCheckBoxByText(LocationAndSectors, "Business and administration");
-            formCompletionHelper.SelectCheckBoxByText(LocationAndSectors, "Care services");
-            formCompletionHelper.SelectCheckBoxByText(LocationAndSectors, "Education and childcare");
+            formCompletionHelper.SelectCheckbox(SectorBusiness);
+            formCompletionHelper.SelectCheckbox(SectorCareServices);
+            formCompletionHelper.SelectCheckbox(SectorEducation);
             formCompletionHelper.SelectRadioOptionByLocator(AnotherEthnicGroup);
             formCompletionHelper.SelectRadioOptionByLocator(AnotherEthnicBackground);
             formCompletionHelper.EnterText(EthnicBackgroundText, apprenticeRedundancyDataHelper.EthnicAndGenderText);
