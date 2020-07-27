@@ -21,10 +21,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
 
         private string FrameworkCourseOption => "455-3-1";
 
-        public string RandomCourse()
-        {
-            return RandomNumber % 2 == 0 ? AvailableCourses[0] : AvailableCourses[1];
-        }
+        public string RandomCourse() => RandomNumber % 2 == 0 ? AvailableCourses[0] : AvailableCourses[1];
 
         private List<string> AllCourses() => new List<string> { AbleSeafarerStandardCourseOption, FrameworkCourseOption };
 
