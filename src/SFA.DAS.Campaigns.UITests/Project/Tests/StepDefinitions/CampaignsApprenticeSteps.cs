@@ -16,9 +16,6 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
 
         public CampaignsApprenticeSteps(ScenarioContext context) => _stepsHelper = new CampaignsStepsHelper(context);
 
-        [Given(@"the user navigates to the calling page")]
-        public void GivenTheUserNavigatesToTheCallingPage() => GoToFireItUpHomePage().NavigateToTheCallingPage();
-
         [Given(@"the user navigates to the find an apprenticeship page")]
         public void GivenTheUserNavigatesToTheFindAnApprenticeshipPage() => _findAnApprenticeshipPage = GoToApprenticeshipHubPage().NavigateToFindAnApprenticeshipPage();
 

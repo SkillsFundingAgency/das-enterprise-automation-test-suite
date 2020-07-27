@@ -11,15 +11,20 @@ namespace SFA.DAS.ApprenticeRedundancy.UITests.Project.Test.Pages.EmployerDetail
     {
         protected override string PageTitle => "Tell us about your apprenticeship opportunity";
 
+        #region Element Locators
         private By OrganisationName = By.Id("OrganisationName");
         private By ContactFirstName = By.Id("ContactFirstName");
         private By ContactLastName = By.Id("ContactLastName");
         private By Email = By.Id("Email");
         private By PhoneNumber = By.Id("PhoneNumber");
         private By Webstite = By.Id("Website");
-        private By LocationAndSectors = By.CssSelector(".govuk-checkboxes__item");
+        private By Locations = By.CssSelector(".govuk-checkboxes__item");
         private By MoreDetail = By.Id("ApprenticeshipMoreDetails");
         private By FeedbackYes = By.Id("ContactableForFeedback");
+        private By HealthAndScience = By.Id("Sectors-11");
+        private By ProtectiveServices = By.Id("Sectors-13");
+        private By TransportLogistics = By.Id("Sectors-15");
+        #endregion
 
         #region Helpers and Context  
         private readonly ScenarioContext _context;
@@ -35,12 +40,12 @@ namespace SFA.DAS.ApprenticeRedundancy.UITests.Project.Test.Pages.EmployerDetail
             formCompletionHelper.EnterText(OrganisationName, apprenticeRedundancyDataHelper.OrganisationName);
             formCompletionHelper.EnterText(Email, apprenticeRedundancyDataHelper.Email);
             formCompletionHelper.EnterText(Webstite, apprenticeRedundancyDataHelper.Website);
-            formCompletionHelper.SelectCheckBoxByText(LocationAndSectors, "North West");
-            formCompletionHelper.SelectCheckBoxByText(LocationAndSectors, "West Midlands");
-            formCompletionHelper.SelectCheckBoxByText(LocationAndSectors, "Yorkshire and the Humber");
-            formCompletionHelper.SelectCheckBoxByText(LocationAndSectors, "Health and science");
-            formCompletionHelper.SelectCheckBoxByText(LocationAndSectors, "Protective services");
-            formCompletionHelper.SelectCheckBoxByText(LocationAndSectors, "Transport and logistics");
+            formCompletionHelper.SelectCheckBoxByText(Locations, "North West");
+            formCompletionHelper.SelectCheckBoxByText(Locations, "West Midlands");
+            formCompletionHelper.SelectCheckBoxByText(Locations, "Yorkshire and the Humber");
+            formCompletionHelper.SelectCheckbox(HealthAndScience);
+            formCompletionHelper.SelectCheckbox(ProtectiveServices);
+            formCompletionHelper.SelectCheckbox(TransportLogistics);
             formCompletionHelper.EnterText(MoreDetail, apprenticeRedundancyDataHelper.LongText);
             formCompletionHelper.EnterText(ContactFirstName, apprenticeRedundancyDataHelper.FirstName);
             formCompletionHelper.EnterText(ContactLastName, apprenticeRedundancyDataHelper.LastName);
@@ -48,6 +53,12 @@ namespace SFA.DAS.ApprenticeRedundancy.UITests.Project.Test.Pages.EmployerDetail
             formCompletionHelper.SelectRadioOptionByLocator( FeedbackYes );
             Continue();
             return new Employer_CheckYourAnswersPage(_context);
+        }
+
+        public EmployerDetailsPage ContinueToEmployerCheckAnswersPage()
+        {
+            Continue();
+            return this;
         }
     }
 }

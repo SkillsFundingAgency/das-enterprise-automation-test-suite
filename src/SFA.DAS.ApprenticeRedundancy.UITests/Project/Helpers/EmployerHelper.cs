@@ -20,5 +20,12 @@ namespace SFA.DAS.ApprenticeRedundancy.UITests.Project.Helpers
                  .ConfirmEmployerAnswers();
             return new EmployerConfirmationPage(_context);
         }
+        internal EmployerDetailsPage ContinueWithoutAllMandatoryFieldsCompletedForEmployerForm(MainLandingPage mainLandingPage)
+        {
+            mainLandingPage.NavigateToFindApprentices()
+             .SelectEmployerStartnow()
+             .ContinueToEmployerCheckAnswersPage();
+            return new EmployerDetailsPage(_context);
+        }
     }
 }

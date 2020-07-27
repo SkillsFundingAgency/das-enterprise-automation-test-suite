@@ -42,5 +42,11 @@ namespace SFA.DAS.ApprenticeRedundancy.UITests.Project.Test.Pages.AR_Admin
             formCompletionHelper.ClickElement(Download);
             return this;
         }
+
+        public ApprenticeMatchingDashBoardPage ContinueWithoutSelectingReportAndDate()
+        {
+            formCompletionHelper.ClickElement(Download);
+            return this;
+        }
     }
 }
