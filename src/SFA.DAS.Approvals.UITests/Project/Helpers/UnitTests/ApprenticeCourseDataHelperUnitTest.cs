@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Text;
 using NUnit.Framework;
 using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
-using SFA.DAS.Registration.UITests.Project.Helpers;
 
 namespace SFA.DAS.Approvals.UITests.Project.Helpers.UnitTests
 {

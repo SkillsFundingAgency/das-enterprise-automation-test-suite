@@ -7,7 +7,6 @@ using TechTalk.SpecFlow;
 using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.Registration.UITests.Project;
-using SFA.DAS.Registration.UITests.Project.Helpers;
 
 namespace SFA.DAS.Approvals.UITests.Project
 {
@@ -35,6 +34,10 @@ namespace SFA.DAS.Approvals.UITests.Project
         {
             var random = _context.Get<RandomDataGenerator>();
 
+            var apprenticeStatus = _context.ScenarioInfo.Tags.Contains("liveapprentice") ? ApprenticeStatus.Live :
+                                   _context.ScenarioInfo.Tags.Contains("currentacademicyearstartdate") ? ApprenticeStatus.CurrentAcademicYearStartDate :
+                                   _context.ScenarioInfo.Tags.Contains("waitingtostartapprentice") ? ApprenticeStatus.WaitingToStart : ApprenticeStatus.Random;
+
             var commitmentsdatahelper = new CommitmentsSqlDataHelper(_approvalsConfig);
 
             _context.Set(commitmentsdatahelper);
@@ -52,8 +55,6 @@ namespace SFA.DAS.Approvals.UITests.Project
             var selectstandardcourse = _context.ScenarioInfo.Tags.Contains("selectstandardcourse");
 
             var randomCoursehelper = new RandomCourseDataHelper(random, selectstandardcourse);
-
-            var apprenticeStatus = _context.Get<ApprenticeStatus>();
 
             var apprenticeCourseDataHelper = new ApprenticeCourseDataHelper(randomCoursehelper, apprenticeStatus);
 

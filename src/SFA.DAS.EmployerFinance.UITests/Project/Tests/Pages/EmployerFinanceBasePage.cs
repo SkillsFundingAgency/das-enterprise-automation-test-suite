@@ -11,7 +11,6 @@ namespace SFA.DAS.EmployerFinance.UITests.Project.Tests.Pages
         #region Helpers and Context
         protected readonly FormCompletionHelper formCompletionHelper;
         protected readonly PageInteractionHelper pageInteractionHelper;
-        protected readonly ApprenticeCourseStartDateDataHelper apprenticeCourseStartDateDataHelper;
         private readonly ScenarioContext _context;
         #endregion
 
@@ -22,7 +21,6 @@ namespace SFA.DAS.EmployerFinance.UITests.Project.Tests.Pages
             _context = context;
             formCompletionHelper = context.Get<FormCompletionHelper>();
             pageInteractionHelper = context.Get<PageInteractionHelper>();
-            apprenticeCourseStartDateDataHelper = context.Get<ApprenticeCourseStartDateDataHelper>();
         }
 
         public FinancePage GoToFinancePage()
