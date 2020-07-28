@@ -2,8 +2,9 @@
 
 @aprdsupport
 @aprd
+@aprdupdate
 @regression
-@aprdud01
+@aprdud02
 Scenario: AP_RD_VerifyChange_Employer_02_EmployerForm
 Given the employer lands on check your answers employer details page
 And the employer can access all the change links

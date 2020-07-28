@@ -77,6 +77,7 @@ namespace SFA.DAS.ApprenticeRedundancy.UITests.Project.Test.Features.Updates
         [NUnit.Framework.DescriptionAttribute("AP_RD_VerifyChange_Apprentice_01_ApprenticeForm")]
         [NUnit.Framework.CategoryAttribute("aprdsupport")]
         [NUnit.Framework.CategoryAttribute("aprd")]
+        [NUnit.Framework.CategoryAttribute("aprdupdate")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("aprdud01")]
         public virtual void AP_RD_VerifyChange_Apprentice_01_ApprenticeForm()
@@ -84,11 +85,12 @@ namespace SFA.DAS.ApprenticeRedundancy.UITests.Project.Test.Features.Updates
             string[] tagsOfScenario = new string[] {
                     "aprdsupport",
                     "aprd",
+                    "aprdupdate",
                     "regression",
                     "aprdud01"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_RD_VerifyChange_Apprentice_01_ApprenticeForm", null, tagsOfScenario, argumentsOfScenario);
-#line 7
+#line 8
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -108,16 +110,16 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 8
+#line 9
 testRunner.Given("the apprentice lands on check your answers apprentice details page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 9
+#line 10
 testRunner.And("the apprentice can access all the change links", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 10
+#line 11
 testRunner.When("the apprentice updates the previous apprenticeship details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 11
+#line 12
 testRunner.Then("changes made are reflected on confirm apprentice details page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }

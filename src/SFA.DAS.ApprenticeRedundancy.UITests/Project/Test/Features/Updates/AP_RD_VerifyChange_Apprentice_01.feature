@@ -2,6 +2,7 @@
 
 @aprdsupport
 @aprd
+@aprdupdate
 @regression
 @aprdud01
 Scenario: AP_RD_VerifyChange_Apprentice_01_ApprenticeForm
