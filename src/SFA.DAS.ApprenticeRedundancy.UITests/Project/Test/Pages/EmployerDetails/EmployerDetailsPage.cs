@@ -21,6 +21,7 @@ namespace SFA.DAS.ApprenticeRedundancy.UITests.Project.Test.Pages.EmployerDetail
         private By Locations = By.CssSelector(".govuk-checkboxes__item");
         private By MoreDetail = By.Id("ApprenticeshipMoreDetails");
         private By FeedbackYes = By.Id("ContactableForFeedback");
+        private By FeedbackNo = By.Id("ContactableForFeedback-no");
         private By HealthAndScience = By.Id("Sectors-11");
         private By ProtectiveServices = By.Id("Sectors-13");
         private By TransportLogistics = By.Id("Sectors-15");
@@ -59,6 +60,20 @@ namespace SFA.DAS.ApprenticeRedundancy.UITests.Project.Test.Pages.EmployerDetail
         {
             Continue();
             return this;
+        }
+        public Employer_CheckYourAnswersPage NavigateBackToEmployerCheckYourAnswersPage()
+        {
+            NavigateBack();
+            return new Employer_CheckYourAnswersPage(_context);
+        }
+        public Employer_CheckYourAnswersPage UpdateContactDetails()
+        {
+            formCompletionHelper.EnterText(ContactFirstName, apprenticeRedundancyDataHelper.UpdatedFirstName);
+            formCompletionHelper.EnterText(ContactLastName, apprenticeRedundancyDataHelper.UpdatedLastName);
+            formCompletionHelper.EnterText(PhoneNumber, apprenticeRedundancyDataHelper.UpdatedContactNumber);
+            formCompletionHelper.SelectRadioOptionByLocator(FeedbackNo);
+            Continue();
+            return new Employer_CheckYourAnswersPage(_context);
         }
     }
 }

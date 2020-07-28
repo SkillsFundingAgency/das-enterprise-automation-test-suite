@@ -27,5 +27,37 @@ namespace SFA.DAS.ApprenticeRedundancy.UITests.Project.Helpers
              .ContinueToEmployerCheckAnswersPage();
             return new EmployerDetailsPage(_context);
         }
+        internal Employer_CheckYourAnswersPage NavigateToEmployerDetailsPage(MainLandingPage mainLandingPage)
+        {
+            mainLandingPage.NavigateToFindApprentices()
+                .SelectEmployerStartnow()
+                .CompleteEmployersDetails();     
+            return new Employer_CheckYourAnswersPage(_context);
+        }
+        internal Employer_CheckYourAnswersPage VerifyEmployerChangeLinks(Employer_CheckYourAnswersPage employer_CheckYourAnswersPage)
+        {
+            employer_CheckYourAnswersPage.ClickChangeOrganisationDetailsLink()
+                .NavigateBackToEmployerCheckYourAnswersPage()
+                .ClickChangeApprenticeLocationsLink()
+                .NavigateBackToEmployerCheckYourAnswersPage()
+                .ClickChangeApprenticeshipDetailsLink()
+                .NavigateBackToEmployerCheckYourAnswersPage()
+                .ClickChangeContactDetailsLink()
+                .NavigateBackToEmployerCheckYourAnswersPage();
+                return new Employer_CheckYourAnswersPage(_context);
+        }
+        internal Employer_CheckYourAnswersPage ClickChangeAndUpdateEmployerContactDetails(Employer_CheckYourAnswersPage employer_CheckYourAnswersPage)
+        {
+            employer_CheckYourAnswersPage.ClickChangeContactDetailsLink()
+                .UpdateContactDetails();
+            return new Employer_CheckYourAnswersPage(_context);
+        }
+        internal Employer_CheckYourAnswersPage VerifyUpdatedContactDetails(Employer_CheckYourAnswersPage employer_CheckYourAnswersPage)
+        {
+            employer_CheckYourAnswersPage.VerifyUpdatedContactDetails("Apprentice Test Smith Regression")
+                .VerifyUpdatedContactNumber("ext (1234) +12343232")
+                .VerifyUpdateSelectionForFeedback("No");
+            return new Employer_CheckYourAnswersPage(_context);
+        }
     }
 }

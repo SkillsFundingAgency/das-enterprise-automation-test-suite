@@ -83,5 +83,18 @@ namespace SFA.DAS.ApprenticeRedundancy.UITests.Project.Test.Pages
             Continue();
             return this;
         }
+        public Apprentice_CheckYourAnswersPage NavigateBackToApprenticeCheckYourAnswerssPage()
+        {
+            NavigateBack();
+            return new Apprentice_CheckYourAnswersPage(_context);
+        }
+        public Apprentice_CheckYourAnswersPage UpdatePreviousApprenticeshipDetails()
+        {
+            formCompletionHelper.EnterText(PreviousTraining, apprenticeRedundancyDataHelper.UpdateApprenticeshipTraining);
+            formCompletionHelper.EnterText(Employer, apprenticeRedundancyDataHelper.UpdateEmployer);
+            formCompletionHelper.EnterText(TrainingProvider, apprenticeRedundancyDataHelper.UpdateTrainingProvider);        
+            Continue();
+            return new Apprentice_CheckYourAnswersPage(_context);
+        }
     }
 }
