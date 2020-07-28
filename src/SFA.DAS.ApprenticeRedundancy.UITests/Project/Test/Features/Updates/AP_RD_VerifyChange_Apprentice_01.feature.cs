@@ -109,10 +109,10 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 8
-testRunner.Given("the apprentice Lands on confirm apprentice details page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+testRunner.Given("the apprentice lands on check your answers details page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 9
-testRunner.And("the apprentice can acess all the change links", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.And("the apprentice can access all the change links", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 10
 testRunner.When("the apprentice updates the previous apprenticeship details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");

@@ -29,12 +29,12 @@ namespace SFA.DAS.ApprenticeRedundancy.UITests.Project.Helpers
             return new ApprenticeDetailsPage(_context);
         }
 
-        internal ApprenticeDetailsPage NavigateToApprenticeDetailsPage(MainLandingPage mainLandingPage)
+        internal Apprentice_CheckYourAnswersPage NavigateToApprenticeDetailsPage(MainLandingPage mainLandingPage)
         {
             mainLandingPage.NavigateToFindAnotherApprenticeship()
              .SelectAprpenticesStartnow()
              .CompleteApprenticeDetails();
-            return new ApprenticeDetailsPage(_context);
+            return new Apprentice_CheckYourAnswersPage(_context);
         }
         internal Apprentice_CheckYourAnswersPage VerifyApprenticeChangelinks(Apprentice_CheckYourAnswersPage _CheckYourAnswersPage)
         {

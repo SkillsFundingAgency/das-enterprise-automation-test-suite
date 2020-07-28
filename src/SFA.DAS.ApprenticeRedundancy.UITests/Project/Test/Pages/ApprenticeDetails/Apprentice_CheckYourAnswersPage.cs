@@ -12,6 +12,12 @@ namespace SFA.DAS.ApprenticeRedundancy.UITests.Project.Test.Pages.Apprentice
         private By ApprenticehipTraining => By.XPath("(//dd[@class='govuk-summary-list__value'])[9]");
         private By Employer => By.XPath("(//dd[@class='govuk-summary-list__value'])[10]");
         private By TrainingProvider => By.XPath("(//dd[@class='govuk-summary-list__value'])[12]");
+        private By ChangeDetails => By.XPath("(//span[@class='govuk-visually-hidden'])[1]");
+        private By YourLocation => By.XPath("//div[@class='das-check-section']//span[text()=' your location']");
+        private By PreviousApprenticeship => By.XPath("//div[@class='das-check-section']//span[text()=' Previous apprenticeship']");
+        private By Apprenticeships => By.XPath("(//span[@class='govuk-visually-hidden'])[4]");
+        private By Ethnicity => By.XPath("//div[@class='das-check-section']//span[text()=' ethnicity']");
+        private By Gender => By.XPath("//div[@class='das-check-section']//span[text()=' gender']");
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
@@ -29,32 +35,33 @@ namespace SFA.DAS.ApprenticeRedundancy.UITests.Project.Test.Pages.Apprentice
         }
         public ApprenticeDetailsPage ClickChangeYourDetailsLink()
         {
-            formCompletionHelper.ClickElement(() => pageInteractionHelper.GetLinkByHref("Change your details"));
+            pageInteractionHelper.FocusTheElement(ChangeDetails);
+            formCompletionHelper.ClickElement(ChangeDetails);
             return new ApprenticeDetailsPage(_context);
         }
         public ApprenticeDetailsPage ClickChangeYourLocationLink()
         {
-            formCompletionHelper.ClickElement(() => pageInteractionHelper.GetLinkByHref("Change your location"));
+            formCompletionHelper.ClickElement(YourLocation);
             return new ApprenticeDetailsPage(_context);
         }
         public ApprenticeDetailsPage ClickChangePreviousApprenticeShipLink()
         {
-            formCompletionHelper.ClickElement(() => pageInteractionHelper.GetLinkByHref("Change previous apprenticeship"));
+            formCompletionHelper.ClickElement(PreviousApprenticeship);
             return new ApprenticeDetailsPage(_context);
         }
         public ApprenticeDetailsPage ClickChangeApprenticeshipsYouAreInterestedLink()
         {
-            formCompletionHelper.ClickElement(() => pageInteractionHelper.GetLinkByHref("Change apprenticeships you're interested in"));
+            formCompletionHelper.ClickElement(Apprenticeships);
             return new ApprenticeDetailsPage(_context);
         }
         public ApprenticeDetailsPage ClickChangeEthnicGroupLink()
         {
-            formCompletionHelper.ClickElement(() => pageInteractionHelper.GetLinkByHref("Change ethnicity"));
+            formCompletionHelper.ClickElement(Ethnicity);
             return new ApprenticeDetailsPage(_context);
         }
         public ApprenticeDetailsPage ClickChangeGenderLink()
         {
-            formCompletionHelper.ClickElement(() => pageInteractionHelper.GetLinkByHref("Change gender"));
+            formCompletionHelper.ClickElement(Gender);
             return new ApprenticeDetailsPage(_context);
         }
         public Apprentice_CheckYourAnswersPage VerifyUpdatedPreviousApprenticeshipTrainingDetails(string apprenticeshipTraining)

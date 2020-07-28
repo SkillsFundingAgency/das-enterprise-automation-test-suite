@@ -54,10 +54,10 @@ namespace SFA.DAS.ApprenticeRedundancy.UITests.Project.Test.StepDefinitions
             Assert.IsTrue(expectedApprenticeErrorMessages.All(x => actualMessages.Contains(x)), $"Not all apprentice error messages are found");
         }
 
-        [Given(@"the apprentice Lands on confirm apprentice details page")]
-        public void GivenTheApprenticeLandsOnConfirmApprenticeDetailsPage() => _apprenticeHelper.NavigateToApprenticeDetailsPage(new MainLandingPage(_context));
+        [Given(@"the apprentice lands on check your answers details page")]
+        public void GivenTheApprenticelandsOnCheckYourAnswersDetailsPage() => _apprenticeHelper.NavigateToApprenticeDetailsPage(new MainLandingPage(_context));
 
-        [Given(@"the apprentice can acess all the change links")]
+        [Given(@"the apprentice can access all the change links")]
         public void GivenTheApprenticeCanAcessAllTheChangeLinks() => _apprenticeHelper.VerifyApprenticeChangelinks(new Apprentice_CheckYourAnswersPage(_context));
 
         [When(@"the apprentice updates the previous apprenticeship details")]
