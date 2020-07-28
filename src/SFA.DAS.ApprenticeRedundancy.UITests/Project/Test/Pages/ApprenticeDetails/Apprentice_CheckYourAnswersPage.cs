@@ -12,7 +12,7 @@ namespace SFA.DAS.ApprenticeRedundancy.UITests.Project.Test.Pages.Apprentice
         private By ApprenticehipTraining => By.XPath("(//dd[@class='govuk-summary-list__value'])[9]");
         private By Employer => By.XPath("(//dd[@class='govuk-summary-list__value'])[10]");
         private By TrainingProvider => By.XPath("(//dd[@class='govuk-summary-list__value'])[12]");
-        private By ChangeDetails => By.XPath("(//span[@class='govuk-visually-hidden'])[1]");
+        private By ChangeDetails => By.XPath("(//span[@class='govuk-visually-hidden'])[' your details']");
         private By YourLocation => By.XPath("//div[@class='das-check-section']//span[text()=' your location']");
         private By PreviousApprenticeship => By.XPath("//div[@class='das-check-section']//span[text()=' Previous apprenticeship']");
         private By Apprenticeships => By.XPath("(//span[@class='govuk-visually-hidden'])[4]");
@@ -35,7 +35,6 @@ namespace SFA.DAS.ApprenticeRedundancy.UITests.Project.Test.Pages.Apprentice
         }
         public ApprenticeDetailsPage ClickChangeYourDetailsLink()
         {
-            pageInteractionHelper.FocusTheElement(ChangeDetails);
             formCompletionHelper.ClickElement(ChangeDetails);
             return new ApprenticeDetailsPage(_context);
         }
@@ -67,17 +66,17 @@ namespace SFA.DAS.ApprenticeRedundancy.UITests.Project.Test.Pages.Apprentice
         public Apprentice_CheckYourAnswersPage VerifyUpdatedPreviousApprenticeshipTrainingDetails(string apprenticeshipTraining)
         {
             pageInteractionHelper.VerifyText(ApprenticehipTraining, apprenticeshipTraining);
-            return new Apprentice_CheckYourAnswersPage(_context);
+            return this;
         }
         public Apprentice_CheckYourAnswersPage VerifyUpdatedPreviousApprenticeshipEmployerDetails(string employer)
         {
             pageInteractionHelper.VerifyText(Employer, employer);
-            return new Apprentice_CheckYourAnswersPage(_context);
+            return this;
         }
         public Apprentice_CheckYourAnswersPage VerifyUpdatedPreviousApprenticeshipTrainingProviderDetails(string trainingProvider)
         {
             pageInteractionHelper.VerifyText(TrainingProvider, trainingProvider);
-            return new Apprentice_CheckYourAnswersPage(_context);
+            return this;
         }
     }
 }

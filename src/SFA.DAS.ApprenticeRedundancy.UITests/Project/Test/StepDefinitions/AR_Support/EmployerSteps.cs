@@ -43,7 +43,19 @@ namespace SFA.DAS.ApprenticeRedundancy.UITests.Project.Test.StepDefinitions
             EmployerDetailsPage _employerDetailsPage = new EmployerDetailsPage(_context);
             var actualMessages = _employerDetailsPage.GetErrorMessages();
 
-            Assert.IsTrue(expectedEmployerErrorMessages.All(x => actualMessages.Contains(x)), $"Not all error messages are found");
+            Assert.IsTrue(expectedEmployerErrorMessages.All(x => actualMessages.Contains(x)), $"Not all employer error messages are found");
         }
+        [Given(@"the employer lands on check your answers employer details page")]
+        public void GivenTheEmployerLandsOnCheckYourAnswersEmployerDetailsPage() => _employerHelper.NavigateToEmployerDetailsPage(new MainLandingPage(_context));
+        
+        [Given(@"the employer can access all the change links")]
+        public void GivenTheEmployerCanAccessAllTheChangeLinks() => _employerHelper.VerifyEmployerChangeLinks(new Employer_CheckYourAnswersPage(_context));
+
+        [When(@"the employer updates the contact details")]
+        public void WhenTheEmployerUpdatesTheContactDetails() => _employerHelper.ClickChangeAndUpdateEmployerContactDetails(new Employer_CheckYourAnswersPage(_context));
+
+        [Then(@"changes made are reflected on confirm employer details page")]
+        public void ThenChangesMadeAreReflectedOnConfirmEmployerDetailsPage() => _employerHelper.VerifyUpdatedContactDetails(new Employer_CheckYourAnswersPage(_context));
+
     }
 }

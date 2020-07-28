@@ -20,22 +20,22 @@ namespace SFA.DAS.ApprenticeRedundancy.UITests.Project.Test.Features.Updates
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.3.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("AP_RD_UD_01")]
-    public partial class AP_RD_UD_01Feature
+    [NUnit.Framework.DescriptionAttribute("AP_RD_UD_02")]
+    public partial class AP_RD_UD_02Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private string[] _featureTags = ((string[])(null));
         
-#line 1 "AP_RD_VerifyChange_Apprentice_01.feature"
+#line 1 "AP_RD_VerifyChange_Employer_02.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "AP_RD_UD_01", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "AP_RD_UD_02", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,12 +74,12 @@ namespace SFA.DAS.ApprenticeRedundancy.UITests.Project.Test.Features.Updates
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("AP_RD_VerifyChange_Apprentice_01_ApprenticeForm")]
+        [NUnit.Framework.DescriptionAttribute("AP_RD_VerifyChange_Employer_02_EmployerForm")]
         [NUnit.Framework.CategoryAttribute("aprdsupport")]
         [NUnit.Framework.CategoryAttribute("aprd")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("aprdud01")]
-        public virtual void AP_RD_VerifyChange_Apprentice_01_ApprenticeForm()
+        public virtual void AP_RD_VerifyChange_Employer_02_EmployerForm()
         {
             string[] tagsOfScenario = new string[] {
                     "aprdsupport",
@@ -87,7 +87,7 @@ namespace SFA.DAS.ApprenticeRedundancy.UITests.Project.Test.Features.Updates
                     "regression",
                     "aprdud01"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_RD_VerifyChange_Apprentice_01_ApprenticeForm", null, tagsOfScenario, argumentsOfScenario);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_RD_VerifyChange_Employer_02_EmployerForm", null, tagsOfScenario, argumentsOfScenario);
 #line 7
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -109,16 +109,16 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 8
-testRunner.Given("the apprentice lands on check your answers apprentice details page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+testRunner.Given("the employer lands on check your answers employer details page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 9
-testRunner.And("the apprentice can access all the change links", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.And("the employer can access all the change links", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 10
-testRunner.When("the apprentice updates the previous apprenticeship details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+testRunner.When("the employer updates the contact details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 11
-testRunner.Then("changes made are reflected on confirm apprentice details page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+testRunner.Then("changes made are reflected on confirm employer details page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
