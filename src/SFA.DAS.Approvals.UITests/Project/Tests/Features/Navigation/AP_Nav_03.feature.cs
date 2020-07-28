@@ -114,19 +114,16 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Then("Standard gov.uk footer should be displayed at the bottom of the page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 9
- testRunner.And("Standard cookie banner should be displayed at the top of the page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 10
  testRunner.And("the Help widget is displayed on bottom right hand corner", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 11
+#line 10
  testRunner.Then("\'Manage your apprentices\' link should direct user to \'Manage your apprentices\' pa" +
                         "ge", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 12
+#line 11
  testRunner.And("\'Apprentice requests\' link should direct user to \'Your cohort requests\' page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 13
+#line 12
  testRunner.And("\'Add an apprentice\' link should direct user to \'Add an apprentice\' page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
