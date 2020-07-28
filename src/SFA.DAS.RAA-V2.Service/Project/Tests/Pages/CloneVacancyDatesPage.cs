@@ -6,7 +6,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 {
     public class CloneVacancyDatesPage : RAAV2CSSBasePage
     {
-        protected override string PageTitle => "Does the new vacancy have the same closing date and start date?";
+        protected override string PageTitle => "Does the new advert have the same closing date and start date?";
 
         protected override By PageHeader => By.CssSelector(".govuk-heading-xl");
 
