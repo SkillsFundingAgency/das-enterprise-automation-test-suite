@@ -88,5 +88,42 @@ namespace SFA.DAS.EmployerFinance.UITests.Project.Tests.StepDefinitions
             Assert.AreEqual(expectedEstimatedTotalFundsText, _financePage.GetEstimatedTotalFundsText());
             Assert.AreEqual(expectedEstimatedPlannedSpendingText, _financePage.GetEstimatedPlannedSpendingText());
         }
+
+        [Then(@"Employer can add, edit and remove apprenticeship funding projection")]
+        public void ThenEmployerCanAddEditAndRemoveApprenticeshipFundingProjection()
+        {
+            _financePage
+                .GoToFundingProjectionPage()
+                .GoToEstimateFundingProjectionPage()
+                .ClickStart();
+
+            AddApprenticeshipsToEstimateCostPage addApprenticeshipsToEstimateCostPage;
+
+            if (new RemoveApprenticeshipCheckPage(_context).IsPageDisplayed())
+            {
+                var estimatedCostsPage = new EstimatedCostsPage(_context);
+
+                var existingApprenticeship = estimatedCostsPage.ExistingApprenticeships();
+
+                for (int i = 0; i < existingApprenticeship; i++)
+                {
+                    estimatedCostsPage = estimatedCostsPage.RemoveApprenticeships().ConfirmRemoveApprenticeship();
+                }
+
+                addApprenticeshipsToEstimateCostPage = estimatedCostsPage.AddApprenticeships();
+            }
+            else
+            {
+                addApprenticeshipsToEstimateCostPage = new AddApprenticeshipsToEstimateCostPage(_context);
+            }
+
+            addApprenticeshipsToEstimateCostPage.Add()
+                .VerifyTabs()
+                .EditApprenticeships()
+                .Edit()
+                .RemoveApprenticeships()
+                .ConfirmRemoveApprenticeship();
+        }
+
     }
 }

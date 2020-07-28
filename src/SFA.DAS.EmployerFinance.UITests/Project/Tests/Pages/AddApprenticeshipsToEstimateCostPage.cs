@@ -1,0 +1,46 @@
+﻿using OpenQA.Selenium;
+using System;
+using TechTalk.SpecFlow;
+
+namespace SFA.DAS.EmployerFinance.UITests.Project.Tests.Pages
+{
+    public class AddApprenticeshipsToEstimateCostPage : EmployerFinanceBasePage
+    {
+        protected override string PageTitle => "Add apprenticeships to estimate cost";
+
+        private By ApprenticeshipCombobox => By.CssSelector(".select2-selection");
+
+        private By ApprenticeshipInputBox => By.CssSelector(".select2-search__field");
+
+        private By ApprenticeshipOptions => By.CssSelector(".select2-results__option");
+
+        private By NoOfApprentice => By.CssSelector("input#no-of-app");
+
+        private By StartDateMonth => By.CssSelector("input#startDateMonth");
+
+        private By StartDateYear => By.CssSelector("input#startDateYear");
+
+        private By SaveButton => By.CssSelector("#save");
+
+        private readonly ScenarioContext _context;
+
+        public AddApprenticeshipsToEstimateCostPage(ScenarioContext context) : base(context)
+        {
+            _context = context;
+            VerifyPage();
+        }
+
+        public EstimatedCostsPage Add()
+        {
+            var date = DateTime.Now; 
+            formCompletionHelper.Click(ApprenticeshipCombobox);
+            formCompletionHelper.EnterText(ApprenticeshipInputBox, "software tester");
+            formCompletionHelper.Click(ApprenticeshipOptions);
+            formCompletionHelper.EnterText(NoOfApprentice, 1);
+            formCompletionHelper.EnterText(StartDateMonth, date.Month);
+            formCompletionHelper.EnterText(StartDateYear, date.Year);
+            formCompletionHelper.Click(SaveButton);
+            return new EstimatedCostsPage(_context);
+        }
+    }
+}

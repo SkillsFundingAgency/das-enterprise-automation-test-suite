@@ -19,7 +19,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         private readonly ScenarioContext _context;
         private readonly ObjectContext _objectContext;
         private readonly TabHelper _tabHelper;
-        private readonly RegistrationConfig _registrationConfig;
         private readonly RegistrationDataHelper _registrationDataHelper;
         private readonly RegistrationSqlDataHelper _registrationSqlDataHelper;
         private readonly TprSqlDataHelper _tprSqlDataHelper;
@@ -50,7 +49,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             _loginCredentialsHelper = context.Get<LoginCredentialsHelper>();
             _tprSqlDataHelper = context.Get<TprSqlDataHelper>();
             _tabHelper = context.Get<TabHelper>();
-            _registrationConfig = context.GetRegistrationConfig<RegistrationConfig>();
             _accountCreationStepsHelper = new AccountCreationStepsHelper(context);
         }
 
