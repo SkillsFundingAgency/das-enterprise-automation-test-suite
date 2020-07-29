@@ -1,6 +1,7 @@
 ﻿using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
@@ -65,10 +66,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         {
             var receivingEmployer = transfersConfig.ReceiverOrganisationName;
             var cohortTotalCost = objectContext.GetApprenticeTotalCost();
+            
+            var transferRequestRows = pageInteractionHelper.FindElements(YourTransferConnectionsRows).Reverse<IWebElement>();
+            var transferRequestDetailsLinks = pageInteractionHelper.FindElements(By.PartialLinkText("Details"));
 
-            IList<IWebElement> transferRequestRows = pageInteractionHelper.FindElements(YourTransferConnectionsRows);
-            IList<IWebElement> transferRequestDetailsLinks = pageInteractionHelper.FindElements(DetailsLink);
-            int i = 0;
+            int i = transferRequestRows.Count() - 1;
 
             foreach (IWebElement transferRequestRow in transferRequestRows)
             {
@@ -79,7 +81,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
                     formCompletionHelper.ClickElement(transferRequestDetailsLinks[i]);
                     return new TransferRequestDetailsPage(_context);
                 }
-                i++;
+                i--;
             }
             throw new Exception("Unable to find Pending Cohort Request from " + receivingEmployer + " with total cost of the cohort: £" + cohortTotalCost);
         }

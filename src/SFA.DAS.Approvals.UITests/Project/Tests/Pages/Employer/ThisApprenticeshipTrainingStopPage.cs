@@ -20,11 +20,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         public ThisApprenticeshipTrainingStopPage(ScenarioContext context) : base(context) => _context = context;
 
-        public StopApprenticeshipPage EditStopDateToThisMonthAndSubmit()
+        public HasTheApprenticeBeenMadeRedundantPage EditStopDateToThisMonthAndSubmit()
         {
             EnterTheStopDate();
             Continue();
-            return new StopApprenticeshipPage(_context);
+            return new HasTheApprenticeBeenMadeRedundantPage(_context);
         }
 
         public NewStopDateApprenticeDetailsPage EditStopDateToCourseStartDateAndSubmit()

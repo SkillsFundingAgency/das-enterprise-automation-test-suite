@@ -14,7 +14,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         public ProviderReviewYourCohortPage SelectViewCurrentCohortDetails()
         {
-            tableRowHelper.SelectRowFromTable("Details", objectContext.GetCohortReference());
+            tableRowHelper.SelectRowFromTableDescending("Details", objectContext.GetCohortReference());
             return new ProviderReviewYourCohortPage(_context);
         }        
     }

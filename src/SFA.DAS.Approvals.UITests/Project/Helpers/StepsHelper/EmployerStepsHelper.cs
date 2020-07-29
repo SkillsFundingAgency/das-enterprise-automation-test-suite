@@ -69,7 +69,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                 .ClickEditStatusLink()
                 .SelectStopAndContinueForAStartedApprentice()
                 .EditStopDateToThisMonthAndSubmit()
-                .SelectYesAndConfirm();
+                .ClickARadioButtonAndContinue()
+                .SelectYesAndConfirm()
+                .ValidateEditLinkIsNoLongerVisible()
+                .ValidateRedundancyStatusAndStopDate();
         }
 
         internal ApprenticeDetailsPage ViewCurrentApprenticeDetails() => GoToManageYourApprenticesPage().SelectViewCurrentApprenticeDetails();

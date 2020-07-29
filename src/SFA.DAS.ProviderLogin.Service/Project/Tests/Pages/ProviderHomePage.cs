@@ -23,7 +23,8 @@ namespace SFA.DAS.ProviderLogin.Service.Pages
 
         protected By InvitedEmployers => By.LinkText("View invited employers");
 
-        public ProviderHomePage(ScenarioContext context, bool navigate = false) : base(context, navigate) { }
+        public ProviderHomePage(ScenarioContext context, bool navigate = false) : base(context, navigate) => base.AcceptCookies();
+       
 
         public bool CreateCohortPermissionLinkIsDisplayed() => pageInteractionHelper.IsElementDisplayed(CreateACohortLink);
     }

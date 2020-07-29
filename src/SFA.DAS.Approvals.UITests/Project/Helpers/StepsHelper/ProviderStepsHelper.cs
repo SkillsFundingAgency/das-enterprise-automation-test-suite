@@ -1,5 +1,6 @@
 ﻿using System;
 using OpenQA.Selenium;
+using System.Linq;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.UI.FrameworkHelpers;
@@ -118,8 +119,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 
             for (int i = 0; i < totalNoOfApprentices; i++)
             {
-                int j = 0;
-                var ulnFields = providerReviewYourCohortPage.ApprenticeUlns();
+                var ulnFields = providerReviewYourCohortPage.ApprenticeUlns().Reverse<IWebElement>();
+                int j = ulnFields.Count() - 1;
+
                 foreach (IWebElement uln in ulnFields)
                 {
                     if (uln.Text.Equals("–"))
@@ -134,7 +136,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                         providerEditApprenticeDetailsPage.EnterUlnAndSave();
                         break;
                     }
-                    j++;
+                    j--;
                 }
             }
 
