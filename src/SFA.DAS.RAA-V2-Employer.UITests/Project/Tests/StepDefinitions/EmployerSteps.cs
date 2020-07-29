@@ -103,7 +103,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
                 "Enter the expected career progression after this apprenticeship",
                 "Select the skills and personal qualities you'd like the applicant to have",
                 "You must add a qualification",
-                "Select how you'd like to recieve applications",
+                "Select how you'd like to receive applications",
             };
 
             var actualMessages = _vacancyPreviewPart2WithErrorsPage.GetErrorMessages();
