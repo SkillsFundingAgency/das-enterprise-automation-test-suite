@@ -13,10 +13,11 @@ namespace SFA.DAS.ApprenticeRedundancy.UITests.Project.Test.Pages.EmployerDetail
         private By OrganisationDetails => By.XPath("//div[@class='das-check-section']//span[text()=' organisation details']");
         private By Locations => By.XPath("//div[@class='das-check-section']//span[text()=' apprenticeship locations']");
         private By ApprenticeshipDetails => By.XPath("//div[@class='das-check-section']//span[text()=' apprenticeship details']");
+        private By HowToApplyDetails => By.XPath("//div[@class='das-check-section']//span[text()=' how to apply']");
         private By Contact => By.XPath("//div[@class='das-check-section']//span[text()=' how can we contact you?']");
-        private By ContactNameText => By.XPath("(//dd[@class='govuk-summary-list__value'])[7]");
-        private By PhoneNumberText => By.XPath("(//dd[@class='govuk-summary-list__value'])[8]");
-        private By FeedbackText => By.XPath("(//dd[@class='govuk-summary-list__value'])[9]");
+        private By ContactNameText => By.XPath("(//dd[@class='govuk-summary-list__value'])[5]");
+        private By PhoneNumberText => By.XPath("(//dd[@class='govuk-summary-list__value'])[7]");
+        private By FeedbackText => By.XPath("(//dd[@class='govuk-summary-list__value'])[8]");
 
 
         #region Helpers and Context
@@ -46,6 +47,11 @@ namespace SFA.DAS.ApprenticeRedundancy.UITests.Project.Test.Pages.EmployerDetail
         public EmployerDetailsPage ClickChangeApprenticeshipDetailsLink()
         {
             formCompletionHelper.ClickElement(ApprenticeshipDetails);
+            return new EmployerDetailsPage(_context);
+        }
+        public EmployerDetailsPage ClickChangeHowToApplyDetailsLink()
+        {
+            formCompletionHelper.ClickElement(HowToApplyDetails);
             return new EmployerDetailsPage(_context);
         }
         public EmployerDetailsPage ClickChangeContactDetailsLink()
