@@ -28,7 +28,7 @@ namespace SFA.DAS.ApprenticeRedundancy.UITests.Project.Test.Features.AR_Admin
         
         private string[] _featureTags = ((string[])(null));
         
-#line 1 "AP_RD_DownloadApprenticeDetails_01.feature"
+#line 1 "AP_RD_DownloadCSVApprenticeDetails_01.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
@@ -74,12 +74,12 @@ namespace SFA.DAS.ApprenticeRedundancy.UITests.Project.Test.Features.AR_Admin
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("AP_RD_Download_Apprentice_Details_01_HappyPath")]
+        [NUnit.Framework.DescriptionAttribute("AP_RD_Download_CSV_Apprentice_Details_01_HappyPath")]
         [NUnit.Framework.CategoryAttribute("aprdadmin")]
         [NUnit.Framework.CategoryAttribute("aprd")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("aprdad01")]
-        public virtual void AP_RD_Download_Apprentice_Details_01_HappyPath()
+        public virtual void AP_RD_Download_CSV_Apprentice_Details_01_HappyPath()
         {
             string[] tagsOfScenario = new string[] {
                     "aprdadmin",
@@ -87,7 +87,7 @@ namespace SFA.DAS.ApprenticeRedundancy.UITests.Project.Test.Features.AR_Admin
                     "regression",
                     "aprdad01"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_RD_Download_Apprentice_Details_01_HappyPath", null, tagsOfScenario, argumentsOfScenario);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_RD_Download_CSV_Apprentice_Details_01_HappyPath", null, tagsOfScenario, argumentsOfScenario);
 #line 7
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
