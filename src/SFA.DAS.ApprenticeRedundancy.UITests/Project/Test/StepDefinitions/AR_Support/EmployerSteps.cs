@@ -31,12 +31,12 @@ namespace SFA.DAS.ApprenticeRedundancy.UITests.Project.Test.StepDefinitions
             List<string> expectedEmployerErrorMessages = new List<string>
             {
                "Enter your organisation's name",
-               "Enter your email address",
                "Select the locations where you're interested in taking on an apprentice",
                "Select the type of apprenticeships you're interested in",
-               "Enter more detail about the apprenticeship",
+               "Enter where apprentices can apply for your opportunity",
                "Enter your first name",
                "Enter your last name",
+               "Enter your email address",
                "Enter your phone number",
                "Select yes if we can contact you about taking part in a feedback session",
             };

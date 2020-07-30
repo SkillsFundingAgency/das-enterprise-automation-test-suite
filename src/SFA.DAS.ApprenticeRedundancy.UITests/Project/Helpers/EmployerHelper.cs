@@ -42,6 +42,8 @@ namespace SFA.DAS.ApprenticeRedundancy.UITests.Project.Helpers
                 .NavigateBackToEmployerCheckYourAnswersPage()
                 .ClickChangeApprenticeshipDetailsLink()
                 .NavigateBackToEmployerCheckYourAnswersPage()
+                .ClickChangeHowToApplyDetailsLink()
+                .NavigateBackToEmployerCheckYourAnswersPage()
                 .ClickChangeContactDetailsLink()
                 .NavigateBackToEmployerCheckYourAnswersPage();
                 return new Employer_CheckYourAnswersPage(_context);

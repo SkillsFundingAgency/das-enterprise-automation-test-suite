@@ -17,7 +17,6 @@ namespace SFA.DAS.ApprenticeRedundancy.UITests.Project.Test.Pages.EmployerDetail
         private By ContactLastName = By.Id("ContactLastName");
         private By Email = By.Id("Email");
         private By PhoneNumber = By.Id("PhoneNumber");
-        private By Webstite = By.Id("Website");
         private By Locations = By.CssSelector(".govuk-checkboxes__item");
         private By MoreDetail = By.Id("ApprenticeshipMoreDetails");
         private By FeedbackYes = By.Id("ContactableForFeedback");
@@ -39,8 +38,6 @@ namespace SFA.DAS.ApprenticeRedundancy.UITests.Project.Test.Pages.EmployerDetail
         public Employer_CheckYourAnswersPage CompleteEmployersDetails()
         {
             formCompletionHelper.EnterText(OrganisationName, apprenticeRedundancyDataHelper.OrganisationName);
-            formCompletionHelper.EnterText(Email, apprenticeRedundancyDataHelper.Email);
-            formCompletionHelper.EnterText(Webstite, apprenticeRedundancyDataHelper.Website);
             formCompletionHelper.SelectCheckBoxByText(Locations, "North West");
             formCompletionHelper.SelectCheckBoxByText(Locations, "West Midlands");
             formCompletionHelper.SelectCheckBoxByText(Locations, "Yorkshire and the Humber");
@@ -50,6 +47,7 @@ namespace SFA.DAS.ApprenticeRedundancy.UITests.Project.Test.Pages.EmployerDetail
             formCompletionHelper.EnterText(MoreDetail, apprenticeRedundancyDataHelper.LongText);
             formCompletionHelper.EnterText(ContactFirstName, apprenticeRedundancyDataHelper.FirstName);
             formCompletionHelper.EnterText(ContactLastName, apprenticeRedundancyDataHelper.LastName);
+            formCompletionHelper.EnterText(Email, apprenticeRedundancyDataHelper.Email);
             formCompletionHelper.EnterText(PhoneNumber, apprenticeRedundancyDataHelper.ContactNumber);
             formCompletionHelper.SelectRadioOptionByLocator( FeedbackYes );
             Continue();
