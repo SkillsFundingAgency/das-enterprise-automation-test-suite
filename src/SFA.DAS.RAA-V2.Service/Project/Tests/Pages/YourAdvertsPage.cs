@@ -3,9 +3,9 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 {
-    public class VacanciesPage : RAAV2CSSBasePage
+    public class YourAdvertsPage : RAAV2CSSBasePage
     {
-        protected override string PageTitle => "Vacancies";
+        protected override string PageTitle => "Your Adverts";
 
         protected override By PageHeader => By.CssSelector(".govuk-heading-l");
 
@@ -16,7 +16,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         private By Filter => By.CssSelector("#Filter");
 
         
-        public VacanciesPage(ScenarioContext context) : base(context) => _context = context;
+        public YourAdvertsPage(ScenarioContext context) : base(context) => _context = context;
 
         public ApprenticeshipTrainingPage GoToApprenticeshipTrainingPage()
         {
