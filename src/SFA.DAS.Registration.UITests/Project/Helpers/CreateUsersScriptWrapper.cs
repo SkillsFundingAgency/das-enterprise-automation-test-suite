@@ -10,8 +10,8 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
 {
     public static partial class PowerShellScriptWrapper
     {
-        const string CreateUserScriptResourceName = "SFA.DAS.Automation.PowerShellScriptWrapper.PowerShellScripts.CreateUser.ps1";
-        const string HashIdsScriptResourceName = "SFA.DAS.Automation.PowerShellScriptWrapper.PowerShellScripts.HashIds.ps1";
+        static string CreateUserScriptPath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Project\Helpers\PowerShellScripts\CreateUser.ps1");
+        static string HashIdsScriptPath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Project\Helpers\PowerShellScripts\PowerShellScripts.HashIds.ps1");
         const string FunctionName = "Create-TestLogin";
         public async static void CreateRegistrationsUser(CreateUserScriptConfiguration configuration)
         {
@@ -20,19 +20,8 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
             var sessionState = InitialSessionState.CreateDefault();
             sessionState.ExecutionPolicy = Microsoft.PowerShell.ExecutionPolicy.Unrestricted;
 
-            string userScript;
-            using (var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(CreateUserScriptResourceName))
-            using (var streamReader = new StreamReader(stream))
-            {
-                userScript = streamReader.ReadToEnd();
-            }
-
-            string hashidsScript;
-            using (var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(HashIdsScriptResourceName))
-            using (var streamReader = new StreamReader(stream))
-            {
-                hashidsScript = streamReader.ReadToEnd();
-            }
+            string userScript = File.ReadAllText(CreateUserScriptPath);
+            string hashidsScript = File.ReadAllText(HashIdsScriptPath);
 
             if (string.IsNullOrWhiteSpace(userScript) || string.IsNullOrWhiteSpace(hashidsScript))
             {
