@@ -7,7 +7,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 {
     public class SelectOrganisationPage : RAAV2CSSBasePage
     {
-        protected override string PageTitle => "Which organisation is this vacancy for?";
+        protected override string PageTitle => isRaaV2Employer ? "Which organisation is this advert for?" : "Which organisation is this vacancy for?";
 
         #region Helpers and Context
         private readonly PageInteractionHelper _pageInteractionHelper;
