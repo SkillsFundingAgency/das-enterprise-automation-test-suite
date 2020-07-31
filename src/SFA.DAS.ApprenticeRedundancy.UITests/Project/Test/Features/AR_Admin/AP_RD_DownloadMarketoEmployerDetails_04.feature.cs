@@ -20,22 +20,22 @@ namespace SFA.DAS.ApprenticeRedundancy.UITests.Project.Test.Features.AR_Admin
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.3.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("AP_RD_AD_02")]
-    public partial class AP_RD_AD_02Feature
+    [NUnit.Framework.DescriptionAttribute("AP_RD_AD_04")]
+    public partial class AP_RD_AD_04Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private string[] _featureTags = ((string[])(null));
         
-#line 1 "AP_RD_DownloadEmployerDetails_02.feature"
+#line 1 "AP_RD_DownloadMarketoEmployerDetails_04.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "AP_RD_AD_02", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "AP_RD_AD_04", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,20 +74,20 @@ namespace SFA.DAS.ApprenticeRedundancy.UITests.Project.Test.Features.AR_Admin
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("AP_RD_Download_Employer_Details_02_HappyPath")]
+        [NUnit.Framework.DescriptionAttribute("AP_RD_Download_MarketoFile_Employer_Details_04_HappyPath")]
         [NUnit.Framework.CategoryAttribute("aprdadmin")]
         [NUnit.Framework.CategoryAttribute("aprd")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("aprdad02")]
-        public virtual void AP_RD_Download_Employer_Details_02_HappyPath()
+        [NUnit.Framework.CategoryAttribute("aprdad04")]
+        public virtual void AP_RD_Download_MarketoFile_Employer_Details_04_HappyPath()
         {
             string[] tagsOfScenario = new string[] {
                     "aprdadmin",
                     "aprd",
                     "regression",
-                    "aprdad02"};
+                    "aprdad04"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_RD_Download_Employer_Details_02_HappyPath", null, tagsOfScenario, argumentsOfScenario);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_RD_Download_MarketoFile_Employer_Details_04_HappyPath", null, tagsOfScenario, argumentsOfScenario);
 #line 7
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -112,7 +112,7 @@ this.ScenarioInitialize(scenarioInfo);
 testRunner.Given("the Admin Successfully Logs into appliation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 9
-testRunner.And("Downloads Employers Data", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.And("Downloads Marketo Employer Data", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
