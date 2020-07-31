@@ -9,12 +9,15 @@ namespace SFA.DAS.ApprenticeRedundancy.UITests.Project.Test.Pages.AR_Admin
 {
    public class ApprenticeMatchingDashBoardPage : ApprenticeRedundancyBasePage
     {
-        protected override string PageTitle => "Welcome,";
+        protected override string PageTitle => "Download a vacancy sharing service report";
 
-        private By ReportType => By.Id("ReportType");
+        private By ApprenticeReport => By.Id("ReportType");
+        private By EmployerReport => By.Id("ReportType-2");
+        private By MarketoFileType => By.Id("FileType");
+        private By CsvFiletype => By.Id("FileType-2");
         private By FromDate => By.Id("FromDate");
         private By ToDate => By.Id("ToDate");
-        private By Download => By.Id("download-report");
+        private By Download => By.CssSelector(".govuk-button");
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
@@ -25,21 +28,19 @@ namespace SFA.DAS.ApprenticeRedundancy.UITests.Project.Test.Pages.AR_Admin
             _context = context;
             VerifyPage();
         }
-        public ApprenticeMatchingDashBoardPage SelectApprenticeReportAndDownload()
+        public ApprenticeMatchingDashBoardPage SelectApprenticeReportAndConfirmDates()
         {
-            formCompletionHelper.SelectFromDropDownByText(ReportType, "Apprentice report");
+            formCompletionHelper.SelectRadioOptionByLocator(ApprenticeReport);
             formCompletionHelper.SendKeys(FromDate, apprenticeRedundancyDataHelper.GetFromdate);
             formCompletionHelper.SendKeys(ToDate, DateTime.Now.ToString("yyyy-MM-dd"));
-            formCompletionHelper.ClickElement(Download);
             return this;
         }
 
-        public ApprenticeMatchingDashBoardPage SelectEmployerReportAndDownload()
+        public ApprenticeMatchingDashBoardPage SelectEmployerReportAndConfirmDates()
         {
-            formCompletionHelper.SelectFromDropDownByText(ReportType, "Employer report");
+            formCompletionHelper.SelectRadioOptionByLocator(EmployerReport);
             formCompletionHelper.SendKeys(FromDate, apprenticeRedundancyDataHelper.GetFromdate);
             formCompletionHelper.SendKeys(ToDate, DateTime.Now.ToString("yyyy-MM-dd"));
-            formCompletionHelper.ClickElement(Download);
             return this;
         }
 
@@ -48,5 +49,18 @@ namespace SFA.DAS.ApprenticeRedundancy.UITests.Project.Test.Pages.AR_Admin
             formCompletionHelper.ClickElement(Download);
             return this;
         }
+        public ApprenticeMatchingDashBoardPage SelectCSVFileAndDownload()
+        {
+            formCompletionHelper.SelectRadioOptionByLocator(CsvFiletype);
+            formCompletionHelper.ClickElement(Download);
+            return this;
+        }
+        public ApprenticeMatchingDashBoardPage SelectMarketoFileAndDownload()
+        {
+            formCompletionHelper.SelectRadioOptionByLocator(MarketoFileType);
+            formCompletionHelper.ClickElement(Download);
+            return this;
+        }
+
     }
 }

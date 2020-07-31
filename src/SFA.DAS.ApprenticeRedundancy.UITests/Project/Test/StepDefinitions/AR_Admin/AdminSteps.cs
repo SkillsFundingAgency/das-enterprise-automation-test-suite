@@ -33,14 +33,28 @@ namespace SFA.DAS.ApprenticeRedundancy.UITests.Project.Test.StepDefinitions
         public void GivenDownloadsApprenticeData()
         {
             ApprenticeMatchingDashBoardPage apprenticeMatchingDashBoardPage = new ApprenticeMatchingDashBoardPage(_context);
-            apprenticeMatchingDashBoardPage.SelectApprenticeReportAndDownload();
+            apprenticeMatchingDashBoardPage.SelectApprenticeReportAndConfirmDates().SelectCSVFileAndDownload();
         }
 
         [Given(@"Downloads Employers Data")]
         public void GivenDownloadsEmployersData()
         {
             ApprenticeMatchingDashBoardPage apprenticeMatchingDashBoardPage = new ApprenticeMatchingDashBoardPage(_context);
-            apprenticeMatchingDashBoardPage.SelectEmployerReportAndDownload();
+            apprenticeMatchingDashBoardPage.SelectEmployerReportAndConfirmDates().SelectCSVFileAndDownload();
+        }
+
+        [Given(@"Downloads Marketo Apprentice Data")]
+        public void GivenDownloadsMarketoApprenticeData()
+        {
+            ApprenticeMatchingDashBoardPage apprenticeMatchingDashBoardPage = new ApprenticeMatchingDashBoardPage(_context);
+            apprenticeMatchingDashBoardPage.SelectApprenticeReportAndConfirmDates().SelectMarketoFileAndDownload();
+        }
+
+        [Given(@"Downloads Marketo Employer Data")]
+        public void GivenDownloadsMarketoEmployerData()
+        {
+            ApprenticeMatchingDashBoardPage apprenticeMatchingDashBoardPage = new ApprenticeMatchingDashBoardPage(_context);
+            apprenticeMatchingDashBoardPage.SelectEmployerReportAndConfirmDates().SelectMarketoFileAndDownload();
         }
 
         [When(@"the Admin do not complete all the mandatory fields")]
@@ -55,9 +69,10 @@ namespace SFA.DAS.ApprenticeRedundancy.UITests.Project.Test.StepDefinitions
         {
             List<string> expectedApprenticeErrorMessages = new List<string>
             {
-               "Select if you want to download the employer or apprentice report",
+               "Select if you want to download the employer or apprentice matching report activity",
                "Enter a matching report 'from' date",
                "Enter a matching report 'to' date",
+               "Select a file type",
             };
             ApprenticeMatchingDashBoardPage _apprenticeMatchingDashBoardPage = new ApprenticeMatchingDashBoardPage(_context);
             var actualMessages = _apprenticeMatchingDashBoardPage.GetErrorMessages();
