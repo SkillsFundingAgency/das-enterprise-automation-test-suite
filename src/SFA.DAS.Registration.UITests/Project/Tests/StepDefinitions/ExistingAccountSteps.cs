@@ -2,6 +2,7 @@
 using SFA.DAS.Login.Service.Helpers;
 using SFA.DAS.Registration.UITests.Project.Helpers;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages;
+using SFA.DAS.UI.Framework.TestSupport;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
@@ -10,16 +11,54 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
     public class ExistingAccountSteps
     {
         private readonly ScenarioContext _context;
+        private readonly RegistrationDataHelper _registrationDataHelper;
         private readonly EmployerPortalLoginHelper _employerPortalLoginHelper;
         private readonly EmployerLoginFromCreateAcccountPageHelper _loginFromCreateAcccountPageHelper;
+        private readonly RegistrationConfig _registrationConfig;
         private HomePage _homePage;
 
         public ExistingAccountSteps(ScenarioContext context)
         {
             _context = context;
+            _registrationConfig = _context.GetRegistrationConfig<RegistrationConfig>();
+            _registrationDataHelper = _context.Get<RegistrationDataHelper>();
             _employerPortalLoginHelper = new EmployerPortalLoginHelper(context);
             _loginFromCreateAcccountPageHelper = new EmployerLoginFromCreateAcccountPageHelper(_context);
         }
+
+        [Given(@"the employer logins using Non Levy Account created via powershell scripts")]
+        public void GivenTheEmployerLoginsUsingNonLevyAccountCreatedViaPowershellScripts()
+        {
+            // call powershell script
+            var sampleConfiguration = new CreateUserScriptConfiguration
+            {
+                Email = _registrationDataHelper.RandomEmail,
+                Password = _registrationDataHelper.Password,
+                PrivateAccountHashSalt = "",
+                PrivateAccountHashAllowedCharacters = "",
+                PublicAccountHashAllowedCharacters = "",
+                PublichAccountHashSalt = "",
+                PublicLegalEntityHashAllowedCharacters = "",
+                PublicLegalEntityHashSalt = "",
+                EmployerAccountsConnectionString = _registrationConfig.RE_AccountsDbConnectionString,
+                EmployerUsersConnectionString = _registrationConfig.RE_EmployerUsersDbConnectionString,
+                EmployerUsersProfilesConnectionString = _registrationConfig.RE_EmployerUsersProfilesDbConnectionString,
+                AgreementName = "_Agreement_V3",
+                ApprenticeshipEmployerType = ApprenticeshipEmployerType.NonLevy
+            };
+
+            PowerShellScriptWrapper.CreateRegistrationsUser(sampleConfiguration);
+
+            //assign user details
+            var loginuser = new NonLevyUser
+            {
+                Username = "",
+                Password = ""
+            };
+
+            _employerPortalLoginHelper.Login(loginuser);
+        }
+
 
         [Given(@"the Employer logins using existing Levy Account")]
         [When(@"the Employer logins using existing Levy Account")]
