@@ -18,7 +18,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
         private readonly RAAV2DataHelper _rAAV2DataHelper;
         private readonly EmployerStepsHelper _employerStepsHelper;
 
-        private VacanciesPage _vacanciesPage;
+        private YourAdvertsPage _vacanciesPage;
         private VacancyPreviewPart2Page _vacancyPreviewPart2Page;
         private VacancyPreviewPart2WithErrorsPage _vacancyPreviewPart2WithErrorsPage;
         private RecruitmentDynamicHomePage _dynamicHomePage;

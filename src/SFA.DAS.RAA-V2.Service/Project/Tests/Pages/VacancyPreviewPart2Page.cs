@@ -41,10 +41,10 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
             return new DeleteVacancyQuestionPage(_context);
         }
 
-        public VacanciesPage ReturnToDashboard()
+        public YourAdvertsPage ReturnToDashboard()
         {
             formCompletionHelper.Click(ReturnToDashboardLink);
-            return new VacanciesPage(_context);
+            return new YourAdvertsPage(_context);
         }
 
         public ShortDescriptionPage AddBriefOverview()

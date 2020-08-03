@@ -26,9 +26,9 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
 
         internal void SubmitVacancy(VacancyPreviewPart2Page previewPage, bool isApplicationMethodFAA, bool optionalFields) => _stepsHelper.SubmitVacancy(previewPage, isApplicationMethodFAA, optionalFields);
 
-        internal VacanciesPage DeleteDraftVacancy(VacancyPreviewPart2Page previewPage) => previewPage.DeleteVacancy().YesDeleteVacancy();
+        internal YourAdvertsPage DeleteDraftVacancy(VacancyPreviewPart2Page previewPage) => previewPage.DeleteVacancy().YesDeleteVacancy();
 
-        internal VacanciesPage CancelVacancy() => EnterVacancyTitle().CancelVacancy();
+        internal YourAdvertsPage CancelVacancy() => EnterVacancyTitle().CancelVacancy();
 
         internal void CreateOfflineVacancy(bool disabilityConfidence)
         {

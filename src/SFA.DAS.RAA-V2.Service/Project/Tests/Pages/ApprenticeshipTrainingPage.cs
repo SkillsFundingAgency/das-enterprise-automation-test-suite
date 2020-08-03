@@ -39,10 +39,10 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
             return new ConfirmApprenticeshipTrainingPage(_context);
         }
 
-        public VacanciesPage CancelVacancy()
+        public YourAdvertsPage CancelVacancy()
         {
             formCompletionHelper.Click(CancelLink);
-            return new VacanciesPage(_context);
+            return new YourAdvertsPage(_context);
         }
     }
 }

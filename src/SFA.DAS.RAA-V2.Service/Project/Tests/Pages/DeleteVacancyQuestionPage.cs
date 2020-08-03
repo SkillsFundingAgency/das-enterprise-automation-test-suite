@@ -24,11 +24,11 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
             VerifyPage(SubHeader, SubTitle);
         }
 
-        public VacanciesPage YesDeleteVacancy()
+        public YourAdvertsPage YesDeleteVacancy()
         {
             SelectRadioOptionByForAttribute("delete-yes");
             Continue();
-            return new VacanciesPage(_context);
+            return new YourAdvertsPage(_context);
         }
 
         public VacancyPreviewPart2Page NoDeleteVacancy()
