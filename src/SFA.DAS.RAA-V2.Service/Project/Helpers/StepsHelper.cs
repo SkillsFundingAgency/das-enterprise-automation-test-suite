@@ -9,13 +9,13 @@ namespace SFA.DAS.RAA_V2.Service.Project.Helpers
 
         public StepsHelper(ScenarioContext context) => _context = context;
 
-        public void VerifyWageType(ManageVacancyPage manageVacancyPage, string wageType)
-            => manageVacancyPage.NavigateToViewVacancyPage().VerifyWageType(wageType);
+        public void VerifyWageType(ManageRecruitPage manageVacancyPage, string wageType)
+            => manageVacancyPage.NavigateToViewAdvertPage().VerifyWageType(wageType);
 
-        public void ApplicantSucessful(ManageVacancyPage manageVacancyPage)
+        public void ApplicantSucessful(ManageRecruitPage manageVacancyPage)
             => manageVacancyPage.NavigateToManageApplicant().MakeApplicantSucessful().NotifyApplicant();
 
-        public void ApplicantUnsucessful(ManageVacancyPage manageVacancyPage)
+        public void ApplicantUnsucessful(ManageRecruitPage manageVacancyPage)
             => manageVacancyPage.NavigateToManageApplicant().MakeApplicantUnsucessful().NotifyApplicant();
 
         public VacancyPreviewPart2Page PreviewVacancy(EmployerNamePage employernamePage, string employername, bool isEmployerAddress, bool disabilityConfidence)

@@ -3,9 +3,9 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 {
-    public class ManageVacancyPage : RAAV2CSSBasePage
+    public class ManageRecruitPage : RAAV2CSSBasePage
     {
-        protected override string PageTitle => "Manage vacancy";
+        protected override string PageTitle => "Manage advert";
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
@@ -13,29 +13,29 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         private By Applicant => By.CssSelector(".responsive a");
 
-        public ManageVacancyPage(ScenarioContext context) : base(context) => _context = context;
+        public ManageRecruitPage(ScenarioContext context) : base(context) => _context = context;
 
-        public CloneVacancyDatesPage CloneVacancy()
+        public CloneVacancyDatesPage CloneAdvert()
         {
-            formCompletionHelper.ClickLinkByText("Clone vacancy");
+            formCompletionHelper.ClickLinkByText("Clone advert");
             return new CloneVacancyDatesPage(_context);
         }
 
-        public EditVacancyPage EditVacancy()
+        public EditVacancyPage EditAdvert()
         {
-            formCompletionHelper.ClickLinkByText("Edit vacancy");
+            formCompletionHelper.ClickLinkByText("Edit advert");
             return new EditVacancyPage(_context);
         }
 
-        public CloseVacancyPage CloseVacancy()
+        public CloseVacancyPage CloseAdvert()
         {
-            formCompletionHelper.ClickLinkByText("Close vacancy");
+            formCompletionHelper.ClickLinkByText("Close advert");
             return new CloseVacancyPage(_context);
         }
 
-        public ViewVacancyPage NavigateToViewVacancyPage()
+        public ViewVacancyPage NavigateToViewAdvertPage()
         {
-            tabHelper.OpenInNewTab(() => formCompletionHelper.ClickLinkByText("View vacancy"));
+            tabHelper.OpenInNewTab(() => formCompletionHelper.ClickLinkByText("View advert"));
 
             return new ViewVacancyPage(_context);
         }

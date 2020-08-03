@@ -36,14 +36,14 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
 
             _stepsHelper.SubmitVacancy(previewPage, false, false);
 
-            SearchVacancyByVacancyReference().NavigateToViewVacancyPage().VerifyDisabilityConfident();
+            SearchVacancyByVacancyReference().NavigateToViewAdvertPage().VerifyDisabilityConfident();
         }
 
-        internal void CloneAVacancy() =>  _stepsHelper.SubmitVacancy(GoToRecruitmentHomePage().SelectLiveAdvert().CloneVacancy().SelectYes().UpdateTitle().UpdateVacancyTitle().UpdateApplicationProcess().ApplicationMethod(true));
+        internal void CloneAVacancy() =>  _stepsHelper.SubmitVacancy(GoToRecruitmentHomePage().SelectLiveAdvert().CloneAdvert().SelectYes().UpdateTitle().UpdateVacancyTitle().UpdateApplicationProcess().ApplicationMethod(true));
 
-        internal void EditVacancyDates() => SearchVacancyByVacancyReferenceInNewTab().EditVacancy().EditVacancyCloseDate().EnterVacancyDates().EditVacancyStartDate().EnterPossibleStartDate().PublishVacancy();
+        internal void EditVacancyDates() => SearchVacancyByVacancyReferenceInNewTab().EditAdvert().EditVacancyCloseDate().EnterVacancyDates().EditVacancyStartDate().EnterPossibleStartDate().PublishVacancy();
 
-        internal void CloseVacancy() => SearchVacancyByVacancyReferenceInNewTab().CloseVacancy().YesCloseThisVacancy();
+        internal void CloseVacancy() => SearchVacancyByVacancyReferenceInNewTab().CloseAdvert().YesCloseThisVacancy();
 
         internal void ApplicantUnsucessful() => _stepsHelper.ApplicantUnsucessful(SearchVacancyByVacancyReferenceInNewTab());
 
@@ -55,7 +55,7 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
 
             _stepsHelper.SubmitVacancy(previewPage, true, optionalFields);
 
-            SearchVacancyByVacancyReference().NavigateToViewVacancyPage().VerifyEmployerName();
+            SearchVacancyByVacancyReference().NavigateToViewAdvertPage().VerifyEmployerName();
         }
 
         internal void CreateANewVacancy(string wageType)
@@ -106,14 +106,14 @@ namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers
             return NavigateToRecruitmentHomePage();
         }
 
-        private ManageVacancyPage SearchVacancyByVacancyReferenceInNewTab()
+        private ManageRecruitPage SearchVacancyByVacancyReferenceInNewTab()
         {
             _homePageStepsHelper.GotoEmployerHomePage();
 
             return SearchVacancyByVacancyReference();
         }
 
-        private ManageVacancyPage SearchVacancyByVacancyReference() => NavigateToRecruitmentHomePage().SearchAdvertByReferenceNumber();
+        private ManageRecruitPage SearchVacancyByVacancyReference() => NavigateToRecruitmentHomePage().SearchAdvertByReferenceNumber();
 
         private ApprenticeshipTrainingPage EnterVacancyTitle() => GoToRecruitmentHomePage().CreateAnAdvert().CreateNewAdvert().EnterVacancyTitle();
 
