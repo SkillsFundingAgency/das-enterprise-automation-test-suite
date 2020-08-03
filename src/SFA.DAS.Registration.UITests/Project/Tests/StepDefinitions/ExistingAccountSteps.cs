@@ -52,8 +52,8 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             //assign user details
             var loginuser = new NonLevyUser
             {
-                Username = "",
-                Password = ""
+                Username = _registrationDataHelper.RandomEmail,
+                Password = _registrationDataHelper.Password
             };
 
             _employerPortalLoginHelper.Login(loginuser);
