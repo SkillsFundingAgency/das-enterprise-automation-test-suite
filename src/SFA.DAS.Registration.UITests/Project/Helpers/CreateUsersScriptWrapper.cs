@@ -11,7 +11,7 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
     public static partial class PowerShellScriptWrapper
     {
         static string CreateUserScriptPath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Project\Helpers\PowerShellScripts\CreateUser.ps1");
-        static string HashIdsScriptPath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Project\Helpers\PowerShellScripts\PowerShellScripts.HashIds.ps1");
+        static string HashIdsScriptPath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Project\Helpers\PowerShellScripts\HashIds.ps1");
         const string FunctionName = "Create-TestLogin";
         public async static void CreateRegistrationsUser(CreateUserScriptConfiguration configuration)
         {
