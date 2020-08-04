@@ -30,7 +30,7 @@ namespace SFA.DAS.EPAO.UITests.Project.Helpers.DataHelpers
 
         public string OrganisationUkprn => "10009931";
 
-        public string BatchSearch => "110";
+        public string BatchSearch => "298";
 
         public string LearnerUln => "7278214419";
 
