@@ -32,7 +32,12 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
         {
             loginCredentialsHelper.SetLoginCredentials(loginUser, isLevy);
 
-            var homePage = Login(loginUser);
+            return Login(loginUser.Username, loginUser.Password);
+        }
+
+        public HomePage Login(string username, string password)
+        {
+            var homePage = Login(new LoggedInUser() {Username = username, Password = password });
 
             objectContext.SetAccountId(homePage.AccountId());
 

@@ -77,16 +77,14 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features.CreateUserAccount
         [NUnit.Framework.DescriptionAttribute("RE_CUA_05_Create a NonLevy Employer Account using create account script")]
         [NUnit.Framework.CategoryAttribute("nonlevy")]
         [NUnit.Framework.CategoryAttribute("addpayedetails")]
-        [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         public virtual void RE_CUA_05_CreateANonLevyEmployerAccountUsingCreateAccountScript()
         {
             string[] tagsOfScenario = new string[] {
                     "nonlevy",
-                    "addpayedetails",
-                    "donottakescreenshot"};
+                    "addpayedetails"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RE_CUA_05_Create a NonLevy Employer Account using create account script", null, tagsOfScenario, argumentsOfScenario);
-#line 8
+#line 7
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -106,7 +104,7 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 9
+#line 8
 testRunner.Given("the employer logins using Non Levy Account created via powershell scripts", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
             }

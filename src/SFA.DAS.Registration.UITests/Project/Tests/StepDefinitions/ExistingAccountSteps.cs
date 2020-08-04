@@ -49,16 +49,9 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
 
             PowerShellScriptWrapper.CreateRegistrationsUser(sampleConfiguration);
 
-            //assign user details
-            var loginuser = new NonLevyUser
-            {
-                Username = _registrationDataHelper.RandomEmail,
-                Password = _registrationDataHelper.Password
-            };
-
-            _employerPortalLoginHelper.Login(loginuser);
+            //Login to application
+            _loginFromCreateAcccountPageHelper.Login(_registrationDataHelper.RandomEmail, _registrationDataHelper.Password);
         }
-
 
         [Given(@"the Employer logins using existing Levy Account")]
         [When(@"the Employer logins using existing Levy Account")]
