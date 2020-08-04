@@ -5,7 +5,7 @@ namespace SFA.DAS.ApprenticeRedundancy.UITests.Project.Test.Pages
 {
     public class NewApprenticeshipLandingPage : ApprenticeRedundancyBasePage
     {
-        protected override string PageTitle => "Find another apprenticeship";
+        protected override string PageTitle => "Find an employer to continue with your apprenticeship";
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
