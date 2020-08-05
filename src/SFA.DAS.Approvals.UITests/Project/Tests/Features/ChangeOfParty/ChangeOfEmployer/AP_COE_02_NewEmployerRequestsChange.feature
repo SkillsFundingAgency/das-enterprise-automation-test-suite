@@ -3,6 +3,7 @@ Feature: AP_COE_02_NewEmployerRequestsChange
 
 @regression
 @changeOfEmployer
+@liveapprentice
 Scenario: AP_COE_02_NewEmployerRequestsChange
 	Given the provider has an apprentice with stopped status
 	When provider sends COE request to new employer
