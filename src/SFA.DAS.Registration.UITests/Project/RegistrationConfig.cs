@@ -11,10 +11,5 @@
         public string RE_OrganisationName { get; set; }
 
         public string RE_AccountsDbConnectionString { get; set; }
-
-        public string RE_EmployerUsersDbConnectionString { get; set; }
-
-        public string RE_EmployerUsersProfilesDbConnectionString { get; set; }
-
     }
 }
