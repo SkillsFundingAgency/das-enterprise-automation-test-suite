@@ -58,9 +58,5 @@
     <ProjectReference Include="..\SFA.DAS.ProviderLogin.Service\SFA.DAS.ProviderLogin.Service.csproj" />
 	<ProjectReference Include="..\SFA.DAS.IdamsLogin.Service\SFA.DAS.IdamsLogin.Service.csproj" />
   </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Project\Helpers\PowerShellScripts\" />
-  </ItemGroup>
-
+	
 </Project>
