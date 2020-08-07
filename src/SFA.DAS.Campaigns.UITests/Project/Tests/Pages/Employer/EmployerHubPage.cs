@@ -6,9 +6,9 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
 {
     public class EmployerHubPage : CampaingnsPage
     {
-        protected override string PageTitle => "EMPLOYER HUB";
+        protected override string PageTitle => "REAL STORIES";
 
-        protected override By PageHeader => By.CssSelector(".header__caption--employer");
+        protected override By PageHeader => By.Id("employer-real-stories");
 
         protected By Basket => By.CssSelector("a[href='/Basket/View']");
 

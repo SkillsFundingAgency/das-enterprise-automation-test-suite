@@ -7,7 +7,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
     {
         protected override string PageTitle => "REAL STORIES";
 
-        private string ExpectedPageDescription => "Have you ever thought about hiring an apprentice? Have a look at real stories from other employers, and see how taking on an apprentice can benefit your organisation.";
+        private string ExpectedPageDescription => "Read some real stories from employers about the benefits of hiring an apprentice.";
 
         private By PageDescription => By.ClassName("lead-paragraph");
 
