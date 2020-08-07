@@ -5,10 +5,10 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Apprentice
 {
     public class ApplicationPage : ApprenticeBasePage
     {
-        protected override string PageTitle => "APPLICATION";
+        protected override string PageTitle => "APPLICATION PROCESS";
 
         private By Heading => By.CssSelector("#main-content .heading-m");
 
-        public ApplicationPage(ScenarioContext context) : base(context) => pageInteractionHelper.VerifyText(Heading, "SO, YOU'VE FOUND THE APPRENTICESHIP YOU'D LIKE TO APPLY FOR?");
+        public ApplicationPage(ScenarioContext context) : base(context) => pageInteractionHelper.VerifyText(Heading, "WHILE YOU WAIT");
     }
 }

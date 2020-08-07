@@ -6,9 +6,9 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Apprentice
 {
     public class ApprenticeHubPage : CampaingnsPage
     {
-        protected override string PageTitle => "APPRENTICE HUB";
+        protected override string PageTitle => "REAL STORIES";
 
-        protected override By PageHeader => By.CssSelector(".header__caption--apprentice");
+        protected override By PageHeader => By.Id("apprentice-real-stories");
 
         protected By AreApprenticeshipRightForYou => By.CssSelector("#link-nav-apprentice-1");
 
@@ -36,7 +36,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Apprentice
         private readonly ScenarioContext _context;
         #endregion
 
-        public ApprenticeHubPage(ScenarioContext context, bool verifypage = true) : base(context, verifypage) => _context = context;
+       public ApprenticeHubPage(ScenarioContext context, bool verifypage = true) : base(context, verifypage) => _context = context;
 
         public ApprenticeRealStoriesPage NavigateToRealStoriesPage() => NavigateToAreApprenticeshipRightForYou(RealStories, (c) => new ApprenticeRealStoriesPage(c));
 
