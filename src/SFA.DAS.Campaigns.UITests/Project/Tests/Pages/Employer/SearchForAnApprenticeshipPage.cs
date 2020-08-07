@@ -5,7 +5,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
 {
     public class SearchForAnApprenticeshipPage : EmployerBasePage
     {
-        protected override string PageTitle => "FIND THE RIGHT APPRENTICESHIP";
+        protected override string PageTitle => "FIND APPRENTICESHIP TRAINING";
 
         #region Helpers and Context
         private readonly ScenarioContext _context;

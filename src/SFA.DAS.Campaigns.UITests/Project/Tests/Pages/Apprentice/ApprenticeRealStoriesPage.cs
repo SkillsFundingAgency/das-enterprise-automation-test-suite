@@ -7,8 +7,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Apprentice
     {
         protected override string PageTitle => "REAL STORIES";
 
-        private string ExpectedPageDescription => "Do you want to earn while you learn and get hands-on experience? Have a look at real stories and see how becoming an apprentice changed the following lives.";
-
+        private string ExpectedPageDescription => "Read some real stories to find out how becoming an apprentice can change your life.";
         private By PageDescription => By.ClassName("lead-paragraph");
 
         public ApprenticeRealStoriesPage(ScenarioContext context) : base(context) => pageInteractionHelper.VerifyText(PageDescription, ExpectedPageDescription);
