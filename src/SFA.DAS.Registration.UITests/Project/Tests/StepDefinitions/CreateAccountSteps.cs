@@ -170,6 +170,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             DoNotSignTheAgreement();
         }
 
+        [Given(@"an Employer creates a Levy Account and Signs the Agreement")]
         [When(@"an Employer creates a Levy Account and Signs the Agreement")]
         public void GivenAnEmployerCreatesALevyAccountAndSignsTheAgreement()
         {
