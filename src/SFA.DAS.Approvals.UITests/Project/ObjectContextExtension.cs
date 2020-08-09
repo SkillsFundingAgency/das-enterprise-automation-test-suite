@@ -59,6 +59,6 @@ namespace SFA.DAS.Approvals.UITests.Project
 
         internal static string GetEIStartYear(this ObjectContext objectContext) => objectContext.Get(EIStartYear);
 
-        internal static bool GetIsEIJourney(this ObjectContext objectContext) => objectContext.GetBoolState(IsEIJourney);
+        internal static bool GetIsEIJourney(this ObjectContext objectContext) => objectContext.Get<bool>(IsEIJourney);
     }
 }
