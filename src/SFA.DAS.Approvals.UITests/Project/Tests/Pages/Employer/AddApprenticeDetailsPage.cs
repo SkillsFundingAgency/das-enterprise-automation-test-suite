@@ -40,7 +40,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             formCompletionHelper.EnterText(DateOfBirthYear, apprenticeDataHelper.DateOfBirthYear);
             formCompletionHelper.SelectFromDropDownByValue(TrainingCourseContainer, apprenticeCourseDataHelper.Course);
             formCompletionHelper.ClickElement(StartDateMonth);
-            if(isMF==false)
+            if (isMF == false)
             {
                 formCompletionHelper.EnterText(StartDateMonth, apprenticeCourseDataHelper.CourseStartDate.Month);
                 formCompletionHelper.EnterText(StartDateYear, apprenticeCourseDataHelper.CourseStartDate.Year);
@@ -49,9 +49,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             formCompletionHelper.EnterText(EndDateYear, apprenticeCourseDataHelper.CourseEndDate.Year);
             formCompletionHelper.EnterText(TrainingCost, apprenticeDataHelper.TrainingPrice);
             formCompletionHelper.EnterText(EmployerReference, apprenticeDataHelper.EmployerReference);
+
+            if (objectContext.GetIsEIJourney())
+                EnterEIJourneyApprenticeDOBAndStartDate();
+
             formCompletionHelper.ClickElement(SaveAndContinueButton);
             return new ReviewYourCohortPage(_context);
         }
+
         public YouMustCompleteAllApprenticeDetailsPage DraftDynamicHomePageSubmitValidApprenticeDetails()
         {
             formCompletionHelper.EnterText(FirstNameField, apprenticeDataHelper.ApprenticeFirstname);
@@ -65,6 +70,16 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             var options = formCompletionHelper.GetAllDropDownOptions(TrainingCourseContainer);
             Assert.True(options.All(x => x.Contains("(Standard)")));
             return this;
+        }
+
+        private void EnterEIJourneyApprenticeDOBAndStartDate()
+        {
+            var dobYear = (objectContext.GetEIAgeCategoryAsOfAug2020().Equals("Aged16to24")) ? "2004" : "1995";
+            formCompletionHelper.EnterText(DateOfBirthDay, "01");
+            formCompletionHelper.EnterText(DateOfBirthMonth, "08");
+            formCompletionHelper.EnterText(DateOfBirthYear, dobYear);
+            formCompletionHelper.EnterText(StartDateMonth, objectContext.GetEIStartMonth());
+            formCompletionHelper.EnterText(StartDateYear, objectContext.GetEIStartYear());
         }
     }
 }

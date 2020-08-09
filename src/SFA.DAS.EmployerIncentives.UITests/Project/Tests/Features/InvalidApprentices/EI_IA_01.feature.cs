@@ -112,7 +112,8 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("an Employer creates a Levy Account and Signs the Agreement", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 8
- testRunner.And("the Employer adds 2 apprentices with start date as JUL 2020", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("the Employer adds 2 apprentices Aged16to24 as of 01AUG2020 with start date as Mon" +
+                        "th 7 and Year 2020", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();

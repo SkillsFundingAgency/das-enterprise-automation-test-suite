@@ -11,6 +11,10 @@ namespace SFA.DAS.Approvals.UITests.Project
         private const string ApprenticeId = "apprenticeid";
         private const string ReservationId = "reservationid";
         private const string ProviderMakesReservationForNonLevyEmployers = "providermakesreservationfornonlevyemployers";
+        private const string EIAgeCategoryAsOfAug2020 = "EIAgeCategoryAsOfAug2020";
+        private const string EIStartMonth = "EIStartMonth";
+        private const string EIStartYear = "EIStartYear";
+        private const string IsEIJourney = "IsEIJourney";
         #endregion
 
         internal static void SetProviderMakesReservationForNonLevyEmployers(this ObjectContext objectContext) => 
@@ -30,6 +34,14 @@ namespace SFA.DAS.Approvals.UITests.Project
 
         internal static void SetUln(this ObjectContext objectContext, string value) => objectContext.Set($"Uln_{value}", value);
 
+        internal static void SetIsEIJourney(this ObjectContext objectContext, bool value) => objectContext.Replace(IsEIJourney, value);
+
+        internal static void SetEIAgeCategoryAsOfAug2020(this ObjectContext objectContext, string value) => objectContext.Replace(EIAgeCategoryAsOfAug2020, value);
+
+        internal static void SetEIStartMonth(this ObjectContext objectContext, int value) => objectContext.Replace(EIStartMonth, value);
+
+        internal static void SetEIStartYear(this ObjectContext objectContext, int value) => objectContext.Replace(EIStartYear, value);
+
         internal static bool IsProviderMakesReservationForNonLevyEmployers(this ObjectContext objectContext) => 
             objectContext.KeyExists<bool>(ProviderMakesReservationForNonLevyEmployers);
         
@@ -40,5 +52,13 @@ namespace SFA.DAS.Approvals.UITests.Project
         internal static string GetCohortReference(this ObjectContext objectContext) => objectContext.Get(CohortReference);
 
         internal static string GetReservationId(this ObjectContext objectContext) => objectContext.Get(ReservationId);
+
+        internal static string GetEIAgeCategoryAsOfAug2020(this ObjectContext objectContext) => objectContext.Get(EIAgeCategoryAsOfAug2020);
+
+        internal static string GetEIStartMonth(this ObjectContext objectContext) => objectContext.Get(EIStartMonth);
+
+        internal static string GetEIStartYear(this ObjectContext objectContext) => objectContext.Get(EIStartYear);
+
+        internal static bool GetIsEIJourney(this ObjectContext objectContext) => objectContext.GetBoolState(IsEIJourney);
     }
 }

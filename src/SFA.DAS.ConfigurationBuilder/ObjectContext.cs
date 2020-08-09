@@ -14,6 +14,8 @@ namespace SFA.DAS.ConfigurationBuilder
 
         public string Get(string key) => _objects.TryGetValue(key, out var value) ? value.ToString() : string.Empty;
 
+        public bool GetBoolState(string key) => _objects.ContainsKey(key);
+
         public T Get<T>() => Get<T>(typeof(T).FullName);
 
         public T Get<T>(string key) => _objects.GetValue<T>(key);
