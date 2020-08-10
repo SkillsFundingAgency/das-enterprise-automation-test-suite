@@ -11,6 +11,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
         Random
     }
 
+    public enum CourseType
+    { 
+        Framework,
+        Standard
+    }
+
     public class ApprenticeCourseDataHelper
     {
         private readonly DateTime _currentAcademicYearStartDate;

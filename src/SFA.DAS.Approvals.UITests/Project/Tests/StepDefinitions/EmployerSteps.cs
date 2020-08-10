@@ -122,7 +122,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 			_reviewYourCohortPage.EmployerFirstApproveAndNotifyTrainingProvider();
         }
 
-
+        [Given(@"the Employer create a cohort and send to provider to add apprentices")]
         [When(@"the Employer create a cohort and send to provider to add apprentices")]
         public void WhenTheEmployerCreateACohortAndSendToProviderToAddApprentices()
         {

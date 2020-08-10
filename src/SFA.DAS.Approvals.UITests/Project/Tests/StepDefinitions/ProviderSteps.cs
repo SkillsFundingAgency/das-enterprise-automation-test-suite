@@ -109,5 +109,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             _providerStepsHelper.DeleteCohort(_providerReviewYourCohortPage);
         }
+
+        [When(@"Provider add (.*) apprentice details using bulk upload and sends to employer for approval")]
+        public void WhenProviderAddApprenticeDetailsUsingBulkUploadAndSendsToEmployerForApproval(int numberOfApprentices)
+        {
+            _providerStepsHelper.AddApprenticeViaBulkUpload(numberOfApprentices);
+        }
+
     }
 }
