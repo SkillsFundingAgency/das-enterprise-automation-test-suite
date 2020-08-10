@@ -1,9 +1,7 @@
-﻿using Dynamitey.DynamicObjects;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using OpenQA.Selenium;
 using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.ConfigurationBuilder;
-using SFA.DAS.UI.Framework.TestSupport;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -28,7 +26,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         {
             _context = context;
             _objectContext = _context.Get<ObjectContext>();
-            _bulkUploadDataHelper = new BulkUploadDataHelper(context);
+            _bulkUploadDataHelper = new BulkUploadDataHelper();
         }
 
         public ProviderReviewYourCohortPage UploadFileAndConfirmSuccessful(int numberOfApprentices)
