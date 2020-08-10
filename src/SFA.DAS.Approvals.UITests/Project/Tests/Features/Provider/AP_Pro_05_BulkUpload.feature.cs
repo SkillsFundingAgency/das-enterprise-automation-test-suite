@@ -75,11 +75,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.Provider
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("AP_Pro_05 Provider Adds apprentices via bulk upload")]
-        [NUnit.Framework.CategoryAttribute("mytag")]
+        [NUnit.Framework.CategoryAttribute("approvals")]
+        [NUnit.Framework.CategoryAttribute("regression")]
         public virtual void AP_Pro_05ProviderAddsApprenticesViaBulkUpload()
         {
             string[] tagsOfScenario = new string[] {
-                    "mytag"};
+                    "approvals",
+                    "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_Pro_05 Provider Adds apprentices via bulk upload", null, tagsOfScenario, argumentsOfScenario);
 #line 5
