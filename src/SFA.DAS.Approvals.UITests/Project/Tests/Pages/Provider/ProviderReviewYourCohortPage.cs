@@ -15,22 +15,15 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 		#endregion
 
 		private By PireanPreprodButton => By.XPath("//span[contains(text(),'Pirean Preprod')]");
-
-		private By AddAnApprenticeButton => By.ClassName("button-secondary");
-
+        private By AddAnApprenticeButton => By.ClassName("button-secondary");
         private By ApprenticeUlnField => By.CssSelector("tbody tr td:nth-of-type(2)");
-
         private By EditApprenticeLink => By.LinkText("Edit");
-
         private By ContinueToApprovalButton => By.ClassName("finishEditingBtn");
-
         private By SaveAndContinueButton => By.ClassName("finishEditingBtn");
-
         protected override By TotalApprentices => By.CssSelector(".providerList tbody tr");
-
         private By DeleteCohortbutton => By.ClassName("delete-button");
-
-		public ProviderReviewYourCohortPage(ScenarioContext context) : base(context) => _context = context;
+        
+        public ProviderReviewYourCohortPage(ScenarioContext context) : base(context) => _context = context;
 
         internal ProviderChooseAReservationPage SelectAddAnApprenticeUsingReservation()
         {
@@ -81,5 +74,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             formCompletionHelper.ClickElement(DeleteCohortbutton);
             return new ProviderConfirmCohortDeletionPage(_context);
         }
+
+        public ProviderBulkUploadApprenticesPage SelectBulkUploadApprentices()
+        {
+            formCompletionHelper.ClickButtonByText("Bulk upload apprentices");
+            return new ProviderBulkUploadApprenticesPage(_context);
+        }
+
     }
 }
