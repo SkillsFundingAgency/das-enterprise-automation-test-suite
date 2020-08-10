@@ -63,6 +63,15 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                 .SendInstructionsToEmployerForAnApprovedCohort();
         }
 
+        public void BulkUploadApprenticeDetails(int numberOfApprentices)
+        {
+            var providerReviewYourCohortPage = AddApprentice(numberOfApprentices);
+
+            providerReviewYourCohortPage.SelectSaveAndContinue()
+                .SubmitApproveAndSendToEmployerForApproval()
+                .SendInstructionsToEmployerForAnApprovedCohort();
+        }
+
         public ProviderYourCohortsPage AddApprenticeAndSavesWithoutSendingEmployerForApproval(int numberOfApprentices)
         {
             return AddApprentice(numberOfApprentices)
@@ -102,6 +111,18 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             }
 
             return SetApprenticeDetails(providerReviewYourCohortPage, numberOfApprentices);
+        }
+
+        public ProviderCohortApprovedAndSentToEmployerPage AddApprenticeViaBulkUpload(int numberOfApprentices)
+        {
+            var providerReviewYourCohortPage = CurrentCohortDetails();
+
+            return providerReviewYourCohortPage
+                .SelectBulkUploadApprentices()
+                .UploadFileAndConfirmSuccessful(numberOfApprentices)
+                .SelectSaveAndContinue()
+                .SubmitApproveAndSendToEmployerForApproval()
+                .SendInstructionsToEmployerForAnApprovedCohort();
         }
 
         public ProviderReviewYourCohortPage CurrentCohortDetails()
