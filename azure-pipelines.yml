@@ -56,10 +56,17 @@ steps:
   displayName: 'Copy Files to: $(build.artifactstagingdirectory)'
   inputs:
     Contents: |     
-     src/**/*.ps1
+     src/**/Check-TestResults.ps1
     TargetFolder: '$(build.artifactstagingdirectory)/publish'
     OverWrite: true
 
+- task: CopyFiles@2
+  displayName: 'Copy Files to: $(build.artifactstagingdirectory)'
+  inputs:
+    Contents: |     
+     src/**/UpdateNoofTestWorkers.ps1
+    TargetFolder: '$(build.artifactstagingdirectory)/publish'
+    OverWrite: true
 - task: CopyFiles@2
   displayName: 'Copy Files to: $(build.artifactstagingdirectory)'
   inputs:
@@ -73,7 +80,7 @@ steps:
   inputs:
     Contents: |     
       src/**/*.feature
-    TargetFolder: '$(build.artifactstagingdirectory)/features'
+    TargetFolder: '$(build.artifactstagingdirectory)/publish'
     OverWrite: true
 
 - task: ArchiveFiles@2
