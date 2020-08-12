@@ -13,6 +13,7 @@ namespace SFA.DAS.Campaigns.UITests
         private readonly ScenarioContext _context;
         private HowDoTheyWorkPage _howDoTheyWorkPage;
         private FundingAnApprenticeshipPage fundingAnApprenticeshipPage;
+        private FundingAnApprenticeshipForNonLevyEmployerPage fundingAnApprenticeshipForNonLevyEmployerPage;
 
         public CA_EMP_12Steps(ScenarioContext context)
         {
@@ -32,7 +33,9 @@ namespace SFA.DAS.Campaigns.UITests
         public void ThenVerifiesThatCorrectContentIsDisplayedOnFundingAnApprenticePage()
         {
             fundingAnApprenticeshipPage = new FundingAnApprenticeshipPage(_context);
-            fundingAnApprenticeshipPage.CheckForNonLevyContent();
+            fundingAnApprenticeshipPage.ClickContinueButton();
+            fundingAnApprenticeshipForNonLevyEmployerPage = new FundingAnApprenticeshipForNonLevyEmployerPage(_context);
+            //fundingAnApprenticeshipForNonLevyEmployerPage.CheckForNonLevyContent();
         }
     }
 }
