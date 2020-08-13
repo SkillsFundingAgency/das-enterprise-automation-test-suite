@@ -1,5 +1,7 @@
 ﻿using TechTalk.SpecFlow;
 using SFA.DAS.ConfigurationBuilder;
+using SFA.DAS.UI.FrameworkHelpers;
+using SFA.DAS.Registration.UITests.Project.Tests.Pages;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 {
@@ -10,6 +12,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         private readonly EmployerSteps _employerSteps;
         private readonly ProviderSteps _providerSteps;
         private readonly ObjectContext _objectContext;
+        private readonly TabHelper _tabHelper;
 
         public ApprovalsEISteps(ScenarioContext context)
         {
@@ -17,6 +20,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _employerSteps = new EmployerSteps(_context);
             _providerSteps = new ProviderSteps(_context);
             _objectContext = context.Get<ObjectContext>();
+            _tabHelper = context.Get<TabHelper>();
         }
 
         [Given(@"the Employer adds (.*) apprentices (Aged16to24|AgedAbove25) as of 01AUG2020 with start date as Month (.*) and Year (.*)")]
@@ -29,6 +33,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
             _employerSteps.TheEmployerApprovesCohortAndSendsToProvider(numberOfApprentices);
             _providerSteps.TheProviderAddsUlnsAndApprovesTheCohorts();
+            new HomePage(_context, true);
+
+            _tabHelper.SwitchToFirstTab();
         }
     }
 }

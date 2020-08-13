@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Features.InvalidApprentices
+namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Features.E2E.NewAccount
 {
     using TechTalk.SpecFlow;
     using System;
@@ -20,22 +20,22 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Features.InvalidAppre
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.3.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("EI_IA_01")]
-    public partial class EI_IA_01Feature
+    [NUnit.Framework.DescriptionAttribute("EI_E2E_NA_01")]
+    public partial class EI_E2E_NA_01Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private string[] _featureTags = ((string[])(null));
         
-#line 1 "EI_IA_01.feature"
+#line 1 "EI_E2E_NA_01.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "EI_IA_01", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "EI_E2E_NA_01", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,20 +74,20 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Features.InvalidAppre
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("EI_IA_01_Levy Account with one legal entity having Apprentices with start date pr" +
-            "ior to AUG 2020")]
+        [NUnit.Framework.DescriptionAttribute("EI_E2E_NA_01_New Levy Account with one legal entity adds apprentices and applies " +
+            "for Incentive")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("addpayedetails")]
         [NUnit.Framework.CategoryAttribute("employerincentives")]
-        public virtual void EI_IA_01_LevyAccountWithOneLegalEntityHavingApprenticesWithStartDatePriorToAUG2020()
+        public virtual void EI_E2E_NA_01_NewLevyAccountWithOneLegalEntityAddsApprenticesAndAppliesForIncentive()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
                     "addpayedetails",
                     "employerincentives"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EI_IA_01_Levy Account with one legal entity having Apprentices with start date pr" +
-                    "ior to AUG 2020", null, tagsOfScenario, argumentsOfScenario);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EI_E2E_NA_01_New Levy Account with one legal entity adds apprentices and applies " +
+                    "for Incentive", null, tagsOfScenario, argumentsOfScenario);
 #line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -113,17 +113,10 @@ this.ScenarioInitialize(scenarioInfo);
 #line hidden
 #line 8
  testRunner.And("the Employer adds 2 apprentices Aged16to24 as of 01AUG2020 with start date as Mon" +
-                        "th 7 and Year 2020", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+                        "th 8 and Year 2020", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 9
  testRunner.When("the Employer Initiates EI Application journey for Single entity account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 10
- testRunner.Then("No Eligible apprentices shutter page is displayed for selecting Yes option in Qua" +
-                        "lification page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-#line 11
- testRunner.And("Approvals home page is displayed on clicking on Add apprentices link", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();

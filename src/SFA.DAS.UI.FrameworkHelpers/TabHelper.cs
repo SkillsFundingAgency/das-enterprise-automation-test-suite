@@ -32,6 +32,8 @@ namespace SFA.DAS.UI.FrameworkHelpers
             _webDriver = _webDriver.SwitchTo().Window(newtab);
         }
 
+        public void SwitchToFirstTab() => _webDriver = _webDriver.SwitchTo().Window(_webDriver.WindowHandles.First());
+
         public void OpenInNewTab(string uriString, string relativeUri) => OpenInNewTab(GetUrl(uriString, relativeUri));
 
         public void GoToUrl(string uriString, string relativeUri) => GoToUrl(GetUrl(uriString, relativeUri));

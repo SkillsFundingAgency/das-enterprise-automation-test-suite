@@ -115,6 +115,9 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("the Employer adds 2 apprentices Aged16to24 as of 01AUG2020 with start date as Mon" +
                         "th 8 and Year 2020", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
+#line 9
+ testRunner.When("the Employer Initiates EI Application journey for Single entity account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
             }
             this.ScenarioCleanup();
         }
