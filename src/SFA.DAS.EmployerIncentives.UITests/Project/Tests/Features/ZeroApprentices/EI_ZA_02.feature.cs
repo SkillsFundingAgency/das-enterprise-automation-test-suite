@@ -112,6 +112,23 @@ this.ScenarioInitialize(scenarioInfo);
 #line 8
  testRunner.And("the Employer adds another legal entity", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
+#line 9
+ testRunner.When("the Employer Initiates EI Application journey for Multiple entity account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 10
+ testRunner.Then("No Eligible apprentices shutter page is displayed for selecting Yes option in Qua" +
+                        "lification page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 11
+ testRunner.When("the Employer navigates back on No Eligible apprentices shutter page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 12
+ testRunner.Then("No Eligible apprentices shutter page is displayed for selecting No option in Qual" +
+                        "ification page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 13
+ testRunner.And("Approvals home page is displayed on clicking on Add apprentices link", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
             }
             this.ScenarioCleanup();
         }
