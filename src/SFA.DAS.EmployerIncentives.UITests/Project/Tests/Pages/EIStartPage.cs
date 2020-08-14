@@ -2,7 +2,7 @@
 
 namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
 {
-    public class ApplyForTheNewApprenticePaymentPage : EIBasePage
+    public class EIStartPage : EIBasePage
     {
         protected override string PageTitle => "Apply for the new apprentice payment";
 
@@ -10,12 +10,12 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
         private readonly ScenarioContext _context;
         #endregion
 
-        public ApplyForTheNewApprenticePaymentPage(ScenarioContext context) : base(context) => _context = context;
+        public EIStartPage(ScenarioContext context) : base(context) => _context = context;
 
-        public HaveYouTakenOnNewApprenticesPage ClickStartNowButtonInEIStartPageForSingleEntityJourney()
+        public QualificationQuestionPage ClickStartNowButtonInEIStartPageForSingleEntityJourney()
         {
             formCompletionHelper.Click(ContinueButton);
-            return new HaveYouTakenOnNewApprenticesPage(_context);
+            return new QualificationQuestionPage(_context);
         }
 
         public ChooseOrganisationPage ClickStartNowButtonInEIStartPageForMultipleEntityJourney()

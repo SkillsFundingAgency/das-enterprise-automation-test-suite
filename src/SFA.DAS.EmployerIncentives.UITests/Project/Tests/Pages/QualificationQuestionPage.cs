@@ -2,7 +2,7 @@
 
 namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
 {
-    public class HaveYouTakenOnNewApprenticesPage : EIBasePage
+    public class QualificationQuestionPage : EIBasePage
     {
         protected override string PageTitle => "Have you taken on new apprentices that joined your payroll after 1 August 2020?";
 
@@ -10,20 +10,20 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
         private readonly ScenarioContext _context;
         #endregion
 
-        public HaveYouTakenOnNewApprenticesPage(ScenarioContext context) : base(context) => _context = context;
+        public QualificationQuestionPage(ScenarioContext context) : base(context) => _context = context;
 
-        public YouCannotApplyForThisGrantYetPage SelectYesAndContinueForNoEligibleApprenticesScenario()
+        public SelectApprenticesShutterPage SelectYesAndContinueForNoEligibleApprenticesScenario()
         {
             SelectRadioOptionByForAttribute("HasTakenOnNewApprentices");
             formCompletionHelper.Click(ContinueButton);
-            return new YouCannotApplyForThisGrantYetPage(_context);
+            return new SelectApprenticesShutterPage(_context);
         }
 
-        public YouCannotApplyForThisGrantYetPage SelectNoAndContinueForNoEligibleApprenticesScenario()
+        public QualificationQuestionShutterPage SelectNoAndContinue()
         {
             SelectRadioOptionByForAttribute("HasTakenOnNewApprentices-2");
             formCompletionHelper.Click(ContinueButton);
-            return new YouCannotApplyForThisGrantYetPage(_context);
+            return new QualificationQuestionShutterPage(_context);
         }
     }
 }

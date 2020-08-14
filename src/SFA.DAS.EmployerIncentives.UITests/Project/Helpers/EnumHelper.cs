@@ -7,11 +7,5 @@
             Single,
             Multiple
         }
-
-        public enum RadioOption
-        {
-            Yes,
-            No
-        }
     }
 }

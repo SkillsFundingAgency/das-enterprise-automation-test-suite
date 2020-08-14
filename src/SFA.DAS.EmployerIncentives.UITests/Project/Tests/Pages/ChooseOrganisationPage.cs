@@ -12,11 +12,11 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
 
         public ChooseOrganisationPage(ScenarioContext context) : base(context) => _context = context;
 
-        public HaveYouTakenOnNewApprenticesPage SelectFirstEntityInChooseOrgPageAndContinue()
+        public QualificationQuestionPage SelectFirstEntityInChooseOrgPageAndContinue()
         {
             SelectRadioOptionByForAttribute("selected");
             formCompletionHelper.Click(ContinueButton);
-            return new HaveYouTakenOnNewApprenticesPage(_context);
+            return new QualificationQuestionPage(_context);
         }
     }
 }

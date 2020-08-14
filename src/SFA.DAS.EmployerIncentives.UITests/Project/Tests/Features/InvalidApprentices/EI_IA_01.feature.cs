@@ -119,8 +119,8 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.When("the Employer Initiates EI Application journey for Single entity account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 10
- testRunner.Then("No Eligible apprentices shutter page is displayed for selecting Yes option in Qua" +
-                        "lification page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("Select apprentices shutter page is displayed for selecting Yes option in Qualific" +
+                        "ation page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 11
  testRunner.And("Approvals home page is displayed on clicking on Add apprentices link", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");

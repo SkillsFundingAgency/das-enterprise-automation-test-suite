@@ -6,7 +6,8 @@
 Scenario: EI_ZA_01_Levy Account with one legal entity and Zero Apprentices
 	Given an Employer creates a Levy Account and Signs the Agreement
 	When the Employer Initiates EI Application journey for Single entity account
-	Then No Eligible apprentices shutter page is displayed for selecting Yes option in Qualification page
-	When the Employer navigates back on No Eligible apprentices shutter page
-	Then No Eligible apprentices shutter page is displayed for selecting No option in Qualification page
-	And Approvals home page is displayed on clicking on Add apprentices link  
+	Then Qualification question shutter page is displayed for selecting No option in Qualification page
+	And Employer Home page is displayed on clicking on Return to Account Home button
+	When the Employer navigates back to Qualifiation page
+	Then Select apprentices shutter page is displayed for selecting Yes option in Qualification page
+	And Approvals home page is displayed on clicking on Add apprentices link

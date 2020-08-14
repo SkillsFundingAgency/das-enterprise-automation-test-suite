@@ -8,37 +8,37 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
     public class EISteps
     {
         private readonly ScenarioContext _context;
-        private YouCannotApplyForThisGrantYetPage _youCannotApplyForThisGrantYetPage;
-        private HaveYouTakenOnNewApprenticesPage _haveYouTakenOnNewApprenticesPage;
-        private ApplyForTheNewApprenticePaymentPage _applyForTheNewApprenticePaymentPage;
+        private EIStartPage _eIStartPage;
+        private SelectApprenticesShutterPage _selectApprenticesShutterPage;
+        private QualificationQuestionPage _qualificationQuestionPage;
+        private QualificationQuestionShutterPage _qualificationQuestionShutterPage;
 
         public EISteps(ScenarioContext context) => _context = context;
 
+        [When(@"the Employer navigates back to Qualifiation page")]
         [When(@"the Employer Initiates EI Application journey for (Single|Multiple) entity account")]
         public void WhenTheEmployerInitiatesEIApplicationJourneyForSingleEntityAccount(Entities entities)
         {
-            _applyForTheNewApprenticePaymentPage = new HomePageFinancesSection(_context).NavigateToEIStartPage();
+            _eIStartPage = new HomePageFinancesSection(_context).NavigateToEIStartPage();
 
             if (entities == Entities.Single)
-                _haveYouTakenOnNewApprenticesPage = _applyForTheNewApprenticePaymentPage.ClickStartNowButtonInEIStartPageForSingleEntityJourney();
+                _qualificationQuestionPage = _eIStartPage.ClickStartNowButtonInEIStartPageForSingleEntityJourney();
             else if (entities == Entities.Multiple)
-                _haveYouTakenOnNewApprenticesPage = _applyForTheNewApprenticePaymentPage.ClickStartNowButtonInEIStartPageForMultipleEntityJourney().SelectFirstEntityInChooseOrgPageAndContinue();
+                _qualificationQuestionPage = _eIStartPage.ClickStartNowButtonInEIStartPageForMultipleEntityJourney().SelectFirstEntityInChooseOrgPageAndContinue();
         }
 
-        [Then(@"No Eligible apprentices shutter page is displayed for selecting (Yes|No) option in Qualification page")]
-        public void ThenNoEligibleApprenticesShutterPageIsDisplayedForSelectingYesOptionInQualificationPage(RadioOption selection)
-        {
-            if (selection == RadioOption.Yes)
-                _youCannotApplyForThisGrantYetPage = _haveYouTakenOnNewApprenticesPage.SelectYesAndContinueForNoEligibleApprenticesScenario();
-            else if (selection == RadioOption.No)
-                _youCannotApplyForThisGrantYetPage = _haveYouTakenOnNewApprenticesPage.SelectNoAndContinueForNoEligibleApprenticesScenario();
-        }
+        [Then(@"Select apprentices shutter page is displayed for selecting Yes option in Qualification page")]
+        public void ThenSelectApprenticesShutterPageIsDisplayedForSelectingYesOptionInQualificationPage() =>
+            _selectApprenticesShutterPage = _qualificationQuestionPage.SelectYesAndContinueForNoEligibleApprenticesScenario();
 
-        [When(@"the Employer navigates back on No Eligible apprentices shutter page")]
-        public void WhenTheEmployerNavigatesBackOnNoEligibleApprenticesShutterPage() =>
-                _haveYouTakenOnNewApprenticesPage = _youCannotApplyForThisGrantYetPage.NavigateBrowserBack();
+        [Then(@"Qualification question shutter page is displayed for selecting No option in Qualification page")]
+        public void ThenQualificationQuestionShutterPageIsDisplayedForSelectingNoOptionInQualificationPage() =>
+            _qualificationQuestionShutterPage = _qualificationQuestionPage.SelectNoAndContinue();
 
         [Then(@"Approvals home page is displayed on clicking on Add apprentices link")]
-        public void ThenApprovalsHomePageIsDisplayedOnClickingOnAddApprenticesLink() => _youCannotApplyForThisGrantYetPage.ClickOnAddApprenticesLink();
+        public void ThenApprovalsHomePageIsDisplayedOnClickingOnAddApprenticesLink() => _selectApprenticesShutterPage.ClickOnAddApprenticesLink();
+
+        [Then(@"Employer Home page is displayed on clicking on Return to Account Home button")]
+        public void ThenEmployerHomePageIsDisplayedOnClickingOnReturnToAccountHomeButton() => _qualificationQuestionShutterPage.ClickOnReturnToAccountHomeLink();
     }
 }

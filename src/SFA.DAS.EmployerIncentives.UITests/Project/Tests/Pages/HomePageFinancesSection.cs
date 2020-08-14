@@ -9,10 +9,10 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
 
         public HomePageFinancesSection(ScenarioContext context) : base(context) => _context = context;
 
-        public ApplyForTheNewApprenticePaymentPage NavigateToEIStartPage()
+        public EIStartPage NavigateToEIStartPage()
         {
             formCompletionHelper.Click(ApplyForTheHireANewApprenticePaymentLink);
-            return new ApplyForTheNewApprenticePaymentPage(_context);
+            return new EIStartPage(_context);
         }
     }
 }
