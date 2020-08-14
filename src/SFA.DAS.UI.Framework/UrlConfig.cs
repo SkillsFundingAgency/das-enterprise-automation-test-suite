@@ -9,7 +9,8 @@
         public static string EPAOAssessmentService_BaseUrl => $"https://{EnvironmentConfig.EnvironmentName}-assessors.apprenticeships.education.gov.uk";
         public static string EmployerApprenticeshipService_BaseUrl => $"https://{EnvironmentConfig.EnvironmentName}-eas.apprenticeships.education.gov.uk/";
         public static string FAA_BaseUrl => $"https://{(EnvironmentConfig.EnvironmentName).ToLower()}.findapprenticeship.service.gov.uk/";
-        public static string FAT_BaseUrl => EnvironmentConfig.IsTestEnvironment ? "https://test-fatweb.apprenticeships.education.gov.uk/" : $"https://{EnvironmentConfig.EnvironmentName}-findapprenticeshiptraining.apprenticeships.education.gov.uk";
+        public static string FATV2_BaseUrl => $"https://{EnvironmentConfig.EnvironmentName}-findapprenticeshiptraining.apprenticeships.education.gov.uk";
+        public static string FAT_BaseUrl => EnvironmentConfig.IsPPEnvironment ? "https://pp-findapprenticeshiptraining-v1.apprenticeships.education.gov.uk/" : $"https://{EnvironmentConfig.EnvironmentName}-fatweb.apprenticeships.education.gov.uk/";
         public static string Mailinator_BaseUrl => "https://www.mailinator.com/";
         public static string Manage_BaseUrl => $"https://{EnvironmentConfig.EnvironmentName}-manageapprenticeship.apprenticeships.education.gov.uk/";
         public static string Provider_BaseUrl => $"https://{EnvironmentConfig.EnvironmentName}-pas.apprenticeships.education.gov.uk/";
