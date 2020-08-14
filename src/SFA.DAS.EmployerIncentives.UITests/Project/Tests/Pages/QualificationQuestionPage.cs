@@ -19,6 +19,13 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
             return new SelectApprenticesShutterPage(_context);
         }
 
+        public EmployerAgreementShutterPage SelectYesAndContinueForUnSignedAgreementScenario()
+        {
+            SelectRadioOptionByForAttribute("HasTakenOnNewApprentices");
+            formCompletionHelper.Click(ContinueButton);
+            return new EmployerAgreementShutterPage(_context);
+        }
+
         public QualificationQuestionShutterPage SelectNoAndContinue()
         {
             SelectRadioOptionByForAttribute("HasTakenOnNewApprentices-2");

@@ -120,7 +120,8 @@ this.ScenarioInitialize(scenarioInfo);
                         "fication page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 11
- testRunner.And("Employer Home page is displayed on clicking on Return to Account Home button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("Employer Home page is displayed on clicking on Return to Account Home button on Q" +
+                        "ualification shutter page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 12
  testRunner.When("the Employer navigates back to Qualifiation page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
@@ -130,7 +131,8 @@ this.ScenarioInitialize(scenarioInfo);
                         "ation page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 14
- testRunner.And("Approvals home page is displayed on clicking on Add apprentices link", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("Approvals home page is displayed on clicking on Add apprentices link on Select ap" +
+                        "prentices shutter page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();

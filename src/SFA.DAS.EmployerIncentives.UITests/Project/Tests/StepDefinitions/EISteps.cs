@@ -12,10 +12,11 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
         private SelectApprenticesShutterPage _selectApprenticesShutterPage;
         private QualificationQuestionPage _qualificationQuestionPage;
         private QualificationQuestionShutterPage _qualificationQuestionShutterPage;
+        private EmployerAgreementShutterPage _employerAgreementShutterPage;
 
         public EISteps(ScenarioContext context) => _context = context;
 
-        [When(@"the Employer navigates back to Qualifiation page")]
+        [When(@"the Employer navigates back to Qualification page")]
         [When(@"the Employer Initiates EI Application journey for (Single|Multiple) entity account")]
         public void WhenTheEmployerInitiatesEIApplicationJourneyForSingleEntityAccount(Entities entities)
         {
@@ -35,10 +36,22 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
         public void ThenQualificationQuestionShutterPageIsDisplayedForSelectingNoOptionInQualificationPage() =>
             _qualificationQuestionShutterPage = _qualificationQuestionPage.SelectNoAndContinue();
 
-        [Then(@"Approvals home page is displayed on clicking on Add apprentices link")]
-        public void ThenApprovalsHomePageIsDisplayedOnClickingOnAddApprenticesLink() => _selectApprenticesShutterPage.ClickOnAddApprenticesLink();
+        [Then(@"Approvals home page is displayed on clicking on Add apprentices link on Select apprentices shutter page")]
+        public void ThenApprovalsHomePageIsDisplayedOnClickingOnAddApprenticesLinkOnSelectApprenticesShutterPage() => _selectApprenticesShutterPage.ClickOnAddApprenticesLink();
 
-        [Then(@"Employer Home page is displayed on clicking on Return to Account Home button")]
-        public void ThenEmployerHomePageIsDisplayedOnClickingOnReturnToAccountHomeButton() => _qualificationQuestionShutterPage.ClickOnReturnToAccountHomeLink();
+        [Then(@"Employer Home page is displayed on clicking on Return to Account Home button on Qualification shutter page")]
+        public void ThenEmployerHomePageIsDisplayedOnClickingOnReturnToAccountHomeButtonOnQualificatioShutterPage() => _qualificationQuestionShutterPage.ClickOnReturnToAccountHomeLink();
+
+        [Then(@"Employer agreement shutter page is displayed for selecting Yes option in the Qualification page")]
+        public void ThenEmployerAgreementShutterPageIsDisplayedForSelectingYesOptionInTheQualificationPage() =>
+            _employerAgreementShutterPage = _qualificationQuestionPage.SelectYesAndContinueForUnSignedAgreementScenario();
+
+        [Then(@"Employer Home page is displayed on clicking on Return to Account home link on Employer agreement shutter page")]
+        public void ThenEmployerHomePageIsDisplayedOnClickingOnReturnToAccountHomeLinkOnEmployerAgreementShutterPage() => 
+            _employerAgreementShutterPage.ClickOnReturnToAccountHomeLink();
+
+        [Then(@"agreements page is displayed on clicking on View agreement button on Employer agreement shutter page")]
+        public void ThenAgreementsPageIsDisplayedOnClickingOnViewAgreementButtonOnEmployerAgreementShutterPage() =>
+            _employerAgreementShutterPage.ClickOnViewAgreementButton();
     }
 }

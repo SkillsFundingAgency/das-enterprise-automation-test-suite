@@ -1,7 +1,6 @@
 ﻿Feature: EI_E2E_EA_01
 
 @regression
-@addpayedetails
 @employerincentives
 Scenario: EI_E2E_EA_01_Existing Levy Account with one legal entity adds apprentices and applies for Incentive
 	Given the Employer logins using existing Levy Account

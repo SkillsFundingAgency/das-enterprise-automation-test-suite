@@ -123,7 +123,8 @@ this.ScenarioInitialize(scenarioInfo);
                         "ation page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 11
- testRunner.And("Approvals home page is displayed on clicking on Add apprentices link", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("Approvals home page is displayed on clicking on Add apprentices link on Select ap" +
+                        "prentices shutter page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
