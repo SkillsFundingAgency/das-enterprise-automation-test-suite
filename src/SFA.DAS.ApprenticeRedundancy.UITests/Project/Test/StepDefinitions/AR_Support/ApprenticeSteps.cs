@@ -13,7 +13,6 @@ namespace SFA.DAS.ApprenticeRedundancy.UITests.Project.Test.StepDefinitions
     {
         private readonly ScenarioContext _context;
         private readonly ApprenticeHelper _apprenticeHelper;
-        private readonly ApprenticeRedundancyBasePage _apprenticeRedundancyBasePage;
 
         public ApprenticeSteps(ScenarioContext context)
         {
