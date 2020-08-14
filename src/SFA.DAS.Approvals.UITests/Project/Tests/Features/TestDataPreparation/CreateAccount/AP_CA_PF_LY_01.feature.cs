@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.CreateAccount
+namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.TestDataPreparation.CreateAccount
 {
     using TechTalk.SpecFlow;
     using System;
