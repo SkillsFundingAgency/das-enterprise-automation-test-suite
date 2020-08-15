@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Features.InvalidApprentices
+namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Features.InEligibleCommitments
 {
     using TechTalk.SpecFlow;
     using System;
@@ -20,22 +20,22 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Features.InvalidAppre
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.3.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("EI_IA_01")]
-    public partial class EI_IA_01Feature
+    [NUnit.Framework.DescriptionAttribute("EI_IC_01")]
+    public partial class EI_IC_01Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private string[] _featureTags = ((string[])(null));
         
-#line 1 "EI_IA_01.feature"
+#line 1 "EI_IC_01.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "EI_IA_01", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "EI_IC_01", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,19 +74,19 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Features.InvalidAppre
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("EI_IA_01_Levy Account with one legal entity having Apprentices with start date pr" +
+        [NUnit.Framework.DescriptionAttribute("EI_IC_01_Levy Account with one legal entity having Commitments with start date pr" +
             "ior to AUG 2020")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("addpayedetails")]
         [NUnit.Framework.CategoryAttribute("employerincentives")]
-        public virtual void EI_IA_01_LevyAccountWithOneLegalEntityHavingApprenticesWithStartDatePriorToAUG2020()
+        public virtual void EI_IC_01_LevyAccountWithOneLegalEntityHavingCommitmentsWithStartDatePriorToAUG2020()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
                     "addpayedetails",
                     "employerincentives"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EI_IA_01_Levy Account with one legal entity having Apprentices with start date pr" +
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EI_IC_01_Levy Account with one legal entity having Commitments with start date pr" +
                     "ior to AUG 2020", null, tagsOfScenario, argumentsOfScenario);
 #line 6
 this.ScenarioInitialize(scenarioInfo);

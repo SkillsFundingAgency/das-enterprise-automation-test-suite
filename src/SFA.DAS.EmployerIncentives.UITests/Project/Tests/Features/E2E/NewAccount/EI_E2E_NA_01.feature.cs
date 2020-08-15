@@ -74,19 +74,19 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Features.E2E.NewAccou
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("EI_E2E_NA_01_New Levy Account with one legal entity adds apprentices and applies " +
+        [NUnit.Framework.DescriptionAttribute("EI_E2E_NA_01_New Levy Account with one legal entity adds commitments and applies " +
             "for Incentive")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("addpayedetails")]
         [NUnit.Framework.CategoryAttribute("employerincentives")]
-        public virtual void EI_E2E_NA_01_NewLevyAccountWithOneLegalEntityAddsApprenticesAndAppliesForIncentive()
+        public virtual void EI_E2E_NA_01_NewLevyAccountWithOneLegalEntityAddsCommitmentsAndAppliesForIncentive()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
                     "addpayedetails",
                     "employerincentives"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EI_E2E_NA_01_New Levy Account with one legal entity adds apprentices and applies " +
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EI_E2E_NA_01_New Levy Account with one legal entity adds commitments and applies " +
                     "for Incentive", null, tagsOfScenario, argumentsOfScenario);
 #line 6
 this.ScenarioInitialize(scenarioInfo);
