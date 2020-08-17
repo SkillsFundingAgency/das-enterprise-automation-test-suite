@@ -71,7 +71,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
 
         private DateTime GetLiveApprenticeStartDate(DateTime dateTime)
         {
-            return dateTime.Date >= DateTime.Now.Date ? _currentAcademicYearStartDate.AddMonths(-1) : dateTime;
+            return dateTime.Date >= DateTime.Now.Date ? _currentAcademicYearStartDate : dateTime;
         }
 
         private DateTime GetWaitingToStartApprenticeStartDate(DateTime dateTime)
