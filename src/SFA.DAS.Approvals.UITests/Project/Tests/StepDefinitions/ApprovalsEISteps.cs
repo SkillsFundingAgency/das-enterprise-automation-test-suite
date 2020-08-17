@@ -33,9 +33,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
             _employerSteps.TheEmployerApprovesCohortAndSendsToProvider(numberOfApprentices);
             _providerSteps.TheProviderAddsUlnsAndApprovesTheCohorts();
-            new HomePage(_context, true);
 
             _tabHelper.SwitchToFirstTab();
+            new HomePage(_context, true);
         }
     }
 }
