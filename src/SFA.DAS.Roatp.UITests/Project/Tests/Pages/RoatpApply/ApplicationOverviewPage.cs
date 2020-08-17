@@ -23,7 +23,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
 
         private By TaskName => By.CssSelector(".app-task-list__task-name > .govuk-link");
 
-        private By TaskStatus => By.CssSelector(".app-task-list__task-completed, .app-task-list__task-notrequired, .app-task-list__task-next");
+        private By TaskStatus => By.CssSelector(".app-task-list__task-completed, .app-task-list__task-notrequired, .app-task-list__task-next, .app-task-list__task-inprogress");
 
         public ApplicationOverviewPage(ScenarioContext context) : base(context)
         {
