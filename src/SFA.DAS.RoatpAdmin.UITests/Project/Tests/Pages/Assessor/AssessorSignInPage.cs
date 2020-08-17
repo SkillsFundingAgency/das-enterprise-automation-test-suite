@@ -12,7 +12,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor
         public void Login(string userName, string password)
         {
             SubmitValidLoginDetails(userName, password);
-            pageInteractionHelper.WaitforURLToChange("NewApplications");
+            pageInteractionHelper.WaitforURLToChange("New");
         }
     }
 }
