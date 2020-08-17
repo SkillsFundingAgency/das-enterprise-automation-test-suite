@@ -1,4 +1,5 @@
-﻿Feature: AP_E2E_NUA_02_NewUserAccount
+﻿@approvals
+Feature: AP_E2E_NUA_02_NewUserAccount
 
 @addpayedetails
 @addlevyfunds

@@ -2,6 +2,8 @@
 using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages.InterimPages;
+using NUnit.Framework;
+using OpenQA.Selenium.Support.UI;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 {
@@ -22,6 +24,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         private By YourSavedFavouritesLink => By.CssSelector(".das-favourites-link__text");
         private By ContinueTo => By.LinkText("Continue");
         private By SetUpAnApprenticeshipSectionHeader => By.Id("set-up-an-apprenticeship");
+        private By EmployerIncentivesLink => By.PartialLinkText("Incentives");
         #endregion
 
         public HomePage(ScenarioContext context, bool navigate) : base(context, navigate)
@@ -70,5 +73,12 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             VerifyPage(SetUpAnApprenticeshipSectionHeader);
             VerifyPage(StartNowButton);
         }
+
+        public void ValidateEmployerIncentivesLink()
+        {
+            string expectedLinkText = "Apply for the hire a new apprentice payment";
+            Assert.AreEqual(expectedLinkText, pageInteractionHelper.GetText(EmployerIncentivesLink), $"Employer IncentivesLink Link Text");
+        }
+        
     }
 }

@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.Registration.UITests.Project.Tests.Features.ExistingAccountNavigation
+namespace SFA.DAS.Registration.UITests.Project.Tests.Features.Navigation
 {
     using TechTalk.SpecFlow;
     using System;
