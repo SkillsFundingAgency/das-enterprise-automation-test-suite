@@ -24,7 +24,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         private By YourSavedFavouritesLink => By.CssSelector(".das-favourites-link__text");
         private By ContinueTo => By.LinkText("Continue");
         private By SetUpAnApprenticeshipSectionHeader => By.Id("set-up-an-apprenticeship");
-        private By EmployerIncentivesLink => By.PartialLinkText("Incentives");
+        private By EmployerIncentivesLink => By.PartialLinkText("Apply for the hire a new apprentice payment");
         #endregion
 
         public HomePage(ScenarioContext context, bool navigate) : base(context, navigate)
@@ -74,11 +74,12 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             VerifyPage(StartNowButton);
         }
 
-        public void ValidateEmployerIncentivesLink()
-        {
+        public void ValidateEmployerIncentivesLink() => pageInteractionHelper.IsElementDisplayed(EmployerIncentivesLink);
+        /*{
             string expectedLinkText = "Apply for the hire a new apprentice payment";
             Assert.AreEqual(expectedLinkText, pageInteractionHelper.GetText(EmployerIncentivesLink), $"Employer IncentivesLink Link Text");
-        }
+            pageInteractionHelper.IsElementDisplayed(EmployerIncentivesLink);
+        }*/
         
     }
 }

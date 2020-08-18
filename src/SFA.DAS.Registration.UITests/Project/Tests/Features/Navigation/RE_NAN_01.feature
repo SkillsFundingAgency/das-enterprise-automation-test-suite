@@ -1,6 +1,5 @@
 ﻿Feature: RE_NAN_01
 
-@regression
 @registration
 @addpayedetails
 @addlevyfunds
