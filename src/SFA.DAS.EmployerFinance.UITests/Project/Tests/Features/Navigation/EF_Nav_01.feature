@@ -5,6 +5,7 @@ Scenario: EF_Nav_01_Navigate to EAS sub sites from Finance Page
 	Given the Employer logins using existing Levy Account
 	When the Employer navigates to 'Finance' Page
 	Then the employer can navigate to home page
+	And the employer can navigate to Employer Incentives page from Home
 	And the employer can navigate to recruitment page
 	And the employer can navigate to apprentice page
 	And the employer can navigate to your team page

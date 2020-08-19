@@ -66,6 +66,13 @@ namespace SFA.DAS.EmployerFinance.UITests.Project.Tests.StepDefinitions
         [Then(@"'View transactions', 'Download transactions' and 'Transfers' links are displayed")]
         public void ThenAndLinksAreDisplayed() => _financePage.IsViewTransactionsLinkPresent().IsDownloadTransactionsLinkPresent().IsTransfersLinkPresent();
 
+        [Then(@"the employer can navigate to Employer Incentives page from Home")]
+        public void ThenTheEmployerCanNavigateToEmployerIncentivesPageFromHome()
+        {
+            new HomePageFinancesSection(_context).NavigateToEmployerIncentivesPage();
+        }
+
+
         [Then(@"Employer is able to navigate to 'View transactions', 'Download transactions', 'Funding projection' and 'Transfers' pages")]
         public void ThenEmployerIsAbleToNavigateToAndPages() => _financePage = _financePage
             .GoToViewTransactionsPage().GoToFinancePage()

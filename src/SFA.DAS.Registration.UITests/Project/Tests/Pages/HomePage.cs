@@ -2,8 +2,7 @@
 using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages.InterimPages;
-using NUnit.Framework;
-using OpenQA.Selenium.Support.UI;
+
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 {
@@ -75,11 +74,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         }
 
         public void ValidateEmployerIncentivesLink() => pageInteractionHelper.IsElementDisplayed(EmployerIncentivesLink);
-        /*{
-            string expectedLinkText = "Apply for the hire a new apprentice payment";
-            Assert.AreEqual(expectedLinkText, pageInteractionHelper.GetText(EmployerIncentivesLink), $"Employer IncentivesLink Link Text");
-            pageInteractionHelper.IsElementDisplayed(EmployerIncentivesLink);
-        }*/
         
     }
 }

@@ -1,5 +1,6 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages;
+using SFA.DAS.Registration.UITests.Project.Tests.Pages.InterimPages;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EmployerFinance.UITests.Project.Tests.Pages
@@ -10,6 +11,7 @@ namespace SFA.DAS.EmployerFinance.UITests.Project.Tests.Pages
 
         #region Locators
         private By FinancesSectionHeading => By.XPath("//h2[text()='Finances']");
+        private By EmployerIncentivesLink => By.PartialLinkText("Apply for the hire a new apprentice payment");
         #endregion
 
         public HomePageFinancesSection(ScenarioContext context) : base(context)
@@ -35,6 +37,13 @@ namespace SFA.DAS.EmployerFinance.UITests.Project.Tests.Pages
         {
             formCompletionHelper.Click(YourFinancesLink);
             return new FinancePage(_context);
+        }
+
+        public HomePage NavigateToEmployerIncentivesPage()
+        {
+            formCompletionHelper.Click(EmployerIncentivesLink);
+            new EmployerIncentivesPage(_context).NavigateBackToHomePage();
+            return new HomePage(_context);
         }
     }
 }
