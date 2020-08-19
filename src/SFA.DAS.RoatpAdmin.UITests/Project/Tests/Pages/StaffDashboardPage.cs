@@ -12,7 +12,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => "Staff dashboard";
 
-        private By GatewayApplicationLink => By.XPath("(//a['govuk-link'])[10]");
+        private By FinancialApplicationLink => By.XPath("//a[@href='/Roatp/Financial/Current']");
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
@@ -27,13 +27,13 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages
 
         public GatewayLandingPage AccessGatewayApplications()
         {
-            formCompletionHelper.ClickElement(GatewayApplicationLink);
+            formCompletionHelper.ClickLinkByText("Go to RoATP gateway applications");
             return new GatewayLandingPage(_context);
         }
 
         public FinancialLandingPage AccessFinancialApplications()
         {
-            formCompletionHelper.ClickLinkByText("RoATP financial applications");
+            formCompletionHelper.ClickElement(FinancialApplicationLink);
             return new FinancialLandingPage(_context);
         }
     }
