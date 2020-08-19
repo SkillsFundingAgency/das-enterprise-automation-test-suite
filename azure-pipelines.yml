@@ -67,20 +67,13 @@ steps:
      src/**/UpdateNoofTestWorkers.ps1
     TargetFolder: '$(build.artifactstagingdirectory)/publish'
     OverWrite: true
+    
 - task: CopyFiles@2
   displayName: 'Copy Files to: $(build.artifactstagingdirectory)'
   inputs:
     Contents: |     
       src/**/*.runsettings
     TargetFolder: '$(build.artifactstagingdirectory)/publish/runsettings'
-    OverWrite: true
-    
-- task: CopyFiles@2
-  displayName: 'Copy Files to: $(build.artifactstagingdirectory)'
-  inputs:
-    Contents: |     
-      src/**/*.feature
-    TargetFolder: '$(build.artifactstagingdirectory)/publish'
     OverWrite: true
 
 - task: ArchiveFiles@2
