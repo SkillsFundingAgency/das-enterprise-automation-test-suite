@@ -4,6 +4,7 @@
 @addpayedetails
 @addlevyfunds
 @perfteste2e
+@perfteste2elevy
 @donottakescreenshot
 Scenario Outline: AP_E2E_PF_LY_01 Create Employer send an approved cohort then provider approves the cohort
 	Given The User creates NonLevyEmployer account and sign an agreement
@@ -13,27 +14,27 @@ Scenario Outline: AP_E2E_PF_LY_01 Create Employer send an approved cohort then p
 	Examples: 
 	| testdata |
 	| 1        |
-	#| 2        |
-	#| 3        |
-	#| 4        |
-	#| 5        |
-	#| 6        |
-	#| 7        |
-	#| 8        |
-	#| 9        |
-	#| 10       |
-	#| 11       |
-	#| 12       |
-	#| 13       |
-	#| 14       |
-	#| 15       |
-	#| 16       |
-	#| 17       |
-	#| 18       |
-	#| 19       |
-	#| 20       |
-	#| 21       |
-	#| 22       |
-	#| 23       |
-	#| 24       |
-	#| 25       |
+	| 2        |
+	| 3        |
+	| 4        |
+	| 5        |
+	| 6        |
+	| 7        |
+	| 8        |
+	| 9        |
+	| 10       |
+	| 11       |
+	| 12       |
+	| 13       |
+	| 14       |
+	| 15       |
+	| 16       |
+	| 17       |
+	| 18       |
+	| 19       |
+	| 20       |
+	| 21       |
+	| 22       |
+	| 23       |
+	| 24       |
+	| 25       |

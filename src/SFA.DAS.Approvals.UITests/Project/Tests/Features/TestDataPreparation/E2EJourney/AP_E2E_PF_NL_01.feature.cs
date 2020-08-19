@@ -79,6 +79,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.TestDataPreparation.E
                     "addpayedetails",
                     "selectstandardcourse",
                     "perfteste2e",
+                    "perfteste2enonlevy",
                     "donottakescreenshot"};
             if ((exampleTags != null))
             {
@@ -89,7 +90,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.TestDataPreparation.E
             argumentsOfScenario.Add("testdata", testdata);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_E2E_PF_NL_01 Non Levy Employer sends an approved cohort then provider approves" +
                     " the cohort", null, tagsOfScenario, argumentsOfScenario);
-#line 7
+#line 8
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -109,14 +110,14 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 8
+#line 9
  testRunner.Given("The User creates NonLevyEmployer account and sign an agreement", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 9
+#line 10
  testRunner.When("the Employer uses the reservation to create and approve 2 cohort and sends to pro" +
                         "vider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 10
+#line 11
  testRunner.Then("the provider adds Ulns and approves the cohorts", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -129,10 +130,11 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.CategoryAttribute("addpayedetails")]
         [NUnit.Framework.CategoryAttribute("selectstandardcourse")]
         [NUnit.Framework.CategoryAttribute("perfteste2e")]
+        [NUnit.Framework.CategoryAttribute("perfteste2enonlevy")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
         public virtual void AP_E2E_PF_NL_01NonLevyEmployerSendsAnApprovedCohortThenProviderApprovesTheCohort_1()
         {
-#line 7
+#line 8
 this.AP_E2E_PF_NL_01NonLevyEmployerSendsAnApprovedCohortThenProviderApprovesTheCohort("1", ((string[])(null)));
 #line hidden
         }

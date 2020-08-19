@@ -3,6 +3,7 @@
 @addpayedetails
 @selectstandardcourse
 @perfteste2e
+@perfteste2enonlevy
 @donottakescreenshot
 Scenario Outline: AP_E2E_PF_NL_01 Non Levy Employer sends an approved cohort then provider approves the cohort
 	Given The User creates NonLevyEmployer account and sign an agreement
