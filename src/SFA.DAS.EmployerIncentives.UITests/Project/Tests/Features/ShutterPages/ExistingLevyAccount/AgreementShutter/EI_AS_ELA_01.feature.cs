@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Features.NoCommitments
+namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Features.ShutterPages.ExistingLevyAccount.AgreementShutter
 {
     using TechTalk.SpecFlow;
     using System;
@@ -20,22 +20,22 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Features.NoCommitment
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.3.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("EI_NC_01")]
-    public partial class EI_NC_01Feature
+    [NUnit.Framework.DescriptionAttribute("EI_AS_ELA_01")]
+    public partial class EI_AS_ELA_01Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private string[] _featureTags = ((string[])(null));
         
-#line 1 "EI_NC_01.feature"
+#line 1 "EI_AS_ELA_01.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "EI_NC_01", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "EI_AS_ELA_01", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,19 +74,17 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Features.NoCommitment
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("EI_NC_01_Levy Account with one legal entity and No Commitments")]
+        [NUnit.Framework.DescriptionAttribute("EI_AS_ELA_01_Validate Existing Levy account with unsigned V4 Agreement")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
         [NUnit.Framework.CategoryAttribute("employerincentives")]
-        public virtual void EI_NC_01_LevyAccountWithOneLegalEntityAndNoCommitments()
+        public virtual void EI_AS_ELA_01_ValidateExistingLevyAccountWithUnsignedV4Agreement()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
-                    "addpayedetails",
                     "employerincentives"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EI_NC_01_Levy Account with one legal entity and No Commitments", null, tagsOfScenario, argumentsOfScenario);
-#line 6
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EI_AS_ELA_01_Validate Existing Levy account with unsigned V4 Agreement", null, tagsOfScenario, argumentsOfScenario);
+#line 5
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -106,30 +104,30 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 7
- testRunner.Given("an Employer creates a Levy Account and Signs the Agreement", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 6
+ testRunner.Given("the Employer logins using existing Levy Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 8
+#line 7
  testRunner.When("the Employer Initiates EI Application journey for Single entity account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
+#line 8
+ testRunner.Then("Employer agreement shutter page is displayed for selecting Yes option in the Qual" +
+                        "ification page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
 #line 9
- testRunner.Then("Qualification question shutter page is displayed for selecting No option in Quali" +
-                        "fication page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("Employer Home page is displayed on clicking on Return to Account home link on Emp" +
+                        "loyer agreement shutter page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 10
- testRunner.And("Employer Home page is displayed on clicking on Return to Account Home button on Q" +
-                        "ualification shutter page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 11
  testRunner.When("the Employer navigates back to Qualification page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 12
- testRunner.Then("Select apprentices shutter page is displayed for selecting Yes option in Qualific" +
-                        "ation page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 11
+ testRunner.Then("Employer agreement shutter page is displayed for selecting Yes option in the Qual" +
+                        "ification page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 13
- testRunner.And("Approvals home page is displayed on clicking on Add apprentices link on Select ap" +
-                        "prentices shutter page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 12
+ testRunner.And("Your Agreements page is displayed on clicking on View agreement button on Employe" +
+                        "r agreement shutter page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();

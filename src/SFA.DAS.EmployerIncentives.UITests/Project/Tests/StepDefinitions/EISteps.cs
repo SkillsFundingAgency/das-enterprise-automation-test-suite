@@ -50,8 +50,8 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
         public void ThenEmployerHomePageIsDisplayedOnClickingOnReturnToAccountHomeLinkOnEmployerAgreementShutterPage() => 
             _employerAgreementShutterPage.ClickOnReturnToAccountHomeLink();
 
-        [Then(@"agreements page is displayed on clicking on View agreement button on Employer agreement shutter page")]
-        public void ThenAgreementsPageIsDisplayedOnClickingOnViewAgreementButtonOnEmployerAgreementShutterPage() =>
+        [Then(@"Your Agreements page is displayed on clicking on View agreement button on Employer agreement shutter page")]
+        public void ThenYourAgreementsPageIsDisplayedOnClickingOnViewAgreementButtonOnEmployerAgreementShutterPage() =>
             _employerAgreementShutterPage.ClickOnViewAgreementButton();
     }
 }

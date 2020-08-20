@@ -1,9 +1,9 @@
-﻿Feature: EI_NC_02
+﻿Feature: EI_QSAS_NLA_ME_01
 
 @regression
 @addpayedetails
 @employerincentives
-Scenario: EI_NC_02_Levy Account with Two legal entities and No Commitments
+Scenario: EI_QSAS_NLA_ME_01_Levy Account with Two legal entities and No Commitments
 	Given an Employer creates a Levy Account and Signs the Agreement
 	And the Employer adds another legal entity
 	When the Employer Initiates EI Application journey for Multiple entity account
