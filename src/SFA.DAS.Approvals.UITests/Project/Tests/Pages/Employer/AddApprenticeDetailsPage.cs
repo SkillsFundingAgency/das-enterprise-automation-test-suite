@@ -49,7 +49,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             formCompletionHelper.EnterText(EndDateYear, apprenticeCourseDataHelper.CourseEndDate.Year);
             formCompletionHelper.EnterText(TrainingCost, apprenticeDataHelper.TrainingPrice);
             formCompletionHelper.EnterText(EmployerReference, apprenticeDataHelper.EmployerReference);
-            
+
             if (objectContext.GetIsEIJourney())
                 EnterEIJourneyApprenticeDOBAndStartDate();
 
@@ -74,7 +74,17 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         private void EnterEIJourneyApprenticeDOBAndStartDate()
         {
-            var dobYear = (objectContext.GetEIAgeCategoryAsOfAug2020().Equals("Aged16to24")) ? "2004" : "1995";
+            var dobYear = (objectContext.GetEIAgeCategoryAsOfAug2020().Equals("Aged16to24")) ? 2004 : 1995;
+            var firstNameSuffix = "StartMonth" + objectContext.GetEIStartMonth() + "Year" + objectContext.GetEIStartYear();
+            string firstName;
+
+            if (dobYear == 2004)
+                firstName = "16OrOver" + firstNameSuffix;
+            else
+                firstName = "25OrOver" + firstNameSuffix;
+
+            formCompletionHelper.EnterText(FirstNameField, firstName);
+            formCompletionHelper.EnterText(LastNameField, randomDataGenerator.GenerateRandomAlphabeticString(10));
             formCompletionHelper.EnterText(DateOfBirthDay, "01");
             formCompletionHelper.EnterText(DateOfBirthMonth, "08");
             formCompletionHelper.EnterText(DateOfBirthYear, dobYear);

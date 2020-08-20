@@ -1,10 +1,12 @@
-﻿using TechTalk.SpecFlow;
+﻿using OpenQA.Selenium;
+using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
 {
     public class EIStartPage : EIBasePage
     {
         protected override string PageTitle => "Apply for the new apprentice payment";
+        private By StartNowButton => By.LinkText("Start now");
 
         #region Locators
         private readonly ScenarioContext _context;
@@ -14,13 +16,13 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
 
         public QualificationQuestionPage ClickStartNowButtonInEIStartPageForSingleEntityJourney()
         {
-            formCompletionHelper.Click(ContinueButton);
+            formCompletionHelper.Click(StartNowButton);
             return new QualificationQuestionPage(_context);
         }
 
         public ChooseOrganisationPage ClickStartNowButtonInEIStartPageForMultipleEntityJourney()
         {
-            formCompletionHelper.Click(ContinueButton);
+            formCompletionHelper.Click(StartNowButton);
             return new ChooseOrganisationPage(_context);
         }
     }

@@ -28,6 +28,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages
         protected readonly EditedApprenticeDataHelper editedApprenticeDataHelper;
         protected readonly EditedApprenticeCourseDataHelper editedApprenticeCourseDataHelper; 
         protected readonly ApprenticeCourseDataHelper apprenticeCourseDataHelper;
+        protected readonly RandomDataGenerator randomDataGenerator;
         #endregion
 
         protected ApprovalsBasePage(ScenarioContext context, bool verifypage = true) : base(context)
@@ -48,6 +49,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages
             editedApprenticeDataHelper = context.GetValue<EditedApprenticeDataHelper>();
             apprenticeCourseDataHelper = context.GetValue<ApprenticeCourseDataHelper>();
             editedApprenticeCourseDataHelper = context.GetValue<EditedApprenticeCourseDataHelper>();
+            randomDataGenerator = new RandomDataGenerator();
             if (verifypage) VerifyPage();
         }
     }
