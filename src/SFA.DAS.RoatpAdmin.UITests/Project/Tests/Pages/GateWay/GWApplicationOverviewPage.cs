@@ -16,15 +16,15 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay
         private readonly ScenarioContext _context;
         #endregion
 
-        private By TaskLists => By.CssSelector(".app-task-list > li");
+        private By TaskLists => By.CssSelector(".das-task-list > li");
 
-        private By TaskSection => By.CssSelector(".app-task-list__section");
+        private By TaskSection => By.CssSelector(".das-task-list__section");
 
-        private By TaskItem => By.CssSelector(".app-task-list__item");
+        private By TaskItem => By.CssSelector(".das-task-list__item");
 
-        private By TaskName => By.CssSelector(".app-task-list__task-name > .govuk-link");
+        private By TaskName => By.CssSelector(".das-task-list__task-name > .govuk-link");
 
-        private By TaskStatus => By.CssSelector(".govuk-tag");
+        private By TaskStatus => By.CssSelector(".das-task-list__task-tag");
 
         public GWApplicationOverviewPage(ScenarioContext context) : base(context)
         {
