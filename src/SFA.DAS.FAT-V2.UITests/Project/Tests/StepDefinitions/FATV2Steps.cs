@@ -32,5 +32,21 @@ namespace SFA.DAS.FAT_V2.UITests.Project.Tests.StepDefinitions
         [Then(@"only the level (2|3|4|5|6|7) Search Results are displayed")]
         public void ThenOnlyTheLevelSearchResultsAreDisplayed(string level) => _trainingCourseSearchResultsPage = _trainingCourseSearchResultsPage.VerifyLevelInfoFromSearchResults(level);
 
+        [Given(@"the User searches with (.*) term")]
+        [When(@"the User searches with (.*) term")]
+        public void WhenTheUserSearchesWithATerm(string training) => _trainingCourseSearchResultsPage = _fATV2StepsHelper.SearchForTrainingCourse(training);
+
+        [When(@"the User chooses to diplay results in '(Name|Relevance)' order")]
+        public void WhenTheUserChoosesToDiplayResultsInOrder(string order)
+        {
+            if (order.Contains("Name"))
+                _trainingCourseSearchResultsPage.SelectNameOrderSort();
+            else
+                _trainingCourseSearchResultsPage.SelectRelevanceOrderSort();
+        }
+
+        [Then(@"the '(Name |Relevance)' link is displayed")]
+        public void ThenTheLinkIsDisplayed(string relevance) => _trainingCourseSearchResultsPage = _trainingCourseSearchResultsPage.VerifySortByInfoFromSearchResults(relevance);
+
     }
 }
