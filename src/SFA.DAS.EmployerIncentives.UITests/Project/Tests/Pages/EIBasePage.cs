@@ -11,9 +11,10 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
         protected readonly TabHelper tabHelper;
         protected readonly FormCompletionHelper formCompletionHelper;
         protected readonly PageInteractionHelper pageInteractionHelper;
+        #endregion
+
         protected override By ContinueButton => By.XPath("//button[contains(text(), 'Continue')]");
         protected By ReturnToAccountHomeCTA => By.LinkText("Return to account home");
-        #endregion
 
         protected EIBasePage(ScenarioContext context) : base(context)
         {
