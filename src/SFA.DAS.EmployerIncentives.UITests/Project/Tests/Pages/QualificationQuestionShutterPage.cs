@@ -1,5 +1,4 @@
-﻿using OpenQA.Selenium;
-using SFA.DAS.Registration.UITests.Project.Tests.Pages;
+﻿using SFA.DAS.Registration.UITests.Project.Tests.Pages;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
@@ -10,14 +9,13 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
 
         #region Locators
         private readonly ScenarioContext _context;
-        private By ReturnToAccountHomeButton => By.LinkText("Return to account home");
         #endregion
 
         public QualificationQuestionShutterPage(ScenarioContext context) : base(context) => _context = context;
 
         public HomePage ClickOnReturnToAccountHomeLink()
         {
-            formCompletionHelper.Click(ReturnToAccountHomeButton);
+            formCompletionHelper.Click(ReturnToAccountHomeCTA);
             return new HomePage(_context);
         }
     }

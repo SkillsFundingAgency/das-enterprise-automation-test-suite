@@ -6,12 +6,11 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
 {
     public class EmployerAgreementShutterPage : EIBasePage
     {
-        protected override string PageTitle => "You need to sign a new agreement";
+        protected override string PageTitle => "You need to accept the employer agreement";
 
         #region Locators
         private readonly ScenarioContext _context;
         private By ViewAgreementButton => By.LinkText("View agreement");
-        private By ReturnToAccountHomeLink => By.LinkText("Return to account home");
         #endregion
 
         public EmployerAgreementShutterPage(ScenarioContext context) : base(context) => _context = context;
@@ -24,7 +23,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
 
         public HomePage ClickOnReturnToAccountHomeLink()
         {
-            formCompletionHelper.Click(ReturnToAccountHomeLink);
+            formCompletionHelper.Click(ReturnToAccountHomeCTA);
             return new HomePage(_context);
         }
     }

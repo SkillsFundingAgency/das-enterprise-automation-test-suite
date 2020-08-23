@@ -16,7 +16,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
 
         public EISteps(ScenarioContext context) => _context = context;
 
-        [When(@"the Employer navigates back to Qualification page")]
+        [When(@"the Employer navigates back to Qualification page for (Single|Multiple) entity account")]
         [When(@"the Employer Initiates EI Application journey for (Single|Multiple) entity account")]
         public void WhenTheEmployerInitiatesEIApplicationJourneyForSingleEntityAccount(Entities entities)
         {
@@ -25,7 +25,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
             if (entities == Entities.Single)
                 _qualificationQuestionPage = _eIStartPage.ClickStartNowButtonInEIStartPageForSingleEntityJourney();
             else if (entities == Entities.Multiple)
-                _qualificationQuestionPage = _eIStartPage.ClickStartNowButtonInEIStartPageForMultipleEntityJourney().SelectFirstEntityInChooseOrgPageAndContinue();
+                _qualificationQuestionPage = _eIStartPage.ClickStartNowButtonInEIStartPageForMultipleEntityJourney().SelectAnEntityInChooseOrgPageAndContinue();
         }
 
         [Then(@"Select apprentices shutter page is displayed for selecting Yes option in Qualification page")]
