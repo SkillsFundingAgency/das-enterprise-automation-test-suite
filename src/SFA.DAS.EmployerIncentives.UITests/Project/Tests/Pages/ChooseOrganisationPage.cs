@@ -1,4 +1,5 @@
-﻿using TechTalk.SpecFlow;
+﻿using OpenQA.Selenium;
+using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
 {
@@ -8,13 +9,14 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
 
         #region Locators
         private readonly ScenarioContext _context;
+        private By FirstRadioButton => By.XPath("//input[@name='Selected']");
         #endregion
 
         public ChooseOrganisationPage(ScenarioContext context) : base(context) => _context = context;
 
         public QualificationQuestionPage SelectFirstEntityInChooseOrgPageAndContinue()
         {
-            SelectRadioOptionByForAttribute("selected");
+            formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(FirstRadioButton));
             formCompletionHelper.Click(ContinueButton);
             return new QualificationQuestionPage(_context);
         }

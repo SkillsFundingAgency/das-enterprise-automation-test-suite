@@ -15,10 +15,10 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
 
         public SelectApprenticesShutterPage(ScenarioContext context) : base(context) => _context = context;
 
-        public AddAnApprenitcePage ClickOnAddApprenticesLink()
+        public ApprenticesHomePage ClickOnAddApprenticesLink()
         {
             formCompletionHelper.Click(AddApprenticesLink);
-            return new AddAnApprenitcePage(_context);
+            return new ApprenticesHomePage(_context);
         }
     }
 }
