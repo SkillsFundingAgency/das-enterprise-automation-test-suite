@@ -35,10 +35,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.UnitTests
             var randomcourseHelper = new RandomCourseDataHelper(new UI.FrameworkHelpers.RandomDataGenerator(), false);
             var apprentice = new ApprenticeCourseDataHelper(randomcourseHelper, ApprenticeStatus.WaitingToStart);
 
+            Console.WriteLine($"CourseStartDate : {apprentice.CourseStartDate}, Course {apprentice.Course}");
+
             //Assert
             Assert.IsTrue(apprentice.CourseStartDate > DateTime.Now.Date && (apprentice.CourseStartDate.Month != DateTime.Now.Month ? true : apprentice.CourseStartDate.Year != DateTime.Now.Year) && apprentice.CourseStartDate < new DateTime(2021, 7, 31));
-
-            Console.WriteLine($"CourseStartDate : {apprentice.CourseStartDate}, Course {apprentice.Course}");
         }
 
         [TestCase(0)]
