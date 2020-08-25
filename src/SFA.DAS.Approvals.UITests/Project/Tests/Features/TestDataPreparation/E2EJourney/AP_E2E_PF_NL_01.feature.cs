@@ -80,7 +80,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.TestDataPreparation.E
                     "selectstandardcourse",
                     "perfteste2e",
                     "perfteste2enonlevy",
-                    "donottakescreenshot"};
+                    "donottakescreenshot",
+                    "liveapprentice"};
             if ((exampleTags != null))
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
@@ -90,7 +91,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.TestDataPreparation.E
             argumentsOfScenario.Add("testdata", testdata);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_E2E_PF_NL_01 Non Levy Employer sends an approved cohort then provider approves" +
                     " the cohort", null, tagsOfScenario, argumentsOfScenario);
-#line 8
+#line 9
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -110,14 +111,14 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 9
+#line 10
  testRunner.Given("The User creates NonLevyEmployer account and sign an agreement", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 10
+#line 11
  testRunner.When("the Employer uses the reservation to create and approve 1 cohort and sends to pro" +
                         "vider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 11
+#line 12
  testRunner.Then("the provider adds Ulns and approves the cohorts", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -132,9 +133,10 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.CategoryAttribute("perfteste2e")]
         [NUnit.Framework.CategoryAttribute("perfteste2enonlevy")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
+        [NUnit.Framework.CategoryAttribute("liveapprentice")]
         public virtual void AP_E2E_PF_NL_01NonLevyEmployerSendsAnApprovedCohortThenProviderApprovesTheCohort_1()
         {
-#line 8
+#line 9
 this.AP_E2E_PF_NL_01NonLevyEmployerSendsAnApprovedCohortThenProviderApprovesTheCohort("1", ((string[])(null)));
 #line hidden
         }

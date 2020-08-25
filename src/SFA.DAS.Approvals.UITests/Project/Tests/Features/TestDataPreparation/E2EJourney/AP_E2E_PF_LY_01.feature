@@ -6,6 +6,7 @@
 @perfteste2e
 @perfteste2elevy
 @donottakescreenshot
+@liveapprentice
 Scenario Outline: AP_E2E_PF_LY_01 Create Employer send an approved cohort then provider approves the cohort
 	Given The User creates NonLevyEmployer account and sign an agreement
 	When the Employer approves 2 cohort and sends to provider

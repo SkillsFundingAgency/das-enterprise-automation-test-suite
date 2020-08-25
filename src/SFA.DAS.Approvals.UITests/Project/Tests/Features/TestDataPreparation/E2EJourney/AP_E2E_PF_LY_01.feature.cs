@@ -80,7 +80,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.TestDataPreparation.E
                     "addlevyfunds",
                     "perfteste2e",
                     "perfteste2elevy",
-                    "donottakescreenshot"};
+                    "donottakescreenshot",
+                    "liveapprentice"};
             if ((exampleTags != null))
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
@@ -90,7 +91,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.TestDataPreparation.E
             argumentsOfScenario.Add("testdata", testdata);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_E2E_PF_LY_01 Create Employer send an approved cohort then provider approves th" +
                     "e cohort", null, tagsOfScenario, argumentsOfScenario);
-#line 9
+#line 10
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -110,13 +111,13 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 10
+#line 11
  testRunner.Given("The User creates NonLevyEmployer account and sign an agreement", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 11
+#line 12
  testRunner.When("the Employer approves 2 cohort and sends to provider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 12
+#line 13
  testRunner.Then("the provider adds Ulns and approves the cohorts", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -131,9 +132,10 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.CategoryAttribute("perfteste2e")]
         [NUnit.Framework.CategoryAttribute("perfteste2elevy")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
+        [NUnit.Framework.CategoryAttribute("liveapprentice")]
         public virtual void AP_E2E_PF_LY_01CreateEmployerSendAnApprovedCohortThenProviderApprovesTheCohort_1()
         {
-#line 9
+#line 10
 this.AP_E2E_PF_LY_01CreateEmployerSendAnApprovedCohortThenProviderApprovesTheCohort("1", ((string[])(null)));
 #line hidden
         }
