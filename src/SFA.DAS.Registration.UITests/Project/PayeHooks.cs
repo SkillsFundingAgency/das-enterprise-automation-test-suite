@@ -54,20 +54,20 @@ namespace SFA.DAS.Registration.UITests.Project
 
         [BeforeScenario(Order = 26)]
         [Scope(Tag = "addanothernonlevypayedetails")]
-        public void SetUpAnotherNonLevyPayeDetails() => AddAnotherPayeDetails(false);
+        public void SetUpAnotherNonLevyPayeDetails() => AddAnotherPayeDetails();
 
         [BeforeScenario(Order = 27)]
         [Scope(Tag = "addanotherlevypayedetails")]
         public void SetUpAnotherLevyPayeDetails()
         {
-            AddAnotherPayeDetails(true);
+            AddAnotherPayeDetails();
 
             AddFunds(_anotherMongoDbDataGenerator, FundType.LevyFund);
         }
 
-        private void AddAnotherPayeDetails(bool isLevy)
+        private void AddAnotherPayeDetails()
         {
-            _objectContext.SetDataHelper(new DataHelper(isLevy));
+            _objectContext.SetDataHelper(new DataHelper(_context.ScenarioInfo.Tags));
 
             _anotherMongoDbDataGenerator = new MongoDbDataGenerator(_context);
 
