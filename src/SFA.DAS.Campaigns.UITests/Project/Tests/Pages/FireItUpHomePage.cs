@@ -9,7 +9,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
 {
     public class FireItUpHomePage : CampaingnsPage
     {
-        protected override string PageTitle => "FIRE";
+        protected override string PageTitle => "APPRENTICSHIPS";
 
         protected override By PageHeader => By.CssSelector(".homepage-title");
 
