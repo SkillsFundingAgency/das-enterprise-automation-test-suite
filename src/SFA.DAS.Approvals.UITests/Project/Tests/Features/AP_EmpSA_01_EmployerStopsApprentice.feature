@@ -3,8 +3,7 @@ As an employer I can pause, resume and stop an apprentice
 
 @approvals
 @regression
-@liveapprentice
-@currentacademicyearstartdate
+@previousacademicyearstartdate
 Scenario: AP_EmpSA_01 Employer Pauses Resumes and Stop an apprentice
 	Given the Employer has approved apprentice
 	Then Employer is able to Pause the apprentice
