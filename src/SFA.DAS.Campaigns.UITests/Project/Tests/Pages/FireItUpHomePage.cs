@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.Campaigns.UITests.Project.Tests.Features.Apprentice;
 using SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Apprentice;
 using SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer;
 using SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Parent;
@@ -9,15 +10,17 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
 {
     public class FireItUpHomePage : CampaingnsPage
     {
-        protected override string PageTitle => "APPRENTICSHIPS";
+        protected override string PageTitle => "APPRENTICESHIPS";
 
-        protected override By PageHeader => By.CssSelector(".homepage-title");
+        protected override By PageHeader => By.CssSelector(".fiu-homepage-banner__heading");
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
         #endregion
 
-        private By CookieButton => By.CssSelector("#link-cookie-accept");
+        private By CookieButton => By.Id("fiu-cb-button-accept");
+
+        private By CloseCookieButton => By.Id("fiu-cb-close");
 
         private By Apprentice => By.CssSelector("a[href*='apprentice']");
 
@@ -36,8 +39,12 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
         public FireItUpHomePage AcceptCookieAndAlert()
         {
             if (pageInteractionHelper.WaitUntilAnyElements(CookieButton))
+            {
                 formCompletionHelper.ClickElement(CookieButton);
-            
+                formCompletionHelper.ClickElement(CloseCookieButton);
+            }
+                
+
             return new FireItUpHomePage(_context);
         }
 

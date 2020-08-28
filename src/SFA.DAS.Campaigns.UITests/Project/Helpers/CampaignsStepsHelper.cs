@@ -14,6 +14,6 @@ namespace SFA.DAS.Campaigns.UITests.Project.Helpers
 
         public CampaignsStepsHelper(ScenarioContext context) => _context = context;
 
-        public FireItUpHomePage GoToFireItUpHomePage() => new FireItUpHomePage(_context).AcceptCookieAndAlert();
+       public FireItUpHomePage GoToFireItUpHomePage() => new FireItUpHomePage(_context).AcceptCookieAndAlert();
     }
 }

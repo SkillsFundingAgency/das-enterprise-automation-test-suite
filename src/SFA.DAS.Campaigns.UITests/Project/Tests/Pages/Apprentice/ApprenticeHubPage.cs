@@ -1,4 +1,6 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.Campaigns.UITests.Project.Tests.Features.Apprentice;
+using SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer;
 using System;
 using TechTalk.SpecFlow;
 
@@ -6,17 +8,16 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Apprentice
 {
     public class ApprenticeHubPage : CampaingnsPage
     {
-        protected override string PageTitle => "REAL STORIES";
+        protected override string PageTitle => "BECOME AN APPRENTICE";
 
-        protected override By PageHeader => By.Id("apprentice-real-stories");
+        protected override By PageHeader => By.CssSelector(".govuk-heading-xl");
+        protected By AreApprenticeshipRightForYou => By.CssSelector("#fiu-app-menu-link-1");
+  
+        protected By HowDoTheyWork => By.CssSelector("#fiu-app-menu-link-2");
 
-        protected By AreApprenticeshipRightForYou => By.CssSelector("#link-nav-apprentice-1");
+        protected By GettingStarted => By.CssSelector("#fiu-app-menu-link-3");
 
-        protected By HowDoTheyWork => By.CssSelector("#link-nav-apprentice-2");
-
-        protected By GettingStarted => By.CssSelector("#link-nav-apprentice-3");
-
-        protected By FindAnApprenticeship => By.CssSelector("#link-nav-apprentice-4");
+        protected By FindAnApprenticeship => By.CssSelector("#fiu-app-menu-link-4");
 
         protected By RealStories => By.CssSelector("#link-nav-app-real-stories");
 
@@ -38,7 +39,28 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Apprentice
 
        public ApprenticeHubPage(ScenarioContext context, bool verifypage = true) : base(context, verifypage) => _context = context;
 
-        public ApprenticeRealStoriesPage NavigateToRealStoriesPage() => NavigateToAreApprenticeshipRightForYou(RealStories, (c) => new ApprenticeRealStoriesPage(c));
+        public ApprenticeRealStoriesPage NavigateToRealStoriesPage()
+        {
+            //formCompletionHelper.ClickElement(RealStories);
+            return new ApprenticeRealStoriesPage(_context);
+        }
+        public AreApprenticeShipRightForMePage NavigateToAreApprenticeShipRightForMe()
+        {
+            formCompletionHelper.ClickElement(AreApprenticeshipRightForYou);
+            return new AreApprenticeShipRightForMePage(_context);
+        }
+
+        public HowDoTheyWorkPage NavigateToHowDoTheyWorkPage()
+        {
+            formCompletionHelper.ClickElement(HowDoTheyWork);
+            return new HowDoTheyWorkPage(_context);
+        }
+
+         public GettingStartedPage NavigateToGettingStarted()
+        {
+            formCompletionHelper.ClickElement(GettingStarted);
+            return new GettingStartedPage(_context);
+        }
 
         public AppBenefitsPage NavigateToBenefitsofApprenticeshipPage() => NavigateToAreApprenticeshipRightForYou(ApprenticeshipBenefits, (c) => new AppBenefitsPage(c));
 
@@ -63,5 +85,12 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Apprentice
         private TResult NavigateToHowDoTheyWork<TResult>(By childLocator, Func<ScenarioContext, TResult> func) => NavigateTo(HowDoTheyWork, childLocator, func);
 
         private TResult NavigateToGettingStarted<TResult>(By childLocator, Func<ScenarioContext, TResult> func) => NavigateTo(GettingStarted, childLocator, func);
+
+        //public BecomeAnApprenticePage ClickBecomeAnApprenticeLink()
+        //{
+        //    formCompletionHelper.ClickElement()
+
+        //    return new BecomeAnApprenticePage(_context);
+        //}
     }
 }
