@@ -78,10 +78,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             var firstNameSuffix = "StartMonth" + objectContext.GetEIStartMonth() + "Year" + objectContext.GetEIStartYear();
             string firstName;
 
-            if (dobYear == 2004)
-                firstName = "16OrOver" + firstNameSuffix;
-            else
-                firstName = "25OrOver" + firstNameSuffix;
+            firstName = dobYear == 2004 ? "16OrOver" : "25OrOver";
+            firstName += firstNameSuffix;
 
             formCompletionHelper.EnterText(FirstNameField, firstName);
             formCompletionHelper.EnterText(LastNameField, randomDataGenerator.GenerateRandomAlphabeticString(10));
