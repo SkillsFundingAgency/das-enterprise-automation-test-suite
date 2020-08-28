@@ -110,8 +110,8 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("the Employer logins using existing EI Levy Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 7
- testRunner.And("the Employer adds 2 apprentices Aged16to24 as of 01AUG2020 with start date as Mon" +
-                        "th 9 and Year 2020", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("the Employer adds 2 apprentices AgedAbove25 as of 01AUG2020 with start date as Mo" +
+                        "nth 9 and Year 2020", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 8
  testRunner.When("the Employer Initiates EI Application journey for Single entity account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
