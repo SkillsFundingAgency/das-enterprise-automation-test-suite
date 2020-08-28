@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.TestDataPreparation.E2EJourney
+namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.PerfTestDataPreparation.E2EJourney
 {
     using TechTalk.SpecFlow;
     using System;
