@@ -122,6 +122,5 @@ namespace SFA.DAS.RAA.DataGenerator
 
         private string WebsiteUrl(string url) => $"https://www.{url}.com";
 
-        public string TrainingStandard => EnvironmentConfig.IsTestEnvironment ? "Accountancy Taxation Professional" : "Accountancy / Taxation Professional";
     }
 }
