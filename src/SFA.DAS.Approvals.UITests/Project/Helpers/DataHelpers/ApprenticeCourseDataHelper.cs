@@ -6,6 +6,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
     public enum ApprenticeStatus
     {
         Live,
+        OneMonthBeforeCurrentAcademicYearStartDate,
         CurrentAcademicYearStartDate,
         WaitingToStart,
         Random
@@ -65,14 +66,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
             int range = (end - start).Days;
             var randomStartDate = start.AddDays(new Random().Next(range));
             return _apprenticeStatus == ApprenticeStatus.Live ? GetLiveApprenticeStartDate(randomStartDate) :
+                   _apprenticeStatus == ApprenticeStatus.OneMonthBeforeCurrentAcademicYearStartDate ? GetOneMonthBeforeCurrentAcademicYearStartDate(randomStartDate) :
                    _apprenticeStatus == ApprenticeStatus.CurrentAcademicYearStartDate ? _currentAcademicYearStartDate :
                    _apprenticeStatus == ApprenticeStatus.WaitingToStart ? GetWaitingToStartApprenticeStartDate(randomStartDate) : randomStartDate;
         }
 
-        private DateTime GetLiveApprenticeStartDate(DateTime dateTime)
-        {
-            return dateTime.Date >= DateTime.Now.Date ? _currentAcademicYearStartDate.AddMonths(-1) : dateTime;
-        }
+        private DateTime GetLiveApprenticeStartDate(DateTime dateTime) => dateTime.Date >= DateTime.Now.Date ? _currentAcademicYearStartDate : dateTime;
+
+        private DateTime GetOneMonthBeforeCurrentAcademicYearStartDate(DateTime dateTime) => dateTime.Date >= DateTime.Now.Date ? _currentAcademicYearStartDate.AddMonths(-1) : dateTime;
 
         private DateTime GetWaitingToStartApprenticeStartDate(DateTime dateTime)
         {
@@ -88,10 +89,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
             return dateTime.Date <= now.Date ? RandomStartDate() : IsThisMonthAndYear(dateTime) ? RandomStartDate() : dateTime;
         }
 
-        private bool IsThisMonthAndYear(DateTime dateTime)
-        {
-            return dateTime.Month == DateTime.Now.Month && dateTime.Year == DateTime.Now.Year;
-        }
+        private bool IsThisMonthAndYear(DateTime dateTime) => dateTime.Month == DateTime.Now.Month && dateTime.Year == DateTime.Now.Year;
 
         private DateTime GetCurrentAcademicYearStartDate()
         {
@@ -100,14 +98,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
             return now >= cutoff ? cutoff : new DateTime(now.Year - 1, acadamicYearStartMonth, acadamicYearStartDay);
         }
 
-        private DateTime GetAcademicYearEndDate(DateTime academicYearStartDate)
-        {
-            return new DateTime(academicYearStartDate.Year + 1, acadamicYearEndMonth, acadamicYearEndDay);
-        }
+        private DateTime GetAcademicYearEndDate(DateTime academicYearStartDate) => new DateTime(academicYearStartDate.Year + 1, acadamicYearEndMonth, acadamicYearEndDay);
 
-        private DateTime GetNextAcademicYearStartDate(DateTime currentAcademicYearStartDate)
-        {
-            return new DateTime(currentAcademicYearStartDate.Year + 1, acadamicYearStartMonth, acadamicYearStartDay);
-        }
+        private DateTime GetNextAcademicYearStartDate(DateTime currentAcademicYearStartDate) => new DateTime(currentAcademicYearStartDate.Year + 1, acadamicYearStartMonth, acadamicYearStartDay);
     }
 }

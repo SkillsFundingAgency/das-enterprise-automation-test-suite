@@ -52,7 +52,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
         {
             _searchResultsPage = _searchResultsPage.SearchApprenticeship("Administration");
             _searchResultsPage = _searchResultsPage.SearchApprenticeship("Beauty Therapy");
-            _searchResultsPage = _searchResultsPage.SearchApprenticeship("Management");
+            _searchResultsPage = _searchResultsPage.SearchApprenticeship("Housing");
             _empFavpage = _searchResultsPage.GoToEmployerFavouritesPage();
             _empFavpage.VerifyCount(3);
         }

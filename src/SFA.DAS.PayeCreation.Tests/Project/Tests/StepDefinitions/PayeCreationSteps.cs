@@ -55,7 +55,7 @@ namespace SFA.DAS.PayeCreation.Project.Tests.StepDefinitions
             return mongodbGenerator;
         }
 
-        private void SetUpDataHelpers() => _objectContext.SetDataHelper(new DataHelper(_context.ScenarioInfo.Tags.Contains("levypaye")));
+        private void SetUpDataHelpers() => _objectContext.SetDataHelper(new DataHelper(_context.ScenarioInfo.Tags));
 
         private void AddLevy(MongoDbDataGenerator mongoDbDataGenerator)
         {
