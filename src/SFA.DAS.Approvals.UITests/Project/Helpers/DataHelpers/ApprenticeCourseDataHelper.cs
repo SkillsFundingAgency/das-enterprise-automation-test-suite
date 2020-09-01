@@ -6,7 +6,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
     public enum ApprenticeStatus
     {
         Live,
-        PreviousAcademicYearStartDate,
+        OneMonthBeforeCurrentAcademicYearStartDate,
         CurrentAcademicYearStartDate,
         WaitingToStart,
         Random
@@ -20,8 +20,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
 
     public class ApprenticeCourseDataHelper
     {
-        private readonly DateTime _previousAcademicYearStartDate;
-        private readonly DateTime _previousAcademicYearEndDate;
         private readonly DateTime _currentAcademicYearStartDate;
         private readonly DateTime _currentAcademicYearEndDate;
         private readonly DateTime _nextAcademicYearStartDate;
@@ -40,8 +38,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
             _apprenticeStatus = apprenticeStatus;
             _currentAcademicYearStartDate = GetCurrentAcademicYearStartDate();
             _currentAcademicYearEndDate = GetAcademicYearEndDate(_currentAcademicYearStartDate);
-            _previousAcademicYearStartDate = GetPreviousAcademicYearStartDate(_currentAcademicYearStartDate);
-            _previousAcademicYearEndDate = GetAcademicYearEndDate(_previousAcademicYearStartDate);
             _nextAcademicYearStartDate = GetNextAcademicYearStartDate(_currentAcademicYearStartDate);
             _nextAcademicYearEndDate = GetAcademicYearEndDate(_nextAcademicYearStartDate);
             CourseStartDate = GenerateCourseStartDate();
@@ -70,12 +66,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
             int range = (end - start).Days;
             var randomStartDate = start.AddDays(new Random().Next(range));
             return _apprenticeStatus == ApprenticeStatus.Live ? GetLiveApprenticeStartDate(randomStartDate) :
-                   _apprenticeStatus == ApprenticeStatus.PreviousAcademicYearStartDate ? _previousAcademicYearStartDate :
+                   _apprenticeStatus == ApprenticeStatus.OneMonthBeforeCurrentAcademicYearStartDate ? GetOneMonthBeforeCurrentAcademicYearStartDate(randomStartDate) :
                    _apprenticeStatus == ApprenticeStatus.CurrentAcademicYearStartDate ? _currentAcademicYearStartDate :
                    _apprenticeStatus == ApprenticeStatus.WaitingToStart ? GetWaitingToStartApprenticeStartDate(randomStartDate) : randomStartDate;
         }
 
         private DateTime GetLiveApprenticeStartDate(DateTime dateTime) => dateTime.Date >= DateTime.Now.Date ? _currentAcademicYearStartDate : dateTime;
+
+        private DateTime GetOneMonthBeforeCurrentAcademicYearStartDate(DateTime dateTime) => dateTime.Date >= DateTime.Now.Date ? _currentAcademicYearStartDate.AddMonths(-1) : dateTime;
 
         private DateTime GetWaitingToStartApprenticeStartDate(DateTime dateTime)
         {
@@ -101,8 +99,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
         }
 
         private DateTime GetAcademicYearEndDate(DateTime academicYearStartDate) => new DateTime(academicYearStartDate.Year + 1, acadamicYearEndMonth, acadamicYearEndDay);
-
-        private DateTime GetPreviousAcademicYearStartDate(DateTime currentAcademicYearStartDate) => new DateTime(currentAcademicYearStartDate.Year - 1, acadamicYearStartMonth, acadamicYearStartDay);
 
         private DateTime GetNextAcademicYearStartDate(DateTime currentAcademicYearStartDate) => new DateTime(currentAcademicYearStartDate.Year + 1, acadamicYearStartMonth, acadamicYearStartDay);
     }

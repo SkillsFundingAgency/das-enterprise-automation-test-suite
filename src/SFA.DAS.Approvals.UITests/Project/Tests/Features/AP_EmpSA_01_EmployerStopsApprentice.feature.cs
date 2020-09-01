@@ -77,13 +77,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features
         [NUnit.Framework.DescriptionAttribute("AP_EmpSA_01 Employer Pauses Resumes and Stop an apprentice")]
         [NUnit.Framework.CategoryAttribute("approvals")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("previousacademicyearstartdate")]
+        [NUnit.Framework.CategoryAttribute("onemonthbeforecurrentacademicyearstartdate")]
         public virtual void AP_EmpSA_01EmployerPausesResumesAndStopAnApprentice()
         {
             string[] tagsOfScenario = new string[] {
                     "approvals",
                     "regression",
-                    "previousacademicyearstartdate"};
+                    "onemonthbeforecurrentacademicyearstartdate"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_EmpSA_01 Employer Pauses Resumes and Stop an apprentice", null, tagsOfScenario, argumentsOfScenario);
 #line 7
