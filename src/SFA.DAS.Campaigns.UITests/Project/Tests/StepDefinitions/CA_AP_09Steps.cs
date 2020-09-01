@@ -9,7 +9,6 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Features.Apprentice
     {
         private readonly CampaignsStepsHelper _stepsHelper;
         private readonly ScenarioContext _context;
-        private BecomeAnApprenticePage becomeAnApprenticePage;
         public CA_AP_09Steps(ScenarioContext context)
         {
             _context = context;

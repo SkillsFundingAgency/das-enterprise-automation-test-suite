@@ -6,21 +6,21 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
 {
     public class EmployerHubPage : CampaingnsPage
     {
-        protected override string PageTitle => "REAL STORIES";
-
-        protected override By PageHeader => By.Id("employer-real-stories");
+        protected override string PageTitle => "HIRE AN APPRENTICE";
+        protected override By PageHeader => By.CssSelector(".govuk-heading-xl");
 
         protected By Basket => By.CssSelector("a[href='/Basket/View']");
 
         protected By FavCount => By.CssSelector(".favourites-link__count");
 
-        protected By AreApprenticeshipRightForYou => By.CssSelector("#link-nav-employer-1");
+        protected By AreApprenticeshipRightForMe => By.Id("fiu-emp-menu-link-1");
 
         protected By HowDoTheyWork => By.CssSelector("#link-nav-employer-2");
 
         protected By SettingItUp => By.CssSelector("#link-nav-employer-3");
 
         protected By SearchForAnApprenticeship => By.CssSelector("#link-nav-employer-4");
+
 
         protected By RealStories => By.CssSelector("#link-nav-app-real-stories");
 
@@ -54,7 +54,11 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
 
         public FundingAnApprenticeshipPage NavigateToFundingAnApprenticeshipPage() => NavigateToHowDoTheyWork(FundingAnApprenticeship, (c) => new FundingAnApprenticeshipPage(c));
 
-        public HireAnApprenticePage NavigateToHireAnApprenticePage() => NavigateToHowDoTheyWork(HiringAnApprentice, (c) => new HireAnApprenticePage(c));
+        public AreTheyRightFoeYouPage NavigateToAreTheyRightForYouPage()
+        {
+            formCompletionHelper.ClickElement(AreApprenticeshipRightForMe);
+            return new AreTheyRightFoeYouPage(_context);
+        }
 
         public TrainingYourApprenticePage NavigateToTrainingYourApprenticePage() => NavigateToHowDoTheyWork(TrainingYourApprenticeship, (c) => new TrainingYourApprenticePage(c));
 

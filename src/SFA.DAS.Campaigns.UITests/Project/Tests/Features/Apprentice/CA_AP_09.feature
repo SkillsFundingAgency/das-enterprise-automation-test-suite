@@ -8,9 +8,3 @@ Scenario: CA_AP_09 Check Become An Apprentice Page Details
 	And  Verify the content on Become An Apprentice Page
 	Then the links are not broken
 
-#@campaigns
-#@employer
-#@regression
-#Scenario: CA_EMPP_10_Check The links on How do they work Page
-#	Given the user navigates to the How do they work page
-#	Then verify the links are not broken on How do they work page
