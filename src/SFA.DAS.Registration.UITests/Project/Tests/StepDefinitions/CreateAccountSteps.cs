@@ -146,7 +146,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
 
         [Given(@"an Employer creates a Non Levy Account and Signs the Agreement")]
         [When(@"an Employer creates a Non Levy Account and Signs the Agreement")]
-        public void GivenAnEmployerCreatesANonLevyAccountAndSignsTheAgreement() =>
+        public void EmployerCreatesANonLevyAccountAndSignsTheAgreement() =>
             GivenAnEmployerAccountWithSpecifiedTypeOrgIsCreatedAndAgeementIsSigned(OrgType.Company);
 
         [When(@"an Employer creates a Non Levy Account and not Signs the Agreement during registration")]
@@ -173,7 +173,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
 
         [Given(@"an Employer creates a Levy Account and Signs the Agreement")]
         [When(@"an Employer creates a Levy Account and Signs the Agreement")]
-        public void GivenAnEmployerCreatesALevyAccountAndSignsTheAgreement()
+        public void EmployerCreatesALevyAccountAndSignsTheAgreement()
         {
             _accountCreationStepsHelper.AddLevyDeclarations();
             GivenAnEmployerAccountWithSpecifiedTypeOrgIsCreatedAndAgeementIsSigned(OrgType.Company);
