@@ -1,6 +1,12 @@
-﻿using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
+﻿using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
+using SFA.DAS.Approvals.UITests.Project.Helpers.NServiceBusHelpers;
+using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
+using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
 using SFA.DAS.ConfigurationBuilder;
+using SFA.DAS.Payments.ProviderPayments.Messages;
+using SFA.DAS.UI.Framework.TestSupport;
+using System;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
@@ -8,16 +14,23 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
     [Binding]
     public class EmployerSteps
     {
-        private readonly EmployerStepsHelper _employerStepsHelper;
-        private ApprenticeRequestsPage _apprenticeRequestsPage;
-        private ReviewYourCohortPage _reviewYourCohortPage;
+        #region context&Helpers
+        private readonly ScenarioContext _context;
         private readonly ObjectContext _objectContext;
-        private ApprenticeDetailsPage _apprenticeDetailsPage;
+        private readonly EmployerStepsHelper _employerStepsHelper;
+        private readonly ApprenticeDataHelper _dataHelper;
+        #endregion
+
+        private ApprenticeRequestsPage _apprenticeRequestsPage;
+        private ReviewYourCohortPage _reviewYourCohortPage;        
+        private ApprenticeDetailsPage _apprenticeDetailsPage;        
 
         public EmployerSteps(ScenarioContext context)
         {
+            _context = context;
             _objectContext = context.Get<ObjectContext>();
             _employerStepsHelper = new EmployerStepsHelper(context);
+            _dataHelper = context.Get<ApprenticeDataHelper>();
         }
 
         [StepArgumentTransformation(@"(does ?.*)")]
@@ -165,5 +178,38 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
             _employerStepsHelper.SetCohortReference(cohortReference);
         }
+
+        [When(@"PaymentsCompletion event is received")]
+        public void WhenPaymentsCompletionEventIsReceived()
+        {
+            int _apprenticeid = _dataHelper.ApprenticeshipId();
+            
+            new NSB(_context.GetApprovalsConfig<ApprovalsConfig>())
+                .PublishEvent(new RecordedAct1CompletionPayment { ApprenticeshipId = _apprenticeid, EventTime = DateTimeOffset.UtcNow });
+        }
+
+        [Given(@"a new live apprentice record is created")]
+        [Then(@"a new live apprentice record is created")]
+        public void ThenANewLiveApprenticeRecordIsCreated()
+        {
+            _employerStepsHelper
+               .GoToManageYourApprenticesPage()
+                .SearchForApprentice(_dataHelper.ApprenticeFirstname)
+                .ValidateStatus("Live");
+        }
+
+        [Then(@"the apprenticeship status changes to completed")]
+        public void ThenTheApprenticeshipStatusChangesToCompleted()
+        {
+            _employerStepsHelper.ValidateCompletionStatus();
+        }
+
+        [Then(@"Apprentice details or status can no longer be changed")]
+        public void ThenApprenticeDetailsOrStatusCanNoLongerBeChanged()
+        {
+            _employerStepsHelper.ValidateApprenticeDetailsCanNoLongerBeChanged();
+        }
+
+
     }
 }

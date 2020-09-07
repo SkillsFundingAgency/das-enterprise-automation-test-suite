@@ -1,4 +1,6 @@
 ﻿using SFA.DAS.ConfigurationBuilder;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace SFA.DAS.Approvals.UITests.Project
 {
@@ -40,5 +42,12 @@ namespace SFA.DAS.Approvals.UITests.Project
         internal static string GetCohortReference(this ObjectContext objectContext) => objectContext.Get(CohortReference);
 
         internal static string GetReservationId(this ObjectContext objectContext) => objectContext.Get(ReservationId);
+
+        internal static string GetULN(this ObjectContext objectContext)
+        {
+            var ULN = objectContext.GetAll().Keys.Where(k => k.Contains("Uln")).First();
+            return objectContext.Get(ULN);
+        }
+        
     }
 }

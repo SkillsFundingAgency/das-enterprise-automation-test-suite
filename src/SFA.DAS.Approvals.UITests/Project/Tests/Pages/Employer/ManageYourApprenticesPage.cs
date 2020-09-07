@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using NUnit.Framework;
 using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 
@@ -22,7 +23,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private By NextPageLink => By.PartialLinkText("Next");
         private By ApprenticeInfoRow => By.CssSelector("tbody tr");
         private By ViewApprenticeFullName => By.PartialLinkText(apprenticeDataHelper.ApprenticeFullName);
-
+        private By Status => By.CssSelector("#main-content tbody tr td:nth-child(6)");
         public ManageYourApprenticesPage(ScenarioContext context): base(context) => _context = context;
 
         internal ApprenticeDetailsPage SelectViewCurrentApprenticeDetails()
@@ -54,7 +55,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             return new ApprenticeDetailsPage(_context);
         }
 
-        private ManageYourApprenticesPage SearchForApprentice(string apprenticeName)
+        public ManageYourApprenticesPage SearchForApprentice(string apprenticeName)
         {
             formCompletionHelper.EnterText(ApprenticeSearchField, apprenticeName);
             formCompletionHelper.ClickElement(SearchButton);
@@ -77,6 +78,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         }
 
         public bool DownloadFilteredDataLinkIsDisplayed() => pageInteractionHelper.IsElementDisplayed(DownloadFilteredDataLink);
+
+        public void ValidateStatus(string expectedStatus)
+        {
+            var actStatus = pageInteractionHelper.GetText(Status);
+            Assert.AreEqual(pageInteractionHelper.GetText(Status), expectedStatus, "Validate Status of the apprenticeship on Manage Your Apprentice Page");
+        }
+    
     }
 }
 
