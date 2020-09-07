@@ -4,6 +4,7 @@ Feature: AP_E2E_EUA_05_ExistingUserAccount
 @regression
 @e2escenarios
 @onemonthbeforecurrentacademicyearstartdate
+@paymentCompletion
 Scenario: AP_E2E_EUA_05 Payment Completion event marks the apprenticeship as Complete
 	Given the Employer logins using existing Levy Account
 	When the Employer approves 1 cohort and sends to provider
