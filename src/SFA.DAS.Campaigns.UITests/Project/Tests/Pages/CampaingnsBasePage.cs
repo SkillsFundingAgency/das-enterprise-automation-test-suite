@@ -24,7 +24,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
             campaignsDataHelper = context.Get<CampaignsDataHelper>();
             tabHelper = context.Get<TabHelper>();
 
-            if (verifypage) { VerifyPage(); }
+            //if (verifypage) { VerifyPage(); }
         }
     }
 }

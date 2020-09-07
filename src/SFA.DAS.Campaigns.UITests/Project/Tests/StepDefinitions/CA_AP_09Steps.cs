@@ -1,4 +1,5 @@
 ﻿using SFA.DAS.Campaigns.UITests.Project.Helpers;
+using SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Apprentice;
 using System;
 using TechTalk.SpecFlow;
 
@@ -8,6 +9,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Features.Apprentice
     public class CA_AP_09Steps
     {
         private readonly CampaignsStepsHelper _stepsHelper;
+        private ApprenticeHubPage _apprenticeHubPage;
         private readonly ScenarioContext _context;
         public CA_AP_09Steps(ScenarioContext context)
         {
@@ -23,7 +25,19 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Features.Apprentice
         [Given(@"Verify the content on Become An Apprentice Page")]
         public void GivenVerifyTheContentOnBecomeAnApprenticePage()
         {
-           // ScenarioContext.Current.Pending();
+            _apprenticeHubPage = new ApprenticeHubPage(_context);
+            _apprenticeHubPage.VerifyBecomeAnApprenticeCard1()
+                .VerifyBecomeAnApprenticeCard2()
+                .VerifyBecomeAnApprenticeCard3()
+                .VerifyBecomeAnApprenticeCard4()
+                .VerifyBecomeAnApprenticeCard5()
+                .VerifyBecomeAnApprenticeCard6()
+                .VerifyBecomeAnApprenticeCard7()
+                .VerifyBecomeAnApprenticeCard8()
+                .VerifyBecomeAnApprenticeCard9()
+                .VerifyBecomeAnApprenticeCard10();
+            
+
         }
 
     }

@@ -5,7 +5,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Apprentice
 {
     public class AreApprenticeShipRightForMePage: ApprenticeBasePage
     {
-        protected override string PageTitle => "Are apprenticeships right for me?";
+        protected override string PageTitle => "Are they right for you?";
 
         protected override By PageHeader => By.CssSelector(".govuk-heading-xl");
 
