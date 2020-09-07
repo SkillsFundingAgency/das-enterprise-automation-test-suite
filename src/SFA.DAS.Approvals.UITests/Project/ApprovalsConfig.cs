@@ -5,7 +5,7 @@ namespace SFA.DAS.Approvals.UITests.Project
     public class ApprovalsConfig
     {
         public string CommitmentsDbConnectionString { get; set; }
-        public string NServiceBusConnectionString { get; set; }
+        public string ServiceBusConnectionString { get; set; }
         public string PublicSectorReportingConnectionString { get; set; }
         public string BulkUploadFileLocation { get; set; }
     }

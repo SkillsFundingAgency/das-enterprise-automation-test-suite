@@ -15,7 +15,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.NServiceBusHelpers
         private const string EndpointName = "SFA.DAS.Approvals.RegressionTests";
         protected readonly string connectionString;
 
-        public NSB(ApprovalsConfig approvalsConfig) => connectionString = approvalsConfig.NServiceBusConnectionString;
+        public NSB(ApprovalsConfig approvalsConfig) => connectionString = approvalsConfig.ServiceBusConnectionString;
         
         public void PublishEvent(object eventName)
         {
