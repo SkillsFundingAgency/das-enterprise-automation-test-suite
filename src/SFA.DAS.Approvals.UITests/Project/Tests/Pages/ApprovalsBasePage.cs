@@ -49,7 +49,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages
             editedApprenticeDataHelper = context.GetValue<EditedApprenticeDataHelper>();
             apprenticeCourseDataHelper = context.GetValue<ApprenticeCourseDataHelper>();
             editedApprenticeCourseDataHelper = context.GetValue<EditedApprenticeCourseDataHelper>();
-            randomDataGenerator = new RandomDataGenerator();
+            randomDataGenerator = context.Get<RandomDataGenerator>();
             if (verifypage) VerifyPage();
         }
     }

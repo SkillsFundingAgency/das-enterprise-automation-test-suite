@@ -1,6 +1,9 @@
 ﻿using TechTalk.SpecFlow;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
+using SFA.DAS.ConfigurationBuilder;
+using SFA.DAS.Registration.UITests.Project.Tests.Pages;
+using SFA.DAS.UI.FrameworkHelpers;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 {
@@ -10,11 +13,15 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         private readonly ScenarioContext _context;
         private readonly ProviderStepsHelper _providerStepsHelper;
         private ProviderReviewYourCohortPage _providerReviewYourCohortPage;
+        private readonly ObjectContext _objectContext;
+        private readonly TabHelper _tabHelper;
 
-		public ProviderSteps(ScenarioContext context)
+        public ProviderSteps(ScenarioContext context)
         {
             _context = context;
             _providerStepsHelper = new ProviderStepsHelper(context);
+            _objectContext = context.Get<ObjectContext>();
+            _tabHelper = context.Get<TabHelper>();
         }
 
         [Then(@"the provider approves the cohorts")]
@@ -41,11 +48,17 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _providerStepsHelper.AddApprenticeAndSendToEmployerForApproval(numberOfApprentices);
         }
 
-
+        [Given(@"the Provider approves the apprenticeship request")]
         [Then(@"the provider adds Ulns and approves the cohorts")]
         public void TheProviderAddsUlnsAndApprovesTheCohorts()
         {
             _providerStepsHelper.Approve();
+
+            if (_objectContext.GetIsEIJourney())
+            {
+                _tabHelper.SwitchToFirstTab();
+                new HomePage(_context, true);
+            }
         }
 
         [When(@"the provider adds Ulns and approves the cohorts and sends to employer")]
@@ -115,6 +128,5 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             _providerStepsHelper.AddApprenticeViaBulkUpload(numberOfApprentices);
         }
-
     }
 }

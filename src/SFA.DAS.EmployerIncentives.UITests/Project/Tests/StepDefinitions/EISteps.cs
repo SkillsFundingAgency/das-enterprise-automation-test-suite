@@ -1,4 +1,7 @@
 ﻿using SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages;
+using SFA.DAS.Login.Service;
+using SFA.DAS.Login.Service.Helpers;
+using SFA.DAS.Registration.UITests.Project.Helpers;
 using TechTalk.SpecFlow;
 using static SFA.DAS.EmployerIncentives.UITests.Project.Helpers.EnumHelper;
 
@@ -13,8 +16,13 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
         private QualificationQuestionPage _qualificationQuestionPage;
         private QualificationQuestionShutterPage _qualificationQuestionShutterPage;
         private EmployerAgreementShutterPage _employerAgreementShutterPage;
+        private readonly EmployerPortalLoginHelper _employerPortalLoginHelper;
 
-        public EISteps(ScenarioContext context) => _context = context;
+        public EISteps(ScenarioContext context)
+        {
+            _context = context;
+            _employerPortalLoginHelper = new EmployerPortalLoginHelper(context);
+        }
 
         [When(@"the Employer navigates back to Qualification page for (Single|Multiple) entity account")]
         [When(@"the Employer Initiates EI Application journey for (Single|Multiple) entity account")]
@@ -27,6 +35,9 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
             else if (entities == Entities.Multiple)
                 _qualificationQuestionPage = _eIStartPage.ClickStartNowButtonInEIStartPageForMultipleEntityJourney().SelectFirstEntityInChooseOrgPageAndContinue();
         }
+
+        [Given(@"the Employer logins using existing EI Levy Account")]
+        public void GivenTheEmployerLoginsUsingExistingEILevyAccount() => _employerPortalLoginHelper.Login(_context.GetUser<EILevyUser>(), true);
 
         [Then(@"Select apprentices shutter page is displayed for selecting Yes option in Qualification page")]
         public void ThenSelectApprenticesShutterPageIsDisplayedForSelectingYesOptionInQualificationPage() =>
