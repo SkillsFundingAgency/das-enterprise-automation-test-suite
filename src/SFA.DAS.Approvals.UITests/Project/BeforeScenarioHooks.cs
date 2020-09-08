@@ -7,6 +7,7 @@ using TechTalk.SpecFlow;
 using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.Registration.UITests.Project;
+using SFA.DAS.Approvals.UITests.Project.Helpers.NServiceBusHelpers;
 
 namespace SFA.DAS.Approvals.UITests.Project
 {
@@ -70,6 +71,8 @@ namespace SFA.DAS.Approvals.UITests.Project
             _context.Set(new PublicSectorReportingDataHelper(random));
 
             _context.Set(new PublicSectorReportingSqlDataHelper(_approvalsConfig));
+
+            _context.Set(new NServiceBusHelper(_approvalsConfig));
         }
     }
 }

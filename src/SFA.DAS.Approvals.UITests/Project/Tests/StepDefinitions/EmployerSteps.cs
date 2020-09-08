@@ -1,12 +1,8 @@
 ﻿using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.NServiceBusHelpers;
-using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
 using SFA.DAS.ConfigurationBuilder;
-using SFA.DAS.Payments.ProviderPayments.Messages;
-using SFA.DAS.UI.Framework.TestSupport;
-using System;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
@@ -23,7 +19,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
         private ApprenticeRequestsPage _apprenticeRequestsPage;
         private ReviewYourCohortPage _reviewYourCohortPage;        
-        private ApprenticeDetailsPage _apprenticeDetailsPage;        
+        private ApprenticeDetailsPage _apprenticeDetailsPage;
+        private readonly NServiceBusHelper _nServiceBusHelper;
 
         public EmployerSteps(ScenarioContext context)
         {
@@ -31,6 +28,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _objectContext = context.Get<ObjectContext>();
             _employerStepsHelper = new EmployerStepsHelper(context);
             _dataHelper = context.Get<ApprenticeDataHelper>();
+            _nServiceBusHelper = context.Get<NServiceBusHelper>();
         }
 
         [StepArgumentTransformation(@"(does ?.*)")]
@@ -180,13 +178,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         }
 
         [When(@"PaymentsCompletion event is received")]
-        public void WhenPaymentsCompletionEventIsReceived()
-        {
-            int _apprenticeid = _dataHelper.ApprenticeshipId();
-            
-            new NSB(_context.GetApprovalsConfig<ApprovalsConfig>())
-                .PublishEvent(new RecordedAct1CompletionPayment { ApprenticeshipId = _apprenticeid, EventTime = DateTimeOffset.UtcNow });
-        }
+        public void WhenPaymentsCompletionEventIsReceived() => _nServiceBusHelper.PublishRecordedAct1CompletionPaymentEvent(_dataHelper.ApprenticeshipId());
 
         [Given(@"a new live apprentice record is created")]
         [Then(@"a new live apprentice record is created")]
@@ -199,17 +191,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         }
 
         [Then(@"the apprenticeship status changes to completed")]
-        public void ThenTheApprenticeshipStatusChangesToCompleted()
-        {
-            _employerStepsHelper.ValidateCompletionStatus();
-        }
+        public void ThenTheApprenticeshipStatusChangesToCompleted() => _employerStepsHelper.ValidateCompletionStatus();
 
         [Then(@"Apprentice details or status can no longer be changed")]
-        public void ThenApprenticeDetailsOrStatusCanNoLongerBeChanged()
-        {
-            _employerStepsHelper.ValidateApprenticeDetailsCanNoLongerBeChanged();
-        }
-
-
+        public void ThenApprenticeDetailsOrStatusCanNoLongerBeChanged() => _employerStepsHelper.ValidateApprenticeDetailsCanNoLongerBeChanged();
     }
 }

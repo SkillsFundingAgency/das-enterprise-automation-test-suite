@@ -3,25 +3,20 @@ using SFA.DAS.NServiceBus.Configuration;
 using SFA.DAS.NServiceBus.Configuration.AzureServiceBus;
 using SFA.DAS.NServiceBus.Configuration.NewtonsoftJsonSerializer;
 using SFA.DAS.Payments.ProviderPayments.Messages;
-using SFA.DAS.UI.FrameworkHelpers;
 using System;
 using System.Threading.Tasks;
 
 
 namespace SFA.DAS.Approvals.UITests.Project.Helpers.NServiceBusHelpers
 {
-    public class NSB
+    public class NServiceBusHelper
     {
         private const string EndpointName = "SFA.DAS.Approvals.RegressionTests";
         protected readonly string connectionString;
 
-        public NSB(ApprovalsConfig approvalsConfig) => connectionString = approvalsConfig.ServiceBusConnectionString;
+        public NServiceBusHelper(ApprovalsConfig approvalsConfig) => connectionString = approvalsConfig.ServiceBusConnectionString;
         
-        public void PublishEvent(object eventName)
-        {
-            Task t = Publish(eventName);
-            t.Wait();
-        }
+        public void PublishRecordedAct1CompletionPaymentEvent(int apprenticeshipId) => Publish(new RecordedAct1CompletionPayment { ApprenticeshipId = apprenticeshipId, EventTime = DateTimeOffset.UtcNow }).Wait();
 
         private async Task Publish(object eventName)
         {
