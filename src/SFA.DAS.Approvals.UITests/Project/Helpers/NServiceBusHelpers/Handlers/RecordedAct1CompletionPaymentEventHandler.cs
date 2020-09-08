@@ -13,16 +13,16 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.NServiceBusHelpers.Handlers
             {
                 if (message.ApprenticeshipId.HasValue)
                 {
-                    Console.WriteLine("Apprenticeship Id found in RecordedAct1CompletionPaymentEvent");
+                    Console.WriteLine($"Apprenticeship Id: {message.ApprenticeshipId} found in RecordedAct1CompletionPaymentEvent");
                 }
                 else
                 {
-                    Console.WriteLine("Warning - No Apprenticeship Id found in RecordedAct1CompletionPaymentEvent");
+                    Console.WriteLine($"Warning - No Apprenticeship Id: {message.ApprenticeshipId} found in RecordedAct1CompletionPaymentEvent");
                 }
             }
             catch (Exception e)
             {
-                Console.WriteLine(string.Format("Error processing RecordedAct1CompletionPaymentEvent {0}", e));
+                Console.WriteLine(string.Format($"Error processing RecordedAct1CompletionPaymentEvent: {0}", e));
                 throw;
             }
 
