@@ -38,11 +38,7 @@ namespace SFA.DAS.Registration.UITests.Project
         [BeforeScenario(Order = 22)]
         public void SetUpDataHelpers()
         {
-            var dataHelper = new DataHelper(
-                   _context.ScenarioInfo.Tags.Contains("addlevyfunds") 
-                || _context.ScenarioInfo.Tags.Contains("addtransferslevyfunds") 
-                || _context.ScenarioInfo.Tags.Contains("levy")
-                || _context.ScenarioInfo.Tags.Contains("perftestlevy")); 
+            var dataHelper = new DataHelper(_context.ScenarioInfo.Tags);
 
             _objectContext.SetDataHelper(dataHelper);
 
