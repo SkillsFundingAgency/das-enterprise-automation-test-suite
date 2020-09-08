@@ -46,7 +46,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Apprentice
 
         protected By ApprenticeshipBenefits => By.XPath("//a[contains(@href,'/apprentices/benefits-apprenticeship') and contains(text(), 'Learn more')]");
 
-        protected By WhatIsAnApprenticeship => By.CssSelector("#link-nav-app-step-1");
+        protected By WhatIsAnApprenticeship => By.CssSelector("#fiu-app-hub-card-5");
 
         protected By Application => By.CssSelector("#link-nav-app-step-3");
 
@@ -104,7 +104,11 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Apprentice
 
         public AppBenefitsPage NavigateToBenefitsofApprenticeshipPage() => NavigateToAreApprenticeshipRightForYou(ApprenticeshipBenefits, (c) => new AppBenefitsPage(c));
 
-        public WhatIsAnApprenticeshipPage NavigateToWhatIsAnApprenticeshipPage() => NavigateToHowDoTheyWork(WhatIsAnApprenticeship, (c) => new WhatIsAnApprenticeshipPage(c));
+        public WhatIsAnApprenticeshipPage NavigateToWhatIsAnApprenticeshipPage()
+        {
+            formCompletionHelper.ClickElement(WhatIsAnApprenticeship);
+            return new WhatIsAnApprenticeshipPage(_context);
+        }
 
         public ApplicationPage NavigateToApplicationPage() => NavigateToHowDoTheyWork(Application, (c) => new ApplicationPage(c));
 
