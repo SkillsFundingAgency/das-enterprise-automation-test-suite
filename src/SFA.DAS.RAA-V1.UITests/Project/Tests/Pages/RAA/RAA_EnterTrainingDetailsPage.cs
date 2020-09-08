@@ -22,7 +22,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         private By SaveAndContinueButton => By.Id("createVacancyButton");
         private By TraineeshipDropdown => By.Id("s2id_SectorCodeName");
         private By TrainingBody => By.XPath("//body");
-
+        public string TrainingStandard => "Accountancy Taxation Professional";
 
         public RAA_EnterTrainingDetailsPage(ScenarioContext context) : base(context)
         {
@@ -53,7 +53,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
                 case "Standard":
                     formCompletionHelper.SelectRadioOptionByText("Standard");
                     formCompletionHelper.Click(StandardsDropDownMenu);
-                    formCompletionHelper.SelectFromDropDownByText(StandardsDropDownMenu, rAAV1DataHelper.TrainingStandard);
+                    formCompletionHelper.SelectFromDropDownByText(StandardsDropDownMenu,TrainingStandard);
                     break;
 
                 case "Traineeship":

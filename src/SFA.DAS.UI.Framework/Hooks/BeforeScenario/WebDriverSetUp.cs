@@ -2,6 +2,7 @@
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.UI.Framework.TestSupport;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using TechTalk.SpecFlow;
 
@@ -64,7 +65,7 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
         {
             FileInfo[] file = Directory.GetParent(DriverPath).GetFiles(executableName, SearchOption.AllDirectories);
 
-            return file.Length != 0 ? file[0].DirectoryName : DriverPath;
+            return file.Length != 0 ? file.Last().DirectoryName : DriverPath;
         }
 
         private string FindVstsDriverServiceLocation(string executableName)
