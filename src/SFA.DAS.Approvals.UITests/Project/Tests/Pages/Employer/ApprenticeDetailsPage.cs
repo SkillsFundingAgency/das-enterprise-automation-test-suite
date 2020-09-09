@@ -56,19 +56,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
                 return true;
         }
 
-        public void ValidateCompletionStatus()
-        {
-            string expectedCompletionDate = DateTime.Now.ToString("MMMM") + " " + DateTime.Now.Year; 
-           
-            Assert.AreEqual(pageInteractionHelper.GetText(ApprenticeshipStatus), "Completed", "Validate Status of the apprenticeship");
-            Assert.AreEqual(pageInteractionHelper.GetText(StatusDateTitle), "Completion payment month", "Validate Completion Date Title");
-            Assert.AreEqual(pageInteractionHelper.GetText(CompletionDate), expectedCompletionDate, "Validate Completion Date");
-        }
+        public string GetApprenticeshipStatus() => pageInteractionHelper.GetText(ApprenticeshipStatus);
+        public string GetStatusDateTitle() => pageInteractionHelper.GetText(StatusDateTitle);
+        public string GetCompletionDate() => pageInteractionHelper.GetText(CompletionDate);
+        public bool IsEditApprenticeStatusLinkVisible() => pageInteractionHelper.IsElementDisplayed(EditApprenticeStatusLink);
+        public bool IsEditApprenticeDetailsLinkVisible() => pageInteractionHelper.IsElementDisplayed(EditApprenticeDetailsLink);
 
-        public void ValidateEditLinksDoNotExist()
-        {
-            Assert.IsFalse(pageInteractionHelper.IsElementDisplayed(EditApprenticeStatusLink));
-            Assert.IsFalse(pageInteractionHelper.IsElementDisplayed(EditApprenticeDetailsLink));
-        }
     }
 }
