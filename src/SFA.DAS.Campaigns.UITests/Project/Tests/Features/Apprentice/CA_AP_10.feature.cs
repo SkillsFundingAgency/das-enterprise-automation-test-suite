@@ -74,18 +74,18 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Features.Apprentice
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("CA_AP_10 Check Are ApprenticeShip Right For You Page Details")]
+        [NUnit.Framework.DescriptionAttribute("CA_AP_10 Check Are ApprenticeShip Right For You Page")]
         [NUnit.Framework.CategoryAttribute("campaigns")]
         [NUnit.Framework.CategoryAttribute("apprentice")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public virtual void CA_AP_10CheckAreApprenticeShipRightForYouPageDetails()
+        public virtual void CA_AP_10CheckAreApprenticeShipRightForYouPage()
         {
             string[] tagsOfScenario = new string[] {
                     "campaigns",
                     "apprentice",
                     "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CA_AP_10 Check Are ApprenticeShip Right For You Page Details", null, tagsOfScenario, argumentsOfScenario);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CA_AP_10 Check Are ApprenticeShip Right For You Page", null, tagsOfScenario, argumentsOfScenario);
 #line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden

@@ -5,9 +5,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Apprentice
 {
     public class AreApprenticeShipRightForMePage: ApprenticeBasePage
     {
-        protected override string PageTitle => "Are they right for you?";
-
-        protected override By PageHeader => By.CssSelector(".govuk-heading-xl");
+        protected override string PageTitle => "Error";
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
@@ -16,7 +14,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Apprentice
         public AreApprenticeShipRightForMePage(ScenarioContext context):base(context)
         {
             _context = context;
-            //content check
+            pageInteractionHelper.VerifyPageLoad(PageHeader, PageTitle);
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.Campaigns.UITests.Project.Tests.Features.Apprentice;
 using SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer;
+using SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Parent;
 using System;
 using TechTalk.SpecFlow;
 
@@ -48,13 +49,17 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Apprentice
 
         protected By WhatIsAnApprenticeship => By.CssSelector("#fiu-app-hub-card-5");
 
-        protected By Application => By.CssSelector("#link-nav-app-step-3");
+        protected By Application => By.CssSelector("#fiu-app-hub-card-6");
 
-        protected By Interview => By.CssSelector("#link-nav-app-step-4");
+        protected By Interview => By.CssSelector("#fiu-app-hub-card-7");
 
-        protected By YourApprenticeship => By.CssSelector("#link-nav-app-step-5");
+        protected By AdviceForParents => By.CssSelector("#fiu-app-hub-card-3");
 
-        protected By AssesmentAndCertification => By.CssSelector("#link-nav-app-step-6");
+        protected By SetUpService => By.CssSelector("#fiu-app-hub-card-10");
+
+        protected By YourApprenticeship => By.CssSelector("#fiu-app-hub-card-8");
+
+        protected By AssesmentAndCertification => By.CssSelector("#fiu-app-hub-card-9");
 
         private By FiuBecomeAnApprenticeCard1 => By.XPath("//h3[contains(@class, 'fiu-card__heading') and contains(text(), 'Real stories')]");
         private By FiuBecomeAnApprenticeCard2 => By.XPath("//h3[contains(@class, 'fiu-card__heading') and contains(text(), 'What are the benefits of an apprenticeship?')]");
@@ -102,7 +107,27 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Apprentice
             return new GettingStartedPage(_context);
         }
 
+        public BrowseInterestPage NavigateToBrowseInterestPage()
+        {
+            formCompletionHelper.ClickElement(GettingStarted);
+            return new BrowseInterestPage(_context);
+        }
+
+        public SetUpServicePage NavigateToSetUpServiceAccountPage()
+        {
+            formCompletionHelper.ClickElement(SetUpService);
+            return new SetUpServicePage(_context);
+        }
+
         public AppBenefitsPage NavigateToBenefitsofApprenticeshipPage() => NavigateToAreApprenticeshipRightForYou(ApprenticeshipBenefits, (c) => new AppBenefitsPage(c));
+
+        public HelpShapeTheirCareerPage NavigateToAdviceForParentPage()
+        {
+            formCompletionHelper.ClickElement(AdviceForParents);
+            return new HelpShapeTheirCareerPage(_context);
+        }
+
+
 
         public WhatIsAnApprenticeshipPage NavigateToWhatIsAnApprenticeshipPage()
         {
@@ -110,13 +135,30 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Apprentice
             return new WhatIsAnApprenticeshipPage(_context);
         }
 
-        public ApplicationPage NavigateToApplicationPage() => NavigateToHowDoTheyWork(Application, (c) => new ApplicationPage(c));
+        public ApplicationPage NavigateToApplicationPage()
+        {
+            formCompletionHelper.ClickElement(Application);
+            return new ApplicationPage(_context);
+        }
 
-        public InterviewPage NavigateToInterviewPage() => NavigateToHowDoTheyWork(Interview, (c) => new InterviewPage(c));
+        public InterviewPage NavigateToInterviewPage()
+        {
+            formCompletionHelper.ClickElement(Interview);
+            return new InterviewPage(_context);
+        }
 
-        public YourApprenticeshipPage NavigateToYourApprenticeshipPage() => NavigateToGettingStarted(YourApprenticeship, (c) => new YourApprenticeshipPage(c));
 
-        public AssesmentAndCertificationPage NavigateToAssesmentAndCertificationPage() => NavigateToGettingStarted(AssesmentAndCertification, (c) => new AssesmentAndCertificationPage(c));
+        public YourApprenticeshipPage NavigateToYourApprenticeshipPage()
+        {
+            formCompletionHelper.ClickElement(YourApprenticeship);
+            return new YourApprenticeshipPage(_context);
+        }
+
+        public AssesmentAndCertificationPage NavigateToAssesmentAndCertificationPage()
+        {
+            formCompletionHelper.ClickElement(AssesmentAndCertification);
+            return new AssesmentAndCertificationPage(_context);
+        }
 
         public FindAnApprenticeshipPage NavigateToFindAnApprenticeshipPage()
         {

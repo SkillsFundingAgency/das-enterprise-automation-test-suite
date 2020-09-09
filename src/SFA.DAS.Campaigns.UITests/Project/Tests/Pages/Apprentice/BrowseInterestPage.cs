@@ -2,11 +2,11 @@
 
 namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Apprentice
 {
-   public class AdviceForParentPage : ApprenticeBasePage
+    public class BrowseInterestPage : ApprenticeBasePage
     {
-        
-        protected override string PageTitle => "Error";
-        public AdviceForParentPage(ScenarioContext context) : base(context)
+        private ScenarioContext context;
+
+        public BrowseInterestPage(ScenarioContext context): base(context)
         {
             pageInteractionHelper.VerifyPageLoad(PageHeader, PageTitle);
         }
