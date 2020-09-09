@@ -6,6 +6,8 @@ using TechTalk.SpecFlow;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.DynamicHomePage;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages;
 using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
+using NUnit.Framework;
+using System;
 
 namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 {
@@ -17,11 +19,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
         private readonly EmployerHomePageStepsHelper _homePageStepsHelper;
         private readonly ObjectContext _objectContext;
         private readonly ScenarioContext _context;
+        private readonly ApprenticeDataHelper _dataHelper;
 
         internal EmployerStepsHelper(ScenarioContext context)
         {
             _context = context;
             _objectContext = _context.Get<ObjectContext>();
+            _dataHelper = context.Get<ApprenticeDataHelper>();
             _homePageStepsHelper = new EmployerHomePageStepsHelper(_context);
             _reviewYourCohortStepsHelper = new ReviewYourCohortStepsHelper(_context.Get<AssertHelper>());
             _employerReservationStepsHelper = new ManageFundingEmployerStepsHelper(_context);
@@ -243,18 +247,35 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
                 .ClickHome()
                 .VerifyYourFundingReservationsLink();
         }
+        internal void ValidateStatusOnManageYourApprenticesPage(string expectedStatus)
+        {
+            var actualStatus = 
+                GoToManageYourApprenticesPage()
+                .SearchForApprentice(_dataHelper.ApprenticeFirstname)
+                .GetStatus();
+
+            Assert.AreEqual(actualStatus, expectedStatus, "Validate status on Manage Your Apprentices page");
+        }
 
         internal void ValidateCompletionStatus()
         {
-            new ManageYourApprenticesPage(_context)
-                .SelectViewCurrentApprenticeDetails()
-                .ValidateCompletionStatus();            
+            string expectedCompletionDate = DateTime.Now.ToString("MMMM") + " " + DateTime.Now.Year;
+
+            ApprenticeDetailsPage apprenticeDetailsPage = 
+                new ManageYourApprenticesPage(_context)
+                .SelectViewCurrentApprenticeDetails();
+
+            Assert.AreEqual(apprenticeDetailsPage.GetApprenticeshipStatus(), "Completed", "Validate Status of the apprenticeship");
+            Assert.AreEqual(apprenticeDetailsPage.GetStatusDateTitle(), "Completion payment month", "Validate Completion Date Title");
+            Assert.AreEqual(apprenticeDetailsPage.GetCompletionDate(), expectedCompletionDate, "Validate Completion Date");
         }
 
         internal void ValidateApprenticeDetailsCanNoLongerBeChanged()
         {
-            new ApprenticeDetailsPage(_context)
-                .ValidateEditLinksDoNotExist();
+            ApprenticeDetailsPage apprenticeDetailsPage = new ApprenticeDetailsPage(_context);
+
+            Assert.IsFalse(apprenticeDetailsPage.IsEditApprenticeStatusLinkVisible());
+            Assert.IsFalse(apprenticeDetailsPage.IsEditApprenticeDetailsLinkVisible());
         }
 
     }

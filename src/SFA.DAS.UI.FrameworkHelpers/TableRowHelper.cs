@@ -1,6 +1,5 @@
 ﻿using OpenQA.Selenium;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace SFA.DAS.UI.FrameworkHelpers
@@ -75,22 +74,6 @@ namespace SFA.DAS.UI.FrameworkHelpers
             }
 
             SelectRowFromTable(byLinkText, byKey, tableSelector);
-        }
-
-        public List<string> GetTableRows(By tableIdentifier)
-        {
-            IList<IWebElement> allElement = _pageInteractionHelper.FindElements(tableIdentifier);
-            List<string> rows = new List<string>();
-            foreach (IWebElement element in allElement)
-            {
-                IList<IWebElement> tableRow = element.FindElements(By.TagName("tr"));
-                if (tableRow.Count > 0)
-                {
-                    rows.Add(tableRow[0].Text);
-                }                
-            }
-            return rows;
-        }
-    
+        }    
     }
 }

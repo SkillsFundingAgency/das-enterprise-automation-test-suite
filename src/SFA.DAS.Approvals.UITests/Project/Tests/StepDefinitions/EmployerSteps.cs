@@ -184,10 +184,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Then(@"a new live apprentice record is created")]
         public void ThenANewLiveApprenticeRecordIsCreated()
         {
-            _employerStepsHelper
-               .GoToManageYourApprenticesPage()
-                .SearchForApprentice(_dataHelper.ApprenticeFirstname)
-                .ValidateStatus("Live");
+            //_employerStepsHelper
+              // .GoToManageYourApprenticesPage()
+                //.SearchForApprentice(_dataHelper.ApprenticeFirstname)
+                //.ValidateStatus("Live");
+
+            _employerStepsHelper.ValidateStatusOnManageYourApprenticesPage("Live");
         }
 
         [Then(@"the apprenticeship status changes to completed")]

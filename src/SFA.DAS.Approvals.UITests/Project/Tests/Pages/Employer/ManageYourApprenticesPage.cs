@@ -79,12 +79,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         public bool DownloadFilteredDataLinkIsDisplayed() => pageInteractionHelper.IsElementDisplayed(DownloadFilteredDataLink);
 
-        public void ValidateStatus(string expectedStatus)
-        {
-            var actStatus = pageInteractionHelper.GetText(Status);
-            Assert.AreEqual(pageInteractionHelper.GetText(Status), expectedStatus, "Validate Status of the apprenticeship on Manage Your Apprentice Page");
-        }
-    
+        public string GetStatus() => pageInteractionHelper.GetText(Status);    
     }
 }
 
