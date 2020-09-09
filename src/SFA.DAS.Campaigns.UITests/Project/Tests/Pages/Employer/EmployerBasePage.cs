@@ -8,7 +8,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
 {
     public abstract class EmployerBasePage : EmployerHubPage
     {
-        protected override By PageHeader => By.CssSelector(".govuk-heading-xl");
+        //protected override By PageHeader => By.CssSelector(".govuk-heading-xl");
 
         protected By AddFavouriteSelector => By.CssSelector(".das-search-result__favourite-button--unchecked");
 

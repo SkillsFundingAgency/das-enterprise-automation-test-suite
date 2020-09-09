@@ -112,9 +112,6 @@ this.ScenarioInitialize(scenarioInfo);
 #line 9
  testRunner.Then("the links are not broken", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 11
- testRunner.And("the user can search for an apprenticeship", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "* ");
-#line hidden
             }
             this.ScenarioCleanup();
         }

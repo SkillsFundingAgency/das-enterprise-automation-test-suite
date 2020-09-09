@@ -9,7 +9,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Apprentice
 {
     public class ApprenticeHubPage : CampaingnsPage
     {
-          protected override string PageTitle => "Error";
+          protected override string PageTitle => "Apprenticeship";
         //protected override string PageTitle => "BECOME";
 
         #region  Constants and Strings
@@ -61,6 +61,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Apprentice
 
         protected By AssesmentAndCertification => By.CssSelector("#fiu-app-hub-card-9");
 
+        private By CookieAcceptButton => By.CssSelector("#btn-cookie-accept");
         private By FiuBecomeAnApprenticeCard1 => By.XPath("//h3[contains(@class, 'fiu-card__heading') and contains(text(), 'Real stories')]");
         private By FiuBecomeAnApprenticeCard2 => By.XPath("//h3[contains(@class, 'fiu-card__heading') and contains(text(), 'What are the benefits of an apprenticeship?')]");
         private By FiuBecomeAnApprenticeCard3 => By.XPath("//h3[contains(@class, 'fiu-card__heading') and contains(text(), 'Advice for parents')]");
@@ -77,6 +78,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Apprentice
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
+
         #endregion
 
         public ApprenticeHubPage(ScenarioContext context) : base(context)
@@ -116,6 +118,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Apprentice
         public SetUpServicePage NavigateToSetUpServiceAccountPage()
         {
             formCompletionHelper.ClickElement(SetUpService);
+            formCompletionHelper.ClickElement(CookieAcceptButton);
             return new SetUpServicePage(_context);
         }
 

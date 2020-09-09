@@ -1,15 +1,15 @@
-﻿using TechTalk.SpecFlow;
+﻿using OpenQA.Selenium;
+using SFA.DAS.Campaigns.UITests.Project.Helpers;
+using SFA.DAS.UI.FrameworkHelpers;
+using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Apprentice
 {
-    public class SetUpServicePage : ApprenticeBasePage
+    public class SetUpServicePage:ApprenticeBasePage
     {
         protected override string PageTitle => "Page not found";
-        private ScenarioContext context;
+        protected override By PageHeader => By.CssSelector(".heading-xlarge");
 
-        public SetUpServicePage(ScenarioContext context):base(context)
-        {
-            pageInteractionHelper.VerifyPageLoad(PageHeader, PageTitle);
-        }
+        public SetUpServicePage(ScenarioContext context): base(context) { }
     }
 }

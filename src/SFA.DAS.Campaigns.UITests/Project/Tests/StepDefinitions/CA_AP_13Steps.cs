@@ -19,11 +19,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
         [Given(@"the user navigates to Home page and verifies the content")]
         public void GivenTheUserNavigatesToHomePageAndVerifiesTheContent()
         {
-            _stepsHelper.GoToFireItUpHomePage()
-                .VerifyFiuHomePageCard1()
-                .VerifyFiuHomePageCard2()
-                .VerifyFiuHomePageCard3()
-                .VerifyFiuHomePageCard4();
+            _stepsHelper.GoToFireItUpHomePage();
         }
     }
 }

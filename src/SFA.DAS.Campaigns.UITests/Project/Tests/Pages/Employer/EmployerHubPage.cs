@@ -35,7 +35,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
 
         protected By FavCount => By.CssSelector(".favourites-link__count");
 
-        protected By AreApprenticeshipRightForMe => By.Id("fiu-emp-menu-link-1");
+        protected By AreApprenticeshipRightForMe => By.Id("a[href='/apprentices/are-they-right-for-you']");
 
         protected By HowDoTheyWork => By.CssSelector("a[href= '/employers/how-do-they-work']");
 

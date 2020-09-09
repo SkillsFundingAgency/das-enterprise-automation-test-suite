@@ -8,7 +8,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Apprentice
 
         public InterviewPage(ScenarioContext context) : base(context)
         {
-            pageInteractionHelper.VerifyPageLoad(PageHeader, PageTitle);
+            //pageInteractionHelper.VerifyPageLoad(PageHeader, PageTitle);
         }
     }
 }

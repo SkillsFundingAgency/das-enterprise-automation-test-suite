@@ -5,7 +5,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Parent
 {
     public class ParentHubPage : CampaingnsPage 
     {
-        protected override string PageTitle => "HELP SHAPE THEIR CAREER";
+        protected override string PageTitle => "Page not found";
 
         protected override By PageHeader => By.Id("parents-their-career");
 

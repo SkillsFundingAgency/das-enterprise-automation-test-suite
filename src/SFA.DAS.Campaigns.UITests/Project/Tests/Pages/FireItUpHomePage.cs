@@ -10,7 +10,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
 {
     public class FireItUpHomePage : CampaingnsPage
     {
-        protected override string PageTitle => "APPRENTICESHIPS";
+        protected override string PageTitle => "Page not found";
 
         protected override By PageHeader => By.CssSelector(".fiu-homepage-banner__heading");
 
@@ -51,7 +51,11 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
         private By FiuHomePageCard4 => By.XPath("//h3[contains(@class, 'fiu-card__heading') and contains(text(), 'Find apprenticeship training')]");
         #endregion
 
-        public FireItUpHomePage(ScenarioContext context) : base(context) => _context = context;
+        public FireItUpHomePage(ScenarioContext context) : base(context)
+        {
+            _context = context;
+            pageInteractionHelper.VerifyPageLoad(PageHeader, PageTitle);
+        }
         
         public FireItUpHomePage AcceptCookieAndAlert()
         {
