@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using NUnit.Framework;
+using OpenQA.Selenium;
 using System;
 using TechTalk.SpecFlow;
 
@@ -17,7 +18,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private By EditApprenticeStatusLink => By.LinkText("Edit status");
         private By EditStopDateLink => By.Id("editStopDateLink");
         private By EditApprenticeDetailsLink => By.LinkText("Edit");
-        
+        private By ApprenticeshipStatus => By.CssSelector("#app-status tbody tr td");
+        private By StatusDateTitle => By.CssSelector("#app-status tbody tr:nth-child(2) th");
+        private By CompletionDate => By.Id("completionDate");
+
         public ApprenticeDetailsPage(ScenarioContext context) : base(context) => _context = context;
 
         public EditApprenticePage ClickEditApprenticeDetailsLink()
@@ -51,5 +55,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             else
                 return true;
         }
+
+        public string GetApprenticeshipStatus() => pageInteractionHelper.GetText(ApprenticeshipStatus);
+        public string GetStatusDateTitle() => pageInteractionHelper.GetText(StatusDateTitle);
+        public string GetCompletionDate() => pageInteractionHelper.GetText(CompletionDate);
+        public bool IsEditApprenticeStatusLinkVisible() => pageInteractionHelper.IsElementDisplayed(EditApprenticeStatusLink);
+        public bool IsEditApprenticeDetailsLinkVisible() => pageInteractionHelper.IsElementDisplayed(EditApprenticeDetailsLink);
+
     }
 }

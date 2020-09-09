@@ -40,5 +40,6 @@ namespace SFA.DAS.Approvals.UITests.Project
         internal static string GetCohortReference(this ObjectContext objectContext) => objectContext.Get(CohortReference);
 
         internal static string GetReservationId(this ObjectContext objectContext) => objectContext.Get(ReservationId);
+
     }
 }
