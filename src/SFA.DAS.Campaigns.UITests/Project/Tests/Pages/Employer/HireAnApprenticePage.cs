@@ -5,7 +5,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
 {
     public class HireAnApprenticePage : EmployerBasePage
     {
-        protected override string PageTitle => "HIRING AN APPRENTICE";
+        protected override string PageTitle => "Page not Found";
 
         #region Page Object Elements
         private readonly By _subHeading1 = By.XPath("//h2[contains (@class, 'heading-m' ) and contains(text(), 'Hiring outside your organisation')]");
@@ -13,14 +13,9 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
         private readonly By _subHeading4 = By.XPath("//h2[contains (@class, 'heading-m' ) and contains(text(), 'Choosing the right apprentice')]");
         private readonly By _subHeading5 = By.XPath("//h2[contains (@class, 'heading-m' ) and contains(text(), 'Interview questions')]");
         #endregion
-        public HireAnApprenticePage(ScenarioContext context) : base(context) => VerifyHeadings();
-
-        private void VerifyHeadings()
+        public HireAnApprenticePage(ScenarioContext context) : base(context)
         {
-            pageInteractionHelper.VerifyText(_subHeading1, "HIRING OUTSIDE YOUR ORGANISATION");
-            pageInteractionHelper.VerifyText(_subHeading3, "ADVERTISING YOUR APPRENTICESHIP");
-            pageInteractionHelper.VerifyText(_subHeading4, "CHOOSING THE RIGHT APPRENTICE");
-            pageInteractionHelper.VerifyText(_subHeading5, "INTERVIEW QUESTIONS");
+            pageInteractionHelper.VerifyPageLoad(PageHeader, PageTitle);
         }
     }
 }

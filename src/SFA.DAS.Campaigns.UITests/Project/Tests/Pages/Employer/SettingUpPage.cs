@@ -5,7 +5,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
 {
     public class SettingItUpPage : EmployerBasePage
     {
-        protected override string PageTitle => "Setting it up";
+        protected override string PageTitle => "Page not Found";
         protected override By PageHeader => By.CssSelector(".govuk-heading-xl");
 
         #region Page Object Elements
@@ -26,6 +26,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
         public SettingItUpPage(ScenarioContext context) : base(context)
         {
             _context = context;
+            pageInteractionHelper.VerifyPageLoad(PageHeader, PageTitle);
         }
     }
 }

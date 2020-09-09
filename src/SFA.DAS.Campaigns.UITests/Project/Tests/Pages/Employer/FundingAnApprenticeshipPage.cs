@@ -5,7 +5,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
 {
     public class FundingAnApprenticeshipPage : EmployerBasePage
     {
-        protected override string PageTitle => "FUNDING AN APPRENTICESHIP";
+        protected override string PageTitle => "Page not found";
 
         #region Page Object Element
         private readonly By _subHeading5 = By.XPath("//h2[contains (@class, 'heading-m' ) and contains(text(), 'Apprenticeships in Scotland, Northern Ireland and Wales')]");
@@ -16,12 +16,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
         public FundingAnApprenticeshipPage(ScenarioContext context) : base(context)
         {
             _context = context;
-            VerifyHeadings();
-        }
-
-        private void VerifyHeadings()
-        { 
-            pageInteractionHelper.VerifyText(_subHeading5, "APPRENTICESHIPS IN SCOTLAND, NORTHERN IRELAND AND WALES");
+            pageInteractionHelper.VerifyPageLoad(PageHeader, PageTitle);
         }
 
         public FundingAnApprenticeshipForNonLevyEmployerPage ClickContinueButton()

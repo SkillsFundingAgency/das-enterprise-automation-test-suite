@@ -33,7 +33,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
 
         private By Apprentice => By.CssSelector("a[href*='apprentice']");
 
-        private By Employer => By.CssSelector("a[href*='employer']");
+        private By Employer => By.CssSelector("a[href*='employers']");
         
         private By Parent => By.CssSelector("a[href*='parents']");
         

@@ -5,7 +5,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
 {
     public class FundingAnApprenticeshipForNonLevyEmployerPage: EmployerBasePage
     {
-        protected override string PageTitle => "FUNDING AN APPRENTICESHIP FOR NON-LEVY EMPLOYERS";
+        protected override string PageTitle => "Page not found";
         private readonly ScenarioContext _context;
 
         #region Page Object Element
@@ -16,7 +16,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
         public FundingAnApprenticeshipForNonLevyEmployerPage(ScenarioContext context):base(context)
         {
             _context = context;
-            VerifyPage();
+            pageInteractionHelper.VerifyPageLoad(PageHeader, PageTitle);
         }
     }
 }
