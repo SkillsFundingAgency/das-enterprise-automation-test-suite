@@ -4,11 +4,8 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Apprentice
 {
     public class BrowseInterestPage : ApprenticeBasePage
     {
-        private ScenarioContext context;
+        private readonly ScenarioContext _context;
 
-        public BrowseInterestPage(ScenarioContext context): base(context)
-        {
-            pageInteractionHelper.VerifyPageLoad(PageHeader, PageTitle);
-        }
+        public BrowseInterestPage(ScenarioContext context): base(context) { }
     }
 }

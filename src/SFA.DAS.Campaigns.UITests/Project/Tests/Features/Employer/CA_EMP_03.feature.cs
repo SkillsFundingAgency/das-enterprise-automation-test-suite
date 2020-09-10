@@ -109,6 +109,9 @@ this.ScenarioInitialize(scenarioInfo);
 #line 7
  testRunner.Given("the user navigates to the funding an apprenticeship page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
+#line 8
+ testRunner.Then("the links are not broken", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
             }
             this.ScenarioCleanup();
         }

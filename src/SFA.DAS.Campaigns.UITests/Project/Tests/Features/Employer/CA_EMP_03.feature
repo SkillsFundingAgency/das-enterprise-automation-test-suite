@@ -5,5 +5,5 @@
 @regression
 Scenario: CA_EMP_03_Check Funding An Apprenticeship Page Details
 	Given the user navigates to the funding an apprenticeship page
-	#Then the links are not broken
-	#And the video links are not broken
+	Then the links are not broken
+

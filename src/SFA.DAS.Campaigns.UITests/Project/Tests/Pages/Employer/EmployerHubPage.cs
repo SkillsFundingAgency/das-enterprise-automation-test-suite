@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.Campaigns.UITests.Project.Tests.Pages.RegisterInterest;
 using System;
 using TechTalk.SpecFlow;
 
@@ -34,9 +35,9 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
         protected By Basket => By.CssSelector("a[href='/Basket/View']");
 
         protected By FavCount => By.CssSelector(".favourites-link__count");
-
-        protected By AreApprenticeshipRightForMe => By.Id("a[href='/apprentices/are-they-right-for-you']");
-
+       
+        protected By AreTheyRightForYou = By.CssSelector("a[href='/employers/are-they-right-for-you']");
+        
         protected By HowDoTheyWork => By.CssSelector("a[href= '/employers/how-do-they-work']");
 
         protected By SettingItUp => By.CssSelector("a[href='/employers/setting-it-up']");
@@ -49,7 +50,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
 
         protected By RealStories => By.CssSelector("#fiu-emp-hub-card-1");
 
-        protected By EmployerBenefits => By.CssSelector("#lfiu-emp-hub-card-2");
+        protected By EmployerBenefits => By.CssSelector("#fiu-emp-hub-card-2");
 
         protected By HiringAnApprentice => By.CssSelector("#fiu-emp-hub-card-3");
 
@@ -68,6 +69,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
         protected By ChooseATrainingProvider => By.CssSelector("#fiu-emp-hub-card-9");
 
         protected By SetUpServiceAccountr => By.CssSelector("#fiu-emp-hub-card-10");
+        protected By RegisterInterest => By.CssSelector("#fiu-panel-link-reg-int-emp");
 
         private By FiuHireAnApprenticeCard1 => By.XPath("//h3[contains(@class, 'fiu-card__heading') and contains(text(), 'Real stories')]");
         private By FiuHireAnApprenticeCard2 => By.XPath("//h3[contains(@class, 'fiu-card__heading') and contains(text(), 'Benefits to your organisation')]");
@@ -93,9 +95,16 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
             pageInteractionHelper.VerifyPageLoad(PageHeader, PageTitle);
         }
 
-        //public EmployerRealStoriesPage NavigateToRealStoriesPage() => NavigateToAreApprenticeshipRightForYou(RealStories, (c) => new EmployerRealStoriesPage(c));
-
-        //public EmpBenefitsPage NavigateToEmpBenefitsPage() => NavigateToAreApprenticeshipRightForYou(EmployerBenefits, (c) => new EmpBenefitsPage(c));
+        public EmployerRealStoriesPage NavigateToRealStoriesPage()
+        {
+            formCompletionHelper.ClickElement(RealStories);
+            return new EmployerRealStoriesPage(_context);
+        }
+        public EmpBenefitsPage NavigateToEmpBenefitsPage()
+        {
+            formCompletionHelper.ClickElement(EmployerBenefits);
+            return new EmpBenefitsPage(_context);
+        }
 
         public FundingAnApprenticeshipPage NavigateToFundingAnApprenticeshipPage()
         {
@@ -105,7 +114,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
 
         public AreTheyRightFoeYouPage NavigateToAreTheyRightForYouPage()
         {
-            formCompletionHelper.ClickElement(AreApprenticeshipRightForMe);
+            formCompletionHelper.ClickElement(AreTheyRightForYou);
             return new AreTheyRightFoeYouPage(_context);
         }
 
@@ -166,6 +175,11 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
         {
             formCompletionHelper.ClickElement(EnployerGuide);
             return new EmployerGuidePage(_context);
+        }
+        public RegisterInterestPage NavigateToRegisterInterestPage()
+        {
+            formCompletionHelper.ClickElement(RegisterInterest);
+            return new RegisterInterestPage(_context);
         }
 
         //     private TResult NavigateToAreApprenticeshipRightForYou<TResult>(By childLocator, Func<ScenarioContext, TResult> func) => NavigateTo(AreApprenticeshipRightForYou, childLocator, func);

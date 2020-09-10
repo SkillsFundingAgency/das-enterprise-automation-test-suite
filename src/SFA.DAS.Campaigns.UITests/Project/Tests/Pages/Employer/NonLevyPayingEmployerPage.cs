@@ -3,7 +3,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
 {
-    public class FundingAnApprenticeshipForNonLevyEmployerPage: EmployerBasePage
+    public class NonLevyPayingEmployerPage: EmployerBasePage
     {
         protected override string PageTitle => "Page not found";
         private readonly ScenarioContext _context;
@@ -13,10 +13,6 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
         private readonly By _nonLevyText = By.XPath("//div[@class='page']/p");
         #endregion
 
-        public FundingAnApprenticeshipForNonLevyEmployerPage(ScenarioContext context):base(context)
-        {
-            _context = context;
-            pageInteractionHelper.VerifyPageLoad(PageHeader, PageTitle);
-        }
+        public NonLevyPayingEmployerPage(ScenarioContext context):base(context) { }
     }
 }
