@@ -48,4 +48,6 @@
     public class SupportConsoleTier1User : LoginUser { }
 
     public class SupportConsoleTier2User : LoginUser { }
+
+    public class EILevyUser : LoginUser { }
 }
