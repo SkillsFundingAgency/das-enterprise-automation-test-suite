@@ -192,5 +192,15 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
         [Then(@"Apprentice details or status can no longer be changed")]
         public void ThenApprenticeDetailsOrStatusCanNoLongerBeChanged() => _employerStepsHelper.ValidateApprenticeDetailsCanNoLongerBeChanged();
+
+        [Given(@"the Employer adds (.*) apprentices (Aged16to24|AgedAbove25) as of 01AUG2020 with start date as Month (.*) and Year (.*)")]
+        public void GivenTheEmployerAddsApprenticesOfSpecifiedAgeCategorywithStartDateAsMentioned(int numberOfApprentices, string eIAgeCategoryAsOfAug2020, int eIStartmonth, int eIStartyear)
+        {
+            _objectContext.SetIsEIJourney(true);
+            _objectContext.SetEIAgeCategoryAsOfAug2020(eIAgeCategoryAsOfAug2020);
+            _objectContext.SetEIStartMonth(eIStartmonth);
+            _objectContext.SetEIStartYear(eIStartyear);
+            TheEmployerApprovesCohortAndSendsToProvider(numberOfApprentices);
+        }
     }
 }

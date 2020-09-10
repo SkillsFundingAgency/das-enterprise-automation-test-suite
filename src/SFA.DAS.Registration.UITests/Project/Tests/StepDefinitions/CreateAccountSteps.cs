@@ -144,8 +144,9 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         [Then(@"the Employer Home page is displayed")]
         public void TheEmployerHomePageIsDisplayed() => _objectContext.SetAccountId(new HomePage(_context).AccountId());
 
+        [Given(@"an Employer creates a Non Levy Account and Signs the Agreement")]
         [When(@"an Employer creates a Non Levy Account and Signs the Agreement")]
-        public void GivenAnEmployerCreatesANonLevyAccountAndSignsTheAgreement() =>
+        public void EmployerCreatesANonLevyAccountAndSignsTheAgreement() =>
             GivenAnEmployerAccountWithSpecifiedTypeOrgIsCreatedAndAgeementIsSigned(OrgType.Company);
 
         [When(@"an Employer creates a Non Levy Account and not Signs the Agreement during registration")]
@@ -170,8 +171,9 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             DoNotSignTheAgreement();
         }
 
+        [Given(@"an Employer creates a Levy Account and Signs the Agreement")]
         [When(@"an Employer creates a Levy Account and Signs the Agreement")]
-        public void GivenAnEmployerCreatesALevyAccountAndSignsTheAgreement()
+        public void EmployerCreatesALevyAccountAndSignsTheAgreement()
         {
             _accountCreationStepsHelper.AddLevyDeclarations();
             GivenAnEmployerAccountWithSpecifiedTypeOrgIsCreatedAndAgeementIsSigned(OrgType.Company);
