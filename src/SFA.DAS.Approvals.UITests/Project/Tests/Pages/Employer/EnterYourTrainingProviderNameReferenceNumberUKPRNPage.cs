@@ -13,6 +13,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         protected override By PageHeader => By.Id("jsChgTitle");
         private By UKProviderReferenceNumberText => By.Id("Ukprn");
+        protected override By ContinueButton => By.Id("Ukprn-button");
 
         public EnterYourTrainingProviderNameReferenceNumberUKPRNPage(ScenarioContext context) : base(context) => _context = context;
 
