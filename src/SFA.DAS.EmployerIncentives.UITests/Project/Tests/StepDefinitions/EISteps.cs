@@ -1,4 +1,5 @@
-﻿using SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages;
+﻿using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
+using SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages;
 using SFA.DAS.Login.Service;
 using SFA.DAS.Login.Service.Helpers;
 using SFA.DAS.Registration.UITests.Project.Helpers;
@@ -17,11 +18,15 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
         private QualificationQuestionShutterPage _qualificationQuestionShutterPage;
         private EmployerAgreementShutterPage _employerAgreementShutterPage;
         private readonly EmployerPortalLoginHelper _employerPortalLoginHelper;
+        private readonly ProviderStepsHelper _providerStepsHelper;
+        private readonly EmployerHomePageStepsHelper _homePageStepsHelper;
 
         public EISteps(ScenarioContext context)
         {
             _context = context;
             _employerPortalLoginHelper = new EmployerPortalLoginHelper(context);
+            _providerStepsHelper = new ProviderStepsHelper(context);
+            _homePageStepsHelper = new EmployerHomePageStepsHelper(_context);
         }
 
         [When(@"the Employer navigates back to Qualification page for (Single|Multiple) entity account")]
@@ -58,11 +63,18 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
             _employerAgreementShutterPage = _qualificationQuestionPage.SelectYesAndContinueForUnSignedAgreementScenario();
 
         [Then(@"Employer Home page is displayed on clicking on Return to Account home link on Employer agreement shutter page")]
-        public void ThenEmployerHomePageIsDisplayedOnClickingOnReturnToAccountHomeLinkOnEmployerAgreementShutterPage() => 
+        public void ThenEmployerHomePageIsDisplayedOnClickingOnReturnToAccountHomeLinkOnEmployerAgreementShutterPage() =>
             _employerAgreementShutterPage.ClickOnReturnToAccountHomeLink();
 
         [Then(@"Your Agreements page is displayed on clicking on View agreement button on Employer agreement shutter page")]
         public void ThenYourAgreementsPageIsDisplayedOnClickingOnViewAgreementButtonOnEmployerAgreementShutterPage() =>
             _employerAgreementShutterPage.ClickOnViewAgreementButton();
+
+        [Given(@"the Provider approves the apprenticeship request")]
+        public void TheProviderAddsUlnsAndApprovesTheCohorts()
+        {
+            _providerStepsHelper.Approve();
+            _homePageStepsHelper.GotoEmployerHomePage();
+        }
     }
 }
