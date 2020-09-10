@@ -79,9 +79,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Then(@"a new live apprenticeship record is created")]
         public void ThenANewLiveApprenticeshipRecordIsCreated()
         {
-            var manageYourApprenticePage = _employerStepsHelper.GoToManageYourApprenticesPage();
-
-            manageYourApprenticePage.VerifyApprenticeExists();
+            _employerStepsHelper
+                .GoToManageYourApprenticesPage()
+                .VerifyApprenticeExists();            
         }
 
         [When(@"new employer rejects the cohort")]

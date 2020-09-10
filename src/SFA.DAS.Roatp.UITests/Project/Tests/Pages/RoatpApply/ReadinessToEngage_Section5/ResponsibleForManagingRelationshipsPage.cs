@@ -11,11 +11,11 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.ReadinessToEngage
         private readonly ScenarioContext _context;
         #endregion
 
-        private By FullName => By.Id("RTE-22.1");
+        private By FullName => By.Id("RTE-22-1");
 
-        private By Email => By.Id("RTE-22.2");
+        private By Email => By.Id("RTE-22-2");
 
-        private By ContactNumber => By.Id("RTE-22.3");
+        private By ContactNumber => By.Id("RTE-22-3");
 
         public ResponsibleForManagingRelationshipsPage(ScenarioContext context) : base(context)
         {
