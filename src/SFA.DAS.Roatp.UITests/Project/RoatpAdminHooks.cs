@@ -10,7 +10,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Roatp.UITests.Project
 {
-    [Binding, Scope(Tag = "roatpadmin"), Scope(Tag = "roatpassessor")]
+    [Binding, Scope(Tag = "roatpadmin"), Scope(Tag = "roatpassessor") ]
     public class RoatpAdminHooks
     {
         private readonly ScenarioContext _context;
@@ -92,6 +92,13 @@ namespace SFA.DAS.Roatp.UITests.Project
         {
             if (_context.ScenarioInfo.Tags.Contains("roatpassessor"))
                 _roatpApplyClearDownDataHelpers.AssessorClearDownDataFromApply(_objectContext.GetUkprn());
+        }
+
+        [BeforeScenario(Order = 39)]
+        public void ClearDownModeratorAdminData()
+        {
+            if (_context.ScenarioInfo.Tags.Contains("roatpmoderator"))
+                _roatpApplyClearDownDataHelpers.ModeratorClearDownDataFromApply(_objectContext.GetUkprn());
         }
     }
 }
