@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using System;
 using System.Linq;
 
 namespace SFA.DAS.UI.FrameworkHelpers
@@ -73,6 +74,6 @@ namespace SFA.DAS.UI.FrameworkHelpers
             }
 
             SelectRowFromTable(byLinkText, byKey, tableSelector);
-        }
+        }    
     }
 }

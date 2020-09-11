@@ -1,10 +1,12 @@
-﻿using TechTalk.SpecFlow;
+﻿using OpenQA.Selenium;
+using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 {
     public class ConfirmTrainingProviderPermissionsPage : RegistrationBasePage
     {
         protected override string PageTitle => "Confirm permissions";
+        protected override By ContinueButton => By.CssSelector("#main-content .govuk-button");
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
