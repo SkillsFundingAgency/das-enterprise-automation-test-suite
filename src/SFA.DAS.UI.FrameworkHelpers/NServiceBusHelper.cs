@@ -6,22 +6,18 @@ using SFA.DAS.Payments.ProviderPayments.Messages;
 using System;
 using System.Threading.Tasks;
 
-
-namespace SFA.DAS.Approvals.UITests.Project.Helpers.NServiceBusHelpers
+namespace SFA.DAS.UI.FrameworkHelpers
 {
     public class NServiceBusHelper
     {
-        private const string EndpointName = "SFA.DAS.Approvals.RegressionTests";
-        protected readonly string connectionString;
+        private readonly string _connectionString;
 
-        public NServiceBusHelper(ApprovalsConfig approvalsConfig) => connectionString = approvalsConfig.ServiceBusConnectionString;
-        
-        public void PublishRecordedAct1CompletionPaymentEvent(int apprenticeshipId) => Publish(new RecordedAct1CompletionPayment { ApprenticeshipId = apprenticeshipId, EventTime = DateTimeOffset.UtcNow }).Wait();
+        public NServiceBusHelper(string connectionString) => _connectionString = connectionString;
 
-        private async Task Publish(object eventName)
+        public async Task Publish(string endpointName, object eventName)
         {
-            var endpointConfiguration = new EndpointConfiguration(EndpointName)
-                .UseErrorQueue($"{EndpointName}-errors")
+            var endpointConfiguration = new EndpointConfiguration(endpointName)
+                .UseErrorQueue($"{endpointName}-errors")
                 .UseInstallers()
                 .UseMessageConventions()
                 .UseNewtonsoftJsonSerializer();
@@ -33,7 +29,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.NServiceBusHelpers
             var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
             var ruleNameShortener = new RuleNameShortener();
 
-            transport.ConnectionString(connectionString);
+            transport.ConnectionString(_connectionString);
             transport.RuleNameShortener(ruleNameShortener.Shorten);
             transport.Transactions(TransportTransactionMode.ReceiveOnly);
 
@@ -43,7 +39,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.NServiceBusHelpers
             Console.WriteLine($"Published {nameof(eventName)}");
 
             await endpoint.Stop();
-            
         }
     }
 }
