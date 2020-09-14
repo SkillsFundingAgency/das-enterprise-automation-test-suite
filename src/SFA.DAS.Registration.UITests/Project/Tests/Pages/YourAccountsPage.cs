@@ -21,10 +21,10 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             VerifyPage();
         }
 
-        public UsingYourGovtGatewayDetailsPage AddNewAccount()
+        public AddAPAYESchemePage AddNewAccount()
         {
             formCompletionHelper.ClickElement(AddNewAccountButton);
-            return new UsingYourGovtGatewayDetailsPage(_context);
+            return new AddAPAYESchemePage(_context);
         }
 
         public HomePage GoToHomePage(string organisationName)
