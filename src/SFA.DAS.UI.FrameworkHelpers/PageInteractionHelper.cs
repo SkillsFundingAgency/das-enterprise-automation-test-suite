@@ -197,10 +197,12 @@ namespace SFA.DAS.UI.FrameworkHelpers
             _webDriver.SwitchTo().DefaultContent();
         }
 
-        public void SwitchToFrame(By locator)
+        public string SwitchFrameAndGetText(By iFrameFieldLocator, By iFrameBodyLocator)
         {
-            var wait = new WebDriverWait(_webDriver, TimeSpan.FromSeconds(15));
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.FrameToBeAvailableAndSwitchToIt(locator));
+            _webDriver.SwitchTo().Frame(_webDriver.FindElement(iFrameFieldLocator));
+            var text = ((IJavaScriptExecutor)_webDriver).ExecuteScript($"return arguments[0].innerHTML", _webDriver.FindElement(iFrameBodyLocator));
+            _webDriver.SwitchTo().DefaultContent();
+            return (string)text;
         }
 
         public string GetText(By locator) => GetText(() => FindElement(locator));

@@ -15,12 +15,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.MailinatorPages
 
         public MailinatorEmailPage(ScenarioContext context) : base(context) => VerifyPage();
 
-        public bool VerifyAccessCode(string expectedCode) => pageInteractionHelper.VerifyText(GetAccessCodeFromEmailBody(), expectedCode);
-
-        private string GetAccessCodeFromEmailBody()
-        {
-            pageInteractionHelper.SwitchToFrame(EmailBodyFrame);
-            return pageInteractionHelper.GetText(AccessCodeText);
-        }
+        public bool VerifyAccessCode(string expectedCode) => pageInteractionHelper.VerifyText(pageInteractionHelper.SwitchFrameAndGetText(EmailBodyFrame, AccessCodeText), expectedCode);
     }
 }
