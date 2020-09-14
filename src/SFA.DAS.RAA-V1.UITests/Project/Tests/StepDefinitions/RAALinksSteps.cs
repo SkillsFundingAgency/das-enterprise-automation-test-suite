@@ -6,14 +6,9 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.StepDefinitions
     [Binding]
     public class RAALinksSteps
     {
-        private readonly ScenarioContext _context;
         private readonly RAAStepsHelper _raaStepsHelper;
 
-        public RAALinksSteps(ScenarioContext context)
-        {
-            _context = context;
-            _raaStepsHelper = new RAAStepsHelper(context);
-        }
+        public RAALinksSteps(ScenarioContext context) => _raaStepsHelper = new RAAStepsHelper(context);
 
         [Then(@"the Provider is able to search and select a Candidate")]
         public void ThenTheProviderIsAbleToSearchAndSelectACandidate() => _raaStepsHelper.SelectACandidate();

@@ -32,6 +32,13 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         public void Click(By locator) => ClickElement(locator);
 
+        public void SwitchFrameAndEnterText(By iFrameFieldLocator, By iFrameBodyLocator, string text)
+        {
+            _webDriver.SwitchTo().Frame(_webDriver.FindElement(iFrameFieldLocator));
+            ((IJavaScriptExecutor)_webDriver).ExecuteScript($"arguments[0].innerHTML = '{text}'", _webDriver.FindElement(iFrameBodyLocator));
+            _webDriver.SwitchTo().DefaultContent();
+        }
+
         public void EnterText(IWebElement element, string text)
         {
             element.Clear();
