@@ -66,9 +66,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         public void ThenTheEmployerCanStopTheWaitingToStartApprentice()
         {
             _employerStepsHelper.ViewCurrentApprenticeDetails()
-            .ClickEditStatusLink()
-            .SelectStopAndContinueForANonStartedApprentice()
-            .SelectYesAndConfirm();
+              .ClickEditStatusLink()
+              .SelectStopAndContinueForAWaitingToStartApprentice()
+              .ClickARadioButtonAndContinue()
+              .SelectYesAndConfirm()
+              .ValidateRedundancyStatus();
         }
 
         [Then(@"the ILR should be matched and datalock is resolved")]

@@ -44,5 +44,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             Continue();
             return new StopApprenticeshipPage(_context);
         }
+        public HasTheApprenticeBeenMadeRedundantPage SelectStopAndContinueForAWaitingToStartApprentice()
+        {
+            formCompletionHelper.SelectRadioOptionByForAttribute(ChangeTypeOptions, "ChangeType-Stop");
+            Continue();
+            return new HasTheApprenticeBeenMadeRedundantPage(_context);
+        }
     }
 }
