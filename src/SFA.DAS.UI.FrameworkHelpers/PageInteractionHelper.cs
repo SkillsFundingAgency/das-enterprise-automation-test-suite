@@ -1,6 +1,5 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
-using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -190,17 +189,10 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         public void UnFocusTheElement(IWebElement element) => new Actions(_webDriver).MoveToElement(element).Perform();
 
-        public void SwitchFrame(By iFrameFieldLocator, By iFrameBodyLocator, string text)
+        public string GetTextUsingJavaScript(By iFrameBodyLocator)
         {
-            _webDriver.SwitchTo().Frame(_webDriver.FindElement(iFrameFieldLocator));
-            ((IJavaScriptExecutor)_webDriver).ExecuteScript($"arguments[0].innerHTML = '{text}'", _webDriver.FindElement(iFrameBodyLocator));
-            _webDriver.SwitchTo().DefaultContent();
-        }
-
-        public void SwitchToFrame(By locator)
-        {
-            var wait = new WebDriverWait(_webDriver, TimeSpan.FromSeconds(15));
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.FrameToBeAvailableAndSwitchToIt(locator));
+            var text = ((IJavaScriptExecutor)_webDriver).ExecuteScript($"return arguments[0].innerHTML", _webDriver.FindElement(iFrameBodyLocator));
+            return (string)text;
         }
 
         public string GetText(By locator) => GetText(() => FindElement(locator));

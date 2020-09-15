@@ -41,41 +41,35 @@ namespace SFA.DAS.RAA_V2.Service.Project.Helpers
 
         private PreviewYourVacancyPage ChooseWage(WageTypePage wageTypePage, string wageType)
         {
-            switch (wageType)
+            return wageType switch
             {
-                case "National Minimum Wage":
-                    return wageTypePage.SelectNationalMinimumWage();
-                case "Fixed Wage Type":
-                    return wageTypePage.SelectFixedWageType();
-                default:
-                    return wageTypePage.SelectNationalMinimumWageForApprentices();
+                "National Minimum Wage" => wageTypePage.SelectNationalMinimumWage(),
+                "Fixed Wage Type" => wageTypePage.SelectFixedWageType(),
+                _ => wageTypePage.SelectNationalMinimumWageForApprentices(),
             };
+            ;
         }
 
         public ChooseApprenticeshipLocationPage ChooseEmployerName(EmployerNamePage employernamePage, string employername)
         {
-            switch (employername)
+            return employername switch
             {
-                case "existing-trading-name":
-                    return employernamePage.ChooseExistingTradingName();
-                case "anonymous":
-                    return employernamePage.ChooseAnonymous();
-                default:
-                    return employernamePage.ChooseRegisteredName();
+                "existing-trading-name" => employernamePage.ChooseExistingTradingName(),
+                "anonymous" => employernamePage.ChooseAnonymous(),
+                _ => employernamePage.ChooseRegisteredName(),
             };
+            ;
         }
 
         public ChooseApprenticeshipLocationPage ChooseEmployerNameForEmployerJourney(WhichEmployerNameDoYouWantOnYourAdvertPage whichEmployerNameDoYouWantOnYourAdvertPage, string employername)
         {
-            switch (employername)
+            return employername switch
             {
-                case "existing-trading-name":
-                    return whichEmployerNameDoYouWantOnYourAdvertPage.ChooseExistingTradingName();
-                case "anonymous":
-                    return whichEmployerNameDoYouWantOnYourAdvertPage.ChooseAnonymous();
-                default:
-                    return whichEmployerNameDoYouWantOnYourAdvertPage.ChooseRegisteredName();
+                "existing-trading-name" => whichEmployerNameDoYouWantOnYourAdvertPage.ChooseExistingTradingName(),
+                "anonymous" => whichEmployerNameDoYouWantOnYourAdvertPage.ChooseAnonymous(),
+                _ => whichEmployerNameDoYouWantOnYourAdvertPage.ChooseRegisteredName(),
             };
+            ;
         }
 
         public void SubmitVacancy(VacancyPreviewPart2Page previewPage, bool isApplicationMethodFAA, bool optionalFields)
