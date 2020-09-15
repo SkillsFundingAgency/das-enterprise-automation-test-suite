@@ -22,7 +22,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             _dataHelper = context.Get<ApprenticeDataHelper>();
         }
 
-
         public StopApprenticeshipPage ClickARadioButtonAndContinue()
         {
             List<string> RadioButtonList = new List<string> { "Yes", "No" };
@@ -31,9 +30,5 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             Continue();
             return new StopApprenticeshipPage(_context);
         }
-
-
-
-
     }
 }
