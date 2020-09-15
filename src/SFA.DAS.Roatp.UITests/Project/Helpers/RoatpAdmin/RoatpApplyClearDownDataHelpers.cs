@@ -25,13 +25,15 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.RoatpAdmin
 
         public void FHAClearDwnDataFromApply(string ukprn)
         {
-            var FhaResetQuery = $"UPDATE Apply set GatewayReviewStatus = 'Pass' , Applicationstatus = 'GatewayAssessed'," +
+            var FhaResetQuery = $"DECLARE @ApplicationID UNIQUEIDENTIFIER; " +
+            $" SELECT @ApplicationID = ApplicationId FROM dbo.apply WHERE [UKPRN] = {ukprn} " +
+            $"UPDATE Apply set GatewayReviewStatus = 'Pass' , Applicationstatus = 'GatewayAssessed'," +
             $" FinancialReviewStatus = 'New', FinancialGrade = null," +
             $" [Assessor1UserId] = null, [Assessor2UserId] = null, [Assessor1Name] = null, [Assessor2Name] = null," +
             $" [Assessor1ReviewStatus] = null, [Assessor2ReviewStatus] = null, [ModerationStatus] = 'New', " +
-            $" [OversightStatus] = 'New', [ApplicationDeterminedDate] = null WHERE [UKPRN] = {ukprn} " +
-            $" DELETE FROM dbo.AssessorPageReviewOutcome WHERE  [UKPRN] = {ukprn} " +
-            $" DELETE FROM dbo.ModeratorPageReviewOutcome WHERE  [UKPRN] = {ukprn} ";
+            $" [OversightStatus] = 'New', [ApplicationDeterminedDate] = null  WHERE ApplicationId =  @ApplicationID; " +
+            $" DELETE FROM dbo.AssessorPageReviewOutcome WHERE   ApplicationId =  @ApplicationID; " +
+            $" DELETE FROM dbo.ModeratorPageReviewOutcome WHERE  ApplicationId =  @ApplicationID";
 
             ExecuteSqlCommand(FhaResetQuery);
         }
