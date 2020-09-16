@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
@@ -51,9 +51,6 @@
     <Compile Update="Project\Tests\Features\FilterResults\FAT_FilterResults_01.feature.cs">
       <DependentUpon>%(Filename)</DependentUpon>
     </Compile>
-    <Compile Update="Project\Tests\Features\PageContent\FAT_PageContent_01.feature.cs">
-      <DependentUpon>%(Filename)</DependentUpon>
-    </Compile>
     <Compile Update="Project\Tests\Features\SearchTrainingAndProvider\FAT_SearchTrainingAndProvider_01.feature.cs">
       <DependentUpon>%(Filename)</DependentUpon>
     </Compile>
@@ -94,10 +91,6 @@
     <Visible>$(UsingMicrosoftNETSdk)</Visible>
     <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
   </SpecFlowFeatureFiles>
-  <SpecFlowFeatureFiles Update="Project\Tests\Features\PageContent\FAT_PageContent_01.feature">
-    <Visible>$(UsingMicrosoftNETSdk)</Visible>
-    <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
-  </SpecFlowFeatureFiles>
   <SpecFlowFeatureFiles Update="Project\Tests\Features\SearchTrainingAndProvider\FAT_SearchTrainingAndProvider_01.feature">
     <Visible>$(UsingMicrosoftNETSdk)</Visible>
     <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
@@ -110,7 +103,6 @@
 
 <ItemGroup>
   <Folder Include="Project\Tests\Features\SearchTrainingAndProvider\" />
-  <Folder Include="Project\Tests\Features\PageContent\" />
 </ItemGroup>
 
 </Project>
