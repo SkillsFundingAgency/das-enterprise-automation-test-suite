@@ -109,7 +109,20 @@ Please follow existing folder structure, folder name and file name so that it wo
 ## Automated SpecFlow Tests:
 Acceptance Tests must be written in Feature files (Project/Tests/Features/) using standard Gherkin language using Given, When, Then format with an associated step definition for each test step. Test steps in the scenarios explains the business conditions/behaviour and the associated step definition defines how the individual scenario steps should be automated.
 
-A tag must be provided (ex: @Regression, @Smoke) for each test scenario which groups the tests, this provides the option to select which group of tests to execute.  @Regression and @<projectname> tags are manadatory.
+## Specflow scenario tagging 
+
+1. Mandatory tags (these mandatory tags are used for test execution)
+	- ```@regression``` (these scenarios will be picked up by enterprise test suite)
+	- ```@<yourprojectname>``` (these scenarios will be picked up by project specific test suite)
+2. Reserved tags (these reserved tags are either used to drive the framework or to create test data)
+	- ```@levy, @nonlevy, @addpayedetails, @addtransferslevyfunds, @addlevyfunds, @donottakescreenshot``` (in registration)
+	- ```@liveapprentice, @waitingtostartapprentice, @currentacademicyearstartdate, @onemonthbeforecurrentacademicyearstartdate, @selectstandardcourse``` (in approvals)
+	- any tag starts with perf for ex : ```@perftestnonlevy, @perftestlevy``` (used to create test data for performance tests)
+3. Optional tags / requirement specific tags
+	- you can tag a scenario based on your interest / requirment for ex ```@<yourprojectnamee2e>``` - indicates e2e scenario 
+	- naming convention - all tags should be specified in lower cases and should start with your project name for ex: ```@<yourprojectnamee2e>```
+4. Non specflow tests
+	- its not mandatory to tag non specflow tests for ex: Unit tests.
 
 ## Running Tests:
 Once the solution is imported and built, open Test Explorer window (Test->Windows->Test Explorer) which shows all the tests generated from the feature files using the scenario titles. From Test Explorer, we can choose to run
