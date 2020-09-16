@@ -20,6 +20,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+	<PackageReference Include="SFA.DAS.NServiceBus" Version="16.0.7" />
+	<PackageReference Include="SFA.DAS.Payments.ProviderPayments.Messages" Version="0.0.69" />
 	<PackageReference Include="System.Runtime.InteropServices.RuntimeInformation" Version="4.3.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="3.1.5" />
     <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="3.1.5" />

@@ -72,7 +72,9 @@ namespace SFA.DAS.Approvals.UITests.Project
 
             _context.Set(new PublicSectorReportingSqlDataHelper(_approvalsConfig));
 
-            _context.Set(new NServiceBusHelper(_approvalsConfig));
+            var nServiceBusHelper = _context.Get<NServiceBusHelper>();
+
+            _context.Set(new PublishPaymentEvent(nServiceBusHelper));
         }
     }
 }

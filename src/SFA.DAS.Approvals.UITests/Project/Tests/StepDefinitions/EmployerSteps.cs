@@ -20,7 +20,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         private ApprenticeRequestsPage _apprenticeRequestsPage;
         private ReviewYourCohortPage _reviewYourCohortPage;        
         private ApprenticeDetailsPage _apprenticeDetailsPage;
-        private readonly NServiceBusHelper _nServiceBusHelper;
+        private readonly PublishPaymentEvent _publishPaymentEvent;
 
         public EmployerSteps(ScenarioContext context)
         {
@@ -28,7 +28,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _objectContext = context.Get<ObjectContext>();
             _employerStepsHelper = new EmployerStepsHelper(context);
             _dataHelper = context.Get<ApprenticeDataHelper>();
-            _nServiceBusHelper = context.Get<NServiceBusHelper>();
+            _publishPaymentEvent = context.Get<PublishPaymentEvent>();
         }
 
         [StepArgumentTransformation(@"(does ?.*)")]
@@ -178,7 +178,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         }
 
         [When(@"PaymentsCompletion event is received")]
-        public void WhenPaymentsCompletionEventIsReceived() => _nServiceBusHelper.PublishRecordedAct1CompletionPaymentEvent(_dataHelper.ApprenticeshipId());
+        public void WhenPaymentsCompletionEventIsReceived() => _publishPaymentEvent.PublishRecordedAct1CompletionPaymentEvent(_dataHelper.ApprenticeshipId());
 
         [Given(@"a new live apprentice record is created")]
         [Then(@"a new live apprentice record is created")]
