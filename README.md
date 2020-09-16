@@ -14,6 +14,87 @@ All other dependencies (ex: Selenium, drivers etc) are packaged within the solut
 
 Note: This framework is built with all standard libraries and ready to write new tests, an example test is also provided for reference. However solution, project & namespace must be renamed before writing tests.
 
+## Steps to add a new test project
+
+1. Right click the solution and add a ```Nunit Test Project (.Net core)``` project
+	- please use naming format (SFA.DAS.YourProjectName.UITests)
+	- you can remove the UnitTest1.cs file added by default
+	- update ```<PropertyGroup>``` node in the .csproj file to include ```<RootNamespace>``` 
+	```text
+	<PropertyGroup>
+		<TargetFramework>netcoreapp3.1</TargetFramework>
+		<RootNamespace>SFA.DAS.YourProjectName.UITests</RootNamespace>
+		<IsPackable>false</IsPackable>
+	</PropertyGroup>
+	```
+2. Add nuget depedencies ( you can edit the csproj file or you can choose to add it via nuget package manager either way make sure you add the same version as other projects)
+	- Microsoft.NET.Test.Sdk
+	- NUnit3TestAdapter
+	- Selenium.WebDriver.ChromeDriver
+	- SpecFlow.Tools.MsBuild.Generation
+	- SpecFlow.NUnit
+	
+3. Copy the below code to .csproj file to add link to nunitconfiguration.cs and specflow.json files
+```text
+	<ItemGroup>
+		<Compile Include="..\NUnitConfigurator.cs" Link="NUnitConfigurator.cs">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+		<Content Include="..\specflow.json" Link="specflow.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+	</ItemGroup>
+```
+
+4. Add ```SFA.DAS.YourProjectName.UITests.json```
+
+``` json
+{
+  "runtimeOptions": {
+    "tfm": "netcoreapp3.1",
+    "framework": {
+      "name": "Microsoft.NETCore.App",
+      "version": "3.1.5"
+    }
+  }
+}
+```
+5. Add ```appsettings.Environment.json```
+```json
+{
+  "local_EnvironmentName": "PP",
+  "ProjectName": "YourProjectName"
+}
+```
+6. Add ```appsettings.Project.BrowserStack.json```
+```json
+{
+  "BrowserStackSetting": {
+    "build": "SFA.DAS.YourProjectName.UITests"
+  }
+}
+```
+7. Add ```appsettings.Project.json``` (the project specific config)
+```json
+{
+  "YourProjectNameConfig": {
+    "ABC": "__ABC__"
+  }
+}
+```
+8. Add the following mandatory references to the .csproj file 
+```text
+	<ItemGroup>
+		<ProjectReference Include="..\SFA.DAS.TestDataExport\SFA.DAS.TestDataExport.csproj" />
+		<ProjectReference Include="..\SFA.DAS.ConfigurationBuilder\SFA.DAS.ConfigurationBuilder.csproj" />
+		<ProjectReference Include="..\SFA.DAS.UI.Framework\SFA.DAS.UI.Framework.csproj" />
+	</ItemGroup>
+```
+Please follow existing folder structure, folder name and file name so that it would be consistent with other project structure and naming conventions
+
 ## How to use User secrets
 1. Navigate to "%APPDATA%/Microsoft" Create Directory "UserSecrets" if you don't find it.
 2. Create a folder under "%APPDATA%/Microsoft/UserSecrets" folder in the format <ProjectName>_<EnvironmentName>_Secrets. You can get project name and environment name from "appsettings.Environment.json" file under your respective project(s). f.i. For Registration project, you will see below data in "appsettings.Environment.json" file, so create the folder as "Registration_PP_Secrets" (without the quotes)
