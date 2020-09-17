@@ -1,4 +1,5 @@
 ﻿using SFA.DAS.UI.Framework.TestSupport;
+using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
@@ -24,6 +25,8 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
             _helpersSetup.SetupFrameworkHelpers();
 
             _context.Set(new BrowserStackReportingService(_config.BrowserStackSetting));
+
+            _context.Set(new NServiceBusHelper(_config.NServiceBusConfig.ServiceBusConnectionString));
         }
     }
 }
