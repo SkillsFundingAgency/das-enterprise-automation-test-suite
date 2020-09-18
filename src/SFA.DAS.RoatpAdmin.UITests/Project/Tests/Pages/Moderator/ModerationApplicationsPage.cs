@@ -16,25 +16,6 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Moderator
 
         public ModerationApplicationsPage(ScenarioContext context) : base(context) => _context = context;
 
-        //public ModerationApplicationAssessmentOverviewPage ModeratorSelectsAssignToMeForMainProvider()
-        //{
-        //    formCompletionHelper.ClickElement(ModerationLink);
-        //    formCompletionHelper.ClickLinkByText(objectContext.GetProviderName());
-        //    return new ModerationApplicationAssessmentOverviewPage(_context);
-        //}
-
-        //public ModerationApplicationAssessmentOverviewPage ModeratorSelectsAssignToMeForSupportingProvider()
-        //{
-        //    formCompletionHelper.ClickElement(ModerationLink);
-        //    formCompletionHelper.ClickLinkByText(objectContext.GetProviderName());
-        //    return new ModerationApplicationAssessmentOverviewPage(_context);
-        //}
-
-        //public ModerationApplicationAssessmentOverviewPage ModeratorSelectsAssignToMeForEmployerProvider()
-        //{
-        //    formCompletionHelper.ClickElement(ModerationLink);
-        //    formCompletionHelper.ClickLinkByText(objectContext.GetProviderName());
-        //    return new ModerationApplicationAssessmentOverviewPage(_context);
-        //}
+    
     }
 }

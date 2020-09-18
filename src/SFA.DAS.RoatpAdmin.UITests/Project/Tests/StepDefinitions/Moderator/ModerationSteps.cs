@@ -41,15 +41,6 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.Moderator
             }
         }
 
-        //[When(@"selects the Employer provider route application from Moderation Tab")]
-        //public void WhenSelectsTheEmployerProviderRouteApplicationFromModerationTab()
-        //{
-        //    StaffDashboardPage staffDashboardPage = new StaffDashboardPage(_context);
-        //    staffDashboardPage.AccessAssessorAndModerationApplications()
-        //        .ModeratorSelectsAssignToMeForEmployerProvider();
-        //}
-
-
         [Then(@"the Moderator assesses all the sections of the application as PASS")]
         public void ThenTheModeratorAssessesAllTheSectionsOfTheApplicationAsPASS() =>
             _moderationApplicationAssessmentOverviewPage = _moderatorEndtoEndStepsHelper.CompleteAllSectionsWithPass((new ModerationApplicationAssessmentOverviewPage(_context)));
