@@ -14,7 +14,7 @@ All other dependencies (ex: Selenium, drivers etc) are packaged within the solut
 
 Note: This framework is built with all standard libraries and ready to write new tests, an example test is also provided for reference. However solution, project & namespace must be renamed before writing tests.
 
-## Steps to add a new test project
+## Steps to add a new test project:
 
 1. Right click the solution and add a ```Nunit Test Project (.Net core)``` project
 	- please use naming format (SFA.DAS.YourProjectName.UITests)
@@ -95,7 +95,7 @@ Note: This framework is built with all standard libraries and ready to write new
 ```
 Please follow existing folder structure, folder name and file name so that it would be consistent with other project structure and naming conventions
 
-## How to use User secrets
+## How to use User secrets:
 1. Navigate to "%APPDATA%/Microsoft" Create Directory "UserSecrets" if you don't find it.
 2. Create a folder under "%APPDATA%/Microsoft/UserSecrets" folder in the format <ProjectName>_<EnvironmentName>_Secrets. You can get project name and environment name from "appsettings.Environment.json" file under your respective project(s). f.i. For Registration project, you will see below data in "appsettings.Environment.json" file, so create the folder as "Registration_PP_Secrets" (without the quotes)
 ```json
@@ -124,7 +124,7 @@ Acceptance Tests must be written in Feature files (Project/Tests/Features/) usin
 4. Non specflow tests
 	- its not mandatory to tag non specflow tests for ex: Unit tests.
 
-## Running Tests:
+## Running Tests via Test Explorer:
 Once the solution is imported and built, open Test Explorer window (Test->Windows->Test Explorer) which shows all the tests generated from the feature files using the scenario titles. From Test Explorer, we can choose to run
 1. All Tests
 2. Failed/Passed/NotRun Tests
@@ -161,6 +161,14 @@ c:\> dotnet test C:\SFA\DFE-Standardised-Test-Automation-Framework\src\ESFA.UI.S
 
 c:\> dotnet vstest C:\SFA\DFE-Standardised-Test-Automation-Framework\src\SFA.DAS.PocProject.UITests\SFA.DAS.PocProject.UITests.dll /TestCaseFilter:"TestCategory=regression|FullyQualifiedName=Namespace.ClassName.MethodName"
 ```
+
+## Build and Release process:
+
+Every commit made (merge to master or a push to remote branch) will trigger a build process under `das-enterprise-automation-test-suite` pipeline using `azure-pipelines.yml` in Azure Devops which can then be deployed to a Release pipeline (where you can select a pipeline and specify the Browser and Test category value).
+
+Every weekday (morning between 12 to 5) most of the release pipeline is scheduled to execute against latest master which will give us an idea of the state of the appication.
+
+We use variable groups (library) to define and declare variables and the values will be shared among the piepline to avoid duplication. 
 
 ## Framework:
 
