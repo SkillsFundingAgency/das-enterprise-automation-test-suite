@@ -190,8 +190,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Then(@"the apprenticeship status changes to completed")]
         public void ThenTheApprenticeshipStatusChangesToCompleted() => _employerStepsHelper.ValidateCompletionStatus();
 
-        [Then(@"Apprentice details or status can no longer be changed")]
-        public void ThenApprenticeDetailsOrStatusCanNoLongerBeChanged() => _employerStepsHelper.ValidateApprenticeDetailsCanNoLongerBeChanged();
+        [Then(@"Apprentice status and details cannot be changed except the planned training finish date")]
+        public void ThenApprenticeStatusAndDetailsCannotBeChangedExceptThePlannedTrainingFinishDate() => _employerStepsHelper.ValidateApprenticeDetailsCanNoLongerBeChangedExceptEndDate();
+
 
         [Given(@"the Employer adds (.*) apprentices (Aged16to24|AgedAbove25) as of 01AUG2020 with start date as Month (.*) and Year (.*)")]
         public void GivenTheEmployerAddsApprenticesOfSpecifiedAgeCategorywithStartDateAsMentioned(int numberOfApprentices, string eIAgeCategoryAsOfAug2020, int eIStartmonth, int eIStartyear)

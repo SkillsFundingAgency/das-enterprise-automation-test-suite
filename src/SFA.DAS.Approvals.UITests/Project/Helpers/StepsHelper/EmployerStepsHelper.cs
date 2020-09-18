@@ -270,12 +270,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             Assert.AreEqual(apprenticeDetailsPage.GetCompletionDate(), expectedCompletionDate, "Validate Completion Date");
         }
 
-        internal void ValidateApprenticeDetailsCanNoLongerBeChanged()
+        internal void ValidateApprenticeDetailsCanNoLongerBeChangedExceptEndDate()
         {
             ApprenticeDetailsPage apprenticeDetailsPage = new ApprenticeDetailsPage(_context);
 
             Assert.IsFalse(apprenticeDetailsPage.IsEditApprenticeStatusLinkVisible());
-            Assert.IsFalse(apprenticeDetailsPage.IsEditApprenticeDetailsLinkVisible());
+            Assert.IsFalse(apprenticeDetailsPage.IsEditApprenticeDetailsLinkVisible()); 
+            Assert.True(apprenticeDetailsPage.IsEditEndDateLinkVisible());
         }
 
     }
