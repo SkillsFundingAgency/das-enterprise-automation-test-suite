@@ -164,11 +164,26 @@ c:\> dotnet vstest C:\SFA\DFE-Standardised-Test-Automation-Framework\src\SFA.DAS
 
 ## Build and Release process:
 
+### Build 
 Every commit made (merge to master or a push to remote branch) will trigger a build process under `das-enterprise-automation-test-suite` pipeline using `azure-pipelines.yml` in Azure Devops which can then be deployed to a Release pipeline (where you can select a pipeline and specify the Browser and Test category value).
+
+### Release 
+Every release pipeline would be picking up the build artifact from `das-enterprise-automation-test-suite` build
 
 Every weekday (morning between 12 to 5) most of the release pipeline is scheduled to execute against latest master which will give us an idea of the state of the appication.
 
-We use variable groups (library) to define and declare variables and the values will be shared among the piepline to avoid duplication. 
+### Variables
+We use variable groups (library) to define and declare the variables, and the values will be shared among the piepline to avoid duplication. 
+
+Any pipeline specfic variables like ```SQLServerAccountPassword, CosmosDBKey, ServiceBusAccessKey, Browser and TestCategory``` would be define and declare under pipeline private variables
+
+### Variable scope
+If the variables are defined in more than one place then vsts will prioritize in following order
+
+	1. Environment specfic pipeline private variable  
+	2. Release specific pipeline private variable
+	3. Environment specfic variable group
+	4. Release specific variable group
 
 ## Framework:
 
