@@ -173,8 +173,14 @@ Every release pipeline would be picking up the build artifact from `das-enterpri
 Every weekday (morning between 12 to 5) most of the release pipeline is scheduled to execute against latest master which will give us an idea of the state of the appication.
 
 ### Variables
-We use variable groups (library) to define and declare the variables, and the values will be shared among the piepline to avoid duplication. 
-
+We use variable groups (library) to define and declare the variables, and the values will be shared among the piepline to avoid duplication. They are
+```
+ 1. TEST Automation Suite Variables - will hold variables for TEST environment
+ 2. TEST2 Automation Suite Variables - will hold variables for TEST2 environment
+ 3. PreProd Automation Suite Variables - will hold variables for PP environment
+ 4. Release Automation Suite Variables - will hold variables at Release Level
+ 5. Release Automation Suite Variables (Db) - will hold DB variables at Release environment
+```
 Any pipeline specfic variables like ```SQLServerAccountPassword, CosmosDBKey, ServiceBusAccessKey, Browser and TestCategory``` would be define and declare under pipeline private variables
 
 ### Variable scope
