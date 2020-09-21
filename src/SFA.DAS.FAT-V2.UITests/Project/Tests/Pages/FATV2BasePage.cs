@@ -19,8 +19,9 @@ namespace SFA.DAS.FAT_V2.UITests.Project.Tests.Pages
         protected override By BackLink => By.CssSelector("a.link-back");
         protected By SearchTextField => By.Id("Keyword");
         protected virtual By SearchButton => By.Id("filters-submit");
-        protected virtual By FirstResultLink => By.ClassName("das-search-results__link");
+        protected virtual By FirstResultLink => By.ClassName("das-no-wrap");
         #endregion
+        
         protected FATV2BasePage(ScenarioContext context) : base(context)
         {
             _context = context;

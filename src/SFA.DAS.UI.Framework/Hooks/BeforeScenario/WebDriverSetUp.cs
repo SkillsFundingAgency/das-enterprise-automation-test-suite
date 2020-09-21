@@ -70,15 +70,12 @@ namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario
 
         private string FindVstsDriverServiceLocation(string executableName)
         {
-            switch (true)
+            return true switch
             {
-                case bool _ when (executableName == FirefoxDriverServiceName):
-                    return _driverLocationConfig.GeckoWebDriver;
-                case bool _ when (executableName == InternetExplorerDriverServiceName):
-                    return _driverLocationConfig.IEWebDriver;
-                default:
-                    return _driverLocationConfig.ChromeWebDriver;
-            }
+                bool _ when (executableName == FirefoxDriverServiceName) => _driverLocationConfig.GeckoWebDriver,
+                bool _ when (executableName == InternetExplorerDriverServiceName) => _driverLocationConfig.IEWebDriver,
+                _ => _driverLocationConfig.ChromeWebDriver,
+            };
         }
     }
 }

@@ -1,10 +1,17 @@
-﻿using System;
+﻿
+/*
+ * As of 11/09/2020
+ * This class is used to create Employer user through via a script
+ * we have kept this file commented for future reference
+ * <PackageReference Include="Microsoft.PowerShell.SDK" Version="7.0.3" /> is needed to execute
+using System;
 using System.Diagnostics;
 using System.IO;
 using System.Management.Automation;
 using System.Management.Automation.Runspaces;
 using System.Reflection;
 using System.Text;
+
 
 namespace SFA.DAS.Registration.UITests.Project.Helpers
 {
@@ -89,3 +96,4 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
         }
     }
 }
+*/

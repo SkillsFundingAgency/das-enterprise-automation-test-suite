@@ -37,5 +37,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             pageInteractionHelper.VerifyText(MadeRedundantTextBox, _dataHelper.MadeRedundant);
             return this;
         }
+
+        public StoppedApprenticeDetailsPage ValidateRedundancyStatus()
+        {
+            pageInteractionHelper.VerifyText(MadeRedundantTextBox, _dataHelper.MadeRedundant);
+            return this;
+        }
     }
 }

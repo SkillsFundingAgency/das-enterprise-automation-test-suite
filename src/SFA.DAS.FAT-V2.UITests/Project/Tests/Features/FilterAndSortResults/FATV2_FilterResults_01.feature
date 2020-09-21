@@ -1,6 +1,6 @@
 ﻿Feature: FATV2_FilterResults_01
 
-@fat
+@fatv2
 @regression
 Scenario: FATV2_FR_01 Verify Search Results filtering
 	Given the User navigates to the Search Results page

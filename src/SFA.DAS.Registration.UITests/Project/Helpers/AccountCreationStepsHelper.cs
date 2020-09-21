@@ -85,6 +85,7 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
             _objectContext.SetSecondAccountOrganisationName(GetOrgName(orgType));
 
             return homePage.GoToYourAccountsPage().AddNewAccount()
+                 .AddPaye()
                  .ContinueToGGSignIn()
                  .SignInTo(index)
                  .SearchForAnOrganisation(orgType)

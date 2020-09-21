@@ -51,9 +51,6 @@
     <Compile Update="Project\Tests\Features\FilterResults\FAT_FilterResults_01.feature.cs">
       <DependentUpon>%(Filename)</DependentUpon>
     </Compile>
-    <Compile Update="Project\Tests\Features\SearchTrainingAndProvider\FAT_SearchTrainingAndProvider_01.feature.cs">
-      <DependentUpon>%(Filename)</DependentUpon>
-    </Compile>
     <Compile Update="Project\Tests\Features\SortResults\FAT_SortResults_01.feature.cs">
       <DependentUpon>%(Filename)</DependentUpon>
     </Compile>
@@ -91,18 +88,10 @@
     <Visible>$(UsingMicrosoftNETSdk)</Visible>
     <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
   </SpecFlowFeatureFiles>
-  <SpecFlowFeatureFiles Update="Project\Tests\Features\SearchTrainingAndProvider\FAT_SearchTrainingAndProvider_01.feature">
-    <Visible>$(UsingMicrosoftNETSdk)</Visible>
-    <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
-  </SpecFlowFeatureFiles>
   <SpecFlowFeatureFiles Update="Project\Tests\Features\SortResults\FAT_SortResults_01.feature">
     <Visible>$(UsingMicrosoftNETSdk)</Visible>
     <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
   </SpecFlowFeatureFiles>
-</ItemGroup>
-
-<ItemGroup>
-  <Folder Include="Project\Tests\Features\SearchTrainingAndProvider\" />
 </ItemGroup>
 
 </Project>

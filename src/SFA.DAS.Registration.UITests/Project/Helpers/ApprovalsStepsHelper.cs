@@ -20,8 +20,7 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
             var page = new IndexPage(_context)
                  .CreateAccount()
                  .Register()
-                 .ContinueToGetApprenticeshipFunding()
-                 .AddPaye();
+                 .ContinueToGetApprenticeshipFunding();
             
             var homePage = AddPayeAndOrgDetailsAndSignAgreement(page, 0);
 
@@ -46,9 +45,10 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
             return homePage;
         }
 
-        private HomePage AddPayeAndOrgDetailsAndSignAgreement(UsingYourGovtGatewayDetailsPage usingYourGovtGatewayDetailsPage, int index)
+        private HomePage AddPayeAndOrgDetailsAndSignAgreement(AddAPAYESchemePage addAPAYESchemePage, int index)
         {
-            return usingYourGovtGatewayDetailsPage
+            return addAPAYESchemePage
+                 .AddPaye()
                  .ContinueToGGSignIn()
                  .SignInTo(index)
                  .SearchForAnOrganisation()

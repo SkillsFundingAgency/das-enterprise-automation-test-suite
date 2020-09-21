@@ -40,6 +40,7 @@ namespace SFA.DAS.ConfigurationBuilder
             return ConfigurationBuilder()
             .AddJsonFile("appsettings.MongoDbConfig.json", true)
             .AddJsonFile("appsettings.TimeOutConfig.json", true)
+            .AddJsonFile("appsettings.NServiceBusConfig.json",true)
             .AddJsonFile("appsettings.BrowserStack.json", true)
             .AddJsonFile("appsettings.Project.json", true)
             .AddJsonFile("appsettings.Project.BrowserStack.json", true)

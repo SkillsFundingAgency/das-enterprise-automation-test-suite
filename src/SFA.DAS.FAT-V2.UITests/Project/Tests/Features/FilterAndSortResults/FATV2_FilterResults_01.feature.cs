@@ -75,12 +75,12 @@ namespace SFA.DAS.FAT_V2.UITests.Project.Tests.Features.FilterAndSortResults
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("FATV2_FR_01 Verify Search Results filtering")]
-        [NUnit.Framework.CategoryAttribute("fat")]
+        [NUnit.Framework.CategoryAttribute("fatv2")]
         [NUnit.Framework.CategoryAttribute("regression")]
         public virtual void FATV2_FR_01VerifySearchResultsFiltering()
         {
             string[] tagsOfScenario = new string[] {
-                    "fat",
+                    "fatv2",
                     "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("FATV2_FR_01 Verify Search Results filtering", null, tagsOfScenario, argumentsOfScenario);
