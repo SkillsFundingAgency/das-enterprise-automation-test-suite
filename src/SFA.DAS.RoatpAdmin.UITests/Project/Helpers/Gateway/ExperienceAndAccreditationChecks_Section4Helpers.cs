@@ -29,12 +29,24 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Gateway
             return gwApplicationOverviewPage
            .VerifySubcontractordeclaration_Section4(StatusHelper.NotRequired);
         }
+        internal GWApplicationOverviewPage PassExperienceAndAccreditationChecks_SubContractor(GWApplicationOverviewPage gwApplicationOverviewPage)
+        {
+            return gwApplicationOverviewPage
+            .Access_Section4_SubcontractorDeclaration()
+            .SelectPassAndContinue()
+           .VerifySubcontractordeclaration_Section4(StatusHelper.StatusPass);
+        }
         internal GWApplicationOverviewPage PassExperienceAndAccreditationChecks_Ofsted(GWApplicationOverviewPage gwApplicationOverviewPage)
         {
             return gwApplicationOverviewPage
             .Access_Section4_Ofstead()
             .SelectPassAndContinue()
             .VerifyOfsted_Section4(StatusHelper.StatusPass);
+        }
+        internal GWApplicationOverviewPage NotRequiredExperienceAndAccreditationChecks_Ofsted(GWApplicationOverviewPage gwApplicationOverviewPage)
+        {
+            return gwApplicationOverviewPage
+            .VerifyOfsted_Section4(StatusHelper.NotRequired);
         }
         internal GWApplicationOverviewPage PassExperienceAndAccreditationChecks_SubcontractorDeclaration(GWApplicationOverviewPage gwApplicationOverviewPage)
         {
