@@ -240,3 +240,4 @@ _Pvt_Extensions
 SFA.DAS.CookieService/Tools/PhantomJS/tools/phantomjs/ChangeLog
 SFA.DAS.Learners/Tools/PhantomJS/tools/phantomjs/ChangeLog
 
+/src/SFA.DAS.Approvals.UITests/Properties/launchSettings.json
