@@ -8,52 +8,32 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <SpecFlowObsoleteCodeBehindFiles Remove="Project\Tests\Features\FilterAndSortResults\FAT_FilterResults_01.feature.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Content Include="..\specflow.json" Link="specflow.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
 
   <ItemGroup>
-	<Compile Include="..\NUnitConfigurator.cs" Link="NUnitConfigurator.cs">
-	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	</Compile>
+    <Compile Include="..\NUnitConfigurator.cs" Link="NUnitConfigurator.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="nunit" Version="3.12.0" />
-    <PackageReference Include="NUnit3TestAdapter" Version="3.17.0" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.7.0" />
-    <PackageReference Include="Selenium.WebDriver.ChromeDriver" Version="84.0.4147.3001" />
-    <PackageReference Include="SpecFlow.NUnit" Version="3.3.74" />
-    <PackageReference Include="SpecFlow.Tools.MsBuild.Generation" Version="3.3.74" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.6.1" />
+    <PackageReference Include="NUnit3TestAdapter" Version="3.16.1">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Selenium.WebDriver.ChromeDriver" Version="85.0.4183.8700" />
+    <PackageReference Include="SpecFlow.Tools.MsBuild.Generation" Version="3.3.30" />
+    <PackageReference Include="SpecFlow.NUnit" Version="3.3.30" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SFA.DAS.ConfigurationBuilder\SFA.DAS.ConfigurationBuilder.csproj" />
     <ProjectReference Include="..\SFA.DAS.TestDataExport\SFA.DAS.TestDataExport.csproj" />
+    <ProjectReference Include="..\SFA.DAS.ConfigurationBuilder\SFA.DAS.ConfigurationBuilder.csproj" />
     <ProjectReference Include="..\SFA.DAS.UI.Framework\SFA.DAS.UI.Framework.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Update="Project\Tests\Features\BackLinks\FAT_CheckBackLinksInE2EJourney_01.feature.cs">
-      <DependentUpon>%(Filename)</DependentUpon>
-    </Compile>
-    <Compile Update="Project\Tests\Features\BackLinks\FAT_CheckBackLinksInTrainingProviderSearch_01.feature.cs">
-      <DependentUpon>%(Filename)</DependentUpon>
-    </Compile>
-    <Compile Update="Project\Tests\Features\FilterAndSortResults\FATV2_FilterResults_01.feature.cs">
-      <DependentUpon>FATV2_FilterResults_01.feature</DependentUpon>
-    </Compile>
-    <Compile Update="Project\Tests\Features\FilterResults\FAT_FilterResults_01.feature.cs">
-      <DependentUpon>%(Filename)</DependentUpon>
-    </Compile>
-    <Compile Update="Project\Tests\Features\SortResults\FAT_SortResults_01.feature.cs">
-      <DependentUpon>%(Filename)</DependentUpon>
-    </Compile>
   </ItemGroup>
 
 <ItemGroup>
@@ -70,28 +50,5 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
-
-<ItemGroup>
-  <SpecFlowFeatureFiles Update="Project\Tests\Features\BackLinks\FAT_CheckBackLinksInE2EJourney_01.feature">
-    <Visible>$(UsingMicrosoftNETSdk)</Visible>
-    <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
-  </SpecFlowFeatureFiles>
-  <SpecFlowFeatureFiles Update="Project\Tests\Features\BackLinks\FAT_CheckBackLinksInTrainingProviderSearch_01.feature">
-    <Visible>$(UsingMicrosoftNETSdk)</Visible>
-    <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
-  </SpecFlowFeatureFiles>
-  <SpecFlowFeatureFiles Update="Project\Tests\Features\FilterAndSortResults\FATV2_FilterResults_01.feature">
-    <Visible>$(UsingMicrosoftNETSdk)</Visible>
-    <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
-  </SpecFlowFeatureFiles>
-  <SpecFlowFeatureFiles Update="Project\Tests\Features\FilterResults\FAT_FilterResults_01.feature">
-    <Visible>$(UsingMicrosoftNETSdk)</Visible>
-    <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
-  </SpecFlowFeatureFiles>
-  <SpecFlowFeatureFiles Update="Project\Tests\Features\SortResults\FAT_SortResults_01.feature">
-    <Visible>$(UsingMicrosoftNETSdk)</Visible>
-    <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
-  </SpecFlowFeatureFiles>
-</ItemGroup>
 
 </Project>
