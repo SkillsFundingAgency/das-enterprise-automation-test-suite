@@ -6,7 +6,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 {
     public class CloseVacancyPage : RAAV2CSSBasePage
     {
-        protected override string PageTitle => "Are you sure you want to close this vacancy on Find an apprenticeship?";
+        protected override string PageTitle => isRaaV2Employer ? "Are you sure you want to close this advert on Find an apprenticeship?" : "Are you sure you want to close this vacancy on Find an apprenticeship?";
 
         protected override By PageHeader => By.CssSelector(".govuk-fieldset__heading");
 
