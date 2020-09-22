@@ -14,87 +14,6 @@ All other dependencies (ex: Selenium, drivers etc) are packaged within the solut
 
 Note: This framework is built with all standard libraries and ready to write new tests, an example test is also provided for reference. However solution, project & namespace must be renamed before writing tests.
 
-## Steps to add a new test project
-
-1. Right click the solution and add a ```Nunit Test Project (.Net core)``` project
-	- please use naming format (SFA.DAS.YourProjectName.UITests)
-	- you can remove the UnitTest1.cs file added by default
-	- update ```<PropertyGroup>``` node in the .csproj file to include ```<RootNamespace>``` 
-	```text
-	<PropertyGroup>
-		<TargetFramework>netcoreapp3.1</TargetFramework>
-		<RootNamespace>SFA.DAS.YourProjectName.UITests</RootNamespace>
-		<IsPackable>false</IsPackable>
-	</PropertyGroup>
-	```
-2. Add nuget depedencies ( you can edit the csproj file or you can choose to add it via nuget package manager either way make sure you add the same version as other projects)
-	- Microsoft.NET.Test.Sdk
-	- NUnit3TestAdapter
-	- Selenium.WebDriver.ChromeDriver
-	- SpecFlow.Tools.MsBuild.Generation
-	- SpecFlow.NUnit
-	
-3. Copy the below code to .csproj file to add link to nunitconfiguration.cs and specflow.json files
-```text
-	<ItemGroup>
-		<Compile Include="..\NUnitConfigurator.cs" Link="NUnitConfigurator.cs">
-			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-		</Compile>
-	</ItemGroup>
-
-	<ItemGroup>
-		<Content Include="..\specflow.json" Link="specflow.json">
-			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-		</Content>
-	</ItemGroup>
-```
-
-4. Add ```SFA.DAS.YourProjectName.UITests.json```
-
-``` json
-{
-  "runtimeOptions": {
-    "tfm": "netcoreapp3.1",
-    "framework": {
-      "name": "Microsoft.NETCore.App",
-      "version": "3.1.5"
-    }
-  }
-}
-```
-5. Add ```appsettings.Environment.json```
-```json
-{
-  "local_EnvironmentName": "PP",
-  "ProjectName": "YourProjectName"
-}
-```
-6. Add ```appsettings.Project.BrowserStack.json```
-```json
-{
-  "BrowserStackSetting": {
-    "build": "SFA.DAS.YourProjectName.UITests"
-  }
-}
-```
-7. Add ```appsettings.Project.json``` (the project specific config)
-```json
-{
-  "YourProjectNameConfig": {
-    "ABC": "__ABC__"
-  }
-}
-```
-8. Add the following mandatory references to the .csproj file 
-```text
-	<ItemGroup>
-		<ProjectReference Include="..\SFA.DAS.TestDataExport\SFA.DAS.TestDataExport.csproj" />
-		<ProjectReference Include="..\SFA.DAS.ConfigurationBuilder\SFA.DAS.ConfigurationBuilder.csproj" />
-		<ProjectReference Include="..\SFA.DAS.UI.Framework\SFA.DAS.UI.Framework.csproj" />
-	</ItemGroup>
-```
-Please follow existing folder structure, folder name and file name so that it would be consistent with other project structure and naming conventions
-
 ## How to use User secrets
 1. Navigate to "%APPDATA%/Microsoft" Create Directory "UserSecrets" if you don't find it.
 2. Create a folder under "%APPDATA%/Microsoft/UserSecrets" folder in the format <ProjectName>_<EnvironmentName>_Secrets. You can get project name and environment name from "appsettings.Environment.json" file under your respective project(s). f.i. For Registration project, you will see below data in "appsettings.Environment.json" file, so create the folder as "Registration_PP_Secrets" (without the quotes)
@@ -109,9 +28,22 @@ Please follow existing folder structure, folder name and file name so that it wo
 ## Automated SpecFlow Tests:
 Acceptance Tests must be written in Feature files (Project/Tests/Features/) using standard Gherkin language using Given, When, Then format with an associated step definition for each test step. Test steps in the scenarios explains the business conditions/behaviour and the associated step definition defines how the individual scenario steps should be automated.
 
-A tag must be provided (ex: @Regression, @Smoke) for each test scenario which groups the tests, this provides the option to select which group of tests to execute.  @Regression and @<projectname> tags are manadatory.
+## Specflow scenario tagging 
 
-## Running Tests:
+1. Mandatory tags (these mandatory tags are used for test execution)
+	- ```@regression``` (these scenarios will be picked up by enterprise test suite)
+	- ```@<yourprojectname>``` (these scenarios will be picked up by project specific test suite)
+2. Reserved tags (these reserved tags are either used to drive the framework or to create test data)
+	- ```@levy, @nonlevy, @addpayedetails, @addtransferslevyfunds, @addlevyfunds, @donottakescreenshot``` (in registration)
+	- ```@liveapprentice, @waitingtostartapprentice, @currentacademicyearstartdate, @onemonthbeforecurrentacademicyearstartdate, @selectstandardcourse``` (in approvals)
+	- any tag starts with perf for ex : ```@perftestnonlevy, @perftestlevy``` (used to create test data for performance tests)
+3. Optional tags / requirement specific tags
+	- you can tag a scenario based on your interest / requirment for ex ```@<yourprojectnamee2e>``` - indicates e2e scenario 
+	- naming convention - all tags should be specified in lower cases and should start with your project name for ex: ```@<yourprojectnamee2e>```
+4. Non specflow tests
+	- its not mandatory to tag non specflow tests for ex: Unit tests.
+
+## Running Tests via Test Explorer:
 Once the solution is imported and built, open Test Explorer window (Test->Windows->Test Explorer) which shows all the tests generated from the feature files using the scenario titles. From Test Explorer, we can choose to run
 1. All Tests
 2. Failed/Passed/NotRun Tests
@@ -148,6 +80,35 @@ c:\> dotnet test C:\SFA\DFE-Standardised-Test-Automation-Framework\src\ESFA.UI.S
 
 c:\> dotnet vstest C:\SFA\DFE-Standardised-Test-Automation-Framework\src\SFA.DAS.PocProject.UITests\SFA.DAS.PocProject.UITests.dll /TestCaseFilter:"TestCategory=regression|FullyQualifiedName=Namespace.ClassName.MethodName"
 ```
+
+## Build and Release process:
+
+### Build 
+Every commit made (merge to master or a push to remote branch) will trigger a build process under `das-enterprise-automation-test-suite` pipeline using `azure-pipelines.yml` in Azure Devops which can then be deployed to a Release pipeline (where you can select a pipeline and specify the Browser and Test category value).
+
+### Release 
+Every release pipeline would be picking up the build artifact from `das-enterprise-automation-test-suite` build
+
+Every weekday (morning between 12 to 5) most of the release pipeline is scheduled to execute against latest master which will give us an idea of the state of the appication.
+
+### Variables
+We use variable groups (library) to define and declare the variables, and the values will be shared among the piepline to avoid duplication. They are
+```
+ 1. TEST Automation Suite Variables - will hold variables for TEST environment
+ 2. TEST2 Automation Suite Variables - will hold variables for TEST2 environment
+ 3. PreProd Automation Suite Variables - will hold variables for PP environment
+ 4. Release Automation Suite Variables - will hold variables at Release Level
+ 5. Release Automation Suite Variables (Db) - will hold DB variables at Release environment
+```
+Any pipeline specfic variables like ```SQLServerAccountPassword, CosmosDBKey, ServiceBusAccessKey, Browser and TestCategory``` would be define and declare under pipeline private variables
+
+### Variable scope
+If the variables are defined in more than one place then vsts will prioritize in following order
+
+	1. Environment specfic pipeline private variable  
+	2. Release specific pipeline private variable
+	3. Environment specfic variable group
+	4. Release specific variable group
 
 ## Framework:
 

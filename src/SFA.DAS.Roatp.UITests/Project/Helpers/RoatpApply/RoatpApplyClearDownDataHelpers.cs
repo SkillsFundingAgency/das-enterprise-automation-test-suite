@@ -25,7 +25,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.RoatpApply
 
             var queryResult = SqlDatabaseConnectionHelper.ReadDataFromDataBase(applicationIdQuery, connectionString);
 
-            return queryResult == null || queryResult.Count == 0 ? Emptyguid : ClearDownDataFromApply(queryResult);
+            return queryResult == null || queryResult.Count == 0 ? Emptyguid : ClearDownFullDataFromApply(queryResult);
         }
 
         public int ClearDownDataFromQna(string applicationId)
@@ -49,7 +49,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.RoatpApply
             return ExecuteSqlCommand(insertWhiteListProviderQuery);
         }
 
-        private string ClearDownDataFromApply(List<object[]> queryResult)
+        private string ClearDownFullDataFromApply(List<object[]> queryResult)
         {
             var email = _objectContext.GetEmail();
 
@@ -58,6 +58,9 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.RoatpApply
             var query = $"DECLARE @OrganisationID UNIQUEIDENTIFIER; " +
                 $"SELECT @OrganisationID = ApplyOrganisationId FROM dbo.Contacts WHERE Email = '{email}';" +
                 $"DELETE FROM dbo.Apply WHERE ApplicationId = '{applicationId}'; " +
+                $"DELETE FROM dbo.AssessorPageReviewOutcome WHERE ApplicationId = '{applicationId}'; " +
+                $"DELETE FROM dbo.GatewayAnswer WHERE ApplicationId = '{applicationId}'; " +
+                $"DELETE FROM dbo.ModeratorPageReviewOutcome WHERE ApplicationId = '{applicationId}'; " +
                 $"UPDATE dbo.Contacts SET ApplyOrganisationID = NULL WHERE Email = '{email}';" +
                 $"DELETE FROM dbo.Organisations WHERE Id = @OrganisationID;";
 

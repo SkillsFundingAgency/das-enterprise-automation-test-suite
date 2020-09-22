@@ -22,7 +22,18 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay
             VerifyPage();
         }
 
-        public GWApplicationOverviewPage SelectingNewApplication()
+        public GWApplicationOverviewPage SelectingMainRouteApplication()
+        {
+            formCompletionHelper.ClickLinkByText(objectContext.GetProviderName());
+            return new GWApplicationOverviewPage(_context);
+        }
+
+        public GWApplicationOverviewPage SelectingEmployerRouteApplication()
+        {
+            formCompletionHelper.ClickLinkByText(objectContext.GetProviderName());
+            return new GWApplicationOverviewPage(_context);
+        }
+        public GWApplicationOverviewPage SelectingSupportingRouteApplication()
         {
             formCompletionHelper.ClickLinkByText(objectContext.GetProviderName());
             return new GWApplicationOverviewPage(_context);

@@ -1,4 +1,6 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.Roatp.UITests.Project;
+using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Moderator;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor
@@ -30,6 +32,24 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor
         {
             formCompletionHelper.Click(AssignToMeLinkForEmployerProvider);
             return new ApplicationAssessmentOverviewPage(_context);
+        }
+        public ModerationApplicationAssessmentOverviewPage ModeratorSelectsAssignToMeForMainProvider()
+        {
+            formCompletionHelper.ClickLinkByText("Moderation");
+            formCompletionHelper.ClickLinkByText(objectContext.GetProviderName());
+            return new ModerationApplicationAssessmentOverviewPage(_context);
+        }
+        public ModerationApplicationAssessmentOverviewPage ModeratorSelectsAssignToMeForSupportingProvider()
+        {
+            formCompletionHelper.ClickLinkByText("Moderation");
+            formCompletionHelper.ClickLinkByText(objectContext.GetProviderName());
+            return new ModerationApplicationAssessmentOverviewPage(_context);
+        }
+        public ModerationApplicationAssessmentOverviewPage ModeratorSelectsAssignToMeForEmployerProvider()
+        {
+            formCompletionHelper.ClickLinkByText("Moderation");
+            formCompletionHelper.ClickLinkByText(objectContext.GetProviderName());
+            return new ModerationApplicationAssessmentOverviewPage(_context);
         }
     }
 }
