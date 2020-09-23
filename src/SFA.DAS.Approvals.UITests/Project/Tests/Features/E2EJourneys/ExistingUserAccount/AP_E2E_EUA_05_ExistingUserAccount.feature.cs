@@ -130,7 +130,8 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Then("the apprenticeship status changes to completed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 15
- testRunner.And("Apprentice details or status can no longer be changed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("Apprentice status and details cannot be changed except the planned training finis" +
+                        "h date", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();

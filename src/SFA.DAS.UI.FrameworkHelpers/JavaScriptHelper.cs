@@ -19,5 +19,11 @@ namespace SFA.DAS.UI.FrameworkHelpers
             var webElement = _webDriver.FindElement(locator);
             ((IJavaScriptExecutor)_webDriver).ExecuteScript("arguments[0].click();", webElement);
         }
+
+        public void ScrollToTheBottom()
+        {
+            var jse = (IJavaScriptExecutor)_webDriver;
+            jse.ExecuteScript("window.scrollTo(0, document.body.scrollHeight);");
+        }
     }
 }
