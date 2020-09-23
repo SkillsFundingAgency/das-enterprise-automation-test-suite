@@ -1,6 +1,7 @@
 ﻿using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.Login.Service;
 using SFA.DAS.Login.Service.Helpers;
+using SFA.DAS.UI.Framework.TestSupport;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EmployerIncentives.UITests.Project
@@ -18,6 +19,12 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project
         }
 
         [BeforeScenario(Order = 2)]
-        public void SetUpEIConfigConfiguration() => _context.SetUser(_configSection.GetConfigSection<EILevyUser>());
+        public void SetUpEIConfigConfiguration()
+        {
+            var config = _configSection.GetConfigSection<EIConfig>();
+            _context.SetEIConfig(config);
+
+            _context.SetUser(_configSection.GetConfigSection<EILevyUser>());
+        }
     }
 }

@@ -42,6 +42,8 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         public void NavigateBrowserBack() => _webDriver.Navigate().Back();
 
+        public void SwitchToFirstTab() => _webDriver = _webDriver.SwitchTo().Window(_webDriver.WindowHandles.First());
+
         private ReadOnlyCollection<string> ExistingTabs() => _webDriver.WindowHandles;
 
         private string GetUrl(string uriString, string relativeUri) => new Uri(new Uri(uriString), relativeUri).AbsoluteUri;

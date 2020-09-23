@@ -13,6 +13,8 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
         protected readonly PageInteractionHelper pageInteractionHelper;
         #endregion
 
+        protected override By PageHeader => By.CssSelector("h1");
+
         protected override By ContinueButton => By.XPath("//button[contains(text(), 'Continue')]");
         protected By ReturnToAccountHomeCTA => By.LinkText("Return to account home");
 
@@ -21,6 +23,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
             tabHelper = context.Get<TabHelper>();
             formCompletionHelper = context.Get<FormCompletionHelper>();
             pageInteractionHelper = context.Get<PageInteractionHelper>();
+            VerifyPage();
         }
     }
 }

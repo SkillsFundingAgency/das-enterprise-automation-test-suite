@@ -137,5 +137,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
         }
 
         public void ClickButtonByText(string text) => ClickElementByText(ButtonCssSelector, text);
+
+        public void ClickButtonByText(By locator, string text) => ClickElementByText(locator, text);
     }
 }

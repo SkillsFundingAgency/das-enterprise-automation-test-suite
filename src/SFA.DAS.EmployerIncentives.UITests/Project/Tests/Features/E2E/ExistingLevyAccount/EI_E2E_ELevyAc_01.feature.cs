@@ -78,15 +78,17 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Features.E2E.Existing
             "d applies for Incentive")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("employerincentives")]
+        [NUnit.Framework.CategoryAttribute("loginintodfeuatachieveservice")]
         public virtual void EI_E2E_ELevyAc_01_ExistingLevyAccountWithOneLegalEntityAddsCommitmentsAndAppliesForIncentive()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
-                    "employerincentives"};
+                    "employerincentives",
+                    "loginintodfeuatachieveservice"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EI_E2E_ELevyAc_01_Existing Levy Account with one legal entity adds commitments an" +
                     "d applies for Incentive", null, tagsOfScenario, argumentsOfScenario);
-#line 5
+#line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -106,18 +108,17 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 6
+#line 7
  testRunner.Given("the Employer logins using existing EI Levy Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 7
- testRunner.And("the Employer adds 2 apprentices AgedAbove25 as of 01AUG2020 with start date as Mo" +
-                        "nth 9 and Year 2020", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
 #line 8
- testRunner.And("the Provider approves the apprenticeship request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.When("the Employer Initiates EI Application journey for Single entity account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 9
- testRunner.When("the Employer Initiates EI Application journey for Single entity account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.And("the Employer submits the EI Application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 10
+ testRunner.And("the Employer submits organisation bank details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();

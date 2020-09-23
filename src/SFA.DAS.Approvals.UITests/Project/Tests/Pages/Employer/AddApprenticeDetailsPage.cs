@@ -86,7 +86,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
                 apprenticeDataHelper.DateOfBirthDay = 1;
                 apprenticeDataHelper.DateOfBirthMonth = 8;
 
-                return new DateTime(1, objectContext.GetEIStartMonth(), objectContext.GetEIStartYear());
+                return new DateTime(objectContext.GetEIStartYear(), objectContext.GetEIStartMonth(), 1);
             }
 
             return apprenticeCourseDataHelper.CourseStartDate;
