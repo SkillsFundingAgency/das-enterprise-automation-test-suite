@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using TechTalk.SpecFlow;
@@ -33,25 +34,26 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         public ReviewYourCohortPage SubmitValidApprenticeDetails(bool isMF)
         {
+            var courseStartDate = SetEIJourneyTestData();
+
             formCompletionHelper.EnterText(FirstNameField, apprenticeDataHelper.ApprenticeFirstname);
             formCompletionHelper.EnterText(LastNameField, apprenticeDataHelper.ApprenticeLastname);
             formCompletionHelper.EnterText(DateOfBirthDay, apprenticeDataHelper.DateOfBirthDay);
             formCompletionHelper.EnterText(DateOfBirthMonth, apprenticeDataHelper.DateOfBirthMonth);
             formCompletionHelper.EnterText(DateOfBirthYear, apprenticeDataHelper.DateOfBirthYear);
+            
             formCompletionHelper.SelectFromDropDownByValue(TrainingCourseContainer, apprenticeCourseDataHelper.Course);
             formCompletionHelper.ClickElement(StartDateMonth);
             if (isMF == false)
             {
-                formCompletionHelper.EnterText(StartDateMonth, apprenticeCourseDataHelper.CourseStartDate.Month);
-                formCompletionHelper.EnterText(StartDateYear, apprenticeCourseDataHelper.CourseStartDate.Year);
+                formCompletionHelper.EnterText(StartDateMonth, courseStartDate.Month);
+                formCompletionHelper.EnterText(StartDateYear, courseStartDate.Year);
             }
+
             formCompletionHelper.EnterText(EndDateMonth, apprenticeCourseDataHelper.CourseEndDate.Month);
             formCompletionHelper.EnterText(EndDateYear, apprenticeCourseDataHelper.CourseEndDate.Year);
             formCompletionHelper.EnterText(TrainingCost, apprenticeDataHelper.TrainingPrice);
             formCompletionHelper.EnterText(EmployerReference, apprenticeDataHelper.EmployerReference);
-
-            if (objectContext.GetIsEIJourney())
-                EnterEIJourneyApprenticeDOBAndStartDate();
 
             formCompletionHelper.ClickElement(SaveAndContinueButton);
             return new ReviewYourCohortPage(_context);
@@ -72,22 +74,22 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             return this;
         }
 
-        private void EnterEIJourneyApprenticeDOBAndStartDate()
+        private DateTime SetEIJourneyTestData()
         {
-            var dobYear = (objectContext.GetEIAgeCategoryAsOfAug2020().Equals("Aged16to24")) ? 2004 : 1995;
-            var firstNameSuffix = "StartMonth" + objectContext.GetEIStartMonth() + "Year" + objectContext.GetEIStartYear();
-            string firstName;
+            if (objectContext.GetIsEIJourney())
+            {
+                apprenticeDataHelper.DateOfBirthYear = (objectContext.GetEIAgeCategoryAsOfAug2020().Equals("Aged16to24")) ? 2004 : 1995;
+                var firstNameSuffix = "StartMonth" + objectContext.GetEIStartMonth() + "Year" + objectContext.GetEIStartYear();
 
-            firstName = dobYear == 2004 ? "16OrOver" : "25OrOver";
-            firstName += firstNameSuffix;
+                apprenticeDataHelper.ApprenticeFirstname = apprenticeDataHelper.DateOfBirthYear == 2004 ? "16OrOver" : "25OrOver";
+                apprenticeDataHelper.ApprenticeFirstname += firstNameSuffix;
+                apprenticeDataHelper.DateOfBirthDay = 1;
+                apprenticeDataHelper.DateOfBirthMonth = 8;
 
-            formCompletionHelper.EnterText(FirstNameField, firstName);
-            formCompletionHelper.EnterText(LastNameField, randomDataGenerator.GenerateRandomAlphabeticString(10));
-            formCompletionHelper.EnterText(DateOfBirthDay, "01");
-            formCompletionHelper.EnterText(DateOfBirthMonth, "08");
-            formCompletionHelper.EnterText(DateOfBirthYear, dobYear);
-            formCompletionHelper.EnterText(StartDateMonth, objectContext.GetEIStartMonth());
-            formCompletionHelper.EnterText(StartDateYear, objectContext.GetEIStartYear());
+                return new DateTime(1, objectContext.GetEIStartMonth(), objectContext.GetEIStartYear());
+            }
+
+            return apprenticeCourseDataHelper.CourseStartDate;
         }
     }
 }
