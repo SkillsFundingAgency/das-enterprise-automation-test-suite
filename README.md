@@ -96,8 +96,8 @@ Note: This framework is built with all standard libraries and ready to write new
 Please follow existing folder structure, folder name and file name so that it would be consistent with other project structure and naming conventions
 
 ## How to use User secrets:
-1. Navigate to ```"%APPDATA%/Microsoft"``` Create Directory ```"UserSecrets"``` if you don't find it.
-2. Create a folder under ```"%APPDATA%/Microsoft/UserSecrets"``` folder in the format ```<YourProjectName>_<EnvironmentName>_Secrets```. You can get project name and environment name from the ```"appsettings.Environment.json"``` file under your respective project(s). ex: 
+1. Navigate to ```"%APPDATA%/Microsoft"``` then Create Directory ```"UserSecrets"``` if you don't find it.
+2. Create a ```<YourProjectName>_<EnvironmentName>_Secrets``` folder under ```"%APPDATA%/Microsoft/UserSecrets"```. You can get project name and environment name from the ```"appsettings.Environment.json"``` file under your respective project(s). ex: 
 	For Registration project, the ```"appsettings.Environment.json"``` file will look like 
 ```json
 {
@@ -261,9 +261,11 @@ we use the below run settings file to implement parellel execution in Azure Devo
 	</NUnit>
 </RunSettings>
 ```
-where ```__NumberOfTestWorkers__``` can be transformed using the piepline private variables, by default we run 5 tests in parallel per docker instance.
+where ```__NumberOfTestWorkers__``` can be transformed using the piepline private variables.
 
-By default up to all available cores on the machine may be used, we can use /Parallel argument or ```MaxCpuCount``` node to restrict the no of tests to be executed in parellel 
+By default up to all available cores on the machine may be used, we can use ```/Parallel``` argument or ```MaxCpuCount``` node to restrict the no of tests to be executed in parellel. 
+
+By default we run 5 tests in parallel per docker instance, we can change it using ```__NumberOfTestWorkers__```
 
 ## Parallel Test Execution in your desktop:
 If LevelOfParallelism is not specified, workers defaults to the number of processors on the machine, or 2, whichever is greater.
