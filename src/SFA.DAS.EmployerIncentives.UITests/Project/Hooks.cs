@@ -25,12 +25,16 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project
         [BeforeScenario(Order = 41)]
         public void Navigate()
         {
-            if (_context.ScenarioInfo.Tags.Contains("loginintodfeuatachieveservice"))
+            if (_context.ScenarioInfo.Tags.Contains("dfeuatachieveservice"))
             {
                 _tabHelper.GoToUrl(UrlConfig.EI_DfeAchieveServiceUrl);
-            }
 
-            _tabHelper.OpenInNewTab(UrlConfig.EmployerApprenticeshipService_BaseUrl);
+                _tabHelper.OpenInNewTab(UrlConfig.EmployerApprenticeshipService_BaseUrl);
+            }
+            else
+            {
+                _tabHelper.GoToUrl(UrlConfig.EmployerApprenticeshipService_BaseUrl);
+            }
         }
 
         [BeforeScenario(Order = 42)]

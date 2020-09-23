@@ -78,13 +78,13 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Features.E2E.Existing
             "d applies for Incentive")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("employerincentives")]
-        [NUnit.Framework.CategoryAttribute("loginintodfeuatachieveservice")]
+        [NUnit.Framework.CategoryAttribute("dfeuatachieveservice")]
         public virtual void EI_E2E_ELevyAc_01_ExistingLevyAccountWithOneLegalEntityAddsCommitmentsAndAppliesForIncentive()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
                     "employerincentives",
-                    "loginintodfeuatachieveservice"};
+                    "dfeuatachieveservice"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EI_E2E_ELevyAc_01_Existing Levy Account with one legal entity adds commitments an" +
                     "d applies for Incentive", null, tagsOfScenario, argumentsOfScenario);
