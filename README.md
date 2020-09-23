@@ -199,7 +199,8 @@ If the variables are defined in more than one place then vsts will prioritize in
 
 ## Framework:
 
-### Supported Browsers: The framework can currently work on the following browsers
+### Supported Browsers: 
+The framework can currently work on the following browsers
 1. Chrome - use "chrome", "googlechrome" or "local" as values for the Browser in appsettings
 2. Firefox - use "firefox" or "mozillafirefox" as values for the Browser in appsettings
 3. Internet Explorer - use "ie" or "internetexplorer" as values for the Browser in appsettings
@@ -217,7 +218,8 @@ Note: Tests can be executed on different browsers versions using BrowserStack.
 4. Where possible create the users/data on runtime and clear the users/data at the end of the tests
 5. Every Page class must extend BasePage (Project/Tests/TestSupport/BasePage) and implement the methods from it, which initiate the elements and waits for the page to load and verifies the current page
 
-### Helpers: The framework has the following helper classes to assist the testing (SFA.DAS.UI.FrameworkHelpers) key helpers are
+### Helpers: 
+The framework has the following helper classes under SFA.DAS.UI.FrameworkHelpers project to assist the testing, key helpers are
 1. FormCompletionHelper - Which helps most of the user actions on a page
 2. PageInteractionHelper - Helps verifying data and elements on the page
 3. RandomDataGenerator - Helps creating random data to use
