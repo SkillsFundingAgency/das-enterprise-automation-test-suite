@@ -219,7 +219,7 @@ Note: Tests can be executed on different browsers versions using BrowserStack.
 5. Every Page class must extend BasePage (Project/Tests/TestSupport/BasePage) and implement the methods from it, which initiate the elements and waits for the page to load and verifies the current page
 
 ### Helpers: 
-The framework has the following helper classes under SFA.DAS.UI.FrameworkHelpers project to assist the testing, key helpers are
+The framework has the following helper classes under ```SFA.DAS.UI.FrameworkHelpers``` project to assist the testing, key helpers are
 1. FormCompletionHelper - Which helps most of the user actions on a page
 2. PageInteractionHelper - Helps verifying data and elements on the page
 3. RandomDataGenerator - Helps creating random data to use
