@@ -5,7 +5,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Parent
 {
     public class HelpShapeTheirCareerPage : CampaingnsPage
     {
-        protected override string PageTitle => "Error";
+        protected override string PageTitle => "Page not foundr";
 
         public HelpShapeTheirCareerPage(ScenarioContext context) : base(context)
         {

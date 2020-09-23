@@ -9,13 +9,9 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Apprentice
 
         protected override By PageHeader => By.CssSelector(".govuk-heading-xl");
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
         public GettingStartedPage(ScenarioContext context):base(context)
         {
-            _context = context;
+            pageInteractionHelper.VerifyPageLoad(PageHeader, PageTitle);
         }
     }
 }

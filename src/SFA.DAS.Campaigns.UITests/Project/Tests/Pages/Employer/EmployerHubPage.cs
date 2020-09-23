@@ -12,23 +12,15 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
         #region  Constants and Strings
         private string HireAnApprenticePageFiuCard1Heading => "Real stories";
         private string HireAnApprenticePageFiuCard2Heading => "Benefits to your organisation";
-
         private string HireAnApprenticePageFiuCard3Heading => "Hiring an apprentice";
         private string HireAnApprenticePageFiuCard4Heading => "Upskilling your current staff";
         private string HireAnApprenticePageFiuCard5Heading => "Funding an apprenticeship";
         private string HireAnApprenticePageFiuCard6Heading => "Training your apprentice";
         private string HireAnApprenticePageFiuCard7Heading => "End-point assessments";
-
         private string HireAnApprenticePageFiuCard8Heading => "Choose the right apprenticeship";
-
         private string HireAnApprenticePageFiuCard9Heading => "Choose a training provider";
-
         private string HireAnApprenticePageFiuCard10Heading => "Set up a service account";
-
-        private string HireAnApprenticePageFiuCard11Heading => "Get help and support";
-
         #endregion 
-
 
         protected override By PageHeader => By.CssSelector(".govuk-heading-xl");
 
@@ -42,11 +34,9 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
 
         protected By SettingItUp => By.CssSelector("a[href='/employers/setting-it-up']");
         
-        protected By EnployerGuide => By.CssSelector("a[href='/employers/guides']");
-
+        protected By EnployerGuide => By.CssSelector("a[href='/employers/employer-guides']");
 
         protected By SearchForAnApprenticeship => By.CssSelector("a[href ='/employers/find-apprenticeship-training']");
-
 
         protected By RealStories => By.CssSelector("#fiu-emp-hub-card-1");
 
@@ -72,18 +62,25 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
         protected By RegisterInterest => By.CssSelector("#fiu-panel-link-reg-int-emp");
 
         private By FiuHireAnApprenticeCard1 => By.XPath("//h3[contains(@class, 'fiu-card__heading') and contains(text(), 'Real stories')]");
+       
         private By FiuHireAnApprenticeCard2 => By.XPath("//h3[contains(@class, 'fiu-card__heading') and contains(text(), 'Benefits to your organisation')]");
+        
         private By FiuHireAnApprenticeCard3 => By.XPath("//h3[contains(@class, 'fiu-card__heading') and contains(text(), 'Hiring an apprentice')]");
+       
         private By FiuHireAnApprenticeCard4 => By.XPath("//h3[contains(@class, 'fiu-card__heading') and contains(text(), 'Upskilling your current staff')]");
+       
         private By FiuHireAnApprenticeCard5 => By.XPath("//h3[contains(@class, 'fiu-card__heading') and contains(text(), 'Funding an apprenticeship')]");
+       
+       
         private By FiuHireAnApprenticeCard6 => By.XPath("//h3[contains(@class, 'fiu-card__heading') and contains(text(), 'Training your apprentice')]");
+        
         private By FiuHireAnApprenticeCard7 => By.XPath("//h3[contains(@class, 'fiu-card__heading') and contains(text(), 'End-point assessments')]");
+        
         private By FiuHireAnApprenticeCard8 => By.XPath("//h3[contains(@class, 'fiu-card__heading') and contains(text(), 'Choose the right apprenticeship')]");
+       
         private By FiuHireAnApprenticeCard9 => By.XPath("//h3[contains(@class, 'fiu-card__heading') and contains(text(), 'Choose a training provider')]");
+       
         private By FiuHireAnApprenticeCard10 => By.XPath("//h3[contains(@class, 'fiu-card__heading') and contains(text(), 'Set up a service account')]");
-
-
-
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
@@ -153,6 +150,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
             formCompletionHelper.ClickElement(ChooseATrainingProvider);
             return new ChooseTheTrainingProviderPage(_context);
         }
+
         public SearchForAnApprenticeshipPage NavigateToFindAnApprenticeshipPage()
         {
             formCompletionHelper.ClickElement(SearchForAnApprenticeship);
@@ -182,11 +180,8 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
             return new RegisterInterestPage(_context);
         }
 
-        //     private TResult NavigateToAreApprenticeshipRightForYou<TResult>(By childLocator, Func<ScenarioContext, TResult> func) => NavigateTo(AreApprenticeshipRightForYou, childLocator, func);
 
         private TResult NavigateToHowDoTheyWork<TResult>(By childLocator, Func<ScenarioContext, TResult> func) => NavigateTo(HowDoTheyWork, childLocator, func);
-
-       // private TResult NavigateToSettingItUp<TResult>(By childLocator, Func<ScenarioContext, TResult> func) => NavigateTo(SettingItUp, childLocator, func);
 
         public EmployerHubPage VerifyHireAnApprenticeCard1()
         {
@@ -242,7 +237,5 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
             pageInteractionHelper.VerifyText(FiuHireAnApprenticeCard10, HireAnApprenticePageFiuCard10Heading);
             return new EmployerHubPage(_context);
         }
-
-
     }
 }

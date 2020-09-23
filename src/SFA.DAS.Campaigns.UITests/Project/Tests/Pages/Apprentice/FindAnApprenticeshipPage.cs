@@ -5,7 +5,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Apprentice
 {
     public class FindAnApprenticeshipPage : ApprenticeBasePage
     {
-        protected override string PageTitle => "Error";
+        protected override string PageTitle => "Page not found";
 
         #region Helpers and Context
         private readonly ScenarioContext _context;

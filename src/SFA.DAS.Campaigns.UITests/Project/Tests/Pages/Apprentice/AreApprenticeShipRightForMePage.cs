@@ -5,15 +5,10 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Apprentice
 {
     public class AreApprenticeShipRightForMePage: ApprenticeBasePage
     {
-        protected override string PageTitle => "Error";
-
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
+        protected override string PageTitle => "Page not found";
 
         public AreApprenticeShipRightForMePage(ScenarioContext context):base(context)
         {
-            _context = context;
             pageInteractionHelper.VerifyPageLoad(PageHeader, PageTitle);
         }
     }

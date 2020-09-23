@@ -11,9 +11,7 @@ namespace SFA.DAS.Campaigns.UITests
     {
         private readonly CampaignsStepsHelper _stepsHelper;
         private readonly ScenarioContext _context;
-        private HowDoTheyWorkPage _howDoTheyWorkPage;
         private FundingAnApprenticeshipPage fundingAnApprenticeshipPage;
-        private NonLevyPayingEmployerPage fundingAnApprenticeshipForNonLevyEmployerPage;
 
         public CA_EMP_12Steps(ScenarioContext context)
         {

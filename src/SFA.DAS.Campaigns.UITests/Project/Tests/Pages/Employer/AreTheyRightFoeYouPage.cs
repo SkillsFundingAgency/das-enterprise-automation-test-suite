@@ -8,10 +8,9 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
         protected override string PageTitle => "Page not found";
         protected override By PageHeader => By.CssSelector(".govuk-heading-xl");
 
-        #region Helpers and Context
-        private readonly ScenarioContext _context;
-        #endregion
-
-        public AreTheyRightFoeYouPage(ScenarioContext context):base(context) { }
+        public AreTheyRightFoeYouPage(ScenarioContext context):base(context) 
+        {
+            pageInteractionHelper.VerifyPageLoad(PageHeader, PageTitle);
+        }
     }
 }

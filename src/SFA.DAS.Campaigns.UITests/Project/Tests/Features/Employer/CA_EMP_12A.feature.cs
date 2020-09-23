@@ -110,9 +110,6 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("the user navigates to Hire An Apprentice hub Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 7
- testRunner.And("Verify the content on Hire An Apprentice hub Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 8
  testRunner.Then("the links are not broken", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }

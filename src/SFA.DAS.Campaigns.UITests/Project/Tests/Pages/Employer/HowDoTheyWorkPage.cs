@@ -7,7 +7,6 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
     {
         protected override string PageTitle => "Page not Found";
         protected override By PageHeader => By.CssSelector(".govuk-heading-xl");
-
         #region Page Object Elements
         private readonly By _hiringAnApprenticeIconLink = By.Id("flow-link-1");
         private readonly By _upskillingYourCurrentStaffIconLink = By.Id("flow-link-2");

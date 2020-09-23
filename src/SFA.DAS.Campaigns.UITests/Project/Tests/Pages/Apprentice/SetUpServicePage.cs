@@ -8,8 +8,11 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Apprentice
     public class SetUpServicePage:ApprenticeBasePage
     {
         protected override string PageTitle => "Page not found";
-        protected override By PageHeader => By.CssSelector(".heading-xlarge");
+        protected override By PageHeader => By.CssSelector(".govuk-heading-xl");
 
-        public SetUpServicePage(ScenarioContext context): base(context) { }
+        public SetUpServicePage(ScenarioContext context): base(context) 
+        {
+            pageInteractionHelper.VerifyPageLoad(PageHeader, PageTitle);
+        }
     }
 }

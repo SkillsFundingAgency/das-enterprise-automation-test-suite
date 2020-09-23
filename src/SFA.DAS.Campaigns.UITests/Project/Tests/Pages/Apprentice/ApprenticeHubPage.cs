@@ -9,34 +9,26 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Apprentice
 {
     public class ApprenticeHubPage : CampaingnsPage
     {
-          protected override string PageTitle => "Apprenticeship";
+          protected override string PageTitle => "Page not found";
         //protected override string PageTitle => "BECOME";
 
         #region  Constants and Strings
         private string BecomeAnApprenticePageFiuCard1Heading => "Real stories";
         private string BecomeAnApprenticePageFiuCard2Heading => "What are the benefits of an apprenticeship?";
-
         private string BecomeAnApprenticePageFiuCard3Heading => "Advice for parents";
         private string BecomeAnApprenticePageFiuCard4Heading => "Browse by interest";
         private string BecomeAnApprenticePageFiuCard5Heading => "What is an apprenticeship";
         private string BecomeAnApprenticePageFiuCard6Heading => "Applying for an apprenticeship";
         private string BecomeAnApprenticePageFiuCard7Heading => "The interview process";
-      
         private string BecomeAnApprenticePageFiuCard8Heading => "Starting your apprenticeship";
-
         private string BecomeAnApprenticePageFiuCard9Heading => "Assessment and certification";
-       
         private string BecomeAnApprenticePageFiuCard10Heading => "Set up a service account";
-
         private string BecomeAnApprenticePageFiuCard11Heading => "Get help and support";
-
         #endregion 
 
         #region element /objects
         protected override By PageHeader => By.CssSelector(".govuk-heading-xl");
-       
         protected By AreApprenticeshipRightForYou => By.CssSelector("#fiu-app-menu-link-1");
-  
         protected By HowDoTheyWork => By.CssSelector("#fiu-app-menu-link-2");
 
         protected By GettingStarted => By.CssSelector("#fiu-app-menu-link-3");
@@ -62,23 +54,30 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Apprentice
         protected By AssesmentAndCertification => By.CssSelector("#fiu-app-hub-card-9");
 
         private By CookieAcceptButton => By.CssSelector("#btn-cookie-accept");
+   
         private By FiuBecomeAnApprenticeCard1 => By.XPath("//h3[contains(@class, 'fiu-card__heading') and contains(text(), 'Real stories')]");
+      
         private By FiuBecomeAnApprenticeCard2 => By.XPath("//h3[contains(@class, 'fiu-card__heading') and contains(text(), 'What are the benefits of an apprenticeship?')]");
+     
         private By FiuBecomeAnApprenticeCard3 => By.XPath("//h3[contains(@class, 'fiu-card__heading') and contains(text(), 'Advice for parents')]");
+       
         private By FiuBecomeAnApprenticeCard4 => By.XPath("//h3[contains(@class, 'fiu-card__heading') and contains(text(), 'Browse by interest')]");
+       
         private By FiuBecomeAnApprenticeCard5 => By.XPath("//h3[contains(@class, 'fiu-card__heading') and contains(text(), 'What is an apprenticeship')]");
+       
         private By FiuBecomeAnApprenticeCard6 => By.XPath("//h3[contains(@class, 'fiu-card__heading') and contains(text(), 'Applying for an apprenticeship')]");
+        
         private By FiuBecomeAnApprenticeCard7 => By.XPath("//h3[contains(@class, 'fiu-card__heading') and contains(text(), 'The interview process')]");
+      
         private By FiuBecomeAnApprenticeCard8 => By.XPath("//h3[contains(@class, 'fiu-card__heading') and contains(text(), 'Starting your apprenticeship')]");
+      
         private By FiuBecomeAnApprenticeCard9 => By.XPath("//h3[contains(@class, 'fiu-card__heading') and contains(text(), 'Assessment and certification')]");
+     
         private By FiuBecomeAnApprenticeCard10 => By.XPath("//h3[contains(@class, 'fiu-card__heading') and contains(text(), 'Set up a service account')]");
-        //private By FiuBecomeAnApprenticeCard11 => By.XPath("//h3[contains(@class, 'fiu-card__heading') and contains(text(), 'Find apprenticeship training')]");
-        //private By FiuBecomeAnApprenticeCard12 => By.XPath("//h3[contains(@class, 'fiu-card__heading') and contains(text(), 'Find apprenticeship training')]");
         #endregion
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
-
         #endregion
 
         public ApprenticeHubPage(ScenarioContext context) : base(context)
@@ -118,7 +117,6 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Apprentice
         public SetUpServicePage NavigateToSetUpServiceAccountPage()
         {
             formCompletionHelper.ClickElement(SetUpService);
-            formCompletionHelper.ClickElement(CookieAcceptButton);
             return new SetUpServicePage(_context);
         }
 
@@ -129,8 +127,6 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Apprentice
             formCompletionHelper.ClickElement(AdviceForParents);
             return new HelpShapeTheirCareerPage(_context);
         }
-
-
 
         public WhatIsAnApprenticeshipPage NavigateToWhatIsAnApprenticeshipPage()
         {
@@ -149,7 +145,6 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Apprentice
             formCompletionHelper.ClickElement(Interview);
             return new InterviewPage(_context);
         }
-
 
         public YourApprenticeshipPage NavigateToYourApprenticeshipPage()
         {

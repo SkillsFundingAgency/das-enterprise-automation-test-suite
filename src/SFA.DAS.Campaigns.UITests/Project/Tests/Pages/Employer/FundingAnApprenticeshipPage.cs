@@ -19,6 +19,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
         public FundingAnApprenticeshipPage(ScenarioContext context) : base(context)
         {
             _context = context;
+            pageInteractionHelper.VerifyPageLoad(PageHeader, PageTitle);
         }
 
         public NonLevyPayingEmployerPage NavigateToNonLevyEmployerPage()
