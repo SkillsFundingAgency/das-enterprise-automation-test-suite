@@ -20,8 +20,10 @@ namespace SFA.DAS.FAT_V2.UITests.Project.Tests.Pages
         protected By SearchTextField => By.Id("Keyword");
         protected virtual By SearchButton => By.Id("filters-submit");
         protected virtual By FirstResultLink => By.ClassName("das-no-wrap");
+        protected virtual By FirstProviderResultLink => By.ClassName("das-search-results__link");
+
         #endregion
-        
+
         protected FATV2BasePage(ScenarioContext context) : base(context)
         {
             _context = context;

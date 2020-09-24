@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.FAT_V2.UITests.Project.Tests.Features.SearchTrainingAndProvider
+namespace SFA.DAS.FAT_V2.UITests.Project.Tests.Features.SearchTrainingAndProviderByLocation
 {
     using TechTalk.SpecFlow;
     using System;
@@ -20,22 +20,22 @@ namespace SFA.DAS.FAT_V2.UITests.Project.Tests.Features.SearchTrainingAndProvide
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.3.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("FATV2_SearchTrainingAndProviderByArea_01")]
-    public partial class FATV2_SearchTrainingAndProviderByArea_01Feature
+    [NUnit.Framework.DescriptionAttribute("FATV2_SearchTrainingByLocation_01")]
+    public partial class FATV2_SearchTrainingByLocation_01Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private string[] _featureTags = ((string[])(null));
         
-#line 1 "FATV2_SearchTrainingAndProviderByArea_01.feature"
+#line 1 "FATV2_SearchTrainingByArea_01.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "FATV2_SearchTrainingAndProviderByArea_01", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "FATV2_SearchTrainingByLocation_01", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,16 +74,16 @@ namespace SFA.DAS.FAT_V2.UITests.Project.Tests.Features.SearchTrainingAndProvide
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("FATV2_STAP_01_Search for a Training and Provider")]
+        [NUnit.Framework.DescriptionAttribute("FATV2_STBL_01_Search for Training By Area")]
         [NUnit.Framework.CategoryAttribute("fatv2")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public virtual void FATV2_STAP_01_SearchForATrainingAndProvider()
+        public virtual void FATV2_STBL_01_SearchForTrainingByArea()
         {
             string[] tagsOfScenario = new string[] {
                     "fatv2",
                     "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("FATV2_STAP_01_Search for a Training and Provider", null, tagsOfScenario, argumentsOfScenario);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("FATV2_STBL_01_Search for Training By Area", null, tagsOfScenario, argumentsOfScenario);
 #line 5
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -113,6 +113,9 @@ this.ScenarioInitialize(scenarioInfo);
 #line 8
  testRunner.Then("the User is able to find the Provider by location Camden, Camden for the chosen t" +
                         "raining", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 9
+ testRunner.And("the User is able to select the Provider for the chosen training", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();

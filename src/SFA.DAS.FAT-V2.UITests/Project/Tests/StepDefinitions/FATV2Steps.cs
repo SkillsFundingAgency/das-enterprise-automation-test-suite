@@ -14,6 +14,7 @@ namespace SFA.DAS.FAT_V2.UITests.Project.Tests.StepDefinitions
         private TrainingCourseSearchResultsPage _trainingCourseSearchResultsPage;
         private TrainingCourseSummaryPage _trainingCourseSummaryPage;
         private ProviderSearchResultsPage _providerSearchResultsPage;
+        private ProviderSummaryPage _providerSummaryPage;
 
         public FATV2Steps(ScenarioContext context)
         {
@@ -61,5 +62,12 @@ namespace SFA.DAS.FAT_V2.UITests.Project.Tests.StepDefinitions
         {
             _providerSearchResultsPage = _trainingCourseSummaryPage.EnterPostCodeAndSearch(postCode);
         }
+
+        [Then(@"the User is able to select the Provider for the chosen training")]
+        public void ThenTheUserIsAbleToSelectTheProviderForTheChosenTraining()
+        {
+            _providerSummaryPage = _providerSearchResultsPage.SelectFirstProviderInTheList();
+        }
+
     }
 }
