@@ -9,8 +9,8 @@ namespace SFA.DAS.FAT_V2.UITests.Project.Tests.Pages
         private readonly ScenarioContext _context;
 
         #region Locators
-        private By PostCodeTextBox => By.Id("search-location");
-        private By ViewProvidersForThisCourseButton => By.TagName("button");
+        private By LocationTextBox => By.Id("search-location");
+        private By ViewProvidersForThisCourseButton => By.Id("btn-view-providers");
         #endregion
 
         public TrainingCourseSummaryPage(ScenarioContext context) : base(context)
@@ -23,10 +23,10 @@ namespace SFA.DAS.FAT_V2.UITests.Project.Tests.Pages
             NavigateToHomepage();
             return new FATV2IndexPage(_context);
         }
-        public ProviderSearchResultsPage EnterPostCodeAndSearch(string postCode)
+        public ProviderSearchResultsPage EnterPostCodeAndSearch(string location)
         {
-            formCompletionHelper.EnterText(PostCodeTextBox, postCode);
-            formCompletionHelper.SendKeys(PostCodeTextBox, Keys.Tab);
+            formCompletionHelper.EnterText(LocationTextBox, location);
+            formCompletionHelper.SendKeys(LocationTextBox, Keys.Tab);
             formCompletionHelper.Click(ViewProvidersForThisCourseButton);
             return new ProviderSearchResultsPage(_context);
         }
