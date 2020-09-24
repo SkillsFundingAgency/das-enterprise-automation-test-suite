@@ -77,12 +77,14 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Features.E2E
         [NUnit.Framework.DescriptionAttribute("CA_E2E_01_Employer favourites Apprenticeship and a Training Provider and removes " +
             "them")]
         [NUnit.Framework.CategoryAttribute("Ignore")]
+        [NUnit.Framework.CategoryAttribute("campaigns")]
         [NUnit.Framework.CategoryAttribute("employer")]
         [NUnit.Framework.CategoryAttribute("regression")]
         public virtual void CA_E2E_01_EmployerFavouritesApprenticeshipAndATrainingProviderAndRemovesThem()
         {
             string[] tagsOfScenario = new string[] {
                     "Ignore",
+                    "campaigns",
                     "employer",
                     "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
