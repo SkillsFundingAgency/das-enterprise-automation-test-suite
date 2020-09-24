@@ -5,8 +5,8 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
 {
     public class HowDoTheyWorkPage : EmployerBasePage
     {
-        protected override string PageTitle => "HOW DO THEY WORK";
-
+        protected override string PageTitle => "Page not Found";
+        protected override By PageHeader => By.CssSelector(".govuk-heading-xl");
         #region Page Object Elements
         private readonly By _hiringAnApprenticeIconLink = By.Id("flow-link-1");
         private readonly By _upskillingYourCurrentStaffIconLink = By.Id("flow-link-2");
@@ -25,7 +25,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
         public HowDoTheyWorkPage(ScenarioContext context) : base(context)
         {
             _context = context;
-            VerifyPage();
+            pageInteractionHelper.VerifyPageLoad(PageHeader, PageTitle);
         }
 
         public HireAnApprenticePage CheckHiringAnApprenticeIconPage()

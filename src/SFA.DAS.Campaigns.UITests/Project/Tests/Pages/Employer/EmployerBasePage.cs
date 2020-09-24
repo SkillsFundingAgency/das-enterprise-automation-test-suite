@@ -8,11 +8,11 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
 {
     public abstract class EmployerBasePage : EmployerHubPage
     {
-        protected override By PageHeader => By.CssSelector(".heading-xl");
+        //protected override By PageHeader => By.CssSelector(".govuk-heading-xl");
 
-        protected By AddFavouriteSelector => By.CssSelector(".das-search-result__favourite-button--unchecked");
+        protected By AddFavouriteSelector => By.CssSelector(".fiu-favourite-bar__link ");
 
-        protected By RemoveFavouriteSelector => By.CssSelector(".das-search-result__favourite-button--checked");
+        protected By RemoveFavouriteSelector => By.CssSelector(". fiu-favourite-bar__link--active");
 
         protected EmployerBasePage(ScenarioContext context) : base(context) { }
 

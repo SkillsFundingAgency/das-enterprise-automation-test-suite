@@ -5,7 +5,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
 {
     public class TrainingProviderResultPage : EmployerBasePage
     {
-        protected override string PageTitle => "TRAINING PROVIDER RESULTS";
+        protected override string PageTitle => "Page not found";
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
@@ -13,9 +13,13 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
 
         private By Provider => By.CssSelector($".das-search-result a[href*='ukprn={objectContext.GetProviderId()}&apprenticeshipId={objectContext.GetCourseId()}&LocationId={objectContext.GetProviderLocationId()}']");
 
-        public TrainingProviderResultPage(ScenarioContext context) : base(context) => _context = context;
+        public TrainingProviderResultPage(ScenarioContext context) : base(context)
+        {
+            _context = context;
+            pageInteractionHelper.VerifyPageLoad(PageHeader, PageTitle);
+        }
 
-        public EmployerFavouritesPage AddFavouriteProvider()
+            public EmployerFavouritesPage AddFavouriteProvider()
         {
             AddFavourite();
             GoToBasket();

@@ -11,31 +11,31 @@ namespace SFA.DAS.Campaigns.UITests
     {
         private readonly CampaignsStepsHelper _stepsHelper;
         private readonly ScenarioContext _context;
-        private HowDoTheyWorkPage _howDoTheyWorkPage;
         private FundingAnApprenticeshipPage fundingAnApprenticeshipPage;
-        private FundingAnApprenticeshipForNonLevyEmployerPage fundingAnApprenticeshipForNonLevyEmployerPage;
 
         public CA_EMP_12Steps(ScenarioContext context)
         {
             _context = context;
             _stepsHelper = new CampaignsStepsHelper(context);
         }
-        [Then(@"Employer Selects Yes on How do they work page and clicks continue")]
-        public void ThenEmployerSelectsYesOnHowDoTheyWorkPageAndClicksContinue()
-        {
-            _howDoTheyWorkPage = new HowDoTheyWorkPage(_context);
-            _howDoTheyWorkPage.ClickContinueButton()
-                .ClickHowDoTheyWorkLink()
-                .NavigateToFundingAnApprenticeshipPage();
-        }
-        
-        [Then(@"Verifies that correct content is displayed on Funding An Apprentice page")]
-        public void ThenVerifiesThatCorrectContentIsDisplayedOnFundingAnApprenticePage()
+        [Then(@"Employer selects Levy Paying and continues")]
+        public void ThenEmployerSelectsLevyPayingAndContinues()
         {
             fundingAnApprenticeshipPage = new FundingAnApprenticeshipPage(_context);
-            fundingAnApprenticeshipPage.ClickContinueButton();
-            fundingAnApprenticeshipForNonLevyEmployerPage = new FundingAnApprenticeshipForNonLevyEmployerPage(_context);
-            //fundingAnApprenticeshipForNonLevyEmployerPage.CheckForNonLevyContent();
+            fundingAnApprenticeshipPage.NavigateToLevyEmployerPage();
+        }
+
+        [Then(@"Employer selects non Levy Paying and continues")]
+        public void ThenEmployerSelectsNonLevyPayingAndContinues()
+        {
+            fundingAnApprenticeshipPage = new FundingAnApprenticeshipPage(_context);
+            fundingAnApprenticeshipPage.NavigateToNonLevyEmployerPage();
+        }
+        [Then(@"Employer selects non sure Levy Paying and continues")]
+        public void ThenEmployerSelectsNonSureLevyPayingAndContinues()
+        {
+            fundingAnApprenticeshipPage = new FundingAnApprenticeshipPage(_context);
+            fundingAnApprenticeshipPage.NavigateToNotSureLevyEmployerPage();
         }
     }
 }

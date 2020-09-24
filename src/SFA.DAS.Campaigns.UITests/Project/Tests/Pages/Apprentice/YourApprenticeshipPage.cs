@@ -5,15 +5,11 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Apprentice
 {
     public class YourApprenticeshipPage : ApprenticeBasePage
     {
-        protected override string PageTitle => "STARTING YOUR APPRENTICESHIP";
+        protected override string PageTitle => "Page not found";
 
-        private readonly By _subHeading1 = By.XPath("//h2[contains(@class, 'heading-m') and contains(text(), 'Training providers')]");
-
-        public YourApprenticeshipPage(ScenarioContext context) : base(context) => VerifyHeadings();
-
-        private void VerifyHeadings()
+        public YourApprenticeshipPage(ScenarioContext context) : base(context)
         {
-            pageInteractionHelper.VerifyText(_subHeading1, "TRAINING PROVIDERS");
+            pageInteractionHelper.VerifyPageLoad(PageHeader, PageTitle);
         }
     }
 }

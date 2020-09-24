@@ -1,5 +1,6 @@
 ﻿Feature: CA_E2E_02
 
+@Ignore
 @campaigns
 @employer
 @regression

@@ -4,14 +4,11 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
 {
     public class PreparingAndMonitoringPage : EmployerBasePage
     {
-        protected override string PageTitle => "PREPARING AND MONITORING";
+        protected override string PageTitle => "Page not found";
 
-        public PreparingAndMonitoringPage(ScenarioContext context) : base(context) => VerifyHeadings();
-
-        private void VerifyHeadings()
+        public PreparingAndMonitoringPage(ScenarioContext context) : base(context)
         {
-            pageInteractionHelper.VerifyText(Heading1, "PREPARING");
-            pageInteractionHelper.VerifyText(Heading2, "MONITORING");
+            pageInteractionHelper.VerifyPageLoad(PageHeader, PageTitle);
         }
     }
 }

@@ -6,7 +6,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
 {
     public class SearchResultsPage : EmployerBasePage
     {
-        protected override string PageTitle => "SEARCH RESULTS";
+        protected override string PageTitle => "Page not found";
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
@@ -16,7 +16,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
         
         private By Search => By.CssSelector("#employer-apprenticeship-search");
 
-        private By Apprenticeship => By.CssSelector($".das-search-results__list-item[id='{objectContext.GetCourseId()}'] .das-search-result__heading-link");
+        private By Apprenticeship => By.CssSelector($".fiu-results-panel[id='{objectContext.GetCourseId()}'] .fiu-link fiu-link--employers");
 
         public SearchResultsPage(ScenarioContext context) : base(context) => _context = context;
 

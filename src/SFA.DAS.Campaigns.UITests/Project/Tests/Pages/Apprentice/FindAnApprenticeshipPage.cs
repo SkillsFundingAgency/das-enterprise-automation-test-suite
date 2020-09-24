@@ -5,7 +5,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Apprentice
 {
     public class FindAnApprenticeshipPage : ApprenticeBasePage
     {
-        protected override string PageTitle => "FIND AN APPRENTICESHIP";
+        protected override string PageTitle => "Page not found";
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
@@ -16,9 +16,13 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Apprentice
         private By Distance => By.CssSelector("#header-distance");
         private By SearchButton => By.CssSelector("#search-apprenticeship");
 
-        public FindAnApprenticeshipPage(ScenarioContext context) : base(context) => _context = context;
+        public FindAnApprenticeshipPage(ScenarioContext context) : base(context)
+        {
+            _context = context;
+            pageInteractionHelper.VerifyPageLoad(PageHeader, PageTitle);
+        }
 
-        public ResultsPage SearchForAnApprenticeship()
+            public ResultsPage SearchForAnApprenticeship()
         {
             formCompletionHelper.SelectFromDropDownByText(Route, campaignsDataHelper.Route);
             formCompletionHelper.EnterText(Postcode, campaignsDataHelper.Postcode);

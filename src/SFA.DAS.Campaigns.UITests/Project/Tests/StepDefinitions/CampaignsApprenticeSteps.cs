@@ -43,6 +43,15 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
         [Then(@"the user can search for an apprenticeship")]
         public void ThenTheUserCanSearchForAnApprenticeship() => _findAnApprenticeshipPage.SearchForAnApprenticeship().VerifySearchResults().SelectFirstSearchResult().VerifyVacancyTitle();
 
+        [Given(@"the user navigates to the Advice for Parent  page")]
+        public void GivenTheUserNavigatesToTheAdviceForParentPage() => GoToApprenticeshipHubPage().NavigateToAdviceForParentPage();
+
+        [Given(@"the user navigates to the Browse By Interest Page page")]
+        public void GivenTheUserNavigatesToTheBrowseByInterestPagePage() => GoToApprenticeshipHubPage().NavigateToBrowseInterestPage();
+
+        [Given(@"the user navigates to the Set Up Service Account page")]
+        public void GivenTheUserNavigatesToTheSetUpServiceAccountPage() => GoToApprenticeshipHubPage().NavigateToSetUpServiceAccountPage();
+
         private ApprenticeHubPage GoToApprenticeshipHubPage() => GoToFireItUpHomePage().NavigateToApprenticeshipHubPage();
 
         private FireItUpHomePage GoToFireItUpHomePage() => _stepsHelper.GoToFireItUpHomePage();

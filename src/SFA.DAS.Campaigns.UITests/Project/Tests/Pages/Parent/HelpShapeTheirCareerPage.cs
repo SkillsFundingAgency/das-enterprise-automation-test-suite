@@ -5,10 +5,11 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Parent
 {
     public class HelpShapeTheirCareerPage : CampaingnsPage
     {
-        protected override string PageTitle => "HELP SHAPE THEIR CAREER";
+        protected override string PageTitle => "Page not foundr";
 
-        protected override By PageHeader => By.CssSelector(".heading-xl");
-
-        public HelpShapeTheirCareerPage(ScenarioContext context) : base(context) { }
+        public HelpShapeTheirCareerPage(ScenarioContext context) : base(context)
+        {
+            pageInteractionHelper.VerifyPageLoad(PageHeader, PageTitle);
+        }
     }
 }

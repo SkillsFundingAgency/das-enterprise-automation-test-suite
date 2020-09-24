@@ -5,7 +5,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
 {
     public class EndPointAssessmentPage : EmployerBasePage
     {
-        protected override string PageTitle => "END-POINT ASSESSMENTS";
+        protected override string PageTitle => "Page not found";
 
         #region Page Object Elements
         private readonly By _subHeading1 = By.XPath("//h2[contains (@class, 'heading-m' ) and contains(text(), 'Assessing your apprentice')]");
@@ -15,14 +15,9 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
         private readonly By _subHeading5 = By.XPath("//h2[contains (@class, 'heading-m' ) and contains(text(), 'Certification')]");
         #endregion
 
-        public EndPointAssessmentPage(ScenarioContext context) : base(context) => VerifyHeadings();
-
-        private void VerifyHeadings()
+        public EndPointAssessmentPage(ScenarioContext context) : base(context)
         {
-            pageInteractionHelper.VerifyText(_subHeading1, "ASSESSING YOUR APPRENTICE");
-            pageInteractionHelper.VerifyText(_subHeading3, "FINDING AN END-POINT ASSESSMENT ORGANISATION");
-            pageInteractionHelper.VerifyText(_subHeading4, "THE COST OF AN END-POINT ASSESSMENT");
-            pageInteractionHelper.VerifyText(_subHeading5, "CERTIFICATION");
+            pageInteractionHelper.VerifyPageLoad(PageHeader, PageTitle);
         }
     }
 }

@@ -10,7 +10,6 @@ namespace SFA.DAS.Campaigns.UITests
     {
         private readonly CampaignsStepsHelper _stepsHelper;
         private readonly ScenarioContext _context;
-        private HowDoTheyWorkPage _howDoTheyWorkPage;
         public CA_EMP_10Steps(ScenarioContext context) 
         {
             _context = context;
@@ -24,21 +23,6 @@ namespace SFA.DAS.Campaigns.UITests
             _stepsHelper.GoToFireItUpHomePage()
                 .NavigateToEmployerHubPage()
                 .ClickHowDoTheyWorkLink();
-        }
-
-        [Then(@"verify the links are not broken on How do they work page")]
-        public void ThenVerifyTheLinksAreNotBrokenOnHowDoTheyWorkPage()
-        {
-            _howDoTheyWorkPage = new HowDoTheyWorkPage(_context);
-            _howDoTheyWorkPage.NavigateToHireAnApprenticePage()
-                 .ClickHowDoTheyWorkLink()
-                 .CheckUpSkillingYourCurrentStaffPage()
-                 .ClickHowDoTheyWorkLink()
-                 .CheckFundingAnApprenticeshipPage()
-                 .ClickHowDoTheyWorkLink()
-                 .CheckTrainYourApprenticePage()
-                 .ClickHowDoTheyWorkLink()
-                 .NavigateToEndPointAssesmentPage();
         }
     }
 }

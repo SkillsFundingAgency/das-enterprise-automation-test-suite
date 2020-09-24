@@ -112,9 +112,6 @@ this.ScenarioInitialize(scenarioInfo);
 #line 8
  testRunner.Then("the links are not broken", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 9
- testRunner.And("the video links are not broken", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "* ");
-#line hidden
             }
             this.ScenarioCleanup();
         }

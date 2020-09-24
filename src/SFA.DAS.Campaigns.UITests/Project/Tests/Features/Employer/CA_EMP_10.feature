@@ -5,5 +5,5 @@
 @regression
 Scenario: CA_EMPP_10_Check The links on How do they work Page
 	Given the user navigates to the How do they work page
-	Then verify the links are not broken on How do they work page
+	Then the links are not broken
 	

@@ -4,14 +4,11 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Apprentice
 {
     public class AssesmentAndCertificationPage : ApprenticeBasePage
     {
-        protected override string PageTitle => "ASSESSMENT AND CERTIFICATION";
+        protected override string PageTitle => "Page not found";
 
-        public AssesmentAndCertificationPage(ScenarioContext context) : base(context) { VerifyHeadings(); }
-
-        private void VerifyHeadings()
+        public AssesmentAndCertificationPage(ScenarioContext context) : base(context)
         {
-            pageInteractionHelper.VerifyText(Heading1, "GET ASSESSED AND GET YOUR CERTIFICATE");
-            pageInteractionHelper.VerifyText(Heading2, "COMPLETE YOUR APPRENTICESHIP");
+            pageInteractionHelper.VerifyPageLoad(PageHeader, PageTitle);
         }
     }
 }

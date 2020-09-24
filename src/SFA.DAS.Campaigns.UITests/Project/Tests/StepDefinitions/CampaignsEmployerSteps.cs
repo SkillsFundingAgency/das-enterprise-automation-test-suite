@@ -18,11 +18,11 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
         [Given(@"the user navigates to the benefits of your organisation page")]
         public void GivenTheUserNavigatesToTheBenefitsOfYourOrganisationPage() => GoToEmployerHubPage().NavigateToEmpBenefitsPage();
 
+        [Given(@"the user navigates to hiring an apprentice page")]
+        public void GivenTheUserNavigatesToHiringAnApprenticePage() => GoToEmployerHubPage();
+      
         [Given(@"the user navigates to the funding an apprenticeship page")]
         public void GivenTheUserNavigatesToTheFundingAnApprenticeshipPage() => GoToEmployerHubPage().NavigateToFundingAnApprenticeshipPage();
-
-        [Given(@"the user navigates to hiring an apprentice page")]
-        public void GivenTheUserNavigatesToHiringAnApprenticePage() => GoToEmployerHubPage().NavigateToHireAnApprenticePage();
 
         [Given(@"the user navigates to Upskilling Your Current Staff page")]
         public void GivenTheUserNavigatesToUpskillingYourCurrentStaffPage() => GoToEmployerHubPage().NavigateToUpSkillingYourCurrentStaffPage();
@@ -41,6 +41,9 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
 
         [Given(@"the user navigates to search for an apprenticeship page")]
         public void GivenTheUserNavigatesToSearchForAnApprenticeshipPage() => GoToEmployerHubPage().NavigateToFindAnApprenticeshipPage();
+
+        [Given(@"the user navigates to Employer Guide Page")]
+        public void GivenTheUserNavigatesToEmployerGuidePage() => GoToEmployerHubPage().NavigateEmployerGuidePage();
 
         public FireItUpHomePage GoToFireItUpHomePage() => _stepsHelper.GoToFireItUpHomePage();
 
