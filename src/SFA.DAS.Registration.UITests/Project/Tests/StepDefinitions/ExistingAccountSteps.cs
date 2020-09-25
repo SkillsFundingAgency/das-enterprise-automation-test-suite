@@ -29,6 +29,12 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         [When(@"the Employer logins using existing NonLevy Account")]
         public void GivenTheEmployerLoginsUsingExistingNonLevyAccount() => _homePage = _loginFromCreateAcccountPageHelper.Login(_context.GetUser<NonLevyUser>());
 
+        [Given(@"the Employer logins using existing transactor user account")]
+        public void GivenTheEmployerLoginsUsingExistingTransactorUserAccount() => _homePage = _loginFromCreateAcccountPageHelper.Login(_context.GetUser<TransactorUser>(), true);
+
+        [Given(@"the Employer logins using existing view user account")]
+        public void GivenTheEmployerLoginsUsingExistingViewUserAccount() => _homePage = _loginFromCreateAcccountPageHelper.Login(_context.GetUser<ViewOnlyUser>(), true);
+
         [Then(@"Employer is able to navigate to all the link under Settings")]
         public void ThenEmployerIsAbleToNavigateToAllTheLinkUnderSettings() => _homePage = _homePage
                 .GoToYourAccountsPage().OpenAccount().GoToHomePage()
