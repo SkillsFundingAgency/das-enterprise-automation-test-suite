@@ -2,7 +2,9 @@
 using SFA.DAS.Login.Service.Helpers;
 using SFA.DAS.Registration.UITests.Project.Helpers;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages;
+using SFA.DAS.Registration.UITests.Project.Tests.Pages.InterimPages;
 using TechTalk.SpecFlow;
+using static SFA.DAS.Registration.UITests.Project.Helpers.EnumHelper;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
 {
@@ -10,6 +12,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
     public class ExistingAccountSteps
     {
         private readonly ScenarioContext _context;
+
         private readonly EmployerPortalLoginHelper _employerPortalLoginHelper;
         private readonly EmployerLoginFromCreateAcccountPageHelper _loginFromCreateAcccountPageHelper;
         private HomePage _homePage;
@@ -51,5 +54,47 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
 
         [Then(@"the employer can navigate to home page")]
         public void ThenTheEmployerCanNavigateToHomePage() => new HomePage(_context, true);
+
+        [Then(@"the user can not add an organisation")]
+        public void ThenTheUserCanNotAddAnOrganisation()
+        {
+            _homePage = _homePage.GoToYourOrganisationsAndAgreementsPage()
+                .ClickAddNewOrganisationButton()
+                .SearchForAnOrganisation(OrgType.Company2)
+                .SelectYourOrganisation(OrgType.Company2)
+                .ClickYesAndRedirectedToAccessDeniedPage()
+                .GoBackToTheServiceHomePage();
+        }
+
+        [Then(@"the user can not add Payee Scheme")]
+        public void ThenTheUserCanNotAddPayeeScheme()
+        {
+            _homePage = _homePage.GotoPAYESchemesPage()
+                .ClickAddNewSchemeButtonAndRedirectedToAccessDeniedPage()
+                .GoBackToTheServiceHomePage();
+        }
+
+        [Then(@"the user can not invite a team members")]
+        public void ThenTheUserCanNotInviteATeamMembers()
+        {
+            _homePage = _homePage.GotoYourTeamPage()
+                .ClickInviteANewMemberButtonAndRedirectedToAccessDeniedPage()
+                .GoBackToTheServiceHomePage();
+        }
+
+        [Then(@"the user can not accept agreement")]
+        public void ThenTheUserCanNotAcceptAgreement()
+        {
+            _homePage = _homePage.ClickAcceptYourAgreementAndAndRedirectedToAccessDeniedPage()
+                .GoBackToTheServiceHomePage();
+        }
+
+        [Then(@"the user can not add an apprentices")]
+        public void ThenTheUserCanNotAddAnApprentices()
+        {
+            _homePage = new InterimApprenticesHomePage(_context, true)
+                .AddAnApprenticeAndRedirectedToAccessDeniedPage()
+                .GoBackToTheServiceHomePage();
+        }
     }
 }

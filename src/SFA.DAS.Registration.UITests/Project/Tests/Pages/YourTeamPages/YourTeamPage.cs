@@ -26,6 +26,12 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.YourTeamPages
             return new CreateInvitationPage(_context);
         }
 
+        public AccessDeniedPage ClickInviteANewMemberButtonAndRedirectedToAccessDeniedPage()
+        {
+            formCompletionHelper.Click(InviteANewMemberButton);
+            return new AccessDeniedPage(_context);
+        }
+
         public ViewTeamMemberPage ClickViewMemberLink(string email)
         {
             formCompletionHelper.ClickElement(pageInteractionHelper.FindElement(ViewMemberLink(email)));

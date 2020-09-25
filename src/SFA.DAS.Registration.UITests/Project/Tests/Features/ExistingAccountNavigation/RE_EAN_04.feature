@@ -4,13 +4,9 @@
 @registration
 Scenario: RE_EAN_04_Verify Login for Existing View user
 	Given the Employer logins using existing view user account
-	When the user tries to add organisation
-	Then the user should be redirected to access denied page 
-	When the user tries to add Payee Scheme
-	Then the user should be redirected to access denied page 
-	When the user tries to invite a team members
-	Then the user should be redirected to access denied page 
-	When the user tries to accept agreement 
-	Then the user should be redirected to access denied page 
-	When the user tries to add an apprentices 
-	Then the user should be redirected to access denied page 
+	Then the user can not add an organisation
+	And the user can not add Payee Scheme
+	And the user can not invite a team members
+	And the user can not accept agreement
+	And the user can not add an apprentices
+	

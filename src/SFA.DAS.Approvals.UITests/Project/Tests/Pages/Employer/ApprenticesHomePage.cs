@@ -13,23 +13,22 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private readonly PageInteractionHelper _pageInteractionHelper;
         #endregion
 
-        private By AddAnApprenticeLink => By.LinkText("Add an apprentice");
         private By ApprenticeRequestsLink => By.LinkText("Apprentice requests");
         private By ManageYourApprenticesLink => By.LinkText("Manage your apprentices");
         private By SetPaymentOrder => By.LinkText("Set payment order");
         private By ReportPublicSectorApprenticeshipTarget => By.LinkText("Report public sector apprenticeship target");
-        private By Help = By.LinkText("Help");
-        private By Feedback = By.LinkText("Feedback");
-        private By Privacy = By.LinkText("Privacy");
-        private By Cookies = By.LinkText("Cookies");
-        private By BuiltBy = By.LinkText("Education and Skills Funding Agency");
-        private By CrownCopyright = By.LinkText("© Crown copyright");
+        private By Help => By.LinkText("Help");
+        private By Feedback => By.LinkText("Feedback");
+        private By Privacy => By.LinkText("Privacy");
+        private By Cookies => By.LinkText("Cookies");
+        private By BuiltBy => By.LinkText("Education and Skills Funding Agency");
+        private By CrownCopyright => By.LinkText("© Crown copyright");
 
-        private By CookiesAcceptButton = By.Id("btn-cookie-accept");
-        private By CookiesSettingsButton = By.Id("btn-cookie-settings");
+        private By CookiesAcceptButton => By.Id("btn-cookie-accept");
+        private By CookiesSettingsButton => By.Id("btn-cookie-settings");
 
-        private By zenHelpWidgetScript1 = By.Id("ze-snippet");
-        private By zenHelpWidgetScript2 = By.Id("co-snippet");
+        private By ZenHelpWidgetScript1 => By.Id("ze-snippet");
+        private By ZenHelpWidgetScript2 => By.Id("co-snippet");
 
         public ApprenticesHomePage(ScenarioContext context, bool navigate = false) : base(context, navigate)
         {
@@ -87,8 +86,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         public void ValidateHelpWidget()
         {
-            Assert.IsTrue(_pageInteractionHelper.IsElementPresent(zenHelpWidgetScript1), "Validate help widget button in the bottom right");
-            Assert.IsTrue(_pageInteractionHelper.IsElementPresent(zenHelpWidgetScript2), "Validate help widget button in the bottom right");
+            Assert.IsTrue(_pageInteractionHelper.IsElementPresent(ZenHelpWidgetScript1), "Validate help widget button in the bottom right");
+            Assert.IsTrue(_pageInteractionHelper.IsElementPresent(ZenHelpWidgetScript2), "Validate help widget button in the bottom right");
         }
     }
 }
