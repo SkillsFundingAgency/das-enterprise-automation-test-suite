@@ -55,9 +55,9 @@ namespace SFA.DAS.Approvals.UITests.Project
 
         internal static string GetEIAgeCategoryAsOfAug2020(this ObjectContext objectContext) => objectContext.Get(EIAgeCategoryAsOfAug2020);
 
-        internal static string GetEIStartMonth(this ObjectContext objectContext) => objectContext.Get(EIStartMonth);
+        internal static int GetEIStartMonth(this ObjectContext objectContext) => objectContext.Get<int>(EIStartMonth);
 
-        internal static string GetEIStartYear(this ObjectContext objectContext) => objectContext.Get(EIStartYear);
+        internal static int GetEIStartYear(this ObjectContext objectContext) => objectContext.Get<int>(EIStartYear);
 
         internal static bool GetIsEIJourney(this ObjectContext objectContext) => objectContext.Get<bool>(IsEIJourney);
     }

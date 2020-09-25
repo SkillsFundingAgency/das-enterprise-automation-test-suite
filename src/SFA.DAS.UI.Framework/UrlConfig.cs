@@ -19,6 +19,7 @@
         public static string SupportConsole_BaseUrl => $"https://{EnvironmentConfig.EnvironmentName}-console.apprenticeships.education.gov.uk/";
         public static string ProviderFeedback_BaseUrl => $"https://{EnvironmentConfig.EnvironmentName}-feedback.apprenticeships.education.gov.uk/";
         public static string AR_BaseUrl => $"https://{EnvironmentConfig.EnvironmentName}-apprentice-support.apprenticeships.education.gov.uk/";
-        public static string AR_AdminBaseUrl = $"https://{EnvironmentConfig.EnvironmentName}-apprentice-support-admin.apprenticeships.education.gov.uk/";
+        public static string AR_AdminBaseUrl => $"https://{EnvironmentConfig.EnvironmentName}-apprentice-support-admin.apprenticeships.education.gov.uk/";
+        public static string EI_DfeAchieveServiceUrl => "https://dfeuat.achieveservice.com/forms";
     }
 }

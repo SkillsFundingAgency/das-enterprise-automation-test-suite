@@ -5,7 +5,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
 {
     public class EIStartPage : EIBasePage
     {
-        protected override string PageTitle => "Apply for the new apprentice payment";
+        protected override string PageTitle => "Apply for the hire a new apprentice payment";
         private By StartNowButton => By.LinkText("Start now");
 
         #region Locators
