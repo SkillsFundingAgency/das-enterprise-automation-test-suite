@@ -65,6 +65,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
 
         [When(@"the Employer navigates back to Qualification page for (Single|Multiple) entity account")]
         [When(@"the Employer Initiates EI Application journey for (Single|Multiple) entity account")]
+        [Then(@"the Employer is able to navigate to EI start page for (Single|Multiple) entity account")]
         public void WhenTheEmployerInitiatesEIApplicationJourneyForSingleEntityAccount(Entities entities)
         {
             _eISqlHelper.DeleteIncentiveApplication(_registrationSqlDataHelper.GetAccountId(_eILevyUser.Username));
@@ -107,6 +108,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
             _employerAgreementShutterPage.ClickOnViewAgreementButton();
 
         [Given(@"the Provider approves the apprenticeship request")]
+        [When(@"the Provider approves the apprenticeship request")]
         public void TheProviderAddsUlnsAndApprovesTheCohorts()
         {
             _providerStepsHelper.Approve();
