@@ -47,9 +47,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
         [When(@"the Employer submits organisation bank details")]
         public void WhenTheEmployerSubmitsOrganisationBankDetails()
         {
-            _tabHelper.OpenInNewTab(UrlConfig.EI_DfeAchieveServiceUrl);
 
-            _tabHelper.SwitchToFirstTab();
         }
 
 
