@@ -12,4 +12,5 @@ Scenario: RE_EAN_04_Verify Login for Existing View user
 	Then the user should be redirected to access denied page 
 	When the user tries to accept agreement 
 	Then the user should be redirected to access denied page 
-	And the user add an apprentices
+	When the user tries to add an apprentices 
+	Then the user should be redirected to access denied page 
