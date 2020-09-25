@@ -92,9 +92,8 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         [Then(@"the user can not add an apprentices")]
         public void ThenTheUserCanNotAddAnApprentices()
         {
-            _homePage = new InterimApprenticesHomePage(_context, true)
-                .AddAnApprenticeAndRedirectedToAccessDeniedPage()
-                .GoBackToTheServiceHomePage();
+            new InterimApprenticesAccessDeniedPage(_context);
+            _homePage = new HomePage(_context, true);
         }
     }
 }
