@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
 using SFA.DAS.ConfigurationBuilder;
@@ -26,21 +27,22 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
             _apprenticeid = 0;
         }
 
-        public string ApprenticeFirstname { get; private set; }
+        public string ApprenticeFirstname { get; set; }
 
-        public string ApprenticeLastname { get; private set; }
+        public string ApprenticeLastname { get; set; }
 
         public string ApprenticeFullName => $"{ApprenticeFirstname} {ApprenticeLastname}";
 
-        public int DateOfBirthDay { get; }
+        public int DateOfBirthDay { get; set; }
 
-        public int DateOfBirthMonth { get; }
+        public int DateOfBirthMonth { get; set; }
 
-        public int DateOfBirthYear { get; }
+        public int DateOfBirthYear { get; set; }
 
         public string TrainingPrice { get; }
 
         public string EmployerReference { get; }
+
         public string MadeRedundant { get; set; }
 
         public string MessageToProvider => $"Apprentice {ApprenticeFullName}, Total Cost {_objectContext.GetApprenticeTotalCost()}";
