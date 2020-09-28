@@ -30,6 +30,7 @@ namespace SFA.DAS.FAT_V2.UITests.Project.Tests.Pages
             formCompletionHelper = context.Get<FormCompletionHelper>();
             pageInteractionHelper = context.Get<PageInteractionHelper>();
             objectContext = context.Get<ObjectContext>();
+            VerifyPage();
         }
         public void SearchApprenticeship(string searchTerm)
         {

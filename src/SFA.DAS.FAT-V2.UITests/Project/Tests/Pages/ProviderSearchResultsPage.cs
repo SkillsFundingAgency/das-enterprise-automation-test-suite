@@ -7,15 +7,11 @@ namespace SFA.DAS.FAT_V2.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => "Training providers for";
 
-        protected By TrainingProvidersForHeader => By.ClassName("govuk-caption-xl");
+        protected override By PageHeader => By.ClassName("govuk-caption-xl");
 
         private readonly ScenarioContext _context;
 
-        public ProviderSearchResultsPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage(TrainingProvidersForHeader) ;
-        }
+        public ProviderSearchResultsPage(ScenarioContext context) : base(context) => _context = context;
 
         public ProviderSummaryPage SelectFirstProviderInTheList()
         {

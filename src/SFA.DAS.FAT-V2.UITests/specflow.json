@@ -8,10 +8,7 @@
   "stepAssemblies": [
     { "assembly": "SFA.DAS.UI.Framework" },
     { "assembly": "SFA.DAS.ConfigurationBuilder" },
-    { "assembly": "SFA.DAS.TestDataExport" },
-    { "assembly": "SFA.DAS.Approvals.UITests" },
-    { "assembly": "SFA.DAS.ProviderLogin.Service" },
-    { "assembly": "SFA.DAS.Registration.UITests" }
+    { "assembly": "SFA.DAS.TestDataExport" }
   ],
   "generator": {
     "allowRowTests" : false
