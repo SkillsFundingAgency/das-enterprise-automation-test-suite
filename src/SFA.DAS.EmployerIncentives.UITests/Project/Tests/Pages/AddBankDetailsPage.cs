@@ -12,5 +12,11 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
 
         public AddBankDetailsPage(ScenarioContext context) : base(context) => _context = context;
 
+        public void SubmitAddBankDetails()
+        {
+            SelectRadioOptionByForAttribute("CanProvideBankDetails");
+            formCompletionHelper.ClickButtonByText(ContinueButton, "Continue");
+        }
+
     }
 }

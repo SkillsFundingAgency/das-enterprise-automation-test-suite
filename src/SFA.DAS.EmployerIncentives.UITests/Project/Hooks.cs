@@ -1,5 +1,6 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.EmployerIncentives.UITests.Project.Helpers;
+using SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages;
 using SFA.DAS.UI.Framework;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
@@ -23,17 +24,15 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project
         }
 
         [BeforeScenario(Order = 41)]
-        public void Navigate()
+        public void LoginToDfeUatService()
         {
             if (_context.ScenarioInfo.Tags.Contains("dfeuatachieveservice"))
             {
                 _tabHelper.GoToUrl(UrlConfig.EI_DfeAchieveServiceUrl);
 
+                new DfeUatLoginPage(_context).SignIntoDfeUat();
+
                 _tabHelper.OpenInNewTab(UrlConfig.EmployerApprenticeshipService_BaseUrl);
-            }
-            else
-            {
-                _tabHelper.GoToUrl(UrlConfig.EmployerApprenticeshipService_BaseUrl);
             }
         }
 

@@ -8,7 +8,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
     public abstract class EIBasePage : BasePage
     {
         #region Helpers and Context
-        protected readonly TabHelper tabHelper;
+        protected readonly EIConfig eIConfig;
         protected readonly FormCompletionHelper formCompletionHelper;
         protected readonly PageInteractionHelper pageInteractionHelper;
         #endregion
@@ -20,7 +20,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
 
         protected EIBasePage(ScenarioContext context) : base(context)
         {
-            tabHelper = context.Get<TabHelper>();
+            eIConfig = context.GetEIConfig<EIConfig>();
             formCompletionHelper = context.Get<FormCompletionHelper>();
             pageInteractionHelper = context.Get<PageInteractionHelper>();
             VerifyPage();
