@@ -2,7 +2,7 @@
 
 namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
 {
-    public class AddBankDetailsPage : EIBasePage
+    public class WeNeedYourOrgBankDetailsPage : EIBasePage
     {
         protected override string PageTitle => "We need your organisation's bank details";
 
@@ -10,13 +10,13 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
         private readonly ScenarioContext _context;
         #endregion
 
-        public AddBankDetailsPage(ScenarioContext context) : base(context) => _context = context;
+        public WeNeedYourOrgBankDetailsPage(ScenarioContext context) : base(context) => _context = context;
 
-        public void SubmitAddBankDetails()
+        public AddYourOrgBankDetailsPage ChooseYesAndContinue()
         {
             SelectRadioOptionByForAttribute("CanProvideBankDetails");
             formCompletionHelper.ClickButtonByText(ContinueButton, "Continue");
+            return new AddYourOrgBankDetailsPage(_context);
         }
-
     }
 }

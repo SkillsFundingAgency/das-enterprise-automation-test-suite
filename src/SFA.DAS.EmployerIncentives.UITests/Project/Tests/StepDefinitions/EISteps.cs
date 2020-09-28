@@ -23,7 +23,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
         private QualificationQuestionPage _qualificationQuestionPage;
         private QualificationQuestionShutterPage _qualificationQuestionShutterPage;
         private EmployerAgreementShutterPage _employerAgreementShutterPage;
-        private AddBankDetailsPage _addBankDetailsPage;
+        private WeNeedYourOrgBankDetailsPage _addBankDetailsPage;
         private readonly EmployerPortalLoginHelper _employerPortalLoginHelper;
         private readonly ProviderStepsHelper _providerStepsHelper;
         private readonly EmployerHomePageStepsHelper _homePageStepsHelper;
@@ -47,7 +47,12 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
         [When(@"the Employer submits organisation bank details")]
         public void WhenTheEmployerSubmitsOrganisationBankDetails()
         {
-
+            _addBankDetailsPage.ChooseYesAndContinue()
+                .ContinueToAddBankDetails()
+                .ContinueToOrgDetailsPage()
+                .ContinueToAddressDetailsPage()
+                .SubmitAddressDetails(_eILevyUser.Username)
+                .SubmitBankDetails();
         }
 
 

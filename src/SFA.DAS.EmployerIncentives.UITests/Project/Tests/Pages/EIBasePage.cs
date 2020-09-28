@@ -18,12 +18,12 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
         protected override By ContinueButton => By.XPath("//button[contains(text(), 'Continue')]");
         protected By ReturnToAccountHomeCTA => By.LinkText("Return to account home");
 
-        protected EIBasePage(ScenarioContext context) : base(context)
+        protected EIBasePage(ScenarioContext context, bool verifypage = true) : base(context)
         {
             eIConfig = context.GetEIConfig<EIConfig>();
             formCompletionHelper = context.Get<FormCompletionHelper>();
             pageInteractionHelper = context.Get<PageInteractionHelper>();
-            VerifyPage();
+            if (verifypage) { VerifyPage(); }
         }
     }
 }
