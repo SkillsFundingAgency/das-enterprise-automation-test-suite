@@ -8,12 +8,12 @@ namespace SFA.DAS.FAT_V2.UITests.Project.Helpers
     class FATV2StepsHelper
     {
         private readonly ScenarioContext _context;
-        private readonly RegexHelper _regexHelper;
+        //private readonly RegexHelper _regexHelper;
 
         public FATV2StepsHelper(ScenarioContext context)
         {
             _context = context;
-            _regexHelper = context.Get<RegexHelper>();
+            //_regexHelper = context.Get<RegexHelper>();
         }
         public TrainingCourseSearchResultsPage SearchForTrainingCourse(string course = "")
         {

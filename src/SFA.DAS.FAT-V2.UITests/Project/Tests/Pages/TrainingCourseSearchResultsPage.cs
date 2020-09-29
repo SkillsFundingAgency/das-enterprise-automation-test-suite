@@ -4,7 +4,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.FAT_V2.UITests.Project.Tests.Pages
 {
-    class TrainingCourseSearchResultsPage : FATV2BasePage
+    public class TrainingCourseSearchResultsPage : FATV2BasePage
     {
         protected override string PageTitle => "Apprenticeship training courses";
         private readonly ScenarioContext _context;

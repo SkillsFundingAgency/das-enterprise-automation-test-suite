@@ -3,7 +3,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.FAT_V2.UITests.Project.Tests.Pages
 {
-    class TrainingCourseSummaryPage : FATV2BasePage
+    public class TrainingCourseSummaryPage : FATV2BasePage
     {
         protected override string PageTitle => objectContext.GetTrainingCourseName();
         private readonly ScenarioContext _context;
