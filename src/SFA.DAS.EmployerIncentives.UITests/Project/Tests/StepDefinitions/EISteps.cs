@@ -52,7 +52,9 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
                 .ContinueToOrgDetailsPage()
                 .ContinueToAddressDetailsPage()
                 .SubmitAddressDetails(_eILevyUser.Username)
-                .SubmitBankDetails();
+                .SubmitBankDetails()
+                .SubmitSubmitterDetails(_eILevyUser.Username)
+                .SubmitSummaryPage();
         }
 
 

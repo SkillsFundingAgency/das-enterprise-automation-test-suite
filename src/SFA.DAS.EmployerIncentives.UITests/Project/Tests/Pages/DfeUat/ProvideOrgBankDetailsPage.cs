@@ -19,18 +19,31 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.DfeUat
 
         private By SortCode => By.CssSelector("#sort_code");
 
-        public ProvideOrgBankDetailsPage(ScenarioContext context) : base(context) => _context = context;
+        private By AddBankDetails => By.CssSelector("#exp_validate");
 
-        public void SubmitBankDetails()
-        {
-            SelectRadioOptionByText("account_type", "UK bank account");
-            formCompletionHelper.EnterText(NameOfTheBank, "HSBC");
-            formCompletionHelper.EnterText(AccountName, registrationConfig.RE_OrganisationName);
-            formCompletionHelper.EnterText(AccountNumber, "22345610");
-            formCompletionHelper.EnterText(SortCode, "000004");
-            formCompletionHelper.ClickButtonByText("Add bank details");
+        private By BankDetailsAccepted => By.CssSelector(".fieldContent strong");
 
+        public ProvideOrgBankDetailsPage(ScenarioContext context) : base(context, false)
+        { 
+            _context = context;
+            frameHelper.SwitchFrameAndAction(() => VerifyPage());
         }
 
+        public ProvideSubmitterDetailsPage SubmitBankDetails()
+        {
+            frameHelper.SwitchFrameAndAction(() => 
+            {
+                SelectOptionByText("account_type", "UK bank account");
+                formCompletionHelper.EnterText(NameOfTheBank, "HSBC");
+                formCompletionHelper.EnterText(AccountName, registrationConfig.RE_OrganisationName);
+                formCompletionHelper.EnterText(AccountNumber, "22345610");
+                formCompletionHelper.EnterText(SortCode, "000004");
+                formCompletionHelper.ClickElement(pageInteractionHelper.FindElement(AddBankDetails), false);
+                VerifyPage(BankDetailsAccepted);
+                Continue();
+            });
+
+            return new ProvideSubmitterDetailsPage(_context);
+        }
     }
 }

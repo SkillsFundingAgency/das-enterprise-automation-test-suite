@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using System;
 
 namespace SFA.DAS.UI.FrameworkHelpers
 {
@@ -15,5 +16,12 @@ namespace SFA.DAS.UI.FrameworkHelpers
         public void SwitchToFrame(By by) => _webDriver.SwitchTo().Frame(_webDriver.FindElement(by));
 
         public void SwitchToDefaultContent() => _webDriver.SwitchTo().DefaultContent();
+
+        public void SwitchFrameAndAction(Action action)
+        {
+            SwitchToFrame();
+            action.Invoke();
+            SwitchToDefaultContent();
+        }
     }
 }

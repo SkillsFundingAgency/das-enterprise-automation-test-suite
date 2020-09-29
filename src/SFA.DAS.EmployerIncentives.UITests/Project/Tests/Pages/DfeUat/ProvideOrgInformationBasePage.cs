@@ -10,8 +10,10 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.DfeUat
     {
         protected override By PageHeader => By.CssSelector("h2");
 
-        private By FieldSet => By.CssSelector("fieldset");
+        protected virtual By Options => By.CssSelector(".radio-label");
 
+        protected override By ContinueButton => By.CssSelector(".nextbutton");
+        
         protected RegistrationConfig registrationConfig;
 
         public ProvideOrgInformationBasePage(ScenarioContext context, bool verifypage = true) : base(context, verifypage) 
@@ -19,9 +21,11 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.DfeUat
             registrationConfig = context.GetRegistrationConfig<RegistrationConfig>();
         }
 
-        protected void SelectRadioOptionByText(string forvalue, string text)
+        protected override void Continue() => formCompletionHelper.ClickElement(pageInteractionHelper.FindElement(ContinueButton), false);
+
+        protected void SelectOptionByText(string forvalue, string text)
         {
-            formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElements(FieldSet).Single(x => x.GetAttribute("for").Contains(forvalue) && x.Text == text));
+            formCompletionHelper.ClickElement(pageInteractionHelper.FindElements(Options).Single(x => x.GetAttribute("for").Contains(forvalue) && x.Text == text), false);
         }
 
     }

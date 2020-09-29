@@ -23,17 +23,26 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.DfeUat
 
         private By Fc_email => By.CssSelector("#fc_email");
 
-        public ProvideOrgAddressDetailsPage(ScenarioContext context) : base(context) => _context = context;
+        public ProvideOrgAddressDetailsPage(ScenarioContext context) : base(context, false)
+        {
+            _context = context;
+            frameHelper.SwitchFrameAndAction(() => VerifyPage());
+        }
 
         public ProvideOrgBankDetailsPage SubmitAddressDetails(string email)
         {
-            SelectRadioOptionByText("uk_address", "Yes");
-            formCompletionHelper.EnterText(AddressLine1, "Cheylesmore House");
-            formCompletionHelper.EnterText(Town, "Coventry");
-            formCompletionHelper.EnterText(Postcode, "CV1 2WT");
-            formCompletionHelper.EnterText(ContactEmail, email);
-            formCompletionHelper.EnterText(FullName, registrationConfig.RE_OrganisationName);
-            formCompletionHelper.EnterText(Fc_email, email);
+            frameHelper.SwitchFrameAndAction(() => 
+            {
+                SelectOptionByText("uk_address", "Yes");
+                formCompletionHelper.EnterText(AddressLine1, "Cheylesmore House");
+                formCompletionHelper.EnterText(Town, "Coventry");
+                formCompletionHelper.EnterText(Postcode, "CV1 2WT");
+                formCompletionHelper.EnterText(ContactEmail, email);
+                formCompletionHelper.EnterText(FullName, registrationConfig.RE_OrganisationName);
+                formCompletionHelper.EnterText(Fc_email, email); 
+                Continue();
+            });
+
             return new ProvideOrgBankDetailsPage(_context);
         }
     }

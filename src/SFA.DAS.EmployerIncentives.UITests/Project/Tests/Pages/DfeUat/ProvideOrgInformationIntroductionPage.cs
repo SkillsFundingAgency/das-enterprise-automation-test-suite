@@ -17,14 +17,12 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.DfeUat
         { 
             _context = context;
             VerifyPage(frameHelper.Iframe);
-            frameHelper.SwitchToFrame();
-            VerifyPage();
-            frameHelper.SwitchToDefaultContent();
+            frameHelper.SwitchFrameAndAction(() => VerifyPage());
         }
 
         public ProvideOrgInformationOrgDetailsPage ContinueToOrgDetailsPage()
         {
-            formCompletionHelper.ClickButtonByText("Continue");
+            frameHelper.SwitchFrameAndAction(() => Continue());
             return new ProvideOrgInformationOrgDetailsPage(_context);
         }
     }

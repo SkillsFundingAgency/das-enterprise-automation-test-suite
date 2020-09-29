@@ -22,7 +22,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         public void ClickElement(Func<IWebElement> element, Action retryAction = null) => _retryHelper.RetryClickOnWebDriverException(element, retryAction);
 
-        public void ClickElement(IWebElement element) => _retryHelper.RetryOnElementClickInterceptedException(element);
+        public void ClickElement(IWebElement element, bool useAction = true) => _retryHelper.RetryOnElementClickInterceptedException(element, useAction);
 
         public void ClickElement(By locator)
         {
