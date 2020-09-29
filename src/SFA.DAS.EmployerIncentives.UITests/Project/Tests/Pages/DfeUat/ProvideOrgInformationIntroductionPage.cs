@@ -16,8 +16,10 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.DfeUat
         public ProvideOrgInformationIntroductionPage(ScenarioContext context) : base(context, false)
         { 
             _context = context;
-            VerifyPage(PageHeader);
+            VerifyPage(frameHelper.Iframe);
+            frameHelper.SwitchToFrame();
             VerifyPage();
+            frameHelper.SwitchToDefaultContent();
         }
 
         public ProvideOrgInformationOrgDetailsPage ContinueToOrgDetailsPage()

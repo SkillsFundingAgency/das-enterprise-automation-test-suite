@@ -8,6 +8,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
     public abstract class EIBasePage : BasePage
     {
         #region Helpers and Context
+        protected readonly IFrameHelper frameHelper;
         protected readonly EIConfig eIConfig;
         protected readonly FormCompletionHelper formCompletionHelper;
         protected readonly PageInteractionHelper pageInteractionHelper;
@@ -20,6 +21,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
 
         protected EIBasePage(ScenarioContext context, bool verifypage = true) : base(context)
         {
+            frameHelper = context.Get<IFrameHelper>();
             eIConfig = context.GetEIConfig<EIConfig>();
             formCompletionHelper = context.Get<FormCompletionHelper>();
             pageInteractionHelper = context.Get<PageInteractionHelper>();
