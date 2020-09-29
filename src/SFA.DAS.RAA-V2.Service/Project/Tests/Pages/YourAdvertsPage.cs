@@ -5,7 +5,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 {
     public class YourAdvertsPage : RAAV2CSSBasePage
     {
-        protected override string PageTitle => "Your Adverts";
+        protected override string PageTitle => "Your adverts";
 
         protected override By PageHeader => By.CssSelector(".govuk-heading-l");
 
