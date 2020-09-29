@@ -1,5 +1,4 @@
-﻿using OpenQA.Selenium;
-using SFA.DAS.EmployerIncentives.UITests.Project.Helpers;
+﻿using SFA.DAS.EmployerIncentives.UITests.Project.Helpers;
 using SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages;
 using SFA.DAS.UI.Framework;
 using SFA.DAS.UI.Framework.TestSupport;
@@ -26,6 +25,8 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project
         [BeforeScenario(Order = 41)]
         public void LoginToDfeUatService()
         {
+            _context.Set(new EIDataHelper(_context.Get<RandomDataGenerator>()));
+
             if (_context.ScenarioInfo.Tags.Contains("dfeuatachieveservice"))
             {
                 _tabHelper.GoToUrl(UrlConfig.EI_DfeAchieveServiceUrl);
@@ -38,5 +39,6 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project
 
         [BeforeScenario(Order = 42)]
         public void SetUpHelpers() => _context.Set(new EISqlHelper(_eIConfig));
+
     }
 }

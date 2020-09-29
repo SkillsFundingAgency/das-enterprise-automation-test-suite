@@ -34,9 +34,9 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.DfeUat
             frameHelper.SwitchFrameAndAction(() => 
             {
                 SelectOptionByText("uk_address", "Yes");
-                formCompletionHelper.EnterText(AddressLine1, "Cheylesmore House");
-                formCompletionHelper.EnterText(Town, "Coventry");
-                formCompletionHelper.EnterText(Postcode, "CV1 2WT");
+                formCompletionHelper.EnterText(AddressLine1, eIDataHelper.AddressLine1);
+                formCompletionHelper.EnterText(Town, eIDataHelper.Town);
+                formCompletionHelper.EnterText(Postcode, eIDataHelper.Poscode);
                 formCompletionHelper.EnterText(ContactEmail, email);
                 formCompletionHelper.EnterText(FullName, registrationConfig.RE_OrganisationName);
                 formCompletionHelper.EnterText(Fc_email, email); 

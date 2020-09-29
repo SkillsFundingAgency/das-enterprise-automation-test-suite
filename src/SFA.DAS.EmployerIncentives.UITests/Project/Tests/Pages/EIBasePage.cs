@@ -2,6 +2,7 @@
 using TechTalk.SpecFlow;
 using SFA.DAS.UI.Framework.TestSupport;
 using OpenQA.Selenium;
+using SFA.DAS.EmployerIncentives.UITests.Project.Helpers;
 
 namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
 {
@@ -9,6 +10,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
     {
         #region Helpers and Context
         protected readonly IFrameHelper frameHelper;
+        protected readonly EIDataHelper eIDataHelper;
         protected readonly EIConfig eIConfig;
         protected readonly FormCompletionHelper formCompletionHelper;
         protected readonly PageInteractionHelper pageInteractionHelper;
@@ -23,6 +25,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
         {
             frameHelper = context.Get<IFrameHelper>();
             eIConfig = context.GetEIConfig<EIConfig>();
+            eIDataHelper = context.Get<EIDataHelper>();
             formCompletionHelper = context.Get<FormCompletionHelper>();
             pageInteractionHelper = context.Get<PageInteractionHelper>();
             if (verifypage) { VerifyPage(); }

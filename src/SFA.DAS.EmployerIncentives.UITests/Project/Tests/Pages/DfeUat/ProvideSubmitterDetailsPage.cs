@@ -29,11 +29,11 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.DfeUat
         {
             frameHelper.SwitchFrameAndAction(() =>
             {
-                formCompletionHelper.EnterText(FirstName, "FirstName");
-                formCompletionHelper.EnterText(Surname, "Surname");
+                formCompletionHelper.EnterText(FirstName, eIDataHelper.FirstName);
+                formCompletionHelper.EnterText(Surname, eIDataHelper.SurName);
                 formCompletionHelper.EnterText(Email, email);
                 SelectOptionByText("genric_email_address", "No");
-                formCompletionHelper.EnterText(Telephone, "01234567899");
+                formCompletionHelper.EnterText(Telephone, eIDataHelper.TelephoneNumber);
                 Continue();
             });
 

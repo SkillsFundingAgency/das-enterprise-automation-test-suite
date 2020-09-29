@@ -34,10 +34,10 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.DfeUat
             frameHelper.SwitchFrameAndAction(() => 
             {
                 SelectOptionByText("account_type", "UK bank account");
-                formCompletionHelper.EnterText(NameOfTheBank, "HSBC");
+                formCompletionHelper.EnterText(NameOfTheBank, eIDataHelper.BankName);
                 formCompletionHelper.EnterText(AccountName, registrationConfig.RE_OrganisationName);
-                formCompletionHelper.EnterText(AccountNumber, "22345610");
-                formCompletionHelper.EnterText(SortCode, "000004");
+                formCompletionHelper.EnterText(AccountNumber, eIDataHelper.AccountNumber);
+                formCompletionHelper.EnterText(SortCode, eIDataHelper.Sortcode);
                 formCompletionHelper.ClickElement(pageInteractionHelper.FindElement(AddBankDetails), false);
                 VerifyPage(BankDetailsAccepted);
                 Continue();

@@ -26,7 +26,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.DfeUat
             {
                 formCompletionHelper.EnterText(OrganisationName, registrationConfig.RE_OrganisationName);
                 SelectOptionByText("legalname", "Yes");
-                formCompletionHelper.EnterText(TelephoneNumber, "01234567899");
+                formCompletionHelper.EnterText(TelephoneNumber, eIDataHelper.TelephoneNumber);
                 SelectOptionByText("provider_supplier_have_company_number", "No");
                 SelectOptionByText("provider_supplier_have_vat_number", "No");
                 SelectOptionByText("supplier_sme", "No");
