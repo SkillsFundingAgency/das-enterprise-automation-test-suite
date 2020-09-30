@@ -14,7 +14,6 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         private readonly ScenarioContext _context;
         #endregion
         
-        private By Iframe => By.CssSelector("iframe");
         private By WorkingWeek => By.Id("WorkingWeek");
         private By HoursPerWeek => By.Id("Wage_HoursPerWeek");
         private By VacancyDuration => By.Id("Duration");
@@ -119,7 +118,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
 
         public RAA_EnterFurtherDetailsPage EnterVacancyDescription()
         {
-            formCompletionHelper.SendKeys(Iframe, Keys.Tab + rAAV1DataHelper.VacancyDescription);
+            formCompletionHelper.SendKeys(frameHelper.Iframe, Keys.Tab + rAAV1DataHelper.VacancyDescription);
             return this;
         }
     }

@@ -189,12 +189,6 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         public void UnFocusTheElement(IWebElement element) => new Actions(_webDriver).MoveToElement(element).Perform();
 
-        public string GetTextUsingJavaScript(By iFrameBodyLocator)
-        {
-            var text = ((IJavaScriptExecutor)_webDriver).ExecuteScript($"return arguments[0].innerHTML", _webDriver.FindElement(iFrameBodyLocator));
-            return (string)text;
-        }
-
         public string GetText(By locator) => GetText(() => FindElement(locator));
 
         public string GetText(Func<IWebElement> element, Action retryAction = null) => _retryHelper.RetryOnWebDriverException<string>(() => element().Text, retryAction);

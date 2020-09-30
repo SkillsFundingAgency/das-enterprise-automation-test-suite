@@ -19,9 +19,9 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.MailinatorPages
 
         private string GetAccessCode()
         {
-            tabHelper.SwitchToFrame(EmailBodyFrame);
-            var text = pageInteractionHelper.GetTextUsingJavaScript(AccessCodeText);
-            tabHelper.SwitchToDefaultContent();
+            frameHelper.SwitchToFrame(EmailBodyFrame);
+            var text = javaScriptHelper.GetTextUsingJavaScript(AccessCodeText);
+            frameHelper.SwitchToDefaultContent();
             return text;
         }
     }

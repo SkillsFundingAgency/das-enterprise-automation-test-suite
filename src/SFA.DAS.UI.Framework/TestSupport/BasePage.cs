@@ -57,7 +57,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
 
         protected bool VerifyPage(By locator, string text) => _pageInteractionHelper.VerifyPage(locator, text);
 
-        protected void Continue() => _formCompletionHelper.Click(ContinueButton);
+        protected virtual void Continue() => _formCompletionHelper.Click(ContinueButton);
 
         protected void SelectRadioOptionByForAttribute(string value) => _formCompletionHelper.SelectRadioOptionByForAttribute(RadioLabels, value);
 
