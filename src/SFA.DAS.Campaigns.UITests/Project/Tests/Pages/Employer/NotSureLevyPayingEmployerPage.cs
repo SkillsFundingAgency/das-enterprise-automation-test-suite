@@ -4,11 +4,8 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
 {
     public class NotSureLevyPayingEmployerPage: EmployerBasePage
     {
-        protected override string PageTitle => "Page not found";
+        protected override string PageTitle => "Funding an apprenticeship for non levy employers";
 
-        public NotSureLevyPayingEmployerPage(ScenarioContext context) :base(context) 
-        {
-            pageInteractionHelper.VerifyPageLoad(PageHeader, PageTitle);
-        }
+        public NotSureLevyPayingEmployerPage(ScenarioContext context) : base(context) { }
     }
 }

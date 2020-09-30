@@ -6,7 +6,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
 {
     public class EmployerFavouritesPage : EmployerBasePage
     {
-        protected override string PageTitle => "Page not found";
+        protected override string PageTitle => "Favourites";
         #region Helpers and Context
         private readonly ScenarioContext _context;
         #endregion
@@ -15,7 +15,6 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
         
         private By AddProviderLink => By.CssSelector($".fiu-panel__button[href*='{objectContext.GetCourseId()}']");
 
-        // private By BasketEmpty => By.CssSelector(".das-basket__empty");
         private By BasketEmpty => By.XPath("//a[@href ='/basket/view']");
 
         private By Delete(string value) => By.CssSelector($".das-basket__item-delete[value='{value}']");
@@ -23,7 +22,6 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
         public EmployerFavouritesPage(ScenarioContext context) : base(context)
         {
             _context = context;
-            pageInteractionHelper.VerifyPageLoad(PageHeader, PageTitle);
         }
 
         public CreateAnAccountPage CreateAnAccount()

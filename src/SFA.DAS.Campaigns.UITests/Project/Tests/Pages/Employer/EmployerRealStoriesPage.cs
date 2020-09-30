@@ -5,11 +5,8 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
 {
     public class EmployerRealStoriesPage : EmployerBasePage
     {
-        protected override string PageTitle => "Page not found";
+        protected override string PageTitle => "Real stories";
 
-        public EmployerRealStoriesPage(ScenarioContext context) : base(context)
-        {
-            pageInteractionHelper.VerifyPageLoad(PageHeader, PageTitle);
-        }
+        public EmployerRealStoriesPage(ScenarioContext context) : base(context) { }
     }
 }

@@ -117,19 +117,6 @@ namespace SFA.DAS.UI.FrameworkHelpers
                 + "\n Found: " + actual);
         }
 
-        public bool VerifyPageLoad(String actual, string expected)
-        {
-            if (actual.Contains(expected))
-                throw new Exception("Page has failed Load: "
-                + "\n Expected: " + expected
-                + "\n Found: " + actual);
-            return true;
-        }
-        public bool VerifyPageLoad(By locator, string expected)
-        {
-            var actual = GetText(locator);
-            return VerifyPageLoad(actual, expected);
-        }
         public bool VerifyText(By locator, string expected)
         {
             var actual = GetText(locator);

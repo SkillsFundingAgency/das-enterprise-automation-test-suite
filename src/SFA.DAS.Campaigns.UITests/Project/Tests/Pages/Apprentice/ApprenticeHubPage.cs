@@ -9,8 +9,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Apprentice
 {
     public class ApprenticeHubPage : CampaingnsPage
     {
-          protected override string PageTitle => "Page not found";
-        //protected override string PageTitle => "BECOME";
+          protected override string PageTitle => "BECOME AN APPRENTICE";
 
         #region  Constants and Strings
         private string BecomeAnApprenticePageFiuCard1Heading => "Real stories";
@@ -45,9 +44,13 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Apprentice
 
         protected By Interview => By.CssSelector("#fiu-app-hub-card-7");
 
+        protected By BrowserInterest => By.CssSelector("#fiu-app-hub-card-4");
+
         protected By AdviceForParents => By.CssSelector("#fiu-app-hub-card-3");
 
         protected By SetUpService => By.CssSelector("#fiu-app-hub-card-10");
+
+        protected By SiteMap => By.CssSelector("#link-footer-sitemap");
 
         protected By YourApprenticeship => By.CssSelector("#fiu-app-hub-card-8");
 
@@ -74,6 +77,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Apprentice
         private By FiuBecomeAnApprenticeCard9 => By.XPath("//h3[contains(@class, 'fiu-card__heading') and contains(text(), 'Assessment and certification')]");
      
         private By FiuBecomeAnApprenticeCard10 => By.XPath("//h3[contains(@class, 'fiu-card__heading') and contains(text(), 'Set up a service account')]");
+       
         #endregion
 
         #region Helpers and Context
@@ -83,7 +87,6 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Apprentice
         public ApprenticeHubPage(ScenarioContext context) : base(context)
         {
             _context = context;
-            pageInteractionHelper.VerifyPageLoad(PageHeader, PageTitle);
         }
         public ApprenticeRealStoriesPage NavigateToRealStoriesPage()
         {
@@ -110,7 +113,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Apprentice
 
         public BrowseInterestPage NavigateToBrowseInterestPage()
         {
-            formCompletionHelper.ClickElement(GettingStarted);
+            formCompletionHelper.ClickElement(BrowserInterest);
             return new BrowseInterestPage(_context);
         }
 
@@ -118,6 +121,13 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Apprentice
         {
             formCompletionHelper.ClickElement(SetUpService);
             return new SetUpServicePage(_context);
+        }
+
+
+        public SiteMapPage NavigateToSiteMapPage()
+        {
+            formCompletionHelper.ClickElement(SiteMap);
+            return new SiteMapPage(_context);
         }
 
         public AppBenefitsPage NavigateToBenefitsofApprenticeshipPage() => NavigateToAreApprenticeshipRightForYou(ApprenticeshipBenefits, (c) => new AppBenefitsPage(c));

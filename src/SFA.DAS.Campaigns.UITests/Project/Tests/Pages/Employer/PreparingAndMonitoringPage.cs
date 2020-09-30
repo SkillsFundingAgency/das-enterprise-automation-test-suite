@@ -6,10 +6,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
     {
         protected override string PageTitle => "Page not found";
 
-        public PreparingAndMonitoringPage(ScenarioContext context) : base(context)
-        {
-            pageInteractionHelper.VerifyPageLoad(PageHeader, PageTitle);
-        }
+        public PreparingAndMonitoringPage(ScenarioContext context) : base(context) { }
     }
 }
 

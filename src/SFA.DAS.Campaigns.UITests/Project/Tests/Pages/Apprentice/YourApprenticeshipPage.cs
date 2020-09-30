@@ -5,11 +5,8 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Apprentice
 {
     public class YourApprenticeshipPage : ApprenticeBasePage
     {
-        protected override string PageTitle => "Page not found";
+        protected override string PageTitle => "Starting your apprenticeship";
 
-        public YourApprenticeshipPage(ScenarioContext context) : base(context)
-        {
-            pageInteractionHelper.VerifyPageLoad(PageHeader, PageTitle);
-        }
+        public YourApprenticeshipPage(ScenarioContext context) : base(context) { }
     }
 }

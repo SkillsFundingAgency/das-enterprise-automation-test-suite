@@ -4,10 +4,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
 {
     public class EmployerGuidePage : EmployerBasePage
     {
-        protected override string PageTitle => "Page not found";
-        public EmployerGuidePage(ScenarioContext context): base(context) 
-        {
-            pageInteractionHelper.VerifyPageLoad(PageHeader, PageTitle);
-        }
+        protected override string PageTitle => "Employer guides";
+        public EmployerGuidePage(ScenarioContext context): base(context) { }
     }
 }

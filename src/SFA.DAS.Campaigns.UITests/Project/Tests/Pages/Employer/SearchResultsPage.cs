@@ -6,7 +6,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
 {
     public class SearchResultsPage : EmployerBasePage
     {
-        protected override string PageTitle => "Page not found";
+        protected override string PageTitle => "Results";
 
         #region Helpers and Context
         private readonly ScenarioContext _context;

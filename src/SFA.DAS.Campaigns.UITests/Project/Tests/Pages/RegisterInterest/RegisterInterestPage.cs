@@ -5,9 +5,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.RegisterInterest
 {
     public class RegisterInterestPage : CampaingnsPage
     {
-        protected override string PageTitle => "Page not found";
-
-        protected override By PageHeader => By.CssSelector(".heading-xl");
+        protected override string PageTitle => "Sign up to stay connected";
 
         #region Helpers and Context
         private readonly ScenarioContext _context;

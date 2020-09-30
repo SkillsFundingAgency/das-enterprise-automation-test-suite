@@ -4,10 +4,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Apprentice
 {
     public class BrowseInterestPage : ApprenticeBasePage
     {
-        protected override string PageTitle => "Page not found";
-        public BrowseInterestPage(ScenarioContext context): base(context) 
-        {
-            pageInteractionHelper.VerifyPageLoad(PageHeader, PageTitle);
-        }
+        protected override string PageTitle => "Browse by interest";
+        public BrowseInterestPage(ScenarioContext context): base(context) { }
     }
 }

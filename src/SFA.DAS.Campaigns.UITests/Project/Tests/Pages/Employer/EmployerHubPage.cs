@@ -7,7 +7,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
 {
     public class EmployerHubPage : CampaingnsPage
     {
-        protected override string PageTitle => "Page not found";
+        protected override string PageTitle => "HIRE AN APPRENTICE";
 
         #region  Constants and Strings
         private string HireAnApprenticePageFiuCard1Heading => "Real stories";
@@ -89,7 +89,6 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
         public EmployerHubPage(ScenarioContext context) : base(context, true)
         {
             _context = context;
-            pageInteractionHelper.VerifyPageLoad(PageHeader, PageTitle);
         }
 
         public EmployerRealStoriesPage NavigateToRealStoriesPage()

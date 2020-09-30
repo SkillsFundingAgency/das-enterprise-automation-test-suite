@@ -6,7 +6,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
 {
     public class CreateAnAccountPage : EmployerBasePage
     {
-        protected override string PageTitle => "CREATE AN APPRENTICESHIP SERVICE ACCOUNT";
+        protected override string PageTitle => "Create an apprenticeship service account";
 
         #region Helpers and Context
         private readonly ScenarioContext _context;

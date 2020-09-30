@@ -16,7 +16,6 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
         public TrainingProviderResultPage(ScenarioContext context) : base(context)
         {
             _context = context;
-            pageInteractionHelper.VerifyPageLoad(PageHeader, PageTitle);
         }
 
             public EmployerFavouritesPage AddFavouriteProvider()
