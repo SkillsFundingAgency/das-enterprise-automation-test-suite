@@ -10,10 +10,10 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
     {
         private readonly CampaignsStepsHelper _stepsHelper;
 
-        public CampaignsParentSteps(ScenarioContext context) => _stepsHelper = new CampaignsStepsHelper(context);
+        ////public CampaignsParentSteps(ScenarioContext context) => _stepsHelper = new CampaignsStepsHelper(context);
 
-        [When(@"the user navigates to the their career page")]
-        public void WhenTheUserNavigatesToTheTheirCareerPage() => _stepsHelper.GoToFireItUpHomePage().NavigateToParentHubPage().NavigateToTheirCareerPage();
+        //[When(@"the user navigates to the their career page")]
+        //public void WhenTheUserNavigatesToTheTheirCareerPage() => _stepsHelper.GoToFireItUpHomePage().NavigateToParentHubPage().NavigateToTheirCareerPage();
 
     }
 }

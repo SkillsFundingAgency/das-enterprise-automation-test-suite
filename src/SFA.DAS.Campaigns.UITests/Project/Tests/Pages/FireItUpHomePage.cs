@@ -73,12 +73,6 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
             return new RegisterInterestPage(_context);
         }
 
-        public ParentHubPage NavigateToParentHubPage()
-        {
-            formCompletionHelper.ClickElement(Parent);
-            return new ParentHubPage(_context);
-        }
-
         public ApprenticeHubPage NavigateToApprenticeshipHubPage()
         {
             formCompletionHelper.ClickElement(Apprentice);

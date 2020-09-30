@@ -20,7 +20,6 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
         #endregion
 
         #region Helpers and Context
-        private readonly ScenarioContext _context;
         #endregion
 
         public SettingItUpPage(ScenarioContext context) : base(context) { }
