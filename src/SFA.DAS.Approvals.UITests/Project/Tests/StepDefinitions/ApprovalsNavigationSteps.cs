@@ -94,12 +94,5 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                     break;
             }
         }
-
-        [Then(@"the user can add an apprentices")]
-        public void ThenTheUserCanAddAnApprentices()
-        {
-            throw new PendingStepException();
-        }
-
     }
 }
