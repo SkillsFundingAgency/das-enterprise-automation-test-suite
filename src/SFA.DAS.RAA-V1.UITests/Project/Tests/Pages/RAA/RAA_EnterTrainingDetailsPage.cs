@@ -66,9 +66,9 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
 
         public RAA_EnterTrainingDetailsPage EnterTrainingToBeProvided()
         {
-            tabHelper.SwitchToFrame();
+            frameHelper.SwitchToFrame();
             formCompletionHelper.EnterText(TrainingBody, rAAV1DataHelper.TrainingDetails);
-            tabHelper.SwitchToDefaultContent();
+            frameHelper.SwitchToDefaultContent();
             return this;
         }
 

@@ -120,6 +120,13 @@ this.ScenarioInitialize(scenarioInfo);
 #line 10
  testRunner.And("the Employer submits organisation bank details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
+#line 11
+ testRunner.When("the Employer Initiates EI Application journey for Single entity account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 12
+ testRunner.Then("Select apprentices shutter page is displayed for selecting Yes option in Qualific" +
+                        "ation page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
             }
             this.ScenarioCleanup();
         }

@@ -67,11 +67,16 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.ProviderFeedback.UI
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.ApprenticeRedundancy.UITests", "SFA.DAS.ApprenticeRedundancy.UITests\SFA.DAS.ApprenticeRedundancy.UITests.csproj", "{118FEC73-770A-4705-B2CF-7A4C33F59481}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.EmployerIncentives.UITests", "SFA.DAS.EmployerIncentives.UITests\SFA.DAS.EmployerIncentives.UITests.csproj", "{23391A9B-833C-47F8-9F7D-29E885CD200B}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{6E0426D3-BE06-45D9-AE74-262AE19F53A0}"
 	ProjectSection(SolutionItems) = preProject
 		Parellel.runsettings = Parellel.runsettings
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.FAT-V2.UITests", "SFA.DAS.FAT-V2.UITests\SFA.DAS.FAT-V2.UITests.csproj", "{CDA2E4CD-D0CF-4239-AE1C-6DBD3563A6A5}"
+	ProjectSection(ProjectDependencies) = postProject
+		{0B0C470B-9E1B-4A2A-90A6-7E656A6FEE8A} = {0B0C470B-9E1B-4A2A-90A6-7E656A6FEE8A}
+		{AFFF6638-BD32-41D3-8CB6-9D10139575D5} = {AFFF6638-BD32-41D3-8CB6-9D10139575D5}
+		{9B5AD24F-2BC6-4BEF-AA30-1FA59B897377} = {9B5AD24F-2BC6-4BEF-AA30-1FA59B897377}
 	EndProjectSection
 EndProject
 Global
@@ -243,12 +248,12 @@ Global
 		{118FEC73-770A-4705-B2CF-7A4C33F59481}.Development|Any CPU.Build.0 = Debug|Any CPU
 		{118FEC73-770A-4705-B2CF-7A4C33F59481}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{118FEC73-770A-4705-B2CF-7A4C33F59481}.Release|Any CPU.Build.0 = Release|Any CPU
-		{23391A9B-833C-47F8-9F7D-29E885CD200B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{23391A9B-833C-47F8-9F7D-29E885CD200B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{23391A9B-833C-47F8-9F7D-29E885CD200B}.Development|Any CPU.ActiveCfg = Debug|Any CPU
-		{23391A9B-833C-47F8-9F7D-29E885CD200B}.Development|Any CPU.Build.0 = Debug|Any CPU
-		{23391A9B-833C-47F8-9F7D-29E885CD200B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{23391A9B-833C-47F8-9F7D-29E885CD200B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CDA2E4CD-D0CF-4239-AE1C-6DBD3563A6A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CDA2E4CD-D0CF-4239-AE1C-6DBD3563A6A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CDA2E4CD-D0CF-4239-AE1C-6DBD3563A6A5}.Development|Any CPU.ActiveCfg = Debug|Any CPU
+		{CDA2E4CD-D0CF-4239-AE1C-6DBD3563A6A5}.Development|Any CPU.Build.0 = Debug|Any CPU
+		{CDA2E4CD-D0CF-4239-AE1C-6DBD3563A6A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CDA2E4CD-D0CF-4239-AE1C-6DBD3563A6A5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

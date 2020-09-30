@@ -1,7 +1,6 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.RAA.DataGenerator.Project;
-using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
@@ -86,11 +85,11 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
 
         private RAA_EmployerInformationPage EnterAboutTheEmployerInformation()
         {
-            tabHelper.SwitchToFrame();
+            frameHelper.SwitchToFrame();
             formCompletionHelper.SendKeys(AboutTheEmployerBody, (Keys.Tab + Keys.Control + "a" + Keys.Delete));
             formCompletionHelper.SendKeys(AboutTheEmployerBody,rAAV1DataHelper.EmployerBody);
             formCompletionHelper.SendKeys(AboutTheEmployerBody, Keys.Delete);
-            tabHelper.SwitchToDefaultContent();
+            frameHelper.SwitchToDefaultContent();
             return this;
         }
 

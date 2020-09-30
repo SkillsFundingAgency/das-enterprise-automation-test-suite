@@ -2,13 +2,16 @@
 using TechTalk.SpecFlow;
 using SFA.DAS.UI.Framework.TestSupport;
 using OpenQA.Selenium;
+using SFA.DAS.EmployerIncentives.UITests.Project.Helpers;
 
 namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
 {
     public abstract class EIBasePage : BasePage
     {
         #region Helpers and Context
-        protected readonly TabHelper tabHelper;
+        protected readonly IFrameHelper frameHelper;
+        protected readonly EIDataHelper eIDataHelper;
+        protected readonly EIConfig eIConfig;
         protected readonly FormCompletionHelper formCompletionHelper;
         protected readonly PageInteractionHelper pageInteractionHelper;
         #endregion
@@ -18,12 +21,14 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
         protected override By ContinueButton => By.XPath("//button[contains(text(), 'Continue')]");
         protected By ReturnToAccountHomeCTA => By.LinkText("Return to account home");
 
-        protected EIBasePage(ScenarioContext context) : base(context)
+        protected EIBasePage(ScenarioContext context, bool verifypage = true) : base(context)
         {
-            tabHelper = context.Get<TabHelper>();
+            frameHelper = context.Get<IFrameHelper>();
+            eIConfig = context.GetEIConfig<EIConfig>();
+            eIDataHelper = context.Get<EIDataHelper>();
             formCompletionHelper = context.Get<FormCompletionHelper>();
             pageInteractionHelper = context.Get<PageInteractionHelper>();
-            VerifyPage();
+            if (verifypage) { VerifyPage(); }
         }
     }
 }

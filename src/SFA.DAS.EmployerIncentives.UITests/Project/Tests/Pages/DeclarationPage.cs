@@ -15,10 +15,10 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
 
         public DeclarationPage(ScenarioContext context) : base(context) => _context = context;
 
-        public AddBankDetailsPage SubmitDeclaration()
+        public WeNeedYourOrgBankDetailsPage SubmitDeclaration()
         {
             formCompletionHelper.ClickButtonByText(ConfirmButton, "Confirm and submit");
-            return new AddBankDetailsPage(_context);
+            return new WeNeedYourOrgBankDetailsPage(_context);
         }
     }
 }
