@@ -13,11 +13,8 @@ namespace SFA.DAS.FAT_V2.UITests.Project.Tests.Pages
         private By ViewProvidersForThisCourseButton => By.Id("btn-view-providers");
         #endregion
 
-        public TrainingCourseSummaryPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public TrainingCourseSummaryPage(ScenarioContext context) : base(context) => _context = context;
+
         public FATV2IndexPage NavigateBackToHompage()
         {
             NavigateToHomepage();

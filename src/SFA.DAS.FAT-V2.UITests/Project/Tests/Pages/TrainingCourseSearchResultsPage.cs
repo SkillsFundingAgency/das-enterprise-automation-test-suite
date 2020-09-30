@@ -17,11 +17,8 @@ namespace SFA.DAS.FAT_V2.UITests.Project.Tests.Pages
         private By SortByInfoText => By.Id("sort-by-relevance");
         #endregion
 
-        public TrainingCourseSearchResultsPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public TrainingCourseSearchResultsPage(ScenarioContext context) : base(context) => _context = context;
+
         public TrainingCourseSearchResultsPage SelectLevelAndFilterResults(string level)
         {
             SelectLevelCheckBox(level);

@@ -12,11 +12,8 @@ namespace SFA.DAS.FAT_V2.UITests.Project.Tests.Pages
         private By StartButton => By.LinkText("Start now");
         #endregion
 
-        public FATV2IndexPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            VerifyPage();
-        }
+        public FATV2IndexPage(ScenarioContext context) : base(context) => _context = context;
+
         public FindApprenticeshipTrainingSearchPage ClickStartButton()
         {
             formCompletionHelper.Click(StartButton);
