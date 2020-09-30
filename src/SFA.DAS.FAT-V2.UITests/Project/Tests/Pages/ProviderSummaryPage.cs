@@ -6,7 +6,7 @@ namespace SFA.DAS.FAT_V2.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => objectContext.GetProviderName();
 
-        public ProviderSummaryPage(ScenarioContext context) : base(context) => VerifyPage();
+        public ProviderSummaryPage(ScenarioContext context) : base(context) { }
 
     }
 }
