@@ -14,6 +14,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         protected readonly VacancyReferenceHelper vacancyReferenceHelper;
         protected readonly RAAV2DataHelper rAAV2DataHelper;
         protected readonly TabHelper tabHelper;
+        protected readonly JavaScriptHelper javaScriptHelper;
         protected readonly TableRowHelper tableRowHelper;
         protected readonly FormCompletionHelper formCompletionHelper;
         protected readonly PageInteractionHelper pageInteractionHelper;
@@ -32,6 +33,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
             pageInteractionHelper = context.Get<PageInteractionHelper>();
             objectContext = context.Get<ObjectContext>();
             tabHelper = context.Get<TabHelper>();
+            javaScriptHelper = context.Get<JavaScriptHelper>();
             tableRowHelper = context.Get<TableRowHelper>();
 
             if (verifypage) { VerifyPage(); }

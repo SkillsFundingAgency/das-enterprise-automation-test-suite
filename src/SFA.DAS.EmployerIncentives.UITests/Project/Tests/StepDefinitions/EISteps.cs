@@ -1,13 +1,10 @@
 ﻿using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
-using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.EmployerIncentives.UITests.Project.Helpers;
 using SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages;
 using SFA.DAS.Login.Service;
 using SFA.DAS.Login.Service.Helpers;
-using SFA.DAS.Registration.UITests.Project;
 using SFA.DAS.Registration.UITests.Project.Helpers;
-using SFA.DAS.UI.Framework;
-using SFA.DAS.UI.FrameworkHelpers;
+using SFA.DAS.Registration.UITests.Project.Tests.Pages;
 using TechTalk.SpecFlow;
 using static SFA.DAS.EmployerIncentives.UITests.Project.Helpers.EnumHelper;
 
@@ -16,6 +13,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
     [Binding]
     public class EISteps
     {
+        private bool _doNotdeleteInentiveapplication;
         private readonly ScenarioContext _context;
         private readonly EILevyUser _eILevyUser;
         private EIStartPage _eIStartPage;
@@ -23,19 +21,17 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
         private QualificationQuestionPage _qualificationQuestionPage;
         private QualificationQuestionShutterPage _qualificationQuestionShutterPage;
         private EmployerAgreementShutterPage _employerAgreementShutterPage;
-        private AddBankDetailsPage _addBankDetailsPage;
+        private WeNeedYourOrgBankDetailsPage _addBankDetailsPage;
         private readonly EmployerPortalLoginHelper _employerPortalLoginHelper;
         private readonly ProviderStepsHelper _providerStepsHelper;
         private readonly EmployerHomePageStepsHelper _homePageStepsHelper;
         private readonly EISqlHelper _eISqlHelper;
         private readonly RegistrationSqlDataHelper _registrationSqlDataHelper;
-        private readonly TabHelper _tabHelper;
 
         public EISteps(ScenarioContext context)
         {
             _context = context;
             _context = context;
-            _tabHelper = _context.Get<TabHelper>();
             _eISqlHelper = context.Get<EISqlHelper>();
             _eILevyUser = _context.GetUser<EILevyUser>();
             _registrationSqlDataHelper = context.Get<RegistrationSqlDataHelper>();
@@ -47,7 +43,18 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
         [When(@"the Employer submits organisation bank details")]
         public void WhenTheEmployerSubmitsOrganisationBankDetails()
         {
+            _addBankDetailsPage.ChooseYesAndContinue()
+                .ContinueToAddBankDetails()
+                .ContinueToOrgDetailsPage()
+                .ContinueToAddressDetailsPage()
+                .SubmitAddressDetails(_eILevyUser.Username)
+                .SubmitBankDetails()
+                .SubmitSubmitterDetails(_eILevyUser.Username)
+                .SubmitSummaryPage()
+                .ReturnToEasPage()
+                .ReturnToAccountHomePage();
 
+            _doNotdeleteInentiveapplication = true;
         }
 
 
@@ -68,8 +75,11 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
         [Then(@"the Employer is able to navigate to EI start page for (Single|Multiple) entity account")]
         public void TheEmployerInitiatesEIApplicationJourneyForSingleEntityAccount(Entities entities)
         {
-            _eISqlHelper.DeleteIncentiveApplication(_registrationSqlDataHelper.GetAccountId(_eILevyUser.Username));
-
+            if (!_doNotdeleteInentiveapplication)
+            {
+                _eISqlHelper.DeleteIncentiveApplication(_registrationSqlDataHelper.GetAccountId(_eILevyUser.Username));
+            }
+            
             _eIStartPage = new HomePageFinancesSection(_context).NavigateToEIStartPage();
 
             if (entities == Entities.Single)
