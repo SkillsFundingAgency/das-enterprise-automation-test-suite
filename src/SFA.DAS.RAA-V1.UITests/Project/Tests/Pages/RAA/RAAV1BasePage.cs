@@ -19,7 +19,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
         protected readonly VacancyTitleDatahelper vacancyTitledataHelper;
         protected readonly PageInteractionHelper pageInteractionHelper;
         protected readonly FAADataHelper faaDataHelper;
-        protected readonly TabHelper tabHelper;
+        protected readonly IFrameHelper frameHelper;
         protected readonly RAAV1Config rAAV1Config;
         protected RandomVacancyHelper randomVacancyHelper;
         #endregion
@@ -36,7 +36,7 @@ namespace SFA.DAS.RAA_V1.UITests.Project.Tests.Pages.RAA
             vacancyTitledataHelper = context.GetValue<VacancyTitleDatahelper>();
             formCompletionHelper = context.Get<FormCompletionHelper>();
             pageInteractionHelper = context.Get<PageInteractionHelper>();
-            tabHelper = context.Get<TabHelper>();
+            frameHelper = context.Get<IFrameHelper>();
             faaDataHelper = context.GetValue<FAADataHelper>();
             randomVacancyHelper = context.GetValue<RandomVacancyHelper>();
 

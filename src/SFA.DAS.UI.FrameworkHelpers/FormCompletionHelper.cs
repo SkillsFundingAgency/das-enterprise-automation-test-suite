@@ -22,7 +22,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         public void ClickElement(Func<IWebElement> element, Action retryAction = null) => _retryHelper.RetryClickOnWebDriverException(element, retryAction);
 
-        public void ClickElement(IWebElement element) => _retryHelper.RetryOnElementClickInterceptedException(element);
+        public void ClickElement(IWebElement element, bool useAction = true) => _retryHelper.RetryOnElementClickInterceptedException(element, useAction);
 
         public void ClickElement(By locator)
         {
@@ -32,11 +32,9 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         public void Click(By locator) => ClickElement(locator);
 
-        public void SwitchFrameAndEnterText(By iFrameFieldLocator, By iFrameBodyLocator, string text)
+        public void EnterText(By town1, object town2)
         {
-            _webDriver.SwitchTo().Frame(_webDriver.FindElement(iFrameFieldLocator));
-            ((IJavaScriptExecutor)_webDriver).ExecuteScript($"arguments[0].innerHTML = '{text}'", _webDriver.FindElement(iFrameBodyLocator));
-            _webDriver.SwitchTo().DefaultContent();
+            throw new NotImplementedException();
         }
 
         public void EnterText(IWebElement element, string text)
@@ -137,5 +135,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
         }
 
         public void ClickButtonByText(string text) => ClickElementByText(ButtonCssSelector, text);
+
+        public void ClickButtonByText(By locator, string text) => ClickElementByText(locator, text);
     }
 }

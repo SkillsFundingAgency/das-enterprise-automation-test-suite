@@ -11,14 +11,6 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         public TabHelper(IWebDriver webDriver) => _webDriver = webDriver;
 
-        private By Iframe => By.CssSelector("iframe");
-
-        public void SwitchToFrame() => SwitchToFrame(Iframe);
-
-        public void SwitchToFrame(By by) => _webDriver.SwitchTo().Frame(_webDriver.FindElement(by));
-
-        public void SwitchToDefaultContent() => _webDriver.SwitchTo().DefaultContent();
-
         public void OpenInNewTab(Action action)
         {
             var existingTabs = ExistingTabs();
@@ -41,6 +33,8 @@ namespace SFA.DAS.UI.FrameworkHelpers
         public void GoToUrl(string url) => _webDriver.Navigate().GoToUrl(url);
 
         public void NavigateBrowserBack() => _webDriver.Navigate().Back();
+
+        public void SwitchToFirstTab() => _webDriver = _webDriver.SwitchTo().Window(_webDriver.WindowHandles.First());
 
         private ReadOnlyCollection<string> ExistingTabs() => _webDriver.WindowHandles;
 

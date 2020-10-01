@@ -135,7 +135,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
         [Given(@"the Employer create a cohort and send to provider to add apprentices")]
         [When(@"the Employer create a cohort and send to provider to add apprentices")]
-        public void WhenTheEmployerCreateACohortAndSendToProviderToAddApprentices()
+        public void TheEmployerCreateACohortAndSendToProviderToAddApprentices()
         {
             _employerStepsHelper.EmployerCreateCohortAndSendsToProvider(false);
         }
@@ -182,7 +182,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
         [Given(@"a new live apprentice record is created")]
         [Then(@"a new live apprentice record is created")]
-        public void ThenANewLiveApprenticeRecordIsCreated()
+        public void ANewLiveApprenticeRecordIsCreated()
         {
             _employerStepsHelper.ValidateStatusOnManageYourApprenticesPage("Live");
         }
@@ -193,9 +193,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Then(@"Apprentice status and details cannot be changed except the planned training finish date")]
         public void ThenApprenticeStatusAndDetailsCannotBeChangedExceptThePlannedTrainingFinishDate() => _employerStepsHelper.ValidateApprenticeDetailsCanNoLongerBeChangedExceptEndDate();
 
-
         [Given(@"the Employer adds (.*) apprentices (Aged16to24|AgedAbove25) as of 01AUG2020 with start date as Month (.*) and Year (.*)")]
-        public void GivenTheEmployerAddsApprenticesOfSpecifiedAgeCategorywithStartDateAsMentioned(int numberOfApprentices, string eIAgeCategoryAsOfAug2020, int eIStartmonth, int eIStartyear)
+        [When(@"the Employer adds (.*) apprentices (Aged16to24|AgedAbove25) as of 01AUG2020 with start date as Month (.*) and Year (.*)")]
+        public void TheEmployerAddsApprenticesOfSpecifiedAgeCategorywithStartDateAsMentioned(int numberOfApprentices, string eIAgeCategoryAsOfAug2020, int eIStartmonth, int eIStartyear)
         {
             _objectContext.SetIsEIJourney(true);
             _objectContext.SetEIAgeCategoryAsOfAug2020(eIAgeCategoryAsOfAug2020);

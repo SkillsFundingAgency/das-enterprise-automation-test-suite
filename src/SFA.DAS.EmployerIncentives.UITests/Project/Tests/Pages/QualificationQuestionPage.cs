@@ -1,11 +1,10 @@
-﻿using OpenQA.Selenium;
-using TechTalk.SpecFlow;
+﻿using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
 {
     public class QualificationQuestionPage : EIBasePage
     {
-        protected override string PageTitle => "Have you taken on new apprentices that joined your payroll after 1 August 2020?";
+        protected override string PageTitle => "Have you taken on new apprentices who started their contract of employment between 1 August 2020 and 31 January 2021?";
 
         #region Locators
         private readonly ScenarioContext _context;
@@ -13,25 +12,40 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
 
         public QualificationQuestionPage(ScenarioContext context) : base(context) => _context = context;
 
+        public SelectTheApprentice SelectYesAndContinueForEligibleApprenticesScenario()
+        {
+            SelectYes();
+            return new SelectTheApprentice(_context);
+        }
+
         public SelectApprenticesShutterPage SelectYesAndContinueForNoEligibleApprenticesScenario()
         {
-            SelectRadioOptionByForAttribute("HasTakenOnNewApprentices");
-            formCompletionHelper.Click(ContinueButton);
+            SelectYes();
             return new SelectApprenticesShutterPage(_context);
         }
 
         public EmployerAgreementShutterPage SelectYesAndContinueForUnSignedAgreementScenario()
         {
-            SelectRadioOptionByForAttribute("HasTakenOnNewApprentices");
-            formCompletionHelper.Click(ContinueButton);
+            SelectYes();
             return new EmployerAgreementShutterPage(_context);
         }
 
         public QualificationQuestionShutterPage SelectNoAndContinue()
         {
-            SelectRadioOptionByForAttribute("HasTakenOnNewApprentices-2");
-            formCompletionHelper.Click(ContinueButton);
+            SelectNo();
             return new QualificationQuestionShutterPage(_context);
+        }
+
+        private void SelectYes()
+        {
+            SelectRadioOptionByForAttribute("HasTakenOnNewApprentices");
+            Continue();
+        }
+
+        private void SelectNo()
+        {
+            SelectRadioOptionByForAttribute("HasTakenOnNewApprentices-2");
+            Continue();
         }
     }
 }
