@@ -26,7 +26,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
 
         protected By Basket => By.CssSelector("a[href='/Basket/View']");
 
-        protected By FavCount => By.CssSelector(".favourites-link__count");
+        protected By FavCount => By.CssSelector(".fiu-navigation__favourites-link__count");
        
         protected By AreTheyRightForYou = By.CssSelector("a[href='/employers/are-they-right-for-you']");
         

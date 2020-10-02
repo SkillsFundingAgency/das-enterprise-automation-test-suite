@@ -12,11 +12,11 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
         private readonly ScenarioContext _context;
         #endregion
 
-        private By Keywords => By.CssSelector("#Keywords");
+        private By Keywords => By.CssSelector("#FATKeywords");
         
         private By Search => By.CssSelector("#employer-apprenticeship-search");
 
-        private By Apprenticeship => By.CssSelector($".fiu-results-panel[id='{objectContext.GetCourseId()}'] .fiu-link fiu-link--employers");
+        private By Apprenticeship => By.CssSelector($".fiu-results-panel[id='{objectContext.GetCourseId()}'] .fiu-link.fiu-link--employers");
 
         public SearchResultsPage(ScenarioContext context) : base(context) => _context = context;
 

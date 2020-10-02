@@ -11,7 +11,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
         private readonly ScenarioContext _context;
         #endregion
 
-        private By Provider => By.CssSelector($".das-search-result a[href*='ukprn={objectContext.GetProviderId()}&apprenticeshipId={objectContext.GetCourseId()}&LocationId={objectContext.GetProviderLocationId()}']");
+        private By Provider => By.CssSelector($"a[href*='ukprn={objectContext.GetProviderId()}&apprenticeshipId={objectContext.GetCourseId()}&LocationId={objectContext.GetProviderLocationId()}']");
 
         public TrainingProviderResultPage(ScenarioContext context) : base(context)
         {

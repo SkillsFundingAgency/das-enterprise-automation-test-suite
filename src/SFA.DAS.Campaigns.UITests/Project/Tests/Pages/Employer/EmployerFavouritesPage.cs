@@ -17,7 +17,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
 
         private By NoFavourites => By.CssSelector("section .govuk-heading-m");
 
-        private By Delete(string value) => By.CssSelector($".das-basket__item-delete[value='{value}']");
+        private By Delete(string value) => By.CssSelector($".fiu-favourite-bar__link[value='{value}']");
 
         public EmployerFavouritesPage(ScenarioContext context) : base(context)
         {
