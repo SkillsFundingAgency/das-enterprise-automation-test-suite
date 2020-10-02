@@ -35,10 +35,10 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
             return new SearchResultsPage(_context);
         }
 
-        public SummaryOfThisApprenticeshipPage GoToSummaryOfThisApprenticeshipPage()
+        public FindTrainingProviderForThisApprenticeshipPage GoToSummaryOfThisApprenticeshipPage()
         {
             formCompletionHelper.ClickElement(Apprenticeship);
-            return new SummaryOfThisApprenticeshipPage(_context);
+            return new FindTrainingProviderForThisApprenticeshipPage(_context);
         }
 
         public EmployerFavouritesPage GoToEmployerFavouritesPage()

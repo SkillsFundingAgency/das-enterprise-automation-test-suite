@@ -12,7 +12,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
         private readonly ScenarioContext _context;
         #endregion
 
-        private By CreateAnAccount => By.CssSelector(".button.button-employer");
+        private By CreateAnAccount => By.CssSelector(".fiu-button.fiu-button--employers[href='/basket/save']");
 
         public CreateAnAccountPage(ScenarioContext context) : base(context) => _context = context;
 

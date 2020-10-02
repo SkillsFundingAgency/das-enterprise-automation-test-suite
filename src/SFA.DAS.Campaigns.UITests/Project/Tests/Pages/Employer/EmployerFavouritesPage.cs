@@ -11,11 +11,11 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
         private readonly ScenarioContext _context;
         #endregion
 
-        private By CreateAnAccountButton => By.CssSelector(".button.hero__panel-button");
+        private By GetStarted => By.CssSelector("a[href*='employers/create-apprenticeship-service-account']");
         
         private By AddProviderLink => By.CssSelector($".fiu-panel__button[href*='{objectContext.GetCourseId()}']");
 
-        private By BasketEmpty => By.XPath("//a[@href ='/basket/view']");
+        private By NoFavourites => By.CssSelector("section .govuk-heading-m");
 
         private By Delete(string value) => By.CssSelector($".das-basket__item-delete[value='{value}']");
 
@@ -26,19 +26,19 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
 
         public CreateAnAccountPage CreateAnAccount()
         {
-            formCompletionHelper.ClickElement(CreateAnAccountButton);
+            formCompletionHelper.ClickElement(GetStarted);
             return new CreateAnAccountPage(_context);
         }
 
-        public SummaryOfThisApprenticeshipPage AddProvider()
+        public FindTrainingProviderForThisApprenticeshipPage AddProvider()
         {
             formCompletionHelper.ClickElement(AddProviderLink);
-            return new SummaryOfThisApprenticeshipPage(_context);
+            return new FindTrainingProviderForThisApprenticeshipPage(_context);
         }
 
         public EmployerFavouritesPage VerifyEmptyBasket()
         {
-            VerifyPage(BasketEmpty, "YOU HAVEN'T ADDED ANY FAVOURITES YET");
+            VerifyPage(NoFavourites, "You haven't added any favourites yet");
             return new EmployerFavouritesPage(_context);
         }
 

@@ -20,7 +20,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
         private SearchResultsPage _searchResultsPage;
         private EmployerFavouritesPage _empFavpage;
         private GovUkYourSavedFavouritesPage _govukFavpage;
-        private SummaryOfThisApprenticeshipPage _appsummaryPage;
+        private FindTrainingProviderForThisApprenticeshipPage _appsummaryPage;
         private SummaryOfThisProviderPage _providersummaryPage;
         private SignInPage _signInPage;
         private readonly CampaignsDataHelper _campaignsDataHelper;

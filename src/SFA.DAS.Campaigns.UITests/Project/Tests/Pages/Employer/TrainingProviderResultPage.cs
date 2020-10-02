@@ -5,7 +5,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
 {
     public class TrainingProviderResultPage : EmployerBasePage
     {
-        protected override string PageTitle => "Page not found";
+        protected override string PageTitle => "Find a training provider";
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
