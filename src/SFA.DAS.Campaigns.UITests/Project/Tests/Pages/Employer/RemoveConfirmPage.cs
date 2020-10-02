@@ -6,7 +6,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
 {
     public class RemoveConfirmPage : EmployerBasePage
     {
-        protected override string PageTitle => "REMOVE CONFIRMATION";
+        protected override string PageTitle => "Remove confirmation";
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
