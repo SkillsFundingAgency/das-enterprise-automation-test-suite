@@ -1,4 +1,5 @@
 ﻿Feature: CA_AP_18
+
 @campaigns
 @apprentice
 @regression

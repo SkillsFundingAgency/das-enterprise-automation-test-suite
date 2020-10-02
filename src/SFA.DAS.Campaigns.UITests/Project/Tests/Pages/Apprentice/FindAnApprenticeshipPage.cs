@@ -16,7 +16,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Apprentice
         private By Distance => By.CssSelector("#header-distance");
         private By SearchButton => By.CssSelector("#search-apprenticeship");
 
-        public FindAnApprenticeshipPage(ScenarioContext context) : base(context){}
+        public FindAnApprenticeshipPage(ScenarioContext context) : base(context) => _context = context;
 
             public ResultsPage SearchForAnApprenticeship()
         {
