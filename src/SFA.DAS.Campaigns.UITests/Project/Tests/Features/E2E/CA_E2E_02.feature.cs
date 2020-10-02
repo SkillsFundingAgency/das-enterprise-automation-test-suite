@@ -75,14 +75,14 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Features.E2E
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("CA_E2E_02_Employer adds and deletes favourites")]
-        [NUnit.Framework.CategoryAttribute("Ignore")]
+        [NUnit.Framework.CategoryAttribute("campaignse2e")]
         [NUnit.Framework.CategoryAttribute("campaigns")]
         [NUnit.Framework.CategoryAttribute("employer")]
         [NUnit.Framework.CategoryAttribute("regression")]
         public virtual void CA_E2E_02_EmployerAddsAndDeletesFavourites()
         {
             string[] tagsOfScenario = new string[] {
-                    "Ignore",
+                    "campaignse2e",
                     "campaigns",
                     "employer",
                     "regression"};
