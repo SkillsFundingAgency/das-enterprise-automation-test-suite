@@ -39,6 +39,12 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             return new OrganisationHasBeenAddedPage(_context);
         }
 
+        public AccessDeniedPage ClickYesContinueButtonAndRedirectedToAccessDeniedPage()
+        {
+            formCompletionHelper.Click(YesContinueButton);
+            return new AccessDeniedPage(_context);
+        }
+
         public string GetOrganisationName() => pageInteractionHelper.GetText(OrganisationName);
 
         public string GetOrganisationAddress() => pageInteractionHelper.GetText(OrganisationAddress);

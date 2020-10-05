@@ -33,6 +33,10 @@ namespace SFA.DAS.Registration.UITests.Project
 
             _context.SetUser(_configSection.GetConfigSection<NonLevyUser>());
 
+            _context.SetUser(_configSection.GetConfigSection<TransactorUser>());
+
+            _context.SetUser(_configSection.GetConfigSection<ViewOnlyUser>());
+
             _context.SetMongoDbConfig(_configSection.GetConfigSection<MongoDbConfig>());
         }
     }
