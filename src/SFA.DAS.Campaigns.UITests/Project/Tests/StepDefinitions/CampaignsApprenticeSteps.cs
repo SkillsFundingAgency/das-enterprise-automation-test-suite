@@ -1,5 +1,4 @@
 ﻿using SFA.DAS.Campaigns.UITests.Project.Helpers;
-using SFA.DAS.Campaigns.UITests.Project.Tests.Pages;
 using SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Apprentice;
 using TechTalk.SpecFlow;
 
@@ -10,6 +9,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
     {
         private readonly CampaignsStepsHelper _stepsHelper;
         private FindAnApprenticeshipPage _findAnApprenticeshipPage;
+        private AreApprenticeShipRightForMePage _areApprenticeShipRightForMePage;
         private ApprenticeHubPage _apprenticeHubPage;
 
         public CampaignsApprenticeSteps(ScenarioContext context) => _stepsHelper = new CampaignsStepsHelper(context);
@@ -19,6 +19,18 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
 
         [Given(@"the user navigates to Become An Apprentice page")]
         public void GivenTheUserNavigatesToBecomeAnApprenticePage() => _apprenticeHubPage = GoToApprenticeshipHubPage();
+
+        [Given(@"the user navigates to How do they work Page")]
+        public void GivenTheUserNavigatesToHowDoTheyWorkPage() => GoToApprenticeshipHubPage().NavigateToHowDoTheyWorkPage();
+
+        [Given(@"the user navigates to Getting started Page")]
+        public void GivenTheUserNavigatesToGettingStartedPage() => GoToApprenticeshipHubPage().NavigateToGettingStarted();
+
+        [Given(@"the user navigates to Are ApprenticeShip Right For You Page")]
+        public void GivenTheUserNavigatesToAreApprenticeShipRightForYouPage() => _areApprenticeShipRightForMePage = GoToApprenticeshipHubPage().NavigateToAreApprenticeShipRightForMe();
+
+        [Then(@"check that RealStories Page loads")]
+        public void ThenCheckThatRealStoriesPageLoads() => _areApprenticeShipRightForMePage.NavigateToRealStoriesPage();
 
         [Given(@"the user navigates to the find an apprenticeship page")]
         public void GivenTheUserNavigatesToTheFindAnApprenticeshipPage() => _findAnApprenticeshipPage = GoToApprenticeshipHubPage().NavigateToFindAnApprenticeshipPage();
@@ -59,8 +71,6 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
         [Given(@"the user navigates to the Ste Map page")]
         public void GivenTheUserNavigatesToTheSteMapPage() => GoToApprenticeshipHubPage().NavigateToSiteMapPage();
         
-        private ApprenticeHubPage GoToApprenticeshipHubPage() => GoToFireItUpHomePage().NavigateToApprenticeshipHubPage();
-
-        private FireItUpHomePage GoToFireItUpHomePage() => _stepsHelper.GoToFireItUpHomePage();
+        private ApprenticeHubPage GoToApprenticeshipHubPage() => _stepsHelper.GoToApprenticeshipHubPage();
     }
 }

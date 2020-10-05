@@ -69,25 +69,22 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
         private readonly ScenarioContext _context;
         #endregion
 
-        public EmployerHubPage(ScenarioContext context, bool verifySubHeading) : base(context, true)
+        public EmployerHubPage(ScenarioContext context) : base(context, true) => _context = context;
+
+        public void VerifySubHeadings()
         {
-            _context = context;
+            List<IWebElement> func() => pageInteractionHelper.FindElements(FiuCardHeading).ToList();
 
-            if (verifySubHeading)
-            {
-                List<IWebElement> func() => pageInteractionHelper.FindElements(FiuCardHeading).ToList();
-
-                VerifyPage(func, "Real stories");
-                VerifyPage(func, "Benefits to your organisation");
-                VerifyPage(func, "Hiring an apprentice");
-                VerifyPage(func, "Upskilling your current staff");
-                VerifyPage(func, "Funding an apprenticeship");
-                VerifyPage(func, "Training your apprentice");
-                VerifyPage(func, "End-point assessments");
-                VerifyPage(func, "How to choose the right apprenticeship training");
-                VerifyPage(func, "Choose a training provider");
-                VerifyPage(func, "Set up a service account");
-            }
+            VerifyPage(func, "Real stories");
+            VerifyPage(func, "Benefits to your organisation");
+            VerifyPage(func, "Hiring an apprentice");
+            VerifyPage(func, "Upskilling your current staff");
+            VerifyPage(func, "Funding an apprenticeship");
+            VerifyPage(func, "Training your apprentice");
+            VerifyPage(func, "End-point assessments");
+            VerifyPage(func, "How to choose the right apprenticeship training");
+            VerifyPage(func, "Choose a training provider");
+            VerifyPage(func, "Set up a service account");
         }
 
         public EmployerRealStoriesPage NavigateToRealStoriesPage()

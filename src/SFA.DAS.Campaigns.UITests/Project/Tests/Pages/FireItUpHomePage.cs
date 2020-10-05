@@ -80,7 +80,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
         public EmployerHubPage NavigateToEmployerHubPage()
         {
             formCompletionHelper.ClickElement(Employer);
-            return new EmployerHubPage(_context, true);
+            return new EmployerHubPage(_context);
         }
         public FireItUpHomePage VerifyFiuHomePageCard1()
         {

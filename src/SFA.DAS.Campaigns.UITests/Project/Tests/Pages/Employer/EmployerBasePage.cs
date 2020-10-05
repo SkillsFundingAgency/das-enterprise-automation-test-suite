@@ -13,7 +13,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
 
         protected By RemoveFavouriteSelector => By.CssSelector(".fiu-favourite-bar__link--active");
 
-        protected EmployerBasePage(ScenarioContext context) : base(context, false) { }
+        protected EmployerBasePage(ScenarioContext context) : base(context) { }
 
         protected void AddFavourite(Action<string> action, Func<List<IWebElement>, IWebElement> func)
         {

@@ -1,5 +1,4 @@
 ﻿using SFA.DAS.Campaigns.UITests.Project.Helpers;
-using SFA.DAS.Campaigns.UITests.Project.Tests.Pages;
 using SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer;
 using TechTalk.SpecFlow;
 
@@ -10,7 +9,28 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
     {
         private readonly CampaignsStepsHelper _stepsHelper;
 
+        private EmployerHubPage _employerHubPage;
+
         public CampaignsEmployerSteps(ScenarioContext context) => _stepsHelper = new CampaignsStepsHelper(context);
+
+        [Given(@"the user navigates to Setting Up Page")]
+        public void GivenTheUserNavigatesToSettingUpPage() => GoToEmployerHubPage().ClickSettingUpLink();
+
+        [Given(@"the user navigates to How Do They Work Page")]
+        public void GivenTheUserNavigatesToHowDoTheyWorkPage() => GoToEmployerHubPage().ClickHowDoTheyWorkLink();
+
+        [Then(@"the employer sub headings are displayed")]
+        public void ThenTheEmployerSubHeadingsAreDisplayed() => _employerHubPage.VerifySubHeadings();
+
+        [Given(@"the user navigates to Hire An Apprentice hub Page")]
+        public void GivenTheUserNavigatesToHireAnApprenticeHubPage() => _employerHubPage = GoToEmployerHubPage();
+
+        [Given(@"the user navigates to the How do they work page")]
+
+        public void GivenTheUserNavigatesToTheHowDoTheyWorkPage() => GoToEmployerHubPage().ClickHowDoTheyWorkLink();
+
+        [Given(@"the user navigates to Are they right for you Page")]
+        public void GivenTheUserNavigatesToAreTheyRightForYouPage() => GoToEmployerHubPage().NavigateToAreTheyRightForYouPage();
 
         [Given(@"the user navigates to employer real stories page")]
         public void GivenTheUserNavigatesToEmployerRealStoriesPage() => GoToEmployerHubPage().NavigateToRealStoriesPage();
@@ -20,9 +40,6 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
 
         [Given(@"the user navigates to hiring an apprentice page")]
         public void GivenTheUserNavigatesToHiringAnApprenticePage() => GoToEmployerHubPage();
-      
-        [Given(@"the user navigates to the funding an apprenticeship page")]
-        public void GivenTheUserNavigatesToTheFundingAnApprenticeshipPage() => GoToEmployerHubPage().NavigateToFundingAnApprenticeshipPage();
 
         [Given(@"the user navigates to Upskilling Your Current Staff page")]
         public void GivenTheUserNavigatesToUpskillingYourCurrentStaffPage() => GoToEmployerHubPage().NavigateToUpSkillingYourCurrentStaffPage();
@@ -45,8 +62,6 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
         [Given(@"the user navigates to Employer Guide Page")]
         public void GivenTheUserNavigatesToEmployerGuidePage() => GoToEmployerHubPage().NavigateEmployerGuidePage();
 
-        public FireItUpHomePage GoToFireItUpHomePage() => _stepsHelper.GoToFireItUpHomePage();
-
-        public EmployerHubPage GoToEmployerHubPage() => GoToFireItUpHomePage().NavigateToEmployerHubPage();
+        private EmployerHubPage GoToEmployerHubPage() => _stepsHelper.GoToEmployerHubPage();
     }
 }

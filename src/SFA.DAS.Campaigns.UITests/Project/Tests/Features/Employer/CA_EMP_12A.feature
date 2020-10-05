@@ -5,4 +5,5 @@
 @regression
 Scenario: CA_AP_12A Check Hire An Apprentice hub Page  
 	Given the user navigates to Hire An Apprentice hub Page
+	Then the employer sub headings are displayed
 	Then the links are not broken
