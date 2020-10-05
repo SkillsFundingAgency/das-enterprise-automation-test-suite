@@ -60,6 +60,13 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
             _doNotdeleteInentiveapplication = true;
         }
 
+        [Then(@"the Employer is able to navigate to View Applications page")]
+        public void ThenTheEmployerIsAbleToNavigateToViewApplicationsPage()
+        {
+            _homePageStepsHelper.GotoEmployerHomePage();
+            new HomePageFinancesSection(_context).NavigateToViewApplicationsPage();
+        }
+
         [When(@"the Employer navigates back to Qualification page for (Single|Multiple) entity account")]
         [When(@"the Employer Initiates EI Application journey for (Single|Multiple) entity account")]
         [When(@"the Employer Initiates EI Application journey for (Single|Multiple) entity account again")]
