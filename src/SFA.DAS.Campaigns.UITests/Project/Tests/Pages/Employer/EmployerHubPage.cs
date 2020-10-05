@@ -40,13 +40,12 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
 
         protected By EndPointAssessments => By.CssSelector("#fiu-emp-hub-card-7");
 
-        protected By PreparingAndMonitoring => By.CssSelector("#link-nav-emp-step-5");
-
         protected By ChooseTheRightApprenticeship => By.CssSelector("#fiu-emp-hub-card-8");
 
         protected By ChooseATrainingProvider => By.CssSelector("#fiu-emp-hub-card-9");
 
         protected By SetUpServiceAccountr => By.CssSelector("#fiu-emp-hub-card-10");
+
         protected By RegisterInterest => By.CssSelector("#fiu-panel-link-reg-int-emp");
 
         #region Helpers and Context
@@ -110,12 +109,6 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
         {
             formCompletionHelper.ClickElement(EndPointAssessments);
             return new EndPointAssessmentPage(_context);
-        }
-
-        public PreparingAndMonitoringPage NavigateToPreparingAndMonitoringPage()
-        {
-            formCompletionHelper.ClickElement(PreparingAndMonitoring);
-            return new PreparingAndMonitoringPage(_context);
         }
 
         public ChooseTheRightApprenticeshipPage NavigateToChooseTheRightApprenticeshipPage()
