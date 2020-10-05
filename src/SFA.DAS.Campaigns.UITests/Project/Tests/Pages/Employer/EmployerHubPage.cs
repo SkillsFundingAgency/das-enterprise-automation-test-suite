@@ -49,8 +49,6 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
         protected By SetUpServiceAccountr => By.CssSelector("#fiu-emp-hub-card-10");
         protected By RegisterInterest => By.CssSelector("#fiu-panel-link-reg-int-emp");
 
-        private By FiuCardHeading => By.CssSelector(".fiu-card__heading");
-
         #region Helpers and Context
         private readonly ScenarioContext _context;
         #endregion
@@ -138,10 +136,10 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
             return new SearchForAnApprenticeshipPage(_context);
         }
 
-        public HowDoTheyWorkPage ClickHowDoTheyWorkLink()
+        public EmployerHowDoTheyWorkPage ClickHowDoTheyWorkLink()
         {
             formCompletionHelper.ClickElement(HowDoTheyWork);
-            return new HowDoTheyWorkPage(_context);
+            return new EmployerHowDoTheyWorkPage(_context);
         }
 
         public SettingItUpPage ClickSettingUpLink()

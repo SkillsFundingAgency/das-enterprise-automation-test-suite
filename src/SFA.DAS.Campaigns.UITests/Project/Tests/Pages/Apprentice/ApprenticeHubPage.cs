@@ -1,5 +1,4 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer;
 using SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Parent;
 using System;
 using System.Collections.Generic;
@@ -43,8 +42,6 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Apprentice
 
         protected By AssesmentAndCertification => By.CssSelector("#fiu-app-hub-card-9");
 
-        private By FiuCardHeading => By.CssSelector(".fiu-card__heading");
-
         #endregion
 
         #region Helpers and Context
@@ -80,10 +77,10 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Apprentice
             return new AreApprenticeShipRightForMePage(_context);
         }
 
-        public HowDoTheyWorkPage NavigateToHowDoTheyWorkPage()
+        public ApprenticeHowDoTheyWorkPage NavigateToHowDoTheyWorkPage()
         {
             formCompletionHelper.ClickElement(HowDoTheyWork);
-            return new HowDoTheyWorkPage(_context);
+            return new ApprenticeHowDoTheyWorkPage(_context);
         }
 
          public GettingStartedPage NavigateToGettingStarted()
