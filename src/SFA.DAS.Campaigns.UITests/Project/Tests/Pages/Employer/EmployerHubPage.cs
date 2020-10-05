@@ -1,6 +1,8 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.Campaigns.UITests.Project.Tests.Pages.RegisterInterest;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
@@ -61,34 +63,31 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
         protected By SetUpServiceAccountr => By.CssSelector("#fiu-emp-hub-card-10");
         protected By RegisterInterest => By.CssSelector("#fiu-panel-link-reg-int-emp");
 
-        private By FiuHireAnApprenticeCard1 => By.XPath("//h3[contains(@class, 'fiu-card__heading') and contains(text(), 'Real stories')]");
-       
-        private By FiuHireAnApprenticeCard2 => By.XPath("//h3[contains(@class, 'fiu-card__heading') and contains(text(), 'Benefits to your organisation')]");
-        
-        private By FiuHireAnApprenticeCard3 => By.XPath("//h3[contains(@class, 'fiu-card__heading') and contains(text(), 'Hiring an apprentice')]");
-       
-        private By FiuHireAnApprenticeCard4 => By.XPath("//h3[contains(@class, 'fiu-card__heading') and contains(text(), 'Upskilling your current staff')]");
-       
-        private By FiuHireAnApprenticeCard5 => By.XPath("//h3[contains(@class, 'fiu-card__heading') and contains(text(), 'Funding an apprenticeship')]");
-       
-       
-        private By FiuHireAnApprenticeCard6 => By.XPath("//h3[contains(@class, 'fiu-card__heading') and contains(text(), 'Training your apprentice')]");
-        
-        private By FiuHireAnApprenticeCard7 => By.XPath("//h3[contains(@class, 'fiu-card__heading') and contains(text(), 'End-point assessments')]");
-        
-        private By FiuHireAnApprenticeCard8 => By.XPath("//h3[contains(@class, 'fiu-card__heading') and contains(text(), 'Choose the right apprenticeship')]");
-       
-        private By FiuHireAnApprenticeCard9 => By.XPath("//h3[contains(@class, 'fiu-card__heading') and contains(text(), 'Choose a training provider')]");
-       
-        private By FiuHireAnApprenticeCard10 => By.XPath("//h3[contains(@class, 'fiu-card__heading') and contains(text(), 'Set up a service account')]");
+        private By FiuCardHeading => By.CssSelector(".fiu-card__heading");
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
         #endregion
 
-        public EmployerHubPage(ScenarioContext context) : base(context, true)
+        public EmployerHubPage(ScenarioContext context, bool verifySubHeading) : base(context, true)
         {
             _context = context;
+
+            if (verifySubHeading)
+            {
+                List<IWebElement> func() => pageInteractionHelper.FindElements(FiuCardHeading).ToList();
+
+                VerifyPage(func, "Real stories");
+                VerifyPage(func, "Benefits to your organisation");
+                VerifyPage(func, "Hiring an apprentice");
+                VerifyPage(func, "Upskilling your current staff");
+                VerifyPage(func, "Funding an apprenticeship");
+                VerifyPage(func, "Training your apprentice");
+                VerifyPage(func, "End-point assessments");
+                VerifyPage(func, "How to choose the right apprenticeship training");
+                VerifyPage(func, "Choose a training provider");
+                VerifyPage(func, "Set up a service account");
+            }
         }
 
         public EmployerRealStoriesPage NavigateToRealStoriesPage()
@@ -177,64 +176,6 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
         {
             formCompletionHelper.ClickElement(RegisterInterest);
             return new RegisterInterestPage(_context);
-        }
-
-
-        private TResult NavigateToHowDoTheyWork<TResult>(By childLocator, Func<ScenarioContext, TResult> func) => NavigateTo(HowDoTheyWork, childLocator, func);
-
-        public EmployerHubPage VerifyHireAnApprenticeCard1()
-        {
-            pageInteractionHelper.VerifyText(FiuHireAnApprenticeCard1, HireAnApprenticePageFiuCard1Heading);
-            return new EmployerHubPage(_context);
-        }
-
-        public EmployerHubPage VerifyHireAnApprenticeCard2()
-        {
-            pageInteractionHelper.VerifyText(FiuHireAnApprenticeCard2, HireAnApprenticePageFiuCard2Heading);
-            return new EmployerHubPage(_context);
-        }
-
-        public EmployerHubPage VerifyHireAnApprenticeCard3()
-        {
-            pageInteractionHelper.VerifyText(FiuHireAnApprenticeCard3, HireAnApprenticePageFiuCard3Heading);
-            return new EmployerHubPage(_context);
-        }
-
-        public EmployerHubPage VerifyHireAnApprenticeCard4()
-        {
-            pageInteractionHelper.VerifyText(FiuHireAnApprenticeCard4, HireAnApprenticePageFiuCard4Heading);
-            return new EmployerHubPage(_context);
-        }
-
-        public EmployerHubPage VerifyHireAnApprenticeCard5()
-        {
-            pageInteractionHelper.VerifyText(FiuHireAnApprenticeCard5, HireAnApprenticePageFiuCard5Heading);
-            return new EmployerHubPage(_context);
-        }
-        public EmployerHubPage VerifyHireAnApprenticeCard6()
-        {
-            pageInteractionHelper.VerifyText(FiuHireAnApprenticeCard6, HireAnApprenticePageFiuCard6Heading);
-            return new EmployerHubPage(_context);
-        }
-        public EmployerHubPage VerifyHireAnApprenticeCard7()
-        {
-            pageInteractionHelper.VerifyText(FiuHireAnApprenticeCard7, HireAnApprenticePageFiuCard7Heading);
-            return new EmployerHubPage(_context);
-        }
-        public EmployerHubPage VerifyHireAnApprenticeCard8()
-        {
-            pageInteractionHelper.VerifyText(FiuHireAnApprenticeCard8, HireAnApprenticePageFiuCard8Heading);
-            return new EmployerHubPage(_context);
-        }
-        public EmployerHubPage VerifyHireAnApprenticeCard9()
-        {
-            pageInteractionHelper.VerifyText(FiuHireAnApprenticeCard9, HireAnApprenticePageFiuCard9Heading);
-            return new EmployerHubPage(_context);
-        }
-        public EmployerHubPage VerifyHireAnApprenticeCard10()
-        {
-            pageInteractionHelper.VerifyText(FiuHireAnApprenticeCard10, HireAnApprenticePageFiuCard10Heading);
-            return new EmployerHubPage(_context);
         }
     }
 }

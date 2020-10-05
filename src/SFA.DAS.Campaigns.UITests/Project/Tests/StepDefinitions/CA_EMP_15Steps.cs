@@ -22,11 +22,5 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
                  .NavigateToEmployerHubPage()
                  .ClickSettingUpLink();
         }
-        
-        [Given(@"Verify the content on Setting Up Page")]
-        public void GivenVerifyTheContentOnSettingUpPage()
-        {
-            //ScenarioContext.Current.Pending();
-        }
     }
 }

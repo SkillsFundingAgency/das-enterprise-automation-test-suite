@@ -22,9 +22,5 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
                 .NavigateToEmployerHubPage()
                 .ClickHowDoTheyWorkLink();
         }
-        
-        [Given(@"Verify the content on How Do They Work Page")]
-        public void GivenVerifyTheContentOnHowDoTheyWorkPage()
-        { }
     }
 }

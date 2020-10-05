@@ -1,9 +1,6 @@
 ﻿using SFA.DAS.Campaigns.UITests.Project.Helpers;
 using SFA.DAS.Campaigns.UITests.Project.Tests.Pages;
 using SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Apprentice;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
@@ -13,8 +10,15 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
     {
         private readonly CampaignsStepsHelper _stepsHelper;
         private FindAnApprenticeshipPage _findAnApprenticeshipPage;
+        private ApprenticeHubPage _apprenticeHubPage;
 
         public CampaignsApprenticeSteps(ScenarioContext context) => _stepsHelper = new CampaignsStepsHelper(context);
+
+        [Then(@"the apprentice sub headings are displayed")]
+        public void ThenTheApprenticeSubHeadingsAreDisplayed() => _apprenticeHubPage.VerifySubHeadings();
+
+        [Given(@"the user navigates to Become An Apprentice page")]
+        public void GivenTheUserNavigatesToBecomeAnApprenticePage() => _apprenticeHubPage = GoToApprenticeshipHubPage();
 
         [Given(@"the user navigates to the find an apprenticeship page")]
         public void GivenTheUserNavigatesToTheFindAnApprenticeshipPage() => _findAnApprenticeshipPage = GoToApprenticeshipHubPage().NavigateToFindAnApprenticeshipPage();

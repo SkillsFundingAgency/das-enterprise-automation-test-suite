@@ -1,29 +1,16 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.Campaigns.UITests.Project.Tests.Features.Apprentice;
 using SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer;
 using SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Parent;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Apprentice
 {
     public class ApprenticeHubPage : CampaingnsPage
     {
-          protected override string PageTitle => "BECOME AN APPRENTICE";
-
-        #region  Constants and Strings
-        private string BecomeAnApprenticePageFiuCard1Heading => "Real stories";
-        private string BecomeAnApprenticePageFiuCard2Heading => "What are the benefits of an apprenticeship?";
-        private string BecomeAnApprenticePageFiuCard3Heading => "Advice for parents";
-        private string BecomeAnApprenticePageFiuCard4Heading => "Browse by interest";
-        private string BecomeAnApprenticePageFiuCard5Heading => "What is an apprenticeship";
-        private string BecomeAnApprenticePageFiuCard6Heading => "Applying for an apprenticeship";
-        private string BecomeAnApprenticePageFiuCard7Heading => "The interview process";
-        private string BecomeAnApprenticePageFiuCard8Heading => "Starting your apprenticeship";
-        private string BecomeAnApprenticePageFiuCard9Heading => "Assessment and certification";
-        private string BecomeAnApprenticePageFiuCard10Heading => "Set up a service account";
-        private string BecomeAnApprenticePageFiuCard11Heading => "Get help and support";
-        #endregion 
+        protected override string PageTitle => "BECOME AN APPRENTICE";
 
         #region element /objects
         protected override By PageHeader => By.CssSelector(".govuk-heading-xl");
@@ -56,38 +43,32 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Apprentice
 
         protected By AssesmentAndCertification => By.CssSelector("#fiu-app-hub-card-9");
 
-        private By CookieAcceptButton => By.CssSelector("#btn-cookie-accept");
-   
-        private By FiuBecomeAnApprenticeCard1 => By.XPath("//h3[contains(@class, 'fiu-card__heading') and contains(text(), 'Real stories')]");
-      
-        private By FiuBecomeAnApprenticeCard2 => By.XPath("//h3[contains(@class, 'fiu-card__heading') and contains(text(), 'What are the benefits of an apprenticeship?')]");
-     
-        private By FiuBecomeAnApprenticeCard3 => By.XPath("//h3[contains(@class, 'fiu-card__heading') and contains(text(), 'Advice for parents')]");
-       
-        private By FiuBecomeAnApprenticeCard4 => By.XPath("//h3[contains(@class, 'fiu-card__heading') and contains(text(), 'Browse by interest')]");
-       
-        private By FiuBecomeAnApprenticeCard5 => By.XPath("//h3[contains(@class, 'fiu-card__heading') and contains(text(), 'What is an apprenticeship')]");
-       
-        private By FiuBecomeAnApprenticeCard6 => By.XPath("//h3[contains(@class, 'fiu-card__heading') and contains(text(), 'Applying for an apprenticeship')]");
-        
-        private By FiuBecomeAnApprenticeCard7 => By.XPath("//h3[contains(@class, 'fiu-card__heading') and contains(text(), 'The interview process')]");
-      
-        private By FiuBecomeAnApprenticeCard8 => By.XPath("//h3[contains(@class, 'fiu-card__heading') and contains(text(), 'Starting your apprenticeship')]");
-      
-        private By FiuBecomeAnApprenticeCard9 => By.XPath("//h3[contains(@class, 'fiu-card__heading') and contains(text(), 'Assessment and certification')]");
-     
-        private By FiuBecomeAnApprenticeCard10 => By.XPath("//h3[contains(@class, 'fiu-card__heading') and contains(text(), 'Set up a service account')]");
-       
+        private By FiuCardHeading => By.CssSelector(".fiu-card__heading");
+
         #endregion
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
         #endregion
 
-        public ApprenticeHubPage(ScenarioContext context) : base(context)
+        public ApprenticeHubPage(ScenarioContext context) : base(context) => _context = context;
+
+        public void VerifySubHeadings()
         {
-            _context = context;
+            List<IWebElement> func() => pageInteractionHelper.FindElements(FiuCardHeading).ToList();
+
+            VerifyPage(func, "Real stories");
+            VerifyPage(func, "What are the benefits of an apprenticeship?");
+            VerifyPage(func, "Help shape their career");
+            VerifyPage(func, "Browse by interest");
+            VerifyPage(func, "Becoming an apprentice");
+            VerifyPage(func, "Applying for an apprenticeship");
+            VerifyPage(func, "The interview process");
+            VerifyPage(func, "Starting your apprenticeship");
+            VerifyPage(func, "Assessment and certification");
+            VerifyPage(func, "Set up a service account");
         }
+
         public ApprenticeRealStoriesPage NavigateToRealStoriesPage()
         {
             formCompletionHelper.ClickElement(RealStories);
@@ -111,10 +92,10 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Apprentice
             return new GettingStartedPage(_context);
         }
 
-        public BrowseInterestPage NavigateToBrowseInterestPage()
+        public BrowseByInterestPage NavigateToBrowseInterestPage()
         {
             formCompletionHelper.ClickElement(BrowserInterest);
-            return new BrowseInterestPage(_context);
+            return new BrowseByInterestPage(_context);
         }
 
         public SetUpServicePage NavigateToSetUpServiceAccountPage()
@@ -175,65 +156,6 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Apprentice
         }
 
         private TResult NavigateToAreApprenticeshipRightForYou<TResult>(By childLocator, Func<ScenarioContext, TResult> func) => NavigateTo(AreApprenticeshipRightForYou, childLocator, func);
-
-        private TResult NavigateToHowDoTheyWork<TResult>(By childLocator, Func<ScenarioContext, TResult> func) => NavigateTo(HowDoTheyWork, childLocator, func);
-
-        private TResult NavigateToGettingStarted<TResult>(By childLocator, Func<ScenarioContext, TResult> func) => NavigateTo(GettingStarted, childLocator, func);
-
-        public ApprenticeHubPage VerifyBecomeAnApprenticeCard1()
-        {
-            pageInteractionHelper.VerifyText(FiuBecomeAnApprenticeCard1, BecomeAnApprenticePageFiuCard1Heading);
-            return new ApprenticeHubPage(_context);
-        }
-
-        public ApprenticeHubPage VerifyBecomeAnApprenticeCard2()
-        {
-            pageInteractionHelper.VerifyText(FiuBecomeAnApprenticeCard2, BecomeAnApprenticePageFiuCard2Heading);
-            return new ApprenticeHubPage(_context);
-        }
-
-        public ApprenticeHubPage VerifyBecomeAnApprenticeCard3()
-        {
-            pageInteractionHelper.VerifyText(FiuBecomeAnApprenticeCard3, BecomeAnApprenticePageFiuCard3Heading);
-            return new ApprenticeHubPage(_context);
-        }
-
-        public ApprenticeHubPage VerifyBecomeAnApprenticeCard4()
-        {
-            pageInteractionHelper.VerifyText(FiuBecomeAnApprenticeCard4, BecomeAnApprenticePageFiuCard4Heading);
-            return new ApprenticeHubPage(_context);
-        }
-
-        public ApprenticeHubPage VerifyBecomeAnApprenticeCard5()
-        {
-            pageInteractionHelper.VerifyText(FiuBecomeAnApprenticeCard5, BecomeAnApprenticePageFiuCard5Heading);
-            return new ApprenticeHubPage(_context);
-        }
-        public ApprenticeHubPage VerifyBecomeAnApprenticeCard6()
-        {
-            pageInteractionHelper.VerifyText(FiuBecomeAnApprenticeCard6, BecomeAnApprenticePageFiuCard6Heading);
-            return new ApprenticeHubPage(_context);
-        }
-        public ApprenticeHubPage VerifyBecomeAnApprenticeCard7()
-        {
-            pageInteractionHelper.VerifyText(FiuBecomeAnApprenticeCard7, BecomeAnApprenticePageFiuCard7Heading);
-            return new ApprenticeHubPage(_context);
-        }
-        public ApprenticeHubPage VerifyBecomeAnApprenticeCard8()
-        {
-            pageInteractionHelper.VerifyText(FiuBecomeAnApprenticeCard8, BecomeAnApprenticePageFiuCard8Heading);
-            return new ApprenticeHubPage(_context);
-        }
-        public ApprenticeHubPage VerifyBecomeAnApprenticeCard9()
-        {
-            pageInteractionHelper.VerifyText(FiuBecomeAnApprenticeCard9, BecomeAnApprenticePageFiuCard9Heading);
-            return new ApprenticeHubPage(_context);
-        }
-        public ApprenticeHubPage VerifyBecomeAnApprenticeCard10()
-        {
-            pageInteractionHelper.VerifyText(FiuBecomeAnApprenticeCard10, BecomeAnApprenticePageFiuCard10Heading);
-            return new ApprenticeHubPage(_context);
-        }
 
     }
 }

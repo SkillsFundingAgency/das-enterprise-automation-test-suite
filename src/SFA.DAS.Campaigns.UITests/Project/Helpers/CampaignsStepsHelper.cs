@@ -1,9 +1,4 @@
 ﻿using SFA.DAS.Campaigns.UITests.Project.Tests.Pages;
-using SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Apprentice;
-using SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Parent;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Campaigns.UITests.Project.Helpers

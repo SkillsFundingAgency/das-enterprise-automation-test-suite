@@ -1,8 +1,6 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.Campaigns.UITests.Project.Tests.Features.Apprentice;
 using SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Apprentice;
 using SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer;
-using SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Parent;
 using SFA.DAS.Campaigns.UITests.Project.Tests.Pages.RegisterInterest;
 using TechTalk.SpecFlow;
 
@@ -82,7 +80,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
         public EmployerHubPage NavigateToEmployerHubPage()
         {
             formCompletionHelper.ClickElement(Employer);
-            return new EmployerHubPage(_context);
+            return new EmployerHubPage(_context, true);
         }
         public FireItUpHomePage VerifyFiuHomePageCard1()
         {

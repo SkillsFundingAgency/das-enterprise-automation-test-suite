@@ -23,11 +23,5 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Features.Employer
                 .NavigateToAreTheyRightForYouPage();
                
         }
-
-        [Given(@"Verify the content on Are they right for you Page")]
-        public void GivenVerifyTheContentOnAreTheyRightForYouPage()
-        {
-           // ScenarioContext.Current.Pending();
-        }
     }
 }
