@@ -110,6 +110,9 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("the user navigates to the end point assessments page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 8
+ testRunner.Then("the end point assessments sub headings are displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 9
  testRunner.Then("the links are not broken", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }

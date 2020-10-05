@@ -10,6 +10,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
         private readonly CampaignsStepsHelper _stepsHelper;
 
         private EmployerHubPage _employerHubPage;
+        private EndPointAssessmentPage _endPointAssessmentPage;
 
         public CampaignsEmployerSteps(ScenarioContext context) => _stepsHelper = new CampaignsStepsHelper(context);
 
@@ -45,7 +46,10 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
         public void GivenTheUserNavigatesToUpskillingYourCurrentStaffPage() => GoToEmployerHubPage().NavigateToUpSkillingYourCurrentStaffPage();
 
         [Given(@"the user navigates to the end point assessments page")]
-        public void GivenTheUserNavigatesToTheEndPointAssessmentsPage() => GoToEmployerHubPage().NavigateToEndPointAssesmentPage();
+        public void GivenTheUserNavigatesToTheEndPointAssessmentsPage() => _endPointAssessmentPage = GoToEmployerHubPage().NavigateToEndPointAssesmentPage();
+
+        [Then(@"the end point assessments sub headings are displayed")]
+        public void ThenTheEndPointAssessmentsSubHeadingsAreDisplayed() => _endPointAssessmentPage.VerifyEndPointAssessmentPageSubHeadings();
 
         [Given(@"the user navigates to the training your apprentice page")]
         public void GivenTheUserNavigatesToTheTrainingYourApprenticePage() => GoToEmployerHubPage().NavigateToTrainingYourApprenticePage();
