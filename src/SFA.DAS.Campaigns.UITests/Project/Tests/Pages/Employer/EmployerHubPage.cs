@@ -10,19 +10,6 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
     {
         protected override string PageTitle => "HIRE AN APPRENTICE";
 
-        #region  Constants and Strings
-        private string HireAnApprenticePageFiuCard1Heading => "Real stories";
-        private string HireAnApprenticePageFiuCard2Heading => "Benefits to your organisation";
-        private string HireAnApprenticePageFiuCard3Heading => "Hiring an apprentice";
-        private string HireAnApprenticePageFiuCard4Heading => "Upskilling your current staff";
-        private string HireAnApprenticePageFiuCard5Heading => "Funding an apprenticeship";
-        private string HireAnApprenticePageFiuCard6Heading => "Training your apprentice";
-        private string HireAnApprenticePageFiuCard7Heading => "End-point assessments";
-        private string HireAnApprenticePageFiuCard8Heading => "Choose the right apprenticeship";
-        private string HireAnApprenticePageFiuCard9Heading => "Choose a training provider";
-        private string HireAnApprenticePageFiuCard10Heading => "Set up a service account";
-        #endregion 
-
         protected override By PageHeader => By.CssSelector(".govuk-heading-xl");
 
         protected By Basket => By.CssSelector("a[href='/Basket/View']");

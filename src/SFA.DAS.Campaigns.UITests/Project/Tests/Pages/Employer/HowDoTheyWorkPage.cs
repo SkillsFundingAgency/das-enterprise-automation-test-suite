@@ -8,58 +8,53 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
         protected override string PageTitle => "How do they work?";
         protected override By PageHeader => By.CssSelector(".govuk-heading-xl");
         #region Page Object Elements
-        private readonly By _hiringAnApprenticeIconLink = By.Id("flow-link-1");
-        private readonly By _upskillingYourCurrentStaffIconLink = By.Id("flow-link-2");
-        private readonly By _fundingAnApprenticeshipIconLink = By.Id("flow-link-3");
-        private readonly By _trainingYourApprenticeIconLink = By.Id("flow-link-4");
-        private readonly By _endPointAssessmentsIconLink = By.Id("flow-link-5");
-        private readonly By _levyPayerYes = By.Id("levyPayerYes");
-        private readonly By _levyPayerNo = By.Id("levyPayerNo");
-        private readonly By _continueButton = By.XPath("//button[ contains(@class,  'button')  and contains(text(), 'Continue')]");
+        private By HiringAnApprenticeIconLink => By.Id("flow-link-1");
+        private By UpskillingYourCurrentStaffIconLink => By.Id("flow-link-2");
+        private By FundingAnApprenticeshipIconLink => By.Id("flow-link-3");
+        private By TrainingYourApprenticeIconLink => By.Id("flow-link-4");
+        private By EndPointAssessmentsIconLink => By.Id("flow-link-5");
+        protected override By ContinueButton => By.XPath("//button[ contains(@class,  'button')  and contains(text(), 'Continue')]");
         #endregion
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
         #endregion
 
-        public HowDoTheyWorkPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-        }
+        public HowDoTheyWorkPage(ScenarioContext context) : base(context) => _context = context;
 
         public HireAnApprenticePage CheckHiringAnApprenticeIconPage()
         {
-            formCompletionHelper.ClickElement(_hiringAnApprenticeIconLink);
+            formCompletionHelper.ClickElement(HiringAnApprenticeIconLink);
             return new HireAnApprenticePage(_context);
         }
 
         public UpSkillingYourCurrentStaffPage CheckUpSkillingYourCurrentStaffPage()
         {
-            formCompletionHelper.ClickElement(_upskillingYourCurrentStaffIconLink);
+            formCompletionHelper.ClickElement(UpskillingYourCurrentStaffIconLink);
             return new UpSkillingYourCurrentStaffPage(_context);
         }
 
         public FundingAnApprenticeshipPage CheckFundingAnApprenticeshipPage()
         {
-            formCompletionHelper.ClickElement(_fundingAnApprenticeshipIconLink);
+            formCompletionHelper.ClickElement(FundingAnApprenticeshipIconLink);
             return new FundingAnApprenticeshipPage(_context);
         }
 
         public TrainingYourApprenticePage CheckTrainYourApprenticePage()
         {
-            formCompletionHelper.ClickElement(_trainingYourApprenticeIconLink);
+            formCompletionHelper.ClickElement(TrainingYourApprenticeIconLink);
             return new TrainingYourApprenticePage(_context);
         }
 
         public EndPointAssessmentPage CheckEndPointAssessmentPage()
         {
-            formCompletionHelper.ClickElement(_endPointAssessmentsIconLink);
+            formCompletionHelper.ClickElement(EndPointAssessmentsIconLink);
             return new EndPointAssessmentPage(_context);
         }
 
         public HireAnApprenticePage ClickContinueButton()
         {
-            formCompletionHelper.ClickElement(_continueButton);
+            formCompletionHelper.ClickElement(ContinueButton);
             return new HireAnApprenticePage(_context);
         }
     }

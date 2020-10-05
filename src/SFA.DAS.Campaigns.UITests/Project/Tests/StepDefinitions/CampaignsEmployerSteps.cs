@@ -17,18 +17,14 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
         [Given(@"the user navigates to Setting Up Page")]
         public void GivenTheUserNavigatesToSettingUpPage() => GoToEmployerHubPage().ClickSettingUpLink();
 
-        [Given(@"the user navigates to How Do They Work Page")]
-        public void GivenTheUserNavigatesToHowDoTheyWorkPage() => GoToEmployerHubPage().ClickHowDoTheyWorkLink();
-
         [Then(@"the employer sub headings are displayed")]
         public void ThenTheEmployerSubHeadingsAreDisplayed() => _employerHubPage.VerifySubHeadings();
 
         [Given(@"the user navigates to Hire An Apprentice hub Page")]
         public void GivenTheUserNavigatesToHireAnApprenticeHubPage() => _employerHubPage = GoToEmployerHubPage();
 
-        [Given(@"the user navigates to the How do they work page")]
-
-        public void GivenTheUserNavigatesToTheHowDoTheyWorkPage() => GoToEmployerHubPage().ClickHowDoTheyWorkLink();
+        [Given(@"the user navigates to employer How do they work page")]
+        public void GivenTheUserNavigatesToEmployerHowDoTheyWorkPage() => GoToEmployerHubPage().ClickHowDoTheyWorkLink();
 
         [Given(@"the user navigates to Are they right for you Page")]
         public void GivenTheUserNavigatesToAreTheyRightForYouPage() => GoToEmployerHubPage().NavigateToAreTheyRightForYouPage();

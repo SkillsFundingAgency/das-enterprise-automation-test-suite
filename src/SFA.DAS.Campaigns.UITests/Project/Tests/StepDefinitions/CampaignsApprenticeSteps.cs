@@ -20,8 +20,8 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
         [Given(@"the user navigates to Become An Apprentice page")]
         public void GivenTheUserNavigatesToBecomeAnApprenticePage() => _apprenticeHubPage = GoToApprenticeshipHubPage();
 
-        [Given(@"the user navigates to How do they work Page")]
-        public void GivenTheUserNavigatesToHowDoTheyWorkPage() => GoToApprenticeshipHubPage().NavigateToHowDoTheyWorkPage();
+        [Given(@"the user navigates to apprentice How do they work Page")]
+        public void GivenTheUserNavigatesToApprenticeHowDoTheyWorkPage() => GoToApprenticeshipHubPage().NavigateToHowDoTheyWorkPage();
 
         [Given(@"the user navigates to Getting started Page")]
         public void GivenTheUserNavigatesToGettingStartedPage() => GoToApprenticeshipHubPage().NavigateToGettingStarted();
