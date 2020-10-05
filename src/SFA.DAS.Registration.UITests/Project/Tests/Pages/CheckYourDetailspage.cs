@@ -39,7 +39,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             return new OrganisationHasBeenAddedPage(_context);
         }
 
-        public AccessDeniedPage ClickYesAndRedirectedToAccessDeniedPage()
+        public AccessDeniedPage ClickYesContinueButtonAndRedirectedToAccessDeniedPage()
         {
             formCompletionHelper.Click(YesContinueButton);
             return new AccessDeniedPage(_context);

@@ -62,7 +62,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
                 .ClickAddNewOrganisationButton()
                 .SearchForAnOrganisation(OrgType.Company2)
                 .SelectYourOrganisation(OrgType.Company2)
-                .ClickYesAndRedirectedToAccessDeniedPage()
+                .ClickYesContinueButtonAndRedirectedToAccessDeniedPage()
                 .GoBackToTheServiceHomePage();
         }
 
