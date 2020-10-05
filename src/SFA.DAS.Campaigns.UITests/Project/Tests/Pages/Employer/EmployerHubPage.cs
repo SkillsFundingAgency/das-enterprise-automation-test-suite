@@ -1,6 +1,5 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.Campaigns.UITests.Project.Tests.Pages.RegisterInterest;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using TechTalk.SpecFlow;
@@ -104,10 +103,10 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
             return new FundingAnApprenticeshipPage(_context);
         }
 
-        public AreTheyRightFoeYouPage NavigateToAreTheyRightForYouPage()
+        public AreTheyRightForYouPage NavigateToAreTheyRightForYouPage()
         {
             formCompletionHelper.ClickElement(AreTheyRightForYou);
-            return new AreTheyRightFoeYouPage(_context);
+            return new AreTheyRightForYouPage(_context);
         }
 
         public TrainingYourApprenticePage NavigateToTrainingYourApprenticePage()

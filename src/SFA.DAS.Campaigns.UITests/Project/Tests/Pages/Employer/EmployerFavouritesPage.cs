@@ -7,6 +7,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
     public class EmployerFavouritesPage : EmployerBasePage
     {
         protected override string PageTitle => "Favourites";
+
         #region Helpers and Context
         private readonly ScenarioContext _context;
         #endregion

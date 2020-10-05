@@ -68,8 +68,8 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
         [Given(@"the user navigates to the Set Up Service Account page")]
         public void GivenTheUserNavigatesToTheSetUpServiceAccountPage() => GoToApprenticeshipHubPage().NavigateToSetUpServiceAccountPage();
 
-        [Given(@"the user navigates to the Ste Map page")]
-        public void GivenTheUserNavigatesToTheSteMapPage() => GoToApprenticeshipHubPage().NavigateToSiteMapPage();
+        [Given(@"the user navigates to the Site Map page")]
+        public void GivenTheUserNavigatesToTheSiteMapPage() => GoToApprenticeshipHubPage().NavigateToSiteMapPage();
         
         private ApprenticeHubPage GoToApprenticeshipHubPage() => _stepsHelper.GoToApprenticeshipHubPage();
     }
