@@ -9,7 +9,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
     {
         protected override string PageTitle => "End-point assessment";
 
-        private By FiuCardHeading => By.CssSelector(".fiu-article h2");
+        private new By FiuCardHeading => By.CssSelector(".fiu-article h2");
         
         public EndPointAssessmentPage(ScenarioContext context) : base(context) { }
 
