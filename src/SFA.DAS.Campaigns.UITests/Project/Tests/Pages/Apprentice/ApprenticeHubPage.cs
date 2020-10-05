@@ -71,10 +71,10 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Apprentice
             formCompletionHelper.ClickElement(RealStories);
             return new ApprenticeRealStoriesPage(_context);
         }
-        public AreApprenticeShipRightForMePage NavigateToAreApprenticeShipRightForMe()
+        public ApprenticeAreTheyRightForYouPage NavigateToAreApprenticeShipRightForMe()
         {
             formCompletionHelper.ClickElement(AreApprenticeshipRightForYou);
-            return new AreApprenticeShipRightForMePage(_context);
+            return new ApprenticeAreTheyRightForYouPage(_context);
         }
 
         public ApprenticeHowDoTheyWorkPage NavigateToHowDoTheyWorkPage()

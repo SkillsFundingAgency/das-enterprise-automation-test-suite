@@ -88,10 +88,10 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
             return new FundingAnApprenticeshipPage(_context);
         }
 
-        public AreTheyRightForYouPage NavigateToAreTheyRightForYouPage()
+        public EmployerAreTheyRightForYouPage NavigateToAreTheyRightForYouPage()
         {
             formCompletionHelper.ClickElement(AreTheyRightForYou);
-            return new AreTheyRightForYouPage(_context);
+            return new EmployerAreTheyRightForYouPage(_context);
         }
 
         public TrainingYourApprenticePage NavigateToTrainingYourApprenticePage()

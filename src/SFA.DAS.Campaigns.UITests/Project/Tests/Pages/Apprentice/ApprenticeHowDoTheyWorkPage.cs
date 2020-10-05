@@ -16,7 +16,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Apprentice
 
         public ApprenticeHowDoTheyWorkPage(ScenarioContext context) : base(context) => _context = context;
 
-        public void VerifyApprenticeHowDoTheyWorkPageSubHeadings()
+        public void VerifyHowDoTheyWorkPageSubHeadings()
         {
             List<IWebElement> func() => pageInteractionHelper.FindElements(FiuCardHeading).ToList();
 
