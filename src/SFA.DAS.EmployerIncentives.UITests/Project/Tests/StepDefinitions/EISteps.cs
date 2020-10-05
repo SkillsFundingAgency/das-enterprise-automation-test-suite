@@ -4,7 +4,6 @@ using SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages;
 using SFA.DAS.Login.Service;
 using SFA.DAS.Login.Service.Helpers;
 using SFA.DAS.Registration.UITests.Project.Helpers;
-using SFA.DAS.Registration.UITests.Project.Tests.Pages;
 using TechTalk.SpecFlow;
 using static SFA.DAS.EmployerIncentives.UITests.Project.Helpers.EnumHelper;
 
@@ -21,7 +20,6 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
         private QualificationQuestionPage _qualificationQuestionPage;
         private QualificationQuestionShutterPage _qualificationQuestionShutterPage;
         private EmployerAgreementShutterPage _employerAgreementShutterPage;
-        private WeNeedYourOrgBankDetailsPage _addBankDetailsPage;
         private readonly EmployerPortalLoginHelper _employerPortalLoginHelper;
         private readonly ProviderStepsHelper _providerStepsHelper;
         private readonly EmployerHomePageStepsHelper _homePageStepsHelper;
@@ -40,10 +38,15 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
             _homePageStepsHelper = new EmployerHomePageStepsHelper(_context);
         }
 
-        [When(@"the Employer submits organisation bank details")]
-        public void WhenTheEmployerSubmitsOrganisationBankDetails()
+        [Then(@"the Employer is able to submit the EI Application")]
+        public void ThenTheEmployerIsAbleToSubmitTheEIApplication()
         {
-            _addBankDetailsPage.ChooseYesAndContinue()
+            _qualificationQuestionPage
+                .SelectYesAndContinueForEligibleApprenticesScenario()
+                .SubmitApprentices()
+                .ConfirmApprentices()
+                .SubmitDeclaration()
+                .ChooseYesAndContinue()
                 .ContinueToAddBankDetails()
                 .ContinueToOrgDetailsPage()
                 .ContinueToAddressDetailsPage()
@@ -57,21 +60,9 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
             _doNotdeleteInentiveapplication = true;
         }
 
-
-        [When(@"the Employer submits the EI Application")]
-        public void WhenTheEmployerSubmitsTheEIApplication()
-        {
-            _addBankDetailsPage = 
-                _qualificationQuestionPage
-                .SelectYesAndContinueForEligibleApprenticesScenario()
-                .SubmitApprentices()
-                .ConfirmApprentices()
-                .SubmitDeclaration();
-        }
-
-
         [When(@"the Employer navigates back to Qualification page for (Single|Multiple) entity account")]
         [When(@"the Employer Initiates EI Application journey for (Single|Multiple) entity account")]
+        [When(@"the Employer Initiates EI Application journey for (Single|Multiple) entity account again")]
         [Then(@"the Employer is able to navigate to EI start page for (Single|Multiple) entity account")]
         public void TheEmployerInitiatesEIApplicationJourneyForSingleEntityAccount(Entities entities)
         {
@@ -79,7 +70,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
             {
                 _eISqlHelper.DeleteIncentiveApplication(_registrationSqlDataHelper.GetAccountId(_eILevyUser.Username));
             }
-            
+
             _eIStartPage = new HomePageFinancesSection(_context).NavigateToEIStartPage();
 
             if (entities == Entities.Single)
