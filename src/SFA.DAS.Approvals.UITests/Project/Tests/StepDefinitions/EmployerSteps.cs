@@ -140,6 +140,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _employerStepsHelper.EmployerCreateCohortAndSendsToProvider(false);
         }
 
+
         [When(@"the Employer adds (\d) apprentices and sends to provider")]
         public void WhenTheEmployerAddsApprenticesAndSendsToProvider(int numberOfApprentices)
         {
@@ -203,5 +204,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _objectContext.SetEIStartYear(eIStartyear);
             TheEmployerApprovesCohortAndSendsToProvider(numberOfApprentices);
         }
+
+        [Then(@"the user can add an apprentices")]
+        public void ThenTheUserCanAddAnApprentices() => new ApprenticesHomePage(_context, true).AddAnApprentice();
     }
 }

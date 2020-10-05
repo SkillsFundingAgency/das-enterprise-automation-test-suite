@@ -30,7 +30,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.InterimPages
         #endregion
 
         protected InterimEmployerBasePage(ScenarioContext context, bool navigate) : this(context, navigate, false) { }
-
+        
         protected InterimEmployerBasePage(ScenarioContext context, bool navigate, bool gotourl) : base(context, navigate, GoToUrl(gotourl))
         {
             _context = context;

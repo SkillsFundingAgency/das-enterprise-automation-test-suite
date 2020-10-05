@@ -7,7 +7,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 {
     public class DesiredSkillsPage : RAAV2CSSBasePage
     {        
-        protected override string PageTitle => "Which skills and personal qualities would you like the applicant to have?";
+        protected override string PageTitle => "What skills and personal qualities would you like the applicant to have?";
 
         #region Helpers and Context
         private readonly ScenarioContext _context;

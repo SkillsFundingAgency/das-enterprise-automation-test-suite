@@ -28,6 +28,12 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.PAYESchemesPages
             return new UsingYourGovtGatewayDetailsPage(_context);
         }
 
+        public AccessDeniedPage ClickAddNewSchemeButtonAndRedirectedToAccessDeniedPage()
+        {
+            formCompletionHelper.ClickElement(pageInteractionHelper.FindElement(AddNewSchemeButton));
+            return new AccessDeniedPage(_context);
+        }
+
         public PAYESchemeDetailsPage ClickNewlyAddedPayeDetailsLink()
         {
             formCompletionHelper.Click(PayeDetailsLink);
