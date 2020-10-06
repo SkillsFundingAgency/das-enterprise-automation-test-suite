@@ -79,6 +79,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.FAT-V2.UITests", "S
 		{9B5AD24F-2BC6-4BEF-AA30-1FA59B897377} = {9B5AD24F-2BC6-4BEF-AA30-1FA59B897377}
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SFA.DAS.ConsolidatedSupport.UITests", "SFA.DAS.ConsolidatedSupport.UITests\SFA.DAS.ConsolidatedSupport.UITests.csproj", "{4F36B414-D76F-47F1-8E48-A8A4676DDDC1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -254,6 +256,12 @@ Global
 		{CDA2E4CD-D0CF-4239-AE1C-6DBD3563A6A5}.Development|Any CPU.Build.0 = Debug|Any CPU
 		{CDA2E4CD-D0CF-4239-AE1C-6DBD3563A6A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CDA2E4CD-D0CF-4239-AE1C-6DBD3563A6A5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4F36B414-D76F-47F1-8E48-A8A4676DDDC1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4F36B414-D76F-47F1-8E48-A8A4676DDDC1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4F36B414-D76F-47F1-8E48-A8A4676DDDC1}.Development|Any CPU.ActiveCfg = Debug|Any CPU
+		{4F36B414-D76F-47F1-8E48-A8A4676DDDC1}.Development|Any CPU.Build.0 = Debug|Any CPU
+		{4F36B414-D76F-47F1-8E48-A8A4676DDDC1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4F36B414-D76F-47F1-8E48-A8A4676DDDC1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
