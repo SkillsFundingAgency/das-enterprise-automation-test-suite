@@ -56,7 +56,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.RoatpAdmin
             var ModeratorResetQuery = $" DECLARE @ApplicationID UNIQUEIDENTIFIER; " +
             $" SELECT @ApplicationID = ApplicationId FROM dbo.apply WHERE [UKPRN] = {ukprn} " +
             $" Update dbo.ModeratorPageReviewOutcome set [ModeratorReviewStatus] = null, [ModeratorReviewComment] = null, " +
-            $" [UpdatedAt] = null, [UpdatedBy] = null, [ExternalComment] = null WHERE ApplicationId =  @ApplicationID; " +
+            $" [UpdatedAt] = null, [UpdatedBy] = null WHERE ApplicationId =  @ApplicationID; " +
             $" Update dbo.Apply set [ModerationStatus] = 'New', " +
             $" [OversightStatus] = 'New', [ApplicationDeterminedDate] = null where ApplicationId = @ApplicationID";
 
