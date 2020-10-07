@@ -111,8 +111,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.When("the User chooses the first course from the Search Results page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 8
- testRunner.Then("the User is able to find the Provider by location Camden, Camden for the chosen t" +
-                        "raining", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the User is able to find the Provider by location Camden for the chosen training", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 9
  testRunner.And("the User is able to select the Provider for the chosen training", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
