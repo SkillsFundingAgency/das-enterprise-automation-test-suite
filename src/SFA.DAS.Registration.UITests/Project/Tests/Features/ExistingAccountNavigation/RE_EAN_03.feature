@@ -2,7 +2,6 @@
 
 @regression
 @registration
-@ignore
 Scenario: RE_EAN_03_Verify Login for Existing Transactor user
 	Given the Employer logins using existing transactor user account
 	Then the user can not add an organisation
