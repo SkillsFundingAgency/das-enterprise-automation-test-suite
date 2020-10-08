@@ -11,6 +11,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         #region Locators
         private By WantToSignRadioButton => By.CssSelector("label[for=want-to-sign]");
         private By DoNotWantToSignRadioButton => By.CssSelector("label[for=do-not-want-to-sign]");
+        private By ContinueToYourAgreementButton => By.LinkText("Continue to your agreement");
         protected override By ContinueButton => By.CssSelector("input.govuk-button, input.button");
         #endregion
 
@@ -46,6 +47,11 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         {
             formCompletionHelper.ClickElement(by);
             formCompletionHelper.ClickElement(ContinueButton);
+        }
+        public DoYouAcceptTheEmployerAgreementOnBehalfOfPage ClickAcceptYourAgreementAndAndRedirectedToAccessDeniedPage()
+        {
+            formCompletionHelper.Click(ContinueToYourAgreementButton);
+            return new DoYouAcceptTheEmployerAgreementOnBehalfOfPage (_context);
         }
     }
 }
