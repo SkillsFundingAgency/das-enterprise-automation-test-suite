@@ -74,21 +74,19 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Features.Apprentice
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("CA_AP_08_Check Find An Apprenticeship Page Details And Search For An Apprenticesh" +
-            "ip")]
+        [NUnit.Framework.DescriptionAttribute("CA_AP_08_Check Find An Apprenticeship Page And Search For An Apprenticeship")]
         [NUnit.Framework.CategoryAttribute("campaigns")]
         [NUnit.Framework.CategoryAttribute("apprentice")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public virtual void CA_AP_08_CheckFindAnApprenticeshipPageDetailsAndSearchForAnApprenticeship()
+        public virtual void CA_AP_08_CheckFindAnApprenticeshipPageAndSearchForAnApprenticeship()
         {
             string[] tagsOfScenario = new string[] {
                     "campaigns",
                     "apprentice",
                     "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CA_AP_08_Check Find An Apprenticeship Page Details And Search For An Apprenticesh" +
-                    "ip", null, tagsOfScenario, argumentsOfScenario);
-#line 7
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CA_AP_08_Check Find An Apprenticeship Page And Search For An Apprenticeship", null, tagsOfScenario, argumentsOfScenario);
+#line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -108,17 +106,11 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 8
+#line 7
  testRunner.Given("the user navigates to the find an apprenticeship page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 9
+#line 8
  testRunner.Then("the links are not broken", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-#line 10
- testRunner.And("the video links are not broken", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "* ");
-#line hidden
-#line 11
- testRunner.And("the user can search for an apprenticeship", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "* ");
 #line hidden
             }
             this.ScenarioCleanup();

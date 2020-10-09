@@ -10,10 +10,8 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages
         private readonly ScenarioContext _context;
         #endregion
 
-        protected By Heading1 => By.CssSelector("#h1");
-        protected By Heading2 => By.CssSelector("#h2");
-        protected By Heading3 => By.CssSelector("#h3");
-
+        protected By FiuCardHeading => By.CssSelector(".fiu-card__heading");
+        
         private By Links => By.CssSelector("a");
 
         private By VideoLinks => By.CssSelector("a[data-module='videoPlayer']");

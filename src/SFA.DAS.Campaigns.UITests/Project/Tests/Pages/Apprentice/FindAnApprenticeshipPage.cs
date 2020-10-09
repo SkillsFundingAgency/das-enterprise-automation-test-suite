@@ -5,7 +5,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Apprentice
 {
     public class FindAnApprenticeshipPage : ApprenticeBasePage
     {
-        protected override string PageTitle => "FIND AN APPRENTICESHIP";
+        protected override string PageTitle => "Browse apprenticeships before you apply";
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
@@ -18,7 +18,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Apprentice
 
         public FindAnApprenticeshipPage(ScenarioContext context) : base(context) => _context = context;
 
-        public ResultsPage SearchForAnApprenticeship()
+            public ResultsPage SearchForAnApprenticeship()
         {
             formCompletionHelper.SelectFromDropDownByText(Route, campaignsDataHelper.Route);
             formCompletionHelper.EnterText(Postcode, campaignsDataHelper.Postcode);

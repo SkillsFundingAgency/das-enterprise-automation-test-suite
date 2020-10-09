@@ -3,11 +3,11 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
 {
-    public class SummaryOfThisApprenticeshipPage : EmployerBasePage
+    public class FindTrainingProviderForThisApprenticeshipPage : EmployerBasePage
     {
-        protected override string PageTitle => "SUMMARY OF THIS APPRENTICESHIP";
+        protected override string PageTitle => "Find a training provider for this apprenticeship";
 
-        protected override By PageHeader => By.CssSelector(".main-content .heading-l");
+        protected override By PageHeader => By.CssSelector(".fiu-panel__heading");
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
@@ -17,7 +17,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
 
         private By ProviderSearchButton => By.CssSelector("#employer-provider-search");
 
-        public SummaryOfThisApprenticeshipPage(ScenarioContext context) : base(context) => _context = context;
+        public FindTrainingProviderForThisApprenticeshipPage(ScenarioContext context) : base(context) => _context = context;
 
         public TrainingProviderResultPage SearchProvider()
         {
@@ -26,16 +26,16 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
             return new TrainingProviderResultPage(_context);
         }
 
-        public SummaryOfThisApprenticeshipPage RemoveFromFavourite()
+        public FindTrainingProviderForThisApprenticeshipPage RemoveFromFavourite()
         {
             formCompletionHelper.ClickElement(RemoveFavouriteSelector);
-            return new SummaryOfThisApprenticeshipPage(_context);
+            return new FindTrainingProviderForThisApprenticeshipPage(_context);
         }
 
-        public SummaryOfThisApprenticeshipPage AddToFavourite()
+        public FindTrainingProviderForThisApprenticeshipPage AddToFavourite()
         {
             formCompletionHelper.ClickElement(AddFavouriteSelector);
-            return new SummaryOfThisApprenticeshipPage(_context);
+            return new FindTrainingProviderForThisApprenticeshipPage(_context);
         }
     }
 }

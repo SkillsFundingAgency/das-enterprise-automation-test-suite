@@ -2,17 +2,16 @@
 using SFA.DAS.UI.Framework;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
 {
     public abstract class EmployerBasePage : EmployerHubPage
     {
-        protected override By PageHeader => By.CssSelector(".heading-xl");
+        protected By AddFavouriteSelector => By.CssSelector(".fiu-favourite-bar__link ");
 
-        protected By AddFavouriteSelector => By.CssSelector(".das-search-result__favourite-button--unchecked");
-
-        protected By RemoveFavouriteSelector => By.CssSelector(".das-search-result__favourite-button--checked");
+        protected By RemoveFavouriteSelector => By.CssSelector(".fiu-favourite-bar__link--active");
 
         protected EmployerBasePage(ScenarioContext context) : base(context) { }
 
@@ -20,7 +19,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
         {
             formCompletionHelper.ClickElement(() =>
             {
-                var element = func(pageInteractionHelper.FindElements(AddFavouriteSelector));
+                var element = func(pageInteractionHelper.FindElements(AddFavouriteSelector).Where(x => x.GetAttribute("innerText") == "Add to favourites").ToList());
                 var courseId = element.GetAttribute("value");
                 action(courseId);
                 return element;

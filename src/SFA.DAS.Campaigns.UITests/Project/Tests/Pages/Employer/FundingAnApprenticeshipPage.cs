@@ -5,10 +5,13 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
 {
     public class FundingAnApprenticeshipPage : EmployerBasePage
     {
-        protected override string PageTitle => "FUNDING AN APPRENTICESHIP";
+        protected override string PageTitle => "Funding an apprenticeship";
 
         #region Page Object Element
-        private readonly By _subHeading5 = By.XPath("//h2[contains (@class, 'heading-m' ) and contains(text(), 'Apprenticeships in Scotland, Northern Ireland and Wales')]");
+
+        private readonly By __levyPayingEmployer= By.Id("levyPayerYes");
+        private readonly By _nonLevyPayingEmployer = By.Id("levyPayerNo");
+        private readonly By _notSure = By.Id("levyPayerDontKnow");
         private readonly By _continueButton = By.XPath("//button[contains(@class, 'button') and contains(text(), 'Continue')]");
         private readonly ScenarioContext _context;
         #endregion
@@ -16,18 +19,25 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
         public FundingAnApprenticeshipPage(ScenarioContext context) : base(context)
         {
             _context = context;
-            VerifyHeadings();
         }
 
-        private void VerifyHeadings()
-        { 
-            pageInteractionHelper.VerifyText(_subHeading5, "APPRENTICESHIPS IN SCOTLAND, NORTHERN IRELAND AND WALES");
-        }
-
-        public FundingAnApprenticeshipForNonLevyEmployerPage ClickContinueButton()
+        public NonLevyPayingEmployerPage NavigateToNonLevyEmployerPage()
         {
+            formCompletionHelper.SelectCheckbox(_nonLevyPayingEmployer);
             formCompletionHelper.ClickElement(_continueButton);
-            return new FundingAnApprenticeshipForNonLevyEmployerPage(_context);
+            return new NonLevyPayingEmployerPage(_context);
+        }
+        public LevyingPayingEmployerPage NavigateToLevyEmployerPage()
+        {
+            formCompletionHelper.SelectCheckbox(__levyPayingEmployer);
+            formCompletionHelper.ClickElement(_continueButton);
+            return new LevyingPayingEmployerPage(_context);
+        }
+        public NotSureLevyPayingEmployerPage NavigateToNotSureLevyEmployerPage()
+        {
+            formCompletionHelper.SelectCheckbox(_nonLevyPayingEmployer);
+            formCompletionHelper.ClickElement(_continueButton);
+            return new NotSureLevyPayingEmployerPage(_context);
         }
     }
 }

@@ -5,17 +5,20 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
 {
     public class TrainingProviderResultPage : EmployerBasePage
     {
-        protected override string PageTitle => "TRAINING PROVIDER RESULTS";
+        protected override string PageTitle => "Find a training provider";
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
         #endregion
 
-        private By Provider => By.CssSelector($".das-search-result a[href*='ukprn={objectContext.GetProviderId()}&apprenticeshipId={objectContext.GetCourseId()}&LocationId={objectContext.GetProviderLocationId()}']");
+        private By Provider => By.CssSelector($"a[href*='ukprn={objectContext.GetProviderId()}&apprenticeshipId={objectContext.GetCourseId()}&LocationId={objectContext.GetProviderLocationId()}']");
 
-        public TrainingProviderResultPage(ScenarioContext context) : base(context) => _context = context;
+        public TrainingProviderResultPage(ScenarioContext context) : base(context)
+        {
+            _context = context;
+        }
 
-        public EmployerFavouritesPage AddFavouriteProvider()
+            public EmployerFavouritesPage AddFavouriteProvider()
         {
             AddFavourite();
             GoToBasket();
