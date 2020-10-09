@@ -20,5 +20,11 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             Continue();
             return new SignAgreementPage(_context);
         }
+
+        public DoYouAcceptTheEmployerAgreementOnBehalfOfPage ClickContinueToYourAgreementButtonToDoYouAcceptTheEmployerAgreementPage()
+        {
+            Continue();
+            return new DoYouAcceptTheEmployerAgreementOnBehalfOfPage (_context);
+        }
     }
 }
