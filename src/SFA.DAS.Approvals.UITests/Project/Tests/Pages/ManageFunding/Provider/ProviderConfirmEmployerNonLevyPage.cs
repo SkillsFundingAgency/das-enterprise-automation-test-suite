@@ -1,4 +1,5 @@
-﻿using TechTalk.SpecFlow;
+﻿using OpenQA.Selenium;
+using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider
 {
@@ -10,12 +11,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider
         private readonly ScenarioContext _context;
         #endregion
 
+        private By SaveAndContinueButton = By.XPath("//button[contains(text(),'Save and continue')]");
+
         public ProviderConfirmEmployerNonLevyPage(ScenarioContext context) : base(context) => _context = context;
 
         internal ProviderApprenticeshipTrainingPage ConfirmNonLevyEmployer()
         {
             SelectRadioOptionByForAttribute("confirm-yes");
-            Continue();
+            formCompletionHelper.ClickElement(SaveAndContinueButton);
             return new ProviderApprenticeshipTrainingPage(_context);
         }
     }
