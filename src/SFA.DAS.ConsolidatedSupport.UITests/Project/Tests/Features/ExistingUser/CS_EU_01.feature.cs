@@ -107,6 +107,9 @@ this.ScenarioInitialize(scenarioInfo);
 #line 6
  testRunner.Given("an existing user emails the helpdesk", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
+#line 7
+ testRunner.Then("a New status ticket is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
             }
             this.ScenarioCleanup();
         }
