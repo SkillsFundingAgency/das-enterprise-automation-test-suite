@@ -7,6 +7,8 @@ namespace SFA.DAS.UI.Framework
     {
         public static string EnvironmentName => Configurator.EnvironmentName;
 
+        public static bool IsDevEnvironment => EnvironmentName.CompareToIgnoreCase("dev");
+
         public static bool IsATEnvironment => EnvironmentName.CompareToIgnoreCase("at");
 
         public static bool IsTestEnvironment => EnvironmentName.CompareToIgnoreCase("test");

@@ -14,6 +14,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
         private const string ProviderLeadRegistrationConfigKey = "providerleadregistrationconfigkey";
         private const string RoatpProjectConfigKey = "roatpprojectconfigkey";
         private const string SupportConsoleProjectConfigKey = "supportconsoleprojectconfigkey";
+        private const string ConsolidatedSupportProjectConfigKey = "consolidatedsupportprojectconfigkey";
         private const string RAAV1ProjectConfigKey = "raav1projectconfigkey";
         private const string RAAV2QAProjectConfigKey = "raav2qaprojectconfigkey";
         private const string ApprovalsProjectConfigKey = "approvalsprojectconfigkey";
@@ -38,6 +39,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
         public static void SetPerfTestProviderPermissionsConfig<T>(this ScenarioContext context, T value) => Set(context, value, PerfTestProviderPermissionsConfigKey);
         public static void SetTransfersConfig<T>(this ScenarioContext context, T value) => Set(context, value, TransfersProjectConfigKey);
         public static void SetSupportConsoleConfig<T>(this ScenarioContext context, T value) => Set(context, value, SupportConsoleProjectConfigKey);
+        public static void SetConsolidatedSupportConfig<T>(this ScenarioContext context, T value) => Set(context, value, ConsolidatedSupportProjectConfigKey);
         public static void SetRAAV1Config<T>(this ScenarioContext context, T value) => Set(context, value, RAAV1ProjectConfigKey);
         public static void SetRAAV2QAConfig<T>(this ScenarioContext context, T value) => Set(context, value, RAAV2QAProjectConfigKey);
         public static void SetFAAConfig<T>(this ScenarioContext context, T value) => Set(context, value, FAAProjectConfigKey);
@@ -65,6 +67,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
         public static T GetRAAV2QAConfig<T>(this ScenarioContext context) => Get<T>(context, RAAV2QAProjectConfigKey);
         public static T GetFAAConfig<T>(this ScenarioContext context) => Get<T>(context, FAAProjectConfigKey);
         public static T GetSupportConsoleConfig<T>(this ScenarioContext context) => Get<T>(context, SupportConsoleProjectConfigKey);
+        public static T GetConsolidatedSupportConfig<T>(this ScenarioContext context) => Get<T>(context, ConsolidatedSupportProjectConfigKey);
         public static T GetEPAOConfig<T>(this ScenarioContext context) => Get<T>(context, EPAOProjectConfigKey);
         public static T GetProviderFeedbackConfig<T>(this ScenarioContext context) => Get<T>(context, ProviderFeedbackConfigKey);
         public static T GetARConfig<T>(this ScenarioContext context) => Get<T>(context, ARProjectConfigKey);
