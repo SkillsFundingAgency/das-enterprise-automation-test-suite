@@ -25,8 +25,8 @@ namespace SFA.DAS.UI.Framework
         public static string EI_DfeAchieveServiceUrl => "https://dfeuat.achieveservice.com/forms";
         public static string ConsolidatedSupport_BaseUrl => true switch
         {
-            bool _ when EnvironmentConfig.IsDevEnvironment => "https://esfa1567428279.zendesk.com/agent",
-            bool _ when EnvironmentConfig.IsPPEnvironment => "https://esfa-preprod.zendesk.com/agent",
+            bool _ when EnvironmentConfig.IsDevEnvironment => "https://esfa1567428279.zendesk.com",
+            bool _ when EnvironmentConfig.IsPPEnvironment => "https://esfa-preprod.zendesk.com",
             _ => "",
         };
     }

@@ -13,6 +13,6 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project
         public Hooks(ScenarioContext context) => _webDriver = context.GetWebDriver();
 
         [BeforeScenario(Order = 21)]
-        public void Navigate() => _webDriver.Navigate().GoToUrl(UrlConfig.ConsolidatedSupport_BaseUrl);
+        public void Navigate() => _webDriver.Navigate().GoToUrl($"{UrlConfig.ConsolidatedSupport_BaseUrl}/agent");
     }
 }

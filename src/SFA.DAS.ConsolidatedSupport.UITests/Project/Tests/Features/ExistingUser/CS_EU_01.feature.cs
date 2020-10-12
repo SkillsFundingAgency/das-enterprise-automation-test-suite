@@ -75,14 +75,16 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Features.ExistingUse
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("CS_EU_01_Existing User Ticket is resolved")]
-        [NUnit.Framework.CategoryAttribute("tag1")]
+        [NUnit.Framework.CategoryAttribute("regression")]
+        [NUnit.Framework.CategoryAttribute("consolidatedsupport")]
         public virtual void CS_EU_01_ExistingUserTicketIsResolved()
         {
             string[] tagsOfScenario = new string[] {
-                    "tag1"};
+                    "regression",
+                    "consolidatedsupport"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CS_EU_01_Existing User Ticket is resolved", null, tagsOfScenario, argumentsOfScenario);
-#line 4
+#line 5
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -102,7 +104,7 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 5
+#line 6
  testRunner.Given("an existing user emails the helpdesk", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
             }
