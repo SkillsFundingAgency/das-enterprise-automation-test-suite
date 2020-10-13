@@ -1,7 +1,4 @@
 ﻿using OpenQA.Selenium;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
@@ -28,9 +25,9 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
         {
             frameHelper.SwitchFrameAndAction(() =>
             {
-                _formCompletionHelper.EnterText(UserEmail, config.Username);
-                _formCompletionHelper.EnterText(UserPassword, config.Password);
-                _formCompletionHelper.ClickElement(SignInButton);
+                formCompletionHelper.EnterText(UserEmail, config.Username);
+                formCompletionHelper.EnterText(UserPassword, config.Password);
+                formCompletionHelper.ClickElement(SignInButton);
             });
             return new DashboardPage(_context);
         }

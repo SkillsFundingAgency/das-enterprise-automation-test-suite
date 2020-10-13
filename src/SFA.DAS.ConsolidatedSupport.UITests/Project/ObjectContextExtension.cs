@@ -8,7 +8,7 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project
         private const string TicketId = "ticketid";
         #endregion
 
-        public static void SetTicketId(this ObjectContext objectContext, long value) => objectContext.Replace(TicketId, value);
-        public static string GetTicketId(this ObjectContext objectContext) => objectContext.Get<string>(TicketId);
+        public static void SetTicketId(this ObjectContext objectContext, string value) => objectContext.Replace(TicketId, value);
+        public static string GetTicketId(this ObjectContext objectContext) => objectContext.Get(TicketId);
     }
 }

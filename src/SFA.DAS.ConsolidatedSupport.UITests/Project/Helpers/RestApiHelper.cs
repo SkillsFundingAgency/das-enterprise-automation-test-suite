@@ -100,9 +100,11 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Helpers
     public class RestApiHelper
     {
         private readonly IApi zendeskApi;
+        private readonly ConsolidateSupportDataHelper _dataHelper;
 
-        public RestApiHelper(ConsolidatedSupportConfig config)
+        public RestApiHelper(ConsolidatedSupportConfig config, ConsolidateSupportDataHelper dataHelper)
         {
+            _dataHelper = dataHelper;
             zendeskApi = ApiFactory.CreateApi(config.Username, config.Password);
         }
 
@@ -110,8 +112,8 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Helpers
         {
             var ticket = new Ticket
             {
-                Subject = $"Zendesk UI Testing - {Guid.NewGuid()}",
-                Comment = new Comment { Body = $"Created on {DateTime.Now}" },
+                Subject = _dataHelper.Subject,
+                Comment = new Comment { Body = _dataHelper.CommentBody },
             };
 
             var response = await zendeskApi.PostTicket(new TicketRequest { Ticket = ticket });

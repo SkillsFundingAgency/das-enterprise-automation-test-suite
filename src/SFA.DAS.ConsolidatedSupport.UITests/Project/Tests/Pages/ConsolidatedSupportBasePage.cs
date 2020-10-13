@@ -1,4 +1,6 @@
-﻿using SFA.DAS.UI.Framework.TestSupport;
+﻿using SFA.DAS.ConfigurationBuilder;
+using SFA.DAS.ConsolidatedSupport.UITests.Project.Helpers;
+using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
@@ -8,15 +10,19 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
     {
         protected readonly IFrameHelper frameHelper;
         protected readonly ConsolidatedSupportConfig config;
-        protected readonly FormCompletionHelper _formCompletionHelper;
-        protected readonly PageInteractionHelper _pageInteractionHelper;
+        protected readonly FormCompletionHelper formCompletionHelper;
+        protected readonly PageInteractionHelper pageInteractionHelper;
+        protected readonly ObjectContext objectContext;
+        protected readonly ConsolidateSupportDataHelper dataHelper;
 
         public ConsolidatedSupportBasePage(ScenarioContext context) : base(context)
         {
             frameHelper = context.Get<IFrameHelper>();
             config = context.GetConsolidatedSupportConfig<ConsolidatedSupportConfig>();
-            _formCompletionHelper = context.Get<FormCompletionHelper>();
-            _pageInteractionHelper = context.Get<PageInteractionHelper>();
+            formCompletionHelper = context.Get<FormCompletionHelper>();
+            pageInteractionHelper = context.Get<PageInteractionHelper>();
+            objectContext = context.Get<ObjectContext>();
+            dataHelper = context.Get<ConsolidateSupportDataHelper>();
         }
     }
 }
