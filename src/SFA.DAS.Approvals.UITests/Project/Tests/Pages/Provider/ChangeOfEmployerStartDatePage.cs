@@ -12,6 +12,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         
         private By StartDateMonth => By.Name("StartMonth");
         private By StartDateYear => By.Name("StartYear");
+        protected override By ContinueButton => By.Id("save-and-continue-button");
 
         public ChangeOfEmployerStartDatePage(ScenarioContext context) : base(context) => _context = context;
 

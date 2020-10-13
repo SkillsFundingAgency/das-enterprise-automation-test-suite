@@ -19,7 +19,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private By ApprenticeInfoRow => By.CssSelector("tbody tr");
         private By ViewApprenticeFullName => By.PartialLinkText(apprenticeDataHelper.ApprenticeFullName);
         private By SelectFilterDropdown => By.Id("selectedStatus");
-        private By ApplyFilter => By.CssSelector(".govuk-button");
+        private By ApplyFilter => By.XPath("//button[contains(text(),'Apply filters')]");
         private By ClearSearchAndFilters => By.PartialLinkText("Clear search");
         private By DownloadAllDataLink => By.PartialLinkText("Download all data");
 
