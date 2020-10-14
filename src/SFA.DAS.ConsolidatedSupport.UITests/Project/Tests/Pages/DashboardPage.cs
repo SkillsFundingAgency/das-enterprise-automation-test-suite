@@ -16,11 +16,22 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
 
         private By SearchInput => By.CssSelector("[data-test-id='header-toolbar-search-button'] input");
 
-        public DashboardPage(ScenarioContext context) : base(context)
+        private By Indicators => By.CssSelector(".indicators");
+
+        private By TicketTable => By.CssSelector("[data-test-id='table_container'] table");
+
+        private By HomeButton => By.CssSelector("#main_navigation [data-original-title='Home']");
+
+        public DashboardPage(ScenarioContext context, bool navigateTo = false) : base(context)
         {
             _context = context;
+
+            if (navigateTo) { formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(HomeButton)); }
+            
             VerifyPage(PageHeader);
             VerifyPage(BrandingHeader);
+            VerifyPage(Indicators);
+            VerifyPage(TicketTable);
         }
 
         public TicketPage SearchTicket()
