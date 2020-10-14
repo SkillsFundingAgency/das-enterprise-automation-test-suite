@@ -1,9 +1,10 @@
-﻿using OpenQA.Selenium;
+﻿using Microsoft.Azure.ServiceBus;
+using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
 {
-    public class DashboardPage : ConsolidatedSupportBasePage
+    public class HomePage : ConsolidatedSupportBasePage
     {
         protected override By PageHeader => By.CssSelector("#main_navigation");
         protected override string PageTitle { get; }
@@ -22,11 +23,11 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
 
         private By HomeButton => By.CssSelector("#main_navigation [data-original-title='Home']");
 
-        public DashboardPage(ScenarioContext context, bool navigateTo = false) : base(context)
+        public HomePage(ScenarioContext context, bool navigateTo = false) : base(context)
         {
             _context = context;
 
-            if (navigateTo) { formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(HomeButton)); }
+            if (navigateTo) { NavigateToHomePage(); }
             
             VerifyPage(PageHeader);
             VerifyPage(BrandingHeader);
@@ -44,6 +45,12 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
             });
 
             return new TicketPage(_context);
+        }
+
+        protected HomePage NavigateToHomePage()
+        {
+            formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(HomeButton));
+            return new HomePage(_context);
         }
     }
 }

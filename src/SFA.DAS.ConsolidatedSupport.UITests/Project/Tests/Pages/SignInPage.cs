@@ -21,7 +21,7 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
             frameHelper.SwitchFrameAndAction(() => VerifyPage());
         }
 
-        public DashboardPage SignIntoApprenticeshipServiceSupport()
+        public HomePage SignIntoApprenticeshipServiceSupport()
         {
             frameHelper.SwitchFrameAndAction(() =>
             {
@@ -29,7 +29,7 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
                 formCompletionHelper.EnterText(UserPassword, config.Password);
                 formCompletionHelper.ClickElement(SignInButton);
             });
-            return new DashboardPage(_context);
+            return new HomePage(_context);
         }
     }
 }

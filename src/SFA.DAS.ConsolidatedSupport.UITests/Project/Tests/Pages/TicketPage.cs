@@ -5,15 +5,13 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
 {
-    public class TicketPage : DashboardPage
+    public class TicketPage : HomePage
     {
         protected override string PageTitle => dataHelper.Subject;
 
         protected override By PageHeader => By.CssSelector("[data-test-id='header-tab-title']");
 
-        private By TicketWorkspace => By.CssSelector(".workspace");
-
-        private By TicketStatus => By.CssSelector("[data-test-id='tabs-section-nav-item-ticket'] .ticket_status_label");
+        private By TicketStatus(string statusclass) => By.CssSelector($"[data-test-id='tabs-section-nav-item-ticket'] {statusclass}.ticket_status_label");
 
         private By TicketOrganisationName => By.CssSelector("span[data-test-id='tabs-nav-item-organizations']");
 
@@ -23,6 +21,12 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
 
         private By MenuList => By.CssSelector("[data-garden-id='buttons.button_group_view'] ul div div");
 
+        private By CommentEditor => By.CssSelector(".comment_input .content .editor.zendesk-editor--rich-text-comment");
+
+        private By CommentsSections => By.CssSelector(".zd-comment");
+
+        private By TicketCloseButton => By.CssSelector("[data-test-id='close-button']");
+
         public TicketPage(ScenarioContext context) : base(context)
         {
             VerifyPage();
@@ -30,39 +34,46 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
             VerifyPage(TicketOrganisationUserName, dataHelper.OrganisationUserName);
         }
 
-        public void VerifyTicketStatus(string expectedstatus)
+        public void VerifyTicketStatus(string expectedstatus) => VerifyPage(TicketStatus(GetTicketStatusClassName(expectedstatus)), expectedstatus.ToUpper());
+
+        private string GetTicketStatusClassName(string expectedstatus)
         {
-            VerifyElement(() =>
+            return true switch
             {
-                var elements = pageInteractionHelper.FindElements(TicketWorkspace).ToList();
-                foreach (var element in elements)
-                {
-                    var outterHtml = element.GetAttribute("outerHTML");
-                    var classlist = element.GetAttribute("class");
-                    if (!classlist.ContainsCompareCaseInsensitive("apps") && !outterHtml.ContainsCompareCaseInsensitive("display:none;"))
-                    {
-                        return element.FindElement(TicketStatus);
-                    }
-                }
-
-                throw new NotFoundException(TicketWorkspace.ToString());
-
-
-            }, expectedstatus, null);
+                bool _ when expectedstatus.CompareToIgnoreCase("New") => ".new",
+                bool _ when expectedstatus.CompareToIgnoreCase("Open") => ".open",
+                bool _ when expectedstatus.CompareToIgnoreCase("On-Hold") => ".hold",
+                bool _ when expectedstatus.CompareToIgnoreCase("Pending") => ".pending",
+                bool _ when expectedstatus.CompareToIgnoreCase("Solved") => ".solved",
+                _ => string.Empty,
+            };
         }
 
-        public void SubmitAsOpen() => SubmitStatus("status-badge-open", "Submit as Open");
+        public void VerifyComments(string comments) => VerifyPage(() => pageInteractionHelper.FindElements(CommentsSections), comments);
 
-        public void SubmitAsNew() => SubmitStatus("status-badge-new", "Submit as New");
+        public HomePage SubmitAsOpen(string comments) => SubmitStatus(comments, "status-badge-open", "Submit as Open");
 
-        public void SubmitAsPending() => SubmitStatus("status-badge-pending", "Submit as Pending");
+        public HomePage SubmitAsNew(string comments) => SubmitStatus(comments, "status-badge-new", "Submit as New");
 
-        public void SubmitAsOnHold() => SubmitStatus("status-badge-hold", "Submit as On-hold");
+        public HomePage SubmitAsPending(string comments) => SubmitStatus(comments, "status-badge-pending", "Submit as Pending");
 
-        public void SubmitAsSolved() => SubmitStatus("status-badge-solved", "Submit as Solved");
+        public HomePage SubmitAsOnHold(string comments) => SubmitStatus(comments, "status-badge-hold", "Submit as On-hold");
 
-        private void SubmitStatus(string attribute, string text)
+        public HomePage SubmitAsSolved(string comments) => SubmitStatus(comments, "status-badge-solved", "Submit as Solved");
+
+        private void CloseAllTickets()
         {
+            var elements = pageInteractionHelper.FindElements(TicketCloseButton).ToList();
+            foreach (var element in elements)
+            {
+                element.Click();
+            }
+        }
+
+        private HomePage SubmitStatus(string comments, string attribute, string text)
+        {
+            formCompletionHelper.EnterText(pageInteractionHelper.FindElements(CommentEditor).First((x) => x.Enabled && x.Displayed), comments);
+
             formCompletionHelper.ClickElement(() =>
             {
                 formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(MenuButton));
@@ -78,6 +89,10 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
                 }
                 return null;
             });
+
+            CloseAllTickets();
+
+            return NavigateToHomePage();
         }
     }
 }

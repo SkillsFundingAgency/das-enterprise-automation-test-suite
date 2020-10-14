@@ -15,6 +15,7 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.StepDefinitions
         private readonly ConsolidateSupportDataHelper _dataHelper;
         private readonly ConsolidatedSupportConfig _config;
         private readonly ObjectContext _objectContext;
+        private HomePage _homePage;
         private TicketPage _ticketpage;
 
 
@@ -36,24 +37,40 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.StepDefinitions
 
             //TestContext.Progress.WriteLine($"Ticket {ticket.Id} created - {ticket.Url}");
 
-            _objectContext.SetTicketId("3809");
-
             _dataHelper.OrganisationName = _config.OrganisationName;
 
             _dataHelper.OrganisationUserName = _config.OrganisationUserName;
 
-            new SignInPage(_context).SignIntoApprenticeshipServiceSupport();
+            _homePage = new SignInPage(_context).SignIntoApprenticeshipServiceSupport();
+
+            _objectContext.SetTicketId("3810");
         }
 
         [Then(@"a (New|Open) status ticket is displayed")]
         public void ThenStatusTicketIsDisplayed(string status)
         {
-            _ticketpage = new DashboardPage(_context, true).SearchTicket();
+            _homePage = new HomePage(_context, true);
+
+            _ticketpage = _homePage.SearchTicket();
 
             _ticketpage.VerifyTicketStatus(status);
         }
 
         [When(@"the ticket is submit as open")]
-        public void WhenTheTicketIsSubmitAsOpen() => _ticketpage.SubmitAsOpen();
+        public void WhenTheTicketIsSubmitAsOpen()
+        {
+            _homePage = _ticketpage.SubmitAsOpen("Comment - Submit as Open");
+
+            _homePage.SearchTicket();
+
+            _ticketpage.VerifyComments("Comment - Submit as Open");
+        }
+
+        [When(@"the ticket is submit as On-Hold")]
+        public void WhenTheTicketIsSubmitAsOn_Hold()
+        {
+            
+        }
+
     }
 }
