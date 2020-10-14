@@ -1,56 +1,150 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Parent;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Apprentice
 {
     public class ApprenticeHubPage : CampaingnsPage
     {
-        protected override string PageTitle => "REAL STORIES";
+        protected override string PageTitle => "BECOME AN APPRENTICE";
 
-        protected override By PageHeader => By.Id("apprentice-real-stories");
+        #region element /objects
+        protected override By PageHeader => By.CssSelector(".govuk-heading-xl");
+        protected By AreApprenticeshipRightForYou => By.CssSelector("#fiu-app-menu-link-1");
+        protected By HowDoTheyWork => By.CssSelector("#fiu-app-menu-link-2");
 
-        protected By AreApprenticeshipRightForYou => By.CssSelector("#link-nav-apprentice-1");
+        protected By GettingStarted => By.CssSelector("#fiu-app-menu-link-3");
 
-        protected By HowDoTheyWork => By.CssSelector("#link-nav-apprentice-2");
+        protected By FindAnApprenticeship => By.CssSelector("#fiu-app-menu-link-4");
 
-        protected By GettingStarted => By.CssSelector("#link-nav-apprentice-3");
+        protected By RealStories => By.CssSelector(".fiu-card__link--citizens");
 
-        protected By FindAnApprenticeship => By.CssSelector("#link-nav-apprentice-4");
+        protected By ApprenticeshipBenefits => By.XPath("//a[contains(@href,'/apprentices/benefits-apprenticeship') and contains(text(), 'Learn more')]");
 
-        protected By RealStories => By.CssSelector("#link-nav-app-real-stories");
+        protected By WhatIsAnApprenticeship => By.CssSelector("#fiu-app-hub-card-5");
 
-        protected By ApprenticeshipBenefits => By.CssSelector("#link-nav-app-benefits");
+        protected By Application => By.CssSelector("#fiu-app-hub-card-6");
 
-        protected By WhatIsAnApprenticeship => By.CssSelector("#link-nav-app-step-1");
+        protected By Interview => By.CssSelector("#fiu-app-hub-card-7");
 
-        protected By Application => By.CssSelector("#link-nav-app-step-3");
+        protected By BrowserInterest => By.CssSelector("#fiu-app-hub-card-4");
 
-        protected By Interview => By.CssSelector("#link-nav-app-step-4");
+        protected By AdviceForParents => By.CssSelector("#fiu-app-hub-card-3");
 
-        protected By YourApprenticeship => By.CssSelector("#link-nav-app-step-5");
+        protected By SetUpService => By.CssSelector("#fiu-app-hub-card-10");
 
-        protected By AssesmentAndCertification => By.CssSelector("#link-nav-app-step-6");
+        protected By SiteMap => By.CssSelector("#link-footer-sitemap");
+
+        protected By YourApprenticeship => By.CssSelector("#fiu-app-hub-card-8");
+
+        protected By AssesmentAndCertification => By.CssSelector("#fiu-app-hub-card-9");
+
+        #endregion
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
         #endregion
 
-       public ApprenticeHubPage(ScenarioContext context, bool verifypage = true) : base(context, verifypage) => _context = context;
+        public ApprenticeHubPage(ScenarioContext context) : base(context) => _context = context;
 
-        public ApprenticeRealStoriesPage NavigateToRealStoriesPage() => NavigateToAreApprenticeshipRightForYou(RealStories, (c) => new ApprenticeRealStoriesPage(c));
+        public void VerifySubHeadings()
+        {
+            List<IWebElement> func() => pageInteractionHelper.FindElements(FiuCardHeading).ToList();
+
+            VerifyPage(func, "Real stories");
+            VerifyPage(func, "What are the benefits of an apprenticeship?");
+            VerifyPage(func, "Help shape their career");
+            VerifyPage(func, "Browse by interest");
+            VerifyPage(func, "Becoming an apprentice");
+            VerifyPage(func, "Applying for an apprenticeship");
+            VerifyPage(func, "The interview process");
+            VerifyPage(func, "Starting your apprenticeship");
+            VerifyPage(func, "Assessment and certification");
+            VerifyPage(func, "Set up a service account");
+        }
+
+        public ApprenticeRealStoriesPage NavigateToRealStoriesPage()
+        {
+            formCompletionHelper.ClickElement(RealStories);
+            return new ApprenticeRealStoriesPage(_context);
+        }
+        public ApprenticeAreTheyRightForYouPage NavigateToAreApprenticeShipRightForMe()
+        {
+            formCompletionHelper.ClickElement(AreApprenticeshipRightForYou);
+            return new ApprenticeAreTheyRightForYouPage(_context);
+        }
+
+        public ApprenticeHowDoTheyWorkPage NavigateToHowDoTheyWorkPage()
+        {
+            formCompletionHelper.ClickElement(HowDoTheyWork);
+            return new ApprenticeHowDoTheyWorkPage(_context);
+        }
+
+         public GettingStartedPage NavigateToGettingStarted()
+        {
+            formCompletionHelper.ClickElement(GettingStarted);
+            return new GettingStartedPage(_context);
+        }
+
+        public BrowseByInterestPage NavigateToBrowseInterestPage()
+        {
+            formCompletionHelper.ClickElement(BrowserInterest);
+            return new BrowseByInterestPage(_context);
+        }
+
+        public SetUpServicePage NavigateToSetUpServiceAccountPage()
+        {
+            formCompletionHelper.ClickElement(SetUpService);
+            return new SetUpServicePage(_context);
+        }
+
+
+        public SiteMapPage NavigateToSiteMapPage()
+        {
+            formCompletionHelper.ClickElement(SiteMap);
+            return new SiteMapPage(_context);
+        }
 
         public AppBenefitsPage NavigateToBenefitsofApprenticeshipPage() => NavigateToAreApprenticeshipRightForYou(ApprenticeshipBenefits, (c) => new AppBenefitsPage(c));
 
-        public WhatIsAnApprenticeshipPage NavigateToWhatIsAnApprenticeshipPage() => NavigateToHowDoTheyWork(WhatIsAnApprenticeship, (c) => new WhatIsAnApprenticeshipPage(c));
+        public HelpShapeTheirCareerPage NavigateToAdviceForParentPage()
+        {
+            formCompletionHelper.ClickElement(AdviceForParents);
+            return new HelpShapeTheirCareerPage(_context);
+        }
 
-        public ApplicationPage NavigateToApplicationPage() => NavigateToHowDoTheyWork(Application, (c) => new ApplicationPage(c));
+        public WhatIsAnApprenticeshipPage NavigateToWhatIsAnApprenticeshipPage()
+        {
+            formCompletionHelper.ClickElement(WhatIsAnApprenticeship);
+            return new WhatIsAnApprenticeshipPage(_context);
+        }
 
-        public InterviewPage NavigateToInterviewPage() => NavigateToHowDoTheyWork(Interview, (c) => new InterviewPage(c));
+        public ApplicationPage NavigateToApplicationPage()
+        {
+            formCompletionHelper.ClickElement(Application);
+            return new ApplicationPage(_context);
+        }
 
-        public YourApprenticeshipPage NavigateToYourApprenticeshipPage() => NavigateToGettingStarted(YourApprenticeship, (c) => new YourApprenticeshipPage(c));
+        public InterviewPage NavigateToInterviewPage()
+        {
+            formCompletionHelper.ClickElement(Interview);
+            return new InterviewPage(_context);
+        }
 
-        public AssesmentAndCertificationPage NavigateToAssesmentAndCertificationPage() => NavigateToGettingStarted(AssesmentAndCertification, (c) => new AssesmentAndCertificationPage(c));
+        public YourApprenticeshipPage NavigateToYourApprenticeshipPage()
+        {
+            formCompletionHelper.ClickElement(YourApprenticeship);
+            return new YourApprenticeshipPage(_context);
+        }
+
+        public AssesmentAndCertificationPage NavigateToAssesmentAndCertificationPage()
+        {
+            formCompletionHelper.ClickElement(AssesmentAndCertification);
+            return new AssesmentAndCertificationPage(_context);
+        }
 
         public FindAnApprenticeshipPage NavigateToFindAnApprenticeshipPage()
         {
@@ -60,8 +154,5 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Apprentice
 
         private TResult NavigateToAreApprenticeshipRightForYou<TResult>(By childLocator, Func<ScenarioContext, TResult> func) => NavigateTo(AreApprenticeshipRightForYou, childLocator, func);
 
-        private TResult NavigateToHowDoTheyWork<TResult>(By childLocator, Func<ScenarioContext, TResult> func) => NavigateTo(HowDoTheyWork, childLocator, func);
-
-        private TResult NavigateToGettingStarted<TResult>(By childLocator, Func<ScenarioContext, TResult> func) => NavigateTo(GettingStarted, childLocator, func);
     }
 }

@@ -5,9 +5,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.RegisterInterest
 {
     public class RegisterInterestPage : CampaingnsPage
     {
-        protected override string PageTitle => "REGISTER INTEREST";
-
-        protected override By PageHeader => By.CssSelector(".heading-xl");
+        protected override string PageTitle => "Sign up to stay connected";
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
@@ -23,30 +21,20 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.RegisterInterest
 
         private By RadioLabel => By.CssSelector(".radios__label");
 
-        private By RegisterMyInterest => By.CssSelector("#btn-register-interest-complete");
+        private By Signup => By.CssSelector("#btn-register-interest-complete");
 
-        public RegisterInterestPage(ScenarioContext context) : base(context) => _context = context;
-
-        public RegisterMyInterestSuccessPage RegisterInterestAsAnApprentice()
+        public RegisterInterestPage(ScenarioContext context) : base(context)
         {
-            RegisterInterest("I want to become an apprentice");
-            return new RegisterMyInterestSuccessPage(_context);
+            _context = context;
         }
-
-        public ThanksForSubscribingPage RegisterInterestAsAnEmployer()
-        {
-            RegisterInterest("I want to employ an apprentice");
-            return new ThanksForSubscribingPage(_context);
-        }
-
-        private void RegisterInterest(string role)
+        public ThanksForSubscribingPage  RegisterInterest()
         {
             formCompletionHelper.EnterText(FirstNameField, campaignsDataHelper.Firstname);
             formCompletionHelper.EnterText(LastNameField, campaignsDataHelper.Lastname);
             formCompletionHelper.EnterText(EmailField, campaignsDataHelper.Email);
-            formCompletionHelper.SelectRadioOptionByText(RadioLabel, role);
             formCompletionHelper.SelectCheckbox(IncludeInUserResearch);
-            formCompletionHelper.ClickElement(RegisterMyInterest);
+            formCompletionHelper.ClickElement(Signup);
+            return new ThanksForSubscribingPage(_context);
         }
     }
 }

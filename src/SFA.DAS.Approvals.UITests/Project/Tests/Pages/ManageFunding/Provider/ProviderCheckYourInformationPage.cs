@@ -11,7 +11,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider
         private readonly ScenarioContext _context;
         #endregion
 
-        private By ConfirmButton => By.CssSelector(".govuk-button");
+        private By ConfirmButton => By.XPath("//button[contains(text(),'Confirm')]");
 
         public ProviderCheckYourInformationPage(ScenarioContext context) : base(context) => _context = context;
 

@@ -5,7 +5,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
 {
     public class TrainingYourApprenticePage : EmployerBasePage
     {
-        protected override string PageTitle => "TRAINING YOUR APPRENTICE";
+        protected override string PageTitle => "Training your apprentice";
 
         #region Page Object Elements
         private readonly By _subHeading1 = By.XPath("//h2[contains (@class, 'heading-m' ) and contains(text(), 'The key facts')]");
@@ -15,15 +15,9 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
         private readonly By _subHeading5 = By.XPath("//h2[contains (@class, 'heading-m' ) and contains(text(), 'Creating a gov.uk account')]");
         #endregion
 
-        public TrainingYourApprenticePage(ScenarioContext context) : base(context) => VerifyHeadings();
-
-        private void VerifyHeadings()
+        public TrainingYourApprenticePage(ScenarioContext context) : base(context)
         {
-            pageInteractionHelper.VerifyText(_subHeading1, "THE KEY FACTS");
-            pageInteractionHelper.VerifyText(_subHeading2, "OFF-THE-JOB TRAINING");
-            pageInteractionHelper.VerifyText(_subHeading3, "TRAINING AND SUPERVISION ON THE JOB");
-            pageInteractionHelper.VerifyText(_subHeading4, "WHICH ACTIVITIES COUNT AS OFF-THE-JOB TRAINING?");
-            pageInteractionHelper.VerifyText(_subHeading5, "CREATING A GOV.UK ACCOUNT");
+            //pageInteractionHelper.VerifyPageLoad(PageHeader, PageTitle);
         }
     }
 }

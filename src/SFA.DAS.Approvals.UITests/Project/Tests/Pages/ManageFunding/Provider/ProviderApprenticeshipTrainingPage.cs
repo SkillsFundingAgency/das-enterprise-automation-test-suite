@@ -15,7 +15,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider
         #endregion
 
         private By CourseSearch => By.CssSelector("#course-search, #SelectedCourseId");
-        
+
+        private By SaveAndContinueButton = By.XPath("//button[contains(text(),'Save and continue')]");
+
         public ProviderApprenticeshipTrainingPage(ScenarioContext context) : base(context) => _context = context;
 
         internal ProviderCheckYourInformationPage AddTrainingCourseAndDate()
@@ -28,7 +30,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider
 
             SetCourseDate(pageInteractionHelper.GetText(option));
 
-            Continue();
+            formCompletionHelper.ClickElement(SaveAndContinueButton);
 
             return new ProviderCheckYourInformationPage(_context);
         }

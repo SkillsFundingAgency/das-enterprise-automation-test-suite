@@ -85,7 +85,9 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         [Then(@"the user can not accept agreement")]
         public void ThenTheUserCanNotAcceptAgreement()
         {
-            _homePage = _homePage.ClickAcceptYourAgreementAndAndRedirectedToAccessDeniedPage()
+            _homePage = _homePage.ClickAcceptYourAgreementLinkInHomePagePanel()
+                .ClickContinueToYourAgreementButtonToDoYouAcceptTheEmployerAgreementPage()
+                .ClickYesAndContinueDoYouAcceptTheEmployerAgreementOnBehalfOfPage()
                 .GoBackToTheServiceHomePage();
         }
 

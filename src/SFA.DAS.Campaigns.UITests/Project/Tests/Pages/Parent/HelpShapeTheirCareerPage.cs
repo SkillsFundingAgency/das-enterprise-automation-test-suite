@@ -5,9 +5,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Parent
 {
     public class HelpShapeTheirCareerPage : CampaingnsPage
     {
-        protected override string PageTitle => "HELP SHAPE THEIR CAREER";
-
-        protected override By PageHeader => By.CssSelector(".heading-xl");
+        protected override string PageTitle => "Help shape their career";
 
         public HelpShapeTheirCareerPage(ScenarioContext context) : base(context) { }
     }

@@ -57,12 +57,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             return new AboutYourAgreementPage(_context);
         }
 
-        public AccessDeniedPage ClickAcceptYourAgreementAndAndRedirectedToAccessDeniedPage()
-        {
-            formCompletionHelper.Click(AcceptYourAgreementLink);
-            return new AccessDeniedPage(_context);
-        }
-
         public void ContinueToCreateAdvert() => formCompletionHelper.ClickElement(ContinueTo);
 
         public void VerifyStartAddingApprenticesNowTaskLink() => VerifyPage(StartAddingApprenticesNowTaskLink);

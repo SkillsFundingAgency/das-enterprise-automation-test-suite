@@ -5,14 +5,8 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.RegisterInterest
 {
     public class ThanksForSubscribingPage : CampaingnsPage
     {
-        protected override string PageTitle => "THANKS FOR SUBSCRIBING!";
-
-        protected override By PageHeader => By.CssSelector(".heading-xl");
-
-        private By NameDetails => By.CssSelector(".heading-emphasise");
+        protected override string PageTitle => "Thank you for signing up";
 
         public ThanksForSubscribingPage(ScenarioContext context) : base(context) { }
-
-        public void VerifyDetail() => pageInteractionHelper.VerifyText(NameDetails, $"{campaignsDataHelper.FullName.ToUpper()}");
     }
 }

@@ -6,17 +6,17 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
 {
     public class SearchResultsPage : EmployerBasePage
     {
-        protected override string PageTitle => "SEARCH RESULTS";
+        protected override string PageTitle => "Results";
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
         #endregion
 
-        private By Keywords => By.CssSelector("#Keywords");
+        private By Keywords => By.CssSelector("#FATKeywords");
         
         private By Search => By.CssSelector("#employer-apprenticeship-search");
 
-        private By Apprenticeship => By.CssSelector($".das-search-results__list-item[id='{objectContext.GetCourseId()}'] .das-search-result__heading-link");
+        private By Apprenticeship => By.CssSelector($".fiu-results-panel[id='{objectContext.GetCourseId()}'] .fiu-link.fiu-link--employers");
 
         public SearchResultsPage(ScenarioContext context) : base(context) => _context = context;
 
@@ -35,10 +35,10 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
             return new SearchResultsPage(_context);
         }
 
-        public SummaryOfThisApprenticeshipPage GoToSummaryOfThisApprenticeshipPage()
+        public FindTrainingProviderForThisApprenticeshipPage GoToSummaryOfThisApprenticeshipPage()
         {
             formCompletionHelper.ClickElement(Apprenticeship);
-            return new SummaryOfThisApprenticeshipPage(_context);
+            return new FindTrainingProviderForThisApprenticeshipPage(_context);
         }
 
         public EmployerFavouritesPage GoToEmployerFavouritesPage()

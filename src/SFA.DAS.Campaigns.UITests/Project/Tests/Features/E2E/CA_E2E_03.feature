@@ -1,5 +1,6 @@
 ﻿Feature: CA_E2E_03
 
+@campaignse2e
 @campaigns
 @employer
 @regression

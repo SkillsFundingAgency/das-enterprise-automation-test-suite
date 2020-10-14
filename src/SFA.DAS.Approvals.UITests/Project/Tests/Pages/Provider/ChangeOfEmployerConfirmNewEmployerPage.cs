@@ -1,4 +1,5 @@
-﻿using TechTalk.SpecFlow;
+﻿using OpenQA.Selenium;
+using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 {
@@ -6,6 +7,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
     {
         private ScenarioContext _context;
         protected override string PageTitle => "Confirm new employer";
+        protected override By ContinueButton => By.Id("saveBtn");
 
         public ChangeOfEmployerConfirmNewEmployerPage(ScenarioContext context) : base(context) => _context = context;
         
