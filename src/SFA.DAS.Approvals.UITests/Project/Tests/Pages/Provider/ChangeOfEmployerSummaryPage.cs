@@ -10,6 +10,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private readonly ScenarioContext _context;
         
         protected override string PageTitle => "Confirm the information before sending your request";
+        protected override By ContinueButton => By.Id("confirm-button");
 
         public ChangeOfEmployerSummaryPage(ScenarioContext context) : base(context) => _context = context;
 
