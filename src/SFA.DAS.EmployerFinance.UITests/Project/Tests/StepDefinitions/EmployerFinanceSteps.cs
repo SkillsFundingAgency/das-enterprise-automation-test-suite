@@ -105,7 +105,7 @@ namespace SFA.DAS.EmployerFinance.UITests.Project.Tests.StepDefinitions
 
                 var existingApprenticeship = estimatedCostsPage.ExistingApprenticeships();
 
-                for (int i = 0; i < existingApprenticeship; i++)
+                for (int i = 1; i < existingApprenticeship; i++)
                 {
                     estimatedCostsPage = estimatedCostsPage.RemoveApprenticeships().ConfirmRemoveApprenticeship();
                 }
