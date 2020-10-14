@@ -26,7 +26,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private By EndDateYear => By.Id("EndYear");
         private By TrainingCost => By.Id("Cost");
         private By EmployerReference => By.Id("Reference");
-        private By SaveButton => By.CssSelector(".govuk-button");
+        private By SaveButton => By.CssSelector("#addApprenticeship > button");
         private By DeleteButton => By.LinkText("Delete");
 
         #region Helpers and Context
