@@ -91,7 +91,7 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
         {
             string incidentNumber = string.Empty;
 
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 20; i++)
             {
                 var element = pageInteractionHelper.FindElements(TicketFormsLabel).First(x => x.Text.ContainsCompareCaseInsensitive("Service Now Incident Number"));
 

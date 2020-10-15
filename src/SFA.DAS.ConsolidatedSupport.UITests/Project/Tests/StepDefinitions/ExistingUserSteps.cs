@@ -29,21 +29,19 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.StepDefinitions
         }
 
         [Given(@"an existing user emails the helpdesk")]
-        public void GivenAnExistingUserEmailsTheHelpdesk()
+        public async void GivenAnExistingUserEmailsTheHelpdesk()
         {
-            //var ticket = await _restApiHelper.CreateTicket();
+            var ticket = await _restApiHelper.CreateTicket();
 
-            //_objectContext.SetTicketId($"{ticket.Id}");
+            _objectContext.SetTicketId($"{ticket.Id}");
 
-            //TestContext.Progress.WriteLine($"Ticket {ticket.Id} created - {ticket.Url}");
+            TestContext.Progress.WriteLine($"Ticket {ticket.Id} created - {ticket.Url}");
 
             _dataHelper.OrganisationName = _config.OrganisationName;
 
             _dataHelper.OrganisationUserName = _config.OrganisationUserName;
 
             _homePage = new SignInPage(_context).SignIntoApprenticeshipServiceSupport();
-
-            _objectContext.SetTicketId("3813");
         }
 
         [Then(@"a (New|Open|On-Hold|Pending|Solved) status ticket is displayed")]
