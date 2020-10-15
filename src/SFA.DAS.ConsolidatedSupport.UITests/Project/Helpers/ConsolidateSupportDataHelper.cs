@@ -14,9 +14,9 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Helpers
 
         public string SubmitAsSolvedComments => "Comment - Submit as Solved";
 
-        public string Subject => $"Zendesk UI Testing";// $"Zendesk UI Testing - {Guid.NewGuid()}";
+        public string Subject => $"Zendesk UI Testing";
 
-        public string CommentBody => $"Created on"; // $"Created on {DateTime.Now}";
+        public string CommentBody => $"Created on";
 
         public string OrganisationName { get; set; }
 

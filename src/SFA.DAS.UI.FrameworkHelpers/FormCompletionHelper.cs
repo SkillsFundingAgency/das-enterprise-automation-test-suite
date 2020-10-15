@@ -117,8 +117,6 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         public void EnterTextByLabel(By labellocator, string labeltext, string text) => EnterText(GetElementByText(labellocator, labeltext).FindElement(InputCssSelector), text);
 
-        public new IWebElement GetElementByText(By locator, String text) => base.GetElementByText(locator, text);
-
         private void ClickElementByText(By locator, string text) => ClickElement(() => GetElementByText(locator, text));
 
         public void ClickLinkByText(By locator, string text) => ClickElementByText(locator, text);
