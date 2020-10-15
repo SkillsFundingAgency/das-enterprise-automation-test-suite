@@ -66,25 +66,28 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
         {
             var elements = pageInteractionHelper.FindElements(TicketDropdownFields).Where(x => x.Text.ContainsCompareCaseInsensitive(question)).ToList();
 
-            foreach (var element in elements)
+            pageInteractionHelper.InvokeAction(() => 
             {
-                var labelElements = element.FindElements(TicketDropdownLabel).ToList();
-
-                if (labelElements.Count == 1 && (labelElements.Single().Text == question || labelElements.Single().GetAttribute("innerText").ContainsCompareCaseInsensitive(question)))
+                foreach (var element in elements)
                 {
-                    var forvalue = labelElements.Single().GetAttribute("for");
+                    var labelElements = element.FindElements(TicketDropdownLabel).ToList();
 
-                    element.FindElement(TicketDropdownSelect).Click();
+                    if (labelElements.Count == 1 && (labelElements.Single().Text == question || labelElements.Single().GetAttribute("innerText").ContainsCompareCaseInsensitive(question)))
+                    {
+                        var forvalue = labelElements.Single().GetAttribute("for");
 
-                    formCompletionHelper.SendKeys(TicketDropdownInput(forvalue), answer);
+                        element.FindElement(TicketDropdownSelect).Click();
 
-                    var parentElement = element.FindElement(FindParent);
+                        formCompletionHelper.SendKeys(TicketDropdownInput(forvalue), answer);
 
-                    var selection = parentElement.FindElements(TicketDropdownItem).First(x => x.Text.ContainsCompareCaseInsensitive(answer));
+                        var parentElement = element.FindElement(FindParent);
 
-                    selection.Click();
+                        var selection = parentElement.FindElements(TicketDropdownItem).First(x => x.Text.ContainsCompareCaseInsensitive(answer));
+
+                        selection.Click();
+                    }
                 }
-            }
+            });
         }
 
         public string GetServiceNowTicket()

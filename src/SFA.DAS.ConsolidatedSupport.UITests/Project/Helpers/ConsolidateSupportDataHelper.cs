@@ -6,6 +6,7 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Helpers
     {
         public ConsolidateSupportDataHelper()
         {
+            Subject = $"Zendesk UI Testing {Guid.NewGuid()}";
             CommentBody = $"Created on {DateTime.Now}";
         }
 
@@ -19,7 +20,7 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Helpers
 
         public string SubmitAsSolvedComments => "Comment - Submit as Solved";
 
-        public string Subject => $"Zendesk UI Testing";
+        public string Subject { get; }
 
         public string CommentBody { get; }
 
