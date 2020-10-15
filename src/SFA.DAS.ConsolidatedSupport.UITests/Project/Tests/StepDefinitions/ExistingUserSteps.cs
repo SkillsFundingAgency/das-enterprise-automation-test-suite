@@ -43,10 +43,10 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.StepDefinitions
 
             _homePage = new SignInPage(_context).SignIntoApprenticeshipServiceSupport();
 
-            _objectContext.SetTicketId("3810");
+            _objectContext.SetTicketId("3813");
         }
 
-        [Then(@"a (New|Open) status ticket is displayed")]
+        [Then(@"a (New|Open|On-Hold|Pending|Solved) status ticket is displayed")]
         public void ThenStatusTicketIsDisplayed(string status)
         {
             _homePage = new HomePage(_context, true);
@@ -56,21 +56,70 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.StepDefinitions
             _ticketpage.VerifyTicketStatus(status);
         }
 
+        [When(@"the ticket is submit as New")]
+        public void WhenTheTicketIsSubmitAsNew()
+        {
+            _homePage = _ticketpage.SubmitAsNew();
+
+            VerifySubmittedComments(_dataHelper.SubmitAsNewComments);
+        }
+
+
         [When(@"the ticket is submit as open")]
         public void WhenTheTicketIsSubmitAsOpen()
         {
-            _homePage = _ticketpage.SubmitAsOpen("Comment - Submit as Open");
+            _homePage = _ticketpage.SubmitAsOpen();
 
-            _homePage.SearchTicket();
-
-            _ticketpage.VerifyComments("Comment - Submit as Open");
+            VerifySubmittedComments(_dataHelper.SubmitAsOpenComments);
         }
 
         [When(@"the ticket is submit as On-Hold")]
         public void WhenTheTicketIsSubmitAsOn_Hold()
         {
-            
+            _ticketpage.SelectOptions("Contact Reason", "Data Lock");
+            _ticketpage.SelectOptions("Issue Type", "Query");
+            _ticketpage.SelectOptions("Apply macro", "Escalate to Tier 3");
+
+            _ticketpage.VerifyDraftComments("Resolver group to assign to");
+
+            _ticketpage.SelectOptions("Service Offering", "AS Payments");
+            _ticketpage.SelectOptions("Resolver Group", "ESFA Apprenticeship Dev Ops");
+
+            _homePage = _ticketpage.SubmitAsOnHold();
+
+            VerifySubmittedComments(_dataHelper.SubmitAsOnHoldComments);
         }
 
+        [When(@"the ticket is submit as Pending")]
+        public void WhenTheTicketIsSubmitAsPending()
+        {
+            _homePage = _ticketpage.SubmitAsPending();
+
+            VerifySubmittedComments(_dataHelper.SubmitAsPendingComments);
+        }
+
+        [When(@"the ticket is submit as Solved")]
+        public void WhenTheTicketIsSubmitAsSolved()
+        {
+            _homePage = _ticketpage.SubmitAsSolved();
+
+            VerifySubmittedComments(_dataHelper.SubmitAsSolvedComments);
+        }
+
+        [Then(@"a service now incident number is populated")]
+        public void ThenAServiceNowIncidentNumberIsPopulated()
+        {
+            var serviceNowIncidentNumber = _ticketpage.GetServiceNowTicket();
+
+            StringAssert.StartsWith("INC", serviceNowIncidentNumber);
+        }
+
+
+        private void VerifySubmittedComments(string comments)
+        {
+            _ticketpage = _homePage.SearchTicket();
+
+            _ticketpage.VerifySubmittedComments(comments);
+        }
     }
 }

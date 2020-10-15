@@ -85,10 +85,10 @@ namespace SFA.DAS.UI.FrameworkHelpers
         {
             void beforeAction() => _webDriverWaitHelper.WaitForPageToLoad();
 
-            void retryAction() => _webDriver.Navigate().Refresh();
-
-            return _retryHelper.RetryOnException(Func(locator), beforeAction, retryAction);
+            return _retryHelper.RetryOnException(Func(locator), beforeAction, PageRefresh());
         }
+
+        public Action PageRefresh() { return () => _webDriver.Navigate().Refresh(); }
 
         public void Verify(Func<bool> func, Action beforeAction) => _retryHelper.RetryOnException(func, beforeAction);
 
