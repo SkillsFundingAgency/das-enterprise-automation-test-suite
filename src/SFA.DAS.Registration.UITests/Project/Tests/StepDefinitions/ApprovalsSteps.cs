@@ -12,6 +12,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
 
 
         [Given(@"The User creates NonLevyEmployer account and sign an agreement")]
+        [Given(@"The User creates LevyEmployer account and sign an agreement")]
         public void TheUserCreatesNonLevyEmployerAccountAndSignAnAgreement() => _stepsHelper.CreatesAccountAndSignAnAgreement();
     }
 }
