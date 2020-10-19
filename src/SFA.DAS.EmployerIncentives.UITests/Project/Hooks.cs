@@ -1,5 +1,5 @@
 ﻿using SFA.DAS.EmployerIncentives.UITests.Project.Helpers;
-using SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages;
+using SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.DfeUat;
 using SFA.DAS.UI.Framework;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
@@ -39,6 +39,5 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project
 
         [BeforeScenario(Order = 42)]
         public void SetUpHelpers() => _context.Set(new EISqlHelper(_eIConfig));
-
     }
 }

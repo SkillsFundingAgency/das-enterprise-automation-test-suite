@@ -1,7 +1,7 @@
 ﻿using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
+namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.DfeUat
 {
     public class DfeUatLoginPage : EIBasePage
     {
@@ -28,6 +28,5 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
             formCompletionHelper.Click(SignInButton);
             return new DfeUatHomePage(_context);
         }
-    
     }
 }

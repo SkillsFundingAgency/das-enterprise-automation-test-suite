@@ -8,7 +8,10 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Helpers
 
         public void DeleteIncentiveApplication(string accountid)
         {
-            var query = $"DELETE FROM IncentiveApplicationApprenticeship WHERE IncentiveApplicationId IN (SELECT Id FROM IncentiveApplication WHERE AccountId = {accountid}); DELETE FROM IncentiveApplication WHERE AccountId = {accountid}";
+            var nullValue = "NULL";
+            var query = $"DELETE FROM IncentiveApplicationApprenticeship WHERE IncentiveApplicationId IN (SELECT Id FROM IncentiveApplication WHERE AccountId = {accountid}); " +
+                $"DELETE FROM IncentiveApplication WHERE AccountId = {accountid};" +
+                $"UPDATE [Accounts] SET VrfCaseId = {nullValue}, VrfCaseStatus = {nullValue}, VrfCaseStatusLastUpdatedDateTime = {nullValue} WHERE Id = {accountid}";
             ExecuteSqlCommand(query);
         }
     }
