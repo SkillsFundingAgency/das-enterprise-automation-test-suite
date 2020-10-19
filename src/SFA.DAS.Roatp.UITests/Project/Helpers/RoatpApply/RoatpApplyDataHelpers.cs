@@ -57,6 +57,8 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.RoatpApply
 
         public DateTime Dob(int x) => DateTime.Now.AddYears(-40 + x);
         public string FullName => "George Smith";
+        public string GivenName => "Test";
+        public string FamilyName => "CreateAccount";
         public string JobRole => "Employee";
         public string Email => "test.demo@digital.education.gov.uk";
         public string ContactNumber => "1234567890";

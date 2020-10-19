@@ -29,6 +29,9 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpApply
         [Then(@"the provider do not accept the Terms and conditions")]
         public void ThenTheProviderDoNotAcceptTheTermsAndConditions() => _selectRouteStepsHelper.DoNotAcceptTermsConditions();
 
+        [Then(@"the Apply User is able to Create an Account")]
+        public void ThenTheApplyUserIsAbleToCreateAnAccount() => _selectRouteStepsHelper.CompleteNewAccountDetails();
+
         [Given(@"the provider initates an application as main route company")]
         public void GivenTheProviderInitatesAnApplicationAsMainRouteCompany() => _overviewPage = _selectRouteStepsHelper.CompleteProviderMainRouteSection();
 

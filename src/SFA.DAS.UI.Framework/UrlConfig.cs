@@ -21,5 +21,6 @@
         public static string AR_BaseUrl => $"https://{EnvironmentConfig.EnvironmentName}-apprentice-support.apprenticeships.education.gov.uk/";
         public static string AR_AdminBaseUrl => $"https://{EnvironmentConfig.EnvironmentName}-apprentice-support-admin.apprenticeships.education.gov.uk/";
         public static string EI_DfeAchieveServiceUrl => "https://dfeuat.achieveservice.com/forms";
+        public static string RoatpApply_InvitationUrl => $"https://{EnvironmentConfig.EnvironmentName}-aslogin.apprenticeships.education.gov.uk/Invitations/CreatePassword/";
     }
 }
