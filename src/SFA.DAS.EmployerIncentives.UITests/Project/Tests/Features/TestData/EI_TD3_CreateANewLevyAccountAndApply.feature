@@ -1,4 +1,4 @@
-﻿Feature: EI_TD3_CreateALevyAccountWithCommitmentsAndApplyForEI
+﻿Feature: EI_TD3_CreateANewLevyAccountAndApply
 
 @addpayedetails
 @dfeuatachieveservice

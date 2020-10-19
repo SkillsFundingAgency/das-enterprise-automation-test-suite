@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Features.ShutterPages.NewLevyAccount.QualificationAndApprenticesShutterWrongCommitments
+namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Features.ShutterPages.NewLevyAccount.QualAndApprenticesWrongCommitments
 {
     using TechTalk.SpecFlow;
     using System;

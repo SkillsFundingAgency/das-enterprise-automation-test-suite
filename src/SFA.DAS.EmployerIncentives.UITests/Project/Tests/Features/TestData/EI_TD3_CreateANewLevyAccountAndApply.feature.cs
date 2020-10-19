@@ -20,22 +20,22 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Features.TestData
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.3.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("EI_TD3_CreateALevyAccountWithCommitmentsAndApplyForEI")]
-    public partial class EI_TD3_CreateALevyAccountWithCommitmentsAndApplyForEIFeature
+    [NUnit.Framework.DescriptionAttribute("EI_TD3_CreateANewLevyAccountAndApply")]
+    public partial class EI_TD3_CreateANewLevyAccountAndApplyFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private string[] _featureTags = ((string[])(null));
         
-#line 1 "EI_TD3_CreateALevyAccountWithCommitmentsAndApplyForEI.feature"
+#line 1 "EI_TD3_CreateANewLevyAccountAndApply.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "EI_TD3_CreateALevyAccountWithCommitmentsAndApplyForEI", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "EI_TD3_CreateANewLevyAccountAndApply", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
