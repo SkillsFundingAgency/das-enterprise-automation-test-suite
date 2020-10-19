@@ -1,6 +1,7 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.Roatp.UITests.Project.Helpers.RoatpApply;
+using SFA.DAS.Roatp.UITests.Project.Helpers.SqlDbHelpers;
 using SFA.DAS.UI.Framework;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
@@ -16,7 +17,7 @@ namespace SFA.DAS.Roatp.UITests.Project
         private readonly ObjectContext _objectContext;
         private readonly IWebDriver _webDriver;
         private readonly RoatpConfig _config;
-        private readonly RoatpApplyClearDownDataHelpers _applyClearDownDataHelpers;
+        private readonly RoatpApplyAndQnASqlDbHelper _applyClearDownDataHelpers;
         private RoatpApplyUkprnDataHelpers _applyUkprnDataHelpers;
 
         public RoatpApplyHooks(ScenarioContext context)
@@ -25,7 +26,7 @@ namespace SFA.DAS.Roatp.UITests.Project
             _objectContext = context.Get<ObjectContext>();
             _webDriver = context.GetWebDriver();
             _config = context.GetRoatpConfig<RoatpConfig>();
-            _applyClearDownDataHelpers = new RoatpApplyClearDownDataHelpers(_objectContext, _config);
+            _applyClearDownDataHelpers = new RoatpApplyAndQnASqlDbHelper(_objectContext, _config);
         }
 
         [BeforeScenario(Order = 32)]

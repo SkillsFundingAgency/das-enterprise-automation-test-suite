@@ -75,22 +75,18 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Features.RoatpApply.CreateAccount
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("RP_CA_01_Create_Account")]
-        [NUnit.Framework.CategoryAttribute("rpca01")]
+        [NUnit.Framework.CategoryAttribute("roatpapplycreateaccount")]
         [NUnit.Framework.CategoryAttribute("roatp")]
-        [NUnit.Framework.CategoryAttribute("roatpapply")]
-        [NUnit.Framework.CategoryAttribute("roatca")]
         [NUnit.Framework.CategoryAttribute("regression")]
         public virtual void RP_CA_01_Create_Account()
         {
             string[] tagsOfScenario = new string[] {
-                    "rpca01",
+                    "roatpapplycreateaccount",
                     "roatp",
-                    "roatpapply",
-                    "roatca",
                     "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_CA_01_Create_Account", null, tagsOfScenario, argumentsOfScenario);
-#line 8
+#line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -110,7 +106,7 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 9
+#line 7
  testRunner.Then("the Apply User is able to Create an Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }

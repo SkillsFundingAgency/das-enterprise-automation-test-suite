@@ -1,6 +1,7 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.Roatp.UITests.Project.Helpers.RoatpAdmin;
+using SFA.DAS.Roatp.UITests.Project.Helpers.SqlDbHelpers;
 using SFA.DAS.UI.Framework;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
@@ -16,8 +17,8 @@ namespace SFA.DAS.Roatp.UITests.Project
         private readonly ScenarioContext _context;
         private readonly ObjectContext _objectContext;
         private RoatpAdminUkprnDataHelpers _adminUkprnDataHelpers;
-        private readonly RoatpAdminClearDownDataHelpers _adminClearDownDataHelpers;
-        private readonly RoatpApplyClearDownDataHelpers _roatpApplyClearDownDataHelpers;
+        private readonly RoatpAdminSqlDbHelper _adminClearDownDataHelpers;
+        private readonly RoatpApplySqlDbHelper _roatpApplyClearDownDataHelpers;
         private readonly RoatpConfig _config;
         private readonly IWebDriver _webDriver;
 
@@ -27,8 +28,8 @@ namespace SFA.DAS.Roatp.UITests.Project
             _objectContext = context.Get<ObjectContext>();
             _webDriver = context.GetWebDriver();
             _config = context.GetRoatpConfig<RoatpConfig>();
-            _adminClearDownDataHelpers = new RoatpAdminClearDownDataHelpers(_config);
-            _roatpApplyClearDownDataHelpers = new RoatpApplyClearDownDataHelpers(_config);
+            _adminClearDownDataHelpers = new RoatpAdminSqlDbHelper(_config);
+            _roatpApplyClearDownDataHelpers = new RoatpApplySqlDbHelper(_config);
         }
 
         [BeforeScenario(Order = 32)]
@@ -84,7 +85,7 @@ namespace SFA.DAS.Roatp.UITests.Project
         public void ClearDownFHAAdminData()
         {
             if (_context.ScenarioInfo.Tags.Contains("resetFhaApplicationToNew"))
-                _roatpApplyClearDownDataHelpers.FHAClearDwnDataFromApply(_objectContext.GetUkprn());
+                _roatpApplyClearDownDataHelpers.FHAClearDownDataFromApply(_objectContext.GetUkprn());
         }
 
         [BeforeScenario(Order = 38)]

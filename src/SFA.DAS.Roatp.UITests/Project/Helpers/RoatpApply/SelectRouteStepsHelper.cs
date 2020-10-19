@@ -29,11 +29,6 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.RoatpApply
                .SelectNoCreateAccountAndContinue()
                .EnterAccountDetailsAndClickCreateAccount();
         }
-        internal void CreatePassword()
-        {
-            _restartWebDriverHelper.RestartWebDriver(UrlConfig.RoatpApply_InvitationUrl, "RoatpApplyLogin");
-        }
-
         private ChooseProviderRoutePage ConfirmUkprn() => ConfirmOrganisationsDetailsPage().ClickConfirmAndContinue();
 
         private AlreadyOnRoatpPage ConfirmUkprnForProviderOnRoatp() => ConfirmOrganisationsDetailsPage().ClickConfirmAndContinueForProviderOnRoatp();

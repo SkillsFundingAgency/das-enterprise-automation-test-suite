@@ -3,27 +3,21 @@ using SFA.DAS.UI.FrameworkHelpers;
 using System;
 using System.Collections.Generic;
 
-namespace SFA.DAS.Roatp.UITests.Project.Helpers.RoatpApply
+namespace SFA.DAS.Roatp.UITests.Project.Helpers.SqlDbHelpers
 {
-    public class RoatpApplyClearDownDataHelpers : SqlDbHelper
+    public class RoatpApplyAndQnASqlDbHelper : SqlDbHelper
     {
         private readonly ObjectContext _objectContext;
         private readonly string _qnaDatabaseConnectionString;
-        private readonly string _loginDatabaseConnectionString;
+
         private string Emptyguid => Guid.Empty.ToString();
 
-        public RoatpApplyClearDownDataHelpers(ObjectContext objectContext, RoatpConfig roatpConfig) : base(roatpConfig.ApplyDatabaseConnectionString)
-        { 
+        public RoatpApplyAndQnASqlDbHelper(ObjectContext objectContext, RoatpConfig roatpConfig) : base(roatpConfig.ApplyDatabaseConnectionString)
+        {
             _objectContext = objectContext;
             _qnaDatabaseConnectionString = roatpConfig.QnaDatabaseConnectionString;
-            _loginDatabaseConnectionString = roatpConfig.LoginDatabaseConnectionString;
         }
 
-        public void GetIdFromLoginDB()
-        {
-            var GetId = $"select Id FROM [LoginService].[Invitations] where email = 'Roatp123@mailinator.com'";
-            ExecuteSqlCommand(GetId);
-        }
         public string ClearDownDataFromApply()
         {
             var applicationIdQuery = $"SELECT ApplicationId from dbo.Apply a " +
@@ -47,7 +41,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.RoatpApply
 
         public int WhiteListProviders()
         {
-            var insertWhiteListProviderQuery = 
+            var insertWhiteListProviderQuery =
                 $"IF NOT EXISTS(SELECT * FROM WhitelistedProviders WHERE [UKPRN] = {_objectContext.GetUkprn()}) " +
                 $"BEGIN " +
                 $"INSERT INTO WhitelistedProviders([UKPRN]) VALUES({_objectContext.GetUkprn()}) " +
@@ -74,15 +68,6 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.RoatpApply
             ExecuteSqlCommand(query);
 
             return applicationId;
-        }
-
-        public void ClearDownNewAccountData()
-        {
-            var deleteNewAccountQuery = $"DELETE FROM dbo.Organisations WHERE Id = @OrganisationID;";
-
-            ExecuteSqlCommand(deleteNewAccountQuery);
-
-
         }
     }
 }
