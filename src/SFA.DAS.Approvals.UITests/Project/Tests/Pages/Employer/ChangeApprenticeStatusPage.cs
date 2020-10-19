@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
@@ -9,17 +10,25 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
+        private readonly JavaScriptHelper _javaScriptHelper;
         #endregion
 
 
-        public ChangeApprenticeStatusPage(ScenarioContext context) : base(context) => _context = context;
+        public ChangeApprenticeStatusPage(ScenarioContext context) : base(context)
+        {
+            _context = context;
+            _javaScriptHelper = _context.Get<JavaScriptHelper>();
+        }
 
         private By ChangeTypeOptions => By.CssSelector(".selection-button-radio");
-        protected override By ContinueButton => By.CssSelector("#submit-change-status");
+        private By ChangeTypeOptions1 => By.CssSelector(".govuk-radios__item");
+        private By SelectPauseApprentice => By.Id("SelectedStatusChange-Pause");
+        private By SelectStopApprentice => By.Id("SelectedStatusChange-Stop");
+        protected override By ContinueButton => By.Id("continue-button");
 
         public PauseApprenticePage SelectPauseAndContinue()
         {
-            formCompletionHelper.SelectRadioOptionByForAttribute(ChangeTypeOptions, "ChangeType-Pause");
+            _javaScriptHelper.ClickElement(SelectPauseApprentice);
             Continue();
             return new PauseApprenticePage(_context);
         }
@@ -46,7 +55,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         }
         public HasTheApprenticeBeenMadeRedundantPage SelectStopAndContinueForAWaitingToStartApprentice()
         {
-            formCompletionHelper.SelectRadioOptionByForAttribute(ChangeTypeOptions, "ChangeType-Stop");
+            _javaScriptHelper.ClickElement(SelectStopApprentice);
             Continue();
             return new HasTheApprenticeBeenMadeRedundantPage(_context);
         }
