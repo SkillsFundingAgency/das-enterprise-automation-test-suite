@@ -42,7 +42,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         internal ThisApprenticeshipTrainingStopPage SelectStopAndContinueForAStartedApprentice()
         {
-            formCompletionHelper.SelectRadioOptionByForAttribute(ChangeTypeOptions, "ChangeType-Stop");
+            _javaScriptHelper.ClickElement(SelectStopApprentice);
             Continue();
             return new ThisApprenticeshipTrainingStopPage(_context);
         }
