@@ -19,6 +19,8 @@ namespace SFA.DAS.UI.FrameworkHelpers
             _retryHelper = retryHelper;
         }
 
+        public void InvokeAction(Action action, Action retryAction = null) => _retryHelper.RetryOnWebDriverException(action, retryAction);
+
         public void WaitForElementToChange(By locator, string text) => _webDriverWaitHelper.TextToBePresentInElementLocated(locator, text);
 
         public void WaitForElementToChange(By locator, string attribute, string value) => WaitForElementToChange(() => FindElement(locator), attribute, value);

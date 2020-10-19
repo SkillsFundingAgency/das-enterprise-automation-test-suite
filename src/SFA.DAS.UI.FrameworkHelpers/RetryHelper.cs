@@ -75,6 +75,24 @@ namespace SFA.DAS.UI.FrameworkHelpers
                });
         }
 
+        internal void RetryOnWebDriverException(Action action, Action retryAction = null)
+        {
+            Policy
+                .Handle<WebDriverException>()
+                .WaitAndRetry(TimeOut, (exception, timeSpan, retryCount, context) =>
+                {
+                    Report(retryCount, exception);
+                    retryAction?.Invoke();
+                })
+                .Execute(() =>
+                {
+                    using var testcontext = new NUnit.Framework.Internal.TestExecutionContext.IsolatedContext();
+                    {
+                        action.Invoke();
+                    } 
+                });
+        }
+
         internal T RetryOnWebDriverException<T>(Func<T> func, Action retryAction = null)
         {
             T result = default;
