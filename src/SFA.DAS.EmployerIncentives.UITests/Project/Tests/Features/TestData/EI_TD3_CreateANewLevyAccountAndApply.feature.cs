@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Features.ShutterPages.NewLevyAccount.QualificationAndApprenticesShutterNoCommitments.MultipleEntities
+namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Features.TestData
 {
     using TechTalk.SpecFlow;
     using System;
@@ -20,22 +20,22 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Features.ShutterPages
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.3.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("EI_QSApS_NewLevyAc_NC_ME_01")]
-    public partial class EI_QSApS_NewLevyAc_NC_ME_01Feature
+    [NUnit.Framework.DescriptionAttribute("EI_TD3_CreateANewLevyAccountAndApply")]
+    public partial class EI_TD3_CreateANewLevyAccountAndApplyFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private string[] _featureTags = ((string[])(null));
         
-#line 1 "EI_QSApS_NewLevyAc_NC_ME_01.feature"
+#line 1 "EI_TD3_CreateANewLevyAccountAndApply.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "EI_QSApS_NewLevyAc_NC_ME_01", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "EI_TD3_CreateANewLevyAccountAndApply", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,21 +74,17 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Features.ShutterPages
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("EI_QSApS_NewLevyAc_NC_ME_01_Validate Shutter pages for New Levy Account with Two " +
-            "legal entities and No Commitments")]
-        [NUnit.Framework.CategoryAttribute("regression")]
+        [NUnit.Framework.DescriptionAttribute("EI_TD3_Create A LevyAccount with Commitments and apply for EI")]
         [NUnit.Framework.CategoryAttribute("addpayedetails")]
-        [NUnit.Framework.CategoryAttribute("employerincentives")]
-        public virtual void EI_QSApS_NewLevyAc_NC_ME_01_ValidateShutterPagesForNewLevyAccountWithTwoLegalEntitiesAndNoCommitments()
+        [NUnit.Framework.CategoryAttribute("dfeuatachieveservice")]
+        public virtual void EI_TD3_CreateALevyAccountWithCommitmentsAndApplyForEI()
         {
             string[] tagsOfScenario = new string[] {
-                    "regression",
                     "addpayedetails",
-                    "employerincentives"};
+                    "dfeuatachieveservice"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EI_QSApS_NewLevyAc_NC_ME_01_Validate Shutter pages for New Levy Account with Two " +
-                    "legal entities and No Commitments", null, tagsOfScenario, argumentsOfScenario);
-#line 6
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EI_TD3_Create A LevyAccount with Commitments and apply for EI", null, tagsOfScenario, argumentsOfScenario);
+#line 5
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -108,33 +104,31 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 7
+#line 6
  testRunner.Given("an Employer creates a Levy Account and Signs the Agreement", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
+#line 7
+ testRunner.When("the Employer adds 2 apprentices Aged16to24 as of 01AUG2020 with start date as Mon" +
+                        "th 8 and Year 2020", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
 #line 8
- testRunner.And("the Employer adds another legal entity", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("the Provider approves the apprenticeship request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 9
- testRunner.When("the Employer Initiates EI Application journey for Multiple entity account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.Then("the Employer is able to navigate to EI start page for Single entity account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 10
- testRunner.Then("Qualification question shutter page is displayed for selecting No option in Quali" +
-                        "fication page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("the Employer is able to submit the EI Application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 11
- testRunner.And("Employer Home page is displayed on clicking on Return to Account Home button on Q" +
-                        "ualification shutter page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.When("the Employer Initiates EI Application journey for Single entity account again", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 12
- testRunner.When("the Employer navigates back to Qualification page for Multiple entity account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 13
  testRunner.Then("Select apprentices shutter page is displayed for selecting Yes option in Qualific" +
                         "ation page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 14
- testRunner.And("Approvals home page is displayed on clicking on Add apprentices link on Select ap" +
-                        "prentices shutter page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 13
+ testRunner.And("the Employer is able to navigate to View Applications page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();

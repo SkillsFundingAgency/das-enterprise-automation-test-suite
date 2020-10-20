@@ -1,7 +1,7 @@
 ﻿using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
+namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.DfeUat
 {
     public class DfeUatHomePage : EIBasePage
     {
@@ -10,6 +10,5 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
         protected override By PageHeader => By.CssSelector("#homepageContent");
 
         public DfeUatHomePage(ScenarioContext context) : base(context) { }
-
     }
 }

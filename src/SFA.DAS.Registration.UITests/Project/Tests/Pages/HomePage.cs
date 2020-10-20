@@ -22,7 +22,8 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         private By YourSavedFavouritesLink => By.CssSelector(".das-favourites-link__text");
         private By ContinueTo => By.LinkText("Continue");
         private By SetUpAnApprenticeshipSectionHeader => By.Id("set-up-an-apprenticeship");
-        protected By ApplyForTheHireANewApprenticePaymentLink => By.LinkText("Apply for the hire a new apprentice payment");
+        protected By ApplyForEILink => By.LinkText("Apply for the hire a new apprentice payment");
+        protected By ViewEIApplicationsLink => By.LinkText("Your hire a new apprentice payment applications");
         #endregion
 
         public HomePage(ScenarioContext context, bool navigate) : base(context, navigate)

@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Features.TestData
+namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Features.ShutterPages.NewNonLevyAccount.QualAndApprenticesNoCommitments.SingleEntity
 {
     using TechTalk.SpecFlow;
     using System;
@@ -20,22 +20,22 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Features.TestData
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.3.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("EI_TD1_CreateALevyAccountWithCommitments")]
-    public partial class EI_TD1_CreateALevyAccountWithCommitmentsFeature
+    [NUnit.Framework.DescriptionAttribute("EI_QSApS_NewNonLevyAc_NC_SE_01")]
+    public partial class EI_QSApS_NewNonLevyAc_NC_SE_01Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private string[] _featureTags = ((string[])(null));
         
-#line 1 "EI_TD1_CreateALevyAccountWithCommitments.feature"
+#line 1 "EI_QSApS_NewNonLevyAc_NC_SE_01.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "EI_TD1_CreateALevyAccountWithCommitments", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "EI_QSApS_NewNonLevyAc_NC_SE_01", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,15 +74,21 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Features.TestData
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("EI_TD1_Create A LevyAccount and add some Commitments")]
+        [NUnit.Framework.DescriptionAttribute("EI_QSApS_NewNonLevyAc_NC_SE_01_Validate Shutter pages for New Non Levy Account wi" +
+            "th One legal entity and No Commitments")]
+        [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("addpayedetails")]
-        public virtual void EI_TD1_CreateALevyAccountAndAddSomeCommitments()
+        [NUnit.Framework.CategoryAttribute("employerincentives")]
+        public virtual void EI_QSApS_NewNonLevyAc_NC_SE_01_ValidateShutterPagesForNewNonLevyAccountWithOneLegalEntityAndNoCommitments()
         {
             string[] tagsOfScenario = new string[] {
-                    "addpayedetails"};
+                    "regression",
+                    "addpayedetails",
+                    "employerincentives"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EI_TD1_Create A LevyAccount and add some Commitments", null, tagsOfScenario, argumentsOfScenario);
-#line 4
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EI_QSApS_NewNonLevyAc_NC_SE_01_Validate Shutter pages for New Non Levy Account wi" +
+                    "th One legal entity and No Commitments", null, tagsOfScenario, argumentsOfScenario);
+#line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -102,18 +108,30 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 5
- testRunner.Given("an Employer creates a Levy Account and Signs the Agreement", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
-#line 6
- testRunner.When("the Employer adds 5 apprentices Aged16to24 as of 01AUG2020 with start date as Mon" +
-                        "th 8 and Year 2020", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
 #line 7
- testRunner.And("the Provider approves the apprenticeship request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Given("an Employer creates a Non Levy Account and Signs the Agreement", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 8
- testRunner.Then("the Employer is able to navigate to EI start page for Single entity account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.When("the Employer Initiates EI Application journey for Single entity account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 9
+ testRunner.Then("Qualification question shutter page is displayed for selecting No option in Quali" +
+                        "fication page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 10
+ testRunner.And("Employer Home page is displayed on clicking on Return to Account Home button on Q" +
+                        "ualification shutter page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 11
+ testRunner.When("the Employer navigates back to Qualification page for Single entity account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 12
+ testRunner.Then("Select apprentices shutter page is displayed for selecting Yes option in Qualific" +
+                        "ation page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 13
+ testRunner.And("Approvals home page is displayed on clicking on Add apprentices link on Select ap" +
+                        "prentices shutter page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
