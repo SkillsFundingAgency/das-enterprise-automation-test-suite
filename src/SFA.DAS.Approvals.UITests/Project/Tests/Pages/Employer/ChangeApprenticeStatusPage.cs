@@ -14,11 +14,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         #endregion
 
 
-        public ChangeApprenticeStatusPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            _javaScriptHelper = _context.Get<JavaScriptHelper>();
-        }
+        public ChangeApprenticeStatusPage(ScenarioContext context) : base(context) => _context = context;
+      
 
         private By ChangeTypeOptions => By.CssSelector(".selection-button-radio");
         private By SelectPauseApprentice => By.Id("SelectedStatusChange-Pause");
@@ -27,7 +24,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         public PauseApprenticePage SelectPauseAndContinue()
         {
-            _javaScriptHelper.ClickElement(SelectPauseApprentice);
+            javaScriptHelper.ClickElement(SelectPauseApprentice);
             Continue();
             return new PauseApprenticePage(_context);
         }
@@ -41,7 +38,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         internal ThisApprenticeshipTrainingStopPage SelectStopAndContinueForAStartedApprentice()
         {
-            _javaScriptHelper.ClickElement(SelectStopApprentice);
+            javaScriptHelper.ClickElement(SelectStopApprentice);
             Continue();
             return new ThisApprenticeshipTrainingStopPage(_context);
         }
@@ -54,7 +51,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         }
         public HasTheApprenticeBeenMadeRedundantPage SelectStopAndContinueForAWaitingToStartApprentice()
         {
-            _javaScriptHelper.ClickElement(SelectStopApprentice);
+            javaScriptHelper.ClickElement(SelectStopApprentice);
             Continue();
             return new HasTheApprenticeBeenMadeRedundantPage(_context);
         }
