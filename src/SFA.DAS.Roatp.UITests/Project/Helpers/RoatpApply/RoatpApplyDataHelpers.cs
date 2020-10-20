@@ -7,6 +7,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.RoatpApply
     {
         public RoatpApplyDataHelpers(RandomDataGenerator randomDataGenerator) : base(randomDataGenerator)
         {
+            Password = randomDataGenerator.GenerateRandomPassword(2, 2, 2, 2);
             CompanyNumber = randomDataGenerator.GenerateRandomNumber(8);
             CompanyName = $"{CompanyNumber}EnterpriseTestDemo";
             IocNumber = randomDataGenerator.GenerateRandomAlphanumericString(8);
@@ -60,7 +61,9 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.RoatpApply
         public string GivenName => "Test";
         public string FamilyName => "CreateAccount";
         public string JobRole => "Employee";
+        public string CreateAccountEmail => $"{GivenName}.{FamilyName}@mailinator.com";
         public string Email => "test.demo@digital.education.gov.uk";
+        public string Password { get; }
         public string ContactNumber => "1234567890";
         public string BuildingAndStreet { get; }
         public string TownOrCity { get; }

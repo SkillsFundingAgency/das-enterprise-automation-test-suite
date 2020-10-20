@@ -30,7 +30,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
         {
             formCompletionHelper.EnterText(GivenNameTextbox, applydataHelpers.GivenName);
             formCompletionHelper.EnterText(FamilyNameTextbox, applydataHelpers.FamilyName);
-            formCompletionHelper.EnterText(EmailAddressTextbox, applydataHelpers.Email);
+            formCompletionHelper.EnterText(EmailAddressTextbox, applydataHelpers.CreateAccountEmail);
             Continue();
             return new ConfirmYourIdentityPage(_context);
         }

@@ -1,6 +1,4 @@
 ﻿using SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply;
-using SFA.DAS.UI.Framework;
-using SFA.DAS.UI.Framework.TestSupport;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Roatp.UITests.Project.Helpers.RoatpApply
@@ -8,7 +6,6 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.RoatpApply
     public class SelectRouteStepsHelper
     {
         private readonly ScenarioContext _context;
-        private readonly RestartWebDriverHelper _restartWebDriverHelper;
 
         public SelectRouteStepsHelper(ScenarioContext context) => _context = context;
 
@@ -22,13 +19,6 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.RoatpApply
 
         internal ApplicationOverviewPage CompleteProviderSupportRouteSection() => AcceptAndContinue(ConfirmUkprn().SelectApplicationRouteAsSupporting());
 
-        internal ConfirmYourIdentityPage CompleteNewAccountDetails()
-        {
-            return new ServiceStartPage(_context)
-               .ClickApplyNow()
-               .SelectNoCreateAccountAndContinue()
-               .EnterAccountDetailsAndClickCreateAccount();
-        }
         private ChooseProviderRoutePage ConfirmUkprn() => ConfirmOrganisationsDetailsPage().ClickConfirmAndContinue();
 
         private AlreadyOnRoatpPage ConfirmUkprnForProviderOnRoatp() => ConfirmOrganisationsDetailsPage().ClickConfirmAndContinueForProviderOnRoatp();

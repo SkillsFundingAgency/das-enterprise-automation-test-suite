@@ -1,9 +1,6 @@
-﻿using OpenQA.Selenium;
-using SFA.DAS.ConfigurationBuilder;
-using SFA.DAS.Roatp.UITests.Project.Helpers.RoatpApply;
+﻿using SFA.DAS.Roatp.UITests.Project.Helpers.RoatpApply;
 using SFA.DAS.Roatp.UITests.Project.Helpers.SqlDbHelpers;
 using SFA.DAS.UI.Framework;
-using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using System.Linq;
 using TechTalk.SpecFlow;
@@ -11,22 +8,16 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.Roatp.UITests.Project
 {
     [Binding, Scope(Tag = "roatpapply")]
-    public class RoatpApplyHooks
+    public class RoatpApplyHooks : RoatpBaseHooks
     {
         private readonly ScenarioContext _context;
-        private readonly ObjectContext _objectContext;
-        private readonly IWebDriver _webDriver;
-        private readonly RoatpConfig _config;
-        private readonly RoatpApplyAndQnASqlDbHelper _applyClearDownDataHelpers;
+        private readonly RoatpApplyAndQnASqlDbHelper _roatpApplyAndQnASqlDbHelper;
         private RoatpApplyUkprnDataHelpers _applyUkprnDataHelpers;
 
-        public RoatpApplyHooks(ScenarioContext context)
+        public RoatpApplyHooks(ScenarioContext context) : base(context)
         {
             _context = context;
-            _objectContext = context.Get<ObjectContext>();
-            _webDriver = context.GetWebDriver();
-            _config = context.GetRoatpConfig<RoatpConfig>();
-            _applyClearDownDataHelpers = new RoatpApplyAndQnASqlDbHelper(_objectContext, _config);
+            _roatpApplyAndQnASqlDbHelper = new RoatpApplyAndQnASqlDbHelper(objectContext, config);
         }
 
         [BeforeScenario(Order = 32)]
@@ -45,17 +36,17 @@ namespace SFA.DAS.Roatp.UITests.Project
             var tag = _context.ScenarioInfo.Tags.ToList().Single(x => x.StartsWith("rp"));
             var (email, ukprn) = _applyUkprnDataHelpers.GetRoatpAppplyData(tag);
 
-            _objectContext.SetEmail(email);
-            _objectContext.SetUkprn(ukprn);
+            objectContext.SetEmail(email);
+            objectContext.SetUkprn(ukprn);
         }
 
         [BeforeScenario(Order = 34)]
-        public void ClearDownApplyData() => _applyClearDownDataHelpers.ClearDownDataFromQna(_applyClearDownDataHelpers.ClearDownDataFromApply());
+        public void ClearDownApplyData() => _roatpApplyAndQnASqlDbHelper.ClearDownDataFromQna(_roatpApplyAndQnASqlDbHelper.ClearDownDataFromApply());
 
         [BeforeScenario(Order = 35)]
-        public void WhiteListProviders() => _applyClearDownDataHelpers.WhiteListProviders();
+        public void WhiteListProviders() => _roatpApplyAndQnASqlDbHelper.WhiteListProviders();
 
         [BeforeScenario(Order = 36)]
-        public void NavigateToRoatpApply() => _webDriver.Navigate().GoToUrl(UrlConfig.Apply_BaseUrl);
+        public void NavigateToRoatpApply() => GoToUrl(UrlConfig.Apply_BaseUrl);
     }
 }

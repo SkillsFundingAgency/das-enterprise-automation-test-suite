@@ -1,9 +1,6 @@
 ﻿using SFA.DAS.Roatp.UITests.Project.Helpers.RoatpApply;
 using SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply;
 using SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.Finish_Section9;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpApply
@@ -11,26 +8,22 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpApply
     [Binding]
     public class End2EndSteps
     {
-        private readonly ScenarioContext _context;
         private readonly RoatpApplyEnd2EndStepsHelper _end2EndStepsHelper;
         private readonly SelectRouteStepsHelper _selectRouteStepsHelper;
+        
         private ApplicationOverviewPage _overviewPage;
         private ApplicationSubmittedPage _applicationSubmittedPage;
         private readonly FinancialEvidence_Section2_Helper _financialEvidence_Section2_Helper;
 
         public End2EndSteps(ScenarioContext context)
         {
-            _context = context;
             _end2EndStepsHelper = new RoatpApplyEnd2EndStepsHelper();
-            _selectRouteStepsHelper = new SelectRouteStepsHelper(_context);
+            _selectRouteStepsHelper = new SelectRouteStepsHelper(context);
             _financialEvidence_Section2_Helper = new FinancialEvidence_Section2_Helper();
         }
 
         [Then(@"the provider do not accept the Terms and conditions")]
         public void ThenTheProviderDoNotAcceptTheTermsAndConditions() => _selectRouteStepsHelper.DoNotAcceptTermsConditions();
-
-        [Then(@"the Apply User is able to Create an Account")]
-        public void ThenTheApplyUserIsAbleToCreateAnAccount() => _selectRouteStepsHelper.CompleteNewAccountDetails();
 
         [Given(@"the provider initates an application as main route company")]
         public void GivenTheProviderInitatesAnApplicationAsMainRouteCompany() => _overviewPage = _selectRouteStepsHelper.CompleteProviderMainRouteSection();
