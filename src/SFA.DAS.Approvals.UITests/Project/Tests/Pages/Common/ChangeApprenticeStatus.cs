@@ -1,13 +1,10 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
 {
     public abstract class ChangeApprenticeStatus : ApprovalsBasePage
     {
-
-        private By SelectPauseConfirmed => By.Id("PauseConfirmed");
         private By ConfirmButton => By.Id("submit-status-change");
         private By ConfirmResumeOptions => By.CssSelector(".selection-button-radio");
 
@@ -16,7 +13,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
         
         public void SelectYesAndConfirmPause()
         {
-            javaScriptHelper.ClickElement(SelectPauseConfirmed);
+            formCompletionHelper.SelectRadioOptionByText("Yes, pause this apprenticeship");
             formCompletionHelper.ClickElement(ConfirmButton);
         }
         public void SelectYesAndConfirm()
