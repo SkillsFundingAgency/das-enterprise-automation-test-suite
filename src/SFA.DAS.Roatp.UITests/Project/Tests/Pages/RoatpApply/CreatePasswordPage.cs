@@ -38,10 +38,10 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
 
         }
 
-        public SigUpCompletePage CreatePassword()
+        public SigUpCompletePage CreatePassword(string pasword)
         {
-            formCompletionHelper.EnterText(Password, applydataHelpers.Password);
-            formCompletionHelper.EnterText(ConfirmPassword, applydataHelpers.Password);
+            formCompletionHelper.EnterText(Password, pasword);
+            formCompletionHelper.EnterText(ConfirmPassword, pasword);
             formCompletionHelper.ClickButtonByText(SubmitButton, "Submit");
             return new SigUpCompletePage(_context);
         }
