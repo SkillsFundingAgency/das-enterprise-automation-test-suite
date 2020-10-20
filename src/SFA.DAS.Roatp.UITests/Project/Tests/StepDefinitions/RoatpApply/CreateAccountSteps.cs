@@ -29,6 +29,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpApply
         public void ThenTheApplyUserIsAbleToCreateAnAccount()
         {
             string invitationId = string.Empty;
+
             string email = _applydataHelpers.CreateAccountEmail;
 
             new ServiceStartPage(_context)
@@ -43,7 +44,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpApply
                 Assert.IsNotEmpty(invitationId, $"Invitation id not found in the Login db for email '{email}'");
             });
 
-            new CreatePasswordPage(_context, invitationId).CreatePassword();
+            new CreatePasswordPage(_context).CreatePassword();
         }
     }
 }
