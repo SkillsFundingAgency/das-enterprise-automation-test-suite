@@ -25,19 +25,23 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpApply
             _loginInvitationsSqlDbHelper = new LoginInvitationsSqlDbHelper(context.GetRoatpConfig<RoatpConfig>());
         }
 
-        [Then(@"the Apply User is able to Create an Account")]
-        public void ThenTheApplyUserIsAbleToCreateAnAccount()
+        [Given(@"an apply user creates an account")]
+        public void GivenAnApplyUserCreatesAnAccount()
+        {
+            new ServiceStartPage(_context)
+                .ClickApplyNow()
+                .SelectNoCreateAccountAndContinue()
+                .EnterAccountDetailsAndClickCreateAccount();
+        }
+
+        [Then(@"an account is created")]
+        public void ThenAnAccountIsCreated()
         {
             string invitationId = string.Empty;
 
             string email = _applydataHelpers.CreateAccountEmail;
 
-            new ServiceStartPage(_context)
-                  .ClickApplyNow()
-                  .SelectNoCreateAccountAndContinue()
-                  .EnterAccountDetailsAndClickCreateAccount();
-
-            _assertHelper.RetryOnNUnitException(() => 
+            _assertHelper.RetryOnNUnitException(() =>
             {
                 invitationId = _loginInvitationsSqlDbHelper.GetId(email);
 
