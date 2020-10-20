@@ -4,6 +4,6 @@
 @roatp
 @regression
 Scenario: RP_CA_01_Create_Account
-	Given an apply user creates an account
-	Then an account is created
-	
+	When user submits the details to create an account
+	Then the user is able to create an account using the invitation
+		

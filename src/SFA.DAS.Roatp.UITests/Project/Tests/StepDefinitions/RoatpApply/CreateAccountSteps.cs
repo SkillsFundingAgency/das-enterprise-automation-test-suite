@@ -27,8 +27,8 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpApply
             _loginInvitationsSqlDbHelper = new LoginInvitationsSqlDbHelper(context.GetRoatpConfig<RoatpConfig>());
         }
 
-        [Given(@"an apply user creates an account")]
-        public void GivenAnApplyUserCreatesAnAccount()
+        [When(@"user submits the details to create an account")]
+        public void WhenUserSubmitsTheDetailsToCreateAnAccount()
         {
             new ServiceStartPage(_context)
                 .ClickApplyNow()
@@ -36,8 +36,8 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.StepDefinitions.RoatpApply
                 .EnterAccountDetailsAndClickCreateAccount();
         }
 
-        [Then(@"an account is created")]
-        public void ThenAnAccountIsCreated()
+        [Then(@"the user is able to create an account using the invitation")]
+        public void ThenTheUserIsAbleToCreateAnAccountUsingTheInvitation()
         {
             string invitationId = string.Empty;
 
