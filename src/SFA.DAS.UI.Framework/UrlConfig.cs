@@ -29,5 +29,6 @@ namespace SFA.DAS.UI.Framework
             bool _ when EnvironmentConfig.IsPPEnvironment => "https://esfa-preprod.zendesk.com",
             _ => "",
         };
+        public static string RoatpApply_InvitationUrl => $"https://{EnvironmentConfig.EnvironmentName}-aslogin.apprenticeships.education.gov.uk/Invitations/CreatePassword/";
     }
 }

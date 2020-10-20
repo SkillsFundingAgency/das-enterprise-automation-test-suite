@@ -1,13 +1,11 @@
 ﻿using SFA.DAS.ConfigurationBuilder;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace SFA.DAS.Roatp.UITests.Project
 {
     public static class ObjectContextExtension
     {
         #region Constants
+        private const string CreateAccountCredsKey = "createAccountcredskey";
         private const string EmailKey = "emailkey";
         private const string ProviderNameKey = "providernamekey";
         private const string OrganisationTypeKey = "organisationtypekey";
@@ -15,6 +13,7 @@ namespace SFA.DAS.Roatp.UITests.Project
         private const string ApplicationReference = "applicationreference";
         #endregion
 
+        internal static void SetCreateAccountCreds(this ObjectContext objectContext, string email, string password) => objectContext.Set(CreateAccountCredsKey, $"Email : {email}, Password : {password}");
         internal static void SetEmail(this ObjectContext objectContext, string email) => objectContext.Replace(EmailKey, email);
         internal static void SetProviderName(this ObjectContext objectContext, string providername) => objectContext.Replace(ProviderNameKey, providername);
         internal static void UpdateOrganisationType(this ObjectContext objectContext, string organisationType) => objectContext.Replace(OrganisationTypeKey, organisationType);

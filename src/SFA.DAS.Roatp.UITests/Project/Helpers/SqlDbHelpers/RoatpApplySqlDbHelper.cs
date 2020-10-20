@@ -1,10 +1,10 @@
 ﻿using SFA.DAS.UI.FrameworkHelpers;
 
-namespace SFA.DAS.Roatp.UITests.Project.Helpers.RoatpAdmin
+namespace SFA.DAS.Roatp.UITests.Project.Helpers.SqlDbHelpers
 {
-    public class RoatpApplyClearDownDataHelpers : SqlDbHelper
+    public class RoatpApplySqlDbHelper : SqlDbHelper
     {
-        public RoatpApplyClearDownDataHelpers(RoatpConfig roatpConfig) : base(roatpConfig.ApplyDatabaseConnectionString) { }
+        public RoatpApplySqlDbHelper(RoatpConfig roatpConfig) : base(roatpConfig.ApplyDatabaseConnectionString) { }
 
         public void GateWayClearDownDataFromApply(string ukprn)
         {
@@ -23,7 +23,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.RoatpAdmin
             ExecuteSqlCommand(GateWayResetQuery);
         }
 
-        public void FHAClearDwnDataFromApply(string ukprn)
+        public void FHAClearDownDataFromApply(string ukprn)
         {
             var FhaResetQuery = $"DECLARE @ApplicationID UNIQUEIDENTIFIER; " +
             $" SELECT @ApplicationID = ApplicationId FROM dbo.apply WHERE [UKPRN] = {ukprn} " +

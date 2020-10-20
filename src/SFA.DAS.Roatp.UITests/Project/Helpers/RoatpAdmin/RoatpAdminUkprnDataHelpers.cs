@@ -67,19 +67,19 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.RoatpAdmin
             _adminData.Add("rpadas01",
             new List<KeyValuePair<string, string>>
             {
-                    new KeyValuePair<string, string>(providernamekey, "Main provider"),
+                    new KeyValuePair<string, string>(providernamekey, "7TAO ENGINEERING UK LIMITED"),
                     new KeyValuePair<string, string>(ukprnkey, "10082318"),
             });
             _adminData.Add("rpadas02",
             new List<KeyValuePair<string, string>>
             {
-                    new KeyValuePair<string, string>(providernamekey, "Supporting provider"),
+                    new KeyValuePair<string, string>(providernamekey, "ARTHUR MUREVERWI"),
                     new KeyValuePair<string, string>(ukprnkey, "10028295"),
             });
             _adminData.Add("rpadas03",
             new List<KeyValuePair<string, string>>
             {
-                    new KeyValuePair<string, string>(providernamekey, "Employer provider"),
+                    new KeyValuePair<string, string>(providernamekey, "SHOCKOUT ACADEMY"),
                     new KeyValuePair<string, string>(ukprnkey, "10065987"),
             });
             _adminData.Add("rpadmod01",

@@ -1,8 +1,6 @@
-﻿using OpenQA.Selenium;
-using SFA.DAS.ConfigurationBuilder;
-using SFA.DAS.Roatp.UITests.Project.Helpers.RoatpAdmin;
+﻿using SFA.DAS.Roatp.UITests.Project.Helpers.RoatpAdmin;
+using SFA.DAS.Roatp.UITests.Project.Helpers.SqlDbHelpers;
 using SFA.DAS.UI.Framework;
-using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using System;
 using System.Linq;
@@ -11,24 +9,18 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.Roatp.UITests.Project
 {
     [Binding, Scope(Tag = "roatpadmin"), Scope(Tag = "roatpassessor") ]
-    public class RoatpAdminHooks
+    public class RoatpAdminHooks : RoatpBaseHooks
     {
         private readonly ScenarioContext _context;
-        private readonly ObjectContext _objectContext;
         private RoatpAdminUkprnDataHelpers _adminUkprnDataHelpers;
-        private readonly RoatpAdminClearDownDataHelpers _adminClearDownDataHelpers;
-        private readonly RoatpApplyClearDownDataHelpers _roatpApplyClearDownDataHelpers;
-        private readonly RoatpConfig _config;
-        private readonly IWebDriver _webDriver;
+        private readonly RoatpAdminSqlDbHelper _adminClearDownDataHelpers;
+        private readonly RoatpApplySqlDbHelper _roatpApplyClearDownDataHelpers;
 
-        public RoatpAdminHooks(ScenarioContext context)
+        public RoatpAdminHooks(ScenarioContext context) : base(context)
         {
             _context = context;
-            _objectContext = context.Get<ObjectContext>();
-            _webDriver = context.GetWebDriver();
-            _config = context.GetRoatpConfig<RoatpConfig>();
-            _adminClearDownDataHelpers = new RoatpAdminClearDownDataHelpers(_config);
-            _roatpApplyClearDownDataHelpers = new RoatpApplyClearDownDataHelpers(_config);
+            _adminClearDownDataHelpers = new RoatpAdminSqlDbHelper(config);
+            _roatpApplyClearDownDataHelpers = new RoatpApplySqlDbHelper(config);
         }
 
         [BeforeScenario(Order = 32)]
@@ -52,8 +44,8 @@ namespace SFA.DAS.Roatp.UITests.Project
                 var tag = _context.ScenarioInfo.Tags.ToList().Single(x => x.StartsWith("rpad"));
                 var (providername, ukprn) = _adminUkprnDataHelpers.GetRoatpAdminData(tag);
 
-                _objectContext.SetProviderName(providername);
-                _objectContext.SetUkprn(ukprn);
+                objectContext.SetProviderName(providername);
+                objectContext.SetUkprn(ukprn);
             }
         }
 
@@ -61,44 +53,44 @@ namespace SFA.DAS.Roatp.UITests.Project
         public void ClearDownAdminData()
         {
             if (_context.ScenarioInfo.Tags.Contains("deletetrainingprovider"))
-                _adminClearDownDataHelpers.DeleteTrainingProvider(_objectContext.GetUkprn());
+                _adminClearDownDataHelpers.DeleteTrainingProvider(objectContext.GetUkprn());
         }
 
         [BeforeScenario(Order = 35)]
         public void Navigate()
         {
             if (_context.ScenarioInfo.Tags.Contains("roatpadmin"))
-                _webDriver.Navigate().GoToUrl(UrlConfig.Admin_BaseUrl);
+                GoToUrl(UrlConfig.Admin_BaseUrl);
             else if (_context.ScenarioInfo.Tags.Contains("roatpassessor"))
-                _webDriver.Navigate().GoToUrl(UrlConfig.RoATPAssessor_BaseUrl);
+                GoToUrl(UrlConfig.RoATPAssessor_BaseUrl);
         }
 
         [BeforeScenario(Order = 36)]
         public void ClearDownGateWayAdminData()
         {
             if (_context.ScenarioInfo.Tags.Contains("resetApplicationToNew"))
-                _roatpApplyClearDownDataHelpers.GateWayClearDownDataFromApply(_objectContext.GetUkprn());
+                _roatpApplyClearDownDataHelpers.GateWayClearDownDataFromApply(objectContext.GetUkprn());
         }
 
         [BeforeScenario(Order = 37)]
         public void ClearDownFHAAdminData()
         {
             if (_context.ScenarioInfo.Tags.Contains("resetFhaApplicationToNew"))
-                _roatpApplyClearDownDataHelpers.FHAClearDwnDataFromApply(_objectContext.GetUkprn());
+                _roatpApplyClearDownDataHelpers.FHAClearDownDataFromApply(objectContext.GetUkprn());
         }
 
         [BeforeScenario(Order = 38)]
         public void ClearDownAssessorAdminData()
         {
             if (_context.ScenarioInfo.Tags.Contains("roatpassessor"))
-                _roatpApplyClearDownDataHelpers.AssessorClearDownDataFromApply(_objectContext.GetUkprn());
+                _roatpApplyClearDownDataHelpers.AssessorClearDownDataFromApply(objectContext.GetUkprn());
         }
 
         [BeforeScenario(Order = 39)]
         public void ClearDownModeratorAdminData()
         {
             if (_context.ScenarioInfo.Tags.Contains("roatpmoderator"))
-                _roatpApplyClearDownDataHelpers.ModeratorClearDownDataFromApply(_objectContext.GetUkprn());
+                _roatpApplyClearDownDataHelpers.ModeratorClearDownDataFromApply(objectContext.GetUkprn());
         }
     }
 }
