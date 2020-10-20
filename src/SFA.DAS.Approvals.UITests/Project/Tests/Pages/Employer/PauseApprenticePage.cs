@@ -13,10 +13,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         public PauseApprenticePage(ScenarioContext context) : base(context) => _context = context;
 
-        public new PausedApprenticeDetailsPage SelectYesAndConfirm()
+        public new ApprenticeDetailsPage SelectYesAndConfirm()
         {
-            base.SelectYesAndConfirm();
-            return new PausedApprenticeDetailsPage(_context);
+            base.SelectYesAndConfirmPause();
+            return new ApprenticeDetailsPage(_context);
         }
     }
 }

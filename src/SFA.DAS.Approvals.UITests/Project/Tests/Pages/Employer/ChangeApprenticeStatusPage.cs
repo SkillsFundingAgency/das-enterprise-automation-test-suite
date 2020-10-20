@@ -21,10 +21,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         }
 
         private By ChangeTypeOptions => By.CssSelector(".selection-button-radio");
-        private By ChangeTypeOptions1 => By.CssSelector(".govuk-radios__item");
         private By SelectPauseApprentice => By.Id("SelectedStatusChange-Pause");
         private By SelectStopApprentice => By.Id("SelectedStatusChange-Stop");
-        protected override By ContinueButton => By.Id("continue-button");
+        protected override By ContinueButton => By.XPath("//button[contains(text(),'Save and continue')]");
 
         public PauseApprenticePage SelectPauseAndContinue()
         {

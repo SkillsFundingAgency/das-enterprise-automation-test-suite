@@ -9,13 +9,19 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
 
         private By SelectPauseConfirmed => By.Id("PauseConfirmed");
         private By ConfirmButton => By.Id("submit-status-change");
+        private By ConfirmResumeOptions => By.CssSelector(".selection-button-radio");
 
 
         protected ChangeApprenticeStatus(ScenarioContext context) : base(context) {}
         
-        public void SelectYesAndConfirm()
+        public void SelectYesAndConfirmPause()
         {
             javaScriptHelper.ClickElement(SelectPauseConfirmed);
+            formCompletionHelper.ClickElement(ConfirmButton);
+        }
+        public void SelectYesAndConfirm()
+        {
+            formCompletionHelper.SelectRadioOptionByForAttribute(ConfirmResumeOptions, "ChangeConfirmed-True");
             formCompletionHelper.ClickElement(ConfirmButton);
         }
     }
