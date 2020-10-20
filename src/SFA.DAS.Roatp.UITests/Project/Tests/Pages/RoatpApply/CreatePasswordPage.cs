@@ -24,7 +24,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
             
             VerifyPage(() =>
             {
-                context.Get<TabHelper>().GoToUrl(UrlConfig.RoatpApply_InvitationUrl, invitationId);
+                context.Get<TabHelper>().OpenInNewTab(UrlConfig.RoatpApply_InvitationUrl, invitationId);
 
                 return pageInteractionHelper.FindElements(PageHeader);
 

@@ -8,6 +8,6 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.SqlDbHelpers
 
         public string GetId(string email) => GetNullableData($"select Id FROM [LoginService].[Invitations] where email = '{email}'");
 
-        public void DeleteUser(string email) => ExecuteSqlCommand($"DELETE FROM [LoginService].[UserLogs] where email = '{email}'; DELETE FROM [LoginService].[Invitations] where email = '{email}'");
+        public void DeleteUser(string email) => ExecuteSqlCommand($"DELETE FROM [IdentityServer].[aspnetusers] where email = '{email}'");
     }
 }
