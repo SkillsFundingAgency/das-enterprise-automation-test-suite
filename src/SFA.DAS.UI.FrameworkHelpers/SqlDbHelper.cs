@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace SFA.DAS.UI.FrameworkHelpers
 {
@@ -7,6 +8,16 @@ namespace SFA.DAS.UI.FrameworkHelpers
         protected readonly string connectionString;
 
         protected SqlDbHelper(string connectionString) => this.connectionString = connectionString;
+
+        protected string GetNullableData(string queryToExecute)
+        {
+            List<object[]> responseData = SqlDatabaseConnectionHelper.ReadDataFromDataBase(queryToExecute, connectionString);
+
+            if (responseData.Count == 0)
+                return string.Empty;
+            else
+                return Convert.ToString(responseData[0][0]);
+        }
 
         protected string GetData(string queryToExecute) => Convert.ToString(GetDataAsObject(queryToExecute));
 

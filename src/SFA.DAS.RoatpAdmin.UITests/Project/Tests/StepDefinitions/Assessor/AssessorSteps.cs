@@ -37,16 +37,9 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.Assessor
         }
 
         [When(@"selects the Main provider route application")]
-        public void AndSelectsTheMainProviderRouteApplication() =>
-            _applicationAssessmentOverviewPage = _assessorApplicationsPage.AssessorSelectsAssignToMeForMainProvider();
-
         [When(@"selects the Supporting provider route application")]
-        public void AndSelectsTheSupportingProviderRouteApplication() =>
-            _applicationAssessmentOverviewPage = _assessorApplicationsPage.AssessorSelectsAssignToMeForSupportingProvider();
-
         [When(@"selects the Employer provider route application")]
-        public void WhenSelectsTheEmployerProviderRouteApplication() =>
-            _applicationAssessmentOverviewPage = _assessorApplicationsPage.AssessorSelectsAssignToMeForEmployerProvider();
+        public void AndSelectsTheRouteApplication() => _applicationAssessmentOverviewPage = _assessorApplicationsPage.AssessorSelectsAssignToMe();
 
         [Then(@"the Assessor assesses all the sections of the application as PASS")]
         public void ThenTheAssessorAssessesAllTheSectionsOfTheApplicationAsPASS() =>
