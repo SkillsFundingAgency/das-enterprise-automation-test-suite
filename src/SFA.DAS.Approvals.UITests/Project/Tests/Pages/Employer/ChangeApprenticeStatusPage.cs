@@ -10,7 +10,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
-        private readonly JavaScriptHelper _javaScriptHelper;
         #endregion
 
 
