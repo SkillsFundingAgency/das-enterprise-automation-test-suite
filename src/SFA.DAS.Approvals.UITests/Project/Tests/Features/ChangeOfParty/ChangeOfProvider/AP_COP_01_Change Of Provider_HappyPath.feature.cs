@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.Registration.UITests.Project.Tests.Features.ExistingAccountNavigation
+namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.ChangeOfParty.ChangeOfProvider
 {
     using TechTalk.SpecFlow;
     using System;
@@ -20,22 +20,25 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features.ExistingAccountNav
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.3.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("RE_EAN_04")]
-    public partial class RE_EAN_04Feature
+    [NUnit.Framework.DescriptionAttribute("AP_COP_01_Change Of Provider_HappyPath")]
+    [NUnit.Framework.CategoryAttribute("approvals")]
+    public partial class AP_COP_01_ChangeOfProvider_HappyPathFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-        private string[] _featureTags = ((string[])(null));
+        private string[] _featureTags = new string[] {
+                "approvals"};
         
-#line 1 "RE_EAN_04.feature"
+#line 1 "AP_COP_01_Change Of Provider_HappyPath.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "RE_EAN_04", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "AP_COP_01_Change Of Provider_HappyPath", null, ProgrammingLanguage.CSharp, new string[] {
+                        "approvals"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,19 +77,19 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features.ExistingAccountNav
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RE_EAN_04_Verify Login for Existing View user")]
+        [NUnit.Framework.DescriptionAttribute("AP_COP_01_Change Of Provider_HappyPath")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("registration")]
-        [NUnit.Framework.CategoryAttribute("ignore")]
-        public virtual void RE_EAN_04_VerifyLoginForExistingViewUser()
+        [NUnit.Framework.CategoryAttribute("changeOfProvider")]
+        [NUnit.Framework.CategoryAttribute("liveapprentice")]
+        public virtual void AP_COP_01_ChangeOfProvider_HappyPath()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
-                    "registration",
-                    "ignore"};
+                    "changeOfProvider",
+                    "liveapprentice"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RE_EAN_04_Verify Login for Existing View user", null, tagsOfScenario, argumentsOfScenario);
-#line 6
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_COP_01_Change Of Provider_HappyPath", null, tagsOfScenario, argumentsOfScenario);
+#line 7
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -106,23 +109,14 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 7
- testRunner.Given("the Employer logins using existing view user account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
 #line 8
- testRunner.Then("the user can not add an organisation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-#line 9
- testRunner.And("the user can not add Payee Scheme", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Given("the employer has an apprentice with stopped status", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 10
- testRunner.And("the user can not invite a team members", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.When("new provider approves the cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 11
- testRunner.And("the user can not accept agreement", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 12
- testRunner.And("the user can not add an apprentices", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Then("a new live apprenticeship record is created", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
