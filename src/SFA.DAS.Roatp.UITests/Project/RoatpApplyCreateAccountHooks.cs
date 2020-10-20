@@ -1,6 +1,5 @@
 ﻿using SFA.DAS.Roatp.UITests.Project.Helpers.RoatpApply;
 using SFA.DAS.Roatp.UITests.Project.Helpers.SqlDbHelpers;
-using SFA.DAS.UI.Framework;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
@@ -35,8 +34,5 @@ namespace SFA.DAS.Roatp.UITests.Project
             _roatpApplyContactSqlDbHelper.DeleteContact(email);
             _loginInvitationsSqlDbHelper.DeleteUser(email);
         }
-
-        [BeforeScenario(Order = 36)]
-        public void NavigateToRoatpApply() => GoToUrl(UrlConfig.Apply_BaseUrl);
     }
 }
