@@ -62,13 +62,16 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
         [Given(@"the Employer logins using existing multiple account user")]
         public void GivenTheEmployerLoginsUsingExistingMultipleAccountUser() => _multipleAccountsLoginHelper.Login(_multipleAccountUser, true);
 
-
-        [Then(@"the user can not apply for employer incentives")]
-        public void ThenTheUserCanNotApplyForEmployerIncentives()
+        [Then(@"the Employer is not able to navigate to employer incentive application")]
+        public void ThenTheEmployerIsNotAbleToNavigateToEmployerIncentiveApplication()
         {
-            new HomePageFinancesSection(_context)
-                .AccessEIAndAndRedirectedToAccessDeniedPage()
-                .ReturnToAccountHomePage();
+            new HomePageFinancesSection(_context).AccessEIAndAndRedirectedToAccessDeniedPage().ReturnToAccountHomePage();
+        }
+
+        [Then(@"the Employer is not able to view EI applications")]
+        public void ThenTheEmployerIsNotAbleToViewEIApplications()
+        {
+            new HomePageFinancesSection(_context).AccessViewEIAndAndRedirectedToAccessDeniedPage().ReturnToAccountHomePage();
         }
 
         [Then(@"the Employer can continue for eligible apprentices scenario")]

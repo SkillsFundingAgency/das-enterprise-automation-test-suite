@@ -15,6 +15,12 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
             return new AccessDeniedPage(_context);
         }
 
+        public AccessDeniedPage AccessViewEIAndAndRedirectedToAccessDeniedPage()
+        {
+            formCompletionHelper.Click(ViewEIApplicationsLink);
+            return new AccessDeniedPage(_context);
+        }
+
         public EIStartPage NavigateToEIStartPage()
         {
             formCompletionHelper.Click(ApplyForEILink);

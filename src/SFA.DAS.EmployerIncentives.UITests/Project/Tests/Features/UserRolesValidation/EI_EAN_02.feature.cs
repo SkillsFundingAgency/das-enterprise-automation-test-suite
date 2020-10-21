@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Features.ExistingAccountNavigation
+namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Features.UserRolesValidation
 {
     using TechTalk.SpecFlow;
     using System;
@@ -108,7 +108,10 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("the Employer logins using existing view user account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 7
- testRunner.Then("the user can not apply for employer incentives", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the Employer is not able to navigate to employer incentive application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 8
+ testRunner.And("the Employer is not able to view EI applications", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
