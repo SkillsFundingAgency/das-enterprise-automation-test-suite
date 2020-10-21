@@ -39,6 +39,10 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
             _homePageStepsHelper = new EmployerHomePageStepsHelper(_context);
         }
 
+        [Then(@"the user can apply for employer incentives")]
+        public void ThenTheUserCanApplyForEmployerIncentives() => NavigateToEIStartPage();
+
+
         [Then(@"the Employer is able to submit the EI Application")]
         public void ThenTheEmployerIsAbleToSubmitTheEIApplication()
         {
@@ -65,6 +69,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
         public void ThenTheEmployerIsAbleToNavigateToViewApplicationsPage()
         {
             _homePageStepsHelper.GotoEmployerHomePage();
+
             new HomePageFinancesSection(_context).NavigateToViewApplicationsPage();
         }
 
@@ -79,7 +84,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
                 _eISqlHelper.DeleteIncentiveApplication(_registrationSqlDataHelper.GetAccountId(_eILevyUser.Username));
             }
 
-            _eIStartPage = new HomePageFinancesSection(_context).NavigateToEIStartPage();
+            _eIStartPage = NavigateToEIStartPage();
 
             if (entities == Entities.Single)
                 _qualificationQuestionPage = _eIStartPage.ClickStartNowButtonInEIStartPageForSingleEntityJourney();
@@ -123,5 +128,8 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
             _providerStepsHelper.Approve();
             _homePageStepsHelper.GotoEmployerHomePage();
         }
+
+        private EIStartPage NavigateToEIStartPage() => new HomePageFinancesSection(_context).NavigateToEIStartPage();
+
     }
 }
