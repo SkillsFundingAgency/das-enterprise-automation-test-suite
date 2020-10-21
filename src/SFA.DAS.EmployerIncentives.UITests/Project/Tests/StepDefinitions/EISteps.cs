@@ -39,6 +39,14 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
             _homePageStepsHelper = new EmployerHomePageStepsHelper(_context);
         }
 
+        [Then(@"the user can not apply for employer incentives")]
+        public void ThenTheUserCanNotApplyForEmployerIncentives()
+        {
+            new HomePageFinancesSection(_context)
+                .AccessEIAndAndRedirectedToAccessDeniedPage()
+                .ReturnToAccountHomePage();
+        }
+
         [Then(@"the user can apply for employer incentives")]
         public void ThenTheUserCanApplyForEmployerIncentives() => NavigateToEIStartPage();
 
