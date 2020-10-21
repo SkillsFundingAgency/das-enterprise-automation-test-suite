@@ -4,5 +4,6 @@
 @employerincentives
 Scenario: EI_EAN_01_Verify EI for Existing Transactor user
 	Given the Employer logins using existing transactor user account
-	Then the user can apply for employer incentives
+	When the Employer Initiates EI Application journey for Single entity account
+	Then the Employer can continue for eligible apprentices scenario
 	
