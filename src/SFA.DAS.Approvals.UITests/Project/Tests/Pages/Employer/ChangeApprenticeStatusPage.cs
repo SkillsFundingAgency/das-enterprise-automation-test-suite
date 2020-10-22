@@ -11,42 +11,34 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private readonly ScenarioContext _context;
         #endregion
 
-
         public ChangeApprenticeStatusPage(ScenarioContext context) : base(context) => _context = context;
-
-        private By ChangeTypeOptions => By.CssSelector(".selection-button-radio");
-        protected override By ContinueButton => By.CssSelector("#submit-change-status");
+      
+        protected override By ContinueButton => By.XPath("//button[contains(text(),'Save and continue')]");
 
         public PauseApprenticePage SelectPauseAndContinue()
         {
-            formCompletionHelper.SelectRadioOptionByForAttribute(ChangeTypeOptions, "ChangeType-Pause");
+            formCompletionHelper.SelectRadioOptionByText("Pause this apprenticeship");
             Continue();
             return new PauseApprenticePage(_context);
         }
 
         public ResumeApprenticePage SelectResumeAndContinue()
         {
-            formCompletionHelper.SelectRadioOptionByForAttribute(ChangeTypeOptions, "ChangeType-Resume");
+            formCompletionHelper.SelectRadioOptionByText("Resume this apprenticeship");
             Continue();
             return new ResumeApprenticePage(_context);
         }
 
         internal ThisApprenticeshipTrainingStopPage SelectStopAndContinueForAStartedApprentice()
         {
-            formCompletionHelper.SelectRadioOptionByForAttribute(ChangeTypeOptions, "ChangeType-Stop");
+            formCompletionHelper.SelectRadioOptionByText("Stop this apprenticeship");
             Continue();
             return new ThisApprenticeshipTrainingStopPage(_context);
         }
 
-        public StopApprenticeshipPage SelectStopAndContinueForANonStartedApprentice()
-        {
-            formCompletionHelper.SelectRadioOptionByForAttribute(ChangeTypeOptions, "ChangeType-Stop");
-            Continue();
-            return new StopApprenticeshipPage(_context);
-        }
         public HasTheApprenticeBeenMadeRedundantPage SelectStopAndContinueForAWaitingToStartApprentice()
         {
-            formCompletionHelper.SelectRadioOptionByForAttribute(ChangeTypeOptions, "ChangeType-Stop");
+            formCompletionHelper.SelectRadioOptionByText("Stop this apprenticeship");
             Continue();
             return new HasTheApprenticeBeenMadeRedundantPage(_context);
         }

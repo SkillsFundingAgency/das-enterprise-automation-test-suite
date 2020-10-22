@@ -43,6 +43,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                 .ClickEditStatusLink()
                 .SelectPauseAndContinue()
                 .SelectYesAndConfirm();
+
         }
 
         [Then(@"Employer is able to Resume the apprentice")]
