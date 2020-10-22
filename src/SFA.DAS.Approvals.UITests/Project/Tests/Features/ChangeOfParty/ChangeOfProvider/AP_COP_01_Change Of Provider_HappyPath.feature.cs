@@ -112,6 +112,9 @@ this.ScenarioInitialize(scenarioInfo);
 #line 8
  testRunner.Given("the employer has an apprentice with stopped status", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
+#line 9
+ testRunner.When("employer sends COP request to new provider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
 #line 10
  testRunner.When("new provider approves the cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden

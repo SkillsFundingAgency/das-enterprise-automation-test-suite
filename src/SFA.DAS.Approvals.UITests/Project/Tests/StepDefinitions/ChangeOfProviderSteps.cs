@@ -1,21 +1,10 @@
 ﻿using TechTalk.SpecFlow;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
-using SFA.DAS.Login.Service;
 using SFA.DAS.Login.Service.Helpers;
-using SFA.DAS.Registration.UITests.Project.Helpers;
-using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
 using SFA.DAS.UI.Framework.TestSupport;
-using SFA.DAS.ConfigurationBuilder;
-using System;
-using System.Linq;
-using SFA.DAS.Registration.UITests.Project;
-using SFA.DAS.Registration.UITests.Project.Tests.Pages;
-using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
-using SFA.DAS.ProviderLogin.Service;
-using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
 using SFA.DAS.UI.Framework;
 using SFA.DAS.ProviderLogin.Service.Helpers;
-using SFA.DAS.ProviderLogin.Service.Pages;
+using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 {
@@ -23,19 +12,22 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
     public class ChangeOfProviderSteps
     {
         private readonly ScenarioContext _context;
+        private readonly EmployerStepsHelper _employerStepsHelper;
         private readonly ProviderPermissionsConfig _providerPermissionsConfig;
 
         public ChangeOfProviderSteps(ScenarioContext context)
         {
             _context = context;
+            _employerStepsHelper = new EmployerStepsHelper(context);
             _providerPermissionsConfig = context.GetProviderPermissionConfig<ProviderPermissionsConfig>();
-            //new RestartWebDriverHelper(context).RestartWebDriver(UrlConfig.Provider_BaseUrl, "Approvals");
         }
 
         [When(@"employer sends COP request to new provider")]
         public void WhenEmployerSendsCOPRequestToNewProvider()
         {
-            ScenarioContext.Current.Pending();
+            StartChangeOfProviderJourney();
+            //var _newcohortReference = _commitmentsSqlDataHelper.GetNewcohortReference(Convert.ToString(_dataHelper.Ulns.First()));
+            //_employerStepsHelper.UpdateCohortReference(_newcohortReference);
         }
 
         [When(@"new provider approves the cohort")]
@@ -50,10 +42,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         public void ThenANewLiveApprenticeshipRecordIsCreatedWithNewProvider()
         {
             new EmployerStepsHelper(_context)
-               .GoToManageYourApprenticesPage()
-               .VerifyApprenticeExists();
+               .GoToManageYourApprenticesPage();
+               //.VerifyNewApprenticeRecordIsCreated();
         }
 
-
+        private void StartChangeOfProviderJourney()
+        {
+            _employerStepsHelper.ViewCurrentApprenticeDetails()
+                                .ClickOnChangeOfProviderLink();
+        }
     }
 }
