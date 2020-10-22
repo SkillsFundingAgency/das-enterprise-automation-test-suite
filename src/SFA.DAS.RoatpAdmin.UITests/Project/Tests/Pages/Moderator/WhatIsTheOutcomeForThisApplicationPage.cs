@@ -11,14 +11,14 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Moderator
 
         public AreYouSureYouWantToPassPage SelectPassAndContinueAreYouSurePage()
         {
-            SelectRadioOptionByForAttribute("OptionPass");
+            SelectRadioOptionByText("Pass");
             Continue();
             return new AreYouSureYouWantToPassPage(_context);
         }
 
         public AreYouSureYouWantToFailPage SelectFailAndContinueAreYouSurePage()
         {
-            SelectRadioOptionByForAttribute("OptionFail");
+            SelectRadioOptionByText("Fail");
             EnterFailInternalComments();
             Continue();
             return new AreYouSureYouWantToFailPage(_context);

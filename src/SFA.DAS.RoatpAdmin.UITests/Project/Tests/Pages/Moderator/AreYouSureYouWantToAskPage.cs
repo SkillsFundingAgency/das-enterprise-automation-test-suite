@@ -2,7 +2,7 @@
 
 namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Moderator
 {
-    public class AreYouSureYouWantToAskPage : ModeratorBasePage
+    public class AreYouSureYouWantToAskPage : AreYouSurePage
     {
         protected override string PageTitle => "Are you sure you want to ask for clarification?";
 
@@ -13,8 +13,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Moderator
 
         public ModerationAssessmentClarificationCompletePage SelectYesAskAndContinueOutcomePage()
         {
-            SelectRadioOptionByForAttribute("Yes");
-            Continue();
+            SelectYesAndContinue();
             return new ModerationAssessmentClarificationCompletePage(_context);
         }
 

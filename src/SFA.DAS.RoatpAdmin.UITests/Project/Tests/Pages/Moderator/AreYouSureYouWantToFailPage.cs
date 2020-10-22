@@ -2,7 +2,7 @@
 
 namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Moderator
 {
-    public class AreYouSureYouWantToFailPage : ModeratorBasePage
+    public class AreYouSureYouWantToFailPage : AreYouSurePage
     {
         protected override string PageTitle => "Are you sure you want to fail this application?";
 
@@ -13,8 +13,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Moderator
 
         public ModerationAssessmentFailCompletePage SelectYesFailAndContinueOutcomePage()
         {
-            SelectRadioOptionByForAttribute("Yes");
-            Continue();
+            SelectYesAndContinue();
             return new ModerationAssessmentFailCompletePage(_context);
         }
     }
