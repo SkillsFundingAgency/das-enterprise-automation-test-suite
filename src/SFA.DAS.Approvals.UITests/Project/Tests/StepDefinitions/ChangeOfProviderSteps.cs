@@ -14,6 +14,8 @@ using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.ProviderLogin.Service;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
 using SFA.DAS.UI.Framework;
+using SFA.DAS.ProviderLogin.Service.Helpers;
+using SFA.DAS.ProviderLogin.Service.Pages;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 {
@@ -21,32 +23,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
     public class ChangeOfProviderSteps
     {
         private readonly ScenarioContext _context;
-        private readonly ObjectContext _objectContext;
-        private readonly ApprenticeDataHelper _dataHelper;
-        private readonly ProviderStepsHelper _providerStepsHelper;
-        private readonly EmployerStepsHelper _employerStepsHelper;
-        private readonly CommitmentsSqlDataHelper _commitmentsSqlDataHelper;
-        private readonly MultipleAccountsLoginHelper _multipleAccountsLoginHelper;
-        private ProviderLoginUser _providerLoginUser;
-        private ApprovalsProviderHomePage _providerHomePage;
         private readonly ProviderPermissionsConfig _providerPermissionsConfig;
-
-
-        private readonly string _oldProvider;
-        private readonly string _newProvider;
 
         public ChangeOfProviderSteps(ScenarioContext context)
         {
             _context = context;
-            _objectContext = context.Get<ObjectContext>();
-            _dataHelper = context.Get<ApprenticeDataHelper>();
-            //new RestartWebDriverHelper(context).RestartWebDriver(UrlConfig.Provider_BaseUrl, "Approvals");
-            _providerStepsHelper = new ProviderStepsHelper(context);
-            _employerStepsHelper = new EmployerStepsHelper(context);
-            _commitmentsSqlDataHelper = new CommitmentsSqlDataHelper(context.GetApprovalsConfig<ApprovalsConfig>());
-            _multipleAccountsLoginHelper = new MultipleAccountsLoginHelper(context);
-            _oldProvider = context.GetProviderConfig<ProviderConfig>().UserId;
             _providerPermissionsConfig = context.GetProviderPermissionConfig<ProviderPermissionsConfig>();
+            //new RestartWebDriverHelper(context).RestartWebDriver(UrlConfig.Provider_BaseUrl, "Approvals");
         }
 
         [When(@"employer sends COP request to new provider")]
@@ -60,8 +43,17 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             ProviderLoginUser _providerLoginUser = new ProviderLoginUser { Username = _providerPermissionsConfig.UserId, Password = _providerPermissionsConfig.Password, Ukprn = _providerPermissionsConfig.Ukprn };
             new RestartWebDriverHelper(_context).RestartWebDriver(UrlConfig.Provider_BaseUrl, "Approvals");
-            _providerHomePage = _providerStepsHelper.GoToProviderHomePage(_providerLoginUser);
+            new ProviderHomePageStepsHelper(_context).GoToProviderHomePage(_providerLoginUser, false);
         }
+
+        [Then(@"a new live apprenticeship record is created with new Provider")]
+        public void ThenANewLiveApprenticeshipRecordIsCreatedWithNewProvider()
+        {
+            new EmployerStepsHelper(_context)
+               .GoToManageYourApprenticesPage()
+               .VerifyApprenticeExists();
+        }
+
 
     }
 }
