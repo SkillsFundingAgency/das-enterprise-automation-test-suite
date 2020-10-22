@@ -7,8 +7,6 @@ using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 using SFA.DAS.ProviderLogin.Service.Helpers;
 using SFA.DAS.Login.Service.Helpers;
-using SFA.DAS.UI.Framework.TestSupport;
-using SFA.DAS.UI.Framework;
 
 namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 {
@@ -18,7 +16,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
         private readonly ObjectContext _objectContext;
         private readonly ProviderHomePageStepsHelper _providerHomePageStepsHelper;
         private readonly ReviewYourCohortStepsHelper _reviewYourCohortStepsHelper;
-        private readonly RestartWebDriverHelper _restartWebDriverHelper;
 
         public ProviderStepsHelper(ScenarioContext context)
         {
@@ -26,26 +23,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             _objectContext = _context.Get<ObjectContext>();
             _providerHomePageStepsHelper = new ProviderHomePageStepsHelper(_context);
             _reviewYourCohortStepsHelper = new ReviewYourCohortStepsHelper(_context.Get<AssertHelper>());
-            _restartWebDriverHelper = new RestartWebDriverHelper(context);            
         }
 
-        internal ApprovalsProviderHomePage GoToProviderHomePage(ProviderLoginUser login, bool openNewWindow = false)
+        internal ApprovalsProviderHomePage GoToProviderHomePage(ProviderLoginUser login)
         {
-           /* if (openNewWindow)
-            {
-                _restartWebDriverHelper.RestartWebDriver(UrlConfig.Provider_BaseUrl, "Approvals");
-            }*/
             _providerHomePageStepsHelper.GoToProviderHomePage(login, true);
-            /*
-            if (openNewWindow)
-            {
-                _restartWebDriverHelper.RestartWebDriver(UrlConfig.Provider_BaseUrl, "Approvals");
-                _providerHomePageStepsHelper.LogInToProviderHomePage(login);
-            }
-            else
-            {
-                _providerHomePageStepsHelper.GoToProviderHomePage(login, true);
-            }*/
 
             return new ApprovalsProviderHomePage(_context);
         }
@@ -120,11 +102,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 
         public ProviderReviewYourCohortPage AddApprentice(int numberOfApprentices)
         {
-			var providerReviewYourCohortPage = CurrentCohortDetails();
-			
-            for(int i = 0; i < numberOfApprentices; i++)
-            {	
-				providerReviewYourCohortPage = providerReviewYourCohortPage.SelectAddAnApprentice()
+            var providerReviewYourCohortPage = CurrentCohortDetails();
+
+            for (int i = 0; i < numberOfApprentices; i++)
+            {
+                providerReviewYourCohortPage = providerReviewYourCohortPage.SelectAddAnApprentice()
                         .SubmitValidApprenticeDetails();
             }
 
