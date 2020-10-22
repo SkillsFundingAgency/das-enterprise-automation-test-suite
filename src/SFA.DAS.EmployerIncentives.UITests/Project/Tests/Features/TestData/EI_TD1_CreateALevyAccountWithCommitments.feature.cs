@@ -74,14 +74,14 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Features.TestData
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("EI_E2E_Create A LevyAccount and add some Commitments")]
+        [NUnit.Framework.DescriptionAttribute("EI_TD1_Create A LevyAccount and add some Commitments")]
         [NUnit.Framework.CategoryAttribute("addpayedetails")]
-        public virtual void EI_E2E_CreateALevyAccountAndAddSomeCommitments()
+        public virtual void EI_TD1_CreateALevyAccountAndAddSomeCommitments()
         {
             string[] tagsOfScenario = new string[] {
                     "addpayedetails"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EI_E2E_Create A LevyAccount and add some Commitments", null, tagsOfScenario, argumentsOfScenario);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EI_TD1_Create A LevyAccount and add some Commitments", null, tagsOfScenario, argumentsOfScenario);
 #line 4
 this.ScenarioInitialize(scenarioInfo);
 #line hidden

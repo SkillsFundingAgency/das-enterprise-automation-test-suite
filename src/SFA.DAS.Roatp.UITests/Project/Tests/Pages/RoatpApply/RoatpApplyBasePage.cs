@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.Roatp.UITests.Project.Helpers.RoatpApply;
 using SFA.DAS.UI.Framework;
 using System;
@@ -31,7 +32,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply
             _context = context;
             _frameworkConfig = context.Get<FrameworkConfig>();
             applydataHelpers = context.Get<RoatpApplyDataHelpers>();
-            roatpUkprnDataHelpers = context.Get<RoatpApplyUkprnDataHelpers>();
+            roatpUkprnDataHelpers = context.GetValue<RoatpApplyUkprnDataHelpers>();
         }
         
         protected void UploadFile()

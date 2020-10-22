@@ -11,8 +11,14 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
 
         public EIStartPage NavigateToEIStartPage()
         {
-            formCompletionHelper.Click(ApplyForTheHireANewApprenticePaymentLink);
+            formCompletionHelper.Click(ApplyForEILink);
             return new EIStartPage(_context);
+        }
+
+        public ViewApplicationsPage NavigateToViewApplicationsPage()
+        {
+            formCompletionHelper.Click(ViewEIApplicationsLink);
+            return new ViewApplicationsPage(_context);
         }
     }
 }

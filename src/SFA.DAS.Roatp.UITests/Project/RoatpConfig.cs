@@ -12,5 +12,6 @@
         public string RoatpDatabaseConnectionString { get; set; }
         public string ApplyDatabaseConnectionString { get; set; }
         public string QnaDatabaseConnectionString { get; set; }
+        public string LoginDatabaseConnectionString { get; set; }
     }
 }

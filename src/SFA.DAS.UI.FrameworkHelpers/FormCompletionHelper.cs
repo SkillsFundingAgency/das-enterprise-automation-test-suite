@@ -32,11 +32,6 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         public void Click(By locator) => ClickElement(locator);
 
-        public void EnterText(By town1, object town2)
-        {
-            throw new NotImplementedException();
-        }
-
         public void EnterText(IWebElement element, string text)
         {
             element.Clear();
