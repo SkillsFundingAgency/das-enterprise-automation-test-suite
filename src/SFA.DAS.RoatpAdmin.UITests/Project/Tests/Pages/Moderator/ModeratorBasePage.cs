@@ -11,6 +11,9 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Moderator
     {
         private readonly ScenarioContext _context;
 
+        private By FailInternalComments => By.CssSelector("textarea.govuk-textarea#OptionFailText");
+        private By AskForClarificationInternalComments => By.CssSelector("textarea.govuk-textarea#OptionAskForClarificationText");
+
         protected By StatusTextLocator(string linkText) =>
             By.XPath($"//span[contains(text(), '{linkText}')]/following-sibling::strong | //a[contains(text(),'{linkText}')]/../following-sibling::strong");
 
@@ -31,6 +34,24 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Moderator
             SelectRadioOptionByText("Pass");
             Continue();
         }
+
+        public void SelectFailAndContinueToSubSection()
+        {
+            SelectRadioOptionByText("Fail");
+            EnterFailInternalComments();
+            Continue();
+        }
+
+        public void SelectClarificationAndContinueToSubSection()
+        {
+            SelectRadioOptionByText("Ask for clarification");
+            EnterClarificationInternalComments();
+            Continue();
+        }
+
+        protected void EnterFailInternalComments() => formCompletionHelper.EnterText(FailInternalComments, "Internal comments");
+
+        protected void EnterClarificationInternalComments() => formCompletionHelper.EnterText(AskForClarificationInternalComments, "Internal comments");
 
         public ModerationApplicationsPage VerifyApplicationStatus(By statusSelector, string expectedStatus, Action action)
         {

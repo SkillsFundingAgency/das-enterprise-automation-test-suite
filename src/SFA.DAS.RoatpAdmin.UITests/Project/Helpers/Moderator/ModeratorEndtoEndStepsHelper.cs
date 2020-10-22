@@ -72,6 +72,11 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
             return moderationApplicationAssessmentOverviewPage;
         }
 
+        public ModerationApplicationAssessmentOverviewPage FailYourSectorsAndEmployees(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage)
+        {
+            return _moderator_Section4Helper.FailYourSectorsAndEmployees(moderationApplicationAssessmentOverviewPage);
+        }      
+
         public ModerationApplicationAssessmentOverviewPage CompleteModeratorSection5Checks(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage)
         {
             moderationApplicationAssessmentOverviewPage = _moderator_Section5Helper.PassProcessForEvaluatingTheQualityOfTrainingDelivered(moderationApplicationAssessmentOverviewPage);
@@ -85,7 +90,25 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
             return moderationApplicationAssessmentOverviewPage
                 .Access_Section6_ReadyForModeration()
                 .SelectPassAndContinueAreYouSurePage()
-                .SelectYesAndContinueOutcomePage()
+                .SelectYesPassAndContinueOutcomePage()
+                .GoToRoATPAssessorApplicationsPage();
+        }
+
+        public ModerationApplicationsPage CompleteModeratorOutcomeSectionAsFail(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage)
+        {
+            return moderationApplicationAssessmentOverviewPage
+                .Access_Section6_ReadyForModeration()
+                .SelectFailAndContinueAreYouSurePage()
+                .SelectYesFailAndContinueOutcomePage()
+                .GoToRoATPAssessorApplicationsPage();
+        }
+
+        public ModerationApplicationsPage CompleteModeratorOutcomeSectionAsAskClarification(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage)
+        {
+            return moderationApplicationAssessmentOverviewPage
+                .Access_Section6_ReadyForModeration()
+                .SelectAskForClarificationAndContinueAreYouSurePage()
+                .SelectYesAskAndContinueOutcomePage()
                 .GoToRoATPAssessorApplicationsPage();
         }
     }

@@ -23,7 +23,7 @@ namespace SFA.DAS.Roatp.UITests.Project
         public static string GetProviderName(this ObjectContext objectContext) => objectContext.Get(ProviderNameKey);
         internal static string GetOrganisationType(this ObjectContext objectContext) => objectContext.Get(OrganisationTypeKey);
         internal static string GetEmail(this ObjectContext objectContext) => objectContext.Get(EmailKey);
-        internal static string GetUkprn(this ObjectContext objectContext) => objectContext.Get(UkprnKey);
+        public static string GetUkprn(this ObjectContext objectContext) => objectContext.Get(UkprnKey);
         internal static string GetApplicationReference(this ObjectContext objectContext) => objectContext.Get(ApplicationReference);
     }
 }

@@ -6,9 +6,23 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Moderator
     {
         protected override string PageTitle => "Pass";
         
-        private readonly ScenarioContext _context;
+        public ModerationAssessmentPassCompletePage(ScenarioContext context) : base(context) { }
 
-        public ModerationAssessmentPassCompletePage(ScenarioContext context) : base(context) => _context = context;
+    }
+
+    public class ModerationAssessmentFailCompletePage : ModerationAssessmentCompletePage
+    {
+        protected override string PageTitle => "Fail";
+
+        public ModerationAssessmentFailCompletePage(ScenarioContext context) : base(context) { }
+
+    }
+
+    public class ModerationAssessmentClarificationCompletePage : ModerationAssessmentCompletePage
+    {
+        protected override string PageTitle => "Clarification";
+
+        public ModerationAssessmentClarificationCompletePage(ScenarioContext context) : base(context) { }
 
     }
 }
