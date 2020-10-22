@@ -1,9 +1,12 @@
 ﻿using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
+using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.EmployerIncentives.UITests.Project.Helpers;
 using SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages;
 using SFA.DAS.Login.Service;
 using SFA.DAS.Login.Service.Helpers;
+using SFA.DAS.Registration.UITests.Project;
 using SFA.DAS.Registration.UITests.Project.Helpers;
+using SFA.DAS.Registration.UITests.Project.Tests.Pages;
 using System.Linq;
 using TechTalk.SpecFlow;
 using static SFA.DAS.EmployerIncentives.UITests.Project.Helpers.EnumHelper;
@@ -15,6 +18,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
     {
         private bool _doNotdeleteInentiveapplication;
         private readonly ScenarioContext _context;
+        private readonly ObjectContext _objectContext;
         private readonly EILevyUser _eILevyUser;
         private EIStartPage _eIStartPage;
         private SelectApprenticesShutterPage _selectApprenticesShutterPage;
@@ -26,18 +30,53 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
         private readonly EmployerHomePageStepsHelper _homePageStepsHelper;
         private readonly EISqlHelper _eISqlHelper;
         private readonly RegistrationSqlDataHelper _registrationSqlDataHelper;
+        private readonly MultipleAccountsLoginHelper _multipleAccountsLoginHelper;
+        private readonly MultipleAccountUser _multipleAccountUser;
 
         public EISteps(ScenarioContext context)
         {
             _context = context;
-            _context = context;
+            _objectContext = context.Get<ObjectContext>();
+            _multipleAccountUser = _context.GetUser<MultipleAccountUser>();
             _eISqlHelper = context.Get<EISqlHelper>();
             _eILevyUser = _context.GetUser<EILevyUser>();
             _registrationSqlDataHelper = context.Get<RegistrationSqlDataHelper>();
             _employerPortalLoginHelper = new EmployerPortalLoginHelper(context);
             _providerStepsHelper = new ProviderStepsHelper(context);
             _homePageStepsHelper = new EmployerHomePageStepsHelper(_context);
+            _multipleAccountsLoginHelper = new MultipleAccountsLoginHelper(_context);
         }
+
+        [When(@"the Employer switches to an account without aprentices")]
+        public void WhenTheEmployerSwitchesToAnAccountWithoutAprentices()
+        {
+            var secondOrganisationName = _multipleAccountUser.SecondOrganisationName;
+
+            var yourAccountPage = new HomePage(_context, true).GoToYourAccountsPage();
+
+            _objectContext.UpdateOrganisationName(secondOrganisationName);
+
+            yourAccountPage.GoToHomePage(secondOrganisationName);
+        }
+
+        [Given(@"the Employer logins using existing multiple account user")]
+        public void GivenTheEmployerLoginsUsingExistingMultipleAccountUser() => _multipleAccountsLoginHelper.Login(_multipleAccountUser, true);
+
+        [Then(@"the Employer is not able to navigate to employer incentive application")]
+        public void ThenTheEmployerIsNotAbleToNavigateToEmployerIncentiveApplication()
+        {
+            new HomePageFinancesSection(_context).AccessEIAndAndRedirectedToAccessDeniedPage().ReturnToAccountHomePage();
+        }
+
+        [Then(@"the Employer is not able to view EI applications")]
+        public void ThenTheEmployerIsNotAbleToViewEIApplications()
+        {
+            new HomePageFinancesSection(_context).AccessViewEIAndAndRedirectedToAccessDeniedPage().ReturnToAccountHomePage();
+        }
+
+        [Then(@"the Employer can continue for eligible apprentices scenario")]
+        public void TheEmployerCanContinueForEligibleApprenticesScenario() => _qualificationQuestionPage.SelectYesAndContinueForEligibleApprenticesScenario();
+
 
         [Then(@"the Employer is able to submit the EI Application")]
         public void ThenTheEmployerIsAbleToSubmitTheEIApplication()
@@ -65,6 +104,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.StepDefinitions
         public void ThenTheEmployerIsAbleToNavigateToViewApplicationsPage()
         {
             _homePageStepsHelper.GotoEmployerHomePage();
+
             new HomePageFinancesSection(_context).NavigateToViewApplicationsPage();
         }
 
