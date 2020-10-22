@@ -31,6 +31,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 
         internal ApprovalsProviderHomePage GoToProviderHomePage(ProviderLoginUser login, bool openNewWindow = false)
         {
+           /* if (openNewWindow)
+            {
+                _restartWebDriverHelper.RestartWebDriver(UrlConfig.Provider_BaseUrl, "Approvals");
+            }*/
+            _providerHomePageStepsHelper.GoToProviderHomePage(login, true);
+            /*
             if (openNewWindow)
             {
                 _restartWebDriverHelper.RestartWebDriver(UrlConfig.Provider_BaseUrl, "Approvals");
@@ -39,7 +45,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
             else
             {
                 _providerHomePageStepsHelper.GoToProviderHomePage(login, true);
-            }
+            }*/
 
             return new ApprovalsProviderHomePage(_context);
         }

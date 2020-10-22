@@ -9,3 +9,4 @@ Scenario: AP_COP_01_Change Of Provider_HappyPath
 	#When employer sends COP request to new provider
 	When new provider approves the cohort
 	Then a new live apprenticeship record is created 
+
