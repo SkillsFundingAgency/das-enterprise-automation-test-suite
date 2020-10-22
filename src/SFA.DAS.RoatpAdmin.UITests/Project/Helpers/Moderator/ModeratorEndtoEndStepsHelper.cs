@@ -80,11 +80,12 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
             return moderationApplicationAssessmentOverviewPage;
         }
 
-        public void ModerationApplicationAssessmentOverviewPage(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage)
+        public ModerationApplicationsPage CompleteModeratorOutcomeSectionAsPass(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage)
         {
-            moderationApplicationAssessmentOverviewPage
+            return moderationApplicationAssessmentOverviewPage
                 .Access_Section6_ReadyForModeration()
-                .SelectYesAndContinueInAreYouSureThisApplicationIsReadyForModerationPage()
+                .SelectPassAndContinueAreYouSurePage()
+                .SelectYesAndContinueOutcomePage()
                 .GoToRoATPAssessorApplicationsPage();
         }
     }

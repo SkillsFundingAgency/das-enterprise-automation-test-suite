@@ -12,6 +12,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.Moderator
         private ScenarioContext _context;
         private ModerationApplicationAssessmentOverviewPage _moderationApplicationAssessmentOverviewPage;
         private ModeratorEndtoEndStepsHelper _moderatorEndtoEndStepsHelper;
+        private ModerationApplicationsPage _moderationApplicationsPage;
 
         public ModerationSteps(ScenarioContext context)
         {
@@ -44,6 +45,16 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.Moderator
         [Then(@"the Moderator assesses all the sections of the application as PASS")]
         public void ThenTheModeratorAssessesAllTheSectionsOfTheApplicationAsPASS() =>
             _moderationApplicationAssessmentOverviewPage = _moderatorEndtoEndStepsHelper.CompleteAllSectionsWithPass((new ModerationApplicationAssessmentOverviewPage(_context)));
+
+
+        [Then(@"the Moderator assesses the outcome as PASS")]
+        public void ThenTheModeratorAssessesTheOutcomeAsPASS()
+        {
+            _moderationApplicationsPage = _moderatorEndtoEndStepsHelper.CompleteModeratorOutcomeSectionAsPass(_moderationApplicationAssessmentOverviewPage);
+        }
+
+        [Then(@"the Outcome tab is updated as (PASS)")]
+        public void ThenTheOutcomeTabIsUpdated(string expectedStatus) => _moderationApplicationsPage.VerifyOutcomeStatus(expectedStatus);
 
     }
 }

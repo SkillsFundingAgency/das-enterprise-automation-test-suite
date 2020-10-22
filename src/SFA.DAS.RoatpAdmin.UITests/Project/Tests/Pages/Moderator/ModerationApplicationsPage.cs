@@ -1,5 +1,4 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.Roatp.UITests.Project;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Moderator
@@ -12,10 +11,22 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Moderator
         public By AssignToMeLinkForMainProvider => By.XPath("//td[contains(text(),'7TAO ENGINEERING UK LIMITED')]//following-sibling::td//a");
         public By AssignToMeLinkForSupportingProvider => By.XPath("//td[contains(text(),'ARTHUR MUREVERWI')]//following-sibling::td//a");
         public By AssignToMeLinkForEmployerProvider => By.XPath("//td[contains(text(),'SHOCKOUT ACADEMY')]//following-sibling::td//a");
-        public By ModerationLink => By.LinkText("/Dashboard/InModeration");
+
+        public By ModerationTab => By.CssSelector("a[href='/Dashboard/InModeration']");
+
+        public By ClarificationTab => By.CssSelector("a[href='/Dashboard/InClarification']");
+
+        public By OutcomeTab => By.CssSelector("a[href='/Dashboard/Outcome']");
+
+        private By OutcomeStatus => By.CssSelector("[data-label='Outcome']");
 
         public ModerationApplicationsPage(ScenarioContext context) : base(context) => _context = context;
 
-    
+        public ModerationApplicationsPage VerifyOutcomeStatus(string expectedStatus)
+        {
+            VerifyApplicationStatus(OutcomeStatus, expectedStatus, () => formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(OutcomeTab)));
+
+            return new ModerationApplicationsPage(_context);
+        }
     }
 }
