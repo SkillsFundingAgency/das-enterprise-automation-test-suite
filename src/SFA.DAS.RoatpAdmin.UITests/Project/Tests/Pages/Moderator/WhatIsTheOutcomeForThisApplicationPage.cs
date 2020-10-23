@@ -9,11 +9,27 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Moderator
 
         public WhatIsTheOutcomeForThisApplicationPage(ScenarioContext context) : base(context) => _context = context;
 
-        public ModerationAssessmentCompletePage SelectYesAndContinueInAreYouSureThisApplicationIsReadyForModerationPage()
+        public AreYouSureYouWantToPassPage SelectPassAndContinueAreYouSurePage()
         {
-            SelectRadioOptionByForAttribute("OptionYes");
+            SelectRadioOptionByText("Pass");
             Continue();
-            return new ModerationAssessmentCompletePage(_context);
+            return new AreYouSureYouWantToPassPage(_context);
+        }
+
+        public AreYouSureYouWantToFailPage SelectFailAndContinueAreYouSurePage()
+        {
+            SelectRadioOptionByText("Fail");
+            EnterFailInternalComments();
+            Continue();
+            return new AreYouSureYouWantToFailPage(_context);
+        }
+
+        public AreYouSureYouWantToAskPage SelectAskForClarificationAndContinueAreYouSurePage()
+        {
+            SelectRadioOptionByText("Ask for clarification");
+            EnterClarificationInternalComments();
+            Continue();
+            return new AreYouSureYouWantToAskPage(_context);
         }
     }
 }

@@ -12,6 +12,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.Moderator
         private ScenarioContext _context;
         private ModerationApplicationAssessmentOverviewPage _moderationApplicationAssessmentOverviewPage;
         private ModeratorEndtoEndStepsHelper _moderatorEndtoEndStepsHelper;
+        private ModerationApplicationsPage _moderationApplicationsPage;
 
         public ModerationSteps(ScenarioContext context)
         {
@@ -45,5 +46,37 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.Moderator
         public void ThenTheModeratorAssessesAllTheSectionsOfTheApplicationAsPASS() =>
             _moderationApplicationAssessmentOverviewPage = _moderatorEndtoEndStepsHelper.CompleteAllSectionsWithPass((new ModerationApplicationAssessmentOverviewPage(_context)));
 
+
+        [Then(@"the Moderator assesses the outcome as PASS")]
+        public void ThenTheModeratorAssessesTheOutcomeAsPASS()
+        {
+            _moderationApplicationsPage = _moderatorEndtoEndStepsHelper.CompleteModeratorOutcomeSectionAsPass(_moderationApplicationAssessmentOverviewPage);
+        }
+
+        [Then(@"the Moderator FAILS few sections")]
+        public void ThenTheModeratorFAILSFewSections()
+        {
+            _moderationApplicationAssessmentOverviewPage = _moderatorEndtoEndStepsHelper.FailWorkingWithSubcontractors(_moderationApplicationAssessmentOverviewPage);
+            _moderationApplicationAssessmentOverviewPage = _moderatorEndtoEndStepsHelper.FailTypeOfApprenticeshipTraining(_moderationApplicationAssessmentOverviewPage);
+            _moderationApplicationAssessmentOverviewPage = _moderatorEndtoEndStepsHelper.FailYourSectorsAndEmployees(_moderationApplicationAssessmentOverviewPage);
+        }
+
+        [Then(@"the Moderator assesses the outcome as FAIL")]
+        public void ThenTheModeratorAssessesTheOutcomeAsFAIL()
+        {
+               _moderationApplicationsPage = _moderatorEndtoEndStepsHelper.CompleteModeratorOutcomeSectionAsFail(_moderationApplicationAssessmentOverviewPage);
+        }
+
+        [Then(@"the Moderator assesses the outcome as CLARIFICATION")]
+        public void ThenTheModeratorAssessesTheOutcomeAsCLARIFICATION()
+        {
+            _moderationApplicationsPage = _moderatorEndtoEndStepsHelper.CompleteModeratorOutcomeSectionAsAskClarification(_moderationApplicationAssessmentOverviewPage);
+        }
+
+        [Then(@"the Outcome tab is updated as (PASS|FAIL)")]
+        public void ThenTheOutcomeTabIsUpdated(string expectedStatus) => _moderationApplicationsPage.VerifyOutcomeStatus(expectedStatus);
+
+        [Then(@"the Clarification tab is updated")]
+        public void ThenTheClarificationTabIsUpdated() => _moderationApplicationsPage.VerifyClarificationStatus();
     }
 }
