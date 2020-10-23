@@ -53,22 +53,25 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.Moderator
             _moderationApplicationsPage = _moderatorEndtoEndStepsHelper.CompleteModeratorOutcomeSectionAsPass(_moderationApplicationAssessmentOverviewPage);
         }
 
+        [Then(@"the Moderator FAILS few sections")]
+        public void ThenTheModeratorFAILSFewSections()
+        {
+            _moderationApplicationAssessmentOverviewPage = _moderatorEndtoEndStepsHelper.FailWorkingWithSubcontractors(_moderationApplicationAssessmentOverviewPage);
+            _moderationApplicationAssessmentOverviewPage = _moderatorEndtoEndStepsHelper.FailTypeOfApprenticeshipTraining(_moderationApplicationAssessmentOverviewPage);
+            _moderationApplicationAssessmentOverviewPage = _moderatorEndtoEndStepsHelper.FailYourSectorsAndEmployees(_moderationApplicationAssessmentOverviewPage);
+        }
+
         [Then(@"the Moderator assesses the outcome as FAIL")]
         public void ThenTheModeratorAssessesTheOutcomeAsFAIL()
         {
-            _moderationApplicationAssessmentOverviewPage = _moderatorEndtoEndStepsHelper.FailYourSectorsAndEmployees(_moderationApplicationAssessmentOverviewPage);
-
                _moderationApplicationsPage = _moderatorEndtoEndStepsHelper.CompleteModeratorOutcomeSectionAsFail(_moderationApplicationAssessmentOverviewPage);
         }
 
         [Then(@"the Moderator assesses the outcome as CLARIFICATION")]
         public void ThenTheModeratorAssessesTheOutcomeAsCLARIFICATION()
         {
-            _moderationApplicationAssessmentOverviewPage = _moderatorEndtoEndStepsHelper.FailYourSectorsAndEmployees(_moderationApplicationAssessmentOverviewPage);
-
             _moderationApplicationsPage = _moderatorEndtoEndStepsHelper.CompleteModeratorOutcomeSectionAsAskClarification(_moderationApplicationAssessmentOverviewPage);
         }
-
 
         [Then(@"the Outcome tab is updated as (PASS|FAIL)")]
         public void ThenTheOutcomeTabIsUpdated(string expectedStatus) => _moderationApplicationsPage.VerifyOutcomeStatus(expectedStatus);

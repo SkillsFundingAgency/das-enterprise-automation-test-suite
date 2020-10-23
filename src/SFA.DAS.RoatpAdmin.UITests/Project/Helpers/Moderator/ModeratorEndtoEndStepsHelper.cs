@@ -39,6 +39,10 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
             moderationApplicationAssessmentOverviewPage = _moderator_Section1Helper.PassActingAsASubcontractor(moderationApplicationAssessmentOverviewPage);
             return moderationApplicationAssessmentOverviewPage;
         }
+        public ModerationApplicationAssessmentOverviewPage FailWorkingWithSubcontractors(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage)
+        {
+            return _moderator_Section1Helper.FailWorkingWithSubcontractors(moderationApplicationAssessmentOverviewPage);
+        }
 
         public ModerationApplicationAssessmentOverviewPage CompleteModeratorSection2Checks(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage)
         {
@@ -61,6 +65,11 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
             return moderationApplicationAssessmentOverviewPage;
         }
 
+        public ModerationApplicationAssessmentOverviewPage FailTypeOfApprenticeshipTraining(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage)
+        {
+            return _moderator_Section3Helper.FailTypeOfApprenticeshipTraining(moderationApplicationAssessmentOverviewPage);
+        }
+
         public ModerationApplicationAssessmentOverviewPage CompleteModeratorSection4Checks(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage)
         {
             moderationApplicationAssessmentOverviewPage = _moderator_Section4Helper.PassOverallAccountabilityForApprenticeships(moderationApplicationAssessmentOverviewPage);
@@ -75,7 +84,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
         public ModerationApplicationAssessmentOverviewPage FailYourSectorsAndEmployees(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage)
         {
             return _moderator_Section4Helper.FailYourSectorsAndEmployees(moderationApplicationAssessmentOverviewPage);
-        }      
+        }
 
         public ModerationApplicationAssessmentOverviewPage CompleteModeratorSection5Checks(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage)
         {

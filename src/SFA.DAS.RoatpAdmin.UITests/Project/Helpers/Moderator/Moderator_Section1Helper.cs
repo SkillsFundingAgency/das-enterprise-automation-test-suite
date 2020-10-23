@@ -60,5 +60,13 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
                 .SelectPassAndContinue()
                 .VerifySection1Link5Status(StatusHelper.StatusPass);
         }
+
+        public ModerationApplicationAssessmentOverviewPage FailWorkingWithSubcontractors(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage)
+        {
+            return moderationApplicationAssessmentOverviewPage
+                .Access_Section1_ActingAsASubcontractor()
+                .SelectFailAndContinue()
+                .VerifySection1Link5Status(StatusHelper.StatusFail);
+        }
     }
 }

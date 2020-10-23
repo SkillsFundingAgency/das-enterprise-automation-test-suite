@@ -29,6 +29,12 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Moderator
             return new ModerationApplicationAssessmentOverviewPage(_context);
         }
 
+        public ModerationApplicationAssessmentOverviewPage SelectFailAndContinue()
+        {
+            SelectFailAndContinueToSubSection();
+            return new ModerationApplicationAssessmentOverviewPage(_context);
+        }
+
         public void SelectPassAndContinueToSubSection()
         {
             SelectRadioOptionByText("Pass");

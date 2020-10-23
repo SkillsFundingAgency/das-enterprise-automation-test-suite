@@ -124,9 +124,12 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Then("the Moderator assesses all the sections of the application as PASS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 13
- testRunner.Then("the Moderator assesses the outcome as CLARIFICATION", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the Moderator FAILS few sections", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 14
+ testRunner.Then("the Moderator assesses the outcome as CLARIFICATION", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 15
  testRunner.Then("the Clarification tab is updated", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
