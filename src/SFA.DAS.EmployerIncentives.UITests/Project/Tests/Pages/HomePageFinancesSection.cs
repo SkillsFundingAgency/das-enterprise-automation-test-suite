@@ -15,7 +15,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
             return new AccessDeniedPage(_context);
         }
 
-        public AccessDeniedPage AccessViewEIAndAndRedirectedToAccessDeniedPage()
+        public AccessDeniedPage AccessViewEIApplicationsRedirectToAccessDeniedPage()
         {
             formCompletionHelper.Click(ViewEIApplicationsLink);
             return new AccessDeniedPage(_context);
@@ -27,10 +27,16 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
             return new EIStartPage(_context);
         }
 
-        public ViewApplicationsPage NavigateToViewApplicationsPage()
+        public ViewApplicationsPage NavigateToEIViewApplicationsPage()
         {
             formCompletionHelper.Click(ViewEIApplicationsLink);
             return new ViewApplicationsPage(_context);
+        }
+
+        public ViewApplicationsShutterPage NavigateToEIViewApplicationsShutterPage()
+        {
+            formCompletionHelper.Click(ViewEIApplicationsLink);
+            return new ViewApplicationsShutterPage(_context);
         }
     }
 }

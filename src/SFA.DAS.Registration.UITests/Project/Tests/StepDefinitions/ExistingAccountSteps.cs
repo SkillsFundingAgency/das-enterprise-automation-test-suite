@@ -36,6 +36,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         public void GivenTheEmployerLoginsUsingExistingTransactorUserAccount() => _homePage = _loginFromCreateAcccountPageHelper.Login(_context.GetUser<TransactorUser>(), true);
 
         [Given(@"the Employer logins using existing view user account")]
+        [When(@"the Employer logins using existing view user account")]
         public void GivenTheEmployerLoginsUsingExistingViewUserAccount() => _homePage = _loginFromCreateAcccountPageHelper.Login(_context.GetUser<ViewOnlyUser>(), true);
 
         [Then(@"Employer is able to navigate to all the link under Settings")]
