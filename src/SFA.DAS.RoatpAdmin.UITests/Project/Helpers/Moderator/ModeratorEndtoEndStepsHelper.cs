@@ -22,11 +22,11 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
 
         public ModerationApplicationAssessmentOverviewPage CompleteAllSectionsWithPass(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage)
         {
-            CompleteModeratorSection1Checks(moderationApplicationAssessmentOverviewPage);
-            CompleteModeratorSection2Checks(moderationApplicationAssessmentOverviewPage);
-            CompleteModeratorSection3Checks(moderationApplicationAssessmentOverviewPage);
-            CompleteModeratorSection4Checks(moderationApplicationAssessmentOverviewPage);
-            CompleteModeratorSection5Checks(moderationApplicationAssessmentOverviewPage);
+            moderationApplicationAssessmentOverviewPage = CompleteModeratorSection1Checks(moderationApplicationAssessmentOverviewPage);
+            moderationApplicationAssessmentOverviewPage = CompleteModeratorSection2Checks(moderationApplicationAssessmentOverviewPage);
+            moderationApplicationAssessmentOverviewPage = CompleteModeratorSection3Checks(moderationApplicationAssessmentOverviewPage);
+            moderationApplicationAssessmentOverviewPage = CompleteModeratorSection4Checks(moderationApplicationAssessmentOverviewPage);
+            moderationApplicationAssessmentOverviewPage = CompleteModeratorSection5Checks(moderationApplicationAssessmentOverviewPage);
             return moderationApplicationAssessmentOverviewPage;
         }
 

@@ -54,4 +54,9 @@
     public class TransactorUser : LoginUser { }
 
     public class ViewOnlyUser : LoginUser { }
+
+    public class MultipleAccountUser : LoginUser
+    {
+        public string SecondOrganisationName { get; set; }
+    }
 }
