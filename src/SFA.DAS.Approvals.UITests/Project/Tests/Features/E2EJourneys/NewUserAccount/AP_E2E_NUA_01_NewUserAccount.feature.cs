@@ -21,12 +21,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.E2EJourneys.NewUserAc
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("AP_E2E_NUA_01_NewUserAccount")]
+    [NUnit.Framework.CategoryAttribute("approvals")]
     public partial class AP_E2E_NUA_01_NewUserAccountFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-        private string[] _featureTags = ((string[])(null));
+        private string[] _featureTags = new string[] {
+                "approvals"};
         
 #line 1 "AP_E2E_NUA_01_NewUserAccount.feature"
 #line hidden
@@ -35,7 +37,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.E2EJourneys.NewUserAc
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "AP_E2E_NUA_01_NewUserAccount", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "AP_E2E_NUA_01_NewUserAccount", null, ProgrammingLanguage.CSharp, new string[] {
+                        "approvals"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -76,19 +79,21 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.E2EJourneys.NewUserAc
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("AP_E2E_NUA_01 Create Employer send an approved cohort then provider approves the " +
             "cohort")]
+        [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("addpayedetails")]
         [NUnit.Framework.CategoryAttribute("addlevyfunds")]
         [NUnit.Framework.CategoryAttribute("e2escenarios")]
         public virtual void AP_E2E_NUA_01CreateEmployerSendAnApprovedCohortThenProviderApprovesTheCohort()
         {
             string[] tagsOfScenario = new string[] {
+                    "regression",
                     "addpayedetails",
                     "addlevyfunds",
                     "e2escenarios"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_E2E_NUA_01 Create Employer send an approved cohort then provider approves the " +
                     "cohort", null, tagsOfScenario, argumentsOfScenario);
-#line 6
+#line 8
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -108,13 +113,13 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 7
+#line 9
  testRunner.Given("The User creates LevyEmployer account and sign an agreement", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 8
+#line 10
  testRunner.When("the Employer approves 2 cohort and sends to provider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 9
+#line 11
  testRunner.Then("the provider adds Ulns and approves the cohorts", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
