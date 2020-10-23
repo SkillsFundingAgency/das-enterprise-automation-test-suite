@@ -41,7 +41,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             formCompletionHelper.EnterText(DateOfBirthDay, apprenticeDataHelper.DateOfBirthDay);
             formCompletionHelper.EnterText(DateOfBirthMonth, apprenticeDataHelper.DateOfBirthMonth);
             formCompletionHelper.EnterText(DateOfBirthYear, apprenticeDataHelper.DateOfBirthYear);
-            
+
             formCompletionHelper.SelectFromDropDownByValue(TrainingCourseContainer, apprenticeCourseDataHelper.Course);
             formCompletionHelper.ClickElement(StartDateMonth);
             if (isMF == false)
@@ -78,17 +78,16 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         {
             if (objectContext.GetIsEIJourney())
             {
-                apprenticeDataHelper.DateOfBirthYear = (objectContext.GetEIAgeCategoryAsOfAug2020().Equals("Aged16to24")) ? 2004 : 1995;
-                var firstNameSuffix = "StartMonth" + objectContext.GetEIStartMonth() + "Year" + objectContext.GetEIStartYear();
-
-                apprenticeDataHelper.ApprenticeFirstname = apprenticeDataHelper.DateOfBirthYear == 2004 ? "16OrOver" : "25OrOver";
-                apprenticeDataHelper.ApprenticeFirstname += firstNameSuffix;
+                apprenticeDataHelper.ApprenticeFirstname = randomDataGenerator.GenerateRandomName();
+                apprenticeDataHelper.ApprenticeLastname = randomDataGenerator.GenerateRandomName();
+                apprenticeDataHelper.ApprenticeLastname += apprenticeDataHelper.DateOfBirthYear == 2004 ? "_16OrOver" : "_25OrOver";
+                apprenticeDataHelper.ApprenticeLastname += "StartMonth" + objectContext.GetEIStartMonth() + "Year" + objectContext.GetEIStartYear();
                 apprenticeDataHelper.DateOfBirthDay = 1;
                 apprenticeDataHelper.DateOfBirthMonth = 8;
+                apprenticeDataHelper.DateOfBirthYear = (objectContext.GetEIAgeCategoryAsOfAug2020().Equals("Aged16to24")) ? 2004 : 1995;
 
                 return new DateTime(objectContext.GetEIStartYear(), objectContext.GetEIStartMonth(), 1);
             }
-
             return apprenticeCourseDataHelper.CourseStartDate;
         }
     }
