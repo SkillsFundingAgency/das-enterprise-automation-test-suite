@@ -27,5 +27,19 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Helpers
         public string OrganisationName { get; set; }
 
         public string OrganisationUserName { get; set; }
+
+        public string NewUserFullName => "Jack Reacher";
+
+        public string ContactType => "Employer";
+
+        public string AddressLine1 => "Cheylesmore House";
+
+        public string AddressLine2 => "5";
+
+        public string AddressLine3 => "Quinton Road";
+
+        public string City => "Coventry";
+
+        public string Postcode => "CV1 2WT";
     }
 }

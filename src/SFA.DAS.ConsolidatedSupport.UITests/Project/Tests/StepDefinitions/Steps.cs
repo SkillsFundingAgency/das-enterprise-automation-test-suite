@@ -8,7 +8,7 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.StepDefinitions
 {
     [Binding]
-    public class ExistingUserSteps
+    public class Steps
     {
         private readonly ScenarioContext _context;
         private readonly RestApiHelper _restApiHelper;
@@ -19,13 +19,57 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.StepDefinitions
         private TicketPage _ticketpage;
 
 
-        public ExistingUserSteps(ScenarioContext context)
+        public Steps(ScenarioContext context)
         {
             _context = context;
             _objectContext = context.Get<ObjectContext>();
             _config = context.GetConsolidatedSupportConfig<ConsolidatedSupportConfig>();
             _dataHelper = context.Get<ConsolidateSupportDataHelper>();
             _restApiHelper = new RestApiHelper(_config, _dataHelper);
+        }
+
+        [Given(@"A new user is created")]
+        public void GivenANewUserIsCreated()
+        {
+            _homePage = new SignInPage(_context).SignIntoApprenticeshipServiceSupport();
+
+            var user = _restApiHelper.CreateUser().Result;
+
+            _objectContext.SetUserId($"{user.Id}");
+
+            TestContext.Progress.WriteLine($"Ticket {user.Id} created - {user.Name}");
+        }
+
+        [Then(@"the user can be updated")]
+        public void ThenTheUserCanBeUpdated()
+        {
+            _homePage.NavigateToAdminPage();
+
+            var userpage = new UserPage(_context);
+
+            userpage.SelectOptions("Contact Type", _dataHelper.ContactType);
+            userpage.EnterText("Address Line 2", _dataHelper.AddressLine2);
+            userpage.EnterText("Address Line 1", _dataHelper.AddressLine1);
+            userpage.EnterText("Address Line 3", _dataHelper.AddressLine3);
+            userpage.EnterText("City", _dataHelper.City);
+            userpage.EnterText("Postcode", _dataHelper.Postcode);
+
+            _homePage = userpage.CloseAllTickets();
+        }
+
+        [Then(@"an organisation can be associated")]
+        public void ThenAnOrganisationCanBeAssociated()
+        {
+            _homePage.NavigateToAdminPage();
+
+            var userpage = new UserPage(_context);
+
+            userpage.VerifyUserDetails("Contact Type", _dataHelper.ContactType);
+            userpage.VerifyUserDetails("Address Line 1", _dataHelper.AddressLine1);
+            userpage.VerifyUserDetails("Address Line 2", _dataHelper.AddressLine2);
+            userpage.VerifyUserDetails("Address Line 3", _dataHelper.AddressLine3);
+            userpage.VerifyUserDetails("City", _dataHelper.City);
+            userpage.VerifyUserDetails("Postcode", _dataHelper.Postcode);
         }
 
         [Given(@"an existing user emails the helpdesk")]

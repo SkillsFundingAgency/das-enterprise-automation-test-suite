@@ -1,6 +1,5 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.UI.FrameworkHelpers;
-using System;
 using System.Linq;
 using System.Threading;
 using TechTalk.SpecFlow;
@@ -28,8 +27,6 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
         private By CommentEditorSelector => By.CssSelector(".comment_input .content .editor.zendesk-editor--rich-text-comment");
 
         private By CommentsSections => By.CssSelector(".zd-comment");
-
-        private By TicketCloseButton => By.CssSelector("[data-test-id='close-button']");
 
         private By TicketDropdownFields => By.CssSelector("[data-garden-id='dropdowns.field']");
 
@@ -177,18 +174,5 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
                 _ => string.Empty,
             };
         }
-
-        private void CloseAllTickets()
-        {
-            pageInteractionHelper.InvokeAction(() =>
-            {
-                var elements = pageInteractionHelper.FindElements(TicketCloseButton).ToList();
-                foreach (var element in elements)
-                {
-                    element.Click();
-                }
-            });
-        }
-
     }
 }

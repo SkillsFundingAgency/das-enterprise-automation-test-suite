@@ -1,5 +1,4 @@
-﻿using Microsoft.Azure.ServiceBus;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
@@ -23,6 +22,8 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
 
         private By HomeButton => By.CssSelector("#main_navigation [data-original-title='Home']");
 
+        private By AdminButton => By.CssSelector("#main_navigation [data-original-title='Admin']");
+
         public HomePage(ScenarioContext context, bool navigateTo = false) : base(context)
         {
             _context = context;
@@ -45,6 +46,12 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
             });
 
             return new TicketPage(_context);
+        }
+
+        public AdminPage NavigateToAdminPage()
+        {
+            formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(AdminButton));
+            return new AdminPage(_context);
         }
 
         protected HomePage NavigateToHomePage()
