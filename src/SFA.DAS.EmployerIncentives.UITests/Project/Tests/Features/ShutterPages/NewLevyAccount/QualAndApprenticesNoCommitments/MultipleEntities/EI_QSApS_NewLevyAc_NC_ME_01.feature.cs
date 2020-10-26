@@ -77,13 +77,13 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Features.ShutterPages
         [NUnit.Framework.DescriptionAttribute("EI_QSApS_NewLevyAc_NC_ME_01_Validate Shutter pages for New Levy Account with Two " +
             "legal entities and No Commitments")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("addpayedetails")]
+        [NUnit.Framework.CategoryAttribute("levypaye")]
         [NUnit.Framework.CategoryAttribute("employerincentives")]
         public virtual void EI_QSApS_NewLevyAc_NC_ME_01_ValidateShutterPagesForNewLevyAccountWithTwoLegalEntitiesAndNoCommitments()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
-                    "addpayedetails",
+                    "levypaye",
                     "employerincentives"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EI_QSApS_NewLevyAc_NC_ME_01_Validate Shutter pages for New Levy Account with Two " +

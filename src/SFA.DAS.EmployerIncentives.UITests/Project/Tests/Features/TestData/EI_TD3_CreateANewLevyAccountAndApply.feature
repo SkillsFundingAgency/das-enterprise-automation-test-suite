@@ -1,6 +1,6 @@
 ﻿Feature: EI_TD3_CreateANewLevyAccountAndApply
 
-@addpayedetails
+@levypaye
 @dfeuatachieveservice
 Scenario: EI_TD3_Create A LevyAccount with Commitments and apply for EI
 	Given an Employer creates a Levy Account and Signs the Agreement
