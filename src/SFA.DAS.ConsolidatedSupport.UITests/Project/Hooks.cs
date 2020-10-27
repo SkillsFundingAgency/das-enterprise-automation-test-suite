@@ -1,4 +1,5 @@
 ﻿using SFA.DAS.ConsolidatedSupport.UITests.Project.Helpers;
+using SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages;
 using SFA.DAS.UI.Framework;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
@@ -23,5 +24,16 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project
         [BeforeScenario(Order = 42)]
         public void SetUpHelpers() => _context.Set(new ConsolidateSupportDataHelper());
 
+        [AfterScenario(Order = 11)]
+        public void DeleteEntities()
+        {
+            var homePage = new HomePage(_context, true);
+
+            var userpage = homePage.NavigateToAdminPage().NavigateToUserPage();
+
+            userpage.DeleteEntity(true);
+
+            userpage.DeleteEntity();
+        }
     }
 }

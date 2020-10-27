@@ -18,7 +18,6 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.StepDefinitions
         private HomePage _homePage;
         private TicketPage _ticketpage;
 
-
         public Steps(ScenarioContext context)
         {
             _context = context;
@@ -43,33 +42,46 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.StepDefinitions
         [Then(@"the user can be updated")]
         public void ThenTheUserCanBeUpdated()
         {
-            _homePage.NavigateToAdminPage();
+            var userpage = _homePage.NavigateToAdminPage().NavigateToUserPage();
 
-            var userpage = new UserPage(_context);
+            _homePage = userpage.SelectOptions("Contact Type", _dataHelper.Type);
+            _homePage = userpage.EnterText("Address Line 1", _dataHelper.AddressLine1);
+            _homePage = userpage.EnterText("Address Line 2", _dataHelper.AddressLine2);
+            _homePage = userpage.EnterText("Address Line 3", _dataHelper.AddressLine3);
+            _homePage = userpage.EnterText("City", _dataHelper.City);
+            _homePage = userpage.EnterText("Postcode", _dataHelper.Postcode);
 
-            userpage.SelectOptions("Contact Type", _dataHelper.ContactType);
-            userpage.EnterText("Address Line 2", _dataHelper.AddressLine2);
-            userpage.EnterText("Address Line 1", _dataHelper.AddressLine1);
-            userpage.EnterText("Address Line 3", _dataHelper.AddressLine3);
-            userpage.EnterText("City", _dataHelper.City);
-            userpage.EnterText("Postcode", _dataHelper.Postcode);
+            _homePage = userpage.VerifyUserDetails("Contact Type", _dataHelper.Type);
 
-            _homePage = userpage.CloseAllTickets();
         }
 
         [Then(@"an organisation can be associated")]
         public void ThenAnOrganisationCanBeAssociated()
         {
-            _homePage.NavigateToAdminPage();
+            var userpage = _homePage.NavigateToAdminPage().NavigateToUserPage();
 
-            var userpage = new UserPage(_context);
+            userpage.CreateOrganisation();
 
-            userpage.VerifyUserDetails("Contact Type", _dataHelper.ContactType);
-            userpage.VerifyUserDetails("Address Line 1", _dataHelper.AddressLine1);
-            userpage.VerifyUserDetails("Address Line 2", _dataHelper.AddressLine2);
-            userpage.VerifyUserDetails("Address Line 3", _dataHelper.AddressLine3);
-            userpage.VerifyUserDetails("City", _dataHelper.City);
-            userpage.VerifyUserDetails("Postcode", _dataHelper.Postcode);
+            _homePage = userpage.VerifyOrganisationName();
+
+            _homePage = userpage.VerifyOrganisationDomain();
+
+            _homePage = userpage.SelectOptions("Organisation Type", _dataHelper.Type, true);
+            _homePage = userpage.SelectOptions("Organisation Status", _dataHelper.Status, true);
+            _homePage = userpage.SelectOptions("Account Manager Status", _dataHelper.AccountManagerStatus, true);
+            
+            _homePage = userpage.EnterText("Address Line 1", _dataHelper.AddressLine1, true);
+            _homePage = userpage.EnterText("Address Line 2", _dataHelper.AddressLine2, true);
+            _homePage = userpage.EnterText("Address Line 3", _dataHelper.AddressLine3, true);
+            _homePage = userpage.EnterText("City", _dataHelper.City, true);
+            _homePage = userpage.EnterText("County", _dataHelper.County, true);
+            _homePage = userpage.EnterText("Postcode", _dataHelper.Postcode, true);
+            _homePage = userpage.EnterText("Account Manager Name", _dataHelper.NewUserFullName, true);
+            _homePage = userpage.EnterText("Account Manager E-mail", _dataHelper.NewUserEmail, true);
+
+            _homePage = userpage.VerifyUserDetails("Organisation Type", _dataHelper.Type, true);
+            _homePage = userpage.VerifyUserDetails("Organisation Status", _dataHelper.Status, true);
+            _homePage = userpage.VerifyUserDetails("Account Manager Status", _dataHelper.AccountManagerStatus, true);
         }
 
         [Given(@"an existing user emails the helpdesk")]

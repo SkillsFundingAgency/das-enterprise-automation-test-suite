@@ -77,7 +77,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
             return VerifyPage(func);
         }
 
-        public bool VerifyPage(By locator) => VerifyPage(Func(locator));
+        public bool VerifyPage(By locator, Action retryAction = null) => VerifyPage(Func(locator), retryAction);
 
         public bool VerifyPage(By locator, string expected) => VerifyPage(() => FindElement(locator), expected);
 
@@ -92,11 +92,11 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         public void Verify(Func<bool> func, Action beforeAction) => _retryHelper.RetryOnException(func, beforeAction);
 
-        private bool VerifyPage(Func<bool> func)
+        private bool VerifyPage(Func<bool> func, Action retryAction = null)
         {
             void beforeAction() => _webDriverWaitHelper.WaitForPageToLoad();
 
-            return _retryHelper.RetryOnException(func, beforeAction);
+            return _retryHelper.RetryOnException(func, beforeAction, retryAction);
         }
 
         public bool VerifyText(string actual, string expected1, string expected2)

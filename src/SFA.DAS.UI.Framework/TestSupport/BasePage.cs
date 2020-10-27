@@ -52,7 +52,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
 
         protected bool VerifyElement(Func<IWebElement> func, string text, Action retryAction) => _pageInteractionHelper.VerifyPage(func, text, retryAction);
 
-        protected bool VerifyPage(By locator) => _pageInteractionHelper.VerifyPage(locator);
+        protected bool VerifyPage(By locator, Action retryAction = null) => _pageInteractionHelper.VerifyPage(locator, retryAction);
 
         protected bool VerifyPage() => VerifyPage(PageHeader, PageTitle);
 

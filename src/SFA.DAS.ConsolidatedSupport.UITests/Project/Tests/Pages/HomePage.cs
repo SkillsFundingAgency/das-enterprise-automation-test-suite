@@ -26,14 +26,25 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
 
         public HomePage(ScenarioContext context, bool navigateTo = false) : base(context)
         {
+            void action() => formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(HomeButton));
+
             _context = context;
 
-            if (navigateTo) { NavigateToHomePage(); }
-            
-            VerifyPage(PageHeader);
-            VerifyPage(BrandingHeader);
-            VerifyPage(Indicators);
-            VerifyPage(TicketTable);
+            if (navigateTo) 
+            {
+                action();
+                VerifyPage(PageHeader, action);
+                VerifyPage(BrandingHeader, action);
+                VerifyPage(Indicators, action);
+                VerifyPage(TicketTable, action);
+            }
+            else
+            {
+                VerifyPage(PageHeader);
+                VerifyPage(BrandingHeader);
+                VerifyPage(Indicators);
+                VerifyPage(TicketTable);
+            }
         }
 
         public TicketPage SearchTicket()
@@ -54,10 +65,6 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
             return new AdminPage(_context);
         }
 
-        protected HomePage NavigateToHomePage()
-        {
-            formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(HomeButton));
-            return new HomePage(_context);
-        }
+        protected HomePage NavigateToHomePage() => new HomePage(_context, true);
     }
 }

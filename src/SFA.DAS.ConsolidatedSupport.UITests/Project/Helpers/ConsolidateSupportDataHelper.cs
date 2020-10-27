@@ -28,9 +28,19 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Helpers
 
         public string OrganisationUserName { get; set; }
 
-        public string NewUserFullName => "Jack Reacher";
+        public string NewUserFullName => "JackReacher";
 
-        public string ContactType => "Employer";
+        public string NewUserEmail => $"{NewUserFullName}@{NewOrgDomain}";
+
+        public string NewOrgName => "TestOrgJackReacher";
+
+        public string NewOrgDomain => "TestOrgJackReacher.com";
+
+        public string Type => "Employer";
+
+        public string Status => "Active";
+
+        public string AccountManagerStatus => "National Account Managed";
 
         public string AddressLine1 => "Cheylesmore House";
 
@@ -39,6 +49,8 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Helpers
         public string AddressLine3 => "Quinton Road";
 
         public string City => "Coventry";
+
+        public string County => "West Midlands";
 
         public string Postcode => "CV1 2WT";
     }
