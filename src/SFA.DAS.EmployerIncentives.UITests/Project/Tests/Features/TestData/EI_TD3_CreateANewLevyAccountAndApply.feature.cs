@@ -110,7 +110,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("an Employer creates a Levy Account and Signs the Agreement", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 8
- testRunner.When("the Employer adds 8 apprentices Aged16to24 as of 01AUG2020 with start date as Mon" +
+ testRunner.When("the Employer adds 1 apprentices Aged16to24 as of 01AUG2020 with start date as Mon" +
                         "th 8 and Year 2020", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 9
@@ -130,7 +130,7 @@ this.ScenarioInitialize(scenarioInfo);
                         "ation page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 14
- testRunner.And("the Employer is able to navigate to View Applications page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("the Employer is able to view EI applications", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
