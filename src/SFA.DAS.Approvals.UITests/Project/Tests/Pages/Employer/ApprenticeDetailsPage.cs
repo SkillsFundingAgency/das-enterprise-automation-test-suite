@@ -16,7 +16,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private By ViewChangesLink => By.LinkText("View changes");
         private By ReviewChangesLink => By.LinkText("Review changes");
         private By EditApprenticeStatusLink => By.LinkText("Edit status");
-        private By EditStopDateLink => By.Id("editStopDateLink");
+        private By EditStopDateLink => By.LinkText("Edit");//By.Id("editStopDateLink");
         private By EditEndDateLink => By.Id("editEndDateLink"); 
         private By EditApprenticeDetailsLink => By.CssSelector("a.float-right");
         private By ApprenticeshipStatus => By.CssSelector("#app-status tbody tr td");
@@ -64,7 +64,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         public bool IsEditApprenticeStatusLinkVisible() => pageInteractionHelper.IsElementDisplayed(EditApprenticeStatusLink);
         public bool IsEditApprenticeDetailsLinkVisible() => pageInteractionHelper.IsElementDisplayed(EditApprenticeDetailsLink);
         public bool IsEditEndDateLinkVisible() => pageInteractionHelper.IsElementDisplayed(EditEndDateLink);
-        public void ClickOnChangeOfProviderLink()=> formCompletionHelper.ClickElement(changeTrainingProviderLink);
+        public ChangingTrainingProviderPage ClickOnChangeOfProviderLink()
+        {
+            formCompletionHelper.ClickElement(changeTrainingProviderLink);
+            return new ChangingTrainingProviderPage(_context);
+        } 
 
 
     }

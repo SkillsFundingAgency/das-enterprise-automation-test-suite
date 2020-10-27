@@ -36,20 +36,21 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             ProviderLoginUser _providerLoginUser = new ProviderLoginUser { Username = _providerPermissionsConfig.UserId, Password = _providerPermissionsConfig.Password, Ukprn = _providerPermissionsConfig.Ukprn };
             new RestartWebDriverHelper(_context).RestartWebDriver(UrlConfig.Provider_BaseUrl, "Approvals");
             new ProviderHomePageStepsHelper(_context).GoToProviderHomePage(_providerLoginUser, false);
+        
+            //add steps here for new provider to approve the cohort
         }
 
         [Then(@"a new live apprenticeship record is created with new Provider")]
         public void ThenANewLiveApprenticeshipRecordIsCreatedWithNewProvider()
         {
-            new EmployerStepsHelper(_context)
-               .GoToManageYourApprenticesPage();
-               //.VerifyNewApprenticeRecordIsCreated();
+               //add the steps here to validate new apprentice record is created
         }
 
         private void StartChangeOfProviderJourney()
         {
             _employerStepsHelper.ViewCurrentApprenticeDetails()
-                                .ClickOnChangeOfProviderLink();
+                                .ClickOnChangeOfProviderLink()
+                                .ClickOnContinueButton();
         }
     }
 }
