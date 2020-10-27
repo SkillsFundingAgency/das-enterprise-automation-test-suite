@@ -44,10 +44,10 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project
             }
         }
 
-        [BeforeScenario(Order = 43)]
+        [BeforeScenario(Order = 42)]
         public void SetUpHelpers() => _context.Set(new EISqlHelper(_eIConfig));
 
-        [BeforeScenario(Order = 44)]
+        [BeforeScenario(Order = 43)]
         public void RemoveExistingApplications()
         {
             if (_context.ScenarioInfo.Tags.Contains("eie2ejourney"))

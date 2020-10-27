@@ -1,10 +1,11 @@
 ﻿Feature: EI_TD3_CreateANewLevyAccountAndApply
 
-@levypaye
+@addpayedetails
+@addlevyfunds
 @dfeuatachieveservice
 Scenario: EI_TD3_Create A LevyAccount with Commitments and apply for EI
 	Given an Employer creates a Levy Account and Signs the Agreement
-	When the Employer adds 2 apprentices Aged16to24 as of 01AUG2020 with start date as Month 8 and Year 2020
+	When the Employer adds 8 apprentices Aged16to24 as of 01AUG2020 with start date as Month 8 and Year 2020
 	And the Provider approves the apprenticeship request
 	Then the Employer is able to navigate to EI start page for Single entity account
 	And the Employer is able to submit the EI Application

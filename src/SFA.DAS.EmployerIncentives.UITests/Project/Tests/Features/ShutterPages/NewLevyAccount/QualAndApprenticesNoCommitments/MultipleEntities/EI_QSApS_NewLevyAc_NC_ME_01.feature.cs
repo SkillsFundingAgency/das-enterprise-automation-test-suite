@@ -77,18 +77,20 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Features.ShutterPages
         [NUnit.Framework.DescriptionAttribute("EI_QSApS_NewLevyAc_NC_ME_01_Validate Shutter pages for New Levy Account with Two " +
             "legal entities and No Commitments")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("levypaye")]
         [NUnit.Framework.CategoryAttribute("employerincentives")]
+        [NUnit.Framework.CategoryAttribute("addpayedetails")]
+        [NUnit.Framework.CategoryAttribute("addlevyfunds")]
         public virtual void EI_QSApS_NewLevyAc_NC_ME_01_ValidateShutterPagesForNewLevyAccountWithTwoLegalEntitiesAndNoCommitments()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
-                    "levypaye",
-                    "employerincentives"};
+                    "employerincentives",
+                    "addpayedetails",
+                    "addlevyfunds"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EI_QSApS_NewLevyAc_NC_ME_01_Validate Shutter pages for New Levy Account with Two " +
                     "legal entities and No Commitments", null, tagsOfScenario, argumentsOfScenario);
-#line 6
+#line 7
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -108,31 +110,31 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 7
+#line 8
  testRunner.Given("an Employer creates a Levy Account and Signs the Agreement", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 8
+#line 9
  testRunner.And("the Employer adds another legal entity", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 9
+#line 10
  testRunner.When("the Employer Initiates EI Application journey for Multiple entity account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 10
+#line 11
  testRunner.Then("Qualification question shutter page is displayed for selecting No option in Quali" +
                         "fication page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 11
+#line 12
  testRunner.And("Employer Home page is displayed on clicking on Return to Account Home button on Q" +
                         "ualification shutter page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 12
+#line 13
  testRunner.When("the Employer navigates back to Qualification page for Multiple entity account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 13
+#line 14
  testRunner.Then("Select apprentices shutter page is displayed for selecting Yes option in Qualific" +
                         "ation page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 14
+#line 15
  testRunner.And("Approvals home page is displayed on clicking on Add apprentices link on Select ap" +
                         "prentices shutter page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden

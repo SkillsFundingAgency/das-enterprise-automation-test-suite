@@ -28,7 +28,7 @@ namespace SFA.DAS.Registration.UITests.Project
         }
 
         [BeforeScenario(Order = 23)]
-        [Scope(Tag = "addpayedetails"), Scope(Tag = "levypaye"), Scope(Tag = "nonlevypaye")]
+        [Scope(Tag = "addpayedetails")]
         public void SetUpMongoDbHelpers()
         {
             _mongoDbDataGenerator = new MongoDbDataGenerator(_context);
@@ -84,7 +84,7 @@ namespace SFA.DAS.Registration.UITests.Project
         }
 
         [AfterScenario(Order = 21)]
-        [Scope(Tag = "addpayedetails"), Scope(Tag = "levypaye"), Scope(Tag = "nonlevypaye")]
+        [Scope(Tag = "addpayedetails")]
         public void DeletePayeDetails()
         {
             _empRefs = _objectContext.GetMongoDbDataHelpers().Select(x => x.EmpRef).ToList();
