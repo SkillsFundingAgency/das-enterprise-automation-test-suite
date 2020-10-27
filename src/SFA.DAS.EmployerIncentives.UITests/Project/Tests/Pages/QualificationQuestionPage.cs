@@ -12,10 +12,10 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
 
         public QualificationQuestionPage(ScenarioContext context) : base(context) => _context = context;
 
-        public SelectTheApprentice SelectYesAndContinueForEligibleApprenticesScenario()
+        public SelectTheApprenticesPage SelectYesAndContinueForEligibleApprenticesScenario()
         {
             SelectYes();
-            return new SelectTheApprentice(_context);
+            return new SelectTheApprenticesPage(_context);
         }
 
         public SelectApprenticesShutterPage SelectYesAndContinueForNoEligibleApprenticesScenario()

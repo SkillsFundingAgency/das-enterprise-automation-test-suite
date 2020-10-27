@@ -111,10 +111,10 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.When("the Employer Initiates EI Application journey for Single entity account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 8
- testRunner.Then("the Employer can continue for eligible apprentices scenario", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the Employer is able to navigate to EI application Select apprentices page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 9
- testRunner.And("the Employer is able to navigate to View Applications page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("the Employer is able to view EI applications", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();

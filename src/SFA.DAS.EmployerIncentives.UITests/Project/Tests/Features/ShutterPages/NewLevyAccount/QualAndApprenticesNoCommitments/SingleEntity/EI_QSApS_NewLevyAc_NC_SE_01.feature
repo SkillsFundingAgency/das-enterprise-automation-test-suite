@@ -2,6 +2,7 @@
 
 @regression
 @addpayedetails
+@addlevyfunds
 @employerincentives
 Scenario: EI_QSApS_NewLevyAc_NC_SE_01_Validate Shutter pages for New Levy Account with One legal entity and No Commitments
 	Given an Employer creates a Levy Account and Signs the Agreement
