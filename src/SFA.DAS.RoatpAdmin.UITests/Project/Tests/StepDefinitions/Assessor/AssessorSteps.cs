@@ -1,8 +1,10 @@
-﻿using TechTalk.SpecFlow;
+﻿using System;
+using TechTalk.SpecFlow;
 using SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor;
 using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.Framework;
+using SFA.DAS.RoatpAdmin.UITests.Project.Helpers;
 
 namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.Assessor
 {
@@ -19,7 +21,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.Assessor
         {
             _restartWebDriverHelper = new RestartWebDriverHelper(context);
             _assessorLoginStepsHelper = new AssessorLoginStepsHelper(context);
-            _assessorEndtoEndStepsHelper = new AssessorEndtoEndStepsHelper(context);
+            _assessorEndtoEndStepsHelper = new AssessorEndtoEndStepsHelper();
         }
 
         [When(@"the (Assessor1|Assessor2) is on the RoATP assessor applications dashboard")]
@@ -41,12 +43,18 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.Assessor
         [When(@"selects the Employer provider route application")]
         public void AndSelectsTheRouteApplication() => _applicationAssessmentOverviewPage = _assessorApplicationsPage.AssessorSelectsAssignToMe();
 
-        [Then(@"the Assessor assesses all the sections of the application as PASS")]
-        public void ThenTheAssessorAssessesAllTheSectionsOfTheApplicationAsPASS() =>
-            _assessorEndtoEndStepsHelper.CompleteAllSectionsWithPass(_applicationAssessmentOverviewPage);
-
         [Then(@"marks the Application as Ready for moderation")]
         public void ThenMarksTheApplicationAsReadyForModeration() =>
             _assessorEndtoEndStepsHelper.MarkApplicationAsReadyForModeration(_applicationAssessmentOverviewPage);
+
+        [Then(@"the Assessor assesses all the sections of the (Main Provider Route|Supporting Provider Route|Employer Provider Route) application as PASS")]
+        public void TheAssessorAssessesAllTheSectionsOfTheApplicationAsPASS(ApplicationRoute applicationroute)
+        {
+            _assessorEndtoEndStepsHelper.CompleteAllSectionsWithPass(_applicationAssessmentOverviewPage, applicationroute);
+        }
+
+        [StepArgumentTransformation(@"(main|supporting|employer)")]
+        public ApplicationRoute Applicationroute(string applicationroute) => Enum.Parse<ApplicationRoute>(applicationroute, true);
+
     }
 }

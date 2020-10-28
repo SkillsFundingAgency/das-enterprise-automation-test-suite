@@ -47,11 +47,11 @@
 	Scenario: RP_E2E_04_Complete_Assessor_Checks_Company_Type_Application_Main_Provider_Route
 	When the Assessor1 is on the RoATP assessor applications dashboard
 	And selects the Main provider route application
-	Then the Assessor assesses all the sections of the application as PASS
+	Then the Assessor assesses all the sections of the Main Provider Route application as PASS
 	And marks the Application as Ready for moderation
 	When the Assessor2 is on the RoATP assessor applications dashboard
 	And selects the Main provider route application
-	Then the Assessor assesses all the sections of the application as PASS
+	Then the Assessor assesses all the sections of the Main Provider Route application as PASS
 	And marks the Application as Ready for moderation
 
 @roatp
