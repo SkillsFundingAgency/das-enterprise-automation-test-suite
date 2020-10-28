@@ -173,18 +173,12 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
 
         [Given(@"an Employer creates a Levy Account and Signs the Agreement")]
         [When(@"an Employer creates a Levy Account and Signs the Agreement")]
-        public void EmployerCreatesALevyAccountAndSignsTheAgreement()
-        {
-            _accountCreationStepsHelper.AddLevyDeclarations();
+        public void EmployerCreatesALevyAccountAndSignsTheAgreement() =>
             GivenAnEmployerAccountWithSpecifiedTypeOrgIsCreatedAndAgeementIsSigned(OrgType.Company);
-        }
 
         [When(@"an Employer creates a Levy Account and not Signs the Agreement during registration")]
-        public void WhenAnEmployerCreatesALevyAccountAndNotSignsTheAgreementDuringRegistration()
-        {
-            _accountCreationStepsHelper.AddLevyDeclarations();
+        public void WhenAnEmployerCreatesALevyAccountAndNotSignsTheAgreementDuringRegistration() =>
             GivenAnEmployerAccountWithSpecifiedTypeOrgIsCreatedAndAgeementIsNotSigned(OrgType.Company);
-        }
 
         [When(@"the Employer initiates adding same Org of (Company|PublicSector|Charity) Type again")]
         public void WhenTheEmployerInitiatesAddingSameOrgTypeAgain(OrgType orgType) =>
@@ -197,7 +191,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         public void ThenApprenticeshipEmployerTypeInAccountTableIsMarkedAs(string expectedApprenticeshipEmployerType)
         {
             var actualApprenticeshipEmployerType = _registrationSqlDataHelper.GetAccountApprenticeshipEmployerType(_registrationDataHelper.RandomEmail);
-            
+
             Assert.AreEqual(expectedApprenticeshipEmployerType, actualApprenticeshipEmployerType);
         }
 

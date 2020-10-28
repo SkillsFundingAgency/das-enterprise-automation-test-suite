@@ -17,6 +17,22 @@ namespace SFA.DAS.UI.FrameworkHelpers
             _regexHelper = regexHelper;
         }
 
+        public IWebElement GetColumn(string rowIdentifier, By columnIdentifier, string tableSelector = "table")
+        {
+            var table = _pageInteractionHelper.FindElement(By.CssSelector(tableSelector));
+            var tableRows = table.FindElements(By.CssSelector("tbody tr"));
+
+            foreach (var tablerow in tableRows)
+            {
+                if (tablerow.Text.ContainsCompareCaseInsensitive(rowIdentifier) && tablerow.FindElements(columnIdentifier).Any())
+                {
+                   return tablerow.FindElement(columnIdentifier);
+                }
+            }
+            throw new System.Exception($"Test Exception: Could not find row with text '{rowIdentifier}' or column using '{columnIdentifier}' and selector '{tableSelector}'");
+        }
+
+
         public void SelectRowFromTable(string byLinkText, string byKey, string tableSelector = "table")
         {
             var table = _pageInteractionHelper.FindElement(By.CssSelector(tableSelector));
