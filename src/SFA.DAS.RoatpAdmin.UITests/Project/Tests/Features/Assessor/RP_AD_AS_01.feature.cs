@@ -77,6 +77,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Features.Assessor
         [NUnit.Framework.DescriptionAttribute("RP_AD_AS_01 Assess a Company type Application via Main provider route")]
         [NUnit.Framework.CategoryAttribute("roatp")]
         [NUnit.Framework.CategoryAttribute("rpadas01")]
+        [NUnit.Framework.CategoryAttribute("roatpassessoradmin")]
         [NUnit.Framework.CategoryAttribute("roatpassessor")]
         [NUnit.Framework.CategoryAttribute("newroatpadmin")]
         [NUnit.Framework.CategoryAttribute("regression")]
@@ -85,12 +86,13 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Features.Assessor
             string[] tagsOfScenario = new string[] {
                     "roatp",
                     "rpadas01",
+                    "roatpassessoradmin",
                     "roatpassessor",
                     "newroatpadmin",
                     "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_AD_AS_01 Assess a Company type Application via Main provider route", null, tagsOfScenario, argumentsOfScenario);
-#line 8
+#line 9
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -110,28 +112,28 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 9
+#line 10
  testRunner.When("the Assessor1 is on the RoATP assessor applications dashboard", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 10
- testRunner.And("selects the Main provider route application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
 #line 11
- testRunner.Then("the Assessor assesses all the sections of the application as PASS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("selects the Main provider route application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 12
- testRunner.And("marks the Application as Ready for moderation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 13
- testRunner.When("the Assessor2 is on the RoATP assessor applications dashboard", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 14
- testRunner.And("selects the Main provider route application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 15
  testRunner.Then("the Assessor assesses all the sections of the application as PASS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
+#line 13
+ testRunner.And("marks the Application as Ready for moderation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 14
+ testRunner.When("the Assessor2 is on the RoATP assessor applications dashboard", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 15
+ testRunner.And("selects the Main provider route application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
 #line 16
+ testRunner.Then("the Assessor assesses all the sections of the application as PASS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 17
  testRunner.And("marks the Application as Ready for moderation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }

@@ -43,8 +43,8 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.RoatpAdmin
             _adminData.Add("rpadgw01",
               new List<KeyValuePair<string, string>>
              {
-                    new KeyValuePair<string, string>(providernamekey, "PARAGON TRAINING AND CONSULTING LIMITED"),
-                    new KeyValuePair<string, string>(ukprnkey, "10065592"),
+                    new KeyValuePair<string, string>(providernamekey, "WILLIAMSTON PRIMARY SCHOOL"),
+                    new KeyValuePair<string, string>(ukprnkey, "10052113"),
              });
             _adminData.Add("rpadgw02",
             new List<KeyValuePair<string, string>>
@@ -67,8 +67,8 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.RoatpAdmin
             _adminData.Add("rpadas01",
             new List<KeyValuePair<string, string>>
             {
-                    new KeyValuePair<string, string>(providernamekey, "7TAO ENGINEERING UK LIMITED"),
-                    new KeyValuePair<string, string>(ukprnkey, "10082318"),
+                    new KeyValuePair<string, string>(providernamekey, "WILLIAMSTON PRIMARY SCHOOL"),
+                    new KeyValuePair<string, string>(ukprnkey, "10052113"),
             });
             _adminData.Add("rpadas02",
             new List<KeyValuePair<string, string>>
@@ -99,7 +99,13 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.RoatpAdmin
             {
                     new KeyValuePair<string, string>(providernamekey, "FORMISSION LTD"),
                     new KeyValuePair<string, string>(ukprnkey, "10038763"),
-            });           
+            });
+        _adminData.Add("rpadendtoend01",
+        new List<KeyValuePair<string, string>>
+            {
+                    new KeyValuePair<string, string>(providernamekey, "SIMPLY CREATING CHANGE LTD"),
+                    new KeyValuePair<string, string>(ukprnkey, "10082167"),
+            });
         }
     }
 }

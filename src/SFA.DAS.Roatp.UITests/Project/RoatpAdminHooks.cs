@@ -8,7 +8,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Roatp.UITests.Project
 {
-    [Binding, Scope(Tag = "roatpadmin"), Scope(Tag = "roatpassessor") ]
+    [Binding, Scope(Tag = "roatpadmin"), Scope(Tag = "roatpassessor"),Scope(Tag = "roatpassessoradmin") ]
     public class RoatpAdminHooks : RoatpBaseHooks
     {
         private readonly ScenarioContext _context;
@@ -61,7 +61,7 @@ namespace SFA.DAS.Roatp.UITests.Project
         {
             if (_context.ScenarioInfo.Tags.Contains("roatpadmin"))
                 GoToUrl(UrlConfig.Admin_BaseUrl);
-            else if (_context.ScenarioInfo.Tags.Contains("roatpassessor"))
+            else if (_context.ScenarioInfo.Tags.Contains("roatpassessoradmin"))
                 GoToUrl(UrlConfig.RoATPAssessor_BaseUrl);
         }
 

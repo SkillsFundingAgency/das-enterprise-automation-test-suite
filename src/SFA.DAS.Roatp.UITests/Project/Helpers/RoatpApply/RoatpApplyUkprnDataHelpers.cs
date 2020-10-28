@@ -150,6 +150,12 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.RoatpApply
                     new KeyValuePair<string, string>(emailkey, "sudhakar.chinoor+D10@digital.education.gov.uk"),
                     new KeyValuePair<string, string>(ukprnkey, "10029227"),
               });
+            _applyData.Add("rpendtoend01apply",
+             new List<KeyValuePair<string, string>>
+             {
+                    new KeyValuePair<string, string>(emailkey, "sudhakar.chinoor+NewDemo@digital.education.gov.uk"),
+                    new KeyValuePair<string, string>(ukprnkey, "10082167"),
+             });
         }
     }
 }

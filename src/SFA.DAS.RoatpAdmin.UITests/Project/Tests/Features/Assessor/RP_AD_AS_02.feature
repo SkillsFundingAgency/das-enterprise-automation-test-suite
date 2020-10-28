@@ -3,6 +3,7 @@
 @roatp
 @rpadas02
 @roatpassessor
+@roatpassessoradmin
 @newroatpadmin
 @regression
 Scenario: RP_AD_AS_02 Assess a Soletrader type Application via Supporting provider route

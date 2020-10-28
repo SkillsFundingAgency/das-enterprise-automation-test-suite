@@ -3,6 +3,7 @@
 @roatp
 @rpadas03
 @roatpassessor
+@roatpassessoradmin
 @newroatpadmin
 @regression
 Scenario: RP_AD_AS_03 Assess a Charity type Application via Employer provider route
