@@ -3,7 +3,6 @@
 @roatp
 @rpadas01
 @roatpassessoradmin
-@roatpassessor
 @newroatpadmin
 @regression
 Scenario: RP_AD_AS_01 Assess a Company type Application via Main provider route

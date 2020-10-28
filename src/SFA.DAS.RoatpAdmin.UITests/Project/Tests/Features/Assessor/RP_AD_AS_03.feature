@@ -2,7 +2,6 @@
 
 @roatp
 @rpadas03
-@roatpassessor
 @roatpassessoradmin
 @newroatpadmin
 @regression

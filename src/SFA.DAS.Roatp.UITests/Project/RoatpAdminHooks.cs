@@ -8,7 +8,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Roatp.UITests.Project
 {
-    [Binding, Scope(Tag = "roatpadmin"), Scope(Tag = "roatpassessor"),Scope(Tag = "roatpassessoradmin") ]
+    [Binding, Scope(Tag = "roatpadmin") ,Scope(Tag = "roatpassessoradmin") ]
     public class RoatpAdminHooks : RoatpBaseHooks
     {
         private readonly ScenarioContext _context;
