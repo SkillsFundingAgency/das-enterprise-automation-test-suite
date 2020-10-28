@@ -11,9 +11,11 @@ using System.Threading.Tasks;
 
 namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Helpers
 {
-    public class Data
+    public class User
     {
-        public Ticket Ticket { get; set; }
+        public long Id { get; set; }
+
+        public string Name { get; set; }
     }
 
     public class Comment
@@ -37,6 +39,11 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Helpers
         public Ticket Ticket { get; set; }
     }
 
+    public class CreateUser
+    {
+        public User User { get; set; }
+    }
+
     public class TicketResponse
     {
         public Ticket Ticket { get; set; }
@@ -48,6 +55,9 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Helpers
     {
         [Post("/tickets.json")]
         Task<TicketResponse> PostTicket([Body] TicketRequest ticket);
+
+        [Post("/users.json")]
+        Task<CreateUser> CreateUserTicket([Body] CreateUser user);
     }
 
     public static class ApiFactory
@@ -118,6 +128,18 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Helpers
 
             var response = await zendeskApi.PostTicket(new TicketRequest { Ticket = ticket });
             return response.Ticket;
+        }
+
+        internal async Task<User> CreateUser()
+        {
+            var user = new User
+            {
+                Name = _dataHelper.NewUserFullName
+            };
+
+            var response = await zendeskApi.CreateUserTicket(new CreateUser { User = user });
+
+            return response.User;
         }
     }
 }

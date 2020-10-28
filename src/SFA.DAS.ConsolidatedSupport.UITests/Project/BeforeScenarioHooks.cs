@@ -6,12 +6,12 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.ConsolidatedSupport.UITests.Project
 {
     [Binding]
-    public class Hooks
+    public class BeforeScenarioHooks
     {
         private readonly ScenarioContext _context;
         private readonly TabHelper _tabHelper;
 
-        public Hooks(ScenarioContext context)
+        public BeforeScenarioHooks(ScenarioContext context)
         {
             _context = context;
             _tabHelper = context.Get<TabHelper>();
@@ -22,6 +22,5 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project
 
         [BeforeScenario(Order = 42)]
         public void SetUpHelpers() => _context.Set(new ConsolidateSupportDataHelper());
-
     }
 }

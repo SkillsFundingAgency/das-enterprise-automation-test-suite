@@ -8,7 +8,7 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.StepDefinitions
 {
     [Binding]
-    public class ExistingUserSteps
+    public class Steps
     {
         private readonly ScenarioContext _context;
         private readonly RestApiHelper _restApiHelper;
@@ -18,14 +18,69 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.StepDefinitions
         private HomePage _homePage;
         private TicketPage _ticketpage;
 
-
-        public ExistingUserSteps(ScenarioContext context)
+        public Steps(ScenarioContext context)
         {
             _context = context;
             _objectContext = context.Get<ObjectContext>();
             _config = context.GetConsolidatedSupportConfig<ConsolidatedSupportConfig>();
             _dataHelper = context.Get<ConsolidateSupportDataHelper>();
             _restApiHelper = new RestApiHelper(_config, _dataHelper);
+        }
+
+        [Given(@"a new user without contact and organisation details is created")]
+        public void GivenANewUserWithoutContactAndOrganisationDetailsIsCreated()
+        {
+            _homePage = new SignInPage(_context).SignIntoApprenticeshipServiceSupport();
+
+            var user = _restApiHelper.CreateUser().Result;
+
+            _objectContext.SetUserId($"{user.Id}");
+
+            TestContext.Progress.WriteLine($"Ticket {user.Id} created - {user.Name}");
+        }
+
+        [Then(@"the user contact details can be updated on the Zendesk portal")]
+        public void ThenTheUserContactDetailsCanBeUpdatedOnTheZendeskPortal()
+        {
+            var userpage = _homePage.NavigateToAdminPage().NavigateToUserPage();
+
+            _homePage = userpage.SelectOptions("Contact Type", _dataHelper.Type);
+            _homePage = userpage.EnterText("Address Line 1", _dataHelper.AddressLine1);
+            _homePage = userpage.EnterText("Address Line 2", _dataHelper.AddressLine2);
+            _homePage = userpage.EnterText("Address Line 3", _dataHelper.AddressLine3);
+            _homePage = userpage.EnterText("City", _dataHelper.City);
+            _homePage = userpage.EnterText("Postcode", _dataHelper.Postcode);
+
+            _homePage = userpage.VerifyUserDetails("Contact Type", _dataHelper.Type);
+        }
+
+        [Then(@"the user organisation details can be updated on Zendesk portal")]
+        public void ThenTheUserOrganisationDetailsCanBeUpdatedOnZendeskPortal()
+        {
+            var userpage = _homePage.NavigateToAdminPage().NavigateToUserPage();
+
+            userpage.CreateOrganisation();
+
+            _homePage = userpage.VerifyOrganisationName();
+
+            _homePage = userpage.VerifyOrganisationDomain();
+
+            _homePage = userpage.SelectOptions("Organisation Type", _dataHelper.Type, true);
+            _homePage = userpage.SelectOptions("Organisation Status", _dataHelper.Status, true);
+            _homePage = userpage.SelectOptions("Account Manager Status", _dataHelper.AccountManagerStatus, true);
+
+            _homePage = userpage.EnterText("Address Line 1", _dataHelper.AddressLine1, true);
+            _homePage = userpage.EnterText("Address Line 2", _dataHelper.AddressLine2, true);
+            _homePage = userpage.EnterText("Address Line 3", _dataHelper.AddressLine3, true);
+            _homePage = userpage.EnterText("City", _dataHelper.City, true);
+            _homePage = userpage.EnterText("County", _dataHelper.County, true);
+            _homePage = userpage.EnterText("Postcode", _dataHelper.Postcode, true);
+            _homePage = userpage.EnterText("Account Manager Name", _dataHelper.NewUserFullName, true);
+            _homePage = userpage.EnterText("Account Manager E-mail", _dataHelper.NewUserEmail, true);
+
+            _homePage = userpage.VerifyUserDetails("Organisation Type", _dataHelper.Type, true);
+            _homePage = userpage.VerifyUserDetails("Organisation Status", _dataHelper.Status, true);
+            _homePage = userpage.VerifyUserDetails("Account Manager Status", _dataHelper.AccountManagerStatus, true);
         }
 
         [Given(@"an existing user emails the helpdesk")]
