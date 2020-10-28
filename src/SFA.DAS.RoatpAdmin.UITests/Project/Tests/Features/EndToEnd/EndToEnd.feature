@@ -1,4 +1,5 @@
-﻿Feature: RP_FullEndToEnd_01
+﻿@ignore
+Feature: RP_FullEndToEnd_01
 @roatp
 @rpendtoend01apply
 @roatpendtoend
@@ -62,4 +63,4 @@
 	Scenario: RP_E2E_05_Complete_Moderation_Company_Type_Application_Main_Provider_Route
 	Given the admin lands on the Dashboard
 	When selects the Main provider route application from Moderation Tab
-	Then the Moderator assesses all the sections of the application as PASS
+	Then the Moderator assesses all the sections of the Main Provider Route application as PASS

@@ -1,20 +1,14 @@
 ﻿using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Moderator;
-using System.Linq;
-using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
 {
     public class Moderator_Section3Helper
     {
-        private readonly ScenarioContext _context;
-
-        public Moderator_Section3Helper(ScenarioContext context) => _context = context;
-
-        public ModerationApplicationAssessmentOverviewPage PassTypeOfApprenticeshipTraining(ModerationApplicationAssessmentOverviewPage moderatorApplicationAssessmentOverviewPage)
+        public ModerationApplicationAssessmentOverviewPage PassTypeOfApprenticeshipTraining(ModerationApplicationAssessmentOverviewPage moderatorApplicationAssessmentOverviewPage, ApplicationRoute applicationroute)
         {
             var typeOfApprenticeshipTrainingPage = moderatorApplicationAssessmentOverviewPage.Access_Section3_TypeOfApprenticeshipTraining();
 
-            if (_context.ScenarioInfo.Tags.Contains("rpadmod01"))
+            if (applicationroute == ApplicationRoute.MainProviderRoute)
             {
                 moderatorApplicationAssessmentOverviewPage = typeOfApprenticeshipTrainingPage
                     .SelectPassAndContinueInTypeOfApprenticeshipTrainingPage_MP()
@@ -23,7 +17,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
                     .SelectPassAndContinue();
 
             }
-            else if (_context.ScenarioInfo.Tags.Contains("rpadmod02"))
+            if (applicationroute == ApplicationRoute.SupportingProviderRoute)
             {
                 moderatorApplicationAssessmentOverviewPage = typeOfApprenticeshipTrainingPage
                     .SelectPassAndContinueInTypeOfApprenticeshipTrainingPage_SP()
@@ -44,11 +38,11 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
 
         }
 
-        public ModerationApplicationAssessmentOverviewPage FailTypeOfApprenticeshipTraining(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage)
+        public ModerationApplicationAssessmentOverviewPage FailTypeOfApprenticeshipTraining(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage, ApplicationRoute applicationroute)
         {
             var typeOfApprenticeshipTrainingPage = moderationApplicationAssessmentOverviewPage.Access_Section3_TypeOfApprenticeshipTraining();
 
-            if (_context.ScenarioInfo.Tags.Contains("rpadmod01"))
+            if (applicationroute == ApplicationRoute.MainProviderRoute)
             {
                 moderationApplicationAssessmentOverviewPage = typeOfApprenticeshipTrainingPage
                     .SelectFailAndContinueInTypeOfApprenticeshipTrainingPage_MP()
@@ -56,7 +50,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
                     .SelectPassAndContinueInEngagingWithEndpointAssessmentOrganisationsPage()
                     .SelectPassAndContinue();
             }
-            else if (_context.ScenarioInfo.Tags.Contains("rpadmod02"))
+            if (applicationroute == ApplicationRoute.SupportingProviderRoute)
             {
                 moderationApplicationAssessmentOverviewPage = typeOfApprenticeshipTrainingPage
                     .SelectFailAndContinueInTypeOfApprenticeshipTrainingPage_SP()
@@ -76,9 +70,9 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
             return moderationApplicationAssessmentOverviewPage.VerifySection3Link1Status(StatusHelper.StatusFail);
         }
 
-        public ModerationApplicationAssessmentOverviewPage PassSupportingApprentices(ModerationApplicationAssessmentOverviewPage moderatorApplicationAssessmentOverviewPage)
+        public ModerationApplicationAssessmentOverviewPage PassSupportingApprentices(ModerationApplicationAssessmentOverviewPage moderatorApplicationAssessmentOverviewPage, ApplicationRoute applicationroute)
         {
-            if (_context.ScenarioInfo.Tags.Contains("rpadmod03"))
+            if (applicationroute == ApplicationRoute.EmployerProviderRoute)
             {
                 return moderatorApplicationAssessmentOverviewPage
                     .Access_Section3_SupportingApprentices()
@@ -93,9 +87,9 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
             }
         }
 
-        public ModerationApplicationAssessmentOverviewPage PassForecastingStarts(ModerationApplicationAssessmentOverviewPage moderatorApplicationAssessmentOverviewPage)
+        public ModerationApplicationAssessmentOverviewPage PassForecastingStarts(ModerationApplicationAssessmentOverviewPage moderatorApplicationAssessmentOverviewPage, ApplicationRoute applicationroute)
         {
-            if (_context.ScenarioInfo.Tags.Contains("rpadmod01") || _context.ScenarioInfo.Tags.Contains("rpadmod03"))
+            if (applicationroute == ApplicationRoute.MainProviderRoute || applicationroute == ApplicationRoute.EmployerProviderRoute)
             {
                 return moderatorApplicationAssessmentOverviewPage
                     .Access_Section3_ForecastingStarts()
@@ -112,9 +106,9 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
             }
         }
 
-        public ModerationApplicationAssessmentOverviewPage PassOffTheJobTraining(ModerationApplicationAssessmentOverviewPage moderatorApplicationAssessmentOverviewPage)
+        public ModerationApplicationAssessmentOverviewPage PassOffTheJobTraining(ModerationApplicationAssessmentOverviewPage moderatorApplicationAssessmentOverviewPage, ApplicationRoute applicationroute)
         {
-            if (_context.ScenarioInfo.Tags.Contains("rpadmod01") || _context.ScenarioInfo.Tags.Contains("rpadmod03"))
+            if (applicationroute == ApplicationRoute.MainProviderRoute || applicationroute == ApplicationRoute.EmployerProviderRoute)
             {
                 return moderatorApplicationAssessmentOverviewPage
                     .Access_Section3_OffTheJobTraining()
@@ -129,9 +123,9 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
             }
         }
 
-        public ModerationApplicationAssessmentOverviewPage PassWhereWillYourApprenticesBeTrained(ModerationApplicationAssessmentOverviewPage moderatorApplicationAssessmentOverviewPage)
+        public ModerationApplicationAssessmentOverviewPage PassWhereWillYourApprenticesBeTrained(ModerationApplicationAssessmentOverviewPage moderatorApplicationAssessmentOverviewPage, ApplicationRoute applicationroute)
         {
-            if (_context.ScenarioInfo.Tags.Contains("rpadmod01") || _context.ScenarioInfo.Tags.Contains("rpadmod03"))
+            if (applicationroute == ApplicationRoute.MainProviderRoute || applicationroute == ApplicationRoute.EmployerProviderRoute)
             {
                 return moderatorApplicationAssessmentOverviewPage
                 .Access_Section3_WhereWillYourApprenticesBeTrained()

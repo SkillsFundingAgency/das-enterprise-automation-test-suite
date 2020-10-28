@@ -1,18 +1,12 @@
 ﻿using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Moderator;
-using System.Linq;
-using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
 {
     public class Moderator_Section1Helper
     {
-        private readonly ScenarioContext _context;
-
-        public Moderator_Section1Helper(ScenarioContext context) => _context = context;
-
-        public ModerationApplicationAssessmentOverviewPage PassContinuityPlanForApprenticeshipTraining(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage)
+        public ModerationApplicationAssessmentOverviewPage PassContinuityPlanForApprenticeshipTraining(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage, ApplicationRoute applicationroute)
         {
-            if (_context.ScenarioInfo.Tags.Contains("rpadmod01") || _context.ScenarioInfo.Tags.Contains("rpadmod03"))
+            if (applicationroute == ApplicationRoute.MainProviderRoute || applicationroute == ApplicationRoute.EmployerProviderRoute)
             {
                 return moderationApplicationAssessmentOverviewPage
                     .Access_Section1_ContinuityPlanForApprenticeshipTraining()

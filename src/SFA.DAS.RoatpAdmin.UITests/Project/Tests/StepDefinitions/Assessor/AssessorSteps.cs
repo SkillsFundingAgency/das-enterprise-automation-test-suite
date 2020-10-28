@@ -1,5 +1,4 @@
-﻿using System;
-using TechTalk.SpecFlow;
+﻿using TechTalk.SpecFlow;
 using SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor;
 using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor;
 using SFA.DAS.UI.Framework.TestSupport;
@@ -52,9 +51,5 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.Assessor
         {
             _assessorEndtoEndStepsHelper.CompleteAllSectionsWithPass(_applicationAssessmentOverviewPage, applicationroute);
         }
-
-        [StepArgumentTransformation(@"(main|supporting|employer)")]
-        public ApplicationRoute Applicationroute(string applicationroute) => Enum.Parse<ApplicationRoute>(applicationroute, true);
-
     }
 }
