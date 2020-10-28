@@ -12,36 +12,68 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
 
         public ModerationApplicationAssessmentOverviewPage PassTypeOfApprenticeshipTraining(ModerationApplicationAssessmentOverviewPage moderatorApplicationAssessmentOverviewPage)
         {
+            var typeOfApprenticeshipTrainingPage = moderatorApplicationAssessmentOverviewPage.Access_Section3_TypeOfApprenticeshipTraining();
+
             if (_context.ScenarioInfo.Tags.Contains("rpadmod01"))
             {
-                return moderatorApplicationAssessmentOverviewPage
-                    .Access_Section3_TypeOfApprenticeshipTraining()
+                moderatorApplicationAssessmentOverviewPage = typeOfApprenticeshipTrainingPage
                     .SelectPassAndContinueInTypeOfApprenticeshipTrainingPage_MP()
                     .SelectPassAndContinueInEngagingWithEndpointAssessmentOrganisationsPage()
                     .SelectPassAndContinueInEngagingWithEndpointAssessmentOrganisationsPage()
-                    .SelectPassAndContinue()
-                    .VerifySection3Link1Status(StatusHelper.StatusPass);
+                    .SelectPassAndContinue();
+
             }
             else if (_context.ScenarioInfo.Tags.Contains("rpadmod02"))
             {
-                return moderatorApplicationAssessmentOverviewPage
-                    .Access_Section3_TypeOfApprenticeshipTraining()
+                moderatorApplicationAssessmentOverviewPage = typeOfApprenticeshipTrainingPage
                     .SelectPassAndContinueInTypeOfApprenticeshipTrainingPage_SP()
                     .SelectPassAndContinueInOfferingApprenticeshipFrameworksPage()
-                    .SelectPassAndContinue()
-                    .VerifySection3Link1Status(StatusHelper.StatusPass);
+                    .SelectPassAndContinue();
             }
             else
             {
-                return moderatorApplicationAssessmentOverviewPage
-                    .Access_Section3_TypeOfApprenticeshipTraining()
+                moderatorApplicationAssessmentOverviewPage = typeOfApprenticeshipTrainingPage
                     .SelectPassAndContinueInTypeOfApprenticeshipTrainingPage_SP()
                     .SelectPassAndContinueInOfferingApprenticeshipFrameworksPage()
                     .SelectPassAndContinueInTransitioningFromApprenticeshipFrameworksToApprenticeshipStandardsPage()
                     .SelectPassAndContinueInEngagingWithEndpointAssessmentOrganisationsPage()
-                    .SelectPassAndContinue()
-                    .VerifySection3Link1Status(StatusHelper.StatusPass);
+                    .SelectPassAndContinue();
             }
+
+            return moderatorApplicationAssessmentOverviewPage.VerifySection3Link1Status(StatusHelper.StatusPass);
+
+        }
+
+        public ModerationApplicationAssessmentOverviewPage FailTypeOfApprenticeshipTraining(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage)
+        {
+            var typeOfApprenticeshipTrainingPage = moderationApplicationAssessmentOverviewPage.Access_Section3_TypeOfApprenticeshipTraining();
+
+            if (_context.ScenarioInfo.Tags.Contains("rpadmod01"))
+            {
+                moderationApplicationAssessmentOverviewPage = typeOfApprenticeshipTrainingPage
+                    .SelectFailAndContinueInTypeOfApprenticeshipTrainingPage_MP()
+                    .SelectPassAndContinueInEngagingWithEndpointAssessmentOrganisationsPage()
+                    .SelectPassAndContinueInEngagingWithEndpointAssessmentOrganisationsPage()
+                    .SelectPassAndContinue();
+            }
+            else if (_context.ScenarioInfo.Tags.Contains("rpadmod02"))
+            {
+                moderationApplicationAssessmentOverviewPage = typeOfApprenticeshipTrainingPage
+                    .SelectFailAndContinueInTypeOfApprenticeshipTrainingPage_SP()
+                    .SelectFailAndContinueInOfferingApprenticeshipFrameworksPage()
+                    .SelectFailAndContinue();
+            }
+            else
+            {
+                moderationApplicationAssessmentOverviewPage = typeOfApprenticeshipTrainingPage
+                    .SelectFailAndContinueInTypeOfApprenticeshipTrainingPage_SP()
+                    .SelectFailAndContinueInOfferingApprenticeshipFrameworksPage()
+                    .SelectFailAndContinueInTransitioningFromApprenticeshipFrameworksToApprenticeshipStandardsPage()
+                    .SelectFailAndContinueInEngagingWithEndpointAssessmentOrganisationsPage()
+                    .SelectFailAndContinue();
+            }
+
+            return moderationApplicationAssessmentOverviewPage.VerifySection3Link1Status(StatusHelper.StatusFail);
         }
 
         public ModerationApplicationAssessmentOverviewPage PassSupportingApprentices(ModerationApplicationAssessmentOverviewPage moderatorApplicationAssessmentOverviewPage)

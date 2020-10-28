@@ -14,6 +14,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
 
         #region Helpers and Context
         protected readonly ObjectContext objectContext;
+        protected readonly TableRowHelper tableRowHelper;
         protected readonly PageInteractionHelper pageInteractionHelper;
         protected readonly FormCompletionHelper formCompletionHelper;
         protected readonly RoatpConfig roatpConfig;
@@ -22,6 +23,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
         protected RoatpBasePage(ScenarioContext context) : base(context)
         {
             objectContext = context.Get<ObjectContext>();
+            tableRowHelper = context.Get<TableRowHelper>();
             formCompletionHelper = context.Get<FormCompletionHelper>();
             pageInteractionHelper = context.Get<PageInteractionHelper>();
             roatpConfig = context.GetRoatpConfig<RoatpConfig>();

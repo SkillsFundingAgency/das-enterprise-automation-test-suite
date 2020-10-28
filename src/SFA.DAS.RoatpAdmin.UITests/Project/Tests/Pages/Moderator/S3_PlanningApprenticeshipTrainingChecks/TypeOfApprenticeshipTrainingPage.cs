@@ -14,10 +14,21 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Moderator.S3_PlanningAp
             SelectPassAndContinueToSubSection();
             return new DeliveringTrainingInApprenticeshipStandardsPage(_context);
         }
+        public DeliveringTrainingInApprenticeshipStandardsPage SelectFailAndContinueInTypeOfApprenticeshipTrainingPage_MP()
+        {
+            SelectFailAndContinueToSubSection();
+            return new DeliveringTrainingInApprenticeshipStandardsPage(_context);
+        }
 
         public OfferingApprenticeshipFrameworksPage SelectPassAndContinueInTypeOfApprenticeshipTrainingPage_SP()
         {
             SelectPassAndContinueToSubSection();
+            return new OfferingApprenticeshipFrameworksPage(_context);
+        }
+
+        public OfferingApprenticeshipFrameworksPage SelectFailAndContinueInTypeOfApprenticeshipTrainingPage_SP()
+        {
+            SelectFailAndContinueToSubSection();
             return new OfferingApprenticeshipFrameworksPage(_context);
         }
     }

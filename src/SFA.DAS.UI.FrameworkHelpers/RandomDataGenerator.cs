@@ -62,6 +62,15 @@ namespace SFA.DAS.UI.FrameworkHelpers
             throw new Exception("Unable to generate ULN");
         }
 
+        public string GenerateRandomName()
+        {
+            var names = new string[] { "Noah", "Liam", "William", "Mason", "James", "Benjamin", "Jacob", "Anthony",
+            "Michael", "Elijah", "Ethan", "Alexander", "Oliver", "Daniel", "John", "Lucas", "Matthew", "Aiden",
+            "Jackson", "Logan", "David", "Joseph", "Samuel", "Henry", "Owen", "Sebastian", "Gabriel", "Carter", "Jayden", "Luke"};
+
+            return names[new Random().Next(names.Length)];
+        }
+
         private bool IsValidCheckSum(string uln)
         {
             var ulnCheckArray = uln.ToCharArray()

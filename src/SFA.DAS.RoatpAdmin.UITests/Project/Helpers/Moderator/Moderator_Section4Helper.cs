@@ -85,6 +85,20 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
                 .VerifySection4Link5Status(StatusHelper.StatusPass);
         }
 
+        public ModerationApplicationAssessmentOverviewPage FailYourSectorsAndEmployees(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage)
+        {
+            _yourSectorsAndEmployeesPage = moderationApplicationAssessmentOverviewPage
+                .Access_Section4_YourSectorsAndEmployees()
+                .NavigateToDeliveringTrainingInDigitalSectorPage()
+                .SelectFailAndContinueInDeliveringTrainingInDigitalSectorPage();
+
+            _yourSectorsAndEmployeesPage.VerifyStatusBesideGenericQuestion(_yourSectorsAndEmployeesPage.DigitalLinkText, StatusHelper.StatusFail);
+
+            return _yourSectorsAndEmployeesPage
+               .NavigateToAssessmentOverviewPage()
+               .VerifySection4Link5Status(StatusHelper.StatusFail);
+        }
+
         public ModerationApplicationAssessmentOverviewPage PassPolicyForProfessionalDevelopmentOfEmployees(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage)
         {
             return moderationApplicationAssessmentOverviewPage

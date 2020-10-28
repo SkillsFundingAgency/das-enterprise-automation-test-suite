@@ -24,7 +24,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             _loginFromCreateAcccountPageHelper = new EmployerLoginFromCreateAcccountPageHelper(_context);
         }
 
-        [Given(@"the Employer logins using existing Levy Account")]
+    [Given(@"the Employer logins using existing Levy Account")]
         [When(@"the Employer logins using existing Levy Account")]
         public void GivenTheEmployerLoginsUsingExistingLevyAccount() => _homePage = _employerPortalLoginHelper.Login(_context.GetUser<LevyUser>(), true);
 
@@ -36,6 +36,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         public void GivenTheEmployerLoginsUsingExistingTransactorUserAccount() => _homePage = _loginFromCreateAcccountPageHelper.Login(_context.GetUser<TransactorUser>(), true);
 
         [Given(@"the Employer logins using existing view user account")]
+        [When(@"the Employer logins using existing view user account")]
         public void GivenTheEmployerLoginsUsingExistingViewUserAccount() => _homePage = _loginFromCreateAcccountPageHelper.Login(_context.GetUser<ViewOnlyUser>(), true);
 
         [Then(@"Employer is able to navigate to all the link under Settings")]
@@ -94,7 +95,8 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         [Then(@"the user can not add an apprentices")]
         public void ThenTheUserCanNotAddAnApprentices()
         {
-            new InterimApprenticesAccessDeniedPage(_context);
+            InterimApprenticesAccessDeniedPage _interimApprenticesAccessDeniedPage = new InterimApprenticesAccessDeniedPage(_context);
+            _interimApprenticesAccessDeniedPage.GoBackToTheEASServiceHomePage();
             _homePage = new HomePage(_context, true);
         }
     }
