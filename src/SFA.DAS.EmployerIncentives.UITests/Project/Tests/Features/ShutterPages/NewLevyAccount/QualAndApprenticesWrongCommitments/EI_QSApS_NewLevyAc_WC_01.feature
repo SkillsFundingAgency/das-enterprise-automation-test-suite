@@ -2,6 +2,7 @@
 
 @regression
 @addpayedetails
+@addlevyfunds
 @employerincentives
 Scenario: EI_QSApS_NewLevyAc_WC_01_Validate Shutter pages for New Levy Account with One legal entity having Commitments with start date prior to AUG 2020
 	Given an Employer creates a Levy Account and Signs the Agreement
