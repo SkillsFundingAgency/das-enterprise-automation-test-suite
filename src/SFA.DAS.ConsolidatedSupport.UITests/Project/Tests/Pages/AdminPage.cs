@@ -20,10 +20,12 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
             VerifyPage();
             
             VerifyPage(PeopleLink);
-
-            formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(PeopleLink));
         }
 
-        public UserPage NavigateToUserPage() => new UserPage(_context);
+        public UserPage NavigateToUserPage()
+        {
+            formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(PeopleLink));
+            return new UserPage(_context);
+        }
     }
 }

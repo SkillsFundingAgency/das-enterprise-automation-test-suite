@@ -4,6 +4,6 @@
 @consolidatedsupport
 @newuser
 Scenario: CS_NU_01_New User can be updated
-	Given A new user is created 
-	Then the user can be updated
-	Then an organisation can be associated
+	Given a new user without contact and organisation details is created
+	Then the user contact details can be updated on the Zendesk portal
+	And the user organisation details can be updated on Zendesk portal

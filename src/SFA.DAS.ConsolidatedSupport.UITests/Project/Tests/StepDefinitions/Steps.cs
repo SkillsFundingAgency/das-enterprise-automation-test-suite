@@ -27,8 +27,8 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.StepDefinitions
             _restApiHelper = new RestApiHelper(_config, _dataHelper);
         }
 
-        [Given(@"A new user is created")]
-        public void GivenANewUserIsCreated()
+        [Given(@"a new user without contact and organisation details is created")]
+        public void GivenANewUserWithoutContactAndOrganisationDetailsIsCreated()
         {
             _homePage = new SignInPage(_context).SignIntoApprenticeshipServiceSupport();
 
@@ -39,8 +39,8 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.StepDefinitions
             TestContext.Progress.WriteLine($"Ticket {user.Id} created - {user.Name}");
         }
 
-        [Then(@"the user can be updated")]
-        public void ThenTheUserCanBeUpdated()
+        [Then(@"the user contact details can be updated on the Zendesk portal")]
+        public void ThenTheUserContactDetailsCanBeUpdatedOnTheZendeskPortal()
         {
             var userpage = _homePage.NavigateToAdminPage().NavigateToUserPage();
 
@@ -52,11 +52,10 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.StepDefinitions
             _homePage = userpage.EnterText("Postcode", _dataHelper.Postcode);
 
             _homePage = userpage.VerifyUserDetails("Contact Type", _dataHelper.Type);
-
         }
 
-        [Then(@"an organisation can be associated")]
-        public void ThenAnOrganisationCanBeAssociated()
+        [Then(@"the user organisation details can be updated on Zendesk portal")]
+        public void ThenTheUserOrganisationDetailsCanBeUpdatedOnZendeskPortal()
         {
             var userpage = _homePage.NavigateToAdminPage().NavigateToUserPage();
 
@@ -69,7 +68,7 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.StepDefinitions
             _homePage = userpage.SelectOptions("Organisation Type", _dataHelper.Type, true);
             _homePage = userpage.SelectOptions("Organisation Status", _dataHelper.Status, true);
             _homePage = userpage.SelectOptions("Account Manager Status", _dataHelper.AccountManagerStatus, true);
-            
+
             _homePage = userpage.EnterText("Address Line 1", _dataHelper.AddressLine1, true);
             _homePage = userpage.EnterText("Address Line 2", _dataHelper.AddressLine2, true);
             _homePage = userpage.EnterText("Address Line 3", _dataHelper.AddressLine3, true);
