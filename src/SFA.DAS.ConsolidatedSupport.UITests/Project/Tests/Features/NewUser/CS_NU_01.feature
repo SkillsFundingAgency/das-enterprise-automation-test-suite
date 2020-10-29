@@ -1,7 +1,7 @@
 ﻿Feature: CS_NU_01
 
 New User's contact and organisation details can be updated
-SO that Zendesk can interact with Service Now Platform.
+So that Zendesk can interact with Service Now Platform.
 
 @regression
 @consolidatedsupport
