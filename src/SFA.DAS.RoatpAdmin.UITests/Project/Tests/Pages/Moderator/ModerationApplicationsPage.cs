@@ -11,7 +11,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Moderator
 
         public By AssignToMeLinkForMainProvider => By.XPath("//td[contains(text(),'7TAO ENGINEERING UK LIMITED')]//following-sibling::td//a");
         public By AssignToMeLinkForSupportingProvider => By.XPath("//td[contains(text(),'ARTHUR MUREVERWI')]//following-sibling::td//a");
-        public By AssignToMeLinkForEmployerProvider => By.XPath("//td[contains(text(),'SHOCKOUT ACADEMY')]//following-sibling::td//a");
+        public By AssignToMeLinkForEmployerProvider => By.XPath($"//td[contains(text(),'{objectContext.GetProviderName()}')]//following-sibling::td//a");
 
         public By ModerationTab => By.CssSelector("a[href='/Dashboard/InModeration']");
 

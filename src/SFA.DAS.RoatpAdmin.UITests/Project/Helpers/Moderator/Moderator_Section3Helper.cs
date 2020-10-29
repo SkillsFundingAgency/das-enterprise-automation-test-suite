@@ -17,7 +17,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
                     .SelectPassAndContinue();
 
             }
-            if (applicationroute == ApplicationRoute.SupportingProviderRoute)
+            else if (applicationroute == ApplicationRoute.SupportingProviderRoute)
             {
                 moderatorApplicationAssessmentOverviewPage = typeOfApprenticeshipTrainingPage
                     .SelectPassAndContinueInTypeOfApprenticeshipTrainingPage_SP()
@@ -50,7 +50,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
                     .SelectPassAndContinueInEngagingWithEndpointAssessmentOrganisationsPage()
                     .SelectPassAndContinue();
             }
-            if (applicationroute == ApplicationRoute.SupportingProviderRoute)
+            else if (applicationroute == ApplicationRoute.SupportingProviderRoute)
             {
                 moderationApplicationAssessmentOverviewPage = typeOfApprenticeshipTrainingPage
                     .SelectFailAndContinueInTypeOfApprenticeshipTrainingPage_SP()

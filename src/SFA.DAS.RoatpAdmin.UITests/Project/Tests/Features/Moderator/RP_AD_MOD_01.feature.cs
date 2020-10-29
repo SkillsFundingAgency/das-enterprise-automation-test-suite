@@ -118,11 +118,10 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("the admin lands on the Dashboard", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 11
- testRunner.When("selects the Main provider route application from Moderation Tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("selects the Main Provider Route application from Moderation Tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 12
- testRunner.Then("the Moderator assesses all the sections of the Main Provider Route application as" +
-                        " PASS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the Moderator assesses all the sections of the application as PASS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 13
  testRunner.Then("the Moderator assesses the outcome as PASS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
