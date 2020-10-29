@@ -16,7 +16,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private By ViewChangesLink => By.LinkText("View changes");
         private By ReviewChangesLink => By.LinkText("Review changes");
         private By EditApprenticeStatusLink => By.LinkText("Edit status");
-        private By EditStopDateLink => By.LinkText("Edit");//By.Id("editStopDateLink");
+        private By EditStopDateLink => By.LinkText("Edit");
         private By EditEndDateLink => By.Id("editEndDateLink"); 
         private By EditApprenticeDetailsLink => By.CssSelector("a.float-right");
         private By ApprenticeshipStatus => By.CssSelector("#app-status tbody tr td");

@@ -15,7 +15,7 @@ using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
 namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 {
     [Binding]
-    public class AP_COE_01_HappyPathSteps
+    public class ChangeOfPartySteps
     {
         private readonly ScenarioContext _context;
         private readonly ObjectContext _objectContext;
@@ -29,7 +29,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         private readonly string _oldEmployer;
         private readonly string _newEmployer;
 
-        public AP_COE_01_HappyPathSteps(ScenarioContext context)
+        public ChangeOfPartySteps(ScenarioContext context)
         {
             _context = context;
             _objectContext = context.Get<ObjectContext>();
@@ -44,7 +44,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
         }
 
-
         [Given(@"the provider has an apprentice with stopped status")]
         [Given(@"the employer has an apprentice with stopped status")]
         public void GivenTheProviderHasAnApprenticeWithStoppedStatus()
@@ -57,12 +56,35 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             else
             {
                 _loginHelper.Login(_context.GetUser<LevyUser>(), true);
-            }            
+            }
 
             var cohortReference = _employerStepsHelper.EmployerApproveAndSendToProvider(1);
             _employerStepsHelper.SetCohortReference(cohortReference);
             _providerStepsHelper.Approve();
             _employerStepsHelper.StopApprenticeThisMonth();
+        }
+
+        [When(@"employer sends COP request to new provider")]
+        public void WhenEmployerSendsCOPRequestToNewProvider()
+        {
+            _employerStepsHelper.ViewCurrentApprenticeDetails()
+                                .ClickOnChangeOfProviderLink()
+                                .ClickOnContinueButton();
+
+
+            //un-comment below line when new cohort is ready
+            //var _newcohortReference = _commitmentsSqlDataHelper.GetNewcohortReference(Convert.ToString(_dataHelper.Ulns.First()));
+            //_employerStepsHelper.UpdateCohortReference(_newcohortReference);
+        }
+
+        [Then(@"a new live apprenticeship record is created with new Provider")]
+        public void ThenANewLiveApprenticeshipRecordIsCreatedWithNewProvider()
+        {
+            //add the steps here to validate new apprentice record is created. 
+            // Use below steps as reference and write your own please
+            new EmployerStepsHelper(_context)
+                .GoToManageYourApprenticesPage()
+                .VerifyApprenticeExists();
         }
 
         [When(@"provider sends COE request to new employer")]
@@ -87,7 +109,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             _employerStepsHelper
                 .GoToManageYourApprenticesPage()
-                .VerifyApprenticeExists();            
+                .VerifyApprenticeExists();
         }
 
         [When(@"new employer rejects the cohort")]
@@ -117,4 +139,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
         private void Login() => _multipleAccountsLoginHelper.Login(_context.GetUser<TransfersUser>(), true);
     }
+
+
+
 }

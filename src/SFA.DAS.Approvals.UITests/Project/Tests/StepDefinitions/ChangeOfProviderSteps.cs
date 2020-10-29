@@ -1,10 +1,8 @@
-﻿using TechTalk.SpecFlow;
-using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
-using SFA.DAS.Login.Service.Helpers;
-using SFA.DAS.UI.Framework.TestSupport;
-using SFA.DAS.UI.Framework;
+﻿using SFA.DAS.Login.Service.Helpers;
 using SFA.DAS.ProviderLogin.Service.Helpers;
-using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
+using SFA.DAS.UI.Framework;
+using SFA.DAS.UI.Framework.TestSupport;
+using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 {
@@ -12,45 +10,26 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
     public class ChangeOfProviderSteps
     {
         private readonly ScenarioContext _context;
-        private readonly EmployerStepsHelper _employerStepsHelper;
         private readonly ProviderPermissionsConfig _providerPermissionsConfig;
+        private readonly ChangeOfPartyConfig _changeOfPartyConfig;
+
 
         public ChangeOfProviderSteps(ScenarioContext context)
         {
             _context = context;
-            _employerStepsHelper = new EmployerStepsHelper(context);
             _providerPermissionsConfig = context.GetProviderPermissionConfig<ProviderPermissionsConfig>();
-        }
-
-        [When(@"employer sends COP request to new provider")]
-        public void WhenEmployerSendsCOPRequestToNewProvider()
-        {
-            StartChangeOfProviderJourney();
-            //var _newcohortReference = _commitmentsSqlDataHelper.GetNewcohortReference(Convert.ToString(_dataHelper.Ulns.First()));
-            //_employerStepsHelper.UpdateCohortReference(_newcohortReference);
+            _changeOfPartyConfig = context.GetChangeOfPartyConfig<ChangeOfPartyConfig>();
+            new RestartWebDriverHelper(context).RestartWebDriver(UrlConfig.Provider_BaseUrl, "Approvals");
         }
 
         [When(@"new provider approves the cohort")]
         public void WhenNewProviderApprovesTheCohort()
         {
-            ProviderLoginUser _providerLoginUser = new ProviderLoginUser { Username = _providerPermissionsConfig.UserId, Password = _providerPermissionsConfig.Password, Ukprn = _providerPermissionsConfig.Ukprn };
-            new RestartWebDriverHelper(_context).RestartWebDriver(UrlConfig.Provider_BaseUrl, "Approvals");
+            //ProviderLoginUser _providerLoginUser = new ProviderLoginUser { Username = _providerPermissionsConfig.UserId, Password = _providerPermissionsConfig.Password, Ukprn = _providerPermissionsConfig.Ukprn };
+            ProviderLoginUser _providerLoginUser = new ProviderLoginUser { Username = _changeOfPartyConfig.UserId, Password = _changeOfPartyConfig.Password, Ukprn = _changeOfPartyConfig.Ukprn };
             new ProviderHomePageStepsHelper(_context).GoToProviderHomePage(_providerLoginUser, false);
-        
+
             //add steps here for new provider to approve the cohort
-        }
-
-        [Then(@"a new live apprenticeship record is created with new Provider")]
-        public void ThenANewLiveApprenticeshipRecordIsCreatedWithNewProvider()
-        {
-               //add the steps here to validate new apprentice record is created
-        }
-
-        private void StartChangeOfProviderJourney()
-        {
-            _employerStepsHelper.ViewCurrentApprenticeDetails()
-                                .ClickOnChangeOfProviderLink()
-                                .ClickOnContinueButton();
         }
     }
 }
