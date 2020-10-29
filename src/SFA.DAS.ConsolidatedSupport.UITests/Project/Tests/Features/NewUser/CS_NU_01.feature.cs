@@ -35,7 +35,7 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Features.NewUser
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "CS_NU_01", "New User\'s contact and organisation details can be updated\r\nSO that Zendesk can i" +
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "CS_NU_01", "New User\'s contact and organisation details can be updated\r\nSo that Zendesk can i" +
                     "nteract with Service Now Platform.", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
