@@ -42,11 +42,11 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.Assessor
         public void SelectsTheRouteApplication(ApplicationRoute applicationroute)
         {
             _applicationRoute = applicationroute;
-            _applicationAssessmentOverviewPage = _assessorApplicationsPage.AssessorSelectsAssignToMe(); 
+            _applicationAssessmentOverviewPage = _assessorApplicationsPage.Assessor1SelectsAssignToMe(); 
         }
 
         [When(@"the Assessor selects the same application")]
-        public void WhenTheAssessorSelectsTheSameApplication() => SelectsTheRouteApplication(_applicationRoute);
+        public void WhenTheAssessorSelectsTheSameApplication() => _applicationAssessmentOverviewPage = _assessorApplicationsPage.Assessor2SelectsAssignToMe();
 
 
         [Then(@"marks the Application as Ready for moderation")]

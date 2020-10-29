@@ -82,7 +82,7 @@ namespace SFA.DAS.Roatp.UITests.Project
         [BeforeScenario(Order = 38)]
         public void ClearDownAssessorAdminData()
         {
-            if (_context.ScenarioInfo.Tags.Contains("roatpassessor"))
+            if (_context.ScenarioInfo.Tags.Contains("roatpassessoradmin"))
                 _roatpApplyClearDownDataHelpers.AssessorClearDownDataFromApply(objectContext.GetUkprn());
         }
 
