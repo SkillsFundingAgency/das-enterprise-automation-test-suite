@@ -118,7 +118,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("the admin lands on the Dashboard", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 12
- testRunner.When("the admin access the EmployerRoute application from GatewayApplications", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("the admin access the application from GatewayApplications", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 13
  testRunner.And("the gateway admin assess all sections as PASS for Employer Route Application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");

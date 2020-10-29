@@ -19,21 +19,11 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay
         public GatewayLandingPage(ScenarioContext context) : base(context)
         {
             _context = context;
+
             VerifyPage();
         }
 
-        public GWApplicationOverviewPage SelectingMainRouteApplication()
-        {
-            formCompletionHelper.ClickLinkByText(objectContext.GetProviderName());
-            return new GWApplicationOverviewPage(_context);
-        }
-
-        public GWApplicationOverviewPage SelectingEmployerRouteApplication()
-        {
-            formCompletionHelper.ClickLinkByText(objectContext.GetProviderName());
-            return new GWApplicationOverviewPage(_context);
-        }
-        public GWApplicationOverviewPage SelectingSupportingRouteApplication()
+        public GWApplicationOverviewPage SelectApplication()
         {
             formCompletionHelper.ClickLinkByText(objectContext.GetProviderName());
             return new GWApplicationOverviewPage(_context);

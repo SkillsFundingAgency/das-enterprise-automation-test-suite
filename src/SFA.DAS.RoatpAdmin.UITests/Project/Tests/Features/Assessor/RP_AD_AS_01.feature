@@ -11,6 +11,6 @@ Scenario: RP_AD_AS_01 Assess a Company type Application via Main provider route
 	Then the Assessor assesses all the sections of the application as PASS
 	And marks the Application as Ready for moderation
 	When the Assessor2 is on the RoATP assessor applications dashboard
-	And the Assessor selects the same application
+	And the Assessor2 selects the same application
 	Then the Assessor assesses all the sections of the application as PASS
 	And marks the Application as Ready for moderation

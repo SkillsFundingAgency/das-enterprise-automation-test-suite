@@ -3,7 +3,7 @@
 @rpe2e06
 @roatp
 @roatpapply
-@roatpe2e
+@roatpapplye2e
 @regression
 Scenario: RP_E2E_06_Government Statute - Main
 	Given the provider initates an application as main route company

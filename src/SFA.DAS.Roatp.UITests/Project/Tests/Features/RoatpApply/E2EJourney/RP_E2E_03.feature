@@ -3,7 +3,7 @@
 @rpe2e03
 @roatp
 @roatpapply
-@roatpe2e
+@roatpapplye2e
 @regression
 Scenario: RP_E2E_03_SupportingRoute-Soletrader
 	Given the provider initates an application as supporting route

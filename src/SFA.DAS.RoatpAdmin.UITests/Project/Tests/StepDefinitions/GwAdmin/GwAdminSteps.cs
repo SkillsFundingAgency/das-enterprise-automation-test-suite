@@ -13,6 +13,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.GwAdmin
         private readonly RoatpAdminLoginStepsHelper _loginStepsHelper;
         private readonly GatewayEndtoEndStepsHelpers _gatewayEndToEndStepsHelpers;
         private GWApplicationOverviewPage _gwApplicationOverviewPage;
+        private StaffDashboardPage _staffDashboardPage;
 
         public GwAdminSteps(ScenarioContext context)
         {
@@ -22,45 +23,23 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.GwAdmin
         }
 
         [Given(@"the admin lands on the Dashboard")]
-        public void GivenTheAdminLandsOnTheDashboard() => GoToRoatpStaffDashBoardPage();
-
-        private StaffDashboardPage GoToRoatpStaffDashBoardPage()
+        public void GivenTheAdminLandsOnTheDashboard()
         {
             _loginStepsHelper.SubmitValidLoginDetails();
-            return new StaffDashboardPage(_context);
+
+            _staffDashboardPage = new StaffDashboardPage(_context);
         }
 
-        [When(@"the admin access the MainRoute application from GatewayApplications")]
-        public void WhenTheAdminAccessTheMainRouteApplicationFromGatewayApplications()
-        {
-            StaffDashboardPage staffDashboardPage = new StaffDashboardPage(_context);
-            staffDashboardPage.AccessGatewayApplications()
-                .SelectingMainRouteApplication();
-        }
+        [When(@"the admin access the application from GatewayApplications")]
+        public void WhenTheAdminAccessTheMainRouteApplicationFromGatewayApplications() => _staffDashboardPage.AccessGatewayApplications().SelectApplication();
 
         [When(@"the gateway admin assess all sections as PASS for MainRoute Application")]
         public void WhenTheGatewayAdminAssessAllSectionsAsPASSForMainRouteApplication() =>
             _gwApplicationOverviewPage = _gatewayEndToEndStepsHelpers.CompleteAllSectionsWithPass_MainRouteCompany((new GWApplicationOverviewPage(_context)));
 
-        [When(@"the admin access the EmployerRoute application from GatewayApplications")]
-        public void WhenTheAdminAccessTheEmployerRouteApplicationFromGatewayApplications()
-        {
-            StaffDashboardPage staffDashboardPage = new StaffDashboardPage(_context);
-            staffDashboardPage.AccessGatewayApplications()
-                .SelectingEmployerRouteApplication();
-        }
-
         [When(@"the gateway admin assess all sections as PASS for Employer Route Application")]
         public void WhenTheGatewayAdminAssessAllSectionsAsPASSForEmployerRouteApplication() =>
             _gwApplicationOverviewPage = _gatewayEndToEndStepsHelpers.CompleteAllSectionsWithPass_EmployerRouteCharity((new GWApplicationOverviewPage(_context)));
-
-        [When(@"the admin access the SupportingRoute application from GatewayApplications")]
-        public void WhenTheAdminAccessTheSupportingRouteApplicationFromGatewayApplications()
-        {
-            StaffDashboardPage staffDashboardPage = new StaffDashboardPage(_context);
-            staffDashboardPage.AccessGatewayApplications()
-                .SelectingSupportingRouteApplication();
-        }
 
         [When(@"the gateway admin assess all sections as PASS for Supporting Route Application")]
         public void WhenTheGatewayAdminAssessAllSectionsAsPASSForSupportingRouteApplication()=>    
