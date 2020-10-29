@@ -10,14 +10,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
     public class ChangeOfProviderSteps
     {
         private readonly ScenarioContext _context;
-        private readonly ProviderPermissionsConfig _providerPermissionsConfig;
         private readonly ChangeOfPartyConfig _changeOfPartyConfig;
-
 
         public ChangeOfProviderSteps(ScenarioContext context)
         {
             _context = context;
-            _providerPermissionsConfig = context.GetProviderPermissionConfig<ProviderPermissionsConfig>();
             _changeOfPartyConfig = context.GetChangeOfPartyConfig<ChangeOfPartyConfig>();
             new RestartWebDriverHelper(context).RestartWebDriver(UrlConfig.Provider_BaseUrl, "Approvals");
         }
@@ -25,7 +22,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [When(@"new provider approves the cohort")]
         public void WhenNewProviderApprovesTheCohort()
         {
-            //ProviderLoginUser _providerLoginUser = new ProviderLoginUser { Username = _providerPermissionsConfig.UserId, Password = _providerPermissionsConfig.Password, Ukprn = _providerPermissionsConfig.Ukprn };
             ProviderLoginUser _providerLoginUser = new ProviderLoginUser { Username = _changeOfPartyConfig.UserId, Password = _changeOfPartyConfig.Password, Ukprn = _changeOfPartyConfig.Ukprn };
             new ProviderHomePageStepsHelper(_context).GoToProviderHomePage(_providerLoginUser, false);
 
