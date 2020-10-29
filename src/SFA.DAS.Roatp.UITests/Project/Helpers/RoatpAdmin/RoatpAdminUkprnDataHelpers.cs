@@ -99,7 +99,13 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.RoatpAdmin
             {
                     new KeyValuePair<string, string>(providernamekey, "FORMISSION LTD"),
                     new KeyValuePair<string, string>(ukprnkey, "10038763"),
-            });           
+            });
+        _adminData.Add("rpadendtoend01",
+        new List<KeyValuePair<string, string>>
+            {
+                    new KeyValuePair<string, string>(providernamekey, "SIMPLY CREATING CHANGE LTD"),
+                    new KeyValuePair<string, string>(ukprnkey, "10082167"),
+            });
         }
     }
 }

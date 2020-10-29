@@ -1,17 +1,9 @@
 ﻿using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Moderator;
-using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Moderator.S4_DeliveringApprenticeshipTrainingChecks;
-using System.Linq;
-using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
 {
     public class Moderator_Section4Helper
     {
-        private readonly ScenarioContext _context;
-        private YourSectorsAndEmployeesPage _yourSectorsAndEmployeesPage;
-
-        public Moderator_Section4Helper(ScenarioContext context) => _context = context;
-
         public ModerationApplicationAssessmentOverviewPage PassOverallAccountabilityForApprenticeships(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage)
         {
             return moderationApplicationAssessmentOverviewPage
@@ -39,9 +31,9 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
                 .VerifySection4Link3Status(StatusHelper.StatusPass);
         }
 
-        public ModerationApplicationAssessmentOverviewPage PassDevelopingAndDeliveringTraining(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage)
+        public ModerationApplicationAssessmentOverviewPage PassDevelopingAndDeliveringTraining(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage, ApplicationRoute applicationroute)
         {
-            if (_context.ScenarioInfo.Tags.Contains("rpadmod01"))
+            if (applicationroute == ApplicationRoute.MainProviderRoute)
             {
                 return moderationApplicationAssessmentOverviewPage
                     .Access_Section4_DevelopingAndDeliveringTraining_ForMainProviderRoute()
@@ -51,7 +43,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
                     .SelectPassAndContinue()
                     .VerifySection4Link4Status(StatusHelper.StatusPass);
             }
-            else if (_context.ScenarioInfo.Tags.Contains("rpadmod02"))
+            if (applicationroute == ApplicationRoute.SupportingProviderRoute)
             {
                 return moderationApplicationAssessmentOverviewPage
                     .Access_Section4_DevelopingAndDeliveringTraining_ForSupportingProviderRoute()
@@ -73,28 +65,28 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator
 
         public ModerationApplicationAssessmentOverviewPage PassYourSectorsAndEmployees(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage)
         {
-            _yourSectorsAndEmployeesPage = moderationApplicationAssessmentOverviewPage
+            var yourSectorsAndEmployeesPage = moderationApplicationAssessmentOverviewPage
                 .Access_Section4_YourSectorsAndEmployees()
                 .NavigateToDeliveringTrainingInDigitalSectorPage()
                 .SelectPassAndContinueInDeliveringTrainingInDigitalSectorPage();
 
-            _yourSectorsAndEmployeesPage.VerifyStatusBesideGenericQuestion(_yourSectorsAndEmployeesPage.DigitalLinkText, StatusHelper.StatusPass);
+            yourSectorsAndEmployeesPage.VerifyStatusBesideGenericQuestion(yourSectorsAndEmployeesPage.DigitalLinkText, StatusHelper.StatusPass);
 
-            return _yourSectorsAndEmployeesPage
+            return yourSectorsAndEmployeesPage
                 .NavigateToAssessmentOverviewPage()
                 .VerifySection4Link5Status(StatusHelper.StatusPass);
         }
 
         public ModerationApplicationAssessmentOverviewPage FailYourSectorsAndEmployees(ModerationApplicationAssessmentOverviewPage moderationApplicationAssessmentOverviewPage)
         {
-            _yourSectorsAndEmployeesPage = moderationApplicationAssessmentOverviewPage
+            var yourSectorsAndEmployeesPage = moderationApplicationAssessmentOverviewPage
                 .Access_Section4_YourSectorsAndEmployees()
                 .NavigateToDeliveringTrainingInDigitalSectorPage()
                 .SelectFailAndContinueInDeliveringTrainingInDigitalSectorPage();
 
-            _yourSectorsAndEmployeesPage.VerifyStatusBesideGenericQuestion(_yourSectorsAndEmployeesPage.DigitalLinkText, StatusHelper.StatusFail);
+            yourSectorsAndEmployeesPage.VerifyStatusBesideGenericQuestion(yourSectorsAndEmployeesPage.DigitalLinkText, StatusHelper.StatusFail);
 
-            return _yourSectorsAndEmployeesPage
+            return yourSectorsAndEmployeesPage
                .NavigateToAssessmentOverviewPage()
                .VerifySection4Link5Status(StatusHelper.StatusFail);
         }

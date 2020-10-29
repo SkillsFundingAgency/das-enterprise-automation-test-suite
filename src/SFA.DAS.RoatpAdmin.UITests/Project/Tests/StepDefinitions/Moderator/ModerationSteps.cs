@@ -1,4 +1,5 @@
-﻿using SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator;
+﻿using SFA.DAS.RoatpAdmin.UITests.Project.Helpers;
+using SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator;
 using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages;
 using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor;
 using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Moderator;
@@ -9,43 +10,31 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.Moderator
     [Binding]
     public class ModerationSteps
     {
-        private ScenarioContext _context;
-        private ModerationApplicationAssessmentOverviewPage _moderationApplicationAssessmentOverviewPage;
-        private ModeratorEndtoEndStepsHelper _moderatorEndtoEndStepsHelper;
+        private readonly ScenarioContext _context;
+        private readonly ModeratorEndtoEndStepsHelper _moderatorEndtoEndStepsHelper;
         private ModerationApplicationsPage _moderationApplicationsPage;
+        private ModerationApplicationAssessmentOverviewPage _moderationApplicationAssessmentOverviewPage;
+        private ApplicationRoute _applicationRoute;
 
         public ModerationSteps(ScenarioContext context)
         {
             _context = context;
-            _moderatorEndtoEndStepsHelper = new ModeratorEndtoEndStepsHelper(context);
+            _moderatorEndtoEndStepsHelper = new ModeratorEndtoEndStepsHelper();
         }
 
-        [When(@"selects the (Main|Employer|Supporting) provider route application from Moderation Tab")]
-        public void WhenSelectsTheMainProviderRouteApplicationFromModerationTab(string Route)
+        [When(@"selects the (Main Provider Route|Supporting Provider Route|Employer Provider Route) application from Moderation Tab")]
+        public void WhenSelectsTheMainProviderRouteApplicationFromModerationTab(ApplicationRoute applicationroute)
         {
-            StaffDashboardPage staffDashboardPage = new StaffDashboardPage(_context);
-            staffDashboardPage.AccessAssessorAndModerationApplications();
+            _applicationRoute = applicationroute;
 
-            AssessorApplicationsPage assessorApplicationsPage = new AssessorApplicationsPage(_context);
-
-            if (Route.Equals("Main"))
-            {
-                assessorApplicationsPage.ModeratorSelectsAssignToMeForMainProvider();
-            }
-            else if (Route.Equals("Employer"))
-            {
-                assessorApplicationsPage.ModeratorSelectsAssignToMeForEmployerProvider();
-            }
-            else if (Route.Equals("Supporting"))
-            {
-                assessorApplicationsPage.ModeratorSelectsAssignToMeForSupportingProvider();
-            }
+            _moderationApplicationAssessmentOverviewPage = new StaffDashboardPage(_context).AccessAssessorAndModerationApplications().ModeratorSelectsAssignToMe();
         }
 
         [Then(@"the Moderator assesses all the sections of the application as PASS")]
-        public void ThenTheModeratorAssessesAllTheSectionsOfTheApplicationAsPASS() =>
-            _moderationApplicationAssessmentOverviewPage = _moderatorEndtoEndStepsHelper.CompleteAllSectionsWithPass((new ModerationApplicationAssessmentOverviewPage(_context)));
-
+        public void TheModeratorAssessesAllTheSectionsOfTheApplicationAsPASS()
+        {
+            _moderationApplicationAssessmentOverviewPage = _moderatorEndtoEndStepsHelper.CompleteAllSectionsWithPass((new ModerationApplicationAssessmentOverviewPage(_context)), _applicationRoute);
+        }
 
         [Then(@"the Moderator assesses the outcome as PASS")]
         public void ThenTheModeratorAssessesTheOutcomeAsPASS()
@@ -57,7 +46,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.Moderator
         public void ThenTheModeratorFAILSFewSections()
         {
             _moderationApplicationAssessmentOverviewPage = _moderatorEndtoEndStepsHelper.FailWorkingWithSubcontractors(_moderationApplicationAssessmentOverviewPage);
-            _moderationApplicationAssessmentOverviewPage = _moderatorEndtoEndStepsHelper.FailTypeOfApprenticeshipTraining(_moderationApplicationAssessmentOverviewPage);
+            _moderationApplicationAssessmentOverviewPage = _moderatorEndtoEndStepsHelper.FailTypeOfApprenticeshipTraining(_moderationApplicationAssessmentOverviewPage, _applicationRoute);
             _moderationApplicationAssessmentOverviewPage = _moderatorEndtoEndStepsHelper.FailYourSectorsAndEmployees(_moderationApplicationAssessmentOverviewPage);
         }
 

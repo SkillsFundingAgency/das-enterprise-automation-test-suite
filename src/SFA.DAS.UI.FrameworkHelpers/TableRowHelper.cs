@@ -17,10 +17,10 @@ namespace SFA.DAS.UI.FrameworkHelpers
             _regexHelper = regexHelper;
         }
 
-        public IWebElement GetColumn(string rowIdentifier, By columnIdentifier, string tableSelector = "table")
+        public IWebElement GetColumn(string rowIdentifier, By columnIdentifier, string tableSelector = "table", string tableRowSelector = "tbody tr")
         {
             var table = _pageInteractionHelper.FindElement(By.CssSelector(tableSelector));
-            var tableRows = table.FindElements(By.CssSelector("tbody tr"));
+            var tableRows = table.FindElements(By.CssSelector(tableRowSelector));
 
             foreach (var tablerow in tableRows)
             {
@@ -29,7 +29,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
                    return tablerow.FindElement(columnIdentifier);
                 }
             }
-            throw new System.Exception($"Test Exception: Could not find row with text '{rowIdentifier}' or column using '{columnIdentifier}' and selector '{tableSelector}'");
+            throw new Exception($"Test Exception: Could not find row with text '{rowIdentifier}' or column using '{columnIdentifier}' and selector '{tableSelector}'");
         }
 
 
