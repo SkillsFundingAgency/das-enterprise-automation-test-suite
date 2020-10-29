@@ -1,5 +1,4 @@
-﻿using Microsoft.Azure.ServiceBus;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
@@ -23,16 +22,29 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
 
         private By HomeButton => By.CssSelector("#main_navigation [data-original-title='Home']");
 
+        private By AdminButton => By.CssSelector("#main_navigation [data-original-title='Admin']");
+
         public HomePage(ScenarioContext context, bool navigateTo = false) : base(context)
         {
+            void action() => formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(HomeButton));
+
             _context = context;
 
-            if (navigateTo) { NavigateToHomePage(); }
-            
-            VerifyPage(PageHeader);
-            VerifyPage(BrandingHeader);
-            VerifyPage(Indicators);
-            VerifyPage(TicketTable);
+            if (navigateTo) 
+            {
+                action();
+                VerifyPage(PageHeader, action);
+                VerifyPage(BrandingHeader, action);
+                VerifyPage(Indicators, action);
+                VerifyPage(TicketTable, action);
+            }
+            else
+            {
+                VerifyPage(PageHeader);
+                VerifyPage(BrandingHeader);
+                VerifyPage(Indicators);
+                VerifyPage(TicketTable);
+            }
         }
 
         public TicketPage SearchTicket()
@@ -47,10 +59,12 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
             return new TicketPage(_context);
         }
 
-        protected HomePage NavigateToHomePage()
+        public AdminPage NavigateToAdminPage()
         {
-            formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(HomeButton));
-            return new HomePage(_context);
+            formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(AdminButton));
+            return new AdminPage(_context);
         }
+
+        protected HomePage NavigateToHomePage() => new HomePage(_context, true);
     }
 }
