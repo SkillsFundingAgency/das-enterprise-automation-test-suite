@@ -34,7 +34,7 @@ namespace SFA.DAS.TestDataExport.BeforeScenario
 
             _objectContext.SetDirectory(directory);
 
-            _objectContext.SetAfterStepInformations();
+            _objectContext.SetTestDataList();
         }
     }
 }
