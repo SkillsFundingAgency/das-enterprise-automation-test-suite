@@ -78,14 +78,14 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Features.EndToEnd
             "ration_Checks")]
         [NUnit.Framework.CategoryAttribute("roatp")]
         [NUnit.Framework.CategoryAttribute("rpendtoend01apply")]
-        [NUnit.Framework.CategoryAttribute("roatpe2e")]
+        [NUnit.Framework.CategoryAttribute("roatpfulle2e")]
         [NUnit.Framework.CategoryAttribute("roatpapply")]
         public virtual void RP_FullEndToEnd_01_MainRoute_Company_Complete_Apply_Gateway_Finance_Assessor_Moderation_Checks()
         {
             string[] tagsOfScenario = new string[] {
                     "roatp",
                     "rpendtoend01apply",
-                    "roatpe2e",
+                    "roatpfulle2e",
                     "roatpapply"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RP_FullEndToEnd_01_MainRoute_Company_Complete_Apply_Gateway_Finance_Assessor_Mode" +
