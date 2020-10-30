@@ -1,6 +1,5 @@
 ﻿using SFA.DAS.Roatp.UITests.Project.Helpers.RoatpApply;
 using SFA.DAS.Roatp.UITests.Project.Helpers.SqlDbHelpers;
-using SFA.DAS.UI.FrameworkHelpers;
 using System.Linq;
 using TechTalk.SpecFlow;
 
@@ -23,9 +22,8 @@ namespace SFA.DAS.Roatp.UITests.Project
         public void SetUpHelpers()
         {
             _applyUkprnDataHelpers = new RoatpApplyUkprnDataHelpers();
-            _context.Set(_applyUkprnDataHelpers);
 
-            _context.Set(new RoatpApplyDataHelpers(_context.Get<RandomDataGenerator>()));
+            _context.Set(_applyUkprnDataHelpers);
         }
 
         [BeforeScenario(Order = 33)]

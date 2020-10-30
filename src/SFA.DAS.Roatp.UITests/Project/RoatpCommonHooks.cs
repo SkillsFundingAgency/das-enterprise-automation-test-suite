@@ -7,7 +7,7 @@ namespace SFA.DAS.Roatp.UITests.Project
     public class RoatpCommonHooks : RoatpBaseHooks
     {
         public RoatpCommonHooks(ScenarioContext context) : base(context) { }
-    
+
         [BeforeScenario(Order = 36)]
         public void NavigateToRoatpApply() => GoToUrl(UrlConfig.Apply_BaseUrl);
     }
