@@ -1,7 +1,6 @@
 ﻿using SFA.DAS.Roatp.UITests.Project.Helpers.RoatpAdmin;
 using SFA.DAS.Roatp.UITests.Project.Helpers.SqlDbHelpers;
 using SFA.DAS.UI.Framework;
-using SFA.DAS.UI.FrameworkHelpers;
 using System;
 using System.Linq;
 using TechTalk.SpecFlow;
@@ -12,7 +11,6 @@ namespace SFA.DAS.Roatp.UITests.Project
     public class RoatpAdminHooks : RoatpBaseHooks
     {
         private readonly ScenarioContext _context;
-        private RoatpAdminUkprnDataHelpers _adminUkprnDataHelpers;
         private readonly RoatpAdminSqlDbHelper _adminClearDownDataHelpers;
         private readonly RoatpApplySqlDbHelper _roatpApplyClearDownDataHelpers;
 
@@ -24,16 +22,7 @@ namespace SFA.DAS.Roatp.UITests.Project
         }
 
         [BeforeScenario(Order = 32)]
-        public void SetUpHelpers()
-        {
-            if (!_context.ScenarioInfo.Tags.Contains("notestdata"))
-            {
-                _adminUkprnDataHelpers = new RoatpAdminUkprnDataHelpers();
-                _context.Set(_adminUkprnDataHelpers);
-            }
-
-            _context.Set(new RoatpAdminDataHelpers(_context.Get<RandomDataGenerator>()));
-        }
+        public void SetUpHelpers() => SetUpAdminDataHelpers();
 
         [BeforeScenario(Order = 33)]
         public void GetRoatpAdminData()
@@ -42,7 +31,7 @@ namespace SFA.DAS.Roatp.UITests.Project
             {
                 // every scenario (admin) should only have one tag which starts with rpad, which is mapped to the test data.
                 var tag = _context.ScenarioInfo.Tags.ToList().Single(x => x.StartsWith("rpad"));
-                var (providername, ukprn) = _adminUkprnDataHelpers.GetRoatpAdminData(tag);
+                var (providername, ukprn) = new RoatpAdminUkprnDataHelpers().GetRoatpAdminData(tag);
 
                 objectContext.SetProviderName(providername);
                 objectContext.SetUkprn(ukprn);
