@@ -9,16 +9,18 @@ namespace SFA.DAS.UI.Framework.TestSupport
     {
         private readonly ScenarioContext _context;
         private readonly ObjectContext _objectContext;
+        private readonly TryCatchException _tryCatch;
 
         public DisposeWebDriverTeardownHelper(ScenarioContext context)
         {
             _context = context;
             _objectContext = context.Get<ObjectContext>();
+            _tryCatch = context.Get<TryCatchException>();
         }
 
         public void DisposeWebDriver()
         {
-            try
+            _tryCatch.AfterScenarioException(() => 
             {
                 var WebDriver = _context.GetWebDriver();
 
@@ -27,11 +29,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
                     WebDriver?.Quit();
                     WebDriver?.Dispose();
                 }
-            }
-            catch (Exception ex)
-            {
-                _objectContext.SetAfterScenarioException(ex);
-            }
+            });
         }
 
         private bool DoNotDisposeWebDriver()

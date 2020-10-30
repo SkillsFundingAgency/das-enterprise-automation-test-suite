@@ -15,12 +15,14 @@ namespace SFA.DAS.ProviderFeedback.UITests.Project
         private readonly ScenarioContext _context;
         private TabHelper _tabHelper;
         private readonly ObjectContext _objectContext;
+        private readonly TryCatchException _tryCatch;
         private string _uniqueSurveyCode;
 
         public Hooks(ScenarioContext context)
         {
             _context = context;
             _objectContext = context.Get<ObjectContext>();
+            _tryCatch = context.Get<TryCatchException>();
             _providerFeedbackConfig = context.GetProviderFeedbackConfig<ProviderFeedbackConfig>();
         }
 
@@ -47,6 +49,6 @@ namespace SFA.DAS.ProviderFeedback.UITests.Project
         }
 
         [AfterScenario(Order = 34)]
-        public void ClearDownGetUniqueSurveyCodeData() => _providerFeedbackSqlHelper.ClearDownDataFromUniqueSurveyCode(_uniqueSurveyCode);
+        public void ClearDownGetUniqueSurveyCodeData() => _tryCatch.AfterScenarioException(() => _providerFeedbackSqlHelper.ClearDownDataFromUniqueSurveyCode(_uniqueSurveyCode));
     }
 }

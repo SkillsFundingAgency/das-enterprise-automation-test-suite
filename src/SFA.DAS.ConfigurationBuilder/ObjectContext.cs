@@ -49,5 +49,7 @@ namespace SFA.DAS.ConfigurationBuilder
         #endregion
 
         public bool KeyExists<T>(string key) => _objects.ContainsKey(key);
+
+        public void Remove(string key) => _objects.Remove(key);
     }
 }

@@ -16,6 +16,7 @@ namespace SFA.DAS.Registration.UITests.Project
         private enum FundType { LevyFund, TransferFund }
         private readonly ScenarioContext _context;
         private readonly ObjectContext _objectContext;
+        private readonly TryCatchException _tryCatch;
         private LoginCredentialsHelper _loginCredentialsHelper;
         private MongoDbDataGenerator _mongoDbDataGenerator;
         private MongoDbDataGenerator _anotherMongoDbDataGenerator;
@@ -25,6 +26,7 @@ namespace SFA.DAS.Registration.UITests.Project
         {
             _context = context;
             _objectContext = context.Get<ObjectContext>();
+            _tryCatch = context.Get<TryCatchException>();
         }
 
         [BeforeScenario(Order = 23)]
@@ -87,34 +89,37 @@ namespace SFA.DAS.Registration.UITests.Project
         [Scope(Tag = "addpayedetails")]
         public void DeletePayeDetails()
         {
-            _empRefs = _objectContext.GetMongoDbDataHelpers().Select(x => x.EmpRef).ToList();
-
-            foreach (var empRef in _empRefs)
+            _tryCatch.AfterScenarioException(() => 
             {
-                if (_context.TryGetValue($"{typeof(DeclarationsDataGenerator).FullName}_{empRef}", out MongoDbHelper levyDecMongoDbHelper))
-                {
-                    levyDecMongoDbHelper.AsyncDeleteData().Wait();
-                    TestContext.Progress.WriteLine($"Declarations Deleted for, EmpRef: {empRef}");
+                _empRefs = _objectContext.GetMongoDbDataHelpers().Select(x => x.EmpRef).ToList();
 
-                    if (_context.TryGetValue($"{typeof(EnglishFractionDataGenerator).FullName}_{empRef}", out MongoDbHelper englishFractionMongoDbHelper))
+                foreach (var empRef in _empRefs)
+                {
+                    if (_context.TryGetValue($"{typeof(DeclarationsDataGenerator).FullName}_{empRef}", out MongoDbHelper levyDecMongoDbHelper))
                     {
-                        englishFractionMongoDbHelper.AsyncDeleteData().Wait();
-                        TestContext.Progress.WriteLine($"English Fraction Deleted for, EmpRef: {empRef}");
+                        levyDecMongoDbHelper.AsyncDeleteData().Wait();
+                        TestContext.Progress.WriteLine($"Declarations Deleted for, EmpRef: {empRef}");
+
+                        if (_context.TryGetValue($"{typeof(EnglishFractionDataGenerator).FullName}_{empRef}", out MongoDbHelper englishFractionMongoDbHelper))
+                        {
+                            englishFractionMongoDbHelper.AsyncDeleteData().Wait();
+                            TestContext.Progress.WriteLine($"English Fraction Deleted for, EmpRef: {empRef}");
+                        }
+                    }
+
+                    if (_context.TryGetValue($"{typeof(EmpRefLinksDataGenerator).FullName}_{empRef}", out MongoDbHelper emprefMongoDbHelper))
+                    {
+                        emprefMongoDbHelper.AsyncDeleteData().Wait();
+                        TestContext.Progress.WriteLine($"EmpRef Links Deleted, EmpRef: {empRef}");
+                    }
+
+                    if (_context.TryGetValue($"{typeof(GatewayUserDataGenerator).FullName}_{empRef}", out MongoDbHelper gatewayusermongoDbHelper))
+                    {
+                        gatewayusermongoDbHelper.AsyncDeleteData().Wait();
+                        TestContext.Progress.WriteLine($"Gateway User Deleted, EmpRef: {empRef}");
                     }
                 }
-
-                if (_context.TryGetValue($"{typeof(EmpRefLinksDataGenerator).FullName}_{empRef}", out MongoDbHelper emprefMongoDbHelper))
-                {
-                    emprefMongoDbHelper.AsyncDeleteData().Wait();
-                    TestContext.Progress.WriteLine($"EmpRef Links Deleted, EmpRef: {empRef}");
-                }
-
-                if (_context.TryGetValue($"{typeof(GatewayUserDataGenerator).FullName}_{empRef}", out MongoDbHelper gatewayusermongoDbHelper))
-                {
-                    gatewayusermongoDbHelper.AsyncDeleteData().Wait();
-                    TestContext.Progress.WriteLine($"Gateway User Deleted, EmpRef: {empRef}");
-                }
-            }
+            });
         }
     }
 }
