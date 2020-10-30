@@ -26,19 +26,7 @@ namespace SFA.DAS.TestDataExport
         }
         internal static void SetAfterStepInformation(this ObjectContext objectContext, string value) => objectContext.GetAfterStepInformations().Add(value);
 
-        internal static void ReplaceTestDataList(this ObjectContext objectContext)
-        {
-            objectContext.ReplaceInformation(AfterStepInformations, objectContext.GetAfterStepInformations());
-            objectContext.ReplaceInformation(AfterScenarioExceptions, objectContext.GetAfterScenarioExceptions());
-        }
-        
         private static FrameworkList<string> GetAfterStepInformations(this ObjectContext objectContext) => objectContext.Get<FrameworkList<string>>(AfterStepInformations);
         
-        private static void ReplaceInformation<T>(this ObjectContext objectContext, string key, FrameworkList<T> value)
-        {
-            objectContext.Remove(key);
-
-            objectContext.Set(key, value);
-        }
     }
 }

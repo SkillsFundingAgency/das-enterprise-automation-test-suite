@@ -35,8 +35,6 @@ namespace SFA.DAS.TestDataExport.AfterScenario
         [AfterScenario(Order = 99)]
         public void CollectTestData()
         {
-            _objectContext.ReplaceTestDataList();
-
             string fileName = $"TESTDATA_{DateTime.Now:HH-mm-ss-fffff}.txt";
 
             string directory = _objectContext.GetDirectory();
