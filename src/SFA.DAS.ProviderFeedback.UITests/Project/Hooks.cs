@@ -15,14 +15,14 @@ namespace SFA.DAS.ProviderFeedback.UITests.Project
         private readonly ScenarioContext _context;
         private TabHelper _tabHelper;
         private readonly ObjectContext _objectContext;
-        private readonly TryCatchException _tryCatch;
+        private readonly TryCatchExceptionHelper _tryCatch;
         private string _uniqueSurveyCode;
 
         public Hooks(ScenarioContext context)
         {
             _context = context;
             _objectContext = context.Get<ObjectContext>();
-            _tryCatch = context.Get<TryCatchException>();
+            _tryCatch = context.Get<TryCatchExceptionHelper>();
             _providerFeedbackConfig = context.GetProviderFeedbackConfig<ProviderFeedbackConfig>();
         }
 

@@ -1,6 +1,4 @@
-﻿using SFA.DAS.UI.FrameworkHelpers;
-
-namespace SFA.DAS.UI.Framework.TestSupport
+﻿namespace SFA.DAS.UI.FrameworkHelpers
 {
     public static class FindBrowserHelper
     {

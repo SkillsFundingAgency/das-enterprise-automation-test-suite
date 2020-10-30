@@ -4,7 +4,7 @@ using RestSharp;
 using RestSharp.Authenticators;
 using Newtonsoft.Json;
 
-namespace SFA.DAS.UI.Framework.TestSupport
+namespace SFA.DAS.UI.FrameworkHelpers
 {
     public class BrowserStackReportingService
     {
@@ -64,14 +64,8 @@ namespace SFA.DAS.UI.Framework.TestSupport
             };
         }
 
-        private static string JSonBody(string exceptionmessage)
-        {
-            return JsonConvert.SerializeObject(new { status = "failed", reason = exceptionmessage });
-        }
+        private static string JSonBody(string exceptionmessage) => JsonConvert.SerializeObject(new { status = "failed", reason = exceptionmessage });
 
-        private static string UpdateNameJSonBody(string newname)
-        {
-            return JsonConvert.SerializeObject(new { name = $"{newname}", });
-        }
+        private static string UpdateNameJSonBody(string newname) => JsonConvert.SerializeObject(new { name = $"{newname}", });
     }
 }

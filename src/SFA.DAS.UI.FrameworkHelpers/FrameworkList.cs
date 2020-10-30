@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace SFA.DAS.ConfigurationBuilder
+namespace SFA.DAS.UI.FrameworkHelpers
 {
     public class FrameworkList<T> : List<T>
     {

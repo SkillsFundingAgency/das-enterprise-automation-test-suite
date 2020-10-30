@@ -4,11 +4,11 @@ using System;
 
 namespace SFA.DAS.UI.Framework.TestSupport
 {
-    public class TryCatchException
+    public class TryCatchExceptionHelper
     {
         private readonly ObjectContext _objectContext;
 
-        public TryCatchException(ObjectContext objectContext) => _objectContext = objectContext;
+        public TryCatchExceptionHelper(ObjectContext objectContext) => _objectContext = objectContext;
 
         public void AfterScenarioException(Action action)
         {

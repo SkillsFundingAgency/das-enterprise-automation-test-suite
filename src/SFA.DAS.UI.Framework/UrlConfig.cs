@@ -1,6 +1,4 @@
-﻿using TechTalk.SpecFlow;
-
-namespace SFA.DAS.UI.Framework
+﻿namespace SFA.DAS.UI.Framework
 {
     public static class UrlConfig
     {
