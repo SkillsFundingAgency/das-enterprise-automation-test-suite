@@ -22,6 +22,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
         private const string ProviderPermissionConfigKey = "providerpermissionconfigkey";
         private const string PerfTestProviderPermissionsConfigKey = "perftestproviderpermissionconfigkey";
         private const string TransfersProjectConfigKey = "transfersprojectconfigkey";
+        private const string ChangeOfPartyConfigKey = "changeofpartyconfigkey";
         private const string EPAOProjectConfigKey = "epaoprojectconfigkey";
         private const string ProviderFeedbackConfigKey = "providerfeedbackprojectconfigkey";
         private const string ARProjectConfigKey = "arprojectconfigkey";
@@ -38,6 +39,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
         public static void SetProviderPermissionConfig<T>(this ScenarioContext context, T value) => Set(context, value, ProviderPermissionConfigKey);
         public static void SetPerfTestProviderPermissionsConfig<T>(this ScenarioContext context, T value) => Set(context, value, PerfTestProviderPermissionsConfigKey);
         public static void SetTransfersConfig<T>(this ScenarioContext context, T value) => Set(context, value, TransfersProjectConfigKey);
+        public static void SetChangeOfPartyConfig<T>(this ScenarioContext context, T value) => Set(context, value, ChangeOfPartyConfigKey);
         public static void SetSupportConsoleConfig<T>(this ScenarioContext context, T value) => Set(context, value, SupportConsoleProjectConfigKey);
         public static void SetConsolidatedSupportConfig<T>(this ScenarioContext context, T value) => Set(context, value, ConsolidatedSupportProjectConfigKey);
         public static void SetRAAV1Config<T>(this ScenarioContext context, T value) => Set(context, value, RAAV1ProjectConfigKey);
@@ -47,7 +49,6 @@ namespace SFA.DAS.UI.Framework.TestSupport
         public static void SetProviderFeedbackConfig<T>(this ScenarioContext context, T value) => Set(context, value, ProviderFeedbackConfigKey);
         public static void SetARConfig<T>(this ScenarioContext context, T value) => Set(context, value, ARProjectConfigKey);
         public static void SetEIConfig<T>(this ScenarioContext context, T value) => Set(context, value, EIProjectConfigKey);
-
         public static void SetWebDriver(this ScenarioContext context, IWebDriver webDriver) => Replace(context, webDriver, WebDriverKey);      
         private static void Replace<T>(ScenarioContext context, T value, string key) => context.Replace(key, value);
         private static void Set<T>(ScenarioContext context, T value, string key) => context.Set(value, key);
@@ -61,6 +62,7 @@ namespace SFA.DAS.UI.Framework.TestSupport
         public static T GetApprovalsConfig<T>(this ScenarioContext context) => Get<T>(context, ApprovalsProjectConfigKey);
         public static T GetProviderConfig<T>(this ScenarioContext context) => Get<T>(context, ProviderConfigKey);
         public static T GetProviderPermissionConfig<T>(this ScenarioContext context) => Get<T>(context, ProviderPermissionConfigKey);
+        public static T GetChangeOfPartyConfig<T>(this ScenarioContext context) => Get<T>(context, ChangeOfPartyConfigKey);
         public static T GetPerfTestProviderPermissionsConfig<T>(this ScenarioContext context) => Get<T>(context, PerfTestProviderPermissionsConfigKey);
         public static T GetTransfersConfig<T>(this ScenarioContext context) => Get<T>(context, TransfersProjectConfigKey);
         public static T GetRAAV1Config<T>(this ScenarioContext context) => Get<T>(context, RAAV1ProjectConfigKey);

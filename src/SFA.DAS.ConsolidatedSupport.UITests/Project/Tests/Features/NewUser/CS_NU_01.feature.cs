@@ -35,7 +35,8 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Features.NewUser
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "CS_NU_01", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "CS_NU_01", "New User\'s contact and organisation details can be updated\r\nSo that Zendesk can i" +
+                    "nteract with Service Now Platform.", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,19 +75,19 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Features.NewUser
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("CS_NU_01_New User can be updated")]
+        [NUnit.Framework.DescriptionAttribute("CS_NU_01_New User contact and organisation details can be updated")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("consolidatedsupport")]
         [NUnit.Framework.CategoryAttribute("newuser")]
-        public virtual void CS_NU_01_NewUserCanBeUpdated()
+        public virtual void CS_NU_01_NewUserContactAndOrganisationDetailsCanBeUpdated()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
                     "consolidatedsupport",
                     "newuser"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CS_NU_01_New User can be updated", null, tagsOfScenario, argumentsOfScenario);
-#line 6
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CS_NU_01_New User contact and organisation details can be updated", null, tagsOfScenario, argumentsOfScenario);
+#line 9
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -106,13 +107,13 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 7
+#line 10
  testRunner.Given("a new user without contact and organisation details is created", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 8
+#line 11
  testRunner.Then("the user contact details can be updated on the Zendesk portal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 9
+#line 12
  testRunner.And("the user organisation details can be updated on Zendesk portal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }

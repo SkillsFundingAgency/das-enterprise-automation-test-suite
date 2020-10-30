@@ -16,7 +16,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
         private readonly ObjectContext _objectContext;
         private readonly ProviderHomePageStepsHelper _providerHomePageStepsHelper;
         private readonly ReviewYourCohortStepsHelper _reviewYourCohortStepsHelper;
-        
+
         public ProviderStepsHelper(ScenarioContext context)
         {
             _context = context;
@@ -102,11 +102,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
 
         public ProviderReviewYourCohortPage AddApprentice(int numberOfApprentices)
         {
-			var providerReviewYourCohortPage = CurrentCohortDetails();
-			
-            for(int i = 0; i < numberOfApprentices; i++)
-            {	
-				providerReviewYourCohortPage = providerReviewYourCohortPage.SelectAddAnApprentice()
+            var providerReviewYourCohortPage = CurrentCohortDetails();
+
+            for (int i = 0; i < numberOfApprentices; i++)
+            {
+                providerReviewYourCohortPage = providerReviewYourCohortPage.SelectAddAnApprentice()
                         .SubmitValidApprenticeDetails();
             }
 
