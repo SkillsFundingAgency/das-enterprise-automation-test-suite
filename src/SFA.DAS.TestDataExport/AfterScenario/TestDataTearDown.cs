@@ -15,18 +15,26 @@ namespace SFA.DAS.TestDataExport.AfterScenario
     {
         private readonly ObjectContext _objectContext;
         private readonly string _scenarioTitle;
+        private readonly ScenarioContext _context;
 
         public TestDataTearDown(ScenarioContext context)
         {
+            _context = context;
             _scenarioTitle = context.ScenarioInfo.Title;
             _objectContext = context.Get<ObjectContext>();
         }
 
-        [AfterScenario(Order = 10)]
+        [AfterStep(Order = 10)]
+        public void AfterStep()
+        {
+            var stepInfo = _context.StepContext.StepInfo;
+
+            _objectContext.SetAfterStepInformation($"-> {StepOutcome()}: {stepInfo.StepDefinitionType} {stepInfo.Text}");
+        }
+
+        [AfterScenario(Order = 99)]
         public void CollectTestData()
         {
-            _objectContext.SetAfterScenarioExceptions(new List<Exception>());
-            
             string fileName = $"TESTDATA_{DateTime.Now:HH-mm-ss-fffff}.txt";
 
             string directory = _objectContext.GetDirectory();
@@ -57,5 +65,8 @@ namespace SFA.DAS.TestDataExport.AfterScenario
                 _objectContext.SetAfterScenarioException(ex);
             }
         }
+
+        private string StepOutcome() => _context.TestError != null ? "ERROR" : "Done";
+
     }
 }

@@ -20,6 +20,7 @@ namespace SFA.DAS.Registration.UITests.Project
         private readonly ProviderLeadRegistrationConfig _providerLeadRegistrationConfig;
         private readonly IWebDriver _webDriver;
         private readonly ObjectContext _objectContext;
+        private readonly TryCatchException _tryCatch;
         private PregSqlDataHelper _pregSqlDataHelper;
         
         public Hooks(ScenarioContext context)
@@ -30,6 +31,7 @@ namespace SFA.DAS.Registration.UITests.Project
             _tprconfig = context.GetTprConfig<TprConfig>();
             _providerLeadRegistrationConfig = context.GetProviderLeadRegistrationConfig<ProviderLeadRegistrationConfig>();
             _objectContext = context.Get<ObjectContext>();
+            _tryCatch = context.Get<TryCatchException>();
         }
 
         [BeforeScenario(Order = 21)]
@@ -70,6 +72,6 @@ namespace SFA.DAS.Registration.UITests.Project
 
         [AfterScenario(Order = 22)]
         [Scope(Tag = "providerleadregistration")]
-        public void ClearInvitation() => _pregSqlDataHelper.DeleteInvitation(_objectContext.GetRegisteredEmail());
+        public void ClearInvitation() => _tryCatch.AfterScenarioException(() => _pregSqlDataHelper.DeleteInvitation(_objectContext.GetRegisteredEmail()));
     }
 }
