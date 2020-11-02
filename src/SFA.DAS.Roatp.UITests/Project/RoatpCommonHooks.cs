@@ -3,7 +3,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Roatp.UITests.Project
 {
-    [Binding, Scope(Tag = "roatpapply"), Scope(Tag = "roatpapplycreateaccount")]
+    [Binding, Scope(Tag = "roatpapply"), Scope(Tag = "roatpapplycreateaccount"), Scope(Tag = "roatpfulle2e")]
     public class RoatpCommonHooks : RoatpBaseHooks
     {
         public RoatpCommonHooks(ScenarioContext context) : base(context) { }
