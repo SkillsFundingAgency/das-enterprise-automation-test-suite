@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace SFA.DAS.Roatp.UITests.Project.Helpers
+namespace SFA.DAS.Roatp.UITests.Project.Helpers.UkprnDataHelpers
 {
     public abstract class RoatpUkprnDataHelpers
     {

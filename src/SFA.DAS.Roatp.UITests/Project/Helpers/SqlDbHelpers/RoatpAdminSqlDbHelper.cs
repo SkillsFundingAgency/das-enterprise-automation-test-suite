@@ -1,7 +1,6 @@
-﻿using SFA.DAS.Roatp.UITests.Project;
-using SFA.DAS.UI.FrameworkHelpers;
+﻿using SFA.DAS.UI.FrameworkHelpers;
 
-namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.RoatpAdmin
+namespace SFA.DAS.Roatp.UITests.Project.Helpers.SqlDbHelpers
 {
     public class RoatpAdminSqlDbHelper : SqlDbHelper
     {

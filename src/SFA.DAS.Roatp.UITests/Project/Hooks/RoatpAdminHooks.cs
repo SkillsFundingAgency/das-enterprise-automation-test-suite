@@ -1,12 +1,10 @@
-﻿using SFA.DAS.Roatp.UITests.Project;
-using SFA.DAS.Roatp.UITests.Project.Helpers.SqlDbHelpers;
-using SFA.DAS.Roatp.UITests.Project.Hooks;
-using SFA.DAS.RoatpAdmin.UITests.Project.Helpers.RoatpAdmin;
+﻿using SFA.DAS.Roatp.UITests.Project.Helpers.SqlDbHelpers;
+using SFA.DAS.Roatp.UITests.Project.Helpers.UkprnDataHelpers;
 using System;
 using System.Linq;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.RoatpAdmin.UITests.Project
+namespace SFA.DAS.Roatp.UITests.Project.Hooks
 {
     [Binding, Scope(Tag = "roatpadmin"), Scope(Tag = "roatpassessoradmin")]
     public class RoatpAdminHooks : RoatpBaseHooks

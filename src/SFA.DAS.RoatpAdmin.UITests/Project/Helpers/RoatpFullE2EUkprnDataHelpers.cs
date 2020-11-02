@@ -1,4 +1,4 @@
-﻿using SFA.DAS.Roatp.UITests.Project.Helpers;
+﻿using SFA.DAS.Roatp.UITests.Project.Helpers.UkprnDataHelpers;
 using System.Collections.Generic;
 
 namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers
