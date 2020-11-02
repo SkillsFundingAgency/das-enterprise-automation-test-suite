@@ -10,7 +10,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.RoatpAdmin
 
         private void AddE2EDatahelpers()
         {
-            _e2eData.Add("rpadendtoend01",
+            _e2eData.Add("rpendtoend01apply",
             new List<KeyValuePair<string, string>>
                 {
                     new KeyValuePair<string, string>(emailkey, "sudhakar.chinoor+NewDemo@digital.education.gov.uk"),
