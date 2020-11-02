@@ -32,10 +32,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         public void ChooseTrainingProviderPage()
         {
             formCompletionHelper.ClickElement(() => { formCompletionHelper.EnterText(TrainingProviderSearch, _changeOfPartyConfig.Ukprn); return pageInteractionHelper.FindElement(FirstOption); });
-
             Continue();
-
-            //return new ConfirmTrainingProviderPage(_context);
         }
     }
 }
