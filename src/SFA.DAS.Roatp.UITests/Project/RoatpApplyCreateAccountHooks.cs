@@ -21,17 +21,17 @@ namespace SFA.DAS.Roatp.UITests.Project
         }
 
         [BeforeScenario(Order = 32)]
-        public void SetUpHelpers()
-        {
-            _applydataHelpers = new RoatpApplyDataHelpers(_context.Get<RandomDataGenerator>());
-            _context.Set(_applydataHelpers);
-        }
+        public void SetUpHelpers() => SetUpApplyDataHelpers();
 
         [BeforeScenario(Order = 34)]
         public void ClearDownData() 
         {
+            _applydataHelpers = _context.Get<RoatpApplyDataHelpers>();
+
             var email = _applydataHelpers.CreateAccountEmail;
+
             _roatpApplyContactSqlDbHelper.DeleteContact(email);
+            
             _loginInvitationsSqlDbHelper.DeleteUser(email);
         }
     }

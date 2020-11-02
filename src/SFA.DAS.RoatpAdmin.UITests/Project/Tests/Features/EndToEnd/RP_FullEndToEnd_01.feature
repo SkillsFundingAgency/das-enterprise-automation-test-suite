@@ -3,7 +3,6 @@
 @roatp
 @rpendtoend01apply
 @roatpfulle2e
-@roatpapply
 Scenario: RP_FullEndToEnd_01_MainRoute_Company_Complete_Apply_Gateway_Finance_Assessor_Moderation_Checks
 	Given the provider completes the Apply Journey as Main route company
 	When the GateWay user assess the application by confirming Gateway outcome as Pass
