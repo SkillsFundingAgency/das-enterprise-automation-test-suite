@@ -32,7 +32,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.Moderator
         [Then(@"the Moderator assesses all the sections of the application as PASS")]
         public void TheModeratorAssessesAllTheSectionsOfTheApplicationAsPASS()
         {
-            _moderationApplicationAssessmentOverviewPage = _moderatorEndtoEndStepsHelper.CompleteAllSectionsWithPass((new ModerationApplicationAssessmentOverviewPage(_context)), _applicationRoute);
+            _moderationApplicationAssessmentOverviewPage = _moderatorEndtoEndStepsHelper.CompleteAllSectionsWithPass(_moderationApplicationAssessmentOverviewPage, _applicationRoute);
         }
 
         [Then(@"the Moderator assesses the outcome as PASS")]

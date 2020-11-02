@@ -2,13 +2,13 @@
 using System.Linq;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.Roatp.UITests.Project
+namespace SFA.DAS.Roatp.UITests.Project.Hooks
 {
     [Binding, Scope(Tag = "roatpapply")]
     public class RoatpApplyHooks : RoatpBaseHooks
     {
         private readonly ScenarioContext _context;
-        
+
         public RoatpApplyHooks(ScenarioContext context) : base(context) => _context = context;
 
         [BeforeScenario(Order = 32)]

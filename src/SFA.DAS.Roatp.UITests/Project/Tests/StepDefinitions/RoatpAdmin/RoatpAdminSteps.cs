@@ -1,4 +1,4 @@
-﻿using SFA.DAS.Roatp.UITests.Project.Helpers.RoatpAdmin;
+﻿using SFA.DAS.Roatp.UITests.Project.Helpers;
 using SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpAdmin;
 using TechTalk.SpecFlow;
 

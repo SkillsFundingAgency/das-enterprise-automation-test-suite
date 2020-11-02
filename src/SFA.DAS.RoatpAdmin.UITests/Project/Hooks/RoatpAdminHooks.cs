@@ -1,13 +1,14 @@
-﻿using SFA.DAS.Roatp.UITests.Project.Helpers.RoatpAdmin;
+﻿using SFA.DAS.Roatp.UITests.Project;
 using SFA.DAS.Roatp.UITests.Project.Helpers.SqlDbHelpers;
-using SFA.DAS.UI.Framework;
+using SFA.DAS.Roatp.UITests.Project.Hooks;
+using SFA.DAS.RoatpAdmin.UITests.Project.Helpers.RoatpAdmin;
 using System;
 using System.Linq;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.Roatp.UITests.Project
+namespace SFA.DAS.RoatpAdmin.UITests.Project
 {
-    [Binding, Scope(Tag = "roatpadmin") ,Scope(Tag = "roatpassessoradmin") ]
+    [Binding, Scope(Tag = "roatpadmin"), Scope(Tag = "roatpassessoradmin")]
     public class RoatpAdminHooks : RoatpBaseHooks
     {
         private readonly ScenarioContext _context;
@@ -46,36 +47,27 @@ namespace SFA.DAS.Roatp.UITests.Project
         }
 
         [BeforeScenario(Order = 35)]
-        public void Navigate()
-        {
-            if (_context.ScenarioInfo.Tags.Contains("roatpadmin"))
-                GoToUrl(UrlConfig.Admin_BaseUrl);
-            else if (_context.ScenarioInfo.Tags.Contains("roatpassessoradmin"))
-                GoToUrl(UrlConfig.RoATPAssessor_BaseUrl);
-        }
-
-        [BeforeScenario(Order = 36)]
         public void ClearDownGateWayAdminData()
         {
             if (_context.ScenarioInfo.Tags.Contains("resetApplicationToNew"))
                 _roatpApplyClearDownDataHelpers.GateWayClearDownDataFromApply(objectContext.GetUkprn());
         }
 
-        [BeforeScenario(Order = 37)]
+        [BeforeScenario(Order = 36)]
         public void ClearDownFHAAdminData()
         {
             if (_context.ScenarioInfo.Tags.Contains("resetFhaApplicationToNew"))
                 _roatpApplyClearDownDataHelpers.FHAClearDownDataFromApply(objectContext.GetUkprn());
         }
 
-        [BeforeScenario(Order = 38)]
+        [BeforeScenario(Order = 37)]
         public void ClearDownAssessorAdminData()
         {
             if (_context.ScenarioInfo.Tags.Contains("roatpassessoradmin"))
                 _roatpApplyClearDownDataHelpers.AssessorClearDownDataFromApply(objectContext.GetUkprn());
         }
 
-        [BeforeScenario(Order = 39)]
+        [BeforeScenario(Order = 38)]
         public void ClearDownModeratorAdminData()
         {
             if (_context.ScenarioInfo.Tags.Contains("roatpmoderator"))

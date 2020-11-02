@@ -3,7 +3,7 @@ using SFA.DAS.UI.FrameworkHelpers;
 using System;
 using System.Collections.Generic;
 
-namespace SFA.DAS.Roatp.UITests.Project.Helpers.RoatpAdmin
+namespace SFA.DAS.Roatp.UITests.Project.Helpers.DataHelpers
 {
     public class RoatpAdminDataHelpers : RandomElementHelper
     {

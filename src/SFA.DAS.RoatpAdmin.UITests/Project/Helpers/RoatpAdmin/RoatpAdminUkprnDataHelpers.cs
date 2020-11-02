@@ -1,6 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using SFA.DAS.Roatp.UITests.Project.Helpers;
+using System.Collections.Generic;
 
-namespace SFA.DAS.Roatp.UITests.Project.Helpers.RoatpAdmin
+namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers.RoatpAdmin
 {
     public class RoatpAdminUkprnDataHelpers : RoatpUkprnDataHelpers
     {

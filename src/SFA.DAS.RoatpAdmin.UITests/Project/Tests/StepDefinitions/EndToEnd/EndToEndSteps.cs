@@ -1,4 +1,4 @@
-﻿using SFA.DAS.Roatp.UITests.Project.Helpers.RoatpAdmin;
+﻿using SFA.DAS.Roatp.UITests.Project.Helpers;
 using SFA.DAS.Roatp.UITests.Project.Helpers.RoatpApply;
 using SFA.DAS.RoatpAdmin.UITests.Project.Helpers;
 using SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Assessor;
@@ -106,7 +106,11 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.EndToEnd
 
             var moderationApplicationAssessmentOverviewPage = staffDashboardPage.AccessAssessorAndModerationApplications().ModeratorSelectsAssignToMe();
 
-            _moderatorEndtoEndStepsHelper.CompleteAllSectionsWithPass(moderationApplicationAssessmentOverviewPage, _applicationRoute);
+            moderationApplicationAssessmentOverviewPage = _moderatorEndtoEndStepsHelper.CompleteAllSectionsWithPass(moderationApplicationAssessmentOverviewPage, _applicationRoute);
+
+            var _moderationApplicationsPage = _moderatorEndtoEndStepsHelper.CompleteModeratorOutcomeSectionAsPass(moderationApplicationAssessmentOverviewPage);
+
+            _moderationApplicationsPage.VerifyOutcomeStatus("PASS");
         }
 
         private StaffDashboardPage GoToRoatpAdminStaffDashBoardPage(string applicationName)

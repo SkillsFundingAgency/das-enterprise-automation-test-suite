@@ -1,8 +1,8 @@
 ﻿using TechTalk.SpecFlow;
 using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages;
-using SFA.DAS.Roatp.UITests.Project.Helpers.RoatpAdmin;
 using SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Gateway;
 using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay;
+using SFA.DAS.Roatp.UITests.Project.Helpers;
 
 namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.GwAdmin
 {

@@ -1,9 +1,8 @@
-﻿using SFA.DAS.Roatp.UITests.Project.Helpers.RoatpApply;
+﻿using SFA.DAS.Roatp.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.Roatp.UITests.Project.Helpers.SqlDbHelpers;
-using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.Roatp.UITests.Project
+namespace SFA.DAS.Roatp.UITests.Project.Hooks
 {
     [Binding, Scope(Tag = "roatpapplycreateaccount")]
     public class RoatpApplyCreateAccountHooks : RoatpBaseHooks
@@ -13,7 +12,7 @@ namespace SFA.DAS.Roatp.UITests.Project
         private readonly LoginInvitationsSqlDbHelper _loginInvitationsSqlDbHelper;
         private RoatpApplyDataHelpers _applydataHelpers;
 
-        public RoatpApplyCreateAccountHooks(ScenarioContext context) : base(context) 
+        public RoatpApplyCreateAccountHooks(ScenarioContext context) : base(context)
         {
             _context = context;
             _roatpApplyContactSqlDbHelper = new RoatpApplyContactSqlDbHelper(config);
@@ -24,14 +23,14 @@ namespace SFA.DAS.Roatp.UITests.Project
         public void SetUpHelpers() => SetUpApplyDataHelpers();
 
         [BeforeScenario(Order = 34)]
-        public void ClearDownData() 
+        public void ClearDownData()
         {
             _applydataHelpers = _context.Get<RoatpApplyDataHelpers>();
 
             var email = _applydataHelpers.CreateAccountEmail;
 
             _roatpApplyContactSqlDbHelper.DeleteContact(email);
-            
+
             _loginInvitationsSqlDbHelper.DeleteUser(email);
         }
     }

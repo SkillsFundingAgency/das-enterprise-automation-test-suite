@@ -1,7 +1,7 @@
 ﻿using SFA.DAS.UI.FrameworkHelpers;
 using System;
 
-namespace SFA.DAS.Roatp.UITests.Project.Helpers.RoatpApply
+namespace SFA.DAS.Roatp.UITests.Project.Helpers.DataHelpers
 {
     public class RoatpApplyDataHelpers : RandomElementHelper
     {

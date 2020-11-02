@@ -17,7 +17,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpAdmin
 
         private By ProviderType => By.XPath("(//dd[@class='govuk-summary-list__value'])[4]");
 
-        private By OrganisationType = By.XPath("(//dd[@class='govuk-summary-list__value'])[5]");
+        private By OrganisationType => By.XPath("(//dd[@class='govuk-summary-list__value'])[5]");
 
         private By RefineSearch => By.LinkText("Refine search");
 
