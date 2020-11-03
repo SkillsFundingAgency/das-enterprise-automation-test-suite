@@ -2,6 +2,7 @@
 using OpenQA.Selenium.Remote;
 using System;
 using OpenQA.Selenium.Chrome;
+using SFA.DAS.UI.FrameworkHelpers;
 
 namespace SFA.DAS.UI.Framework.TestSupport
 {
