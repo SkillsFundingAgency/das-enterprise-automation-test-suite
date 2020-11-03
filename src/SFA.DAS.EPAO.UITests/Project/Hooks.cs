@@ -13,7 +13,7 @@ namespace SFA.DAS.EPAO.UITests.Project
     {
         private readonly ScenarioContext _context;
         private readonly EPAOConfig _config;
-        private readonly TryCatchException _tryCatch;
+        private readonly TryCatchExceptionHelper _tryCatch;
         private EPAOAdminDataHelper _ePAOAdminDataHelper;
         private EPAOAdminSqlDataHelper _ePAOAdminSqlDataHelper;
         private EPAOApplySqlDataHelper _ePAOApplySqlDataHelper;
@@ -21,7 +21,7 @@ namespace SFA.DAS.EPAO.UITests.Project
         public Hooks(ScenarioContext context)
         {
             _context = context;
-            _tryCatch = context.Get<TryCatchException>();
+            _tryCatch = context.Get<TryCatchExceptionHelper>();
             _config = context.GetEPAOConfig<EPAOConfig>();
         }
 

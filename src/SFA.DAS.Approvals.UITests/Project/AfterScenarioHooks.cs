@@ -10,11 +10,11 @@ namespace SFA.DAS.Approvals.UITests.Project
     {
         private readonly ObjectContext _objectcontext;
         private readonly ApprenticeDataHelper _datahelper;
-        private readonly TryCatchException _tryCatch;
+        private readonly TryCatchExceptionHelper _tryCatch;
 
         public AfterScenarioHooks(ScenarioContext context)
         {
-            _tryCatch = context.Get<TryCatchException>();
+            _tryCatch = context.Get<TryCatchExceptionHelper>();
             _objectcontext = context.Get<ObjectContext>();
             _datahelper = context.Get<ApprenticeDataHelper>();
         }

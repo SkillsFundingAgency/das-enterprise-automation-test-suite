@@ -9,12 +9,12 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project
     public class AfterScenarioHooks
     {
         private readonly ScenarioContext _context;
-        private readonly TryCatchException _tryCatch;
+        private readonly TryCatchExceptionHelper _tryCatch;
 
         public AfterScenarioHooks(ScenarioContext context)
         {
             _context = context;
-            _tryCatch = context.Get<TryCatchException>();
+            _tryCatch = context.Get<TryCatchExceptionHelper>();
         }
 
         [AfterScenario(Order = 18)]
