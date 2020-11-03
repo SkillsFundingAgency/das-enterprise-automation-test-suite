@@ -9,7 +9,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         private readonly ScenarioContext _context;
 
         #region Locators
-        private By YesRadioButton => By.Id("yes");
+        private By YesRadioButton => By.Name("Remove");
         protected override By ContinueButton => By.Id("can-remove-organisation-button");
         #endregion
 
