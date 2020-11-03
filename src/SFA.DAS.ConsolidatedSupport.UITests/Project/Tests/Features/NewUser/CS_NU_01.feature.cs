@@ -114,7 +114,13 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Then("the user contact details can be updated on the Zendesk portal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 12
- testRunner.And("the user organisation details can be updated on Zendesk portal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("the user organisation details can be updated on the Zendesk portal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 13
+ testRunner.And("the user organisation can be deleted on the Zendesk portal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 14
+ testRunner.And("the user can be deleted on the Zendesk portal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
