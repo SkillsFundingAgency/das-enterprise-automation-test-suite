@@ -175,7 +175,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
             TestContext.Progress.WriteLine($"{Environment.NewLine}" +
                 $"Retry Count : {retryCount}{Environment.NewLine}" +
                 $"Scenario Title : {_scenarioInfo.Title}{Environment.NewLine}" +
-                $"Exception : {exception.Message}" +
+                $"Exception : {exception.Message}{Environment.NewLine}" +
                 $"Retry Action : {retryAction == null}");
     }
 }
