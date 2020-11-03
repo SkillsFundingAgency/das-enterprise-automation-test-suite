@@ -5,6 +5,7 @@ using OpenQA.Selenium;
 using System.Drawing;
 using OpenQA.Selenium.Interactions;
 using TechTalk.SpecFlow;
+using StructureMap.Building;
 
 namespace SFA.DAS.UI.FrameworkHelpers
 {
@@ -27,7 +28,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
                  .Handle<Exception>((x) => x.Message.Contains("verification failed"))
                  .WaitAndRetry(TimeOut, (exception, timeSpan, retryCount, context) =>
                  {
-                     Report(retryCount, exception);
+                     Report(retryCount, exception, retryAction);
                      retryAction?.Invoke();
                  })
                  .Execute(() =>
@@ -63,7 +64,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
                 .Handle<WebDriverException>((ex) => !ex.Message.ContainsCompareCaseInsensitive("The HTTP request to the remote WebDriver server for URL"))
                 .WaitAndRetry(TimeOut, (exception, timeSpan, retryCount, context) =>
                 {
-                    Report(retryCount, exception);
+                    Report(retryCount, exception, retryAction);
                     retryAction?.Invoke();
                 })
                .Execute(() =>
@@ -81,7 +82,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
                 .Handle<WebDriverException>()
                 .WaitAndRetry(TimeOut, (exception, timeSpan, retryCount, context) =>
                 {
-                    Report(retryCount, exception);
+                    Report(retryCount, exception, retryAction);
                     retryAction?.Invoke();
                 })
                 .Execute(() =>
@@ -100,7 +101,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
                 .Handle<WebDriverException>()
                 .WaitAndRetry(TimeOut, (exception, timeSpan, retryCount, context) =>
                 {
-                    Report(retryCount, exception);
+                    Report(retryCount, exception, retryAction);
                     retryAction?.Invoke();
                 })
                 .Execute(() =>
@@ -122,7 +123,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
                  .Or<WebDriverException>()
                  .WaitAndRetry(TimeOut, (exception, timeSpan, retryCount, context) =>
                  {
-                     Report(retryCount, exception);
+                     Report(retryCount, exception, beforeAction);
 
                      switch (true)
                      {
@@ -170,7 +171,11 @@ namespace SFA.DAS.UI.FrameworkHelpers
             return (beforeAction, null);
         }
 
-        private void Report(int retryCount, Exception exception) =>
-            TestContext.Progress.WriteLine($"{Environment.NewLine}Retry Count : {retryCount}{Environment.NewLine}Scenario Title : {_scenarioInfo.Title}{Environment.NewLine}Exception : {exception.Message}");
+        private void Report(int retryCount, Exception exception, Action retryAction = null) =>
+            TestContext.Progress.WriteLine($"{Environment.NewLine}" +
+                $"Retry Count : {retryCount}{Environment.NewLine}" +
+                $"Scenario Title : {_scenarioInfo.Title}{Environment.NewLine}" +
+                $"Exception : {exception.Message}" +
+                $"Retry Action : {retryAction == null}");
     }
 }
