@@ -35,6 +35,8 @@ namespace SFA.DAS.UI.Framework.TestSupport
             _context.Replace(new RandomDataGenerator());
             _context.Replace(new AssertHelper());
             _context.Replace(new ScreenShotTitleGenerator(0));
+            var objectContext = _context.Get<ObjectContext>();
+            _context.Replace(new TryCatchExceptionHelper(objectContext));
         }
     }
 }

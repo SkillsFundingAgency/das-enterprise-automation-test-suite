@@ -20,6 +20,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+	<PackageReference Include="RestSharp" Version="106.6.10" />
 	<PackageReference Include="SFA.DAS.NServiceBus" Version="16.0.7" />
 	<PackageReference Include="SFA.DAS.Payments.ProviderPayments.Messages" Version="0.0.69" />
 	<PackageReference Include="System.Runtime.InteropServices.RuntimeInformation" Version="4.3.0" />
