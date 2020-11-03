@@ -9,6 +9,4 @@ So that Zendesk can interact with Service Now Platform.
 Scenario: CS_NU_01_New User contact and organisation details can be updated
 	Given a new user without contact and organisation details is created
 	Then the user contact details can be updated on the Zendesk portal
-	And the user organisation details can be updated on the Zendesk portal
-	And the user organisation can be deleted on the Zendesk portal
-	And the user can be deleted on the Zendesk portal
+	And the user organisation details can be updated on Zendesk portal

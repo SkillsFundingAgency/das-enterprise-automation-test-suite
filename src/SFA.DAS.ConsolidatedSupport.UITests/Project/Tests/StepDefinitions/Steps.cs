@@ -54,7 +54,7 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.StepDefinitions
             _homePage = userpage.VerifyUserDetails("Contact Type", _dataHelper.Type);
         }
 
-        [Then(@"the user organisation details can be updated on the Zendesk portal")]
+        [Then(@"the user organisation details can be updated on Zendesk portal")]
         public void ThenTheUserOrganisationDetailsCanBeUpdatedOnZendeskPortal()
         {
             var userpage = _homePage.NavigateToAdminPage().NavigateToUserPage();
@@ -81,26 +81,6 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.StepDefinitions
             _homePage = userpage.VerifyUserDetails("Organisation Type", _dataHelper.Type, true);
             _homePage = userpage.VerifyUserDetails("Organisation Status", _dataHelper.Status, true);
             _homePage = userpage.VerifyUserDetails("Account Manager Status", _dataHelper.AccountManagerStatus, true);
-        }
-
-        [Then(@"the user organisation can be deleted on the Zendesk portal")]
-        public void ThenTheUserOrganisationCanBeDeletedOnTheZendeskPortal()
-        {
-            var homePage = new HomePage(_context, true);
-
-            var userpage = homePage.NavigateToAdminPage().NavigateToUserPage();
-
-            userpage.DeleteEntity(true);
-        }
-
-        [Then(@"the user can be deleted on the Zendesk portal")]
-        public void ThenTheUserCanBeDeletedOnTheZendeskPortal()
-        {
-            var homePage = new HomePage(_context, true);
-
-            var userpage = homePage.NavigateToAdminPage().NavigateToUserPage();
-
-            userpage.DeleteEntity();
         }
 
         [Given(@"an existing user emails the helpdesk")]
