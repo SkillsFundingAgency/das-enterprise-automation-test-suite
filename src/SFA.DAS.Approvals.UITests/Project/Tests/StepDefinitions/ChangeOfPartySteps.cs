@@ -70,7 +70,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _employerStepsHelper.ViewCurrentApprenticeDetails()
                                 .ClickOnChangeOfProviderLink()
                                 .ClickOnContinueButton()
-                                .ChooseTrainingProviderPage();
+                                .ChooseTrainingProviderPage()
+                                .SelectYesAndContinue();
 
 
             //un-comment below line when new cohort is ready
