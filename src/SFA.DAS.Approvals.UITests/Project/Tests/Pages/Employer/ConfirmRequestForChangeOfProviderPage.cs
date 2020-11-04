@@ -1,8 +1,4 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.UI.Framework.TestSupport;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
@@ -18,10 +14,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         public ConfirmRequestForChangeOfProviderPage(ScenarioContext context) : base(context) => _context = context;
 
-        public void SelectYesAndContinue()
+        public ChangeOfTrainingProviderRequestedPage SelectYesAndContinue()
         {
             formCompletionHelper.SelectRadioOptionByText("Yes");
             Continue();
+            return new ChangeOfTrainingProviderRequestedPage(_context);
         }
     }
 }
