@@ -78,7 +78,7 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
             formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElements(OrganisationButtons).Single(x => x.Text == "Save"));
         }
 
-        public HomePage VerifyOrganisationName() => InvokeAction(() => VerifyPage(OrganisationTab, dataHelper.NewOrgName), true);
+        public HomePage VerifyOrganisationName() => InvokeAction(() => VerifyPage(OrganisationTab, dataHelper.NewOrgName, NavigateToOrganisation), true);
     
         public HomePage VerifyOrganisationDomain() => InvokeAction(() => VerifyPage(() => pageInteractionHelper.FindElements(AllRecordsFields), dataHelper.NewOrgDomain.ToLower()), true);
 
