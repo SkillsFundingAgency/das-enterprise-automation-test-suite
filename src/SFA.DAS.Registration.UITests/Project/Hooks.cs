@@ -20,7 +20,7 @@ namespace SFA.DAS.Registration.UITests.Project
         private readonly ProviderLeadRegistrationConfig _providerLeadRegistrationConfig;
         private readonly IWebDriver _webDriver;
         private readonly ObjectContext _objectContext;
-        private readonly TryCatchException _tryCatch;
+        private readonly TryCatchExceptionHelper _tryCatch;
         private PregSqlDataHelper _pregSqlDataHelper;
         
         public Hooks(ScenarioContext context)
@@ -31,7 +31,7 @@ namespace SFA.DAS.Registration.UITests.Project
             _tprconfig = context.GetTprConfig<TprConfig>();
             _providerLeadRegistrationConfig = context.GetProviderLeadRegistrationConfig<ProviderLeadRegistrationConfig>();
             _objectContext = context.Get<ObjectContext>();
-            _tryCatch = context.Get<TryCatchException>();
+            _tryCatch = context.Get<TryCatchExceptionHelper>();
         }
 
         [BeforeScenario(Order = 21)]

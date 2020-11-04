@@ -74,12 +74,12 @@ namespace SFA.DAS.UI.FrameworkHelpers
                 + "\n Found: " + actual + " page");
             }
 
-            return VerifyPage(func);
+            return VerifyPage(func, retryAction);
         }
 
         public bool VerifyPage(By locator, Action retryAction = null) => VerifyPage(Func(locator), retryAction);
 
-        public bool VerifyPage(By locator, string expected) => VerifyPage(() => FindElement(locator), expected);
+        public bool VerifyPage(By locator, string expected, Action retryAction = null) => VerifyPage(() => FindElement(locator), expected, retryAction);
 
         public bool VerifyPageAfterRefresh(By locator)
         {

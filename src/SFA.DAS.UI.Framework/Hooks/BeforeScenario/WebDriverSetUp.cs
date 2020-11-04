@@ -1,6 +1,7 @@
 ﻿using OpenQA.Selenium.Remote;
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.UI.Framework.TestSupport;
+using SFA.DAS.UI.FrameworkHelpers;
 using System.IO;
 using System.Linq;
 using System.Reflection;

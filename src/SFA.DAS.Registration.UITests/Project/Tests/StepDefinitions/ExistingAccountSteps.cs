@@ -67,6 +67,15 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
                 .GoBackToTheServiceHomePage();
         }
 
+        [Then(@"the user can not remove the organisation")]
+        public void ThenTheUserCanNotRemoveTheOrganisation()
+        {
+            _homePage = _homePage.GoToYourOrganisationsAndAgreementsPage()
+                .ClickToRemoveAnOrg()
+                .GoBackToTheServiceHomePage();
+        }
+
+
         [Then(@"the user can not add Payee Scheme")]
         public void ThenTheUserCanNotAddPayeeScheme()
         {

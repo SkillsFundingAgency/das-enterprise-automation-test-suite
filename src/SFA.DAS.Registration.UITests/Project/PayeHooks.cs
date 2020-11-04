@@ -16,7 +16,7 @@ namespace SFA.DAS.Registration.UITests.Project
         private enum FundType { LevyFund, TransferFund }
         private readonly ScenarioContext _context;
         private readonly ObjectContext _objectContext;
-        private readonly TryCatchException _tryCatch;
+        private readonly TryCatchExceptionHelper _tryCatch;
         private LoginCredentialsHelper _loginCredentialsHelper;
         private MongoDbDataGenerator _mongoDbDataGenerator;
         private MongoDbDataGenerator _anotherMongoDbDataGenerator;
@@ -26,7 +26,7 @@ namespace SFA.DAS.Registration.UITests.Project
         {
             _context = context;
             _objectContext = context.Get<ObjectContext>();
-            _tryCatch = context.Get<TryCatchException>();
+            _tryCatch = context.Get<TryCatchExceptionHelper>();
         }
 
         [BeforeScenario(Order = 23)]

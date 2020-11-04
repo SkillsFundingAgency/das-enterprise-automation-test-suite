@@ -1,6 +1,5 @@
 ﻿using SFA.DAS.ConfigurationBuilder;
-using SFA.DAS.TestDataExport;
-using System;
+using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.UI.Framework.TestSupport
@@ -9,13 +8,13 @@ namespace SFA.DAS.UI.Framework.TestSupport
     {
         private readonly ScenarioContext _context;
         private readonly ObjectContext _objectContext;
-        private readonly TryCatchException _tryCatch;
+        private readonly TryCatchExceptionHelper _tryCatch;
 
         public DisposeWebDriverTeardownHelper(ScenarioContext context)
         {
             _context = context;
             _objectContext = context.Get<ObjectContext>();
-            _tryCatch = context.Get<TryCatchException>();
+            _tryCatch = context.Get<TryCatchExceptionHelper>();
         }
 
         public void DisposeWebDriver()

@@ -1,4 +1,4 @@
-﻿namespace SFA.DAS.UI.Framework
+﻿namespace SFA.DAS.UI.FrameworkHelpers
 {
     public class BrowserStackSetting
     {
@@ -24,10 +24,10 @@
 
         public string Resolution { get; set; }
 
-        public string Name { get; internal set; }
+        public string Name { get; set; }
 
         public bool EnableNetworkLogs { get; set; }
 
-        internal string TimeZone => "London";
+        public string TimeZone => "London";
     }
 }
