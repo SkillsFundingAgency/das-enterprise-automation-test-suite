@@ -24,13 +24,13 @@ namespace SFA.DAS.FAT_V2.UITests.Project.Tests.Pages
         protected virtual By HomePageLink => By.LinkText("Home: Find apprenticeship training");
         #endregion
 
-        protected FATV2BasePage(ScenarioContext context) : base(context)
+        protected FATV2BasePage(ScenarioContext context, bool verifyPage = true) : base(context)
         {
             _context = context;
             formCompletionHelper = context.Get<FormCompletionHelper>();
             pageInteractionHelper = context.Get<PageInteractionHelper>();
             objectContext = context.Get<ObjectContext>();
-            VerifyPage();
+            if (verifyPage) { VerifyPage(); }
         }
         public void SearchApprenticeship(string searchTerm)
         {

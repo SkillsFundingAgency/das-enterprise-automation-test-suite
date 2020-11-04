@@ -58,7 +58,7 @@ namespace SFA.DAS.UI.FrameworkHelpers
                     + "\n Found: " + string.Join(",", actual) + " page");
             }
 
-            return VerifyPage(func);
+            return VerifyPage(func, null);
         }
 
         public bool VerifyPage(Func<IWebElement> element, string expected, Action retryAction = null)
@@ -81,23 +81,11 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         public bool VerifyPage(By locator, string expected, Action retryAction = null) => VerifyPage(() => FindElement(locator), expected, retryAction);
 
-        public bool VerifyPageAfterRefresh(By locator)
-        {
-            void beforeAction() => _webDriverWaitHelper.WaitForPageToLoad();
+        public bool VerifyPageAfterRefresh(By locator) => _retryHelper.RetryOnException(Func(locator), WaitForPageToLoad, Refresh);
 
-            void retryAction() => _webDriver.Navigate().Refresh();
-
-            return _retryHelper.RetryOnException(Func(locator), beforeAction, retryAction);
-        }
+        public void Refresh() => _webDriver.Navigate().Refresh();
 
         public void Verify(Func<bool> func, Action beforeAction) => _retryHelper.RetryOnException(func, beforeAction);
-
-        private bool VerifyPage(Func<bool> func, Action retryAction = null)
-        {
-            void beforeAction() => _webDriverWaitHelper.WaitForPageToLoad();
-
-            return _retryHelper.RetryOnException(func, beforeAction, retryAction);
-        }
 
         public bool VerifyText(string actual, string expected1, string expected2)
         {
@@ -229,6 +217,8 @@ namespace SFA.DAS.UI.FrameworkHelpers
 
         public List<string> GetAvailableOptions(By @by) => SelectElement(FindElement(by)).Options.Where(t => !string.IsNullOrEmpty(t.Text)).Select(x => x.Text).ToList();
 
+        public bool GetElementSelectedStatus(By locator) => FindElement(locator).Selected;
+
         private Func<bool> Func(By locator)
         {
             return () =>
@@ -239,6 +229,8 @@ namespace SFA.DAS.UI.FrameworkHelpers
             };
         }
 
-        public bool GetElementSelectedStatus(By locator) => FindElement(locator).Selected;
+        private bool VerifyPage(Func<bool> func, Action retryAction) => _retryHelper.RetryOnException(func, WaitForPageToLoad, retryAction);
+
+        private void WaitForPageToLoad() => _webDriverWaitHelper.WaitForPageToLoad();
     }
 }

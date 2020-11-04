@@ -5,7 +5,6 @@ using OpenQA.Selenium;
 using System.Drawing;
 using OpenQA.Selenium.Interactions;
 using TechTalk.SpecFlow;
-using StructureMap.Building;
 
 namespace SFA.DAS.UI.FrameworkHelpers
 {
