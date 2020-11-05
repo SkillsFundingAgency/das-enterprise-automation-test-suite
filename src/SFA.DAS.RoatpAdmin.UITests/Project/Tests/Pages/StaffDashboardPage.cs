@@ -17,14 +17,9 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages
 
         #region Helpers and Context
         private readonly ScenarioContext _context;
-        private readonly RoatpConfig _config;
         #endregion
 
-        public StaffDashboardPage(ScenarioContext context) : base(context)
-        {
-            _context = context;
-            _config = context.GetRoatpConfig<RoatpConfig>();
-        }
+        public StaffDashboardPage(ScenarioContext context) : base(context) => _context = context;
 
         public GatewayLandingPage AccessGatewayApplications()
         {

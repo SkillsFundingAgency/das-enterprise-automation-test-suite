@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
-namespace SFA.DAS.Roatp.UITests.Project.Helpers.RoatpApply
+namespace SFA.DAS.Roatp.UITests.Project.Helpers.UkprnDataHelpers
 {
     public class RoatpApplyUkprnDataHelpers : RoatpUkprnDataHelpers
     {
         public RoatpApplyUkprnDataHelpers() : base() => AddApplyDatahelpers();
 
-        public (string email, string ukprn) GetRoatpAppplyData(string key) => GetAdminData(FindKeyValuePairs(_applyData, key), emailkey, ukprnkey);
+        public (string email, string ukprn) GetRoatpAppplyData(string key) => GetData(FindKeyValuePairs(_applyData, key), emailkey, ukprnkey);
 
         private void AddApplyDatahelpers()
         {
@@ -150,12 +148,6 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.RoatpApply
                     new KeyValuePair<string, string>(emailkey, "sudhakar.chinoor+D10@digital.education.gov.uk"),
                     new KeyValuePair<string, string>(ukprnkey, "10029227"),
               });
-            _applyData.Add("rpendtoend01apply",
-             new List<KeyValuePair<string, string>>
-             {
-                    new KeyValuePair<string, string>(emailkey, "sudhakar.chinoor+NewDemo@digital.education.gov.uk"),
-                    new KeyValuePair<string, string>(ukprnkey, "10082167"),
-             });
         }
     }
 }

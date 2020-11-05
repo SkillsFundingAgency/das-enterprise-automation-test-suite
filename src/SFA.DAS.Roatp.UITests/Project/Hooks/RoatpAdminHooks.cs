@@ -1,18 +1,15 @@
-﻿using SFA.DAS.Roatp.UITests.Project.Helpers.RoatpAdmin;
-using SFA.DAS.Roatp.UITests.Project.Helpers.SqlDbHelpers;
-using SFA.DAS.UI.Framework;
-using SFA.DAS.UI.FrameworkHelpers;
+﻿using SFA.DAS.Roatp.UITests.Project.Helpers.SqlDbHelpers;
+using SFA.DAS.Roatp.UITests.Project.Helpers.UkprnDataHelpers;
 using System;
 using System.Linq;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.Roatp.UITests.Project
+namespace SFA.DAS.Roatp.UITests.Project.Hooks
 {
-    [Binding, Scope(Tag = "roatpadmin") ,Scope(Tag = "roatpassessoradmin") ]
+    [Binding, Scope(Tag = "roatpadmin"), Scope(Tag = "roatpassessoradmin")]
     public class RoatpAdminHooks : RoatpBaseHooks
     {
         private readonly ScenarioContext _context;
-        private RoatpAdminUkprnDataHelpers _adminUkprnDataHelpers;
         private readonly RoatpAdminSqlDbHelper _adminClearDownDataHelpers;
         private readonly RoatpApplySqlDbHelper _roatpApplyClearDownDataHelpers;
 
@@ -24,16 +21,7 @@ namespace SFA.DAS.Roatp.UITests.Project
         }
 
         [BeforeScenario(Order = 32)]
-        public void SetUpHelpers()
-        {
-            if (!_context.ScenarioInfo.Tags.Contains("notestdata"))
-            {
-                _adminUkprnDataHelpers = new RoatpAdminUkprnDataHelpers();
-                _context.Set(_adminUkprnDataHelpers);
-            }
-
-            _context.Set(new RoatpAdminDataHelpers(_context.Get<RandomDataGenerator>()));
-        }
+        public void SetUpHelpers() => SetUpAdminDataHelpers();
 
         [BeforeScenario(Order = 33)]
         public void GetRoatpAdminData()
@@ -42,7 +30,7 @@ namespace SFA.DAS.Roatp.UITests.Project
             {
                 // every scenario (admin) should only have one tag which starts with rpad, which is mapped to the test data.
                 var tag = _context.ScenarioInfo.Tags.ToList().Single(x => x.StartsWith("rpad"));
-                var (providername, ukprn) = _adminUkprnDataHelpers.GetRoatpAdminData(tag);
+                var (providername, ukprn) = new RoatpAdminUkprnDataHelpers().GetRoatpAdminData(tag);
 
                 objectContext.SetProviderName(providername);
                 objectContext.SetUkprn(ukprn);
@@ -57,36 +45,27 @@ namespace SFA.DAS.Roatp.UITests.Project
         }
 
         [BeforeScenario(Order = 35)]
-        public void Navigate()
-        {
-            if (_context.ScenarioInfo.Tags.Contains("roatpadmin"))
-                GoToUrl(UrlConfig.Admin_BaseUrl);
-            else if (_context.ScenarioInfo.Tags.Contains("roatpassessoradmin"))
-                GoToUrl(UrlConfig.RoATPAssessor_BaseUrl);
-        }
-
-        [BeforeScenario(Order = 36)]
         public void ClearDownGateWayAdminData()
         {
             if (_context.ScenarioInfo.Tags.Contains("resetApplicationToNew"))
                 _roatpApplyClearDownDataHelpers.GateWayClearDownDataFromApply(objectContext.GetUkprn());
         }
 
-        [BeforeScenario(Order = 37)]
+        [BeforeScenario(Order = 36)]
         public void ClearDownFHAAdminData()
         {
             if (_context.ScenarioInfo.Tags.Contains("resetFhaApplicationToNew"))
                 _roatpApplyClearDownDataHelpers.FHAClearDownDataFromApply(objectContext.GetUkprn());
         }
 
-        [BeforeScenario(Order = 38)]
+        [BeforeScenario(Order = 37)]
         public void ClearDownAssessorAdminData()
         {
             if (_context.ScenarioInfo.Tags.Contains("roatpassessoradmin"))
                 _roatpApplyClearDownDataHelpers.AssessorClearDownDataFromApply(objectContext.GetUkprn());
         }
 
-        [BeforeScenario(Order = 39)]
+        [BeforeScenario(Order = 38)]
         public void ClearDownModeratorAdminData()
         {
             if (_context.ScenarioInfo.Tags.Contains("roatpmoderator"))
