@@ -20,7 +20,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.Clarification
         {
             _applicationRoute = applicationroute;
 
-            new StaffDashboardPage(_context).AccessAssessorAndModerationApplications();
+            new StaffDashboardPage(_context).AccessAssessorAndModerationApplications().ClarificationSelectsAssignToMe();
         }
     }
 }

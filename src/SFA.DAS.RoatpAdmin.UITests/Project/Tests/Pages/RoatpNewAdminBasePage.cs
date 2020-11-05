@@ -1,5 +1,6 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.Roatp.UITests.Project.Tests.Pages;
+using System.Linq;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages
@@ -14,6 +15,8 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages
 
         private By FailInternalComments => By.CssSelector("textarea.govuk-textarea#OptionFailText");
 
+        private By ClarificationResponse => By.CssSelector("textarea.govuk-textarea#ClarificationResponse");
+
         private By AskForClarificationInternalComments => By.CssSelector("textarea.govuk-textarea#OptionAskForClarificationText");
 
         public RoatpNewAdminBasePage(ScenarioContext context) : base(context)
@@ -23,6 +26,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages
 
         public void SelectPassAndContinueToSubSection()
         {
+            EnterClarificationResponse();
             SelectRadioOptionByText("Pass");
             Continue();
         }
@@ -37,7 +41,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages
         public void SelectClarificationAndContinueToSubSection()
         {
             SelectRadioOptionByText("Ask for clarification");
-            EnterClarificationInternalComments();
+            EnterAskForClarificationInternalComments();
             Continue();
         }
 
@@ -46,7 +50,13 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages
 
         protected void EnterFailInternalComments() => formCompletionHelper.EnterText(FailInternalComments, "Internal comments");
 
-        protected void EnterClarificationInternalComments() => formCompletionHelper.EnterText(AskForClarificationInternalComments, "Internal comments");
+        protected void EnterAskForClarificationInternalComments() => formCompletionHelper.EnterText(AskForClarificationInternalComments, "Internal comments");
+
+        private void EnterClarificationResponse() 
+        { 
+            if (pageInteractionHelper.FindElements(ClarificationResponse).Any())
+            formCompletionHelper.EnterText(ClarificationResponse, "Clarification Response"); 
+        }
 
         protected By StatusTextLocator(string linkText) =>
                         By.XPath($"//span[contains(text(), '{linkText}')]/following-sibling::strong | //a[contains(text(),'{linkText}')]/../following-sibling::strong");
