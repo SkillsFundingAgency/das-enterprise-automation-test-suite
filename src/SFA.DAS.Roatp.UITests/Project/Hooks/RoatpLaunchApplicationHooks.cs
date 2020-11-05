@@ -11,8 +11,8 @@ namespace SFA.DAS.Roatp.UITests.Project.Hooks
 
         public RoatpLaunchApplicationHooks(ScenarioContext context) : base(context) { _tags = context.ScenarioInfo.Tags; }
 
-        [BeforeScenario(Order = 39)]
-        public void NavigateToRoatpApply()
+        [BeforeScenario(Order = 40)]
+        public void RoatpLaunchApplication()
         {
             if (_tags.Any(x => x == "roatpapply" || x == "roatpapplycreateaccount" || x == "roatpfulle2e")) GoToUrl(UrlConfig.Apply_BaseUrl);
 

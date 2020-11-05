@@ -118,6 +118,9 @@ this.ScenarioInitialize(scenarioInfo);
 #line 11
  testRunner.When("selects the Main Provider Route application from Clarification Tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
+#line 12
+ testRunner.Then("the Clarification assessor assesses all the sections of the application as PASS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
             }
             this.ScenarioCleanup();
         }
