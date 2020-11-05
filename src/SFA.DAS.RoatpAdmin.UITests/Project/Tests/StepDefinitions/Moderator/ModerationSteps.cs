@@ -1,4 +1,5 @@
 ﻿using SFA.DAS.RoatpAdmin.UITests.Project.Helpers;
+using SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Clarification;
 using SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Moderator;
 using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages;
 using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Moderator;

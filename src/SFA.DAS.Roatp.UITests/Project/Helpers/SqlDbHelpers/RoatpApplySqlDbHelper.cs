@@ -68,9 +68,10 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.SqlDbHelpers
             var ClarificationResetQuery = $"DECLARE @ApplicationID UNIQUEIDENTIFIER; SELECT @ApplicationID = ApplicationId FROM dbo.apply WHERE[UKPRN] = {ukprn};" +
                 $"UPDATE Apply set[ModerationStatus] = 'Clarification Sent', [OversightStatus] = 'New', [ApplicationDeterminedDate] = NULL  WHERE ApplicationId = @ApplicationID;" +
                 $"UPDATE ModeratorPageReviewOutcome set ClarificationUserId = NULL, ClarificationStatus = NULL, ClarificationComment = NULL, " +
-                $"ClarificationResponse = NULL, ClarificationUpdatedAt = NULL, ClarificationFile = NULL WHERE ApplicationId = @ApplicationID ";
+                $"ClarificationResponse = NULL, ClarificationUpdatedAt = NULL WHERE ApplicationId = @ApplicationID ";
             
             ExecuteSqlCommand(ClarificationResetQuery);
+            //, ClarificationFile = NULL
         }
     }
 }
