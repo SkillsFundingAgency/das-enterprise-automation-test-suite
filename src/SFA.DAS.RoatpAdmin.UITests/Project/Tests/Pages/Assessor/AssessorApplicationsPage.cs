@@ -1,7 +1,7 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.Roatp.UITests.Project;
+using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Clarification;
 using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Moderator;
-using System;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor
@@ -12,7 +12,6 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor
 
         private readonly ScenarioContext _context;
 
-        private By ModerationTab => By.CssSelector("a[href='/Dashboard/InModeration']");
         private By Assessor1Link => By.CssSelector("a[href*='assessorNumber=1']");
         private By Assessor2Link => By.CssSelector("a[href*='assessorNumber=2']");
 
@@ -27,6 +26,13 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor
             formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(ModerationTab));
             formCompletionHelper.ClickLinkByText(objectContext.GetProviderName());
             return new ModerationApplicationAssessmentOverviewPage(_context);
+        }
+
+        public ClarificationApplicationAssessmentOverviewPage ClarificationSelectsAssignToMe()
+        {
+            formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(ClarificationTab));
+            formCompletionHelper.ClickLinkByText(objectContext.GetProviderName());
+            return new ClarificationApplicationAssessmentOverviewPage(_context);
         }
 
         private ApplicationAssessmentOverviewPage AssessorSelectsAssignToMe(By columnIdentifier)

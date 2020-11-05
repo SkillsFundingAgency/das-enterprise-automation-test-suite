@@ -2,7 +2,6 @@
 using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages;
 using SFA.DAS.RoatpAdmin.UITests.Project.Helpers.Gateway;
 using SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay;
-using SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper;
 
 namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.GwAdmin
 {
@@ -10,28 +9,18 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.GwAdmin
     public class GwAdminSteps
     {
         private readonly ScenarioContext _context;
-        private readonly RoatpAdminLoginStepsHelper _loginStepsHelper;
         private readonly GatewayEndtoEndStepsHelpers _gatewayEndToEndStepsHelpers;
         private GWApplicationOverviewPage _gwApplicationOverviewPage;
-        private StaffDashboardPage _staffDashboardPage;
+        
 
         public GwAdminSteps(ScenarioContext context)
         {
             _context = context;
-            _loginStepsHelper = new RoatpAdminLoginStepsHelper(_context);
             _gatewayEndToEndStepsHelpers = new GatewayEndtoEndStepsHelpers();
         }
 
-        [Given(@"the admin lands on the Dashboard")]
-        public void GivenTheAdminLandsOnTheDashboard()
-        {
-            _loginStepsHelper.SubmitValidLoginDetails();
-
-            _staffDashboardPage = new StaffDashboardPage(_context);
-        }
-
         [When(@"the admin access the application from GatewayApplications")]
-        public void WhenTheAdminAccessTheMainRouteApplicationFromGatewayApplications() => _staffDashboardPage.AccessGatewayApplications().SelectApplication();
+        public void WhenTheAdminAccessTheMainRouteApplicationFromGatewayApplications() => new StaffDashboardPage(_context).AccessGatewayApplications().SelectApplication();
 
         [When(@"the gateway admin assess all sections as PASS for MainRoute Application")]
         public void WhenTheGatewayAdminAssessAllSectionsAsPASSForMainRouteApplication() =>

@@ -4,14 +4,16 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Moderator
 {
+    public class ClarificationApplicationsPage
+    {
+
+    }
+
+
     public class ModerationApplicationsPage : ModeratorBasePage
     {
         protected override string PageTitle => "RoATP assessor applications";
         private readonly ScenarioContext _context;
-
-        public By ClarificationTab => By.CssSelector("a[href='/Dashboard/InClarification']");
-
-        public By OutcomeTab => By.CssSelector("a[href='/Dashboard/Outcome']");
 
         private By OutcomeStatus => By.CssSelector("[data-label='Outcome']");
 
